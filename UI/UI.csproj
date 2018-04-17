@@ -25,6 +25,7 @@
     <SccProvider>SAK</SccProvider>
     <UseGlobalApplicationHostFile />
     <Use64BitIISExpress />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +48,18 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\TFS2017\UI\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libray\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -82,6 +95,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Software Tools\Need For New Project\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libray\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="ScriptReferenceProfiler, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libray\ScriptReferenceProfiler.dll</HintPath>
+    </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -92,6 +121,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -100,6 +134,20 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Web.UI, Version=2013.2.717.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libray\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TimePicker, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d25e9f59e49c4d2f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TimePickerMKB.1.0.0.1\lib\TimePicker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
@@ -213,6 +261,47 @@
     <Content Include="Asset\Vehicle_Bill_Detalis_PopUp.aspx" />
     <Content Include="Asset\Vehicle_Maintenance_Bill.aspx" />
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\AkijFTPConnector.dll" />
+    <Content Include="bin\BLL.dll" />
+    <Content Include="bin\Budget_BLL.dll" />
+    <Content Include="bin\Budget_DAL.dll" />
+    <Content Include="bin\Dairy_BLL.dll" />
+    <Content Include="bin\Dairy_DAL.dll" />
+    <Content Include="bin\DAL.dll" />
+    <Content Include="bin\EnvDTE.xml" />
+    <Content Include="bin\EnvDTE80.xml" />
+    <Content Include="bin\GLOBAL_BLL.dll" />
+    <Content Include="bin\HR_BLL.dll" />
+    <Content Include="bin\HR_DAL.dll" />
+    <Content Include="bin\LOGIS_BLL.dll" />
+    <Content Include="bin\LOGIS_DAL.dll" />
+    <Content Include="bin\MessagingToolkit.QRCode.dll" />
+    <Content Include="bin\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+    <Content Include="bin\Microsoft.Exchange.WebServices.dll" />
+    <Content Include="bin\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Projects_BLL.dll" />
+    <Content Include="bin\Projects_DAL.dll" />
+    <Content Include="bin\Purchase_BLL.dll" />
+    <Content Include="bin\Purchase_DAL.dll" />
+    <Content Include="bin\SAD_BLL.dll" />
+    <Content Include="bin\SAD_DAL.dll" />
+    <Content Include="bin\SCM_BLL.dll" />
+    <Content Include="bin\SCM_DAL.dll" />
+    <Content Include="bin\ScriptReferenceProfiler.dll" />
+    <Content Include="bin\Support_BLL.dll" />
+    <Content Include="bin\Support_DAL.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\Telerik.Web.UI.dll" />
+    <Content Include="bin\TimePicker.dll" />
+    <Content Include="bin\UI.dll" />
+    <Content Include="bin\UserRole.dll" />
+    <Content Include="bin\UserSecurity.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="bin\XPSParser.dll" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
@@ -298,6 +387,7 @@
     <Content Include="Libray\Microsoft.VisualStudio.TextManager.Interop.8.0.dll" />
     <Content Include="Libray\Microsoft.VisualStudio.TextManager.Interop.dll" />
     <Content Include="Libray\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Libray\msvcr120.dll" />
     <Content Include="Libray\Projects_BLL.dll" />
     <Content Include="Libray\Projects_DAL.dll" />
     <Content Include="Libray\Purchase_BLL.dll" />
@@ -308,6 +398,7 @@
     <Content Include="Libray\SCM_BLL.dll" />
     <Content Include="Libray\SCM_DAL.dll" />
     <Content Include="Libray\ScriptReferenceProfiler.dll" />
+    <Content Include="Libray\SqlServerSpatial140.dll" />
     <Content Include="Libray\stdole.dll" />
     <Content Include="Libray\Support_BLL.dll" />
     <Content Include="Libray\Support_DAL.dll" />
@@ -6498,6 +6589,24 @@
     <Folder Include="AEFPS\Data\" />
     <Folder Include="Asset\Data\" />
     <Folder Include="Asset\Uploads\" />
+    <Folder Include="bin\ar\" />
+    <Folder Include="bin\cs\" />
+    <Folder Include="bin\de\" />
+    <Folder Include="bin\es\" />
+    <Folder Include="bin\fr\" />
+    <Folder Include="bin\he\" />
+    <Folder Include="bin\hi\" />
+    <Folder Include="bin\it\" />
+    <Folder Include="bin\ja\" />
+    <Folder Include="bin\ko\" />
+    <Folder Include="bin\nl\" />
+    <Folder Include="bin\pt\" />
+    <Folder Include="bin\ru\" />
+    <Folder Include="bin\SqlServerTypes\x64\" />
+    <Folder Include="bin\SqlServerTypes\x86\" />
+    <Folder Include="bin\tr-TR\" />
+    <Folder Include="bin\zh-CHS\" />
+    <Folder Include="bin\zh-CHT\" />
     <Folder Include="BudgetPlan\Data\" />
     <Folder Include="Content\Bundle\" />
     <Folder Include="Dairy\Data\" />
