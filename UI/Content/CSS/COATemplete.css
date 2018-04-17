@@ -1,0 +1,29 @@
+﻿.ddlStyle
+{
+	display:none
+}
+
+ .divPopUpItem
+        {
+            position:absolute;
+            width: 300px;
+            height: 300px;
+            z-index: 1;
+            float:left;
+            display:none;
+            
+            background-color: #f0f0ff;
+            border: 3px outset #00367B;
+        }
+.style1
+  {
+     height: 13px;
+  }
+
+.tablekk
+        {
+            position: absolute;
+            
+            z-index: 0;
+            
+        }

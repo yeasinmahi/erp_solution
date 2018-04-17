@@ -1,0 +1,92 @@
+﻿.tabHolder
+{
+    border-width:1px;
+    border-color:Black;
+    border-style:solid;
+    height:400px;
+    overflow:auto;
+    
+    
+    
+}
+
+.tabsl
+{
+ 
+    border-top-color:Black;
+    border-right-color:Black;
+    border-left-color:Black;
+    border-top-style:solid;
+    border-right-style:solid;
+    border-left-style:solid;
+    border-top-width:1px;
+    border-right-width:1px;
+    border-left-width:1px;
+    text-align:center;
+    width:150px;
+    height:20px;
+    background-color:#496077 ;
+    color:White;
+}
+
+.tabsl2
+{
+ 
+    border-top-color:Black;
+    border-right-color:Black;
+    border-left-color:Black;
+    border-top-style:solid;
+    border-right-style:solid;
+    border-left-style:solid;
+    border-top-width:1px;
+    border-right-width:1px;
+    border-left-width:1px;
+    text-align:center;
+    width:150px;
+    height:25px;
+    background-color:Silver;
+    color:Black;
+}
+
+
+.OddRowStyleLC
+{
+	font-weight:normal;	
+	background-color:#DDDDDD;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	color:#000000;
+	border:solid 1px #FFFFFF;
+}
+.EvenRowStyleLC
+{
+	font-weight:normal;	
+	background-color:#F0F0FF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;	
+	color:#000000;
+	border:solid 1px #FFFFFF;
+}
+
+.tabControlLink
+{
+    text-decoration:none;
+    color:White;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    
+}
+
+.NextLink
+{
+    text-decoration:none;
+    color:White;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    background:#496077;
+    
+    border: 1px solid black;
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom:5px;
+    padding-top:5px;
+    
+}

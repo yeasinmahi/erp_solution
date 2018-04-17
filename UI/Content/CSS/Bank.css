@@ -1,0 +1,64 @@
+﻿
+.divPopUpAccount {
+	position:absolute;
+	display:none;
+	text-align:left;
+	width:800px;
+	height:300px;
+	z-index:1;
+	left:0px;
+	top: 125px;
+	background-color:#f0f0ff;
+	border: 3px outset #00367B;
+}
+
+.divPopUpBranch {
+	position:absolute;
+	display:none;
+	text-align:left;
+	width:700px;
+	height:150px;
+	z-index:1;
+	left: 0px;
+	top: 125px;
+	background-color:#f0f0ff;
+	border: 3px outset #00367B;
+}
+.divPopUpBank {
+	position:absolute;
+	display:none;
+	text-align:left;
+	width:700px;
+	height:150px;
+	z-index:1;
+	left: 0px;
+	top: 125px;
+	background-color:#f0f0ff;
+	border: 3px outset #00367B;
+}
+.divPopAcccountType {
+	position:absolute;
+	display:none;
+	text-align:left;
+	width:600px;
+	height:200px;
+	z-index:1;
+	left: 0px;
+	top: 125px;
+	background-color:#f0f0ff;
+	border: 3px outset #00367B;
+}
+.divPopUpLoanShortTime
+{
+	position:absolute;
+	display:none;
+	text-align:left;
+	width:600px;
+	height:250px;
+	z-index:1;
+	left:100px;
+	top: 125px;
+	background-color:#f0f0ff;
+	border: 3px outset #00367B;
+}
+

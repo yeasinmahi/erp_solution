@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeListTDS" targetNamespace="http://tempuri.org/EmployeeListTDS.xsd" xmlns:mstns="http://tempuri.org/EmployeeListTDS.xsd" xmlns="http://tempuri.org/EmployeeListTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblEmployeeTableAdapter" GeneratorDataComponentClassName="TblEmployeeTableAdapter" Name="TblEmployee" UserDataComponentName="TblEmployeeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.tblEmployee" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetEmployeeListData" GetMethodModifier="Public" GetMethodName="GetEmployeeListData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetEmployeeListData" UserSourceName="GetEmployeeListData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tblEmployee] WHERE (([intEmployeeID] = @Original_intEmployeeID) AND ((@IsNull_strEmployeeCode = 1 AND [strEmployeeCode] IS NULL) OR ([strEmployeeCode] = @Original_strEmployeeCode)) AND ((@IsNull_intAppTypeId = 1 AND [intAppTypeId] IS NULL) OR ([intAppTypeId] = @Original_intAppTypeId)) AND ((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ((@IsNull_strSortName = 1 AND [strSortName] IS NULL) OR ([strSortName] = @Original_strSortName)) AND ((@IsNull_intGroupID = 1 AND [intGroupID] IS NULL) OR ([intGroupID] = @Original_intGroupID)) AND ((@IsNull_intUnitID = 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNull_intJobStationID = 1 AND [intJobStationID] IS NULL) OR ([intJobStationID] = @Original_intJobStationID)) AND ((@IsNull_intJobTypeId = 1 AND [intJobTypeId] IS NULL) OR ([intJobTypeId] = @Original_intJobTypeId)) AND ((@IsNull_intDesignationID = 1 AND [intDesignationID] IS NULL) OR ([intDesignationID] = @Original_intDesignationID)) AND ((@IsNull_intDepartmentID = 1 AND [intDepartmentID] IS NULL) OR ([intDepartmentID] = @Original_intDepartmentID)) AND ((@IsNull_intDutyCatagoryID = 1 AND [intDutyCatagoryID] IS NULL) OR ([intDutyCatagoryID] = @Original_intDutyCatagoryID)) AND ((@IsNull_intPresentShiftID = 1 AND [intPresentShiftID] IS NULL) OR ([intPresentShiftID] = @Original_intPresentShiftID)) AND ((@IsNull_intDayOffId = 1 AND [intDayOffId] IS NULL) OR ([intDayOffId] = @Original_intDayOffId)) AND ((@IsNull_strEmployeePunchCardCode = 1 AND [strEmployeePunchCardCode] IS NULL) OR ([strEmployeePunchCardCode] = @Original_strEmployeePunchCardCode)) AND ((@IsNull_strContactPeriod = 1 AND [strContactPeriod] IS NULL) OR ([strContactPeriod] = @Original_strContactPeriod)) AND ((@IsNull_intSuperviserId = 1 AND [intSuperviserId] IS NULL) OR ([intSuperviserId] = @Original_intSuperviserId)) AND ((@IsNull_dteJoiningDate = 1 AND [dteJoiningDate] IS NULL) OR ([dteJoiningDate] = @Original_dteJoiningDate)) AND ((@IsNull_dteAppointmentDate = 1 AND [dteAppointmentDate] IS NULL) OR ([dteAppointmentDate] = @Original_dteAppointmentDate)) AND ((@IsNull_strResponsibility = 1 AND [strResponsibility] IS NULL) OR ([strResponsibility] = @Original_strResponsibility)) AND ((@IsNull_strBloodGroup = 1 AND [strBloodGroup] IS NULL) OR ([strBloodGroup] = @Original_strBloodGroup)) AND ((@IsNull_strEmpImageUrl = 1 AND [strEmpImageUrl] IS NULL) OR ([strEmpImageUrl] = @Original_strEmpImageUrl)) AND ((@IsNull_strBankAccountNo = 1 AND [strBankAccountNo] IS NULL) OR ([strBankAccountNo] = @Original_strBankAccountNo)) AND ((@IsNull_monSalary = 1 AND [monSalary] IS NULL) OR ([monSalary] = @Original_monSalary)) AND ((@IsNull_strNationalId = 1 AND [strNationalId] IS NULL) OR ([strNationalId] = @Original_strNationalId)) AND ((@IsNull_strGender = 1 AND [strGender] IS NULL) OR ([strGender] = @Original_strGender)) AND ((@IsNull_intSoftwareLoginUserID = 1 AND [intSoftwareLoginUserID] IS NULL) OR ([intSoftwareLoginUserID] = @Original_intSoftwareLoginUserID)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)) AND ((@IsNull_strBankName = 1 AND [strBankName] IS NULL) OR ([strBankName] = @Original_strBankName)) AND ((@IsNull_strBranchName = 1 AND [strBranchName] IS NULL) OR ([strBranchName] = @Original_strBranchName)) AND ((@IsNull_monBasic = 1 AND [monBasic] IS NULL) OR ([monBasic] = @Original_monBasic)) AND ((@IsNull_timeOfficeHour = 1 AND [timeOfficeHour] IS NULL) OR ([timeOfficeHour] = @Original_timeOfficeHour)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intAppTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAppTypeId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intAppTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAppTypeId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strSortName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strSortName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strSortName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSortName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intGroupID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intGroupID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intGroupID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intGroupID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobTypeId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobTypeId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDesignationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDesignationID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDesignationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDesignationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDepartmentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDepartmentID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDepartmentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDepartmentID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDutyCatagoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDutyCatagoryID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDutyCatagoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDutyCatagoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intPresentShiftID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPresentShiftID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intPresentShiftID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPresentShiftID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDayOffId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDayOffId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDayOffId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDayOffId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeePunchCardCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeePunchCardCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeePunchCardCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeePunchCardCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strContactPeriod" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strContactPeriod" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strContactPeriod" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strContactPeriod" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intSuperviserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSuperviserId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intSuperviserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSuperviserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteJoiningDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteJoiningDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteJoiningDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteJoiningDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteAppointmentDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteAppointmentDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteAppointmentDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteAppointmentDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strResponsibility" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strResponsibility" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strResponsibility" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strResponsibility" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBloodGroup" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBloodGroup" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBloodGroup" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBloodGroup" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmpImageUrl" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmpImageUrl" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmpImageUrl" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmpImageUrl" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBankAccountNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBankAccountNo" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBankAccountNo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankAccountNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monSalary" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monSalary" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monSalary" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monSalary" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strNationalId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strNationalId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strNationalId" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strNationalId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strGender" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strGender" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strGender" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strGender" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intSoftwareLoginUserID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSoftwareLoginUserID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intSoftwareLoginUserID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSoftwareLoginUserID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnActive" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBankName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBranchName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBranchName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBranchName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBranchName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monBasic" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monBasic" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monBasic" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monBasic" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_timeOfficeHour" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="timeOfficeHour" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@Original_timeOfficeHour" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="timeOfficeHour" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tblEmployee] ([strEmployeeCode], [intAppTypeId], [strEmployeeName], [strSortName], [intGroupID], [intUnitID], [intJobStationID], [intJobTypeId], [intDesignationID], [intDepartmentID], [intDutyCatagoryID], [intPresentShiftID], [intDayOffId], [strEmployeePunchCardCode], [strContactPeriod], [intSuperviserId], [dteJoiningDate], [dteAppointmentDate], [strResponsibility], [strBloodGroup], [strEmpImageUrl], [strBankAccountNo], [monSalary], [strNationalId], [strGender], [intSoftwareLoginUserID], [ysnActive], [strBankName], [strBranchName], [monBasic], [timeOfficeHour]) VALUES (@strEmployeeCode, @intAppTypeId, @strEmployeeName, @strSortName, @intGroupID, @intUnitID, @intJobStationID, @intJobTypeId, @intDesignationID, @intDepartmentID, @intDutyCatagoryID, @intPresentShiftID, @intDayOffId, @strEmployeePunchCardCode, @strContactPeriod, @intSuperviserId, @dteJoiningDate, @dteAppointmentDate, @strResponsibility, @strBloodGroup, @strEmpImageUrl, @strBankAccountNo, @monSalary, @strNationalId, @strGender, @intSoftwareLoginUserID, @ysnActive, @strBankName, @strBranchName, @monBasic, @timeOfficeHour);
+SELECT intEmployeeID, strEmployeeCode, intAppTypeId, strEmployeeName, strSortName, intGroupID, intUnitID, intJobStationID, intJobTypeId, intDesignationID, intDepartmentID, intDutyCatagoryID, intPresentShiftID, intDayOffId, strEmployeePunchCardCode, strContactPeriod, intSuperviserId, dteJoiningDate, dteAppointmentDate, strResponsibility, strBloodGroup, strEmpImageUrl, strBankAccountNo, monSalary, strNationalId, strGender, intSoftwareLoginUserID, ysnActive, strBankName, strBranchName, monBasic, timeOfficeHour FROM tblEmployee WHERE (intEmployeeID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intAppTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAppTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strSortName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSortName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intGroupID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intGroupID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDesignationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDesignationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDepartmentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDepartmentID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDutyCatagoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDutyCatagoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intPresentShiftID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPresentShiftID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDayOffId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDayOffId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeePunchCardCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeePunchCardCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strContactPeriod" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strContactPeriod" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intSuperviserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSuperviserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteJoiningDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteJoiningDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteAppointmentDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteAppointmentDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strResponsibility" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strResponsibility" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBloodGroup" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBloodGroup" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmpImageUrl" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmpImageUrl" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBankAccountNo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankAccountNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monSalary" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monSalary" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strNationalId" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strNationalId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strGender" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strGender" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intSoftwareLoginUserID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSoftwareLoginUserID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBranchName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBranchName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monBasic" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monBasic" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@timeOfficeHour" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="timeOfficeHour" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblEmployee.*
+FROM            tblEmployee</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tblEmployee] SET [strEmployeeCode] = @strEmployeeCode, [intAppTypeId] = @intAppTypeId, [strEmployeeName] = @strEmployeeName, [strSortName] = @strSortName, [intGroupID] = @intGroupID, [intUnitID] = @intUnitID, [intJobStationID] = @intJobStationID, [intJobTypeId] = @intJobTypeId, [intDesignationID] = @intDesignationID, [intDepartmentID] = @intDepartmentID, [intDutyCatagoryID] = @intDutyCatagoryID, [intPresentShiftID] = @intPresentShiftID, [intDayOffId] = @intDayOffId, [strEmployeePunchCardCode] = @strEmployeePunchCardCode, [strContactPeriod] = @strContactPeriod, [intSuperviserId] = @intSuperviserId, [dteJoiningDate] = @dteJoiningDate, [dteAppointmentDate] = @dteAppointmentDate, [strResponsibility] = @strResponsibility, [strBloodGroup] = @strBloodGroup, [strEmpImageUrl] = @strEmpImageUrl, [strBankAccountNo] = @strBankAccountNo, [monSalary] = @monSalary, [strNationalId] = @strNationalId, [strGender] = @strGender, [intSoftwareLoginUserID] = @intSoftwareLoginUserID, [ysnActive] = @ysnActive, [strBankName] = @strBankName, [strBranchName] = @strBranchName, [monBasic] = @monBasic, [timeOfficeHour] = @timeOfficeHour WHERE (([intEmployeeID] = @Original_intEmployeeID) AND ((@IsNull_strEmployeeCode = 1 AND [strEmployeeCode] IS NULL) OR ([strEmployeeCode] = @Original_strEmployeeCode)) AND ((@IsNull_intAppTypeId = 1 AND [intAppTypeId] IS NULL) OR ([intAppTypeId] = @Original_intAppTypeId)) AND ((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ((@IsNull_strSortName = 1 AND [strSortName] IS NULL) OR ([strSortName] = @Original_strSortName)) AND ((@IsNull_intGroupID = 1 AND [intGroupID] IS NULL) OR ([intGroupID] = @Original_intGroupID)) AND ((@IsNull_intUnitID = 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNull_intJobStationID = 1 AND [intJobStationID] IS NULL) OR ([intJobStationID] = @Original_intJobStationID)) AND ((@IsNull_intJobTypeId = 1 AND [intJobTypeId] IS NULL) OR ([intJobTypeId] = @Original_intJobTypeId)) AND ((@IsNull_intDesignationID = 1 AND [intDesignationID] IS NULL) OR ([intDesignationID] = @Original_intDesignationID)) AND ((@IsNull_intDepartmentID = 1 AND [intDepartmentID] IS NULL) OR ([intDepartmentID] = @Original_intDepartmentID)) AND ((@IsNull_intDutyCatagoryID = 1 AND [intDutyCatagoryID] IS NULL) OR ([intDutyCatagoryID] = @Original_intDutyCatagoryID)) AND ((@IsNull_intPresentShiftID = 1 AND [intPresentShiftID] IS NULL) OR ([intPresentShiftID] = @Original_intPresentShiftID)) AND ((@IsNull_intDayOffId = 1 AND [intDayOffId] IS NULL) OR ([intDayOffId] = @Original_intDayOffId)) AND ((@IsNull_strEmployeePunchCardCode = 1 AND [strEmployeePunchCardCode] IS NULL) OR ([strEmployeePunchCardCode] = @Original_strEmployeePunchCardCode)) AND ((@IsNull_strContactPeriod = 1 AND [strContactPeriod] IS NULL) OR ([strContactPeriod] = @Original_strContactPeriod)) AND ((@IsNull_intSuperviserId = 1 AND [intSuperviserId] IS NULL) OR ([intSuperviserId] = @Original_intSuperviserId)) AND ((@IsNull_dteJoiningDate = 1 AND [dteJoiningDate] IS NULL) OR ([dteJoiningDate] = @Original_dteJoiningDate)) AND ((@IsNull_dteAppointmentDate = 1 AND [dteAppointmentDate] IS NULL) OR ([dteAppointmentDate] = @Original_dteAppointmentDate)) AND ((@IsNull_strResponsibility = 1 AND [strResponsibility] IS NULL) OR ([strResponsibility] = @Original_strResponsibility)) AND ((@IsNull_strBloodGroup = 1 AND [strBloodGroup] IS NULL) OR ([strBloodGroup] = @Original_strBloodGroup)) AND ((@IsNull_strEmpImageUrl = 1 AND [strEmpImageUrl] IS NULL) OR ([strEmpImageUrl] = @Original_strEmpImageUrl)) AND ((@IsNull_strBankAccountNo = 1 AND [strBankAccountNo] IS NULL) OR ([strBankAccountNo] = @Original_strBankAccountNo)) AND ((@IsNull_monSalary = 1 AND [monSalary] IS NULL) OR ([monSalary] = @Original_monSalary)) AND ((@IsNull_strNationalId = 1 AND [strNationalId] IS NULL) OR ([strNationalId] = @Original_strNationalId)) AND ((@IsNull_strGender = 1 AND [strGender] IS NULL) OR ([strGender] = @Original_strGender)) AND ((@IsNull_intSoftwareLoginUserID = 1 AND [intSoftwareLoginUserID] IS NULL) OR ([intSoftwareLoginUserID] = @Original_intSoftwareLoginUserID)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)) AND ((@IsNull_strBankName = 1 AND [strBankName] IS NULL) OR ([strBankName] = @Original_strBankName)) AND ((@IsNull_strBranchName = 1 AND [strBranchName] IS NULL) OR ([strBranchName] = @Original_strBranchName)) AND ((@IsNull_monBasic = 1 AND [monBasic] IS NULL) OR ([monBasic] = @Original_monBasic)) AND ((@IsNull_timeOfficeHour = 1 AND [timeOfficeHour] IS NULL) OR ([timeOfficeHour] = @Original_timeOfficeHour)));
+SELECT intEmployeeID, strEmployeeCode, intAppTypeId, strEmployeeName, strSortName, intGroupID, intUnitID, intJobStationID, intJobTypeId, intDesignationID, intDepartmentID, intDutyCatagoryID, intPresentShiftID, intDayOffId, strEmployeePunchCardCode, strContactPeriod, intSuperviserId, dteJoiningDate, dteAppointmentDate, strResponsibility, strBloodGroup, strEmpImageUrl, strBankAccountNo, monSalary, strNationalId, strGender, intSoftwareLoginUserID, ysnActive, strBankName, strBranchName, monBasic, timeOfficeHour FROM tblEmployee WHERE (intEmployeeID = @intEmployeeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intAppTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAppTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strSortName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSortName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intGroupID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intGroupID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDesignationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDesignationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDepartmentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDepartmentID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDutyCatagoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDutyCatagoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intPresentShiftID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPresentShiftID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intDayOffId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDayOffId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeePunchCardCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeePunchCardCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strContactPeriod" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strContactPeriod" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intSuperviserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSuperviserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteJoiningDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteJoiningDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteAppointmentDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteAppointmentDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strResponsibility" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strResponsibility" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBloodGroup" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBloodGroup" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmpImageUrl" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmpImageUrl" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBankAccountNo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankAccountNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monSalary" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monSalary" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strNationalId" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strNationalId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strGender" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strGender" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intSoftwareLoginUserID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSoftwareLoginUserID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBranchName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBranchName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monBasic" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monBasic" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@timeOfficeHour" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="timeOfficeHour" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intAppTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAppTypeId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intAppTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAppTypeId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strSortName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strSortName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strSortName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSortName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intGroupID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intGroupID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intGroupID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intGroupID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobTypeId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobTypeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobTypeId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDesignationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDesignationID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDesignationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDesignationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDepartmentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDepartmentID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDepartmentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDepartmentID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDutyCatagoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDutyCatagoryID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDutyCatagoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDutyCatagoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intPresentShiftID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPresentShiftID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intPresentShiftID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPresentShiftID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intDayOffId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDayOffId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intDayOffId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intDayOffId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeePunchCardCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeePunchCardCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeePunchCardCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeePunchCardCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strContactPeriod" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strContactPeriod" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strContactPeriod" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strContactPeriod" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intSuperviserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSuperviserId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intSuperviserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSuperviserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteJoiningDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteJoiningDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteJoiningDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteJoiningDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteAppointmentDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteAppointmentDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteAppointmentDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteAppointmentDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strResponsibility" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strResponsibility" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strResponsibility" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strResponsibility" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBloodGroup" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBloodGroup" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBloodGroup" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBloodGroup" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmpImageUrl" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmpImageUrl" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmpImageUrl" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmpImageUrl" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBankAccountNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBankAccountNo" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBankAccountNo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankAccountNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monSalary" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monSalary" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monSalary" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monSalary" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strNationalId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strNationalId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strNationalId" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strNationalId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strGender" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strGender" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strGender" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strGender" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intSoftwareLoginUserID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSoftwareLoginUserID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intSoftwareLoginUserID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSoftwareLoginUserID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnActive" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBankName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strBranchName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strBranchName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBranchName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBranchName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monBasic" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monBasic" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monBasic" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monBasic" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_timeOfficeHour" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="timeOfficeHour" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@Original_timeOfficeHour" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="timeOfficeHour" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intEmployeeID" ColumnName="intEmployeeID" DataSourceName="ERP_HR.dbo.tblEmployee" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+              <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
+              <Mapping SourceColumn="intAppTypeId" DataSetColumn="intAppTypeId" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strSortName" DataSetColumn="strSortName" />
+              <Mapping SourceColumn="intGroupID" DataSetColumn="intGroupID" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="intJobStationID" DataSetColumn="intJobStationID" />
+              <Mapping SourceColumn="intJobTypeId" DataSetColumn="intJobTypeId" />
+              <Mapping SourceColumn="intDesignationID" DataSetColumn="intDesignationID" />
+              <Mapping SourceColumn="intDepartmentID" DataSetColumn="intDepartmentID" />
+              <Mapping SourceColumn="intDutyCatagoryID" DataSetColumn="intDutyCatagoryID" />
+              <Mapping SourceColumn="intPresentShiftID" DataSetColumn="intPresentShiftID" />
+              <Mapping SourceColumn="intDayOffId" DataSetColumn="intDayOffId" />
+              <Mapping SourceColumn="strEmployeePunchCardCode" DataSetColumn="strEmployeePunchCardCode" />
+              <Mapping SourceColumn="strContactPeriod" DataSetColumn="strContactPeriod" />
+              <Mapping SourceColumn="intSuperviserId" DataSetColumn="intSuperviserId" />
+              <Mapping SourceColumn="dteJoiningDate" DataSetColumn="dteJoiningDate" />
+              <Mapping SourceColumn="dteAppointmentDate" DataSetColumn="dteAppointmentDate" />
+              <Mapping SourceColumn="strResponsibility" DataSetColumn="strResponsibility" />
+              <Mapping SourceColumn="strBloodGroup" DataSetColumn="strBloodGroup" />
+              <Mapping SourceColumn="strEmpImageUrl" DataSetColumn="strEmpImageUrl" />
+              <Mapping SourceColumn="strBankAccountNo" DataSetColumn="strBankAccountNo" />
+              <Mapping SourceColumn="monSalary" DataSetColumn="monSalary" />
+              <Mapping SourceColumn="strNationalId" DataSetColumn="strNationalId" />
+              <Mapping SourceColumn="strGender" DataSetColumn="strGender" />
+              <Mapping SourceColumn="intSoftwareLoginUserID" DataSetColumn="intSoftwareLoginUserID" />
+              <Mapping SourceColumn="ysnActive" DataSetColumn="ysnActive" />
+              <Mapping SourceColumn="strBankName" DataSetColumn="strBankName" />
+              <Mapping SourceColumn="strBranchName" DataSetColumn="strBranchName" />
+              <Mapping SourceColumn="monBasic" DataSetColumn="monBasic" />
+              <Mapping SourceColumn="timeOfficeHour" DataSetColumn="timeOfficeHour" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprEmployeeByJobStationTableAdapter" GeneratorDataComponentClassName="SprEmployeeByJobStationTableAdapter" Name="SprEmployeeByJobStation" UserDataComponentName="SprEmployeeByJobStationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprEmployeeByJobStation" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetEmployeeListData" GetMethodModifier="Public" GetMethodName="GetEmployeeListData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetEmployeeListData" UserSourceName="GetEmployeeListData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprEmployeeByJobStation</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intLoginId" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblEmployeeJobStationOperatorTableAdapter" GeneratorDataComponentClassName="TblEmployeeJobStationOperatorTableAdapter" Name="TblEmployeeJobStationOperator" UserDataComponentName="TblEmployeeJobStationOperatorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.tblEmployeeJobStationOperator" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetJobStationOparetorData" GetMethodModifier="Public" GetMethodName="GetJobStationOparetorData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetJobStationOparetorData" UserSourceName="GetJobStationOparetorData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tblEmployeeJobStationOperator] WHERE (([intAutoId] = @Original_intAutoId) AND ((@IsNull_intEmployeeId = 1 AND [intEmployeeId] IS NULL) OR ([intEmployeeId] = @Original_intEmployeeId)) AND ((@IsNull_intJobStationId = 1 AND [intJobStationId] IS NULL) OR ([intJobStationId] = @Original_intJobStationId)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intAutoId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAutoId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intEmployeeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobStationId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobStationId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnActive" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tblEmployeeJobStationOperator] ([intEmployeeId], [intJobStationId], [ysnActive]) VALUES (@intEmployeeId, @intJobStationId, @ysnActive);
+SELECT intAutoId, intEmployeeId, intJobStationId, ysnActive FROM tblEmployeeJobStationOperator WHERE (intAutoId = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intEmployeeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobStationId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        *
+FROM            tblEmployeeJobStationOperator</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tblEmployeeJobStationOperator] SET [intEmployeeId] = @intEmployeeId, [intJobStationId] = @intJobStationId, [ysnActive] = @ysnActive WHERE (([intAutoId] = @Original_intAutoId) AND ((@IsNull_intEmployeeId = 1 AND [intEmployeeId] IS NULL) OR ([intEmployeeId] = @Original_intEmployeeId)) AND ((@IsNull_intJobStationId = 1 AND [intJobStationId] IS NULL) OR ([intJobStationId] = @Original_intJobStationId)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)));
+SELECT intAutoId, intEmployeeId, intJobStationId, ysnActive FROM tblEmployeeJobStationOperator WHERE (intAutoId = @intAutoId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intEmployeeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobStationId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intAutoId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAutoId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intEmployeeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobStationId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobStationId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnActive" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intAutoId" ColumnName="intAutoId" DataSourceName="ERP_HR.dbo.tblEmployeeJobStationOperator" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAutoId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAutoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intAutoId" DataSetColumn="intAutoId" />
+              <Mapping SourceColumn="intEmployeeId" DataSetColumn="intEmployeeId" />
+              <Mapping SourceColumn="intJobStationId" DataSetColumn="intJobStationId" />
+              <Mapping SourceColumn="ysnActive" DataSetColumn="ysnActive" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.tblEmployeeJobStationOperator" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByEmployee" GetMethodModifier="Public" GetMethodName="GetDataByEmployee" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByEmployee" UserSourceName="GetDataByEmployee">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        *
+FROM            tblEmployeeJobStationOperator
+where intEmployeeId=@loginID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="loginID" ColumnName="intEmployeeId" DataSourceName="ERP_HR.dbo.tblEmployeeJobStationOperator" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@loginID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAutoTextBoxSearchForPicerateEmployeesTableAdapter" GeneratorDataComponentClassName="SprAutoTextBoxSearchForPicerateEmployeesTableAdapter" Name="SprAutoTextBoxSearchForPicerateEmployees" UserDataComponentName="SprAutoTextBoxSearchForPicerateEmployeesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprPiceRate_AutoTextBoxSearchForPicerateEmployees" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPiceRateEmployeesByLoginUserJobstation" GetMethodModifier="Public" GetMethodName="GetPiceRateEmployeesByLoginUserJobstation" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetPiceRateEmployeesByLoginUserJobstation" UserSourceName="GetPiceRateEmployeesByLoginUserJobstation">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprPiceRate_AutoTextBoxSearchForPicerateEmployees</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intLoginUserID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblEmployeeAutoSearchTableAdapter" GeneratorDataComponentClassName="TblEmployeeAutoSearchTableAdapter" Name="TblEmployeeAutoSearch" UserDataComponentName="TblEmployeeAutoSearchTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.tblEmployee" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tblEmployee] WHERE (([intEmployeeID] = @Original_intEmployeeID) AND ((@IsNull_strEmployeeCode = 1 AND [strEmployeeCode] IS NULL) OR ([strEmployeeCode] = @Original_strEmployeeCode)) AND ((@IsNull_intJobStationID = 1 AND [intJobStationID] IS NULL) OR ([intJobStationID] = @Original_intJobStationID)) AND ((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tblEmployee] ([strEmployeeCode], [intJobStationID], [strEmployeeName]) VALUES (@strEmployeeCode, @intJobStationID, @strEmployeeName);
+SELECT intEmployeeID, strEmployeeCode, intJobStationID, strEmployeeName FROM tblEmployee WHERE (intEmployeeID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select  intEmployeeID, strEmployeeCode,intJobStationID,strEmployeeName
+from tblEmployee</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tblEmployee] SET [strEmployeeCode] = @strEmployeeCode, [intJobStationID] = @intJobStationID, [strEmployeeName] = @strEmployeeName WHERE (([intEmployeeID] = @Original_intEmployeeID) AND ((@IsNull_strEmployeeCode = 1 AND [strEmployeeCode] IS NULL) OR ([strEmployeeCode] = @Original_strEmployeeCode)) AND ((@IsNull_intJobStationID = 1 AND [intJobStationID] IS NULL) OR ([intJobStationID] = @Original_intJobStationID)) AND ((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)));
+SELECT intEmployeeID, strEmployeeCode, intJobStationID, strEmployeeName FROM tblEmployee WHERE (intEmployeeID = @intEmployeeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intJobStationID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intJobStationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intEmployeeID" ColumnName="intEmployeeID" DataSourceName="ERP_HR.dbo.tblEmployee" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+              <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
+              <Mapping SourceColumn="intJobStationID" DataSetColumn="intJobStationID" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeListTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EmployeeListTDS" msprop:Generator_UserDSName="EmployeeListTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TblEmployee" msprop:Generator_TableClassName="TblEmployeeDataTable" msprop:Generator_TableVarName="tableTblEmployee" msprop:Generator_TablePropName="TblEmployee" msprop:Generator_RowDeletingName="TblEmployeeRowDeleting" msprop:Generator_UserTableName="TblEmployee" msprop:Generator_RowChangingName="TblEmployeeRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeRowDeleted" msprop:Generator_RowEvArgName="TblEmployeeRowChangeEvent" msprop:Generator_RowChangedName="TblEmployeeRowChanged" msprop:Generator_RowClassName="TblEmployeeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
+              <xs:element name="strEmployeeCode" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeCode" msprop:Generator_ColumnPropNameInRow="strEmployeeCode" msprop:Generator_ColumnPropNameInTable="strEmployeeCodeColumn" msprop:Generator_UserColumnName="strEmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intAppTypeId" msprop:Generator_ColumnVarNameInTable="columnintAppTypeId" msprop:Generator_ColumnPropNameInRow="intAppTypeId" msprop:Generator_ColumnPropNameInTable="intAppTypeIdColumn" msprop:Generator_UserColumnName="intAppTypeId" type="xs:int" minOccurs="0" />
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSortName" msprop:Generator_ColumnVarNameInTable="columnstrSortName" msprop:Generator_ColumnPropNameInRow="strSortName" msprop:Generator_ColumnPropNameInTable="strSortNameColumn" msprop:Generator_UserColumnName="strSortName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intGroupID" msprop:Generator_ColumnVarNameInTable="columnintGroupID" msprop:Generator_ColumnPropNameInRow="intGroupID" msprop:Generator_ColumnPropNameInTable="intGroupIDColumn" msprop:Generator_UserColumnName="intGroupID" type="xs:int" minOccurs="0" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="intJobStationID" msprop:Generator_ColumnVarNameInTable="columnintJobStationID" msprop:Generator_ColumnPropNameInRow="intJobStationID" msprop:Generator_ColumnPropNameInTable="intJobStationIDColumn" msprop:Generator_UserColumnName="intJobStationID" type="xs:int" minOccurs="0" />
+              <xs:element name="intJobTypeId" msprop:Generator_ColumnVarNameInTable="columnintJobTypeId" msprop:Generator_ColumnPropNameInRow="intJobTypeId" msprop:Generator_ColumnPropNameInTable="intJobTypeIdColumn" msprop:Generator_UserColumnName="intJobTypeId" type="xs:int" minOccurs="0" />
+              <xs:element name="intDesignationID" msprop:Generator_ColumnVarNameInTable="columnintDesignationID" msprop:Generator_ColumnPropNameInRow="intDesignationID" msprop:Generator_ColumnPropNameInTable="intDesignationIDColumn" msprop:Generator_UserColumnName="intDesignationID" type="xs:int" minOccurs="0" />
+              <xs:element name="intDepartmentID" msprop:Generator_ColumnVarNameInTable="columnintDepartmentID" msprop:Generator_ColumnPropNameInRow="intDepartmentID" msprop:Generator_ColumnPropNameInTable="intDepartmentIDColumn" msprop:Generator_UserColumnName="intDepartmentID" type="xs:int" minOccurs="0" />
+              <xs:element name="intDutyCatagoryID" msprop:Generator_ColumnVarNameInTable="columnintDutyCatagoryID" msprop:Generator_ColumnPropNameInRow="intDutyCatagoryID" msprop:Generator_ColumnPropNameInTable="intDutyCatagoryIDColumn" msprop:Generator_UserColumnName="intDutyCatagoryID" type="xs:int" minOccurs="0" />
+              <xs:element name="intPresentShiftID" msprop:Generator_ColumnVarNameInTable="columnintPresentShiftID" msprop:Generator_ColumnPropNameInRow="intPresentShiftID" msprop:Generator_ColumnPropNameInTable="intPresentShiftIDColumn" msprop:Generator_UserColumnName="intPresentShiftID" type="xs:int" minOccurs="0" />
+              <xs:element name="intDayOffId" msprop:Generator_ColumnVarNameInTable="columnintDayOffId" msprop:Generator_ColumnPropNameInRow="intDayOffId" msprop:Generator_ColumnPropNameInTable="intDayOffIdColumn" msprop:Generator_UserColumnName="intDayOffId" type="xs:int" minOccurs="0" />
+              <xs:element name="strEmployeePunchCardCode" msprop:Generator_ColumnVarNameInTable="columnstrEmployeePunchCardCode" msprop:Generator_ColumnPropNameInRow="strEmployeePunchCardCode" msprop:Generator_ColumnPropNameInTable="strEmployeePunchCardCodeColumn" msprop:Generator_UserColumnName="strEmployeePunchCardCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strContactPeriod" msprop:Generator_ColumnVarNameInTable="columnstrContactPeriod" msprop:Generator_ColumnPropNameInRow="strContactPeriod" msprop:Generator_ColumnPropNameInTable="strContactPeriodColumn" msprop:Generator_UserColumnName="strContactPeriod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSuperviserId" msprop:Generator_ColumnVarNameInTable="columnintSuperviserId" msprop:Generator_ColumnPropNameInRow="intSuperviserId" msprop:Generator_ColumnPropNameInTable="intSuperviserIdColumn" msprop:Generator_UserColumnName="intSuperviserId" type="xs:int" minOccurs="0" />
+              <xs:element name="dteJoiningDate" msprop:Generator_ColumnVarNameInTable="columndteJoiningDate" msprop:Generator_ColumnPropNameInRow="dteJoiningDate" msprop:Generator_ColumnPropNameInTable="dteJoiningDateColumn" msprop:Generator_UserColumnName="dteJoiningDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteAppointmentDate" msprop:Generator_ColumnVarNameInTable="columndteAppointmentDate" msprop:Generator_ColumnPropNameInRow="dteAppointmentDate" msprop:Generator_ColumnPropNameInTable="dteAppointmentDateColumn" msprop:Generator_UserColumnName="dteAppointmentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strResponsibility" msprop:Generator_ColumnVarNameInTable="columnstrResponsibility" msprop:Generator_ColumnPropNameInRow="strResponsibility" msprop:Generator_ColumnPropNameInTable="strResponsibilityColumn" msprop:Generator_UserColumnName="strResponsibility" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBloodGroup" msprop:Generator_ColumnVarNameInTable="columnstrBloodGroup" msprop:Generator_ColumnPropNameInRow="strBloodGroup" msprop:Generator_ColumnPropNameInTable="strBloodGroupColumn" msprop:Generator_UserColumnName="strBloodGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmpImageUrl" msprop:Generator_ColumnVarNameInTable="columnstrEmpImageUrl" msprop:Generator_ColumnPropNameInRow="strEmpImageUrl" msprop:Generator_ColumnPropNameInTable="strEmpImageUrlColumn" msprop:Generator_UserColumnName="strEmpImageUrl" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBankAccountNo" msprop:Generator_ColumnVarNameInTable="columnstrBankAccountNo" msprop:Generator_ColumnPropNameInRow="strBankAccountNo" msprop:Generator_ColumnPropNameInTable="strBankAccountNoColumn" msprop:Generator_UserColumnName="strBankAccountNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monSalary" msprop:Generator_ColumnVarNameInTable="columnmonSalary" msprop:Generator_ColumnPropNameInRow="monSalary" msprop:Generator_ColumnPropNameInTable="monSalaryColumn" msprop:Generator_UserColumnName="monSalary" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strNationalId" msprop:Generator_ColumnVarNameInTable="columnstrNationalId" msprop:Generator_ColumnPropNameInRow="strNationalId" msprop:Generator_ColumnPropNameInTable="strNationalIdColumn" msprop:Generator_UserColumnName="strNationalId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strGender" msprop:Generator_ColumnVarNameInTable="columnstrGender" msprop:Generator_ColumnPropNameInRow="strGender" msprop:Generator_ColumnPropNameInTable="strGenderColumn" msprop:Generator_UserColumnName="strGender" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSoftwareLoginUserID" msprop:Generator_ColumnVarNameInTable="columnintSoftwareLoginUserID" msprop:Generator_ColumnPropNameInRow="intSoftwareLoginUserID" msprop:Generator_ColumnPropNameInTable="intSoftwareLoginUserIDColumn" msprop:Generator_UserColumnName="intSoftwareLoginUserID" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" msprop:Generator_UserColumnName="ysnActive" type="xs:boolean" minOccurs="0" />
+              <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBranchName" msprop:Generator_ColumnVarNameInTable="columnstrBranchName" msprop:Generator_ColumnPropNameInRow="strBranchName" msprop:Generator_ColumnPropNameInTable="strBranchNameColumn" msprop:Generator_UserColumnName="strBranchName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monBasic" msprop:Generator_ColumnVarNameInTable="columnmonBasic" msprop:Generator_ColumnPropNameInRow="monBasic" msprop:Generator_ColumnPropNameInTable="monBasicColumn" msprop:Generator_UserColumnName="monBasic" type="xs:decimal" minOccurs="0" />
+              <xs:element name="timeOfficeHour" msprop:Generator_ColumnVarNameInTable="columntimeOfficeHour" msprop:Generator_ColumnPropNameInRow="timeOfficeHour" msprop:Generator_ColumnPropNameInTable="timeOfficeHourColumn" msprop:Generator_UserColumnName="timeOfficeHour" type="xs:duration" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprEmployeeByJobStation" msprop:Generator_TableClassName="SprEmployeeByJobStationDataTable" msprop:Generator_TableVarName="tableSprEmployeeByJobStation" msprop:Generator_TablePropName="SprEmployeeByJobStation" msprop:Generator_RowDeletingName="SprEmployeeByJobStationRowDeleting" msprop:Generator_UserTableName="SprEmployeeByJobStation" msprop:Generator_RowChangingName="SprEmployeeByJobStationRowChanging" msprop:Generator_RowEvHandlerName="SprEmployeeByJobStationRowChangeEventHandler" msprop:Generator_RowDeletedName="SprEmployeeByJobStationRowDeleted" msprop:Generator_RowEvArgName="SprEmployeeByJobStationRowChangeEvent" msprop:Generator_RowChangedName="SprEmployeeByJobStationRowChanged" msprop:Generator_RowClassName="SprEmployeeByJobStationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strEmployeeName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeCode" msprop:Generator_ColumnPropNameInRow="strEmployeeCode" msprop:Generator_ColumnPropNameInTable="strEmployeeCodeColumn" msprop:Generator_UserColumnName="strEmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblEmployeeJobStationOperator" msprop:Generator_TableClassName="TblEmployeeJobStationOperatorDataTable" msprop:Generator_TableVarName="tableTblEmployeeJobStationOperator" msprop:Generator_TablePropName="TblEmployeeJobStationOperator" msprop:Generator_RowDeletingName="TblEmployeeJobStationOperatorRowDeleting" msprop:Generator_UserTableName="TblEmployeeJobStationOperator" msprop:Generator_RowChangingName="TblEmployeeJobStationOperatorRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeJobStationOperatorRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeJobStationOperatorRowDeleted" msprop:Generator_RowEvArgName="TblEmployeeJobStationOperatorRowChangeEvent" msprop:Generator_RowChangedName="TblEmployeeJobStationOperatorRowChanged" msprop:Generator_RowClassName="TblEmployeeJobStationOperatorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intAutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintAutoId" msprop:Generator_ColumnPropNameInRow="intAutoId" msprop:Generator_ColumnPropNameInTable="intAutoIdColumn" msprop:Generator_UserColumnName="intAutoId" type="xs:int" />
+              <xs:element name="intEmployeeId" msprop:Generator_ColumnVarNameInTable="columnintEmployeeId" msprop:Generator_ColumnPropNameInRow="intEmployeeId" msprop:Generator_ColumnPropNameInTable="intEmployeeIdColumn" msprop:Generator_UserColumnName="intEmployeeId" type="xs:int" minOccurs="0" />
+              <xs:element name="intJobStationId" msprop:Generator_ColumnVarNameInTable="columnintJobStationId" msprop:Generator_ColumnPropNameInRow="intJobStationId" msprop:Generator_ColumnPropNameInTable="intJobStationIdColumn" msprop:Generator_UserColumnName="intJobStationId" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" msprop:Generator_UserColumnName="ysnActive" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprAutoTextBoxSearchForPicerateEmployees" msprop:Generator_TableClassName="SprAutoTextBoxSearchForPicerateEmployeesDataTable" msprop:Generator_TableVarName="tableSprAutoTextBoxSearchForPicerateEmployees" msprop:Generator_TablePropName="SprAutoTextBoxSearchForPicerateEmployees" msprop:Generator_RowDeletingName="SprAutoTextBoxSearchForPicerateEmployeesRowDeleting" msprop:Generator_UserTableName="SprAutoTextBoxSearchForPicerateEmployees" msprop:Generator_RowChangingName="SprAutoTextBoxSearchForPicerateEmployeesRowChanging" msprop:Generator_RowEvHandlerName="SprAutoTextBoxSearchForPicerateEmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAutoTextBoxSearchForPicerateEmployeesRowDeleted" msprop:Generator_RowEvArgName="SprAutoTextBoxSearchForPicerateEmployeesRowChangeEvent" msprop:Generator_RowChangedName="SprAutoTextBoxSearchForPicerateEmployeesRowChanged" msprop:Generator_RowClassName="SprAutoTextBoxSearchForPicerateEmployeesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeCode" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeCode" msprop:Generator_ColumnPropNameInRow="strEmployeeCode" msprop:Generator_ColumnPropNameInTable="strEmployeeCodeColumn" msprop:Generator_UserColumnName="strEmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblEmployeeAutoSearch" msprop:Generator_TableClassName="TblEmployeeAutoSearchDataTable" msprop:Generator_TableVarName="tableTblEmployeeAutoSearch" msprop:Generator_TablePropName="TblEmployeeAutoSearch" msprop:Generator_RowDeletingName="TblEmployeeAutoSearchRowDeleting" msprop:Generator_UserTableName="TblEmployeeAutoSearch" msprop:Generator_RowChangingName="TblEmployeeAutoSearchRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeAutoSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeAutoSearchRowDeleted" msprop:Generator_RowEvArgName="TblEmployeeAutoSearchRowChangeEvent" msprop:Generator_RowChangedName="TblEmployeeAutoSearchRowChanged" msprop:Generator_RowClassName="TblEmployeeAutoSearchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
+              <xs:element name="strEmployeeCode" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeCode" msprop:Generator_ColumnPropNameInRow="strEmployeeCode" msprop:Generator_ColumnPropNameInTable="strEmployeeCodeColumn" msprop:Generator_UserColumnName="strEmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intJobStationID" msprop:Generator_ColumnVarNameInTable="columnintJobStationID" msprop:Generator_ColumnPropNameInRow="intJobStationID" msprop:Generator_ColumnPropNameInTable="intJobStationIDColumn" msprop:Generator_UserColumnName="intJobStationID" type="xs:int" minOccurs="0" />
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblEmployee" />
+      <xs:field xpath="mstns:intEmployeeID" />
+    </xs:unique>
+    <xs:unique name="TblEmployeeJobStationOperator_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblEmployeeJobStationOperator" />
+      <xs:field xpath="mstns:intAutoId" />
+    </xs:unique>
+    <xs:unique name="TblEmployeeAutoSearch_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblEmployeeAutoSearch" />
+      <xs:field xpath="mstns:intEmployeeID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

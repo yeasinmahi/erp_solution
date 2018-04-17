@@ -1,0 +1,98 @@
+﻿
+/*------------------------ Site Decoration ------------------------*/
+#topbox { background-color:white; width:100%; height:165px; border: 1px solid #fbf3f3;border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; margin: 0 auto;}
+
+#divmenuholder { border: 0px solid #ccc; padding: 2px; width: 13%; height: auto; border-radius: 0px 0px 0 0; background-color:#FFF; float:left; 
+display:block;-moz-border-radius: 0px 0px 0 0; -webkit-border-top-left-radius: 0px; -webkit-border-top-right-radius: 0px; clear:both;}
+
+#divcontentholder { border: 0px solid #ccc; padding: 0px; width: 86%; height: auto; border-radius: 0px 0px 0 0; background-color:white; 
+-moz-border-radius: 0px 0px 0 0; -webkit-border-top-left-radius: 0px; -webkit-border-top-right-radius: 0px; float:left;
+}
+#footerbox { background:#FFF; width:100%; height:50px; border: 1px solid #fbf3f3;border-radius: 5px; -moz-border-radius: 5px; color:blue; font-weight:bold;
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; margin: 0 auto; text-align:right; clear:both;}
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    font-size:15px;
+}
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+/*------------------------ End Site Decoration ------------------------*/
+
+/*------------------------ Site Controls Decoration -------------------*/
+.lbl { width:215px; font:normal 11px verdana; text-align:right;} 
+.ddList { width:215px; border: 1px solid #ccc; font-size:11px; font-weight:bold; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px;}
+.txtBox {  width:215px;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black;}
+
+.button, .signout,.headermenu { border: 0px solid #e8dcff; padding: 1px 2px 1px 2px; text-decoration: none; border-radius: 2px 2px 0 0; -moz-border-radius: 2px 2px 0 0; 
+ -webkit-border-top-left-radius: 2px; cursor:pointer; -webkit-border-top-right-radius: 2px; text-align:right; font:bold 11px verdana; 
+ cursor:pointer; float:right; color:black;} .signout{color:red;} .headermenu{ float:left; margin-right:5px; text-decoration:none; color:#000;}
+.button:hover, .signout:hover, .headermenu:hover { background-color: #c7d1d6; color:blue; }
+
+.tbldecoration {width:auto; border:0px solid #000;color: #000000; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; margin:0 auto;}
+.tblheader {border-radius: 5px; -moz-border-radius: 5px; -webkit-border-top-left-radius: 5px; 
+-webkit-border-top-right-radius: 5px; margin:0 auto;padding:5px; font:bold 13px verdana; text-align:left; background-color:#fceded;}
+.tblrowodd {border:0px solid #000;color: #000000; background-color:#F8F8F8;}
+.tblroweven {border:0px solid #000;color: #000000; background-color:#eeeeee;}
+.border { border: 1px solid #080808; }
+.noborders td { border:0; }
+.nobordertable table { border:0; }
+table { border-collapse: collapse;} 
+td { margin: 0px; padding: 1px; border:0px solid #080808; }
+
+
+
+
+ /* ------------------------ Calendar Control CSS -----------------------*/ 
+
+.calendar {	font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;font-size: 11px;background-color: #EEE;	color: #333;
+border: 1px solid #DDD;	-moz-border-radius: 4px;-webkit-border-radius: 4px;	border-radius: 4px;padding: 0.2em;width: Auto;}
+.calendar .months {background-color: #F6AF3A;border: 1px solid #E78F08;-moz-border-radius: 4px;-webkit-border-radius: 4px;
+border-radius: 4px;color: #FFF;padding: 2px;text-align: center;}
+.calendar .prev-month,.calendar .next-month {padding: 0;}
+.calendar .prev-month {float: left;}
+.calendar .next-month {float: right;}
+.calendar .current-month {margin: 0 auto;}
+.calendar .months .prev-month,.calendar .months .next-month {color: #FFF;text-decoration: none;padding: 0 2px;
+-moz-border-radius: 4px;-webkit-border-radius: 4px;	border-radius: 4px;cursor: pointer;}
+.calendar .months .prev-month:hover,.calendar .months .next-month:hover {background-color: #FDF5CE;color: #C77405;}
+.calendar table {border-collapse: collapse;padding: 0;font-size: 0.8em;width: auto;}
+.calendar th {text-align: center;}
+.calendar td {text-align: right;padding: 1px;width: auto;}
+.calendar td span {	display: block;color: #1C94C4;background-color: #F6F6F6;border: 1px solid #CCC;text-decoration: none;
+padding: 2px;cursor: pointer;}
+.calendar td span:hover {color: #C77405;background-color: #FDF5CE;border: 1px solid #FBCB09;}
+.calendar td.today span {background-color: #FFF0A5;border: 1px solid #FED22F;color: #363636;}
+
+ /* ------------------------ End Calendar Control CSS -----------------------*/ 
+

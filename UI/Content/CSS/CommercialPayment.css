@@ -1,0 +1,120 @@
+﻿.divPopUpShipment
+{
+	 position:absolute;
+     width: 60%;
+     top:100px;
+     z-index: 100;
+     float:left;
+     background-color: #f0f0ff;
+     border: 3px outset #00367B;
+    
+}
+
+.divPopUpCopyDocument
+{
+	 position:absolute;
+     width: 40%;
+     top:100px;
+     z-index: 100;
+     float:left;
+     background-color: #f0f0ff;
+     border: 3px outset #00367B;
+    
+}
+
+.divPopUpDutyCRF
+{
+	 position:absolute;
+     top:100px;
+     width:600px;
+     z-index: 100;
+     float:left;
+     background-color: #f0f0ff;
+     border: 3px outset #00367B;
+    
+}
+
+.divPopUpConArr
+{
+	 position:absolute;
+     width: 40%;
+     top:100px;
+     z-index: 100;
+     float:left;
+     background-color: #f0f0ff;
+     border: 3px outset #00367B;
+     display:none
+    
+}
+
+.divPopUpProvitionPayment
+{
+	 position:absolute;
+     width: 30%;
+     top:100px;
+     left:800px;
+     z-index: 100;
+     float:right;
+     background-color: #f0f0ff;
+     border: 3px outset #00367B;
+     
+    
+}
+
+.tableInstallmentHeader
+{
+	background:url(Images/12.gif) repeat top;
+	color:#FFFFFF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:7.5pt;	
+	height:20px;
+	border:solid 1px #FFFFFF;
+}
+
+.tableInstallmentOddrows
+{
+	font-weight:normal;	
+	background-color:#DDDDDD;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	color:#000000;
+	border:solid 1px #FFFFFF;
+}
+.tableInstallmentEvenrows
+{
+	font-weight:normal;	
+	background-color:#F0F0FF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;	
+	color:#000000;
+	border:solid 1px #FFFFFF;	
+}
+
+.tableCommercialHeader
+{
+	background:url(Images/12.gif) repeat top;
+	color:#FFFFFF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:7.5pt;	
+	height:20px;
+	border:solid 1px #FFFFFF;
+}
+
+.tableCommercialOddrows
+{
+	font-weight:normal;	
+	background-color:#DDDDDD;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	color:#000000;
+	border:solid 1px #FFFFFF;
+}
+.tableCommercialEvenrows
+{
+	font-weight:normal;	
+	background-color:#F0F0FF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;	
+	color:#000000;
+	border:solid 1px #FFFFFF;	
+}

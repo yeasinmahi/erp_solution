@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DistributionPointTDS" targetNamespace="http://tempuri.org/DistributionPointTDS.xsd" xmlns:mstns="http://tempuri.org/DistributionPointTDS.xsd" xmlns="http://tempuri.org/DistributionPointTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QryDisPointTableAdapter" GeneratorDataComponentClassName="QryDisPointTableAdapter" Name="QryDisPoint" UserDataComponentName="QryDisPointTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qryDisPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intDisPointId, intUnitId, strDisPointName, strAddress, strContactPerson, strContactNo, intCusID, strCusName, intSalesOffId, intCusType, intPriceCatagory, intLogisticCatagory, intCOAid, ysnPeriodicleCrLim, intDaysOfCrLim, monCreditLimit , ysnEnable
+FROM dbo.qryDisPoint</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intDisPointId" DataSetColumn="intDisPointId" />
+              <Mapping SourceColumn="intUnitId" DataSetColumn="intUnitId" />
+              <Mapping SourceColumn="strDisPointName" DataSetColumn="strDisPointName" />
+              <Mapping SourceColumn="strAddress" DataSetColumn="strAddress" />
+              <Mapping SourceColumn="strContactPerson" DataSetColumn="strContactPerson" />
+              <Mapping SourceColumn="strContactNo" DataSetColumn="strContactNo" />
+              <Mapping SourceColumn="intCusID" DataSetColumn="intCusID" />
+              <Mapping SourceColumn="strCusName" DataSetColumn="strCusName" />
+              <Mapping SourceColumn="intSalesOffId" DataSetColumn="intSalesOffId" />
+              <Mapping SourceColumn="intCusType" DataSetColumn="intCusType" />
+              <Mapping SourceColumn="intPriceCatagory" DataSetColumn="intPriceCatagory" />
+              <Mapping SourceColumn="intLogisticCatagory" DataSetColumn="intLogisticCatagory" />
+              <Mapping SourceColumn="intCOAid" DataSetColumn="intCOAid" />
+              <Mapping SourceColumn="ysnPeriodicleCrLim" DataSetColumn="ysnPeriodicleCrLim" />
+              <Mapping SourceColumn="intDaysOfCrLim" DataSetColumn="intDaysOfCrLim" />
+              <Mapping SourceColumn="monCreditLimit" DataSetColumn="monCreditLimit" />
+              <Mapping SourceColumn="ysnEnable" DataSetColumn="ysnEnable" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qryDisPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCustomer" GetMethodModifier="Public" GetMethodName="GetDataByCustomer" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCustomer" UserSourceName="GetDataByCustomer">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intCOAid, intCusID, intCusType, intDaysOfCrLim, intDisPointId, intLogisticCatagory, intPriceCatagory, intSalesOffId, intUnitId, monCreditLimit, strAddress, strContactNo, strContactPerson, strCusName, strDisPointName, ysnEnable, ysnPeriodicleCrLim FROM qryDisPoint 
+WHERE (intCusID = @intCusID) AND ysnEnable=@ysnEnable</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCusID" ColumnName="intCusID" DataSourceName="ERP_SAD.dbo.qryDisPoint" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCusID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCusID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ysnEnable" ColumnName="ysnEnable" DataSourceName="ERP_SAD.dbo.qryDisPoint" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qryDisPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="GetDataById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intCOAid, intCusID, intCusType, intDaysOfCrLim, intDisPointId, intLogisticCatagory, intPriceCatagory, intSalesOffId, intUnitId, monCreditLimit, strAddress, strContactNo, strContactPerson, strCusName, strDisPointName, ysnEnable, ysnPeriodicleCrLim FROM qryDisPoint WHERE (intDisPointId = @intDisPointId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intDisPointId" ColumnName="intDisPointId" DataSourceName="ERP_SAD.dbo.qryDisPoint" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intDisPointId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intDisPointId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qryDisPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByUnit" GetMethodModifier="Public" GetMethodName="GetDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByUnit" UserSourceName="GetDataByUnit">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intCOAid, intCusID, intCusType, intDaysOfCrLim, intDisPointId, intLogisticCatagory, intPriceCatagory, intSalesOffId, intUnitId, monCreditLimit, strAddress, strContactNo, strContactPerson, strCusName, strDisPointName, ysnEnable, ysnPeriodicleCrLim FROM qryDisPoint 
+WHERE (intUnitId = @intUnitId AND ysnEnable = @ysnEnable)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitId" ColumnName="intUnitId" DataSourceName="ERP_SAD.dbo.qryDisPoint" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ysnEnable" ColumnName="ysnEnable" DataSourceName="ERP_SAD.dbo.qryDisPoint" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprGetDisPointInfoForSalesOrderTableAdapter" GeneratorDataComponentClassName="SprGetDisPointInfoForSalesOrderTableAdapter" Name="SprGetDisPointInfoForSalesOrder" UserDataComponentName="SprGetDisPointInfoForSalesOrderTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprGetDisPointInfoForSalesOrder" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprGetDisPointInfoForSalesOrder</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@disPointId" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@date" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intDisPointId" DataSetColumn="intDisPointId" />
+              <Mapping SourceColumn="intUnitId" DataSetColumn="intUnitId" />
+              <Mapping SourceColumn="strDisPointName" DataSetColumn="strDisPointName" />
+              <Mapping SourceColumn="strAddress" DataSetColumn="strAddress" />
+              <Mapping SourceColumn="strContactPerson" DataSetColumn="strContactPerson" />
+              <Mapping SourceColumn="strContactNo" DataSetColumn="strContactNo" />
+              <Mapping SourceColumn="intCusID" DataSetColumn="intCusID" />
+              <Mapping SourceColumn="strCusName" DataSetColumn="strCusName" />
+              <Mapping SourceColumn="intSalesOffId" DataSetColumn="intSalesOffId" />
+              <Mapping SourceColumn="intCusType" DataSetColumn="intCusType" />
+              <Mapping SourceColumn="intPriceCatagory" DataSetColumn="intPriceCatagory" />
+              <Mapping SourceColumn="intLogisticCatagory" DataSetColumn="intLogisticCatagory" />
+              <Mapping SourceColumn="intCOAid" DataSetColumn="intCOAid" />
+              <Mapping SourceColumn="strGroup" DataSetColumn="strGroup" />
+              <Mapping SourceColumn="monCreditLimit" DataSetColumn="monCreditLimit" />
+              <Mapping SourceColumn="monDebit" DataSetColumn="monDebit" />
+              <Mapping SourceColumn="monCollection" DataSetColumn="monCollection" />
+              <Mapping SourceColumn="monOutstanding" DataSetColumn="monOutstanding" />
+              <Mapping SourceColumn="monPending" DataSetColumn="monPending" />
+              <Mapping SourceColumn="strLocation" DataSetColumn="strLocation" />
+              <Mapping SourceColumn="ysnCreditEnable" DataSetColumn="ysnCreditEnable" />
+              <Mapping SourceColumn="ysnFixedCredit" DataSetColumn="ysnFixedCredit" />
+              <Mapping SourceColumn="ysnPeriodicleCredit" DataSetColumn="ysnPeriodicleCredit" />
+              <Mapping SourceColumn="ysnPowerSell" DataSetColumn="ysnPowerSell" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QryDisPointSTTableAdapter" GeneratorDataComponentClassName="QryDisPointSTTableAdapter" Name="QryDisPointST" UserDataComponentName="QryDisPointSTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qryDisPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT intDisPointId, intUnitId, strDisPointName,  intCusID, intSalesOffId, intCusType , ysnEnable
+FROM dbo.qryDisPoint</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intDisPointId" DataSetColumn="intDisPointId" />
+              <Mapping SourceColumn="intUnitId" DataSetColumn="intUnitId" />
+              <Mapping SourceColumn="strDisPointName" DataSetColumn="strDisPointName" />
+              <Mapping SourceColumn="intCusID" DataSetColumn="intCusID" />
+              <Mapping SourceColumn="intSalesOffId" DataSetColumn="intSalesOffId" />
+              <Mapping SourceColumn="intCusType" DataSetColumn="intCusType" />
+              <Mapping SourceColumn="ysnEnable" DataSetColumn="ysnEnable" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qryDisPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByUnit" GetMethodModifier="Public" GetMethodName="GetDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByUnit" UserSourceName="GetDataByUnit">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT intCusID, intCusType, intDisPointId, intSalesOffId, intUnitId, strDisPointName, ysnEnable FROM qryDisPoint WHERE (intUnitId = @intUnitId) AND (ysnEnable = @ysnEnable)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitId" ColumnName="intUnitId" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ysnEnable" ColumnName="ysnEnable" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDisPointDataByRmtUser" GetMethodModifier="Public" GetMethodName="GetDisPointDataByRmtUser" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDisPointDataByRmtUser" UserSourceName="GetDisPointDataByRmtUser">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intDisPointId, disp.intUnitId, disp.strName as strDisPointName,  intCusID, intSalesOffId, intCusType , ysnEnable  FROM [ERP_SAD].[dbo].[tblDisPoint] disp   join erp_sad.dbo.tblItemPriceManager pm on pm.intID=disp.intPriceCatagory
+   join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID
+   join erp_sad.dbo.tblItemPriceManager pm2 on pm2.intID=pm1.intParentID
+   join erp_sad.dbo.tblCustomer cust on cust.intCusID=disp.intCustomerId  
+   where pm.strEmailAddress=@email and disp.ysnEnable=1 and intSalesOffId=@soid and intCusType=@custype 
+   and (disp.strName like '%'+ @key +'%' or intDisPointId like '%'+ @key +'%')order by intDisPointId
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="email" ColumnName="strEmailAddress" DataSourceName="ERP_SAD.dbo.tblItemPriceManager" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@email" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strEmailAddress" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="soid" ColumnName="intSalesOffId" DataSourceName="ERP_SAD.dbo.tblCustomer" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@soid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intSalesOffId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="custype" ColumnName="intCusType" DataSourceName="ERP_SAD.dbo.tblCustomer" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@custype" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCusType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="key" ColumnName="strName" DataSourceName="ERP_SAD.dbo.tblDisPoint" DataTypeServer="varchar(200)" DbType="AnsiString" Direction="Input" ParameterName="@key" Precision="0" ProviderType="VarChar" Scale="0" Size="200" SourceColumn="strDisPointName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprUndeliverQntpricevalueTableAdapter" GeneratorDataComponentClassName="SprUndeliverQntpricevalueTableAdapter" Name="SprUndeliverQntpricevalue" UserDataComponentName="SprUndeliverQntpricevalueTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprUndeliverQntpricevalue" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprUndeliverQntpricevalue</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intcustomerid" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intcustmid" DataSetColumn="intcustmid" />
+              <Mapping SourceColumn="strname" DataSetColumn="strname" />
+              <Mapping SourceColumn="numrestqnt" DataSetColumn="numrestqnt" />
+              <Mapping SourceColumn="monrestamount" DataSetColumn="monrestamount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DistributionPointTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DistributionPointTDS" msprop:Generator_UserDSName="DistributionPointTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="QryDisPoint" msprop:Generator_UserTableName="QryDisPoint" msprop:Generator_RowEvArgName="QryDisPointRowChangeEvent" msprop:Generator_TableVarName="tableQryDisPoint" msprop:Generator_TablePropName="QryDisPoint" msprop:Generator_RowDeletingName="QryDisPointRowDeleting" msprop:Generator_RowChangingName="QryDisPointRowChanging" msprop:Generator_RowDeletedName="QryDisPointRowDeleted" msprop:Generator_RowEvHandlerName="QryDisPointRowChangeEventHandler" msprop:Generator_TableClassName="QryDisPointDataTable" msprop:Generator_RowChangedName="QryDisPointRowChanged" msprop:Generator_RowClassName="QryDisPointRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intDisPointId" msprop:Generator_ColumnVarNameInTable="columnintDisPointId" msprop:Generator_ColumnPropNameInRow="intDisPointId" msprop:Generator_ColumnPropNameInTable="intDisPointIdColumn" msprop:Generator_UserColumnName="intDisPointId" type="xs:int" />
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" />
+              <xs:element name="strDisPointName" msprop:Generator_ColumnVarNameInTable="columnstrDisPointName" msprop:Generator_ColumnPropNameInRow="strDisPointName" msprop:Generator_ColumnPropNameInTable="strDisPointNameColumn" msprop:Generator_UserColumnName="strDisPointName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAddress" msprop:Generator_ColumnVarNameInTable="columnstrAddress" msprop:Generator_ColumnPropNameInRow="strAddress" msprop:Generator_ColumnPropNameInTable="strAddressColumn" msprop:Generator_UserColumnName="strAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strContactPerson" msprop:Generator_ColumnVarNameInTable="columnstrContactPerson" msprop:Generator_ColumnPropNameInRow="strContactPerson" msprop:Generator_ColumnPropNameInTable="strContactPersonColumn" msprop:Generator_UserColumnName="strContactPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strContactNo" msprop:Generator_ColumnVarNameInTable="columnstrContactNo" msprop:Generator_ColumnPropNameInRow="strContactNo" msprop:Generator_ColumnPropNameInTable="strContactNoColumn" msprop:Generator_UserColumnName="strContactNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCusID" msprop:Generator_ColumnVarNameInTable="columnintCusID" msprop:Generator_ColumnPropNameInRow="intCusID" msprop:Generator_ColumnPropNameInTable="intCusIDColumn" msprop:Generator_UserColumnName="intCusID" type="xs:int" minOccurs="0" />
+              <xs:element name="strCusName" msprop:Generator_ColumnVarNameInTable="columnstrCusName" msprop:Generator_ColumnPropNameInRow="strCusName" msprop:Generator_ColumnPropNameInTable="strCusNameColumn" msprop:Generator_UserColumnName="strCusName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSalesOffId" msprop:Generator_ColumnVarNameInTable="columnintSalesOffId" msprop:Generator_ColumnPropNameInRow="intSalesOffId" msprop:Generator_ColumnPropNameInTable="intSalesOffIdColumn" msprop:Generator_UserColumnName="intSalesOffId" type="xs:int" minOccurs="0" />
+              <xs:element name="intCusType" msprop:Generator_ColumnVarNameInTable="columnintCusType" msprop:Generator_ColumnPropNameInRow="intCusType" msprop:Generator_ColumnPropNameInTable="intCusTypeColumn" msprop:Generator_UserColumnName="intCusType" type="xs:int" minOccurs="0" />
+              <xs:element name="intPriceCatagory" msprop:Generator_ColumnVarNameInTable="columnintPriceCatagory" msprop:Generator_ColumnPropNameInRow="intPriceCatagory" msprop:Generator_ColumnPropNameInTable="intPriceCatagoryColumn" msprop:Generator_UserColumnName="intPriceCatagory" type="xs:int" minOccurs="0" />
+              <xs:element name="intLogisticCatagory" msprop:Generator_ColumnVarNameInTable="columnintLogisticCatagory" msprop:Generator_ColumnPropNameInRow="intLogisticCatagory" msprop:Generator_ColumnPropNameInTable="intLogisticCatagoryColumn" msprop:Generator_UserColumnName="intLogisticCatagory" type="xs:int" minOccurs="0" />
+              <xs:element name="intCOAid" msprop:Generator_ColumnVarNameInTable="columnintCOAid" msprop:Generator_ColumnPropNameInRow="intCOAid" msprop:Generator_ColumnPropNameInTable="intCOAidColumn" msprop:Generator_UserColumnName="intCOAid" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnPeriodicleCrLim" msprop:Generator_ColumnVarNameInTable="columnysnPeriodicleCrLim" msprop:Generator_ColumnPropNameInRow="ysnPeriodicleCrLim" msprop:Generator_ColumnPropNameInTable="ysnPeriodicleCrLimColumn" msprop:Generator_UserColumnName="ysnPeriodicleCrLim" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intDaysOfCrLim" msprop:Generator_ColumnVarNameInTable="columnintDaysOfCrLim" msprop:Generator_ColumnPropNameInRow="intDaysOfCrLim" msprop:Generator_ColumnPropNameInTable="intDaysOfCrLimColumn" msprop:Generator_UserColumnName="intDaysOfCrLim" type="xs:int" minOccurs="0" />
+              <xs:element name="monCreditLimit" msprop:Generator_ColumnVarNameInTable="columnmonCreditLimit" msprop:Generator_ColumnPropNameInRow="monCreditLimit" msprop:Generator_ColumnPropNameInTable="monCreditLimitColumn" msprop:Generator_UserColumnName="monCreditLimit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprGetDisPointInfoForSalesOrder" msprop:Generator_UserTableName="SprGetDisPointInfoForSalesOrder" msprop:Generator_RowEvArgName="SprGetDisPointInfoForSalesOrderRowChangeEvent" msprop:Generator_TableVarName="tableSprGetDisPointInfoForSalesOrder" msprop:Generator_TablePropName="SprGetDisPointInfoForSalesOrder" msprop:Generator_RowDeletingName="SprGetDisPointInfoForSalesOrderRowDeleting" msprop:Generator_RowChangingName="SprGetDisPointInfoForSalesOrderRowChanging" msprop:Generator_RowDeletedName="SprGetDisPointInfoForSalesOrderRowDeleted" msprop:Generator_RowEvHandlerName="SprGetDisPointInfoForSalesOrderRowChangeEventHandler" msprop:Generator_TableClassName="SprGetDisPointInfoForSalesOrderDataTable" msprop:Generator_RowChangedName="SprGetDisPointInfoForSalesOrderRowChanged" msprop:Generator_RowClassName="SprGetDisPointInfoForSalesOrderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intDisPointId" msprop:Generator_ColumnVarNameInTable="columnintDisPointId" msprop:Generator_ColumnPropNameInRow="intDisPointId" msprop:Generator_ColumnPropNameInTable="intDisPointIdColumn" msprop:Generator_UserColumnName="intDisPointId" type="xs:int" minOccurs="0" />
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" minOccurs="0" />
+              <xs:element name="strDisPointName" msprop:Generator_ColumnVarNameInTable="columnstrDisPointName" msprop:Generator_ColumnPropNameInRow="strDisPointName" msprop:Generator_ColumnPropNameInTable="strDisPointNameColumn" msprop:Generator_UserColumnName="strDisPointName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAddress" msprop:Generator_ColumnVarNameInTable="columnstrAddress" msprop:Generator_ColumnPropNameInRow="strAddress" msprop:Generator_ColumnPropNameInTable="strAddressColumn" msprop:Generator_UserColumnName="strAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strContactPerson" msprop:Generator_ColumnVarNameInTable="columnstrContactPerson" msprop:Generator_ColumnPropNameInRow="strContactPerson" msprop:Generator_ColumnPropNameInTable="strContactPersonColumn" msprop:Generator_UserColumnName="strContactPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strContactNo" msprop:Generator_ColumnVarNameInTable="columnstrContactNo" msprop:Generator_ColumnPropNameInRow="strContactNo" msprop:Generator_ColumnPropNameInTable="strContactNoColumn" msprop:Generator_UserColumnName="strContactNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCusID" msprop:Generator_ColumnVarNameInTable="columnintCusID" msprop:Generator_ColumnPropNameInRow="intCusID" msprop:Generator_ColumnPropNameInTable="intCusIDColumn" msprop:Generator_UserColumnName="intCusID" type="xs:int" minOccurs="0" />
+              <xs:element name="strCusName" msprop:Generator_ColumnVarNameInTable="columnstrCusName" msprop:Generator_ColumnPropNameInRow="strCusName" msprop:Generator_ColumnPropNameInTable="strCusNameColumn" msprop:Generator_UserColumnName="strCusName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSalesOffId" msprop:Generator_ColumnVarNameInTable="columnintSalesOffId" msprop:Generator_ColumnPropNameInRow="intSalesOffId" msprop:Generator_ColumnPropNameInTable="intSalesOffIdColumn" msprop:Generator_UserColumnName="intSalesOffId" type="xs:int" minOccurs="0" />
+              <xs:element name="intCusType" msprop:Generator_ColumnVarNameInTable="columnintCusType" msprop:Generator_ColumnPropNameInRow="intCusType" msprop:Generator_ColumnPropNameInTable="intCusTypeColumn" msprop:Generator_UserColumnName="intCusType" type="xs:int" minOccurs="0" />
+              <xs:element name="intPriceCatagory" msprop:Generator_ColumnVarNameInTable="columnintPriceCatagory" msprop:Generator_ColumnPropNameInRow="intPriceCatagory" msprop:Generator_ColumnPropNameInTable="intPriceCatagoryColumn" msprop:Generator_UserColumnName="intPriceCatagory" type="xs:int" minOccurs="0" />
+              <xs:element name="intLogisticCatagory" msprop:Generator_ColumnVarNameInTable="columnintLogisticCatagory" msprop:Generator_ColumnPropNameInRow="intLogisticCatagory" msprop:Generator_ColumnPropNameInTable="intLogisticCatagoryColumn" msprop:Generator_UserColumnName="intLogisticCatagory" type="xs:int" minOccurs="0" />
+              <xs:element name="intCOAid" msprop:Generator_ColumnVarNameInTable="columnintCOAid" msprop:Generator_ColumnPropNameInRow="intCOAid" msprop:Generator_ColumnPropNameInTable="intCOAidColumn" msprop:Generator_UserColumnName="intCOAid" type="xs:int" minOccurs="0" />
+              <xs:element name="strGroup" msprop:Generator_ColumnVarNameInTable="columnstrGroup" msprop:Generator_ColumnPropNameInRow="strGroup" msprop:Generator_ColumnPropNameInTable="strGroupColumn" msprop:Generator_UserColumnName="strGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monCreditLimit" msprop:Generator_ColumnVarNameInTable="columnmonCreditLimit" msprop:Generator_ColumnPropNameInRow="monCreditLimit" msprop:Generator_ColumnPropNameInTable="monCreditLimitColumn" msprop:Generator_UserColumnName="monCreditLimit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monDebit" msprop:Generator_ColumnVarNameInTable="columnmonDebit" msprop:Generator_ColumnPropNameInRow="monDebit" msprop:Generator_ColumnPropNameInTable="monDebitColumn" msprop:Generator_UserColumnName="monDebit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monCollection" msprop:Generator_ColumnVarNameInTable="columnmonCollection" msprop:Generator_ColumnPropNameInRow="monCollection" msprop:Generator_ColumnPropNameInTable="monCollectionColumn" msprop:Generator_UserColumnName="monCollection" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monOutstanding" msprop:Generator_ColumnVarNameInTable="columnmonOutstanding" msprop:Generator_ColumnPropNameInRow="monOutstanding" msprop:Generator_ColumnPropNameInTable="monOutstandingColumn" msprop:Generator_UserColumnName="monOutstanding" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monPending" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonPending" msprop:Generator_ColumnPropNameInRow="monPending" msprop:Generator_ColumnPropNameInTable="monPendingColumn" msprop:Generator_UserColumnName="monPending" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strLocation" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrLocation" msprop:Generator_ColumnPropNameInRow="strLocation" msprop:Generator_ColumnPropNameInTable="strLocationColumn" msprop:Generator_UserColumnName="strLocation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ysnCreditEnable" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnCreditEnable" msprop:Generator_ColumnPropNameInRow="ysnCreditEnable" msprop:Generator_ColumnPropNameInTable="ysnCreditEnableColumn" msprop:Generator_UserColumnName="ysnCreditEnable" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnFixedCredit" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnFixedCredit" msprop:Generator_ColumnPropNameInRow="ysnFixedCredit" msprop:Generator_ColumnPropNameInTable="ysnFixedCreditColumn" msprop:Generator_UserColumnName="ysnFixedCredit" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnPeriodicleCredit" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnPeriodicleCredit" msprop:Generator_ColumnPropNameInRow="ysnPeriodicleCredit" msprop:Generator_ColumnPropNameInTable="ysnPeriodicleCreditColumn" msprop:Generator_UserColumnName="ysnPeriodicleCredit" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnPowerSell" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnPowerSell" msprop:Generator_ColumnPropNameInRow="ysnPowerSell" msprop:Generator_ColumnPropNameInTable="ysnPowerSellColumn" msprop:Generator_UserColumnName="ysnPowerSell" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="QryDisPointST" msprop:Generator_TableClassName="QryDisPointSTDataTable" msprop:Generator_TableVarName="tableQryDisPointST" msprop:Generator_TablePropName="QryDisPointST" msprop:Generator_RowDeletingName="QryDisPointSTRowDeleting" msprop:Generator_RowChangingName="QryDisPointSTRowChanging" msprop:Generator_RowEvHandlerName="QryDisPointSTRowChangeEventHandler" msprop:Generator_RowDeletedName="QryDisPointSTRowDeleted" msprop:Generator_UserTableName="QryDisPointST" msprop:Generator_RowChangedName="QryDisPointSTRowChanged" msprop:Generator_RowEvArgName="QryDisPointSTRowChangeEvent" msprop:Generator_RowClassName="QryDisPointSTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intDisPointId" msprop:Generator_ColumnVarNameInTable="columnintDisPointId" msprop:Generator_ColumnPropNameInRow="intDisPointId" msprop:Generator_ColumnPropNameInTable="intDisPointIdColumn" msprop:Generator_UserColumnName="intDisPointId" type="xs:int" />
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" />
+              <xs:element name="strDisPointName" msprop:Generator_ColumnVarNameInTable="columnstrDisPointName" msprop:Generator_ColumnPropNameInRow="strDisPointName" msprop:Generator_ColumnPropNameInTable="strDisPointNameColumn" msprop:Generator_UserColumnName="strDisPointName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCusID" msprop:Generator_ColumnVarNameInTable="columnintCusID" msprop:Generator_ColumnPropNameInRow="intCusID" msprop:Generator_ColumnPropNameInTable="intCusIDColumn" msprop:Generator_UserColumnName="intCusID" type="xs:int" minOccurs="0" />
+              <xs:element name="intSalesOffId" msprop:Generator_ColumnVarNameInTable="columnintSalesOffId" msprop:Generator_ColumnPropNameInRow="intSalesOffId" msprop:Generator_ColumnPropNameInTable="intSalesOffIdColumn" msprop:Generator_UserColumnName="intSalesOffId" type="xs:int" minOccurs="0" />
+              <xs:element name="intCusType" msprop:Generator_ColumnVarNameInTable="columnintCusType" msprop:Generator_ColumnPropNameInRow="intCusType" msprop:Generator_ColumnPropNameInTable="intCusTypeColumn" msprop:Generator_UserColumnName="intCusType" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprUndeliverQntpricevalue" msprop:Generator_TableClassName="SprUndeliverQntpricevalueDataTable" msprop:Generator_TableVarName="tableSprUndeliverQntpricevalue" msprop:Generator_RowChangedName="SprUndeliverQntpricevalueRowChanged" msprop:Generator_TablePropName="SprUndeliverQntpricevalue" msprop:Generator_RowDeletingName="SprUndeliverQntpricevalueRowDeleting" msprop:Generator_RowChangingName="SprUndeliverQntpricevalueRowChanging" msprop:Generator_RowEvHandlerName="SprUndeliverQntpricevalueRowChangeEventHandler" msprop:Generator_RowDeletedName="SprUndeliverQntpricevalueRowDeleted" msprop:Generator_RowClassName="SprUndeliverQntpricevalueRow" msprop:Generator_UserTableName="SprUndeliverQntpricevalue" msprop:Generator_RowEvArgName="SprUndeliverQntpricevalueRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intcustmid" msprop:Generator_ColumnVarNameInTable="columnintcustmid" msprop:Generator_ColumnPropNameInRow="intcustmid" msprop:Generator_ColumnPropNameInTable="intcustmidColumn" msprop:Generator_UserColumnName="intcustmid" type="xs:int" minOccurs="0" />
+              <xs:element name="strname" msprop:Generator_ColumnVarNameInTable="columnstrname" msprop:Generator_ColumnPropNameInRow="strname" msprop:Generator_ColumnPropNameInTable="strnameColumn" msprop:Generator_UserColumnName="strname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numrestqnt" msprop:Generator_ColumnVarNameInTable="columnnumrestqnt" msprop:Generator_ColumnPropNameInRow="numrestqnt" msprop:Generator_ColumnPropNameInTable="numrestqntColumn" msprop:Generator_UserColumnName="numrestqnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monrestamount" msprop:Generator_ColumnVarNameInTable="columnmonrestamount" msprop:Generator_ColumnPropNameInRow="monrestamount" msprop:Generator_ColumnPropNameInTable="monrestamountColumn" msprop:Generator_UserColumnName="monrestamount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:QryDisPoint" />
+      <xs:field xpath="mstns:intDisPointId" />
+      <xs:field xpath="mstns:intCusID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

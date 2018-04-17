@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UserLoginInfoTDS" targetNamespace="http://tempuri.org/UserLoginInfoTDS.xsd" xmlns:mstns="http://tempuri.org/UserLoginInfoTDS.xsd" xmlns="http://tempuri.org/UserLoginInfoTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERPConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERPConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.UserSecurity.Properties.Settings.GlobalReference.Default.ERPConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SecurityConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SecurityConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.UserSecurity.Properties.Settings.GlobalReference.Default.ERP_SecurityConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblUserSecurityTableAdapter" GeneratorDataComponentClassName="TblUserSecurityTableAdapter" Name="TblUserSecurity" UserDataComponentName="TblUserSecurityTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SecurityConnectionString (Settings)" DbObjectName="DB_Security.dbo.tblUserSecurity" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataByID" GetMethodModifier="Public" GetMethodName="GetDataByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByID" UserSourceName="GetDataByID">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[tblUserSecurity] WHERE (([strAccountName] = @Original_strAccountName) AND ([strPassword] = @Original_strPassword) AND ([ysnActive] = @Original_ysnActive) AND ((@IsNull_intLastInactivatedBy = 1 AND [intLastInactivatedBy] IS NULL) OR ([intLastInactivatedBy] = @Original_intLastInactivatedBy)) AND ((@IsNull_dteLastInactivationTime = 1 AND [dteLastInactivationTime] IS NULL) OR ([dteLastInactivationTime] = @Original_dteLastInactivationTime)) AND ((@IsNull_intLastActivatedBy = 1 AND [intLastActivatedBy] IS NULL) OR ([intLastActivatedBy] = @Original_intLastActivatedBy)) AND ((@IsNull_dteLastActivationTime = 1 AND [dteLastActivationTime] IS NULL) OR ([dteLastActivationTime] = @Original_dteLastActivationTime)) AND ([ysnForceLogout] = @Original_ysnForceLogout) AND ([ysnOnline] = @Original_ysnOnline) AND ((@IsNull_dteLastPasswordChanged = 1 AND [dteLastPasswordChanged] IS NULL) OR ([dteLastPasswordChanged] = @Original_dteLastPasswordChanged)) AND ((@IsNull_dteFailedPasswordAttemptStart = 1 AND [dteFailedPasswordAttemptStart] IS NULL) OR ([dteFailedPasswordAttemptStart] = @Original_dteFailedPasswordAttemptStart)) AND ((@IsNull_intFailedPasswordAttemptCount = 1 AND [intFailedPasswordAttemptCount] IS NULL) OR ([intFailedPasswordAttemptCount] = @Original_intFailedPasswordAttemptCount)) AND ((@IsNull_dteLastOnHoldTime = 1 AND [dteLastOnHoldTime] IS NULL) OR ([dteLastOnHoldTime] = @Original_dteLastOnHoldTime)) AND ((@IsNull_dteTemporarilyOnHoldFrom = 1 AND [dteTemporarilyOnHoldFrom] IS NULL) OR ([dteTemporarilyOnHoldFrom] = @Original_dteTemporarilyOnHoldFrom)) AND ((@IsNull_dteLastActivity = 1 AND [dteLastActivity] IS NULL) OR ([dteLastActivity] = @Original_dteLastActivity)) AND ((@IsNull_dteLastLoginTime = 1 AND [dteLastLoginTime] IS NULL) OR ([dteLastLoginTime] = @Original_dteLastLoginTime)) AND ((@IsNull_strLastLoginFrom = 1 AND [strLastLoginFrom] IS NULL) OR ([strLastLoginFrom] = @Original_strLastLoginFrom)) AND ((@IsNull_strLastLoginIP = 1 AND [strLastLoginIP] IS NULL) OR ([strLastLoginIP] = @Original_strLastLoginIP)) AND ((@IsNull_strLastLoginSessionID = 1 AND [strLastLoginSessionID] IS NULL) OR ([strLastLoginSessionID] = @Original_strLastLoginSessionID)) AND ((@IsNull_strSecurityKey = 1 AND [strSecurityKey] IS NULL) OR ([strSecurityKey] = @Original_strSecurityKey)) AND ((@IsNull_dteSecurityKeyGeneratingTime = 1 AND [dteSecurityKeyGeneratingTime] IS NULL) OR ([dteSecurityKeyGeneratingTime] = @Original_dteSecurityKeyGeneratingTime)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastInactivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastInactivatedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastInactivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastInactivatedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastInactivationTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastInactivationTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastInactivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastInactivationTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastActivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActivatedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastActivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActivatedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActivationTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActivationTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivationTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnForceLogout" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnForceLogout" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnOnline" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnOnline" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastPasswordChanged" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastPasswordChanged" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastPasswordChanged" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastPasswordChanged" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteFailedPasswordAttemptStart" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteFailedPasswordAttemptStart" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteFailedPasswordAttemptStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteFailedPasswordAttemptStart" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intFailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intFailedPasswordAttemptCount" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intFailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intFailedPasswordAttemptCount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastOnHoldTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastOnHoldTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastOnHoldTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastOnHoldTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteTemporarilyOnHoldFrom" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteTemporarilyOnHoldFrom" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteTemporarilyOnHoldFrom" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTemporarilyOnHoldFrom" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActivity" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActivity" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActivity" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivity" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastLoginTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastLoginTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastLoginTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLastLoginFrom" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLastLoginFrom" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLastLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginFrom" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLastLoginIP" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLastLoginIP" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLastLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginIP" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLastLoginSessionID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLastLoginSessionID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLastLoginSessionID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginSessionID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strSecurityKey" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strSecurityKey" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strSecurityKey" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSecurityKey" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteSecurityKeyGeneratingTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteSecurityKeyGeneratingTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteSecurityKeyGeneratingTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteSecurityKeyGeneratingTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[tblUserSecurity] ([strAccountName], [strPassword], [ysnActive], [intLastInactivatedBy], [dteLastInactivationTime], [intLastActivatedBy], [dteLastActivationTime], [ysnForceLogout], [ysnOnline], [dteLastPasswordChanged], [dteFailedPasswordAttemptStart], [intFailedPasswordAttemptCount], [dteLastOnHoldTime], [dteTemporarilyOnHoldFrom], [dteLastActivity], [dteLastLoginTime], [strLastLoginFrom], [strLastLoginIP], [strLastLoginSessionID], [strSecurityKey], [dteSecurityKeyGeneratingTime]) VALUES (@strAccountName, @strPassword, @ysnActive, @intLastInactivatedBy, @dteLastInactivationTime, @intLastActivatedBy, @dteLastActivationTime, @ysnForceLogout, @ysnOnline, @dteLastPasswordChanged, @dteFailedPasswordAttemptStart, @intFailedPasswordAttemptCount, @dteLastOnHoldTime, @dteTemporarilyOnHoldFrom, @dteLastActivity, @dteLastLoginTime, @strLastLoginFrom, @strLastLoginIP, @strLastLoginSessionID, @strSecurityKey, @dteSecurityKeyGeneratingTime);
+SELECT strAccountName, strPassword, ysnActive, intLastInactivatedBy, dteLastInactivationTime, intLastActivatedBy, dteLastActivationTime, ysnForceLogout, ysnOnline, dteLastPasswordChanged, dteFailedPasswordAttemptStart, intFailedPasswordAttemptCount, dteLastOnHoldTime, dteTemporarilyOnHoldFrom, dteLastActivity, dteLastLoginTime, strLastLoginFrom, strLastLoginIP, strLastLoginSessionID, strSecurityKey, dteSecurityKeyGeneratingTime FROM tblUserSecurity WHERE (strAccountName = @strAccountName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastInactivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastInactivatedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastInactivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastInactivationTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastActivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActivatedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivationTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnForceLogout" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnForceLogout" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnOnline" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnOnline" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastPasswordChanged" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastPasswordChanged" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteFailedPasswordAttemptStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteFailedPasswordAttemptStart" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intFailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intFailedPasswordAttemptCount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastOnHoldTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastOnHoldTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteTemporarilyOnHoldFrom" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTemporarilyOnHoldFrom" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActivity" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivity" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastLoginTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLastLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginFrom" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLastLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginIP" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLastLoginSessionID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginSessionID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strSecurityKey" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSecurityKey" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteSecurityKeyGeneratingTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteSecurityKeyGeneratingTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT [strAccountName]
+      ,[strPassword]      
+      ,[ysnActive]
+      ,[intLastInactivatedBy]
+      ,[dteLastInactivationTime]
+      ,[intLastActivatedBy]
+      ,[dteLastActivationTime]
+      ,[ysnForceLogout]
+      ,[ysnOnline]
+      ,[dteLastPasswordChanged]
+      ,[dteFailedPasswordAttemptStart]
+      ,[intFailedPasswordAttemptCount]
+      ,[dteLastOnHoldTime]
+      ,[dteTemporarilyOnHoldFrom]
+      ,[dteLastActivity]
+      ,[dteLastLoginTime]
+      ,[strLastLoginFrom]
+      ,[strLastLoginIP]
+      ,[strLastLoginSessionID]
+      ,[strSecurityKey]
+      ,[dteSecurityKeyGeneratingTime]
+ FROM dbo.tblUserSecurity
+where  [strAccountName] = @strAccountName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="strAccountName" ColumnName="strAccountName" DataSourceName="DB_Security.dbo.tblUserSecurity" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[tblUserSecurity] SET [strAccountName] = @strAccountName, [strPassword] = @strPassword, [ysnActive] = @ysnActive, [intLastInactivatedBy] = @intLastInactivatedBy, [dteLastInactivationTime] = @dteLastInactivationTime, [intLastActivatedBy] = @intLastActivatedBy, [dteLastActivationTime] = @dteLastActivationTime, [ysnForceLogout] = @ysnForceLogout, [ysnOnline] = @ysnOnline, [dteLastPasswordChanged] = @dteLastPasswordChanged, [dteFailedPasswordAttemptStart] = @dteFailedPasswordAttemptStart, [intFailedPasswordAttemptCount] = @intFailedPasswordAttemptCount, [dteLastOnHoldTime] = @dteLastOnHoldTime, [dteTemporarilyOnHoldFrom] = @dteTemporarilyOnHoldFrom, [dteLastActivity] = @dteLastActivity, [dteLastLoginTime] = @dteLastLoginTime, [strLastLoginFrom] = @strLastLoginFrom, [strLastLoginIP] = @strLastLoginIP, [strLastLoginSessionID] = @strLastLoginSessionID, [strSecurityKey] = @strSecurityKey, [dteSecurityKeyGeneratingTime] = @dteSecurityKeyGeneratingTime WHERE (([strAccountName] = @Original_strAccountName) AND ([strPassword] = @Original_strPassword) AND ([ysnActive] = @Original_ysnActive) AND ((@IsNull_intLastInactivatedBy = 1 AND [intLastInactivatedBy] IS NULL) OR ([intLastInactivatedBy] = @Original_intLastInactivatedBy)) AND ((@IsNull_dteLastInactivationTime = 1 AND [dteLastInactivationTime] IS NULL) OR ([dteLastInactivationTime] = @Original_dteLastInactivationTime)) AND ((@IsNull_intLastActivatedBy = 1 AND [intLastActivatedBy] IS NULL) OR ([intLastActivatedBy] = @Original_intLastActivatedBy)) AND ((@IsNull_dteLastActivationTime = 1 AND [dteLastActivationTime] IS NULL) OR ([dteLastActivationTime] = @Original_dteLastActivationTime)) AND ([ysnForceLogout] = @Original_ysnForceLogout) AND ([ysnOnline] = @Original_ysnOnline) AND ((@IsNull_dteLastPasswordChanged = 1 AND [dteLastPasswordChanged] IS NULL) OR ([dteLastPasswordChanged] = @Original_dteLastPasswordChanged)) AND ((@IsNull_dteFailedPasswordAttemptStart = 1 AND [dteFailedPasswordAttemptStart] IS NULL) OR ([dteFailedPasswordAttemptStart] = @Original_dteFailedPasswordAttemptStart)) AND ((@IsNull_intFailedPasswordAttemptCount = 1 AND [intFailedPasswordAttemptCount] IS NULL) OR ([intFailedPasswordAttemptCount] = @Original_intFailedPasswordAttemptCount)) AND ((@IsNull_dteLastOnHoldTime = 1 AND [dteLastOnHoldTime] IS NULL) OR ([dteLastOnHoldTime] = @Original_dteLastOnHoldTime)) AND ((@IsNull_dteTemporarilyOnHoldFrom = 1 AND [dteTemporarilyOnHoldFrom] IS NULL) OR ([dteTemporarilyOnHoldFrom] = @Original_dteTemporarilyOnHoldFrom)) AND ((@IsNull_dteLastActivity = 1 AND [dteLastActivity] IS NULL) OR ([dteLastActivity] = @Original_dteLastActivity)) AND ((@IsNull_dteLastLoginTime = 1 AND [dteLastLoginTime] IS NULL) OR ([dteLastLoginTime] = @Original_dteLastLoginTime)) AND ((@IsNull_strLastLoginFrom = 1 AND [strLastLoginFrom] IS NULL) OR ([strLastLoginFrom] = @Original_strLastLoginFrom)) AND ((@IsNull_strLastLoginIP = 1 AND [strLastLoginIP] IS NULL) OR ([strLastLoginIP] = @Original_strLastLoginIP)) AND ((@IsNull_strLastLoginSessionID = 1 AND [strLastLoginSessionID] IS NULL) OR ([strLastLoginSessionID] = @Original_strLastLoginSessionID)) AND ((@IsNull_strSecurityKey = 1 AND [strSecurityKey] IS NULL) OR ([strSecurityKey] = @Original_strSecurityKey)) AND ((@IsNull_dteSecurityKeyGeneratingTime = 1 AND [dteSecurityKeyGeneratingTime] IS NULL) OR ([dteSecurityKeyGeneratingTime] = @Original_dteSecurityKeyGeneratingTime)));
+SELECT strAccountName, strPassword, ysnActive, intLastInactivatedBy, dteLastInactivationTime, intLastActivatedBy, dteLastActivationTime, ysnForceLogout, ysnOnline, dteLastPasswordChanged, dteFailedPasswordAttemptStart, intFailedPasswordAttemptCount, dteLastOnHoldTime, dteTemporarilyOnHoldFrom, dteLastActivity, dteLastLoginTime, strLastLoginFrom, strLastLoginIP, strLastLoginSessionID, strSecurityKey, dteSecurityKeyGeneratingTime FROM tblUserSecurity WHERE (strAccountName = @strAccountName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastInactivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastInactivatedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastInactivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastInactivationTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastActivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActivatedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivationTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnForceLogout" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnForceLogout" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnOnline" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnOnline" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastPasswordChanged" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastPasswordChanged" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteFailedPasswordAttemptStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteFailedPasswordAttemptStart" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intFailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intFailedPasswordAttemptCount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastOnHoldTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastOnHoldTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteTemporarilyOnHoldFrom" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTemporarilyOnHoldFrom" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActivity" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivity" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastLoginTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLastLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginFrom" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLastLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginIP" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLastLoginSessionID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginSessionID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strSecurityKey" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSecurityKey" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteSecurityKeyGeneratingTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteSecurityKeyGeneratingTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnActive" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnActive" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastInactivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastInactivatedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastInactivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastInactivatedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastInactivationTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastInactivationTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastInactivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastInactivationTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastActivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActivatedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastActivatedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActivatedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActivationTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActivationTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActivationTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivationTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnForceLogout" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnForceLogout" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnOnline" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnOnline" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastPasswordChanged" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastPasswordChanged" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastPasswordChanged" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastPasswordChanged" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteFailedPasswordAttemptStart" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteFailedPasswordAttemptStart" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteFailedPasswordAttemptStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteFailedPasswordAttemptStart" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intFailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intFailedPasswordAttemptCount" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intFailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intFailedPasswordAttemptCount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastOnHoldTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastOnHoldTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastOnHoldTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastOnHoldTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteTemporarilyOnHoldFrom" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteTemporarilyOnHoldFrom" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteTemporarilyOnHoldFrom" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTemporarilyOnHoldFrom" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActivity" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActivity" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActivity" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActivity" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastLoginTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastLoginTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastLoginTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLastLoginFrom" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLastLoginFrom" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLastLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginFrom" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLastLoginIP" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLastLoginIP" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLastLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginIP" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLastLoginSessionID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLastLoginSessionID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLastLoginSessionID" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLastLoginSessionID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strSecurityKey" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strSecurityKey" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strSecurityKey" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strSecurityKey" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteSecurityKeyGeneratingTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteSecurityKeyGeneratingTime" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteSecurityKeyGeneratingTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteSecurityKeyGeneratingTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intUserID" DataSetColumn="strAccountName" />
+              <Mapping SourceColumn="strPassword" DataSetColumn="strPassword" />
+              <Mapping SourceColumn="dteLastActivationTime" DataSetColumn="dteLastActivationTime" />
+              <Mapping SourceColumn="dteLastInactivationTime" DataSetColumn="dteLastInactivationTime" />
+              <Mapping SourceColumn="ysnForceLogout" DataSetColumn="ysnForceLogout" />
+              <Mapping SourceColumn="ysnOnline" DataSetColumn="ysnOnline" />
+              <Mapping SourceColumn="dteLastPasswordChanged" DataSetColumn="dteLastPasswordChanged" />
+              <Mapping SourceColumn="dteFailedPasswordAttemptStart" DataSetColumn="dteFailedPasswordAttemptStart" />
+              <Mapping SourceColumn="intFailedPasswordAttemptCount" DataSetColumn="intFailedPasswordAttemptCount" />
+              <Mapping SourceColumn="dteLastOnHoldTime" DataSetColumn="dteLastOnHoldTime" />
+              <Mapping SourceColumn="dteTemporarilyOnHoldFrom" DataSetColumn="dteTemporarilyOnHoldFrom" />
+              <Mapping SourceColumn="dteLastActivity" DataSetColumn="dteLastActivity" />
+              <Mapping SourceColumn="dteLastLoginTime" DataSetColumn="dteLastLoginTime" />
+              <Mapping SourceColumn="strLastLoginFrom" DataSetColumn="strLastLoginFrom" />
+              <Mapping SourceColumn="strLastLoginIP" DataSetColumn="strLastLoginIP" />
+              <Mapping SourceColumn="strLastLoginSessionID" DataSetColumn="strLastLoginSessionID" />
+              <Mapping SourceColumn="strSecurityKey" DataSetColumn="strSecurityKey" />
+              <Mapping SourceColumn="dteSecurityKeyGeneratingTime" DataSetColumn="dteSecurityKeyGeneratingTime" />
+              <Mapping SourceColumn="ysnActive" DataSetColumn="ysnActive" />
+              <Mapping SourceColumn="intLastInactivatedBy" DataSetColumn="intLastInactivatedBy" />
+              <Mapping SourceColumn="intLastActivatedBy" DataSetColumn="intLastActivatedBy" />
+              <Mapping SourceColumn="strAccountName" DataSetColumn="strAccountName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblUserInvalidLoginLogTableAdapter" GeneratorDataComponentClassName="TblUserInvalidLoginLogTableAdapter" Name="TblUserInvalidLoginLog" UserDataComponentName="TblUserInvalidLoginLogTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SecurityConnectionString (Settings)" DbObjectName="DB_Security.dbo.tblUserInvalidLoginLog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[tblUserInvalidLoginLog] WHERE (([strAccountName] = @Original_strAccountName) AND ([dteTime] = @Original_dteTime) AND ([strPassword] = @Original_strPassword) AND ([strRemoteAddr] = @Original_strRemoteAddr) AND ([ysnWrongID] = @Original_ysnWrongID) AND ([ysnWrongPassword] = @Original_ysnWrongPassword) AND ([ysnMessageSent] = @Original_ysnMessageSent))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strRemoteAddr" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strRemoteAddr" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnWrongID" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnWrongPassword" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongPassword" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnMessageSent" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnMessageSent" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[tblUserInvalidLoginLog] ([strAccountName], [dteTime], [strPassword], [strRemoteAddr], [ysnWrongID], [ysnWrongPassword], [ysnMessageSent]) VALUES (@strAccountName, @dteTime, @strPassword, @strRemoteAddr, @ysnWrongID, @ysnWrongPassword, @ysnMessageSent);
+SELECT strAccountName, dteTime, strPassword, strRemoteAddr, ysnWrongID, ysnWrongPassword, ysnMessageSent FROM tblUserInvalidLoginLog WHERE (dteTime = @dteTime) AND (strAccountName = @strAccountName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strRemoteAddr" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strRemoteAddr" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnWrongID" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnWrongPassword" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongPassword" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnMessageSent" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnMessageSent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strAccountName, dteTime, strPassword, strRemoteAddr, ysnWrongID, ysnWrongPassword, ysnMessageSent FROM dbo.tblUserInvalidLoginLog</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[tblUserInvalidLoginLog] SET [strAccountName] = @strAccountName, [dteTime] = @dteTime, [strPassword] = @strPassword, [strRemoteAddr] = @strRemoteAddr, [ysnWrongID] = @ysnWrongID, [ysnWrongPassword] = @ysnWrongPassword, [ysnMessageSent] = @ysnMessageSent WHERE (([strAccountName] = @Original_strAccountName) AND ([dteTime] = @Original_dteTime) AND ([strPassword] = @Original_strPassword) AND ([strRemoteAddr] = @Original_strRemoteAddr) AND ([ysnWrongID] = @Original_ysnWrongID) AND ([ysnWrongPassword] = @Original_ysnWrongPassword) AND ([ysnMessageSent] = @Original_ysnMessageSent));
+SELECT strAccountName, dteTime, strPassword, strRemoteAddr, ysnWrongID, ysnWrongPassword, ysnMessageSent FROM tblUserInvalidLoginLog WHERE (dteTime = @dteTime) AND (strAccountName = @strAccountName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strRemoteAddr" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strRemoteAddr" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnWrongID" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnWrongPassword" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongPassword" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnMessageSent" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnMessageSent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_strPassword" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="strPassword" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strRemoteAddr" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strRemoteAddr" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnWrongID" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnWrongPassword" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnWrongPassword" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnMessageSent" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnMessageSent" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intUserID" DataSetColumn="strAccountName" />
+              <Mapping SourceColumn="dteTime" DataSetColumn="dteTime" />
+              <Mapping SourceColumn="strPassword" DataSetColumn="strPassword" />
+              <Mapping SourceColumn="strRemoteAddr" DataSetColumn="strRemoteAddr" />
+              <Mapping SourceColumn="ysnWrongID" DataSetColumn="ysnWrongID" />
+              <Mapping SourceColumn="ysnWrongPassword" DataSetColumn="ysnWrongPassword" />
+              <Mapping SourceColumn="ysnMessageSent" DataSetColumn="ysnMessageSent" />
+              <Mapping SourceColumn="strAccountName" DataSetColumn="strAccountName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblUserLoginInfoLogTableAdapter" GeneratorDataComponentClassName="TblUserLoginInfoLogTableAdapter" Name="TblUserLoginInfoLog" UserDataComponentName="TblUserLoginInfoLogTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SecurityConnectionString (Settings)" DbObjectName="DB_Security.dbo.tblUserLoginInfoLog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[tblUserLoginInfoLog] WHERE (([strAccountName] = @Original_strAccountName) AND ([dteLoginTime] = @Original_dteLoginTime) AND ([strLoginIP] = @Original_strLoginIP) AND ([strLoginFrom] = @Original_strLoginFrom))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLoginTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginIP" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginFrom" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[tblUserLoginInfoLog] ([strAccountName], [dteLoginTime], [strLoginIP], [strLoginFrom]) VALUES (@strAccountName, @dteLoginTime, @strLoginIP, @strLoginFrom);
+SELECT strAccountName, dteLoginTime, strLoginIP, strLoginFrom FROM tblUserLoginInfoLog WHERE (dteLoginTime = @dteLoginTime) AND (strAccountName = @strAccountName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLoginTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginIP" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginFrom" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strAccountName, dteLoginTime, strLoginIP, strLoginFrom FROM dbo.tblUserLoginInfoLog</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[tblUserLoginInfoLog] SET [strAccountName] = @strAccountName, [dteLoginTime] = @dteLoginTime, [strLoginIP] = @strLoginIP, [strLoginFrom] = @strLoginFrom WHERE (([strAccountName] = @Original_strAccountName) AND ([dteLoginTime] = @Original_dteLoginTime) AND ([strLoginIP] = @Original_strLoginIP) AND ([strLoginFrom] = @Original_strLoginFrom));
+SELECT strAccountName, dteLoginTime, strLoginIP, strLoginFrom FROM tblUserLoginInfoLog WHERE (dteLoginTime = @dteLoginTime) AND (strAccountName = @strAccountName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLoginTime" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginIP" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginFrom" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strAccountName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strAccountName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLoginTime" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLoginTime" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLoginIP" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginIP" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLoginFrom" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLoginFrom" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intUserID" DataSetColumn="strAccountName" />
+              <Mapping SourceColumn="dteLoginTime" DataSetColumn="dteLoginTime" />
+              <Mapping SourceColumn="strLoginIP" DataSetColumn="strLoginIP" />
+              <Mapping SourceColumn="strLoginFrom" DataSetColumn="strLoginFrom" />
+              <Mapping SourceColumn="strAccountName" DataSetColumn="strAccountName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UserLoginInfoTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="UserLoginInfoTDS" msprop:Generator_DataSetName="UserLoginInfoTDS" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TblUserSecurity" msprop:Generator_UserTableName="TblUserSecurity" msprop:Generator_RowDeletedName="TblUserSecurityRowDeleted" msprop:Generator_RowChangedName="TblUserSecurityRowChanged" msprop:Generator_RowClassName="TblUserSecurityRow" msprop:Generator_RowChangingName="TblUserSecurityRowChanging" msprop:Generator_RowEvArgName="TblUserSecurityRowChangeEvent" msprop:Generator_RowEvHandlerName="TblUserSecurityRowChangeEventHandler" msprop:Generator_TableClassName="TblUserSecurityDataTable" msprop:Generator_TableVarName="tableTblUserSecurity" msprop:Generator_RowDeletingName="TblUserSecurityRowDeleting" msprop:Generator_TablePropName="TblUserSecurity">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strAccountName" msprop:Generator_UserColumnName="strAccountName" msprop:Generator_ColumnPropNameInRow="strAccountName" msprop:Generator_ColumnVarNameInTable="columnstrAccountName" msprop:Generator_ColumnPropNameInTable="strAccountNameColumn" type="xs:string" />
+              <xs:element name="strPassword" msprop:Generator_UserColumnName="strPassword" msprop:Generator_ColumnPropNameInRow="strPassword" msprop:Generator_ColumnVarNameInTable="columnstrPassword" msprop:Generator_ColumnPropNameInTable="strPasswordColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteLastActivationTime" msprop:Generator_UserColumnName="dteLastActivationTime" msprop:Generator_ColumnPropNameInRow="dteLastActivationTime" msprop:Generator_ColumnVarNameInTable="columndteLastActivationTime" msprop:Generator_ColumnPropNameInTable="dteLastActivationTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteLastInactivationTime" msprop:Generator_UserColumnName="dteLastInactivationTime" msprop:Generator_ColumnPropNameInRow="dteLastInactivationTime" msprop:Generator_ColumnVarNameInTable="columndteLastInactivationTime" msprop:Generator_ColumnPropNameInTable="dteLastInactivationTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysnForceLogout" msprop:Generator_UserColumnName="ysnForceLogout" msprop:Generator_ColumnPropNameInRow="ysnForceLogout" msprop:Generator_ColumnVarNameInTable="columnysnForceLogout" msprop:Generator_ColumnPropNameInTable="ysnForceLogoutColumn" type="xs:boolean" />
+              <xs:element name="ysnOnline" msprop:Generator_UserColumnName="ysnOnline" msprop:Generator_ColumnPropNameInRow="ysnOnline" msprop:Generator_ColumnVarNameInTable="columnysnOnline" msprop:Generator_ColumnPropNameInTable="ysnOnlineColumn" type="xs:boolean" />
+              <xs:element name="dteLastPasswordChanged" msprop:Generator_UserColumnName="dteLastPasswordChanged" msprop:Generator_ColumnPropNameInRow="dteLastPasswordChanged" msprop:Generator_ColumnVarNameInTable="columndteLastPasswordChanged" msprop:Generator_ColumnPropNameInTable="dteLastPasswordChangedColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteFailedPasswordAttemptStart" msprop:Generator_UserColumnName="dteFailedPasswordAttemptStart" msprop:Generator_ColumnPropNameInRow="dteFailedPasswordAttemptStart" msprop:Generator_ColumnVarNameInTable="columndteFailedPasswordAttemptStart" msprop:Generator_ColumnPropNameInTable="dteFailedPasswordAttemptStartColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intFailedPasswordAttemptCount" msprop:Generator_UserColumnName="intFailedPasswordAttemptCount" msprop:Generator_ColumnPropNameInRow="intFailedPasswordAttemptCount" msprop:Generator_ColumnVarNameInTable="columnintFailedPasswordAttemptCount" msprop:Generator_ColumnPropNameInTable="intFailedPasswordAttemptCountColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastOnHoldTime" msprop:Generator_UserColumnName="dteLastOnHoldTime" msprop:Generator_ColumnPropNameInRow="dteLastOnHoldTime" msprop:Generator_ColumnVarNameInTable="columndteLastOnHoldTime" msprop:Generator_ColumnPropNameInTable="dteLastOnHoldTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteTemporarilyOnHoldFrom" msprop:Generator_UserColumnName="dteTemporarilyOnHoldFrom" msprop:Generator_ColumnPropNameInRow="dteTemporarilyOnHoldFrom" msprop:Generator_ColumnVarNameInTable="columndteTemporarilyOnHoldFrom" msprop:Generator_ColumnPropNameInTable="dteTemporarilyOnHoldFromColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteLastActivity" msprop:Generator_UserColumnName="dteLastActivity" msprop:Generator_ColumnPropNameInRow="dteLastActivity" msprop:Generator_ColumnVarNameInTable="columndteLastActivity" msprop:Generator_ColumnPropNameInTable="dteLastActivityColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteLastLoginTime" msprop:Generator_UserColumnName="dteLastLoginTime" msprop:Generator_ColumnPropNameInRow="dteLastLoginTime" msprop:Generator_ColumnVarNameInTable="columndteLastLoginTime" msprop:Generator_ColumnPropNameInTable="dteLastLoginTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strLastLoginFrom" msprop:Generator_UserColumnName="strLastLoginFrom" msprop:Generator_ColumnPropNameInRow="strLastLoginFrom" msprop:Generator_ColumnVarNameInTable="columnstrLastLoginFrom" msprop:Generator_ColumnPropNameInTable="strLastLoginFromColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strLastLoginIP" msprop:Generator_UserColumnName="strLastLoginIP" msprop:Generator_ColumnPropNameInRow="strLastLoginIP" msprop:Generator_ColumnVarNameInTable="columnstrLastLoginIP" msprop:Generator_ColumnPropNameInTable="strLastLoginIPColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strLastLoginSessionID" msprop:Generator_UserColumnName="strLastLoginSessionID" msprop:Generator_ColumnPropNameInRow="strLastLoginSessionID" msprop:Generator_ColumnVarNameInTable="columnstrLastLoginSessionID" msprop:Generator_ColumnPropNameInTable="strLastLoginSessionIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSecurityKey" msprop:Generator_UserColumnName="strSecurityKey" msprop:Generator_ColumnPropNameInRow="strSecurityKey" msprop:Generator_ColumnVarNameInTable="columnstrSecurityKey" msprop:Generator_ColumnPropNameInTable="strSecurityKeyColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteSecurityKeyGeneratingTime" msprop:Generator_UserColumnName="dteSecurityKeyGeneratingTime" msprop:Generator_ColumnPropNameInRow="dteSecurityKeyGeneratingTime" msprop:Generator_ColumnVarNameInTable="columndteSecurityKeyGeneratingTime" msprop:Generator_ColumnPropNameInTable="dteSecurityKeyGeneratingTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysnActive" msprop:Generator_UserColumnName="ysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" type="xs:boolean" />
+              <xs:element name="intLastInactivatedBy" msprop:Generator_UserColumnName="intLastInactivatedBy" msprop:Generator_ColumnPropNameInRow="intLastInactivatedBy" msprop:Generator_ColumnVarNameInTable="columnintLastInactivatedBy" msprop:Generator_ColumnPropNameInTable="intLastInactivatedByColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="intLastActivatedBy" msprop:Generator_UserColumnName="intLastActivatedBy" msprop:Generator_ColumnPropNameInRow="intLastActivatedBy" msprop:Generator_ColumnVarNameInTable="columnintLastActivatedBy" msprop:Generator_ColumnPropNameInTable="intLastActivatedByColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblUserInvalidLoginLog" msprop:Generator_UserTableName="TblUserInvalidLoginLog" msprop:Generator_RowDeletedName="TblUserInvalidLoginLogRowDeleted" msprop:Generator_RowChangedName="TblUserInvalidLoginLogRowChanged" msprop:Generator_RowClassName="TblUserInvalidLoginLogRow" msprop:Generator_RowChangingName="TblUserInvalidLoginLogRowChanging" msprop:Generator_RowEvArgName="TblUserInvalidLoginLogRowChangeEvent" msprop:Generator_RowEvHandlerName="TblUserInvalidLoginLogRowChangeEventHandler" msprop:Generator_TableClassName="TblUserInvalidLoginLogDataTable" msprop:Generator_TableVarName="tableTblUserInvalidLoginLog" msprop:Generator_RowDeletingName="TblUserInvalidLoginLogRowDeleting" msprop:Generator_TablePropName="TblUserInvalidLoginLog">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strAccountName" msprop:Generator_UserColumnName="strAccountName" msprop:Generator_ColumnPropNameInRow="strAccountName" msprop:Generator_ColumnVarNameInTable="columnstrAccountName" msprop:Generator_ColumnPropNameInTable="strAccountNameColumn" type="xs:string" />
+              <xs:element name="dteTime" msprop:Generator_UserColumnName="dteTime" msprop:Generator_ColumnPropNameInRow="dteTime" msprop:Generator_ColumnVarNameInTable="columndteTime" msprop:Generator_ColumnPropNameInTable="dteTimeColumn" type="xs:dateTime" />
+              <xs:element name="strPassword" msprop:Generator_UserColumnName="strPassword" msprop:Generator_ColumnPropNameInRow="strPassword" msprop:Generator_ColumnVarNameInTable="columnstrPassword" msprop:Generator_ColumnPropNameInTable="strPasswordColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strRemoteAddr" msprop:Generator_UserColumnName="strRemoteAddr" msprop:Generator_ColumnPropNameInRow="strRemoteAddr" msprop:Generator_ColumnVarNameInTable="columnstrRemoteAddr" msprop:Generator_ColumnPropNameInTable="strRemoteAddrColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ysnWrongID" msprop:Generator_UserColumnName="ysnWrongID" msprop:Generator_ColumnPropNameInRow="ysnWrongID" msprop:Generator_ColumnVarNameInTable="columnysnWrongID" msprop:Generator_ColumnPropNameInTable="ysnWrongIDColumn" type="xs:boolean" />
+              <xs:element name="ysnWrongPassword" msprop:Generator_UserColumnName="ysnWrongPassword" msprop:Generator_ColumnPropNameInRow="ysnWrongPassword" msprop:Generator_ColumnVarNameInTable="columnysnWrongPassword" msprop:Generator_ColumnPropNameInTable="ysnWrongPasswordColumn" type="xs:boolean" />
+              <xs:element name="ysnMessageSent" msprop:Generator_UserColumnName="ysnMessageSent" msprop:Generator_ColumnPropNameInRow="ysnMessageSent" msprop:Generator_ColumnVarNameInTable="columnysnMessageSent" msprop:Generator_ColumnPropNameInTable="ysnMessageSentColumn" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblUserLoginInfoLog" msprop:Generator_UserTableName="TblUserLoginInfoLog" msprop:Generator_RowDeletedName="TblUserLoginInfoLogRowDeleted" msprop:Generator_RowChangedName="TblUserLoginInfoLogRowChanged" msprop:Generator_RowClassName="TblUserLoginInfoLogRow" msprop:Generator_RowChangingName="TblUserLoginInfoLogRowChanging" msprop:Generator_RowEvArgName="TblUserLoginInfoLogRowChangeEvent" msprop:Generator_RowEvHandlerName="TblUserLoginInfoLogRowChangeEventHandler" msprop:Generator_TableClassName="TblUserLoginInfoLogDataTable" msprop:Generator_TableVarName="tableTblUserLoginInfoLog" msprop:Generator_RowDeletingName="TblUserLoginInfoLogRowDeleting" msprop:Generator_TablePropName="TblUserLoginInfoLog">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strAccountName" msprop:Generator_UserColumnName="strAccountName" msprop:Generator_ColumnVarNameInTable="columnstrAccountName" msprop:Generator_ColumnPropNameInRow="strAccountName" msprop:Generator_ColumnPropNameInTable="strAccountNameColumn" type="xs:string" />
+              <xs:element name="dteLoginTime" msprop:Generator_UserColumnName="dteLoginTime" msprop:Generator_ColumnVarNameInTable="columndteLoginTime" msprop:Generator_ColumnPropNameInRow="dteLoginTime" msprop:Generator_ColumnPropNameInTable="dteLoginTimeColumn" type="xs:dateTime" />
+              <xs:element name="strLoginIP" msprop:Generator_UserColumnName="strLoginIP" msprop:Generator_ColumnVarNameInTable="columnstrLoginIP" msprop:Generator_ColumnPropNameInRow="strLoginIP" msprop:Generator_ColumnPropNameInTable="strLoginIPColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strLoginFrom" msprop:Generator_UserColumnName="strLoginFrom" msprop:Generator_ColumnVarNameInTable="columnstrLoginFrom" msprop:Generator_ColumnPropNameInRow="strLoginFrom" msprop:Generator_ColumnPropNameInTable="strLoginFromColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblUserSecurity" />
+      <xs:field xpath="mstns:strAccountName" />
+    </xs:unique>
+    <xs:unique name="TblUserInvalidLoginLog_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblUserInvalidLoginLog" />
+      <xs:field xpath="mstns:strAccountName" />
+      <xs:field xpath="mstns:dteTime" />
+    </xs:unique>
+    <xs:unique name="TblUserLoginInfoLog_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblUserLoginInfoLog" />
+      <xs:field xpath="mstns:strAccountName" />
+      <xs:field xpath="mstns:dteLoginTime" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

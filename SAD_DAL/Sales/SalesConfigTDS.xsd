@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SalesConfigTDS" targetNamespace="http://tempuri.org/SalesConfigTDS.xsd" xmlns:mstns="http://tempuri.org/SalesConfigTDS.xsd" xmlns="http://tempuri.org/SalesConfigTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblSalesConfigTableAdapter" GeneratorDataComponentClassName="TblSalesConfigTableAdapter" Name="TblSalesConfig" UserDataComponentName="TblSalesConfigTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesConfig" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT [intUnitId]
+      ,[ysnViewPriceInDO]
+      ,[ysnEditPriceInDO]
+      ,[ysnViewPriceInDO2]
+      ,[ysnEditPriceInDO2]
+      ,[ysnChallanNoDO]
+      ,[ysnChallanNoDO2]
+      ,[ysnSubledgerEntryFromDO]
+      ,[ysnDisPointEnable]
+      ,[intSupplierCOAParent]
+      ,[ysnLogisBasedOnUOM]
+      ,[ysnCharBasedOnUOM]
+      ,[ysnVehicleAccountMerge]
+      ,[ysnCreditSales]
+      ,[ysnCrInfoInDO]
+      ,[ysnCrInfoInDO2]
+      ,[ysnChargeAccountMerge]
+      ,[ysnXFactoryPriceFixedForLogis]
+      ,[ysnXFactoryPriceFixedForCharge]
+      ,[ysnIncentiveBasedOnUOM]
+      ,[ysnDefaultLogis]
+      ,[ysnPriceHaltIfCustomerPriceSet]
+      ,[intIncomeSalesCOAid]
+      ,[intAccRecvCOAid]
+      ,[intLogisGainCOAid]
+      ,[ysnShowVehicleVariable]
+FROM dbo.tblSalesConfig</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intUnitId" DataSetColumn="intUnitId" />
+              <Mapping SourceColumn="ysnViewPriceInDO" DataSetColumn="ysnViewPriceInDO" />
+              <Mapping SourceColumn="ysnEditPriceInDO" DataSetColumn="ysnEditPriceInDO" />
+              <Mapping SourceColumn="ysnViewPriceInDO2" DataSetColumn="ysnViewPriceInDO2" />
+              <Mapping SourceColumn="ysnEditPriceInDO2" DataSetColumn="ysnEditPriceInDO2" />
+              <Mapping SourceColumn="ysnChallanNoDO" DataSetColumn="ysnChallanNoDO" />
+              <Mapping SourceColumn="ysnChallanNoDO2" DataSetColumn="ysnChallanNoDO2" />
+              <Mapping SourceColumn="ysnSubledgerEntryFromDO" DataSetColumn="ysnSubledgerEntryFromDO" />
+              <Mapping SourceColumn="ysnDisPointEnable" DataSetColumn="ysnDisPointEnable" />
+              <Mapping SourceColumn="ysnLogisBasedOnUOM" DataSetColumn="ysnLogisBasedOnUOM" />
+              <Mapping SourceColumn="ysnCharBasedOnUOM" DataSetColumn="ysnCharBasedOnUOM" />
+              <Mapping SourceColumn="intSupplierCOAParent" DataSetColumn="intSupplierCOAParent" />
+              <Mapping SourceColumn="ysnVehicleAccountMerge" DataSetColumn="ysnVehicleAccountMerge" />
+              <Mapping SourceColumn="ysnCreditSales" DataSetColumn="ysnCreditSales" />
+              <Mapping SourceColumn="ysnCrInfoInDO" DataSetColumn="ysnCrInfoInDO" />
+              <Mapping SourceColumn="ysnCrInfoInDO2" DataSetColumn="ysnCrInfoInDO2" />
+              <Mapping SourceColumn="ysnXFactoryPriceFixedForLogis" DataSetColumn="ysnXFactoryPriceFixedForLogis" />
+              <Mapping SourceColumn="ysnXFactoryPriceFixedForCharge" DataSetColumn="ysnXFactoryPriceFixedForCharge" />
+              <Mapping SourceColumn="ysnIncentiveBasedOnUOM" DataSetColumn="ysnIncentiveBasedOnUOM" />
+              <Mapping SourceColumn="ysnDefaultLogis" DataSetColumn="ysnDefaultLogis" />
+              <Mapping SourceColumn="ysnChargeAccountMerge" DataSetColumn="ysnChargeAccountMerge" />
+              <Mapping SourceColumn="ysnPriceHaltIfCustomerPriceSet" DataSetColumn="ysnPriceHaltIfCustomerPriceSet" />
+              <Mapping SourceColumn="intIncomeSalesCOAid" DataSetColumn="intIncomeSalesCOAid" />
+              <Mapping SourceColumn="intAccRecvCOAid" DataSetColumn="intAccRecvCOAid" />
+              <Mapping SourceColumn="intLogisGainCOAid" DataSetColumn="intLogisGainCOAid" />
+              <Mapping SourceColumn="ysnShowVehicleVariable" DataSetColumn="ysnShowVehicleVariable" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesConfig" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByUnit" GetMethodModifier="Public" GetMethodName="GetDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByUnit" UserSourceName="GetDataByUnit">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intAccRecvCOAid, intIncomeSalesCOAid, intLogisGainCOAid, intSupplierCOAParent, intUnitId, ysnChallanNoDO, ysnChallanNoDO2, ysnCharBasedOnUOM, ysnChargeAccountMerge, ysnCrInfoInDO, ysnCrInfoInDO2, ysnCreditSales, ysnDefaultLogis, ysnDisPointEnable, ysnEditPriceInDO, ysnEditPriceInDO2, ysnIncentiveBasedOnUOM, ysnLogisBasedOnUOM, ysnPriceHaltIfCustomerPriceSet, ysnShowVehicleVariable, ysnSubledgerEntryFromDO, ysnVehicleAccountMerge, ysnViewPriceInDO, ysnViewPriceInDO2, ysnXFactoryPriceFixedForCharge, ysnXFactoryPriceFixedForLogis FROM tblSalesConfig WHERE (intUnitId = @intUnitId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitId" ColumnName="intUnitId" DataSourceName="ERP_SAD.dbo.tblSalesConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesConfig" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GetSupplierCOAParent" Modifier="Public" Name="GetSupplierCOAParent" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetSupplierCOAParent">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT  [intSupplierCOAParent]
+FROM dbo.tblSalesConfig
+where [intUnitId] = @intUnitId
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitId" ColumnName="intUnitId" DataSourceName="ERP_SAD.dbo.tblSalesConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblSalesTypeTableAdapter" GeneratorDataComponentClassName="TblSalesTypeTableAdapter" Name="TblSalesType" UserDataComponentName="TblSalesTypeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesType" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[tblSalesType] WHERE (([intTypeID] = @Original_intTypeID) AND ([intUnitID] = @Original_intUnitID) AND ([strTypeName] = @Original_strTypeName) AND ((@IsNull_intInsertedBy = 1 AND [intInsertedBy] IS NULL) OR ([intInsertedBy] = @Original_intInsertedBy)) AND ((@IsNull_dteInsertedDate = 1 AND [dteInsertedDate] IS NULL) OR ([dteInsertedDate] = @Original_dteInsertedDate)) AND ((@IsNull_intLastActionBy = 1 AND [intLastActionBy] IS NULL) OR ([intLastActionBy] = @Original_intLastActionBy)) AND ((@IsNull_dteLastActionDate = 1 AND [dteLastActionDate] IS NULL) OR ([dteLastActionDate] = @Original_dteLastActionDate)) AND ((@IsNull_intCOAID = 1 AND [intCOAID] IS NULL) OR ([intCOAID] = @Original_intCOAID)) AND ([ysnCOAEntry] = @Original_ysnCOAEntry) AND ([ysnEnableInDO] = @Original_ysnEnableInDO) AND ([ysnEnableInDO2] = @Original_ysnEnableInDO2) AND ((@IsNull_intModuleID = 1 AND [intModuleID] IS NULL) OR ([intModuleID] = @Original_intModuleID)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intTypeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strTypeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strTypeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteInsertedDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActionDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCOAID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOAID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCOAID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOAID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnCOAEntry" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnCOAEntry" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnEnableInDO" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnEnableInDO2" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intModuleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intModuleID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intModuleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intModuleID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[tblSalesType] ([intUnitID], [strTypeName], [intInsertedBy], [dteInsertedDate], [intLastActionBy], [dteLastActionDate], [intCOAID], [ysnCOAEntry], [ysnEnableInDO], [ysnEnableInDO2], [intModuleID]) VALUES (@intUnitID, @strTypeName, @intInsertedBy, @dteInsertedDate, @intLastActionBy, @dteLastActionDate, @intCOAID, @ysnCOAEntry, @ysnEnableInDO, @ysnEnableInDO2, @intModuleID);
+SELECT intTypeID, intUnitID, strTypeName, intInsertedBy, dteInsertedDate, intLastActionBy, dteLastActionDate, intCOAID, ysnCOAEntry, ysnEnableInDO, ysnEnableInDO2, intModuleID FROM dbo.tblSalesType WHERE (intTypeID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strTypeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strTypeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCOAID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOAID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnCOAEntry" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnCOAEntry" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnEnableInDO" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnEnableInDO2" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intModuleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intModuleID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intTypeID, intUnitID, strTypeName, intInsertedBy, dteInsertedDate, intLastActionBy, dteLastActionDate, intCOAID, ysnCOAEntry, ysnEnableInDO, ysnEnableInDO2, intModuleID FROM dbo.tblSalesType</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[tblSalesType] SET [intUnitID] = @intUnitID, [strTypeName] = @strTypeName, [intInsertedBy] = @intInsertedBy, [dteInsertedDate] = @dteInsertedDate, [intLastActionBy] = @intLastActionBy, [dteLastActionDate] = @dteLastActionDate, [intCOAID] = @intCOAID, [ysnCOAEntry] = @ysnCOAEntry, [ysnEnableInDO] = @ysnEnableInDO, [ysnEnableInDO2] = @ysnEnableInDO2, [intModuleID] = @intModuleID WHERE (([intTypeID] = @Original_intTypeID) AND ([intUnitID] = @Original_intUnitID) AND ([strTypeName] = @Original_strTypeName) AND ((@IsNull_intInsertedBy = 1 AND [intInsertedBy] IS NULL) OR ([intInsertedBy] = @Original_intInsertedBy)) AND ((@IsNull_dteInsertedDate = 1 AND [dteInsertedDate] IS NULL) OR ([dteInsertedDate] = @Original_dteInsertedDate)) AND ((@IsNull_intLastActionBy = 1 AND [intLastActionBy] IS NULL) OR ([intLastActionBy] = @Original_intLastActionBy)) AND ((@IsNull_dteLastActionDate = 1 AND [dteLastActionDate] IS NULL) OR ([dteLastActionDate] = @Original_dteLastActionDate)) AND ((@IsNull_intCOAID = 1 AND [intCOAID] IS NULL) OR ([intCOAID] = @Original_intCOAID)) AND ([ysnCOAEntry] = @Original_ysnCOAEntry) AND ([ysnEnableInDO] = @Original_ysnEnableInDO) AND ([ysnEnableInDO2] = @Original_ysnEnableInDO2) AND ((@IsNull_intModuleID = 1 AND [intModuleID] IS NULL) OR ([intModuleID] = @Original_intModuleID)));
+SELECT intTypeID, intUnitID, strTypeName, intInsertedBy, dteInsertedDate, intLastActionBy, dteLastActionDate, intCOAID, ysnCOAEntry, ysnEnableInDO, ysnEnableInDO2, intModuleID FROM dbo.tblSalesType WHERE (intTypeID = @intTypeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strTypeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strTypeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCOAID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOAID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnCOAEntry" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnCOAEntry" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnEnableInDO" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnEnableInDO2" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intModuleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intModuleID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intTypeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strTypeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strTypeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteInsertedDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActionDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCOAID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOAID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCOAID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOAID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnCOAEntry" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnCOAEntry" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnEnableInDO" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnEnableInDO2" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnableInDO2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intModuleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intModuleID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intModuleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intModuleID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intTypeID" ColumnName="intTypeID" DataSourceName="ERP_SAD.dbo.tblSalesType" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intTypeID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intTypeID" DataSetColumn="intTypeID" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="strTypeName" DataSetColumn="strTypeName" />
+              <Mapping SourceColumn="intInsertedBy" DataSetColumn="intInsertedBy" />
+              <Mapping SourceColumn="dteInsertedDate" DataSetColumn="dteInsertedDate" />
+              <Mapping SourceColumn="intLastActionBy" DataSetColumn="intLastActionBy" />
+              <Mapping SourceColumn="dteLastActionDate" DataSetColumn="dteLastActionDate" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="ysnEnableInDO" DataSetColumn="ysnEnableInDO" />
+              <Mapping SourceColumn="ysnEnableInDO2" DataSetColumn="ysnEnableInDO2" />
+              <Mapping SourceColumn="ysnCOAEntry" DataSetColumn="ysnCOAEntry" />
+              <Mapping SourceColumn="intModuleID" DataSetColumn="intModuleID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesType" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataForDO" GetMethodModifier="Public" GetMethodName="GetDataForDO" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataForDO" UserSourceName="GetDataForDO">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT dteInsertedDate, dteLastActionDate, intCOAID, intInsertedBy, intLastActionBy, intModuleID, intTypeID, intUnitID, strTypeName, ysnCOAEntry, ysnEnableInDO, ysnEnableInDO2 FROM dbo.tblSalesType WHERE (intUnitID = @intUnitID) AND (ysnEnableInDO = 1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_SAD.dbo.tblSalesType" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesType" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataForDO2" GetMethodModifier="Public" GetMethodName="GetDataForDO2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataForDO2" UserSourceName="GetDataForDO2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT dteInsertedDate, dteLastActionDate, intCOAID, intInsertedBy, intLastActionBy, intModuleID, intTypeID, intUnitID, strTypeName, ysnCOAEntry, ysnEnableInDO, ysnEnableInDO2 FROM dbo.tblSalesType WHERE (intUnitID = @intUnitID) AND (ysnEnableInDO2 = 1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_SAD.dbo.tblSalesType" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprSalesTypeByItemTypeTableAdapter" GeneratorDataComponentClassName="SprSalesTypeByItemTypeTableAdapter" Name="SprSalesTypeByItemType" UserDataComponentName="SprSalesTypeByItemTypeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprSalesTypeByItemType" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprSalesTypeByItemType</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intItemTypeID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intTypeID" DataSetColumn="intTypeID" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="strTypeName" DataSetColumn="strTypeName" />
+              <Mapping SourceColumn="intInsertedBy" DataSetColumn="intInsertedBy" />
+              <Mapping SourceColumn="dteInsertedDate" DataSetColumn="dteInsertedDate" />
+              <Mapping SourceColumn="intLastActionBy" DataSetColumn="intLastActionBy" />
+              <Mapping SourceColumn="dteLastActionDate" DataSetColumn="dteLastActionDate" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="ysnCOAEntry" DataSetColumn="ysnCOAEntry" />
+              <Mapping SourceColumn="ysnEnableInDO" DataSetColumn="ysnEnableInDO" />
+              <Mapping SourceColumn="ysnEnableInDO2" DataSetColumn="ysnEnableInDO2" />
+              <Mapping SourceColumn="intModuleID" DataSetColumn="intModuleID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SalesConfigTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SalesConfigTDS" msprop:Generator_UserDSName="SalesConfigTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TblSalesConfig" msprop:Generator_UserTableName="TblSalesConfig" msprop:Generator_RowEvArgName="TblSalesConfigRowChangeEvent" msprop:Generator_TableVarName="tableTblSalesConfig" msprop:Generator_TablePropName="TblSalesConfig" msprop:Generator_RowDeletingName="TblSalesConfigRowDeleting" msprop:Generator_RowChangingName="TblSalesConfigRowChanging" msprop:Generator_RowDeletedName="TblSalesConfigRowDeleted" msprop:Generator_RowEvHandlerName="TblSalesConfigRowChangeEventHandler" msprop:Generator_TableClassName="TblSalesConfigDataTable" msprop:Generator_RowChangedName="TblSalesConfigRowChanged" msprop:Generator_RowClassName="TblSalesConfigRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" />
+              <xs:element name="ysnViewPriceInDO" msprop:Generator_ColumnVarNameInTable="columnysnViewPriceInDO" msprop:Generator_ColumnPropNameInRow="ysnViewPriceInDO" msprop:Generator_ColumnPropNameInTable="ysnViewPriceInDOColumn" msprop:Generator_UserColumnName="ysnViewPriceInDO" type="xs:boolean" />
+              <xs:element name="ysnEditPriceInDO" msprop:Generator_ColumnVarNameInTable="columnysnEditPriceInDO" msprop:Generator_ColumnPropNameInRow="ysnEditPriceInDO" msprop:Generator_ColumnPropNameInTable="ysnEditPriceInDOColumn" msprop:Generator_UserColumnName="ysnEditPriceInDO" type="xs:boolean" />
+              <xs:element name="ysnViewPriceInDO2" msprop:Generator_ColumnVarNameInTable="columnysnViewPriceInDO2" msprop:Generator_ColumnPropNameInRow="ysnViewPriceInDO2" msprop:Generator_ColumnPropNameInTable="ysnViewPriceInDO2Column" msprop:Generator_UserColumnName="ysnViewPriceInDO2" type="xs:boolean" />
+              <xs:element name="ysnEditPriceInDO2" msprop:Generator_ColumnVarNameInTable="columnysnEditPriceInDO2" msprop:Generator_ColumnPropNameInRow="ysnEditPriceInDO2" msprop:Generator_ColumnPropNameInTable="ysnEditPriceInDO2Column" msprop:Generator_UserColumnName="ysnEditPriceInDO2" type="xs:boolean" />
+              <xs:element name="ysnChallanNoDO" msprop:Generator_ColumnVarNameInTable="columnysnChallanNoDO" msprop:Generator_ColumnPropNameInRow="ysnChallanNoDO" msprop:Generator_ColumnPropNameInTable="ysnChallanNoDOColumn" msprop:Generator_UserColumnName="ysnChallanNoDO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnChallanNoDO2" msprop:Generator_ColumnVarNameInTable="columnysnChallanNoDO2" msprop:Generator_ColumnPropNameInRow="ysnChallanNoDO2" msprop:Generator_ColumnPropNameInTable="ysnChallanNoDO2Column" msprop:Generator_UserColumnName="ysnChallanNoDO2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnSubledgerEntryFromDO" msprop:Generator_ColumnVarNameInTable="columnysnSubledgerEntryFromDO" msprop:Generator_ColumnPropNameInRow="ysnSubledgerEntryFromDO" msprop:Generator_ColumnPropNameInTable="ysnSubledgerEntryFromDOColumn" msprop:Generator_UserColumnName="ysnSubledgerEntryFromDO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnDisPointEnable" msprop:Generator_ColumnVarNameInTable="columnysnDisPointEnable" msprop:Generator_ColumnPropNameInRow="ysnDisPointEnable" msprop:Generator_ColumnPropNameInTable="ysnDisPointEnableColumn" msprop:Generator_UserColumnName="ysnDisPointEnable" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnLogisBasedOnUOM" msprop:Generator_ColumnVarNameInTable="columnysnLogisBasedOnUOM" msprop:Generator_ColumnPropNameInRow="ysnLogisBasedOnUOM" msprop:Generator_ColumnPropNameInTable="ysnLogisBasedOnUOMColumn" msprop:Generator_UserColumnName="ysnLogisBasedOnUOM" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnCharBasedOnUOM" msprop:Generator_ColumnVarNameInTable="columnysnCharBasedOnUOM" msprop:Generator_ColumnPropNameInRow="ysnCharBasedOnUOM" msprop:Generator_ColumnPropNameInTable="ysnCharBasedOnUOMColumn" msprop:Generator_UserColumnName="ysnCharBasedOnUOM" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intSupplierCOAParent" msprop:Generator_ColumnVarNameInTable="columnintSupplierCOAParent" msprop:Generator_ColumnPropNameInRow="intSupplierCOAParent" msprop:Generator_ColumnPropNameInTable="intSupplierCOAParentColumn" msprop:Generator_UserColumnName="intSupplierCOAParent" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnVehicleAccountMerge" msprop:Generator_ColumnVarNameInTable="columnysnVehicleAccountMerge" msprop:Generator_ColumnPropNameInRow="ysnVehicleAccountMerge" msprop:Generator_ColumnPropNameInTable="ysnVehicleAccountMergeColumn" msprop:Generator_UserColumnName="ysnVehicleAccountMerge" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnCreditSales" msprop:Generator_ColumnVarNameInTable="columnysnCreditSales" msprop:Generator_ColumnPropNameInRow="ysnCreditSales" msprop:Generator_ColumnPropNameInTable="ysnCreditSalesColumn" msprop:Generator_UserColumnName="ysnCreditSales" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnCrInfoInDO" msprop:Generator_ColumnVarNameInTable="columnysnCrInfoInDO" msprop:Generator_ColumnPropNameInRow="ysnCrInfoInDO" msprop:Generator_ColumnPropNameInTable="ysnCrInfoInDOColumn" msprop:Generator_UserColumnName="ysnCrInfoInDO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnCrInfoInDO2" msprop:Generator_ColumnVarNameInTable="columnysnCrInfoInDO2" msprop:Generator_ColumnPropNameInRow="ysnCrInfoInDO2" msprop:Generator_ColumnPropNameInTable="ysnCrInfoInDO2Column" msprop:Generator_UserColumnName="ysnCrInfoInDO2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnXFactoryPriceFixedForLogis" msprop:Generator_ColumnVarNameInTable="columnysnXFactoryPriceFixedForLogis" msprop:Generator_ColumnPropNameInRow="ysnXFactoryPriceFixedForLogis" msprop:Generator_ColumnPropNameInTable="ysnXFactoryPriceFixedForLogisColumn" msprop:Generator_UserColumnName="ysnXFactoryPriceFixedForLogis" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnXFactoryPriceFixedForCharge" msprop:Generator_ColumnVarNameInTable="columnysnXFactoryPriceFixedForCharge" msprop:Generator_ColumnPropNameInRow="ysnXFactoryPriceFixedForCharge" msprop:Generator_ColumnPropNameInTable="ysnXFactoryPriceFixedForChargeColumn" msprop:Generator_UserColumnName="ysnXFactoryPriceFixedForCharge" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnIncentiveBasedOnUOM" msprop:Generator_ColumnVarNameInTable="columnysnIncentiveBasedOnUOM" msprop:Generator_ColumnPropNameInRow="ysnIncentiveBasedOnUOM" msprop:Generator_ColumnPropNameInTable="ysnIncentiveBasedOnUOMColumn" msprop:Generator_UserColumnName="ysnIncentiveBasedOnUOM" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnDefaultLogis" msprop:Generator_ColumnVarNameInTable="columnysnDefaultLogis" msprop:Generator_ColumnPropNameInRow="ysnDefaultLogis" msprop:Generator_ColumnPropNameInTable="ysnDefaultLogisColumn" msprop:Generator_UserColumnName="ysnDefaultLogis" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnChargeAccountMerge" msprop:Generator_ColumnVarNameInTable="columnysnChargeAccountMerge" msprop:Generator_ColumnPropNameInRow="ysnChargeAccountMerge" msprop:Generator_ColumnPropNameInTable="ysnChargeAccountMergeColumn" msprop:Generator_UserColumnName="ysnChargeAccountMerge" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnPriceHaltIfCustomerPriceSet" msprop:Generator_ColumnVarNameInTable="columnysnPriceHaltIfCustomerPriceSet" msprop:Generator_ColumnPropNameInRow="ysnPriceHaltIfCustomerPriceSet" msprop:Generator_ColumnPropNameInTable="ysnPriceHaltIfCustomerPriceSetColumn" msprop:Generator_UserColumnName="ysnPriceHaltIfCustomerPriceSet" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intIncomeSalesCOAid" msprop:Generator_ColumnVarNameInTable="columnintIncomeSalesCOAid" msprop:Generator_ColumnPropNameInRow="intIncomeSalesCOAid" msprop:Generator_ColumnPropNameInTable="intIncomeSalesCOAidColumn" msprop:Generator_UserColumnName="intIncomeSalesCOAid" type="xs:int" minOccurs="0" />
+              <xs:element name="intAccRecvCOAid" msprop:Generator_ColumnVarNameInTable="columnintAccRecvCOAid" msprop:Generator_ColumnPropNameInRow="intAccRecvCOAid" msprop:Generator_ColumnPropNameInTable="intAccRecvCOAidColumn" msprop:Generator_UserColumnName="intAccRecvCOAid" type="xs:int" minOccurs="0" />
+              <xs:element name="intLogisGainCOAid" msprop:Generator_ColumnVarNameInTable="columnintLogisGainCOAid" msprop:Generator_ColumnPropNameInRow="intLogisGainCOAid" msprop:Generator_ColumnPropNameInTable="intLogisGainCOAidColumn" msprop:Generator_UserColumnName="intLogisGainCOAid" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnShowVehicleVariable" msprop:Generator_ColumnVarNameInTable="columnysnShowVehicleVariable" msprop:Generator_ColumnPropNameInRow="ysnShowVehicleVariable" msprop:Generator_ColumnPropNameInTable="ysnShowVehicleVariableColumn" msprop:Generator_UserColumnName="ysnShowVehicleVariable" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblSalesType" msprop:Generator_UserTableName="TblSalesType" msprop:Generator_RowEvArgName="TblSalesTypeRowChangeEvent" msprop:Generator_TableVarName="tableTblSalesType" msprop:Generator_TablePropName="TblSalesType" msprop:Generator_RowDeletingName="TblSalesTypeRowDeleting" msprop:Generator_RowChangingName="TblSalesTypeRowChanging" msprop:Generator_RowDeletedName="TblSalesTypeRowDeleted" msprop:Generator_RowEvHandlerName="TblSalesTypeRowChangeEventHandler" msprop:Generator_TableClassName="TblSalesTypeDataTable" msprop:Generator_RowChangedName="TblSalesTypeRowChanged" msprop:Generator_RowClassName="TblSalesTypeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intTypeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintTypeID" msprop:Generator_ColumnPropNameInRow="intTypeID" msprop:Generator_ColumnPropNameInTable="intTypeIDColumn" msprop:Generator_UserColumnName="intTypeID" type="xs:int" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="strTypeName" msprop:Generator_ColumnVarNameInTable="columnstrTypeName" msprop:Generator_ColumnPropNameInRow="strTypeName" msprop:Generator_ColumnPropNameInTable="strTypeNameColumn" msprop:Generator_UserColumnName="strTypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertedDate" msprop:Generator_ColumnVarNameInTable="columndteInsertedDate" msprop:Generator_ColumnPropNameInRow="dteInsertedDate" msprop:Generator_ColumnPropNameInTable="dteInsertedDateColumn" msprop:Generator_UserColumnName="dteInsertedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastActionBy" msprop:Generator_ColumnVarNameInTable="columnintLastActionBy" msprop:Generator_ColumnPropNameInRow="intLastActionBy" msprop:Generator_ColumnPropNameInTable="intLastActionByColumn" msprop:Generator_UserColumnName="intLastActionBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastActionDate" msprop:Generator_ColumnVarNameInTable="columndteLastActionDate" msprop:Generator_ColumnPropNameInRow="dteLastActionDate" msprop:Generator_ColumnPropNameInTable="dteLastActionDateColumn" msprop:Generator_UserColumnName="dteLastActionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intCOAID" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnEnableInDO" msprop:Generator_ColumnVarNameInTable="columnysnEnableInDO" msprop:Generator_ColumnPropNameInRow="ysnEnableInDO" msprop:Generator_ColumnPropNameInTable="ysnEnableInDOColumn" msprop:Generator_UserColumnName="ysnEnableInDO" type="xs:boolean" />
+              <xs:element name="ysnEnableInDO2" msprop:Generator_ColumnVarNameInTable="columnysnEnableInDO2" msprop:Generator_ColumnPropNameInRow="ysnEnableInDO2" msprop:Generator_ColumnPropNameInTable="ysnEnableInDO2Column" msprop:Generator_UserColumnName="ysnEnableInDO2" type="xs:boolean" />
+              <xs:element name="ysnCOAEntry" msprop:Generator_ColumnVarNameInTable="columnysnCOAEntry" msprop:Generator_ColumnPropNameInRow="ysnCOAEntry" msprop:Generator_ColumnPropNameInTable="ysnCOAEntryColumn" msprop:Generator_UserColumnName="ysnCOAEntry" type="xs:boolean" />
+              <xs:element name="intModuleID" msprop:Generator_ColumnVarNameInTable="columnintModuleID" msprop:Generator_ColumnPropNameInRow="intModuleID" msprop:Generator_ColumnPropNameInTable="intModuleIDColumn" msprop:Generator_UserColumnName="intModuleID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprSalesTypeByItemType" msprop:Generator_UserTableName="SprSalesTypeByItemType" msprop:Generator_RowEvArgName="SprSalesTypeByItemTypeRowChangeEvent" msprop:Generator_TableVarName="tableSprSalesTypeByItemType" msprop:Generator_TablePropName="SprSalesTypeByItemType" msprop:Generator_RowDeletingName="SprSalesTypeByItemTypeRowDeleting" msprop:Generator_RowChangingName="SprSalesTypeByItemTypeRowChanging" msprop:Generator_RowDeletedName="SprSalesTypeByItemTypeRowDeleted" msprop:Generator_RowEvHandlerName="SprSalesTypeByItemTypeRowChangeEventHandler" msprop:Generator_TableClassName="SprSalesTypeByItemTypeDataTable" msprop:Generator_RowChangedName="SprSalesTypeByItemTypeRowChanged" msprop:Generator_RowClassName="SprSalesTypeByItemTypeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intTypeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintTypeID" msprop:Generator_ColumnPropNameInRow="intTypeID" msprop:Generator_ColumnPropNameInTable="intTypeIDColumn" msprop:Generator_UserColumnName="intTypeID" type="xs:int" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="strTypeName" msprop:Generator_ColumnVarNameInTable="columnstrTypeName" msprop:Generator_ColumnPropNameInRow="strTypeName" msprop:Generator_ColumnPropNameInTable="strTypeNameColumn" msprop:Generator_UserColumnName="strTypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertedDate" msprop:Generator_ColumnVarNameInTable="columndteInsertedDate" msprop:Generator_ColumnPropNameInRow="dteInsertedDate" msprop:Generator_ColumnPropNameInTable="dteInsertedDateColumn" msprop:Generator_UserColumnName="dteInsertedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastActionBy" msprop:Generator_ColumnVarNameInTable="columnintLastActionBy" msprop:Generator_ColumnPropNameInRow="intLastActionBy" msprop:Generator_ColumnPropNameInTable="intLastActionByColumn" msprop:Generator_UserColumnName="intLastActionBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastActionDate" msprop:Generator_ColumnVarNameInTable="columndteLastActionDate" msprop:Generator_ColumnPropNameInRow="dteLastActionDate" msprop:Generator_ColumnPropNameInTable="dteLastActionDateColumn" msprop:Generator_UserColumnName="dteLastActionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intCOAID" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnCOAEntry" msprop:Generator_ColumnVarNameInTable="columnysnCOAEntry" msprop:Generator_ColumnPropNameInRow="ysnCOAEntry" msprop:Generator_ColumnPropNameInTable="ysnCOAEntryColumn" msprop:Generator_UserColumnName="ysnCOAEntry" type="xs:boolean" />
+              <xs:element name="ysnEnableInDO" msprop:Generator_ColumnVarNameInTable="columnysnEnableInDO" msprop:Generator_ColumnPropNameInRow="ysnEnableInDO" msprop:Generator_ColumnPropNameInTable="ysnEnableInDOColumn" msprop:Generator_UserColumnName="ysnEnableInDO" type="xs:boolean" />
+              <xs:element name="ysnEnableInDO2" msprop:Generator_ColumnVarNameInTable="columnysnEnableInDO2" msprop:Generator_ColumnPropNameInRow="ysnEnableInDO2" msprop:Generator_ColumnPropNameInTable="ysnEnableInDO2Column" msprop:Generator_UserColumnName="ysnEnableInDO2" type="xs:boolean" />
+              <xs:element name="intModuleID" msprop:Generator_ColumnVarNameInTable="columnintModuleID" msprop:Generator_ColumnPropNameInRow="intModuleID" msprop:Generator_ColumnPropNameInTable="intModuleIDColumn" msprop:Generator_UserColumnName="intModuleID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblSalesConfig" />
+      <xs:field xpath="mstns:intUnitId" />
+    </xs:unique>
+    <xs:unique name="TblSalesType_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblSalesType" />
+      <xs:field xpath="mstns:intTypeID" />
+    </xs:unique>
+    <xs:unique name="SprSalesTypeByItemType_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SprSalesTypeByItemType" />
+      <xs:field xpath="mstns:intTypeID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

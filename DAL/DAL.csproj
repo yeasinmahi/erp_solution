@@ -1,0 +1,1000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{348D5741-B8AE-4247-B0BC-4EF3D5680901}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts\Advice\Advice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Advice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Approval\IndentApproval_TDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndentApproval_TDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\BalanceSheet\BalanceSheetTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BalanceSheetTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\BalanceSheet\DepNoteTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DepNoteTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\BalanceSheet\NoteTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\AdviceTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdviceTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\Counter\BoothSignTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoothSignTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\Counter\BoothTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoothTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\Counter\ChqDeliveryTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChqDeliveryTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\DepositSlipTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DepositSlipTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\LoanTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\LoanTypeTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanTypeTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\ReconcileTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReconcileTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\StatementTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatementTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\VoucherForChqPrintTDS.cs">
+      <DependentUpon>VoucherForChqPrintTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Banking\VoucherForChqPrintTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoucherForChqPrintTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankAccountTDS.cs">
+      <DependentUpon>BankAccountTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankAccountTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankAccountTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankAccountTypeTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankAccountTypeTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankBranchTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankBranchTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankCheckTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankCheckTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankInfoTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankInfoTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankLoanTDS.cs">
+      <DependentUpon>BankLoanTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankLoanTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankLoanTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\DepositorBankTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DepositorBankTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Books\BankBookTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankBookTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Books\CashBookTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CashBookTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Books\JournalBookTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JournalBookTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChartOfAccTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\TemplateTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\IncomeSatement\IncomestatementTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IncomestatementTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Ledger\LedgerTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LedgerTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipLogTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MDSlipLogTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipRequestTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MDSlipRequestTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MDSlipTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MigrationWork\AccChangeTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccChangeTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Mirc\MircTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MircTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Module\ModuleTDS.cs">
+      <DependentUpon>ModuleTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Module\ModuleTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModuleTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\PartyPayment\PartyBillTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartyBillTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\SubLedger\SubLedgerCodeRangeTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubLedgerCodeRangeTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\SubLedger\SubLedgerFromVoucherTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubLedgerFromVoucherTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\SubLedger\SubLedgerTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubLedgerTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\TrialBalance\TBTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TBTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Vat\VATInformationTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VATInformationTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\BankContraChqBearerTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankContraChqBearerTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\BankVoucherPrintTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankVoucherPrintTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\BankVoucherTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankVoucherTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\BudgetTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BudgetTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\CashVoucherPrintTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CashVoucherPrintTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\CashVoucherTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CashVoucherTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\ConsolatedVoucherTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsolatedVoucherTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\ContraVoucherPrintTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContraVoucherPrintTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\ContraVoucherTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContraVoucherTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\JournalVoucherPrintTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JournalVoucherPrintTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\JournalVoucherTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JournalVoucherTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\VoucherRollbackTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoucherRollbackTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\VoucherUploadTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Accounts\Advice\Advice.xsc">
+      <DependentUpon>Advice.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Advice\Advice.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Advice.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Advice\Advice.xss">
+      <DependentUpon>Advice.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Approval\IndentApproval_TDS.xsc">
+      <DependentUpon>IndentApproval_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Approval\IndentApproval_TDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IndentApproval_TDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Approval\IndentApproval_TDS.xss">
+      <DependentUpon>IndentApproval_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\BalanceSheet\BalanceSheetTDS.xsc">
+      <DependentUpon>BalanceSheetTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\BalanceSheet\BalanceSheetTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BalanceSheetTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\BalanceSheet\BalanceSheetTDS.xss">
+      <DependentUpon>BalanceSheetTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\BalanceSheet\DepNoteTDS.xsc">
+      <DependentUpon>DepNoteTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\BalanceSheet\DepNoteTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DepNoteTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\BalanceSheet\DepNoteTDS.xss">
+      <DependentUpon>DepNoteTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\BalanceSheet\NoteTDS.xsc">
+      <DependentUpon>NoteTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\BalanceSheet\NoteTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NoteTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\BalanceSheet\NoteTDS.xss">
+      <DependentUpon>NoteTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\AdviceTDS.xsc">
+      <DependentUpon>AdviceTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\AdviceTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AdviceTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\AdviceTDS.xss">
+      <DependentUpon>AdviceTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\Counter\BoothSignTDS.xsc">
+      <DependentUpon>BoothSignTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\Counter\BoothSignTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoothSignTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\Counter\BoothSignTDS.xss">
+      <DependentUpon>BoothSignTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\Counter\BoothTDS.xsc">
+      <DependentUpon>BoothTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\Counter\BoothTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoothTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\Counter\BoothTDS.xss">
+      <DependentUpon>BoothTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\Counter\ChqDeliveryTDS.xsc">
+      <DependentUpon>ChqDeliveryTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\Counter\ChqDeliveryTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChqDeliveryTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\Counter\ChqDeliveryTDS.xss">
+      <DependentUpon>ChqDeliveryTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\DepositSlipTDS.xsc">
+      <DependentUpon>DepositSlipTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\DepositSlipTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DepositSlipTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\DepositSlipTDS.xss">
+      <DependentUpon>DepositSlipTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\LoanTDS.xsc">
+      <DependentUpon>LoanTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\LoanTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LoanTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\LoanTDS.xss">
+      <DependentUpon>LoanTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\LoanTypeTDS.xsc">
+      <DependentUpon>LoanTypeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\LoanTypeTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LoanTypeTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\LoanTypeTDS.xss">
+      <DependentUpon>LoanTypeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\ReconcileTDS.xsc">
+      <DependentUpon>ReconcileTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\ReconcileTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReconcileTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Accounts\Banking\ReconcileTDS.xss">
+      <DependentUpon>ReconcileTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\StatementTDS.xsc">
+      <DependentUpon>StatementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\StatementTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StatementTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\StatementTDS.xss">
+      <DependentUpon>StatementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\VoucherForChqPrintTDS.xsc">
+      <DependentUpon>VoucherForChqPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Banking\VoucherForChqPrintTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VoucherForChqPrintTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Banking\VoucherForChqPrintTDS.xss">
+      <DependentUpon>VoucherForChqPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankAccountTypeTDS.xsc">
+      <DependentUpon>BankAccountTypeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankAccountTypeTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankAccountTypeTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\BankAccountTypeTDS.xss">
+      <DependentUpon>BankAccountTypeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankLoanTDS.xsc">
+      <DependentUpon>BankLoanTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankLoanTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankLoanTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\BankLoanTDS.xss">
+      <DependentUpon>BankLoanTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\DepositorBankTDS.xsc">
+      <DependentUpon>DepositorBankTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\DepositorBankTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DepositorBankTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\DepositorBankTDS.xss">
+      <DependentUpon>DepositorBankTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Books\BankBookTDS.xsc">
+      <DependentUpon>BankBookTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Books\BankBookTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankBookTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Books\BankBookTDS.xss">
+      <DependentUpon>BankBookTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Books\CashBookTDS.xsc">
+      <DependentUpon>CashBookTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Books\CashBookTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CashBookTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Books\CashBookTDS.xss">
+      <DependentUpon>CashBookTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Books\JournalBookTDS.xsc">
+      <DependentUpon>JournalBookTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Books\JournalBookTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JournalBookTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Books\JournalBookTDS.xss">
+      <DependentUpon>JournalBookTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\ChartOfAccount\ChartOfAccTDS.xsc">
+      <DependentUpon>ChartOfAccTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\ChartOfAccount\ChartOfAccTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChartOfAccTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\ChartOfAccount\ChartOfAccTDS.xss">
+      <DependentUpon>ChartOfAccTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\ChartOfAccount\TemplateTDS.xsc">
+      <DependentUpon>TemplateTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\ChartOfAccount\TemplateTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TemplateTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\ChartOfAccount\TemplateTDS.xss">
+      <DependentUpon>TemplateTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\IncomeSatement\IncomestatementTDS.xsc">
+      <DependentUpon>IncomestatementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\IncomeSatement\IncomestatementTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IncomestatementTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\IncomeSatement\IncomestatementTDS.xss">
+      <DependentUpon>IncomestatementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Ledger\LedgerTDS.xsc">
+      <DependentUpon>LedgerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Ledger\LedgerTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LedgerTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Ledger\LedgerTDS.xss">
+      <DependentUpon>LedgerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipLogTDS.xsc">
+      <DependentUpon>MDSlipLogTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipLogTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MDSlipLogTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipLogTDS.xss">
+      <DependentUpon>MDSlipLogTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipRequestTDS.xsc">
+      <DependentUpon>MDSlipRequestTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipRequestTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MDSlipRequestTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipRequestTDS.xss">
+      <DependentUpon>MDSlipRequestTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipTDS.xsc">
+      <DependentUpon>MDSlipTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MDSlipTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\MDSlip\MDSlipTDS.xss">
+      <DependentUpon>MDSlipTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MigrationWork\AccChangeTDS.xsc">
+      <DependentUpon>AccChangeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\MigrationWork\AccChangeTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccChangeTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\MigrationWork\AccChangeTDS.xss">
+      <DependentUpon>AccChangeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Mirc\MircTDS.xsc">
+      <DependentUpon>MircTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Mirc\MircTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MircTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Mirc\MircTDS.xss">
+      <DependentUpon>MircTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Module\ModuleTDS.xsc">
+      <DependentUpon>ModuleTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Module\ModuleTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ModuleTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Module\ModuleTDS.xss">
+      <DependentUpon>ModuleTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\PartyPayment\PartyBillTDS.xsc">
+      <DependentUpon>PartyBillTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\PartyPayment\PartyBillTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PartyBillTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\PartyPayment\PartyBillTDS.xss">
+      <DependentUpon>PartyBillTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerCodeRangeTDS.xsc">
+      <DependentUpon>SubLedgerCodeRangeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerCodeRangeTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SubLedgerCodeRangeTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerCodeRangeTDS.xss">
+      <DependentUpon>SubLedgerCodeRangeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerFromVoucherTDS.xsc">
+      <DependentUpon>SubLedgerFromVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerFromVoucherTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SubLedgerFromVoucherTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerFromVoucherTDS.xss">
+      <DependentUpon>SubLedgerFromVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerTDS.xsc">
+      <DependentUpon>SubLedgerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SubLedgerTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\SubLedger\SubLedgerTDS.xss">
+      <DependentUpon>SubLedgerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\TrialBalance\TBTDS.xsc">
+      <DependentUpon>TBTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\TrialBalance\TBTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TBTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\TrialBalance\TBTDS.xss">
+      <DependentUpon>TBTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Vat\VATInformationTDS.xsc">
+      <DependentUpon>VATInformationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Vat\VATInformationTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VATInformationTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Accounts\Vat\VATInformationTDS.xss">
+      <DependentUpon>VATInformationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BankContraChqBearerTDS.xsc">
+      <DependentUpon>BankContraChqBearerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BankContraChqBearerTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankContraChqBearerTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\BankContraChqBearerTDS.xss">
+      <DependentUpon>BankContraChqBearerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BankVoucherPrintTDS.xsc">
+      <DependentUpon>BankVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BankVoucherPrintTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankVoucherPrintTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\BankVoucherPrintTDS.xss">
+      <DependentUpon>BankVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BankVoucherTDS.xsc">
+      <DependentUpon>BankVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BankVoucherTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankVoucherTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\BankVoucherTDS.xss">
+      <DependentUpon>BankVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BudgetTDS.xsc">
+      <DependentUpon>BudgetTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\BudgetTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BudgetTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\BudgetTDS.xss">
+      <DependentUpon>BudgetTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\CashVoucherPrintTDS.xsc">
+      <DependentUpon>CashVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\CashVoucherPrintTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CashVoucherPrintTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\CashVoucherPrintTDS.xss">
+      <DependentUpon>CashVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\CashVoucherTDS.xsc">
+      <DependentUpon>CashVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\CashVoucherTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CashVoucherTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\CashVoucherTDS.xss">
+      <DependentUpon>CashVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\ConsolatedVoucherTDS.xsc">
+      <DependentUpon>ConsolatedVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\ConsolatedVoucherTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConsolatedVoucherTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\ConsolatedVoucherTDS.xss">
+      <DependentUpon>ConsolatedVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\ContraVoucherPrintTDS.xsc">
+      <DependentUpon>ContraVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\ContraVoucherPrintTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ContraVoucherPrintTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\ContraVoucherPrintTDS.xss">
+      <DependentUpon>ContraVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\ContraVoucherTDS.xsc">
+      <DependentUpon>ContraVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\ContraVoucherTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ContraVoucherTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\ContraVoucherTDS.xss">
+      <DependentUpon>ContraVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\JournalVoucherPrintTDS.xsc">
+      <DependentUpon>JournalVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\JournalVoucherPrintTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JournalVoucherPrintTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\JournalVoucherPrintTDS.xss">
+      <DependentUpon>JournalVoucherPrintTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\JournalVoucherTDS.xsc">
+      <DependentUpon>JournalVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\JournalVoucherTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JournalVoucherTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\JournalVoucherTDS.xss">
+      <DependentUpon>JournalVoucherTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\VoucherRollbackTDS.xsc">
+      <DependentUpon>VoucherRollbackTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\VoucherRollbackTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VoucherRollbackTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\VoucherRollbackTDS.xss">
+      <DependentUpon>VoucherRollbackTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\VoucherUploadTDS.xsc">
+      <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\VoucherUploadTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VoucherUploadTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\VoucherUploadTDS.xss">
+      <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
+    </None>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Accounts\Bank\BankAccountTDS.xsc">
+      <DependentUpon>BankAccountTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankAccountTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankAccountTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\BankAccountTDS.xss">
+      <DependentUpon>BankAccountTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankBranchTDS.xsc">
+      <DependentUpon>BankBranchTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankBranchTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankBranchTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\BankBranchTDS.xss">
+      <DependentUpon>BankBranchTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankCheckTDS.xsc">
+      <DependentUpon>BankCheckTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankCheckTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankCheckTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\BankCheckTDS.xss">
+      <DependentUpon>BankCheckTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankInfoTDS.xsc">
+      <DependentUpon>BankInfoTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\BankInfoTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BankInfoTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\BankInfoTDS.xss">
+      <DependentUpon>BankInfoTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

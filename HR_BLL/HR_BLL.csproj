@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BEB114CF-7587-4114-B727-EDEF361244E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HR_BLL</RootNamespace>
+    <AssemblyName>HR_BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attendance\EmployeeAttendance.cs" />
+    <Compile Include="Attendance\EmployeeOvertime.cs" />
+    <Compile Include="Attendance\EmployeesJobStation.cs" />
+    <Compile Include="Attendance\UnprocessAttendance.cs" />
+    <Compile Include="Benifit\Bonus_BLL.cs" />
+    <Compile Include="Benifit\PfBankAccountDetails_BLL.cs" />
+    <Compile Include="Benifit\PfRelease_BLL.cs" />
+    <Compile Include="Benifit\PF_Investment_BLL.cs" />
+    <Compile Include="Benifit\PF_Maturity_BLL.cs" />
+    <Compile Include="Benifit\PF_Recieve_BLL.cs" />
+    <Compile Include="Benifit\PF_Transfer_BLL.cs" />
+    <Compile Include="Benifit\Report\PfEmployeesBalance_BLL.cs" />
+    <Compile Include="BulkSMS\BulkSMSBLL.cs" />
+    <Compile Include="Cafeteria\GlobalBLL.cs" />
+    <Compile Include="Closing\HR_Closing.cs" />
+    <Compile Include="Dispatch\DispatchBLL.cs" />
+    <Compile Include="Dispatch\DispatchGlobalBLL.cs" />
+    <Compile Include="Document Inventory\docLocationConfig_BLL.cs" />
+    <Compile Include="Document Inventory\documentdownload.cs" />
+    <Compile Include="Document Inventory\documentupload.cs" />
+    <Compile Include="DocumentTracking\DocumentTrackingBLL.cs" />
+    <Compile Include="Employee\EmployeeBasicInfo.cs" />
+    <Compile Include="Employee\EmployeeRegistration.cs" />
+    <Compile Include="Facilities\MobileFacilities.cs" />
+    <Compile Include="Global\ApplicationType.cs" />
+    <Compile Include="Global\AutoSearch_BLL.cs" />
+    <Compile Include="Global\Country.cs" />
+    <Compile Include="Global\DaysOfWeek.cs" />
+    <Compile Include="Global\Department.cs" />
+    <Compile Include="Global\Designation.cs" />
+    <Compile Include="Global\District.cs" />
+    <Compile Include="Global\DutyCategory.cs" />
+    <Compile Include="Global\EmployeeGroup.cs" />
+    <Compile Include="Global\Expance_BLL.cs" />
+    <Compile Include="Global\Holiday.cs" />
+    <Compile Include="Global\JobStation.cs" />
+    <Compile Include="Global\JobType.cs" />
+    <Compile Include="Global\LetterType.cs" />
+    <Compile Include="Global\Religion.cs" />
+    <Compile Include="Global\Shift.cs" />
+    <Compile Include="Global\Unit.cs" />
+    <Compile Include="HolidayCalendar\HolidayGroupPermission.cs" />
+    <Compile Include="HolidayCalendar\HolidaySetup.cs" />
+    <Compile Include="Internal\InternalAutoSearch_BLL.cs" />
+    <Compile Include="Internal\internaltranfer.cs" />
+    <Compile Include="IssuedLetter\EmployeeIssuedLetter.cs" />
+    <Compile Include="KPI\AutoSearchKPI_BLL.cs" />
+    <Compile Include="KPI\KPI_BLL.cs" />
+    <Compile Include="KPI\WorkPlan_BLL.cs" />
+    <Compile Include="Leave\Leave.cs" />
+    <Compile Include="Leave\LeaveApplicationProcess.cs" />
+    <Compile Include="Leave\LeaveType.cs" />
+    <Compile Include="Loan\Loan.cs" />
+    <Compile Include="Mail\MailPremission.cs" />
+    <Compile Include="Mail\MailType.cs" />
+    <Compile Include="New_Projecl_BLL\NewProjectBll.cs" />
+    <Compile Include="OfficialMovement\OfficialMovement.cs" />
+    <Compile Include="PaySlip\PayslipGenerator.cs" />
+    <Compile Include="Penalty\Penalty.cs" />
+    <Compile Include="PiceRateCalculation\PiceRateCalculation_BLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ProvidentFund\PF_Investment.cs" />
+    <Compile Include="Reports\AbsentReport.cs" />
+    <Compile Include="Reports\BankSalaryReportInfo.cs" />
+    <Compile Include="Reports\BonusReport.cs" />
+    <Compile Include="Reports\EmployeeAttendanceReports.cs" />
+    <Compile Include="Reports\EmployeeShiftReport.cs" />
+    <Compile Include="Reports\EmployeeStatus.cs" />
+    <Compile Include="Reports\EmpSalaryMonthlyStatement.cs" />
+    <Compile Include="Reports\EmpSalaryStatement.cs" />
+    <Compile Include="Reports\SalaryReportInfo.cs" />
+    <Compile Include="Salary\SalaryInfo.cs" />
+    <Compile Include="Settlement\GlobalClass.cs" />
+    <Compile Include="Settlement\HRClass.cs" />
+    <Compile Include="Settlement\SelfClass.cs" />
+    <Compile Include="TeamBuild\TeamAndShiftInformation.cs" />
+    <Compile Include="TourPlan\TourPlanning.cs" />
+    <Compile Include="User\ChildUser.cs" />
+    <Compile Include="User\UserInfo.cs" />
+    <Compile Include="Visitors\MeetingMiniutesReport.cs" />
+    <Compile Include="Visitors\MeetingMinutes.cs" />
+    <Compile Include="Visitors\VisitorsBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GLOBAL_BLL\GLOBAL_BLL.csproj">
+      <Project>{f44ad490-3907-420d-8966-853469233c3f}</Project>
+      <Name>GLOBAL_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR_DAL\HR_DAL.csproj">
+      <Project>{4FD02F54-1308-4787-896D-842A38C0DE30}</Project>
+      <Name>HR_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserRole\UserRole.csproj">
+      <Project>{CAB45D67-6D75-4E65-95BC-2F45869E2448}</Project>
+      <Name>UserRole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserSecurity\UserSecurity.csproj">
+      <Project>{4DC04AE5-BCEE-409A-8D6F-5167F27DADEF}</Project>
+      <Name>UserSecurity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

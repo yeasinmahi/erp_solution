@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A345A22-3D99-4572-95EE-3C152AF20C74}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Purchase_BLL</RootNamespace>
+    <AssemblyName>Purchase_BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asset\AssetInOut.cs" />
+    <Compile Include="Asset\AssetMaintenance.cs" />
+    <Compile Include="Asset\AssetParking_BLL.cs" />
+    <Compile Include="Asset\Assetregister_BLL.cs" />
+    <Compile Include="Asset\AutoSearch_BLL.cs" />
+    <Compile Include="Asset\MUserRequest.cs" />
+    <Compile Include="Asset\QRCode.cs" />
+    <Compile Include="Asset\WearHouseID.cs" />
+    <Compile Include="Commercial\Amenment.cs" />
+    <Compile Include="Commercial\BankCommercial.cs" />
+    <Compile Include="Commercial\Budget.cs" />
+    <Compile Include="Commercial\CNF.cs" />
+    <Compile Include="Commercial\Containner.cs" />
+    <Compile Include="Commercial\Currency.cs" />
+    <Compile Include="Commercial\Document.cs" />
+    <Compile Include="Commercial\Duty.cs" />
+    <Compile Include="Commercial\Insurance.cs" />
+    <Compile Include="Commercial\Lc.cs" />
+    <Compile Include="Commercial\LCShipmentType.cs" />
+    <Compile Include="Commercial\Letter.cs" />
+    <Compile Include="Commercial\Opening.cs" />
+    <Compile Include="Commercial\OtherCharge.cs" />
+    <Compile Include="Commercial\Payment.cs" />
+    <Compile Include="Commercial\PaymentSteps.cs" />
+    <Compile Include="Commercial\Port.cs" />
+    <Compile Include="Commercial\Provition.cs" />
+    <Compile Include="Commercial\Report.cs" />
+    <Compile Include="Commercial\Shipment.cs" />
+    <Compile Include="Commercial\Shipping.cs" />
+    <Compile Include="Commercial\Transport.cs" />
+    <Compile Include="Commercial\Validation.cs" />
+    <Compile Include="Imports\Import_BLL.cs" />
+    <Compile Include="Inventorry\SCM.cs" />
+    <Compile Include="Media.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commercial\ShippingGauranty.cs" />
+    <Compile Include="Qc_Management\QcBLL.cs" />
+    <Compile Include="Qc_Management\QcBllManagement.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="SupplierAuthorised.cs" />
+    <Compile Include="SupplyChain\CSM.cs" />
+    <Compile Include="VehicleRegRenewal_BLL\AutoSearch_BLL.cs" />
+    <Compile Include="VehicleRegRenewal_BLL\RegistrationRenewals_BLL.cs" />
+    <Compile Include="WoodPurchase\WoodPurchaseBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HR_BLL\HR_BLL.csproj">
+      <Project>{BEB114CF-7587-4114-B727-EDEF361244E2}</Project>
+      <Name>HR_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR_DAL\HR_DAL.csproj">
+      <Project>{4FD02F54-1308-4787-896D-842A38C0DE30}</Project>
+      <Name>HR_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projects_DAL\Projects_DAL.csproj">
+      <Project>{12bea211-c8c2-4027-a3ad-39c5d1b8f75e}</Project>
+      <Name>Projects_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Purchase_DAL\Purchase_DAL.csproj">
+      <Project>{C7825EC3-DCD0-4694-9A1B-5BA6DFCD00C0}</Project>
+      <Name>Purchase_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,30 @@
+﻿.HeaderStyleT
+{
+	background:url(Images/navbg5.gif) repeat top;
+	color:#FFFFFF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:7.5pt;	
+	height:20px;	
+	border:solid 1px #FFFFFF;
+	text-align:center;
+}
+
+.OddRowStyle
+{
+	font-weight:normal;	
+	background-color:#DDDDDD;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	color:#000000;
+	border:solid 1px #FFFFFF;
+}
+.EvenRowStyle
+{
+	font-weight:normal;	
+	background-color:#F0F0FF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8pt;	
+	color:#000000;
+	border:solid 1px #FFFFFF;
+}
+

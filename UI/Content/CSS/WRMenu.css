@@ -1,0 +1,13 @@
+﻿
+
+.anchor
+{
+	text-decoration:none;
+	cursor:wait;
+	
+}
+
+.MenuHeader
+{
+	background:url(Images/gridviewheader.gif) repeat top;
+}

@@ -1,0 +1,12 @@
+﻿.divPopUpMail {
+	position:absolute;
+	width:400px;
+	height:170px;
+	z-index:1;
+	left: 225px;
+	top: 45px;
+	background-color:#f0f0ff;
+	border: 3px outset #00367B;
+	display:none;
+	
+}

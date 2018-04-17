@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A577C019-22C6-4F46-B515-00F664D8455C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts\Advice\AdviceBLL.cs" />
+    <Compile Include="Accounts\Approval\IndentApproval_BLL.cs" />
+    <Compile Include="Accounts\BalanceSheet\BalanceSheetC.cs" />
+    <Compile Include="Accounts\BalanceSheet\NoteC.cs" />
+    <Compile Include="Accounts\Banking\Advice.cs" />
+    <Compile Include="Accounts\Banking\Counter\Booth.cs" />
+    <Compile Include="Accounts\Banking\Counter\BoothSign.cs" />
+    <Compile Include="Accounts\Banking\Counter\ChqDelivery.cs" />
+    <Compile Include="Accounts\Banking\Counter\ChqDeliveryST.cs" />
+    <Compile Include="Accounts\Banking\DepositSlipC.cs" />
+    <Compile Include="Accounts\Banking\Loan.cs" />
+    <Compile Include="Accounts\Banking\BankStatement.cs" />
+    <Compile Include="Accounts\Banking\Reconcile.cs" />
+    <Compile Include="Accounts\Banking\VoucherForChqPrint.cs" />
+    <Compile Include="Accounts\Bank\BankAccount.cs" />
+    <Compile Include="Accounts\Bank\BankAccountType.cs" />
+    <Compile Include="Accounts\Bank\BankBranch.cs" />
+    <Compile Include="Accounts\Bank\BankCheck.cs" />
+    <Compile Include="Accounts\Bank\BankInfo.cs" />
+    <Compile Include="Accounts\Bank\DepositorBankInfo.cs" />
+    <Compile Include="Accounts\Bank\LoanType.cs" />
+    <Compile Include="Accounts\Books\BankBookC.cs" />
+    <Compile Include="Accounts\Books\CashBookC.cs" />
+    <Compile Include="Accounts\Books\JournalBookC.cs" />
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAcc.cs" />
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccStaticDataProvider.cs" />
+    <Compile Include="Accounts\ChartOfAccount\Template.cs" />
+    <Compile Include="Accounts\IncomeStatement\IncomeStatementC.cs" />
+    <Compile Include="Accounts\Ledger\LedgerC.cs" />
+    <Compile Include="Accounts\MDSlip\MDSlipC.cs" />
+    <Compile Include="Accounts\MDSlip\MDSlipLog.cs" />
+    <Compile Include="Accounts\MDSlip\MDSlipRequst.cs" />
+    <Compile Include="Accounts\MigrationWork\Migration.cs" />
+    <Compile Include="Accounts\Mirc\MircReader.cs" />
+    <Compile Include="Accounts\Module\Module.cs" />
+    <Compile Include="Accounts\PartyPayment\PartyBill.cs" />
+    <Compile Include="Accounts\SubLedger\SubLedgerC.cs" />
+    <Compile Include="Accounts\SubLedger\SubLedgerType.cs" />
+    <Compile Include="Accounts\TrialBalance\TrialBalanceC.cs" />
+    <Compile Include="Accounts\Voucher\BankContraChqBearerST.cs" />
+    <Compile Include="Accounts\Voucher\BankVoucher.cs" />
+    <Compile Include="Accounts\Voucher\Budget.cs" />
+    <Compile Include="Accounts\Voucher\CashVoucher.cs" />
+    <Compile Include="Accounts\Voucher\ConsolatedVoucherC.cs" />
+    <Compile Include="Accounts\Voucher\ContraVoucher.cs" />
+    <Compile Include="Accounts\Voucher\JournalVoucher.cs" />
+    <Compile Include="Accounts\Voucher\VoucherRollback.cs" />
+    <Compile Include="Accounts\Voucher\XmlManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{348d5741-b8ae-4247-b0bc-4ef3d5680901}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GLOBAL_BLL\GLOBAL_BLL.csproj">
+      <Project>{F44AD490-3907-420D-8966-853469233C3F}</Project>
+      <Name>GLOBAL_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR_BLL\HR_BLL.csproj">
+      <Project>{BEB114CF-7587-4114-B727-EDEF361244E2}</Project>
+      <Name>HR_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR_DAL\HR_DAL.csproj">
+      <Project>{4FD02F54-1308-4787-896D-842A38C0DE30}</Project>
+      <Name>HR_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

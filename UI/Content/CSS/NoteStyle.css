@@ -1,0 +1,25 @@
+﻿.hedLineStyle
+{
+	border-bottom-style:double;
+	text-align:right
+	
+	
+}
+
+.norLineStyle
+{
+	border-bottom-style:none;
+	text-align:right
+}
+
+
+.hedLineStyle2
+{
+	border-bottom-style:double;
+	text-align:right;
+	font-weight:bold;
+	line-height:normal;
+	color:Black
+	
+	
+}

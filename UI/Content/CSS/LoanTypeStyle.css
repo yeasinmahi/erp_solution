@@ -1,0 +1,23 @@
+﻿.divPopUpItemLoanType
+        {
+            position:absolute;
+            width: 250px;
+            height: 200px;
+            z-index: 1;
+            float:left;
+            display:none;
+            background-color: #f0f0ff;
+            border: 3px outset #00367B;
+        }
+        
+  .divPopUpItemLoanTypeDetails
+        {
+            position:absolute;
+            width: 350px;
+            height: 200px;
+            z-index: 1;
+            float:left;
+            display:none;
+            background-color: #f0f0ff;
+            border: 3px outset #00367B;
+        }

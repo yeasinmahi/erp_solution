@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="JBTDS" targetNamespace="http://tempuri.org/JBTDS.xsd" xmlns:mstns="http://tempuri.org/JBTDS.xsd" xmlns="http://tempuri.org/JBTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="JBTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="JBTDS" msprop:Generator_UserDSName="JBTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TblJB" msprop:Generator_TableClassName="TblJBDataTable" msprop:Generator_TableVarName="tableTblJB" msprop:Generator_TablePropName="TblJB" msprop:Generator_RowDeletingName="TblJBRowDeleting" msprop:Generator_UserTableName="TblJB" msprop:Generator_RowChangingName="TblJBRowChanging" msprop:Generator_RowEvHandlerName="TblJBRowChangeEventHandler" msprop:Generator_RowDeletedName="TblJBRowDeleted" msprop:Generator_RowEvArgName="TblJBRowChangeEvent" msprop:Generator_RowChangedName="TblJBRowChanged" msprop:Generator_RowClassName="TblJBRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intPage" msprop:Generator_ColumnVarNameInTable="columnintPage" msprop:Generator_ColumnPropNameInRow="intPage" msprop:Generator_ColumnPropNameInTable="intPageColumn" msprop:Generator_UserColumnName="intPage" type="xs:int" minOccurs="0" />
+              <xs:element name="intCount" msprop:Generator_ColumnVarNameInTable="columnintCount" msprop:Generator_ColumnPropNameInRow="intCount" msprop:Generator_ColumnPropNameInTable="intCountColumn" msprop:Generator_UserColumnName="intCount" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="numY" msprop:Generator_ColumnVarNameInTable="columnnumY" msprop:Generator_ColumnPropNameInRow="numY" msprop:Generator_ColumnPropNameInTable="numYColumn" msprop:Generator_UserColumnName="numY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dteDate" msprop:Generator_ColumnVarNameInTable="columndteDate" msprop:Generator_ColumnPropNameInRow="dteDate" msprop:Generator_ColumnPropNameInTable="dteDateColumn" msprop:Generator_UserColumnName="dteDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strParti" msprop:Generator_ColumnVarNameInTable="columnstrParti" msprop:Generator_ColumnPropNameInRow="strParti" msprop:Generator_ColumnPropNameInTable="strPartiColumn" msprop:Generator_UserColumnName="strParti" type="xs:string" minOccurs="0" />
+              <xs:element name="strChq" msprop:Generator_ColumnVarNameInTable="columnstrChq" msprop:Generator_ColumnPropNameInRow="strChq" msprop:Generator_ColumnPropNameInTable="strChqColumn" msprop:Generator_UserColumnName="strChq" type="xs:string" minOccurs="0" />
+              <xs:element name="numDrAmount" msprop:Generator_ColumnVarNameInTable="columnnumDrAmount" msprop:Generator_ColumnPropNameInRow="numDrAmount" msprop:Generator_ColumnPropNameInTable="numDrAmountColumn" msprop:Generator_UserColumnName="numDrAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numCrAmount" msprop:Generator_ColumnVarNameInTable="columnnumCrAmount" msprop:Generator_ColumnPropNameInRow="numCrAmount" msprop:Generator_ColumnPropNameInTable="numCrAmountColumn" msprop:Generator_UserColumnName="numCrAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numBal" msprop:Generator_ColumnVarNameInTable="columnnumBal" msprop:Generator_ColumnPropNameInRow="numBal" msprop:Generator_ColumnPropNameInTable="numBalColumn" msprop:Generator_UserColumnName="numBal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strAccNo" msprop:Generator_ColumnVarNameInTable="columnstrAccNo" msprop:Generator_ColumnPropNameInRow="strAccNo" msprop:Generator_ColumnPropNameInTable="strAccNoColumn" msprop:Generator_UserColumnName="strAccNo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

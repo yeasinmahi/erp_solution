@@ -1,0 +1,98 @@
+﻿ .GridviewScrollHeader TH, .GridviewScrollHeader TD
+{
+    font-weight: bold;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #EFEFEF;
+    vertical-align: bottom;
+    text-align: center;
+    background-color:black;
+    color:white;
+}
+.GridviewScrollItem TD
+{
+    padding: 5px;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #FFFFFF;
+}
+.GridviewScrollItem .Freeze
+{
+    background-color: #EFEFEF;
+}
+.GridviewScrollItemHover TD
+{
+    padding: 5px;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #CCCCCC;
+    cursor: pointer;
+}
+.GridviewScrollItemHover .Freeze
+{
+    background-color: #CCCCCC;
+}
+.GridviewScrollItemSelected TD
+{
+    padding: 5px;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #999999;
+    color: #FFFFFF;
+}
+.GridviewScrollItemSelected .Freeze
+{
+    background-color: #999999;
+}
+.GridviewScrollPager 
+{
+    border-top: 1px solid #AAAAAA;
+    background-color: #999999;
+    color: #000000;
+}
+.GridviewScrollPager TD
+{
+    padding-top: 3px;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.GridviewScrollPager A
+{
+    color: #666666;
+}
+.GridviewScrollPager SPAN
+{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+
+ /* ------------------------ Calendar Control CSS -----------------------*/ 
+
+.calendar {	font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;font-size: 11px;background-color: #EEE;	color: #333;
+border: 1px solid #DDD;	-moz-border-radius: 4px;-webkit-border-radius: 4px;	border-radius: 4px;padding: 0.2em;width: Auto;}
+.calendar .months {background-color: #F6AF3A;border: 1px solid #E78F08;-moz-border-radius: 4px;-webkit-border-radius: 4px;
+border-radius: 4px;color: #FFF;padding: 2px;text-align: center;}
+.calendar .prev-month,.calendar .next-month {padding: 0;}
+.calendar .prev-month {float: left;}
+.calendar .next-month {float: right;}
+.calendar .current-month {margin: 0 auto;}
+.calendar .months .prev-month,.calendar .months .next-month {color: #FFF;text-decoration: none;padding: 0 2px;
+-moz-border-radius: 4px;-webkit-border-radius: 4px;	border-radius: 4px;cursor: pointer;}
+.calendar .months .prev-month:hover,.calendar .months .next-month:hover {background-color: #FDF5CE;color: #C77405;}
+.calendar table {border-collapse: collapse;padding: 0;font-size: 0.8em;width: auto;}
+.calendar th {text-align: center;}
+.calendar td {text-align: right;padding: 1px;width: auto;}
+.calendar td span {	display: block;color: #1C94C4;background-color: #F6F6F6;border: 1px solid #CCC;text-decoration: none;
+padding: 2px;cursor: pointer;}
+.calendar td span:hover {color: #C77405;background-color: #FDF5CE;border: 1px solid #FBCB09;}
+.calendar td.today span {background-color: #FFF0A5;border: 1px solid #FED22F;color: #363636;}
+
+ /* ------------------------ End Calendar Control CSS -----------------------*/ 

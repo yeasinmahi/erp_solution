@@ -1,0 +1,76 @@
+//bank voucher
+                if (hdnRdo.Value == "rdoDrBnk" || hdnRdo.Value == "rdoCrBnk")
+                {
+
+
+                    BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
+                    if (hdnRdo.Value == "rdoDrBnk")
+                    {
+                        try
+                        {
+                            chqDate = CommonClass.GetDateAtSQLDateFormat(txtChqDate.Text);
+                        }
+                        catch
+                        {
+                            chqDate = DateTime.Now;
+                        }
+
+                        bv.InsertUpdateDr(xml
+                            , ref voucherID
+                            , Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
+                            , ddlBank.SelectedValue
+                            , ddlAccount.SelectedValue
+                            , txtCheckNo.Text
+                            , chqDate, narration, (rdoType.SelectedIndex == 0 ? true : false), (rdoType.SelectedIndex == 1 ? true : false)
+                            , (rdoType.SelectedIndex == 2 ? true : false)
+                            , /*hdnAccountIDPR.Value*/"", txtPRPrint.Text, CommonClass.GetDateAtSQLDateFormat(txtVoucherDate.Text), chkCheckNo.Checked, txtRemarks.Text, ref code);
+
+                        if (voucherID == "0")
+                        {
+                            canRemoveGrid = false;
+                        }
+                        else
+                        {
+                            canRemoveGrid = true;
+                        }
+
+
+                        ViewAfterSave(canRemoveGrid, code, txtCheckNo.Text, txtPRPrint.Text, voucherID, "bn", true, true, false, ddlUnit.SelectedValue);
+                        SetCheckNo("");
+                    }
+
+==================================== No Need Because Its Bank credit ===============================
+
+
+                    else if (hdnRdo.Value == "rdoCrBnk")
+                    {
+                        try
+                        {
+                            chqDate = CommonClass.GetDateAtSQLDateFormat(txtChqDateR.Text);
+                        }
+                        catch
+                        {
+                            chqDate = DateTime.Now;
+                        }
+                        bv.InsertUpdateCr(xml
+                            , ref voucherID
+                            , Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
+                            , ddlBank.SelectedValue, ddlAccount.SelectedValue
+                            , txtCheckNoR.Text
+                            , chqDate, narration, (rdoTypeR.SelectedIndex == 0 ? true : false), (rdoTypeR.SelectedIndex == 1 ? true : false), (rdoTypeR.SelectedIndex == 2 ? true : false)
+                            , (rdoTypeR.SelectedIndex == 3 ? true : false), (rdoTypeR.SelectedIndex == 5 ? true : false), (rdoTypeR.SelectedIndex == 6 ? true : false), (rdoTypeR.SelectedIndex == 4 ? true : false)
+                            , txtPRPrint.Text, CommonClass.GetDateAtSQLDateFormat(txtVoucherDate.Text), txtBank.Text, txtBranch.Text, txtDrawn.Text, txtRemarks.Text, ref code);
+
+
+                        if (voucherID == "0")
+                        {
+                            canRemoveGrid = false;
+                        }
+                        else
+                        {
+                            canRemoveGrid = true;
+                        }
+
+                        ViewAfterSave(canRemoveGrid, code, txtCheckNoR.Text, txtPRPrint.Text, voucherID, "bn", false, false, true, ddlUnit.SelectedValue);
+                    }
+                }

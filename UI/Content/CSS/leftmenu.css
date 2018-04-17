@@ -1,0 +1,32 @@
+
+#menu2 {
+	width: 170px;
+	/*margin: 10px;
+	border-style: solid solid none solid;
+	border-color: #D8D5D1;
+	border-size: 1px;
+	border-width: 1px;*/
+	}
+	
+#menu2 li a 
+{
+	font-size:10px;	
+	height: 32px;
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+  	height: 24px;
+	text-decoration: none;
+	}	
+	
+#menu2 li a:link, #menu2 li a:visited {
+	color: #3688BA;
+	display: block;
+	background:  url(../images/img/menu2.gif);
+	padding: 8px 0 0 25px;
+	}
+	
+#menu2 li a:hover {
+	color: #3688BA;
+	background:  url(../images/img/menu2.gif) 0 -32px;
+	padding: 8px 0 0 27px;
+	}

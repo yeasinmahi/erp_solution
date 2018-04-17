@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CurrencyTDS" targetNamespace="http://tempuri.org/CurrencyTDS.xsd" xmlns:mstns="http://tempuri.org/CurrencyTDS.xsd" xmlns="http://tempuri.org/CurrencyTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PurchaseConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PurchaseConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Purchase_DAL.Properties.Settings.GlobalReference.Default.ERP_PurchaseConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QryCurrencyTableAdapter" GeneratorDataComponentClassName="QryCurrencyTableAdapter" Name="QryCurrency" UserDataComponentName="QryCurrencyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.qryCurrency" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCurrencyData" GetMethodModifier="Public" GetMethodName="GetCurrencyData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCurrencyData" UserSourceName="GetCurrencyData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        intID, strCurrency, numConversionRate, intActionBy, dteLastActionTime, ysnEnable, ysnBase
+FROM            qryCurrency</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+              <Mapping SourceColumn="strCurrency" DataSetColumn="strCurrency" />
+              <Mapping SourceColumn="numConversionRate" DataSetColumn="numConversionRate" />
+              <Mapping SourceColumn="intActionBy" DataSetColumn="intActionBy" />
+              <Mapping SourceColumn="dteLastActionTime" DataSetColumn="dteLastActionTime" />
+              <Mapping SourceColumn="ysnEnable" DataSetColumn="ysnEnable" />
+              <Mapping SourceColumn="ysnBase" DataSetColumn="ysnBase" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CurrencyTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CurrencyTDS" msprop:Generator_UserDSName="CurrencyTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="QryCurrency" msprop:Generator_TableClassName="QryCurrencyDataTable" msprop:Generator_TableVarName="tableQryCurrency" msprop:Generator_TablePropName="QryCurrency" msprop:Generator_RowDeletingName="QryCurrencyRowDeleting" msprop:Generator_UserTableName="QryCurrency" msprop:Generator_RowChangingName="QryCurrencyRowChanging" msprop:Generator_RowEvHandlerName="QryCurrencyRowChangeEventHandler" msprop:Generator_RowDeletedName="QryCurrencyRowDeleted" msprop:Generator_RowEvArgName="QryCurrencyRowChangeEvent" msprop:Generator_RowChangedName="QryCurrencyRowChanged" msprop:Generator_RowClassName="QryCurrencyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+              <xs:element name="strCurrency" msprop:Generator_ColumnVarNameInTable="columnstrCurrency" msprop:Generator_ColumnPropNameInRow="strCurrency" msprop:Generator_ColumnPropNameInTable="strCurrencyColumn" msprop:Generator_UserColumnName="strCurrency" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numConversionRate" msprop:Generator_ColumnVarNameInTable="columnnumConversionRate" msprop:Generator_ColumnPropNameInRow="numConversionRate" msprop:Generator_ColumnPropNameInTable="numConversionRateColumn" msprop:Generator_UserColumnName="numConversionRate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intActionBy" msprop:Generator_ColumnVarNameInTable="columnintActionBy" msprop:Generator_ColumnPropNameInRow="intActionBy" msprop:Generator_ColumnPropNameInTable="intActionByColumn" msprop:Generator_UserColumnName="intActionBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastActionTime" msprop:Generator_ColumnVarNameInTable="columndteLastActionTime" msprop:Generator_ColumnPropNameInRow="dteLastActionTime" msprop:Generator_ColumnPropNameInTable="dteLastActionTimeColumn" msprop:Generator_UserColumnName="dteLastActionTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnBase" msprop:Generator_ColumnVarNameInTable="columnysnBase" msprop:Generator_ColumnPropNameInRow="ysnBase" msprop:Generator_ColumnPropNameInTable="ysnBaseColumn" msprop:Generator_UserColumnName="ysnBase" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:QryCurrency" />
+      <xs:field xpath="mstns:intID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

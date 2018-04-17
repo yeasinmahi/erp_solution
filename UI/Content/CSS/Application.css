@@ -1,0 +1,314 @@
+﻿
+/*------------------------ Site Decoration ------------------------*/
+body { background-color:white; font-family:Verdana; font-size:11px; cursor:pointer; color:#000; border: 0px solid #999;border-radius: 5px; 
+-moz-border-radius: 5px; -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; padding: 5px; margin: 0 auto;}
+
+#topbox { background-color:white; width:100%; height:165px; border: 1px solid #fbf3f3;border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; margin: 0 auto;}
+
+#divmenuholder { border: 0px solid #ccc; padding: 2px; width: 13%; height: auto; border-radius: 0px 0px 0 0; background-color:#FFF; float:left; 
+display:block;-moz-border-radius: 0px 0px 0 0; -webkit-border-top-left-radius: 0px; -webkit-border-top-right-radius: 0px; clear:both;}
+
+#divcontentholder { border: 0px solid #ccc; padding: 0px; width: 86%; height: auto; border-radius: 0px 0px 0 0; background-color:white; 
+-moz-border-radius: 0px 0px 0 0; -webkit-border-top-left-radius: 0px; -webkit-border-top-right-radius: 0px; float:left;
+}
+#footerbox { background:#FFF; width:100%; height:50px; border: 1px solid #fbf3f3;border-radius: 5px; -moz-border-radius: 5px; color:blue; font-weight:bold;
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; margin: 0 auto; text-align:right; clear:both;}
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    font-size:15px;
+}
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+.loader {position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;z-index: 9999;background: url('../Content/Images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+/*------------------------ End Site Decoration ------------------------*/
+
+/*------------------------ Site Controls Decoration -------------------*/
+.lbl { width:215px; font:normal 11px verdana; text-align:right;} 
+.lbldgv { width:215px; font:normal 11px verdana; text-align:left;} 
+.ddList { width:215px; border: 1px solid #ccc; font-size:11px; font-weight:bold; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px;}
+.txtBox {  width:215px;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black;}
+
+.txtBoxMoney {  width:215px; text-align:right;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black;}
+
+.txtBoxCenter {  width:215px; text-align:center;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black;}
+
+
+.txtBox1 {  width:215px; height:23px;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black; padding:0px 0px 0px 3px;
+}
+.divbody .txtBox1:focus { 
+    outline: none; 
+    border: 1px solid #7bc1f7; 
+    box-shadow: 0px 0px 8px #7bc1f7; 
+    -moz-box-shadow: 0px 0px 8px #7bc1f7; 
+    -webkit-box-shadow: 0px 0px 8px #7bc1f7;     
+} 
+.spstyle{
+    text-decoration-color: red;
+    color: red;
+    background-color: red;
+}.myButton {
+	-moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
+	-webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
+	box-shadow: 0px 1px 0px 0px #f0f7fa;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+	background:-moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+	background-color:#33bdef;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+	background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+	background-color:#019ad2;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+.button, .signout,.headermenu { border: 0px solid #e8dcff; padding: 1px 2px 1px 2px; text-decoration: none; border-radius: 2px 2px 0 0; -moz-border-radius: 2px 2px 0 0; 
+ -webkit-border-top-left-radius: 2px; cursor:pointer; -webkit-border-top-right-radius: 2px; text-align:right; font:bold 11px verdana; 
+ cursor:pointer; float:right; color:black;} .signout{color:red;} .headermenu{ float:left; margin-right:5px; text-decoration:none; color:#000;}
+.button:hover, .signout:hover, .headermenu:hover { background-color: #c7d1d6; color:blue; }
+
+.tbldecoration {width:auto; border:0px solid #000;color: #000000; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; margin:0 auto;}
+
+.tblheader {border-radius: 5px; -moz-border-radius: 5px; -webkit-border-top-left-radius: 5px; 
+-webkit-border-top-right-radius: 5px; margin:0 auto;padding:5px; font:bold 13px verdana; text-align:left; background-color:#fceded;}
+
+.tblrowodd {border:0px solid #000;color: #000000; background-color:#DDD;}
+.tblroweven {border:0px solid #000;color: #000000; background-color:#ccc;}
+.border { border: 1px solid #000; }
+.noborders td { border:0; }
+
+.voucherbox { background:#FFF; width:100%; height:auto; border: 0px solid #fbf3f3;border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; margin: 0 auto; display:none; text-align:justify;}
+
+/* ------------------------ End Site Controls Decoration -------------------*/
+
+ /* ------------------------ Calendar Control CSS -----------------------*/ 
+
+.calendar {	font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;font-size: 11px;background-color: #EEE;	color: #333;
+border: 1px solid #DDD;	-moz-border-radius: 4px;-webkit-border-radius: 4px;	border-radius: 4px;padding: 0.2em;width: Auto;}
+.calendar .months {background-color: #F6AF3A;border: 1px solid #E78F08;-moz-border-radius: 4px;-webkit-border-radius: 4px;
+border-radius: 4px;color: #FFF;padding: 2px;text-align: center;}
+.calendar .prev-month,.calendar .next-month {padding: 0;}
+.calendar .prev-month {float: left;}
+.calendar .next-month {float: right;}
+.calendar .current-month {margin: 0 auto;}
+.calendar .months .prev-month,.calendar .months .next-month {color: #FFF;text-decoration: none;padding: 0 2px;
+-moz-border-radius: 4px;-webkit-border-radius: 4px;	border-radius: 4px;cursor: pointer;}
+.calendar .months .prev-month:hover,.calendar .months .next-month:hover {background-color: #FDF5CE;color: #C77405;}
+.calendar table {border-collapse: collapse;padding: 0;font-size: 0.8em;width: auto;}
+.calendar th {text-align: center;}
+.calendar td {text-align: right;padding: 1px;width: auto;}
+.calendar td span {	display: block;color: #1C94C4;background-color: #F6F6F6;border: 1px solid #CCC;text-decoration: none;
+padding: 2px;cursor: pointer;}
+.calendar td span:hover {color: #C77405;background-color: #FDF5CE;border: 1px solid #FBCB09;}
+.calendar td.today span {background-color: #FFF0A5;border: 1px solid #FED22F;color: #363636;}
+
+ /* ------------------------ End Calendar Control CSS -----------------------*/ 
+
+ .clsWaitPage
+{
+     filter: alpha(opacity=70);
+     opacity: 0.7;
+     background-color: #ccc;
+     position:absolute;z-index:1;
+    visibility:hidden;
+    border:0px dotted red;
+    text-align:center;
+    width:100%;
+    height: 100%;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 15px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* ------------------------ GridviewScroll Control CSS -----------------------*/ 
+
+ .GridviewScrollHeader TH, .GridviewScrollHeader TD
+{
+    font-weight: bold;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #EFEFEF;
+    vertical-align: bottom;
+    text-align: center;
+    background-color:black;
+    color:white;
+}
+.GridviewScrollItem TD
+{
+    padding: 5px;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #FFFFFF;
+}
+.GridviewScrollItem .Freeze
+{
+    background-color: #EFEFEF;
+}
+.GridviewScrollItemHover TD
+{
+    padding: 5px;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #CCCCCC;
+    cursor: pointer;
+}
+.GridviewScrollItemHover .Freeze
+{
+    background-color: #CCCCCC;
+}
+.GridviewScrollItemSelected TD
+{
+    padding: 5px;
+    white-space: nowrap;
+    border-right: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+    background-color: #999999;
+    color: #FFFFFF;
+}
+.GridviewScrollItemSelected .Freeze
+{
+    background-color: #999999;
+}
+.GridviewScrollPager 
+{
+    border-top: 1px solid #AAAAAA;
+    background-color: #999999;
+    color: #000000;
+}
+.GridviewScrollPager TD
+{
+    padding-top: 3px;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.GridviewScrollPager A
+{
+    color: #666666;
+}
+.GridviewScrollPager SPAN
+{
+    font-size: 16px;
+    font-weight: bold;
+}
+ /* ------------------------ End GridviewScroll Control CSS -----------------------*/ 
+ .loading
+    {
+        font-family: Arial;
+        font: bold;
+        color:red;
+        font-size: 10pt;
+        /*border: 5px solid #67CFF5;*/*/
+        width: 200px;
+        height: 100px;
+        display: none;
+        position: fixed;
+        background-color: none;
+        z-index: 999;
+    }
+
+.btnstyle1 {
+    background: url(../images/Cafeteria/Recycle.png);
+  
+    height: imageheight;
+    width: imagewidth;
+}
+
+    div#spinner
+{
+    display: none;
+    width:100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background:url(spinner.gif) no-repeat center #fff;
+    text-align:center;
+    padding:10px;
+    font:normal 16px Tahoma, Geneva, sans-serif;
+    /*border:1px solid #666;*/
+    margin-left: -50px;
+    margin-top: -50px;
+    z-index:2;
+    overflow: auto;
+}

@@ -1,0 +1,940 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LcTDS" targetNamespace="http://tempuri.org/LcTDS.xsd" xmlns:mstns="http://tempuri.org/LcTDS.xsd" xmlns="http://tempuri.org/LcTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PurchaseConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PurchaseConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Purchase_DAL.Properties.Settings.GlobalReference.Default.ERP_PurchaseConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblCommercialLCTableAdapter" GeneratorDataComponentClassName="TblCommercialLCTableAdapter" Name="TblCommercialLC" UserDataComponentName="TblCommercialLCTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.tblCommercialLC" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tblCommercialLC] WHERE (([intLCID] = @Original_intLCID) AND ((@IsNull_intIndentID = 1 AND [intIndentID] IS NULL) OR ([intIndentID] = @Original_intIndentID)) AND ((@IsNull_strLCNumber = 1 AND [strLCNumber] IS NULL) OR ([strLCNumber] = @Original_strLCNumber)) AND ((@IsNull_intUnitID = 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNull_strInsuranceCoverNoteNumber = 1 AND [strInsuranceCoverNoteNumber] IS NULL) OR ([strInsuranceCoverNoteNumber] = @Original_strInsuranceCoverNoteNumber)) AND ((@IsNull_intSupplierID = 1 AND [intSupplierID] IS NULL) OR ([intSupplierID] = @Original_intSupplierID)) AND ((@IsNull_monPIValue = 1 AND [monPIValue] IS NULL) OR ([monPIValue] = @Original_monPIValue)) AND ((@IsNull_intShipment = 1 AND [intShipment] IS NULL) OR ([intShipment] = @Original_intShipment)) AND ((@IsNull_intShipmentTypeID = 1 AND [intShipmentTypeID] IS NULL) OR ([intShipmentTypeID] = @Original_intShipmentTypeID)) AND ((@IsNull_intOurBankAccountID = 1 AND [intOurBankAccountID] IS NULL) OR ([intOurBankAccountID] = @Original_intOurBankAccountID)) AND ((@IsNull_monToalAmountOFPI = 1 AND [monToalAmountOFPI] IS NULL) OR ([monToalAmountOFPI] = @Original_monToalAmountOFPI)) AND ((@IsNull_intCurrenyID = 1 AND [intCurrenyID] IS NULL) OR ([intCurrenyID] = @Original_intCurrenyID)) AND ((@IsNull_numExRate = 1 AND [numExRate] IS NULL) OR ([numExRate] = @Original_numExRate)) AND ((@IsNull_monTotalAmountBDT = 1 AND [monTotalAmountBDT] IS NULL) OR ([monTotalAmountBDT] = @Original_monTotalAmountBDT)) AND ([ysnEnable] = @Original_ysnEnable) AND ((@IsNull_ysnDeleted = 1 AND [ysnDeleted] IS NULL) OR ([ysnDeleted] = @Original_ysnDeleted)) AND ((@IsNull_intInsertedBy = 1 AND [intInsertedBy] IS NULL) OR ([intInsertedBy] = @Original_intInsertedBy)) AND ((@IsNull_dteInsertedDate = 1 AND [dteInsertedDate] IS NULL) OR ([dteInsertedDate] = @Original_dteInsertedDate)) AND ((@IsNull_intLastActionBy = 1 AND [intLastActionBy] IS NULL) OR ([intLastActionBy] = @Original_intLastActionBy)) AND ((@IsNull_dteLastActionDate = 1 AND [dteLastActionDate] IS NULL) OR ([dteLastActionDate] = @Original_dteLastActionDate)) AND ((@IsNull_intPaymentModeID = 1 AND [intPaymentModeID] IS NULL) OR ([intPaymentModeID] = @Original_intPaymentModeID)) AND ((@IsNull_numInstallment = 1 AND [numInstallment] IS NULL) OR ([numInstallment] = @Original_numInstallment)) AND ((@IsNull_numInstallmentFrequency = 1 AND [numInstallmentFrequency] IS NULL) OR ([numInstallmentFrequency] = @Original_numInstallmentFrequency)) AND ((@IsNull_dteStartData = 1 AND [dteStartData] IS NULL) OR ([dteStartData] = @Original_dteStartData)) AND ((@IsNull_numDays = 1 AND [numDays] IS NULL) OR ([numDays] = @Original_numDays)) AND ((@IsNull_strIndentNumbers = 1 AND [strIndentNumbers] IS NULL) OR ([strIndentNumbers] = @Original_strIndentNumbers)) AND ((@IsNull_strPOCode = 1 AND [strPOCode] IS NULL) OR ([strPOCode] = @Original_strPOCode)) AND ((@IsNull_intInsuranceCompanyID = 1 AND [intInsuranceCompanyID] IS NULL) OR ([intInsuranceCompanyID] = @Original_intInsuranceCompanyID)) AND ((@IsNull_intCOALC = 1 AND [intCOALC] IS NULL) OR ([intCOALC] = @Original_intCOALC)) AND ((@IsNull_intCOABankAccount = 1 AND [intCOABankAccount] IS NULL) OR ([intCOABankAccount] = @Original_intCOABankAccount)) AND ((@IsNull_ysnConfirmed = 1 AND [ysnConfirmed] IS NULL) OR ([ysnConfirmed] = @Original_ysnConfirmed)) AND ((@IsNull_dteEndDate = 1 AND [dteEndDate] IS NULL) OR ([dteEndDate] = @Original_dteEndDate)) AND ((@IsNull_ysn2ndQuaterNeed = 1 AND [ysn2ndQuaterNeed] IS NULL) OR ([ysn2ndQuaterNeed] = @Original_ysn2ndQuaterNeed)) AND ((@IsNull_ysn2ndQuaterPaid = 1 AND [ysn2ndQuaterPaid] IS NULL) OR ([ysn2ndQuaterPaid] = @Original_ysn2ndQuaterPaid)) AND ((@IsNull_ysnHasPG = 1 AND [ysnHasPG] IS NULL) OR ([ysnHasPG] = @Original_ysnHasPG)) AND ((@IsNull_numPGPer = 1 AND [numPGPer] IS NULL) OR ([numPGPer] = @Original_numPGPer)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLCID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLCID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intIndentID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intIndentID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLCNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLCNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLCNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLCNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strInsuranceCoverNoteNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strInsuranceCoverNoteNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strInsuranceCoverNoteNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strInsuranceCoverNoteNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intSupplierID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSupplierID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intSupplierID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSupplierID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monPIValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monPIValue" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monPIValue" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monPIValue" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intShipment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipment" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intShipment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipment" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intShipmentTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipmentTypeID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intShipmentTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipmentTypeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intOurBankAccountID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intOurBankAccountID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intOurBankAccountID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intOurBankAccountID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monToalAmountOFPI" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monToalAmountOFPI" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monToalAmountOFPI" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monToalAmountOFPI" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCurrenyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCurrenyID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCurrenyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCurrenyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numExRate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numExRate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_numExRate" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="numExRate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monTotalAmountBDT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monTotalAmountBDT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monTotalAmountBDT" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monTotalAmountBDT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnDeleted" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnDeleted" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnDeleted" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnDeleted" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteInsertedDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActionDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intPaymentModeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPaymentModeID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intPaymentModeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPaymentModeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numInstallment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallment" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_numInstallment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallment" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numInstallmentFrequency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallmentFrequency" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_numInstallmentFrequency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallmentFrequency" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteStartData" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteStartData" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteStartData" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteStartData" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numDays" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numDays" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_numDays" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numDays" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strIndentNumbers" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strIndentNumbers" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strIndentNumbers" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strIndentNumbers" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strPOCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strPOCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strPOCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strPOCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intInsuranceCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsuranceCompanyID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intInsuranceCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsuranceCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCOALC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOALC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCOALC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOALC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCOABankAccount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOABankAccount" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCOABankAccount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOABankAccount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnConfirmed" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnConfirmed" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnConfirmed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnConfirmed" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteEndDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteEndDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteEndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysn2ndQuaterNeed" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysn2ndQuaterNeed" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysn2ndQuaterNeed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterNeed" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysn2ndQuaterPaid" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysn2ndQuaterPaid" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysn2ndQuaterPaid" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterPaid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnHasPG" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnHasPG" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnHasPG" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnHasPG" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numPGPer" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numPGPer" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_numPGPer" Precision="18" ProviderType="Decimal" Scale="4" Size="0" SourceColumn="numPGPer" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tblCommercialLC] ([intIndentID], [strLCNumber], [intUnitID], [strInsuranceCoverNoteNumber], [intSupplierID], [monPIValue], [intShipment], [intShipmentTypeID], [intOurBankAccountID], [monToalAmountOFPI], [intCurrenyID], [numExRate], [monTotalAmountBDT], [ysnEnable], [ysnDeleted], [intInsertedBy], [dteInsertedDate], [intLastActionBy], [dteLastActionDate], [intPaymentModeID], [numInstallment], [numInstallmentFrequency], [dteStartData], [numDays], [strIndentNumbers], [strPOCode], [intInsuranceCompanyID], [intCOALC], [intCOABankAccount], [ysnConfirmed], [dteEndDate], [ysn2ndQuaterNeed], [ysn2ndQuaterPaid], [ysnHasPG], [numPGPer]) VALUES (@intIndentID, @strLCNumber, @intUnitID, @strInsuranceCoverNoteNumber, @intSupplierID, @monPIValue, @intShipment, @intShipmentTypeID, @intOurBankAccountID, @monToalAmountOFPI, @intCurrenyID, @numExRate, @monTotalAmountBDT, @ysnEnable, @ysnDeleted, @intInsertedBy, @dteInsertedDate, @intLastActionBy, @dteLastActionDate, @intPaymentModeID, @numInstallment, @numInstallmentFrequency, @dteStartData, @numDays, @strIndentNumbers, @strPOCode, @intInsuranceCompanyID, @intCOALC, @intCOABankAccount, @ysnConfirmed, @dteEndDate, @ysn2ndQuaterNeed, @ysn2ndQuaterPaid, @ysnHasPG, @numPGPer);
+SELECT intLCID, intIndentID, strLCNumber, intUnitID, strInsuranceCoverNoteNumber, intSupplierID, monPIValue, intShipment, intShipmentTypeID, intOurBankAccountID, monToalAmountOFPI, intCurrenyID, numExRate, monTotalAmountBDT, ysnEnable, ysnDeleted, intInsertedBy, dteInsertedDate, intLastActionBy, dteLastActionDate, intPaymentModeID, numInstallment, numInstallmentFrequency, dteStartData, numDays, strIndentNumbers, strPOCode, intInsuranceCompanyID, intCOALC, intCOABankAccount, ysnConfirmed, dteEndDate, ysn2ndQuaterNeed, ysn2ndQuaterPaid, ysnHasPG, numPGPer FROM tblCommercialLC WHERE (intLCID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intIndentID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLCNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLCNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strInsuranceCoverNoteNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strInsuranceCoverNoteNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intSupplierID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSupplierID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monPIValue" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monPIValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intShipment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipment" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intShipmentTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipmentTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intOurBankAccountID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intOurBankAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monToalAmountOFPI" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monToalAmountOFPI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCurrenyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCurrenyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@numExRate" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="numExRate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monTotalAmountBDT" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monTotalAmountBDT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnDeleted" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnDeleted" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intPaymentModeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPaymentModeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@numInstallment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallment" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@numInstallmentFrequency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallmentFrequency" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteStartData" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteStartData" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@numDays" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numDays" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strIndentNumbers" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strIndentNumbers" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strPOCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strPOCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intInsuranceCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsuranceCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCOALC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOALC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCOABankAccount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOABankAccount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnConfirmed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnConfirmed" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteEndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysn2ndQuaterNeed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterNeed" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysn2ndQuaterPaid" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterPaid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnHasPG" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnHasPG" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@numPGPer" Precision="18" ProviderType="Decimal" Scale="4" Size="0" SourceColumn="numPGPer" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblCommercialLC.*
+FROM            tblCommercialLC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tblCommercialLC] SET [intIndentID] = @intIndentID, [strLCNumber] = @strLCNumber, [intUnitID] = @intUnitID, [strInsuranceCoverNoteNumber] = @strInsuranceCoverNoteNumber, [intSupplierID] = @intSupplierID, [monPIValue] = @monPIValue, [intShipment] = @intShipment, [intShipmentTypeID] = @intShipmentTypeID, [intOurBankAccountID] = @intOurBankAccountID, [monToalAmountOFPI] = @monToalAmountOFPI, [intCurrenyID] = @intCurrenyID, [numExRate] = @numExRate, [monTotalAmountBDT] = @monTotalAmountBDT, [ysnEnable] = @ysnEnable, [ysnDeleted] = @ysnDeleted, [intInsertedBy] = @intInsertedBy, [dteInsertedDate] = @dteInsertedDate, [intLastActionBy] = @intLastActionBy, [dteLastActionDate] = @dteLastActionDate, [intPaymentModeID] = @intPaymentModeID, [numInstallment] = @numInstallment, [numInstallmentFrequency] = @numInstallmentFrequency, [dteStartData] = @dteStartData, [numDays] = @numDays, [strIndentNumbers] = @strIndentNumbers, [strPOCode] = @strPOCode, [intInsuranceCompanyID] = @intInsuranceCompanyID, [intCOALC] = @intCOALC, [intCOABankAccount] = @intCOABankAccount, [ysnConfirmed] = @ysnConfirmed, [dteEndDate] = @dteEndDate, [ysn2ndQuaterNeed] = @ysn2ndQuaterNeed, [ysn2ndQuaterPaid] = @ysn2ndQuaterPaid, [ysnHasPG] = @ysnHasPG, [numPGPer] = @numPGPer WHERE (([intLCID] = @Original_intLCID) AND ((@IsNull_intIndentID = 1 AND [intIndentID] IS NULL) OR ([intIndentID] = @Original_intIndentID)) AND ((@IsNull_strLCNumber = 1 AND [strLCNumber] IS NULL) OR ([strLCNumber] = @Original_strLCNumber)) AND ((@IsNull_intUnitID = 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNull_strInsuranceCoverNoteNumber = 1 AND [strInsuranceCoverNoteNumber] IS NULL) OR ([strInsuranceCoverNoteNumber] = @Original_strInsuranceCoverNoteNumber)) AND ((@IsNull_intSupplierID = 1 AND [intSupplierID] IS NULL) OR ([intSupplierID] = @Original_intSupplierID)) AND ((@IsNull_monPIValue = 1 AND [monPIValue] IS NULL) OR ([monPIValue] = @Original_monPIValue)) AND ((@IsNull_intShipment = 1 AND [intShipment] IS NULL) OR ([intShipment] = @Original_intShipment)) AND ((@IsNull_intShipmentTypeID = 1 AND [intShipmentTypeID] IS NULL) OR ([intShipmentTypeID] = @Original_intShipmentTypeID)) AND ((@IsNull_intOurBankAccountID = 1 AND [intOurBankAccountID] IS NULL) OR ([intOurBankAccountID] = @Original_intOurBankAccountID)) AND ((@IsNull_monToalAmountOFPI = 1 AND [monToalAmountOFPI] IS NULL) OR ([monToalAmountOFPI] = @Original_monToalAmountOFPI)) AND ((@IsNull_intCurrenyID = 1 AND [intCurrenyID] IS NULL) OR ([intCurrenyID] = @Original_intCurrenyID)) AND ((@IsNull_numExRate = 1 AND [numExRate] IS NULL) OR ([numExRate] = @Original_numExRate)) AND ((@IsNull_monTotalAmountBDT = 1 AND [monTotalAmountBDT] IS NULL) OR ([monTotalAmountBDT] = @Original_monTotalAmountBDT)) AND ([ysnEnable] = @Original_ysnEnable) AND ((@IsNull_ysnDeleted = 1 AND [ysnDeleted] IS NULL) OR ([ysnDeleted] = @Original_ysnDeleted)) AND ((@IsNull_intInsertedBy = 1 AND [intInsertedBy] IS NULL) OR ([intInsertedBy] = @Original_intInsertedBy)) AND ((@IsNull_dteInsertedDate = 1 AND [dteInsertedDate] IS NULL) OR ([dteInsertedDate] = @Original_dteInsertedDate)) AND ((@IsNull_intLastActionBy = 1 AND [intLastActionBy] IS NULL) OR ([intLastActionBy] = @Original_intLastActionBy)) AND ((@IsNull_dteLastActionDate = 1 AND [dteLastActionDate] IS NULL) OR ([dteLastActionDate] = @Original_dteLastActionDate)) AND ((@IsNull_intPaymentModeID = 1 AND [intPaymentModeID] IS NULL) OR ([intPaymentModeID] = @Original_intPaymentModeID)) AND ((@IsNull_numInstallment = 1 AND [numInstallment] IS NULL) OR ([numInstallment] = @Original_numInstallment)) AND ((@IsNull_numInstallmentFrequency = 1 AND [numInstallmentFrequency] IS NULL) OR ([numInstallmentFrequency] = @Original_numInstallmentFrequency)) AND ((@IsNull_dteStartData = 1 AND [dteStartData] IS NULL) OR ([dteStartData] = @Original_dteStartData)) AND ((@IsNull_numDays = 1 AND [numDays] IS NULL) OR ([numDays] = @Original_numDays)) AND ((@IsNull_strIndentNumbers = 1 AND [strIndentNumbers] IS NULL) OR ([strIndentNumbers] = @Original_strIndentNumbers)) AND ((@IsNull_strPOCode = 1 AND [strPOCode] IS NULL) OR ([strPOCode] = @Original_strPOCode)) AND ((@IsNull_intInsuranceCompanyID = 1 AND [intInsuranceCompanyID] IS NULL) OR ([intInsuranceCompanyID] = @Original_intInsuranceCompanyID)) AND ((@IsNull_intCOALC = 1 AND [intCOALC] IS NULL) OR ([intCOALC] = @Original_intCOALC)) AND ((@IsNull_intCOABankAccount = 1 AND [intCOABankAccount] IS NULL) OR ([intCOABankAccount] = @Original_intCOABankAccount)) AND ((@IsNull_ysnConfirmed = 1 AND [ysnConfirmed] IS NULL) OR ([ysnConfirmed] = @Original_ysnConfirmed)) AND ((@IsNull_dteEndDate = 1 AND [dteEndDate] IS NULL) OR ([dteEndDate] = @Original_dteEndDate)) AND ((@IsNull_ysn2ndQuaterNeed = 1 AND [ysn2ndQuaterNeed] IS NULL) OR ([ysn2ndQuaterNeed] = @Original_ysn2ndQuaterNeed)) AND ((@IsNull_ysn2ndQuaterPaid = 1 AND [ysn2ndQuaterPaid] IS NULL) OR ([ysn2ndQuaterPaid] = @Original_ysn2ndQuaterPaid)) AND ((@IsNull_ysnHasPG = 1 AND [ysnHasPG] IS NULL) OR ([ysnHasPG] = @Original_ysnHasPG)) AND ((@IsNull_numPGPer = 1 AND [numPGPer] IS NULL) OR ([numPGPer] = @Original_numPGPer)));
+SELECT intLCID, intIndentID, strLCNumber, intUnitID, strInsuranceCoverNoteNumber, intSupplierID, monPIValue, intShipment, intShipmentTypeID, intOurBankAccountID, monToalAmountOFPI, intCurrenyID, numExRate, monTotalAmountBDT, ysnEnable, ysnDeleted, intInsertedBy, dteInsertedDate, intLastActionBy, dteLastActionDate, intPaymentModeID, numInstallment, numInstallmentFrequency, dteStartData, numDays, strIndentNumbers, strPOCode, intInsuranceCompanyID, intCOALC, intCOABankAccount, ysnConfirmed, dteEndDate, ysn2ndQuaterNeed, ysn2ndQuaterPaid, ysnHasPG, numPGPer FROM tblCommercialLC WHERE (intLCID = @intLCID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intIndentID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strLCNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLCNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strInsuranceCoverNoteNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strInsuranceCoverNoteNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intSupplierID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSupplierID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monPIValue" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monPIValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intShipment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipment" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intShipmentTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipmentTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intOurBankAccountID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intOurBankAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monToalAmountOFPI" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monToalAmountOFPI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCurrenyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCurrenyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@numExRate" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="numExRate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@monTotalAmountBDT" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monTotalAmountBDT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnDeleted" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnDeleted" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intPaymentModeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPaymentModeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@numInstallment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallment" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@numInstallmentFrequency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallmentFrequency" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteStartData" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteStartData" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@numDays" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numDays" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strIndentNumbers" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strIndentNumbers" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strPOCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strPOCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intInsuranceCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsuranceCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCOALC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOALC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intCOABankAccount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOABankAccount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnConfirmed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnConfirmed" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@dteEndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysn2ndQuaterNeed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterNeed" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysn2ndQuaterPaid" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterPaid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ysnHasPG" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnHasPG" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@numPGPer" Precision="18" ProviderType="Decimal" Scale="4" Size="0" SourceColumn="numPGPer" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLCID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLCID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intIndentID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intIndentID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strLCNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strLCNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strLCNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strLCNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strInsuranceCoverNoteNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strInsuranceCoverNoteNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strInsuranceCoverNoteNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strInsuranceCoverNoteNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intSupplierID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSupplierID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intSupplierID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intSupplierID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monPIValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monPIValue" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monPIValue" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monPIValue" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intShipment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipment" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intShipment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipment" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intShipmentTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipmentTypeID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intShipmentTypeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intShipmentTypeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intOurBankAccountID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intOurBankAccountID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intOurBankAccountID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intOurBankAccountID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monToalAmountOFPI" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monToalAmountOFPI" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monToalAmountOFPI" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monToalAmountOFPI" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCurrenyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCurrenyID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCurrenyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCurrenyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numExRate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numExRate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_numExRate" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="numExRate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_monTotalAmountBDT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="monTotalAmountBDT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_monTotalAmountBDT" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="monTotalAmountBDT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnEnable" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnEnable" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnDeleted" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnDeleted" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnDeleted" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnDeleted" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intInsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteInsertedDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteInsertedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteInsertedDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intLastActionBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteLastActionDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteLastActionDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteLastActionDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intPaymentModeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPaymentModeID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intPaymentModeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intPaymentModeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numInstallment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallment" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_numInstallment" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallment" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numInstallmentFrequency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallmentFrequency" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_numInstallmentFrequency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numInstallmentFrequency" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteStartData" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteStartData" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteStartData" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteStartData" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numDays" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numDays" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_numDays" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numDays" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strIndentNumbers" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strIndentNumbers" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strIndentNumbers" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strIndentNumbers" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strPOCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strPOCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strPOCode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strPOCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intInsuranceCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsuranceCompanyID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intInsuranceCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intInsuranceCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCOALC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOALC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCOALC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOALC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intCOABankAccount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOABankAccount" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intCOABankAccount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intCOABankAccount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnConfirmed" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnConfirmed" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnConfirmed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnConfirmed" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_dteEndDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="dteEndDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_dteEndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysn2ndQuaterNeed" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysn2ndQuaterNeed" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysn2ndQuaterNeed" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterNeed" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysn2ndQuaterPaid" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysn2ndQuaterPaid" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysn2ndQuaterPaid" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysn2ndQuaterPaid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ysnHasPG" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ysnHasPG" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ysnHasPG" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ysnHasPG" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_numPGPer" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="numPGPer" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_numPGPer" Precision="18" ProviderType="Decimal" Scale="4" Size="0" SourceColumn="numPGPer" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intLCID" ColumnName="intLCID" DataSourceName="ERP_Purchase.dbo.tblCommercialLC" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intLCID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intLCID" DataSetColumn="intLCID" />
+              <Mapping SourceColumn="intIndentID" DataSetColumn="intIndentID" />
+              <Mapping SourceColumn="strLCNumber" DataSetColumn="strLCNumber" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="strInsuranceCoverNoteNumber" DataSetColumn="strInsuranceCoverNoteNumber" />
+              <Mapping SourceColumn="intSupplierID" DataSetColumn="intSupplierID" />
+              <Mapping SourceColumn="monPIValue" DataSetColumn="monPIValue" />
+              <Mapping SourceColumn="intShipment" DataSetColumn="intShipment" />
+              <Mapping SourceColumn="intShipmentTypeID" DataSetColumn="intShipmentTypeID" />
+              <Mapping SourceColumn="intOurBankAccountID" DataSetColumn="intOurBankAccountID" />
+              <Mapping SourceColumn="monToalAmountOFPI" DataSetColumn="monToalAmountOFPI" />
+              <Mapping SourceColumn="intCurrenyID" DataSetColumn="intCurrenyID" />
+              <Mapping SourceColumn="numExRate" DataSetColumn="numExRate" />
+              <Mapping SourceColumn="monTotalAmountBDT" DataSetColumn="monTotalAmountBDT" />
+              <Mapping SourceColumn="ysnEnable" DataSetColumn="ysnEnable" />
+              <Mapping SourceColumn="ysnDeleted" DataSetColumn="ysnDeleted" />
+              <Mapping SourceColumn="intInsertedBy" DataSetColumn="intInsertedBy" />
+              <Mapping SourceColumn="dteInsertedDate" DataSetColumn="dteInsertedDate" />
+              <Mapping SourceColumn="intLastActionBy" DataSetColumn="intLastActionBy" />
+              <Mapping SourceColumn="dteLastActionDate" DataSetColumn="dteLastActionDate" />
+              <Mapping SourceColumn="intPaymentModeID" DataSetColumn="intPaymentModeID" />
+              <Mapping SourceColumn="numInstallment" DataSetColumn="numInstallment" />
+              <Mapping SourceColumn="numInstallmentFrequency" DataSetColumn="numInstallmentFrequency" />
+              <Mapping SourceColumn="dteStartData" DataSetColumn="dteStartData" />
+              <Mapping SourceColumn="numDays" DataSetColumn="numDays" />
+              <Mapping SourceColumn="strIndentNumbers" DataSetColumn="strIndentNumbers" />
+              <Mapping SourceColumn="strPOCode" DataSetColumn="strPOCode" />
+              <Mapping SourceColumn="intInsuranceCompanyID" DataSetColumn="intInsuranceCompanyID" />
+              <Mapping SourceColumn="intCOALC" DataSetColumn="intCOALC" />
+              <Mapping SourceColumn="intCOABankAccount" DataSetColumn="intCOABankAccount" />
+              <Mapping SourceColumn="ysnConfirmed" DataSetColumn="ysnConfirmed" />
+              <Mapping SourceColumn="dteEndDate" DataSetColumn="dteEndDate" />
+              <Mapping SourceColumn="ysn2ndQuaterNeed" DataSetColumn="ysn2ndQuaterNeed" />
+              <Mapping SourceColumn="ysn2ndQuaterPaid" DataSetColumn="ysn2ndQuaterPaid" />
+              <Mapping SourceColumn="ysnHasPG" DataSetColumn="ysnHasPG" />
+              <Mapping SourceColumn="numPGPer" DataSetColumn="numPGPer" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.tblCommercialLC" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPoData" GetMethodModifier="Public" GetMethodName="GetPoData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPoData" UserSourceName="GetPoData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblCommercialLC.*
+ from dbo.tblCommercialLC where ysnEnable=1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCommercialGetPaymenTypeInfoTableAdapter" GeneratorDataComponentClassName="SprCommercialGetPaymenTypeInfoTableAdapter" Name="SprCommercialGetPaymenTypeInfo" UserDataComponentName="SprCommercialGetPaymenTypeInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.sprCommercialGetPaymenTypeInfo" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDatapaymentMode" GetMethodModifier="Public" GetMethodName="GetDatapaymentMode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDatapaymentMode" UserSourceName="GetDatapaymentMode">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCommercialGetPaymenTypeInfo</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intLCID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="money" DbType="Currency" Direction="InputOutput" ParameterName="@monInvoicevalue" Precision="19" ProviderType="Money" Scale="4" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strPaymentNode" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strCurrency" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="InputOutput" ParameterName="@numDays" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="InputOutput" ParameterName="@intFequency" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="InputOutput" ParameterName="@intTotalInstallment" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCommercialGetLCListTableAdapter" GeneratorDataComponentClassName="SprCommercialGetLCListTableAdapter" Name="SprCommercialGetLCList" UserDataComponentName="SprCommercialGetLCListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.sprCommercialGetLCList" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetLCData" GetMethodModifier="Public" GetMethodName="GetLCData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetLCData" UserSourceName="GetLCData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCommercialGetLCList</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intLCID" DataSetColumn="intLCID" />
+              <Mapping SourceColumn="intIndentID" DataSetColumn="intIndentID" />
+              <Mapping SourceColumn="strLCNumber" DataSetColumn="strLCNumber" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="strInsuranceCoverNoteNumber" DataSetColumn="strInsuranceCoverNoteNumber" />
+              <Mapping SourceColumn="intSupplierID" DataSetColumn="intSupplierID" />
+              <Mapping SourceColumn="monPIValue" DataSetColumn="monPIValue" />
+              <Mapping SourceColumn="intShipment" DataSetColumn="intShipment" />
+              <Mapping SourceColumn="intShipmentTypeID" DataSetColumn="intShipmentTypeID" />
+              <Mapping SourceColumn="intOurBankAccountID" DataSetColumn="intOurBankAccountID" />
+              <Mapping SourceColumn="monToalAmountOFPI" DataSetColumn="monToalAmountOFPI" />
+              <Mapping SourceColumn="intCurrenyID" DataSetColumn="intCurrenyID" />
+              <Mapping SourceColumn="numExRate" DataSetColumn="numExRate" />
+              <Mapping SourceColumn="monTotalAmountBDT" DataSetColumn="monTotalAmountBDT" />
+              <Mapping SourceColumn="ysnEnable" DataSetColumn="ysnEnable" />
+              <Mapping SourceColumn="ysnDeleted" DataSetColumn="ysnDeleted" />
+              <Mapping SourceColumn="intInsertedBy" DataSetColumn="intInsertedBy" />
+              <Mapping SourceColumn="dteInsertedDate" DataSetColumn="dteInsertedDate" />
+              <Mapping SourceColumn="intLastActionBy" DataSetColumn="intLastActionBy" />
+              <Mapping SourceColumn="dteLastActionDate" DataSetColumn="dteLastActionDate" />
+              <Mapping SourceColumn="intPaymentModeID" DataSetColumn="intPaymentModeID" />
+              <Mapping SourceColumn="numInstallment" DataSetColumn="numInstallment" />
+              <Mapping SourceColumn="numInstallmentFrequency" DataSetColumn="numInstallmentFrequency" />
+              <Mapping SourceColumn="dteStartData" DataSetColumn="dteStartData" />
+              <Mapping SourceColumn="numDays" DataSetColumn="numDays" />
+              <Mapping SourceColumn="strIndentNumbers" DataSetColumn="strIndentNumbers" />
+              <Mapping SourceColumn="strPOCode" DataSetColumn="strPOCode" />
+              <Mapping SourceColumn="intInsuranceCompanyID" DataSetColumn="intInsuranceCompanyID" />
+              <Mapping SourceColumn="intCOALC" DataSetColumn="intCOALC" />
+              <Mapping SourceColumn="intCOABankAccount" DataSetColumn="intCOABankAccount" />
+              <Mapping SourceColumn="ysnConfirmed" DataSetColumn="ysnConfirmed" />
+              <Mapping SourceColumn="dteEndDate" DataSetColumn="dteEndDate" />
+              <Mapping SourceColumn="ysn2ndQuaterNeed" DataSetColumn="ysn2ndQuaterNeed" />
+              <Mapping SourceColumn="ysn2ndQuaterPaid" DataSetColumn="ysn2ndQuaterPaid" />
+              <Mapping SourceColumn="ysnHasPG" DataSetColumn="ysnHasPG" />
+              <Mapping SourceColumn="numPGPer" DataSetColumn="numPGPer" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QryCommercialLCDetailWithItemTableAdapter" GeneratorDataComponentClassName="QryCommercialLCDetailWithItemTableAdapter" Name="QryCommercialLCDetailWithItem" UserDataComponentName="QryCommercialLCDetailWithItemTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.qryCommercialLCDetailWithItem" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetLCDataByItem" GetMethodModifier="Public" GetMethodName="GetLCDataByItem" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetLCDataByItem" UserSourceName="GetLCDataByItem">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        intLCID, intItemID, strProductName, numTotalUnit, monUnitPrice, monTotalPrice, strHSCode, numRatio
+FROM            qryCommercialLCDetailWithItem</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intLCID" DataSetColumn="intLCID" />
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="strProductName" DataSetColumn="strProductName" />
+              <Mapping SourceColumn="numTotalUnit" DataSetColumn="numTotalUnit" />
+              <Mapping SourceColumn="monUnitPrice" DataSetColumn="monUnitPrice" />
+              <Mapping SourceColumn="monTotalPrice" DataSetColumn="monTotalPrice" />
+              <Mapping SourceColumn="strHSCode" DataSetColumn="strHSCode" />
+              <Mapping SourceColumn="numRatio" DataSetColumn="numRatio" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.qryCommercialLCDetailWithItem" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetItemDataByID" GetMethodModifier="Public" GetMethodName="GetItemDataByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemDataByID" UserSourceName="GetItemDataByID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        intLCID, intItemID, strProductName, numTotalUnit, monUnitPrice, monTotalPrice, strHSCode, numRatio
+FROM            qryCommercialLCDetailWithItem
+where intLCID=@lcID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="lcID" ColumnName="intLCID" DataSourceName="ERP_Purchase.dbo.qryCommercialLCDetailWithItem" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@lcID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intLCID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCommercialInstallmentInsertTableAdapter" GeneratorDataComponentClassName="SprCommercialInstallmentInsertTableAdapter" Name="SprCommercialInstallmentInsert" UserDataComponentName="SprCommercialInstallmentInsertTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.sprCommercialInstallmentInsert" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertInstallmentData" GetMethodModifier="Public" GetMethodName="InsertInstallmentData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="InsertInstallmentData" UserSourceName="InsertInstallmentData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCommercialInstallmentInsert</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@installmentXML" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@exRate" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@lcID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@shipmentID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strResult" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCommercialGetLCInfoTableAdapter" GeneratorDataComponentClassName="SprCommercialGetLCInfoTableAdapter" Name="SprCommercialGetLCInfo" UserDataComponentName="SprCommercialGetLCInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.sprCommercialGetLCInfo" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataByLC" GetMethodModifier="Public" GetMethodName="GetDataByLC" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataByLC" UserSourceName="GetDataByLC">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCommercialGetLCInfo</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intLCID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intLCID" DataSetColumn="intLCID" />
+              <Mapping SourceColumn="strLCNumber" DataSetColumn="strLCNumber" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="monPIValue" DataSetColumn="monPIValue" />
+              <Mapping SourceColumn="intShipmentTypeID" DataSetColumn="intShipmentTypeID" />
+              <Mapping SourceColumn="intOurBankAccountID" DataSetColumn="intOurBankAccountID" />
+              <Mapping SourceColumn="intCurrenyID" DataSetColumn="intCurrenyID" />
+              <Mapping SourceColumn="intPaymentModeID" DataSetColumn="intPaymentModeID" />
+              <Mapping SourceColumn="numInstallment" DataSetColumn="numInstallment" />
+              <Mapping SourceColumn="numInstallmentFrequency" DataSetColumn="numInstallmentFrequency" />
+              <Mapping SourceColumn="dteStartData" DataSetColumn="dteStartData" />
+              <Mapping SourceColumn="numDays" DataSetColumn="numDays" />
+              <Mapping SourceColumn="strPOCode" DataSetColumn="strPOCode" />
+              <Mapping SourceColumn="intBankID" DataSetColumn="intBankID" />
+              <Mapping SourceColumn="intBankBranchID" DataSetColumn="intBankBranchID" />
+              <Mapping SourceColumn="strBankName" DataSetColumn="strBankName" />
+              <Mapping SourceColumn="strUnit" DataSetColumn="strUnit" />
+              <Mapping SourceColumn="strBranchName" DataSetColumn="strBranchName" />
+              <Mapping SourceColumn="strCurrency" DataSetColumn="strCurrency" />
+              <Mapping SourceColumn="strAdd1" DataSetColumn="strAdd1" />
+              <Mapping SourceColumn="strAdd2" DataSetColumn="strAdd2" />
+              <Mapping SourceColumn="strModeName" DataSetColumn="strModeName" />
+              <Mapping SourceColumn="strPaymentModeShortName" DataSetColumn="strPaymentModeShortName" />
+              <Mapping SourceColumn="intBankServiceID" DataSetColumn="intBankServiceID" />
+              <Mapping SourceColumn="strServeiceType" DataSetColumn="strServeiceType" />
+              <Mapping SourceColumn="strPortName" DataSetColumn="strPortName" />
+              <Mapping SourceColumn="strShipementType" DataSetColumn="strShipementType" />
+              <Mapping SourceColumn="intShipment" DataSetColumn="intShipment" />
+              <Mapping SourceColumn="intSupplierID" DataSetColumn="intSupplierID" />
+              <Mapping SourceColumn="strSuplierName" DataSetColumn="strSuplierName" />
+              <Mapping SourceColumn="strInsuranceCoverNoteNumber" DataSetColumn="strInsuranceCoverNoteNumber" />
+              <Mapping SourceColumn="intInsuranceCompanyID" DataSetColumn="intInsuranceCompanyID" />
+              <Mapping SourceColumn="strCompanyName" DataSetColumn="strCompanyName" />
+              <Mapping SourceColumn="ysnHaveTollerence" DataSetColumn="ysnHaveTollerence" />
+              <Mapping SourceColumn="numTollerence" DataSetColumn="numTollerence" />
+              <Mapping SourceColumn="strPlaceOfShipment" DataSetColumn="strPlaceOfShipment" />
+              <Mapping SourceColumn="intDistinationPort" DataSetColumn="intDistinationPort" />
+              <Mapping SourceColumn="ysnHasPertialShipment" DataSetColumn="ysnHasPertialShipment" />
+              <Mapping SourceColumn="strTermsOfShipment" DataSetColumn="strTermsOfShipment" />
+              <Mapping SourceColumn="dteLastShipment" DataSetColumn="dteLastShipment" />
+              <Mapping SourceColumn="dteEndDate" DataSetColumn="dteEndDate" />
+              <Mapping SourceColumn="ysnPSIApplicable" DataSetColumn="ysnPSIApplicable" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCommercialGetLCDetailsListTableAdapter" GeneratorDataComponentClassName="SprCommercialGetLCDetailsListTableAdapter" Name="SprCommercialGetLCDetailsList" UserDataComponentName="SprCommercialGetLCDetailsListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.sprCommercialGetLCDetailsList" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetLCDetailData" GetMethodModifier="Public" GetMethodName="GetLCDetailData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetLCDetailData" UserSourceName="GetLCDetailData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCommercialGetLCDetailsList</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@lcID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intLCID" DataSetColumn="intLCID" />
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="numTotalUnit" DataSetColumn="numTotalUnit" />
+              <Mapping SourceColumn="monUnitPrice" DataSetColumn="monUnitPrice" />
+              <Mapping SourceColumn="monTotalPrice" DataSetColumn="monTotalPrice" />
+              <Mapping SourceColumn="strHSCode" DataSetColumn="strHSCode" />
+              <Mapping SourceColumn="numRatio" DataSetColumn="numRatio" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCommercialPOEditTableAdapter" GeneratorDataComponentClassName="SprCommercialPOEditTableAdapter" Name="SprCommercialPOEdit" UserDataComponentName="SprCommercialPOEditTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PurchaseConnectionString (Settings)" DbObjectName="ERP_Purchase.dbo.sprCommercialPOEdit" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataAmenCharges" GetMethodModifier="Public" GetMethodName="GetDataAmenCharges" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataAmenCharges" UserSourceName="GetDataAmenCharges">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCommercialPOEdit</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@itemXML" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strLCnumber" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strItermsOFShipment" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intINSComID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strInsCoverNoteNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intDistinationPortID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysPSIEnable" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@newExpireDate" Precision="23" ProviderType="DateTime" Scale="3" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@newTollerence" Precision="18" ProviderType="Decimal" Scale="8" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@exRateForAmentment" Precision="18" ProviderType="Decimal" Scale="8" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@amentMentDate" Precision="23" ProviderType="DateTime" Scale="3" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@dteBudgetDate" Precision="23" ProviderType="DateTime" Scale="3" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnInfoChange" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnValueChange" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnPeriodChange" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnAmendent" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intLCID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strPaymentAttID" DataSetColumn="strPaymentAttID" />
+              <Mapping SourceColumn="monAmount" DataSetColumn="monAmount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LcTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LcTDS" msprop:Generator_UserDSName="LcTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TblCommercialLC" msprop:Generator_TableClassName="TblCommercialLCDataTable" msprop:Generator_TableVarName="tableTblCommercialLC" msprop:Generator_TablePropName="TblCommercialLC" msprop:Generator_RowDeletingName="TblCommercialLCRowDeleting" msprop:Generator_UserTableName="TblCommercialLC" msprop:Generator_RowChangingName="TblCommercialLCRowChanging" msprop:Generator_RowEvHandlerName="TblCommercialLCRowChangeEventHandler" msprop:Generator_RowDeletedName="TblCommercialLCRowDeleted" msprop:Generator_RowEvArgName="TblCommercialLCRowChangeEvent" msprop:Generator_RowChangedName="TblCommercialLCRowChanged" msprop:Generator_RowClassName="TblCommercialLCRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intLCID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintLCID" msprop:Generator_ColumnPropNameInRow="intLCID" msprop:Generator_ColumnPropNameInTable="intLCIDColumn" msprop:Generator_UserColumnName="intLCID" type="xs:int" />
+              <xs:element name="intIndentID" msprop:Generator_ColumnVarNameInTable="columnintIndentID" msprop:Generator_ColumnPropNameInRow="intIndentID" msprop:Generator_ColumnPropNameInTable="intIndentIDColumn" msprop:Generator_UserColumnName="intIndentID" type="xs:int" minOccurs="0" />
+              <xs:element name="strLCNumber" msprop:Generator_ColumnVarNameInTable="columnstrLCNumber" msprop:Generator_ColumnPropNameInRow="strLCNumber" msprop:Generator_ColumnPropNameInTable="strLCNumberColumn" msprop:Generator_UserColumnName="strLCNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="strInsuranceCoverNoteNumber" msprop:Generator_ColumnVarNameInTable="columnstrInsuranceCoverNoteNumber" msprop:Generator_ColumnPropNameInRow="strInsuranceCoverNoteNumber" msprop:Generator_ColumnPropNameInTable="strInsuranceCoverNoteNumberColumn" msprop:Generator_UserColumnName="strInsuranceCoverNoteNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSupplierID" msprop:Generator_ColumnVarNameInTable="columnintSupplierID" msprop:Generator_ColumnPropNameInRow="intSupplierID" msprop:Generator_ColumnPropNameInTable="intSupplierIDColumn" msprop:Generator_UserColumnName="intSupplierID" type="xs:int" minOccurs="0" />
+              <xs:element name="monPIValue" msprop:Generator_ColumnVarNameInTable="columnmonPIValue" msprop:Generator_ColumnPropNameInRow="monPIValue" msprop:Generator_ColumnPropNameInTable="monPIValueColumn" msprop:Generator_UserColumnName="monPIValue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intShipment" msprop:Generator_ColumnVarNameInTable="columnintShipment" msprop:Generator_ColumnPropNameInRow="intShipment" msprop:Generator_ColumnPropNameInTable="intShipmentColumn" msprop:Generator_UserColumnName="intShipment" type="xs:int" minOccurs="0" />
+              <xs:element name="intShipmentTypeID" msprop:Generator_ColumnVarNameInTable="columnintShipmentTypeID" msprop:Generator_ColumnPropNameInRow="intShipmentTypeID" msprop:Generator_ColumnPropNameInTable="intShipmentTypeIDColumn" msprop:Generator_UserColumnName="intShipmentTypeID" type="xs:int" minOccurs="0" />
+              <xs:element name="intOurBankAccountID" msprop:Generator_ColumnVarNameInTable="columnintOurBankAccountID" msprop:Generator_ColumnPropNameInRow="intOurBankAccountID" msprop:Generator_ColumnPropNameInTable="intOurBankAccountIDColumn" msprop:Generator_UserColumnName="intOurBankAccountID" type="xs:int" minOccurs="0" />
+              <xs:element name="monToalAmountOFPI" msprop:Generator_ColumnVarNameInTable="columnmonToalAmountOFPI" msprop:Generator_ColumnPropNameInRow="monToalAmountOFPI" msprop:Generator_ColumnPropNameInTable="monToalAmountOFPIColumn" msprop:Generator_UserColumnName="monToalAmountOFPI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intCurrenyID" msprop:Generator_ColumnVarNameInTable="columnintCurrenyID" msprop:Generator_ColumnPropNameInRow="intCurrenyID" msprop:Generator_ColumnPropNameInTable="intCurrenyIDColumn" msprop:Generator_UserColumnName="intCurrenyID" type="xs:int" minOccurs="0" />
+              <xs:element name="numExRate" msprop:Generator_ColumnVarNameInTable="columnnumExRate" msprop:Generator_ColumnPropNameInRow="numExRate" msprop:Generator_ColumnPropNameInTable="numExRateColumn" msprop:Generator_UserColumnName="numExRate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monTotalAmountBDT" msprop:Generator_ColumnVarNameInTable="columnmonTotalAmountBDT" msprop:Generator_ColumnPropNameInRow="monTotalAmountBDT" msprop:Generator_ColumnPropNameInTable="monTotalAmountBDTColumn" msprop:Generator_UserColumnName="monTotalAmountBDT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" />
+              <xs:element name="ysnDeleted" msprop:Generator_ColumnVarNameInTable="columnysnDeleted" msprop:Generator_ColumnPropNameInRow="ysnDeleted" msprop:Generator_ColumnPropNameInTable="ysnDeletedColumn" msprop:Generator_UserColumnName="ysnDeleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertedDate" msprop:Generator_ColumnVarNameInTable="columndteInsertedDate" msprop:Generator_ColumnPropNameInRow="dteInsertedDate" msprop:Generator_ColumnPropNameInTable="dteInsertedDateColumn" msprop:Generator_UserColumnName="dteInsertedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastActionBy" msprop:Generator_ColumnVarNameInTable="columnintLastActionBy" msprop:Generator_ColumnPropNameInRow="intLastActionBy" msprop:Generator_ColumnPropNameInTable="intLastActionByColumn" msprop:Generator_UserColumnName="intLastActionBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastActionDate" msprop:Generator_ColumnVarNameInTable="columndteLastActionDate" msprop:Generator_ColumnPropNameInRow="dteLastActionDate" msprop:Generator_ColumnPropNameInTable="dteLastActionDateColumn" msprop:Generator_UserColumnName="dteLastActionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intPaymentModeID" msprop:Generator_ColumnVarNameInTable="columnintPaymentModeID" msprop:Generator_ColumnPropNameInRow="intPaymentModeID" msprop:Generator_ColumnPropNameInTable="intPaymentModeIDColumn" msprop:Generator_UserColumnName="intPaymentModeID" type="xs:int" minOccurs="0" />
+              <xs:element name="numInstallment" msprop:Generator_ColumnVarNameInTable="columnnumInstallment" msprop:Generator_ColumnPropNameInRow="numInstallment" msprop:Generator_ColumnPropNameInTable="numInstallmentColumn" msprop:Generator_UserColumnName="numInstallment" type="xs:int" minOccurs="0" />
+              <xs:element name="numInstallmentFrequency" msprop:Generator_ColumnVarNameInTable="columnnumInstallmentFrequency" msprop:Generator_ColumnPropNameInRow="numInstallmentFrequency" msprop:Generator_ColumnPropNameInTable="numInstallmentFrequencyColumn" msprop:Generator_UserColumnName="numInstallmentFrequency" type="xs:int" minOccurs="0" />
+              <xs:element name="dteStartData" msprop:Generator_ColumnVarNameInTable="columndteStartData" msprop:Generator_ColumnPropNameInRow="dteStartData" msprop:Generator_ColumnPropNameInTable="dteStartDataColumn" msprop:Generator_UserColumnName="dteStartData" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="numDays" msprop:Generator_ColumnVarNameInTable="columnnumDays" msprop:Generator_ColumnPropNameInRow="numDays" msprop:Generator_ColumnPropNameInTable="numDaysColumn" msprop:Generator_UserColumnName="numDays" type="xs:int" minOccurs="0" />
+              <xs:element name="strIndentNumbers" msprop:Generator_ColumnVarNameInTable="columnstrIndentNumbers" msprop:Generator_ColumnPropNameInRow="strIndentNumbers" msprop:Generator_ColumnPropNameInTable="strIndentNumbersColumn" msprop:Generator_UserColumnName="strIndentNumbers" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strPOCode" msprop:Generator_ColumnVarNameInTable="columnstrPOCode" msprop:Generator_ColumnPropNameInRow="strPOCode" msprop:Generator_ColumnPropNameInTable="strPOCodeColumn" msprop:Generator_UserColumnName="strPOCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intInsuranceCompanyID" msprop:Generator_ColumnVarNameInTable="columnintInsuranceCompanyID" msprop:Generator_ColumnPropNameInRow="intInsuranceCompanyID" msprop:Generator_ColumnPropNameInTable="intInsuranceCompanyIDColumn" msprop:Generator_UserColumnName="intInsuranceCompanyID" type="xs:int" minOccurs="0" />
+              <xs:element name="intCOALC" msprop:Generator_ColumnVarNameInTable="columnintCOALC" msprop:Generator_ColumnPropNameInRow="intCOALC" msprop:Generator_ColumnPropNameInTable="intCOALCColumn" msprop:Generator_UserColumnName="intCOALC" type="xs:int" minOccurs="0" />
+              <xs:element name="intCOABankAccount" msprop:Generator_ColumnVarNameInTable="columnintCOABankAccount" msprop:Generator_ColumnPropNameInRow="intCOABankAccount" msprop:Generator_ColumnPropNameInTable="intCOABankAccountColumn" msprop:Generator_UserColumnName="intCOABankAccount" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnConfirmed" msprop:Generator_ColumnVarNameInTable="columnysnConfirmed" msprop:Generator_ColumnPropNameInRow="ysnConfirmed" msprop:Generator_ColumnPropNameInTable="ysnConfirmedColumn" msprop:Generator_UserColumnName="ysnConfirmed" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dteEndDate" msprop:Generator_ColumnVarNameInTable="columndteEndDate" msprop:Generator_ColumnPropNameInRow="dteEndDate" msprop:Generator_ColumnPropNameInTable="dteEndDateColumn" msprop:Generator_UserColumnName="dteEndDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysn2ndQuaterNeed" msprop:Generator_ColumnVarNameInTable="columnysn2ndQuaterNeed" msprop:Generator_ColumnPropNameInRow="ysn2ndQuaterNeed" msprop:Generator_ColumnPropNameInTable="ysn2ndQuaterNeedColumn" msprop:Generator_UserColumnName="ysn2ndQuaterNeed" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysn2ndQuaterPaid" msprop:Generator_ColumnVarNameInTable="columnysn2ndQuaterPaid" msprop:Generator_ColumnPropNameInRow="ysn2ndQuaterPaid" msprop:Generator_ColumnPropNameInTable="ysn2ndQuaterPaidColumn" msprop:Generator_UserColumnName="ysn2ndQuaterPaid" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnHasPG" msprop:Generator_ColumnVarNameInTable="columnysnHasPG" msprop:Generator_ColumnPropNameInRow="ysnHasPG" msprop:Generator_ColumnPropNameInTable="ysnHasPGColumn" msprop:Generator_UserColumnName="ysnHasPG" type="xs:boolean" minOccurs="0" />
+              <xs:element name="numPGPer" msprop:Generator_ColumnVarNameInTable="columnnumPGPer" msprop:Generator_ColumnPropNameInRow="numPGPer" msprop:Generator_ColumnPropNameInTable="numPGPerColumn" msprop:Generator_UserColumnName="numPGPer" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCommercialGetPaymenTypeInfo" msprop:Generator_TableClassName="SprCommercialGetPaymenTypeInfoDataTable" msprop:Generator_TableVarName="tableSprCommercialGetPaymenTypeInfo" msprop:Generator_TablePropName="SprCommercialGetPaymenTypeInfo" msprop:Generator_RowDeletingName="SprCommercialGetPaymenTypeInfoRowDeleting" msprop:Generator_UserTableName="SprCommercialGetPaymenTypeInfo" msprop:Generator_RowChangingName="SprCommercialGetPaymenTypeInfoRowChanging" msprop:Generator_RowEvHandlerName="SprCommercialGetPaymenTypeInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCommercialGetPaymenTypeInfoRowDeleted" msprop:Generator_RowEvArgName="SprCommercialGetPaymenTypeInfoRowChangeEvent" msprop:Generator_RowChangedName="SprCommercialGetPaymenTypeInfoRowChanged" msprop:Generator_RowClassName="SprCommercialGetPaymenTypeInfoRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCommercialGetLCList" msprop:Generator_TableClassName="SprCommercialGetLCListDataTable" msprop:Generator_TableVarName="tableSprCommercialGetLCList" msprop:Generator_TablePropName="SprCommercialGetLCList" msprop:Generator_RowDeletingName="SprCommercialGetLCListRowDeleting" msprop:Generator_UserTableName="SprCommercialGetLCList" msprop:Generator_RowChangingName="SprCommercialGetLCListRowChanging" msprop:Generator_RowEvHandlerName="SprCommercialGetLCListRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCommercialGetLCListRowDeleted" msprop:Generator_RowEvArgName="SprCommercialGetLCListRowChangeEvent" msprop:Generator_RowChangedName="SprCommercialGetLCListRowChanged" msprop:Generator_RowClassName="SprCommercialGetLCListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intLCID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintLCID" msprop:Generator_ColumnPropNameInRow="intLCID" msprop:Generator_ColumnPropNameInTable="intLCIDColumn" msprop:Generator_UserColumnName="intLCID" type="xs:int" />
+              <xs:element name="intIndentID" msprop:Generator_ColumnVarNameInTable="columnintIndentID" msprop:Generator_ColumnPropNameInRow="intIndentID" msprop:Generator_ColumnPropNameInTable="intIndentIDColumn" msprop:Generator_UserColumnName="intIndentID" type="xs:int" minOccurs="0" />
+              <xs:element name="strLCNumber" msprop:Generator_ColumnVarNameInTable="columnstrLCNumber" msprop:Generator_ColumnPropNameInRow="strLCNumber" msprop:Generator_ColumnPropNameInTable="strLCNumberColumn" msprop:Generator_UserColumnName="strLCNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="strInsuranceCoverNoteNumber" msprop:Generator_ColumnVarNameInTable="columnstrInsuranceCoverNoteNumber" msprop:Generator_ColumnPropNameInRow="strInsuranceCoverNoteNumber" msprop:Generator_ColumnPropNameInTable="strInsuranceCoverNoteNumberColumn" msprop:Generator_UserColumnName="strInsuranceCoverNoteNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSupplierID" msprop:Generator_ColumnVarNameInTable="columnintSupplierID" msprop:Generator_ColumnPropNameInRow="intSupplierID" msprop:Generator_ColumnPropNameInTable="intSupplierIDColumn" msprop:Generator_UserColumnName="intSupplierID" type="xs:int" minOccurs="0" />
+              <xs:element name="monPIValue" msprop:Generator_ColumnVarNameInTable="columnmonPIValue" msprop:Generator_ColumnPropNameInRow="monPIValue" msprop:Generator_ColumnPropNameInTable="monPIValueColumn" msprop:Generator_UserColumnName="monPIValue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intShipment" msprop:Generator_ColumnVarNameInTable="columnintShipment" msprop:Generator_ColumnPropNameInRow="intShipment" msprop:Generator_ColumnPropNameInTable="intShipmentColumn" msprop:Generator_UserColumnName="intShipment" type="xs:int" minOccurs="0" />
+              <xs:element name="intShipmentTypeID" msprop:Generator_ColumnVarNameInTable="columnintShipmentTypeID" msprop:Generator_ColumnPropNameInRow="intShipmentTypeID" msprop:Generator_ColumnPropNameInTable="intShipmentTypeIDColumn" msprop:Generator_UserColumnName="intShipmentTypeID" type="xs:int" minOccurs="0" />
+              <xs:element name="intOurBankAccountID" msprop:Generator_ColumnVarNameInTable="columnintOurBankAccountID" msprop:Generator_ColumnPropNameInRow="intOurBankAccountID" msprop:Generator_ColumnPropNameInTable="intOurBankAccountIDColumn" msprop:Generator_UserColumnName="intOurBankAccountID" type="xs:int" minOccurs="0" />
+              <xs:element name="monToalAmountOFPI" msprop:Generator_ColumnVarNameInTable="columnmonToalAmountOFPI" msprop:Generator_ColumnPropNameInRow="monToalAmountOFPI" msprop:Generator_ColumnPropNameInTable="monToalAmountOFPIColumn" msprop:Generator_UserColumnName="monToalAmountOFPI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intCurrenyID" msprop:Generator_ColumnVarNameInTable="columnintCurrenyID" msprop:Generator_ColumnPropNameInRow="intCurrenyID" msprop:Generator_ColumnPropNameInTable="intCurrenyIDColumn" msprop:Generator_UserColumnName="intCurrenyID" type="xs:int" minOccurs="0" />
+              <xs:element name="numExRate" msprop:Generator_ColumnVarNameInTable="columnnumExRate" msprop:Generator_ColumnPropNameInRow="numExRate" msprop:Generator_ColumnPropNameInTable="numExRateColumn" msprop:Generator_UserColumnName="numExRate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monTotalAmountBDT" msprop:Generator_ColumnVarNameInTable="columnmonTotalAmountBDT" msprop:Generator_ColumnPropNameInRow="monTotalAmountBDT" msprop:Generator_ColumnPropNameInTable="monTotalAmountBDTColumn" msprop:Generator_UserColumnName="monTotalAmountBDT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" />
+              <xs:element name="ysnDeleted" msprop:Generator_ColumnVarNameInTable="columnysnDeleted" msprop:Generator_ColumnPropNameInRow="ysnDeleted" msprop:Generator_ColumnPropNameInTable="ysnDeletedColumn" msprop:Generator_UserColumnName="ysnDeleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertedDate" msprop:Generator_ColumnVarNameInTable="columndteInsertedDate" msprop:Generator_ColumnPropNameInRow="dteInsertedDate" msprop:Generator_ColumnPropNameInTable="dteInsertedDateColumn" msprop:Generator_UserColumnName="dteInsertedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastActionBy" msprop:Generator_ColumnVarNameInTable="columnintLastActionBy" msprop:Generator_ColumnPropNameInRow="intLastActionBy" msprop:Generator_ColumnPropNameInTable="intLastActionByColumn" msprop:Generator_UserColumnName="intLastActionBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastActionDate" msprop:Generator_ColumnVarNameInTable="columndteLastActionDate" msprop:Generator_ColumnPropNameInRow="dteLastActionDate" msprop:Generator_ColumnPropNameInTable="dteLastActionDateColumn" msprop:Generator_UserColumnName="dteLastActionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intPaymentModeID" msprop:Generator_ColumnVarNameInTable="columnintPaymentModeID" msprop:Generator_ColumnPropNameInRow="intPaymentModeID" msprop:Generator_ColumnPropNameInTable="intPaymentModeIDColumn" msprop:Generator_UserColumnName="intPaymentModeID" type="xs:int" minOccurs="0" />
+              <xs:element name="numInstallment" msprop:Generator_ColumnVarNameInTable="columnnumInstallment" msprop:Generator_ColumnPropNameInRow="numInstallment" msprop:Generator_ColumnPropNameInTable="numInstallmentColumn" msprop:Generator_UserColumnName="numInstallment" type="xs:int" minOccurs="0" />
+              <xs:element name="numInstallmentFrequency" msprop:Generator_ColumnVarNameInTable="columnnumInstallmentFrequency" msprop:Generator_ColumnPropNameInRow="numInstallmentFrequency" msprop:Generator_ColumnPropNameInTable="numInstallmentFrequencyColumn" msprop:Generator_UserColumnName="numInstallmentFrequency" type="xs:int" minOccurs="0" />
+              <xs:element name="dteStartData" msprop:Generator_ColumnVarNameInTable="columndteStartData" msprop:Generator_ColumnPropNameInRow="dteStartData" msprop:Generator_ColumnPropNameInTable="dteStartDataColumn" msprop:Generator_UserColumnName="dteStartData" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="numDays" msprop:Generator_ColumnVarNameInTable="columnnumDays" msprop:Generator_ColumnPropNameInRow="numDays" msprop:Generator_ColumnPropNameInTable="numDaysColumn" msprop:Generator_UserColumnName="numDays" type="xs:int" minOccurs="0" />
+              <xs:element name="strIndentNumbers" msprop:Generator_ColumnVarNameInTable="columnstrIndentNumbers" msprop:Generator_ColumnPropNameInRow="strIndentNumbers" msprop:Generator_ColumnPropNameInTable="strIndentNumbersColumn" msprop:Generator_UserColumnName="strIndentNumbers" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strPOCode" msprop:Generator_ColumnVarNameInTable="columnstrPOCode" msprop:Generator_ColumnPropNameInRow="strPOCode" msprop:Generator_ColumnPropNameInTable="strPOCodeColumn" msprop:Generator_UserColumnName="strPOCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intInsuranceCompanyID" msprop:Generator_ColumnVarNameInTable="columnintInsuranceCompanyID" msprop:Generator_ColumnPropNameInRow="intInsuranceCompanyID" msprop:Generator_ColumnPropNameInTable="intInsuranceCompanyIDColumn" msprop:Generator_UserColumnName="intInsuranceCompanyID" type="xs:int" minOccurs="0" />
+              <xs:element name="intCOALC" msprop:Generator_ColumnVarNameInTable="columnintCOALC" msprop:Generator_ColumnPropNameInRow="intCOALC" msprop:Generator_ColumnPropNameInTable="intCOALCColumn" msprop:Generator_UserColumnName="intCOALC" type="xs:int" minOccurs="0" />
+              <xs:element name="intCOABankAccount" msprop:Generator_ColumnVarNameInTable="columnintCOABankAccount" msprop:Generator_ColumnPropNameInRow="intCOABankAccount" msprop:Generator_ColumnPropNameInTable="intCOABankAccountColumn" msprop:Generator_UserColumnName="intCOABankAccount" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnConfirmed" msprop:Generator_ColumnVarNameInTable="columnysnConfirmed" msprop:Generator_ColumnPropNameInRow="ysnConfirmed" msprop:Generator_ColumnPropNameInTable="ysnConfirmedColumn" msprop:Generator_UserColumnName="ysnConfirmed" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dteEndDate" msprop:Generator_ColumnVarNameInTable="columndteEndDate" msprop:Generator_ColumnPropNameInRow="dteEndDate" msprop:Generator_ColumnPropNameInTable="dteEndDateColumn" msprop:Generator_UserColumnName="dteEndDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysn2ndQuaterNeed" msprop:Generator_ColumnVarNameInTable="columnysn2ndQuaterNeed" msprop:Generator_ColumnPropNameInRow="ysn2ndQuaterNeed" msprop:Generator_ColumnPropNameInTable="ysn2ndQuaterNeedColumn" msprop:Generator_UserColumnName="ysn2ndQuaterNeed" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysn2ndQuaterPaid" msprop:Generator_ColumnVarNameInTable="columnysn2ndQuaterPaid" msprop:Generator_ColumnPropNameInRow="ysn2ndQuaterPaid" msprop:Generator_ColumnPropNameInTable="ysn2ndQuaterPaidColumn" msprop:Generator_UserColumnName="ysn2ndQuaterPaid" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnHasPG" msprop:Generator_ColumnVarNameInTable="columnysnHasPG" msprop:Generator_ColumnPropNameInRow="ysnHasPG" msprop:Generator_ColumnPropNameInTable="ysnHasPGColumn" msprop:Generator_UserColumnName="ysnHasPG" type="xs:boolean" minOccurs="0" />
+              <xs:element name="numPGPer" msprop:Generator_ColumnVarNameInTable="columnnumPGPer" msprop:Generator_ColumnPropNameInRow="numPGPer" msprop:Generator_ColumnPropNameInTable="numPGPerColumn" msprop:Generator_UserColumnName="numPGPer" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="QryCommercialLCDetailWithItem" msprop:Generator_TableClassName="QryCommercialLCDetailWithItemDataTable" msprop:Generator_TableVarName="tableQryCommercialLCDetailWithItem" msprop:Generator_TablePropName="QryCommercialLCDetailWithItem" msprop:Generator_RowDeletingName="QryCommercialLCDetailWithItemRowDeleting" msprop:Generator_UserTableName="QryCommercialLCDetailWithItem" msprop:Generator_RowChangingName="QryCommercialLCDetailWithItemRowChanging" msprop:Generator_RowEvHandlerName="QryCommercialLCDetailWithItemRowChangeEventHandler" msprop:Generator_RowDeletedName="QryCommercialLCDetailWithItemRowDeleted" msprop:Generator_RowEvArgName="QryCommercialLCDetailWithItemRowChangeEvent" msprop:Generator_RowChangedName="QryCommercialLCDetailWithItemRowChanged" msprop:Generator_RowClassName="QryCommercialLCDetailWithItemRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intLCID" msprop:Generator_ColumnVarNameInTable="columnintLCID" msprop:Generator_ColumnPropNameInRow="intLCID" msprop:Generator_ColumnPropNameInTable="intLCIDColumn" msprop:Generator_UserColumnName="intLCID" type="xs:int" minOccurs="0" />
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" minOccurs="0" />
+              <xs:element name="strProductName" msprop:Generator_ColumnVarNameInTable="columnstrProductName" msprop:Generator_ColumnPropNameInRow="strProductName" msprop:Generator_ColumnPropNameInTable="strProductNameColumn" msprop:Generator_UserColumnName="strProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numTotalUnit" msprop:Generator_ColumnVarNameInTable="columnnumTotalUnit" msprop:Generator_ColumnPropNameInRow="numTotalUnit" msprop:Generator_ColumnPropNameInTable="numTotalUnitColumn" msprop:Generator_UserColumnName="numTotalUnit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monUnitPrice" msprop:Generator_ColumnVarNameInTable="columnmonUnitPrice" msprop:Generator_ColumnPropNameInRow="monUnitPrice" msprop:Generator_ColumnPropNameInTable="monUnitPriceColumn" msprop:Generator_UserColumnName="monUnitPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monTotalPrice" msprop:Generator_ColumnVarNameInTable="columnmonTotalPrice" msprop:Generator_ColumnPropNameInRow="monTotalPrice" msprop:Generator_ColumnPropNameInTable="monTotalPriceColumn" msprop:Generator_UserColumnName="monTotalPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strHSCode" msprop:Generator_ColumnVarNameInTable="columnstrHSCode" msprop:Generator_ColumnPropNameInRow="strHSCode" msprop:Generator_ColumnPropNameInTable="strHSCodeColumn" msprop:Generator_UserColumnName="strHSCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numRatio" msprop:Generator_ColumnVarNameInTable="columnnumRatio" msprop:Generator_ColumnPropNameInRow="numRatio" msprop:Generator_ColumnPropNameInTable="numRatioColumn" msprop:Generator_UserColumnName="numRatio" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCommercialInstallmentInsert" msprop:Generator_TableClassName="SprCommercialInstallmentInsertDataTable" msprop:Generator_TableVarName="tableSprCommercialInstallmentInsert" msprop:Generator_TablePropName="SprCommercialInstallmentInsert" msprop:Generator_RowDeletingName="SprCommercialInstallmentInsertRowDeleting" msprop:Generator_UserTableName="SprCommercialInstallmentInsert" msprop:Generator_RowChangingName="SprCommercialInstallmentInsertRowChanging" msprop:Generator_RowEvHandlerName="SprCommercialInstallmentInsertRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCommercialInstallmentInsertRowDeleted" msprop:Generator_RowEvArgName="SprCommercialInstallmentInsertRowChangeEvent" msprop:Generator_RowChangedName="SprCommercialInstallmentInsertRowChanged" msprop:Generator_RowClassName="SprCommercialInstallmentInsertRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCommercialGetLCInfo" msprop:Generator_TableClassName="SprCommercialGetLCInfoDataTable" msprop:Generator_TableVarName="tableSprCommercialGetLCInfo" msprop:Generator_TablePropName="SprCommercialGetLCInfo" msprop:Generator_RowDeletingName="SprCommercialGetLCInfoRowDeleting" msprop:Generator_UserTableName="SprCommercialGetLCInfo" msprop:Generator_RowChangingName="SprCommercialGetLCInfoRowChanging" msprop:Generator_RowEvHandlerName="SprCommercialGetLCInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCommercialGetLCInfoRowDeleted" msprop:Generator_RowEvArgName="SprCommercialGetLCInfoRowChangeEvent" msprop:Generator_RowChangedName="SprCommercialGetLCInfoRowChanged" msprop:Generator_RowClassName="SprCommercialGetLCInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intLCID" msprop:Generator_ColumnVarNameInTable="columnintLCID" msprop:Generator_ColumnPropNameInRow="intLCID" msprop:Generator_ColumnPropNameInTable="intLCIDColumn" msprop:Generator_UserColumnName="intLCID" type="xs:int" />
+              <xs:element name="strLCNumber" msprop:Generator_ColumnVarNameInTable="columnstrLCNumber" msprop:Generator_ColumnPropNameInRow="strLCNumber" msprop:Generator_ColumnPropNameInTable="strLCNumberColumn" msprop:Generator_UserColumnName="strLCNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="monPIValue" msprop:Generator_ColumnVarNameInTable="columnmonPIValue" msprop:Generator_ColumnPropNameInRow="monPIValue" msprop:Generator_ColumnPropNameInTable="monPIValueColumn" msprop:Generator_UserColumnName="monPIValue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intShipmentTypeID" msprop:Generator_ColumnVarNameInTable="columnintShipmentTypeID" msprop:Generator_ColumnPropNameInRow="intShipmentTypeID" msprop:Generator_ColumnPropNameInTable="intShipmentTypeIDColumn" msprop:Generator_UserColumnName="intShipmentTypeID" type="xs:int" minOccurs="0" />
+              <xs:element name="intOurBankAccountID" msprop:Generator_ColumnVarNameInTable="columnintOurBankAccountID" msprop:Generator_ColumnPropNameInRow="intOurBankAccountID" msprop:Generator_ColumnPropNameInTable="intOurBankAccountIDColumn" msprop:Generator_UserColumnName="intOurBankAccountID" type="xs:int" minOccurs="0" />
+              <xs:element name="intCurrenyID" msprop:Generator_ColumnVarNameInTable="columnintCurrenyID" msprop:Generator_ColumnPropNameInRow="intCurrenyID" msprop:Generator_ColumnPropNameInTable="intCurrenyIDColumn" msprop:Generator_UserColumnName="intCurrenyID" type="xs:int" minOccurs="0" />
+              <xs:element name="intPaymentModeID" msprop:Generator_ColumnVarNameInTable="columnintPaymentModeID" msprop:Generator_ColumnPropNameInRow="intPaymentModeID" msprop:Generator_ColumnPropNameInTable="intPaymentModeIDColumn" msprop:Generator_UserColumnName="intPaymentModeID" type="xs:int" minOccurs="0" />
+              <xs:element name="numInstallment" msprop:Generator_ColumnVarNameInTable="columnnumInstallment" msprop:Generator_ColumnPropNameInRow="numInstallment" msprop:Generator_ColumnPropNameInTable="numInstallmentColumn" msprop:Generator_UserColumnName="numInstallment" type="xs:int" minOccurs="0" />
+              <xs:element name="numInstallmentFrequency" msprop:Generator_ColumnVarNameInTable="columnnumInstallmentFrequency" msprop:Generator_ColumnPropNameInRow="numInstallmentFrequency" msprop:Generator_ColumnPropNameInTable="numInstallmentFrequencyColumn" msprop:Generator_UserColumnName="numInstallmentFrequency" type="xs:int" minOccurs="0" />
+              <xs:element name="dteStartData" msprop:Generator_ColumnVarNameInTable="columndteStartData" msprop:Generator_ColumnPropNameInRow="dteStartData" msprop:Generator_ColumnPropNameInTable="dteStartDataColumn" msprop:Generator_UserColumnName="dteStartData" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="numDays" msprop:Generator_ColumnVarNameInTable="columnnumDays" msprop:Generator_ColumnPropNameInRow="numDays" msprop:Generator_ColumnPropNameInTable="numDaysColumn" msprop:Generator_UserColumnName="numDays" type="xs:int" minOccurs="0" />
+              <xs:element name="strPOCode" msprop:Generator_ColumnVarNameInTable="columnstrPOCode" msprop:Generator_ColumnPropNameInRow="strPOCode" msprop:Generator_ColumnPropNameInTable="strPOCodeColumn" msprop:Generator_UserColumnName="strPOCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intBankID" msprop:Generator_ColumnVarNameInTable="columnintBankID" msprop:Generator_ColumnPropNameInRow="intBankID" msprop:Generator_ColumnPropNameInTable="intBankIDColumn" msprop:Generator_UserColumnName="intBankID" type="xs:int" minOccurs="0" />
+              <xs:element name="intBankBranchID" msprop:Generator_ColumnVarNameInTable="columnintBankBranchID" msprop:Generator_ColumnPropNameInRow="intBankBranchID" msprop:Generator_ColumnPropNameInTable="intBankBranchIDColumn" msprop:Generator_UserColumnName="intBankBranchID" type="xs:int" minOccurs="0" />
+              <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strUnit" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" msprop:Generator_UserColumnName="strUnit">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBranchName" msprop:Generator_ColumnVarNameInTable="columnstrBranchName" msprop:Generator_ColumnPropNameInRow="strBranchName" msprop:Generator_ColumnPropNameInTable="strBranchNameColumn" msprop:Generator_UserColumnName="strBranchName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strCurrency" msprop:Generator_ColumnVarNameInTable="columnstrCurrency" msprop:Generator_ColumnPropNameInRow="strCurrency" msprop:Generator_ColumnPropNameInTable="strCurrencyColumn" msprop:Generator_UserColumnName="strCurrency" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAdd1" msprop:Generator_ColumnVarNameInTable="columnstrAdd1" msprop:Generator_ColumnPropNameInRow="strAdd1" msprop:Generator_ColumnPropNameInTable="strAdd1Column" msprop:Generator_UserColumnName="strAdd1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAdd2" msprop:Generator_ColumnVarNameInTable="columnstrAdd2" msprop:Generator_ColumnPropNameInRow="strAdd2" msprop:Generator_ColumnPropNameInTable="strAdd2Column" msprop:Generator_UserColumnName="strAdd2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strModeName" msprop:Generator_ColumnVarNameInTable="columnstrModeName" msprop:Generator_ColumnPropNameInRow="strModeName" msprop:Generator_ColumnPropNameInTable="strModeNameColumn" msprop:Generator_UserColumnName="strModeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strPaymentModeShortName" msprop:Generator_ColumnVarNameInTable="columnstrPaymentModeShortName" msprop:Generator_ColumnPropNameInRow="strPaymentModeShortName" msprop:Generator_ColumnPropNameInTable="strPaymentModeShortNameColumn" msprop:Generator_UserColumnName="strPaymentModeShortName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intBankServiceID" msprop:Generator_ColumnVarNameInTable="columnintBankServiceID" msprop:Generator_ColumnPropNameInRow="intBankServiceID" msprop:Generator_ColumnPropNameInTable="intBankServiceIDColumn" msprop:Generator_UserColumnName="intBankServiceID" type="xs:int" minOccurs="0" />
+              <xs:element name="strServeiceType" msprop:Generator_ColumnVarNameInTable="columnstrServeiceType" msprop:Generator_ColumnPropNameInRow="strServeiceType" msprop:Generator_ColumnPropNameInTable="strServeiceTypeColumn" msprop:Generator_UserColumnName="strServeiceType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strPortName" msprop:Generator_ColumnVarNameInTable="columnstrPortName" msprop:Generator_ColumnPropNameInRow="strPortName" msprop:Generator_ColumnPropNameInTable="strPortNameColumn" msprop:Generator_UserColumnName="strPortName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strShipementType" msprop:Generator_ColumnVarNameInTable="columnstrShipementType" msprop:Generator_ColumnPropNameInRow="strShipementType" msprop:Generator_ColumnPropNameInTable="strShipementTypeColumn" msprop:Generator_UserColumnName="strShipementType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intShipment" msprop:Generator_ColumnVarNameInTable="columnintShipment" msprop:Generator_ColumnPropNameInRow="intShipment" msprop:Generator_ColumnPropNameInTable="intShipmentColumn" msprop:Generator_UserColumnName="intShipment" type="xs:int" minOccurs="0" />
+              <xs:element name="intSupplierID" msprop:Generator_ColumnVarNameInTable="columnintSupplierID" msprop:Generator_ColumnPropNameInRow="intSupplierID" msprop:Generator_ColumnPropNameInTable="intSupplierIDColumn" msprop:Generator_UserColumnName="intSupplierID" type="xs:int" minOccurs="0" />
+              <xs:element name="strSuplierName" msprop:Generator_ColumnVarNameInTable="columnstrSuplierName" msprop:Generator_ColumnPropNameInRow="strSuplierName" msprop:Generator_ColumnPropNameInTable="strSuplierNameColumn" msprop:Generator_UserColumnName="strSuplierName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strInsuranceCoverNoteNumber" msprop:Generator_ColumnVarNameInTable="columnstrInsuranceCoverNoteNumber" msprop:Generator_ColumnPropNameInRow="strInsuranceCoverNoteNumber" msprop:Generator_ColumnPropNameInTable="strInsuranceCoverNoteNumberColumn" msprop:Generator_UserColumnName="strInsuranceCoverNoteNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intInsuranceCompanyID" msprop:Generator_ColumnVarNameInTable="columnintInsuranceCompanyID" msprop:Generator_ColumnPropNameInRow="intInsuranceCompanyID" msprop:Generator_ColumnPropNameInTable="intInsuranceCompanyIDColumn" msprop:Generator_UserColumnName="intInsuranceCompanyID" type="xs:int" minOccurs="0" />
+              <xs:element name="strCompanyName" msprop:Generator_ColumnVarNameInTable="columnstrCompanyName" msprop:Generator_ColumnPropNameInRow="strCompanyName" msprop:Generator_ColumnPropNameInTable="strCompanyNameColumn" msprop:Generator_UserColumnName="strCompanyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ysnHaveTollerence" msprop:Generator_ColumnVarNameInTable="columnysnHaveTollerence" msprop:Generator_ColumnPropNameInRow="ysnHaveTollerence" msprop:Generator_ColumnPropNameInTable="ysnHaveTollerenceColumn" msprop:Generator_UserColumnName="ysnHaveTollerence" type="xs:boolean" minOccurs="0" />
+              <xs:element name="numTollerence" msprop:Generator_ColumnVarNameInTable="columnnumTollerence" msprop:Generator_ColumnPropNameInRow="numTollerence" msprop:Generator_ColumnPropNameInTable="numTollerenceColumn" msprop:Generator_UserColumnName="numTollerence" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strPlaceOfShipment" msprop:Generator_ColumnVarNameInTable="columnstrPlaceOfShipment" msprop:Generator_ColumnPropNameInRow="strPlaceOfShipment" msprop:Generator_ColumnPropNameInTable="strPlaceOfShipmentColumn" msprop:Generator_UserColumnName="strPlaceOfShipment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intDistinationPort" msprop:Generator_ColumnVarNameInTable="columnintDistinationPort" msprop:Generator_ColumnPropNameInRow="intDistinationPort" msprop:Generator_ColumnPropNameInTable="intDistinationPortColumn" msprop:Generator_UserColumnName="intDistinationPort" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnHasPertialShipment" msprop:Generator_ColumnVarNameInTable="columnysnHasPertialShipment" msprop:Generator_ColumnPropNameInRow="ysnHasPertialShipment" msprop:Generator_ColumnPropNameInTable="ysnHasPertialShipmentColumn" msprop:Generator_UserColumnName="ysnHasPertialShipment" type="xs:boolean" minOccurs="0" />
+              <xs:element name="strTermsOfShipment" msprop:Generator_ColumnVarNameInTable="columnstrTermsOfShipment" msprop:Generator_ColumnPropNameInRow="strTermsOfShipment" msprop:Generator_ColumnPropNameInTable="strTermsOfShipmentColumn" msprop:Generator_UserColumnName="strTermsOfShipment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteLastShipment" msprop:Generator_ColumnVarNameInTable="columndteLastShipment" msprop:Generator_ColumnPropNameInRow="dteLastShipment" msprop:Generator_ColumnPropNameInTable="dteLastShipmentColumn" msprop:Generator_UserColumnName="dteLastShipment" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteEndDate" msprop:Generator_ColumnVarNameInTable="columndteEndDate" msprop:Generator_ColumnPropNameInRow="dteEndDate" msprop:Generator_ColumnPropNameInTable="dteEndDateColumn" msprop:Generator_UserColumnName="dteEndDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysnPSIApplicable" msprop:Generator_ColumnVarNameInTable="columnysnPSIApplicable" msprop:Generator_ColumnPropNameInRow="ysnPSIApplicable" msprop:Generator_ColumnPropNameInTable="ysnPSIApplicableColumn" msprop:Generator_UserColumnName="ysnPSIApplicable" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCommercialGetLCDetailsList" msprop:Generator_TableClassName="SprCommercialGetLCDetailsListDataTable" msprop:Generator_TableVarName="tableSprCommercialGetLCDetailsList" msprop:Generator_TablePropName="SprCommercialGetLCDetailsList" msprop:Generator_RowDeletingName="SprCommercialGetLCDetailsListRowDeleting" msprop:Generator_UserTableName="SprCommercialGetLCDetailsList" msprop:Generator_RowChangingName="SprCommercialGetLCDetailsListRowChanging" msprop:Generator_RowEvHandlerName="SprCommercialGetLCDetailsListRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCommercialGetLCDetailsListRowDeleted" msprop:Generator_RowEvArgName="SprCommercialGetLCDetailsListRowChangeEvent" msprop:Generator_RowChangedName="SprCommercialGetLCDetailsListRowChanged" msprop:Generator_RowClassName="SprCommercialGetLCDetailsListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intLCID" msprop:Generator_ColumnVarNameInTable="columnintLCID" msprop:Generator_ColumnPropNameInRow="intLCID" msprop:Generator_ColumnPropNameInTable="intLCIDColumn" msprop:Generator_UserColumnName="intLCID" type="xs:int" minOccurs="0" />
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" minOccurs="0" />
+              <xs:element name="numTotalUnit" msprop:Generator_ColumnVarNameInTable="columnnumTotalUnit" msprop:Generator_ColumnPropNameInRow="numTotalUnit" msprop:Generator_ColumnPropNameInTable="numTotalUnitColumn" msprop:Generator_UserColumnName="numTotalUnit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monUnitPrice" msprop:Generator_ColumnVarNameInTable="columnmonUnitPrice" msprop:Generator_ColumnPropNameInRow="monUnitPrice" msprop:Generator_ColumnPropNameInTable="monUnitPriceColumn" msprop:Generator_UserColumnName="monUnitPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monTotalPrice" msprop:Generator_ColumnVarNameInTable="columnmonTotalPrice" msprop:Generator_ColumnPropNameInRow="monTotalPrice" msprop:Generator_ColumnPropNameInTable="monTotalPriceColumn" msprop:Generator_UserColumnName="monTotalPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strHSCode" msprop:Generator_ColumnVarNameInTable="columnstrHSCode" msprop:Generator_ColumnPropNameInRow="strHSCode" msprop:Generator_ColumnPropNameInTable="strHSCodeColumn" msprop:Generator_UserColumnName="strHSCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numRatio" msprop:Generator_ColumnVarNameInTable="columnnumRatio" msprop:Generator_ColumnPropNameInRow="numRatio" msprop:Generator_ColumnPropNameInTable="numRatioColumn" msprop:Generator_UserColumnName="numRatio" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCommercialPOEdit" msprop:Generator_TableClassName="SprCommercialPOEditDataTable" msprop:Generator_TableVarName="tableSprCommercialPOEdit" msprop:Generator_TablePropName="SprCommercialPOEdit" msprop:Generator_RowDeletingName="SprCommercialPOEditRowDeleting" msprop:Generator_UserTableName="SprCommercialPOEdit" msprop:Generator_RowChangingName="SprCommercialPOEditRowChanging" msprop:Generator_RowEvHandlerName="SprCommercialPOEditRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCommercialPOEditRowDeleted" msprop:Generator_RowEvArgName="SprCommercialPOEditRowChangeEvent" msprop:Generator_RowChangedName="SprCommercialPOEditRowChanged" msprop:Generator_RowClassName="SprCommercialPOEditRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strPaymentAttID" msprop:Generator_ColumnVarNameInTable="columnstrPaymentAttID" msprop:Generator_ColumnPropNameInRow="strPaymentAttID" msprop:Generator_ColumnPropNameInTable="strPaymentAttIDColumn" msprop:Generator_UserColumnName="strPaymentAttID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monAmount" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" msprop:Generator_UserColumnName="monAmount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TblCommercialLC" />
+      <xs:field xpath="mstns:intLCID" />
+    </xs:unique>
+    <xs:unique name="SprCommercialGetLCList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SprCommercialGetLCList" />
+      <xs:field xpath="mstns:intLCID" />
+    </xs:unique>
+    <xs:unique name="SprCommercialGetLCInfo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SprCommercialGetLCInfo" />
+      <xs:field xpath="mstns:intLCID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

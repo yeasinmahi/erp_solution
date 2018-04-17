@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{69C216B4-E2AA-47ED-9738-7BCF10BE7758}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAD_BLL</RootNamespace>
+    <AssemblyName>SAD_BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AEFPS\FPReportBLL.cs" />
+    <Compile Include="AEFPS\FPSSalesEntryBLL.cs" />
+    <Compile Include="AEFPS\FPSSalesReturnAndTransferBLL.cs" />
+    <Compile Include="AEFPS\Receive_BLL.cs" />
+    <Compile Include="AEFPS\Shop_BLL.cs" />
+    <Compile Include="Analysis\SalesAnalysisC.cs" />
+    <Compile Include="AutoChallan\ChallanandPending.cs" />
+    <Compile Include="AutoChallan\ExcelDataBLL.cs" />
+    <Compile Include="Corporate_sales\AutoSearch_BLL.cs" />
+    <Compile Include="Corporate_sales\Bridge.cs" />
+    <Compile Include="Corporate_sales\OrderInputClass.cs" />
+    <Compile Include="Corporate_sales\OrderInput_BLL.cs" />
+    <Compile Include="Customer\CusManageForCOA.cs" />
+    <Compile Include="Customer\CustomerGeo.cs" />
+    <Compile Include="Customer\CustomerInfo.cs" />
+    <Compile Include="Customer\CustomerInfoSt.cs" />
+    <Compile Include="Customer\CustomerLocation.cs" />
+    <Compile Include="Customer\CustomerType.cs" />
+    <Compile Include="Customer\DistributionPoint.cs" />
+    <Compile Include="Customer\DistributionPointSt.cs" />
+    <Compile Include="Customer\Report\DeliverySupport.cs" />
+    <Compile Include="Customer\Report\ExportClass.cs" />
+    <Compile Include="Customer\Report\StatementC.cs" />
+    <Compile Include="DisPoint\DisPointInfo.cs" />
+    <Compile Include="Global\CodeGenatator.cs" />
+    <Compile Include="Global\ExtraCharge.cs" />
+    <Compile Include="Global\Incentive.cs" />
+    <Compile Include="Global\Operator.cs" />
+    <Compile Include="Global\SalesOffice.cs" />
+    <Compile Include="Global\ShipPoint.cs" />
+    <Compile Include="Item\ItemStCommercial.cs" />
+    <Compile Include="Item\XmlManagerCH.cs" />
+    <Compile Include="Item\XmlManagerSO.cs" />
+    <Compile Include="Item\Currency.cs" />
+    <Compile Include="Item\Item.cs" />
+    <Compile Include="Item\ItemManager.cs" />
+    <Compile Include="Item\ItemPrice.cs" />
+    <Compile Include="Item\ItemPriceApproval.cs" />
+    <Compile Include="Item\ItemPriceManager.cs" />
+    <Compile Include="Item\ItemPromotion.cs" />
+    <Compile Include="Item\ItemSt.cs" />
+    <Compile Include="Item\ItemUnitOfMeasurement.cs" />
+    <Compile Include="AutoChallan\AutoChallReportsBLL.cs" />
+    <Compile Include="Sales\AppsSalesOrder_BLL.cs" />
+    <Compile Include="Sales\DelivaryView.cs" />
+    <Compile Include="Sales\OrderByTrip.cs" />
+    <Compile Include="Sales\RemoteSales.cs" />
+    <Compile Include="Sales\Report\Challan.cs" />
+    <Compile Include="Sales\Report\SalesByCusPro.cs" />
+    <Compile Include="Sales\SalesConfig.cs" />
+    <Compile Include="Sales\SalesEntry.cs" />
+    <Compile Include="Item\StaticItem.cs" />
+    <Compile Include="Item\XmlManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Item\UnitOfMeasurement.cs" />
+    <Compile Include="Sales\SalesOrder.cs" />
+    <Compile Include="Sales\SalesOrderView.cs" />
+    <Compile Include="Sales\SalesView.cs" />
+    <Compile Include="Sales\VehicleSelect.cs" />
+    <Compile Include="Sales\VehicleSelectView.cs" />
+    <Compile Include="Sales\WeightBridgeDataCollector.cs" />
+    <Compile Include="Transfer\Transfer.cs" />
+    <Compile Include="Transport\InternalTransportBLL.cs" />
+    <Compile Include="Transport\Utility_BLL.cs" />
+    <Compile Include="Vat\Mushok11.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GLOBAL_BLL\GLOBAL_BLL.csproj">
+      <Project>{F44AD490-3907-420D-8966-853469233C3F}</Project>
+      <Name>GLOBAL_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR_BLL\HR_BLL.csproj">
+      <Project>{BEB114CF-7587-4114-B727-EDEF361244E2}</Project>
+      <Name>HR_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR_DAL\HR_DAL.csproj">
+      <Project>{4FD02F54-1308-4787-896D-842A38C0DE30}</Project>
+      <Name>HR_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAD_DAL\SAD_DAL.csproj">
+      <Project>{16E00442-31FA-416F-AF68-BE5AD09F4D2A}</Project>
+      <Name>SAD_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SAD\AutoChallan\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,49 @@
+﻿	  .MoneyReceiptBodyStyle
+        {
+            
+            font-family:Arial Narrow;
+            font-size:small;
+        }
+        .SignStyleMR
+        {
+        	text-align:center;
+        	width:19%;
+        	font-size:9pt;
+        	font-family:Arial Narrow
+        }
+        .SignStyleMR2
+        {
+        	text-align:center;
+        	width:21%;
+        	font-size:9pt;
+        	font-family:Arial Narrow
+        }
+        .SignStyleMR3
+        {
+        	text-align:center;
+        	width:11%;
+        	font-size:9pt;
+        	font-family:Arial Narrow
+        }
+        .MoneyReceiptStyle
+        {
+            text-decoration: underline;
+            font-size:small;
+            font-family:Arial Narrow;
+           
+        }
+        .HeaderStyleMR
+        {
+           
+            font-weight: bold;
+            font-family:Arial Narrow;
+           
+        }
+        .HeaderStyleMR2
+        {
+            
+            
+            font-family:Arial Narrow;
+            font-size:small;
+            
+        }

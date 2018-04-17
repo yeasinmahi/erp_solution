@@ -1,0 +1,5 @@
+<?xml version="1.0" standalone="yes"?>
+<node>
+  <item Acc="Cash In Hand" Narr="" Dr="1" Cr="" AccID="0" />
+  <item Acc="Purchase Adjustment" Narr="Being the amount paid to Test" Dr="" Cr="1" AccID="175197" />
+</node>
