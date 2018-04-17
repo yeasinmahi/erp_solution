@@ -46,28 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\.net dll Download\AjaxControlToolKit_4.5\AjaxControlToolkit.Binary.NET45\AjaxControlToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="Budget_DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Budget_DAL.dll</HintPath>
-    </Reference>
-    <Reference Include="Dairy_DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Dairy_DAL.dll</HintPath>
-    </Reference>
-    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DLL\MessagingToolkit.QRCode.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\AkijGroup_ERP\UI\Bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\TFS2017\UI\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\My Projects\AttachementFile\PrepareFactoryExcel\PrepareFactoryExcel\bin\Debug\Microsoft.Exchange.WebServices.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -101,23 +82,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Software Tools\Need For New Project\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Projects_DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Projects_DAL.dll</HintPath>
-    </Reference>
-    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DLL\QRCoder.dll</HintPath>
-    </Reference>
-    <Reference Include="ScriptReferenceProfiler, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\.net dll Download\ScriptReferenceProfiler.dll</HintPath>
-    </Reference>
-    <Reference Include="Support_DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Support_DAL.dll</HintPath>
-    </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -128,9 +92,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\..\AkijGroup_ERP\UI\Bin\System.Web.Optimization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -139,21 +100,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Telerik.Web.UI, Version=2013.2.717.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2013\Bin45\Telerik.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="TimePicker, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d25e9f59e49c4d2f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\TimePicker.dll</HintPath>
-    </Reference>
-    <Reference Include="UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\UI.dll</HintPath>
-    </Reference>
-    <Reference Include="WebGrease">
-      <HintPath>..\..\..\Software\WebGrease.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
@@ -324,6 +270,55 @@
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
     <Content Include="Inventory\SalesDamageEntry.aspx" />
+    <Content Include="Libray\AjaxControlToolkit.dll" />
+    <Content Include="Libray\AkijFTPConnector.dll" />
+    <Content Include="Libray\BLL.dll" />
+    <Content Include="Libray\Budget_BLL.dll" />
+    <Content Include="Libray\Budget_DAL.dll" />
+    <Content Include="Libray\Dairy_BLL.dll" />
+    <Content Include="Libray\Dairy_DAL.dll" />
+    <Content Include="Libray\DAL.dll" />
+    <Content Include="Libray\EnvDTE.dll" />
+    <Content Include="Libray\EnvDTE80.dll" />
+    <Content Include="Libray\GLOBAL_BLL.dll" />
+    <Content Include="Libray\HR_BLL.dll" />
+    <Content Include="Libray\HR_DAL.dll" />
+    <Content Include="Libray\LOGIS_BLL.dll" />
+    <Content Include="Libray\LOGIS_DAL.dll" />
+    <Content Include="Libray\MessagingToolkit.QRCode.dll" />
+    <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+    <Content Include="Libray\Microsoft.Exchange.WebServices.dll" />
+    <Content Include="Libray\Microsoft.MSXML.dll" />
+    <Content Include="Libray\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="Libray\Microsoft.VisualStudio.OLE.Interop.dll" />
+    <Content Include="Libray\Microsoft.VisualStudio.Shell.Interop.8.0.dll" />
+    <Content Include="Libray\Microsoft.VisualStudio.Shell.Interop.dll" />
+    <Content Include="Libray\Microsoft.VisualStudio.TextManager.Interop.8.0.dll" />
+    <Content Include="Libray\Microsoft.VisualStudio.TextManager.Interop.dll" />
+    <Content Include="Libray\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Libray\Projects_BLL.dll" />
+    <Content Include="Libray\Projects_DAL.dll" />
+    <Content Include="Libray\Purchase_BLL.dll" />
+    <Content Include="Libray\Purchase_DAL.dll" />
+    <Content Include="Libray\QRCoder.dll" />
+    <Content Include="Libray\SAD_BLL.dll" />
+    <Content Include="Libray\SAD_DAL.dll" />
+    <Content Include="Libray\SCM_BLL.dll" />
+    <Content Include="Libray\SCM_DAL.dll" />
+    <Content Include="Libray\ScriptReferenceProfiler.dll" />
+    <Content Include="Libray\stdole.dll" />
+    <Content Include="Libray\Support_BLL.dll" />
+    <Content Include="Libray\Support_DAL.dll" />
+    <Content Include="Libray\System.Web.Optimization.dll" />
+    <Content Include="Libray\Telerik.Web.UI.dll" />
+    <Content Include="Libray\TimePicker.dll" />
+    <Content Include="Libray\UI.dll" />
+    <Content Include="Libray\UserRole.dll" />
+    <Content Include="Libray\UserSecurity.dll" />
+    <Content Include="Libray\WebGrease.dll" />
+    <Content Include="Libray\XPSParser.dll" />
     <Content Include="MedialManagement\EntryForm.aspx" />
     <Content Include="MedialManagement\jquery-ui.css" />
     <Content Include="MedialManagement\jquery-ui.min.js" />
