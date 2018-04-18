@@ -520,7 +520,5 @@ namespace UI.Inventory
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
         }
-
-       
     }
 }
