@@ -220,24 +220,6 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lblUnitName;
         
         /// <summary>
-        /// lblJobStation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJobStation;
-        
-        /// <summary>
-        /// ddlJobStation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobStation;
-        
-        /// <summary>
         /// lblFromDate control.
         /// </summary>
         /// <remarks>
@@ -317,6 +299,24 @@ namespace UI.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMovDuration;
+        
+        /// <summary>
+        /// lblJobStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblJobStation;
+        
+        /// <summary>
+        /// ddlJobStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobStation;
         
         /// <summary>
         /// lblfullname control.
