@@ -150,7 +150,7 @@
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
-            <ItemTemplate><asp:Label ID="lblDueDate" runat="server"   Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblDueDate" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("dteDueDate") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Indent Type" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType" >
@@ -189,7 +189,7 @@
                 <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="IndentType:"></asp:Label></td> 
                 <td style="text-align:Left;"><asp:Label ID="lblIndentType" CssClass="lbl" runat="server"  ></asp:Label></td>  
 
-                <td colspan="4" style="text-align:right"><asp:Button runat="server" ID="btnClsoe"  OnClick="btnClsoe_Click" Text="Close" /><asp:Button ID="btnReject" runat="server" OnClick="btnReject_Click" Text="Reject"/><asp:Button ID="btnApprove" runat="server" Text="Approve" OnClientClick="funConfirmAll()" OnClick="btnApprove_Click" /> </td>
+                <td colspan="4" style="text-align:right"><asp:Button ID="btnReject" runat="server" OnClick="btnReject_Click" Text="Reject"/><asp:Button ID="btnApprove" runat="server" Text="Approve" OnClientClick="funConfirmAll()" OnClick="btnApprove_Click" /> </td>
                 </tr>
 
                 <tr><td></td></tr>
@@ -240,7 +240,11 @@
                 </Columns> 
                 </asp:GridView></td> 
                 </tr> 
-                 
+                <tr>
+                <td style="text-align:right">
+                <asp:Button runat="server" ID="btnClsoe"  OnClick="btnClsoe_Click" Text="Close" />
+                </td>
+                </tr>
               </table>
 
          </div>

@@ -5,6 +5,8 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -15,7 +17,7 @@ namespace UI.SCM
     public partial class PoApproval : BasePage
     {
         DataTable dt = new DataTable();
-        int enroll;
+        int enroll; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -27,12 +29,13 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind(); 
                 dt.Clear();
-                dt = DataTableLoad.GetPoDataTable(enroll,14); 
-                ddlPoUser.DataSource = dt;
-                ddlPoUser.DataTextField = "strName";
-                ddlPoUser.DataValueField = "Id";
-                ddlPoUser.DataBind();
-                dt.Clear();
+                
+                //dt = DataTableLoad.GetPoDataTable(enroll,14); 
+                //ddlPoUser.DataSource = dt;
+                //ddlPoUser.DataTextField = "strName";
+                //ddlPoUser.DataValueField = "Id";
+                //ddlPoUser.DataBind();
+                //dt.Clear();
 
                 dt = DataTableLoad.GetPoDataTable(enroll,24);
                 ddlDepts.DataSource = dt;
@@ -47,6 +50,18 @@ namespace UI.SCM
 
             }
         }
+
+        #region=======================Auto Search=========================
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetPoUserSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchPoUser(prefixText);
+        }
+
+
+        #endregion====================Close===============================
 
         protected void btnPoNoShow_Click(object sender, EventArgs e)
         {
@@ -65,7 +80,12 @@ namespace UI.SCM
         {
             try
             {
-                enroll = int.Parse(ddlPoUser.SelectedValue);
+                arrayKey = txtPoUser.Text.Split(delimiterChars);
+                string item = ""; string itemid = "";
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
+
+              //  enroll = int.Parse(ddlPoUser.SelectedValue);
                 int intwh = int.Parse(ddlWH.SelectedValue);
                 int dept = int.Parse(ddlDepts.SelectedValue);
                 string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
@@ -156,7 +176,10 @@ namespace UI.SCM
                     else
                     {
                         int intwh = int.Parse(ddlWH.SelectedValue);
-                        enroll = int.Parse(ddlPoUser.SelectedValue);
+                        arrayKey = txtPoUser.Text.Split(delimiterChars);
+                        string item = ""; string itemid = "";
+                        if (arrayKey.Length > 0)
+                        { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
                         string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
                         dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, int.Parse(ddlDepts.SelectedValue), xmlData);
                         dgvPoApp.DataSource = dt;

@@ -57,7 +57,8 @@ namespace UI.SCM
                     lblPartialShip.Text = dt.Rows[0]["ysnPartialShip"].ToString();
                     lblNoShipment.Text = dt.Rows[0]["intShipment"].ToString();
                     DateTime dteLastship = DateTime.Parse(dt.Rows[0]["dteLastShipmentDate"].ToString());
-                    lbllastShipmentDate.Text = dteLastship.ToString("yyyy-MM-dd");
+
+                    lbllastShipmentDate.Text = dteLastship.ToString("dd-MM-yyyy");
                     lblPaymentTrems.Text = dt.Rows[0]["strPayTerm"].ToString();
                     lblPaymentDaysMrr.Text = dt.Rows[0]["intCreditDays"].ToString();
                     lblNoOfInstallment.Text = dt.Rows[0]["intInstallmentNo"].ToString();
@@ -69,7 +70,7 @@ namespace UI.SCM
                     lblGrossDis.Text = dt.Rows[0]["monDiscount"].ToString();
                     lblComission.Text = dt.Rows[0]["monCommission"].ToString();
                     lblPrepareBy.Text = "Prepared By: " + dt.Rows[0]["strEmployeeName"].ToString() + "," + dt.Rows[0]["strIssuerDesign"].ToString() + "," + dt.Rows[0]["strIssuerDept"].ToString();
-                    lblApprovedBy.Text = "Approved By: " + dt.Rows[0]["strApproveBy"].ToString() + "," + dt.Rows[0]["strApprDesign"].ToString() + "," + dt.Rows[0]["strApprDept"].ToString();
+                    lblApprovedBy.Text = "e-Approved By: " + dt.Rows[0]["strApproveBy"].ToString() + "," + dt.Rows[0]["strApprDesign"].ToString() + "," + dt.Rows[0]["strApprDept"].ToString();
 
                     //decimal grandtotal = decimal.Parse(dt.Rows[0]["monTotal"].ToString()) 
                     //    + decimal.Parse(dt.Rows[0]["monFreight"].ToString()) + decimal.Parse(dt.Rows[0]["monPacking"].ToString()) +

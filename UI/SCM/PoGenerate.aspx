@@ -595,12 +595,12 @@
                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" > 
                         <AlternatingRowStyle BackColor="#CCCCCC" /> 
                         <Columns> 
-                        <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Indent ID" Visible="true" SortExpression="indentId"><ItemTemplate>  
+                        <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>  
+                        <asp:TemplateField HeaderText="Indent Id" Visible="true" SortExpression="indentId"><ItemTemplate>  
                         <asp:Label ID="lblIndentId" runat="server" Text='<%# Bind("indentId") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Item ID" SortExpression="ItemId"><ItemTemplate> 
+                        <asp:TemplateField HeaderText="Item Id" SortExpression="ItemId"><ItemTemplate> 
                         <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("ItemId") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField> 
 
@@ -608,7 +608,7 @@
                         <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="left" Width="200px" /> </asp:TemplateField>  
 
-                        <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom" > 
+                        <asp:TemplateField HeaderText="Uom" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom" > 
                         <ItemTemplate><asp:Label ID="lblUom" runat="server"  Text='<%# Bind("strUom") %>'  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" /></asp:TemplateField> 
 

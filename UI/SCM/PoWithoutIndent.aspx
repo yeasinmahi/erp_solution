@@ -416,7 +416,7 @@
                         </td>
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
                         <td  style="text-align:left;"><asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
-                        </asp:TextBox></td><td><asp:Label ID="lblPo" runat="server"></asp:Label></td>
+                        </asp:TextBox></td><td></td>
                         <td   style="text-align:right;"><asp:Button ID="btnGeneratePO" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" AutoPostBack="false" /></td>
                       </tr>
                       </table>
