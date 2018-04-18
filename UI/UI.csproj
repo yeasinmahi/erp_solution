@@ -373,6 +373,7 @@
     <Content Include="MedialManagement\jquery-ui.css" />
     <Content Include="MedialManagement\jquery-ui.min.js" />
     <Content Include="MedialManagement\jquery.min.js" />
+    <Content Include="MedialManagement\ProgramCustEntry.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
@@ -2496,6 +2497,13 @@
     </Compile>
     <Compile Include="MedialManagement\EntryForm.aspx.designer.cs">
       <DependentUpon>EntryForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedialManagement\ProgramCustEntry.aspx.cs">
+      <DependentUpon>ProgramCustEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedialManagement\ProgramCustEntry.aspx.designer.cs">
+      <DependentUpon>ProgramCustEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewProject\pg_ProjectCreate.aspx.cs">
       <DependentUpon>pg_ProjectCreate.aspx</DependentUpon>

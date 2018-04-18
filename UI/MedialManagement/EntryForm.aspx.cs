@@ -139,8 +139,10 @@ namespace UI.MedialManagement
                     bll.InserProgram(strNewProgramName, intDuration, intUnitID, intProgTypeID, intBrandID);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Program Inserted.');", true);
                 }
+                txtEntry.Text = "";
+                txtDuration.Text = "";
             }
-            catch { }
+            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please check inputed data.');", true); }
         }
     }
 }
