@@ -84,5 +84,23 @@ namespace Purchase_BLL
             }
             catch { }
         }
+        public void InsertSupplier(int intProgTypeID, string strNewSupplierName, string strNewSupplierShortName, int intSupplierMasterID)
+        {
+            InsertSupplierTableAdapter adp = new InsertSupplierTableAdapter();
+            try
+            {
+                adp.InsertSupplier(intProgTypeID, strNewSupplierName, strNewSupplierShortName, intSupplierMasterID);
+            }
+            catch { }
+        }
+        public DataTable GetMasterSupplier()
+        {
+            SupplierMasterTableAdapter adp = new SupplierMasterTableAdapter();
+            try
+            {
+                return adp.GetMasterSupplier();
+            }
+            catch { return new DataTable(); }
+        }
     }
 }
