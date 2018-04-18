@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -17,7 +16,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
-using UserSecurity;
 
 namespace UI.Inventory
 {
@@ -44,7 +42,10 @@ namespace UI.Inventory
 
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
                 hdnAction.Value = "0";
-               
+
+                SetUnitName(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
+                LoadJobStationDropDown(GetUnitID(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
+
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
                 catch { }
@@ -57,8 +58,12 @@ namespace UI.Inventory
                 {
                     string strSearchKey = txtFullName.Text;
                     string[] searchKey = Regex.Split(strSearchKey, ",");
-                    LoadFieldValue(searchKey[1]);
-                    hdfSearchBoxTextChange.Value = "false";
+                    if (searchKey.Length==2)
+                    {
+                        LoadFieldValue(searchKey[1]);
+                        hdfSearchBoxTextChange.Value = "false";
+                    }
+                    
                 }
                 else
                 {
@@ -215,38 +220,10 @@ namespace UI.Inventory
          {
              if (grdvOvertimeEntry.Rows.Count < 1)
              {
-
-
-
-                 string durt; string minutesdur; string selectedOvertime; int selectvalue;
-                 durt = txtMovDuration.Text;
+                 string durt = txtMovDuration.Text;
                  string start = txtstrt.Text;
                  string endt = txtend.Text;
-                 minutesdur = "00:00";
-                 if (minutesdur.Length < 0)
-                 { txtMinute.Text = "00:00"; }
-
-
-                 if (Request.Form["rate"] != null)
-                 {
-                     selectedOvertime = Request.Form["rate"].ToString();
-
-                     hdnmiute.Value = selectedOvertime.ToString();
-                     Session["minute"] = hdnmiute.Value;
-                 }
-
-                 string mint = Session["minute"].ToString();
-                 selectvalue = int.Parse(mint);
-
-                 if (selectvalue == 0)
-                 {
-                     durt = "00:00";
-
-                 }
-                 else { durt = txtMovDuration.Text; }
-
-
-
+                 
                  double twentyfourhours = 24;
                  TimeSpan interval = TimeSpan.FromHours(twentyfourhours);
 
@@ -281,8 +258,6 @@ namespace UI.Inventory
 
                  else
                  {
-
-
                      string cureentdate = DateTime.Now.ToString("yyyy-MM-dd");
                      var now = DateTime.Now;
                      var startOfMonth = new DateTime(now.Year, now.Month, 1);
@@ -298,13 +273,11 @@ namespace UI.Inventory
                      if (diffbEOMTODATE > 0)
                      {
 
-
-
                          if (BillDate == string.Empty || BillDate == "")
                          {
                              ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
                          }
-                         else if (selectvalue == 0)
+                         else if (true/*selectvalue == 0*/)
                          {
                              string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
 
@@ -528,6 +501,24 @@ namespace UI.Inventory
         protected void rdbOTType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void SetUnitName(int enrol)
+        {
+            //bll.getUnitNamebyEnrol(369116).Rows[0][""].ToString();
+            lblUnitName.Text = bll.GetUnitName(enrol).Rows[0]["strUnit"].ToString();
+            hdUnitId.Value = bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString();
+        }
+        public int GetUnitID(int enrol)
+        {
+            return Int32.Parse(bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
+        }
+        public void LoadJobStationDropDown(int unitId)
+        {
+            ddlJobStation.DataSource = bll.GetJobStation(unitId);
+            ddlJobStation.DataValueField = "intEmployeeJobStationId";
+            ddlJobStation.DataTextField = "strJobStationName";
+            ddlJobStation.DataBind();
         }
 
        

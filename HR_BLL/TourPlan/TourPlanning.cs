@@ -857,7 +857,36 @@ namespace HR_BLL.TourPlan
             entryId = id.ToString();
         }
 
+        public DataTable GetUnitName(int userId)
+        {
+            try
+            {
+                sprGetUnitTableAdapter adp = new sprGetUnitTableAdapter();
+                return adp.GetUnitName(userId);
 
+            }
+
+            catch
+            {
+                return new DataTable();
+
+            }
+        }
+        public DataTable GetJobStation(int unitId)
+        {
+            try
+            {
+                sprGetJobStationTableAdapter adp = new sprGetJobStationTableAdapter();
+                return adp.GetJobStation(unitId);
+
+            }
+
+            catch
+            {
+                return new DataTable();
+
+            }
+        }
 
 
 

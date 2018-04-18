@@ -13,38 +13,48 @@
 
 
 
-
    <script>
        function GetTimeSpan() {
+           var defaultDate = "1/1/1970 ";
            var end = document.getElementById('txtend').value;
            var start = document.getElementById('txtstrt').value;
-           var dur = document.getElementById('txtMovDuration').value;
-
-           if (document.getElementById('r2').checked) {
-             var  rate_value = document.getElementById('r2').value;
-           }
-
-           if (rate_value == 1) {
-               document.getElementById("txtMovDuration").innerText = 0;
-           }
-           else {
-
-
-
-
-               var subtract = parseFloat(end) + (-parseFloat(start));
-               if (subtract > 0) {
-                   var date1 = new Date();
-                   var datediff = date1.getTime() / (1000 * 3600 * 24);
-
-                   document.getElementById("txtMovDuration").innerText = subtract;
-               }
-
-               else {
-                   document.getElementById("txtMovDuration").innerText = 24 + (-parseFloat(start)) + parseFloat(end);
-               }
-           }
+           console.log("start " + start);
+           console.log("End " + end);
+           var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
+           console.log("Diff " + difference);
+           document.getElementById("txtMovDuration").innerText = difference;
+           $('#txtMovDuration').val(difference);
        }
+       //function GetTimeSpan() {
+       //    var end = document.getElementById('txtend').value;
+       //    var start = document.getElementById('txtstrt').value;
+       //    var dur = document.getElementById('txtMovDuration').value;
+
+       //    if (document.getElementById('r2').checked) {
+       //        var rate_value = document.getElementById('r2').value;
+       //    }
+
+       //    if (rate_value == 1) {
+       //        document.getElementById("txtMovDuration").innerText = 0;
+       //    }
+       //    else {
+
+
+
+
+       //        var subtract = parseFloat(end) + (-parseFloat(start));
+       //        if (subtract > 0) {
+       //            var date1 = new Date();
+       //            var datediff = date1.getTime() / (1000 * 3600 * 24);
+
+       //            document.getElementById("txtMovDuration").innerText = subtract;
+       //        }
+
+       //        else {
+       //            document.getElementById("txtMovDuration").innerText = 24 + (-parseFloat(start)) + parseFloat(end);
+       //        }
+       //    }
+       //}
     </script>
  
 
@@ -55,6 +65,7 @@
          $(document).ready(function () {
              SearchText();
          });
+
          function Changed() {
              document.getElementById('hdfSearchBoxTextChange').value = 'true';
          }
@@ -101,17 +112,28 @@
 <%--=========================================Start My Code From Here===============================================--%>
 
          <div class="leaveApplication_container"> 
-    <div class="tabs_container"> Overtime entry (Driver & Office Assistants) :<asp:HiddenField ID="hdnApplicantEnrol" runat="server"/>
-        <asp:HiddenField ID="hdnstation" runat="server"/><asp:HiddenField ID="hdnsearch" runat="server"/><asp:HiddenField ID="HiddenField1" runat="server"/><asp:HiddenField ID="HiddenField3" runat="server"/>
-        <asp:HiddenField ID="ApproverEnrol" runat="server"/><asp:HiddenField ID="hdnAreamanagerEnrol" runat="server"/><asp:HiddenField ID="hdnAction" runat="server"/>
+    <div class="tabs_container"> Overtime entry (Driver & Office Assistants) :
         
-        <asp:HiddenField ID="HiddenUnit" runat="server"/><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" /><asp:HiddenField ID="hdnmiute" runat="server" />
+        <asp:HiddenField ID="hdUnitId" runat="server"/>
+
+        <asp:HiddenField ID="hdnApplicantEnrol" runat="server"/>
+        <asp:HiddenField ID="hdnstation" runat="server"/>
+        <asp:HiddenField ID="hdnsearch" runat="server"/>
+        <asp:HiddenField ID="HiddenField1" runat="server"/>
+        <asp:HiddenField ID="HiddenField3" runat="server"/>
+        <asp:HiddenField ID="ApproverEnrol" runat="server"/>
+        <asp:HiddenField ID="hdnAreamanagerEnrol" runat="server"/>
+        <asp:HiddenField ID="hdnAction" runat="server"/>
+        <asp:HiddenField ID="HiddenUnit" runat="server"/>
+        <asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
+        <asp:HiddenField ID="hdnmiute" runat="server" />
        
         <hr /></div>
         <table border="0"; style="width:Auto"; >   
               <tr class="tblroweven">
-                   <td style="text-align:right;"><asp:Label ID="lblOvertimeType" CssClass="lbl" runat="server" BackColor="#ffcc00" Font-Bold="true" Text="OT Less than 1 Hour:  "></asp:Label><span style="color:red">*</span></td>
-                   <td>
+                   <td style="text-align:right;">
+                       <asp:Label ID="lbl1" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
+                   </td>
                       <%-- <asp:RadioButtonList ID="rdbOTType" runat="server" OnSelectedIndexChanged="rdbOTType_SelectedIndexChanged"
                     RepeatDirection="Horizontal" AutoPostBack="true">
                     <asp:ListItem Text="No"  Selected="True" Value="0"></asp:ListItem>
@@ -119,16 +141,20 @@
                    checked="checked" 
                     </asp:RadioButtonList></td>--%>
 
-                       <input type="radio" id="r1" name="rate" checked="checked"  value="0"> No
+<%--                       <input type="radio" id="r1" name="rate" checked="checked"  value="0"> No
 
-                       <input type="radio" id="r2" name="rate" value="1"> Yes
-
+                       <input type="radio" id="r2" name="rate" value="1"> Yes--%>
+                       <td>
+                           <asp:Label ID="lblUnitName" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
                        </td>
                    
-                         <td style="text-align:right"><asp:Label ID="lblMinute"  CssClass="lbl" Visible="false" runat="server" Text="Minute "  ></asp:Label></td>
-                    <td> <asp:TextBox ID="txtMinute"  AutoPostBack="false"  Visible="false"  runat="server"  TextMode="Number"    CssClass="txtBox" ></asp:TextBox></td>      
+                         <td style="text-align:right">
+                             <asp:Label ID="lblJobStation"  CssClass="lbl" runat="server" Text="Job Station Name"  ></asp:Label>
+                         </td>
+                    <td>
+                        <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" ></asp:DropDownList>
+                    </td>      
 
-                     
               </tr>
              
              <tr class="tblroweven">
@@ -142,7 +168,7 @@
             <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="End-Time : "></asp:Label></td>
                     <td><asp:TextBox ID="txtend" runat="server" CssClass="txtBox" onchange="GetTimeSpan()"></asp:TextBox><script>$('#txtend').timepicker();</script></td> 
                     <td style="text-align:right"><asp:Label ID="lblTotalMovementDuraion"  CssClass="lbl" runat="server" Text="Movement.D (Hour) "  ></asp:Label></td>
-                    <td> <asp:TextBox ID="txtMovDuration"  AutoPostBack="false"   runat="server"  TextMode="Number" Enabled="false"   CssClass="txtBox" ></asp:TextBox></td>      
+                    <td> <asp:TextBox ID="txtMovDuration"  AutoPostBack="false"   runat="server"  Enabled="false"   CssClass="txtBox" ></asp:TextBox></td>      
               </tr>
                    <tr class="tblrowodd">
             <td style="text-align:right;"><asp:Label ID="lblfullname" CssClass="lbl" runat="server"  Text="Employee Name: "></asp:Label></td>
