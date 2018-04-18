@@ -261,47 +261,6 @@
     <Content Include="Asset\Vehicle_Bill_Detalis_PopUp.aspx" />
     <Content Include="Asset\Vehicle_Maintenance_Bill.aspx" />
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
-    <Content Include="bin\AjaxControlToolkit.dll" />
-    <Content Include="bin\AkijFTPConnector.dll" />
-    <Content Include="bin\BLL.dll" />
-    <Content Include="bin\Budget_BLL.dll" />
-    <Content Include="bin\Budget_DAL.dll" />
-    <Content Include="bin\Dairy_BLL.dll" />
-    <Content Include="bin\Dairy_DAL.dll" />
-    <Content Include="bin\DAL.dll" />
-    <Content Include="bin\EnvDTE.xml" />
-    <Content Include="bin\EnvDTE80.xml" />
-    <Content Include="bin\GLOBAL_BLL.dll" />
-    <Content Include="bin\HR_BLL.dll" />
-    <Content Include="bin\HR_DAL.dll" />
-    <Content Include="bin\LOGIS_BLL.dll" />
-    <Content Include="bin\LOGIS_DAL.dll" />
-    <Content Include="bin\MessagingToolkit.QRCode.dll" />
-    <Content Include="bin\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
-    <Content Include="bin\Microsoft.Exchange.WebServices.dll" />
-    <Content Include="bin\Microsoft.Office.Interop.Excel.dll" />
-    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
-    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Projects_BLL.dll" />
-    <Content Include="bin\Projects_DAL.dll" />
-    <Content Include="bin\Purchase_BLL.dll" />
-    <Content Include="bin\Purchase_DAL.dll" />
-    <Content Include="bin\SAD_BLL.dll" />
-    <Content Include="bin\SAD_DAL.dll" />
-    <Content Include="bin\SCM_BLL.dll" />
-    <Content Include="bin\SCM_DAL.dll" />
-    <Content Include="bin\ScriptReferenceProfiler.dll" />
-    <Content Include="bin\Support_BLL.dll" />
-    <Content Include="bin\Support_DAL.dll" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\Telerik.Web.UI.dll" />
-    <Content Include="bin\TimePicker.dll" />
-    <Content Include="bin\UI.dll" />
-    <Content Include="bin\UserRole.dll" />
-    <Content Include="bin\UserSecurity.dll" />
-    <Content Include="bin\WebGrease.dll" />
-    <Content Include="bin\XPSParser.dll" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
@@ -1225,6 +1184,7 @@
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -1233,6 +1193,7 @@
     <Content Include="SCM\IndentStatusDetalis.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
+    <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
     <Content Include="SCM\PoDetalisView.aspx" />
@@ -1244,6 +1205,7 @@
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
+    <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
@@ -1256,19 +1218,6 @@
     <Content Include="SessionExpired.aspx" />
     <Content Include="Shop\OrderEntry.aspx" />
     <Content Include="Slide.aspx" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Support\CertificateReceive.aspx" />
     <Content Include="Support\CertificateReceiveDeliveryReport.aspx" />
     <Content Include="Support\POSupport.aspx" />
@@ -5647,6 +5596,13 @@
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\DeliveryReturn.aspx.cs">
+      <DependentUpon>DeliveryReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\DeliveryReturn.aspx.designer.cs">
+      <DependentUpon>DeliveryReturn.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5688,6 +5644,13 @@
     </Compile>
     <Compile Include="SCM\IssueItemByRequesitionDetalis.aspx.designer.cs">
       <DependentUpon>IssueItemByRequesitionDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueReturn.aspx.cs">
+      <DependentUpon>IssueReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueReturn.aspx.designer.cs">
+      <DependentUpon>IssueReturn.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PO.aspx.cs">
       <DependentUpon>PO.aspx</DependentUpon>
@@ -5765,6 +5728,13 @@
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.designer.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PurchaseReturn.aspx.cs">
+      <DependentUpon>PurchaseReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PurchaseReturn.aspx.designer.cs">
+      <DependentUpon>PurchaseReturn.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
@@ -5906,7 +5876,6 @@
     <Compile Include="Slide.aspx.designer.cs">
       <DependentUpon>Slide.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Support\CertificateReceive.aspx.cs">
       <DependentUpon>CertificateReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6597,24 +6566,6 @@
     <Folder Include="AEFPS\Data\" />
     <Folder Include="Asset\Data\" />
     <Folder Include="Asset\Uploads\" />
-    <Folder Include="bin\ar\" />
-    <Folder Include="bin\cs\" />
-    <Folder Include="bin\de\" />
-    <Folder Include="bin\es\" />
-    <Folder Include="bin\fr\" />
-    <Folder Include="bin\he\" />
-    <Folder Include="bin\hi\" />
-    <Folder Include="bin\it\" />
-    <Folder Include="bin\ja\" />
-    <Folder Include="bin\ko\" />
-    <Folder Include="bin\nl\" />
-    <Folder Include="bin\pt\" />
-    <Folder Include="bin\ru\" />
-    <Folder Include="bin\SqlServerTypes\x64\" />
-    <Folder Include="bin\SqlServerTypes\x86\" />
-    <Folder Include="bin\tr-TR\" />
-    <Folder Include="bin\zh-CHS\" />
-    <Folder Include="bin\zh-CHT\" />
     <Folder Include="BudgetPlan\Data\" />
     <Folder Include="Content\Bundle\" />
     <Folder Include="Dairy\Data\" />

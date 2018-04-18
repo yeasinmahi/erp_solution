@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -108,9 +107,7 @@ namespace UI.SCM
                     xmlString = "<issue>" + xmlString + "</issue>";
                     try { File.Delete(filePathForXMLPo); } catch { }
                     string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
-                    string[] searchKey = Regex.Split(msg, ":");
-                    lblPo.Text = "Po Number: " + searchKey[1].ToString();
-                    if (msg.Length>5)
+                    if(msg.Length>5)
                     {
                         try { File.Delete(filePathForXML); } catch { }
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);

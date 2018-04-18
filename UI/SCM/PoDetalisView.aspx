@@ -125,7 +125,7 @@
                        <td></td>
                    </tr>
                  <tr> 
-                     <td><asp:Label ID="lblPurchaseOrderNo" runat="server" Text="Purchase Order No:"></asp:Label><asp:Label ID="lblpoNo" Font-Bold="true" Font-Size="Medium" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="true"   runat="server"></asp:Label></td>
+                     <td><asp:Label ID="lblPurchaseOrderNo" runat="server" Text="Purchase Order No:"></asp:Label><asp:Label ID="lblpoNo" Font-Bold="true" Font-Size="Small" runat="server"></asp:Label><asp:Label ID="lblspace" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="true"   runat="server"></asp:Label></td>
                      <td><asp:TextBox ID="txtPoNumbers" runat="server" CssClass="txtBox" Visible="false" PlaceHolder="PO" Width="50px" /></td><td><asp:Button ID="btnPoShowByView" Visible="false" CssClass="btnButton"    runat="server" Text="Show" OnClick="btnPoShowByView_Click" /></td>
                      <td><asp:Button ID="btnExport" Text="E-mail" runat="server" UseSubmitBehavior="false"  OnClick="ExportToImage" OnClientClick="return ConvertToImage(this)" /></td>
                      <td><asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false"  OnClick="btnDownload_Click" OnClientClick="return ConvertToImageDownload(this)" /></td>
