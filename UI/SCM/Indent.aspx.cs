@@ -91,7 +91,7 @@ namespace UI.SCM
                 string purpose = txtPurpose.Text.ToString();
                 string qcby = ddlQcPersonal.SelectedValue.ToString();
                 dt = objIndent.DataView(5, xmlunit, intWh, reqId, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0 && int.Parse(ddlType.SelectedValue)>0)
                 {
                     for (int i = 0; dt.Rows.Count > i; i++)
                     {
@@ -363,26 +363,33 @@ namespace UI.SCM
         {
             try
             {
-               
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                XmlDocument doc = new XmlDocument();
-                intWh = int.Parse(ddlWH.SelectedValue);
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<voucher>" + xmlString + "</voucher>";
-                DateTime dtedate = DateTime.Parse(txtDueDate.Text.ToString());
-                try { File.Delete(filePathForXML); } catch { }
-                if (xmlString.Length > 5)
+              if(  int.Parse(ddlType.SelectedValue) > 0)
                 {
-                    string mrtg = objIndent.IndentEntry(6, xmlString, intWh,0, dtedate, enroll);
-                    string[] searchKey = Regex.Split(mrtg, ":");
-                    lblIndentNo.Text = "Indent Number: " + searchKey[1].ToString();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
-                    dgvIndent.DataSource = "";
-                    dgvIndent.DataBind();
+                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    XmlDocument doc = new XmlDocument();
+                    intWh = int.Parse(ddlWH.SelectedValue);
+                    doc.Load(filePathForXML);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    xmlString = dSftTm.InnerXml;
+                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                    DateTime dtedate = DateTime.Parse(txtDueDate.Text.ToString());
+                    try { File.Delete(filePathForXML); } catch { }
+                    if (xmlString.Length > 5)
+                    {
+                        string mrtg = objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, enroll);
+                        string[] searchKey = Regex.Split(mrtg, ":");
+                        lblIndentNo.Text = "Indent Number: " + searchKey[1].ToString();
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
+                        dgvIndent.DataSource = "";
+                        dgvIndent.DataBind();
 
+                    }
                 }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Indent Type');", true);
+                }
+                
             }
             catch { try { File.Delete(filePathForXML); } catch { } }
 
