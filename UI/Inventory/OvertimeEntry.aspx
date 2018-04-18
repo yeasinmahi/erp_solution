@@ -130,7 +130,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblfullname" CssClass="lbl" runat="server" Text="Employee Name: "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtFullName" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="True"></asp:TextBox>
+                                <asp:TextBox ID="txtFullName" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="True" OnTextChanged=""></asp:TextBox>
                                 <span style="color: red">*</span> </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblEnrol" CssClass="lbl" runat="server" Text="Code: "></asp:Label>
