@@ -102,5 +102,23 @@ namespace Purchase_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetSupplier(int intProgramType)
+        {
+            SupplierTableAdapter adp = new SupplierTableAdapter();
+            try
+            {
+                return adp.GetSupplier(intProgramType);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetProgramName(int intUnitID, int intProgramType)
+        {
+            ProgramDetailsTableAdapter adp = new ProgramDetailsTableAdapter();
+            try
+            {
+                return adp.GetProgramName(intUnitID, intProgramType);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }
