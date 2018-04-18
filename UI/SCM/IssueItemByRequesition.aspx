@@ -126,7 +126,7 @@
              
              <asp:TemplateField HeaderText="Section"   ItemStyle-HorizontalAlign="right" SortExpression="strSectionName" >
             <ItemTemplate><asp:Label ID="lblSection" runat="server"  Text='<%# Bind("strSectionName") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" Width="130px" />  </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="Right" Width="200px" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="DeptId" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="intDeptID" >
             <ItemTemplate><asp:Label ID="lblDeptID" runat="server"  Text='<%# Bind("intDeptID") %>'></asp:Label></ItemTemplate>

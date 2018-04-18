@@ -152,6 +152,23 @@ SELECT intUnitID, strUnit FROM tblUnit WHERE (intUnitID = @intUnitID)</CommandTe
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTableSearchPOUserTableAdapter" GeneratorDataComponentClassName="DataTableSearchPOUserTableAdapter" Name="DataTableSearchPOUser" UserDataComponentName="DataTableSearchPOUserTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPoUserData" GetMethodModifier="Public" GetMethodName="GetPoUserData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetPoUserData" UserSourceName="GetPoUserData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT e.strEmployeeName , e.intEmployeeID FROM ERP_Inventory.dbo.tblWearHouseOperator us JOIN ERP_HR.dbo.tblEmployee e ON us.intEnrollment=e.intEmployeeID WHERE us.ysnPO =1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -220,6 +237,20 @@ SELECT intUnitID, strUnit FROM tblUnit WHERE (intUnitID = @intUnitID)</CommandTe
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTableSearchPOUser" msprop:Generator_TableClassName="DataTableSearchPOUserDataTable" msprop:Generator_TableVarName="tableDataTableSearchPOUser" msprop:Generator_RowChangedName="DataTableSearchPOUserRowChanged" msprop:Generator_TablePropName="DataTableSearchPOUser" msprop:Generator_RowDeletingName="DataTableSearchPOUserRowDeleting" msprop:Generator_RowChangingName="DataTableSearchPOUserRowChanging" msprop:Generator_RowEvHandlerName="DataTableSearchPOUserRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableSearchPOUserRowDeleted" msprop:Generator_RowClassName="DataTableSearchPOUserRow" msprop:Generator_UserTableName="DataTableSearchPOUser" msprop:Generator_RowEvArgName="DataTableSearchPOUserRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

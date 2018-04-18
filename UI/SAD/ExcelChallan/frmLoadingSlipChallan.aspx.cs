@@ -90,7 +90,7 @@ namespace UI.SAD.ExcelChallan
                 CustType = Convert.ToInt32(hdnCustType.Value.ToString());                 
                 totalBalance = ((decimal.Parse(balance.ToString())));
 
-                if (decimal.Parse(hdnAmount.Value) < totalBalance)
+                if (decimal.Parse(hdnAmount.Value) > totalBalance)
                   {
                     intDisPointId = int.Parse("0".ToString());
                     bool ysnDO2 = false;

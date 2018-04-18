@@ -1185,6 +1185,7 @@
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -1193,6 +1194,7 @@
     <Content Include="SCM\IndentStatusDetalis.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
+    <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
     <Content Include="SCM\PoDetalisView.aspx" />
@@ -1204,6 +1206,7 @@
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
+    <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
@@ -1260,6 +1263,7 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\ItemAdd.aspx" />
     <Content Include="Wastage\ItemReceive.aspx" />
     <Content Include="Wastage\Sales.aspx" />
@@ -5600,6 +5604,13 @@
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\DeliveryReturn.aspx.cs">
+      <DependentUpon>DeliveryReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\DeliveryReturn.aspx.designer.cs">
+      <DependentUpon>DeliveryReturn.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5641,6 +5652,13 @@
     </Compile>
     <Compile Include="SCM\IssueItemByRequesitionDetalis.aspx.designer.cs">
       <DependentUpon>IssueItemByRequesitionDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueReturn.aspx.cs">
+      <DependentUpon>IssueReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueReturn.aspx.designer.cs">
+      <DependentUpon>IssueReturn.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PO.aspx.cs">
       <DependentUpon>PO.aspx</DependentUpon>
@@ -5718,6 +5736,13 @@
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.designer.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PurchaseReturn.aspx.cs">
+      <DependentUpon>PurchaseReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PurchaseReturn.aspx.designer.cs">
+      <DependentUpon>PurchaseReturn.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
@@ -6376,6 +6401,13 @@
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransportYearlyCostDetaills.aspx.designer.cs">
       <DependentUpon>TransportYearlyCostDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wastage\frmAdjustment.aspx.cs">
+      <DependentUpon>frmAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wastage\frmAdjustment.aspx.designer.cs">
+      <DependentUpon>frmAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wastage\ItemAdd.aspx.cs">
       <DependentUpon>ItemAdd.aspx</DependentUpon>

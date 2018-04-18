@@ -81,7 +81,7 @@ namespace UI.SCM
                 Label lblReqId = row.FindControl("lblReqId") as Label;
                 int ReqId = int.Parse(lblReqId.Text);
                 intwh = int.Parse(ddlWH.SelectedValue); 
-                    
+                  
 
                 char[] delimiterChars = { ',' };
                 string temp = ((Button)sender).CommandArgument.ToString();

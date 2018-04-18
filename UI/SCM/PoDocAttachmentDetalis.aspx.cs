@@ -16,11 +16,15 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh; string dfile; 
+        int enroll, intWh; string dfile;
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
-            {   
+            {
+                 
                 string unit = Request.QueryString["unit"].ToString();
                 string PoId = Request.QueryString["PoId"].ToString();
                 string BillAmount = Request.QueryString["BillAmount"].ToString();
@@ -43,7 +47,8 @@ namespace UI.SCM
                 dt = objPo.GetPoData(28, "", 0, BillId, DateTime.Now, enroll);
                 dgvDocument.DataSource = dt; 
                 dgvDocument.DataBind();
-                 
+
+
             }
             else
             {

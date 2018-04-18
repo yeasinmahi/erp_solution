@@ -152,8 +152,17 @@
         <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton" OnClick="btnPoNoShow_Click" />
         </td>  
         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By Po User"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlPoUser" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
-        <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList>
+        <td style="text-align:left;">
+         <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"   ></asp:TextBox>
+                <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtPoUser"
+                ServiceMethod="GetPoUserSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                </cc1:AutoCompleteExtender> 
+            
+            
+            <%--<asp:DropDownList ID="ddlPoUser" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
+        <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList>--%>
         <asp:Button ID="btnPoUserShow" runat="server" Text="Show" OnClick="btnPoUserShow_Click"   />
         </td> 
       </tr> 

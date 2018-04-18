@@ -150,7 +150,7 @@
                         <tr>
                         <td>Challan/BOL</td>
                         <td><asp:TextBox ID="txtChallan" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                        <td style="text-align:right">Challan Date</td>
+                        <td>Challan Date</td>
                        <td style="text-align:left;"><asp:TextBox ID="txtdteChallan" Width="300px"  runat="server"  CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteChallan"></cc1:CalendarExtender> 
                         </td>
@@ -160,9 +160,8 @@
                         <tr>
                         <td>Vat Amount</td>
                         <td><asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                       
-                        <td style="text-align:right"><asp:TextBox ID="txtMrrNo" runat="server" PlaceHolder="MRR No"></asp:TextBox></td> <td><asp:FileUpload ID="docUpload" Width="300px" runat="server" /></td>
-                         <td style="text-align:right"   ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+
+                         <td style="text-align:right"  colspan="4" ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save Mrr" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
 
                        
                         </tr>
@@ -208,66 +207,45 @@
                         <ItemTemplate><asp:Label ID="lblDescription" runat="server"  Text='<%# Bind("strDes") %>'  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="300px" /></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom" > 
+                        <asp:TemplateField HeaderText="Uom" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom" > 
                         <ItemTemplate><asp:Label ID="lblUom" runat="server"  Text='<%# Bind("strUom") %>'  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px"/></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="PO Qty" ItemStyle-HorizontalAlign="right" SortExpression="numPoQty" > 
-                        <ItemTemplate><asp:Label ID="lblPoQty" runat="server"   Text='<%# Bind("numPoQty","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <asp:TemplateField HeaderText="Po Qty" ItemStyle-HorizontalAlign="right" SortExpression="numPoQty" > 
+                        <ItemTemplate><asp:Label ID="lblPoQty" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numPoQty") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monRate" > 
-                        <ItemTemplate><asp:Label ID="lblRate"  Width="50px" runat="server"  Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField>  
                             
                         <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue" > 
-                        <ItemTemplate><asp:Label ID="lblValue" runat="server"    Text='<%# Bind("monValue","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblValue" runat="server"  DataFormatString="{0:0.00}"  Text='<%# Bind("monValue" ) %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px"/></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monVat" > 
                         <ItemTemplate><asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monVat" ) %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" /> </asp:TemplateField>  
 
-                        <asp:TemplateField HeaderText="QC Passed" ItemStyle-HorizontalAlign="right" SortExpression="numQcQty" > 
-                        <ItemTemplate><asp:Label ID="lblQcPassedQty" runat="server"    Text='<%# Bind("numQcQty","{0:n2}") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
-
                         <asp:TemplateField HeaderText="Previous Receive" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreRecvQty" > 
-                        <ItemTemplate><asp:Label ID="lblPreviousReceive" runat="server"   Text='<%# Bind("monPreRecvQty","{0:n2}" ) %>'  ></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblPreviousReceive" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monPreRecvQty" ) %>'  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" /></asp:TemplateField> 
 
                          <asp:TemplateField HeaderText="YsnQC" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="ysnNeedQc" > 
                         <ItemTemplate><asp:Label ID="lblYsnQc" runat="server"   Text='<%# Bind("ysnNeedQc") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
 
-                       
+                        <asp:TemplateField HeaderText="QC Passed" ItemStyle-HorizontalAlign="right" SortExpression="numQcQty" > 
+                        <ItemTemplate><asp:Label ID="lblQcPassedQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("numQcQty") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
  
-                       
+                        <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monRate" > 
+                        <ItemTemplate><asp:Label ID="lblRate"  Width="50px" runat="server"  Text='<%# Bind("monRate") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Receive Qty" ItemStyle-HorizontalAlign="right" SortExpression="RecQty" > 
                         <ItemTemplate><asp:TextBox ID="txtReceiveQty" CssClass="txtBox" Width="60px" runat="server"  Text='<%# Bind("RecQty") %>'></asp:TextBox></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="MRR Value" ItemStyle-HorizontalAlign="right" > 
+                        <asp:TemplateField HeaderText="Mrr Value" ItemStyle-HorizontalAlign="right" > 
                         <ItemTemplate><asp:Label ID="lblMrrValue"   Width="50px" runat="server"  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Batch no" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:TextBox ID="txtBatchNo"   Width="50px" runat="server"  ></asp:TextBox></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
-                       
-                        <asp:TemplateField HeaderText="Expire Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtExpireDate" runat="server" Width="100px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtExpireDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
-                         
-                        <asp:TemplateField HeaderText="Manufacturing Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtManufacturingDate" runat="server" Width="100px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender5" runat="server"   Format="yyyy-MM-dd" TargetControlID="txtManufacturingDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
-                            
 
                         <asp:TemplateField HeaderText="Store Location" ItemStyle-HorizontalAlign="right" SortExpression="strLocationName" > 
                         <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server"  CssClass="ddlList"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
