@@ -75,7 +75,7 @@
             <ItemStyle HorizontalAlign="Left" Width="70px"/><FooterTemplate><div style="padding:0 0 5px 0"><asp:Label ID="lbl" Width="100px"  runat="server" Text="Grand-Total :" /></div>
             </FooterTemplate></asp:TemplateField> 
                            
-            <asp:BoundField DataField="intItemID" HeaderText="line" ReadOnly="True" SortExpression="strline"/>
+            <asp:BoundField DataField="strline" HeaderText="line" ReadOnly="True" SortExpression="strline"/>
             <asp:BoundField DataField="strregion" HeaderText="Region" ReadOnly="True" SortExpression="strregion"/>
             <asp:BoundField DataField="strarea" HeaderText="Area" ReadOnly="True" SortExpression="strarea"/>
             <asp:BoundField DataField="strTerritory" HeaderText="Territory" ReadOnly="True" SortExpression="strTerritory"/>

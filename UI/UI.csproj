@@ -1313,6 +1313,7 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\ItemAdd.aspx" />
     <Content Include="Wastage\ItemReceive.aspx" />
     <Content Include="Wastage\Sales.aspx" />
@@ -6423,6 +6424,13 @@
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransportYearlyCostDetaills.aspx.designer.cs">
       <DependentUpon>TransportYearlyCostDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wastage\frmAdjustment.aspx.cs">
+      <DependentUpon>frmAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wastage\frmAdjustment.aspx.designer.cs">
+      <DependentUpon>frmAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wastage\ItemAdd.aspx.cs">
       <DependentUpon>ItemAdd.aspx</DependentUpon>
