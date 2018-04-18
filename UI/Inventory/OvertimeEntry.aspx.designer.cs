@@ -94,6 +94,15 @@ namespace UI.Inventory {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
+        /// hdUnitId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdUnitId;
+        
+        /// <summary>
         /// hdnApplicantEnrol control.
         /// </summary>
         /// <remarks>
@@ -193,31 +202,40 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.HiddenField hdnmiute;
         
         /// <summary>
-        /// lblOvertimeType control.
+        /// lbl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOvertimeType;
+        protected global::System.Web.UI.WebControls.Label lbl1;
         
         /// <summary>
-        /// lblMinute control.
+        /// lblUnitName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMinute;
+        protected global::System.Web.UI.WebControls.Label lblUnitName;
         
         /// <summary>
-        /// txtMinute control.
+        /// lblJobStation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMinute;
+        protected global::System.Web.UI.WebControls.Label lblJobStation;
+        
+        /// <summary>
+        /// ddlJobStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobStation;
         
         /// <summary>
         /// lblFromDate control.

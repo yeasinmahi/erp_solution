@@ -697,9 +697,9 @@
       <DependentUpon>MediaTDS.xsd</DependentUpon>
     </None>
     <None Include="MediaTDS.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>MediaTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="MediaTDS.xss">
       <DependentUpon>MediaTDS.xsd</DependentUpon>
