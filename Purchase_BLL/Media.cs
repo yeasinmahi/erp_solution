@@ -120,5 +120,14 @@ namespace Purchase_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetPOlist(int intUnitID, DateTime dteDate, int intCustID)
+        {
+            POCollectionTableAdapter adp = new POCollectionTableAdapter();
+            try
+            {
+                return adp.GetPOList(intUnitID, dteDate, intCustID);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

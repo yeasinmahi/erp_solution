@@ -13,7 +13,7 @@ namespace UI.MedialManagement
     public partial class ProgramScheduleEntry : System.Web.UI.Page
     {
         DataTable dt; Media bll = new Media();
-        int intEnroll, intProgramType, intUnitID;
+        int intEnroll, intProgramType, intUnitID, intCustID; DateTime dteDate;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -109,6 +109,25 @@ namespace UI.MedialManagement
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlSupplierName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadPOList();
+        }
+
+        private void LoadPOList()
+        {
+            try
+            {
+                dt = new DataTable();
+                dt = bll.GetPOlist(intUnitID, dteDate, intCustID);
+                ddlPO.DataSource = dt;
+                ddlPO.DataTextField = "intPOID";
+                ddlPO.DataValueField = "strPODate";
+                ddlPO.DataBind();
+            }
+            catch { }
         }
 
         protected void ddlProgramType_SelectedIndexChanged(object sender, EventArgs e)
