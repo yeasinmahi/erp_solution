@@ -21,6 +21,19 @@
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/CSS/Gridstyle.css" rel="stylesheet" />
     
+    <script language="javascript" type="text/javascript">        
+
+        function onlyNumbers(evt) {
+            var e = event || evt; // for trans-browser compatibility
+            var charCode = e.which || e.keyCode;
+
+            if ((charCode > 57))
+                return false;
+            return true;
+        }    
+        
+
+    </script>
     
 </head>
 <body>
@@ -40,13 +53,21 @@
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" /><asp:HiddenField ID="hdnPOAmount" runat="server" />
     <asp:HiddenField ID="hdnSupplierID" runat="server" /> <asp:HiddenField ID="hdnJobStaion" runat="server" />      
     <div class="divbody" style="padding-right:10px;">
-        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> Wood Type Wise Report<hr /></div>
+        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> Entry<hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
-            <tr><td colspan="4" style="text-align:center"><asp:Label ID="lblWH" runat="server" CssClass="label" Text="Weare House :"></asp:Label>
-            <asp:DropDownList ID="ddlWHList" runat="server" CssClass="ddList" width="220px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWHList_SelectedIndexChanged"></asp:DropDownList></td></tr>
-            
-            
+            <tr><td style="text-align:right"><asp:Label ID="lblUnit" runat="server" CssClass="label" Text="Unit :"></asp:Label></td>
+            <td style="text-align:left"><asp:DropDownList ID="ddlUnit" runat="server" CssClass="ddList" width="220px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged" ></asp:DropDownList></td>
+            <td style="text-align:right"><asp:Label ID="lblEntryType" runat="server" CssClass="label" Text="Entry Type :"></asp:Label></td>
+            <td style="text-align:left"><asp:DropDownList ID="ddlEntryType" runat="server" CssClass="ddList" Width="220px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlEntryType_SelectedIndexChanged"><asp:ListItem Selected="True" Value="1">Program Type</asp:ListItem>
+                <asp:ListItem Value="2">Brand Type</asp:ListItem><asp:ListItem Value="3">Brand</asp:ListItem><asp:ListItem Value="4">Program</asp:ListItem></asp:DropDownList></td>
+            </tr>
             <tr>
+                <td style="text-align:right"><asp:Label ID="lblBrandType" runat="server" CssClass="label"></asp:Label></td>
+                <td style="text-align:left"><asp:DropDownList ID="ddlBrandType" runat="server" CssClass="ddList" Width="220px" height="23px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td style="text-align:right"><asp:Label ID="lblBrandName" runat="server" Text="Brand Name :" CssClass="label"></asp:Label></td>
+                <td style="text-align:left"><asp:DropDownList ID="ddlBrandName" runat="server" CssClass="ddList" Width="220px" height="23px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+            </tr>
+            <%--<tr>
                 
                 <td style="text-align:right;"><asp:Label ID="lblFromDate" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
                 <td style="text-align:left;"><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox>
@@ -55,62 +76,17 @@
                 <td style="text-align:right;"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
                 <td style="text-align:left;"><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
-            </tr>
+            </tr>--%>
             
             <tr>
-                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" Width="100px" OnClick="btnShow_Click"/></td>        
+                <td style="text-align:right"><asp:Label ID="lblEntryName" runat="server" CssClass="label"></asp:Label></td>
+                <td style="text-align:left"><asp:TextBox ID="txtEntry" runat="server" Width="220px" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
+                <td style="text-align:right"><asp:Label ID="lblDuration" runat="server" CssClass="label" Text="Duration (sec):"></asp:Label></td>
+                <td style="text-align:left"><asp:TextBox ID="txtDuration" runat="server" Width="220px" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             </tr>
             <tr>
-            <td colspan="6">
-                <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-                BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvReport_RowDataBound">
-                <AlternatingRowStyle BackColor="White" />
-
-            <Columns>
-                        
-            <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
-            <ItemTemplate><asp:Label ID="lblSupplier" runat="server" Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Wood Type" SortExpression="strWoodType">
-            <ItemTemplate><asp:Label ID="lblType" runat="server" Text='<%# Bind("strWoodType") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Total Weight" SortExpression="numTotalWeight">
-            <ItemTemplate><asp:Label ID="lblTWeight" runat="server" Text='<%# (decimal.Parse(""+Eval("numTotalWeight", "{0:n}"))) %>'></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" />
-            </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Deduction" SortExpression="numDeduction">
-            <ItemTemplate><asp:Label ID="lblDeduction" runat="server" Text='<%# (decimal.Parse(""+Eval("numDeduction", "{0:n}"))) %>'></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right"/>
-            </asp:TemplateField>            
-
-            <asp:TemplateField HeaderText="Net Weight" SortExpression="numNetWeight">
-            <ItemTemplate><asp:Label ID="lblNetWeight" runat="server" Text='<%# (decimal.Parse(""+Eval("numNetWeight", "{0:n}"))) %>'></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" />
-            </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Total Amount" SortExpression="monReceAmount">
-            <ItemTemplate><asp:Label ID="lblTAmount" runat="server" Text='<%# (decimal.Parse(""+Eval("monReceAmount", "{0:n}"))) %>'></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right"/>
-            </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Unloading Bill" SortExpression="monUnLoadingBill">
-            <ItemTemplate><asp:Label ID="lblUnloading" runat="server" Text='<%# (decimal.Parse(""+Eval("monUnLoadingBill", "{0:n}"))) %>'></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right"/>
-            </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Net Payble" SortExpression="monNetPayable">
-            <ItemTemplate><asp:Label ID="lblNetPayable" runat="server" Text='<%# (decimal.Parse(""+Eval("monNetPayable", "{0:n}"))) %>'></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right"/>
-            </asp:TemplateField>
-            
-            </Columns>
-            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-            </asp:GridView></td>
-            </tr>           
+                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click" /></td>        
+            </tr>
         </table>
     </div>
   
