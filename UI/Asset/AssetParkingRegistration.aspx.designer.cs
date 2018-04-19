@@ -157,6 +157,33 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Label Label47;
         
         /// <summary>
+        /// lblMrr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMrr;
+        
+        /// <summary>
+        /// txtMrrId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMrrId;
+        
+        /// <summary>
+        /// btnMrrView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMrrView;
+        
+        /// <summary>
         /// btnManual control.
         /// </summary>
         /// <remarks>
