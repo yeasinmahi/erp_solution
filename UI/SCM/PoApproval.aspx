@@ -192,7 +192,7 @@
                  <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="PO Amount" ItemStyle-HorizontalAlign="right" SortExpression="monPOTotal" >
-                <ItemTemplate><asp:Label ID="lblPoTotal" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblPoTotal" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
                   <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
             
                 <asp:TemplateField HeaderText="Currency" ItemStyle-HorizontalAlign="right" SortExpression="strCurrencyName" >
