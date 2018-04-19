@@ -17,7 +17,7 @@ namespace UI.SCM
     {
         MrrReceive_BLL obj = new MrrReceive_BLL();
         DataTable dt = new DataTable();
-        string xmlString = "",filePathForXML,strMssingCost, challanNo, strVatChallan,poIssueBy;
+        string xmlString = "",filePathForXML,strMssingCost, challanNo, strVatChallan,poIssueBy, expireDate, manufactureDate;
         int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
         decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate; 
         DateTime dteChallan; 
@@ -74,12 +74,24 @@ namespace UI.SCM
             }
             catch { }
         }
-
+        protected void Mrr_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)e.Row;
+            HiddenField hfLocationID = (HiddenField)gvRow.FindControl("hdnPreviLocationId");
+            if (hfLocationID != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    DropDownList ddlLocation = (DropDownList)gvRow.FindControl("ddlStoreLocation");
+                    ddlLocation.SelectedValue = hfLocationID.Value;
+                }
+            }
+        }
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             try
             {  try { File.Delete(filePathForXML);  } catch { }
-               
+              
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString()=="1")
                 {
                     intWh = int.Parse(ddlWH.SelectedValue.ToString());
@@ -110,10 +122,12 @@ namespace UI.SCM
                         string remarks = ((TextBox)dgvMrr.Rows[index].FindControl("txtRemarks")).Text.ToString(); 
                         string ysnQc = ((Label)dgvMrr.Rows[index].FindControl("lblYsnQc")).Text.ToString();
                         string numQcQty=((Label)dgvMrr.Rows[index].FindControl("lblQcPassedQty")).Text.ToString();
-                      
-
+                        string batchNo= ((TextBox)dgvMrr.Rows[index].FindControl("txtBatchNo")).Text.ToString();  
+                        try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text.ToString())); expireDate = dteExp.ToString(); } catch { expireDate = null; }
+                        try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text.ToString())); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
+                       
                         if (decimal.Parse(numRcvQty)>0 && int.Parse(location)>0 && monRate>0)
-                        {
+                        {                           
                             //if (ysnQc.ToString() == "0")
                             //{
                             //    if (Double.Parse(numPreRcvQty) + Double.Parse(numRcvQty) > (Double.Parse(numPOQty)) * 1.1)
@@ -133,8 +147,7 @@ namespace UI.SCM
                             //    }
                             //}
 
-
-                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOther.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy);
+                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOther.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate,manufactureDate);
                         }
                        
                     
@@ -157,14 +170,14 @@ namespace UI.SCM
             catch { try { File.Delete(filePathForXML); } catch { } }
         }
 
-        private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks,string monRate,string poIssueBy)
+        private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks,string monRate,string poIssueBy, string batchNo,string expireDate,string manufactureDate)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -172,7 +185,7 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -180,7 +193,7 @@ namespace UI.SCM
            
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks,string monRate,string poIssueBy)
+        private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks,string monRate,string poIssueBy, string batchNo,string expireDate, string manufactureDate)
         {
             XmlNode node = doc.CreateElement("mrrEntry");
 
@@ -230,8 +243,16 @@ namespace UI.SCM
             MonRate.Value = monRate;
             XmlAttribute PoIssueBy = doc.CreateAttribute("poIssueBy");
             PoIssueBy.Value = poIssueBy;
-             
 
+            XmlAttribute BatchNo = doc.CreateAttribute("batchNo");
+            BatchNo.Value = batchNo;
+
+            XmlAttribute ExpireDate = doc.CreateAttribute("expireDate");
+            ExpireDate.Value = expireDate;
+            XmlAttribute ManufactureDate = doc.CreateAttribute("manufactureDate");
+            ManufactureDate.Value = manufactureDate;
+
+           
 
             node.Attributes.Append(IntPOID);
             node.Attributes.Append(IntSupplierID);
@@ -258,6 +279,11 @@ namespace UI.SCM
 
             node.Attributes.Append(MonRate);
             node.Attributes.Append(PoIssueBy);
+
+            node.Attributes.Append(BatchNo);
+            node.Attributes.Append(ExpireDate);
+            node.Attributes.Append(ManufactureDate);
+
 
             return node;
         }

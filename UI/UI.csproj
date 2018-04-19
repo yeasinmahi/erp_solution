@@ -226,6 +226,7 @@
     <Content Include="Asset\AssetAccountsConfigure.aspx" />
     <Content Include="Asset\AssetBarcodeGenearator.aspx" />
     <Content Include="Asset\AssetCheckInOut.aspx" />
+    <Content Include="Asset\AssetCheckInOutReport.aspx" />
     <Content Include="Asset\AssetCheckReceive.aspx" />
     <Content Include="Asset\AssetCOAConfigure_UI.aspx" />
     <Content Include="Asset\AssetDebitCreditSetup.aspx" />
@@ -265,6 +266,7 @@
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
@@ -316,7 +318,13 @@
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.DataVisualization.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.Design.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.ProcessingObjectModel.DLL" />
+    <Content Include="Libray\Microsoft.ReportViewer.WebDesign.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="Libray\Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="Libray\Microsoft.Web.Infrastructure.dll" />
     <Content Include="Libray\QRCoder.dll" />
     <Content Include="Libray\ScriptReferenceProfiler.dll" />
@@ -1907,6 +1915,13 @@
     </Compile>
     <Compile Include="Asset\AssetCheckInOut.aspx.designer.cs">
       <DependentUpon>AssetCheckInOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\AssetCheckInOutReport.aspx.cs">
+      <DependentUpon>AssetCheckInOutReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\AssetCheckInOutReport.aspx.designer.cs">
+      <DependentUpon>AssetCheckInOutReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\AssetCheckReceive.aspx.cs">
       <DependentUpon>AssetCheckReceive.aspx</DependentUpon>
