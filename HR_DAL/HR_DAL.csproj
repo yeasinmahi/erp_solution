@@ -501,6 +501,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TeamAndShiftInformationTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TourPlan\TourPlanningTDS.cs">
+      <DependentUpon>TourPlanningTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TourPlan\TourPlanningTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

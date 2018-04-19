@@ -94,102 +94,19 @@ namespace UI.Inventory
         protected void btnShow_Click(object sender, EventArgs e)
         {
             rptTypeid = int.Parse(ddlReportType.SelectedValue.ToString());
-            
-            if (rptTypeid == 2)               //Ware house base stock status
+
+
+
+            if (rptTypeid == 1021)               //grdvSinglePointAllotmentVsRcvCompare
             {
 
                 try
                 {
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtDueDate.Text).Value;
-                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-
-                    string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-
-                    int enr = int.Parse(hdnenrol);
+                    DateTime dteFromDate = DateTime.Parse(txtDueDate.Text);
+                    DateTime dteToDate = DateTime.Parse(txtToDate.Text);
                     string Unit = (drdlUnitName.SelectedValue.ToString());
-                    int unit = int.Parse(Unit);
-                    string whid = (ddlWH.SelectedValue.ToString());
-                    int whidd = int.Parse(whid);
-                    dt = bll.GetBrandItemWHBaseStockTopSheet(whidd, unit);
-
-                }
-
-                catch { }
-
-                if (dt.Rows.Count > 0)
-                {
-                    grdvBrandItemWHBaseTopsheet.DataSource = dt;
-                    grdvBrandItemWHBaseTopsheet.DataBind();
-                }
-
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                }
-
-
-            }
-
-
-            else if (rptTypeid == 1)               //Ware house base stock status
-            {
-               
-                try
-                {
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtDueDate.Text).Value;
-                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-                    string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                    int enr = int.Parse(hdnenrol);
-                    string Unit = (drdlUnitName.SelectedValue.ToString());
-                    int unit = int.Parse(Unit);
-                    string whid = (ddlWH.SelectedValue.ToString());
-                    int whidd = int.Parse(whid);
-                    dt = bll.GetBrandItemREPORT(1, 0, unit, whidd, dteFromDate, dteToDate);
-
-                }
-
-                catch { }
-
-                if (dt.Rows.Count > 0)
-                {
-                    
-                grdvBrandItemWHBaseTopsheet.DataSource = null;
-                grdvBrandItemWHBaseTopsheet.DataBind();
-                grdvRptFromRequisitionToUserRecv.DataSource = null;
-                grdvRptFromRequisitionToUserRecv.DataBind();
-                grdvRptForACLEmailsendtoSupplier.DataSource = null;
-                grdvRptForACLEmailsendtoSupplier.DataBind();
-                grdvAllpointRcvCompare.DataSource = null;
-                grdvAllpointRcvCompare.DataBind();
-                grdvSinglePointAllotmentVsRcvCompare.DataSource = null;
-                grdvSinglePointAllotmentVsRcvCompare.DataBind();
-                grdvVheicleStatusMonitoring.DataSource = dt;
-                grdvVheicleStatusMonitoring.DataBind();
-                }
-
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                }
-
-
-            }
-
-
-            else if (rptTypeid == 5)               //from Requistion to user Recv overall status
-            {
-
-                try
-                {
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtDueDate.Text).Value;
-                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-                    string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                    int enr = int.Parse(hdnenrol);
-                    string Unit = (drdlUnitName.SelectedValue.ToString());
-                    int unit = int.Parse(Unit);
-                    string whid = (ddlWH.SelectedValue.ToString());
-                    int whidd = int.Parse(whid);
-                    dt = bll.GetBrandItemREPORT(5, 0, unit, whidd, dteFromDate, dteToDate);
+                    dt = bll.GetBrandItemSTockstatusHorizontallay(dteFromDate, dteToDate, "0", Unit, "1021");
+                   
 
                 }
 
@@ -198,18 +115,13 @@ namespace UI.Inventory
                 if (dt.Rows.Count > 0)
                 {
 
-                    grdvBrandItemWHBaseTopsheet.DataSource = null;
-                    grdvBrandItemWHBaseTopsheet.DataBind();
-                    grdvVheicleStatusMonitoring.DataSource = null;
-                    grdvVheicleStatusMonitoring.DataBind();
-                    grdvRptForACLEmailsendtoSupplier.DataSource = null;
-                    grdvRptForACLEmailsendtoSupplier.DataBind();
-                    grdvAllpointRcvCompare.DataSource = null;
-                    grdvAllpointRcvCompare.DataBind();
-                    grdvSinglePointAllotmentVsRcvCompare.DataSource = null;
-                    grdvSinglePointAllotmentVsRcvCompare.DataBind();
-                    grdvRptFromRequisitionToUserRecv.DataSource = dt;
-                    grdvRptFromRequisitionToUserRecv.DataBind();
+                    grdvBrandItemChallan.DataSource = null;
+                    grdvBrandItemChallan.DataBind();
+                    grdvReceiveChallan.DataSource = null;
+                    grdvReceiveChallan.DataBind();
+
+                    grdvStockStatusHorizontaly.DataSource = dt;
+                    grdvStockStatusHorizontaly.DataBind();
                 }
 
                 else
@@ -219,63 +131,49 @@ namespace UI.Inventory
 
             }
 
-            else if (rptTypeid == 1019)               //from Requistion to user Recv overall status
-            {
-
-                try
+              if (rptTypeid == 1022)               //grdvSinglePointAllotmentVsRcvCompare
                 {
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtDueDate.Text).Value;
-                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-                    string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                    int enr = int.Parse(hdnenrol);
-                    string Unit = (drdlUnitName.SelectedValue.ToString());
-                    int unit = int.Parse(Unit);
-                    string whid = (ddlWH.SelectedValue.ToString());
-                    int whidd = int.Parse(whid);
-                    dt = bll.GetBrandItemREPORT(6, 0, unit, whidd, dteFromDate, dteToDate);
 
+                    try
+                    {
+                        DateTime dteFromDate = DateTime.Parse(txtDueDate.Text);
+                        DateTime dteToDate = DateTime.Parse(txtToDate.Text);
+                        string Unit = (drdlUnitName.SelectedValue.ToString());
+                        dt = bll.GetBrandItemChallanstatusHorizontallay(dteFromDate, dteToDate, "0", Unit, "1022");
+                       
                 }
 
-                catch { }
+                    catch { }
 
-                if (dt.Rows.Count > 0)
-                {
+                    if (dt.Rows.Count > 0)
+                    {
+                    grdvStockStatusHorizontaly.DataSource = null;
+                    grdvStockStatusHorizontaly.DataBind();
+                    grdvReceiveChallan.DataSource = null;
+                    grdvReceiveChallan.DataBind();
 
-                    grdvBrandItemWHBaseTopsheet.DataSource = null;
-                    grdvBrandItemWHBaseTopsheet.DataBind();
-                    grdvVheicleStatusMonitoring.DataSource = null;
-                    grdvVheicleStatusMonitoring.DataBind();
-                    grdvRptFromRequisitionToUserRecv.DataSource = null;
-                    grdvRptFromRequisitionToUserRecv.DataBind();
-                    grdvAllpointRcvCompare.DataSource = null;
-                    grdvAllpointRcvCompare.DataBind();
-                    grdvSinglePointAllotmentVsRcvCompare.DataSource = null;
-                    grdvSinglePointAllotmentVsRcvCompare.DataBind();
-                    grdvRptForACLEmailsendtoSupplier.DataSource = dt;
-                    grdvRptForACLEmailsendtoSupplier.DataBind();
+                    grdvBrandItemChallan.DataSource = dt;
+                    grdvBrandItemChallan.DataBind();
+
+
                 }
 
                 else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    }
+
                 }
 
-            }
-
-            else if (rptTypeid == 1020)               //grdvAllpointRcvCompare
+            if (rptTypeid == 1023)               //grdvSinglePointAllotmentVsRcvCompare
             {
 
                 try
                 {
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtDueDate.Text).Value;
-                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-                    string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                    int enr = int.Parse(hdnenrol);
+                    DateTime dteFromDate = DateTime.Parse(txtDueDate.Text);
+                    DateTime dteToDate = DateTime.Parse(txtToDate.Text);
                     string Unit = (drdlUnitName.SelectedValue.ToString());
-                    int unit = int.Parse(Unit);
-                    string whid = (ddlWH.SelectedValue.ToString());
-                    int whidd = int.Parse(whid);
-                    dt = bll.GetBrandItemREPORT(7, 0, unit, whidd, dteFromDate, dteToDate);
+                    dt = bll.GetBrandItemReceiveStatusHorizontallay(dteFromDate, dteToDate, "0", Unit, "1023");
 
                 }
 
@@ -283,62 +181,13 @@ namespace UI.Inventory
 
                 if (dt.Rows.Count > 0)
                 {
+                    grdvStockStatusHorizontaly.DataSource = null;
+                    grdvStockStatusHorizontaly.DataBind();
+                    grdvBrandItemChallan.DataSource = null;
+                    grdvBrandItemChallan.DataBind();
+                    grdvReceiveChallan.DataSource = dt;
+                    grdvReceiveChallan.DataBind();
 
-                    grdvBrandItemWHBaseTopsheet.DataSource = null;
-                    grdvBrandItemWHBaseTopsheet.DataBind();
-                    grdvVheicleStatusMonitoring.DataSource = null;
-                    grdvVheicleStatusMonitoring.DataBind();
-                    grdvRptFromRequisitionToUserRecv.DataSource = null;
-                    grdvRptFromRequisitionToUserRecv.DataBind();
-                    grdvRptForACLEmailsendtoSupplier.DataSource = null;
-                    grdvRptForACLEmailsendtoSupplier.DataBind();
-                    grdvSinglePointAllotmentVsRcvCompare.DataSource = null;
-                    grdvSinglePointAllotmentVsRcvCompare.DataBind();
-                    grdvAllpointRcvCompare.DataSource = dt;
-                    grdvAllpointRcvCompare.DataBind();
-                }
-
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                }
-
-            }
-
-            else if (rptTypeid == 1021)               //grdvSinglePointAllotmentVsRcvCompare
-            {
-
-                try
-                {
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtDueDate.Text).Value;
-                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-                    string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                    int enr = int.Parse(hdnenrol);
-                    string Unit = (drdlUnitName.SelectedValue.ToString());
-                    int unit = int.Parse(Unit);
-                    string directpointid = (drdlPointNamelist.SelectedValue.ToString());
-                    int dpointid= int.Parse(directpointid);
-                    dt = bll.GetBrandItemREPORT(8, enr, unit, dpointid, dteFromDate, dteToDate);
-
-                }
-
-                catch { }
-
-                if (dt.Rows.Count > 0)
-                {
-
-                    grdvBrandItemWHBaseTopsheet.DataSource = null;
-                    grdvBrandItemWHBaseTopsheet.DataBind();
-                    grdvVheicleStatusMonitoring.DataSource = null;
-                    grdvVheicleStatusMonitoring.DataBind();
-                    grdvRptFromRequisitionToUserRecv.DataSource = null;
-                    grdvRptFromRequisitionToUserRecv.DataBind();
-                    grdvRptForACLEmailsendtoSupplier.DataSource = null;
-                    grdvRptForACLEmailsendtoSupplier.DataBind();
-                    grdvAllpointRcvCompare.DataSource = null;
-                    grdvAllpointRcvCompare.DataBind();
-                    grdvSinglePointAllotmentVsRcvCompare.DataSource = dt;
-                    grdvSinglePointAllotmentVsRcvCompare.DataBind();
                 }
 
                 else

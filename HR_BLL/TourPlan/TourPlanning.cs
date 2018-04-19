@@ -888,7 +888,35 @@ namespace HR_BLL.TourPlan
             }
         }
 
+        public DataTable GetBrandItemSTockstatusHorizontallay(DateTime from, DateTime to, string line, string unit, string type)
+        {
+            try
+            {
+                SprBrandItemInventoryProductH1TableAdapter ta = new SprBrandItemInventoryProductH1TableAdapter();
+                return ta.GetDataBrandItemInventoryProductH(from, to, int.Parse(line), int.Parse(unit), int.Parse(type));
+            }
+            catch { return new DataTable(); }
+        }
 
+        public DataTable GetBrandItemChallanstatusHorizontallay(DateTime from, DateTime to, string line, string unit, string type)
+        {
+            try
+            {
+                SprBrandItemChallanProductHTableAdapter ta = new SprBrandItemChallanProductHTableAdapter();
+                return ta.GetDataBrandItemChallanProductH(from, to, int.Parse(line), int.Parse(unit), int.Parse(type));
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetBrandItemReceiveStatusHorizontallay(DateTime from, DateTime to, string line, string unit, string type)
+        {
+            try
+            {
+                SprBrandItemReceiveProductHTableAdapter ta = new SprBrandItemReceiveProductHTableAdapter();
+                return ta.GetDataBrandItemReceiveProductH(from, to, int.Parse(line), int.Parse(unit), int.Parse(type));
+            }
+            catch { return new DataTable(); }
+        }
 
     }
 }
