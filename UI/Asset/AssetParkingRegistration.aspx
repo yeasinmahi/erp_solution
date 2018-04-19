@@ -166,7 +166,7 @@
                <tr>
                    <td style="text-align:right;"><asp:Label ID="lblMrr" Text="MRR Number"  runat="server"></asp:Label></td>
                    <td>  <asp:TextBox ID="txtMrrId" runat="server" CssClass="txtBox"></asp:TextBox>
-                     <asp:Button ID="btnMrrView" runat="server"  Font-Bold="true"  Text="Show"   />
+                     <asp:Button ID="btnMrrView" runat="server"  Font-Bold="true" onclick="btnMrrView_Click" Text="Show"   />
                     <asp:Button ID="btnManual" runat="server" Visible="true"  Text="Manual Registration" OnClick="btnManual_Click"  /></td>
                   
                </tr>
