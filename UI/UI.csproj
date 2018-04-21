@@ -1158,6 +1158,9 @@
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
+    <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
+    <Content Include="SCM\MrrStatement.aspx" />
+    <Content Include="SCM\MrrStatementDetalis.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
     <Content Include="SCM\PoDetalisView.aspx" />
@@ -5636,6 +5639,27 @@
     </Compile>
     <Compile Include="SCM\IssueReturn.aspx.designer.cs">
       <DependentUpon>IssueReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
+      <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.designer.cs">
+      <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MrrStatement.aspx.cs">
+      <DependentUpon>MrrStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MrrStatement.aspx.designer.cs">
+      <DependentUpon>MrrStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MrrStatementDetalis.aspx.cs">
+      <DependentUpon>MrrStatementDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MrrStatementDetalis.aspx.designer.cs">
+      <DependentUpon>MrrStatementDetalis.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PO.aspx.cs">
       <DependentUpon>PO.aspx</DependentUpon>
