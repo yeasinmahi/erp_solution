@@ -112,4 +112,45 @@
 
 
 
+.btnCustomer,
+label1.choose1:before {
+    background: none repeat scroll 0 0 #99CBFE;
+    border: 1 none;
+    color: #010101;
+    cursor: pointer;
+    font - family: 'Altis_Book';
+    font - size: 50px;
+    padding: 3px 15px;
+    Font-Size: 20px;
+    font-weight:900px;
+}
+
+label1.choose1:before {
+    content: 'Choose file';
+    padding: 9px 18px;
+    position: absolute;
+}
+
+.btnSupport,
+label.choose:before {
+    background: none repeat scroll 0 0 #C1C1C1;
+    border: 1 none;
+    color: #010101;
+    cursor: pointer;
+    font - family: 'Altis_Book';
+    font - size: 50px;
+    padding: 3px 15px;
+    Font-Size: 20px;
+    font-weight: 900px;
+}
+
+label.choose:before {
+    content: 'Choose file';
+    padding: 9px 18px;
+    position: absolute;
+}
+
+.span {
+    
+}
 

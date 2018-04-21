@@ -33,6 +33,9 @@
         function ViewMRRDetailsPopup(Id) {
             window.open('MRRDetailsView.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
+        function ViewPriceListPopup(Id) {
+            window.open('PreviousPrice.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
 
     </script>
     
@@ -278,7 +281,7 @@
                                 </tr> 
                             </table>
                         </td>
-                        <%--<td>        
+                        <td style="vertical-align:top">        
                             <table style="vertical-align:top">
                                 <tr><td style="vertical-align:top">VOUCHER LIST<hr /></td></tr>
                                 <tr>
@@ -286,7 +289,7 @@
                                     <asp:GridView ID="dgvVoucherList" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
                                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvVoucherList_RowCommand">
+                                    ForeColor="Black" GridLines="Vertical">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />    
                                     <Columns>
                             
@@ -294,9 +297,9 @@
                                     <ItemTemplate><asp:Label ID="lblVoucherS" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
                                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                                    <%--<asp:TemplateField HeaderText="Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                     <ItemTemplate><asp:Button ID="btnShowVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="VoucherS"  
-                                    Text="Show"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                                    Text="Show"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>
 
                                     </Columns>
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -305,7 +308,7 @@
                                     </td>
                                 </tr> 
                             </table>
-                        </td>--%>
+                        </td>
                     </tr>
                 </table>
             </td></tr>

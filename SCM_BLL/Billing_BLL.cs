@@ -164,8 +164,42 @@ namespace SCM_BLL
             { return adp.GetDocLByMRRID(intMRRID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetVoucherByBillID(int intBillID)
+        {
+            SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
+            try
+            { return adp.GetVoucherByBillID(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPriceListByItemID(int intItemID)
+        {
+            GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
+            try
+            { return adp.GetPriceListByItemID(intItemID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPriceChart(int intItemID)
+        {
+            GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
+            try
+            { return adp.GetPriceChart(intItemID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetChartOfPrice(int intItemID)
+        {
+            TblSupplier_PriceChartTableAdapter adp = new TblSupplier_PriceChartTableAdapter();
+            try
+            { return adp.GetChartOfPrice(intItemID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
         
+
+
+
+
+
+
 
 
 
