@@ -47,7 +47,7 @@ namespace UI.Inventory
         {
             TourPlanning objbll = new TourPlanning(); DataTable dt = new DataTable();
             List<string> result = new List<string>();
-            result = objbll.getBrandItemNameforReqs(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefix);
+            result = objbll.getBrandItemNameforReqs(int.Parse("13"), prefix);
             return result;
 
         }
@@ -57,7 +57,7 @@ namespace UI.Inventory
         {
             TourPlanning objbll = new TourPlanning(); DataTable dt = new DataTable();
             List<string> result = new List<string>();
-            result = objbll.getBrandItemNameWithstockstatus(int.Parse(HttpContext.Current.Session["WareID"].ToString()), prefix);
+            result = objbll.getBrandItemNameWithstockstatus(int.Parse("12"), prefix);
             return result;
 
         }
@@ -73,7 +73,7 @@ namespace UI.Inventory
         {
             TourPlanning objbll = new TourPlanning(); DataTable dt = new DataTable();
             List<string> result = new List<string>();
-            result = objbll.getBrandItemSupplierList(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefix);
+            result = objbll.getBrandItemSupplierList(int.Parse("13"), prefix);
             return result;
         }
 
