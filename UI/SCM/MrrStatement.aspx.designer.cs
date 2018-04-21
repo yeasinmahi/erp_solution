@@ -193,13 +193,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtDteFrom;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// CalendarExtender9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender9;
         
         /// <summary>
         /// lbldteTo control.
@@ -220,13 +220,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtdteTo;
         
         /// <summary>
-        /// CalendarExtender2 control.
+        /// CalendarExtender6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender6;
         
         /// <summary>
         /// Label3 control.

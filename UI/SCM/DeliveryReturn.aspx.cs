@@ -45,7 +45,8 @@ namespace UI.SCM
                 dt = objPo.GetPoData(31, "", intWh, poId, DateTime.Now, enroll);
                 dgvDelivery.DataSource = dt;
                 dgvDelivery.DataBind();
-            } catch { }
+            }
+            catch { }
            
         }
 
@@ -73,10 +74,7 @@ namespace UI.SCM
                         string msg = objPo.PoApprove(32, xmlData, intWh, poid, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         getDataBind();
-                    }
-
-
-
+                    } 
                 }
 
             }

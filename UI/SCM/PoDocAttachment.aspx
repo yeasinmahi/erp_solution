@@ -22,43 +22,8 @@
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
      
-  <script type="text/javascript">
-         $("[id*=chkHeader]").live("click", function () {
-             var chkHeader = $(this);
-             var grid = $(this).closest("table");
-             $("input[type=checkbox]", grid).each(function () {
-                 if (chkHeader.is(":checked")) {
-                     $(this).attr("checked", "checked");
-                     $("td", $(this).closest("tr")).addClass("selected");
-                 } else {
-                     $(this).removeAttr("checked");
-                     $("td", $(this).closest("tr")).removeClass("selected");
-                 }
-             });
-         });
-         $("[id*=chkRow]").live("click", function () {
-             var grid = $(this).closest("table");
-             var chkHeader = $("[id*=chkHeader]", grid);
-             if (!$(this).is(":checked")) {
-                 $("td", $(this).closest("tr")).removeClass("selected");
-                 chkHeader.removeAttr("checked");
-             } else {
-                 $("td", $(this).closest("tr")).addClass("selected");
-                 if ($("[id*=chkRow]", grid).length == $("[id*=chkRow]:checked", grid).length) {
-                     chkHeader.attr("checked", "checked");
-                 }
-             }
-         });
-         function OpenHdnDiv() {
-             $("#hdnDivision").fadeIn("slow");
-             document.getElementById('hdnDivision').style.visibility = 'visible';
-         }
-
-         function ClosehdnDivision() {
-
-             $("#hdnDivision").fadeOut("slow");
-         }
-</script>
+   
+ 
 
     <script type="text/javascript"> 
         function funConfirmAll() { 
@@ -72,7 +37,7 @@
 
    <script>
         function Viewdetails(unit, PoId, BillAmount, BillId, BillCode) {
-            window.open('PoDocAttachmentDetalis.aspx?unit=' + unit + '&PoId=' + PoId + '&BillAmount=' + BillAmount + '&BillId=' + BillId + '&BillCode=' + BillCode , 'sub', "scrollbars=yes,toolbar=0,height=500,width=700,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+            window.open('PoDocAttachmentDetalis.aspx?unit=' + unit + '&PoId=' + PoId + '&BillAmount=' + BillAmount + '&BillId=' + BillId + '&BillCode=' + BillCode , 'sub', "scrollbars=yes,toolbar=0,height=500,width=900,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
         }
     </script>
     <style type="text/css"> 
@@ -146,12 +111,12 @@
         <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="PO Issuer"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlPoUser" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
         </asp:DropDownList>
-        <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton"  />
+        <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton" OnClick="btnPoUserShow_Click"  />
         </td>  
         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Suppliyer"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlSupplier" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
           </asp:DropDownList>
-        <asp:Button ID="btnPoUserShow" runat="server" Text="Show" OnClick="btnPoUserShow_Click"     />
+        <asp:Button ID="btnPoSuppShow" runat="server" Text="Show" OnClick="btnPoSuppShow_Click"     />
         </td> 
       </tr> 
        </table>

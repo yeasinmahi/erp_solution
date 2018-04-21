@@ -50,9 +50,7 @@ function Viewdetails(id) {
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"><table border="0"; style="width:Auto"; >
-    <tr><td colspan="2" class="tblheader">Store Requisition Entry :<asp:HiddenField ID="hdnsearch" runat="server"/><asp:HiddenField ID="hdnpoint" runat="server" /><asp:HiddenField ID="hdnunit" runat="server" /></td><asp:HiddenField ID="hdnEnroll" runat="server"/>
-        <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Requisition By : "></asp:Label></td>
-        <td><asp:TextBox ID="txtEnroll" runat="server" CssClass="txtBox"></asp:TextBox></td>
+    <tr><td colspan="2" class="tblheader">Store Requisition Entry :<asp:HiddenField ID="hdnsearch" runat="server"/><asp:HiddenField ID="hdnpoint" runat="server" /><asp:HiddenField ID="hdnunit" runat="server" /></td><asp:HiddenField ID="hdnEnroll" runat="server"/>        
     </tr>
     <tr class="tblrowodd"> 
     <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Ware House : "></asp:Label><asp:HiddenField ID="hdntype" runat="server"/></td>

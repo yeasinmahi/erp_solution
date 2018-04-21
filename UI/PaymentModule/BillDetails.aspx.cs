@@ -173,8 +173,9 @@ namespace UI.PaymentModule
 
                 try
                 {
-                    //strStatus = (row.FindControl("lblAppStatus") as Label).Text;
-
+                    Session["itemname"] = (row.FindControl("lblItemName") as Label).Text;
+                    string strItemID = (row.FindControl("lblItemID") as Label).Text;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPriceListPopup('" + strItemID + "');", true);
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }

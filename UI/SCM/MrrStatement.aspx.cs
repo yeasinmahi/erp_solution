@@ -36,6 +36,24 @@ namespace UI.SCM
 
         }
 
+        protected void btnAttachment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer; 
+                Label lblMrrId = row.FindControl("lblMrrId") as Label;
+
+                string MrrId = lblMrrId.Text;
+
+                Session["MrrID"] = lblMrrId;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DocViewdetails('" + MrrId + "');", true); 
+
+            }
+            catch { }
+
+        }
+
         protected void btnStatement_Click(object sender, EventArgs e)
         {
             try

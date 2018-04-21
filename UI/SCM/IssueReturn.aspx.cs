@@ -17,7 +17,7 @@ namespace UI.SCM
         StoreIssue_BLL objIssue = new StoreIssue_BLL();
         Location_BLL objOperation = new Location_BLL();
         DataTable dt = new DataTable();
-        int enroll, intwh;string xmlData; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        int enroll, intwh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -39,17 +39,23 @@ namespace UI.SCM
         {
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intwh = int.Parse(ddlWH.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-                string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                dt = objIssue.GetViewData(6, xmlData, intwh, 0, DateTime.Now, enroll);
-                dgvPoApp.DataSource = dt;
-                dgvPoApp.DataBind();
+
+                getIssueItem();
 
             }
             catch { }
+        }
+
+        private void getIssueItem()
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            intwh = int.Parse(ddlWH.SelectedValue);
+            DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
+            DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
+            string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
+            dt = objIssue.GetViewData(6, xmlData, intwh, 0, DateTime.Now, enroll);
+            dgvPoApp.DataSource = dt;
+            dgvPoApp.DataBind();
         }
 
         #region=======================Auto Search=========================
@@ -99,10 +105,8 @@ namespace UI.SCM
                     {
                         string msg = objIssue.StoreIssue(7, xmlData, intwh,int.Parse(itemid), DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    }
-                   
-
-                    
+                        getIssueItem();
+                    } 
                 }
 
             }
