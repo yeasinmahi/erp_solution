@@ -164,12 +164,16 @@
                 <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Parking Registration: "></asp:Label></td>
                 </tr>
                <tr>
-                   <td style="text-align:right;"> <asp:Button ID="btnManual" runat="server" Visible="true"  Text="Manual Registration" OnClick="btnManual_Click"  /></td>
+                   <td style="text-align:right;"><asp:Label ID="lblMrr" Text="MRR Number"  runat="server"></asp:Label></td>
+                   <td>  <asp:TextBox ID="txtMrrId" runat="server" CssClass="txtBox"></asp:TextBox>
+                     <asp:Button ID="btnMrrView" runat="server"  Font-Bold="true" onclick="btnMrrView_Click" Text="Show"   />
+                    <asp:Button ID="btnManual" runat="server" Visible="true"  Text="Manual Registration" OnClick="btnManual_Click"  /></td>
                   
                </tr>
+               
                <tr>
 
-                     <td>
+                <td colspan="2">
                <asp:GridView ID="dgvGridView" runat="server"  Font-Bold="False" AutoGenerateColumns="False">
                    <Columns>
                     <asp:TemplateField HeaderText="SL.N"> 

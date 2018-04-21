@@ -220,15 +220,6 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.DropDownList ddlReportType;
         
         /// <summary>
-        /// odsRept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsRept;
-        
-        /// <summary>
         /// lblitm control.
         /// </summary>
         /// <remarks>
@@ -434,5 +425,32 @@ namespace UI.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdvSinglePointAllotmentVsRcvCompare;
+        
+        /// <summary>
+        /// grdvStockStatusHorizontaly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvStockStatusHorizontaly;
+        
+        /// <summary>
+        /// grdvBrandItemChallan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvBrandItemChallan;
+        
+        /// <summary>
+        /// grdvReceiveChallan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvReceiveChallan;
     }
 }

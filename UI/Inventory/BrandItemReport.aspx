@@ -164,7 +164,7 @@
                  </asp:ObjectDataSource>
             </td>
                     <td style="text-align:right"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Report Type:  "></asp:Label></td>
-                                <td><asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server" DataSourceID="odsRept" DataTextField="strReportType" DataValueField="intID"></asp:DropDownList>
+                               <%-- <td><asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server" DataSourceID="odsRept" DataTextField="strReportType" DataValueField="intID"></asp:DropDownList>
                                     
                                     <asp:ObjectDataSource ID="odsRept" runat="server" InsertMethod="Insert" OldValuesParameterFormatString="original_{0}" SelectMethod="taRemoteTaDaReportType" TypeName="SAD_DAL.Customer.Report.StatementTDSTableAdapters.tblRemoteTADAReportTypeTableAdapter">
                                         <InsertParameters>
@@ -172,8 +172,22 @@
                                         </InsertParameters>
                                     </asp:ObjectDataSource>
                                     
-                </td>
+                </td>--%>
 
+                     <td><asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server">
+                         <asp:ListItem Value="2">Topsheet</asp:ListItem>
+                         <asp:ListItem Value="1">Detaills</asp:ListItem>
+                          <asp:ListItem Value="1018">Allotmetn Aprv Topsheet</asp:ListItem>
+                          <asp:ListItem Value="1019">All point Allotment vs Recv</asp:ListItem>
+                           <asp:ListItem Value="1020">Individual point Allotment vs Recv</asp:ListItem>
+                           <asp:ListItem Value="1021">Stock status at a Glance</asp:ListItem>
+                         <asp:ListItem Value="1022">Challan status at a Glance</asp:ListItem>
+                          <asp:ListItem Value="1023">Receive status at a Glance</asp:ListItem>
+                         </asp:DropDownList>
+                                    
+                                    
+                                    
+                </td>
 
                     </tr>
                     <tr>
@@ -552,6 +566,59 @@
 
 
         </div>
+
+         <div>
+             <table>
+                 <tr>
+                     <td>
+                         <asp:GridView ID="grdvStockStatusHorizontaly" runat="server" AutoGenerateColumns="true">
+
+                         </asp:GridView>
+                     </td>
+                 </tr>
+             </table>
+         </div>
+
+          <div>
+             <table>
+                 <tr>
+                     <td>
+                         <asp:GridView ID="grdvBrandItemChallan" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                             <AlternatingRowStyle BackColor="#CCCCCC" />
+                             <FooterStyle BackColor="#CCCCCC" />
+                             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                             <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                             <SortedAscendingHeaderStyle BackColor="#808080" />
+                             <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                             <SortedDescendingHeaderStyle BackColor="#383838" />
+
+                         </asp:GridView>
+                     </td>
+                 </tr>
+             </table>
+         </div>
+          <div>
+             <table>
+                 <tr>
+                     <td>
+                         <asp:GridView ID="grdvReceiveChallan" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
+                             <AlternatingRowStyle BackColor="PaleGoldenrod" />
+                             <FooterStyle BackColor="Tan" />
+                             <HeaderStyle BackColor="Tan" Font-Bold="True" />
+                             <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+                             <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+                             <SortedAscendingCellStyle BackColor="#FAFAE7" />
+                             <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+                             <SortedDescendingCellStyle BackColor="#E1DB9C" />
+                             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+
+                         </asp:GridView>
+                     </td>
+                 </tr>
+             </table>
+         </div>
 
 
         <%--=========================================End My Code From Here=================================================--%>

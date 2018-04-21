@@ -16,15 +16,11 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh; string dfile;
-
-
-
+        int enroll, intWh; string dfile, xmlData; 
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
-            {
-                 
+            {   
                 string unit = Request.QueryString["unit"].ToString();
                 string PoId = Request.QueryString["PoId"].ToString();
                 string BillAmount = Request.QueryString["BillAmount"].ToString();
@@ -47,8 +43,7 @@ namespace UI.SCM
                 dt = objPo.GetPoData(28, "", 0, BillId, DateTime.Now, enroll);
                 dgvDocument.DataSource = dt; 
                 dgvDocument.DataBind();
-
-
+                 
             }
             else
             {
@@ -66,17 +61,20 @@ namespace UI.SCM
                 string entryType = ddlFileGroup.SelectedValue.ToString();
                 string remarks = txtNote.Text.ToString();
                 string billCode= Request.QueryString["BillCode"].ToString();
+                var FileExtension = Path.GetExtension(DocUpload.PostedFile.FileName).Substring(1);
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                string xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"'+ " billCode=" + '"' + billCode + '"' + "/></voucher>".ToString();
+                xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"'+ " billCode=" + '"' + billCode + '"'+ " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
                 string msg = objPo.PoApprove(29, xmlData, 0, int.Parse(BillId), DateTime.Now, enroll);
                 int fileId = int.Parse(msg);
                 if(fileId>0)
                 {
                     dfile = fileId.ToString() + Path.GetFileName(DocUpload.PostedFile.FileName);
+                    
 
                     DocUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
                     FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
                     File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                    xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"' + " billCode=" + '"' + billCode + '"' + "/></voucher>".ToString();
 
                     string msgs = objPo.PoApprove(30, xmlData, 0, int.Parse(BillId), DateTime.Now, enroll);
 

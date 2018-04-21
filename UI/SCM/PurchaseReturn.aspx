@@ -91,12 +91,12 @@
        <table>
         <tr> 
         <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
+        <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"      ></asp:DropDownList></td>                                                                                      
          
         <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="MRR ID"></asp:Label></td>            
         <td style="text-align:left;"  ><asp:TextBox ID="txtPoNo" runat="server"  CssClass="txtBox"   ></asp:TextBox>
          
-        <asp:Button ID="btnDetalis" runat="server" Text="Detalis"  OnClick="btnDetalis_Click" /></td>
+        <asp:Button ID="btnDetalis" runat="server" Text="Detalis"    /></td>
         
         </tr>  
        </table>
@@ -147,7 +147,7 @@
                 
 
                 <asp:TemplateField HeaderText="Return">  <ItemTemplate>
-                <asp:Button ID="btnReturn" runat="server" Text="Save Return" OnClientClick="funConfirmAll();" OnClick="btnReturn_Click"  /></ItemTemplate>
+                <asp:Button ID="btnReturn" runat="server" Text="Save Return" OnClientClick="funConfirmAll();"    /></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             </Columns> 
             </asp:GridView></td> 

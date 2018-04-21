@@ -44,7 +44,7 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                dt = objIssue.GetViewData(2, xmlData, intwh, 0, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(6, xmlData, intwh, 0, DateTime.Now, enroll);
                 dgvPoApp.DataSource = dt;
                 dgvPoApp.DataBind();
 

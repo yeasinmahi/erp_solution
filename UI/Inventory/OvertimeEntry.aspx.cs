@@ -72,7 +72,25 @@ namespace UI.Inventory
             }
         }
    
+        [WebMethod]
+        public void LoadEmployeeInfo()
+        {
+            if (!String.IsNullOrEmpty(txtFullName.Text))
+            {
+                string strSearchKey = txtFullName.Text;
+                string[] searchKey = Regex.Split(strSearchKey, ",");
+                if (searchKey.Length == 2)
+                {
+                    LoadFieldValue(searchKey[1]);
+                    hdfSearchBoxTextChange.Value = "false";
+                }
 
+            }
+            else
+            {
+                //ClearControls();
+            }
+        }
         private void LoadFieldValue(string empCode)
         {
             try
