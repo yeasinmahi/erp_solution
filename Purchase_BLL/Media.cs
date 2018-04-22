@@ -129,5 +129,23 @@ namespace Purchase_BLL
             }
             catch { return new DataTable(); }
         }
+        public void InsertProgramScheduleWithoutPO(int intProgramCustID, int intProgramID, DateTime dteStartDateTime, DateTime dteEndDateTime, int intProgramCount,bool ysnScheduleOwn, int intProgramReportID, int intDuration, string strNarration, string strProgramName, int intProgramType, int intUnitID, int intHeight, int intWidth)
+        {
+            InsertProgramScheduleWPOTableAdapter adp = new InsertProgramScheduleWPOTableAdapter();
+            try
+            {
+                adp.InsertProgramScheduleWithoutPO(intProgramCustID, intProgramID, dteStartDateTime, dteEndDateTime, intProgramCount, ysnScheduleOwn, intProgramReportID, intDuration, strNarration, strProgramName, intProgramType, intUnitID, intHeight, intWidth);
+            }
+            catch { }
+        }
+        public void InsertProgramScheduleWihtPO(int intProgramCustID, int intProgramID, DateTime dteStartDateTime, DateTime dteEndDateTime, int intProgramCount, bool ysnScheduleOwn, int intProgramReportID, int intDuration, string strNarration, string strProgramName, int intProgramType, int intUnitID, int intHeight, int intWidth, int intPOID)
+        {
+            InsertProgramSchedulePOTableAdapter adp = new InsertProgramSchedulePOTableAdapter();
+            try
+            {
+                adp.InsertProgramScheduleWithPO(intProgramCustID, intProgramID, dteStartDateTime, dteEndDateTime, intProgramCount, ysnScheduleOwn, intProgramReportID, intDuration, strNarration, strProgramName, intProgramType, intUnitID, intHeight, intWidth, intPOID);
+            }
+            catch { }
+        }
     }
 }
