@@ -95,8 +95,11 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lbl1" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
                             </td>
-                            <td>
+                            <%--<td>
                                 <asp:Label ID="lblUnitName" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
+                            </td>--%>
+                            <td>
+                                <asp:DropDownList ID="ddlUnit" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color: red">*</span></td>
