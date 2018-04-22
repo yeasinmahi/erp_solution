@@ -23,13 +23,14 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            SearchText();
-            $('#txtstrt').timepicker();
-            $('#txtend').timepicker();
-            console.log("dom Ready");
-        });
-
+        function pageLoad(sender, args) {
+            $(document).ready(function () {
+                SearchText();
+                $('#txtstrt').timepicker();
+                $('#txtend').timepicker();
+                console.log("dom Ready");
+            });
+        }
         function Changed() {
             document.getElementById('hdfSearchBoxTextChange').value = 'true';
         }
@@ -94,8 +95,11 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lbl1" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
                             </td>
-                            <td>
+                            <%--<td>
                                 <asp:Label ID="lblUnitName" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
+                            </td>--%>
+                            <td>
+                                <asp:DropDownList ID="ddlUnit" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color: red">*</span></td>
@@ -130,7 +134,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblfullname" CssClass="lbl" runat="server" Text="Employee Name: "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtFullName" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="True"></asp:TextBox>
+                                <asp:TextBox ID="txtFullName" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
                                 <span style="color: red">*</span> </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblEnrol" CssClass="lbl" runat="server" Text="Code: "></asp:Label>
@@ -220,7 +224,6 @@
                         </tr>
                     </table>
                 </div>
-
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>

@@ -22,7 +22,8 @@ namespace UI.Asset
         DataTable dt = new DataTable(); 
         int unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, ponumber, userenroll, depMethode;
         decimal invoicevalue, landedcost, otherCost, accusitioncost, depRate, recommandlife, totalaccdep; 
-        DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate; 
+        DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
+         
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
 
 
@@ -32,28 +33,41 @@ namespace UI.Asset
             try { File.Delete(filePathForXMlAssetParking); }
             catch { }
             if (!IsPostBack)
-            {
-               
-
-               
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-
-                dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
-
-                dgvGridView.DataSource = dt;
-                dgvGridView.DataBind();
-
-
-
+            { 
             }
             else
             {
 
             }
+        }
+
+        protected void btnMrrView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                if(txtMrrId.Text.Length>3)
+                {
+                    dt = parking.CwipAssetView(12, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, decimal.Parse(txtMrrId.Text.ToString()), intenroll);//Parking List
+
+                    dgvGridView.DataSource = dt;
+                    dgvGridView.DataBind();
+                    dt.Clear();
+                }
+                else
+                {
+                    dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List 
+                    dgvGridView.DataSource = dt;
+                    dgvGridView.DataBind();
+                    dt.Clear();
+                }
+               
+            }
+            catch { }
         }
 
         private void LoadView()

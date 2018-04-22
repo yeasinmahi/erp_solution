@@ -68,7 +68,28 @@ namespace UI.SCM
 
       
 
+        
+
         protected void btnPoUserShow_Click(object sender, EventArgs e)
+        {
+            try {
+                int unitID = int.Parse(ddlUnit.SelectedValue);
+                string dept = ddlDept.SelectedItem.ToString();
+                string strSupp = ddlSupplier.SelectedValue.ToString();
+                enroll = int.Parse(ddlPoUser.SelectedValue);
+                DateTime dteTo = DateTime.Parse(txtdteTo.Text);
+                DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
+
+                string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
+                dt = objPo.GetPoData(34, xmlData, unitID, 0, dteFrom, enroll);
+                dgvPO.DataSource = dt;
+                dgvPO.DataBind();
+            }
+            catch { }
+
+        }
+
+        protected void btnPoSuppShow_Click(object sender, EventArgs e)
         {
             try
             {
@@ -85,7 +106,6 @@ namespace UI.SCM
                 dgvPO.DataBind();
             }
             catch { }
-            
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)

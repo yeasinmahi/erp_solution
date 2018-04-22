@@ -42,7 +42,7 @@ namespace UI.Inventory
 
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
-                catch { }
+                 catch { }
                 ////-----**----------//
             }
 

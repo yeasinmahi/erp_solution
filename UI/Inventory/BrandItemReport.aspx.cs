@@ -106,32 +106,32 @@ namespace UI.Inventory
                     DateTime dteToDate = DateTime.Parse(txtToDate.Text);
                     string Unit = (drdlUnitName.SelectedValue.ToString());
                     dt = bll.GetBrandItemSTockstatusHorizontallay(dteFromDate, dteToDate, "0", Unit, "1021");
-                   
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        grdvBrandItemChallan.DataSource = null;
+                        grdvBrandItemChallan.DataBind();
+                        grdvReceiveChallan.DataSource = null;
+                        grdvReceiveChallan.DataBind();
+
+                        grdvStockStatusHorizontaly.DataSource = dt;
+                        grdvStockStatusHorizontaly.DataBind();
+                    }
+
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    }
 
                 }
 
                 catch { }
 
-                if (dt.Rows.Count > 0)
-                {
-
-                    grdvBrandItemChallan.DataSource = null;
-                    grdvBrandItemChallan.DataBind();
-                    grdvReceiveChallan.DataSource = null;
-                    grdvReceiveChallan.DataBind();
-
-                    grdvStockStatusHorizontaly.DataSource = dt;
-                    grdvStockStatusHorizontaly.DataBind();
-                }
-
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                }
+            
 
             }
 
-              if (rptTypeid == 1022)               //grdvSinglePointAllotmentVsRcvCompare
+             else if (rptTypeid == 1022)               //grdvSinglePointAllotmentVsRcvCompare
                 {
 
                     try
@@ -140,32 +140,32 @@ namespace UI.Inventory
                         DateTime dteToDate = DateTime.Parse(txtToDate.Text);
                         string Unit = (drdlUnitName.SelectedValue.ToString());
                         dt = bll.GetBrandItemChallanstatusHorizontallay(dteFromDate, dteToDate, "0", Unit, "1022");
-                       
+                    if (dt.Rows.Count > 0)
+                    {
+                        grdvStockStatusHorizontaly.DataSource = null;
+                        grdvStockStatusHorizontaly.DataBind();
+                        grdvReceiveChallan.DataSource = null;
+                        grdvReceiveChallan.DataBind();
+
+                        grdvBrandItemChallan.DataSource = dt;
+                        grdvBrandItemChallan.DataBind();
+
+
+                    }
+
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    }
                 }
 
                     catch { }
 
-                    if (dt.Rows.Count > 0)
-                    {
-                    grdvStockStatusHorizontaly.DataSource = null;
-                    grdvStockStatusHorizontaly.DataBind();
-                    grdvReceiveChallan.DataSource = null;
-                    grdvReceiveChallan.DataBind();
-
-                    grdvBrandItemChallan.DataSource = dt;
-                    grdvBrandItemChallan.DataBind();
-
+                  
 
                 }
 
-                else
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                    }
-
-                }
-
-            if (rptTypeid == 1023)               //grdvSinglePointAllotmentVsRcvCompare
+         else   if (rptTypeid == 1023)               //grdvSinglePointAllotmentVsRcvCompare
             {
 
                 try
@@ -174,26 +174,26 @@ namespace UI.Inventory
                     DateTime dteToDate = DateTime.Parse(txtToDate.Text);
                     string Unit = (drdlUnitName.SelectedValue.ToString());
                     dt = bll.GetBrandItemReceiveStatusHorizontallay(dteFromDate, dteToDate, "0", Unit, "1023");
+                    if (dt.Rows.Count > 0)
+                    {
+                        grdvStockStatusHorizontaly.DataSource = null;
+                        grdvStockStatusHorizontaly.DataBind();
+                        grdvBrandItemChallan.DataSource = null;
+                        grdvBrandItemChallan.DataBind();
+                        grdvReceiveChallan.DataSource = dt;
+                        grdvReceiveChallan.DataBind();
 
+                    }
+
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    }
                 }
 
                 catch { }
 
-                if (dt.Rows.Count > 0)
-                {
-                    grdvStockStatusHorizontaly.DataSource = null;
-                    grdvStockStatusHorizontaly.DataBind();
-                    grdvBrandItemChallan.DataSource = null;
-                    grdvBrandItemChallan.DataBind();
-                    grdvReceiveChallan.DataSource = dt;
-                    grdvReceiveChallan.DataBind();
-
-                }
-
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                }
+             
 
             }
 
