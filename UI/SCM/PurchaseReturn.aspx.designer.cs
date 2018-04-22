@@ -148,13 +148,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label lblitm;
         
         /// <summary>
-        /// txtPoNo control.
+        /// txtMrrNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPoNo;
+        protected global::System.Web.UI.WebControls.TextBox txtMrrNo;
         
         /// <summary>
         /// btnDetalis control.
@@ -164,6 +164,15 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDetalis;
+        
+        /// <summary>
+        /// lblSupp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSupp;
         
         /// <summary>
         /// dgvDelivery control.
