@@ -543,7 +543,7 @@ namespace UI.Inventory
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int unitId = Convert.ToInt32((sender as DropDownList).ClientID);
+            int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);
             LoadJobStationDropDown(unitId);
         }
     }
