@@ -54,25 +54,10 @@ namespace UI.Inventory
 
             else
             {
-                if (!String.IsNullOrEmpty(txtFullName.Text))
-                {
-                    string strSearchKey = txtFullName.Text;
-                    string[] searchKey = Regex.Split(strSearchKey, ",");
-                    if (searchKey.Length==2)
-                    {
-                        LoadFieldValue(searchKey[1]);
-                        hdfSearchBoxTextChange.Value = "false";
-                    }
-                    
-                }
-                else
-                {
-                    //ClearControls();
-                }
+                LoadEmployeeInfo();
             }
         }
-   
-        [WebMethod]
+
         public void LoadEmployeeInfo()
         {
             if (!String.IsNullOrEmpty(txtFullName.Text))
@@ -82,8 +67,12 @@ namespace UI.Inventory
                 if (searchKey.Length == 2)
                 {
                     LoadFieldValue(searchKey[1]);
-                    hdfSearchBoxTextChange.Value = "false";
                 }
+                else
+                {
+                    return;
+                }
+                hdfSearchBoxTextChange.Value = "false";
 
             }
             else
@@ -537,6 +526,11 @@ namespace UI.Inventory
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
+        }
+
+        protected void txtFullName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
