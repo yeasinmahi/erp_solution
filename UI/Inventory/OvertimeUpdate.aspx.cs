@@ -221,7 +221,7 @@ namespace UI.Inventory
                     string df = Convert.ToString(difff.ToString());
                     string tmDifferencehms = txtMovDuration.Text;
                     string tmDifferencehmswith = tmdur.ToString();
-                     string aplenrol = txtAplicnEnrol.Text;
+                    string aplenrol = txtAplicnEnrol.Text;
                      CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms,  strstarttime, strendtime, df, aplenrol);
 
                      #region ------------ Insert into dataBase -----------

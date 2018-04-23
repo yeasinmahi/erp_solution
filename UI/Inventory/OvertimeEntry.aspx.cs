@@ -111,7 +111,7 @@ namespace UI.Inventory
              AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
              List<string> result = new List<string>();
              result = objAutoSearch_BLL.AutoSearchEmployeesData(//1399, 12, strSearchKey);
-             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()), strSearchKey);
+             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
              return result;
          }        
 
@@ -545,6 +545,12 @@ namespace UI.Inventory
         {
             int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);
             LoadJobStationDropDown(unitId);
+            ddlJobStation_SelectedIndexChanged(ddlJobStation, null);
+        }
+
+        protected void ddlJobStation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["jobStationId"] = (sender as DropDownList).SelectedValue;
         }
     }
 }

@@ -127,7 +127,7 @@
                                 <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Text="Job Station Name"></asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblrowodd">
