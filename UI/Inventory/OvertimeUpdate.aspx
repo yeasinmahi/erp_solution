@@ -8,9 +8,6 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-
-    <script src="../../../../Content/JS/datepickr.min.js"></script>
-
 <script>
     function GetTimeSpan() {
         var defaultDate = "1/1/1970 ";
@@ -24,15 +21,15 @@
         $('#txtMovDuration').val(difference);
     }
     </script>
- 
-
-    
-
-    
      <script type="text/javascript">
-         $(document).ready(function () {
-             SearchText();
-         });
+         function pageLoad(sender, args) {
+            $(document).ready(function () {
+                SearchText();
+                $('#txtstrt').timepicker();
+                $('#txtend').timepicker();
+                console.log("dom Ready");
+            });
+        }
          function Changed() {
              document.getElementById('hdfSearchBoxTextChange').value = 'true';
          }
