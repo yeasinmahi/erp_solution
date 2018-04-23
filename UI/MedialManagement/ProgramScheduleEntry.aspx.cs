@@ -13,7 +13,10 @@ namespace UI.MedialManagement
     public partial class ProgramScheduleEntry : System.Web.UI.Page
     {
         DataTable dt; Media bll = new Media();
-        int intEnroll, intProgramType, intUnitID, intCustID; DateTime dteDate;
+        int intEnroll, intProgramType, intUnitID, intCustID, intProgramID, intProgramCount, intProgramReportID, intDuration, intHeight, intWidth, intPOID; 
+        DateTime FDate, TDate, dteDate, FDateTime, TDateTime;
+        TimeSpan FTime, TTime; bool ysnScheduleOwn;
+        string strNarration, strCustProgramName;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -50,6 +53,7 @@ namespace UI.MedialManagement
 
                 LoadSupplier();
                 LoadProgName();
+                LoadPOList();
             }
             catch { }
         }
@@ -108,7 +112,57 @@ namespace UI.MedialManagement
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            try
+            {
+                FDate = DateTime.Parse(txtFromDate.Text);
+                TDate = DateTime.Parse(txtToDate.Text);
+                intCustID = int.Parse(ddlSupplierName.SelectedValue.ToString());
+                intProgramID = int.Parse(ddlProgramName.SelectedValue.ToString());
+                intProgramCount = int.Parse(txtCount.Text);
+                ysnScheduleOwn = true;
+                intProgramType = int.Parse(ddlProgramType.SelectedValue.ToString());
+                intProgramReportID = 0;
+                strNarration = txtNarration.Text;
+                FTime = TimeSpan.Parse(tmStart.Date.ToString("hh:mm:ss"));
+                TTime = TimeSpan.Parse(tmEnd.Date.ToString("hh:mm:ss"));
+                try
+                {
+                    intPOID = int.Parse(ddlPO.SelectedValue.ToString());
+                }
+                catch { intPOID = 0; }
 
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+
+                if (intProgramType == 3)
+                {
+                    intDuration = 0;
+                    intHeight = int.Parse(txtDuration.Text);
+                    intWidth = int.Parse(txtAdname.Text);
+                    strCustProgramName = "Press Media";
+                }
+                else
+                {
+                    intDuration = int.Parse(txtDuration.Text);
+                    intHeight = 0;
+                    intWidth = 0;
+                    strCustProgramName = txtAdname.Text;
+                }
+                    
+                for (DateTime date = FDate; date <= TDate; date = date.AddDays(1))
+                {
+                    FDateTime = FDate.Add(FTime);
+                    TDateTime = FDate.Add(TTime);
+                    if (intPOID == 0)
+                    {
+                        bll.InsertProgramScheduleWithoutPO(intCustID, intProgramID, FDateTime, TDateTime, intProgramCount, ysnScheduleOwn, intProgramReportID, intDuration, strNarration, strCustProgramName, intProgramType, intUnitID, intHeight, intWidth);
+                    }
+                    else
+                    {
+                        bll.InsertProgramScheduleWihtPO(intCustID, intProgramID, FDateTime, TDateTime, intProgramCount, ysnScheduleOwn, intProgramReportID, intDuration, strNarration, strCustProgramName, intProgramType, intUnitID, intHeight, intWidth, intPOID);
+                    }
+                }
+            }
+            catch { }
         }
 
         protected void ddlSupplierName_SelectedIndexChanged(object sender, EventArgs e)
@@ -120,6 +174,9 @@ namespace UI.MedialManagement
         {
             try
             {
+                dteDate = DateTime.Parse(txtFromDate.Text);
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                intCustID = int.Parse(ddlSupplierName.SelectedValue.ToString());
                 dt = new DataTable();
                 dt = bll.GetPOlist(intUnitID, dteDate, intCustID);
                 ddlPO.DataSource = dt;
@@ -134,6 +191,7 @@ namespace UI.MedialManagement
         {
             LoadSupplier();
             LoadProgName();
+            LoadPOList();
 
         }
 
@@ -141,6 +199,11 @@ namespace UI.MedialManagement
         {
             LoadSupplier();
             LoadProgName();
+            LoadPOList();
+        }
+        protected void txtFromDate_TextChanged(object sender, EventArgs e)
+        {
+            LoadPOList();
         }
     }
 }

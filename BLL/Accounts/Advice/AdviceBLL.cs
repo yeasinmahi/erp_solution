@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace BLL.Accounts.Advice
 {
-   public class AdviceBLL
+    public class AdviceBLL
     {
-        public DataTable GetPartyAdvice(int intUnitID, DateTime dteDate, int intWork, string strAccountMandatory, string strBankName, int ysnCompleted)
+        public DataTable GetPartyAdvice(int intActionBy, int intUnitID, DateTime dteDate, int intWork, string strAccountMandatory, string strBankName, int ysnCompleted)
         {
             try
             {
                 SprAdviceForBFTNTableAdapter adp = new SprAdviceForBFTNTableAdapter();
-                return adp.GetPartyAdvice(intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
+                return adp.GetPartyAdvice(intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
             }
             catch { return new DataTable(); }
         }
@@ -55,6 +55,32 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
-
+        public DataTable GetAdviceData(int intActionBy)
+        {
+            try
+            {
+                AdviceDataTableAdapter adp = new AdviceDataTableAdapter();
+                return adp.GetAdviceData(intActionBy);
+            }
+            catch { return new DataTable(); }
+        }
+        public void DeleteData(int intID)
+        {
+            try
+            {
+                DeleteDataTableAdapter adp = new DeleteDataTableAdapter();
+                adp.DeleteAdviceData(intID);
+            }
+            catch { }
+        }
+        public void UpdateChqPrint(int intUnitID, int intActionBy)
+        {
+            try
+            {
+                TblAccountsVoucherBankTableAdapter adp = new TblAccountsVoucherBankTableAdapter();
+                adp.UpdateChqPrint(intUnitID, intActionBy);
+            }
+            catch { }
+        }
     }
 }
