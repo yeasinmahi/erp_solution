@@ -101,11 +101,12 @@
                             <td>
                                 <asp:DropDownList ID="ddlUnit" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
                             </td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color: red">*</span></td>
+                            
+                            <td style="text-align: right">
+                                <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Text="Job Station Name"></asp:Label>
+                            </td>
                             <td>
-                                <asp:TextBox ID="txtFromDate" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
-                                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
+                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblroweven">
@@ -123,11 +124,11 @@
                                 <asp:Label ID="lblTotalMovementDuraion" CssClass="lbl" runat="server" Text="Movement.D (Hour) "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtMovDuration" AutoPostBack="false" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>
-                            <td style="text-align: right">
-                                <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Text="Job Station Name"></asp:Label>
-                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color: red">*</span></td>
                             <td>
-                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:TextBox ID="txtFromDate" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                             </td>
                         </tr>
                         <tr class="tblrowodd">
