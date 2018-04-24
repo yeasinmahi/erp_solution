@@ -24,58 +24,7 @@
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
-     <script type="text/javascript">
-         function OpenHdnDiv() {
-             $("#hdnDivision").fadeIn("slow");
-             document.getElementById('hdnDivision').style.visibility = 'visible';
-         }
-
-         function CloseHdnDiv() {
-             $("#hdnDivision").fadeOut("slow"); 
-         }
-         function Registration(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
-             if (window.focus) { newwindow.focus() }
-         }
-    </script>
-  <script type="text/javascript">
-         $("[id*=chkHeader]").live("click", function () {
-             var chkHeader = $(this);
-             var grid = $(this).closest("table");
-             $("input[type=checkbox]", grid).each(function () {
-                 if (chkHeader.is(":checked")) {
-                     $(this).attr("checked", "checked");
-                     $("td", $(this).closest("tr")).addClass("selected");
-                 } else {
-                     $(this).removeAttr("checked");
-                     $("td", $(this).closest("tr")).removeClass("selected");
-                 }
-             });
-         });
-         $("[id*=chkRow]").live("click", function () {
-             var grid = $(this).closest("table");
-             var chkHeader = $("[id*=chkHeader]", grid);
-             if (!$(this).is(":checked")) {
-                 $("td", $(this).closest("tr")).removeClass("selected");
-                 chkHeader.removeAttr("checked");
-             } else {
-                 $("td", $(this).closest("tr")).addClass("selected");
-                 if ($("[id*=chkRow]", grid).length == $("[id*=chkRow]:checked", grid).length) {
-                     chkHeader.attr("checked", "checked");
-                 }
-             }
-         });
-         function OpenHdnDiv() {
-             $("#hdnDivision").fadeIn("slow");
-             document.getElementById('hdnDivision').style.visibility = 'visible';
-         }
-
-         function ClosehdnDivision() {
-
-             $("#hdnDivision").fadeOut("slow");
-         }
-</script>
-
+     
     <script type="text/javascript"> 
         function funConfirmAll() { 
             var confirm_value = document.createElement("INPUT"); 
@@ -87,21 +36,7 @@
 </script> 
 
   
-    <style type="text/css"> 
-        .rounds {
-        height: 80px;
-        width: 30px; 
-        -moz-border-colors:25px;
-        border-radius:25px;
-        } 
-
-        .HyperLinkButtonStyle { float:right; text-align:left; border: none; background: none; 
-        color: blue; text-decoration: underline; font: normal 10px verdana;} 
-        .hdnDivision { background-color: white; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-        width:100%; height: 100%;    margin-left:50px;  margin-top:130px; margin-right:00px; padding: 15px; overflow-y:scroll; }
-
-        
-        </style>
+     
 </head>
 
 <body>

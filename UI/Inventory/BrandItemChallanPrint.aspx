@@ -408,13 +408,25 @@
 
                    </td>
                </tr>
+               <%--  <tr>
+                <td align="left" style=" padding-top:50px; font-size:11px; width:12%">
+                    Manager</td>
+                <td align="center" style=" padding-top:50px; font-size:11px; width:12%">
+                    Officer</td>                
+                <td align="center" style=" padding-top:50px; font-size:11px; width:12%">
+                    Supervisor</td>                
+                <td align="center" style="padding-top:50px; font-size:11px; width:22%">
+                    Driver's Signature</td>                
+                <td align="right"style=" padding-top:50px; font-size:11px; width:42%">
+                    Receiver's Signature With Seal & Date &nbsp;&nbsp;</td>
+            </tr>--%>
            </table>
 
        </div>
         </table>
 
 
-        <table style="width: 700px; text-align: left;" align="center">
+       <%-- <table style="width: 700px; text-align: left;" align="center">
             <tr>
                 <td align="left" style=" padding-top:50px; font-size:11px; width:12%">
                     Manager</td>
@@ -427,7 +439,7 @@
                 <td align="right"style=" padding-top:50px; font-size:11px; width:42%">
                     Receiver's Signature With Seal & Date &nbsp;&nbsp;</td>
             </tr>
-        </table>
+        </table>--%>
     </div>
     </form>
 </body>

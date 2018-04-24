@@ -8,39 +8,28 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-
-    <script src="../../../../Content/JS/datepickr.min.js"></script>
-
-
-
-
-   <script>
-       function GetTimeSpan() {
-           var end = document.getElementById('txtend').value;
-           var start = document.getElementById('txtstrt').value;
-           var dur = document.getElementById('txtMovDuration').value;
-           var subtract = parseFloat(end) + (-parseFloat(start));
-           if (subtract > 0) {
-               var date1 = new Date();
-               var datediff = date1.getTime() / (1000 * 3600 * 24);
-
-               document.getElementById("txtMovDuration").innerText = subtract;
-           }
-
-           else {
-               document.getElementById("txtMovDuration").innerText = 24 + (-parseFloat(start)) + parseFloat(end);
-           }
-       }
+<script>
+    function GetTimeSpan() {
+        var defaultDate = "1/1/1970 ";
+        var end = document.getElementById('txtend').value;
+        var start = document.getElementById('txtstrt').value;
+        console.log("start " + start);
+        console.log("End " + end);
+        var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
+        console.log("Diff " + difference);
+        document.getElementById("txtMovDuration").innerText = difference;
+        $('#txtMovDuration').val(difference);
+    }
     </script>
- 
-
-    
-
-    
      <script type="text/javascript">
-         $(document).ready(function () {
-             SearchText();
-         });
+         function pageLoad(sender, args) {
+            $(document).ready(function () {
+                SearchText();
+                $('#txtstrt').timepicker();
+                $('#txtend').timepicker();
+                console.log("dom Ready");
+            });
+        }
          function Changed() {
              document.getElementById('hdfSearchBoxTextChange').value = 'true';
          }
@@ -71,21 +60,21 @@
            document.getElementById("hdnconfirm").value = "0";
            var txtEmployeeSearch = document.forms["frmpdv"]["txtFullName"].value;
            var txtDteFrom = document.forms["frmpdv"]["txtFromDate"].value;
-       //    if (txtDteFrom == null || txtDteFrom == "") {
-       //        alert("From date must be filled by valid formate (yyyy-MM-dd).");
-       //        //document.getElementById("txtDteFrom").focus();
-       //    }
-       //else if (txtEmployeeSearch == null || txtEmployeeSearch == "") {
-       //        alert("Please select a valid employee.");
-       //        //document.getElementById("txtEmployeeSearch").focus();
-       //    }
-            
-          
-       //    else {
-               var confirm_value = document.createElement("INPUT");
-               confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-               if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
-               else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+           //    if (txtDteFrom == null || txtDteFrom == "") {
+           //        alert("From date must be filled by valid formate (yyyy-MM-dd).");
+           //        //document.getElementById("txtDteFrom").focus();
+           //    }
+           //else if (txtEmployeeSearch == null || txtEmployeeSearch == "") {
+           //        alert("Please select a valid employee.");
+           //        //document.getElementById("txtEmployeeSearch").focus();
+           //    }
+
+
+           //    else {
+           var confirm_value = document.createElement("INPUT");
+           confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+           if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+           else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
            //}
        }
 
@@ -129,7 +118,7 @@
             <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="End-Time : "></asp:Label></td>
                     <td><asp:TextBox ID="txtend" runat="server" CssClass="txtBox" Width="300px" onchange="GetTimeSpan()"></asp:TextBox><script>$('#txtend').timepicker();</script></td> 
                     <td style="text-align:right"><asp:Label ID="lblTotalMovementDuraion"  CssClass="lbl" runat="server" Text="Movement.D (Hour) "  ></asp:Label></td>
-                    <td> <asp:TextBox ID="txtMovDuration"  AutoPostBack="false"   runat="server"  TextMode="Number" Enabled="false"   CssClass="txtBox" ></asp:TextBox></td>      
+                    <td> <asp:TextBox ID="txtMovDuration"  AutoPostBack="false"   runat="server"  Enabled="false"   CssClass="txtBox" ></asp:TextBox></td>      
               </tr>
                    <tr class="tblrowodd">
             <td style="text-align:right;"><asp:Label ID="lblfullname" CssClass="lbl" runat="server"  Text="Employee Name: "></asp:Label></td>

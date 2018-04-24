@@ -19,7 +19,13 @@ namespace UI.SCM
         {
             if(!IsPostBack)
             {
-
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); 
+                
+                dt = objPo.GetPoData(36, "", intWh, 0, DateTime.Now, enroll);
+                ddlWH.DataSource = dt;
+                ddlWH.DataTextField = "Id";
+                ddlWH.DataValueField = "strName";
+                ddlWH.DataBind();
             }
             else
             { }
@@ -45,7 +51,8 @@ namespace UI.SCM
                 dt = objPo.GetPoData(31, "", intWh, poId, DateTime.Now, enroll);
                 dgvDelivery.DataSource = dt;
                 dgvDelivery.DataBind();
-            } catch { }
+            }
+            catch { }
            
         }
 
@@ -73,10 +80,7 @@ namespace UI.SCM
                         string msg = objPo.PoApprove(32, xmlData, intWh, poid, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         getDataBind();
-                    }
-
-
-
+                    } 
                 }
 
             }

@@ -66,7 +66,22 @@
                 <td style="text-align:right"><asp:Label ID="lblProgramName" runat="server" Text="Program Name :" CssClass="label"></asp:Label></td>
                 <td style="text-align:left"><asp:DropDownList ID="ddlProgramName" runat="server" CssClass="ddList" Width="225px" height="23px" BackColor="WhiteSmoke"></asp:DropDownList></td>
             </tr>
+            <tr>
+                
+                <td style="text-align:right;"><asp:Label ID="lblFromDate" runat="server" CssClass="label" Text="From Date :"></asp:Label></td>
+                <td style="text-align:left;"><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px" AutoPostBack="true" OnTextChanged="txtFromDate_TextChanged"></asp:TextBox>
+                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
             
+                <td style="text-align:right;"><asp:Label ID="lblToDate" runat="server" CssClass="label" Text="To Date :"></asp:Label></td>
+                <td style="text-align:left;"><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px"></asp:TextBox>
+                <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="lblstart" CssClass="label" runat="server" Text="Start-Time : "></asp:Label></td>
+                <td><MKB:TimeSelector ID="tmStart" runat="server" SelectedTimeFormat="Twelve"></MKB:TimeSelector></td>
+                <td style="text-align:right;"><asp:Label ID="lblend" CssClass="label" runat="server" Text="End-Time : "></asp:Label></td>
+                <td><MKB:TimeSelector ID="tmEnd" runat="server" SelectedTimeFormat="Twelve"></MKB:TimeSelector></td>
+            </tr>
             
             <tr>
                 <td style="text-align:right"><asp:Label ID="lblPONo" runat="server" CssClass="label" Text="PO No. :"></asp:Label></td>
@@ -82,22 +97,7 @@
                 <td style="text-align:left"><asp:TextBox ID="txtCount" runat="server" CssClass="txtBox1" Width="220px" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
                 
             </tr>
-            <tr>
-                
-                <td style="text-align:right;"><asp:Label ID="lblFromDate" runat="server" CssClass="label" Text="From Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px"></asp:TextBox>
-                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
             
-                <td style="text-align:right;"><asp:Label ID="lblToDate" runat="server" CssClass="label" Text="To Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px"></asp:TextBox>
-                <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
-            </tr>
-            <tr>
-                <td style="text-align:right;"><asp:Label ID="lblstart" CssClass="label" runat="server" Text="Start-Time : "></asp:Label></td>
-                <td><MKB:TimeSelector ID="tmStart" runat="server" SelectedTimeFormat="Twelve"></MKB:TimeSelector></td>
-                <td style="text-align:right;"><asp:Label ID="lblend" CssClass="label" runat="server" Text="End-Time : "></asp:Label></td>
-                <td><MKB:TimeSelector ID="tmEnd" runat="server" SelectedTimeFormat="Twelve"></MKB:TimeSelector></td>
-            </tr>
             <tr>
                 <td style="text-align:right"><asp:Label ID="lblNarration" runat="server" CssClass="label" Text="Narration :"></asp:Label></td>
                 <td colspan="3" style="text-align:left"><asp:TextBox ID="txtNarration" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" TextMode="MultiLine" Width="575px"></asp:TextBox></td>

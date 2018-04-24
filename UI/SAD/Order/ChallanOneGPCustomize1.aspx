@@ -109,7 +109,9 @@
                         <asp:BoundField DataField="strCode" HeaderText="D.O Number" ItemStyle-Width="30%" SortExpression="intCustomerId" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="dteDate" HeaderText="CreationDate" ItemStyle-Width="60%" SortExpression="dteDate" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />
                          <asp:BoundField DataField="strProductName" HeaderText="Product Name" ItemStyle-Width="30%" SortExpression="strProductName" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="rate" HeaderText="Rate" ItemStyle-Width="30%" SortExpression="rate" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="numRestPieces" HeaderText="Quantity (Piece)" ItemStyle-Width="30%" SortExpression="numRestPieces" ItemStyle-HorizontalAlign="Center" />
+                       
                         <asp:BoundField DataField="pendingqntpricevalue" HeaderText="Amount (Taka)" ItemStyle-Width="30%" SortExpression="pendingqntpricevalue" ItemStyle-HorizontalAlign="Center" />
                        
                     

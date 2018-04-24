@@ -43,7 +43,8 @@ namespace UI.Inventory
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
                 hdnAction.Value = "0";
 
-                SetUnitName(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
+                //SetUnitName(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
+                LoadUnitDropDown(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
                 LoadJobStationDropDown(GetUnitID(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
 
                 ////---------xml----------
@@ -54,25 +55,10 @@ namespace UI.Inventory
 
             else
             {
-                if (!String.IsNullOrEmpty(txtFullName.Text))
-                {
-                    string strSearchKey = txtFullName.Text;
-                    string[] searchKey = Regex.Split(strSearchKey, ",");
-                    if (searchKey.Length==2)
-                    {
-                        LoadFieldValue(searchKey[1]);
-                        hdfSearchBoxTextChange.Value = "false";
-                    }
-                    
-                }
-                else
-                {
-                    //ClearControls();
-                }
+                LoadEmployeeInfo();
             }
         }
-   
-        [WebMethod]
+
         public void LoadEmployeeInfo()
         {
             if (!String.IsNullOrEmpty(txtFullName.Text))
@@ -82,8 +68,12 @@ namespace UI.Inventory
                 if (searchKey.Length == 2)
                 {
                     LoadFieldValue(searchKey[1]);
-                    hdfSearchBoxTextChange.Value = "false";
                 }
+                else
+                {
+                    return;
+                }
+                hdfSearchBoxTextChange.Value = "false";
 
             }
             else
@@ -121,7 +111,7 @@ namespace UI.Inventory
              AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
              List<string> result = new List<string>();
              result = objAutoSearch_BLL.AutoSearchEmployeesData(//1399, 12, strSearchKey);
-             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()), strSearchKey);
+             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
              return result;
          }        
 
@@ -521,12 +511,12 @@ namespace UI.Inventory
 
         }
 
-        public void SetUnitName(int enrol)
-        {
-            //bll.getUnitNamebyEnrol(369116).Rows[0][""].ToString();
-            lblUnitName.Text = bll.GetUnitName(enrol).Rows[0]["strUnit"].ToString();
-            hdUnitId.Value = bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString();
-        }
+        //public void SetUnitName(int enrol)
+        //{
+        //    //bll.getUnitNamebyEnrol(369116).Rows[0][""].ToString();
+        //    lblUnitName.Text = bll.GetUnitName(enrol).Rows[0]["strUnit"].ToString();
+        //    hdUnitId.Value = bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString();
+        //}
         public int GetUnitID(int enrol)
         {
             return Int32.Parse(bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
@@ -537,6 +527,30 @@ namespace UI.Inventory
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
+        }
+        public void LoadUnitDropDown(int enrol)
+        {
+            ddlUnit.DataSource = bll.GetUnitName(enrol);
+            ddlUnit.DataValueField = "intUnitID";
+            ddlUnit.DataTextField = "strUnit";
+            ddlUnit.DataBind();
+        }
+
+        protected void txtFullName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);
+            LoadJobStationDropDown(unitId);
+            ddlJobStation_SelectedIndexChanged(ddlJobStation, null);
+        }
+
+        protected void ddlJobStation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["jobStationId"] = (sender as DropDownList).SelectedValue;
         }
     }
 }

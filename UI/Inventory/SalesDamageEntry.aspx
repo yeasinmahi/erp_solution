@@ -264,13 +264,7 @@
 
       
          <asp:TemplateField HeaderText="Sl"> <ItemTemplate> <%#Container.DataItemIndex+1 %>
-            <%-- PId,  PName,  Qnt,  ApprovedQnt,  Pr,  AccId
-,  AccName,  ExtId,  ExtName,  ExtPr,  Uom,  UomTxt
-,  Currency,  Narration,  SalesType,  LogisicId
-,  Promotion,  Commission,  IncentiveId,  Incentive
-,  SuppTax,  Vat,  VatPr,  PromItemId,  PromItem
-,  PromUom,  PromUomText,  PromPrice,  PromItemCOAid,intcustid ,strcustname,strchallan,dtedamageinputdate,decdamagevalue--%>
-
+        
 
             <asp:HiddenField ID="hdnPId" runat="server" Value='<%# Eval("PId") %>' />
              <asp:HiddenField ID="HiddenPName" runat="server" Value='<%# Eval("PName") %>' />

@@ -90,7 +90,7 @@ namespace HR_BLL.Global
         // private static Hashtable ht = new Hashtable(); 
         public List<string> AutoSearchEmployeesData(int intLoginId, int intJobStationId, string strSearchKey)
         {
-            List<string> result = new List<string>();
+           List<string> result = new List<string>();
             SprAutoSearchEmployeeFilterByJobStationTableAdapter objSprAutoSearchEmployeeFilterByJobStationTableAdapter = new SprAutoSearchEmployeeFilterByJobStationTableAdapter();
             DataTable oDT = new DataTable();
             oDT = objSprAutoSearchEmployeeFilterByJobStationTableAdapter.AutoSearchEmployeeFilterByJobStation(intLoginId, intJobStationId, strSearchKey);

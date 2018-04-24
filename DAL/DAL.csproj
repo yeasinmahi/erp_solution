@@ -370,9 +370,9 @@
       <DependentUpon>Advice.xsd</DependentUpon>
     </None>
     <None Include="Accounts\Advice\Advice.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>Advice.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Accounts\Advice\Advice.xss">
       <DependentUpon>Advice.xsd</DependentUpon>

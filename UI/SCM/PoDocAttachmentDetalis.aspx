@@ -20,8 +20,17 @@
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
-      
-   
+    <script src="../Content/JS/JQUERY/JqueryImageHover.min.js"></script>
+    
+    <script type="text/javascript">
+    $(function () {
+    $("[id*=GridView1] img").elevateZoom({
+        cursor: 'pointer',
+        imageCrossfade: true,
+        loadingIcon: 'loading.gif'
+    });
+    });
+    </script>
 
     <script type="text/javascript"> 
         function funConfirmAll() { 
@@ -32,26 +41,13 @@
         }
 
 </script> 
-
-  
+       
      
 </head>
 
 <body>
 
-     <form id="frmaccountsrealize" runat="server">
-   <%--<asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
-    <ContentTemplate>
-    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
-    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
-    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
-    <div style="height: 100px;"></div>
-    <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>--%>
-
+     <form id="frmaccountsrealize" runat="server"> 
 
 <%--=========================================Start My Code From Here===============================================--%>
 
@@ -86,8 +82,8 @@
             </tr>
             <tr>
             <td style="text-align:right;"><asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Attachment :"></asp:Label></td>
-            <td style="text-align:left" colspan="2"><asp:FileUpload ID="DocUpload" Width="300px"  runat="server"  /></td>
-            <td><asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" /></td>
+            <td style="text-align:left" colspan="3"><asp:FileUpload ID="DocUpload" Width="300px"  runat="server"  /> 
+             <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" /></td>
            
            </tr>
       
@@ -117,19 +113,43 @@
                   <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
 
                 <asp:TemplateField HeaderText="Detalis">  <ItemTemplate>
+                <asp:Button ID="btnDocView" runat="server" Text="View"   OnClick="btnDocView_Click" CommandArgument='<%# Eval("strFtpPath") %>'  /></ItemTemplate>
+                    
+                <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+                <asp:TemplateField HeaderText="Detalis">  <ItemTemplate>
                 <asp:Button ID="btnDownload" runat="server" Text="Download"   OnClick="btnDownload_Click"  CommandArgument='<%# Eval("strFtpPath") %>'  /></ItemTemplate>
                  <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+                
             </Columns> 
             </asp:GridView></td> 
         </tr>  
        </table> 
+        <table>
+            
+        <asp:GridView ID="GridView1" runat="server" Width="1000px" AutoGenerateColumns="false" ShowHeader = "false">
+        <Columns>
+        <asp:TemplateField >
+        <ItemTemplate>
+        <img width="500" src='<%# ResolveUrl(Eval("ImageUrl").ToString()) %>' alt="" data-zoom-image='<%# ResolveUrl(Eval("ZoomImageUrl").ToString()) %>' />
+        </ItemTemplate>
+        </asp:TemplateField>
+        </Columns>
+        </asp:GridView>
+        </table>
+         <table>
+            <asp:Image ID="imageView" runat="server" Height="600px" Width="1000px" ImageAlign="Baseline" EnableTheming="true" />
+        </table>
+
         </div>
+           
 
   
 <%--=========================================End My Code From Here=================================================--%>
 
-    </ContentTemplate>
-    </asp:UpdatePanel>
+   <%-- </ContentTemplate>
+    </asp:UpdatePanel>--%>
     </form>
 </body>
 </html>
