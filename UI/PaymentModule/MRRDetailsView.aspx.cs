@@ -43,11 +43,11 @@ namespace UI.PaymentModule
                 if (dt.Rows.Count > 0)
                 {
                     lblMRRNo.Text = dt.Rows[0]["intMRRID"].ToString();
-                    lblMRRDate.Text = dt.Rows[0]["mrrDate"].ToString();
+                    lblMRRDate.Text = DateTime.Parse(dt.Rows[0]["mrrDate"].ToString()).ToString("yyyy-MM-dd");
                     lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                     lblSupplierName.Text = dt.Rows[0]["strSupplierName"].ToString();
                     lblChallanNo.Text = dt.Rows[0]["strExtnlReff"].ToString();
-                    lblChallanDate.Text = dt.Rows[0]["dteChallanDate"].ToString();
+                    lblChallanDate.Text = DateTime.Parse(dt.Rows[0]["dteChallanDate"].ToString()).ToString("yyyy-MM-dd"); 
                     lblIssuedBy.Text = dt.Rows[0]["strEmployee"].ToString();
                 }
                 

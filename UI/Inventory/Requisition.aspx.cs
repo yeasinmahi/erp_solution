@@ -16,8 +16,10 @@ namespace UI.Inventory
 {
     public partial class Requisition : BasePage
     {
-        string xmlpath; string xmlString = ""; DaysOfWeek bll = new DaysOfWeek(); string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        string xmlpath; string xmlString = "", xml = ""; DaysOfWeek bll = new DaysOfWeek(); string[] arrayKey; char[] delimiterChars = { '[', ']' };
         string secid = "0"; DataTable dtbl = new DataTable(); DataTable dt = new DataTable(); int intEnroll, intInsertBy = 0;
+        int type, actionby, id;
+        DateTime fdate, tdate;
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -41,7 +43,7 @@ namespace UI.Inventory
                 DdlCostCenter.DataValueField = "ID";
                 DdlCostCenter.DataBind();
 
-                if(hdnEnroll.Value == "1039" || hdnEnroll.Value == "1388")
+                if(hdnEnroll.Value == "1039" || hdnEnroll.Value == "1388" || hdnEnroll.Value == "11621")
                 {
                     txtSearchAssignedTo.Visible = true;
                     lblReqBy.Visible = true;                    
@@ -51,6 +53,8 @@ namespace UI.Inventory
                     txtSearchAssignedTo.Visible = false;
                     lblReqBy.Visible = false;
                 }
+
+                dgvListByEnroll.Visible = false;
             }
             
         }
@@ -93,6 +97,29 @@ namespace UI.Inventory
                 intEnroll = int.Parse(temp1[2].ToString());
             }
             catch { intEnroll = 0; }
+
+            dgvListByEnroll.Visible = true;
+            dgvlist.Visible = false;
+            LoadGrid();
+        }
+        private void LoadGrid()
+        {
+            try
+            {
+                type = 1;
+                xml = "";
+                id = 0;
+                string fd = "2020-12-31";
+                string td = "2020-12-31";
+                fdate = DateTime.Parse(fd.ToString());
+                tdate = DateTime.Parse(td.ToString());
+
+                dt = new DataTable();
+                dt = bll.CreateStoreRequisition(type, intEnroll, xml, id, fdate, tdate, intEnroll);
+                dgvListByEnroll.DataSource = dt;
+                dgvListByEnroll.DataBind();
+            }
+            catch { }
         }
 
         private void Clearcontrols()

@@ -28,6 +28,12 @@
         }  
     </script>
     
+    <style type="text/css">
+        .auto-style1 {
+            height: 17px;
+        }
+    </style>
+    
 </head>
 <body>
     <form id="frmBillRegistration" runat="server">        
@@ -42,13 +48,12 @@
     <div class="divbody" style="padding-right:10px;">
        
         <table>
-        <tr><td colspan="9" style="color:blue; font-weight:900;"><a id="btnprint11" href="BillDetails.aspx" class="nextclick" style="cursor:pointer; text-align:right;">Back</a></td></tr> 
+        <tr><td colspan="9" style="color:blue; font-weight:900;" class="auto-style1"><a id="btnprint11" href="BillDetails.aspx" class="nextclick" style="cursor:pointer; text-align:right;">Back</a></td></tr> 
         </table>
         <table>            
             <tr><td colspan="9" style="text-align:center;"><asp:Label ID="lblUnitName" runat="server" Text="Entry Registration No:" CssClass="lbl" Font-Size="18px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
             <tr><td colspan="9" style="text-align:center;"><asp:Label ID="Label4" runat="server" Text="Material Receive Report" CssClass="lbl" Font-Size="13px" Font-Bold="true" Font-Underline="true" ForeColor="Red"></asp:Label>
-                </td></tr>
-            
+                </td></tr>            
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblC" runat="server" Text="CHALLAN NO.:" CssClass="lbl"></asp:Label></td>  
                 <td style="text-align:left;" colspan="6"><asp:Label ID="lblChallanNo" runat="server" Text="CHALLAN NO" CssClass="lbl" ForeColor="Blue"></asp:Label></td>                
@@ -91,19 +96,19 @@
                 <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total" /></FooterTemplate></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="PO Qty." SortExpression="numPOQty">
-                <ItemTemplate><asp:Label ID="lblPOQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("numPOQty") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblPOQty" runat="server" Text='<%# Bind("numPOQty", "{0:n2}") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="RCV Qty." SortExpression="numReceiveQty">
-                <ItemTemplate><asp:Label ID="lblRCVQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("numReceiveQty") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblRCVQty" runat="server" Text='<%# Bind("numReceiveQty", "{0:n2}") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Rate (WV)" SortExpression="monFCRate">
-                <ItemTemplate><asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monFCRate") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("monFCRate", "{0:n2}") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Amnt. (WV)" SortExpression="monBDTTotal">
-                <ItemTemplate><asp:Label ID="lblAmntWV" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monBDTTotal") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblAmntWV" runat="server" Text='<%# Bind("monBDTTotal", "{0:n2}") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                 <FooterTemplate><asp:Label ID="lblGTotalAmntWV" runat="server" DataFormatString="{0:0.00}" Text="<%# ggrandtotalamntwv %>" /></FooterTemplate></asp:TemplateField>
 

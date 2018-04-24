@@ -21,9 +21,7 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
-
     
-
     <script language="javascript">      
 
         function ViewBillDetailsPopup(Id) {
@@ -31,7 +29,7 @@
         }
 
         function Print() {
-
+            document.getElementById("btnprint").style.display = "none"; window.print(); self.close();
         }
     </script>
 
@@ -67,7 +65,7 @@
     
     <tr><td colspan="4" style="text-align:center;"><asp:Label ID="lblUnitName" runat="server" Text="PREVIOUS RATES" CssClass="lbl" Font-Size="18px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>    
     <tr>
-        <td colspan="2" style="text-align:left;" class="auto-style1"><asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
+        <td colspan="2" style="text-align:left;"><asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
         <asp:Label ID="lblItemName" runat="server" Text="CHALLAN NO" CssClass="lbl" ForeColor="Blue"></asp:Label>
         </td>
     </tr>
@@ -94,11 +92,11 @@
         </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Rate" SortExpression="rate">
-        <ItemTemplate><asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("rate") %>' Width="80px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
-        <ItemTemplate><asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName") %>' Width="80px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
         </Columns>

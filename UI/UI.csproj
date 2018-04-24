@@ -354,6 +354,7 @@
     <Content Include="Content\JS\gridviewscroll.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
@@ -422,11 +423,13 @@
     <Content Include="MedialManagement\ProgramCustEntry.aspx" />
     <Content Include="MedialManagement\ProgramScheduleEntry.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
+    <Content Include="PaymentModule\ApproveSingle.aspx" />
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
+    <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\ClassFiles\AutoCompleteSearch.asmx" />
     <Content Include="Content\CSS\Application.css" />
@@ -1316,6 +1319,10 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
+    <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
+    <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
+    <Content Include="VAT_Management\ProductionEntry.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\ItemAdd.aspx" />
     <Content Include="Wastage\ItemReceive.aspx" />
@@ -2254,6 +2261,13 @@
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\CustomerView.aspx.cs">
+      <DependentUpon>CustomerView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CustomerView.aspx.designer.cs">
+      <DependentUpon>CustomerView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dairy\Milk_Audit_Approve.aspx.cs">
       <DependentUpon>Milk_Audit_Approve.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2586,6 +2600,13 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="PaymentModule\ApproveSingle.aspx.cs">
+      <DependentUpon>ApproveSingle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\ApproveSingle.aspx.designer.cs">
+      <DependentUpon>ApproveSingle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\BillApproval.aspx.cs">
       <DependentUpon>BillApproval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2620,6 +2641,13 @@
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.designer.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
+      <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\VoucherForAdvice.aspx.designer.cs">
+      <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx.cs">
       <DependentUpon>AppsRemoteOrderApporve.aspx</DependentUpon>
@@ -6276,6 +6304,34 @@
     <Compile Include="Vat\VatMonthlyReturnM19.aspx.designer.cs">
       <DependentUpon>VatMonthlyReturnM19.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VAT_Management\BridgeFinishedItem.aspx.cs">
+      <DependentUpon>BridgeFinishedItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\BridgeFinishedItem.aspx.designer.cs">
+      <DependentUpon>BridgeFinishedItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\BridgeMaterialForM1.aspx.cs">
+      <DependentUpon>BridgeMaterialForM1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\BridgeMaterialForM1.aspx.designer.cs">
+      <DependentUpon>BridgeMaterialForM1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.cs">
+      <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.designer.cs">
+      <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\ProductionEntry.aspx.cs">
+      <DependentUpon>ProductionEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\ProductionEntry.aspx.designer.cs">
+      <DependentUpon>ProductionEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle_Registration_Renewal\BRTAProfile_Update_UI.aspx.cs">
       <DependentUpon>BRTAProfile_Update_UI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6699,6 +6755,7 @@
     <Folder Include="Libray\SqlServerTypes\" />
     <Folder Include="New_Project\QC_Management\Uploads\" />
     <Folder Include="Other\Data\" />
+    <Folder Include="PaymentModule\Data\" />
     <Folder Include="Personal\Data\" />
     <Folder Include="Personal\Uploads\" />
     <Folder Include="Projects\Data\" />
@@ -6717,6 +6774,7 @@
     <Folder Include="TFS\" />
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\Uploads\" />
+    <Folder Include="VAT_Management\Data\" />
     <Folder Include="WoodPurchase\Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -75,5 +75,16 @@ namespace SCM_DAL.Properties {
                 return ((string)(this["ERP_FTPConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=" +
+            "sqlrw;Password=RWsql@123")]
+        public string ERP_AccountsConnectionString {
+            get {
+                return ((string)(this["ERP_AccountsConnectionString"]));
+            }
+        }
     }
 }

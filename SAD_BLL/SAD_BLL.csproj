@@ -140,6 +140,7 @@
     <Compile Include="Transport\InternalTransportBLL.cs" />
     <Compile Include="Transport\Utility_BLL.cs" />
     <Compile Include="Vat\Mushok11.cs" />
+    <Compile Include="Vat\VAT_BLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GLOBAL_BLL\GLOBAL_BLL.csproj">

@@ -377,6 +377,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Mushok11TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Vat\VAT_TDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VAT_TDS.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AEFPS\FPReport.xsc">
@@ -999,6 +1004,17 @@
     </None>
     <None Include="Vat\Mushok11TDS.xss">
       <DependentUpon>Mushok11TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\VAT_TDS.xsc">
+      <DependentUpon>VAT_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\VAT_TDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VAT_TDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Vat\VAT_TDS.xss">
+      <DependentUpon>VAT_TDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
