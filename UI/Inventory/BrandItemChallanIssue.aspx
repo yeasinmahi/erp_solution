@@ -90,14 +90,7 @@
         
         var flag=Val(sender, args);
         
-        if(document.getElementById("txtChallan") != null && flag){
-            if(document.getElementById("txtChallan").value == ''){
-                if(!confirm('Do you want to go without challan no?')){
-                NotExec(args);
-                flag=false;
-                }
-            }           
-        }
+       
         
         if(flag && !confirm('Do you want to save?')){
             NotExec(args);

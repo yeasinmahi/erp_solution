@@ -1657,6 +1657,8 @@ namespace SAD_DAL.Sales.Report {
             
             private global::System.Data.DataColumn columndodate;
             
+            private global::System.Data.DataColumn columnProductRate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SprTripChallanInfoCustomizeDataTable() {
@@ -1812,6 +1814,14 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProductRateColumn {
+                get {
+                    return this.columnProductRate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1847,7 +1857,23 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SprTripChallanInfoCustomizeRow AddSprTripChallanInfoCustomizeRow(long intRowNumber, long intProductId, string strProductFullName, decimal numQuantity, decimal monPrice, string strUOMShow, string strPromItemName, string strPromUom, decimal numPromotion, decimal numWeight, decimal numVolume, decimal numPromWeight, decimal numPromVolume, string doNo, System.DateTime dodate) {
+            public SprTripChallanInfoCustomizeRow AddSprTripChallanInfoCustomizeRow(
+                        long intRowNumber, 
+                        long intProductId, 
+                        string strProductFullName, 
+                        decimal numQuantity, 
+                        decimal monPrice, 
+                        string strUOMShow, 
+                        string strPromItemName, 
+                        string strPromUom, 
+                        decimal numPromotion, 
+                        decimal numWeight, 
+                        decimal numVolume, 
+                        decimal numPromWeight, 
+                        decimal numPromVolume, 
+                        string doNo, 
+                        System.DateTime dodate, 
+                        decimal ProductRate) {
                 SprTripChallanInfoCustomizeRow rowSprTripChallanInfoCustomizeRow = ((SprTripChallanInfoCustomizeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intRowNumber,
@@ -1864,7 +1890,8 @@ namespace SAD_DAL.Sales.Report {
                         numPromWeight,
                         numPromVolume,
                         doNo,
-                        dodate};
+                        dodate,
+                        ProductRate};
                 rowSprTripChallanInfoCustomizeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprTripChallanInfoCustomizeRow);
                 return rowSprTripChallanInfoCustomizeRow;
@@ -1902,6 +1929,7 @@ namespace SAD_DAL.Sales.Report {
                 this.columnnumPromVolume = base.Columns["numPromVolume"];
                 this.columndoNo = base.Columns["doNo"];
                 this.columndodate = base.Columns["dodate"];
+                this.columnProductRate = base.Columns["ProductRate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1937,6 +1965,8 @@ namespace SAD_DAL.Sales.Report {
                 base.Columns.Add(this.columndoNo);
                 this.columndodate = new global::System.Data.DataColumn("dodate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndodate);
+                this.columnProductRate = new global::System.Data.DataColumn("ProductRate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductRate);
                 this.columnintRowNumber.ReadOnly = true;
                 this.columnstrProductFullName.ReadOnly = true;
                 this.columnstrProductFullName.MaxLength = 200;
@@ -2103,6 +2133,8 @@ namespace SAD_DAL.Sales.Report {
             
             private global::System.Data.DataColumn columndodate;
             
+            private global::System.Data.DataColumn columnProductRate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TblGatePassDataTable() {
@@ -2202,6 +2234,14 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProductRateColumn {
+                get {
+                    return this.columnProductRate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2237,7 +2277,7 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TblGatePassRow AddTblGatePassRow(string strProductName, string strUOM, decimal numQnt, decimal numWeight, decimal numVolume, string monPrice, string doNo, string dodate) {
+            public TblGatePassRow AddTblGatePassRow(string strProductName, string strUOM, decimal numQnt, decimal numWeight, decimal numVolume, string monPrice, string doNo, string dodate, string ProductRate) {
                 TblGatePassRow rowTblGatePassRow = ((TblGatePassRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strProductName,
@@ -2247,7 +2287,8 @@ namespace SAD_DAL.Sales.Report {
                         numVolume,
                         monPrice,
                         doNo,
-                        dodate};
+                        dodate,
+                        ProductRate};
                 rowTblGatePassRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblGatePassRow);
                 return rowTblGatePassRow;
@@ -2278,6 +2319,7 @@ namespace SAD_DAL.Sales.Report {
                 this.columnmonPrice = base.Columns["monPrice"];
                 this.columndoNo = base.Columns["doNo"];
                 this.columndodate = base.Columns["dodate"];
+                this.columnProductRate = base.Columns["ProductRate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2299,6 +2341,8 @@ namespace SAD_DAL.Sales.Report {
                 base.Columns.Add(this.columndoNo);
                 this.columndodate = new global::System.Data.DataColumn("dodate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndodate);
+                this.columnProductRate = new global::System.Data.DataColumn("ProductRate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductRate);
                 this.columnstrProductName.AllowDBNull = false;
                 this.columnstrUOM.AllowDBNull = false;
                 this.columnnumQnt.AllowDBNull = false;
@@ -3615,6 +3659,23 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ProductRate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTripChallanInfoCustomize.ProductRateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductRate\' in table \'SprTripChallanInfoCustomize\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTripChallanInfoCustomize.ProductRateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsintRowNumberNull() {
                 return this.IsNull(this.tableSprTripChallanInfoCustomize.intRowNumberColumn);
             }
@@ -3780,6 +3841,18 @@ namespace SAD_DAL.Sales.Report {
             public void SetdodateNull() {
                 this[this.tableSprTripChallanInfoCustomize.dodateColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProductRateNull() {
+                return this.IsNull(this.tableSprTripChallanInfoCustomize.ProductRateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProductRateNull() {
+                this[this.tableSprTripChallanInfoCustomize.ProductRateColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -3901,6 +3974,22 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProductRate {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblGatePass.ProductRateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductRate\' in table \'TblGatePass\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblGatePass.ProductRateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsmonPriceNull() {
                 return this.IsNull(this.tableTblGatePass.monPriceColumn);
             }
@@ -3933,6 +4022,18 @@ namespace SAD_DAL.Sales.Report {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdodateNull() {
                 this[this.tableTblGatePass.dodateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProductRateNull() {
+                return this.IsNull(this.tableTblGatePass.ProductRateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProductRateNull() {
+                this[this.tableTblGatePass.ProductRateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5474,6 +5575,7 @@ namespace SAD_DAL.Sales.Report.ChallanTDSTableAdapters {
             tableMapping.ColumnMappings.Add("numPromVolume", "numPromVolume");
             tableMapping.ColumnMappings.Add("doNo", "doNo");
             tableMapping.ColumnMappings.Add("dodate", "dodate");
+            tableMapping.ColumnMappings.Add("ProductRate", "ProductRate");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

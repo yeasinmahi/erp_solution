@@ -199,6 +199,7 @@
               <Mapping SourceColumn="numPromVolume" DataSetColumn="numPromVolume" />
               <Mapping SourceColumn="doNo" DataSetColumn="doNo" />
               <Mapping SourceColumn="dodate" DataSetColumn="dodate" />
+              <Mapping SourceColumn="ProductRate" DataSetColumn="ProductRate" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -338,6 +339,7 @@
               <xs:element name="monPrice" msprop:Generator_ColumnVarNameInTable="columnmonPrice" msprop:Generator_ColumnPropNameInRow="monPrice" msprop:Generator_ColumnPropNameInTable="monPriceColumn" msprop:Generator_UserColumnName="monPrice" type="xs:string" minOccurs="0" />
               <xs:element name="doNo" msprop:Generator_ColumnVarNameInTable="columndoNo" msprop:Generator_ColumnPropNameInRow="doNo" msprop:Generator_ColumnPropNameInTable="doNoColumn" msprop:Generator_UserColumnName="doNo" type="xs:string" minOccurs="0" />
               <xs:element name="dodate" msprop:Generator_ColumnVarNameInTable="columndodate" msprop:Generator_ColumnPropNameInRow="dodate" msprop:Generator_ColumnPropNameInTable="dodateColumn" msprop:Generator_UserColumnName="dodate" type="xs:string" minOccurs="0" />
+              <xs:element name="ProductRate" msprop:Generator_ColumnVarNameInTable="columnProductRate" msprop:Generator_ColumnPropNameInRow="ProductRate" msprop:Generator_ColumnPropNameInTable="ProductRateColumn" msprop:Generator_UserColumnName="ProductRate" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -393,6 +395,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="dodate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndodate" msprop:Generator_ColumnPropNameInRow="dodate" msprop:Generator_ColumnPropNameInTable="dodateColumn" msprop:Generator_UserColumnName="dodate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ProductRate" msprop:Generator_ColumnVarNameInTable="columnProductRate" msprop:Generator_ColumnPropNameInRow="ProductRate" msprop:Generator_ColumnPropNameInTable="ProductRateColumn" msprop:Generator_UserColumnName="ProductRate" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

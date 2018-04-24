@@ -40875,9 +40875,10 @@ namespace HR_DAL.TourPlan.TourPlanningTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select  strSupplierName +\'[\'+cast(intSupplierID as varchar(500))+\']\' as strSuppli" +
-                "erName\r\nfrom ERP_Inventory.dbo.tblSupplier \r\nwhere intUnitID=@intUnitid AND ( st" +
-                "rSupplierName LIKE \'%\' + @SearchText + \'%\')\r\norder by strSupplierName asc";
+            this._commandCollection[0].CommandText = @"select  strSupplierName +'['+cast(intSupplierID as varchar(500))+']' as strSupplierName
+from ERP_Inventory.dbo.tblSupplier 
+where intUnitID=@intUnitid AND ( strSupplierName LIKE '%' + @SearchText + '%') and intSuppMasterID is not null and ysnActive=1
+order by strSupplierName asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SearchText", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strSupplierName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
