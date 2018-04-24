@@ -129,7 +129,7 @@
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>  
             
              <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnAttachment" runat="server" Text="Detalis" OnClick="btnAttachment_Click"   /> </ItemTemplate> 
+            <ItemTemplate>   <asp:Button ID="btnAttachment" runat="server" Text="Attachment" OnClick="btnAttachment_Click"   /> </ItemTemplate> 
             </asp:TemplateField>
              
             <asp:TemplateField HeaderText="Detalis">

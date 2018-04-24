@@ -109,8 +109,15 @@
            </tr>
         <tr>                                                                                                        
         <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="PO Issuer"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlPoUser" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
-        </asp:DropDownList>
+        <td style="text-align:left;">
+        <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"   ></asp:TextBox>
+        <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtPoUser"
+        ServiceMethod="GetPoUserSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+        </cc1:AutoCompleteExtender> 
+        <%--<td style="text-align:left;"><asp:DropDownList ID="ddlPoUser" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
+        </asp:DropDownList>--%>
         <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton" OnClick="btnPoUserShow_Click"  />
         </td>  
         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Suppliyer"></asp:Label></td>

@@ -220,13 +220,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// ddlPoUser control.
+        /// txtPoUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPoUser;
+        protected global::System.Web.UI.WebControls.TextBox txtPoUser;
+        
+        /// <summary>
+        /// AutoCompleteExtenders2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtenders2;
         
         /// <summary>
         /// btnPoNoShow control.

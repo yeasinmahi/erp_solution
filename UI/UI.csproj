@@ -213,6 +213,7 @@
     <Content Include="AEFPS\ReceiveStockInput.aspx" />
     <Content Include="AEFPS\RePrintQrcode.aspx" />
     <Content Include="AEFPS\ReturnAndDamageReport.aspx" />
+    <Content Include="AEFPS\SalesPriceChange.aspx" />
     <Content Include="AEFPS\SalesReport.aspx" />
     <Content Include="AEFPS\SalesReturnN.aspx" />
     <Content Include="AEFPS\ShortDatedItemsReport.aspx" />
@@ -258,87 +259,6 @@
     <Content Include="Asset\Vehicle_Bill_Detalis_PopUp.aspx" />
     <Content Include="Asset\Vehicle_Maintenance_Bill.aspx" />
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
-    <Content Include="bin\AjaxControlToolkit.dll" />
-    <Content Include="bin\AkijFTPConnector.dll" />
-    <Content Include="bin\AkijFTPConnector.pdb" />
-    <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Antlr3.Runtime.pdb" />
-    <Content Include="bin\BLL.dll" />
-    <Content Include="bin\BLL.pdb" />
-    <Content Include="bin\Budget_BLL.dll" />
-    <Content Include="bin\Budget_BLL.pdb" />
-    <Content Include="bin\Budget_DAL.dll" />
-    <Content Include="bin\Budget_DAL.pdb" />
-    <Content Include="bin\Dairy_BLL.dll" />
-    <Content Include="bin\Dairy_BLL.pdb" />
-    <Content Include="bin\Dairy_DAL.dll" />
-    <Content Include="bin\Dairy_DAL.pdb" />
-    <Content Include="bin\DAL.dll" />
-    <Content Include="bin\DAL.pdb" />
-    <Content Include="bin\EnvDTE.dll" />
-    <Content Include="bin\EnvDTE.xml" />
-    <Content Include="bin\EnvDTE80.dll" />
-    <Content Include="bin\EnvDTE80.xml" />
-    <Content Include="bin\GLOBAL_BLL.dll" />
-    <Content Include="bin\GLOBAL_BLL.pdb" />
-    <Content Include="bin\HR_BLL.dll" />
-    <Content Include="bin\HR_BLL.pdb" />
-    <Content Include="bin\HR_DAL.dll" />
-    <Content Include="bin\HR_DAL.pdb" />
-    <Content Include="bin\LOGIS_BLL.dll" />
-    <Content Include="bin\LOGIS_BLL.pdb" />
-    <Content Include="bin\LOGIS_DAL.dll" />
-    <Content Include="bin\LOGIS_DAL.pdb" />
-    <Content Include="bin\MessagingToolkit.QRCode.dll" />
-    <Content Include="bin\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
-    <Content Include="bin\Microsoft.Exchange.WebServices.dll" />
-    <Content Include="bin\Microsoft.MSXML.dll" />
-    <Content Include="bin\Microsoft.Office.Interop.Excel.dll" />
-    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
-    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
-    <Content Include="bin\Microsoft.VisualStudio.OLE.Interop.dll" />
-    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll" />
-    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.dll" />
-    <Content Include="bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll" />
-    <Content Include="bin\Microsoft.VisualStudio.TextManager.Interop.dll" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
-    <Content Include="bin\Projects_BLL.dll" />
-    <Content Include="bin\Projects_BLL.pdb" />
-    <Content Include="bin\Projects_DAL.dll" />
-    <Content Include="bin\Projects_DAL.pdb" />
-    <Content Include="bin\Purchase_BLL.dll" />
-    <Content Include="bin\Purchase_BLL.pdb" />
-    <Content Include="bin\Purchase_DAL.dll" />
-    <Content Include="bin\Purchase_DAL.pdb" />
-    <Content Include="bin\QRCoder.dll" />
-    <Content Include="bin\SAD_BLL.dll" />
-    <Content Include="bin\SAD_BLL.pdb" />
-    <Content Include="bin\SAD_DAL.dll" />
-    <Content Include="bin\SAD_DAL.pdb" />
-    <Content Include="bin\SCM_BLL.dll" />
-    <Content Include="bin\SCM_BLL.pdb" />
-    <Content Include="bin\SCM_DAL.dll" />
-    <Content Include="bin\SCM_DAL.pdb" />
-    <Content Include="bin\ScriptReferenceProfiler.dll" />
-    <Content Include="bin\stdole.dll" />
-    <Content Include="bin\Support_BLL.dll" />
-    <Content Include="bin\Support_BLL.pdb" />
-    <Content Include="bin\Support_DAL.dll" />
-    <Content Include="bin\Support_DAL.pdb" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\Telerik.Web.UI.dll" />
-    <Content Include="bin\TimePicker.dll" />
-    <Content Include="bin\UI.dll" />
-    <Content Include="bin\UI.pdb" />
-    <Content Include="bin\UserRole.dll" />
-    <Content Include="bin\UserRole.pdb" />
-    <Content Include="bin\UserSecurity.dll" />
-    <Content Include="bin\UserSecurity.pdb" />
-    <Content Include="bin\WebGrease.dll" />
-    <Content Include="bin\XPSParser.dll" />
-    <Content Include="bin\XPSParser.pdb" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
@@ -352,6 +272,7 @@
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
+    <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
@@ -1240,9 +1161,11 @@
     <Content Include="SCM\IndentsApproval.aspx" />
     <Content Include="SCM\IndentStatus.aspx" />
     <Content Include="SCM\IndentStatusDetalis.aspx" />
+    <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
+    <Content Include="SCM\IssueStatement.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -1910,6 +1833,13 @@
     </Compile>
     <Compile Include="AEFPS\ReturnAndDamageReport.aspx.designer.cs">
       <DependentUpon>ReturnAndDamageReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\SalesPriceChange.aspx.cs">
+      <DependentUpon>SalesPriceChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\SalesPriceChange.aspx.designer.cs">
+      <DependentUpon>SalesPriceChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\SalesReport.aspx.cs">
       <DependentUpon>SalesReport.aspx</DependentUpon>
@@ -5719,6 +5649,13 @@
     <Compile Include="SCM\IndentStatusDetalis.aspx.designer.cs">
       <DependentUpon>IndentStatusDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\IndentsVsPO.aspx.cs">
+      <DependentUpon>IndentsVsPO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IndentsVsPO.aspx.designer.cs">
+      <DependentUpon>IndentsVsPO.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\IssueItemByRequesition.aspx.cs">
       <DependentUpon>IssueItemByRequesition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5739,6 +5676,13 @@
     </Compile>
     <Compile Include="SCM\IssueReturn.aspx.designer.cs">
       <DependentUpon>IssueReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueStatement.aspx.cs">
+      <DependentUpon>IssueStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueStatement.aspx.designer.cs">
+      <DependentUpon>IssueStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
@@ -6683,24 +6627,6 @@
     <Folder Include="AEFPS\Data\" />
     <Folder Include="Asset\Data\" />
     <Folder Include="Asset\Uploads\" />
-    <Folder Include="bin\ar\" />
-    <Folder Include="bin\cs\" />
-    <Folder Include="bin\de\" />
-    <Folder Include="bin\es\" />
-    <Folder Include="bin\fr\" />
-    <Folder Include="bin\he\" />
-    <Folder Include="bin\hi\" />
-    <Folder Include="bin\it\" />
-    <Folder Include="bin\ja\" />
-    <Folder Include="bin\ko\" />
-    <Folder Include="bin\nl\" />
-    <Folder Include="bin\pt\" />
-    <Folder Include="bin\ru\" />
-    <Folder Include="bin\SqlServerTypes\x64\" />
-    <Folder Include="bin\SqlServerTypes\x86\" />
-    <Folder Include="bin\tr-TR\" />
-    <Folder Include="bin\zh-CHS\" />
-    <Folder Include="bin\zh-CHT\" />
     <Folder Include="BudgetPlan\Data\" />
     <Folder Include="Content\Bundle\" />
     <Folder Include="Dairy\Data\" />

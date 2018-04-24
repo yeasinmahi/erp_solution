@@ -19,7 +19,13 @@ namespace UI.SCM
         {
             if(!IsPostBack)
             {
-
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); 
+                
+                dt = objPo.GetPoData(36, "", intWh, 0, DateTime.Now, enroll);
+                ddlWH.DataSource = dt;
+                ddlWH.DataTextField = "Id";
+                ddlWH.DataValueField = "strName";
+                ddlWH.DataBind();
             }
             else
             { }

@@ -52,7 +52,7 @@
 
 <%--=========================================Start My Code From Here===============================================--%>
 
-    <div class="Deliverycontainer"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
+    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
     
        <div class="tabs_container" style="text-align:left">Issue Return From<hr /></div>

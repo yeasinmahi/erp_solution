@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IndentStatus.aspx.cs" Inherits="UI.SCM.IndentStatus" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IssueStatement.aspx.cs" Inherits="UI.SCM.IssueStatement" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -68,12 +69,11 @@
            <tr>
             <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
-           
-            <td   style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
-
+            <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Issue ID/NO: "></asp:Label></td>     
+            <td><asp:TextBox ID="txtIssueNo" runat="server" ></asp:TextBox></td>
            </tr>
-           <tr>                      
+           <tr>  
+           
             <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>            
             <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom" runat="server"   CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
@@ -86,72 +86,12 @@
            
             </tr>
            <tr>
-               <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Indent No: "></asp:Label></td>     
-               <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
-                <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Status" OnClick="btnShow_Click" /></td><td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click"/> </td>
+               
+                <td style="text-align:right" colspan="3"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click"/> </td>
            </tr>
 
         </table>
-        <table>
-           <tr><td> 
-            <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
-            <AlternatingRowStyle BackColor="#CCCCCC" /> 
-            <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
- 
-            <asp:TemplateField HeaderText="Indent Id" SortExpression="intIndentID"><ItemTemplate>
-            <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("intIndentID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="100px"/></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Indent Type" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType" >
-            <ItemTemplate><asp:Label ID="lblType" runat="server"  Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>   
-                
-            <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
-            
-            <asp:TemplateField HeaderText="Reject"   ItemStyle-HorizontalAlign="right" SortExpression="ysnReject" >
-            <ItemTemplate><asp:Label ID="lblReject" runat="server"  Text='<%# Bind("ysnReject") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
-
-            <asp:TemplateField HeaderText="Approve Date" ItemStyle-HorizontalAlign="right" SortExpression="dteApproveDate" >
-            <ItemTemplate><asp:Label ID="lblApproveDate" runat="server"   Text='<%# Bind("dteApproveDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right"   SortExpression="dteDueDate" >
-            <ItemTemplate><asp:Label ID="lblDueDate" runat="server"   Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="PO ID" ItemStyle-HorizontalAlign="right" SortExpression="intPOID" >
-            <ItemTemplate><asp:Label ID="lblPoID" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("intPOID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-           
-            <asp:TemplateField HeaderText="PO Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dtePODate" >
-            <ItemTemplate><asp:Label ID="lblPODate" runat="server"  Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
-
-            <asp:TemplateField HeaderText="MRRID" ItemStyle-HorizontalAlign="right" SortExpression="intMRRID" > 
-            <ItemTemplate><asp:Label ID="lblMrrId"    runat="server"  Text='<%# Bind("intMRRID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>  
-
-            <asp:TemplateField HeaderText="MRR Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteLastActionTime" >
-            <ItemTemplate><asp:Label ID="lblMrrDate" runat="server"  Text='<%# Bind("dteLastActionTime") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
-
-            <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click"   /> </ItemTemplate> 
-            </asp:TemplateField>
-
-            </Columns>
-                <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-
-            </asp:GridView></td> 
-        </tr> 
-           
-        </table>
+        
 
          <table>
            <tr><td> 
@@ -161,45 +101,39 @@
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
  
-            <asp:TemplateField HeaderText="Indent Id" SortExpression="intIndentID"><ItemTemplate>
+            <asp:TemplateField HeaderText="SR NO" SortExpression="intIndentID"><ItemTemplate>
             <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("intIndentID") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="60px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strName" >
+            <asp:TemplateField HeaderText="SR Date"   ItemStyle-HorizontalAlign="right" SortExpression="strName" >
             <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
                 
-            <asp:TemplateField HeaderText="UOM"   ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
+            <asp:TemplateField HeaderText="Section"   ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
             <ItemTemplate><asp:Label ID="lblUOM" runat="server"  Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
             
-            <asp:TemplateField HeaderText="Quantity"   ItemStyle-HorizontalAlign="right" SortExpression="numQty" >
+            <asp:TemplateField HeaderText="Issue Date"   ItemStyle-HorizontalAlign="right" SortExpression="numQty" >
             <ItemTemplate><asp:Label ID="lblQty" runat="server"  Text='<%# Bind("numQty") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
 
-            <asp:TemplateField HeaderText="Last Price" ItemStyle-HorizontalAlign="right" SortExpression="lastPrice" >
+            <asp:TemplateField HeaderText="Product" ItemStyle-HorizontalAlign="right" SortExpression="lastPrice" >
             <ItemTemplate><asp:Label ID="lblLastPrice" runat="server"   Text='<%# Bind("lastPrice","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Department" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType" >
+            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType" >
             <ItemTemplate><asp:Label ID="lblDept" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
            
-            <asp:TemplateField HeaderText="Due Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
+            <asp:TemplateField HeaderText="UOM" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
             <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
+            <asp:TemplateField HeaderText="IssueQty"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
             <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
 
-            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strPurpose" > 
-            <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strPurpose") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>   
-
-            <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnStementDetalis" runat="server" Text="Detalis"  OnClick="btnStementDetalis_Click"  /> </ItemTemplate> 
-            </asp:TemplateField>
+           
 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
