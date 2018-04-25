@@ -19,21 +19,21 @@
 
     <script language="javascript" type="text/javascript">
        
-        $("[id*=txtReceQty]").live("change", function () {
+        $("[id*=txtSalesPrice]").live("change", function () {
             if (!jQuery.trim($(this).val()) == '') {
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
                       
-                    var ReceiveQty = parseFloat($(this).val());
-                    var salsPrice = $("[id*=txtSalesPrice]", row).val();
-                    var remainqty = $("[id*=lblRemaingQty]", row).html();
+                    var salsPrice = parseFloat($(this).val());
+                    
+                    var stockQty = $("[id*=lblStockQty]", row).html();
 
 
-                    if (ReceiveQty > remainqty || salsPrice <1) {
+                    if (  stockQty<1 || salsPrice <1) {
                        
-                        $("[id*=txtReceQty]", row).val('0');
+                        $("[id*=txtSalesPrice]", row).val('0');
 
-                            alert("Please Check Sales Price or Receive Qty");
+                            alert("Please Check Sales Price or Stock Qty");
                         
                     }
                     else {
@@ -44,33 +44,6 @@
             }
         });
 
-        $("[id*=txtSalesPrice]").live("change", function () {
-            if (!jQuery.trim($(this).val()) == '') {
-                if (!isNaN(parseFloat($(this).val()))) {
-                    var row = $(this).closest("tr");
-
-                    var  salsPrice= parseFloat($(this).val())
-                    var ReceiveQty = $("[id*=txtReceQty]", row).val();
-                   
-
-
-                    if (salsPrice <1) {
-
-                        $("[id*=txtReceQty]", row).val('0');
-                        $("[id*=txtSalesPrice]", row).val('0');
-
-                        alert("Please Check Sales Price or Receive Qty");
-
-                    }
-                    else {
-
-                    }
-
-                }
-            }
-        });
-        
- 
        
 </script>
     
@@ -105,7 +78,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
        <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnMillage" runat="server" /><asp:HiddenField ID="hdnTFare" runat="server" />
         
-       <div class="tabs_container">Receive Entry From<hr /></div>
+       <div class="tabs_container">Price Change From<hr /></div>
          <table>
        <tr>
            
@@ -126,7 +99,7 @@
              </table>
         <table>
             
-         <tr><td colspan="6"> 
+         <tr><td> 
             <asp:GridView ID="dgvReceive" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical"  ShowFooter="true" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
             <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -135,6 +108,10 @@
             
             <asp:TemplateField HeaderText="ItemId" Visible="false" SortExpression="intItemID"><ItemTemplate>            
             <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="ItemId" Visible="false" SortExpression="intAutoID"><ItemTemplate>            
+            <asp:Label ID="lblAutoID" runat="server" Text='<%# Bind("intAutoID") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="ItmMaster" Visible="false" SortExpression="intItemMasterID"><ItemTemplate>            
@@ -165,14 +142,19 @@
             <asp:TemplateField HeaderText="Remain" ItemStyle-HorizontalAlign="right" SortExpression="monRemaingQty" >
             <ItemTemplate><asp:Label ID="lblRemaingQty" runat="server"  DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monRemaingQty"))) %>'></asp:Label></ItemTemplate>
             </asp:TemplateField> 
-            <asp:TemplateField HeaderText="Receive Qty" ItemStyle-HorizontalAlign="right" SortExpression="monSalesQty" >
-            <ItemTemplate><asp:Label ID="lblReceQty" Width="60px" CssClass="txtBox" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monSalesQty"))) %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="10px" /> </asp:TemplateField>  
+
+            <asp:TemplateField HeaderText="Stock Qty" ItemStyle-HorizontalAlign="right" SortExpression="monSalesQty" >
+            <ItemTemplate><asp:Label ID="lblStockQty" Width="60px"   runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monSalesQty"))) %>'></asp:Label></ItemTemplate>           
+            <ItemStyle HorizontalAlign="Left" Width="10px" /> </asp:TemplateField> 
+            
+            <asp:TemplateField HeaderText="Last Price" ItemStyle-HorizontalAlign="right" SortExpression="monSalesPrice" >
+            <ItemTemplate><asp:Label ID="lblLastPrice" Width="60px"   runat="server"   Text='<%# (decimal.Parse(""+Eval("monSalesPrice"))) %>'></asp:Label></ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Sales Price" ItemStyle-HorizontalAlign="right" SortExpression="monSalesPrice" >
-            <ItemTemplate><asp:TextBox ID="txtSalesPrice" Width="60px" CssClass="txtBox" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monSalesPrice"))) %>'></asp:TextBox></ItemTemplate>
+            <ItemTemplate><asp:TextBox ID="txtSalesPrice" Width="60px" CssClass="txtBox" runat="server"  Text="0"></asp:TextBox></ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Expire Date" ItemStyle-HorizontalAlign="right" SortExpression="monPrtQty" >
+            <asp:TemplateField HeaderText="Expire Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="monPrtQty" >
             <ItemTemplate><asp:TextBox ID="txtExpireDate" runat="server" Width="100px"    CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtExpireDate">
             </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
