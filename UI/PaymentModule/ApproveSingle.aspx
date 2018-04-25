@@ -56,8 +56,8 @@
                 <td style="text-align:left;"><asp:Label ID="lblBillAmount" runat="server" Text="0" CssClass="lbl" ForeColor="Red"></asp:Label></td>                
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="APPROVED BY: " CssClass="lbl"></asp:Label></td>  
-                <td style="text-align:left;" colspan="6"><asp:Label ID="lblArrovedLevel" runat="server" Text="Approved Level:" CssClass="lbl" ForeColor="Blue"></asp:Label></td>                
+                <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="APPROVED LEVEL-1 (Amount): " CssClass="lbl"></asp:Label></td>  
+                <td style="text-align:left;" colspan="6"><asp:Label ID="lblArrovedLevel" runat="server" Text="0" CssClass="lbl" ForeColor="Blue"></asp:Label></td>                
                 <td style="text-align:right;"><asp:Label ID="Label18" runat="server" Text="NET PAY: " CssClass="lbl"></asp:Label></td>
                 <td style="text-align:left;"><asp:Label ID="lblNetPay" runat="server" Text="0" CssClass="lbl" ForeColor="Red"></asp:Label></td>                
             </tr>

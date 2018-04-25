@@ -71,7 +71,7 @@ namespace UI.PaymentModule
                 if (hdnLevel.Value == "2")
                 {
                     dt = new DataTable();
-                    dt = objBillApp.GetNetPayForLevel1(intBillID);
+                    dt = objBillApp.GetNetPayForLevel2(intBillID);
                     if (dt.Rows.Count > 0)
                     {
                         txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString()),2).ToString();

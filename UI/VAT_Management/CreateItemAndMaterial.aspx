@@ -19,8 +19,7 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
-    
-    
+        
 </head>
 <body>
     <form id="frmLoanApplication" runat="server">        
@@ -37,7 +36,7 @@
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnVATAccID" runat="server" />
+    <asp:HiddenField ID="hdnVATAccID" runat="server" /><asp:HiddenField ID="hdnysnFactory" runat="server" />
           
     <div class="divbody" style="padding-right:10px;">
         
@@ -96,7 +95,7 @@
                 <td colspan="2" style="text-align:right;"><asp:CheckBox ID="cbTaxM" runat="server" Text=" Tax Exempted" /></td>
             </tr>
             <tr>
-                <td colspan="6" style="text-align:right; padding: 15px 0px 10px 0px;"><asp:Button ID="btnCreateMaterial" runat="server" class="myButton" Text="Create Material" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnCreateMaterial_Click"/></td>
+                <td colspan="5" style="text-align:right; padding: 15px 0px 10px 0px;"><asp:Button ID="btnCreateMaterial" runat="server" class="myButton" Text="Create Material" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnCreateMaterial_Click"/></td>
             </tr>
         </table>
     </div>

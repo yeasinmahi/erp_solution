@@ -287,8 +287,35 @@ namespace SCM_BLL
             { return adp.GetApproveType(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetUserInfoForPaymentModule(int intUserID)
+        {
+            UserInfoForPaymentModuleTableAdapter adp = new UserInfoForPaymentModuleTableAdapter();
+            try
+            { return adp.GetUserInfoForPaymentModule(intUserID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUnitListByUserID(int intUserID)
+        {
+            SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
+            try
+            { return adp.GetUnitListByUserID(intUserID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetCheckUserRoleForVoucher(string strUserEmail)
+        {
+            SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
+            try
+            { return adp.GetCheckUserRoleForVoucher(strUserEmail); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
-        
+
+
+
+
+
+
+
 
 
 

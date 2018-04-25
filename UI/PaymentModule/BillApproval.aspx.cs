@@ -44,10 +44,12 @@ namespace UI.PaymentModule
                     {
                         hdnLevel.Value = "2";
                         btnApproveAll.Enabled = true;
+                        lblHeading.Text = "BILL APPROVAL (LEVEL-2)";
                     }
                     else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
                     {
                         hdnLevel.Value = "1";
+                        lblHeading.Text = "BILL APPROVAL (LEVEL-1)";
                     }
                     if(hdnLevel.Value == "0")
                     {

@@ -73,7 +73,8 @@
     <table>
         <tr><td>
             <div class="divbody" style="padding-right:10px;">
-                <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL APPROVAL<hr /></div>
+                <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="BILL APPROVAL" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
+                
                 <table class="tbldecoration" style="width:auto; float:left;">
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="lblLoanType" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>

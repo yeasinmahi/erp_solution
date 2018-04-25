@@ -121,6 +121,15 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.HiddenField hdnVATAccID;
         
         /// <summary>
+        /// hdnysnFactory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnysnFactory;
+        
+        /// <summary>
         /// Label9 control.
         /// </summary>
         /// <remarks>

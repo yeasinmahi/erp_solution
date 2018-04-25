@@ -349,6 +349,7 @@
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
+    <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
@@ -2567,6 +2568,13 @@
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.designer.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PaymentVoucher.aspx.cs">
+      <DependentUpon>PaymentVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PaymentVoucher.aspx.designer.cs">
+      <DependentUpon>PaymentVoucher.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>

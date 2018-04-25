@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Voucher For Advice </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -32,7 +32,7 @@
     <asp:HiddenField ID="hdnEmail" runat="server" /> <asp:HiddenField ID="hdnCount" runat="server" />    
     
     <div class="divbody" style="padding-right:10px;">
-        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL APPROVAL<hr /></div>
+        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> VOUCHER FOR ADVICE<hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>

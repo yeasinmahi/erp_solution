@@ -86,6 +86,15 @@ namespace SAD_BLL.Vat
             { return adp.GetRMList(intUnitID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
+        //====== User Info For VAT =================================
+        public DataTable GetUserInfoForVAT(int intUserID)
+        {
+            UserInfoForVATTableAdapter adp = new UserInfoForVATTableAdapter();
+            try
+            { return adp.GetUserInfoForVAT(intUserID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
         
 
 

@@ -67,11 +67,13 @@ namespace UI.PaymentModule
                     lblBillAmount.Text = Math.Round(decimal.Parse(Session["billamount"].ToString())).ToString();
                     monBillAmount = Math.Round(decimal.Parse(Session["billamount"].ToString()));
                     intBillID = int.Parse(Request.QueryString["Id"]);
+                    hdnBillID.Value = intBillID.ToString();
                     Session["billid"] = intBillID.ToString();
                 }
                 catch
                 {
                     intBillID = int.Parse(Session["billid"].ToString());
+                    hdnBillID.Value = intBillID.ToString();
                 }
 
                 dt = new DataTable();
@@ -136,6 +138,7 @@ namespace UI.PaymentModule
                         txtAmount.Text = monApproveAmount.ToString();
                     }
                 }
+                lblArrovedLevel.Text = monApproveAmount.ToString();                
             }                
         }
 
@@ -146,18 +149,25 @@ namespace UI.PaymentModule
                 try
                 {
                     intUser = int.Parse(hdnEnroll.Value);
-                    intBill = intBillID;
                     intLevel = int.Parse(hdnLevel.Value);
                     intAction = int.Parse(ddlCurrentAction.SelectedValue.ToString());
                     strRemarks = txtRemarks.Text;
                     monNewAmount = decimal.Parse(txtAmount.Text);
 
                     dt = new DataTable();
-                    dt = objBillApp.InsertSingleApproveAudit(intUser, intBill, intLevel, intAction, strRemarks, monNewAmount);
+                    dt = objBillApp.InsertSingleApproveAudit(intUser, int.Parse(hdnBillID.Value), intLevel, intAction, strRemarks, monNewAmount);
                     if (dt.Rows.Count > 0)
                     {
                         string msg = dt.Rows[0]["strMessage"].ToString();
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    }
+
+                    dt = new DataTable();
+                    dt = objBillApp.GetPreviousAuditAction(int.Parse(hdnBillID.Value));
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvPreviousStatus.DataSource = dt;
+                        dgvPreviousStatus.DataBind();
                     }
                 }
                 catch { }

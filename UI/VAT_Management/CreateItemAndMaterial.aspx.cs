@@ -33,8 +33,25 @@ namespace UI.VAT_Management
                 {
                     hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                     hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-                    pnlUpperControl.DataBind();
-                                            
+                    pnlUpperControl.DataBind();                    
+
+                    dt = new DataTable();
+                    dt = objvat.GetUserInfoForVAT(int.Parse(hdnEnroll.Value));
+                    if (dt.Rows.Count > 0)
+                    {
+                        hdnysnFactory.Value = dt.Rows[0]["ysnFactory"].ToString();
+                    }
+                    if(hdnysnFactory.Value == "0")
+                    {
+
+                    }
+
+
+
+
+
+
+
                     dt = objvat.GetVATAccountListByEnroll(int.Parse(hdnEnroll.Value));
                     ddlVatAccount.DataTextField = "strVATAccountName";
                     ddlVatAccount.DataValueField = "intVatPointID";
