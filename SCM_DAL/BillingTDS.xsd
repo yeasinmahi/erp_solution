@@ -2,12 +2,13 @@
 <xs:schema id="BillingTDS" targetNamespace="http://tempuri.org/BillingTDS.xsd" xmlns:mstns="http://tempuri.org/BillingTDS.xsd" xmlns="http://tempuri.org/BillingTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="3" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="4" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PaymentConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PaymentConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_PaymentConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_InventoryConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_FTPConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_FTPConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_FTPConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AccountsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AccountsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_AccountsConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblUnitTableAdapter" GeneratorDataComponentClassName="TblUnitTableAdapter" Name="TblUnit" UserDataComponentName="TblUnitTableAdapter">
@@ -806,6 +807,164 @@ isnull(ysnPay,0) as ysnPay FROM ERP_Payment.dbo.tblUserPermission WHERE intEmplo
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PayTypeTableAdapter" GeneratorDataComponentClassName="PayTypeTableAdapter" Name="PayType" UserDataComponentName="PayTypeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPayTypeForPay1" GetMethodModifier="Public" GetMethodName="GetPayTypeForPay1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPayTypeForPay1" UserSourceName="GetPayTypeForPay1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strPayType, intPayType FROM ERP_Payment.dbo.tblAccountsPayType</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strPayType" DataSetColumn="strPayType" />
+              <Mapping SourceColumn="intPayType" DataSetColumn="intPayType" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPayTypeDutyVoucher1" GetMethodModifier="Public" GetMethodName="GetPayTypeDutyVoucher1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPayTypeDutyVoucher1" UserSourceName="GetPayTypeDutyVoucher1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strPayType, intPayType FROM ERP_Payment.dbo.tblAccountsPayType WHERE intPayType=2</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblBankInfoTableAdapter" GeneratorDataComponentClassName="TblBankInfoTableAdapter" Name="TblBankInfo" UserDataComponentName="TblBankInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.tblBankInfo" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetBankInfoByUnitID" GetMethodModifier="Public" GetMethodName="GetBankInfoByUnitID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBankInfoByUnitID" UserSourceName="GetBankInfoByUnitID">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ERP_Accounts].[dbo].[tblBankInfo] WHERE (([intBankID] = @Original_intBankID) AND ([strBankName] = @Original_strBankName))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intBankID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intBankID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT bi.intBankID, bi.strBankName FROM ERP_Accounts.dbo.tblBankAccountInfo ba JOIN ERP_Accounts.dbo.tblBankBranchInfo bb ON ba.intBankBranchID=bb.intBranchID JOIN ERP_Accounts.dbo.tblBankInfo bi 
+ON bb.intBankID=bi.intBankID WHERE ba.intUnitID=@intUnitID GROUP BY bi.intBankID, bi.strBankName ORDER BY bi.intBankID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Accounts.dbo.tblBankAccountInfo" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [ERP_Accounts].[dbo].[tblBankInfo] SET [strBankName] = @strBankName WHERE (([intBankID] = @Original_intBankID) AND ([strBankName] = @Original_strBankName));
+SELECT bi.intBankID, bi.strBankName FROM tblBankAccountInfo AS ba INNER JOIN tblBankBranchInfo AS bb ON ba.intBankBranchID = bb.intBranchID INNER JOIN tblBankInfo AS bi ON bb.intBankID = bi.intBankID WHERE (ba.intAccountID = @intAccountID) AND (bb.intBranchID = @intBranchID) AND (bb.intBankID = @intBankID) GROUP BY bi.intBankID, bi.strBankName ORDER BY bi.intBankID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intBankID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intBankID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strBankName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strBankName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intAccountID" ColumnName="intAccountID" DataSourceName="ERP_Accounts.dbo.tblBankAccountInfo" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAccountID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intBranchID" ColumnName="intBranchID" DataSourceName="ERP_Accounts.dbo.tblBankBranchInfo" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBranchID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intBranchID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intBankID" ColumnName="intBankID" DataSourceName="ERP_Accounts.dbo.tblBankBranchInfo" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intBankID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intBankID" DataSetColumn="intBankID" />
+              <Mapping SourceColumn="strBankName" DataSetColumn="strBankName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblBankAccountInfoTableAdapter" GeneratorDataComponentClassName="TblBankAccountInfoTableAdapter" Name="TblBankAccountInfo" UserDataComponentName="TblBankAccountInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.tblBankAccountInfo" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAccountByBankID" GetMethodModifier="Public" GetMethodName="GetAccountByBankID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAccountByBankID" UserSourceName="GetAccountByBankID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ba.intAccountID, bb.strShortBR+ ': '+ ba.strAccountNo AS strBankAccount FROM ERP_Accounts.dbo.tblBankAccountInfo ba 
+JOIN ERP_Accounts.dbo.tblBankBranchInfo bb ON ba.intBankBranchID=bb.intBranchID JOIN ERP_Accounts.dbo.tblBankInfo bi ON bb.intBankID=bi.intBankID 
+WHERE ba.intUnitID =@intUnitID AND ba.intAccTypeID NOT IN (5,6) AND bb.intBankID=@intBankID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Accounts.dbo.tblBankAccountInfo" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intBankID" ColumnName="intBankID" DataSourceName="ERP_Accounts.dbo.tblBankBranchInfo" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intBankID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intAccountID" DataSetColumn="intAccountID" />
+              <Mapping SourceColumn="strBankAccount" DataSetColumn="strBankAccount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VoucherListByBillIDTableAdapter" GeneratorDataComponentClassName="VoucherListByBillIDTableAdapter" Name="VoucherListByBillID" UserDataComponentName="VoucherListByBillIDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetVoucherListByBillID" GetMethodModifier="Public" GetMethodName="GetVoucherListByBillID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetVoucherListByBillID" UserSourceName="GetVoucherListByBillID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select p.strVoucherCode From ERP_Payment.dbo.tblPaymentRequest P 
+jOIN ERP_Payment.dbo.tblPaymentRequestVoucherDetail pdt On p.intBillID = pdt.intBillID
+Where p.intBillID = @intBillID Group By p.strVoucherCode</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intBillID" ColumnName="intBillID" DataSourceName="ERP_Payment.dbo.tblPaymentRequest" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBillID" Precision="0" Scale="0" Size="4" SourceColumn="intBillID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVoucherCode" DataSetColumn="strVoucherCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="IndentViewDetailsTableAdapter" GeneratorDataComponentClassName="IndentViewDetailsTableAdapter" Name="IndentViewDetails" UserDataComponentName="IndentViewDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetIndentViewDetails" GetMethodModifier="Public" GetMethodName="GetIndentViewDetails" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIndentViewDetails" UserSourceName="GetIndentViewDetails">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intIndentID,dteIndentDate, u.strDescription, strIndentType, isnull(dteDueDate,'') as dteDueDate  
+FROM ERP_Inventory.dbo.tblPurchaseIndent i JOIN ERP_HR.dbo.tblUnit u ON i.intUnitID=u.intUnitID where intIndentID=@intIndentID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intIndentID" ColumnName="intIndentID" DataSourceName="ERP_Inventory.dbo.tblPurchaseIndent" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intIndentID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intIndentID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intIndentID" DataSetColumn="intIndentID" />
+              <Mapping SourceColumn="dteIndentDate" DataSetColumn="dteIndentDate" />
+              <Mapping SourceColumn="strDescription" DataSetColumn="strDescription" />
+              <Mapping SourceColumn="strIndentType" DataSetColumn="strIndentType" />
+              <Mapping SourceColumn="dteDueDate" DataSetColumn="dteDueDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsApprovedPaymentForChequeTableAdapter" GeneratorDataComponentClassName="SprAccountsApprovedPaymentForChequeTableAdapter" Name="SprAccountsApprovedPaymentForCheque" UserDataComponentName="SprAccountsApprovedPaymentForChequeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprAccountsApprovedPaymentForCheque" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUnpaidBillList" GetMethodModifier="Public" GetMethodName="GetUnpaidBillList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUnpaidBillList" UserSourceName="GetUnpaidBillList">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprAccountsApprovedPaymentForCheque</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intDept" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intBillID" DataSetColumn="intBillID" />
+              <Mapping SourceColumn="strBillRegCode" DataSetColumn="strBillRegCode" />
+              <Mapping SourceColumn="intPartyID" DataSetColumn="intPartyID" />
+              <Mapping SourceColumn="strPartyName" DataSetColumn="strPartyName" />
+              <Mapping SourceColumn="monApporveAmount" DataSetColumn="monApporveAmount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1233,7 +1392,112 @@ isnull(ysnPay,0) as ysnPay FROM ERP_Payment.dbo.tblUserPermission WHERE intEmplo
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="PayType" msprop:Generator_TableClassName="PayTypeDataTable" msprop:Generator_TableVarName="tablePayType" msprop:Generator_RowChangedName="PayTypeRowChanged" msprop:Generator_TablePropName="PayType" msprop:Generator_RowDeletingName="PayTypeRowDeleting" msprop:Generator_RowChangingName="PayTypeRowChanging" msprop:Generator_RowEvHandlerName="PayTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="PayTypeRowDeleted" msprop:Generator_RowClassName="PayTypeRow" msprop:Generator_UserTableName="PayType" msprop:Generator_RowEvArgName="PayTypeRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strPayType" msprop:Generator_ColumnVarNameInTable="columnstrPayType" msprop:Generator_ColumnPropNameInRow="strPayType" msprop:Generator_ColumnPropNameInTable="strPayTypeColumn" msprop:Generator_UserColumnName="strPayType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intPayType" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintPayType" msprop:Generator_ColumnPropNameInRow="intPayType" msprop:Generator_ColumnPropNameInTable="intPayTypeColumn" msprop:Generator_UserColumnName="intPayType" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblBankInfo" msprop:Generator_TableClassName="TblBankInfoDataTable" msprop:Generator_TableVarName="tableTblBankInfo" msprop:Generator_TablePropName="TblBankInfo" msprop:Generator_RowDeletingName="TblBankInfoRowDeleting" msprop:Generator_RowChangingName="TblBankInfoRowChanging" msprop:Generator_RowEvHandlerName="TblBankInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="TblBankInfoRowDeleted" msprop:Generator_UserTableName="TblBankInfo" msprop:Generator_RowChangedName="TblBankInfoRowChanged" msprop:Generator_RowEvArgName="TblBankInfoRowChangeEvent" msprop:Generator_RowClassName="TblBankInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intBankID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintBankID" msprop:Generator_ColumnPropNameInRow="intBankID" msprop:Generator_ColumnPropNameInTable="intBankIDColumn" msprop:Generator_UserColumnName="intBankID" type="xs:int" />
+              <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblBankAccountInfo" msprop:Generator_TableClassName="TblBankAccountInfoDataTable" msprop:Generator_TableVarName="tableTblBankAccountInfo" msprop:Generator_TablePropName="TblBankAccountInfo" msprop:Generator_RowDeletingName="TblBankAccountInfoRowDeleting" msprop:Generator_RowChangingName="TblBankAccountInfoRowChanging" msprop:Generator_RowEvHandlerName="TblBankAccountInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="TblBankAccountInfoRowDeleted" msprop:Generator_UserTableName="TblBankAccountInfo" msprop:Generator_RowChangedName="TblBankAccountInfoRowChanged" msprop:Generator_RowEvArgName="TblBankAccountInfoRowChangeEvent" msprop:Generator_RowClassName="TblBankAccountInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intAccountID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintAccountID" msprop:Generator_ColumnPropNameInRow="intAccountID" msprop:Generator_ColumnPropNameInTable="intAccountIDColumn" msprop:Generator_UserColumnName="intAccountID" type="xs:int" />
+              <xs:element name="strBankAccount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrBankAccount" msprop:Generator_ColumnPropNameInRow="strBankAccount" msprop:Generator_ColumnPropNameInTable="strBankAccountColumn" msprop:Generator_UserColumnName="strBankAccount" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VoucherListByBillID" msprop:Generator_TableClassName="VoucherListByBillIDDataTable" msprop:Generator_TableVarName="tableVoucherListByBillID" msprop:Generator_RowChangedName="VoucherListByBillIDRowChanged" msprop:Generator_TablePropName="VoucherListByBillID" msprop:Generator_RowDeletingName="VoucherListByBillIDRowDeleting" msprop:Generator_RowChangingName="VoucherListByBillIDRowChanging" msprop:Generator_RowEvHandlerName="VoucherListByBillIDRowChangeEventHandler" msprop:Generator_RowDeletedName="VoucherListByBillIDRowDeleted" msprop:Generator_RowClassName="VoucherListByBillIDRow" msprop:Generator_UserTableName="VoucherListByBillID" msprop:Generator_RowEvArgName="VoucherListByBillIDRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVoucherCode" msprop:Generator_ColumnVarNameInTable="columnstrVoucherCode" msprop:Generator_ColumnPropNameInRow="strVoucherCode" msprop:Generator_ColumnPropNameInTable="strVoucherCodeColumn" msprop:Generator_UserColumnName="strVoucherCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IndentViewDetails" msprop:Generator_TableClassName="IndentViewDetailsDataTable" msprop:Generator_TableVarName="tableIndentViewDetails" msprop:Generator_RowChangedName="IndentViewDetailsRowChanged" msprop:Generator_TablePropName="IndentViewDetails" msprop:Generator_RowDeletingName="IndentViewDetailsRowDeleting" msprop:Generator_RowChangingName="IndentViewDetailsRowChanging" msprop:Generator_RowEvHandlerName="IndentViewDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="IndentViewDetailsRowDeleted" msprop:Generator_RowClassName="IndentViewDetailsRow" msprop:Generator_UserTableName="IndentViewDetails" msprop:Generator_RowEvArgName="IndentViewDetailsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intIndentID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintIndentID" msprop:Generator_ColumnPropNameInRow="intIndentID" msprop:Generator_ColumnPropNameInTable="intIndentIDColumn" msprop:Generator_UserColumnName="intIndentID" type="xs:int" />
+              <xs:element name="dteIndentDate" msprop:Generator_ColumnVarNameInTable="columndteIndentDate" msprop:Generator_ColumnPropNameInRow="dteIndentDate" msprop:Generator_ColumnPropNameInTable="dteIndentDateColumn" msprop:Generator_UserColumnName="dteIndentDate" type="xs:dateTime" />
+              <xs:element name="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" msprop:Generator_UserColumnName="strDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strIndentType" msprop:Generator_ColumnVarNameInTable="columnstrIndentType" msprop:Generator_ColumnPropNameInRow="strIndentType" msprop:Generator_ColumnPropNameInTable="strIndentTypeColumn" msprop:Generator_UserColumnName="strIndentType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteDueDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndteDueDate" msprop:Generator_ColumnPropNameInRow="dteDueDate" msprop:Generator_ColumnPropNameInTable="dteDueDateColumn" msprop:Generator_UserColumnName="dteDueDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprAccountsApprovedPaymentForCheque" msprop:Generator_TableClassName="SprAccountsApprovedPaymentForChequeDataTable" msprop:Generator_TableVarName="tableSprAccountsApprovedPaymentForCheque" msprop:Generator_TablePropName="SprAccountsApprovedPaymentForCheque" msprop:Generator_RowDeletingName="SprAccountsApprovedPaymentForChequeRowDeleting" msprop:Generator_RowChangingName="SprAccountsApprovedPaymentForChequeRowChanging" msprop:Generator_RowEvHandlerName="SprAccountsApprovedPaymentForChequeRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAccountsApprovedPaymentForChequeRowDeleted" msprop:Generator_UserTableName="SprAccountsApprovedPaymentForCheque" msprop:Generator_RowChangedName="SprAccountsApprovedPaymentForChequeRowChanged" msprop:Generator_RowEvArgName="SprAccountsApprovedPaymentForChequeRowChangeEvent" msprop:Generator_RowClassName="SprAccountsApprovedPaymentForChequeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intBillID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintBillID" msprop:Generator_ColumnPropNameInRow="intBillID" msprop:Generator_ColumnPropNameInTable="intBillIDColumn" msprop:Generator_UserColumnName="intBillID" type="xs:int" />
+              <xs:element name="strBillRegCode" msprop:Generator_ColumnVarNameInTable="columnstrBillRegCode" msprop:Generator_ColumnPropNameInRow="strBillRegCode" msprop:Generator_ColumnPropNameInTable="strBillRegCodeColumn" msprop:Generator_UserColumnName="strBillRegCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intPartyID" msprop:Generator_ColumnVarNameInTable="columnintPartyID" msprop:Generator_ColumnPropNameInRow="intPartyID" msprop:Generator_ColumnPropNameInTable="intPartyIDColumn" msprop:Generator_UserColumnName="intPartyID" type="xs:int" minOccurs="0" />
+              <xs:element name="strPartyName" msprop:Generator_ColumnVarNameInTable="columnstrPartyName" msprop:Generator_ColumnPropNameInRow="strPartyName" msprop:Generator_ColumnPropNameInTable="strPartyNameColumn" msprop:Generator_UserColumnName="strPartyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monApporveAmount" msprop:Generator_ColumnVarNameInTable="columnmonApporveAmount" msprop:Generator_ColumnPropNameInRow="monApporveAmount" msprop:Generator_ColumnPropNameInTable="monApporveAmountColumn" msprop:Generator_UserColumnName="monApporveAmount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SprAccountsApprovedPaymentForCheque" />
+      <xs:field xpath="mstns:intBillID" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

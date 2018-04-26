@@ -36,7 +36,9 @@
         function ViewPriceListPopup(Id) {
             window.open('PreviousPrice.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
-
+        function ViewInDetailsPopup(Id) {
+            window.open('IndentViewDetails.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }        
     </script>
     
 </head>
@@ -282,7 +284,7 @@
                                 </tr> 
                             </table>
                         </td>
-                        <%--<td style="vertical-align:top">        
+                        <td style="vertical-align:top">        
                             <table style="vertical-align:top">
                                 <tr><td style="vertical-align:top">VOUCHER LIST<hr /></td></tr>
                                 <tr>
@@ -294,13 +296,9 @@
                                     <AlternatingRowStyle BackColor="#CCCCCC" />    
                                     <Columns>
                             
-                                    <asp:TemplateField HeaderText="Voucher" SortExpression="intBill">
-                                    <ItemTemplate><asp:Label ID="lblVoucherS" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
-
-                                    <%--<asp:TemplateField HeaderText="Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                                    <ItemTemplate><asp:Button ID="btnShowVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="VoucherS"  
-                                    Text="Show"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Voucher" SortExpression="strVoucherCode">
+                                    <ItemTemplate><asp:Label ID="lblVoucherS" runat="server" Text='<%# Bind("strVoucherCode") %>' Width="130px"></asp:Label>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="130px"/></asp:TemplateField>
 
                                     </Columns>
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -309,7 +307,7 @@
                                     </td>
                                 </tr> 
                             </table>
-                        </td>--%>
+                        </td>
                     </tr>
                 </table>
             </td></tr>

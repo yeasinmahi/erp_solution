@@ -348,6 +348,7 @@
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
+    <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
@@ -1249,6 +1250,7 @@
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
+    <Content Include="VAT_Management\OtherAdjustments.aspx" />
     <Content Include="VAT_Management\ProductionEntry.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\ItemAdd.aspx" />
@@ -2561,6 +2563,13 @@
     </Compile>
     <Compile Include="PaymentModule\DocListByBillID.aspx.designer.cs">
       <DependentUpon>DocListByBillID.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\IndentViewDetails.aspx.cs">
+      <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
+      <DependentUpon>IndentViewDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
@@ -6300,6 +6309,13 @@
     </Compile>
     <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.designer.cs">
       <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\OtherAdjustments.aspx.cs">
+      <DependentUpon>OtherAdjustments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\OtherAdjustments.aspx.designer.cs">
+      <DependentUpon>OtherAdjustments.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\ProductionEntry.aspx.cs">
       <DependentUpon>ProductionEntry.aspx</DependentUpon>

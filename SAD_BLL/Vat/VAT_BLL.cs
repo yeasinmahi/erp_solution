@@ -95,8 +95,63 @@ namespace SAD_BLL.Vat
             { return adp.GetUserInfoForVAT(intUserID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        
 
+
+        #region ===== Production Entry ===================================================
+        public DataTable GetVATItemForProductionEntry(int intUnitID, int intVATAccountID)
+        {
+            TblItemVatForProductionEntryTableAdapter adp = new TblItemVatForProductionEntryTableAdapter();
+            try
+            { return adp.GetVATItemForProductionEntry(intUnitID, intVATAccountID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetTypeForProductionEntry()
+        {
+            TblConfigMusokTypeTableAdapter adp = new TblConfigMusokTypeTableAdapter();
+            try
+            { return adp.GetTypeForProductionEntry(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetBandrollCountCheck(int intUnitID, int intVATAccountID, int intItemID)
+        {
+            TblItemVatForProductionEntryTableAdapter adp = new TblItemVatForProductionEntryTableAdapter();
+            try
+            { return adp.GetBandrollCountCheck(intUnitID, intVATAccountID, intItemID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetBrandRollList(int intProductID)
+        {
+            TblItemVatForProductionEntryTableAdapter adp = new TblItemVatForProductionEntryTableAdapter();
+            try
+            { return adp.GetBrandRollList(intProductID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public string InsertProductionEntry(int intItem, decimal numQty, DateTime dteDate, int intUnit, int intVATAccountID, int intUserID, int intType, string strMessage, int intBandroll, decimal numBRWastage)
+        {
+            string msg = "";
+            try
+            {
+                SprVATProductionEntryTableAdapter adp = new SprVATProductionEntryTableAdapter();
+                adp.InsertProductionEntry(intItem, numQty, dteDate, intUnit, intVATAccountID, intUserID, intType, ref strMessage, intBandroll, numBRWastage);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+        #endregion =======================================================================
+
+        #region ===== Other Adjustment ===================================================
+        public string InsertOtherAdjustment(DateTime dteDate, string strRemark, int intUnitID, int intUserID, decimal monSD, decimal monVAT, decimal monSurCharge, int intVATAccountID, int intTransactionTypeID)
+        {
+            string msg = "";
+            try
+            {
+                SprOtherAdjustmentTableAdapter adp = new SprOtherAdjustmentTableAdapter();
+                adp.InsertOtherAdjustment(dteDate, strRemark, intUnitID, intUserID, monSD, monVAT, monSurCharge, intVATAccountID, intTransactionTypeID, ref msg);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+        #endregion ========================================================================
 
 
 

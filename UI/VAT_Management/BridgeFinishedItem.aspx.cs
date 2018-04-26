@@ -44,7 +44,6 @@ namespace UI.VAT_Management
                     lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
 
                     hdnVatAccID.Value = ddlVatAccount.SelectedValue.ToString();
-                    hdnVatAccID.Value = "1";
 
                     dt = new DataTable();
                     dt = objvat.GetVATItemList(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value));
@@ -89,16 +88,20 @@ namespace UI.VAT_Management
 
         protected void btnUpdateBridge_Click(object sender, EventArgs e)
         {
-            if (hdnconfirm.Value == "1")
+            try
             {
-                intPart = 1;
-                intFGID = int.Parse(ddlFGItem.SelectedValue.ToString());
-                intVatItemID = int.Parse(ddlVATProduct.SelectedValue.ToString());
-                xml = "";
+                if (hdnconfirm.Value == "1")
+                {
+                    intPart = 1;
+                    intFGID = int.Parse(ddlFGItem.SelectedValue.ToString());
+                    intVatItemID = int.Parse(ddlVATProduct.SelectedValue.ToString());
+                    xml = "";
 
-                string message = objvat.InsertVATItemAndMaterialBridge(intPart, intFGID, intVatItemID, int.Parse(hdnVatAccID.Value), int.Parse(hdnEnroll.Value), xml);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    string message = objvat.InsertVATItemAndMaterialBridge(intPart, intFGID, intVatItemID, int.Parse(hdnVatAccID.Value), int.Parse(hdnEnroll.Value), xml);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                }
             }
+            catch { }
         }
 
 
