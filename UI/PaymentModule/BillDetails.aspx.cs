@@ -26,7 +26,7 @@ namespace UI.PaymentModule
         string strSPName, strPath;
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
-        int intSeparationID; string Id; string strDate; string strTodate; string UNITS; string enrol1; string ReportType;
+        int intSeparationID, intIndent; string Id; string strDate; string strTodate; string UNITS; string enrol1; string ReportType;
         string innerTableHtml = "";
         #endregion ====================================================================================
 
@@ -136,7 +136,16 @@ namespace UI.PaymentModule
                 {
                     dgvIndentList.DataSource = dt;
                     dgvIndentList.DataBind();
-                }                
+                }
+
+                dt = new DataTable();
+                dt = objBillApp.GetVoucherListByBillID(intBillID);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvVoucherList.DataSource = dt;
+                    dgvVoucherList.DataBind();
+                }
+                
             }
         }
 
@@ -257,7 +266,8 @@ namespace UI.PaymentModule
 
                 try
                 {
-
+                    intIndent = int.Parse((row.FindControl("lblIndent") as Label).Text);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewInDetailsPopup('" + intIndent.ToString() + "');", true);
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }

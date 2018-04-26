@@ -112,19 +112,19 @@
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                 <FooterTemplate><asp:Label ID="lblGTotalAmntWV" runat="server" DataFormatString="{0:0.00}" Text="<%# ggrandtotalamntwv %>" /></FooterTemplate></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Rate (V)" SortExpression="allIndent">
+                <asp:TemplateField HeaderText="Rate (V)" SortExpression="allIndent" Visible="false">
                 <ItemTemplate><asp:Label ID="lblRTV" runat="server" DataFormatString="{0:0.00}"  Text='0' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="VAT" SortExpression="allIndent">
+                <asp:TemplateField HeaderText="VAT" SortExpression="allIndent" Visible="false">
                 <ItemTemplate><asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}"  Text='0' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Rate" SortExpression="allIndent">
+                <asp:TemplateField HeaderText="Rate" SortExpression="allIndent" Visible="false">
                 <ItemTemplate><asp:Label ID="lblRt" runat="server" DataFormatString="{0:0.00}"  Text='0' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
                                    
-                <asp:TemplateField HeaderText="Amount">
+                <asp:TemplateField HeaderText="Amount" Visible="false">
                 <ItemTemplate><asp:Label ID="lblAmount" runat="server" DataFormatString="{0:0.00}"  Text='0' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
@@ -160,9 +160,7 @@
                 </asp:GridView></td>
             </tr> 
             <tr>
-                <td style="text-align:left;" colspan="9"><asp:Label ID="Label9" runat="server" Text="CHALLAN NO.:" CssClass="lbl"></asp:Label><asp:Label ID="lblIssuedBy" runat="server" Text="Issued By" CssClass="lbl" ForeColor="Blue"></asp:Label></td>  
-                
-                              
+                <td style="text-align:left;" colspan="9"><asp:Label ID="Label9" runat="server" Text="MRR ISSUED BY :" CssClass="lbl"></asp:Label><asp:Label ID="lblIssuedBy" runat="server" Text="Issued By" CssClass="lbl" ForeColor="Blue"></asp:Label></td>  
             </tr>
         </table>
 

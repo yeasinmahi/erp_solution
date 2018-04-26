@@ -308,6 +308,62 @@ namespace SCM_BLL
             { return adp.GetCheckUserRoleForVoucher(strUserEmail); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetPayTypeForPay1()
+        {
+            PayTypeTableAdapter adp = new PayTypeTableAdapter();
+            try
+            { return adp.GetPayTypeForPay1(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPayTypeDutyVoucher1()
+        {
+            PayTypeTableAdapter adp = new PayTypeTableAdapter();
+            try
+            { return adp.GetPayTypeDutyVoucher1(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetBankInfoByUnitID(int intUnitID)
+        {
+            TblBankInfoTableAdapter adp = new TblBankInfoTableAdapter();
+            try
+            { return adp.GetBankInfoByUnitID(intUnitID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetAccountByBankID(int intUnitID, int intBankID)
+        {
+            TblBankAccountInfoTableAdapter adp = new TblBankAccountInfoTableAdapter();
+            try
+            { return adp.GetAccountByBankID(intUnitID, intBankID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetVoucherListByBillID(int intBillID)
+        {
+            VoucherListByBillIDTableAdapter adp = new VoucherListByBillIDTableAdapter();
+            try
+            { return adp.GetVoucherListByBillID(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetIndentViewDetails(int intIndentID)
+        {
+            IndentViewDetailsTableAdapter adp = new IndentViewDetailsTableAdapter();
+            try
+            { return adp.GetIndentViewDetails(intIndentID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        //public DataTable GetUnpaidBillList(int intIndentID)
+        //{
+        //    SprAccountsApprovedPaymentForChequeTableAdapter adp = new SprAccountsApprovedPaymentForChequeTableAdapter();
+        //    try
+        //    { return adp.GetUnpaidBillList(intu); }
+        //    catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        //}
+
+
+        
+
+
+
+
 
 
 
