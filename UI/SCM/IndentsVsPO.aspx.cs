@@ -12,7 +12,7 @@ namespace UI.SCM
 {
     public partial class IndentsVsPO : System.Web.UI.Page
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        Indents_BLL objIndent = new Indents_BLL();
 
         DataTable dt = new DataTable();
         int enroll, intwh;
@@ -22,7 +22,7 @@ namespace UI.SCM
             if(!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
+                dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataTextField = "strName";
@@ -43,7 +43,7 @@ namespace UI.SCM
                 int sortBy = int.Parse(ddlSortBy.SelectedValue);
                 string dept = ddlType.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + " sortBy=" + '"' + sortBy + '"' + "/></voucher>".ToString();
-                dt = objIssue.GetViewData(15, xmlData, intwh, 0, DateTime.Now, enroll);
+                dt = objIndent.DataView(15, xmlData, intwh, 0, DateTime.Now, enroll);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
 

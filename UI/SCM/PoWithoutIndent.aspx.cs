@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -46,7 +47,7 @@ namespace UI.SCM
                     try { File.Delete(filePathForXML); } catch { }
                     try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { }
                     try { unitid = int.Parse(hdnUnit.Value); } catch { }
-                    try { supplierId = int.Parse(ddlSuppliyer.SelectedValue); } catch { supplierId = 0; }
+                    try { supplierId = int.Parse(ddlSupplier.SelectedValue); } catch { supplierId = 0; }
                     try { currencyId = int.Parse(ddlCurrency.SelectedValue); } catch { currencyId = 0; }
                     try { costId = int.Parse(ddlCostCenter.SelectedValue); } catch { }
                     try { payDate = ddlDtePay.SelectedValue.ToString(); } catch { payDate = "0"; }
@@ -107,7 +108,9 @@ namespace UI.SCM
                     xmlString = "<issue>" + xmlString + "</issue>";
                     try { File.Delete(filePathForXMLPo); } catch { }
                     string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
-                    if(msg.Length>5)
+                    string[] searchKey = Regex.Split(msg, ":");
+                    lblPO.Text = "Po Number: " + searchKey[1].ToString();
+                    if (msg.Length>4)
                     {
                         try { File.Delete(filePathForXML); } catch { }
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
@@ -292,7 +295,7 @@ namespace UI.SCM
         {
             try
             {
-                int suppid = int.Parse(ddlSuppliyer.SelectedValue);
+                int suppid = int.Parse(ddlSupplier.SelectedValue);
 
                 dt = objPo.GetPoData(22, "", 0, suppid, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
@@ -498,10 +501,10 @@ namespace UI.SCM
                 ddlCurrency.DataBind();
 
                 dt = objPo.GetPoData(6, "", intWh, 0, DateTime.Now, enroll); // get Suppliyer Data
-                ddlSuppliyer.DataSource = dt;
-                ddlSuppliyer.DataTextField = "strName";
-                ddlSuppliyer.DataValueField = "Id";
-                ddlSuppliyer.DataBind();
+                ddlSupplier.DataSource = dt;
+                ddlSupplier.DataTextField = "strName";
+                ddlSupplier.DataValueField = "Id";
+                ddlSupplier.DataBind();
 
                 dt = objPo.GetPoData(7, "", intWh, 0, DateTime.Now, enroll);// Pay Date
                 ddlDtePay.DataSource = dt;

@@ -23,8 +23,8 @@ namespace UI.SCM
                 
                 dt = objPo.GetPoData(36, "", intWh, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
-                ddlWH.DataTextField = "Id";
-                ddlWH.DataValueField = "strName";
+                ddlWH.DataTextField = "strName";
+                ddlWH.DataValueField = "Id"; 
                 ddlWH.DataBind();
             }
             else

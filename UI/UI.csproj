@@ -1185,7 +1185,9 @@
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
+    <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
+    <Content Include="SCM\ServiceReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
@@ -5825,12 +5827,26 @@
     <Compile Include="SCM\PurchaseReturn.aspx.designer.cs">
       <DependentUpon>PurchaseReturn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\PurchaserPermormance.aspx.cs">
+      <DependentUpon>PurchaserPermormance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PurchaserPermormance.aspx.designer.cs">
+      <DependentUpon>PurchaserPermormance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.designer.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ServiceReceive.aspx.cs">
+      <DependentUpon>ServiceReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
+      <DependentUpon>ServiceReceive.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferIn.aspx.cs">
       <DependentUpon>frmTransferIn.aspx</DependentUpon>

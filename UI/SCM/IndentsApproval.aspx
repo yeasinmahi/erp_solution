@@ -119,13 +119,13 @@
             <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList></td>  
                          
             <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>            
-            <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom" runat="server"   CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
+            <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom"  runat="server"    CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtenderFrom" runat="server"  Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
             </cc1:CalendarExtender> </td>
 
             <td style="text-align:right;"><asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>            
             <td style="text-align:left;"  ><asp:TextBox ID="txtdteTo" runat="server"   CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
+            <cc1:CalendarExtender ID="CalendarExtenderTO" runat="server"   Format="yyyy-MM-dd" TargetControlID="txtdteTo">
             </cc1:CalendarExtender> </td>
             </tr>
 
@@ -150,7 +150,7 @@
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
-            <ItemTemplate><asp:Label ID="lblDueDate" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("dteDueDate") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblDueDate" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("dteDueDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Indent Type" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType" >
