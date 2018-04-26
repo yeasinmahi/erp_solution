@@ -3207,7 +3207,7 @@ SELECT strItemName, strDescription, strPartNo, intItemID FROM tblItemList WHERE 
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT e.strEmployeeName , e.intEmployeeID FROM ERP_Inventory.dbo.tblWearHouseOpe" +
                 "rator us JOIN ERP_HR.dbo.tblEmployee e ON us.intEnrollment=e.intEmployeeID WHERE" +
-                " us.ysnPO =1";
+                " us.ysnPO =1 group by \r\ne.strEmployeeName , e.intEmployeeID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

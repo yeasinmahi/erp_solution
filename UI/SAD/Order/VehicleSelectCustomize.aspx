@@ -62,6 +62,23 @@
          }
         </script>
 
+    <script type="text/javascript">
+         function Confirm() {
+             document.getElementById("hdnconfirm").value = "0";
+            
+
+            
+                 var confirm_value = document.createElement("INPUT");
+                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+                 else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+             }
+         
+    </script>
+
+
+
+
 
     <style type="text/css">
         .hide
@@ -95,6 +112,7 @@
             <asp:HiddenField ID="hdnEdit" Value="" runat="server" />
              <asp:HiddenField ID="hdnoutstandingamount" runat="server" />
             <asp:HiddenField ID="hdnUndelvProductRate" runat="server" />
+            <asp:HiddenField ID="hdnconfirm" runat="server" />
             <table width="100%">
                 <tr>
                     <td style="vertical-align: top;">
@@ -324,7 +342,7 @@
                             <tr>
                                 <td align="right">
                                     <asp:Button ID="btnSubmit" ValidationGroup="valOut" runat="server" Text="Assign Vehicle"
-                                        OnClick="btnSubmit_Click" />
+                                        OnClick="btnSubmit_Click" OnClientClick = "Confirm()" />
                                 </td>
                             </tr>
                         </table>

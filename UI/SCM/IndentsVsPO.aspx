@@ -63,7 +63,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
      <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
-     <div class="tabs_container" style="text-align:left">Indent View<hr /></div>
+     <div class="tabs_container" style="text-align:left">Indent VS PO<hr /></div>
          
        <table>
            <tr>
@@ -93,7 +93,7 @@
                 <asp:ListItem Value="0" Text="Pending"></asp:ListItem><asp:ListItem Value="1" Text="PO Issued"></asp:ListItem><asp:ListItem Value="2" Text="All"></asp:ListItem>
                  </asp:DropDownList></td>
 
-                <td style="text-align:right" colspan="2"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click"/> </td>
+                <td style="text-align:right" colspan="2"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Show"  OnClick="btnStatement_Click"/> </td>
            </tr>
 
         </table>
@@ -112,36 +112,36 @@
             <ItemStyle HorizontalAlign="Left" Width="60px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="stindDaterName" >
-            <ItemTemplate><asp:Label ID="lbldteIndent" runat="server"  Text='<%# Bind("indDate") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lbldteIndent" runat="server"  Text='<%# Bind("indDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
                 
             <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
             <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
-            <asp:TemplateField HeaderText="DUE Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
-            <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
+            <asp:TemplateField HeaderText="Due Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
+            <ItemTemplate><asp:Label ID="lblDueDate" runat="server" Width="60px"  Text='<%# Bind("dteDueDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Remain Day" ItemStyle-HorizontalAlign="right" SortExpression="intRemainDays" >
-            <ItemTemplate><asp:Label ID="lblRemainDays" runat="server"   Text='<%# Bind("intRemainDays" ) %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblRemainDays" runat="server"  ForeColor="Red"   Text='<%# Bind("intRemainDays" ) %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Center" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Total Day" ItemStyle-HorizontalAlign="right" SortExpression="totalDay" >
             <ItemTemplate><asp:Label ID="lbltotalDay" runat="server"   Text='<%# Bind("totalDay") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Center" /> </asp:TemplateField>
            
             <asp:TemplateField HeaderText="Indent Qty" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty" >
             <ItemTemplate><asp:Label ID="lblIdentQty" runat="server"  Text='<%# Bind("numIndentQty" ) %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Pending Qty"   ItemStyle-HorizontalAlign="right" SortExpression="numRemainQty" >
-            <ItemTemplate><asp:Label ID="lblPendingQty" runat="server"  Text='<%# Bind("numRemainQty" ) %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
+            <ItemTemplate><asp:Label ID="lblPendingQty" runat="server"  Text='<%# Bind("numRemainQty","{0:n2}" ) %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
              <asp:TemplateField HeaderText="PO Prepared By"   ItemStyle-HorizontalAlign="right" SortExpression="strPoUser" >
             <ItemTemplate><asp:Label ID="lbl" runat="server"  Text='<%# Bind("strPoUser" ) %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
            
 
             </Columns>
