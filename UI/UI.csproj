@@ -1188,6 +1188,7 @@
     <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
@@ -5847,6 +5848,13 @@
     </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierManeger.aspx.cs">
+      <DependentUpon>SupplierManeger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierManeger.aspx.designer.cs">
+      <DependentUpon>SupplierManeger.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferIn.aspx.cs">
       <DependentUpon>frmTransferIn.aspx</DependentUpon>
