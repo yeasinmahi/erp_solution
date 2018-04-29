@@ -6,7 +6,7 @@ using System.Data;
 using HR_DAL.Global.InventoryTDSTableAdapters;
 using System.Collections;
 using HR_DAL.Global;
-
+using HR_DAL.Employee.EmpRegistrationTDSTableAdapters;
 
 namespace HR_BLL.Global
 {
@@ -85,9 +85,10 @@ namespace HR_BLL.Global
         }
 
         #endregion===========================================================================
-         
+
 
         // private static Hashtable ht = new Hashtable(); 
+        
         public List<string> AutoSearchEmployeesData(int intLoginId, int intJobStationId, string strSearchKey)
         {
            List<string> result = new List<string>();

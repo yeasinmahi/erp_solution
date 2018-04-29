@@ -455,10 +455,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bonus_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\OverTime.cs">
+      <DependentUpon>OverTime.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OverTime.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OverTime.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportDataTDS.cs">
+      <DependentUpon>ReportDataTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportDataTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1295,6 +1306,17 @@
     </None>
     <None Include="Reports\Bonus_TDS.xss">
       <DependentUpon>Bonus_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\OverTime.xsc">
+      <DependentUpon>OverTime.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\OverTime.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OverTime.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\OverTime.xss">
+      <DependentUpon>OverTime.xsd</DependentUpon>
     </None>
     <None Include="Reports\ReportDataTDS.xsc">
       <DependentUpon>ReportDataTDS.xsd</DependentUpon>

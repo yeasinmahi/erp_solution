@@ -15,8 +15,7 @@
     <script type="text/javascript">
         function pageLoad(sender, args) {
             $(document).ready(function () {
-                SearchText();
-                $('#txtFromDate').datepicker({
+                $('#txtMonth').datepicker({
                     changeMonth: true,
                     changeYear: true,
                     showButtonPanel: true,
@@ -27,30 +26,6 @@
                 });
             });
         }
-        function Changed() {
-            document.getElementById('hdfSearchBoxTextChange').value = 'true';
-        }
-        function SearchText() {
-            $("#txtFullName").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json;",
-                        url: "OverTimeIndivisualReprts.aspx/GetAutoCompleteDataForTADA",
-                        data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
-                        dataType: "json",
-                        success: function (data) {
-                            response(data.d);
-                        },
-                        error: function (result) {
-                            alert("Error");
-                        }
-                    });
-                }
-            });
-        }
-
-
     </script>
 
 </head>
@@ -73,34 +48,25 @@
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Over Time Report Checking  :<asp:HiddenField ID="hdnenroll" runat="server" />
-                        <asp:HiddenField ID="hdnstation" runat="server" />
-                        <asp:HiddenField ID="hdnsearch" runat="server" />
-                        <asp:HiddenField ID="ApproverEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnAreamanagerEnrol" runat="server" />
-                        <asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
-                        <asp:HiddenField ID="hdnAction" runat="server" />
-                        <asp:HiddenField ID="HiddenField1" runat="server" />
-                        <asp:HiddenField ID="hdnInsertbyenrol" runat="server" />
-                        <asp:HiddenField ID="HiddenUnit" runat="server" />
-                        <asp:HiddenField ID="hdfEmpCode" runat="server" />
-                        <hr />
+                        Over Time Report Checking  :
                     </div>
                     <table border="0" style="width: Auto">
                         <tr class="tblrowodd">
                             <td style="text-align: right;">
-                                <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label></td>
+                                <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Month :"></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" placeholder="Click  for date" Enabled="true"></asp:TextBox>
+                                <asp:TextBox ID="txtMonth" runat="server" CssClass="txtBox" placeholder="Click  for date" Enabled="true"></asp:TextBox>
                                 <span style="color: red">*</span></td>
-
-
+                            <td style="text-align: right;">
+                                <asp:Label ID="lblfullname" CssClass="lbl" runat="server" Text="Enroll : "></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="txtFullName" runat="server" Wrap="true" placeholder="Type  Enroll" Font-Bold="true" CssClass="txtBox" AutoPostBack="false" OnTextChanged="txtFullName_TextChanged"></asp:TextBox><span style="color: red">*</span></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblfullname" CssClass="lbl" runat="server" onchange="javascript: Changed();" Text="Employee Name: "></asp:Label></td>
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Employee name : "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtFullName" runat="server" Wrap="true" placeholder="Type  Name" Font-Bold="true" CssClass="txtBox" AutoPostBack="false"></asp:TextBox><span style="color: red">*</span></td>
+                                <asp:Label ID="lblEmployeeName" CssClass="lbl" runat="server" Font-Bold="False" Font-Size="Medium"></asp:Label></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblDrdlReportType" CssClass="lbl" runat="server" Text="Report TYpe: "></asp:Label></td>
                             <td>
@@ -111,27 +77,14 @@
                         </tr>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblUnit" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
+                                <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="drdlUnitName" runat="server" DataSourceID="odsUnitNameByEnrol" DataTextField="strUnit" DataValueField="intUnitID"></asp:DropDownList>
-
-                                <asp:ObjectDataSource ID="odsUnitNameByEnrol" runat="server" SelectMethod="getUnitNamebyEnrol" TypeName="HR_BLL.TourPlan.TourPlanning">
-                                    <SelectParameters>
-                                        <asp:SessionParameter Name="Enrol" SessionField="sesUserID" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
+                                 <asp:Label ID="lblUnit" CssClass="lbl" runat="server" Font-Bold="False" Font-Size="Medium"></asp:Label></td>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblArea" CssClass="lbl" runat="server" Text="Jobstation Name: "></asp:Label></td>
+                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Jobstation Name: "></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="drdlArea" CssClass="drdl" runat="server" DataSourceID="odsJobstationName" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"></asp:DropDownList>
-
-
-                                <asp:ObjectDataSource ID="odsJobstationName" runat="server" SelectMethod="getJobstationbyEnrol" TypeName="HR_BLL.TourPlan.TourPlanning">
-                                    <SelectParameters>
-                                        <asp:SessionParameter Name="Enrol" SessionField="sesUserID" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
+                               <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Font-Bold="False" Font-Size="Medium"></asp:Label>
                         </tr>
                         <tr>
                             <td>
@@ -144,39 +97,45 @@
                 <div class="leaveApplication_container">
                     <table>
                         <tr class="tblroweven">
-                            <td colspan="4">
+                            <td>
                                 <asp:GridView ID="grdvOverTimeReports" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="15" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="grdvOverTimeReports_RowDataBound" ForeColor="Black" OnPageIndexChanging="grdvOverTimeReports_PageIndexChanging" GridLines="Vertical">
                                     <AlternatingRowStyle BackColor="White" />
                                     <Columns>
 
 
-                                        <asp:BoundField DataField="dtdate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="BillDate" SortExpression="dtdate" ItemStyle-HorizontalAlign="Center">
+                                        <asp:BoundField DataField="dteDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Date" ItemStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="starttime" DataFormatString="{0:HH:mm}" HeaderText="StartTime" SortExpression="starttime" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-
-                                        <asp:BoundField DataField="endtime" DataFormatString="{0:HH:mm}" HeaderText="EndTime" SortExpression="endtime" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="monsalary" HeaderText="salary" SortExpression="monsalary" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="dechour" HeaderText="hour" SortExpression="dechour" ItemStyle-HorizontalAlign="Center">
+                                        <asp:BoundField DataField="dteStartTime" HeaderText="Start Time" SortExpression="starttime" ItemStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
 
-
-                                        <asp:BoundField DataField="Otcount" HeaderText="Otcount" SortExpression="Otcount" ItemStyle-HorizontalAlign="Center">
+                                        <asp:BoundField DataField="dteEndTime" HeaderText="End Time" SortExpression="endtime" ItemStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="monhramount" HeaderText="hramount" SortExpression="monhramount" ItemStyle-HorizontalAlign="Center">
+                                        <asp:BoundField DataField="monSalary" HeaderText="Gross Salary" SortExpression="monsalary" ItemStyle-HorizontalAlign="Center">
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="monBasic" HeaderText="Basic Salary">
+                                        </asp:BoundField>
+
+
+                                        <asp:BoundField DataField="monHour" HeaderText="Total hour" SortExpression="dechour" ItemStyle-HorizontalAlign="Center">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+
+
+                                        <asp:BoundField DataField="intOTCount" HeaderText="OT count" SortExpression="Otcount" ItemStyle-HorizontalAlign="Center">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="monHourAmount" HeaderText="Rate Per Hour" SortExpression="monhramount" ItemStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
 
-                                        <asp:BoundField DataField="mondailyamnt" HeaderText="mondailyamnt" SortExpression="mondailyamnt" ItemStyle-HorizontalAlign="Center">
+                                        <asp:BoundField DataField="monDayTotalAmount" HeaderText="Day Total Amount" SortExpression="mondailyamnt" ItemStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
 
                                     </Columns>
@@ -189,63 +148,6 @@
                                     <SortedAscendingHeaderStyle BackColor="#848384" />
                                     <SortedDescendingCellStyle BackColor="#EAEAD3" />
                                     <SortedDescendingHeaderStyle BackColor="#575357" />
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="leaveApplication_container">
-                    <table>
-                        <tr class="tblroweven">
-                            <td colspan="4">
-                                <asp:GridView ID="gdvJstopsheet" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="15" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" OnRowDataBound="gdvJstopsheet_RowDataBound" ForeColor="Black" OnPageIndexChanging="gdvJstopsheet_PageIndexChanging" GridLines="Vertical">
-                                    <AlternatingRowStyle BackColor="#CCCCCC" />
-                                    <Columns>
-                                        <asp:BoundField DataField="intSl" HeaderText="Sl" SortExpression="intSl" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-
-                                        <asp:BoundField DataField="strEmplname" HeaderText="Emplname" SortExpression="strEmplname" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="intEmplid" HeaderText="Emplid" SortExpression="intEmplid" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-
-                                        <asp:BoundField DataField="strJobtype" HeaderText="Jobtype" SortExpression="strJobtype" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="strDesign" HeaderText="Design" SortExpression="strDesign" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="strDept" HeaderText="Dept." SortExpression="strDept" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-
-                                        <asp:BoundField DataField="monsalary" HeaderText="salary" SortExpression="monsalary" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="dechour" HeaderText="hour" SortExpression="dechour" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="monhramount" HeaderText="hramount" SortExpression="monhramount" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-
-                                        <asp:BoundField DataField="mondailyamnt" HeaderText="mondailyamnt" SortExpression="mondailyamnt" ItemStyle-HorizontalAlign="Center">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-
-                                    </Columns>
-                                    <FooterStyle BackColor="#CCCCCC" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#383838" />
                                 </asp:GridView>
                             </td>
                         </tr>
