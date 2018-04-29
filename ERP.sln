@@ -58,7 +58,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCM_BLL", "SCM_BLL\SCM_BLL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCM_DAL", "SCM_DAL\SCM_DAL.csproj", "{43E9D794-020B-425F-857C-D313068C4BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "ClassLibrary1\Utility.csproj", "{3E7D37DD-F3E6-4932-B05C-821F021A92EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{3E7D37DD-F3E6-4932-B05C-821F021A92EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
