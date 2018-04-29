@@ -23,7 +23,7 @@
     <style type="text/css"> 
     .rounds { height: 500px; width: 60px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #ffffff; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-    width:40%; height: 50%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; overflow-y:scroll;}    
+    width:40%; height: 60%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 0px 20px 20px 20px;}    
     </style>
     
 </head>
@@ -49,28 +49,34 @@
      </div>
 
     <div id="hdnDivision" class="hdnDivision" style="width:auto;"><table style="width:auto; float:left; ">            
-    <tr><td colspan="4" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="ClosehdnDivision('1')" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 10px verdana;">X</a></td></tr>
-    <tr><td>
-        
-        <table class="tbldecoration" style="width:auto; float:left;">
+    <table class="tbldecoration" style="width:auto; float:left;">
+        <tr><td colspan="4" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="ClosehdnDivision('1')" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 10px verdana;">X</a></td></tr>
         <tr><td>
-            <p style="text-align:left; line-height: 160%; font-size:15px;"><span>Terms & Condition :</span>
-                <span>Branding & Event:</span><span> Prior word order, PO ID & what kind (Large, Moderate & Minor) are must.</span>
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                <br><span style="text-decoration:underline; font:bold;">POSM &amp; Item :</span><span> Final text &amp; measurement are must. You may attach reference (if any) here.</span> 
-                
+        
+        <tr><td>
+            <p style="text-align:left; line-height: 160%; font-size:15px;">
+                <span style="font:bold; font-weight:900; text-decoration:underline; padding-bottom:25px; font-size:22px;">Terms & Conditions:</span>
+                <br /><span style="text-decoration:underline; font:bold; font-weight:900">Quantity:</span><span> Every single unique design will be counted as one (01) quantity. (For example, if you have
+                02 different banner design which will be printed 2000 pieces then fill the Item: Banner, Quantity:02)</span> 
+                <br /><span style="text-decoration:underline; font:bold; font-weight:900">Note:</span><span> For any incomplete information (text, measurement etc.), any received job will be hold and
+                the job sender will get a job hold message with explanation. In this case, job senders are requested
+                to complete the information within 30 minutes, otherwise the next job on queue will be started.</span> 
+                <br /><span style="text-decoration:underline; font:bold; font-weight:900">Job Procedure:</span><span> Please collect the job code after submitting above information and wait for a while.
+                You will get a mail if your job is received from this program and with completion of the job you will
+                get completion message.</span> 
+                <br /><span style="text-decoration:underline; font:bold; font-weight:900">POSM & Item: </span><span> Final text & measurement are must. You may attach reference (if any) here.</span> 
+                <br /><span style="text-decoration:underline; font:bold; font-weight:900">Branding & Event:</span><span> Prior word order, PO ID & what kind (Large, Moderate & Minor) are must.</span>                 
             </p>
             </td></tr>
-        </table>
+            <tr>
+                <td>
+                    <span style="font-size:35px"><asp:CheckBox ID="CheckBox1" runat="server"/></span>
+                    <span style="font:bold; font-weight:900; padding-bottom:25px; font-size:22px;">I accept the terms & conditions in the agreement</span>
+                </td>
+            </tr>
         
-    </td></tr>
-    </table>
-    </div> 
+        </table>
+     </div>
 
 
 

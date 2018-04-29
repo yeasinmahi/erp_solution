@@ -144,7 +144,7 @@
           
                 <tr class="tblrowodd">
                 <td style="text-align:right;"><asp:Label ID="lblquantity" CssClass="lbl" runat="server" Text="Quantity : "></asp:Label></td>
-                <td><asp:TextBox ID="txtQuantity" runat="server" CssClass="txtBox" Text="0.00"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtQuantity" runat="server" CssClass="txtBox" Text="0"></asp:TextBox></td>
        
                 <td style="text-align:right;"><asp:Label ID="lblpo" CssClass="lbl" runat="server"  Text="P.O Number: "></asp:Label></td>
                 <td><asp:TextBox ID="txtpo" runat="server" CssClass="txtBox"></asp:TextBox>

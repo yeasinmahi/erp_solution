@@ -112,6 +112,15 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.HiddenField hdnEntryType;
         
         /// <summary>
+        /// hdnLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnLevel;
+        
+        /// <summary>
         /// lblRegNo control.
         /// </summary>
         /// <remarks>
@@ -265,13 +274,13 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtParty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtParty;
         
         /// <summary>
         /// Label10 control.

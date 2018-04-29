@@ -30,7 +30,35 @@
         function ViewBillDetailsPopup(Id) {
             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
+
+        function ViewApproveActionPopup(Id) {
+            window.open('ApproveSingle.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
     </script>
+
+    <script language="javascript" type="text/javascript">
+        
+        function Search_dgvservice(strKey, strGV) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById(strGV);
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }
+
+</script>
     
 </head>
 <body>
@@ -41,11 +69,12 @@
     
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnLoanID" runat="server" />    
+    <asp:HiddenField ID="hdnLevel" runat="server" />    
     <table>
         <tr><td>
             <div class="divbody" style="padding-right:10px;">
-                <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL APPROVAL<hr /></div>
+                <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="BILL APPROVAL" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
+                
                 <table class="tbldecoration" style="width:auto; float:left;">
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="lblLoanType" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
@@ -78,7 +107,7 @@
                         <td><asp:TextBox ID="txtBillRegNo" runat="server" CssClass="txtBox1"></asp:TextBox></td>
                         <td style="text-align:right; width:15px;"><asp:Label ID="Label9" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right; padding: 0px 0px 10px 0px"><asp:Button ID="btnGo" runat="server" class="myButton" Text="Go" OnClick="btnGo_Click"/></td>                       
-                        <td style="text-align:right; padding: 0px 0px 10px 0px"><asp:Button ID="btnApproveAll" runat="server" class="myButton" Text="Approve All" OnClick="btnShow_Click"/></td>  
+                        <td style="text-align:right; padding: 0px 0px 10px 0px"><asp:Button ID="btnApproveAll" runat="server" class="myButton" Text="Approve All" OnClick="btnApproveAll_Click"/></td>  
                     </tr>
                     <tr><td colspan="5"><hr /></td></tr>
                 </table>
@@ -100,9 +129,15 @@
                     <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Reg No" SortExpression="strBill">
+                    <%--<asp:TemplateField HeaderText="Reg No" SortExpression="strBill">
                     <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="80px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>--%>
+
+                    <asp:TemplateField HeaderText="Reg No" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strBill" HeaderStyle-Height="30px" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
+                    <HeaderTemplate>
+                    <asp:Label ID="lblRegNoL" runat="server" CssClass="lbl" Text="Reg No"></asp:Label>
+                    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Text" runat="server"  width="200" TextMode="MultiLine" placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvBillReport')"></asp:TextBox></HeaderTemplate>
+                    <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Width="200px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strBill")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
                     <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="180px"></asp:Label>
@@ -129,30 +164,28 @@
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>                
             
                     <asp:TemplateField HeaderText="Bill Amount" SortExpression="monbillAmount">
-                    <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monbillAmount") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monbillAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Net Amount" SortExpression="monNetAmount">
-                    <ItemTemplate><asp:Label ID="lblNetAmount" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monNetAmount") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblNetAmount" runat="server" Text='<%# Bind("monNetAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right" SortExpression="strApproveType" > 
-                    <ItemTemplate><asp:DropDownList ID="ddlActionStatus" runat="server" CssClass="ddList" Width="120px">
-                    <asp:ListItem Selected="True" Value="1">Pending</asp:ListItem><asp:ListItem Value="2">Approve</asp:ListItem>
-                    <asp:ListItem Value="3">Reject</asp:ListItem><asp:ListItem Value="4">Market V</asp:ListItem>
-                    <asp:ListItem Value="5">Paid</asp:ListItem></asp:DropDownList></ItemTemplate> 
-                    <ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
+                    <ItemTemplate><asp:DropDownList ID="ddlActionStatus" runat="server" CssClass="ddList" Width="120px" DataSourceID="odsApproveType" DataTextField="strApproveType" DataValueField="intID"></asp:DropDownList>
+                    <asp:ObjectDataSource ID="odsApproveType" runat="server" SelectMethod="GetApproveType" TypeName="SCM_BLL.Billing_BLL"></asp:ObjectDataSource>
+                    </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Action Date" SortExpression="dteApproveDate">
                     <ItemTemplate><asp:Label ID="lblActionDate" runat="server" Text='<%#Eval("dteApproveDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Approve Amount L1" SortExpression="monApproveL1">
-                    <ItemTemplate><asp:Label ID="lblApproveAmountL1" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monApproveL1") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblApproveAmountL1" runat="server" Text='<%# Bind("monApproveL1", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Approve Amount L2" SortExpression="monApproveL2">
-                    <ItemTemplate><asp:Label ID="lblApproveAmountL2" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monApproveL2") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblApproveAmountL2" runat="server" Text='<%# Bind("monApproveL2", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
                                                     
                     <asp:TemplateField HeaderText="Show PO" ItemStyle-HorizontalAlign="Center" SortExpression="">
@@ -168,6 +201,7 @@
                     Text="Approve Action"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     </Columns>
+                        <FooterStyle Font-Size="11px" />
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     </asp:GridView>

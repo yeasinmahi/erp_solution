@@ -68,8 +68,10 @@ namespace UI.SAD.Order
                                 UOM</th>
                             <th style=""width:100px;text-align:center"">
                                 QNT.</th>
+                           <th style=""width:100px;text-align:center"">
+                                RATE</th>
                             <th style=""width:100px;text-align:center"">
-                                PRICEL</th>
+                                PRICE</th>
                         </tr>");
 
                     var rows = from tmp in tblGP
@@ -77,15 +79,17 @@ namespace UI.SAD.Order
                                group tmp by new
                                {
                                    tmp.strProductName,
-                                   tmp.strUOM
+                                   tmp.strUOM,
+                                   tmp.ProductRate
                                } into g
                                select new
                                {
                                    strProductName = g.Key.strProductName,
                                    strUOM = g.Key.strUOM,
                                    numQnt = g.Sum(col => col.numQnt),
-                                   //monPrice = g.Sum(col => Convert.ToDecimal(col.monPrice))
-                                   monPrice = g.Sum(col => Convert.ToDecimal(col.monPrice))
+                                   ProductRate = g.Key.ProductRate,
+                                   monPrice = g.Sum(col => Convert.ToDecimal(col.monPrice)),
+                                  
                                };
 
                     decimal total = 0;
@@ -98,6 +102,8 @@ namespace UI.SAD.Order
                         mainG.Append("<td>" + row.strUOM + "</td>");
                         mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.numQnt) + "</td>");
                         mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.monPrice) + "</td>");
+                        mainG.Append("<td>" + row.ProductRate + "</td>");
+                        
                         mainG.Append("</tr>");
 
                         count++;
@@ -211,8 +217,10 @@ namespace UI.SAD.Order
                              <th style=""width:67px;text-align:center"">
                                D. O Creation DATE</th>
                             <th style=""width:67px;text-align:center"">
+                                                             RATE.</th>
+                            <th style=""width:67px;text-align:center"">
                                  QNT.</th>
-                            
+                             
                             <th style=""width:100px;text-align:center"">
                                 AMOUNT</th>
                         </tr>");
@@ -245,6 +253,8 @@ namespace UI.SAD.Order
                               PENDING  D.O</th>
                              <th style=""width:67px;text-align:center"">
                                D. O Creation DATE</th>
+                             <th style=""width:67px;text-align:center"">
+                                                             RATE.</th>
                             <th style=""width:67px;text-align:center"">
                                 PENDING QNT.</th>
                             
@@ -262,8 +272,11 @@ namespace UI.SAD.Order
                     sb.Append("<td>" + doNo + "</td>");
                     //sb.Append("<td>" + CommonClass.GetDateAtLocalDateFormat( table[i].dodate) + "</td>");
                     sb.Append("<td>" + (table[i].dodate.Date.ToString("dd/MM/yyyy")) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].ProductRate) + "</td>");
                     sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numQuantity) + "</td>");
+                   
                     sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].monPrice) + "</td>");
+                    
                     sb.Append("</tr>");
                
 
@@ -273,12 +286,16 @@ namespace UI.SAD.Order
                     dr["strProductName"] = table[i].strProductFullName;
                     dr["doNo"] = doNo;
                     dr["dodate"] = table[i].dodate;
+                    dr["ProductRate"] = table[i].ProductRate;
                     dr["numQnt"] = table[i].numQuantity;
+                  
                     dr["monPrice"] = table[i].monPrice;
+                
                     dr["numVolume"] = 0;
                     dr["numWeight"] = 0;
                     dr["numWeight"] = 0;
                     dr["strUOM"] = "";
+                  
                     tblGP.Rows.Add(dr);
 
 
@@ -324,12 +341,13 @@ namespace UI.SAD.Order
                         string Do = dt.Rows[j]["strCode"].ToString();
                         string PendingDate = dt.Rows[j]["dteDate"].ToString();
                         string PendingQty = dt.Rows[j]["numRestPieces"].ToString();
-                       
+                        string pendingrate = dt.Rows[j]["rate"].ToString();
                         string Price = dt.Rows[j]["pendingqntpricevalue"].ToString();
                         sbPending.Append("<tr style=\" font-size:10px;\"><td>" + dt.Rows[j]["insl"] + @"</td>");
                         sbPending.Append("<td>" + Product + "</td>");
                         sbPending.Append("<td>" + Do + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingDate + "</td>");
+                        sbPending.Append("<td style=\"text-align:right\">" + pendingrate + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingQty + "</td>");
                        
                         sbPending.Append("<td style=\"text-align:right\">" + Price + "</td>");
@@ -344,7 +362,7 @@ namespace UI.SAD.Order
                 //sbPending.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + 22 + "</th><th style=\"text-align:right;\">" + 232 + "</th></tr>");
                 sbPending.Append("</table>");
                 //
-                sb.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"4\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th><th style=\"text-align:right;\">" + wgt + "</th></tr>");
+                sb.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"5\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th><th style=\"text-align:right;\">" + wgt + "</th></tr>");
                 sb.Append("</table>");
 
                 sbP.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + promCount + "</th><th style=\"text-align:right;\">" + promWgt + "</th></tr>");

@@ -48,7 +48,7 @@ namespace UI.SCM
                 string dept = ddlDept.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                dt = objIndent.DataView(12, xmlData, intwh, 0, dteFrom, enroll);
+                dt = objIndent.DataView(12, xmlData, intwh, indentId, dteFrom, enroll);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
             }
@@ -107,6 +107,8 @@ namespace UI.SCM
         {
             try
             {
+                dgvIndent.Visible = false;
+                dgvStatement.Visible = true;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);

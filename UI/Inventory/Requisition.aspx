@@ -156,6 +156,25 @@ function Viewdetails(id) {
             <asp:SessionParameter DefaultValue="" Name="intInsertBy" SessionField="sesUserID" Type="Int32" />
         </SelectParameters>
         </asp:ObjectDataSource>
+
+
+        <asp:GridView ID="dgvListByEnroll" runat="server" AutoGenerateColumns="False" Font-Size="11px" BackColor="White" BorderStyle="Solid" 
+        BorderWidth="0px" CellPadding="1" ForeColor="Black" GridLines="Vertical" AllowPaging="True" Pagesize="25"><AlternatingRowStyle BackColor="#CCCCCC" />
+        <Columns>
+        <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+        <asp:BoundField DataField="Edate" HeaderText="Entry Date" ItemStyle-HorizontalAlign="Center" SortExpression="Edate" DataFormatString="{0:yyyy-MM-dd}">
+        <ItemStyle HorizontalAlign="Left" Width="80px" /></asp:BoundField> 
+        <asp:BoundField DataField="Code" HeaderText="Requisition Code" ItemStyle-HorizontalAlign="Center" SortExpression="Code">
+        <ItemStyle HorizontalAlign="Left" Width="120px"/></asp:BoundField>
+        <asp:BoundField DataField="Section" HeaderText="Section" ItemStyle-HorizontalAlign="Center" SortExpression="Section">
+        <ItemStyle HorizontalAlign="Left" Width="130px"/></asp:BoundField>
+        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Details" ><ItemTemplate>
+        <asp:Button ID="btnDetails" runat="server" class="nextclick" style="cursor:pointer; font-size:11px;" CommandArgument='<%# Eval("Req") %>' Text="Details"  OnClick="Dtls_Click"/>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" /></asp:TemplateField>
+                         
+        </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+        </asp:GridView>
     </div>
 
 

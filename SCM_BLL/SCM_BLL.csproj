@@ -49,6 +49,7 @@
     <Compile Include="Indents_BLL.cs" />
     <Compile Include="Location_BLL.cs" />
     <Compile Include="MrrReceive_BLL.cs" />
+    <Compile Include="Payment_All_Voucher_BLL.cs" />
     <Compile Include="PoGenerate_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreIssue_BLL.cs" />

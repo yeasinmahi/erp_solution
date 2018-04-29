@@ -148,6 +148,15 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlDepts;
         
         /// <summary>
+        /// lblPO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPO;
+        
+        /// <summary>
         /// Label5 control.
         /// </summary>
         /// <remarks>
@@ -175,13 +184,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// ddlSuppliyer control.
+        /// ddlSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSuppliyer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
         
         /// <summary>
         /// Label8 control.

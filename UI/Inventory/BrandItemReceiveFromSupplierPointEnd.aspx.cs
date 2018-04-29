@@ -72,7 +72,7 @@ namespace UI.Inventory
         {
             TourPlanning objbll = new TourPlanning(); DataTable dt = new DataTable();
             List<string> result = new List<string>();
-            result = objbll.getBrandItemSupplierList(int.Parse("13"), prefix);
+            result = objbll.getBrandItemSupplierList(int.Parse("16"), prefix);
             return result;
         }
 

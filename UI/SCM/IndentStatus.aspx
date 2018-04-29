@@ -167,7 +167,7 @@
 
             <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strName" >
             <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>   
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
                 
             <asp:TemplateField HeaderText="UOM"   ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
             <ItemTemplate><asp:Label ID="lblUOM" runat="server"  Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>

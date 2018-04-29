@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
@@ -14,7 +16,7 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh;
+        int enroll, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -45,11 +47,11 @@ namespace UI.SCM
                 ddlDept.DataValueField = "Id";
                 ddlDept.DataBind();
                 dt.Clear();
-                dt = objPo.GetPoData(14, "", 0, 0, DateTime.Now, enroll);
-                ddlPoUser.DataSource = dt;
-                ddlPoUser.DataTextField = "strName";
-                ddlPoUser.DataValueField = "Id";
-                ddlPoUser.DataBind();
+                //dt = objPo.GetPoData(14, "", 0, 0, DateTime.Now, enroll);
+                //ddlPoUser.DataSource = dt;
+                //ddlPoUser.DataTextField = "strName";
+                //ddlPoUser.DataValueField = "Id";
+                //ddlPoUser.DataBind();
                 string dept = ddlDept.SelectedItem.ToString();
                 if (dept == "Local") { dept = "Local Purchase"; }
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
@@ -66,17 +68,29 @@ namespace UI.SCM
 
         }
 
-      
+        #region=======================Auto Search========================= 
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetPoUserSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchPoUser(prefixText);
+        } 
+        #endregion====================Close===============================
 
-        
+
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
             try {
+                arrayKey = txtPoUser.Text.Split(delimiterChars);
+                string item = ""; string itemid = "";
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
+
                 int unitID = int.Parse(ddlUnit.SelectedValue);
                 string dept = ddlDept.SelectedItem.ToString();
                 string strSupp = ddlSupplier.SelectedValue.ToString();
-                enroll = int.Parse(ddlPoUser.SelectedValue);
+                
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 

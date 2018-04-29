@@ -24,7 +24,7 @@ namespace UI.PaymentModule
 
         string filePathForXML, xmlString, xml, challan, mrrid, amount;
         int intUnitid, intPOID, intSuppid, intCOAID, intEnroll, intAction, intEntryType, intLevel, intBillID;
-        string strPType, strReffNo, strSupplierName;
+        string strPType, strReffNo, strSupplierName, billid, actionid;
         DateTime dteFDate, dteTDate;
 
         #endregion ====================================================================================
@@ -33,10 +33,30 @@ namespace UI.PaymentModule
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-                ///filePathForXML = Server.MapPath("~/SCM/Data/MilkMRR_" + hdnEnroll.Value + ".xml");
 
                 if (!IsPostBack)
                 {
+                    btnApproveAll.Enabled = false;
+                    hdnLevel.Value = "0";
+                    dt = new DataTable();
+                    dt = objBillReg.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
+                    if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
+                    {
+                        hdnLevel.Value = "2";
+                        btnApproveAll.Enabled = true;
+                        lblHeading.Text = "BILL APPROVAL (LEVEL-2)";
+                    }
+                    else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
+                    {
+                        hdnLevel.Value = "1";
+                        lblHeading.Text = "BILL APPROVAL (LEVEL-1)";
+                    }
+                    if(hdnLevel.Value == "0")
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Bill Approval Permission Denied.');", true);
+                        return;
+                    }
+
                     //File.Delete(filePathForXML);   
                     txtFromDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
@@ -45,13 +65,85 @@ namespace UI.PaymentModule
                     ddlUnit.DataTextField = "strUnit";
                     ddlUnit.DataValueField = "intUnitID";
                     ddlUnit.DataSource = dt;
-                    ddlUnit.DataBind();
+                    ddlUnit.DataBind();                    
                 }
             }
             catch { }
         }
 
-        #region===== Show Button Action============ ===================================================
+        #region===== Button Action============ ===================================================
+        protected void btnApproveAll_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "1")
+            {
+                if (dgvBillReport.Rows.Count > 0)
+                {
+                    for (int index = 0; index < dgvBillReport.Rows.Count; index++)
+                    {   
+                        billid = ((Label)dgvBillReport.Rows[index].FindControl("lblID")).Text.ToString();
+                        actionid = ((DropDownList)dgvBillReport.Rows[index].FindControl("ddlActionStatus")).SelectedValue.ToString();
+
+                        if (billid != "" || actionid != "")
+                        {
+                            CreateVoucherXml(billid, actionid);
+                        }
+                    }
+                }
+
+                if (dgvBillReport.Rows.Count > 0)
+                {
+                    try
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXML);
+                        XmlNode dSftTm = doc.SelectSingleNode("BillApp");
+                        string xmlString = dSftTm.InnerXml;
+                        xmlString = "<BillApp>" + xmlString + "</BillApp>";
+                        xml = xmlString;
+                    }
+                    catch { }
+                    if (xml == "") { return; }
+                }
+
+                //*** Final Insert
+                string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                LoadGrid();
+            }
+        }
+
+        private void CreateVoucherXml(string billid, string actionid)
+        {
+            XmlDocument doc = new XmlDocument();
+            if (System.IO.File.Exists(filePathForXML))
+            {
+                doc.Load(filePathForXML);
+                XmlNode rootNode = doc.SelectSingleNode("BillApp");
+                XmlNode addItem = CreateItemNode(doc, billid, actionid);
+                rootNode.AppendChild(addItem);
+            }
+            else
+            {
+                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+                doc.AppendChild(xmldeclerationNode);
+                XmlNode rootNode = doc.CreateElement("BillApp");
+                XmlNode addItem = CreateItemNode(doc, billid, actionid);
+                rootNode.AppendChild(addItem);
+                doc.AppendChild(rootNode);
+            }
+            doc.Save(filePathForXML);
+        }
+        private XmlNode CreateItemNode(XmlDocument doc, string billid, string actionid)
+        {
+            XmlNode node = doc.CreateElement("BillApp");
+            XmlAttribute Billid = doc.CreateAttribute("billid"); Billid.Value = billid;
+            XmlAttribute Actionid = doc.CreateAttribute("actionid"); Actionid.Value = actionid;
+
+            node.Attributes.Append(Billid);
+            node.Attributes.Append(Actionid);            
+            return node;
+        }
+        
         protected void btnShow_Click(object sender, EventArgs e)
         {
             LoadGrid();
@@ -79,7 +171,7 @@ namespace UI.PaymentModule
             dteTDate = DateTime.Parse(txtToDate.Text);
             intAction = int.Parse(ddlAction.SelectedValue.ToString());
             intEntryType = 1;
-            intLevel = 1;
+            intLevel = int.Parse(hdnLevel.Value);
 
             dt = objBillReg.GetPaymentApprovalSummaryAllUnitForWeb(intUnitid, dteFDate, dteTDate, intAction, intEntryType, intLevel);
             dgvBillReport.DataSource = dt;
@@ -116,12 +208,19 @@ namespace UI.PaymentModule
             }
             else if (e.CommandName == "SD")
             {
-                strSupplierName = (row.FindControl("lblPartyName") as Label).Text;
+                Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
                 Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
                 intBillID = int.Parse((row.FindControl("lblID") as Label).Text);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + intBillID.ToString() + "');", true);
             }
-                            
+            else if (e.CommandName == "A")
+            {
+                Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
+                Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
+                intBillID = int.Parse((row.FindControl("lblID") as Label).Text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewApproveActionPopup('" + intBillID.ToString() + "');", true);
+            }
+
         }
 
 

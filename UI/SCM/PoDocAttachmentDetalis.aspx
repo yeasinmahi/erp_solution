@@ -20,9 +20,8 @@
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
-      
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://cdn.rawgit.com/elevateweb/elevatezoom/master/jquery.elevateZoom-3.0.8.min.js"></script>
+    <script src="../Content/JS/JQUERY/JqueryImageHover.min.js"></script>
+    
     <script type="text/javascript">
     $(function () {
     $("[id*=GridView1] img").elevateZoom({
@@ -42,32 +41,7 @@
         }
 
 </script> 
-     <script type="text/javascript">
-         function OpenHdnDiv() {
-             $("#hdnDivision").fadeIn("slow");
-             document.getElementById('hdnDivision').style.visibility = 'visible';
-         }
-
-         function CloseHdnDiv() {
-             $("#hdnDivision").fadeOut("slow");
-         }
-    </script>
-      <style type="text/css">
-        .dynamicDivbn {
-            margin: 5px 5px 5px 5px;    width: Auto; 
-    	    height: auto;
-            background-color:#FFFFFF;
-            font-size: 11px;
-            font-family: verdana;
-            color: #000;
-            padding: 5px 5px 5px 5px;
-            
-          
-        }
-    .frame { width: 60%; height: 300px; border: 0px; }
-    .frame {zoom: 0.99;-moz-transform: scale(0.99);-moz-transform-origin: 0 0;-o-transform: scale(0.99);-o-transform-origin: 0 0;
-    -webkit-transform: scale(0.99);-webkit-transform-origin: 0 0}
-    </style>
+       
      
 </head>
 

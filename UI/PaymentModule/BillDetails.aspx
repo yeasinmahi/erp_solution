@@ -36,7 +36,9 @@
         function ViewPriceListPopup(Id) {
             window.open('PreviousPrice.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
-
+        function ViewInDetailsPopup(Id) {
+            window.open('IndentViewDetails.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }        
     </script>
     
 </head>
@@ -48,7 +50,8 @@
     
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnPOID" runat="server" />
-    <asp:HiddenField ID="hdnUnitID" runat="server" /><asp:HiddenField ID="hdnEntryType" runat="server" />    
+    <asp:HiddenField ID="hdnUnitID" runat="server" /><asp:HiddenField ID="hdnEntryType" runat="server" /> 
+    <asp:HiddenField ID="hdnLevel" runat="server" />  
     
     <div class="divbody" style="padding-right:10px;">
         <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL DETAILS<hr /></div>
@@ -77,7 +80,7 @@
                     </tr>
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="Label4" runat="server" Text="Party Name :" CssClass="lbl"></asp:Label></td>
-                        <td colspan="4"><asp:TextBox ID="TextBox1" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke" Width="555px"></asp:TextBox></td>                
+                        <td colspan="4"><asp:TextBox ID="txtParty" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke" Width="555px"></asp:TextBox></td>                
                         <td style="text-align:right; width:15px;"><asp:Label ID="Label10" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Net Amount :" CssClass="lbl"></asp:Label></td>
                         <td><asp:TextBox ID="txtNetAmount" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
@@ -117,11 +120,11 @@
                         </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Indt. Qty." SortExpression="allIndent">
-                        <ItemTemplate><asp:Label ID="lblIndtQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("allIndent") %>' Width="80px"></asp:Label>
+                        <ItemTemplate><asp:Label ID="lblIndtQty" runat="server" Text='<%# Bind("allIndent") %>' Width="80px"></asp:Label>
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Indt. Rem." SortExpression="indRemain">
-                        <ItemTemplate><asp:Label ID="lblIndtRem" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("indRemain") %>' Width="80px"></asp:Label>
+                        <ItemTemplate><asp:Label ID="lblIndtRem" runat="server" Text='<%# Bind("indRemain") %>' Width="80px"></asp:Label>
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="PO Qty." SortExpression="poQty">
@@ -129,21 +132,21 @@
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Rate" SortExpression="monRate">
-                        <ItemTemplate><asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monRate") %>' Width="80px"></asp:Label>
+                        <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate", "{0:n2}") %>' Width="80px"></asp:Label>
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="VAT" SortExpression="monVat">
-                        <ItemTemplate><asp:Label ID="lblVAT" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monVat") %>' Width="80px"></asp:Label>
+                        <ItemTemplate><asp:Label ID="lblVAT" runat="server"  Text='<%# Bind("monVat", "{0:n2}") %>' Width="80px"></asp:Label>
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                         <FooterTemplate><asp:Label ID="lblVATTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# vatgrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="AIT" SortExpression="monAIT">
-                        <ItemTemplate><asp:Label ID="lblAIT" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monAIT") %>' Width="80px"></asp:Label>
+                        <ItemTemplate><asp:Label ID="lblAIT" runat="server" Text='<%# Bind("monAIT", "{0:n2}") %>' Width="80px"></asp:Label>
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                         <FooterTemplate><asp:Label ID="lblAITTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# aitgrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="G. Total" SortExpression="monTotal">
-                        <ItemTemplate><asp:Label ID="lblGTotal" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monTotal") %>' Width="80px"></asp:Label>
+                        <ItemTemplate><asp:Label ID="lblGTotal" runat="server" Text='<%# Bind("monTotal", "{0:n2}") %>' Width="80px"></asp:Label>
                         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                         <FooterTemplate><asp:Label ID="lblGTotalTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# ggrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
@@ -228,7 +231,7 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="MRR TK" SortExpression="monAmount">
-                                    <ItemTemplate><asp:Label ID="lblMRRTK" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monAmount") %>' Width="80px"></asp:Label>
+                                    <ItemTemplate><asp:Label ID="lblMRRTK" runat="server" Text='<%# Bind("monAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                                     <FooterTemplate><asp:Label ID="lblMRRTKTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# mrrtkgrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
@@ -237,7 +240,7 @@
                                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Voucher TK" SortExpression="monVoucherTK">
-                                    <ItemTemplate><asp:Label ID="lblVoucherTK" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monVoucherTK") %>' Width="80px"></asp:Label>
+                                    <ItemTemplate><asp:Label ID="lblVoucherTK" runat="server" Text='<%# Bind("monVoucherTK", "{0:n2}") %>' Width="80px"></asp:Label>
                                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                                     <FooterTemplate><asp:Label ID="lblVoucherTKTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# vouchertkgrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
@@ -293,13 +296,9 @@
                                     <AlternatingRowStyle BackColor="#CCCCCC" />    
                                     <Columns>
                             
-                                    <asp:TemplateField HeaderText="Voucher" SortExpression="intBill">
-                                    <ItemTemplate><asp:Label ID="lblVoucherS" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
-
-                                    <%--<asp:TemplateField HeaderText="Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                                    <ItemTemplate><asp:Button ID="btnShowVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="VoucherS"  
-                                    Text="Show"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>
+                                    <asp:TemplateField HeaderText="Voucher" SortExpression="strVoucherCode">
+                                    <ItemTemplate><asp:Label ID="lblVoucherS" runat="server" Text='<%# Bind("strVoucherCode") %>' Width="130px"></asp:Label>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="130px"/></asp:TemplateField>
 
                                     </Columns>
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -313,7 +312,6 @@
                 </table>
             </td></tr>
         </table>
-
     </div>
 
 

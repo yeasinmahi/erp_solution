@@ -128,45 +128,7 @@
         </tr> 
          </table>
 
-        <table>
-        <tr>
-        <td style="text-align:right"><asp:Label ID="Label3" Text="Name" runat="server"></asp:Label><asp:TextBox ID="txtName" CssClass="txtBox" Width="250px" runat="server" /></td> 
-        </tr>
-        <tr>
-        <td style="text-align:right"><asp:Label ID="lblMupload" Text="Upload" runat="server"></asp:Label><asp:FileUpload ID="docUpload" Width="250px" runat="server" /></td> 
-        <td style="text-align:right" ><asp:Button ID="btnMrr" Text="Attach MRR" Font-Bold="true" runat="server" OnClick="btnMrr_Click"    /></td> 
-        </tr>
-             
-        </table>
-        
-         <table> 
-        <tr> 
-        <td><asp:GridView ID="dgvDocument" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  Width="600px"  
-        CssClass="GridViewStyle">            
-        <HeaderStyle CssClass="HeaderStyle" />  <FooterStyle CssClass="FooterStyle" /> <RowStyle CssClass="RowStyle" />  <PagerStyle CssClass="PagerStyle" /> 
-        <Columns>
-        <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
-  
-        <asp:TemplateField HeaderText="DocID" SortExpression="intDocID"><ItemTemplate>
-        <asp:Label ID="lblDocId" runat="server" Width="60px" Text='<%# Bind("intDocID") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Document Note" ItemStyle-HorizontalAlign="right" SortExpression="strDocName" >
-        <ItemTemplate><asp:Label ID="lblNote" runat="server"  Width="150px" Text='<%# Bind("strDocName") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
-
-        <asp:TemplateField HeaderText="File Path" ItemStyle-HorizontalAlign="right" SortExpression="strFtpPath" >
-        <ItemTemplate><asp:Label ID="lblFilePath" runat="server" Width="70px"  Text='<%# Bind("strFtpPath") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
-
-        <asp:TemplateField HeaderText="Detalis">  <ItemTemplate>
-        <asp:Button ID="btnDownload" runat="server" Text="Download"      CommandArgument='<%# Eval("strFtpPath") %>'  /></ItemTemplate>
-        <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
-                    
-        </Columns> 
-        </asp:GridView></td> 
-        </tr>  
-       </table> 
+       
          
                
     </div> 

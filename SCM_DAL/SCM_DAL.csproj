@@ -68,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Payment_All_Voucher_TDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Payment_All_Voucher_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PoGenerateTDS.cs">
       <DependentUpon>PoGenerateTDS.xsd</DependentUpon>
     </Compile>
@@ -135,6 +140,17 @@
     </None>
     <None Include="MrrReceiveTDS.xss">
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Payment_All_Voucher_TDS.xsc">
+      <DependentUpon>Payment_All_Voucher_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Payment_All_Voucher_TDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Payment_All_Voucher_TDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Payment_All_Voucher_TDS.xss">
+      <DependentUpon>Payment_All_Voucher_TDS.xsd</DependentUpon>
     </None>
     <None Include="PoGenerateTDS.xsc">
       <DependentUpon>PoGenerateTDS.xsd</DependentUpon>

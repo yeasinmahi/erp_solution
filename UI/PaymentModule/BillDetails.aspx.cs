@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class BillDetails : System.Web.UI.Page
+    public partial class BillDetails : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL();
@@ -26,7 +26,7 @@ namespace UI.PaymentModule
         string strSPName, strPath;
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
-        int intSeparationID; string Id; string strDate; string strTodate; string UNITS; string enrol1; string ReportType;
+        int intSeparationID, intIndent; string Id; string strDate; string strTodate; string UNITS; string enrol1; string ReportType;
         string innerTableHtml = "";
         #endregion ====================================================================================
 
@@ -34,15 +34,50 @@ namespace UI.PaymentModule
         {
             if (!IsPostBack)
             {
+                hdnLevel.Value = "0";
+                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+                dt = new DataTable();
+                dt = objBillApp.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
+                if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
+                {
+                    hdnLevel.Value = "2";
+                }
+                else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
+                {
+                    hdnLevel.Value = "1";
+                }
+                
                 try
                 {
                     intBillID = int.Parse(Request.QueryString["Id"]);
-                    Session["billid"] = intBillID.ToString();                    
+                    Session["billid"] = intBillID.ToString();
+                    txtBillAmount.Text = Session["billamount"].ToString();
+                    txtParty.Text = Session["party"].ToString();
                 }
                 catch {
                     intBillID = int.Parse(Session["billid"].ToString());
                 }
-                //intBillID = 410924;
+
+                if (hdnLevel.Value == "1")
+                {
+                    dt = new DataTable();
+                    dt = objBillApp.GetNetPayForLevel1(intBillID);
+                    if (dt.Rows.Count > 0)
+                    {
+                        txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()),2).ToString();
+                    }
+                }
+
+                if (hdnLevel.Value == "2")
+                {
+                    dt = new DataTable();
+                    dt = objBillApp.GetNetPayForLevel2(intBillID);
+                    if (dt.Rows.Count > 0)
+                    {
+                        txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString()),2).ToString();
+                    }
+                }
+
                 dt = new DataTable();
                 dt = objBillApp.GetPOIDByBillID(intBillID);
                 if (dt.Rows.Count > 0)
@@ -64,7 +99,7 @@ namespace UI.PaymentModule
                 {
                     txtRegNo.Text = dt.Rows[0]["strBillRegCode"].ToString();
                     hdnEntryType.Value = dt.Rows[0]["intEntryType"].ToString();
-                    txtNetPay.Text = dt.Rows[0]["monNetPay"].ToString();
+                    txtNetPay.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()),2).ToString();
                     hdnUnitID.Value = dt.Rows[0]["intUnitID"].ToString();
                 }
 
@@ -101,7 +136,16 @@ namespace UI.PaymentModule
                 {
                     dgvIndentList.DataSource = dt;
                     dgvIndentList.DataBind();
-                }                
+                }
+
+                dt = new DataTable();
+                dt = objBillApp.GetVoucherListByBillID(intBillID);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvVoucherList.DataSource = dt;
+                    dgvVoucherList.DataBind();
+                }
+                
             }
         }
 
@@ -222,7 +266,8 @@ namespace UI.PaymentModule
 
                 try
                 {
-
+                    intIndent = int.Parse((row.FindControl("lblIndent") as Label).Text);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewInDetailsPopup('" + intIndent.ToString() + "');", true);
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }

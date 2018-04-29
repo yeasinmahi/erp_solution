@@ -192,8 +192,190 @@ namespace SCM_BLL
             { return adp.GetChartOfPrice(intItemID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetBillInfoForApprove(int intBillID)
+        {
+            GetApproveActionDataTableAdapter adp = new GetApproveActionDataTableAdapter();
+            try
+            { return adp.GetBillInfoForApprove(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetAdvanceInfoForApprove(int intBillID)
+        {
+            GetApproveActionDataTableAdapter adp = new GetApproveActionDataTableAdapter();
+            try
+            { return adp.GetAdvanceInfoForApprove(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetAdvance(string strPOID)
+        {
+            GetApproveActionDataTableAdapter adp = new GetApproveActionDataTableAdapter();
+            try
+            { return adp.GetAdvance(strPOID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetApproveTypeL1()
+        {
+            GetApproveTL1TableAdapter adp = new GetApproveTL1TableAdapter();
+            try
+            { return adp.GetApproveTypeL1(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetApproveTypeL2()
+        {
+            GetApproveTL2TableAdapter adp = new GetApproveTL2TableAdapter();
+            try
+            { return adp.GetApproveTypeL2(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPreviousAuditAction(int intBillID)
+        {
+            GetPreAdvTableAdapter adp = new GetPreAdvTableAdapter();
+            try
+            { return adp.GetPreviousAdvance(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }        
+        public DataTable GetUserInfoForAudit(int intEnroll)
+        {
+            GetUserInfoForAuditApprovalTableAdapter adp = new GetUserInfoForAuditApprovalTableAdapter();
+            try
+            { return adp.GetUserInfoForAudit(intEnroll); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetLevel1Amount(int intBillID)
+        {
+            GetLevel1AmountAuditTableAdapter adp = new GetLevel1AmountAuditTableAdapter();
+            try
+            { return adp.GetLevel1Amount(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable InsertSingleApproveAudit(int intUser, int intBill, int intLevel, int intAction, string strRemarks, decimal monNewAmount)
+        {
+            SprAuditSingleBillApprovalTableAdapter adp = new SprAuditSingleBillApprovalTableAdapter();
+            try
+            { return adp.InsertSingleApproveAudit(intUser, intBill, intLevel, intAction, strRemarks, monNewAmount); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetNetPayForLevel1(int intBillID)
+        {
+            SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
+            try
+            { return adp.GetNetPayForLevel1(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetNetPayForLevel2(int intBillID)
+        {
+            SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
+            try
+            { return adp.GetNetPayForLevel2(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public string InsertAllBillApproval(int intLevelID, int intInsertBy, string xml)
+        {
+            try
+            {
+                string msg = "";
+                SprAuditAllBillApprovalForWebTableAdapter adp = new SprAuditAllBillApprovalForWebTableAdapter();
+                adp.InsertAllBillApproval(intLevelID, intInsertBy, xml, ref msg);
+                return msg;
+            }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+        public DataTable GetApproveType()
+        {
+            ApproveTypeTableAdapter adp = new ApproveTypeTableAdapter();
+            try
+            { return adp.GetApproveType(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUserInfoForPaymentModule(int intUserID)
+        {
+            UserInfoForPaymentModuleTableAdapter adp = new UserInfoForPaymentModuleTableAdapter();
+            try
+            { return adp.GetUserInfoForPaymentModule(intUserID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUnitListByUserID(int intUserID)
+        {
+            SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
+            try
+            { return adp.GetUnitListByUserID(intUserID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetCheckUserRoleForVoucher(string strUserEmail)
+        {
+            SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
+            try
+            { return adp.GetCheckUserRoleForVoucher(strUserEmail); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPayTypeForPay1()
+        {
+            PayTypeTableAdapter adp = new PayTypeTableAdapter();
+            try
+            { return adp.GetPayTypeForPay1(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPayTypeDutyVoucher1()
+        {
+            PayTypeTableAdapter adp = new PayTypeTableAdapter();
+            try
+            { return adp.GetPayTypeDutyVoucher1(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetBankInfoByUnitID(int intUnitID)
+        {
+            TblBankInfoTableAdapter adp = new TblBankInfoTableAdapter();
+            try
+            { return adp.GetBankInfoByUnitID(intUnitID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetAccountByBankID(int intUnitID, int intBankID)
+        {
+            TblBankAccountInfoTableAdapter adp = new TblBankAccountInfoTableAdapter();
+            try
+            { return adp.GetAccountByBankID(intUnitID, intBankID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetVoucherListByBillID(int intBillID)
+        {
+            VoucherListByBillIDTableAdapter adp = new VoucherListByBillIDTableAdapter();
+            try
+            { return adp.GetVoucherListByBillID(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetIndentViewDetails(int intIndentID)
+        {
+            IndentViewDetailsTableAdapter adp = new IndentViewDetailsTableAdapter();
+            try
+            { return adp.GetIndentViewDetails(intIndentID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        //public DataTable GetUnpaidBillList(int intIndentID)
+        //{
+        //    SprAccountsApprovedPaymentForChequeTableAdapter adp = new SprAccountsApprovedPaymentForChequeTableAdapter();
+        //    try
+        //    { return adp.GetUnpaidBillList(intu); }
+        //    catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        //}
+
 
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
