@@ -21,9 +21,11 @@ namespace UI.PaymentModule
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillReg = new Billing_BLL();
         DataTable dt;
-        
+
+        int intDept, intType;
+        string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid;
         #endregion ====================================================================================
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {   
             try
@@ -134,11 +136,23 @@ namespace UI.PaymentModule
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = dgvReportForPaymentV.Rows[rowIndex];
             
-            if (e.CommandName == "S")
+            if (e.CommandName == "PV")
+            {
+                unitid = ddlUnit.SelectedValue.ToString();
+                billid = (row.FindControl("lblID") as Label).Text;
+                entrycode = (row.FindControl("lblRegNo") as Label).Text;
+                party = (row.FindControl("lblPartyName") as Label).Text;
+                bank = ddlBank.SelectedValue.ToString();
+                bankacc = ddlACNumber.SelectedValue.ToString();
+                instrument = ddlInstrument.SelectedValue.ToString();
+                billtypeid = ddlType.SelectedValue.ToString();
+
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucher('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
+            }
+            else if (e.CommandName == "SD")
             {
                 //int.Parse((row.FindControl("lblID") as Label).Text);
             }
-
 
         }
 
@@ -170,23 +184,38 @@ namespace UI.PaymentModule
             catch { }
         }
 
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+            LoadGrid();          
+        }
+        
+        private void LoadGrid()
+        {
+            try
+            {
+                intType = int.Parse(ddlType.SelectedValue.ToString());
+                if (intType == 1) { intDept = 0; }
+                else if (intType == 2) { intDept = 1; }
+                else if (intType == 3) { intDept = 3; }
+                else if (intType == 4) { intDept = 4; }
+                
 
+                if(hdnysnPay.Value == "1")
+                {
+                    intType = intType;
+                }
+                else if (hdnysnDutyVoucher.Value == "1" && intType == 2)
+                {
+                    intType = 4;
+                }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                dt = new DataTable();
+                dt = objBillReg.GetUnpaidBillList(int.Parse(ddlUnit.SelectedValue.ToString()), intDept);
+                dgvReportForPaymentV.DataSource = dt;
+                dgvReportForPaymentV.DataBind();
+            }
+            catch { }
+        }
 
 
 

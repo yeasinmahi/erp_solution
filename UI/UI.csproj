@@ -276,6 +276,8 @@
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
+    <Content Include="CreativeSupportModule\HoldFeedback.aspx" />
+    <Content Include="CreativeSupportModule\img\20171103 _ CREATIVE SUPPORT UI DASHBOARD _ FOOTER.png" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
@@ -345,8 +347,10 @@
     <Content Include="MedialManagement\ProgramScheduleEntry.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
+    <Content Include="PaymentModule\BankPay.aspx" />
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
+    <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
@@ -2207,6 +2211,13 @@
     <Compile Include="CreativeSupportModule\CustomerView.aspx.designer.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\HoldFeedback.aspx.cs">
+      <DependentUpon>HoldFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\HoldFeedback.aspx.designer.cs">
+      <DependentUpon>HoldFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dairy\Milk_Audit_Approve.aspx.cs">
       <DependentUpon>Milk_Audit_Approve.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2546,6 +2557,13 @@
     <Compile Include="PaymentModule\ApproveSingle.aspx.designer.cs">
       <DependentUpon>ApproveSingle.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\BankPay.aspx.cs">
+      <DependentUpon>BankPay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BankPay.aspx.designer.cs">
+      <DependentUpon>BankPay.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\BillApproval.aspx.cs">
       <DependentUpon>BillApproval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2559,6 +2577,13 @@
     </Compile>
     <Compile Include="PaymentModule\BillDetails.aspx.designer.cs">
       <DependentUpon>BillDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\CashPay.aspx.cs">
+      <DependentUpon>CashPay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\CashPay.aspx.designer.cs">
+      <DependentUpon>CashPay.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\DocListByBillID.aspx.cs">
       <DependentUpon>DocListByBillID.aspx</DependentUpon>

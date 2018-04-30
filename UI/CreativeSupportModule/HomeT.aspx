@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Creative Support </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -25,6 +25,13 @@
     .hdnDivision { background-color: #ffffff; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
     width:40%; height: 60%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 0px 20px 20px 20px;}    
     </style>
+
+    <script language="javascript">        
+        
+        function ViewCustomerView(Id) {
+            window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
+    </script>
     
 </head>
 <body>
@@ -50,13 +57,13 @@
 
     <div id="hdnDivision" class="hdnDivision" style="width:auto;"><table style="width:auto; float:left; ">            
     <table class="tbldecoration" style="width:auto; float:left;">
-        <tr><td colspan="4" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="ClosehdnDivision('1')" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 10px verdana;">X</a></td></tr>
+        <tr><td colspan="4" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="ClosehdnDivision('1')" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 15px verdana;">X</a></td></tr>
         <tr><td>
         
         <tr><td>
             <p style="text-align:left; line-height: 160%; font-size:15px;">
                 <span style="font:bold; font-weight:900; text-decoration:underline; padding-bottom:25px; font-size:22px;">Terms & Conditions:</span>
-                <br /><span style="text-decoration:underline; font:bold; font-weight:900">Quantity:</span><span> Every single unique design will be counted as one (01) quantity. (For example, if you have
+                <br /><span style="text-decoration:underline; font:bold; font-weight:900; text-justify:auto">Quantity:</span><span> Every single unique design will be counted as one (01) quantity. (For example, if you have
                 02 different banner design which will be printed 2000 pieces then fill the Item: Banner, Quantity:02)</span> 
                 <br /><span style="text-decoration:underline; font:bold; font-weight:900">Note:</span><span> For any incomplete information (text, measurement etc.), any received job will be hold and
                 the job sender will get a job hold message with explanation. In this case, job senders are requested
@@ -73,10 +80,16 @@
                     <span style="font-size:35px"><asp:CheckBox ID="CheckBox1" runat="server"/></span>
                     <span style="font:bold; font-weight:900; padding-bottom:25px; font-size:22px;">I accept the terms & conditions in the agreement</span>
                 </td>
+                <td style="text-align:right; padding: 0px 0px 0px 0px; padding-top:18px"><asp:Button ID="btnGo" runat="server" class="myButton" Text="GO >>>" ToolTip="Go To Customer Support" OnClick="btnGo_Click"/></td>                       
+                <%--<td style="color:blue; font-weight:900; padding-top:20px"><a id="btnGo" href="" style="cursor:pointer; text-align:right; font-size:20px; color:blue; " onclick="">GO>>></a></td>--%>
             </tr>
         
         </table>
      </div>
+
+    <div id="Footer" class="footer">
+        <img height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
+    </div>
 
 
 

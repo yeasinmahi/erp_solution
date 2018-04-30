@@ -21,7 +21,9 @@ namespace UI.SCM
         PoGenerate_BLL objPo = new PoGenerate_BLL();
         int enroll, intWh;
         string filePathForXML, filePathForXMLPo, othersTrems, warrentyperiod; string xmlString = ""; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule; DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
+        int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule;
+        
+        DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
         decimal poQty, numPoRate;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -274,6 +276,19 @@ namespace UI.SCM
 
         #endregion============Close======================================
 
+        protected void btnViewPO_Click(object sender, EventArgs e)
+        {
+            if (txtPONo.Text != "")
+            {
+                Session["pono"] = txtPONo.Text;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('../SCM/PoDetalisView.aspx');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not a PO.');", true);
+                return;
+            }
+        }
 
         protected void ddlWHPrepare_SelectedIndexChanged(object sender, EventArgs e)
         {

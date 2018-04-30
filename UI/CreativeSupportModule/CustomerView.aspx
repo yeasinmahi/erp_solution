@@ -5,7 +5,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. CUSTOMERS VIEW </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -24,7 +24,7 @@
     <style type="text/css"> 
     .rounds { height: 500px; width: 60px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #ffffff; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-    width:40%; height: 50%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; overflow-y:scroll;}    
+    width:50%; height: 100%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; }    
     </style>
     
 </head>
@@ -75,9 +75,9 @@
                 <asp:DropDownList ID="ddlJobDescription" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; padding-top:10px; padding-left:20px"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Job Type :"></asp:Label></td>
-                <td colspan="2" style="padding-top:10px; padding-left:10px"><span style="border-left:groove; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoLarge" runat="server" Checked="true" Text=" Large" AutoPostBack="true"/></span>
-                <span style="border-left:groove; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoModerate" runat="server" Text=" Moderate" AutoPostBack="true" /></span>
-                <span style="border-left:groove; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoMinor" runat="server" Text=" Minor" AutoPostBack="true" /></span>
+                <td colspan="2" style="padding-top:10px; padding-left:10px"><span style="border-left-style:groove; border-left-width:0.1px; border-color:gainsboro; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoLarge" runat="server" Checked="true" Text=" Large" AutoPostBack="true"/></span>
+                <span style=" border-left-style:groove; border-left-width:0.1px; border-color:gainsboro; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoModerate" runat="server" Text=" Moderate" AutoPostBack="true" /></span>
+                <span style="border-left-style:groove; border-left-width:0.1px; border-color:gainsboro; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoMinor" runat="server" Text=" Minor" AutoPostBack="true" /></span>
                 </td>
             </tr>
             <tr>
@@ -110,6 +110,10 @@
                 <span style="padding-left:50px"><asp:Button ID="Button3" runat="server" class="myButton" Text="Submit" Height="30px"/></span></td>
             </tr>
         </table>
+    </div>
+
+    <div id="Footer" class="footer">
+        <img height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
     </div>
    
 

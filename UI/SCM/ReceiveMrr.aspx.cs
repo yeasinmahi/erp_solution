@@ -49,11 +49,9 @@ namespace UI.SCM
                 ddlPo.DataValueField = "Id";
                 ddlPo.DataBind();
                 DataClear();
-
-
-
             }
             catch { }
+            txtPO.Text = "";
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,6 +71,7 @@ namespace UI.SCM
 
             }
             catch { }
+            txtPO.Text = "";
         }
         protected void Mrr_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -317,6 +316,7 @@ namespace UI.SCM
                 
             }
             catch { }
+            txtPO.Text = "";
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -329,8 +329,45 @@ namespace UI.SCM
         {
             try
             {
+
                 intWh = int.Parse(ddlWH.SelectedValue);
-                intPo = int.Parse(ddlPo.SelectedValue);
+                if(intWh == 0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select WH');", true); return; }
+                if(int.Parse(ddlPoType.SelectedValue.ToString()) == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select PO Type');", true); return;
+                }
+
+                if(txtPO.Text == "")
+                {
+                    intPo = int.Parse(ddlPo.SelectedValue);
+                }
+                else
+                {
+                    try { intPo = int.Parse(txtPO.Text); } catch { intPo = int.Parse(ddlPo.SelectedValue); }
+                }
+
+                try
+                {
+                    dt = new DataTable();
+                    dt = obj.GetWHByPO(intPo);
+                    if (dt.Rows.Count > 0)
+                    {
+                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
+                        if(dt.Rows[0]["strPoFor"].ToString() == "Local")
+                        {
+                            ddlPoType.SelectedValue = "1";
+                        }
+                        else if(dt.Rows[0]["strPoFor"].ToString() == "Import")
+                        {
+                            ddlPoType.SelectedValue = "2";
+                        }
+                        else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
+                        {
+                            ddlPoType.SelectedValue = "3";
+                        }
+                    }
+                }
+                catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Correct PO');", true); return; }
                 try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
                 xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
                 if (ddlInvoice.Enabled == true)

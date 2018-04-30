@@ -1267,13 +1267,6 @@ namespace SAD_DAL.AEFPS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblEmployeeRow FindByintEmployeeID(int intEmployeeID) {
-                return ((tblEmployeeRow)(this.Rows.Find(new object[] {
-                            intEmployeeID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 tblEmployeeDataTable cln = ((tblEmployeeDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1303,16 +1296,12 @@ namespace SAD_DAL.AEFPS {
                 base.Columns.Add(this.columnstrEmployeeCode);
                 this.columnintEmployeeID = new global::System.Data.DataColumn("intEmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintEmployeeID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintEmployeeID}, true));
                 this.columnstrEmployeeName.MaxLength = 1000;
                 this.columnstrEmployeeCode.MaxLength = 100;
                 this.columnintEmployeeID.AutoIncrement = true;
                 this.columnintEmployeeID.AutoIncrementSeed = -1;
                 this.columnintEmployeeID.AutoIncrementStep = -1;
-                this.columnintEmployeeID.AllowDBNull = false;
                 this.columnintEmployeeID.ReadOnly = true;
-                this.columnintEmployeeID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8362,7 +8351,12 @@ namespace SAD_DAL.AEFPS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int intEmployeeID {
                 get {
-                    return ((int)(this[this.tabletblEmployee.intEmployeeIDColumn]));
+                    try {
+                        return ((int)(this[this.tabletblEmployee.intEmployeeIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intEmployeeID\' in table \'tblEmployee\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tabletblEmployee.intEmployeeIDColumn] = value;
@@ -8391,6 +8385,18 @@ namespace SAD_DAL.AEFPS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetstrEmployeeCodeNull() {
                 this[this.tabletblEmployee.strEmployeeCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsintEmployeeIDNull() {
+                return this.IsNull(this.tabletblEmployee.intEmployeeIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetintEmployeeIDNull() {
+                this[this.tabletblEmployee.intEmployeeIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11546,36 +11552,6 @@ namespace SAD_DAL.AEFPS.FPSSalesEntryTDSTableAdapters {
             tableMapping.ColumnMappings.Add("strEmployeeCode", "strEmployeeCode");
             tableMapping.ColumnMappings.Add("intEmployeeID", "intEmployeeID");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ERP_HR].[dbo].[tblEmployee] WHERE (((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ((@IsNull_strEmployeeCode = 1 AND [strEmployeeCode] IS NULL) OR ([strEmployeeCode] = @Original_strEmployeeCode)) AND ([intEmployeeID] = @Original_intEmployeeID))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmployeeName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmployeeCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeCode", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intEmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_HR].[dbo].[tblEmployee] ([strEmployeeName], [strEmployeeCode]) V" +
-                "ALUES (@strEmployeeName, @strEmployeeCode);\r\nSELECT strEmployeeName, strEmployee" +
-                "Code, intEmployeeID FROM tblEmployee WHERE (intEmployeeID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmployeeCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_HR].[dbo].[tblEmployee] SET [strEmployeeName] = @strEmployeeName, [strEmployeeCode] = @strEmployeeCode WHERE (((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ((@IsNull_strEmployeeCode = 1 AND [strEmployeeCode] IS NULL) OR ([strEmployeeCode] = @Original_strEmployeeCode)) AND ([intEmployeeID] = @Original_intEmployeeID));
-SELECT strEmployeeName, strEmployeeCode, intEmployeeID FROM tblEmployee WHERE (intEmployeeID = @intEmployeeID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmployeeCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmployeeName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmployeeCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeCode", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intEmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEmployeeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11591,8 +11567,9 @@ SELECT strEmployeeName, strEmployeeCode, intEmployeeID FROM tblEmployee WHERE (i
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select strEmployeeName,strEmployeeCode,intEmployeeID from ERP_HR.dbo.tblEmployee " +
-                "where ysnactive=1 ";
+            this._commandCollection[0].CommandText = @"select strEmployeeName,strEmployeeCode,intEmployeeID from ERP_HR.dbo.tblEmployee where ysnactive=1  
+union  
+select strEmployeeName,strEmployeeCode,intEmployeeID from ERP_HR.dbo.tblEmployee where  strEmployeeName like '%mass%' order by intemployeeid desc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11605,165 +11582,6 @@ SELECT strEmployeeName, strEmployeeCode, intEmployeeID FROM tblEmployee WHERE (i
             FPSSalesEntryTDS.tblEmployeeDataTable dataTable = new FPSSalesEntryTDS.tblEmployeeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(FPSSalesEntryTDS.tblEmployeeDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(FPSSalesEntryTDS dataSet) {
-            return this.Adapter.Update(dataSet, "tblEmployee");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_strEmployeeName, string Original_strEmployeeCode, int Original_intEmployeeID) {
-            if ((Original_strEmployeeName == null)) {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_strEmployeeName));
-            }
-            if ((Original_strEmployeeCode == null)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_strEmployeeCode));
-            }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_intEmployeeID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string strEmployeeName, string strEmployeeCode) {
-            if ((strEmployeeName == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(strEmployeeName));
-            }
-            if ((strEmployeeCode == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(strEmployeeCode));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string strEmployeeName, string strEmployeeCode, string Original_strEmployeeName, string Original_strEmployeeCode, int Original_intEmployeeID, int intEmployeeID) {
-            if ((strEmployeeName == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(strEmployeeName));
-            }
-            if ((strEmployeeCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(strEmployeeCode));
-            }
-            if ((Original_strEmployeeName == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_strEmployeeName));
-            }
-            if ((Original_strEmployeeCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_strEmployeeCode));
-            }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_intEmployeeID));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(intEmployeeID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string strEmployeeName, string strEmployeeCode, string Original_strEmployeeName, string Original_strEmployeeCode, int Original_intEmployeeID) {
-            return this.Update(strEmployeeName, strEmployeeCode, Original_strEmployeeName, Original_strEmployeeCode, Original_intEmployeeID, Original_intEmployeeID);
         }
     }
     
@@ -16428,8 +16246,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
         
         private UpdateOrderOption _updateOrder;
         
-        private tblEmployeeTableAdapter _tblEmployeeTableAdapter;
-        
         private tblSalesDetailsTem1TableAdapter _tblSalesDetailsTem1TableAdapter;
         
         private tblShopItemListTableAdapter _tblShopItemListTableAdapter;
@@ -16448,20 +16264,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblEmployeeTableAdapter tblEmployeeTableAdapter {
-            get {
-                return this._tblEmployeeTableAdapter;
-            }
-            set {
-                this._tblEmployeeTableAdapter = value;
             }
         }
         
@@ -16526,10 +16328,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tblEmployeeTableAdapter != null) 
-                            && (this._tblEmployeeTableAdapter.Connection != null))) {
-                    return this._tblEmployeeTableAdapter.Connection;
-                }
                 if (((this._tblSalesDetailsTem1TableAdapter != null) 
                             && (this._tblSalesDetailsTem1TableAdapter.Connection != null))) {
                     return this._tblSalesDetailsTem1TableAdapter.Connection;
@@ -16555,9 +16353,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tblEmployeeTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._tblSalesDetailsTem1TableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -16578,15 +16373,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(FPSSalesEntryTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblEmployeeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblEmployee.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblEmployeeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tblShopItemList1TableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tblShopItemList1.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -16624,14 +16410,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(FPSSalesEntryTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblEmployeeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblEmployee.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblEmployeeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tblShopItemList1TableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tblShopItemList1.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -16690,14 +16468,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tblEmployeeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblEmployee.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblEmployeeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -16736,11 +16506,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._tblEmployeeTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblEmployeeTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             if (((this._tblSalesDetailsTem1TableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblSalesDetailsTem1TableAdapter.Connection) == false))) {
@@ -16789,15 +16554,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tblEmployeeTableAdapter != null)) {
-                    revertConnections.Add(this._tblEmployeeTableAdapter, this._tblEmployeeTableAdapter.Connection);
-                    this._tblEmployeeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblEmployeeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblEmployeeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblEmployeeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblEmployeeTableAdapter.Adapter);
-                    }
-                }
                 if ((this._tblSalesDetailsTem1TableAdapter != null)) {
                     revertConnections.Add(this._tblSalesDetailsTem1TableAdapter, this._tblSalesDetailsTem1TableAdapter.Connection);
                     this._tblSalesDetailsTem1TableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -16882,10 +16638,6 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tblEmployeeTableAdapter != null)) {
-                    this._tblEmployeeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblEmployeeTableAdapter]));
-                    this._tblEmployeeTableAdapter.Transaction = null;
                 }
                 if ((this._tblSalesDetailsTem1TableAdapter != null)) {
                     this._tblSalesDetailsTem1TableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSalesDetailsTem1TableAdapter]));

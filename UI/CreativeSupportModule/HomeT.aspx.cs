@@ -24,5 +24,17 @@ namespace UI.Task_Module
         {
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewConfirm('" + 0 + "');", true);
         }
+
+        protected void btnGo_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewCustomerView('" + 0 + "');", true);
+        }
+
+
+
+
+
+
+
     }
 }
