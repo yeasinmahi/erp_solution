@@ -314,6 +314,7 @@
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
+    <Content Include="Inventory\BrandItemReport.aspx" />
     <Content Include="Inventory\DeliveryRequestAccess.aspx" />
     <Content Include="Inventory\DocApproval.aspx" />
     <Content Include="Inventory\DocHistory.aspx" />
@@ -922,7 +923,6 @@
     <Content Include="Inventory\BrandItemIssuenumberTagwithVheicle.aspx" />
     <Content Include="Inventory\BrandItemReceiveFromSupplierPointEnd.aspx" />
     <Content Include="Inventory\BrandItemReceivingConfirmation.aspx" />
-    <Content Include="Inventory\BrandItemReport.aspx" />
     <Content Include="Inventory\BrandItemReqAprvByEventDept.aspx" />
     <Content Include="Inventory\BrandItemReqisition.aspx" />
     <Content Include="Inventory\BrandItemRequisitionApprove.aspx" />
@@ -2459,6 +2459,13 @@
     </Compile>
     <Compile Include="Inventory\BrandItemChallanPrint.aspx.designer.cs">
       <DependentUpon>BrandItemChallanPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\BrandItemReport.aspx.cs">
+      <DependentUpon>BrandItemReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\BrandItemReport.aspx.designer.cs">
+      <DependentUpon>BrandItemReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\DeliveryRequestAccess.aspx.cs">
       <DependentUpon>DeliveryRequestAccess.aspx</DependentUpon>
@@ -4057,13 +4064,6 @@
     </Compile>
     <Compile Include="Inventory\BrandItemReceivingConfirmation.aspx.designer.cs">
       <DependentUpon>BrandItemReceivingConfirmation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\BrandItemReport.aspx.cs">
-      <DependentUpon>BrandItemReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inventory\BrandItemReport.aspx.designer.cs">
-      <DependentUpon>BrandItemReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemReqAprvByEventDept.aspx.cs">
       <DependentUpon>BrandItemReqAprvByEventDept.aspx</DependentUpon>
