@@ -476,7 +476,7 @@ namespace UI.SAD.Order
           
 
 
-            if (ddlUnit.SelectedValue == "90" && ddlSo.SelectedValue == "465")
+            if (ddlSo.SelectedValue == "465" || ddlSo.SelectedValue == "1470")
             {
 
                 calculteddiscount = totalprdctprice * discnttaka;

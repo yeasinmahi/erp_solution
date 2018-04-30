@@ -316,11 +316,13 @@
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
+    <Content Include="Inventory\BrandItemReport.aspx" />
     <Content Include="Inventory\DeliveryRequestAccess.aspx" />
     <Content Include="Inventory\DocApproval.aspx" />
     <Content Include="Inventory\DocHistory.aspx" />
     <Content Include="Inventory\FinishGoodsStock.aspx" />
     <Content Include="Inventory\ItemManager.aspx" />
+    <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
     <Content Include="Inventory\SalesDamageEntry.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
@@ -925,7 +927,6 @@
     <Content Include="Inventory\BrandItemIssuenumberTagwithVheicle.aspx" />
     <Content Include="Inventory\BrandItemReceiveFromSupplierPointEnd.aspx" />
     <Content Include="Inventory\BrandItemReceivingConfirmation.aspx" />
-    <Content Include="Inventory\BrandItemReport.aspx" />
     <Content Include="Inventory\BrandItemReqAprvByEventDept.aspx" />
     <Content Include="Inventory\BrandItemReqisition.aspx" />
     <Content Include="Inventory\BrandItemRequisitionApprove.aspx" />
@@ -2470,6 +2471,13 @@
     <Compile Include="Inventory\BrandItemChallanPrint.aspx.designer.cs">
       <DependentUpon>BrandItemChallanPrint.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\BrandItemReport.aspx.cs">
+      <DependentUpon>BrandItemReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\BrandItemReport.aspx.designer.cs">
+      <DependentUpon>BrandItemReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\DeliveryRequestAccess.aspx.cs">
       <DependentUpon>DeliveryRequestAccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2504,6 +2512,13 @@
     </Compile>
     <Compile Include="Inventory\ItemManager.aspx.designer.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\OverTimeIndivisualReprts.aspx.cs">
+      <DependentUpon>OverTimeIndivisualReprts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\OverTimeIndivisualReprts.aspx.designer.cs">
+      <DependentUpon>OverTimeIndivisualReprts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\RAWMaterialTransfer.aspx.cs">
       <DependentUpon>RAWMaterialTransfer.aspx</DependentUpon>
@@ -4074,13 +4089,6 @@
     </Compile>
     <Compile Include="Inventory\BrandItemReceivingConfirmation.aspx.designer.cs">
       <DependentUpon>BrandItemReceivingConfirmation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\BrandItemReport.aspx.cs">
-      <DependentUpon>BrandItemReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inventory\BrandItemReport.aspx.designer.cs">
-      <DependentUpon>BrandItemReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemReqAprvByEventDept.aspx.cs">
       <DependentUpon>BrandItemReqAprvByEventDept.aspx</DependentUpon>
@@ -6812,6 +6820,10 @@
     <ProjectReference Include="..\Budget_BLL\Budget_BLL.csproj">
       <Project>{0ac1b655-b9e7-4ef5-a0f4-6bb849ce6793}</Project>
       <Name>Budget_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dairy_BLL\Dairy_BLL.csproj">
       <Project>{e7377e68-1638-4fda-a922-9adcee6b86ca}</Project>

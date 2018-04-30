@@ -12,9 +12,13 @@
   
 
      <script type="text/javascript">
-         $(document).ready(function () {
-             SearchText();
-         });
+         function pageLoad(sender, args) {
+            $(document).ready(function () {
+                SearchText();
+                $('#txtstrt').timepicker();
+                $('#txtend').timepicker();
+            });
+        }
          function Changed() {
              document.getElementById('hdfSearchBoxTextChange').value = 'true';
          }
@@ -114,15 +118,10 @@
 
         <div class="leaveApplication_container"> 
              <table>
-
-
-
-          <tr class="tblroweven"><td colspan="4">
+          <tr class="tblroweven"><td>
                <asp:GridView ID="grdvOverTimeReports" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="15" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="grdvOverTimeReports_RowDataBound" ForeColor="Black" OnPageIndexChanging="grdvOverTimeReports_PageIndexChanging" GridLines="Vertical">
                      <AlternatingRowStyle BackColor="White" />
                      <Columns>
-                     
-
                        <asp:BoundField DataField="dtdate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="BillDate" SortExpression="dtdate" ItemStyle-HorizontalAlign="Center"  >
                        <ItemStyle HorizontalAlign="Center" />
                       </asp:BoundField>
@@ -169,10 +168,7 @@
 
         <div class="leaveApplication_container"> 
              <table>
-
-
-
-          <tr class="tblroweven"><td colspan="4">
+          <tr class="tblroweven"><td>
                <asp:GridView ID="gdvJstopsheet" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="15" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" OnRowDataBound="gdvJstopsheet_RowDataBound1" ForeColor="Black" OnPageIndexChanging="gdvJstopsheet_PageIndexChanging" GridLines="Vertical">
                      <AlternatingRowStyle BackColor="#CCCCCC" />
                      <Columns>

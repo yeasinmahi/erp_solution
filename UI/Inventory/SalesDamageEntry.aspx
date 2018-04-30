@@ -241,7 +241,8 @@
     <asp:TemplateField HeaderText="Insertion" SortExpression="Insert Date" >
     <ItemTemplate><asp:Label ID="lbcdate" runat="server"  Text='<%# Eval("insertdate", "{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField>
-
+<asp:BoundField DataField="damagecatg" HeaderText="Damage catg" ItemStyle-HorizontalAlign="Center" SortExpression="Point">
+    <ItemStyle HorizontalAlign="Left" Width="100px"/></asp:BoundField> 
   
 
 

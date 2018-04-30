@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{7DF00D8E-0EA8-4301-AF2C-3B37B6A5DF1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E7D37DD-F3E6-4932-B05C-821F021A92EE} = {3E7D37DD-F3E6-4932-B05C-821F021A92EE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkijFTPConnector", "AkijFTPConnector\AkijFTPConnector.csproj", "{7FFC8470-38FD-4DBD-A54A-7CD581D32E12}"
 EndProject
@@ -54,6 +57,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCM_BLL", "SCM_BLL\SCM_BLL.csproj", "{A4F011C0-9E28-4F3F-932F-69A994FCE403}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCM_DAL", "SCM_DAL\SCM_DAL.csproj", "{43E9D794-020B-425F-857C-D313068C4BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{3E7D37DD-F3E6-4932-B05C-821F021A92EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,92 +170,15 @@ Global
 		{43E9D794-020B-425F-857C-D313068C4BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43E9D794-020B-425F-857C-D313068C4BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43E9D794-020B-425F-857C-D313068C4BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E7D37DD-F3E6-4932-B05C-821F021A92EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E7D37DD-F3E6-4932-B05C-821F021A92EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E7D37DD-F3E6-4932-B05C-821F021A92EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E7D37DD-F3E6-4932-B05C-821F021A92EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 27
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs2015:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = AkijFTPConnector\\AkijFTPConnector.csproj
-		SccProjectName1 = AkijFTPConnector
-		SccLocalPath1 = AkijFTPConnector
-		SccProjectUniqueName2 = DAL\\DAL.csproj
-		SccProjectName2 = DAL
-		SccLocalPath2 = DAL
-		SccProjectUniqueName3 = GLOBAL_BLL\\GLOBAL_BLL.csproj
-		SccProjectName3 = GLOBAL_BLL
-		SccLocalPath3 = GLOBAL_BLL
-		SccProjectUniqueName4 = HR_DAL\\HR_DAL.csproj
-		SccProjectName4 = HR_DAL
-		SccLocalPath4 = HR_DAL
-		SccProjectUniqueName5 = UserRole\\UserRole.csproj
-		SccProjectName5 = UserRole
-		SccLocalPath5 = UserRole
-		SccProjectUniqueName6 = UserSecurity\\UserSecurity.csproj
-		SccProjectName6 = UserSecurity
-		SccLocalPath6 = UserSecurity
-		SccProjectUniqueName7 = HR_BLL\\HR_BLL.csproj
-		SccProjectName7 = HR_BLL
-		SccLocalPath7 = HR_BLL
-		SccProjectUniqueName8 = BLL\\BLL.csproj
-		SccProjectName8 = BLL
-		SccLocalPath8 = BLL
-		SccProjectUniqueName9 = Budget_DAL\\Budget_DAL.csproj
-		SccProjectName9 = Budget_DAL
-		SccLocalPath9 = Budget_DAL
-		SccProjectUniqueName10 = Budget_BLL\\Budget_BLL.csproj
-		SccProjectName10 = Budget_BLL
-		SccLocalPath10 = Budget_BLL
-		SccProjectUniqueName11 = Dairy_DAL\\Dairy_DAL.csproj
-		SccProjectName11 = Dairy_DAL
-		SccLocalPath11 = Dairy_DAL
-		SccProjectUniqueName12 = Dairy_BLL\\Dairy_BLL.csproj
-		SccProjectName12 = Dairy_BLL
-		SccLocalPath12 = Dairy_BLL
-		SccProjectUniqueName13 = LOGIS_DAL\\LOGIS_DAL.csproj
-		SccProjectName13 = LOGIS_DAL
-		SccLocalPath13 = LOGIS_DAL
-		SccProjectUniqueName14 = LOGIS_BLL\\LOGIS_BLL.csproj
-		SccProjectName14 = LOGIS_BLL
-		SccLocalPath14 = LOGIS_BLL
-		SccProjectUniqueName15 = Projects_DAL\\Projects_DAL.csproj
-		SccProjectName15 = Projects_DAL
-		SccLocalPath15 = Projects_DAL
-		SccProjectUniqueName16 = Projects_BLL\\Projects_BLL.csproj
-		SccProjectName16 = Projects_BLL
-		SccLocalPath16 = Projects_BLL
-		SccProjectUniqueName17 = Purchase_DAL\\Purchase_DAL.csproj
-		SccProjectName17 = Purchase_DAL
-		SccLocalPath17 = Purchase_DAL
-		SccProjectUniqueName18 = Purchase_BLL\\Purchase_BLL.csproj
-		SccProjectName18 = Purchase_BLL
-		SccLocalPath18 = Purchase_BLL
-		SccProjectUniqueName19 = SAD_DAL\\SAD_DAL.csproj
-		SccProjectName19 = SAD_DAL
-		SccLocalPath19 = SAD_DAL
-		SccProjectUniqueName20 = SAD_BLL\\SAD_BLL.csproj
-		SccProjectName20 = SAD_BLL
-		SccLocalPath20 = SAD_BLL
-		SccProjectUniqueName21 = Support_DAL\\Support_DAL.csproj
-		SccProjectName21 = Support_DAL
-		SccLocalPath21 = Support_DAL
-		SccProjectUniqueName22 = Support_BLL\\Support_BLL.csproj
-		SccProjectName22 = Support_BLL
-		SccLocalPath22 = Support_BLL
-		SccProjectUniqueName23 = XPSParser\\XPSParser.csproj
-		SccProjectName23 = XPSParser
-		SccLocalPath23 = XPSParser
-		SccProjectUniqueName24 = UI\\UI.csproj
-		SccProjectName24 = UI
-		SccLocalPath24 = UI
-		SccProjectUniqueName25 = SCM_BLL\\SCM_BLL.csproj
-		SccProjectName25 = SCM_BLL
-		SccLocalPath25 = SCM_BLL
-		SccProjectUniqueName26 = SCM_DAL\\SCM_DAL.csproj
-		SccProjectName26 = SCM_DAL
-		SccLocalPath26 = SCM_DAL
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9D12B3E-EFF8-4B1E-8F76-2DB69DAC5324}
 	EndGlobalSection
 EndGlobal

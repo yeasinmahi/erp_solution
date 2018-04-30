@@ -180,9 +180,12 @@
                           <asp:ListItem Value="1018">Allotmetn Aprv Topsheet</asp:ListItem>
                           <asp:ListItem Value="1019">All point Allotment vs Recv</asp:ListItem>
                            <asp:ListItem Value="1020">Individual point Allotment vs Recv</asp:ListItem>
-                           <asp:ListItem Value="1021">Stock status at a Glance</asp:ListItem>
+                           <asp:ListItem Value="1021">Stock status at a Glance Horizontally</asp:ListItem>
                          <asp:ListItem Value="1022">Challan status at a Glance</asp:ListItem>
-                          <asp:ListItem Value="1023">Receive status at a Glance</asp:ListItem>
+                          <asp:ListItem Value="1023">Receive status at a Glance Horizontally</asp:ListItem>
+                          <asp:ListItem Value="1024">Stock status at a Glance Vertically</asp:ListItem>
+                         <asp:ListItem Value="1025">Receive status at a Glance Vertically</asp:ListItem>
+                          <asp:ListItem Value="1026">Receive status Vertically (Det)</asp:ListItem>
                          </asp:DropDownList>
                                     
                                     
@@ -619,7 +622,56 @@
                  </tr>
              </table>
          </div>
+           <div>
+                    <table>
 
+                    <tr class="tblrowodd">
+                    <td>
+                 
+                    <asp:GridView ID="grdvVerticalyrpt" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="3000" CellPadding="3" GridLines="Vertical" OnPageIndexChanging="grdvAllpointRcvCompare_PageIndexChanging" OnRowDataBound="grdvAllpointRcvCompare_RowDataBound" ForeColor="Black" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                    <Columns>
+                    <asp:BoundField DataField="Sl" HeaderText="Sl" SortExpression="Sl" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                     <asp:BoundField DataField="strPointName" HeaderText="Point Name" ItemStyle-Width="200px" SortExpression="strPointName" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                               </asp:BoundField>
+                    <asp:BoundField DataField="Items" HeaderText="Items" ItemStyle-Width="200px" SortExpression="Items" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+
+                       
+                    <asp:BoundField DataField="AppQuantity" HeaderText="Approve Quantity" SortExpression="AppQuantity" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+                      
+                      <asp:BoundField DataField="numQntRecvbyPoint" HeaderText="Rcv Quantity By Point" SortExpression="numQntRecvbyPoint" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+                      
+                      
+                         
+                    <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-Width="200px" SortExpression="Remarks" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+                    </Columns>
+                    <FooterStyle BackColor="#CCCCCC" />
+                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle ForeColor="Black" HorizontalAlign="Center" BackColor="#999999" />
+                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                    </asp:GridView>
+                    </td>
+
+                    </tr>
+                    </table>
+
+
+        </div>
 
         <%--=========================================End My Code From Here=================================================--%>
   

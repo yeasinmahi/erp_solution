@@ -157,15 +157,15 @@ namespace UI.Inventory
 
                 if (rdoComplete.SelectedIndex == 0)
                 {
-                    GridView1.Columns[5].Visible = true;
                     GridView1.Columns[6].Visible = true;
-                    GridView1.Columns[9].Visible = true;
+                    GridView1.Columns[7].Visible = true;
+                    GridView1.Columns[10].Visible = true;
                 }
                 else
                 {
-                    GridView1.Columns[5].Visible = false;
                     GridView1.Columns[6].Visible = false;
-                    GridView1.Columns[9].Visible = false;
+                    GridView1.Columns[7].Visible = false;
+                    GridView1.Columns[10].Visible = false;
                 }
             }
         }
