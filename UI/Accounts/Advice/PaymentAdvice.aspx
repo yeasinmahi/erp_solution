@@ -36,7 +36,7 @@
             html = $.trim(html);
             html = html.replace(/>/g, '&gt;');
             html = html.replace(/</g, '&lt;');
-            $("input[id$='HdnValue']").val(html);
+            $("input[id$='HdnValueIBBL']").val(html);
         }
      </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -102,7 +102,8 @@
             <td style="text-align:left;"><asp:DropDownList ID="ddlChillingCenter" runat="server" CssClass="ddList" Width="210px"></asp:DropDownList></td>
             <td colspan="2" style="text-align:right;"><asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />
             <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()"/>
-            <asp:Button ID="btnEmail" runat="server" Text="Email" /><asp:Button ID="btnPrint" runat="server" Text="Print" /></td>
+            <asp:Button ID="btnExportIBBL" runat="server" Text="Export" OnClick="btnExportIBBL_Click" OnClientClick="ExportDivDataToExcelIBBL()"/>
+            <asp:Button ID="btnPrint" runat="server" Text="Print" /></td>
         </tr>
            <tr><td colspan="6">
                <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false">
@@ -411,6 +412,7 @@
                 </tr>
                 <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left">&nbsp;</td></tr>
              </table>
+             <asp:HiddenField ID="HdnValueIBBL" runat="server" />
              </div>
             </td></tr>
         </table>
