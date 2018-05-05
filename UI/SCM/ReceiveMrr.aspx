@@ -29,7 +29,7 @@
                     var poqty = parseFloat($("[id*=lblPoQty]", row).html());
                     var monValue = parseFloat($("[id*=lblValue]", row).html());
                     var preReceQty = parseFloat($("[id*=lblPreviousReceive]", row).html());
-                    var receQty = parseFloat($(this).val()).toFixed(4);
+                    var receQty = parseFloat($(this).val());
                     var rtotal = parseFloat(monValue / poqty * receQty);
                     var remain = parseFloat(poqty - preReceQty)
                     if (remain >= receQty) {
@@ -213,7 +213,7 @@
                         <ItemStyle HorizontalAlign="Right" Width="50px"/></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="PO Qty" ItemStyle-HorizontalAlign="right" SortExpression="numPoQty" > 
-                        <ItemTemplate><asp:Label ID="lblPoQty" runat="server"   Text='<%# Bind("numPoQty","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblPoQty" runat="server"   Text='<%# Bind("numPoQty") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monRate" > 

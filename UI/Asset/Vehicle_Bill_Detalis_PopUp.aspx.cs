@@ -90,5 +90,10 @@ namespace UI.Asset
 
             }
         }
+
+        protected void Btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

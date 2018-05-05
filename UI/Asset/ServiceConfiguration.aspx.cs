@@ -212,17 +212,12 @@ namespace UI.Asset
 
         protected void btnschedule_Click(object sender, EventArgs e)
         {
-           
-                try
-                {
-      
-
+            try
+                { 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PMSchedule.aspx');", true);
 
                 }
-                catch { }
-           
-
+                catch { } 
         }
 
         protected void btnservice_Click(object sender, EventArgs e)
@@ -250,39 +245,33 @@ namespace UI.Asset
 
         protected void btnRepair_Click(object sender, EventArgs e)
         {
-          
-                try
-                {
-                   
-
+              try
+                { 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('CommonRepaisListPopUp.aspx');", true);
                 }
-                catch { }
-            
+                catch { } 
         }
 
         protected void DdlSchedule_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-            intItem = 13;
-            if (intItem == 13)
-            {
-                Int32 Mnumber = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                servicec = objPMConfigure.ServiceDropdown(intItem, Mnumber, intenroll, intjobid, intdept);
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+           
+                int Mnumber = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                servicec = objPMConfigure.ServiceDropdown(13, Mnumber, intenroll, intjobid, intdept);
                 DdlService.DataSource = servicec;
                 DdlService.DataTextField = "strServiceName";
                 DdlService.DataValueField = "intID";
                 DdlService.DataBind();
-            }
+            
             //showdata();
         }
 
         protected void DdlService_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Int32 serviceID = Int32.Parse(DdlService.SelectedValue.ToString());
-            dt = new DataTable();
+            int serviceID = int.Parse(DdlService.SelectedValue.ToString());
+           
             dt = objPMConfigure.ViewServiceData(serviceID);
             if (dt.Rows.Count > 0)
             {
@@ -337,9 +326,9 @@ namespace UI.Asset
 
                 string number = hdfEmpCode.Value.ToString();
 
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                 
                 
                 if (RadioButton1.Checked == true)
@@ -352,10 +341,7 @@ namespace UI.Asset
 
                     string provide = DdlProvide.SelectedItem.Text.ToString();
                     string priode = DdlRequred.SelectedItem.Text.ToString();
-                    decimal serviceCost = decimal.Parse(HdnServiceCost.Value.ToString());
-
-
-
+                    decimal serviceCost = decimal.Parse(HdnServiceCost.Value.ToString()); 
 
                     objPMConfigure.InsertPMServicerequestdata(number, service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully PM Service Request');", true);

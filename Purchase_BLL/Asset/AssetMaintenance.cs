@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Web.UI.WebControls;
 
 namespace Purchase_BLL.Asset
 {
@@ -525,6 +526,16 @@ namespace Purchase_BLL.Asset
         {
             TblWOMaintenancePartsTableAdapter WOToolsIn = new TblWOMaintenancePartsTableAdapter();
             WOToolsIn.WOToolsEquipmentInsert(Reffno, ToolsID, description, hour, intenroll, intjobid, intdept);
+        }
+
+        public void ServiceChargeUpdate(int serviceId, decimal serviceCost)
+        {
+            try
+            {
+                TblUpdatelMaintenanceTaskTableAdapter adp = new TblUpdatelMaintenanceTaskTableAdapter();
+                adp.UpdateServiceCostData(serviceCost, serviceId);
+            }
+            catch { }
         }
 
         public DataTable MaintenanceToolsView(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)

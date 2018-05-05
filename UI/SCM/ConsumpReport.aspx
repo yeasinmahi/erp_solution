@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DeliveryReturn.aspx.cs" Inherits="UI.SCM.DeliveryReturn" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ConsumpReport.aspx.cs" Inherits="UI.SCM.ConsumpReport" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -82,57 +82,82 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
     
-       <div class="tabs_container" style="text-align:left">Delivery Return<hr /></div>
-         
+       <div class="tabs_container" style="text-align:left"><hr /></div>
+           <table style="width:700px"> 
+                <tr><td colspan="2" style="text-align:center; font:bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor:pointer" onclick="Print()">Print</a></td></tr>
+                <tr>   
+                <td><asp:Image ID="imgUnit" runat="server"   /></td>
+                <td style="text-align:center; font-size:medium; font-weight:bold; font:u" ><asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
+                </tr>
+                <tr> 
+                <td></td>
+                <td  style="text-align:center"><asp:DropDownList ID="ddlWh" Font-Size="Small" Font-Bold="true" runat="server" Font-Underline="true"></asp:DropDownList></td>
+                </tr>
+               
+                <tr> 
+                <td></td>
+                <td  style="text-align:center"><asp:Label ID="lblbill" Font-Size="Small" Font-Bold="true" Text="Supplier Statement Report" runat="server"></asp:Label></td>
+                </tr>
+               
+                <tr><td></td></tr>
+              </table> 
        <table>
         <tr> 
-        <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
-         
-        <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="PO ID : "></asp:Label></td>            
-        <td style="text-align:left;"  ><asp:TextBox ID="txtPoNo" runat="server"  CssClass="txtBox"   ></asp:TextBox> 
-        <asp:Button ID="btnDetalis" runat="server" Text="Detalis"  OnClick="btnDetalis_Click" /></td>
+           <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>            
+            <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom" runat="server"   CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
+            </cc1:CalendarExtender> </td>
+
+            <td style="text-align:right;"><asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>            
+            <td style="text-align:left;"  ><asp:TextBox ID="txtdteTo" runat="server"   CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
+            </cc1:CalendarExtender> </td> 
+
+        </tr> 
+           <tr>
+                <td  style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Filter By"></asp:Label></td>
+        <td style="text-align:left;"><asp:DropDownList ID="ddlFilter" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged"     >
         
-        </tr>  
+         </asp:DropDownList><asp:Button ID="btnFilterDept" runat="server" Text="Show" OnClick="btnFilterDept_Click"    /></td>                                                                                      
+         
+
+        <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Section"></asp:Label></td>
+        <td style="text-align:left;"><asp:DropDownList ID="ddlSection" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged" ></asp:DropDownList>
+            <asp:Button ID="btnSection" runat="server" Text="Show" OnClick="btnShow_Click"   />
+        </td>                                                                                      
+     
+           </tr>
+           <tr>
+                
+                <td colspan="6" style="text-align:right;"></td>
+           </tr>
        </table>
        <table> 
          <tr> 
-            <td><asp:GridView ID="dgvDelivery" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  Width="600px"  CssClass="GridViewStyle">   
+            <td><asp:GridView ID="dgvConsump" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  Width="700px"  CssClass="GridViewStyle">   
             <HeaderStyle CssClass="HeaderStyle" />  <FooterStyle CssClass="FooterStyle" /> <RowStyle CssClass="RowStyle" />  <PagerStyle CssClass="PagerStyle" /> 
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
   
-            <asp:TemplateField HeaderText="ItemID" SortExpression="intItemID"><ItemTemplate>
-            <asp:Label ID="lblitemId" runat="server" Width="100px" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Product Name" SortExpression="strItem"><ItemTemplate>
+            <asp:Label ID="lblItem" runat="server" Width="300px" Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
                 
-            <asp:TemplateField HeaderText="ItemName" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strName" >
-            <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Uom" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
+            <ItemTemplate><asp:Label ID="lblUom" runat="server"  Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>  
-
-            <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
-            <ItemTemplate><asp:Label ID="lblUom" runat="server"  Width="90px" Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>
+              
+            <asp:TemplateField HeaderText="Sub Category" ItemStyle-HorizontalAlign="right" SortExpression="strSubCategory" >
+            <ItemTemplate><asp:Label ID="lblSubcegory" runat="server"  Width="90px" Text='<%# Bind("strSubCategory") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="PO Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numQty" >
-            <ItemTemplate><asp:Label ID="lblPoQty" runat="server" Width="150px"  Text='<%# Bind("numQty") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Used Qty" ItemStyle-HorizontalAlign="right" SortExpression="usedQty" >
+            <ItemTemplate><asp:Label ID="lblUsedQty" runat="server" Width="150px"  Text='<%# Bind("usedQty","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Previous Return" ItemStyle-HorizontalAlign="right" SortExpression="ReturnQty" >
-            <ItemTemplate><asp:Label ID="lblPreviousR" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("ReturnQty") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
-            
-            <asp:TemplateField HeaderText="Return Qty" ItemStyle-HorizontalAlign="right" SortExpression="strCurrencyName" >
-            <ItemTemplate><asp:TextBox ID="txtReturnQty" runat="server"  ></asp:TextBox></ItemTemplate>
+            <asp:TemplateField HeaderText="Used Value" ItemStyle-HorizontalAlign="right" SortExpression="usedValue" >
+            <ItemTemplate><asp:Label ID="lblUsedValue" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("usedValue","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
-            
-            <asp:TemplateField HeaderText="Resson" ItemStyle-HorizontalAlign="right" SortExpression="strEmployeeName" >
-            <ItemTemplate><asp:TextBox ID="txtReson" runat="server" Width="150px"   ></asp:TextBox></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
-
-            <asp:TemplateField HeaderText="Return">  <ItemTemplate>
-            <asp:Button ID="btnReturn" runat="server" Text="Save Return" OnClientClick="funConfirmAll();" OnClick="btnReturn_Click"  /></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             </Columns> 
             </asp:GridView></td> 
         </tr>  

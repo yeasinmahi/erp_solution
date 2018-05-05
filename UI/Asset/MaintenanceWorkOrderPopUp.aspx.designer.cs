@@ -121,13 +121,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnitIDByddl;
         
         /// <summary>
-        /// hdnBankID control.
+        /// hdnConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBankID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnConfirm;
         
         /// <summary>
         /// hfEmployeeIdp control.

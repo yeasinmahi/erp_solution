@@ -13,6 +13,8 @@ namespace SCM_BLL
     {
         private static PoGenerateTDS.TblIServiceListDataTable[] tableService = null;
         private static PoGenerateTDS.DataTableSearchPOUserDataTable[] tablePoUser = null;
+        private static PoGenerateTDS.TblSupplierMasterDataTable[] tblMasterSupplier = null;
+        private static PoGenerateTDS.TblSupplierDataTable[] tblSupplier = null;
         int e;
         public DataTable GetPoData(int type, string xml, int intWh,int indentId, DateTime dteDate, int enroll)
         {
@@ -37,6 +39,8 @@ namespace SCM_BLL
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+
+      
 
         public DataTable GetUnit()
         {
@@ -179,6 +183,125 @@ namespace SCM_BLL
                 return null;
             }
 
+        }
+
+        public string[] AutoSearchMasterSupplier(string prefix,string strType)
+        { 
+            tblMasterSupplier = new PoGenerateTDS.TblSupplierMasterDataTable[Convert.ToInt32(1)];
+            TblSupplierMasterTableAdapter adpCOA = new TblSupplierMasterTableAdapter();
+            tblMasterSupplier[e] = adpCOA.GetMasterSupplierData(strType);
+
+            // prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tblMasterSupplier[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strSuppMasterName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tblMasterSupplier[e]
+                                   where tmp.strSuppMasterName.ToLower().Contains(prefix) || tmp.intSuppMasterID.ToString().ToLower().Contains(prefix)
+                                   orderby tmp.strSuppMasterName
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                        //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["strSuppMasterName"] + " " + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public string[] AutoSearchSupplier(string prefix, string strType, string unit)
+        {
+            tblSupplier = new PoGenerateTDS.TblSupplierDataTable[Convert.ToInt32(1)];
+            TblSupplierTableAdapter adpCOA = new TblSupplierTableAdapter();
+            tblSupplier[e] = adpCOA.GetSupplierData(int.Parse(unit),strType);
+
+            // prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tblSupplier[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strSupplierName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tblSupplier[e]
+                                   where tmp.strSupplierName.ToLower().Contains(prefix) || tmp.intSupplierID.ToString().ToLower().Contains(prefix)
+                                   orderby tmp.strSupplierName
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                        //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["strSupplierName"] + " " + "[" + tbl.Rows[i]["intSupplierID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
