@@ -16,51 +16,7 @@
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-       
-    <script>
-        function Save() {
-            document.getElementById("hdnField").value = "1";
-            __doPostBack();
-        }
-    </script>
-
-
-   <%-- <script>
-         $(document).ready(function () {
-             $("#<%=txtEmployeeSearchp.ClientID %>").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: '<%=ResolveUrl("Service.asmx/GetSpareParts") %>',
-                         data: '{"station":"' + $("#hdnstation").val() + '","prefix":"' + request.term + '"}',
-                         dataType: "json",
-                         type: "POST",
-                         contentType: "application/json; charset=utf-8",
-                         success: function (data) {
-                             response($.map(data.d, function (item) {
-                                 return {
-                                     label: item.split('^')[0],
-                                     val: item.split('^')[1]
-                                 }
-                             }))
-                         },
-                         error: function (response) {
-                             //alert(response.responseText);
-                         },
-                         failure: function (response) {
-                             //alert(response.responseText);
-                         }
-                     });
-                 },
-                 select: function (e, i) {
-                     $("#<%=hfEmployeeIdp.ClientID %>").val(i.item.val);
-                 },
-                 minLength: 3
-             });
-
-         });
-</script>
-   --%>
-   
+     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" /> 
 
     <style type="text/css">
         .leaveApplication_container {
@@ -84,54 +40,141 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
     <div style="height: 100px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>
-
-
-
-
-
-
+    </cc1:AlwaysVisibleControlExtender> 
 <%--=========================================Start My Code From Here===============================================--%>
      <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
     <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnUnitIDByddl" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />         
     <div class="tabs_container" align="Center">Maintenance Report</div>
-     <br>
-         <br />
+      
           <table>
-
-              <tr>
-                 
-                      <td style="text-align:right;">
-                          <asp:Label ID="LblFromDte" runat="server" CssClass="lbl" Text="From Date:"></asp:Label>
-                      </td>
-                      <td>
-                          <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
-                          <cc1:CalendarExtender ID="txtDteJobEntranc" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
-                          </cc1:CalendarExtender>
-                      </td>
-                      <td style="text-align:right;">
-                          <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date:"></asp:Label>
-                      </td>
-                      <td>
-                          <asp:TextBox ID="TxtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
-                          <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteTo">
-                          </cc1:CalendarExtender>
-                      </td>
-                      <td>
-                          <asp:Button ID="BtnShow" runat="server" Text="Show" OnClick="BtnShow_Click" />
-                      </td>
-                  </td>
-              </tr>
-              </table>
+            <tr>
+            <td   style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Jobstation"></asp:Label></td>
+            <td style="text-align:left;"><asp:DropDownList ID="ddlJobStation" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td> 
+             
+            <td   style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Report Type"></asp:Label></td>
+            <td style="text-align:left;"><asp:DropDownList ID="ddlType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
+            <asp:ListItem Value="1" Text="Top Sheet"></asp:ListItem>
+            <asp:ListItem Value="2" Text="Material Cost"></asp:ListItem>
+            <asp:ListItem Value="3" Text="Service Cost"></asp:ListItem>
+            </asp:DropDownList></td> 
+            </tr> 
+            <tr>                 
+            <td style="text-align:right;"><asp:Label ID="LblFromDte" runat="server" CssClass="lbl" Text="From Date:"></asp:Label> </td> 
+            <td> <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="txtDteJobEntranc" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
+            </cc1:CalendarExtender></td>                      
+            <td style="text-align:right;">  <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date:"></asp:Label>  </td>
+                        
+            <td> <asp:TextBox ID="TxtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteTo">
+            </cc1:CalendarExtender> </td> 
+            <td><asp:Button ID="BtnShow" runat="server" Text="Show" OnClick="BtnShow_Click" /></td>  
+            </tr>
+          </table>
          <table>
-             <tr>
-                 <td>
-                     <asp:GridView ID="GridView1" runat="server">
-                     </asp:GridView>
-                 </td>
-             </tr>
-             </table>
+            <tr> 
+            <td><asp:GridView ID="dgview" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" Font-Size="Smaller" PagerStyle-CssClass="pgr"
+                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                    ForeColor="Black" GridLines="Vertical"  >
+                    <AlternatingRowStyle BackColor="#CCCCCC" /> 
+            <Columns>
+            <asp:TemplateField HeaderText="Sl.N">
+            <ItemTemplate>
+            <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
+            <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
+            <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" />
+            <asp:BoundField DataField="strServiceName" HeaderText="ServiceName" SortExpression="strServiceName" /> 
+            <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" /> 
+             <asp:BoundField DataField="strRepairType" HeaderText="RepairType" SortExpression="strRepairType" />  
+            <asp:BoundField DataField="strPriority" HeaderText="Priority" SortExpression="strPriority" />
+            <asp:BoundField DataField="dteStart" HeaderText="StartDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteStart" />
+            <asp:BoundField DataField="dteEnd" HeaderText="EndDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteEnd" />
+            <asp:BoundField DataField="monMaterial" HeaderText="Material Cost" SortExpression="monMaterial" />
+            <asp:BoundField DataField="monService" HeaderText="Service Cost" SortExpression="monService" />
+             <asp:TemplateField HeaderText="Detalis">
+              <ItemTemplate>
+                <asp:Button ID="BtnMDetalis" CommandName="Detalis" CommandArgument='<%# Eval("intMaintenanceNo") %>' runat="server" Text="Detalis" OnClick="BtnMDetalis_Click" />
+              </ItemTemplate>
+            </asp:TemplateField>
+            </Columns>
+                <FooterStyle Font-Size="11px" />
+                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView>
+            </td>
+            </tr>
+
+            <tr> 
+            <td><asp:GridView ID="dgvMaterial" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" Font-Size="Smaller"  PagerStyle-CssClass="pgr"
+                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvBillReport_RowCommand">
+                    <AlternatingRowStyle BackColor="#CCCCCC" /> 
+            <Columns>
+            <asp:TemplateField HeaderText="Sl.N">
+            <ItemTemplate>
+            <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            </asp:TemplateField>
+             <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
+            <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
+            <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" />
+             <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" />
+            <asp:BoundField DataField="strServiceName" HeaderText="ServiceName" SortExpression="strServiceName" /> 
+            <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" /> 
+             <asp:BoundField DataField="strRepairType" HeaderText="RepairType" SortExpression="strRepairType" />  
+            <asp:BoundField DataField="strPriority" HeaderText="Priority" SortExpression="strPriority" />
+            <asp:BoundField DataField="dteStart" HeaderText="StartDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteStart" />
+            <asp:BoundField DataField="dteEnd" HeaderText="EndDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteEnd" />
+            <asp:BoundField DataField="strSpareParts" HeaderText="Spare Parts" SortExpression="strSpareParts" />
+           <asp:BoundField DataField="numQty" HeaderText="Quantity" SortExpression="numQty" />
+            <asp:BoundField DataField="monMaterial" HeaderText="Material Cost" SortExpression="monMaterial" />
+             
+            </Columns>
+                <FooterStyle Font-Size="11px" />
+                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView>
+            </td>
+            </tr>
+
+        <tr> 
+            <td><asp:GridView ID="dgvServiceCost" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                    CssClass="Grid" AlternatingRowStyle-CssClass="alt"  Font-Size="Smaller"  PagerStyle-CssClass="pgr"
+                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvBillReport_RowCommand">
+                    <AlternatingRowStyle BackColor="#CCCCCC" /> 
+            <Columns>
+            <asp:TemplateField HeaderText="Sl.N">
+            <ItemTemplate>
+            <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            </asp:TemplateField>
+           <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
+            <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
+            <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" /> 
+            <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" />
+            <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" /> 
+             <asp:BoundField DataField="strRepairType" HeaderText="RepairType" SortExpression="strRepairType" />  
+            <asp:BoundField DataField="strPriority" HeaderText="Priority" SortExpression="strPriority" />
+            <asp:BoundField DataField="dteStart" HeaderText="StartDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteStart" />
+            <asp:BoundField DataField="dteEnd" HeaderText="EndDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteEnd" />
+             <asp:BoundField DataField="strServiceName" HeaderText="ServiceName" SortExpression="strServiceName" />  
+            <asp:BoundField DataField="monService" HeaderText="Service Cost" SortExpression="monService" />
+            
+            </Columns>
+                <FooterStyle Font-Size="11px" />
+                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView>
+            </td>
+            </tr>
+         </table>
     
   </table> 
          

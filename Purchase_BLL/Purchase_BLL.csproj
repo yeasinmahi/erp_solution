@@ -82,6 +82,7 @@
     <Compile Include="Asset\AutoSearch_BLL.cs" />
     <Compile Include="Asset\MUserRequest.cs" />
     <Compile Include="Asset\QRCode.cs" />
+    <Compile Include="Asset\Report_BLL.cs" />
     <Compile Include="Asset\WearHouseID.cs" />
     <Compile Include="Commercial\Amenment.cs" />
     <Compile Include="Commercial\BankCommercial.cs" />
