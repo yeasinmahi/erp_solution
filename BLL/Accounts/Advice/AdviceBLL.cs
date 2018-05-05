@@ -10,12 +10,12 @@ namespace BLL.Accounts.Advice
 {
     public class AdviceBLL
     {
-        public DataTable GetPartyAdvice(int intActionBy, int intUnitID, DateTime dteDate, int intWork, string strAccountMandatory, string strBankName, int ysnCompleted)
+        public DataTable GetPartyAdvice(int intAdviceType, int intActionBy, int intUnitID, DateTime dteDate, int intWork, string strAccountMandatory, string strBankName, int ysnCompleted, int intChillingID)
         {
             try
             {
                 SprAdviceForBFTNTableAdapter adp = new SprAdviceForBFTNTableAdapter();
-                return adp.GetPartyAdvice(intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
+                return adp.GetPartyAdvice(intAdviceType, intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted, intChillingID);
             }
             catch { return new DataTable(); }
         }
@@ -81,6 +81,15 @@ namespace BLL.Accounts.Advice
                 adp.UpdateChqPrint(intUnitID, intActionBy);
             }
             catch { }
+        }
+        public DataTable GetChillingCenter()
+        {
+            try
+            {
+                ChillingCenterListTableAdapter adp = new ChillingCenterListTableAdapter();
+                return adp.GetChillingCenter();
+            }
+            catch { return new DataTable(); }
         }
     }
 }

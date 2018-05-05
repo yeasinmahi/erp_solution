@@ -16,7 +16,7 @@ namespace UI.Accounts.Advice
     public partial class PaymentAdvice : BasePage
     {
         DataTable dt; AdviceBLL bll = new AdviceBLL();
-        int intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy;
+        int intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy, intChillingID;
         string strAccountMandatory, strBankName, xmlpath; DateTime dteDate;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -48,11 +48,19 @@ namespace UI.Accounts.Advice
                 {
                     ddlChillingCenter.Visible = true;
                     lblChillingCenter.Visible = true;
+                    dt = new DataTable();
+                    dt = bll.GetChillingCenter();
+                    ddlChillingCenter.DataSource = dt;
+                    ddlChillingCenter.DataTextField = "strChillingCenterName";
+                    ddlChillingCenter.DataValueField = "intChillingCenterID";
+                    ddlChillingCenter.DataBind();
                 }
                 else
                 {
                     ddlChillingCenter.Visible = false;
                     lblChillingCenter.Visible = false;
+                    ddlChillingCenter.DataSource = "";
+                    ddlChillingCenter.DataBind();
                 }
             }
             catch { }
@@ -85,7 +93,8 @@ namespace UI.Accounts.Advice
 
         private void LoadAccountList()
         {
-
+            btnExport.Visible = false;
+            btnExportIBBL.Visible = false;
             divExport.Visible = false;
             divExportIBBL.Visible = false;
             intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
@@ -101,6 +110,8 @@ namespace UI.Accounts.Advice
 
                 divExport.Visible = false;
                 divExportIBBL.Visible = true;
+                btnExportIBBL.Visible = true;
+                btnExport.Visible = false;
             }
             else if (intBankType != 0)
             {
@@ -150,8 +161,25 @@ namespace UI.Accounts.Advice
             lblAuth1.Visible = false;
             lblAuth2.Visible = false;
             lblAuth3.Visible = false;
-            dgvAdvice.DataSource = dt;
+            dgvAdvice.DataSource = "";
             dgvAdvice.DataBind();
+            lblUnitIBBL.Visible = false;
+            lblUnitIBBL.Visible = false;
+            lblToIBBL.Visible = false;
+            lblManagerIBBL.Visible = false;
+            lblBankNameIBBL.Visible = false;
+            lblBankAddressIBBL.Visible = false;
+            lblSubjectIBBL.Visible = false;
+            lblDearSirIBBL.Visible = false;
+            lblMailBodyIBBL.Visible = false;
+            lblDetailsIBBL.Visible = false;
+            lblWordIBBL.Visible = false;
+            lblForUnitIBBL.Visible = false;
+            lblAuthIBBL1.Visible = false;
+            lblAuthIBBL2.Visible = false;
+            lblAuthIBBL3.Visible = false;
+            dgvAdviceIBBL.DataSource = "";
+            dgvAdviceIBBL.DataBind();
         }
 
         protected void ddlUnit_DataBound(object sender, EventArgs e)
@@ -172,15 +200,21 @@ namespace UI.Accounts.Advice
                 intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
                 intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
                 intActionBy = int.Parse(hdnEnroll.Value.ToString());
+                intAdviceType = int.Parse(ddlAdviceType.SelectedValue.ToString());
+                if (intAdviceType == 3)
+                {
+                    intChillingID = int.Parse(ddlChillingCenter.SelectedValue.ToString());
+                }
+                else { intChillingID = 0; }
 
                 if (intBankType == 0)
                 {
                     return;
                 }
-                else if (intBankType == 1)
-                {
+                //else if (intBankType == 1)
+                //{
 
-                }
+                //}
                 else
                 {
 
@@ -197,10 +231,8 @@ namespace UI.Accounts.Advice
                     strBankName = ddlFormat.SelectedItem.ToString();
                     ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
                     dt = new DataTable();
-                    dt = bll.GetPartyAdvice(intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
-                    //dgvReport.DataSource = dt;
-                    //dgvReport.DataBind();
-
+                    dt = bll.GetPartyAdvice(intAdviceType,intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted, intChillingID);
+                   
                 }
 
             }
@@ -220,7 +252,58 @@ namespace UI.Accounts.Advice
                 }
                 else if (intBankType == 1)
                 {
+                    intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                    dt = new DataTable();
+                    dt = bll.GetUnitAddress(intUnitID);
+                    lblUnitIBBL.Text = dt.Rows[0]["strDescription"].ToString();
+                    lblForUnitIBBL.Text = "For " + dt.Rows[0]["strDescription"].ToString();
+                    lblUnitIBBL.Text = dt.Rows[0]["strAddress"].ToString();
 
+                    dteDate = DateTime.Parse(txtDate.Text.ToString());
+                    intWork = 0;
+                    strAccountMandatory = ddlMandatory.SelectedItem.ToString();
+                    strBankName = ddlFormat.SelectedItem.ToString();
+                    ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
+                    dt = new DataTable();
+                    dt = bll.GetAdviceData(intActionBy);
+                    dgvAdviceIBBL.DataSource = dt;
+                    dgvAdviceIBBL.DataBind();
+                    dgvReport.DataSource = dt;
+                    dgvReport.DataBind();
+
+                    if (dgvAdviceIBBL.Rows.Count > 0)
+                    {
+                        //LoadGridExport();
+
+                        lblUnitIBBL.Visible = true;
+                        lblUnitIBBL.Visible = true;
+                        lblToIBBL.Visible = true;
+                        lblManagerIBBL.Visible = true;
+                        lblBankNameIBBL.Visible = true;
+                        lblBankAddressIBBL.Visible = true;
+                        lblSubjectIBBL.Visible = true;
+                        lblDearSirIBBL.Visible = true;
+                        lblMailBodyIBBL.Visible = true;
+                        lblDetailsIBBL.Visible = true;
+                        lblWordIBBL.Visible = true;
+                        lblForUnitIBBL.Visible = true;
+                        lblAuthIBBL1.Visible = true;
+                        lblAuthIBBL2.Visible = true;
+                        lblAuthIBBL3.Visible = true;
+
+                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
+                        dt = new DataTable();
+                        dt = bll.GetAccountDetails(intAutoID);
+                        lblBankNameIBBL.Text = dt.Rows[0]["strBankDetailsName"].ToString();
+                        lblBankAddressIBBL.Text = dt.Rows[0]["strBankAddress"].ToString();
+                        lblMailBodyIBBL.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our" + "<br/>" + "CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
+
+                        AmountFormat formatAmount = new AmountFormat();
+                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamountibbl, "", "Only");
+                        lblWordIBBL.Text = "In Word: " + totalAmountInWord.ToString();
+                        HdnValue.Value = "";
+
+                    }
                 }
                 else
                 {
@@ -244,47 +327,46 @@ namespace UI.Accounts.Advice
                     dgvReport.DataSource = dt;
                     dgvReport.DataBind();
 
+                    if (dgvAdvice.Rows.Count > 0)
+                    {
+                        //LoadGridExport();
+
+                        lblUnitName.Visible = true;
+                        lblUnitAddress.Visible = true;
+                        lblTo.Visible = true;
+                        lblManager.Visible = true;
+                        lblBankName.Visible = true;
+                        lblBankAddress.Visible = true;
+                        lblSubject.Visible = true;
+                        lblDearSir.Visible = true;
+                        lblMailBody.Visible = true;
+                        lblDetails.Visible = true;
+                        lblWord.Visible = true;
+                        lblForUnit.Visible = true;
+                        lblAuth1.Visible = true;
+                        lblAuth2.Visible = true;
+                        lblAuth3.Visible = true;
+
+                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
+                        dt = new DataTable();
+                        dt = bll.GetAccountDetails(intAutoID);
+                        lblBankName.Text = dt.Rows[0]["strBankDetailsName"].ToString();
+                        lblBankAddress.Text = dt.Rows[0]["strBankAddress"].ToString();
+                        lblMailBody.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our" + "<br/>" + "CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
+
+                        AmountFormat formatAmount = new AmountFormat();
+                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamount, "", "Only");
+                        lblWord.Text = "In Word: " + totalAmountInWord.ToString();
+                        HdnValue.Value = "";
+
+                    }
                 }
-                if (dgvAdvice.Rows.Count > 0)
-                {
-                    //LoadGridExport();
-
-                    lblUnitName.Visible = true;
-                    lblUnitAddress.Visible = true;
-                    lblTo.Visible = true;
-                    lblManager.Visible = true;
-                    lblBankName.Visible = true;
-                    lblBankAddress.Visible = true;
-                    lblSubject.Visible = true;
-                    lblDearSir.Visible = true;
-                    lblMailBody.Visible = true;
-                    lblDetails.Visible = true;
-                    lblWord.Visible = true;
-                    lblForUnit.Visible = true;
-                    lblAuth1.Visible = true;
-                    lblAuth2.Visible = true;
-                    lblAuth3.Visible = true;
-
-                    intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
-                    dt = new DataTable();
-                    dt = bll.GetAccountDetails(intAutoID);
-                    lblBankName.Text = dt.Rows[0]["strBankDetailsName"].ToString();
-                    lblBankAddress.Text = dt.Rows[0]["strBankAddress"].ToString();
-                    lblMailBody.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our" + "<br/>" + "CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
-
-                    AmountFormat formatAmount = new AmountFormat();
-                    string totalAmountInWord = formatAmount.GetTakaInWords(totalamount, "", "Only");
-                    lblWord.Text = "In Word: " + totalAmountInWord.ToString();
-                    HdnValue.Value = "";
-
-                }
+                
             }
             catch { }
         }
 
-
         protected decimal totalamount = 0;
-
         protected string accounttext;
         protected string routingtext;
         protected void dgvAdvice_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -311,7 +393,6 @@ namespace UI.Accounts.Advice
             catch { }
         }
         protected decimal totalamountibbl = 0;
-
         protected string accounttextibbl;
         protected void dgvAdviceIBBL_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -336,8 +417,29 @@ namespace UI.Accounts.Advice
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                intActionBy = int.Parse(hdnEnroll.Value);
+                bll.UpdateChqPrint(intUnitID, intActionBy);
+            }
+            catch { }
             string fileName = ddlAdviceType.SelectedItem.ToString() + " for " + ddlUnit.SelectedItem.ToString();
             string html = HdnValue.Value;
+            ExportToExcel(ref html, fileName);
+
+        }
+        protected void btnExportIBBL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                intActionBy = int.Parse(hdnEnroll.Value);
+                bll.UpdateChqPrint(intUnitID, intActionBy);
+            }
+            catch { }
+            string fileName = ddlAdviceType.SelectedItem.ToString() + " for " + ddlUnit.SelectedItem.ToString();
+            string html = HdnValueIBBL.Value;
             ExportToExcel(ref html, fileName);
 
         }
