@@ -276,6 +276,7 @@
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
+    <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\HoldFeedback.aspx" />
     <Content Include="CreativeSupportModule\img\20171103 _ CREATIVE SUPPORT UI DASHBOARD _ FOOTER.png" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
@@ -2211,6 +2212,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\CustomerView.aspx.designer.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DashboardReport.aspx.cs">
+      <DependentUpon>DashboardReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DashboardReport.aspx.designer.cs">
+      <DependentUpon>DashboardReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
@@ -6766,6 +6774,7 @@
     <Folder Include="Asset\Uploads\" />
     <Folder Include="BudgetPlan\Data\" />
     <Folder Include="Content\Bundle\" />
+    <Folder Include="CreativeSupportModule\Data\" />
     <Folder Include="Dairy\Data\" />
     <Folder Include="Dairy\Uploads\" />
     <Folder Include="HR\Dispatch\Data\" />

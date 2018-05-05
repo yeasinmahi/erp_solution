@@ -33,6 +33,7 @@
     <div class="divbody" style="padding-right:10px;">
         <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL REGISTRATION<hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
+                       
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblRefference" runat="server" CssClass="lbl" Text="Refference :"></asp:Label></td>
                 <td style="text-align:left;">

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.Task_Module {
+namespace UI.CreativeSupportModule {
     
     
-    public partial class HomeT {
+    public partial class DashboardReport {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -103,39 +103,12 @@ namespace UI.Task_Module {
         protected global::System.Web.UI.WebControls.HiddenField hdnLoanID;
         
         /// <summary>
-        /// btnCustomer control.
+        /// dgvDashboardReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCustomer;
-        
-        /// <summary>
-        /// btnSupport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSupport;
-        
-        /// <summary>
-        /// ckbAgree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ckbAgree;
-        
-        /// <summary>
-        /// btnGo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGo;
+        protected global::System.Web.UI.WebControls.GridView dgvDashboardReport;
     }
 }

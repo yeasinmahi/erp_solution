@@ -556,7 +556,6 @@
                 <asp:DropDownList ID="ddlDocType" CssClass="ddList" Font-Bold="False" runat="server" Width="195px"></asp:DropDownList>                                                                                       
             </td>
             
-
             <td style='text-align: right; width:120px;'>Document Upload : </td>
             <td style='text-align: center;'>
                 <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true"/>                

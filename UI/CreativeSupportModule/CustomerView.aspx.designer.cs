@@ -130,13 +130,13 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
-        /// txtFromDate control.
+        /// txtReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
+        protected global::System.Web.UI.WebControls.TextBox txtReqDate;
         
         /// <summary>
         /// fdt control.
@@ -175,13 +175,13 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label lblstart;
         
         /// <summary>
-        /// tpkSTime control.
+        /// tmsReqTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MKB.TimePicker.TimeSelector tpkSTime;
+        protected global::MKB.TimePicker.TimeSelector tmsReqTime;
         
         /// <summary>
         /// Label14 control.
@@ -193,13 +193,13 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// txtSearchEmp control.
+        /// txtSearchAssignedTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchEmp;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchAssignedTo;
         
         /// <summary>
         /// AutoCompleteExtender2 control.
@@ -227,6 +227,15 @@ namespace UI.CreativeSupportModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlJobDescription;
+        
+        /// <summary>
+        /// odsJobDes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsJobDes;
         
         /// <summary>
         /// Label3 control.
@@ -283,13 +292,22 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// ddlItem control.
+        /// txtCRItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlItem;
+        protected global::System.Web.UI.WebControls.TextBox txtCRItem;
+        
+        /// <summary>
+        /// AutoCompleteExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
         
         /// <summary>
         /// Label6 control.
@@ -310,13 +328,13 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// txtBillRegNo control.
+        /// txtQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBillRegNo;
+        protected global::System.Web.UI.WebControls.TextBox txtQty;
         
         /// <summary>
         /// Label7 control.
@@ -328,49 +346,40 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtPoint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtPoint;
         
         /// <summary>
-        /// btnGo control.
+        /// btnItemAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGo;
+        protected global::System.Web.UI.WebControls.Button btnItemAdd;
         
         /// <summary>
-        /// txtWorkOrderUpload control.
+        /// Label13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload txtWorkOrderUpload;
+        protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// Label10 control.
+        /// dgvCrItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
-        
-        /// <summary>
-        /// TextBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.GridView dgvCrItem;
         
         /// <summary>
         /// Label11 control.
@@ -382,13 +391,58 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// txtPOID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.TextBox txtPOID;
+        
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+        
+        /// <summary>
+        /// txtDocUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload txtDocUpload;
+        
+        /// <summary>
+        /// btnDocUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDocUpload;
+        
+        /// <summary>
+        /// Label12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
+        /// dgvDocUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvDocUp;
         
         /// <summary>
         /// Label9 control.
@@ -400,39 +454,39 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// TextBox3 control.
+        /// txtRemarks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtRemarks;
         
         /// <summary>
-        /// Button1 control.
+        /// btnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
-        /// Button2 control.
+        /// btnClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
-        /// Button3 control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

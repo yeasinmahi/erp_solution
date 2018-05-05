@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CreativeS_DAL" targetNamespace="http://tempuri.org/CreativeS_DAL.xsd" xmlns:mstns="http://tempuri.org/CreativeS_DAL.xsd" xmlns="http://tempuri.org/CreativeS_DAL.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AG_GlobalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AG_GlobalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.AG_GlobalConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="JobDesctionListTableAdapter" GeneratorDataComponentClassName="JobDesctionListTableAdapter" Name="JobDesctionList" UserDataComponentName="JobDesctionListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetJobDescription" GetMethodModifier="Public" GetMethodName="GetJobDescription" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetJobDescription" UserSourceName="GetJobDescription">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 'Please Select Job Description' as strJobDescription, 0 as intJobDesID
+Union
+SELECT strJobDescription, intJobDesID FROM AG_Global.dbo.tblJobDescription Where ysnEnabel = 1
+Order by intJobDesID asc
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strJobDescription" DataSetColumn="strJobDescription" />
+              <Mapping SourceColumn="intJobDesID" DataSetColumn="intJobDesID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmpListForCreativeSupportTableAdapter" GeneratorDataComponentClassName="EmpListForCreativeSupportTableAdapter" Name="EmpListForCreativeSupport" UserDataComponentName="EmpListForCreativeSupportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetEmpListForCreativeSupport" GetMethodModifier="Public" GetMethodName="GetEmpListForCreativeSupport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetEmpListForCreativeSupport" UserSourceName="GetEmpListForCreativeSupport">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select emp.intEmployeeID, emp.strEmployeeCode, emp.strEmployeeName, isnull(emp.strOfficeEmail, 'N/A') as strOfficeEmail, d.strDesignation From ERP_HR.dbo.tblEmployee emp
+Join ERP_HR.dbo.tblUserDesignation d On emp.intDesignationID = d.intDesignationID
+Where ysnActive = 1 and emp.intUnitID = 2</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+              <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strOfficeEmail" DataSetColumn="strOfficeEmail" />
+              <Mapping SourceColumn="strDesignation" DataSetColumn="strDesignation" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LoginUserInfoTableAdapter" GeneratorDataComponentClassName="LoginUserInfoTableAdapter" Name="LoginUserInfo" UserDataComponentName="LoginUserInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetLoginInfo" GetMethodModifier="Public" GetMethodName="GetLoginInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetLoginInfo" UserSourceName="GetLoginInfo">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select emp.strEmployeeName + ' [' + d.strDesignation + '] [' + cast(emp.intEmployeeID as varchar(100)) + ']'    as EmpInfo From ERP_HR.dbo.tblEmployee emp
+Join ERP_HR.dbo.tblUserDesignation d On emp.intDesignationID = d.intDesignationID
+Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intEnroll" ColumnName="intEmployeeID" DataSourceName="ERP_HR.dbo.tblEmployee" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intEnroll" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EmpInfo" DataSetColumn="EmpInfo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemListForCreativeSTableAdapter" GeneratorDataComponentClassName="ItemListForCreativeSTableAdapter" Name="ItemListForCreativeS" UserDataComponentName="ItemListForCreativeSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intCreativeItemID, strCreativeItemName  FROM AG_Global.dbo.tblCreativeItemList Where ysnEnable = 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intCreativeItemID" DataSetColumn="intCreativeItemID" />
+              <Mapping SourceColumn="strCreativeItemName" DataSetColumn="strCreativeItemName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCreativeSupportEntryTableAdapter" GeneratorDataComponentClassName="SprCreativeSupportEntryTableAdapter" Name="SprCreativeSupportEntry" UserDataComponentName="SprCreativeSupportEntryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.sprCreativeSupportEntry" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertCreativeSupport" GetMethodModifier="Public" GetMethodName="InsertCreativeSupport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="InsertCreativeSupport" UserSourceName="InsertCreativeSupport">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCreativeSupportEntry</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAssignBy" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteRequiredDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="time" DbType="Time" Direction="Input" ParameterName="@tmRequiredTime" Precision="16" ProviderType="Time" Scale="7" Size="5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAssignTo" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intJobDescriptionID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strJobType" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intTotalPoint" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strRemarks" Precision="0" ProviderType="VarChar" Scale="0" Size="2000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xmlItem" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xmlDoc" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetPointTableAdapter" GeneratorDataComponentClassName="GetPointTableAdapter" Name="GetPoint" UserDataComponentName="GetPointTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemWisePoint" GetMethodModifier="Public" GetMethodName="GetItemWisePoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemWisePoint" UserSourceName="GetItemWisePoint">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intPoint FROM AG_Global.dbo.tblCreativeItemWisePoint Where intItemID = @intItemID and ysnEnable = 1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intItemID" ColumnName="intItemID" DataSourceName="AG_Global.dbo.tblCreativeItemWisePoint" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intItemID" Precision="0" Scale="0" Size="4" SourceColumn="intItemID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intPoint" DataSetColumn="intPoint" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetJobTypeWisePoint" GetMethodModifier="Public" GetMethodName="GetJobTypeWisePoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetJobTypeWisePoint" UserSourceName="GetJobTypeWisePoint">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intPoint FROM AG_Global.dbo.tblCreativeSupportJobTypeWisePoint Where strJobType = @strJobType and ysnEnable = 1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="strJobType" ColumnName="strJobType" DataSourceName="AG_Global.dbo.tblCreativeSupportJobTypeWisePoint" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@strJobType" Precision="0" Scale="0" Size="50" SourceColumn="strJobType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ReportForDashboardWithoutCompleteTableAdapter" GeneratorDataComponentClassName="ReportForDashboardWithoutCompleteTableAdapter" Name="ReportForDashboardWithoutComplete" UserDataComponentName="ReportForDashboardWithoutCompleteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select intJobID, strJobCode, convert(varchar,dteCreateDateTime,120) as ReqDate, convert(varchar,dteRequiredDate, 23) as dteRequiredDate, 
+  convert(varchar,tmRequiredTime,108) as tmRequiredTime, emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, 
+  isnull(intJobStatusID, 0) as intJobStatusID
+  FROM AG_Global.dbo.tblCreativeSupport s
+  Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
+  Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
+  Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
+  Where intJobStatusID != 3 or intJobStatusID is NULL</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intJobID" DataSetColumn="intJobID" />
+              <Mapping SourceColumn="strJobCode" DataSetColumn="strJobCode" />
+              <Mapping SourceColumn="ReqDate" DataSetColumn="ReqDate" />
+              <Mapping SourceColumn="dteRequiredDate" DataSetColumn="dteRequiredDate" />
+              <Mapping SourceColumn="tmRequiredTime" DataSetColumn="tmRequiredTime" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strEmployeeName1" DataSetColumn="strEmployeeName1" />
+              <Mapping SourceColumn="strEmployeeName2" DataSetColumn="strEmployeeName2" />
+              <Mapping SourceColumn="intJobStatusID" DataSetColumn="intJobStatusID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StatusListTableAdapter" GeneratorDataComponentClassName="StatusListTableAdapter" Name="StatusList" UserDataComponentName="StatusListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetStatusList" GetMethodModifier="Public" GetMethodName="GetStatusList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetStatusList" UserSourceName="GetStatusList">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intStatusID,strCreativeSupportStatus FROM AG_Global.dbo.tblCreateSupportStatus Where ysnEnable = 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intStatusID" DataSetColumn="intStatusID" />
+              <Mapping SourceColumn="strCreativeSupportStatus" DataSetColumn="strCreativeSupportStatus" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CreativeS_DAL" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CreativeS_DAL" msprop:Generator_UserDSName="CreativeS_DAL">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="JobDesctionList" msprop:Generator_TableClassName="JobDesctionListDataTable" msprop:Generator_TableVarName="tableJobDesctionList" msprop:Generator_RowChangedName="JobDesctionListRowChanged" msprop:Generator_TablePropName="JobDesctionList" msprop:Generator_RowDeletingName="JobDesctionListRowDeleting" msprop:Generator_RowChangingName="JobDesctionListRowChanging" msprop:Generator_RowEvHandlerName="JobDesctionListRowChangeEventHandler" msprop:Generator_RowDeletedName="JobDesctionListRowDeleted" msprop:Generator_RowClassName="JobDesctionListRow" msprop:Generator_UserTableName="JobDesctionList" msprop:Generator_RowEvArgName="JobDesctionListRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strJobDescription" msprop:Generator_ColumnVarNameInTable="columnstrJobDescription" msprop:Generator_ColumnPropNameInRow="strJobDescription" msprop:Generator_ColumnPropNameInTable="strJobDescriptionColumn" msprop:Generator_UserColumnName="strJobDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intJobDesID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintJobDesID" msprop:Generator_ColumnPropNameInRow="intJobDesID" msprop:Generator_ColumnPropNameInTable="intJobDesIDColumn" msprop:Generator_UserColumnName="intJobDesID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EmpListForCreativeSupport" msprop:Generator_TableClassName="EmpListForCreativeSupportDataTable" msprop:Generator_TableVarName="tableEmpListForCreativeSupport" msprop:Generator_RowChangedName="EmpListForCreativeSupportRowChanged" msprop:Generator_TablePropName="EmpListForCreativeSupport" msprop:Generator_RowDeletingName="EmpListForCreativeSupportRowDeleting" msprop:Generator_RowChangingName="EmpListForCreativeSupportRowChanging" msprop:Generator_RowEvHandlerName="EmpListForCreativeSupportRowChangeEventHandler" msprop:Generator_RowDeletedName="EmpListForCreativeSupportRowDeleted" msprop:Generator_RowClassName="EmpListForCreativeSupportRow" msprop:Generator_UserTableName="EmpListForCreativeSupport" msprop:Generator_RowEvArgName="EmpListForCreativeSupportRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
+              <xs:element name="strEmployeeCode" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeCode" msprop:Generator_ColumnPropNameInRow="strEmployeeCode" msprop:Generator_ColumnPropNameInTable="strEmployeeCodeColumn" msprop:Generator_UserColumnName="strEmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strOfficeEmail" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrOfficeEmail" msprop:Generator_ColumnPropNameInRow="strOfficeEmail" msprop:Generator_ColumnPropNameInTable="strOfficeEmailColumn" msprop:Generator_UserColumnName="strOfficeEmail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDesignation" msprop:Generator_ColumnVarNameInTable="columnstrDesignation" msprop:Generator_ColumnPropNameInRow="strDesignation" msprop:Generator_ColumnPropNameInTable="strDesignationColumn" msprop:Generator_UserColumnName="strDesignation">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LoginUserInfo" msprop:Generator_TableClassName="LoginUserInfoDataTable" msprop:Generator_TableVarName="tableLoginUserInfo" msprop:Generator_RowChangedName="LoginUserInfoRowChanged" msprop:Generator_TablePropName="LoginUserInfo" msprop:Generator_RowDeletingName="LoginUserInfoRowDeleting" msprop:Generator_RowChangingName="LoginUserInfoRowChanging" msprop:Generator_RowEvHandlerName="LoginUserInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginUserInfoRowDeleted" msprop:Generator_RowClassName="LoginUserInfoRow" msprop:Generator_UserTableName="LoginUserInfo" msprop:Generator_RowEvArgName="LoginUserInfoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpInfo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmpInfo" msprop:Generator_ColumnPropNameInRow="EmpInfo" msprop:Generator_ColumnPropNameInTable="EmpInfoColumn" msprop:Generator_UserColumnName="EmpInfo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1206" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ItemListForCreativeS" msprop:Generator_TableClassName="ItemListForCreativeSDataTable" msprop:Generator_TableVarName="tableItemListForCreativeS" msprop:Generator_TablePropName="ItemListForCreativeS" msprop:Generator_RowDeletingName="ItemListForCreativeSRowDeleting" msprop:Generator_RowChangingName="ItemListForCreativeSRowChanging" msprop:Generator_RowEvHandlerName="ItemListForCreativeSRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemListForCreativeSRowDeleted" msprop:Generator_UserTableName="ItemListForCreativeS" msprop:Generator_RowChangedName="ItemListForCreativeSRowChanged" msprop:Generator_RowEvArgName="ItemListForCreativeSRowChangeEvent" msprop:Generator_RowClassName="ItemListForCreativeSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intCreativeItemID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintCreativeItemID" msprop:Generator_ColumnPropNameInRow="intCreativeItemID" msprop:Generator_ColumnPropNameInTable="intCreativeItemIDColumn" msprop:Generator_UserColumnName="intCreativeItemID" type="xs:int" />
+              <xs:element name="strCreativeItemName" msprop:Generator_ColumnVarNameInTable="columnstrCreativeItemName" msprop:Generator_ColumnPropNameInRow="strCreativeItemName" msprop:Generator_ColumnPropNameInTable="strCreativeItemNameColumn" msprop:Generator_UserColumnName="strCreativeItemName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCreativeSupportEntry" msprop:Generator_TableClassName="SprCreativeSupportEntryDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportEntry" msprop:Generator_TablePropName="SprCreativeSupportEntry" msprop:Generator_RowDeletingName="SprCreativeSupportEntryRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportEntryRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportEntryRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportEntryRowDeleted" msprop:Generator_UserTableName="SprCreativeSupportEntry" msprop:Generator_RowChangedName="SprCreativeSupportEntryRowChanged" msprop:Generator_RowEvArgName="SprCreativeSupportEntryRowChangeEvent" msprop:Generator_RowClassName="SprCreativeSupportEntryRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GetPoint" msprop:Generator_TableClassName="GetPointDataTable" msprop:Generator_TableVarName="tableGetPoint" msprop:Generator_TablePropName="GetPoint" msprop:Generator_RowDeletingName="GetPointRowDeleting" msprop:Generator_RowChangingName="GetPointRowChanging" msprop:Generator_RowEvHandlerName="GetPointRowChangeEventHandler" msprop:Generator_RowDeletedName="GetPointRowDeleted" msprop:Generator_UserTableName="GetPoint" msprop:Generator_RowChangedName="GetPointRowChanged" msprop:Generator_RowEvArgName="GetPointRowChangeEvent" msprop:Generator_RowClassName="GetPointRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intPoint" msprop:Generator_ColumnVarNameInTable="columnintPoint" msprop:Generator_ColumnPropNameInRow="intPoint" msprop:Generator_ColumnPropNameInTable="intPointColumn" msprop:Generator_UserColumnName="intPoint" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReportForDashboardWithoutComplete" msprop:Generator_TableClassName="ReportForDashboardWithoutCompleteDataTable" msprop:Generator_TableVarName="tableReportForDashboardWithoutComplete" msprop:Generator_TablePropName="ReportForDashboardWithoutComplete" msprop:Generator_RowDeletingName="ReportForDashboardWithoutCompleteRowDeleting" msprop:Generator_RowChangingName="ReportForDashboardWithoutCompleteRowChanging" msprop:Generator_RowEvHandlerName="ReportForDashboardWithoutCompleteRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportForDashboardWithoutCompleteRowDeleted" msprop:Generator_UserTableName="ReportForDashboardWithoutComplete" msprop:Generator_RowChangedName="ReportForDashboardWithoutCompleteRowChanged" msprop:Generator_RowEvArgName="ReportForDashboardWithoutCompleteRowChangeEvent" msprop:Generator_RowClassName="ReportForDashboardWithoutCompleteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intJobID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintJobID" msprop:Generator_ColumnPropNameInRow="intJobID" msprop:Generator_ColumnPropNameInTable="intJobIDColumn" msprop:Generator_UserColumnName="intJobID" type="xs:int" />
+              <xs:element name="strJobCode" msprop:Generator_ColumnVarNameInTable="columnstrJobCode" msprop:Generator_ColumnPropNameInRow="strJobCode" msprop:Generator_ColumnPropNameInTable="strJobCodeColumn" msprop:Generator_UserColumnName="strJobCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReqDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnReqDate" msprop:Generator_ColumnPropNameInRow="ReqDate" msprop:Generator_ColumnPropNameInTable="ReqDateColumn" msprop:Generator_UserColumnName="ReqDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteRequiredDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndteRequiredDate" msprop:Generator_ColumnPropNameInRow="dteRequiredDate" msprop:Generator_ColumnPropNameInTable="dteRequiredDateColumn" msprop:Generator_UserColumnName="dteRequiredDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tmRequiredTime" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntmRequiredTime" msprop:Generator_ColumnPropNameInRow="tmRequiredTime" msprop:Generator_ColumnPropNameInTable="tmRequiredTimeColumn" msprop:Generator_UserColumnName="tmRequiredTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName1" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName1" msprop:Generator_ColumnPropNameInRow="strEmployeeName1" msprop:Generator_ColumnPropNameInTable="strEmployeeName1Column" msprop:Generator_UserColumnName="strEmployeeName1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName2" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName2" msprop:Generator_ColumnPropNameInRow="strEmployeeName2" msprop:Generator_ColumnPropNameInTable="strEmployeeName2Column" msprop:Generator_UserColumnName="strEmployeeName2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intJobStatusID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintJobStatusID" msprop:Generator_ColumnPropNameInRow="intJobStatusID" msprop:Generator_ColumnPropNameInTable="intJobStatusIDColumn" msprop:Generator_UserColumnName="intJobStatusID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatusList" msprop:Generator_TableClassName="StatusListDataTable" msprop:Generator_TableVarName="tableStatusList" msprop:Generator_TablePropName="StatusList" msprop:Generator_RowDeletingName="StatusListRowDeleting" msprop:Generator_RowChangingName="StatusListRowChanging" msprop:Generator_RowEvHandlerName="StatusListRowChangeEventHandler" msprop:Generator_RowDeletedName="StatusListRowDeleted" msprop:Generator_UserTableName="StatusList" msprop:Generator_RowChangedName="StatusListRowChanged" msprop:Generator_RowEvArgName="StatusListRowChangeEvent" msprop:Generator_RowClassName="StatusListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intStatusID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintStatusID" msprop:Generator_ColumnPropNameInRow="intStatusID" msprop:Generator_ColumnPropNameInTable="intStatusIDColumn" msprop:Generator_UserColumnName="intStatusID" type="xs:int" />
+              <xs:element name="strCreativeSupportStatus" msprop:Generator_ColumnVarNameInTable="columnstrCreativeSupportStatus" msprop:Generator_ColumnPropNameInRow="strCreativeSupportStatus" msprop:Generator_ColumnPropNameInTable="strCreativeSupportStatusColumn" msprop:Generator_UserColumnName="strCreativeSupportStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

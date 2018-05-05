@@ -86,5 +86,15 @@ namespace SCM_DAL.Properties {
                 return ((string)(this["ERP_AccountsConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=AG_Global;User ID=sqlrw;Password=RWsql@123")]
+        public string AG_GlobalConnectionString {
+            get {
+                return ((string)(this["AG_GlobalConnectionString"]));
+            }
+        }
     }
 }
