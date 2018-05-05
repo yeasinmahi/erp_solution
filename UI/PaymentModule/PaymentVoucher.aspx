@@ -19,6 +19,13 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+
+     <script>
+         function ViewPrepareVoucher(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
+             window.open('BankPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         }
+    </script>
+
     </head>
 <body>
     <form id="frmPaymentVoucher" runat="server">        
@@ -57,7 +64,7 @@
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Instrument"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                         <td style="text-align:left;">
-                        <asp:DropDownList ID="ddlAction" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false">
+                        <asp:DropDownList ID="ddlInstrument" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false">
                         <asp:ListItem Selected="True" Value="1">Cheque</asp:ListItem><asp:ListItem Value="2">Advice</asp:ListItem>
                         <asp:ListItem Value="3">Adjustment</asp:ListItem></asp:DropDownList></td>
                         <td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>                
@@ -66,7 +73,7 @@
                         <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px"/></td>        
+                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td>        
                     </tr>
                     <tr><td colspan="5"><hr /></td></tr> 
                 </table>        
@@ -84,28 +91,28 @@
                     <Columns>
                     <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
-                    <asp:TemplateField HeaderText="ID" SortExpression="intBill">
-                    <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
+                    <asp:TemplateField HeaderText="ID" SortExpression="intBillID">
+                    <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBillID") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Registration Code" SortExpression="strBill">
-                    <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="150px"></asp:Label>
+                    <asp:TemplateField HeaderText="Registration Code" SortExpression="strBillRegCode">
+                    <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBillRegCode") %>' Width="150px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
-                    <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
+                    <asp:TemplateField HeaderText="Party ID" SortExpression="intPartyID">
+                    <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intPartyID") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
-                    <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="300px"></asp:Label>
+                    <asp:TemplateField HeaderText="Party Name" SortExpression="strPartyName">
+                    <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strPartyName") %>' Width="300px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="left" Width="300px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Bill Amount" SortExpression="BillAmount">
-                    <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("BillAmount") %>' Width="80px"></asp:Label>
+                    <asp:TemplateField HeaderText="Bill Amount" SortExpression="monApproveAmount">
+                    <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monApporveAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Prepare Voucher" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                    <ItemTemplate><asp:Button ID="btnPrepareVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="S"  
+                    <ItemTemplate><asp:Button ID="btnPrepareVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="PV"  
                     Text="Prepare Voucher"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">

@@ -295,7 +295,13 @@
         }
 
 </script> 
+    <script language="javascript">        
 
+        function Registration(url) {
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
+            if (window.focus) { newwindow.focus() }
+        }
+    </script>
   
     <style type="text/css"> 
         .rounds {
@@ -345,17 +351,31 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
     
-       <div class="tabs_container" style="text-align:left">PO without Indent From<hr /></div>
+       <div class="tabs_container" style="text-align:left">PO without Indent<hr /></div>
                <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
                   <table>
                       
-                      <caption>
+                      <tr>
+                          <td style="text-align:right;"> <asp:Label ID="Label27" runat="server" CssClass="lbl" Text="PO No.:"></asp:Label> </td>                          
+                          <td style="text-align:left;"> <asp:TextBox ID="txtPONo" runat="server" Text="" AutoPostBack="false"  CssClass="txtBox" Font-Bold="False"> </asp:TextBox> </td>
+
+                          <td><asp:Button ID="btnViewPO" BackColor="#0099ff" style=" background-color:#FFCC99; border-radius:1px; "  runat="server" Text="View PO" OnClick="btnViewPO_Click"  /></td>
+                      </tr>
+                      <tr><td colspan="6"><hr /></td></tr> 
+
+                      <%--<caption>
                           <asp:Label ID="lblSuppAddress" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
-                      </caption>
+                      </caption>--%>
+                      <tr>
+                          <td colspan="6" style="text-align:center;">
+                              <asp:Label ID="lblSuppAddress" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
+                          </td>
+                      </tr>
                       <tr>
                          <td colspan="3" style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>  
                           <td style="text-align:left;"><asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"> </asp:DropDownList></td>  
                         <td><asp:Label ID="lblPO" runat="server" ForeColor="Blue" ></asp:Label></td>
+                        
                       </tr>
                       <tr>
                           <td style="text-align:right;">
@@ -366,7 +386,7 @@
                               </asp:DropDownList>
                           </td>
                           <td style="text-align:right;">
-                              <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Suppliyer"></asp:Label>
+                              <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier"></asp:Label>
                           </td>
                           <td style="text-align:left;">
                               <asp:DropDownList ID="ddlSupplier" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlSuppliyer_SelectedIndexChanged">
@@ -416,7 +436,7 @@
                         </td>
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
                         <td  style="text-align:left;"><asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
-                        </asp:TextBox></td><td></td>
+                        </asp:TextBox></td><td></td>                        
                         <td   style="text-align:right;"><asp:Button ID="btnGeneratePO" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" AutoPostBack="false" /></td>
                       </tr>
                       </table>

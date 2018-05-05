@@ -104,10 +104,7 @@
     font-weight: bold;
     color:Green;
 }
-    .auto-style1 {
-        width: 819px;
-    }
-</style> 
+    </style> 
      <style type="text/css">
         .leaveApplication_container {
             margin-top: 0px;
@@ -137,7 +134,9 @@
                <table style=" border-width: 1px; border-color: #666; border-style: solid">  
                         <tr style="text-align:center"> 
                         <td colspan="3" style="text-align:right"><asp:Label ID="lblUnit"  Text="Ware House" runat="server" /></td> 
-                        <td colspan="3" style="text-align:left"><asp:DropDownList ID="ddlWH" Font-Bold="true" runat="server" CssClass="txtBox" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td> 
+                        <td colspan="1" style="text-align:left"><asp:DropDownList ID="ddlWH" Font-Bold="true" runat="server" CssClass="txtBox" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td> 
+                        <td style="text-align:right"><asp:Label ID="Label1"  Text="PO" runat="server" /></td> 
+                        <td><asp:TextBox ID="txtPO" runat="server" CssClass="txtBox"></asp:TextBox></td>
                         </tr> 
                         <tr>
                         <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="PO Type"></asp:Label></td> 

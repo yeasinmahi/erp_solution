@@ -265,13 +265,13 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.WebControls.Button btnExport;
         
         /// <summary>
-        /// btnEmail control.
+        /// btnExportIBBL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEmail;
+        protected global::System.Web.UI.WebControls.Button btnExportIBBL;
         
         /// <summary>
         /// btnPrint control.
@@ -605,5 +605,14 @@ namespace UI.Accounts.Advice {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAuthIBBL3;
+        
+        /// <summary>
+        /// HdnValueIBBL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdnValueIBBL;
     }
 }

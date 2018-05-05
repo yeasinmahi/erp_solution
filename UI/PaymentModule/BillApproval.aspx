@@ -201,7 +201,7 @@
                     Text="Approve Action"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     </Columns>
-                        <FooterStyle Font-Size="11px" />
+                    <FooterStyle Font-Size="11px" />
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     </asp:GridView>

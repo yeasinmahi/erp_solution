@@ -121,6 +121,33 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.HiddenField hdnIndentDate;
         
         /// <summary>
+        /// Label27 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label27;
+        
+        /// <summary>
+        /// txtPONo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPONo;
+        
+        /// <summary>
+        /// btnViewPO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnViewPO;
+        
+        /// <summary>
         /// lblSuppAddress control.
         /// </summary>
         /// <remarks>

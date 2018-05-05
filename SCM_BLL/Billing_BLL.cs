@@ -16,6 +16,7 @@ namespace SCM_BLL
         private static TblEmployeeDataTable[] tblEmpList = null;
         private static TblSupplierDataTable[] tblSupplierList = null;
         private static TblConfigOtherPartyListDataTable[] tblOtherPartyList = null;
+        
 
         public DataTable GetAllUnit()
         {
@@ -350,37 +351,51 @@ namespace SCM_BLL
             { return adp.GetIndentViewDetails(intIndentID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        //public DataTable GetUnpaidBillList(int intIndentID)
-        //{
-        //    SprAccountsApprovedPaymentForChequeTableAdapter adp = new SprAccountsApprovedPaymentForChequeTableAdapter();
-        //    try
-        //    { return adp.GetUnpaidBillList(intu); }
-        //    catch (Exception ex) { ex.ToString(); return new DataTable(); }
-        //}
+        public DataTable GetUnpaidBillList(int intUnit, int intDept)
+        {
+            SprAccountsApprovedPaymentForChequeTableAdapter adp = new SprAccountsApprovedPaymentForChequeTableAdapter();
+            try
+            { return adp.GetUnpaidBillList(intUnit, intDept); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetCostCenter(int intUnitID)
+        {
+            TblCostCenterTableAdapter adp = new TblCostCenterTableAdapter();
+            try
+            { return adp.GetCostCenter(intUnitID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPayToList(int intBillID)
+        {
+            SprGetPartyAccountInfoTableAdapter adp = new SprGetPartyAccountInfoTableAdapter();
+            try
+            { return adp.GetPayToList(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPartyLedgerListByPartyType1(int intUnit, bool ysnCreditor)
+        {
+            SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
+            try
+            { return adp.GetPartyLedgerList(intUnit, null, null, ysnCreditor, null, null); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPartyLedgerListByPartyTypeOthers(int intUnit, bool ysnPurchase)
+        {
+            SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
+            try
+            { return adp.GetPartyLedgerList(intUnit, null, ysnPurchase, null, null, null); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetBillInfoForBPVoucher(int intBillID)
+        {
+            SprAccountsGetBillSummaryTableAdapter adp = new SprAccountsGetBillSummaryTableAdapter();
+            try
+            { return adp.GetBillInfoForBPVoucher(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
 
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -605,13 +620,7 @@ namespace SCM_BLL
             else { return null; }
         }
         #endregion=========================================================================
-
-
-
-
-
-
-
+        
 
 
 

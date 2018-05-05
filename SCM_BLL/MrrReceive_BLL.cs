@@ -33,5 +33,16 @@ namespace SCM_BLL
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+        public DataTable GetWHByPO(int intPO)
+        {
+            TblPurchaseOrderMainTableAdapter adp = new TblPurchaseOrderMainTableAdapter();
+            try
+            { return adp.GetWHByPO(intPO); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+
+
+        
     }
 }

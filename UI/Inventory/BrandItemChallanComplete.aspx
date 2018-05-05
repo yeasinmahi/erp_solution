@@ -251,7 +251,15 @@
                         </FooterTemplate>
                         <ItemStyle HorizontalAlign="Right"></ItemStyle>
                         <FooterStyle HorizontalAlign="Right" />
-                    </asp:TemplateField>   
+                    </asp:TemplateField>  
+                    
+                      <asp:TemplateField HeaderText="Vheicle" SortExpression="strName">
+                        <ItemTemplate>
+                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("strVehicleRegNo") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                  
+
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <%# GetEditLink(Eval("intId"), Eval("ysnChallanCompleted"))%>
