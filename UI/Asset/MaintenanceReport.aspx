@@ -18,6 +18,13 @@
     <script src="jquery-ui.min.js"></script>
      <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" /> 
 
+    <script>
+         function ReportDetalis(url) {
+             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=700,top=150,left=350');
+             if (window.focus) { newwindow.focus() }
+         }
+         </script> 
+
     <style type="text/css">
         .leaveApplication_container {
             margin-top: 0px;
@@ -113,7 +120,7 @@
             <td><asp:GridView ID="dgvMaterial" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" Font-Size="Smaller"  PagerStyle-CssClass="pgr"
                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvBillReport_RowCommand">
+                    ForeColor="Black" GridLines="Vertical"  >
                     <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
             <asp:TemplateField HeaderText="Sl.N">
@@ -147,7 +154,7 @@
             <td><asp:GridView ID="dgvServiceCost" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
                     CssClass="Grid" AlternatingRowStyle-CssClass="alt"  Font-Size="Smaller"  PagerStyle-CssClass="pgr"
                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvBillReport_RowCommand">
+                    ForeColor="Black" GridLines="Vertical"  >
                     <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
             <asp:TemplateField HeaderText="Sl.N">

@@ -13,14 +13,7 @@
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script> 
-    
- 
-   
- 
-       
- 
-   
- 
+     
    
      <style type="text/css">
     .Initial
@@ -87,9 +80,7 @@
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />         
     <%--<div class="tabs_container" align="Center" >Maintenance Service Report </div>--%>
          
-     <div class="tabs_container">Spare Parts  Summary :</div> 
-                   
-              
+     <div class="tabs_container">Spare Parts  Summary :</div>  
                       
                   <asp:GridView ID="dgvPartsView" runat="server" AutoGenerateColumns="False" ShowFooter="true">
                       <Columns>
@@ -101,17 +92,10 @@
                           <asp:BoundField DataField="strItemName" HeaderText="SpareParts" SortExpression="strItemName" />
                           <asp:BoundField DataField="intqty" HeaderText="Qty" SortExpression="intqty" />
                           <asp:BoundField DataField="intReqID" HeaderText="ReqesitionID" SortExpression="intReqID"/>
-                          <asp:BoundField DataField="monValue" HeaderText="Value" SortExpression="monValue"/>
-                            
-             
+                          <asp:BoundField DataField="monValue" HeaderText="Value" SortExpression="monValue"/> 
                       </Columns>
                       
-                      </asp:GridView>
-          
-          
-         
-          
-         
+                      </asp:GridView> 
         <div class="leaveSummary_container"> 
         <div class="tabs_container">Employee Work Summary :<hr /></div> 
               
@@ -123,7 +107,16 @@
                       </asp:GridView>
                   
           </div>
-         
+          <div class="tabs_container">Service Summary :<hr /></div> 
+              
+                  <asp:GridView ID="dgvService" runat="server" AutoGenerateColumns="False">
+                      <Columns>
+                          <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
+                          <asp:BoundField DataField="monServiceCost" HeaderText="Amount" SortExpression="monServiceCost" />
+                      </Columns>
+                      </asp:GridView>
+                  
+          </div>
          
          
           
