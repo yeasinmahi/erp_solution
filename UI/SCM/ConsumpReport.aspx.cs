@@ -29,21 +29,7 @@ namespace UI.SCM
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
                 ddlWh.DataBind();
-
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, enroll);
-                ddlFilter.DataSource = dt;
-                ddlFilter.DataValueField = "Id";
-                ddlFilter.DataTextField = "strName";
-                ddlFilter.DataBind();
-                ddlFilter.Items.Insert(0, new ListItem("Add New", ""));
-
-                dt = objIssue.GetViewData(10, "", 0, 0, DateTime.Now, enroll);
-                ddlSection.DataSource = dt;
-                ddlSection.DataValueField = "Id";
-                ddlSection.DataTextField = "strName";
-                ddlSection.DataBind();
-                ddlSection.Items.Insert(0, new ListItem("Add New", ""));
+                getDefaultLoad();
             }
             else
             {
@@ -52,19 +38,56 @@ namespace UI.SCM
 
         }
 
+        private void getDefaultLoad()
+        {
+            try
+            {
+               
+
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+              //  ddlSection.Items.Insert(0, new ListItem("Select", ""));
+                dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, enroll);
+                ddlFilter.DataSource = dt;
+                ddlFilter.DataValueField = "Id";
+                ddlFilter.DataTextField = "strName";
+                ddlFilter.DataBind();
+                 
+
+                dt = objIssue.GetViewData(10, "", 0, 0, DateTime.Now, enroll);
+               // ddlSection.Items.Insert(0, new ListItem("Select", ""));
+                ddlSection.DataSource = dt;
+                ddlSection.DataValueField = "Id";
+                ddlSection.DataTextField = "strName";
+                ddlSection.DataBind();
+                
+            }
+            catch { }
+        }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             try
             {
-                string dept = ddlFilter.SelectedItem.ToString();
+                string dept = ddlSection.SelectedItem.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString(); 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                int deptId =int.Parse(ddlFilter.SelectedItem.ToString());
-                dt = objIssue.GetViewData(12, "", intwh, deptId, DateTime.Now, enroll);
+                int deptId =int.Parse(ddlSection.SelectedValue.ToString());
+                dt = objIssue.GetViewData(12, xmlData, intwh, deptId, DateTime.Now, enroll);
                 dgvConsump.DataSource = dt;
                 dgvConsump.DataBind();
+            }
+            catch { }
+        }
+
+        protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                getDefaultLoad();
+
             }
             catch { }
         }
@@ -73,13 +96,15 @@ namespace UI.SCM
         {
             try
             {
-                string dept = ddlSection.SelectedItem.ToString();
+               
+                int deptId = int.Parse(ddlFilter.SelectedValue.ToString());
+                string dept = ddlFilter.SelectedItem.ToString();
                 intwh = int.Parse(ddlWh.SelectedValue);
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(11, "", intwh, 0, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(11, xmlData, intwh, deptId, DateTime.Now, enroll);
                 dgvConsump.DataSource = dt;
                 dgvConsump.DataBind();
             }

@@ -99,7 +99,7 @@ namespace UI.SCM
                 string[] searchKey = temp.Split(delimiterChars);
                 string filePatht = searchKey[0]; 
                 string image = "ftp://erp:erp123@ftp.akij.net/" + filePatht;
-               
+            
 
                 DataTable dt = new DataTable();
                 dt.Columns.AddRange(new DataColumn[3] { new DataColumn("ImageName"),
@@ -107,7 +107,7 @@ namespace UI.SCM
                 new DataColumn("ZoomImageUrl")
                 });
                 dt.Rows.Add(image, image);
-
+               
                 //string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/Small/"));
                 //foreach (string filePath in filePaths)
                 //{

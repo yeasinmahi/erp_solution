@@ -21,7 +21,7 @@ namespace UI.SCM
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
-                intWh = int.Parse(ddlWH.SelectedValue.ToString());
+               
                 dt = objPo.GetPoData(40, "", intWh, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
@@ -51,7 +51,7 @@ namespace UI.SCM
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept.ToString() + '"' + "/></voucher>".ToString();
 
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
-                dt = objPo.GetPoData(42, xmlData ,intWh, 0, DateTime.Now, enroll);
+                dt = objPo.GetPoData(41, xmlData ,intWh, 0, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
                     lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();

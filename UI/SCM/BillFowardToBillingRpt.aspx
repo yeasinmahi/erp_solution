@@ -118,13 +118,13 @@
        </table>
        <table> 
          <tr> 
-            <td><asp:GridView ID="dgvBill" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  Width="600px"  CssClass="GridViewStyle">   
+            <td><asp:GridView ID="dgvBill" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  Width="800px"  CssClass="GridViewStyle">   
             <HeaderStyle CssClass="HeaderStyle" />  <FooterStyle CssClass="FooterStyle" /> <RowStyle CssClass="RowStyle" />  <PagerStyle CssClass="PagerStyle" /> 
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
   
-            <asp:TemplateField HeaderText="PONo" SortExpression="intPo"><ItemTemplate>
-            <asp:Label ID="lblPo" runat="server" Width="100px" Text='<%# Bind("intPo") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="PONO" SortExpression="intPo"><ItemTemplate>
+            <asp:Label ID="lblPo" runat="server" Width="60px" Text='<%# Bind("intPo") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
                 
             <asp:TemplateField HeaderText="PO Date" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="poDate" >
@@ -132,11 +132,12 @@
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>  
               
             <asp:TemplateField HeaderText="Supplier" ItemStyle-HorizontalAlign="right" SortExpression="strSupplier" >
-            <ItemTemplate><asp:Label ID="lblSupplier" runat="server"  Width="90px" Text='<%# Bind("strSupplier") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblSupplier" runat="server"  Width="150px" Text='<%# Bind("strSupplier") %>'></asp:Label></ItemTemplate>
+            
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="PO Amount" ItemStyle-HorizontalAlign="right" SortExpression="monPOamount" >
-            <ItemTemplate><asp:Label ID="lblPOamount" runat="server" Width="150px"  Text='<%# Bind("monPOamount") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblPOamount" runat="server" Width="50px"  Text='<%# Bind("monPOamount") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="MRR Amount" ItemStyle-HorizontalAlign="right" SortExpression="monmrrAmount" >

@@ -58,7 +58,11 @@
         } 
     </script> 
 
-  
+   <script>
+     function Print() {
+         document.getElementById("btnprint").style.display = "none"; window.print(); self.close();
+     }
+    </script> 
      
 </head>
 
@@ -82,8 +86,8 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
     
-       <div class="tabs_container" style="text-align:left"><hr /></div>
-           <table style="width:700px"> 
+       <div class="tabs_container" style="text-align:left; background-color:white"><hr /></div>
+           <table style="width:600px"> 
                 <tr><td colspan="2" style="text-align:center; font:bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor:pointer" onclick="Print()">Print</a></td></tr>
                 <tr>   
                 <td><asp:Image ID="imgUnit" runat="server"   /></td>
@@ -91,12 +95,12 @@
                 </tr>
                 <tr> 
                 <td></td>
-                <td  style="text-align:center"><asp:DropDownList ID="ddlWh" Font-Size="Small" Font-Bold="true" runat="server" Font-Underline="true"></asp:DropDownList></td>
+                <td  style="text-align:center"><asp:DropDownList ID="ddlWh" Font-Size="Small" CssClass="ddList"  Font-Bold="true" runat="server" Font-Underline="true" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>
                 </tr>
                
                 <tr> 
                 <td></td>
-                <td  style="text-align:center"><asp:Label ID="lblbill" Font-Size="Small" Font-Bold="true" Text="Supplier Statement Report" runat="server"></asp:Label></td>
+                <td  style="text-align:center"><asp:Label ID="lblbill" Font-Size="Small" Font-Bold="true" Text="Comsump. Statement Report" runat="server"></asp:Label></td>
                 </tr>
                
                 <tr><td></td></tr>
@@ -116,20 +120,20 @@
         </tr> 
            <tr>
                 <td  style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Filter By"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlFilter" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged"     >
+        <td style="text-align:left;"><asp:DropDownList ID="ddlFilter" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       >
         
          </asp:DropDownList><asp:Button ID="btnFilterDept" runat="server" Text="Show" OnClick="btnFilterDept_Click"    /></td>                                                                                      
          
 
         <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Section"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlSection" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged" ></asp:DropDownList>
+        <td style="text-align:left;"><asp:DropDownList ID="ddlSection" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"  ></asp:DropDownList>
             <asp:Button ID="btnSection" runat="server" Text="Show" OnClick="btnShow_Click"   />
         </td>                                                                                      
      
            </tr>
            <tr>
                 
-                <td colspan="6" style="text-align:right;"></td>
+                <td colspan="4" style="text-align:right;"></td>
            </tr>
        </table>
        <table> 
