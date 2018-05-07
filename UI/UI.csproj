@@ -1164,6 +1164,13 @@
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
+    <Content Include="SAD\Vat\frmItemAndMatrialsAdd.aspx" />
+    <Content Include="SAD\Vat\frmItemMushok1.aspx" />
+    <Content Include="SAD\Vat\frmOtherAdjusment.aspx" />
+    <Content Include="SAD\Vat\frmProductionEntry.aspx" />
+    <Content Include="SAD\Vat\frmPurchaseEntry.aspx" />
+    <Content Include="SAD\Vat\frmRebate.aspx" />
+    <Content Include="SAD\Vat\frmTresuaryEntry.aspx" />
     <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
@@ -5705,6 +5712,55 @@
     <Compile Include="SAD\Transfer\FGTransferView.aspx.designer.cs">
       <DependentUpon>FGTransferView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Vat\frmItemAndMatrialsAdd.aspx.cs">
+      <DependentUpon>frmItemAndMatrialsAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemAndMatrialsAdd.aspx.designer.cs">
+      <DependentUpon>frmItemAndMatrialsAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemMushok1.aspx.cs">
+      <DependentUpon>frmItemMushok1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemMushok1.aspx.designer.cs">
+      <DependentUpon>frmItemMushok1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmOtherAdjusment.aspx.cs">
+      <DependentUpon>frmOtherAdjusment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmOtherAdjusment.aspx.designer.cs">
+      <DependentUpon>frmOtherAdjusment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmProductionEntry.aspx.cs">
+      <DependentUpon>frmProductionEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmProductionEntry.aspx.designer.cs">
+      <DependentUpon>frmProductionEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmPurchaseEntry.aspx.cs">
+      <DependentUpon>frmPurchaseEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmPurchaseEntry.aspx.designer.cs">
+      <DependentUpon>frmPurchaseEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmRebate.aspx.cs">
+      <DependentUpon>frmRebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmRebate.aspx.designer.cs">
+      <DependentUpon>frmRebate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmTresuaryEntry.aspx.cs">
+      <DependentUpon>frmTresuaryEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmTresuaryEntry.aspx.designer.cs">
+      <DependentUpon>frmTresuaryEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BillFowardToBillingRpt.aspx.cs">
       <DependentUpon>BillFowardToBillingRpt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6879,6 +6935,7 @@
     <Folder Include="SAD\Order\Uploads\" />
     <Folder Include="SAD\Sales\Data\" />
     <Folder Include="SAD\Transfer\Data\" />
+    <Folder Include="SAD\Vat\Data\" />
     <Folder Include="SCM\Data\" />
     <Folder Include="SCM\Uploads\" />
     <Folder Include="Shop\Data\" />
