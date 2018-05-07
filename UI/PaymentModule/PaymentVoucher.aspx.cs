@@ -135,23 +135,24 @@ namespace UI.PaymentModule
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = dgvReportForPaymentV.Rows[rowIndex];
-            
+
+            unitid = ddlUnit.SelectedValue.ToString();
+            billid = (row.FindControl("lblID") as Label).Text;
+            entrycode = (row.FindControl("lblRegNo") as Label).Text;
+            party = (row.FindControl("lblPartyName") as Label).Text;
+            bank = ddlBank.SelectedValue.ToString();
+            bankacc = ddlACNumber.SelectedValue.ToString();
+            instrument = ddlInstrument.SelectedValue.ToString();
+            billtypeid = ddlType.SelectedValue.ToString();
+
             if (e.CommandName == "PV")
             {
-                unitid = ddlUnit.SelectedValue.ToString();
-                billid = (row.FindControl("lblID") as Label).Text;
-                entrycode = (row.FindControl("lblRegNo") as Label).Text;
-                party = (row.FindControl("lblPartyName") as Label).Text;
-                bank = ddlBank.SelectedValue.ToString();
-                bankacc = ddlACNumber.SelectedValue.ToString();
-                instrument = ddlInstrument.SelectedValue.ToString();
-                billtypeid = ddlType.SelectedValue.ToString();
-
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucher('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
             }
-            else if (e.CommandName == "SD")
+            else if (e.CommandName == "CP")
             {
-                //int.Parse((row.FindControl("lblID") as Label).Text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucherCP('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
+                
             }
 
         }

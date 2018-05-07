@@ -190,7 +190,7 @@ namespace UI.CreativeSupportModule
                     dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
 
                 }
                 catch (Exception ex) { throw ex; }

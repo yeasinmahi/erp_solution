@@ -10,6 +10,8 @@ namespace SAD_BLL.Vat
 {
     public class VAT_BLL
     {
+
+        #region ===== List Bind & Others =================================================
         public DataTable GetVMaterialList(int intUnitID, int intVATAccountID)
         {
             TblConfigMaterialVATTableAdapter adp = new TblConfigMaterialVATTableAdapter();
@@ -46,7 +48,9 @@ namespace SAD_BLL.Vat
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        //===== Bridge Option ====================================================
+        #endregion ==================================================================
+
+        #region ===== Bridge Option ======================================================
         public DataTable GetVATItemList(int intUnitID, int intVATAccountID)
         {
             TblItemVatTableAdapter adp = new TblItemVatTableAdapter();
@@ -87,7 +91,9 @@ namespace SAD_BLL.Vat
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        //====== User Info For VAT =================================
+        #endregion =======================================================================
+
+        #region ===== User Info For VAT ==================================================
         public DataTable GetUserInfoForVAT(int intUserID)
         {
             UserInfoForVATTableAdapter adp = new UserInfoForVATTableAdapter();
@@ -95,7 +101,7 @@ namespace SAD_BLL.Vat
             { return adp.GetUserInfoForVAT(intUserID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
+        #endregion =======================================================================
 
         #region ===== Production Entry ===================================================
         public DataTable GetVATItemForProductionEntry(int intUnitID, int intVATAccountID)
@@ -153,9 +159,80 @@ namespace SAD_BLL.Vat
         }
         #endregion ========================================================================
 
+        #region ===== Purchase Entry =====================================================
+        public string InsertPurchaseEntry(int intUnitID, int intVATAccountID, int intUserID, int intPurTypeID, DateTime dtePurchaseDate, int ysnFactory, string xml)
+        {
+            string msg = "";
+            try
+            {
+                SprInsertIntoPurchaseAndCurrentRegForWebTableAdapter adp = new SprInsertIntoPurchaseAndCurrentRegForWebTableAdapter();
+                adp.InsertPurchaseEntry(intUnitID, intVATAccountID, intUserID, intPurTypeID, dtePurchaseDate, ysnFactory, xml, ref msg);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+        public DataTable GetSupplierList(int intUnitID)
+        {
+            TblSupplierTableAdapter adp = new TblSupplierTableAdapter();
+            try
+            { return adp.GetSupplierList(intUnitID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
 
+        #endregion ========================================================================
 
+        #region ===== Price Declaration ==================================================
+        public DataTable GetVatItemListForPriceDec(int intUnitID, int intVATAccountID)
+        {
+            TblItemVatListTableAdapter adp = new TblItemVatListTableAdapter();
+            try
+            { return adp.GetVatItemList(intUnitID, intVATAccountID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetDItemVatPrice(int intProductID)
+        {
+            TblItemVat_PriceInfoTableAdapter adp = new TblItemVat_PriceInfoTableAdapter();
+            try
+            { return adp.GetDItemVatPrice(intProductID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetPreviousM1InfoByItem(int intVatItemID, int intMushokType, DateTime dteDate)
+        {
+            SprGetVATDeclaredPriceM1TableAdapter adp = new SprGetVATDeclaredPriceM1TableAdapter();
+            try
+            { return adp.GetPreviousM1InfoByItem(intVatItemID, intMushokType, dteDate); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUOMByItemID(int intMaterialID)
+        {
+            TblConfigMaterialVATTableAdapter adp = new TblConfigMaterialVATTableAdapter();
+            try
+            { return adp.GetUOMByItemID(intMaterialID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        #endregion =======================================================================
+
+        #region ===== Treasury Deposit ===================================================
+        public DataTable GetTreasuryDepositType()
+        {
+            TblConfigTreasuryDepositCodeTableAdapter adp = new TblConfigTreasuryDepositCodeTableAdapter();
+            try
+            { return adp.GetTreasuryDepositType(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }        
+        public string InsertTreasuryDeposit(int intUnitID, int intVatAcc, int intDepositType, decimal monAmount, int intUserID, string strTrChallanNo, DateTime dteTrChallan, string strInstrumentNo, DateTime dteInstrument, DateTime dteTransactionDate)
+        {
+            string msg = "";
+            try
+            {
+                SprVATTreasuryDepositForWebTableAdapter adp = new SprVATTreasuryDepositForWebTableAdapter();
+                adp.InsertTreasuryDeposit(intUnitID, intVatAcc, intDepositType, monAmount, intUserID, strTrChallanNo, dteTrChallan, strInstrumentNo, dteInstrument, dteTransactionDate, ref msg);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+        #endregion =======================================================================
 
 
 
