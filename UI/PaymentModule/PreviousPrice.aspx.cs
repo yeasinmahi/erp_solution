@@ -51,8 +51,7 @@ namespace UI.PaymentModule
                 dt = new DataTable();
                 dt = objBillApp.GetChartOfPrice(int.Parse(hdnItemID.Value));
                 Chart1.DataSource = dt;
-                Chart1.DataBind();
-                
+                Chart1.DataBind();                
             }
         }
 

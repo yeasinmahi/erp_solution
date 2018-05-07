@@ -60,7 +60,7 @@
                 <table class="tbldecoration" style="width:auto; float:left;">
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="lblRegNo" runat="server" Text="Entry Registration No:" CssClass="lbl"></asp:Label></td>
-                        <td><asp:TextBox ID="txtRegNo" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
+                        <td><asp:TextBox ID="txtRegNo" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke" ForeColor="Blue"></asp:TextBox></td>
                         <td style="text-align:right; width:15px;"><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right;"><asp:Label ID="lblFCompany" runat="server" Text="PO Number :" CssClass="lbl"></asp:Label></td>
                         <td><asp:TextBox ID="txtPONo" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
@@ -83,7 +83,7 @@
                         <td colspan="4"><asp:TextBox ID="txtParty" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke" Width="555px"></asp:TextBox></td>                
                         <td style="text-align:right; width:15px;"><asp:Label ID="Label10" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Net Amount :" CssClass="lbl"></asp:Label></td>
-                        <td><asp:TextBox ID="txtNetAmount" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
+                        <td><asp:TextBox ID="txtNetAmount" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke" ForeColor="Red" ></asp:TextBox></td>
                     </tr>
                 </table>
             </td></tr>
@@ -92,75 +92,75 @@
                     <tr><td><hr /></td></tr>
                     <tr>
                         <td>   
-                        <asp:GridView ID="dgvBillReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                        <asp:GridView ID="dgvBillReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" Font-Size="10px"
                         CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
                         ShowFooter="true"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
                         FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvBillReport_RowDataBound"
                         OnRowCommand="dgvBillReport_RowCommand">
                         <AlternatingRowStyle BackColor="#CCCCCC" />    
                         <Columns>
-                        <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                        <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
                         <asp:TemplateField HeaderText="ID" SortExpression="intItem">
-                        <ItemTemplate><asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItem") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItem") %>' Width="50px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Item Name" SortExpression="strItem">
-                        <ItemTemplate><asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strItem") %>' Width="180px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="180px"/></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strItem") %>' Width="150px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Description" SortExpression="strDes">
-                        <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strDes") %>' Width="180px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="180px"/>
+                        <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strDes") %>' Width="150px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/>
                         <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total" /></FooterTemplate>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="UOM" SortExpression="strUom">
-                        <ItemTemplate><asp:Label ID="lblUOM" runat="server" Text='<%# Bind("strUom") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblUOM" runat="server" Text='<%# Bind("strUom") %>' Width="40px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="40px"/></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Indt. Qty." SortExpression="allIndent">
-                        <ItemTemplate><asp:Label ID="lblIndtQty" runat="server" Text='<%# Bind("allIndent") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblIndtQty" runat="server" Text='<%# Bind("allIndent", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Indt. Rem." SortExpression="indRemain">
-                        <ItemTemplate><asp:Label ID="lblIndtRem" runat="server" Text='<%# Bind("indRemain") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblIndtRem" runat="server" Text='<%# Bind("indRemain", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="PO Qty." SortExpression="poQty">
-                        <ItemTemplate><asp:Label ID="lblPOQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("poQty") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblPOQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("poQty", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Rate" SortExpression="monRate">
-                        <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate", "{0:n2}") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="VAT" SortExpression="monVat">
-                        <ItemTemplate><asp:Label ID="lblVAT" runat="server"  Text='<%# Bind("monVat", "{0:n2}") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+                        <ItemTemplate><asp:Label ID="lblVAT" runat="server"  Text='<%# Bind("monVat", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" />
                         <FooterTemplate><asp:Label ID="lblVATTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# vatgrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="AIT" SortExpression="monAIT">
-                        <ItemTemplate><asp:Label ID="lblAIT" runat="server" Text='<%# Bind("monAIT", "{0:n2}") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+                        <ItemTemplate><asp:Label ID="lblAIT" runat="server" Text='<%# Bind("monAIT", "{0:n2}") %>' Width="50px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="50px" />
                         <FooterTemplate><asp:Label ID="lblAITTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# aitgrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="G. Total" SortExpression="monTotal">
-                        <ItemTemplate><asp:Label ID="lblGTotal" runat="server" Text='<%# Bind("monTotal", "{0:n2}") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+                        <ItemTemplate><asp:Label ID="lblGTotal" runat="server" Text='<%# Bind("monTotal", "{0:n2}") %>' Width="70px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="70px" />
                         <FooterTemplate><asp:Label ID="lblGTotalTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# ggrandtotal %>" /></FooterTemplate></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="PO Rem." SortExpression="PORemain">
-                        <ItemTemplate><asp:Label ID="lblPORem" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("PORemain") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblPORem" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("PORemain", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="MRR Qty" SortExpression="mrrQty">
-                        <ItemTemplate><asp:Label ID="lblMrrQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("mrrQty") %>' Width="80px"></asp:Label>
-                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblMrrQty" runat="server"  Text='<%# Bind("mrrQty", "{0:n2}") %>' Width="60px"></asp:Label>
+                        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" /></asp:TemplateField>
                
                         <asp:TemplateField HeaderText="Previous Price" ItemStyle-HorizontalAlign="Center" SortExpression="">
                         <ItemTemplate><asp:Button ID="btnShowPreviousPrice" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="PrePrice"  
-                        Text="Previous Price"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                        Text="Pre.Price"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                         </Columns>
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -189,12 +189,12 @@
                                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Document Type" SortExpression="strFileName">
-                                    <ItemTemplate><asp:Label ID="lblDocumentType" runat="server" Text='<%# Bind("strFileName") %>' Width="100px"></asp:Label>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
+                                    <ItemTemplate><asp:Label ID="lblDocumentType" runat="server" Text='<%# Bind("strFileName") %>' Width="70px"></asp:Label>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="70px"/></asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="FTP Path" SortExpression="strFtpPath">
-                                    <ItemTemplate><asp:Label ID="lblFTPPath" runat="server" Text='<%# Bind("strFtpPath") %>' Width="180px"></asp:Label>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="180px"/></asp:TemplateField>
+                                    <ItemTemplate><asp:Label ID="lblFTPPath" runat="server" Text='<%# Bind("strFtpPath") %>' Width="150px"></asp:Label>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Doc View" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                     <ItemTemplate><asp:Button ID="btnShowDoc" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="DocS"  

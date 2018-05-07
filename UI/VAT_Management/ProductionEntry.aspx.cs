@@ -26,17 +26,18 @@ namespace UI.VAT_Management
         decimal numQty, numBRWastage, numBandWastageLimit, numUsePerUnit;
         DateTime dteDate;
         string strMessage;
-
+        
         #endregion =====================================================================================
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+                hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
+
                 if (!IsPostBack)
-                {
-                    hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-                    hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+                {                    
                     pnlUpperControl.DataBind();
 
                     lblBandroll.Enabled = false;

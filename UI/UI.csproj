@@ -1256,11 +1256,15 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="VAT_Management\BandrollReceive.aspx" />
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
     <Content Include="VAT_Management\OtherAdjustments.aspx" />
+    <Content Include="VAT_Management\PriceDeclarationM1.aspx" />
     <Content Include="VAT_Management\ProductionEntry.aspx" />
+    <Content Include="VAT_Management\PurchaseEntry.aspx" />
+    <Content Include="VAT_Management\TreasuryEntry.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\ItemAdd.aspx" />
     <Content Include="Wastage\ItemReceive.aspx" />
@@ -6354,6 +6358,13 @@
     <Compile Include="Vat\VatMonthlyReturnM19.aspx.designer.cs">
       <DependentUpon>VatMonthlyReturnM19.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VAT_Management\BandrollReceive.aspx.cs">
+      <DependentUpon>BandrollReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\BandrollReceive.aspx.designer.cs">
+      <DependentUpon>BandrollReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VAT_Management\BridgeFinishedItem.aspx.cs">
       <DependentUpon>BridgeFinishedItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6382,12 +6393,33 @@
     <Compile Include="VAT_Management\OtherAdjustments.aspx.designer.cs">
       <DependentUpon>OtherAdjustments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VAT_Management\PriceDeclarationM1.aspx.cs">
+      <DependentUpon>PriceDeclarationM1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\PriceDeclarationM1.aspx.designer.cs">
+      <DependentUpon>PriceDeclarationM1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VAT_Management\ProductionEntry.aspx.cs">
       <DependentUpon>ProductionEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VAT_Management\ProductionEntry.aspx.designer.cs">
       <DependentUpon>ProductionEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\PurchaseEntry.aspx.cs">
+      <DependentUpon>PurchaseEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\PurchaseEntry.aspx.designer.cs">
+      <DependentUpon>PurchaseEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\TreasuryEntry.aspx.cs">
+      <DependentUpon>TreasuryEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\TreasuryEntry.aspx.designer.cs">
+      <DependentUpon>TreasuryEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\BRTAProfile_Update_UI.aspx.cs">
       <DependentUpon>BRTAProfile_Update_UI.aspx</DependentUpon>

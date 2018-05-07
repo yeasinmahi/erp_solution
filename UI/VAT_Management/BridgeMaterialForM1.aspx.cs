@@ -46,9 +46,7 @@ namespace UI.VAT_Management
                     ddlVatAccount.DataSource = dt;
                     ddlVatAccount.DataBind();
                     lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
-
                     hdnVatAccID.Value = ddlVatAccount.SelectedValue.ToString();
-                    hdnVatAccID.Value = "1";
 
                     dt = new DataTable();
                     dt = objvat.GetVATItemList(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value));

@@ -24,6 +24,10 @@
          function ViewPrepareVoucher(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
              window.open('BankPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
          }
+
+         function ViewPrepareVoucherCP(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
+             window.open('CashPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         }
     </script>
 
     </head>
@@ -111,13 +115,17 @@
                     <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monApporveAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Prepare Voucher" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                    <asp:TemplateField HeaderText="V. BP" ItemStyle-HorizontalAlign="Center" SortExpression="">
                     <ItemTemplate><asp:Button ID="btnPrepareVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="PV"  
-                    Text="Prepare Voucher"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    Text="BP"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="V. CP" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                    <ItemTemplate><asp:Button ID="btnCP" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="CP"  
+                    Text="CP"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
                     <ItemTemplate><asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
-                    Text="Show Detail"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    Text="View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     </Columns>
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

@@ -17193,7 +17193,7 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"select top (10) pod.intPOID,dtePODate,s.strSupplierName,(pod.monRate+monCD+monRD+monSD+monVAT+pod.monAIT+monATV+monPSI) as rate, strCurrencyName 
+            this._commandCollection[3].CommandText = @"select top (15) pod.intPOID,dtePODate,s.strSupplierName,(pod.monRate+monCD+monRD+monSD+monVAT+pod.monAIT+monATV+monPSI) as rate, strCurrencyName 
 from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pod join ERP_Inventory.dbo.tblPurchaseOrderMain po on pod.intPOID=po.intPOID join ERP_Inventory.dbo.tblSupplier s on po.intSupplierID=s.intSupplierID 
 join ERP_Inventory.dbo.tblCurrencyConversion c on po.intCurrencyID=c.intCurrencyID where intItemID=@intItemID 
 group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.monAIT+monATV+monPSI,dtePODate,strCurrencyName order by dtePODate desc";
