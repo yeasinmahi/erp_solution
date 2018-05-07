@@ -55,6 +55,7 @@ namespace UI.SAD.Vat
                     Session["VatAccid"] = dt.Rows[0]["intVatPointID"].ToString();
                     hdnysnFactory.Value = dt.Rows[0]["ysnFactory"].ToString();
                 }
+                txtWastage.Text = "0";
 
 
             }
@@ -62,23 +63,34 @@ namespace UI.SAD.Vat
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            char[] delimiterCharss = { '[', ']' };
-            arrayKeyItem = txtItemMatrial.Text.Split(delimiterCharss);
-            intVatItemid = int.Parse(arrayKeyItem[1].ToString());
-            qty =decimal.Parse(txtQty.Text);
-            vno= arrayKeyItem[0].ToString();
-            dtedate =DateTime.Parse(txtFrom.Text);
-            intBandrollid = int.Parse(ddlBanroll.SelectedValue);
-            intType = int.Parse(ddlMType.SelectedValue);
-            if (txtWastage.Text == "")
-            {
-                bandrollQty = 0;
+            if ((txtItemMatrial.Text != "") && (txtQty.Text != ""))
+              {
+                char[] delimiterCharss = { '[', ']' };
+                arrayKeyItem = txtItemMatrial.Text.Split(delimiterCharss);
+                intVatItemid = int.Parse(arrayKeyItem[1].ToString());
+                qty = decimal.Parse(txtQty.Text);
+                vno = arrayKeyItem[0].ToString();
+                dtedate = DateTime.Parse(txtFrom.Text);
+                intBandrollid = int.Parse(ddlBanroll.SelectedValue);
+                intType = int.Parse(ddlMType.SelectedValue);
+                if (txtWastage.Text == "")
+                {
+                    bandrollQty = 0;
+                }
+                else
+                {
+                    bandrollQty = decimal.Parse(txtWastage.Text);
+                }
+                objMush.getProductentry(intVatItemid, qty, dtedate, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), int.Parse(Session[SessionParams.USER_ID].ToString()), intType, intBandrollid, bandrollQty);
+                txtQty.Text = "";
+                txtWastage.Text = "";
+                txtItemMatrial.Text = "";
+
             }
             else
             {
-                bandrollQty = decimal.Parse(txtWastage.Text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Information !');", true);
             }
-            objMush.getProductentry(intVatItemid,qty,dtedate, int.Parse(Session[SessionParams.UNIT_ID].ToString()),int.Parse(hdnAccno.Value), int.Parse(Session[SessionParams.USER_ID].ToString()),intType,intBandrollid,bandrollQty);           
         }
 
         protected void ddlMType_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,12 +119,19 @@ namespace UI.SAD.Vat
 
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            dtefdate =DateTime.Parse(txtfdate.Text);
-            dtetdate = DateTime.Parse(txtfdate.Text);
-            
-            dt= objMush.getProductReport(int.Parse(Session[SessionParams.UNIT_ID].ToString()), dtefdate, dtetdate, int.Parse(hdnAccno.Value),int.Parse(ddlShorby.SelectedValue));
-            dgvProductRpt.DataSource = dt;
-            dgvProductRpt.DataBind();
+            if ((txtfdate.Text != "") && (txtfdate.Text != ""))
+                {
+                dtefdate = DateTime.Parse(txtfdate.Text);
+                dtetdate = DateTime.Parse(txtfdate.Text);
+
+                dt = objMush.getProductReport(int.Parse(Session[SessionParams.UNIT_ID].ToString()), dtefdate, dtetdate, int.Parse(hdnAccno.Value), int.Parse(ddlShorby.SelectedValue));
+                if (dt.Rows.Count > 0)
+                {
+                    dgvProductRpt.DataSource = dt;
+                    dgvProductRpt.DataBind();
+                }
+            }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Date !');", true);
         }
         protected double TotalQty = 0; protected double TotalValue = 0;
         protected void dgvProductRpt_RowDataBound(object sender, GridViewRowEventArgs e)

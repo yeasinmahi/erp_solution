@@ -67,7 +67,7 @@ namespace UI.SAD.Vat
                 xmlString = "<Voucher>" + xmlString + "</Voucher>";
                 string message = objMush.BrandrollReceiveEntry(xmlString, int.Parse(hdnAccno.Value), int.Parse(Session[SessionParams.USER_ID].ToString()),int.Parse(ddltype.SelectedValue));
                 File.Delete(xmlpath);
-         
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -85,6 +85,9 @@ namespace UI.SAD.Vat
                 qty =decimal.Parse(txtQty.Text);
        
                 CreateSalesXml(intbandrollid.ToString(), strBandrollname, Dono, dteDodate.ToString(), DeliveryNo, dtedate.ToString(), dteReceivedate.ToString(), qty.ToString());
+                txtDeliveryOrderno.Text = "";
+                txtDemandOrderno.Text = "";
+                txtQty.Text = "";
             }
             else {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Correct Information !');", true);

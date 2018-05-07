@@ -17,8 +17,10 @@
             var SuppName = document.forms["frmPurchase"]["txtSupplierName"].value;           
             var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
             var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Exam = document.forms["frmPurchase"]["ddlExam"].value;
-           
+            var txtQty = document.forms["frmPurchase"]["txtQty"].value;
+            var txtwithoutSDVat = document.forms["frmPurchase"]["txtwithoutSDVat"].value;
+            var txtVat = document.forms["frmPurchase"]["txtVat"].value;
+            var txtSDAmount = document.forms["frmPurchase"]["txtSDAmount"].value;
 
             if (Matrialname == null || Matrialname == "") {
                 alert("Please Matrial Fill-Up !");
@@ -38,8 +40,17 @@
             else if (ChallanDate == null || ChallanDate == "") {
                 alert("Please Fill-up Challan Date!");
             }
-            else if (Exam == null || Exam == "") {
-                alert("Please select whether this purchase is tax exempted or not.");
+            else if (txtQty == null || txtQty == "") {
+                alert("Please Entry Quantity.");
+            }
+           else if (txtwithoutSDVat == null || txtwithoutSDVat == "") {
+                alert("Please Entry Without SD Vat.");
+            }
+                else if (txtVat == null || txtVat == "") {
+                alert("Please Entry Vat.");
+            }
+                 else if (txtSDAmount == null || txtSDAmount == "") {
+                alert("Please SD Amount.");
             }
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
@@ -65,7 +76,7 @@
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnUnit" runat="server" />
-    <div class="tabs_container"> PRODUCTION ENTRY <hr /></div>
+    <div class="tabs_container"> PURCHASE&nbsp; ENTRY <hr /></div>
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                            
        <tr><td>Production Date</td>
@@ -144,13 +155,13 @@
         <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px;
         width: 34px; height: 23px; vertical-align: bottom;" /></td>
     </tr> 
-    <tr><td>SUMMARIZED BY</td>
+    <tr><td>Summarized by</td>
         <td><asp:DropDownList ID="ddlShorby" runat="server">
-            <asp:ListItem Value="1">Day</asp:ListItem>
-            <asp:ListItem Value="2">Challan</asp:ListItem>
-            <asp:ListItem Value="3">Material</asp:ListItem>
-            <asp:ListItem Value="4">Material Total</asp:ListItem>
-            </asp:DropDownList> </td>
+        <asp:ListItem Value="1">Day</asp:ListItem>
+        <asp:ListItem Value="2">Challan</asp:ListItem>
+        <asp:ListItem Value="3">Material</asp:ListItem>
+        <asp:ListItem Value="4">Material Total</asp:ListItem>
+        </asp:DropDownList> </td>
         <td style="text-align:left"><asp:Button ID="btnReport" runat="server" Text="Report" OnClick="btnReport_Click" /></td>
             
      </tr> 
@@ -226,7 +237,7 @@
         <ItemTemplate><asp:Label ID="lblItemname" runat="server" Text='<%# Bind("strVatMatrialname") %>' Width="100px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="200px" /></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Supplier ID" SortExpression="itemname">
+        <asp:TemplateField HeaderText="Supplier ID" SortExpression="itemname">
         <ItemTemplate><asp:Label ID="lblintSuppId" runat="server" Text='<%# Bind("intSuppId") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 

@@ -40,13 +40,13 @@ namespace UI.SAD.Vat {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmBandroll control.
+        /// frmBandrollREC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmBandroll;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmBandrollREC;
         
         /// <summary>
         /// ScriptManager0 control.

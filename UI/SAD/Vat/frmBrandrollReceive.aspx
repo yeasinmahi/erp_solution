@@ -12,42 +12,39 @@
     <script>
         function ValidationBasicInfo() {
             document.getElementById("hdnconfirm").value = "0";
-            var Matrialname = document.forms["frmPurchase"]["txtMatrialName"].value;
-            var PurDate = document.forms["frmPurchase"]["txtFrom"].value;
-            var SuppName = document.forms["frmPurchase"]["txtSupplierName"].value;           
-            var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
-            var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Exam = document.forms["frmPurchase"]["ddlExam"].value;
-           
+            var txtDemandOrderno = document.forms["frmBandrollREC"]["txtDemandOrderno"].value;
+            var PurDate = document.forms["frmBandrollREC"]["txtDodate"].value;
+            var txtDeliveryOrderno = document.forms["frmBandrollREC"]["txtDeliveryOrderno"].value;           
+            var txtReceiveDate = document.forms["frmBandrollREC"]["txtReceiveDate"].value;
+            var txtQty = document.forms["frmBandrollREC"]["txtQty"].value;
+            
 
-            if (Matrialname == null || Matrialname == "") {
-                alert("Please Matrial Fill-Up !");
+            if (txtDemandOrderno == null || txtDemandOrderno == "") {
+                alert("Please Entry Order No !");
             }
 
             else if (PurDate == null || PurDate == "") {
-                alert("Purchase Date Select !");
+                alert("Purchase Do Date Select !");
             }
-            else if (SuppName == null || SuppName == "") {
-                alert("Please Select Supplier !");
-            }
-
-            else if (ChallanNo == null || ChallanNo == "") {
-                alert("Please Fill-up Challan No!");
+            else if (txtDeliveryOrderno == null || txtDeliveryOrderno == "") {
+                alert("Please Entry Delivery Order No !");
             }
 
-            else if (ChallanDate == null || ChallanDate == "") {
-                alert("Please Fill-up Challan Date!");
+            else if (txtReceiveDate == null || txtReceiveDate == "") {
+                alert("Please Select Receive Date !");
             }
-            else if (Exam == null || Exam == "") {
-                alert("Please select whether this purchase is tax exempted or not.");
+
+            else if (txtQty == null || txtQty == "") {
+                alert("Please Fill-up Quantity!");
             }
+           
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
 
     </script>
 </head>
 <body>
-    <form id="frmBandroll" runat="server">
+    <form id="frmBandrollREC" runat="server">
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -65,7 +62,7 @@
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnUnit" runat="server" />
-    <div class="tabs_container"> PRODUCTION ENTRY <hr /></div>
+    <div class="tabs_container"> BANDROLL RECEIVE <hr /></div>
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                            
         <tr><td>Entry Type </td>
