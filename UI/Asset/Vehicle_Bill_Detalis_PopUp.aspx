@@ -157,7 +157,7 @@
        
            </tr>
            <tr>
-               <td></td><td></td><td></td><td> <asp:Button ID="Btn" runat="server" BorderColor="Green" Text="Submit" /> </td>
+               <td></td><td></td><td></td><td> <asp:Button ID="Btn" runat="server" BorderColor="Green" Text="Submit" OnClick="Btn_Click" /> </td>
            </tr>
             </table>
           <table>

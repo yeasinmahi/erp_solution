@@ -16,6 +16,17 @@ namespace UI.SCM
          
         DataTable dt = new DataTable();
         int enroll, intwh, intIssue; string[] arrayKey; char[] delimiterChars = { '[', ']' };string  strIssue;
+
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dgvStatement.DataSource = "";
+                dgvStatement.DataBind();
+            }
+            catch { }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -39,7 +50,7 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 try { intIssue = int.Parse(txtIssueNo.Text.ToString()); } catch { intIssue = 0; }
-                if(txtIssueNo.Text.Length >0) { strIssue = txtIssueNo.Text.ToString(); } else { strIssue = "0".ToString();}
+                if(txtIssueNo.Text.Length >2) { strIssue = txtIssueNo.Text.ToString(); } else { strIssue = "0".ToString();}
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " strIssue=" + '"' + strIssue + '"' + " intIssue=" + '"' + intIssue + '"' + "/></voucher>".ToString();
                 dt = objIssue.GetViewData(8, xmlData, intwh, 0, DateTime.Now, enroll);
                 dgvStatement.DataSource = dt;

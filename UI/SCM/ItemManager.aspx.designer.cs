@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.Asset {
+namespace UI.SCM {
     
     
-    public partial class AssetReportDetalis_UI {
+    public partial class ItemManager {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -40,13 +40,13 @@ namespace UI.Asset {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmaccountsrealize control.
+        /// frmselfresign control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmaccountsrealize;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmselfresign;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -85,93 +85,111 @@ namespace UI.Asset {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnEnroll control.
+        /// hdnConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
+        protected global::System.Web.UI.WebControls.HiddenField hdnConfirm;
         
         /// <summary>
-        /// hdnsearch control.
+        /// hdnUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnsearch;
+        protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnEnrollUnit control.
+        /// hdnIndentNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEnrollUnit;
+        protected global::System.Web.UI.WebControls.HiddenField hdnIndentNo;
         
         /// <summary>
-        /// hdnUnitIDByddl control.
+        /// hdnIndentDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUnitIDByddl;
+        protected global::System.Web.UI.WebControls.HiddenField hdnIndentDate;
         
         /// <summary>
-        /// hdnBankID control.
+        /// txtItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBankID;
+        protected global::System.Web.UI.WebControls.TextBox txtItem;
         
         /// <summary>
-        /// hfEmployeeIdp control.
+        /// btnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfEmployeeIdp;
+        protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// hdnstation control.
+        /// ListDatas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnstation;
+        protected global::System.Web.UI.WebControls.ListBox ListDatas;
         
         /// <summary>
-        /// dgvPartsView control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvPartsView;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// DgvPerformer control.
+        /// ddlWh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DgvPerformer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWh;
         
         /// <summary>
-        /// dgvService control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvService;
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// ddlLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
+        
+        /// <summary>
+        /// btnAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdd;
     }
 }

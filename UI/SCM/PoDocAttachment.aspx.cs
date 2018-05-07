@@ -122,6 +122,15 @@ namespace UI.SCM
             catch { }
         }
 
+        protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DefaltPageLoad();
+            }
+            catch { }
+        }
+
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
             try

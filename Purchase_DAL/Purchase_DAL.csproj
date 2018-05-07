@@ -107,6 +107,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MRequestbyUser.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Asset\ReportTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Asset\SearchTDS.cs">
       <DependentUpon>SearchTDS.xsd</DependentUpon>
     </Compile>
@@ -366,6 +371,17 @@
     </None>
     <None Include="Asset\MRequestbyUser.xss">
       <DependentUpon>MRequestbyUser.xsd</DependentUpon>
+    </None>
+    <None Include="Asset\ReportTDS.xsc">
+      <DependentUpon>ReportTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Asset\ReportTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Asset\ReportTDS.xss">
+      <DependentUpon>ReportTDS.xsd</DependentUpon>
     </None>
     <None Include="Asset\SearchTDS.xsc">
       <DependentUpon>SearchTDS.xsd</DependentUpon>

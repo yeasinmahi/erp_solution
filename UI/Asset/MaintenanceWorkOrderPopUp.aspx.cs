@@ -96,81 +96,52 @@ namespace UI.Asset
 
         private void showdata()
         {
-            Int32 Mnumber = Convert.ToInt32(Session["intMaintenanceNo"].ToString());
-
+                int Mnumber =int.Parse(Session["intMaintenanceNo"].ToString()); 
            
-            intItem = 7;
-            if (intItem == 7)
-            {
-                //Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
-                
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-                IssueDate = objMaintenance.issuedateshow(intItem, Mnumber, intenroll, intjobid, intdept);
+                IssueDate = objMaintenance.issuedateshow(7, Mnumber, intenroll, intjobid, intdept);
                 if (IssueDate.Rows.Count > 0)
                 {
-                    //TxtdteIssue.Text = IssueDate.Rows[0]["issue"].ToString();
-                    TxtdteStarted.Text = IssueDate.Rows[0]["start"].ToString();
-                    //TxtdteEnd.Text = IssueDate.Rows[0]["enddate"].ToString();
-                    TxtAssign.Text = IssueDate.Rows[0]["strAssignTo"].ToString();
-                    TxtNotes.Text = IssueDate.Rows[0]["strNotes"].ToString();
-                    DdlPriority.Text = IssueDate.Rows[0]["strPriority"].ToString();
-                    DdlReType.SelectedItem.Text = IssueDate.Rows[0]["YsnServieType"].ToString();
-                    TxtPresentMilege.Text = IssueDate.Rows[0]["strVNextMilege"].ToString();
-                    HdnAssetid.Value = IssueDate.Rows[0]["strAssetCode"].ToString();
-                   //DdlCostCenter.SelectedItem.Text = IssueDate.Rows[0]["strCostCenter"].ToString();
-                    //try { DdlHevvyVehicle.SelectedItem.Text = IssueDate.Rows[0]["hevvy"].ToString();
-                    //DdlHevvyVehicle.SelectedValue = IssueDate.Rows[0]["hevvyID"].ToString();
-                    //}
-                    //catch {}
-                    vehicleNumber = HdnAssetid.Value.ToString();
-                    
-                    
-
-                     dt = new DataTable();
-                     dt = objMaintenance.MilegeViewTextbox(vehicleNumber);
-                    if (dt.Rows.Count > 0)
-                    {
-                        TxtPresentMilege.Visible = true;
-                        TxtNextMilege.Visible = true;
-                        DdlHevvyVehicle.Visible = true;
-                        lbHevvy.Visible = true;
-                    }
-                    
-                }
-
-
-                intItem = 1;
-
-                if (intItem == 1)
+                //TxtdteIssue.Text = IssueDate.Rows[0]["issue"].ToString();
+                TxtdteStarted.Text = IssueDate.Rows[0]["start"].ToString();
+                //TxtdteEnd.Text = IssueDate.Rows[0]["enddate"].ToString();
+                TxtAssign.Text = IssueDate.Rows[0]["strAssignTo"].ToString();
+                TxtNotes.Text = IssueDate.Rows[0]["strNotes"].ToString();
+                DdlPriority.Text = IssueDate.Rows[0]["strPriority"].ToString();
+                DdlReType.SelectedItem.Text = IssueDate.Rows[0]["YsnServieType"].ToString();
+                TxtPresentMilege.Text = IssueDate.Rows[0]["strVNextMilege"].ToString();
+                HdnAssetid.Value = IssueDate.Rows[0]["strAssetCode"].ToString();
+                 
+                vehicleNumber = HdnAssetid.Value.ToString();  
+                dt = new DataTable();
+                dt = objMaintenance.MilegeViewTextbox(vehicleNumber);
+                if (dt.Rows.Count > 0)
                 {
-                    taskshow = objMaintenance.dtashgridview(intItem, Mnumber);
-                    dgvTask.DataSource = taskshow;
-                    dgvTask.DataBind();
-                }
-                intItem = 27;
-                if (intItem == 27)
-                {
-                     intjobid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                    center = objMaintenance.CostcenterShow(intItem, Mnumber, intenroll, intjobid, intdept);
-                    DdlCostCenter.DataSource = center;
-                    DdlCostCenter.DataTextField = "strCCName";
-                    DdlCostCenter.DataValueField = "intCostCenterID";
-                    DdlCostCenter.DataBind();
-                }
-                intItem = 54;
-                if (intItem ==54)
-                {
-                    dt = new DataTable();
-                    dt = objMaintenance.Indentview(intItem, Mnumber, intenroll, intjobid, intdept);
-                    dgvSrviceIndentView.DataSource = dt;
-                   
-                    dgvSrviceIndentView.DataBind();
-                }
+                TxtPresentMilege.Visible = true;
+                TxtNextMilege.Visible = true;
+                DdlHevvyVehicle.Visible = true;
+                lbHevvy.Visible = true;
+                } 
+
+                taskshow = objMaintenance.dtashgridview(1, Mnumber);
+                dgvTask.DataSource = taskshow;
+                dgvTask.DataBind();
+               
                 
-
+                intjobid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                center = objMaintenance.CostcenterShow(27, Mnumber, intenroll, intjobid, intdept);
+                DdlCostCenter.DataSource = center;
+                DdlCostCenter.DataTextField = "strCCName";
+                DdlCostCenter.DataValueField = "intCostCenterID";
+                DdlCostCenter.DataBind(); 
+              
+                
+                dt = objMaintenance.Indentview(54, Mnumber, intenroll, intjobid, intdept);
+                dgvSrviceIndentView.DataSource = dt; 
+                dgvSrviceIndentView.DataBind(); 
 
             }
         }
@@ -256,15 +227,15 @@ namespace UI.Asset
 
                     //}
                   decimal cost;
-                    Int32 service = Int32.Parse(DdlService.SelectedValue.ToString());
+                    int service = int.Parse(DdlService.SelectedValue.ToString());
                     string serviceName = DdlService.SelectedItem.ToString();
                     string type = DdlType.SelectedItem.ToString();
                     try {  cost = decimal.Parse(TxtCost.Text.ToString()); }
                     catch {  cost = decimal.Parse(0.ToString()); }
-                    Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
-                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    int Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
 
 
@@ -286,11 +257,11 @@ namespace UI.Asset
                     string strSearchKey = TxtAssign.Text;
                     string[] searchKey = Regex.Split(strSearchKey, ";");
                     HdfTechnicinCode.Value = searchKey[1];
-                    Int32 technichin = Int32.Parse(HdfTechnicinCode.Value.ToString());
+                    int technichin = int.Parse(HdfTechnicinCode.Value.ToString());
 
 
 
-                    Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+                    int Mnumber = int.Parse(TxtOrder.Text.ToString());
                     string status = DdlStatus.SelectedItem.ToString();
                     //string ReparingType = DdlReType.SelectedItem.ToString();
                     // DateTime dteIssue = DateTime.Parse(TxtdteIssue.Text);
@@ -298,31 +269,26 @@ namespace UI.Asset
                     //DateTime dteEnd = DateTime.Parse(TxtdteEnd.Text);
                     String priority = DdlPriority.SelectedItem.ToString();
                     string costcenter = DdlCostCenter.SelectedItem.ToString();
-                    Int32 intcostcenter = Int32.Parse(DdlCostCenter.SelectedValue.ToString());
+                    int intcostcenter = int.Parse(DdlCostCenter.SelectedValue.ToString());
                     string assign = TxtAssign.Text.ToString();
                     string notes = TxtNotes.Text.ToString();
                     string presentM = TxtPresentMilege.Text.ToString();
                     string nextM = TxtNextMilege.Text.ToString();
-                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     vehicleNumber = HdnAssetid.Value.ToString();
-                    int Heavy = Int32.Parse(DdlHevvyVehicle.SelectedValue.ToString());
+                    int Heavy = int.Parse(DdlHevvyVehicle.SelectedValue.ToString());
                     objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM,Heavy, Mnumber);
+                     
+                    if ( DdlStatus.SelectedItem.ToString() == "Close")
+                    { 
+                        objMaintenance.MaintenanceComplete(6, Mnumber, intenroll, intjobid, intdept);
+                        objMaintenance.UpdateMilege(presentM, nextM, vehicleNumber);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
 
-                  
-                    intItem = 6;
-                    if (intItem == 6 && DdlStatus.Text == "Close")
-                    {
-                         
-                        
-                        objMaintenance.MaintenanceComplete(intItem, Mnumber, intenroll, intjobid, intdept);
-                        objMaintenance.UpdateMilege(presentM, nextM, vehicleNumber);     
-                        
-                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
-                   
                     }
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+                  
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                    //     
                     //Response.Redirect("Maintenance.aspx", true);
@@ -334,51 +300,39 @@ namespace UI.Asset
 
         protected void RadioPreventive_CheckedChanged(object sender, EventArgs e)
         {
-            Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+            int Mnumber = int.Parse(TxtOrder.Text.ToString());
 
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-               
-                intItem = 10;
-                if (intItem == 10)
-                {
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString()); 
 
-
-                    preventive = objMaintenance.PreventiveRepairsList(intItem, Mnumber, intenroll, intjobid, intdept);
+                    preventive = objMaintenance.PreventiveRepairsList(10, Mnumber, intenroll, intjobid, intdept);
                     DdlService.DataSource = preventive;
                     DdlService.DataTextField = "strServiceName";
                     DdlService.DataValueField = "intID";
                     DdlService.DataBind();
-                    RadioRepair.Checked = false;
-                }
-            
-           
+                    RadioRepair.Checked = false; 
         }
 
         protected void RadioRepair_CheckedChanged(object sender, EventArgs e)
         {
             //Int32 Mnumber= Convert.ToInt32(Session["intMaintenanceNo"].ToString());
-            Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-
+            int Mnumber = int.Parse(TxtOrder.Text.ToString());
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString()); 
           
                 RadioPreventive.Checked = false;
 
-               intItem = 11;
-            if (intItem == 11)
-            {
-                repair = objMaintenance.RepairsCommonList(intItem, Mnumber, intenroll, intjobid, intdept);
+             
+                repair = objMaintenance.RepairsCommonList(11, Mnumber, intenroll, intjobid, intdept);
                 DdlService.DataSource = repair;
                 DdlService.DataTextField = "strRepairs";
                 DdlService.DataValueField = "intID";
                 DdlService.DataBind();
                 RadioPreventive.Checked = false;
 
-                Int32 serviceiD = Int32.Parse(DdlService.SelectedValue.ToString());
+                int serviceiD = int.Parse(DdlService.SelectedValue.ToString());
                 dt = new DataTable();
                 dt = objMaintenance.CommonServiceCostView(serviceiD);
                 if (dt.Rows.Count > 0)
@@ -387,7 +341,7 @@ namespace UI.Asset
 
                 }
            
-            } 
+              
         }
 
         protected void BtnService_Click(object sender, EventArgs e)
@@ -574,13 +528,13 @@ namespace UI.Asset
         protected void BtnSubmitIn_Click(object sender, EventArgs e)
         {
 
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-            Int32 dept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            int dept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
             //string Indenttype = DdlIType.SelectedItem.ToString();
-            Int32 whid = Int32.Parse(DdlUnitName.SelectedValue.ToString());
-            Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+            int whid = Int32.Parse(DdlUnitName.SelectedValue.ToString());
+            int Mnumber = Int32.Parse(TxtOrder.Text.ToString());
             if (dgvservice.Rows.Count > 0)
             {
                 dt = new DataTable();
@@ -602,7 +556,7 @@ namespace UI.Asset
 
         protected void DdlService_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Int32 serviceiD = Int32.Parse(DdlService.SelectedValue.ToString());
+            int serviceiD = int.Parse(DdlService.SelectedValue.ToString());
             dt = new DataTable();
             dt = objMaintenance.CommonServiceCostView(serviceiD);
             if(dt.Rows.Count>0)
@@ -612,8 +566,25 @@ namespace UI.Asset
             }
         }
 
-       
+        protected void btnServiceCharge_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(hdnConfirm.Value=="1")
+                {
+                    GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                    TextBox txtServiceCost = row.FindControl("txtServiceCharge") as TextBox;
+                    Label lblServiceID = row.FindControl("lblServiceID") as Label;
+                    int serviceId = int.Parse(lblServiceID.Text.ToString());
+                    decimal serviceCost = decimal.Parse(txtServiceCost.Text.ToString());
+                    objMaintenance.ServiceChargeUpdate(serviceId, serviceCost);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Service Charge Updated');", true);
+                }
+                
+               
 
-
+            }
+            catch { }
+        }
     }
 }

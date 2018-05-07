@@ -25,6 +25,32 @@
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
      
+
+    <script type="text/javascript">
+       
+    $("[id*=txtReturnQty]").live("keyup", function () {
+            if (!jQuery.trim($(this).val()) == '') { 
+                if (!isNaN(parseFloat($(this).val()))) {
+                    var row = $(this).closest("tr");
+                    var isssueqty = parseFloat($("[id*=lblQty]", row).html());
+                    var returnQty = parseFloat($(this).val());
+               
+                    if (isssueqty > returnQty) {
+                         $("[id*=txtReturnQty]", row).val('0'); 
+                       alert('Please Return Qty Grather then Issue Qty');
+                    }
+                    else {
+                      
+                    }
+                    
+
+                }
+            } else {
+                $(this).val('');
+            } 
+
+        });
+    </script>
     <script type="text/javascript"> 
         function funConfirmAll() { 
             var confirm_value = document.createElement("INPUT"); 
