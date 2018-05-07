@@ -2,14 +2,15 @@
 <xs:schema id="Mushok11TDS" targetNamespace="http://tempuri.org/Mushok11TDS.xsd" xmlns:mstns="http://tempuri.org/Mushok11TDS.xsd" xmlns="http://tempuri.org/Mushok11TDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_VATConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_VATConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_VATConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprVatM11SalesInfoTableAdapter" GeneratorDataComponentClassName="SprVatM11SalesInfoTableAdapter" Name="SprVatM11SalesInfo" UserDataComponentName="SprVatM11SalesInfoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprVatM11SalesInfo" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprVatM11SalesInfo" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprVatM11SalesInfo</CommandText>
@@ -61,7 +62,7 @@
               <Mapping SourceColumn="intVatM11By" DataSetColumn="intVatM11By" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Printed" Modifier="Public" Name="Printed" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Printed">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Printed" Modifier="Public" Name="Printed" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Printed">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[tblSalesEntry]
@@ -78,7 +79,7 @@ WHERE intId=@intId</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprVatChallanInfoTableAdapter" GeneratorDataComponentClassName="SprVatChallanInfoTableAdapter" Name="SprVatChallanInfo" UserDataComponentName="SprVatChallanInfoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprVatChallanInfo" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprVatChallanInfo" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprVatChallanInfo</CommandText>
@@ -123,125 +124,1094 @@ WHERE intId=@intId</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVatUOMTableAdapter" GeneratorDataComponentClassName="tblVatUOMTableAdapter" Name="tblVatUOM" UserDataComponentName="tblVatUOMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUOM" GetMethodModifier="Public" GetMethodName="GetUOM" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUOM" UserSourceName="GetUOM">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select distinct(strUOM),0 intuomid from ERP_VAT.dbo.tblConfigMaterialVAT where intUnitID=@unitid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitid" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitid" Precision="0" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strUOM" DataSetColumn="strUOM" />
+              <Mapping SourceColumn="intuomid" DataSetColumn="intuomid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMaterialNameTableAdapter" GeneratorDataComponentClassName="tblMaterialNameTableAdapter" Name="tblMaterialName" UserDataComponentName="tblMaterialNameTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetMatrialName" GetMethodModifier="Public" GetMethodName="GetMatrialName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetMatrialName" UserSourceName="GetMatrialName">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select strMaterialName, intMaterialID from ERP_VAT.dbo.tblConfigMaterialVAT where intunitid=@VatAccId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="VatAccId" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@VatAccId" Precision="0" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strMaterialName" DataSetColumn="strMaterialName" />
+              <Mapping SourceColumn="intMaterialID" DataSetColumn="intMaterialID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblConfigMaterialTypeTableAdapter" GeneratorDataComponentClassName="tblConfigMaterialTypeTableAdapter" Name="tblConfigMaterialType" UserDataComponentName="tblConfigMaterialTypeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblConfigMaterialType" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetMatrialType" GetMethodModifier="Public" GetMethodName="GetMatrialType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMatrialType" UserSourceName="GetMatrialType">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_VAT].[dbo].[tblConfigMaterialType] ([strTypeName]) VALUES (@strTypeName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strTypeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strTypeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+select strTypeName,intMatTypeID from ERP_VAT.dbo.tblConfigMaterialType</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strTypeName" DataSetColumn="strTypeName" />
+              <Mapping SourceColumn="intMatTypeID" DataSetColumn="intMatTypeID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblConfigMaterialVATTableAdapter" GeneratorDataComponentClassName="tblConfigMaterialVATTableAdapter" Name="tblConfigMaterialVAT" UserDataComponentName="tblConfigMaterialVATTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblConfigMaterialVAT" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetItemMatrialByVatAccount" GetMethodModifier="Public" GetMethodName="GetItemMatrialByVatAccount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemMatrialByVatAccount" UserSourceName="GetItemMatrialByVatAccount">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_VAT].[dbo].[tblConfigMaterialVAT] ([strMaterialName]) VALUES (@strMaterialName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strMaterialName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strMaterialName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select strMaterialName, intMaterialID from ERP_VAT.dbo.tblConfigMaterialVAT where intVatAccountID=@Accid and ysnActive =1 order by strMaterialName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Accid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Accid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strMaterialName" DataSetColumn="strMaterialName" />
+              <Mapping SourceColumn="intMaterialID" DataSetColumn="intMaterialID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblUOMByATMLTableAdapter" GeneratorDataComponentClassName="tblUOMByATMLTableAdapter" Name="tblUOMByATML" UserDataComponentName="tblUOMByATMLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUOMByATML" GetMethodModifier="Public" GetMethodName="GetUOMByATML" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUOMByATML" UserSourceName="GetUOMByATML">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT strUOM, intID from ERP_SAD.dbo.tblUOM WHERE ISNULL(intUnitID,0) IN (0,3,21,55,56) and ysnEnable =1 order by strUOM</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strUOM" DataSetColumn="strUOM" />
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblUOMSADTableAdapter" GeneratorDataComponentClassName="tblUOMSADTableAdapter" Name="tblUOMSAD" UserDataComponentName="tblUOMSADTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblUOM" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetSADUOM" GetMethodModifier="Public" GetMethodName="GetSADUOM" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSADUOM" UserSourceName="GetSADUOM">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT strUOM, intID from ERP_SAD.dbo.tblUOM WHERE intUnitID =@unitid and ysnEnable =1 order by strUOM</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitid" ColumnName="intUnitId" DataSourceName="ERP_SAD.dbo.tblUOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strUOM" DataSetColumn="strUOM" />
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemVatTableAdapter" GeneratorDataComponentClassName="tblItemVatTableAdapter" Name="tblItemVat" UserDataComponentName="tblItemVatTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVat" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ERP_VAT].[dbo].[tblItemVat] WHERE (([strVatProductName] = @Original_strVatProductName) AND ([intID] = @Original_intID) AND ((@IsNull_strUoM = 1 AND [strUoM] IS NULL) OR ([strUoM] = @Original_strUoM)) AND ((@IsNull_intUoMID = 1 AND [intUoMID] IS NULL) OR ([intUoMID] = @Original_intUoMID)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strVatProductName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strVatProductName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_intID" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strUoM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strUoM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strUoM" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strUoM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intUoMID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUoMID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUoMID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUoMID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select strVatProductName, intID, strUoM, intUoMID from ERP_VAT.dbo.tblItemVat where intVATAccountID =@VatAccid and ysnActive =1 order by strVatProductName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="VatAccid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@VatAccid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [ERP_VAT].[dbo].[tblItemVat] SET [strVatProductName] = @strVatProductName, [strUoM] = @strUoM, [intUoMID] = @intUoMID WHERE (([strVatProductName] = @Original_strVatProductName) AND ([intID] = @Original_intID) AND ((@IsNull_strUoM = 1 AND [strUoM] IS NULL) OR ([strUoM] = @Original_strUoM)) AND ((@IsNull_intUoMID = 1 AND [intUoMID] IS NULL) OR ([intUoMID] = @Original_intUoMID)));
+SELECT strVatProductName, intID, strUOM, intUOMid FROM tblItemVat WHERE (intID = @intID) ORDER BY strVatProductName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strVatProductName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strVatProductName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strUoM" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strUoM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@intUoMID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUoMID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strVatProductName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strVatProductName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_intID" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strUoM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strUoM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strUoM" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strUoM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_intUoMID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUoMID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intUoMID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intUoMID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intID" ColumnName="intID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="bigint" DbType="Int64" Direction="Input" ParameterName="@intID" Precision="0" ProviderType="BigInt" Scale="0" Size="8" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVatProductName" DataSetColumn="strVatProductName" />
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+              <Mapping SourceColumn="strUoM" DataSetColumn="strUoM" />
+              <Mapping SourceColumn="intUoMID" DataSetColumn="intUoMID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVatAccountNameTableAdapter" GeneratorDataComponentClassName="tblVatAccountNameTableAdapter" Name="tblVatAccountName" UserDataComponentName="tblVatAccountNameTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetVatAccount" GetMethodModifier="Public" GetMethodName="GetVatAccount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetVatAccount" UserSourceName="GetVatAccount">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT va.strDescription AS strVATAccountName, p.intVatPointID, p.intUnitID, p.intEmployeeID, Cast(isnull(va.ysnFactory,0) AS INT) AS ysnFactory, va.strAddress, strVATRegNo From ERP_VAT.dbo.tblConfigVATUserPermission p Join ERP_VAT.dbo.tblVATAccount va on p.intVatPointID=va.intVATAccountID WHERE p.intEmployeeID=@enroll</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="enroll" ColumnName="intEmployeeID" DataSourceName="ERP_VAT.dbo.tblConfigVATUserPermission" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@enroll" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVATAccountName" DataSetColumn="strVATAccountName" />
+              <Mapping SourceColumn="intVatPointID" DataSetColumn="intVatPointID" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+              <Mapping SourceColumn="ysnFactory" DataSetColumn="ysnFactory" />
+              <Mapping SourceColumn="strAddress" DataSetColumn="strAddress" />
+              <Mapping SourceColumn="strVATRegNo" DataSetColumn="strVATRegNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVatItemCrateTableAdapter" GeneratorDataComponentClassName="tblVatItemCrateTableAdapter" Name="tblVatItemCrate" UserDataComponentName="tblVatItemCrateTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVat" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetVatItemInsert" GetMethodModifier="Public" GetMethodName="GetVatItemInsert" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetVatItemInsert" UserSourceName="GetVatItemInsert">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>insert into ERP_VAT.dbo.tblItemVat
+        (intUnitID,strVatProductName,ysnActive,dteInsertionTime,intInsertedBy,intUOMid,strUOM,strHSCode,ysnExempted,
+        intVATAccountID)values(@intUnitID,@strVatItem,1,getdate(),@unitid,@uomid,@uomame,@hscode,@ysnTax,@vataccid)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="strVatItem" ColumnName="strVatProductName" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="varchar(200)" DbType="AnsiString" Direction="Input" ParameterName="@strVatItem" Precision="0" ProviderType="VarChar" Scale="0" Size="200" SourceColumn="strVatProductName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitid" ColumnName="intInsertedBy" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="uomid" ColumnName="intUOMid" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@uomid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="uomame" ColumnName="strUOM" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@uomame" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strUOM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="hscode" ColumnName="strHSCode" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@hscode" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strHSCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ysnTax" ColumnName="ysnExempted" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnTax" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ysnExempted" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="vataccid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vataccid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVatMatrialINsertTableAdapter" GeneratorDataComponentClassName="tblVatMatrialINsertTableAdapter" Name="tblVatMatrialINsert" UserDataComponentName="tblVatMatrialINsertTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblConfigMaterialVAT" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetVatMatrialInsert" GetMethodModifier="Public" GetMethodName="GetVatMatrialInsert" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetVatMatrialInsert" UserSourceName="GetVatMatrialInsert">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>insert into ERP_VAT.dbo.tblConfigMaterialVAT (strMaterialName, strUOM, intUnitID, ysnActive, dteLastActionTime, intLastActionBy,intMaterialTypeID,intVatAccountID, ysnVatExempted)
+ values(@MatrialName,@strMatiralUOM,@uom,1,getdate(),@unitid,@matiralType, @Vataccountid, @ysnTax)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="MatrialName" ColumnName="strMaterialName" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="varchar(1000)" DbType="AnsiString" Direction="Input" ParameterName="@MatrialName" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumn="strMaterialName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strMatiralUOM" ColumnName="strUOM" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@strMatiralUOM" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strUOM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="uom" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@uom" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitid" ColumnName="intLastActionBy" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="matiralType" ColumnName="intMaterialTypeID" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@matiralType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intMaterialTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Vataccountid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Vataccountid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ysnTax" ColumnName="ysnVatExempted" DataSourceName="ERP_VAT.dbo.tblConfigMaterialVAT" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnTax" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="ysnVatExempted" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblUomidUpdateTableAdapter" GeneratorDataComponentClassName="tblUomidUpdateTableAdapter" Name="tblUomidUpdate" UserDataComponentName="tblUomidUpdateTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVat" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUomUpdate" GetMethodModifier="Public" GetMethodName="GetUomUpdate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUomUpdate" UserSourceName="GetUomUpdate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE ERP_VAT.dbo.tblItemVat SET strUOM=@UOMNAME, intUomID=@UOMID 
+WHERE intUnitID=@UNITID AND intVatAccountID=@VATACCID AND intID=@INTITEMID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="UOMNAME" ColumnName="strUOM" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@UOMNAME" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strUOM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="UOMID" ColumnName="intUOMid" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@UOMID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="UNITID" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@UNITID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="VATACCID" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@VATACCID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="INTITEMID" ColumnName="intID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="bigint" DbType="Int64" Direction="Input" ParameterName="@INTITEMID" Precision="0" ProviderType="BigInt" Scale="0" Size="8" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemVatConfigTableAdapter" GeneratorDataComponentClassName="tblItemVatConfigTableAdapter" Name="tblItemVatConfig" UserDataComponentName="tblItemVatConfigTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVatConfig" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemBridge" GetMethodModifier="Public" GetMethodName="GetItemBridge" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemBridge" UserSourceName="GetItemBridge">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Insert into ERP_VAT.dbo.tblItemVatConfig (intSADProductID, intVatProductID, intVATAccountID, intLastActionBy, dteLastActionTime) 
+values (@intSADProductID,@intVatProductID,@intVATAccountID,@enroll,getdate())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intSADProductID" ColumnName="intSADProductID" DataSourceName="ERP_VAT.dbo.tblItemVatConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intSADProductID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intSADProductID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intVatProductID" ColumnName="intVatProductID" DataSourceName="ERP_VAT.dbo.tblItemVatConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatProductID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVatProductID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intVATAccountID" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVatConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVATAccountID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="enroll" ColumnName="intLastActionBy" DataSourceName="ERP_VAT.dbo.tblItemVatConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@enroll" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemTableAdapter" GeneratorDataComponentClassName="tblItemTableAdapter" Name="tblItem" UserDataComponentName="tblItemTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblItem" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [erp_sad].[dbo].[tblitem] WHERE (([intid] = @Original_intid) AND ([strProductName] = @Original_strProductName))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_intid" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="intid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strProductName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strProductName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>  select intid,strProductName from erp_sad.dbo.tblitem where intunitid=@intunitid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intunitid" ColumnName="intUnitID" DataSourceName="ERP_SAD.dbo.tblItem" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intunitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [erp_sad].[dbo].[tblitem] SET [strProductName] = @strProductName WHERE (([intid] = @Original_intid) AND ([strProductName] = @Original_strProductName));
+SELECT intID, strProductName FROM tblItem WHERE (intID = @intID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strProductName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strProductName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_intid" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="intid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strProductName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strProductName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intID" ColumnName="intID" DataSourceName="ERP_SAD.dbo.tblItem" DataTypeServer="bigint" DbType="Int64" Direction="Input" ParameterName="@intID" Precision="0" ProviderType="BigInt" Scale="0" Size="8" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intid" DataSetColumn="intid" />
+              <Mapping SourceColumn="strProductName" DataSetColumn="strProductName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblConfigMusokTypeTableAdapter" GeneratorDataComponentClassName="tblConfigMusokTypeTableAdapter" Name="tblConfigMusokType" UserDataComponentName="tblConfigMusokTypeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblConfigMusokType" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetMushokType" GetMethodModifier="Public" GetMethodName="GetMushokType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMushokType" UserSourceName="GetMushokType">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_VAT].[dbo].[tblConfigMusokType] ([strName]) VALUES (@strName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> SELECT strName, intMusokTypeID FROM ERP_VAT.dbo.tblConfigMusokType WHERE intMusokTypeID IN (1,2,4)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strName" DataSetColumn="strName" />
+              <Mapping SourceColumn="intMusokTypeID" DataSetColumn="intMusokTypeID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprGetVATDeclaredPriceM1TableAdapter" GeneratorDataComponentClassName="sprGetVATDeclaredPriceM1TableAdapter" Name="sprGetVATDeclaredPriceM1" UserDataComponentName="sprGetVATDeclaredPriceM1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprGetVATDeclaredPriceM1" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemView" GetMethodModifier="Public" GetMethodName="GetItemView" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemView" UserSourceName="GetItemView">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprGetVATDeclaredPriceM1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatItemID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intMushokType" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@date" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intVATMaterialID" DataSetColumn="intVATMaterialID" />
+              <Mapping SourceColumn="strMaterialName" DataSetColumn="strMaterialName" />
+              <Mapping SourceColumn="strUOM" DataSetColumn="strUOM" />
+              <Mapping SourceColumn="numQty" DataSetColumn="numQty" />
+              <Mapping SourceColumn="numWastage" DataSetColumn="numWastage" />
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+              <Mapping SourceColumn="monValue" DataSetColumn="monValue" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemCheckTableAdapter" GeneratorDataComponentClassName="tblItemCheckTableAdapter" Name="tblItemCheck" UserDataComponentName="tblItemCheckTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCount" GetMethodModifier="Public" GetMethodName="GetCount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCount" UserSourceName="GetCount">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(intSADProductID) AS intSADProductCount FROM ERP_VAT.dbo.tblItemVatConfig WHERE intVatProductID=@Itemid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Itemid" ColumnName="intVatProductID" DataSourceName="ERP_VAT.dbo.tblItemVatConfig" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Itemid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVatProductID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intSADProductCount" DataSetColumn="intSADProductCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVATItemDeclaredPriceTableAdapter" GeneratorDataComponentClassName="tblVATItemDeclaredPriceTableAdapter" Name="tblVATItemDeclaredPrice" UserDataComponentName="tblVATItemDeclaredPriceTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetVatInsert" GetMethodModifier="Public" GetMethodName="GetVatInsert" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetVatInsert" UserSourceName="GetVatInsert">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>insert into ERP_VAT.dbo.tblVATItemDeclaredPrice (intVATItemID,monPriceWithoutSDVAT,monSDPercent,numVATPercent,intUnitID,intLastActionBy,dteLastActionTime,dteValidFromDate,intMusokTypeID,intVatAccountID,numSurChargePercent) 
+values(@intProductID,@monSDChargable,@monSDPercent,@monVATPercent,@intUnit,@intUserID,getdate(),@dteValidFrom,@intType,@intVATAccountID,@monSCPercent)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductID" ColumnName="intVATItemID" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATItemID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDChargable" ColumnName="monPriceWithoutSDVAT" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@monSDChargable" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="monPriceWithoutSDVAT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDPercent" ColumnName="monSDPercent" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="numeric(18, 6)" DbType="Decimal" Direction="Input" ParameterName="@monSDPercent" Precision="18" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="monSDPercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monVATPercent" ColumnName="numVATPercent" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="numeric(18, 6)" DbType="Decimal" Direction="Input" ParameterName="@monVATPercent" Precision="18" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="numVATPercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnit" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUserID" ColumnName="intLastActionBy" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteValidFrom" ColumnName="dteValidFromDate" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteValidFrom" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteValidFromDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intType" ColumnName="intMusokTypeID" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intMusokTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intVATAccountID" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVATAccountID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSCPercent" ColumnName="numSurChargePercent" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="numeric(18, 6)" DbType="Decimal" Direction="Input" ParameterName="@monSCPercent" Precision="18" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="numSurChargePercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblConfigItemBOMTableAdapter" GeneratorDataComponentClassName="tblConfigItemBOMTableAdapter" Name="tblConfigItemBOM" UserDataComponentName="tblConfigItemBOMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblConfigItemBOM" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetInsertBOM" GetMethodModifier="Public" GetMethodName="GetInsertBOM" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetInsertBOM" UserSourceName="GetInsertBOM">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>insert into ERP_VAT.dbo.tblConfigItemBOM (intVATItemID,intVATMaterialID,numQty,numWastage,monValue,intUnitID,intLastActionBy,dteLastActionTime,intBOMID,intVatAccountID)
+
+ values (@intProductID,@intMaterialID,@numQty,@numWastage,@monValue,@intUnit,@intUserID,getdate(),@intVATItemBOMID,@intVATAccountID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductID" ColumnName="intVATItemID" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATItemID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intMaterialID" ColumnName="intVATMaterialID" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intMaterialID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATMaterialID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="numQty" ColumnName="numQty" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="numeric(18, 6)" DbType="Decimal" Direction="Input" ParameterName="@numQty" Precision="18" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="numQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="numWastage" ColumnName="numWastage" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="numeric(18, 6)" DbType="Decimal" Direction="Input" ParameterName="@numWastage" Precision="18" ProviderType="Decimal" Scale="6" Size="9" SourceColumn="numWastage" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monValue" ColumnName="monValue" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@monValue" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="monValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnit" ColumnName="intUnitID" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUserID" ColumnName="intLastActionBy" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intLastActionBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intVATItemBOMID" ColumnName="intBOMID" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVATItemBOMID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intBOMID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intVATAccountID" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblConfigItemBOM" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVATAccountID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprInsertItemMaterialForDepotFromDeclarationTableAdapter" GeneratorDataComponentClassName="sprInsertItemMaterialForDepotFromDeclarationTableAdapter" Name="sprInsertItemMaterialForDepotFromDeclaration" UserDataComponentName="sprInsertItemMaterialForDepotFromDeclarationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprInsertItemMaterialForDepotFromDeclaration" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDepotDeclar" GetMethodModifier="Public" GetMethodName="GetDepotDeclar" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDepotDeclar" UserSourceName="GetDepotDeclar">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprInsertItemMaterialForDepotFromDeclaration</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatAcc" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatItem" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intDeclarationType" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBomCount" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVATItemDeclaredPricebomTableAdapter" GeneratorDataComponentClassName="tblVATItemDeclaredPricebomTableAdapter" Name="tblVATItemDeclaredPricebom" UserDataComponentName="tblVATItemDeclaredPricebomTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetbOM" GetMethodModifier="Public" GetMethodName="GetbOM" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetbOM" UserSourceName="GetbOM">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ERP_VAT].[dbo].[tblVATItemDeclaredPrice] WHERE (([intBOMID] = @Original_intBOMCount))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intBOMCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intBOMCount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_VAT].[dbo].[tblVATItemDeclaredPrice] DEFAULT VALUES;
+SELECT TOP (1) intBOMID AS intBOMCount FROM tblVATItemDeclaredPrice WHERE (intBOMID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT TOP 1 INTBOMID AS intBOMCount FROM ERP_VAT.dbo.tblVATItemDeclaredPrice WHERE intVATItemID=@VATiTEMID AND intMusokTypeID=1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="VATiTEMID" ColumnName="intVATItemID" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@VATiTEMID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATItemID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intBOMCount" DataSetColumn="intBOMCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemVat1TableAdapter" GeneratorDataComponentClassName="tblItemVat1TableAdapter" Name="tblItemVat1" UserDataComponentName="tblItemVat1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVat" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+	update ERP_VAT.dbo.tblItemVat set monSDChargablePrice =@monSDChargable, monSDPercent=@monSDPercent,monVATPercent=@monVATPercent, monWholeSalePrice=@monWholeSale,
+	 monRetailPrice=@monMRP, monSurChargePercent=@monSCPercent 
+	where intID=@vatitemid and intVatAccountID=@vataccid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDChargable" ColumnName="monSDChargablePrice" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monSDChargable" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monSDChargablePrice" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDPercent" ColumnName="monSDPercent" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monSDPercent" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monSDPercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monVATPercent" ColumnName="monVATPercent" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monVATPercent" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monVATPercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monWholeSale" ColumnName="monWholeSalePrice" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monWholeSale" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monWholeSalePrice" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monMRP" ColumnName="monRetailPrice" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monMRP" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monRetailPrice" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSCPercent" ColumnName="monSurChargePercent" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monSCPercent" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monSurChargePercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="vatitemid" ColumnName="intID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="bigint" DbType="Int64" Direction="Input" ParameterName="@vatitemid" Precision="0" ProviderType="BigInt" Scale="0" Size="8" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="vataccid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vataccid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemVat2TableAdapter" GeneratorDataComponentClassName="tblItemVat2TableAdapter" Name="tblItemVat2" UserDataComponentName="tblItemVat2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVat" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetType2" GetMethodModifier="Public" GetMethodName="GetType2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetType2" UserSourceName="GetType2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>	update ERP_VAT.dbo.tblItemVat set monSDChargablePrice =@monSDChargable, monSDPercent=@monSDPercent,monVATPercent=@monVATPercent, monSurChargePercent=@monWholeSale 
+		where intID=@vatitemid and intVatAccountID=@vataccid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDChargable" ColumnName="monSDChargablePrice" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monSDChargable" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monSDChargablePrice" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDPercent" ColumnName="monSDPercent" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monSDPercent" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monSDPercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monVATPercent" ColumnName="monVATPercent" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monVATPercent" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monVATPercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monWholeSale" ColumnName="monSurChargePercent" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monWholeSale" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monSurChargePercent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="vatitemid" ColumnName="intID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="bigint" DbType="Int64" Direction="Input" ParameterName="@vatitemid" Precision="0" ProviderType="BigInt" Scale="0" Size="8" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="vataccid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vataccid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemVat3TableAdapter" GeneratorDataComponentClassName="tblItemVat3TableAdapter" Name="tblItemVat3" UserDataComponentName="tblItemVat3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.tblItemVat" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetType4" GetMethodModifier="Public" GetMethodName="GetType4" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetType4" UserSourceName="GetType4">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>update ERP_VAT.dbo.tblItemVat set monTotalExportPrice =@monSDChargable where intID=@vatitemid and intVatAccountID=@vataccid</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSDChargable" ColumnName="monTotalExportPrice" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="decimal(18, 4)" DbType="Decimal" Direction="Input" ParameterName="@monSDChargable" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumn="monTotalExportPrice" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="vatitemid" ColumnName="intID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="bigint" DbType="Int64" Direction="Input" ParameterName="@vatitemid" Precision="0" ProviderType="BigInt" Scale="0" Size="8" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="vataccid" ColumnName="intVATAccountID" DataSourceName="ERP_VAT.dbo.tblItemVat" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vataccid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATAccountID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprInsertItemMaterialForDepotFromDeclaration1TableAdapter" GeneratorDataComponentClassName="sprInsertItemMaterialForDepotFromDeclaration1TableAdapter" Name="sprInsertItemMaterialForDepotFromDeclaration1" UserDataComponentName="sprInsertItemMaterialForDepotFromDeclaration1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprInsertItemMaterialForDepotFromDeclaration" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprInsertItemMaterialForDepotFromDeclaration</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatAcc" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatItem" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intDeclarationType" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBomCount" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVatCountTableAdapter" GeneratorDataComponentClassName="tblVatCountTableAdapter" Name="tblVatCount" UserDataComponentName="tblVatCountTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCount" GetMethodModifier="Public" GetMethodName="GetCount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCount" UserSourceName="GetCount">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Count(*) AS intBOMCount FROM ERP_VAT.dbo.tblVATItemDeclaredPrice WHERE intVATItemID=@itemid AND intMusokTypeID=1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="itemid" ColumnName="intVATItemID" DataSourceName="ERP_VAT.dbo.tblVATItemDeclaredPrice" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@itemid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intVATItemID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intBOMCount" DataSetColumn="intBOMCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprVATChallenGetErrorTableAdapter" GeneratorDataComponentClassName="sprVATChallenGetErrorTableAdapter" Name="sprVATChallenGetError" UserDataComponentName="sprVATChallenGetErrorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprVATChallenGetError" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetErrorReport" GetMethodModifier="Public" GetMethodName="GetErrorReport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetErrorReport" UserSourceName="GetErrorReport">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprVATChallenGetError</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVATAccountID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intM11No" DataSetColumn="intM11No" />
+              <Mapping SourceColumn="strSVNo" DataSetColumn="strSVNo" />
+              <Mapping SourceColumn="intM11RowCount" DataSetColumn="intM11RowCount" />
+              <Mapping SourceColumn="intM17RowCount" DataSetColumn="intM17RowCount" />
+              <Mapping SourceColumn="intM18RowCount" DataSetColumn="intM18RowCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprCreditNotePrintTableAdapter" GeneratorDataComponentClassName="sprCreditNotePrintTableAdapter" Name="sprCreditNotePrint" UserDataComponentName="sprCreditNotePrintTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprCreditNotePrint" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreditnotePrint" GetMethodModifier="Public" GetMethodName="GetCreditnotePrint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCreditnotePrint" UserSourceName="GetCreditnotePrint">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCreditNotePrint</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVATAccountID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intM12" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intVatTime" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="rowid" DataSetColumn="rowid" />
+              <Mapping SourceColumn="intSL" DataSetColumn="intSL" />
+              <Mapping SourceColumn="dteM11Date" DataSetColumn="dteM11Date" />
+              <Mapping SourceColumn="strProductName" DataSetColumn="strProductName" />
+              <Mapping SourceColumn="monRtnAmountWithoutSDnVAT" DataSetColumn="monRtnAmountWithoutSDnVAT" />
+              <Mapping SourceColumn="monRtnOtherTax" DataSetColumn="monRtnOtherTax" />
+              <Mapping SourceColumn="monRtnVAT" DataSetColumn="monRtnVAT" />
+              <Mapping SourceColumn="monClnOtherTax" DataSetColumn="monClnOtherTax" />
+              <Mapping SourceColumn="monClnVAT" DataSetColumn="monClnVAT" />
+              <Mapping SourceColumn="monReduceTax" DataSetColumn="monReduceTax" />
+              <Mapping SourceColumn="monReduceVat" DataSetColumn="monReduceVat" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Mushok11TDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Mushok11TDS" msprop:Generator_DataSetName="Mushok11TDS" msprop:EnableTableAdapterManager="true">
+  <xs:element name="Mushok11TDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Mushok11TDS" msprop:Generator_UserDSName="Mushok11TDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SprVatM11SalesInfo" msprop:Generator_UserTableName="SprVatM11SalesInfo" msprop:Generator_RowDeletedName="SprVatM11SalesInfoRowDeleted" msprop:Generator_RowChangedName="SprVatM11SalesInfoRowChanged" msprop:Generator_RowClassName="SprVatM11SalesInfoRow" msprop:Generator_RowChangingName="SprVatM11SalesInfoRowChanging" msprop:Generator_RowEvArgName="SprVatM11SalesInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="SprVatM11SalesInfoRowChangeEventHandler" msprop:Generator_TableClassName="SprVatM11SalesInfoDataTable" msprop:Generator_TableVarName="tableSprVatM11SalesInfo" msprop:Generator_RowDeletingName="SprVatM11SalesInfoRowDeleting" msprop:Generator_TablePropName="SprVatM11SalesInfo">
+        <xs:element name="SprVatM11SalesInfo" msprop:Generator_UserTableName="SprVatM11SalesInfo" msprop:Generator_RowEvArgName="SprVatM11SalesInfoRowChangeEvent" msprop:Generator_TableVarName="tableSprVatM11SalesInfo" msprop:Generator_TablePropName="SprVatM11SalesInfo" msprop:Generator_RowDeletingName="SprVatM11SalesInfoRowDeleting" msprop:Generator_RowChangingName="SprVatM11SalesInfoRowChanging" msprop:Generator_RowDeletedName="SprVatM11SalesInfoRowDeleted" msprop:Generator_RowEvHandlerName="SprVatM11SalesInfoRowChangeEventHandler" msprop:Generator_TableClassName="SprVatM11SalesInfoDataTable" msprop:Generator_RowChangedName="SprVatM11SalesInfoRowChanged" msprop:Generator_RowClassName="SprVatM11SalesInfoRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intId" msprop:Generator_UserColumnName="intId" msprop:Generator_ColumnPropNameInRow="intId" msprop:Generator_ColumnVarNameInTable="columnintId" msprop:Generator_ColumnPropNameInTable="intIdColumn" type="xs:long" />
-              <xs:element name="strCode" msprop:Generator_UserColumnName="strCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn">
+              <xs:element name="intId" msprop:Generator_ColumnVarNameInTable="columnintId" msprop:Generator_ColumnPropNameInRow="intId" msprop:Generator_ColumnPropNameInTable="intIdColumn" msprop:Generator_UserColumnName="intId" type="xs:long" />
+              <xs:element name="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strNarration" msprop:Generator_UserColumnName="strNarration" msprop:Generator_ColumnPropNameInRow="strNarration" msprop:Generator_ColumnVarNameInTable="columnstrNarration" msprop:Generator_ColumnPropNameInTable="strNarrationColumn" minOccurs="0">
+              <xs:element name="strNarration" msprop:Generator_ColumnVarNameInTable="columnstrNarration" msprop:Generator_ColumnPropNameInRow="strNarration" msprop:Generator_ColumnPropNameInTable="strNarrationColumn" msprop:Generator_UserColumnName="strNarration" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="5000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intUnitId" msprop:Generator_UserColumnName="intUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" type="xs:int" />
-              <xs:element name="intCustomerId" msprop:Generator_UserColumnName="intCustomerId" msprop:Generator_ColumnPropNameInRow="intCustomerId" msprop:Generator_ColumnVarNameInTable="columnintCustomerId" msprop:Generator_ColumnPropNameInTable="intCustomerIdColumn" type="xs:int" />
-              <xs:element name="dteDate" msprop:Generator_UserColumnName="dteDate" msprop:Generator_ColumnPropNameInRow="dteDate" msprop:Generator_ColumnVarNameInTable="columndteDate" msprop:Generator_ColumnPropNameInTable="dteDateColumn" type="xs:dateTime" />
-              <xs:element name="ysnEnable" msprop:Generator_UserColumnName="ysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" type="xs:boolean" />
-              <xs:element name="ysnCompleted" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ysnCompleted" msprop:Generator_ColumnPropNameInRow="ysnCompleted" msprop:Generator_ColumnVarNameInTable="columnysnCompleted" msprop:Generator_ColumnPropNameInTable="ysnCompletedColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="dteInsertionTime" msprop:Generator_UserColumnName="dteInsertionTime" msprop:Generator_ColumnPropNameInRow="dteInsertionTime" msprop:Generator_ColumnVarNameInTable="columndteInsertionTime" msprop:Generator_ColumnPropNameInTable="dteInsertionTimeColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="intInsertedBy" msprop:Generator_UserColumnName="intInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="dteLastModificationTime" msprop:Generator_UserColumnName="dteLastModificationTime" msprop:Generator_ColumnPropNameInRow="dteLastModificationTime" msprop:Generator_ColumnVarNameInTable="columndteLastModificationTime" msprop:Generator_ColumnPropNameInTable="dteLastModificationTimeColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="intLastModifiedBy" msprop:Generator_UserColumnName="intLastModifiedBy" msprop:Generator_ColumnPropNameInRow="intLastModifiedBy" msprop:Generator_ColumnVarNameInTable="columnintLastModifiedBy" msprop:Generator_ColumnPropNameInTable="intLastModifiedByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="intCompletedBy" msprop:Generator_UserColumnName="intCompletedBy" msprop:Generator_ColumnPropNameInRow="intCompletedBy" msprop:Generator_ColumnVarNameInTable="columnintCompletedBy" msprop:Generator_ColumnPropNameInTable="intCompletedByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ysnPostedInSubLedger" msprop:Generator_UserColumnName="ysnPostedInSubLedger" msprop:Generator_ColumnPropNameInRow="ysnPostedInSubLedger" msprop:Generator_ColumnVarNameInTable="columnysnPostedInSubLedger" msprop:Generator_ColumnPropNameInTable="ysnPostedInSubLedgerColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="strName" msprop:Generator_UserColumnName="strName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInTable="strNameColumn" minOccurs="0">
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" />
+              <xs:element name="intCustomerId" msprop:Generator_ColumnVarNameInTable="columnintCustomerId" msprop:Generator_ColumnPropNameInRow="intCustomerId" msprop:Generator_ColumnPropNameInTable="intCustomerIdColumn" msprop:Generator_UserColumnName="intCustomerId" type="xs:int" />
+              <xs:element name="dteDate" msprop:Generator_ColumnVarNameInTable="columndteDate" msprop:Generator_ColumnPropNameInRow="dteDate" msprop:Generator_ColumnPropNameInTable="dteDateColumn" msprop:Generator_UserColumnName="dteDate" type="xs:dateTime" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" />
+              <xs:element name="ysnCompleted" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnCompleted" msprop:Generator_ColumnPropNameInRow="ysnCompleted" msprop:Generator_ColumnPropNameInTable="ysnCompletedColumn" msprop:Generator_UserColumnName="ysnCompleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dteInsertionTime" msprop:Generator_ColumnVarNameInTable="columndteInsertionTime" msprop:Generator_ColumnPropNameInRow="dteInsertionTime" msprop:Generator_ColumnPropNameInTable="dteInsertionTimeColumn" msprop:Generator_UserColumnName="dteInsertionTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastModificationTime" msprop:Generator_ColumnVarNameInTable="columndteLastModificationTime" msprop:Generator_ColumnPropNameInRow="dteLastModificationTime" msprop:Generator_ColumnPropNameInTable="dteLastModificationTimeColumn" msprop:Generator_UserColumnName="dteLastModificationTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastModifiedBy" msprop:Generator_ColumnVarNameInTable="columnintLastModifiedBy" msprop:Generator_ColumnPropNameInRow="intLastModifiedBy" msprop:Generator_ColumnPropNameInTable="intLastModifiedByColumn" msprop:Generator_UserColumnName="intLastModifiedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="intCompletedBy" msprop:Generator_ColumnVarNameInTable="columnintCompletedBy" msprop:Generator_ColumnPropNameInRow="intCompletedBy" msprop:Generator_ColumnPropNameInTable="intCompletedByColumn" msprop:Generator_UserColumnName="intCompletedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnPostedInSubLedger" msprop:Generator_ColumnVarNameInTable="columnysnPostedInSubLedger" msprop:Generator_ColumnPropNameInRow="ysnPostedInSubLedger" msprop:Generator_ColumnPropNameInTable="ysnPostedInSubLedgerColumn" msprop:Generator_UserColumnName="ysnPostedInSubLedger" type="xs:boolean" minOccurs="0" />
+              <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strAddress" msprop:Generator_UserColumnName="strAddress" msprop:Generator_ColumnPropNameInRow="strAddress" msprop:Generator_ColumnVarNameInTable="columnstrAddress" msprop:Generator_ColumnPropNameInTable="strAddressColumn" minOccurs="0">
+              <xs:element name="strAddress" msprop:Generator_ColumnVarNameInTable="columnstrAddress" msprop:Generator_ColumnPropNameInRow="strAddress" msprop:Generator_ColumnPropNameInTable="strAddressColumn" msprop:Generator_UserColumnName="strAddress" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strPhone" msprop:Generator_UserColumnName="strPhone" msprop:Generator_ColumnPropNameInRow="strPhone" msprop:Generator_ColumnVarNameInTable="columnstrPhone" msprop:Generator_ColumnPropNameInTable="strPhoneColumn" minOccurs="0">
+              <xs:element name="strPhone" msprop:Generator_ColumnVarNameInTable="columnstrPhone" msprop:Generator_ColumnPropNameInRow="strPhone" msprop:Generator_ColumnPropNameInTable="strPhoneColumn" msprop:Generator_UserColumnName="strPhone" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="monCreditLimit" msprop:Generator_UserColumnName="monCreditLimit" msprop:Generator_ColumnPropNameInRow="monCreditLimit" msprop:Generator_ColumnVarNameInTable="columnmonCreditLimit" msprop:Generator_ColumnPropNameInTable="monCreditLimitColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="intCusType" msprop:Generator_UserColumnName="intCusType" msprop:Generator_ColumnPropNameInRow="intCusType" msprop:Generator_ColumnVarNameInTable="columnintCusType" msprop:Generator_ColumnPropNameInTable="intCusTypeColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="monTotalAmount" msprop:Generator_UserColumnName="monTotalAmount" msprop:Generator_ColumnPropNameInRow="monTotalAmount" msprop:Generator_ColumnVarNameInTable="columnmonTotalAmount" msprop:Generator_ColumnPropNameInTable="monTotalAmountColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="strChallanNo" msprop:Generator_UserColumnName="strChallanNo" msprop:Generator_ColumnPropNameInRow="strChallanNo" msprop:Generator_ColumnVarNameInTable="columnstrChallanNo" msprop:Generator_ColumnPropNameInTable="strChallanNoColumn" minOccurs="0">
+              <xs:element name="monCreditLimit" msprop:Generator_ColumnVarNameInTable="columnmonCreditLimit" msprop:Generator_ColumnPropNameInRow="monCreditLimit" msprop:Generator_ColumnPropNameInTable="monCreditLimitColumn" msprop:Generator_UserColumnName="monCreditLimit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intCusType" msprop:Generator_ColumnVarNameInTable="columnintCusType" msprop:Generator_ColumnPropNameInRow="intCusType" msprop:Generator_ColumnPropNameInTable="intCusTypeColumn" msprop:Generator_UserColumnName="intCusType" type="xs:int" minOccurs="0" />
+              <xs:element name="monTotalAmount" msprop:Generator_ColumnVarNameInTable="columnmonTotalAmount" msprop:Generator_ColumnPropNameInRow="monTotalAmount" msprop:Generator_ColumnPropNameInTable="monTotalAmountColumn" msprop:Generator_UserColumnName="monTotalAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strChallanNo" msprop:Generator_ColumnVarNameInTable="columnstrChallanNo" msprop:Generator_ColumnPropNameInRow="strChallanNo" msprop:Generator_ColumnPropNameInTable="strChallanNoColumn" msprop:Generator_UserColumnName="strChallanNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ysnChallanCompleted" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ysnChallanCompleted" msprop:Generator_ColumnPropNameInRow="ysnChallanCompleted" msprop:Generator_ColumnVarNameInTable="columnysnChallanCompleted" msprop:Generator_ColumnPropNameInTable="ysnChallanCompletedColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="intChallanCompletedBy" msprop:Generator_UserColumnName="intChallanCompletedBy" msprop:Generator_ColumnPropNameInRow="intChallanCompletedBy" msprop:Generator_ColumnVarNameInTable="columnintChallanCompletedBy" msprop:Generator_ColumnPropNameInTable="intChallanCompletedByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="numPieces" msprop:Generator_UserColumnName="numPieces" msprop:Generator_ColumnPropNameInRow="numPieces" msprop:Generator_ColumnVarNameInTable="columnnumPieces" msprop:Generator_ColumnPropNameInTable="numPiecesColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="ysnDO2" msprop:Generator_UserColumnName="ysnDO2" msprop:Generator_ColumnPropNameInRow="ysnDO2" msprop:Generator_ColumnVarNameInTable="columnysnDO2" msprop:Generator_ColumnPropNameInTable="ysnDO2Column" type="xs:boolean" minOccurs="0" />
-              <xs:element name="intPriceVarId" msprop:Generator_UserColumnName="intPriceVarId" msprop:Generator_ColumnPropNameInRow="intPriceVarId" msprop:Generator_ColumnVarNameInTable="columnintPriceVarId" msprop:Generator_ColumnPropNameInTable="intPriceVarIdColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="strVehicleRegNo" msprop:Generator_UserColumnName="strVehicleRegNo" msprop:Generator_ColumnPropNameInRow="strVehicleRegNo" msprop:Generator_ColumnVarNameInTable="columnstrVehicleRegNo" msprop:Generator_ColumnPropNameInTable="strVehicleRegNoColumn" minOccurs="0">
+              <xs:element name="ysnChallanCompleted" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnChallanCompleted" msprop:Generator_ColumnPropNameInRow="ysnChallanCompleted" msprop:Generator_ColumnPropNameInTable="ysnChallanCompletedColumn" msprop:Generator_UserColumnName="ysnChallanCompleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intChallanCompletedBy" msprop:Generator_ColumnVarNameInTable="columnintChallanCompletedBy" msprop:Generator_ColumnPropNameInRow="intChallanCompletedBy" msprop:Generator_ColumnPropNameInTable="intChallanCompletedByColumn" msprop:Generator_UserColumnName="intChallanCompletedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="numPieces" msprop:Generator_ColumnVarNameInTable="columnnumPieces" msprop:Generator_ColumnPropNameInRow="numPieces" msprop:Generator_ColumnPropNameInTable="numPiecesColumn" msprop:Generator_UserColumnName="numPieces" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ysnDO2" msprop:Generator_ColumnVarNameInTable="columnysnDO2" msprop:Generator_ColumnPropNameInRow="ysnDO2" msprop:Generator_ColumnPropNameInTable="ysnDO2Column" msprop:Generator_UserColumnName="ysnDO2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intPriceVarId" msprop:Generator_ColumnVarNameInTable="columnintPriceVarId" msprop:Generator_ColumnPropNameInRow="intPriceVarId" msprop:Generator_ColumnPropNameInTable="intPriceVarIdColumn" msprop:Generator_UserColumnName="intPriceVarId" type="xs:int" minOccurs="0" />
+              <xs:element name="strVehicleRegNo" msprop:Generator_ColumnVarNameInTable="columnstrVehicleRegNo" msprop:Generator_ColumnPropNameInRow="strVehicleRegNo" msprop:Generator_ColumnPropNameInTable="strVehicleRegNoColumn" msprop:Generator_UserColumnName="strVehicleRegNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intVehicleId" msprop:Generator_UserColumnName="intVehicleId" msprop:Generator_ColumnPropNameInRow="intVehicleId" msprop:Generator_ColumnVarNameInTable="columnintVehicleId" msprop:Generator_ColumnPropNameInTable="intVehicleIdColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="intVehicleVarId" msprop:Generator_UserColumnName="intVehicleVarId" msprop:Generator_ColumnPropNameInRow="intVehicleVarId" msprop:Generator_ColumnVarNameInTable="columnintVehicleVarId" msprop:Generator_ColumnPropNameInTable="intVehicleVarIdColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="monExtraAmount" msprop:Generator_UserColumnName="monExtraAmount" msprop:Generator_ColumnPropNameInRow="monExtraAmount" msprop:Generator_ColumnVarNameInTable="columnmonExtraAmount" msprop:Generator_ColumnPropNameInTable="monExtraAmountColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="strExtraCause" msprop:Generator_UserColumnName="strExtraCause" msprop:Generator_ColumnPropNameInRow="strExtraCause" msprop:Generator_ColumnVarNameInTable="columnstrExtraCause" msprop:Generator_ColumnPropNameInTable="strExtraCauseColumn" minOccurs="0">
+              <xs:element name="intVehicleId" msprop:Generator_ColumnVarNameInTable="columnintVehicleId" msprop:Generator_ColumnPropNameInRow="intVehicleId" msprop:Generator_ColumnPropNameInTable="intVehicleIdColumn" msprop:Generator_UserColumnName="intVehicleId" type="xs:int" minOccurs="0" />
+              <xs:element name="intVehicleVarId" msprop:Generator_ColumnVarNameInTable="columnintVehicleVarId" msprop:Generator_ColumnPropNameInRow="intVehicleVarId" msprop:Generator_ColumnPropNameInTable="intVehicleVarIdColumn" msprop:Generator_UserColumnName="intVehicleVarId" type="xs:int" minOccurs="0" />
+              <xs:element name="monExtraAmount" msprop:Generator_ColumnVarNameInTable="columnmonExtraAmount" msprop:Generator_ColumnPropNameInRow="monExtraAmount" msprop:Generator_ColumnPropNameInTable="monExtraAmountColumn" msprop:Generator_UserColumnName="monExtraAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strExtraCause" msprop:Generator_ColumnVarNameInTable="columnstrExtraCause" msprop:Generator_ColumnPropNameInRow="strExtraCause" msprop:Generator_ColumnPropNameInTable="strExtraCauseColumn" msprop:Generator_UserColumnName="strExtraCause" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intCustomerType" msprop:Generator_UserColumnName="intCustomerType" msprop:Generator_ColumnPropNameInRow="intCustomerType" msprop:Generator_ColumnVarNameInTable="columnintCustomerType" msprop:Generator_ColumnPropNameInTable="intCustomerTypeColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="intVatM11By" msdata:ReadOnly="true" msprop:Generator_UserColumnName="intVatM11By" msprop:Generator_ColumnPropNameInRow="intVatM11By" msprop:Generator_ColumnVarNameInTable="columnintVatM11By" msprop:Generator_ColumnPropNameInTable="intVatM11ByColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="intCustomerType" msprop:Generator_ColumnVarNameInTable="columnintCustomerType" msprop:Generator_ColumnPropNameInRow="intCustomerType" msprop:Generator_ColumnPropNameInTable="intCustomerTypeColumn" msprop:Generator_UserColumnName="intCustomerType" type="xs:int" minOccurs="0" />
+              <xs:element name="intVatM11By" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintVatM11By" msprop:Generator_ColumnPropNameInRow="intVatM11By" msprop:Generator_ColumnPropNameInTable="intVatM11ByColumn" msprop:Generator_UserColumnName="intVatM11By" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprVatChallanInfo" msprop:Generator_UserTableName="SprVatChallanInfo" msprop:Generator_RowDeletedName="SprVatChallanInfoRowDeleted" msprop:Generator_TableClassName="SprVatChallanInfoDataTable" msprop:Generator_RowChangedName="SprVatChallanInfoRowChanged" msprop:Generator_RowClassName="SprVatChallanInfoRow" msprop:Generator_RowChangingName="SprVatChallanInfoRowChanging" msprop:Generator_RowEvArgName="SprVatChallanInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="SprVatChallanInfoRowChangeEventHandler" msprop:Generator_TablePropName="SprVatChallanInfo" msprop:Generator_TableVarName="tableSprVatChallanInfo" msprop:Generator_RowDeletingName="SprVatChallanInfoRowDeleting">
+        <xs:element name="SprVatChallanInfo" msprop:Generator_TableClassName="SprVatChallanInfoDataTable" msprop:Generator_RowEvArgName="SprVatChallanInfoRowChangeEvent" msprop:Generator_TableVarName="tableSprVatChallanInfo" msprop:Generator_TablePropName="SprVatChallanInfo" msprop:Generator_RowDeletingName="SprVatChallanInfoRowDeleting" msprop:Generator_RowChangingName="SprVatChallanInfoRowChanging" msprop:Generator_RowEvHandlerName="SprVatChallanInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVatChallanInfoRowDeleted" msprop:Generator_RowChangedName="SprVatChallanInfoRowChanged" msprop:Generator_UserTableName="SprVatChallanInfo" msprop:Generator_RowClassName="SprVatChallanInfoRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intRowNumber" msdata:ReadOnly="true" msprop:Generator_UserColumnName="intRowNumber" msprop:Generator_ColumnPropNameInRow="intRowNumber" msprop:Generator_ColumnVarNameInTable="columnintRowNumber" msprop:Generator_ColumnPropNameInTable="intRowNumberColumn" type="xs:long" minOccurs="0" />
-              <xs:element name="strVatProductName" msprop:Generator_UserColumnName="strVatProductName" msprop:Generator_ColumnPropNameInRow="strVatProductName" msprop:Generator_ColumnVarNameInTable="columnstrVatProductName" msprop:Generator_ColumnPropNameInTable="strVatProductNameColumn" minOccurs="0">
+              <xs:element name="intRowNumber" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintRowNumber" msprop:Generator_ColumnPropNameInRow="intRowNumber" msprop:Generator_ColumnPropNameInTable="intRowNumberColumn" msprop:Generator_UserColumnName="intRowNumber" type="xs:long" minOccurs="0" />
+              <xs:element name="strVatProductName" msprop:Generator_ColumnVarNameInTable="columnstrVatProductName" msprop:Generator_ColumnPropNameInRow="strVatProductName" msprop:Generator_ColumnPropNameInTable="strVatProductNameColumn" msprop:Generator_UserColumnName="strVatProductName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strUOM" msprop:Generator_UserColumnName="strUOM" msprop:Generator_ColumnPropNameInRow="strUOM" msprop:Generator_ColumnVarNameInTable="columnstrUOM" msprop:Generator_ColumnPropNameInTable="strUOMColumn" minOccurs="0">
+              <xs:element name="strUOM" msprop:Generator_ColumnVarNameInTable="columnstrUOM" msprop:Generator_ColumnPropNameInRow="strUOM" msprop:Generator_ColumnPropNameInTable="strUOMColumn" msprop:Generator_UserColumnName="strUOM" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="numQuantity" msdata:ReadOnly="true" msprop:Generator_UserColumnName="numQuantity" msprop:Generator_ColumnPropNameInRow="numQuantity" msprop:Generator_ColumnVarNameInTable="columnnumQuantity" msprop:Generator_ColumnPropNameInTable="numQuantityColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="monPrice" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monPrice" msprop:Generator_ColumnPropNameInRow="monPrice" msprop:Generator_ColumnVarNameInTable="columnmonPrice" msprop:Generator_ColumnPropNameInTable="monPriceColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="monSuppTax" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monSuppTax" msprop:Generator_ColumnPropNameInRow="monSuppTax" msprop:Generator_ColumnVarNameInTable="columnmonSuppTax" msprop:Generator_ColumnPropNameInTable="monSuppTaxColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="monSupp_Price" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monSupp_Price" msprop:Generator_ColumnPropNameInRow="monSupp_Price" msprop:Generator_ColumnVarNameInTable="columnmonSupp_Price" msprop:Generator_ColumnPropNameInTable="monSupp_PriceColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="monVat" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monVat" msprop:Generator_ColumnPropNameInRow="monVat" msprop:Generator_ColumnVarNameInTable="columnmonVat" msprop:Generator_ColumnPropNameInTable="monVatColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="monSupp_Vat_Price" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monSupp_Vat_Price" msprop:Generator_ColumnPropNameInRow="monSupp_Vat_Price" msprop:Generator_ColumnVarNameInTable="columnmonSupp_Vat_Price" msprop:Generator_ColumnPropNameInTable="monSupp_Vat_PriceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numQuantity" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnumQuantity" msprop:Generator_ColumnPropNameInRow="numQuantity" msprop:Generator_ColumnPropNameInTable="numQuantityColumn" msprop:Generator_UserColumnName="numQuantity" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monPrice" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonPrice" msprop:Generator_ColumnPropNameInRow="monPrice" msprop:Generator_ColumnPropNameInTable="monPriceColumn" msprop:Generator_UserColumnName="monPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monSuppTax" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonSuppTax" msprop:Generator_ColumnPropNameInRow="monSuppTax" msprop:Generator_ColumnPropNameInTable="monSuppTaxColumn" msprop:Generator_UserColumnName="monSuppTax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monSupp_Price" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonSupp_Price" msprop:Generator_ColumnPropNameInRow="monSupp_Price" msprop:Generator_ColumnPropNameInTable="monSupp_PriceColumn" msprop:Generator_UserColumnName="monSupp_Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monVat" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonVat" msprop:Generator_ColumnPropNameInRow="monVat" msprop:Generator_ColumnPropNameInTable="monVatColumn" msprop:Generator_UserColumnName="monVat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monSupp_Vat_Price" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonSupp_Vat_Price" msprop:Generator_ColumnPropNameInRow="monSupp_Vat_Price" msprop:Generator_ColumnPropNameInTable="monSupp_Vat_PriceColumn" msprop:Generator_UserColumnName="monSupp_Vat_Price" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVatUOM" msprop:Generator_TableClassName="tblVatUOMDataTable" msprop:Generator_TableVarName="tabletblVatUOM" msprop:Generator_RowChangedName="tblVatUOMRowChanged" msprop:Generator_TablePropName="tblVatUOM" msprop:Generator_RowDeletingName="tblVatUOMRowDeleting" msprop:Generator_RowChangingName="tblVatUOMRowChanging" msprop:Generator_RowEvHandlerName="tblVatUOMRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVatUOMRowDeleted" msprop:Generator_RowClassName="tblVatUOMRow" msprop:Generator_UserTableName="tblVatUOM" msprop:Generator_RowEvArgName="tblVatUOMRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strUOM" msprop:Generator_ColumnVarNameInTable="columnstrUOM" msprop:Generator_ColumnPropNameInRow="strUOM" msprop:Generator_ColumnPropNameInTable="strUOMColumn" msprop:Generator_UserColumnName="strUOM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intuomid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintuomid" msprop:Generator_ColumnPropNameInRow="intuomid" msprop:Generator_ColumnPropNameInTable="intuomidColumn" msprop:Generator_UserColumnName="intuomid" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblMaterialName" msprop:Generator_TableClassName="tblMaterialNameDataTable" msprop:Generator_TableVarName="tabletblMaterialName" msprop:Generator_RowChangedName="tblMaterialNameRowChanged" msprop:Generator_TablePropName="tblMaterialName" msprop:Generator_RowDeletingName="tblMaterialNameRowDeleting" msprop:Generator_RowChangingName="tblMaterialNameRowChanging" msprop:Generator_RowEvHandlerName="tblMaterialNameRowChangeEventHandler" msprop:Generator_RowDeletedName="tblMaterialNameRowDeleted" msprop:Generator_RowClassName="tblMaterialNameRow" msprop:Generator_UserTableName="tblMaterialName" msprop:Generator_RowEvArgName="tblMaterialNameRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strMaterialName" msprop:Generator_ColumnVarNameInTable="columnstrMaterialName" msprop:Generator_ColumnPropNameInRow="strMaterialName" msprop:Generator_ColumnPropNameInTable="strMaterialNameColumn" msprop:Generator_UserColumnName="strMaterialName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intMaterialID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintMaterialID" msprop:Generator_ColumnPropNameInRow="intMaterialID" msprop:Generator_ColumnPropNameInTable="intMaterialIDColumn" msprop:Generator_UserColumnName="intMaterialID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblConfigMaterialType" msprop:Generator_TableClassName="tblConfigMaterialTypeDataTable" msprop:Generator_TableVarName="tabletblConfigMaterialType" msprop:Generator_RowChangedName="tblConfigMaterialTypeRowChanged" msprop:Generator_TablePropName="tblConfigMaterialType" msprop:Generator_RowDeletingName="tblConfigMaterialTypeRowDeleting" msprop:Generator_RowChangingName="tblConfigMaterialTypeRowChanging" msprop:Generator_RowEvHandlerName="tblConfigMaterialTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblConfigMaterialTypeRowDeleted" msprop:Generator_RowClassName="tblConfigMaterialTypeRow" msprop:Generator_UserTableName="tblConfigMaterialType" msprop:Generator_RowEvArgName="tblConfigMaterialTypeRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strTypeName" msprop:Generator_ColumnVarNameInTable="columnstrTypeName" msprop:Generator_ColumnPropNameInRow="strTypeName" msprop:Generator_ColumnPropNameInTable="strTypeNameColumn" msprop:Generator_UserColumnName="strTypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intMatTypeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintMatTypeID" msprop:Generator_ColumnPropNameInRow="intMatTypeID" msprop:Generator_ColumnPropNameInTable="intMatTypeIDColumn" msprop:Generator_UserColumnName="intMatTypeID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblConfigMaterialVAT" msprop:Generator_TableClassName="tblConfigMaterialVATDataTable" msprop:Generator_TableVarName="tabletblConfigMaterialVAT" msprop:Generator_RowChangedName="tblConfigMaterialVATRowChanged" msprop:Generator_TablePropName="tblConfigMaterialVAT" msprop:Generator_RowDeletingName="tblConfigMaterialVATRowDeleting" msprop:Generator_RowChangingName="tblConfigMaterialVATRowChanging" msprop:Generator_RowEvHandlerName="tblConfigMaterialVATRowChangeEventHandler" msprop:Generator_RowDeletedName="tblConfigMaterialVATRowDeleted" msprop:Generator_RowClassName="tblConfigMaterialVATRow" msprop:Generator_UserTableName="tblConfigMaterialVAT" msprop:Generator_RowEvArgName="tblConfigMaterialVATRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strMaterialName" msprop:Generator_ColumnVarNameInTable="columnstrMaterialName" msprop:Generator_ColumnPropNameInRow="strMaterialName" msprop:Generator_ColumnPropNameInTable="strMaterialNameColumn" msprop:Generator_UserColumnName="strMaterialName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intMaterialID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintMaterialID" msprop:Generator_ColumnPropNameInRow="intMaterialID" msprop:Generator_ColumnPropNameInTable="intMaterialIDColumn" msprop:Generator_UserColumnName="intMaterialID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblUOMByATML" msprop:Generator_TableClassName="tblUOMByATMLDataTable" msprop:Generator_TableVarName="tabletblUOMByATML" msprop:Generator_RowChangedName="tblUOMByATMLRowChanged" msprop:Generator_TablePropName="tblUOMByATML" msprop:Generator_RowDeletingName="tblUOMByATMLRowDeleting" msprop:Generator_RowChangingName="tblUOMByATMLRowChanging" msprop:Generator_RowEvHandlerName="tblUOMByATMLRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUOMByATMLRowDeleted" msprop:Generator_RowClassName="tblUOMByATMLRow" msprop:Generator_UserTableName="tblUOMByATML" msprop:Generator_RowEvArgName="tblUOMByATMLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strUOM" msprop:Generator_ColumnVarNameInTable="columnstrUOM" msprop:Generator_ColumnPropNameInRow="strUOM" msprop:Generator_ColumnPropNameInTable="strUOMColumn" msprop:Generator_UserColumnName="strUOM">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblUOMSAD" msprop:Generator_TableClassName="tblUOMSADDataTable" msprop:Generator_TableVarName="tabletblUOMSAD" msprop:Generator_RowChangedName="tblUOMSADRowChanged" msprop:Generator_TablePropName="tblUOMSAD" msprop:Generator_RowDeletingName="tblUOMSADRowDeleting" msprop:Generator_RowChangingName="tblUOMSADRowChanging" msprop:Generator_RowEvHandlerName="tblUOMSADRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUOMSADRowDeleted" msprop:Generator_RowClassName="tblUOMSADRow" msprop:Generator_UserTableName="tblUOMSAD" msprop:Generator_RowEvArgName="tblUOMSADRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strUOM" msprop:Generator_ColumnVarNameInTable="columnstrUOM" msprop:Generator_ColumnPropNameInRow="strUOM" msprop:Generator_ColumnPropNameInTable="strUOMColumn" msprop:Generator_UserColumnName="strUOM">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItemVat" msprop:Generator_TableClassName="tblItemVatDataTable" msprop:Generator_TableVarName="tabletblItemVat" msprop:Generator_RowChangedName="tblItemVatRowChanged" msprop:Generator_TablePropName="tblItemVat" msprop:Generator_RowDeletingName="tblItemVatRowDeleting" msprop:Generator_RowChangingName="tblItemVatRowChanging" msprop:Generator_RowEvHandlerName="tblItemVatRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemVatRowDeleted" msprop:Generator_RowClassName="tblItemVatRow" msprop:Generator_UserTableName="tblItemVat" msprop:Generator_RowEvArgName="tblItemVatRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVatProductName" msprop:Generator_ColumnVarNameInTable="columnstrVatProductName" msprop:Generator_ColumnPropNameInRow="strVatProductName" msprop:Generator_ColumnPropNameInTable="strVatProductNameColumn" msprop:Generator_UserColumnName="strVatProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:long" />
+              <xs:element name="strUoM" msprop:Generator_ColumnVarNameInTable="columnstrUoM" msprop:Generator_ColumnPropNameInRow="strUoM" msprop:Generator_ColumnPropNameInTable="strUoMColumn" msprop:Generator_UserColumnName="strUoM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intUoMID" msprop:Generator_ColumnVarNameInTable="columnintUoMID" msprop:Generator_ColumnPropNameInRow="intUoMID" msprop:Generator_ColumnPropNameInTable="intUoMIDColumn" msprop:Generator_UserColumnName="intUoMID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVatAccountName" msprop:Generator_TableClassName="tblVatAccountNameDataTable" msprop:Generator_TableVarName="tabletblVatAccountName" msprop:Generator_RowChangedName="tblVatAccountNameRowChanged" msprop:Generator_TablePropName="tblVatAccountName" msprop:Generator_RowDeletingName="tblVatAccountNameRowDeleting" msprop:Generator_RowChangingName="tblVatAccountNameRowChanging" msprop:Generator_RowEvHandlerName="tblVatAccountNameRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVatAccountNameRowDeleted" msprop:Generator_RowClassName="tblVatAccountNameRow" msprop:Generator_UserTableName="tblVatAccountName" msprop:Generator_RowEvArgName="tblVatAccountNameRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVATAccountName" msprop:Generator_ColumnVarNameInTable="columnstrVATAccountName" msprop:Generator_ColumnPropNameInRow="strVATAccountName" msprop:Generator_ColumnPropNameInTable="strVATAccountNameColumn" msprop:Generator_UserColumnName="strVATAccountName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intVatPointID" msprop:Generator_ColumnVarNameInTable="columnintVatPointID" msprop:Generator_ColumnPropNameInRow="intVatPointID" msprop:Generator_ColumnPropNameInTable="intVatPointIDColumn" msprop:Generator_UserColumnName="intVatPointID" type="xs:int" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="intEmployeeID" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
+              <xs:element name="ysnFactory" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnysnFactory" msprop:Generator_ColumnPropNameInRow="ysnFactory" msprop:Generator_ColumnPropNameInTable="ysnFactoryColumn" msprop:Generator_UserColumnName="ysnFactory" type="xs:int" minOccurs="0" />
+              <xs:element name="strAddress" msprop:Generator_ColumnVarNameInTable="columnstrAddress" msprop:Generator_ColumnPropNameInRow="strAddress" msprop:Generator_ColumnPropNameInTable="strAddressColumn" msprop:Generator_UserColumnName="strAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strVATRegNo" msprop:Generator_ColumnVarNameInTable="columnstrVATRegNo" msprop:Generator_ColumnPropNameInRow="strVATRegNo" msprop:Generator_ColumnPropNameInTable="strVATRegNoColumn" msprop:Generator_UserColumnName="strVATRegNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVatItemCrate" msprop:Generator_TableClassName="tblVatItemCrateDataTable" msprop:Generator_TableVarName="tabletblVatItemCrate" msprop:Generator_RowChangedName="tblVatItemCrateRowChanged" msprop:Generator_TablePropName="tblVatItemCrate" msprop:Generator_RowDeletingName="tblVatItemCrateRowDeleting" msprop:Generator_RowChangingName="tblVatItemCrateRowChanging" msprop:Generator_RowEvHandlerName="tblVatItemCrateRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVatItemCrateRowDeleted" msprop:Generator_RowClassName="tblVatItemCrateRow" msprop:Generator_UserTableName="tblVatItemCrate" msprop:Generator_RowEvArgName="tblVatItemCrateRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVatMatrialINsert" msprop:Generator_TableClassName="tblVatMatrialINsertDataTable" msprop:Generator_TableVarName="tabletblVatMatrialINsert" msprop:Generator_RowChangedName="tblVatMatrialINsertRowChanged" msprop:Generator_TablePropName="tblVatMatrialINsert" msprop:Generator_RowDeletingName="tblVatMatrialINsertRowDeleting" msprop:Generator_RowChangingName="tblVatMatrialINsertRowChanging" msprop:Generator_RowEvHandlerName="tblVatMatrialINsertRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVatMatrialINsertRowDeleted" msprop:Generator_RowClassName="tblVatMatrialINsertRow" msprop:Generator_UserTableName="tblVatMatrialINsert" msprop:Generator_RowEvArgName="tblVatMatrialINsertRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblUomidUpdate" msprop:Generator_TableClassName="tblUomidUpdateDataTable" msprop:Generator_TableVarName="tabletblUomidUpdate" msprop:Generator_RowChangedName="tblUomidUpdateRowChanged" msprop:Generator_TablePropName="tblUomidUpdate" msprop:Generator_RowDeletingName="tblUomidUpdateRowDeleting" msprop:Generator_RowChangingName="tblUomidUpdateRowChanging" msprop:Generator_RowEvHandlerName="tblUomidUpdateRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUomidUpdateRowDeleted" msprop:Generator_RowClassName="tblUomidUpdateRow" msprop:Generator_UserTableName="tblUomidUpdate" msprop:Generator_RowEvArgName="tblUomidUpdateRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItemVatConfig" msprop:Generator_TableClassName="tblItemVatConfigDataTable" msprop:Generator_TableVarName="tabletblItemVatConfig" msprop:Generator_RowChangedName="tblItemVatConfigRowChanged" msprop:Generator_TablePropName="tblItemVatConfig" msprop:Generator_RowDeletingName="tblItemVatConfigRowDeleting" msprop:Generator_RowChangingName="tblItemVatConfigRowChanging" msprop:Generator_RowEvHandlerName="tblItemVatConfigRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemVatConfigRowDeleted" msprop:Generator_RowClassName="tblItemVatConfigRow" msprop:Generator_UserTableName="tblItemVatConfig" msprop:Generator_RowEvArgName="tblItemVatConfigRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItem" msprop:Generator_TableClassName="tblItemDataTable" msprop:Generator_TableVarName="tabletblItem" msprop:Generator_TablePropName="tblItem" msprop:Generator_RowDeletingName="tblItemRowDeleting" msprop:Generator_RowChangingName="tblItemRowChanging" msprop:Generator_RowEvHandlerName="tblItemRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemRowDeleted" msprop:Generator_UserTableName="tblItem" msprop:Generator_RowChangedName="tblItemRowChanged" msprop:Generator_RowEvArgName="tblItemRowChangeEvent" msprop:Generator_RowClassName="tblItemRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintid" msprop:Generator_ColumnPropNameInRow="intid" msprop:Generator_ColumnPropNameInTable="intidColumn" msprop:Generator_UserColumnName="intid" type="xs:long" />
+              <xs:element name="strProductName" msprop:Generator_ColumnVarNameInTable="columnstrProductName" msprop:Generator_ColumnPropNameInRow="strProductName" msprop:Generator_ColumnPropNameInTable="strProductNameColumn" msprop:Generator_UserColumnName="strProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblConfigMusokType" msprop:Generator_TableClassName="tblConfigMusokTypeDataTable" msprop:Generator_TableVarName="tabletblConfigMusokType" msprop:Generator_TablePropName="tblConfigMusokType" msprop:Generator_RowDeletingName="tblConfigMusokTypeRowDeleting" msprop:Generator_RowChangingName="tblConfigMusokTypeRowChanging" msprop:Generator_RowEvHandlerName="tblConfigMusokTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblConfigMusokTypeRowDeleted" msprop:Generator_UserTableName="tblConfigMusokType" msprop:Generator_RowChangedName="tblConfigMusokTypeRowChanged" msprop:Generator_RowEvArgName="tblConfigMusokTypeRowChangeEvent" msprop:Generator_RowClassName="tblConfigMusokTypeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intMusokTypeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintMusokTypeID" msprop:Generator_ColumnPropNameInRow="intMusokTypeID" msprop:Generator_ColumnPropNameInTable="intMusokTypeIDColumn" msprop:Generator_UserColumnName="intMusokTypeID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprGetVATDeclaredPriceM1" msprop:Generator_TableClassName="sprGetVATDeclaredPriceM1DataTable" msprop:Generator_TableVarName="tablesprGetVATDeclaredPriceM1" msprop:Generator_TablePropName="sprGetVATDeclaredPriceM1" msprop:Generator_RowDeletingName="sprGetVATDeclaredPriceM1RowDeleting" msprop:Generator_RowChangingName="sprGetVATDeclaredPriceM1RowChanging" msprop:Generator_RowEvHandlerName="sprGetVATDeclaredPriceM1RowChangeEventHandler" msprop:Generator_RowDeletedName="sprGetVATDeclaredPriceM1RowDeleted" msprop:Generator_UserTableName="sprGetVATDeclaredPriceM1" msprop:Generator_RowChangedName="sprGetVATDeclaredPriceM1RowChanged" msprop:Generator_RowEvArgName="sprGetVATDeclaredPriceM1RowChangeEvent" msprop:Generator_RowClassName="sprGetVATDeclaredPriceM1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intVATMaterialID" msprop:Generator_ColumnVarNameInTable="columnintVATMaterialID" msprop:Generator_ColumnPropNameInRow="intVATMaterialID" msprop:Generator_ColumnPropNameInTable="intVATMaterialIDColumn" msprop:Generator_UserColumnName="intVATMaterialID" type="xs:int" minOccurs="0" />
+              <xs:element name="strMaterialName" msprop:Generator_ColumnVarNameInTable="columnstrMaterialName" msprop:Generator_ColumnPropNameInRow="strMaterialName" msprop:Generator_ColumnPropNameInTable="strMaterialNameColumn" msprop:Generator_UserColumnName="strMaterialName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strUOM" msprop:Generator_ColumnVarNameInTable="columnstrUOM" msprop:Generator_ColumnPropNameInRow="strUOM" msprop:Generator_ColumnPropNameInTable="strUOMColumn" msprop:Generator_UserColumnName="strUOM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numQty" msprop:Generator_ColumnVarNameInTable="columnnumQty" msprop:Generator_ColumnPropNameInRow="numQty" msprop:Generator_ColumnPropNameInTable="numQtyColumn" msprop:Generator_UserColumnName="numQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numWastage" msprop:Generator_ColumnVarNameInTable="columnnumWastage" msprop:Generator_ColumnPropNameInRow="numWastage" msprop:Generator_ColumnPropNameInTable="numWastageColumn" msprop:Generator_UserColumnName="numWastage" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monValue" msprop:Generator_ColumnVarNameInTable="columnmonValue" msprop:Generator_ColumnPropNameInRow="monValue" msprop:Generator_ColumnPropNameInTable="monValueColumn" msprop:Generator_UserColumnName="monValue" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItemCheck" msprop:Generator_TableClassName="tblItemCheckDataTable" msprop:Generator_TableVarName="tabletblItemCheck" msprop:Generator_TablePropName="tblItemCheck" msprop:Generator_RowDeletingName="tblItemCheckRowDeleting" msprop:Generator_RowChangingName="tblItemCheckRowChanging" msprop:Generator_RowEvHandlerName="tblItemCheckRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemCheckRowDeleted" msprop:Generator_UserTableName="tblItemCheck" msprop:Generator_RowChangedName="tblItemCheckRowChanged" msprop:Generator_RowEvArgName="tblItemCheckRowChangeEvent" msprop:Generator_RowClassName="tblItemCheckRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intSADProductCount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintSADProductCount" msprop:Generator_ColumnPropNameInRow="intSADProductCount" msprop:Generator_ColumnPropNameInTable="intSADProductCountColumn" msprop:Generator_UserColumnName="intSADProductCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVATItemDeclaredPrice" msprop:Generator_TableClassName="tblVATItemDeclaredPriceDataTable" msprop:Generator_TableVarName="tabletblVATItemDeclaredPrice" msprop:Generator_TablePropName="tblVATItemDeclaredPrice" msprop:Generator_RowDeletingName="tblVATItemDeclaredPriceRowDeleting" msprop:Generator_RowChangingName="tblVATItemDeclaredPriceRowChanging" msprop:Generator_RowEvHandlerName="tblVATItemDeclaredPriceRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVATItemDeclaredPriceRowDeleted" msprop:Generator_UserTableName="tblVATItemDeclaredPrice" msprop:Generator_RowChangedName="tblVATItemDeclaredPriceRowChanged" msprop:Generator_RowEvArgName="tblVATItemDeclaredPriceRowChangeEvent" msprop:Generator_RowClassName="tblVATItemDeclaredPriceRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblConfigItemBOM" msprop:Generator_TableClassName="tblConfigItemBOMDataTable" msprop:Generator_TableVarName="tabletblConfigItemBOM" msprop:Generator_TablePropName="tblConfigItemBOM" msprop:Generator_RowDeletingName="tblConfigItemBOMRowDeleting" msprop:Generator_RowChangingName="tblConfigItemBOMRowChanging" msprop:Generator_RowEvHandlerName="tblConfigItemBOMRowChangeEventHandler" msprop:Generator_RowDeletedName="tblConfigItemBOMRowDeleted" msprop:Generator_UserTableName="tblConfigItemBOM" msprop:Generator_RowChangedName="tblConfigItemBOMRowChanged" msprop:Generator_RowEvArgName="tblConfigItemBOMRowChangeEvent" msprop:Generator_RowClassName="tblConfigItemBOMRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprInsertItemMaterialForDepotFromDeclaration" msprop:Generator_TableClassName="sprInsertItemMaterialForDepotFromDeclarationDataTable" msprop:Generator_TableVarName="tablesprInsertItemMaterialForDepotFromDeclaration" msprop:Generator_TablePropName="sprInsertItemMaterialForDepotFromDeclaration" msprop:Generator_RowDeletingName="sprInsertItemMaterialForDepotFromDeclarationRowDeleting" msprop:Generator_RowChangingName="sprInsertItemMaterialForDepotFromDeclarationRowChanging" msprop:Generator_RowEvHandlerName="sprInsertItemMaterialForDepotFromDeclarationRowChangeEventHandler" msprop:Generator_RowDeletedName="sprInsertItemMaterialForDepotFromDeclarationRowDeleted" msprop:Generator_UserTableName="sprInsertItemMaterialForDepotFromDeclaration" msprop:Generator_RowChangedName="sprInsertItemMaterialForDepotFromDeclarationRowChanged" msprop:Generator_RowEvArgName="sprInsertItemMaterialForDepotFromDeclarationRowChangeEvent" msprop:Generator_RowClassName="sprInsertItemMaterialForDepotFromDeclarationRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVATItemDeclaredPricebom" msprop:Generator_TableClassName="tblVATItemDeclaredPricebomDataTable" msprop:Generator_TableVarName="tabletblVATItemDeclaredPricebom" msprop:Generator_TablePropName="tblVATItemDeclaredPricebom" msprop:Generator_RowDeletingName="tblVATItemDeclaredPricebomRowDeleting" msprop:Generator_RowChangingName="tblVATItemDeclaredPricebomRowChanging" msprop:Generator_RowEvHandlerName="tblVATItemDeclaredPricebomRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVATItemDeclaredPricebomRowDeleted" msprop:Generator_UserTableName="tblVATItemDeclaredPricebom" msprop:Generator_RowChangedName="tblVATItemDeclaredPricebomRowChanged" msprop:Generator_RowEvArgName="tblVATItemDeclaredPricebomRowChangeEvent" msprop:Generator_RowClassName="tblVATItemDeclaredPricebomRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intBOMCount" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintBOMCount" msprop:Generator_ColumnPropNameInRow="intBOMCount" msprop:Generator_ColumnPropNameInTable="intBOMCountColumn" msprop:Generator_UserColumnName="intBOMCount" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItemVat1" msprop:Generator_TableClassName="tblItemVat1DataTable" msprop:Generator_TableVarName="tabletblItemVat1" msprop:Generator_TablePropName="tblItemVat1" msprop:Generator_RowDeletingName="tblItemVat1RowDeleting" msprop:Generator_RowChangingName="tblItemVat1RowChanging" msprop:Generator_RowEvHandlerName="tblItemVat1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemVat1RowDeleted" msprop:Generator_UserTableName="tblItemVat1" msprop:Generator_RowChangedName="tblItemVat1RowChanged" msprop:Generator_RowEvArgName="tblItemVat1RowChangeEvent" msprop:Generator_RowClassName="tblItemVat1Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItemVat2" msprop:Generator_TableClassName="tblItemVat2DataTable" msprop:Generator_TableVarName="tabletblItemVat2" msprop:Generator_TablePropName="tblItemVat2" msprop:Generator_RowDeletingName="tblItemVat2RowDeleting" msprop:Generator_RowChangingName="tblItemVat2RowChanging" msprop:Generator_RowEvHandlerName="tblItemVat2RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemVat2RowDeleted" msprop:Generator_UserTableName="tblItemVat2" msprop:Generator_RowChangedName="tblItemVat2RowChanged" msprop:Generator_RowEvArgName="tblItemVat2RowChangeEvent" msprop:Generator_RowClassName="tblItemVat2Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItemVat3" msprop:Generator_TableClassName="tblItemVat3DataTable" msprop:Generator_TableVarName="tabletblItemVat3" msprop:Generator_TablePropName="tblItemVat3" msprop:Generator_RowDeletingName="tblItemVat3RowDeleting" msprop:Generator_RowChangingName="tblItemVat3RowChanging" msprop:Generator_RowEvHandlerName="tblItemVat3RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemVat3RowDeleted" msprop:Generator_UserTableName="tblItemVat3" msprop:Generator_RowChangedName="tblItemVat3RowChanged" msprop:Generator_RowEvArgName="tblItemVat3RowChangeEvent" msprop:Generator_RowClassName="tblItemVat3Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprInsertItemMaterialForDepotFromDeclaration1" msprop:Generator_TableClassName="sprInsertItemMaterialForDepotFromDeclaration1DataTable" msprop:Generator_TableVarName="tablesprInsertItemMaterialForDepotFromDeclaration1" msprop:Generator_TablePropName="sprInsertItemMaterialForDepotFromDeclaration1" msprop:Generator_RowDeletingName="sprInsertItemMaterialForDepotFromDeclaration1RowDeleting" msprop:Generator_RowChangingName="sprInsertItemMaterialForDepotFromDeclaration1RowChanging" msprop:Generator_RowEvHandlerName="sprInsertItemMaterialForDepotFromDeclaration1RowChangeEventHandler" msprop:Generator_RowDeletedName="sprInsertItemMaterialForDepotFromDeclaration1RowDeleted" msprop:Generator_UserTableName="sprInsertItemMaterialForDepotFromDeclaration1" msprop:Generator_RowChangedName="sprInsertItemMaterialForDepotFromDeclaration1RowChanged" msprop:Generator_RowEvArgName="sprInsertItemMaterialForDepotFromDeclaration1RowChangeEvent" msprop:Generator_RowClassName="sprInsertItemMaterialForDepotFromDeclaration1Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVatCount" msprop:Generator_TableClassName="tblVatCountDataTable" msprop:Generator_TableVarName="tabletblVatCount" msprop:Generator_RowChangedName="tblVatCountRowChanged" msprop:Generator_TablePropName="tblVatCount" msprop:Generator_RowDeletingName="tblVatCountRowDeleting" msprop:Generator_RowChangingName="tblVatCountRowChanging" msprop:Generator_RowEvHandlerName="tblVatCountRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVatCountRowDeleted" msprop:Generator_RowClassName="tblVatCountRow" msprop:Generator_UserTableName="tblVatCount" msprop:Generator_RowEvArgName="tblVatCountRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intBOMCount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintBOMCount" msprop:Generator_ColumnPropNameInRow="intBOMCount" msprop:Generator_ColumnPropNameInTable="intBOMCountColumn" msprop:Generator_UserColumnName="intBOMCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprVATChallenGetError" msprop:Generator_TableClassName="sprVATChallenGetErrorDataTable" msprop:Generator_TableVarName="tablesprVATChallenGetError" msprop:Generator_TablePropName="sprVATChallenGetError" msprop:Generator_RowDeletingName="sprVATChallenGetErrorRowDeleting" msprop:Generator_RowChangingName="sprVATChallenGetErrorRowChanging" msprop:Generator_RowEvHandlerName="sprVATChallenGetErrorRowChangeEventHandler" msprop:Generator_RowDeletedName="sprVATChallenGetErrorRowDeleted" msprop:Generator_UserTableName="sprVATChallenGetError" msprop:Generator_RowChangedName="sprVATChallenGetErrorRowChanged" msprop:Generator_RowEvArgName="sprVATChallenGetErrorRowChangeEvent" msprop:Generator_RowClassName="sprVATChallenGetErrorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intM11No" msprop:Generator_ColumnVarNameInTable="columnintM11No" msprop:Generator_ColumnPropNameInRow="intM11No" msprop:Generator_ColumnPropNameInTable="intM11NoColumn" msprop:Generator_UserColumnName="intM11No" type="xs:int" minOccurs="0" />
+              <xs:element name="strSVNo" msprop:Generator_ColumnVarNameInTable="columnstrSVNo" msprop:Generator_ColumnPropNameInRow="strSVNo" msprop:Generator_ColumnPropNameInTable="strSVNoColumn" msprop:Generator_UserColumnName="strSVNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intM11RowCount" msprop:Generator_ColumnVarNameInTable="columnintM11RowCount" msprop:Generator_ColumnPropNameInRow="intM11RowCount" msprop:Generator_ColumnPropNameInTable="intM11RowCountColumn" msprop:Generator_UserColumnName="intM11RowCount" type="xs:int" minOccurs="0" />
+              <xs:element name="intM17RowCount" msprop:Generator_ColumnVarNameInTable="columnintM17RowCount" msprop:Generator_ColumnPropNameInRow="intM17RowCount" msprop:Generator_ColumnPropNameInTable="intM17RowCountColumn" msprop:Generator_UserColumnName="intM17RowCount" type="xs:int" minOccurs="0" />
+              <xs:element name="intM18RowCount" msprop:Generator_ColumnVarNameInTable="columnintM18RowCount" msprop:Generator_ColumnPropNameInRow="intM18RowCount" msprop:Generator_ColumnPropNameInTable="intM18RowCountColumn" msprop:Generator_UserColumnName="intM18RowCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprCreditNotePrint" msprop:Generator_TableClassName="sprCreditNotePrintDataTable" msprop:Generator_TableVarName="tablesprCreditNotePrint" msprop:Generator_RowChangedName="sprCreditNotePrintRowChanged" msprop:Generator_TablePropName="sprCreditNotePrint" msprop:Generator_RowDeletingName="sprCreditNotePrintRowDeleting" msprop:Generator_RowChangingName="sprCreditNotePrintRowChanging" msprop:Generator_RowEvHandlerName="sprCreditNotePrintRowChangeEventHandler" msprop:Generator_RowDeletedName="sprCreditNotePrintRowDeleted" msprop:Generator_RowClassName="sprCreditNotePrintRow" msprop:Generator_UserTableName="sprCreditNotePrint" msprop:Generator_RowEvArgName="sprCreditNotePrintRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rowid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnrowid" msprop:Generator_ColumnPropNameInRow="rowid" msprop:Generator_ColumnPropNameInTable="rowidColumn" msprop:Generator_UserColumnName="rowid" type="xs:int" />
+              <xs:element name="intSL" msprop:Generator_ColumnVarNameInTable="columnintSL" msprop:Generator_ColumnPropNameInRow="intSL" msprop:Generator_ColumnPropNameInTable="intSLColumn" msprop:Generator_UserColumnName="intSL" type="xs:int" minOccurs="0" />
+              <xs:element name="dteM11Date" msprop:Generator_ColumnVarNameInTable="columndteM11Date" msprop:Generator_ColumnPropNameInRow="dteM11Date" msprop:Generator_ColumnPropNameInTable="dteM11DateColumn" msprop:Generator_UserColumnName="dteM11Date" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strProductName" msprop:Generator_ColumnVarNameInTable="columnstrProductName" msprop:Generator_ColumnPropNameInRow="strProductName" msprop:Generator_ColumnPropNameInTable="strProductNameColumn" msprop:Generator_UserColumnName="strProductName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monRtnAmountWithoutSDnVAT" msprop:Generator_ColumnVarNameInTable="columnmonRtnAmountWithoutSDnVAT" msprop:Generator_ColumnPropNameInRow="monRtnAmountWithoutSDnVAT" msprop:Generator_ColumnPropNameInTable="monRtnAmountWithoutSDnVATColumn" msprop:Generator_UserColumnName="monRtnAmountWithoutSDnVAT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monRtnOtherTax" msprop:Generator_ColumnVarNameInTable="columnmonRtnOtherTax" msprop:Generator_ColumnPropNameInRow="monRtnOtherTax" msprop:Generator_ColumnPropNameInTable="monRtnOtherTaxColumn" msprop:Generator_UserColumnName="monRtnOtherTax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monRtnVAT" msprop:Generator_ColumnVarNameInTable="columnmonRtnVAT" msprop:Generator_ColumnPropNameInRow="monRtnVAT" msprop:Generator_ColumnPropNameInTable="monRtnVATColumn" msprop:Generator_UserColumnName="monRtnVAT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monClnOtherTax" msprop:Generator_ColumnVarNameInTable="columnmonClnOtherTax" msprop:Generator_ColumnPropNameInRow="monClnOtherTax" msprop:Generator_ColumnPropNameInTable="monClnOtherTaxColumn" msprop:Generator_UserColumnName="monClnOtherTax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monClnVAT" msprop:Generator_ColumnVarNameInTable="columnmonClnVAT" msprop:Generator_ColumnPropNameInRow="monClnVAT" msprop:Generator_ColumnPropNameInTable="monClnVATColumn" msprop:Generator_UserColumnName="monClnVAT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monReduceTax" msprop:Generator_ColumnVarNameInTable="columnmonReduceTax" msprop:Generator_ColumnPropNameInRow="monReduceTax" msprop:Generator_ColumnPropNameInTable="monReduceTaxColumn" msprop:Generator_UserColumnName="monReduceTax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monReduceVat" msprop:Generator_ColumnVarNameInTable="columnmonReduceVat" msprop:Generator_ColumnPropNameInRow="monReduceVat" msprop:Generator_ColumnPropNameInTable="monReduceVatColumn" msprop:Generator_UserColumnName="monReduceVat" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -250,6 +1220,32 @@ WHERE intId=@intId</CommandText>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:SprVatM11SalesInfo" />
       <xs:field xpath="mstns:intId" />
+    </xs:unique>
+    <xs:unique name="tblUOMByATML_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblUOMByATML" />
+      <xs:field xpath="mstns:intID" />
+    </xs:unique>
+    <xs:unique name="tblUOMSAD_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblUOMSAD" />
+      <xs:field xpath="mstns:intID" />
+    </xs:unique>
+    <xs:unique name="tblItemVat_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblItemVat" />
+      <xs:field xpath="mstns:intID" />
+    </xs:unique>
+    <xs:unique name="tblVatAccountName_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblVatAccountName" />
+      <xs:field xpath="mstns:intVatPointID" />
+      <xs:field xpath="mstns:intUnitID" />
+      <xs:field xpath="mstns:intEmployeeID" />
+    </xs:unique>
+    <xs:unique name="tblItem_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblItem" />
+      <xs:field xpath="mstns:intid" />
+    </xs:unique>
+    <xs:unique name="tblVATItemDeclaredPricebom_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblVATItemDeclaredPricebom" />
+      <xs:field xpath="mstns:intBOMCount" />
     </xs:unique>
   </xs:element>
 </xs:schema>
