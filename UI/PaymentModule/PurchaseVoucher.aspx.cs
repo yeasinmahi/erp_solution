@@ -11,13 +11,13 @@ namespace UI.PaymentModule
 {
     public partial class PurchaseVoucher : System.Web.UI.Page
     {
-        Payment_All_Voucher_BLL objVouchar = new Payment_All_Voucher_BLL();
+       // Payment_All_Voucher_BLL objVouchar = new Payment_All_Voucher_BLL();
         DataTable dt = new DataTable(); int enroll;string xmlData;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                dt = objVouchar.GetData(1, xmlData, 0, 0, DateTime.Now, enroll);
+                //dt = objVouchar.GetData(1, xmlData, 0, 0, DateTime.Now, enroll);
             }
             else { }
         }

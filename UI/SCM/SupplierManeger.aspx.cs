@@ -23,9 +23,9 @@ namespace UI.SCM
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objPo.GetUnit();
-                ddlUnit.DataSource = dt;
-                ddlUnit.DataTextField = "strName";
-                ddlUnit.DataValueField = "Id";
+                ddlUnit.DataSource = dt;  
+                ddlUnit.DataTextField = "strUnit";
+                ddlUnit.DataValueField = "intUnitID";
                 ddlUnit.DataBind();
                 // dgvStatement.DataBind();
                 string strDept = ddlDept.SelectedItem.ToString(); 
@@ -63,7 +63,7 @@ namespace UI.SCM
                 string item = ""; int supplierid =0;
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
-                dt = objPo.GetPoData(38, "", intWh, 0, DateTime.Now, enroll);
+                dt = objPo.GetPoData(38, "", intWh, supplierid, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
                     lblSupplierName.Text = dt.Rows[0]["strSuppMasterName"].ToString();
