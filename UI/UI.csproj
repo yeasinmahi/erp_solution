@@ -7120,6 +7120,7 @@
     <Folder Include="SAD\Sales\Data\" />
     <Folder Include="SAD\Transfer\Data\" />
     <Folder Include="SAD\Vat\Data\" />
+    <Folder Include="SCM\BOM\" />
     <Folder Include="SCM\Data\" />
     <Folder Include="SCM\Uploads\" />
     <Folder Include="Shop\Data\" />
