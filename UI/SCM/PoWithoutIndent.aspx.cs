@@ -302,6 +302,12 @@ namespace UI.SCM
 
                 }
                 Session["untid"] = hdnUnit.Value.ToString();
+
+                dt = objPo.GetPoData(6, "", intWh, 0, DateTime.Now, enroll); // get Suppliyer Data
+                ddlSupplier.DataSource = dt;
+                ddlSupplier.DataTextField = "strName";
+                ddlSupplier.DataValueField = "Id";
+                ddlSupplier.DataBind();
             }
             catch { }
         }

@@ -71,15 +71,28 @@ namespace UI.SAD.Vat
                 strInstrument = txtInstrument.Text;
                 strChallanNo = txtChallanNo.Text;
                 objMush.getTreasuryEntry(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), intType, TotalAmount, int.Parse(Session[SessionParams.USER_ID].ToString()), strChallanNo, dteChallanDate, strInstrument, dteInstDate, dteTransDate);
-              
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save !');", true);
+                txtInstallmentdate.Text = "";
+                txtAmount.Text = "";
+                txtInstrument.Text = "";
+                txtChallanNo.Text = "";
+
             }
         }     
         protected void btnReport_Click1(object sender, EventArgs e)
         {
-            dtefdate = DateTime.Parse(txtfdate.Text);
-            dtetdate = DateTime.Parse(txttdate.Text);
-            intType =int.Parse(ddlShorby.SelectedValue);
-            dt = objMush.getTreasuryRpt(int.Parse(hdnAccno.Value), dtefdate, dtetdate,intType);
+            if ((txtfdate.Text != "") && (txtfdate.Text != ""))
+            {
+                dtefdate = DateTime.Parse(txtfdate.Text);
+                dtetdate = DateTime.Parse(txttdate.Text);
+                intType = int.Parse(ddlShorby.SelectedValue);
+                dt = objMush.getTreasuryRpt(int.Parse(hdnAccno.Value), dtefdate, dtetdate, intType);
+                if(dt.Rows.Count>0)
+                {
+                    dgvTresuryRpt.DataSource = dt;
+                    dgvTresuryRpt.DataBind();
+                }
+            }
         }
         protected double TotalValue = 0;
         protected void dgvTresuryRpt_RowDataBound(object sender, GridViewRowEventArgs e)

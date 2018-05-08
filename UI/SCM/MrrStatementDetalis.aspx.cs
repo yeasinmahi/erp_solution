@@ -42,7 +42,8 @@ namespace UI.SCM
                         lblMrrDate.Text = dteMrr.ToString("dd-MM-yyyy");
                         lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                         string unit = dt.Rows[0]["intUnitID"].ToString();
-                        imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
+                        imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); 
+                        lblMrrBy.Text = dt.Rows[0]["strName"].ToString();
                     }
                     else { }
                     dt = obj.DataView(14, "", intWh, MrrId, DateTime.Now, enroll);

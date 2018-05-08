@@ -59,30 +59,26 @@
     
        <div class="tabs_container" style="text-align:left">Item Manager<hr/></div>
            <table>
-        
+            <tr> 
+            <td  style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Ware House"></asp:Label></td>
+            <td style="text-align:left;"><asp:DropDownList ID="ddlWh" CssClass="ddList" Font-Bold="False" AutoPostBack="true" Width="500px" runat="server" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged">
+            
+            </asp:DropDownList></td>  
+            </tr> 
            <tr>
                <td>Item List</td>
-                <td><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="400px"    ></asp:TextBox></td>
+                <td><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="500px"></asp:TextBox></td>
                  
                 <td colspan="1" style="text-align:left;"><asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"    /></td>
            </tr>
             <tr>
             <td></td> 
-            <td><asp:listbox ID="ListDatas" Width="400px" Height="300px" DataMember="s" runat="server" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged">
-                 
-                </asp:listbox> </td> 
-            </tr>
-                
-          <tr> 
-        <td  style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Ware House"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlWh" CssClass="ddList" Font-Bold="False" AutoPostBack="true"  Width="400px" runat="server" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged">
-            
-         </asp:DropDownList></td>                                                                                      
-          
-        </tr>  
-               <tr>  
+            <td><asp:listbox ID="ListDatas" Width="500px" Height="300px" DataMember="s" runat="server" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"> 
+             </asp:listbox> </td> 
+            </tr> 
+         <tr>  
         <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Store Location"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlLocation" CssClass="ddList" Font-Bold="False" AutoPostBack="true" Width="400px" runat="server" > 
+        <td style="text-align:left;"><asp:DropDownList ID="ddlLocation" CssClass="ddList" Font-Bold="False" AutoPostBack="true" Width="500px" runat="server" > 
          </asp:DropDownList></td>                                                                                      
           <td colspan="1" style="text-align:left;"><asp:Button ID="btnAdd" runat="server" Text="Add Item" OnClick="btnAdd_Click"/></td>
         </tr>  

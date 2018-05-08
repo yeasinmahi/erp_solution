@@ -12,13 +12,12 @@
     <script>
         function ValidationBasicInfo() {
             document.getElementById("hdnconfirm").value = "0";
-            var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
-            var Amount = document.forms["frmPurchase"]["txtAmount"].value;
-          
-            var Instrument = document.forms["frmPurchase"]["txtInstrument"].value;
-            var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Depositdate = document.forms["frmPurchase"]["txtDepositdate"].value;
-           var Installmentdate = document.forms["frmPurchase"]["txtInstallmentdate"].value;
+            var ChallanNo = document.forms["frmTresuaryEntry"]["txtChallanNo"].value;
+            var Amount = document.forms["frmTresuaryEntry"]["txtAmount"].value;         
+            var Instrument = document.forms["frmTresuaryEntry"]["txtInstrument"].value;
+            var ChallanDate = document.forms["frmTresuaryEntry"]["txtChallandate"].value;
+            var Depositdate = document.forms["frmTresuaryEntry"]["txtDepositdate"].value;
+            var Installmentdate = document.forms["frmTresuaryEntry"]["txtInstallmentdate"].value;
 
             if (ChallanNo == null || ChallanNo == "") {
                 alert("Please Fill-Up Challan No !");
@@ -44,7 +43,7 @@
     </script>
 </head>
 <body>
-    <form id="frmPurchase" runat="server">
+    <form id="frmTresuaryEntry" runat="server">
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>

@@ -94,10 +94,16 @@ namespace UI.SAD.Vat
                 if (int.Parse(ddlExam.SelectedValue) == 1) { ysnexamp = true; } else { ysnexamp = true; }
 
                 CreateSalesXml(intItemid.ToString(), strVatMatrialname,intSuppId.ToString(), Challanno, dtedate.ToString(), qty.ToString(),monPrice.ToString(), SDAmount.ToString(),  Vat.ToString(), TotalAmount.ToString(), ysnexamp.ToString());
+                txtQty.Text = "";
+                txtwithoutSDVat.Text = "";
+                txtSDAmount.Text = "";
+                txtVat.Text = "";
+                txtChallanNo.Text = "";
+                txtMatrialName.Text = "";
+                txtSupplierName.Text = "";
+
             }
-            else {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Correct Information !');", true);
-            }
+            else {  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Correct Information !');", true); }
 
         }
         protected void dgvPurchase_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -282,41 +288,42 @@ namespace UI.SAD.Vat
 
         protected void btnReport_Click(object sender, EventArgs e)
         {
-
-            dtefdate = DateTime.Parse(txtfdate.Text);
-            dtetdate = DateTime.Parse(txtfdate.Text);
-            if (int.Parse(ddlShorby.SelectedValue) == 1)
+            if ((txtfdate.Text != "") && (txtfdate.Text != ""))
             {
-                ysnDay = true;
-                ysnMaterial = false;
-                YsnMaterialTotal = false;
-                YsnChallan = false;
-            }
-            else if (int.Parse(ddlShorby.SelectedValue) == 2)
-            {
-                ysnDay = false;
-                ysnMaterial = true;
-                YsnMaterialTotal = false;
-                YsnChallan = false;
-            }
-            else if (int.Parse(ddlShorby.SelectedValue) == 3)
-            {
-                ysnDay = false;
-                ysnMaterial = false;
-                YsnMaterialTotal = false;
-                YsnChallan = true;
-            }
-            else if (int.Parse(ddlShorby.SelectedValue) == 4)
-            {
-                ysnDay = false;
-                ysnMaterial = false;
-                YsnMaterialTotal = true;
-                YsnChallan = false;
-            }
+                dtefdate = DateTime.Parse(txtfdate.Text);
+                dtetdate = DateTime.Parse(txtfdate.Text);
+                if (int.Parse(ddlShorby.SelectedValue) == 1)
+                {
+                    ysnDay = true;
+                    ysnMaterial = false;
+                    YsnMaterialTotal = false;
+                    YsnChallan = false;
+                }
+                else if (int.Parse(ddlShorby.SelectedValue) == 2)
+                {
+                    ysnDay = false;
+                    ysnMaterial = true;
+                    YsnMaterialTotal = false;
+                    YsnChallan = false;
+                }
+                else if (int.Parse(ddlShorby.SelectedValue) == 3)
+                {
+                    ysnDay = false;
+                    ysnMaterial = false;
+                    YsnMaterialTotal = false;
+                    YsnChallan = true;
+                }
+                else if (int.Parse(ddlShorby.SelectedValue) == 4)
+                {
+                    ysnDay = false;
+                    ysnMaterial = false;
+                    YsnMaterialTotal = true;
+                    YsnChallan = false;
+                }
 
-
-
-            dt = objMush.getPurchaseReport(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(hdnAccno.Value),dtefdate,dtetdate,ysnDay,ysnMaterial,YsnChallan,YsnMaterialTotal);
+                dt = objMush.getPurchaseReport(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(hdnAccno.Value), dtefdate, dtetdate, ysnDay, ysnMaterial, YsnChallan, YsnMaterialTotal);
+            }
+            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Date!');", true); }
         }
 
 

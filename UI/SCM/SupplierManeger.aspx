@@ -58,7 +58,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
      <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
-     <div class="tabs_container" style="text-align:left">Issue Statement<hr /></div>
+     <div class="tabs_container" style="text-align:left">Supplier Manager From<hr /></div>
           <table style="width:700px"> 
               <tr>   
                 <td></td>

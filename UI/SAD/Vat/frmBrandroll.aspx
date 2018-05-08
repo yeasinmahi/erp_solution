@@ -12,35 +12,25 @@
     <script>
         function ValidationBasicInfo() {
             document.getElementById("hdnconfirm").value = "0";
-            var Matrialname = document.forms["frmPurchase"]["txtMatrialName"].value;
-            var PurDate = document.forms["frmPurchase"]["txtFrom"].value;
-            var SuppName = document.forms["frmPurchase"]["txtSupplierName"].value;           
-            var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
-            var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Exam = document.forms["frmPurchase"]["ddlExam"].value;
-           
+            var txtDemandOrderno = document.forms["frmBandroll"]["txtDemandOrderno"].value;
+            var PurDate = document.forms["frmBandroll"]["txtdtedate"].value;
+            var txtQty = document.forms["frmBandroll"]["txtQty"].value;           
 
-            if (Matrialname == null || Matrialname == "") {
-                alert("Please Matrial Fill-Up !");
+            if (txtDemandOrderno == null || txtDemandOrderno == "") {
+                alert("Please Entry Order No !");
             }
 
             else if (PurDate == null || PurDate == "") {
                 alert("Purchase Date Select !");
             }
-            else if (SuppName == null || SuppName == "") {
-                alert("Please Select Supplier !");
+            else if (PurDate == null || PurDate == "") {
+                alert("Please Select Date !");
             }
 
-            else if (ChallanNo == null || ChallanNo == "") {
-                alert("Please Fill-up Challan No!");
+            else if (txtQty == null || txtQty == "") {
+                alert("Please Fill-up Quantity !");
             }
-
-            else if (ChallanDate == null || ChallanDate == "") {
-                alert("Please Fill-up Challan Date!");
-            }
-            else if (Exam == null || Exam == "") {
-                alert("Please select whether this purchase is tax exempted or not.");
-            }
+        
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
 
@@ -65,7 +55,7 @@
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnUnit" runat="server" />
-    <div class="tabs_container"> PRODUCTION ENTRY <hr /></div>
+    <div class="tabs_container"> BANDROLL ENTRY <hr /></div>
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                             
         <tr><td>Bandroll</td>
@@ -75,7 +65,6 @@
         <td>Qty</td>
         <td><asp:TextBox ID="txtQty" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>  
         </tr> 
-
         <tr><td>Demand Order No:</td>
         <td><asp:TextBox ID="txtDemandOrderno" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>
         <td>Date</td>
@@ -85,16 +74,14 @@
             </cc1:CalendarExtender>
             <img id="imgCal_12" src="../../Content/images/img/calbtn.gif" style="border: 0px;
             width: 34px; height: 23px; vertical-align: bottom;" /> </td>
-            <td>Remarks</td>
-            <td><asp:TextBox ID="txtRemarks" TextMode="MultiLine" runat="server" Enabled="false"  Height="22px"></asp:TextBox></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
         <td style="margin-left: 40px;text-align:right" colspan="6"><asp:Button ID="btnAdd" runat="server" Text="Add"  OnClientClick="ValidationBasicInfo()" OnClick="btnAdd_Click" /><asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" /></td>
         <td colspan="2">&nbsp;</td>                   
-        </tr>
-                                          
-        <tr><td colspan="5"><hr /></td></tr>          
-                   
+       </tr>                                          
+       <tr><td colspan="6"><hr /></td></tr>                             
     </table>
     </td></tr>
     <tr><td>
