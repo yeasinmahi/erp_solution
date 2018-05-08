@@ -148,7 +148,6 @@ namespace UI.SCM
                     if (xmlString.Length > 5)
                     {
                         string mrtg = objRecive.MrrReceive(18, xmlString, intWh, 0, DateTime.Now, enroll);
-
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
