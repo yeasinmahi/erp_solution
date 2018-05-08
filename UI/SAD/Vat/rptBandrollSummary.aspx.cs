@@ -35,7 +35,7 @@ namespace UI.SAD.Vat
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();     
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
-                if (dt.Rows.Count > 0)
+                if (dt.Rows.Count == 0)
                 {
                     hdnAccno.Value = dt.Rows[0]["intVatPointID"].ToString();
                     hdnVatAccount.Value = dt.Rows[0]["strVATAccountName"].ToString();
@@ -60,7 +60,7 @@ namespace UI.SAD.Vat
         }
        
         protected double TotalQty=0, TotalValue = 0, TotalReject=0, TotalOpening=0, TotalReceive=0, Totaluse=0, TotalWastage=0, TotalnumClosing = 0;
-        protected void dgvTresuryRpt_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void dgvProductRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

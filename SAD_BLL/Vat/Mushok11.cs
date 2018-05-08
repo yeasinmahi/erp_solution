@@ -125,6 +125,18 @@ namespace SAD_BLL.Vat
             catch { return new DataTable(); }
         }
 
+        public string RebitSave(string xmlString, int Unitid, int Accid, int productid, int userid, DateTime dtedate)
+        {
+            string msg = "";
+            try
+            {
+                sprRebateForExportTableAdapter adp = new sprRebateForExportTableAdapter();
+                 adp.GetData(xmlString, Unitid, Accid, productid, userid, dtedate, ref msg);
+            }
+            catch (Exception e) { msg = e.ToString(); }
+            return msg;
+        }
+
         public DataTable getM11M17M18report(int VatAccid, string dtefdate, string dtetdate)
         {
             try
