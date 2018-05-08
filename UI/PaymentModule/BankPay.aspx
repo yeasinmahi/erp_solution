@@ -69,7 +69,7 @@
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Instrument"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlInstrument" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false">
+                <asp:DropDownList ID="ddlInstrument" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlInstrument_SelectedIndexChanged">
                 <asp:ListItem Selected="True" Value="1">Cheque</asp:ListItem><asp:ListItem Value="2">Advice</asp:ListItem>
                 <asp:ListItem Value="3">Adjustment</asp:ListItem></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>  
@@ -150,7 +150,7 @@
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlPayTo" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label14" runat="server" Text=""></asp:Label></td>
-                <td colspan="2" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnSaveBP" runat="server" class="myButton" OnClientClick = "ConfirmAll()" Height="30px" Text="SAVE BP"/></td>        
+                <td colspan="2" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnSaveBP" runat="server" class="myButton" OnClientClick = "ConfirmAll()" Height="30px" Text="SAVE BP" OnClick="btnSaveBP_Click"/></td>        
             </tr>
 
         </table>

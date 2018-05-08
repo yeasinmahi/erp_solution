@@ -555,7 +555,7 @@ namespace UI.SAD.Order
 
 
                         #region ############# replace VAT value by discount amount For APL ################
-                        if(ddlUnit.SelectedValue=="90" && ddlSo.SelectedValue == "465")
+                        if(ddlSo.SelectedValue == "465" || ddlSo.SelectedValue == "1470")
                         {
                             hdnVat.Value = Convert.ToString(calculteddiscount);
                         }

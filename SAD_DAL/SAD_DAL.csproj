@@ -372,10 +372,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UtilityTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Vat\Mushok11New.cs">
+      <DependentUpon>Mushok11New.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\Mushok11New.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mushok11New.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Vat\Mushok11TDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Mushok11TDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\Mushok1718TDS.cs">
+      <DependentUpon>Mushok1718TDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\Mushok1718TDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mushok1718TDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\VatReportTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VatReportTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Vat\VAT_TDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -994,16 +1015,49 @@
     <None Include="Transport\UtilityTDS.xss">
       <DependentUpon>UtilityTDS.xsd</DependentUpon>
     </None>
+    <None Include="Vat\Mushok11New.xsc">
+      <DependentUpon>Mushok11New.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\Mushok11New.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mushok11New.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Vat\Mushok11New.xss">
+      <DependentUpon>Mushok11New.xsd</DependentUpon>
+    </None>
     <None Include="Vat\Mushok11TDS.xsc">
       <DependentUpon>Mushok11TDS.xsd</DependentUpon>
     </None>
     <None Include="Vat\Mushok11TDS.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>Mushok11TDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Vat\Mushok11TDS.xss">
       <DependentUpon>Mushok11TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\Mushok1718TDS.xsc">
+      <DependentUpon>Mushok1718TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\Mushok1718TDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mushok1718TDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Vat\Mushok1718TDS.xss">
+      <DependentUpon>Mushok1718TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\VatReportTDS.xsc">
+      <DependentUpon>VatReportTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\VatReportTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VatReportTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Vat\VatReportTDS.xss">
+      <DependentUpon>VatReportTDS.xsd</DependentUpon>
     </None>
     <None Include="Vat\VAT_TDS.xsc">
       <DependentUpon>VAT_TDS.xsd</DependentUpon>

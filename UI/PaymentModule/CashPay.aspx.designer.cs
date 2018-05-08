@@ -94,40 +94,76 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnLevel control.
+        /// hdnAccHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLevel;
+        protected global::System.Web.UI.WebControls.HiddenField hdnAccHead;
         
         /// <summary>
-        /// hdnysnPay control.
+        /// hdnBillID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnysnPay;
+        protected global::System.Web.UI.WebControls.HiddenField hdnBillID;
         
         /// <summary>
-        /// hdnysnDutyVoucher control.
+        /// hdnBillUnitID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnysnDutyVoucher;
+        protected global::System.Web.UI.WebControls.HiddenField hdnBillUnitID;
         
         /// <summary>
-        /// hdnEmail control.
+        /// hdnAccID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEmail;
+        protected global::System.Web.UI.WebControls.HiddenField hdnAccID;
+        
+        /// <summary>
+        /// hdnBank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnBank;
+        
+        /// <summary>
+        /// hdnBankAcc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnBankAcc;
+        
+        /// <summary>
+        /// hdnInstrument control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnInstrument;
+        
+        /// <summary>
+        /// hdnBillType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnBillType;
         
         /// <summary>
         /// lblHeading control.
@@ -337,6 +373,24 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.TextBox txtNarration;
         
         /// <summary>
+        /// btnAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdd;
+        
+        /// <summary>
+        /// dgvReportForPaymentV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvReportForPaymentV;
+        
+        /// <summary>
         /// Label13 control.
         /// </summary>
         /// <remarks>
@@ -346,13 +400,13 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// ddlPayTo control.
+        /// txtPayTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPayTo;
+        protected global::System.Web.UI.WebControls.TextBox txtPayTo;
         
         /// <summary>
         /// Label14 control.

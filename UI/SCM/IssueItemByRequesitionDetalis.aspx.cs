@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -55,6 +57,12 @@ namespace UI.SCM
             }
             else { }
 
+            //dynamic obj = new
+            //{
+            //    Name = "Yeasin",
+            //    Age = 26
+            //};
+            //XmlParser.CreateXml("Yeasin", obj, filePathForXML);
         }
 
         protected void btnIssue_Click(object sender, EventArgs e)

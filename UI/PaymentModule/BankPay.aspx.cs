@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class BankPay : System.Web.UI.Page
+    public partial class BankPay : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL(); Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
@@ -28,11 +28,17 @@ namespace UI.PaymentModule
         string filePathForXML; string xmlString = ""; string xml;
         decimal monApproveAmount, monTotalAdvance, monLedgerBalance, monNetPay, monVoucherTotal;
         bool ysnAdvance, ysnPurchase, ysnCreditor, ysnAll, ysnBillReg;
+
+        int intUnitID, intCCID, intBank, intBankAcc, intUserID, intBillID;
+        string strCCName, strInstrument, strPayTo, strBillCode, strNarration, strInstrumentNo;
+        DateTime dteInstrumentDate, dteVoucherDate;
+
         #endregion ====================================================================================
 
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+            hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             filePathForXML = Server.MapPath("~/PaymentModule/Data/BPVoucher_" + hdnEnroll.Value + ".xml");
 
             if (!IsPostBack)
@@ -182,7 +188,7 @@ namespace UI.PaymentModule
                                 {
                                     ysnPurchase = true;
                                     dt = new DataTable();
-                                    dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
+                                    dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                                     ddlDebitAc.DataTextField = "strAccName";
                                     ddlDebitAc.DataValueField = "intAccID";
                                     ddlDebitAc.DataSource = dt;
@@ -203,7 +209,7 @@ namespace UI.PaymentModule
                             {
                                 ysnPurchase = true;
                                 dt = new DataTable();
-                                dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
+                                dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                                 ddlDebitAc.DataTextField = "strAccName";
                                 ddlDebitAc.DataValueField = "intAccID";
                                 ddlDebitAc.DataSource = dt;
@@ -218,11 +224,13 @@ namespace UI.PaymentModule
                         if(intPOID == 0)
                         {
                             strNarrationBank = "Being the amount paid to " + party + " against Code: " + entrycode;
+                            txtNarration.Text = strNarrationBank;
                             strNarrationJournal = "Being the amount Adjusted to " + party + " against Code: " + entrycode;
                         }
                         else
                         {
                             strNarrationBank = "Being the amount paid to " + party + " against Code: " + entrycode + ", PO NO: " + intPOID.ToString();
+                            txtNarration.Text = strNarrationBank;
                             strNarrationJournal = "Being the amount Adjusted to " + party + " against Code: " + entrycode + ", PO NO: " + intPOID.ToString();
                         }
 
@@ -265,6 +273,23 @@ namespace UI.PaymentModule
                     }
                 }
                 catch { }                
+            }
+        }
+
+        protected void ddlInstrument_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
+            strInstrument = ddlInstrument.SelectedItem.ToString();
+
+            dt = new DataTable();
+            dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnUnit.Value), strInstrument);
+            if (dt.Rows.Count > 0)
+            {
+                txtNo.Text = dt.Rows[0]["strCode"].ToString();
+            }
+            else
+            {
+                txtNo.Text = "";
             }
         }
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
@@ -426,7 +451,47 @@ namespace UI.PaymentModule
         }
 
 
+        protected void btnSaveBP_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (hdnconfirm.Value == "1")
+                {
+                    intUnitID = int.Parse(hdnBillUnitID.Value);
+                    strCCName = ddlCostCenter.SelectedItem.ToString();
+                    intCCID = int.Parse(ddlCostCenter.SelectedValue.ToString());
+                    intBank = int.Parse(ddlBank.SelectedValue.ToString());
+                    intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
+                    strInstrument = txtNo.Text;
+                    dteInstrumentDate = DateTime.Parse(txtDate.Text);
+                    dteVoucherDate = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+                    intUserID = int.Parse(hdnEnroll.Value);
+                    strPayTo = ddlPayTo.SelectedItem.ToString();
+                    intBillID = int.Parse(hdnBillID.Value);
+                    strBillCode = txtEntryCode.Text;
+                    monApproveAmount = decimal.Parse(txtApproveAmount.Text);
+                    monVoucherTotal = decimal.Parse(txtVoucherIssued.Text);
+                    strNarration = txtNarration.Text;
 
+                    try
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXML);
+                        XmlNode dSftTm = doc.SelectSingleNode("BPVoucher");
+                        string xmlString = dSftTm.InnerXml;
+                        xmlString = "<BPVoucher>" + xmlString + "</BPVoucher>";
+                        xml = xmlString;
+                    }
+                    catch { }
+                    strInstrumentNo = ddlInstrument.SelectedItem.ToString();
+
+                    //Final In Insert                                 
+                    string message = objVoucher.InsertPaymentVoucherBP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                }
+            }
+            catch { }
+        }
 
 
 

@@ -24,9 +24,6 @@ namespace SCM_BLL
             { return adp.GetUserRollCheck(strEmail); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
-        
-
         public DataTable GetBankList(int intUnitID)
         {
             BankAndAccountListTableAdapter adp = new BankAndAccountListTableAdapter();
@@ -62,21 +59,40 @@ namespace SCM_BLL
             { return adp.CreateVoucher(intUnitID, intUser, intBank, intBankAcc, xml); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
-        #region =====================SAID========================
-        public DataTable GetData(int type, string xmlData, int intUnit, int MrrId, DateTime dtDate, int enroll)
+        public string InsertPaymentVoucherBP(int intUnitID, string strCCName, int intCCID, int intBank, int intBankAcc, string strInstrument, DateTime dteInstrumentDate, DateTime dteVoucherDate, int intUserID, string strPayTo, int intBillID, string strBillCode, decimal monApproveAmount, decimal monVoucherTotal, string strNarration, string xml, string strInstrumentNo)
         {
             try
             {
-                string     msg = ""; 
-                SprPendingPurchaseVoucherWebTableAdapter adp = new SprPendingPurchaseVoucherWebTableAdapter();
-                return adp.GetPoVoucherData(type, xmlData, intUnit, MrrId, dtDate, enroll, ref msg  );
-
+                string msg = "";
+                SprPaymentVoucherBPForWebTableAdapter adp = new SprPaymentVoucherBPForWebTableAdapter();
+                adp.InsertPaymentVoucherBP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo, ref msg);
+                return msg;
             }
-            catch { return new DataTable(); }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+        public DataTable GetChequeOrAdvice(int intBankAccID, int intUnitID, string strInstrument)
+        {
+            SprBankGetCheckNoForWebTableAdapter adp = new SprBankGetCheckNoForWebTableAdapter();
+            try
+            { return adp.GetChequeOrAdvice(intBankAccID, intUnitID, strInstrument); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        #endregion========================Close==================
+        public string InsertPaymentVoucherCP(int intUnitID, string strCCName, int intCCID, int intBank, int intBankAcc, string strInstrument, DateTime dteInstrumentDate, DateTime dteVoucherDate, int intUserID, string strPayTo, int intBillID, string strBillCode, decimal monApproveAmount, decimal monVoucherTotal, string strNarration, string xml, string strInstrumentNo)
+        {
+            try
+            {
+                string msg = "";
+                SprPaymentVoucherCPForWebTableAdapter adp = new SprPaymentVoucherCPForWebTableAdapter();
+                adp.InsertPaymentVoucherCP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo, ref msg);
+                return msg;
+            }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+        
+
+
+
 
 
 
