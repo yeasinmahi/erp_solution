@@ -23,7 +23,7 @@ namespace UI.SAD.Vat
     public partial class frmRebate : BasePage
     {
         string xmlpath,Challanno,itemname,DeliveryNo, strMaterial, intMaterial, monM1Qty, strUOM, strChallan, Dono,strBandrollname, filePathForXML, xmlString;
-        int intyear,intmonth, intImportID, intbandrollid,itemid, Purchaseid,intBandrollid;
+        int intyear,intmonth,Productid, intImportID, intbandrollid,itemid, Purchaseid,intBandrollid;
         DataTable dt;decimal qty, monQty, monCD, monSD, monRebateRate, monTotalDuty, monTotalUse, monRD, monOther, monExpQty;
 
         DateTime dtedate, dteReceivedate,dteimpdate;
@@ -36,8 +36,7 @@ namespace UI.SAD.Vat
             if (!IsPostBack)
             {
                 UpdatePanel0.DataBind();
-                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-               // txtdtedate.Text = DateTime.Now.ToString("yyyy-MMM-dd");
+                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();           
                 txtdate.Text = DateTime.Now.ToString("yyyy-MMM-dd");
 
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
@@ -48,6 +47,10 @@ namespace UI.SAD.Vat
                     Session["VatAccid"] = dt.Rows[0]["intVatPointID"].ToString();
                     hdnysnFactory.Value = dt.Rows[0]["ysnFactory"].ToString();
                 }
+                txtOthers.Text = "0";
+                txtCD.Text = "0";
+                txtSD.Text = "0";
+                txtRD.Text = "0";
               
 
             }
@@ -102,16 +105,20 @@ namespace UI.SAD.Vat
 
 
         protected void btnSave_Click(object sender, EventArgs e)
-        {                      
+        {
+            char[] delimiterCharss = { '[', ']' };
+            arrayKeyItem = txtVatItemName.Text.Split(delimiterCharss);
+            Productid = int.Parse(arrayKeyItem[1].ToString());
+
                 dtedate =DateTime.Parse(txtdate.Text);
                 XmlDocument doc = new XmlDocument();
                 doc.Load(xmlpath);
                 XmlNode dSftTm = doc.SelectSingleNode("Voucher");
                 string xmlString = dSftTm.InnerXml;
                 xmlString = "<Voucher>" + xmlString + "</Voucher>";
-                string message = objMush.BrandrollReceiveEntry(xmlString, int.Parse(hdnAccno.Value), int.Parse(Session[SessionParams.USER_ID].ToString()),int.Parse(ddlImport.SelectedValue));
+                string message = objMush.RebitSave(xmlString, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value),Productid, int.Parse(Session[SessionParams.USER_ID].ToString()),dtedate);
                 File.Delete(xmlpath);
-         
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ message + "');", true);
         }
 
         protected void txtItemMatrial_TextChanged(object sender, EventArgs e)
@@ -160,7 +167,11 @@ namespace UI.SAD.Vat
                 {
                     monRebateRate = monTotalDuty / monQty;
                 }
-               // CreateSalesXml(intbandrollid.ToString(), strBandrollname, Dono, dteDodate.ToString(), DeliveryNo, dtedate.ToString(), dteReceivedate.ToString(), qty.ToString());
+                CreateSalesXml(intMaterial.ToString(), strMaterial, strUOM, monM1Qty, monTotalUse.ToString(), intImportID.ToString(), Challanno, dtedate.ToString(), monExpQty.ToString(), monCD.ToString(), monSD.ToString(), monRD.ToString(), monOther.ToString(), monTotalDuty.ToString(), monRebateRate.ToString());
+                txtCD.Text = "";
+                txtSD.Text = "";
+                txtRD.Text = "";
+                txtOthers.Text = "";
             }
             else {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Correct Information !');", true);
@@ -195,7 +206,7 @@ namespace UI.SAD.Vat
             catch { }
         }
         protected double TotalQty = 0; protected double TotalValue = 0, TotalSDVAT = 0, TotalSD = 0, TotalVAT = 0;
-        protected void dgvPurChaseRpt_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void dgvProductRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -266,14 +277,14 @@ namespace UI.SAD.Vat
             }
             catch { }
         }
-        private void CreateSalesXml(string brandrollid, string brandrollname,string Demorderno, string demordedate, string Deliveryno, string deliverydate,string receivedate, string qty)
+        private void CreateSalesXml(string intMaterial, string strMaterial, string strUOM, string monM1Qty, string monTotalUse, string intImportID, string Challanno, string dtedate, string monExpQty, string monCD, string monSD, string monRD, string monOther, string monTotalDuty, string monRebateRate)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("SOItem");
-                XmlNode addItem = CreateItemNode(doc, brandrollid, brandrollname, Demorderno, demordedate, Deliveryno, deliverydate, receivedate,  qty);
+                XmlNode addItem = CreateItemNode(doc, intMaterial, strMaterial, strUOM, monM1Qty, monTotalUse,  intImportID,  Challanno,  dtedate,  monExpQty,  monCD,  monSD,  monRD,  monOther,  monTotalDuty,  monRebateRate);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -281,7 +292,7 @@ namespace UI.SAD.Vat
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("SOItem");
-                XmlNode addItem = CreateItemNode(doc, brandrollid, brandrollname, Demorderno, demordedate, Deliveryno, deliverydate, receivedate, qty);
+                XmlNode addItem = CreateItemNode(doc, intMaterial, strMaterial, strUOM, monM1Qty, monTotalUse, intImportID, Challanno, dtedate, monExpQty, monCD, monSD, monRD, monOther, monTotalDuty, monRebateRate);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -289,38 +300,60 @@ namespace UI.SAD.Vat
 
             LoadGridwithXml();
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string brandrollid, string brandrollname, string Demorderno, string demordedate, string Deliveryno, string deliverydate, string receivedate,string qty)
+        private XmlNode CreateItemNode(XmlDocument doc, string intMaterial, string strMaterial, 
+            string strUOM, string monM1Qty, string monTotalUse, string intImportID, string Challanno,
+            string dtedate, string monExpQty, string monCD, string monSD, string monRD, string
+            monOther, string monTotalDuty, string monRebateRate)
         {
             XmlNode node = doc.CreateElement("item");
        
-            XmlAttribute Brandrollid = doc.CreateAttribute("brandrollid");
-            Brandrollid.Value = brandrollid;
-            XmlAttribute Brandrollname = doc.CreateAttribute("brandrollname");
-            Brandrollname.Value = brandrollname;
+            XmlAttribute IntMaterial = doc.CreateAttribute("intMaterial");
+            IntMaterial.Value = intMaterial;
+            XmlAttribute StrMaterial = doc.CreateAttribute("strMaterial");
+            StrMaterial.Value = strMaterial;
 
-            XmlAttribute demorderno = doc.CreateAttribute("Demorderno");
-            demorderno.Value = Demorderno;
-            XmlAttribute Demordedate = doc.CreateAttribute("demordedate");
-            Demordedate.Value = demordedate;
-            XmlAttribute deliveryno = doc.CreateAttribute("Deliveryno");
-            deliveryno.Value = Deliveryno;
-            XmlAttribute Deliverydate = doc.CreateAttribute("deliverydate");
-            Deliverydate.Value = deliverydate;
-            XmlAttribute Receivedate = doc.CreateAttribute("receivedate");
-            Receivedate.Value = receivedate;
-            XmlAttribute Qty = doc.CreateAttribute("qty");
-            Qty.Value = qty;
+            XmlAttribute StrUOM = doc.CreateAttribute("strUOM");
+            StrUOM.Value = strUOM;
+            XmlAttribute MonM1Qty = doc.CreateAttribute("monM1Qty");
+            MonM1Qty.Value = monM1Qty;
+            XmlAttribute MonTotalUse = doc.CreateAttribute("monTotalUse");
+            MonTotalUse.Value = monTotalUse;
+            XmlAttribute IntImportID = doc.CreateAttribute("intImportID");
+            IntImportID.Value = intImportID;
+            XmlAttribute challanno = doc.CreateAttribute("Challanno");
+            challanno.Value = Challanno;
+            XmlAttribute Dtedate = doc.CreateAttribute("dtedate");
+            Dtedate.Value = dtedate;
+            XmlAttribute MonExpQty = doc.CreateAttribute("monExpQty");
+            MonExpQty.Value = monExpQty;
+            XmlAttribute MonCD = doc.CreateAttribute("monCD");
+            MonCD.Value = monCD;
+            XmlAttribute MonSD = doc.CreateAttribute("monSD");
+            MonSD.Value = monSD;
+            XmlAttribute MonRD = doc.CreateAttribute("monRD");
+            MonRD.Value = monRD;
+            XmlAttribute MonOther = doc.CreateAttribute("monOther");
+            MonOther.Value = monOther;
+            XmlAttribute MonTotalDuty = doc.CreateAttribute("monTotalDuty");
+            MonTotalDuty.Value = monTotalDuty;
+            XmlAttribute MonRebateRate = doc.CreateAttribute("monRebateRate");
+            MonRebateRate.Value = monRebateRate;
 
-            node.Attributes.Append(Brandrollid);
-            node.Attributes.Append(Brandrollname);
-            node.Attributes.Append(demorderno);
-            node.Attributes.Append(Demordedate);
-            node.Attributes.Append(deliveryno);
-            node.Attributes.Append(Deliverydate);
-            node.Attributes.Append(Receivedate);
-            node.Attributes.Append(Qty);
-          
-
+            node.Attributes.Append(IntMaterial);
+            node.Attributes.Append(StrMaterial);
+            node.Attributes.Append(StrUOM);
+            node.Attributes.Append(MonM1Qty);
+            node.Attributes.Append(MonTotalUse);
+            node.Attributes.Append(IntImportID);
+            node.Attributes.Append(challanno);
+            node.Attributes.Append(Dtedate);
+            node.Attributes.Append(MonExpQty);
+            node.Attributes.Append(MonCD);
+            node.Attributes.Append(MonSD);
+            node.Attributes.Append(MonRD);
+            node.Attributes.Append(MonOther);
+            node.Attributes.Append(MonTotalDuty);
+            node.Attributes.Append(MonRebateRate);
             return node;
         }
         private void LoadGridwithXml()

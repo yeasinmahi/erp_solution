@@ -130,7 +130,7 @@ namespace UI.SAD.Vat
             catch { }
         }
         protected double TotalQty = 0; protected double TotalValue = 0, TotalSDVAT = 0, TotalSD = 0, TotalVAT = 0;
-        protected void dgvPurChaseRpt_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void dgvProductRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

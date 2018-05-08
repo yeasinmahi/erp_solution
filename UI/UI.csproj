@@ -1175,6 +1175,10 @@
     <Content Include="SAD\Vat\frmDestroy.aspx" />
     <Content Include="SAD\Vat\frmItemAndMatrialsAdd.aspx" />
     <Content Include="SAD\Vat\frmItemMushok1.aspx" />
+    <Content Include="SAD\Vat\frmMushok11.aspx" />
+    <Content Include="SAD\Vat\frmMushok11Preivew.aspx" />
+    <Content Include="SAD\Vat\frmMushok11Print.aspx" />
+    <Content Include="SAD\Vat\frmMushok11PrintExport.aspx" />
     <Content Include="SAD\Vat\frmOtherAdjusment.aspx" />
     <Content Include="SAD\Vat\frmProductionEntry.aspx" />
     <Content Include="SAD\Vat\frmPurchaseEntry.aspx" />
@@ -5811,6 +5815,34 @@
     </Compile>
     <Compile Include="SAD\Vat\frmItemMushok1.aspx.designer.cs">
       <DependentUpon>frmItemMushok1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11.aspx.cs">
+      <DependentUpon>frmMushok11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11.aspx.designer.cs">
+      <DependentUpon>frmMushok11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Preivew.aspx.cs">
+      <DependentUpon>frmMushok11Preivew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Preivew.aspx.designer.cs">
+      <DependentUpon>frmMushok11Preivew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Print.aspx.cs">
+      <DependentUpon>frmMushok11Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Print.aspx.designer.cs">
+      <DependentUpon>frmMushok11Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11PrintExport.aspx.cs">
+      <DependentUpon>frmMushok11PrintExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11PrintExport.aspx.designer.cs">
+      <DependentUpon>frmMushok11PrintExport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Vat\frmOtherAdjusment.aspx.cs">
       <DependentUpon>frmOtherAdjusment.aspx</DependentUpon>

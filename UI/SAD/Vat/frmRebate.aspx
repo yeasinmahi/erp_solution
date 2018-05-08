@@ -12,12 +12,12 @@
     <script>
         function ValidationBasicInfo() {
             document.getElementById("hdnconfirm").value = "0";
-            var Matrialname = document.forms["frmPurchase"]["txtMatrialName"].value;
-            var PurDate = document.forms["frmPurchase"]["txtFrom"].value;
-            var SuppName = document.forms["frmPurchase"]["txtSupplierName"].value;           
-            var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
-            var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Exam = document.forms["frmPurchase"]["ddlExam"].value;
+            var Matrialname = document.forms["frmPurchase"]["txtVatItemName"].value;
+            var PurDate = document.forms["frmPurchase"]["txtdate"].value;
+            var txtCD = document.forms["frmPurchase"]["txtCD"].value;           
+            var txtSD = document.forms["frmPurchase"]["txtSD"].value;
+            var txtRD = document.forms["frmPurchase"]["txtRD"].value;
+            var txtOthers = document.forms["frmPurchase"]["txtOthers"].value;
            
 
             if (Matrialname == null || Matrialname == "") {
@@ -27,19 +27,19 @@
             else if (PurDate == null || PurDate == "") {
                 alert("Purchase Date Select !");
             }
-            else if (SuppName == null || SuppName == "") {
-                alert("Please Select Supplier !");
+            else if (txtCD == null || txtCD == "") {
+                alert("Please Entry SD !");
             }
 
-            else if (ChallanNo == null || ChallanNo == "") {
-                alert("Please Fill-up Challan No!");
+            else if (txtSD == null || txtSD == "") {
+                alert("Please Entry SD !");
             }
 
-            else if (ChallanDate == null || ChallanDate == "") {
-                alert("Please Fill-up Challan Date!");
+            else if (txtRD == null || txtRD == "") {
+                alert("Please Entry RD !");
             }
-            else if (Exam == null || Exam == "") {
-                alert("Please select whether this purchase is tax exempted or not.");
+            else if (txtOthers == null || txtOthers == "") {
+                 alert("Please Entry Others !");
             }
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
@@ -65,7 +65,7 @@
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnUnit" runat="server" />
-    <div class="tabs_container"> PRODUCTION ENTRY <hr /></div>
+    <div class="tabs_container"> REBATE ENTRY <hr /></div>
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                                   
         <tr><td>Date</td>
@@ -221,37 +221,67 @@
         <AlternatingRowStyle BackColor="#CCCCCC" />    
         <Columns>
              
-        <asp:TemplateField HeaderText="brandroll id" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblbrandrollid" runat="server" Text='<%# Bind("brandrollid") %>' Width="20px"></asp:Label>
+        <asp:TemplateField HeaderText="ID" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblintMaterial" runat="server" Text='<%# Bind("intMaterial") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="20px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="brandroll name" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblbrandrollname" runat="server" Text='<%# Bind("brandrollname") %>' Width="20px"></asp:Label>
+        <asp:TemplateField HeaderText="Material name" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblstrMaterial" runat="server" Text='<%# Bind("strMaterial") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 
-         <asp:TemplateField HeaderText="Dem.Order No" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblDemorderno" runat="server" Text='<%# Bind("Demorderno") %>' Width="20px"></asp:Label>
+         <asp:TemplateField HeaderText="UOM" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblstrUOM" runat="server" Text='<%# Bind("strUOM") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Dem.Order Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldemordedate" runat="server" Text='<%# Bind("demordedate") %>' Width="20px"></asp:Label>
+        <asp:TemplateField HeaderText="Qty" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonM1Qty" runat="server" Text='<%# Bind("monM1Qty") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 
-         <asp:TemplateField HeaderText="Do NO" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblDono" runat="server" Text='<%# Bind("Deliveryno") %>' Width="20px"></asp:Label>
+         <asp:TemplateField HeaderText="Total Use" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonTotalUse" runat="server" Text='<%# Bind("monTotalUse") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 
-         <asp:TemplateField HeaderText="Do Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldodate" runat="server" Text='<%# Bind("deliverydate") %>' Width="20px"></asp:Label>
+         <asp:TemplateField HeaderText="Import ID" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblintImportID" runat="server" Text='<%# Bind("intImportID") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 
-          <asp:TemplateField HeaderText="Receive Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblreceivedate" runat="server" Text='<%# Bind("receivedate") %>' Width="20px"></asp:Label>
+         <asp:TemplateField HeaderText="Challanno" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblChallanno" runat="server" Text='<%# Bind("Challanno") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Quantity" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("qty") %>' Width="20px"></asp:Label>
+        <asp:TemplateField HeaderText="Date" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lbldtedate" runat="server" Text='<%# Bind("dtedate") %>' Width="20px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="ExpQty" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonExpQty" runat="server" Text='<%# Bind("monExpQty") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+        
+        <asp:TemplateField HeaderText="CD" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonCD" runat="server" Text='<%# Bind("monCD") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+         <asp:TemplateField HeaderText="SD" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonSD" runat="server" Text='<%# Bind("monSD") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="RD" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonRD" runat="server" Text='<%# Bind("monRD") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Other" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonOther" runat="server" Text='<%# Bind("monOther") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Total Duty" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonTotalDuty" runat="server" Text='<%# Bind("monTotalDuty") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Rebate Rate" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblmonRebateRate" runat="server" Text='<%# Bind("monRebateRate") %>' Width="20px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" /></asp:TemplateField>
+
 
         <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" />
             
