@@ -42,7 +42,7 @@ namespace UI.SAD.Vat
                     Session["VatAccid"] = dt.Rows[0]["intVatPointID"].ToString();
                     hdnysnFactory.Value = dt.Rows[0]["ysnFactory"].ToString();
                 }
-                dt = objMush.getBandrollList(int.Parse(hdnAccno.Value));
+                dt = objMush.getBandrollList(int.Parse(dt.Rows[0]["intVatPointID"].ToString()));
                 ddlBandroll.DataTextField = "strBandrollName";
                 ddlBandroll.DataValueField = "intBandrollID";
                 ddlBandroll.DataSource = dt;

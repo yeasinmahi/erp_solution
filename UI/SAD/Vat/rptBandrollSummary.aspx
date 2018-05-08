@@ -48,7 +48,7 @@
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnEnroll" runat="server" /> <asp:HiddenField ID="hdnCustname" runat="server" /> <asp:HiddenField ID="hdnCustAddress" runat="server" />
-    <div class="tabs_container"> TREASURY ENTRY <hr /></div>
+    <div class="tabs_container"> BANDROLL SUMMARY <hr /></div>
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                              
      <tr><td>Report Type</td>
