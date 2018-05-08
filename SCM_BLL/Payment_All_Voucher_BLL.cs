@@ -24,6 +24,9 @@ namespace SCM_BLL
             { return adp.GetUserRollCheck(strEmail); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
+        
+
         public DataTable GetBankList(int intUnitID)
         {
             BankAndAccountListTableAdapter adp = new BankAndAccountListTableAdapter();
@@ -60,8 +63,20 @@ namespace SCM_BLL
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        
+        #region =====================SAID========================
+        public DataTable GetData(int type, string xmlData, int intUnit, int MrrId, DateTime dtDate, int enroll)
+        {
+            try
+            {
+                string     msg = ""; 
+                SprPendingPurchaseVoucherWebTableAdapter adp = new SprPendingPurchaseVoucherWebTableAdapter();
+                return adp.GetPoVoucherData(type, xmlData, intUnit, MrrId, dtDate, enroll, ref msg  );
 
+            }
+            catch { return new DataTable(); }
+        }
+
+        #endregion========================Close==================
 
 
 

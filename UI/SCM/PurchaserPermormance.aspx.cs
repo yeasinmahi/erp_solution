@@ -29,9 +29,9 @@ namespace UI.SCM
             {
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-
+              
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
-                dt = objPo.GetPoData(37, xmlData, intWh, 0, dteFrom, enroll);
+                dt = objPo.GetPoData(43, xmlData, intWh, 0, dteFrom, enroll);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
             }

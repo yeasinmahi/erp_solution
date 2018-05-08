@@ -11189,7 +11189,7 @@ SELECT intWHID, strWareHoseName FROM tblWearHouse WHERE (intWHID = @intWHID)";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [intWHID]\r\n      ,[strWareHoseName]\r\n     \r\n  FROM [ERP_Inventory].[dbo].[" +
-                "tblWearHouse]   ";
+                "tblWearHouse]   where ysnactive=1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

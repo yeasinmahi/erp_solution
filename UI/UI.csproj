@@ -359,6 +359,8 @@
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
+    <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
+    <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\ClassFiles\AutoCompleteSearch.asmx" />
@@ -1175,7 +1177,9 @@
     <Content Include="SCM\IndentStatus.aspx" />
     <Content Include="SCM\IndentStatusDetalis.aspx" />
     <Content Include="SCM\IndentsVsPO.aspx" />
+    <Content Include="SCM\IndentWithoutReceive.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
@@ -1198,6 +1202,7 @@
     <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
+    <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
@@ -2647,6 +2652,20 @@
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.designer.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.cs">
+      <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.designer.cs">
+      <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucher.aspx.cs">
+      <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucher.aspx.designer.cs">
+      <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -5764,12 +5783,26 @@
     <Compile Include="SCM\IndentsVsPO.aspx.designer.cs">
       <DependentUpon>IndentsVsPO.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\IndentWithoutReceive.aspx.cs">
+      <DependentUpon>IndentWithoutReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IndentWithoutReceive.aspx.designer.cs">
+      <DependentUpon>IndentWithoutReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\InventoryReport.aspx.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SCM\InventoryReport.aspx.designer.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueForProduction.aspx.cs">
+      <DependentUpon>IssueForProduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueForProduction.aspx.designer.cs">
+      <DependentUpon>IssueForProduction.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\IssueItemByRequesition.aspx.cs">
       <DependentUpon>IssueItemByRequesition.aspx</DependentUpon>
@@ -5924,6 +5957,13 @@
     </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.designer.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ReceiveWithoutPO.aspx.cs">
+      <DependentUpon>ReceiveWithoutPO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ReceiveWithoutPO.aspx.designer.cs">
+      <DependentUpon>ReceiveWithoutPO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
