@@ -113,7 +113,12 @@ namespace UI.SCM
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                dgvReq.DataSource = "";
+                dgvReq.DataBind();
+            }
+            catch { }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Purchase_BLL.Asset
 {
     class WearHouseID
     {
-        public SearchTDS.TblWearHouseDataTable GetUnits(int intwh)
+        public SearchTDS.TblWearHouseDataTable GetUnits()
         {
             TblWearHouseTableAdapter ta = new TblWearHouseTableAdapter();
             return ta.WareHouseGetData( );
