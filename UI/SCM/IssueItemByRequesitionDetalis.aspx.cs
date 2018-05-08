@@ -57,12 +57,23 @@ namespace UI.SCM
             }
             else { }
 
-            //dynamic obj = new
-            //{
-            //    Name = "Yeasin",
-            //    Age = 26
-            //};
-            //XmlParser.CreateXml("Yeasin", obj, filePathForXML);
+            string message;
+            for (int i=0;i<3;i++)
+            {
+                dynamic obj = new
+                {
+                    itemId = "117919",
+                    itemName = "Angular Ball Bearing  01.22.0007.4(0339838)",
+                    qty = "1",
+                    locationid = "14942",
+                    location = "DTI, Fk5-13",
+                    rate = "33",
+                    remarks = "test"
+                };
+                
+                XmlParser.CreateXml("Vouchar", obj, filePathForXML,out message);
+            }
+            
         }
 
         protected void btnIssue_Click(object sender, EventArgs e)
