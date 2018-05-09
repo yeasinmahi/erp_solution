@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Bill Approval </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -62,7 +62,7 @@
     
 </head>
 <body>
-    <form id="frmBillRegistration" runat="server">        
+    <form id="frmBillApproval" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -99,7 +99,7 @@
                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClick="btnShow_Click"/></td>        
+                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClientClick="LoaderBusy()" OnClick="btnShow_Click"/></td>        
                     </tr>
                     <tr><td colspan="5"><hr /></td></tr> 
                     <tr>
@@ -209,10 +209,7 @@
             </table>
         </td></tr>
     </table>
-
-
-
-
+        
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>

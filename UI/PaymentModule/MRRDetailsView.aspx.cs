@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class MRRDetailsView : System.Web.UI.Page
+    public partial class MRRDetailsView : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL();

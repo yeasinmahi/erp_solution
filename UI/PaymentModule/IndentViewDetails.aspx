@@ -3,7 +3,7 @@
 <!DOCTYPE html> 
 <html> 
 <head runat="server"> 
-    <title></title> 
+    <title>::. Indent Details View</title> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" /> 
@@ -37,7 +37,7 @@
 </head> 
 <body>
 
-     <form id="frmLoanSummaryPrint" runat="server">        
+     <form id="frmIndentDetailsView" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>  
 
 <%--=========================================Start My Code From Here===============================================--%> 

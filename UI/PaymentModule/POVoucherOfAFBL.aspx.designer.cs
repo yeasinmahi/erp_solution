@@ -10,7 +10,7 @@
 namespace UI.PaymentModule {
     
     
-    public partial class ApproveSingle {
+    public partial class POVoucherOfAFBL {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -40,13 +40,13 @@ namespace UI.PaymentModule {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmApproveSingele control.
+        /// frmPOPaymentVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmApproveSingele;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmPOPaymentVoucher;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -85,31 +85,13 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
-        /// hdnPOID control.
+        /// hdnUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnPOID;
-        
-        /// <summary>
-        /// hdnBillID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBillID;
-        
-        /// <summary>
-        /// hdnEntryType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEntryType;
+        protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
         /// hdnLevel control.
@@ -121,121 +103,76 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.HiddenField hdnLevel;
         
         /// <summary>
-        /// lblUnitName control.
+        /// hdnysnPay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUnitName;
+        protected global::System.Web.UI.WebControls.HiddenField hdnysnPay;
         
         /// <summary>
-        /// lblC control.
+        /// hdnysnDutyVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblC;
+        protected global::System.Web.UI.WebControls.HiddenField hdnysnDutyVoucher;
         
         /// <summary>
-        /// lblEntryCode control.
+        /// hdnEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEntryCode;
+        protected global::System.Web.UI.WebControls.HiddenField hdnEmail;
         
         /// <summary>
-        /// Label8 control.
+        /// hdnCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCount;
         
         /// <summary>
-        /// lblBillAmount control.
+        /// lblHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBillAmount;
+        protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// Label10 control.
+        /// lblUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label lblUnit;
         
         /// <summary>
-        /// lblArrovedLevel control.
+        /// ddlUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblArrovedLevel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
         
         /// <summary>
-        /// Label18 control.
+        /// Label13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
-        
-        /// <summary>
-        /// lblNetPay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNetPay;
-        
-        /// <summary>
-        /// Label20 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label20;
-        
-        /// <summary>
-        /// lblParty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblParty;
-        
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
         /// Label1 control.
@@ -247,103 +184,40 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Label26 control.
+        /// ddlBank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label26;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBank;
         
         /// <summary>
-        /// Label27 control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label27;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Label28 control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label28;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// lblPreviousAdvance control.
+        /// ddlAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPreviousAdvance;
-        
-        /// <summary>
-        /// lblLoanType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLoanType;
-        
-        /// <summary>
-        /// ddlCurrentAction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCurrentAction;
-        
-        /// <summary>
-        /// Label9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
-        /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccount;
         
         /// <summary>
         /// Label4 control.
@@ -355,48 +229,39 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// txtAmount control.
+        /// btnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmount;
+        protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// Label12 control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// txtRemarks control.
+        /// btnPreAllVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRemarks;
+        protected global::System.Web.UI.WebControls.Button btnPreAllVoucher;
         
         /// <summary>
-        /// btnSaveAction control.
+        /// dgvReportForPaymentV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveAction;
-        
-        /// <summary>
-        /// dgvPreviousStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvPreviousStatus;
+        protected global::System.Web.UI.WebControls.GridView dgvReportForPaymentV;
     }
 }

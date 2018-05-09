@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class ApproveSingle : System.Web.UI.Page
+    public partial class ApproveSingle : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL();

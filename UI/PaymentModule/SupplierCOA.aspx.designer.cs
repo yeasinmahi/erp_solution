@@ -10,7 +10,7 @@
 namespace UI.PaymentModule {
     
     
-    public partial class IndentViewDetails {
+    public partial class SupplierCOA {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -40,13 +40,13 @@ namespace UI.PaymentModule {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmIndentDetailsView control.
+        /// frmSupplierCOA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmIndentDetailsView;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmSupplierCOA;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -58,156 +58,120 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.ScriptManager ScriptManager0;
         
         /// <summary>
-        /// hfImageData control.
+        /// UpdatePanel0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfImageData;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
         
         /// <summary>
-        /// hdnBillID control.
+        /// hdnconfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBillID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnconfirm;
         
         /// <summary>
-        /// imgUnit control.
+        /// hdnEnroll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgUnit;
+        protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
-        /// lblUnitName control.
+        /// hdnUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUnitName;
+        protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// lblWH control.
+        /// hdnLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWH;
+        protected global::System.Web.UI.WebControls.HiddenField hdnLevel;
         
         /// <summary>
-        /// lblDetalis control.
+        /// hdnysnPay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDetalis;
+        protected global::System.Web.UI.WebControls.HiddenField hdnysnPay;
         
         /// <summary>
-        /// lblInd control.
+        /// hdnysnDutyVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInd;
+        protected global::System.Web.UI.WebControls.HiddenField hdnysnDutyVoucher;
         
         /// <summary>
-        /// lblIndent control.
+        /// hdnEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndent;
+        protected global::System.Web.UI.WebControls.HiddenField hdnEmail;
         
         /// <summary>
-        /// Label4 control.
+        /// lblHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// lblType control.
+        /// lblLoanType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblType;
+        protected global::System.Web.UI.WebControls.Label lblLoanType;
         
         /// <summary>
-        /// Label6 control.
+        /// ddlUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
         
         /// <summary>
-        /// lbldteIndent control.
+        /// btnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldteIndent;
+        protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// Label2 control.
+        /// dgvSupplierList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// lbldteDue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldteDue;
-        
-        /// <summary>
-        /// dgvIndentsDetalis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvIndentsDetalis;
-        
-        /// <summary>
-        /// lblIndentBY control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndentBY;
-        
-        /// <summary>
-        /// lblApproveBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblApproveBy;
+        protected global::System.Web.UI.WebControls.GridView dgvSupplierList;
     }
 }

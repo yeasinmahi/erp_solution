@@ -19,9 +19,16 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+
+    <script>
+        function CloseWindow() {
+            window.close();
+        }
+    </script>
+
     </head>
 <body>
-    <form id="frmBankPay" runat="server">        
+    <form id="frmCashPay" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>

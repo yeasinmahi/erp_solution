@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Bill Details </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -20,13 +20,11 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
-    <script language="javascript">        
-        
+    <script language="javascript">  
         function Registration(url) {
             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
             if (window.focus) { newwindow.focus() }
         }
-
         function ViewDocumentPopup(Id) {
             window.open('DocListByBillID.aspx?ID=' + Id, 'sub', "height=600, width=500, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
@@ -43,7 +41,7 @@
     
 </head>
 <body>
-    <form id="frmBillRegistration" runat="server">        
+    <form id="frmBillDetails" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
