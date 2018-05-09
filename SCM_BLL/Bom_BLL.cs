@@ -85,5 +85,19 @@ namespace SCM_BLL
             }
 
         }
+
+        public string BomPostData(int type, string xmlString, int intWh, int bomid, DateTime dteDate, int enroll)
+        { 
+            string strMsg = "";
+            try
+            {
+                SprBuildOfMaterialTableAdapter adp = new SprBuildOfMaterialTableAdapter();
+                adp.GetBomData(type, xmlString, intWh, bomid, dteDate, enroll, ref strMsg);
+
+            }
+            catch (Exception ex) { return strMsg = ex.ToString(); }
+            return strMsg;
+
+        }
     }
 }

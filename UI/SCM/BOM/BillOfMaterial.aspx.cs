@@ -29,6 +29,8 @@ namespace UI.SCM.BOM
             {
                 try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
                 catch { }
+                txtBomItem.Visible = false;
+                ListDatas.Visible = false;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
@@ -141,8 +143,8 @@ namespace UI.SCM.BOM
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                       // string mrtg = objRecive.MrrReceive(18, xmlString, intWh, 0, DateTime.Now, enroll);
-                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
+                        string msg = objBom.BomPostData(18, xmlString, intWh, BomId, DateTime.Now, enroll);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
 
@@ -257,6 +259,20 @@ namespace UI.SCM.BOM
                 }
             }
             catch { }
+        }
+
+        protected void chkBom_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkBom.Checked==true)
+            {
+                txtBomItem.Visible = true;
+                ListDatas.Visible = true;
+            }
+            else
+            {
+                txtBomItem.Visible = false;
+                ListDatas.Visible = false;
+            }
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)

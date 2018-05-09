@@ -45,6 +45,12 @@
         }
 
 </script> 
+    <style type="text/css">
+        .auto-style2 {
+            width: 46%;
+            float: left;
+        }
+    </style>
 </head>
 
 <body>
@@ -79,7 +85,7 @@
        <asp:HiddenField ID="hdnDA" runat="server" />  
        <div class="tabs_container">Bill of Material From<hr/></div> 
         <div>
-           <div style="width:60%;Text-align:center;float:left;">
+           <div style="Text-align:left;" class="auto-style2">
            <b><table style="width:650px">
             <tr> 
             <td style="text-align:left;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
@@ -95,11 +101,13 @@
                  
             </tr>
            <tr>
-                <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity"></asp:Label></td>
+            <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtQuantity" CssClass="txtBox" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>                                                                                      
           <td style="text-align:right;" ><asp:Label ID="lblPurpose" runat="server" CssClass="lbl" Text="Wastage(%)"></asp:Label></td>            
 
-            <td style="text-align:left;"><asp:TextBox ID="txtWastage" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> </td>                                                                                      
+            <td style="text-align:left;"><asp:TextBox ID="txtWastage" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> 
+                 
+            </td>                                                                                      
       
            </tr>
             <tr>
@@ -108,24 +116,27 @@
                  <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Code"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtCode" CssClass="txtBox" Font-Bold="False"   Text="0" AutoPostBack="false" runat="server"></asp:TextBox> </td>
             </tr>
-            <tr> 
-           <td style="text-align:right" colspan="3"><asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"     />
-           <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click"    /></td>  
+            <tr>
+           
+           <td style="text-align:right" colspan="4"><asp:CheckBox ID="chkBom" AutoPostBack="true" Text="ExistBom" runat="server" OnCheckedChanged="chkBom_CheckedChanged" /><asp:Button ID="btnAdd" runat="server" Font-Bold="true" Text="Add" OnClick="btnAdd_Click"     />
+           <asp:Button ID="btnSubmit" runat="server" Text="Submit" Font-Bold="true" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click"    />
+               
+           </td>  
             </tr>
              </table>
-               <table style="width:650px">
+               <table style="width:800px"> 
             <tr><td> 
 
-            <asp:GridView ID="dgvRecive" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
+            <asp:GridView ID="dgvRecive" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="650px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
 
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  >
 
             <AlternatingRowStyle BackColor="#CCCCCC" />
 
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
 
-            <asp:TemplateField HeaderText="ItemId" Visible="true" SortExpression="itemid"><ItemTemplate>
+            <asp:TemplateField HeaderText="ItemId" Visible="false" SortExpression="itemid"><ItemTemplate>
             <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("itemid") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
 
@@ -163,9 +174,10 @@
             </asp:GridView></td>
         </tr> 
       </table></b></div>
+          
        <div style="Text-align:right;Width:40%;float:right">
-            
-               <table style="width:350px">
+              
+               <table style="width:300px">
                    <tr>
                       
               <td style="Text-align:right;"><asp:TextBox ID="txtBomItem" runat="server" AutoCompleteType="Search" Placeholder="Bom Item Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtBomItem_TextChanged"   ></asp:TextBox>
