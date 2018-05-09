@@ -17,6 +17,7 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.AEFPS;
 using SAD_BLL.Vat;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Vat
 {
@@ -24,7 +25,7 @@ namespace UI.SAD.Vat
     {
  
         DataTable dt;
-        DateTime  dtedate;
+        DateTime  dtedate,dtetodate;
         char[] delimiterChars = { '[', ']' }; string[] arrayKeyItem;
         Mushok11 objMush = new Mushok11();bool ysnDay, ysnMaterial, ysnChallan;
         protected void Page_Load(object sender, EventArgs e)
@@ -66,10 +67,16 @@ namespace UI.SAD.Vat
                 ysnMaterial = false;
                 ysnChallan = true;
             }
-  
-            dt = objMush.GetSalesSummary(int.Parse(ddlShorby.SelectedValue),int.Parse(hdnAccno.Value), txtdtefdate.Text, txttodate.Text, ysnDay,ysnMaterial,ysnChallan);
-            dgvPurChaseRpt.DataSource = dt;
-            dgvPurChaseRpt.DataBind();
+           
+            dtedate = DateFormat.GetDateAtSQLDateFormat(txtdtefdate.Text).Value;
+            dtetodate = DateFormat.GetDateAtSQLDateFormat(txttodate.Text).Value;
+            //Session[SessionParams.UNIT_ID].ToString()
+            dt = objMush.GetSalesSummary(int.Parse("16"), int.Parse(Session["VatAccid"].ToString()), dtedate, dtetodate, ysnDay,ysnMaterial,ysnChallan);
+            if (dt.Rows.Count > 0)
+            {
+                dgvPurChaseRpt.DataSource = dt;
+                dgvPurChaseRpt.DataBind();
+            }
         }
        
         protected double TotalQty = 0, TotalSDVat = 0, TotalSD = 0, TotalVAT=0, TotalTotal=0;
@@ -77,21 +84,21 @@ namespace UI.SAD.Vat
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (((Label)e.Row.Cells[3].FindControl("lblQuantity")).Text == "")
+                if (((Label)e.Row.Cells[4].FindControl("lblQuantity")).Text == "")
                 {
                     TotalQty += 0;
                 }
                 else
                 {
-                    TotalQty += double.Parse(((Label)e.Row.Cells[3].FindControl("lblQuantity")).Text);
+                    TotalQty += double.Parse(((Label)e.Row.Cells[4].FindControl("lblQuantity")).Text);
                 }
-                if (((Label)e.Row.Cells[6].FindControl("lblWithout")).Text == "")
+                if (((Label)e.Row.Cells[5].FindControl("lblWithout")).Text == "")
                 {
                     TotalSDVat += 0;
                 }
                 else
                 {
-                    TotalSDVat += double.Parse(((Label)e.Row.Cells[6].FindControl("lblWithout")).Text);
+                    TotalSDVat += double.Parse(((Label)e.Row.Cells[5].FindControl("lblWithout")).Text);
                 }
                 if (((Label)e.Row.Cells[6].FindControl("lblSD")).Text == "")
                 {
@@ -101,21 +108,21 @@ namespace UI.SAD.Vat
                 {
                     TotalSD += double.Parse(((Label)e.Row.Cells[6].FindControl("lblSD")).Text);
                 }
-                if (((Label)e.Row.Cells[6].FindControl("lblVAT")).Text == "")
+                if (((Label)e.Row.Cells[7].FindControl("lblVAT")).Text == "")
                 {
                     TotalVAT += 0;
                 }
                 else
                 {
-                    TotalVAT += double.Parse(((Label)e.Row.Cells[6].FindControl("lblVAT")).Text);
+                    TotalVAT += double.Parse(((Label)e.Row.Cells[7].FindControl("lblVAT")).Text);
                 }
-                if (((Label)e.Row.Cells[6].FindControl("lblTotal")).Text == "")
+                if (((Label)e.Row.Cells[8].FindControl("lblTotal")).Text == "")
                 {
                     TotalTotal += 0;
                 }
                 else
                 {
-                    TotalTotal += double.Parse(((Label)e.Row.Cells[6].FindControl("lblTotal")).Text);
+                    TotalTotal += double.Parse(((Label)e.Row.Cells[8].FindControl("lblTotal")).Text);
                 }
 
             }

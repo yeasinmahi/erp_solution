@@ -3412,13 +3412,13 @@ namespace SAD_DAL.Vat {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblIssueSummaryDataTable : global::System.Data.TypedTableBase<tblIssueSummaryRow> {
             
-            private global::System.Data.DataColumn columndteIssueDate;
-            
             private global::System.Data.DataColumn columnstrMaterialName;
             
             private global::System.Data.DataColumn columnColumn1;
             
             private global::System.Data.DataColumn columnColumn2;
+            
+            private global::System.Data.DataColumn columndteIssueDate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3455,14 +3455,6 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteIssueDateColumn {
-                get {
-                    return this.columndteIssueDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn strMaterialNameColumn {
                 get {
                     return this.columnstrMaterialName;
@@ -3482,6 +3474,14 @@ namespace SAD_DAL.Vat {
             public global::System.Data.DataColumn Column2Column {
                 get {
                     return this.columnColumn2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteIssueDateColumn {
+                get {
+                    return this.columndteIssueDate;
                 }
             }
             
@@ -3522,13 +3522,13 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblIssueSummaryRow AddtblIssueSummaryRow(System.DateTime dteIssueDate, string strMaterialName, decimal Column1, decimal Column2) {
+            public tblIssueSummaryRow AddtblIssueSummaryRow(string strMaterialName, decimal Column1, decimal Column2, string dteIssueDate) {
                 tblIssueSummaryRow rowtblIssueSummaryRow = ((tblIssueSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        dteIssueDate,
                         strMaterialName,
                         Column1,
-                        Column2};
+                        Column2,
+                        dteIssueDate};
                 rowtblIssueSummaryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblIssueSummaryRow);
                 return rowtblIssueSummaryRow;
@@ -3551,27 +3551,28 @@ namespace SAD_DAL.Vat {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columndteIssueDate = base.Columns["dteIssueDate"];
                 this.columnstrMaterialName = base.Columns["strMaterialName"];
                 this.columnColumn1 = base.Columns["Column1"];
                 this.columnColumn2 = base.Columns["Column2"];
+                this.columndteIssueDate = base.Columns["dteIssueDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columndteIssueDate = new global::System.Data.DataColumn("dteIssueDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteIssueDate);
                 this.columnstrMaterialName = new global::System.Data.DataColumn("strMaterialName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrMaterialName);
                 this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnColumn1);
                 this.columnColumn2 = new global::System.Data.DataColumn("Column2", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnColumn2);
-                this.columndteIssueDate.AllowDBNull = false;
+                this.columndteIssueDate = new global::System.Data.DataColumn("dteIssueDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteIssueDate);
                 this.columnstrMaterialName.MaxLength = 1000;
                 this.columnColumn1.ReadOnly = true;
                 this.columnColumn2.ReadOnly = true;
+                this.columndteIssueDate.ReadOnly = true;
+                this.columndteIssueDate.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5691,6 +5692,8 @@ namespace SAD_DAL.Vat {
             
             private global::System.Data.DataColumn columnColumn9;
             
+            private global::System.Data.DataColumn columnColumn21;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprGetSalesSummaryDataDataTable() {
@@ -5798,6 +5801,14 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Column21Column {
+                get {
+                    return this.columnColumn21;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5833,7 +5844,7 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprGetSalesSummaryDataRow AddsprGetSalesSummaryDataRow(long Column1, System.DateTime Column2, string Column3, string Column4, decimal Column5, decimal Column6, decimal Column7, decimal Column8, decimal Column9) {
+            public sprGetSalesSummaryDataRow AddsprGetSalesSummaryDataRow(long Column1, System.DateTime Column2, string Column3, string Column4, decimal Column5, decimal Column6, decimal Column7, decimal Column8, decimal Column9, string Column21) {
                 sprGetSalesSummaryDataRow rowsprGetSalesSummaryDataRow = ((sprGetSalesSummaryDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Column1,
@@ -5844,7 +5855,8 @@ namespace SAD_DAL.Vat {
                         Column6,
                         Column7,
                         Column8,
-                        Column9};
+                        Column9,
+                        Column21};
                 rowsprGetSalesSummaryDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsprGetSalesSummaryDataRow);
                 return rowsprGetSalesSummaryDataRow;
@@ -5876,6 +5888,7 @@ namespace SAD_DAL.Vat {
                 this.columnColumn7 = base.Columns["Column7"];
                 this.columnColumn8 = base.Columns["Column8"];
                 this.columnColumn9 = base.Columns["Column9"];
+                this.columnColumn21 = base.Columns["Column21"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5899,6 +5912,8 @@ namespace SAD_DAL.Vat {
                 base.Columns.Add(this.columnColumn8);
                 this.columnColumn9 = new global::System.Data.DataColumn("Column9", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnColumn9);
+                this.columnColumn21 = new global::System.Data.DataColumn("Column21", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn21);
                 this.columnColumn1.ReadOnly = true;
                 this.columnColumn2.ReadOnly = true;
                 this.columnColumn3.ReadOnly = true;
@@ -5910,6 +5925,9 @@ namespace SAD_DAL.Vat {
                 this.columnColumn7.ReadOnly = true;
                 this.columnColumn8.ReadOnly = true;
                 this.columnColumn9.ReadOnly = true;
+                this.columnColumn21.ReadOnly = true;
+                this.columnColumn21.Caption = "Column2";
+                this.columnColumn21.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11155,17 +11173,6 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dteIssueDate {
-                get {
-                    return ((global::System.DateTime)(this[this.tabletblIssueSummary.dteIssueDateColumn]));
-                }
-                set {
-                    this[this.tabletblIssueSummary.dteIssueDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string strMaterialName {
                 get {
                     try {
@@ -11214,6 +11221,22 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string dteIssueDate {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblIssueSummary.dteIssueDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteIssueDate\' in table \'tblIssueSummary\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblIssueSummary.dteIssueDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrMaterialNameNull() {
                 return this.IsNull(this.tabletblIssueSummary.strMaterialNameColumn);
             }
@@ -11246,6 +11269,18 @@ namespace SAD_DAL.Vat {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetColumn2Null() {
                 this[this.tabletblIssueSummary.Column2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteIssueDateNull() {
+                return this.IsNull(this.tabletblIssueSummary.dteIssueDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteIssueDateNull() {
+                this[this.tabletblIssueSummary.dteIssueDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12596,6 +12631,22 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Column21 {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprGetSalesSummaryData.Column21Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column21\' in table \'sprGetSalesSummaryData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprGetSalesSummaryData.Column21Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsColumn1Null() {
                 return this.IsNull(this.tablesprGetSalesSummaryData.Column1Column);
             }
@@ -12700,6 +12751,18 @@ namespace SAD_DAL.Vat {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetColumn9Null() {
                 this[this.tablesprGetSalesSummaryData.Column9Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsColumn21Null() {
+                return this.IsNull(this.tablesprGetSalesSummaryData.Column21Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetColumn21Null() {
+                this[this.tablesprGetSalesSummaryData.Column21Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -18530,10 +18593,10 @@ SELECT TOP (1) intCusID, strCustName, strCustAddress, strCustVATRegNo, intID FRO
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tblIssueSummary";
-            tableMapping.ColumnMappings.Add("dteIssueDate", "dteIssueDate");
             tableMapping.ColumnMappings.Add("strMaterialName", "strMaterialName");
             tableMapping.ColumnMappings.Add("Column1", "Column1");
             tableMapping.ColumnMappings.Add("Column2", "Column2");
+            tableMapping.ColumnMappings.Add("dteIssueDate", "dteIssueDate");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18550,14 +18613,14 @@ SELECT TOP (1) intCusID, strCustName, strCustAddress, strCustVATRegNo, intID FRO
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT  iss.dteIssueDate, mat.strMaterialName, SUM(iss.numIssueQty), SUM(iss.monIssueValue) FROM ERP_VAT.dbo.tblVATMaterialIssue iss JOIN ERP_VAT.dbo.tblConfigMaterialVAT mat ON iss.intMaterialID=mat.intMaterialID WHERE iss.dteIssueDate BETWEEN @fromDate AND @ToDate AND iss.intVATAccountID=@intVATAccountID AND mat.intMaterialTypeID in (1,2) GROUP BY iss.dteIssueDate, mat.strMaterialName ORDER BY iss.dteIssueDate, mat.strMaterialName";
+            this._commandCollection[0].CommandText = @"SELECT  cast(cast(iss.dteIssueDate as date) as varchar(50))dteIssueDate, mat.strMaterialName, SUM(iss.numIssueQty), SUM(iss.monIssueValue) FROM ERP_VAT.dbo.tblVATMaterialIssue iss JOIN ERP_VAT.dbo.tblConfigMaterialVAT mat ON iss.intMaterialID=mat.intMaterialID WHERE iss.dteIssueDate BETWEEN @fromDate AND @ToDate AND iss.intVATAccountID=@intVATAccountID AND mat.intMaterialTypeID in (1,2) GROUP BY iss.dteIssueDate, mat.strMaterialName ORDER BY iss.dteIssueDate, mat.strMaterialName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intVATAccountID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVATAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT  iss.dteIssueDate, mat.strMaterialName, SUM(iss.numIssueQty), SUM(iss.monIssueValue) FROM ERP_VAT.dbo.tblVATMaterialIssue iss JOIN ERP_VAT.dbo.tblConfigMaterialVAT mat ON iss.intMaterialID=mat.intMaterialID WHERE iss.dteIssueDate BETWEEN @fromDate AND @ToDate AND iss.intVATAccountID=@intVATAccountID AND mat.intMaterialTypeID in (1,2) GROUP BY iss.dteIssueDate, mat.strMaterialName ORDER BY mat.strMaterialName, iss.dteIssueDate";
+            this._commandCollection[1].CommandText = @"SELECT  cast(cast(iss.dteIssueDate as date) as varchar(50))dteIssueDate, mat.strMaterialName, SUM(iss.numIssueQty), SUM(iss.monIssueValue) FROM ERP_VAT.dbo.tblVATMaterialIssue iss JOIN ERP_VAT.dbo.tblConfigMaterialVAT mat ON iss.intMaterialID=mat.intMaterialID WHERE iss.dteIssueDate BETWEEN @fromDate AND @ToDate AND iss.intVATAccountID=@intVATAccountID AND mat.intMaterialTypeID in (1,2) GROUP BY iss.dteIssueDate, mat.strMaterialName ORDER BY mat.strMaterialName, iss.dteIssueDate";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -18633,10 +18696,20 @@ SELECT TOP (1) intCusID, strCustName, strCustAddress, strCustVATRegNo, intID FRO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual Mushok1718TDS.tblIssueSummaryDataTable GetTotal(System.DateTime fromDate, System.DateTime ToDate, global::System.Nullable<int> intVATAccountID) {
+        public virtual Mushok1718TDS.tblIssueSummaryDataTable GetTotal(global::System.Nullable<global::System.DateTime> fromDate, global::System.Nullable<global::System.DateTime> ToDate, global::System.Nullable<int> intVATAccountID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(fromDate));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(ToDate));
+            if ((fromDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(fromDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((ToDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(ToDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             if ((intVATAccountID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intVATAccountID.Value));
             }
@@ -20115,7 +20188,6 @@ SELECT matvat.strMaterialName, intVATMaterialID, numQty, strUOM FROM ERP_VAT.dbo
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "sprGetSalesSummaryData";
             tableMapping.ColumnMappings.Add("Column1", "Column1");
-            tableMapping.ColumnMappings.Add("Column2", "Column2");
             tableMapping.ColumnMappings.Add("Column3", "Column3");
             tableMapping.ColumnMappings.Add("Column4", "Column4");
             tableMapping.ColumnMappings.Add("Column5", "Column5");
@@ -20123,6 +20195,7 @@ SELECT matvat.strMaterialName, intVATMaterialID, numQty, strUOM FROM ERP_VAT.dbo
             tableMapping.ColumnMappings.Add("Column7", "Column7");
             tableMapping.ColumnMappings.Add("Column8", "Column8");
             tableMapping.ColumnMappings.Add("Column9", "Column9");
+            tableMapping.ColumnMappings.Add("Column2", "Column21");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

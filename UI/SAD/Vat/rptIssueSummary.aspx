@@ -48,7 +48,7 @@
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnEnroll" runat="server" /> <asp:HiddenField ID="hdnCustname" runat="server" /> <asp:HiddenField ID="hdnCustAddress" runat="server" />
-    <div class="tabs_container"> TREASURY ENTRY <hr /></div>
+    <div class="tabs_container"> ISSUE SUMMARY<hr /></div>
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                              
      <tr><td>Material Name</td>
@@ -102,14 +102,14 @@
         <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px" /><ItemTemplate>  <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
  
         <asp:TemplateField HeaderText="Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldate" runat="server" Text='<%# Bind("dteIssueDate","{0:d}") %>' Width="100px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lbldate" runat="server" Text='<%# Bind("dteIssueDate") %>' Width="100px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Material Description" SortExpression="itemname">
         <ItemTemplate> <asp:Label ID="lblintItemnames" runat="server" Text='<%# Bind("strMaterialName") %>' Width="200px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="200px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Value" SortExpression="qty">
+        <asp:TemplateField HeaderText="Quantity" SortExpression="qty">
         <ItemTemplate><asp:Label ID="lblQuantity" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Column1","{0:n0}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
         <FooterTemplate><asp:Label ID="lblQtyTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# TotalQty %>" /></FooterTemplate></asp:TemplateField>

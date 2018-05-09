@@ -293,8 +293,7 @@ namespace UI.AEFPS
                         txtDept.Text = dt.Rows[0]["strDepatrment"].ToString();
                         hdnSalary.Value = dt.Rows[0]["monSalary"].ToString();
                         dt = objAEFPS.getCreditAmountPurches(dt.Rows[0]["intEmployeeID"].ToString());
-                        if (dt.Rows.Count > 0)
-                        {
+                        
                             txtCredittotalamount.Text = dt.Rows[0]["CashReceiveamount"].ToString();
                             AvailableBalance = decimal.Parse(hdnSalary.Value) - decimal.Parse(dt.Rows[0]["CashReceiveamount"].ToString());
                             if (AvailableBalance > 0)
@@ -305,8 +304,7 @@ namespace UI.AEFPS
                             {
                                 txtCreditStatus.Text = "Not Elizable";
                             }
-                        }
-                        else { txtCredittotalamount.Text = ""; }
+                       
 
                     }
                 }
