@@ -63,14 +63,14 @@ namespace UI.PaymentModule
                     intPartyType = int.Parse(dt.Rows[0]["intPartyType"].ToString());
                     try { intPOID = int.Parse(dt.Rows[0]["strReff_PO"].ToString()); }
                     catch { intPOID = 0; }
-                    monApproveAmount = decimal.Parse(dt.Rows[0]["monApprove"].ToString());
-                    monVoucherTotal = decimal.Parse(dt.Rows[0]["monVoucherTotal"].ToString());
-                    monTotalAdvance = decimal.Parse(dt.Rows[0]["monAdvanceTotal"].ToString());
+                    monApproveAmount = Math.Round(decimal.Parse(dt.Rows[0]["monApprove"].ToString()), 2);
+                    monVoucherTotal = Math.Round(decimal.Parse(dt.Rows[0]["monVoucherTotal"].ToString()), 2);
+                    monTotalAdvance = Math.Round(decimal.Parse(dt.Rows[0]["monAdvanceTotal"].ToString()), 2);
                     intAccID = int.Parse(dt.Rows[0]["intPartyCOA"].ToString());
                     strAccName = dt.Rows[0]["strPartyCOA"].ToString();
                     intCountPVoucher = int.Parse(dt.Rows[0]["intCountPVoucher"].ToString());
-                    monLedgerBalance = decimal.Parse(dt.Rows[0]["monLedgerBalance"].ToString());
-                    monNetPay = decimal.Parse(dt.Rows[0]["monNetPay"].ToString());
+                    monLedgerBalance = Math.Round(decimal.Parse(dt.Rows[0]["monLedgerBalance"].ToString()), 2);
+                    monNetPay = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2);
                 }
 
                 txtApproveAmount.Text = monApproveAmount.ToString();
@@ -215,8 +215,7 @@ namespace UI.PaymentModule
                 }
                 catch { }
             }
-        }
-        
+        }        
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -385,7 +384,7 @@ namespace UI.PaymentModule
 
                     if(Gross > (monApproveAmount - monVoucherTotal))
                     {
-                        return;
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Total voucher amount Cannot be greater than approved amount.');", true); return;
                     }
                     
                     strCCName = ""; //ddlCostCenter.SelectedItem.ToString();
@@ -415,15 +414,14 @@ namespace UI.PaymentModule
                     }
                     catch { }
                     strInstrumentNo = ""; //ddlInstrument.SelectedItem.ToString();
-
-
+                    
                     //Final In Insert                                 
                     string message = objVoucher.InsertPaymentVoucherCP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                 }
             }
             catch { }
-
         }
 
 

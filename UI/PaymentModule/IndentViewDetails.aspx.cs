@@ -10,7 +10,7 @@ using UI.ClassFiles;
 
 namespace UI.PaymentModule
 {
-    public partial class IndentViewDetails : System.Web.UI.Page
+    public partial class IndentViewDetails : BasePage
     {
         Indents_BLL objIndent = new Indents_BLL(); Billing_BLL objBillApp = new Billing_BLL();
         DataTable dt = new DataTable();

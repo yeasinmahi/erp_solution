@@ -356,11 +356,14 @@
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
+    <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
+    <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\ClassFiles\AutoCompleteSearch.asmx" />
@@ -1175,6 +1178,10 @@
     <Content Include="SAD\Vat\frmDestroy.aspx" />
     <Content Include="SAD\Vat\frmItemAndMatrialsAdd.aspx" />
     <Content Include="SAD\Vat\frmItemMushok1.aspx" />
+    <Content Include="SAD\Vat\frmMushok11.aspx" />
+    <Content Include="SAD\Vat\frmMushok11Preivew.aspx" />
+    <Content Include="SAD\Vat\frmMushok11Print.aspx" />
+    <Content Include="SAD\Vat\frmMushok11PrintExport.aspx" />
     <Content Include="SAD\Vat\frmOtherAdjusment.aspx" />
     <Content Include="SAD\Vat\frmProductionEntry.aspx" />
     <Content Include="SAD\Vat\frmPurchaseEntry.aspx" />
@@ -1193,6 +1200,7 @@
     <Content Include="SAD\Vat\rptSalesSummary.aspx" />
     <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\BOM\BillOfMaterial.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
@@ -1229,6 +1237,8 @@
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierBlackListEntry.aspx" />
+    <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
@@ -2661,6 +2671,13 @@
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\MaterialCOABridge.aspx.cs">
+      <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MaterialCOABridge.aspx.designer.cs">
+      <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2674,6 +2691,13 @@
     </Compile>
     <Compile Include="PaymentModule\PaymentVoucher.aspx.designer.cs">
       <DependentUpon>PaymentVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\POVoucherOfAFBL.aspx.cs">
+      <DependentUpon>POVoucherOfAFBL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\POVoucherOfAFBL.aspx.designer.cs">
+      <DependentUpon>POVoucherOfAFBL.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
@@ -2695,6 +2719,13 @@
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucher.aspx.designer.cs">
       <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\SupplierCOA.aspx.cs">
+      <DependentUpon>SupplierCOA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\SupplierCOA.aspx.designer.cs">
+      <DependentUpon>SupplierCOA.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -5812,6 +5843,34 @@
     <Compile Include="SAD\Vat\frmItemMushok1.aspx.designer.cs">
       <DependentUpon>frmItemMushok1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Vat\frmMushok11.aspx.cs">
+      <DependentUpon>frmMushok11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11.aspx.designer.cs">
+      <DependentUpon>frmMushok11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Preivew.aspx.cs">
+      <DependentUpon>frmMushok11Preivew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Preivew.aspx.designer.cs">
+      <DependentUpon>frmMushok11Preivew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Print.aspx.cs">
+      <DependentUpon>frmMushok11Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Print.aspx.designer.cs">
+      <DependentUpon>frmMushok11Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11PrintExport.aspx.cs">
+      <DependentUpon>frmMushok11PrintExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11PrintExport.aspx.designer.cs">
+      <DependentUpon>frmMushok11PrintExport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Vat\frmOtherAdjusment.aspx.cs">
       <DependentUpon>frmOtherAdjusment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5937,6 +5996,13 @@
     </Compile>
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\BillOfMaterial.aspx.cs">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\BillOfMaterial.aspx.designer.cs">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
@@ -6175,6 +6241,20 @@
     </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListEntry.aspx.cs">
+      <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListEntry.aspx.designer.cs">
+      <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListReport.aspx.cs">
+      <DependentUpon>SupplierBlackListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListReport.aspx.designer.cs">
+      <DependentUpon>SupplierBlackListReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SupplierManeger.aspx.cs">
       <DependentUpon>SupplierManeger.aspx</DependentUpon>

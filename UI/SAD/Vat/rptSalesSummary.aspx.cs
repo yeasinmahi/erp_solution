@@ -22,10 +22,9 @@ namespace UI.SAD.Vat
 {
     public partial class rptSalesSummary : BasePage
     {
-        string Itemaneme;
-        int? intItem = null; int Accid;
-        DataTable dt;decimal numQty, monValue, monSD;
-        DateTime strM11DateChallan, dtedate;
+ 
+        DataTable dt;
+        DateTime  dtedate;
         char[] delimiterChars = { '[', ']' }; string[] arrayKeyItem;
         Mushok11 objMush = new Mushok11();bool ysnDay, ysnMaterial, ysnChallan;
         protected void Page_Load(object sender, EventArgs e)
@@ -46,11 +45,6 @@ namespace UI.SAD.Vat
                 }
 
             }
-        }
-
-        protected void txtMatrialName_TextChanged(object sender, EventArgs e)
-        {
-          
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -79,7 +73,7 @@ namespace UI.SAD.Vat
         }
        
         protected double TotalQty = 0, TotalSDVat = 0, TotalSD = 0, TotalVAT=0, TotalTotal=0;
-        protected void dgvTresuryRpt_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void dgvProductRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

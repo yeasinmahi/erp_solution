@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class BillApproval : System.Web.UI.Page
+    public partial class BillApproval : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillReg = new Billing_BLL();
@@ -110,6 +110,7 @@ namespace UI.PaymentModule
                 //*** Final Insert
                 ////////string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
                 ////////ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                System.Threading.Thread.Sleep(1500);
                 LoadGrid();
             }
         }

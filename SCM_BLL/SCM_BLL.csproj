@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Billing_BLL.cs" />
+    <Compile Include="Bom_BLL.cs" />
     <Compile Include="Indents_BLL.cs" />
     <Compile Include="Location_BLL.cs" />
     <Compile Include="MrrReceive_BLL.cs" />

@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Payment Voucher </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -21,12 +21,16 @@
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
      <script>
-         function ViewPrepareVoucher(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
-             window.open('BankPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         function ViewPrepareVoucher(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate) {
+             window.open('BankPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid + '&vdate=' + vdate, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
          }
 
          function ViewPrepareVoucherCP(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
              window.open('CashPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         }
+
+         function ViewBillDetailsPopup(Id) {
+             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
          }
     </script>
 
@@ -124,7 +128,7 @@
                     Text="CP"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                    <ItemTemplate><asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
+                    <ItemTemplate><asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"  
                     Text="View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     </Columns>
@@ -134,6 +138,7 @@
                     </td></tr> 
             </table>
         </td></tr></table>
+
 
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
