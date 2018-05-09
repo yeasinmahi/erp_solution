@@ -1202,6 +1202,7 @@
     <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
     <Content Include="SCM\BOM\BillOfMaterial.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
@@ -6012,6 +6013,13 @@
     </Compile>
     <Compile Include="SCM\BOM\BillOfMaterial.aspx.designer.cs">
       <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntry.aspx.cs">
+      <DependentUpon>FinishedGoodEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntry.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>

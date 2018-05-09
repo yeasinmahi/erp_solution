@@ -83,13 +83,17 @@ namespace UI.SCM.BOM
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
                 string fromtime = ddlFromTime.SelectedItem.ToString();
+                DateTime startTime = DateTime.Parse(fromtime.ToString());
                 string toTime = ddlFromToTime.SelectedItem.ToString();
+                DateTime endTime = DateTime.Parse(toTime.ToString());
                 string bomid = ddlBom.SelectedValue.ToString();
                 string bomName = ddlBom.SelectedItem.ToString();
                 string quantity = txtQty.Text.ToString();
                 string lineprocess = ddlLine.SelectedValue.ToString();
                 string invoice = txtInvoice.Text.ToString();
                 string batch = txtBatchNo.Text.ToString();
+                fromtime = startTime.ToString();
+                toTime = endTime.ToString();
                 CreateXml(item, itemid, fromtime, toTime, bomid, bomName,quantity, lineprocess, invoice, batch);
 
             }
