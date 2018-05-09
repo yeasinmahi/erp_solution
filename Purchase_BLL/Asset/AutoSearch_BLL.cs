@@ -192,7 +192,7 @@ namespace Purchase_BLL.Asset
             if (tableItem == null)
             {                
                 WearHouseID unt = new WearHouseID();
-                SearchTDS.TblWearHouseDataTable tblUnit = unt.GetUnits(intwh);
+                SearchTDS.TblWearHouseDataTable tblUnit = unt.GetUnits();
                 ht = new Hashtable();
                 tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[tblUnit.Rows.Count];
                 SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();

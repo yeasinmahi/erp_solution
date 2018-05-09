@@ -60,11 +60,14 @@
          
        <table>
         <tr>
-        <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
+          
+        <td   style="text-align:right;"  ><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+        <td style="text-align:left;"  ><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
            
-        <td   style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
+        <td   style="text-align:right;"><asp:Label ID="Label2"   runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
+        <td style="text-align:left;"><asp:DropDownList ID="ddlDept"  Enabled="false"  CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     >
+         <asp:ListItem>Local</asp:ListItem></asp:DropDownList></td>      
+                                                                                                                     
 
         </tr>
         <tr>                      

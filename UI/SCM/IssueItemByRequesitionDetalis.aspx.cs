@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -55,6 +57,23 @@ namespace UI.SCM
             }
             else { }
 
+            string message;
+            for (int i=0;i<3;i++)
+            {
+                dynamic obj = new
+                {
+                    itemId = "117919",
+                    itemName = "Angular Ball Bearing  01.22.0007.4(0339838)",
+                    qty = "1",
+                    locationid = "14942",
+                    location = "DTI, Fk5-13",
+                    rate = "33",
+                    remarks = "test"
+                };
+                
+                XmlParser.CreateXml("Vouchar", obj, filePathForXML,out message);
+            }
+            
         }
 
         protected void btnIssue_Click(object sender, EventArgs e)

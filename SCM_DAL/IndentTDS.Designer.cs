@@ -1010,6 +1010,13 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblItemMasterListRow FindByintItemMasterID(int intItemMasterID) {
+                return ((TblItemMasterListRow)(this.Rows.Find(new object[] {
+                            intItemMasterID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TblItemMasterListDataTable cln = ((TblItemMasterListDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1036,11 +1043,14 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintItemMasterID);
                 this.columnstrItemMasterName = new global::System.Data.DataColumn("strItemMasterName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrItemMasterName);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintItemMasterID}, true));
                 this.columnintItemMasterID.AutoIncrement = true;
                 this.columnintItemMasterID.AutoIncrementSeed = -1;
                 this.columnintItemMasterID.AutoIncrementStep = -1;
                 this.columnintItemMasterID.AllowDBNull = false;
                 this.columnintItemMasterID.ReadOnly = true;
+                this.columnintItemMasterID.Unique = true;
                 this.columnstrItemMasterName.ReadOnly = true;
                 this.columnstrItemMasterName.MaxLength = 953;
             }
@@ -2377,17 +2387,15 @@ namespace SCM_DAL.IndentTDSTableAdapters {
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [ERP_Inventory].[dbo].[tblItemMasterList] WHERE (([intItemMasterID] =" +
-                " @Original_intItemMasterID) AND ((@IsNull_strItemMasterName = 1 AND [strItemMast" +
-                "erName] IS NULL) OR ([strItemMasterName] = @Original_strItemMasterName)))";
+                " @Original_intItemMasterID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intItemMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemMasterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strItemMasterName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strItemMasterName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strItemMasterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strItemMasterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_Inventory].[dbo].[tblItemMasterList] DEFAULT VALUES;\r\nSELECT int" +
-                "ItemMasterID, strItemMasterName FROM tblItemMasterList WHERE (intItemMasterID = " +
-                "SCOPE_IDENTITY()) ORDER BY strItemMasterName";
+                "ItemMasterID, strItemMasterName + \' [\' + strUoM + \']\' AS strItemMasterName FROM " +
+                "tblItemMasterList WHERE (intItemMasterID = SCOPE_IDENTITY()) ORDER BY strItemMas" +
+                "terName";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2404,10 +2412,7 @@ namespace SCM_DAL.IndentTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT intItemMasterID, strItemMasterName FROM ERP_Inventory.dbo.tblItemMasterLis" +
-                "t WHERE   ysnActive=1 and  strItemMasterName !=\'\'  and  strItemMasterName  LIKE " +
-                " \'%\' + @strSearchKey + \'%\'   and  strItemMasterName is not null ORDER BY strItem" +
-                "MasterName";
+            this._commandCollection[0].CommandText = @"SELECT intItemMasterID, strItemMasterName +' ['+strUom +']' as strItemMasterName  FROM ERP_Inventory.dbo.tblItemMasterList WHERE   ysnActive=1 and  strItemMasterName !=''  and  strItemMasterName  LIKE  '%' + @strSearchKey + '%'   and  strItemMasterName is not null ORDER BY strItemMasterName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSearchKey", global::System.Data.SqlDbType.VarChar, 953, global::System.Data.ParameterDirection.Input, 0, 0, "strItemMasterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -2630,8 +2635,8 @@ SELECT intWHID AS Id, strWareHoseName AS strName FROM tblWearHouse WHERE (intWHI
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "select intStoreLocationID as Id ,strLocationName as strName from ERP_Inventory.db" +
-                "o.tblWearHouseStoreLocation where intwhid=@intwh and intParentID=0 and ysnHasChi" +
-                "ld=1 order by intStoreLocationID asc";
+                "o.tblWearHouseStoreLocation where intwhid=@intwh and ysnActive=1 order by intSto" +
+                "reLocationID asc";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intwh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

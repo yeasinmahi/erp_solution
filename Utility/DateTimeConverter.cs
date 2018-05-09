@@ -10,7 +10,7 @@ namespace Utility
     {
         public static DateTime StringToDateTime(string date, string format)
         {
-            return DateTime.ParseExact(date, "yyyy-MMMM", System.Globalization.CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(date, format, System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }
