@@ -1,4 +1,38 @@
-<?xml version="1.0" standalone="yes"?>
+<?xml version="1.0"?>
 <voucher>
-  <voucherEntry itemId="117919" itemName="Angular Ball Bearing  01.22.0007.4(0339838)" qty="1" locationid="14942" location="DTI, Fk5-13" rate="33" remarks="test" />
+  <voucherEntry itemid="6404" item="Master Carton Navy 10s ( HL) 71.5 mm" uom="Pcs" qty="0.10" wastage="0.20" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="8123" item="Gum Tape ( 52 mm x 500 M )" uom="Bobbin" qty="0.00" wastage="0.20" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="134936" item="Barcode Level Sticker  For : Logopack (Type : LOGO TOP 8 P 89) Size : 76 X 38 mm" uom="Roll" qty="0.00" wastage="0.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="47846" item="Barcode Paper (Self Adhesive Sticker Paper ) A-4, die cutting" uom="Pcs" qty="0.00" wastage="0.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="27299" item="Tobacco  Red  D35" uom="KG" qty="0.00" wastage="0.20" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="176681" item="Adhesive ZD 6760 N  ( Henkel ) ( Focke F-5 )" uom="Kg" qty="0.01" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287293" item="RM-Tobacco NC95 NBC" uom="KG" qty="0.30" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287304" item="RM-Tobacco K326 KBC" uom="KG" qty="0.09" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287311" item="RM-Tobacco Speight G28 NLS" uom="KG" qty="0.12" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287312" item="RM-Tobacco Speight G28 SCBT" uom="KG" qty="0.03" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="149812" item="Tobacco ( Grade: D1M/TT ) ( Indian Tobacco )" uom="Kg" qty="0.01" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287331" item="RM-Tobacco Local RECON" uom="KG" qty="0.04" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287323" item="RM-Tobacco FCV STEM" uom="KG" qty="0.15" wastage="7.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6258" item="Cigarette paper ( 26.5 mm x 6000 M ) Cigla 50 Velin, 27 GSM" uom="Bobbin" qty="0.01" wastage="2.80" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="8014" item="Tipping Paper (N/G )52 mm" uom="Bobbin" qty="0.00" wastage="2.60" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="31483" item="Glycerine ( USP 99.7 PCT MIN )" uom="Kg" qty="0.02" wastage="1.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6248" item="Organic Compound &quot; G &quot;" uom="KG" qty="0.00" wastage="0.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6306" item="Sodium Benzoate China" uom="kg" qty="0.00" wastage="0.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6305" item="Propylene Glycol (P G)" uom="kg" qty="0.00" wastage="0.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="27300" item="Tobacco  Blue  B 87" uom="KG" qty="0.00" wastage="0.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6300" item="Adhesive ZD - 6800" uom="kg" qty="0.00" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6285" item="Adhesive 233-3005 ( Henkel )" uom="Kg" qty="0.00" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6286" item="Adhesive A7656N ( Henkel )" uom="Kg" qty="0.01" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6244" item="Acetate Tow Acetate Cellulose -2.5Y30000" uom="kg" qty="0.10" wastage="0.70" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6247" item="Plasticizer ( Triacetin P )" uom="Kg" qty="0.01" wastage="2.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="8083" item="Plug Wrap Paper 27 GSM" uom="Bobbin" qty="0.00" wastage="4.25" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6282" item="Adhesive ZH-6045 ( Hotmelt )" uom="KG" qty="0.00" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="7900" item="PKM - Blank ( Navy ) 10s ( HL )71.5 mm" uom="Pcs" qty="100.00" wastage="1.40" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="8057" item="Alu Foil 62 mm ( Golden Normal )" uom="Bobbin" qty="0.01" wastage="2.10" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="8080" item="Inner Frame 68.5 mm (W)" uom="Bobbin" qty="0.01" wastage="2.85" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6278" item="Tear of Ribbon Red" uom="Bobbin" qty="0.00" wastage="1.00" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6274" item="Bopp Film 110 mm x 20 Mic x 2400 M ( 4.81 kg/B )" uom="Bobbin" qty="0.01" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="6275" item="Bopp Film 294 mm x 25 HSB x 2400 M ( 16.05 kg/B )" uom="Bobbin" qty="0.00" wastage="1.50" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="287055" item="Stamp ( Light Green ) 10s ( HL )" uom="PCS" qty="100.00" wastage="0.40" bomname="Navy 10HL" strCode="02" />
+  <voucherEntry itemid="290252" item="Navy 10s HLP" uom="" qty="3" wastage="3" bomname="33" strCode="333" />
 </voucher>

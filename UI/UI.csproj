@@ -1197,6 +1197,7 @@
     <Content Include="SAD\Vat\rptSalesSummary.aspx" />
     <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\BOM\BillOfMaterial.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
@@ -5970,6 +5971,13 @@
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\BOM\BillOfMaterial.aspx.cs">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\BillOfMaterial.aspx.designer.cs">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7152,7 +7160,6 @@
     <Folder Include="SAD\Sales\Data\" />
     <Folder Include="SAD\Transfer\Data\" />
     <Folder Include="SAD\Vat\Data\" />
-    <Folder Include="SCM\BOM\" />
     <Folder Include="SCM\Data\" />
     <Folder Include="SCM\Uploads\" />
     <Folder Include="Shop\Data\" />
