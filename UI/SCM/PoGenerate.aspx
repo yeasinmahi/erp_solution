@@ -689,7 +689,7 @@
                               </asp:DropDownList>
                           </td>
                           <td style="text-align:right;">
-                              <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Suppliyer"></asp:Label>
+                              <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier"></asp:Label>
                           </td>
                           <td style="text-align:left;">
                               <asp:DropDownList ID="ddlSuppliyer" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlSuppliyer_SelectedIndexChanged">
@@ -862,7 +862,7 @@
                            <td><asp:Label ID="Label26" runat="server" Text="Warrenty (in months)" /></td>
                           <td><asp:TextBox ID="txtWarrenty" CssClass="txtBox" runat="server" /></td> 
                           <td><asp:Label ID="Label25" runat="server" Text="Others Trems" /></td>
-                          <td><asp:TextBox ID="txtOthersTerms" runat="server"  Width="220px" TextMode="MultiLine"  CssClass="txtBox"/></td> 
+                          <td><asp:TextBox ID="txtOthersTerms" runat="server"  Width="300px" TextMode="MultiLine"  CssClass="txtBox"/></td> 
                          
                       </tr>
                   </Table>

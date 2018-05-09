@@ -54,7 +54,8 @@ namespace UI.PaymentModule
                 hdnBank.Value = Request.QueryString["bank"]; 
                 hdnBankAcc.Value = Request.QueryString["bankacc"]; 
                 hdnInstrument.Value = Request.QueryString["instrument"]; 
-                
+                txtDate.Text = DateTime.Parse(Request.QueryString["vdate"]).ToString("yyyy-MM-dd");
+
                 dt = new DataTable();
                 dt = objBillApp.GetBillInfoForBPVoucher(int.Parse(hdnBillID.Value));
                 if (dt.Rows.Count > 0)
@@ -62,14 +63,14 @@ namespace UI.PaymentModule
                     intPartyType = int.Parse(dt.Rows[0]["intPartyType"].ToString());
                     try { intPOID = int.Parse(dt.Rows[0]["strReff_PO"].ToString()); }
                     catch { intPOID = 0; }
-                    monApproveAmount = decimal.Parse(dt.Rows[0]["monApprove"].ToString());
-                    monVoucherTotal = decimal.Parse(dt.Rows[0]["monVoucherTotal"].ToString());
-                    monTotalAdvance = decimal.Parse(dt.Rows[0]["monAdvanceTotal"].ToString());
+                    monApproveAmount = Math.Round(decimal.Parse(dt.Rows[0]["monApprove"].ToString()), 2);
+                    monVoucherTotal = Math.Round(decimal.Parse(dt.Rows[0]["monVoucherTotal"].ToString()), 2);
+                    monTotalAdvance = Math.Round(decimal.Parse(dt.Rows[0]["monAdvanceTotal"].ToString()), 2);
                     intAccID = int.Parse(dt.Rows[0]["intPartyCOA"].ToString());
                     strAccName = dt.Rows[0]["strPartyCOA"].ToString();
                     intCountPVoucher = int.Parse(dt.Rows[0]["intCountPVoucher"].ToString());
-                    monLedgerBalance = decimal.Parse(dt.Rows[0]["monLedgerBalance"].ToString());
-                    monNetPay = decimal.Parse(dt.Rows[0]["monNetPay"].ToString());
+                    monLedgerBalance = Math.Round(decimal.Parse(dt.Rows[0]["monLedgerBalance"].ToString()), 2);
+                    monNetPay = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2); 
                 }
 
                 txtApproveAmount.Text = monApproveAmount.ToString();
@@ -130,6 +131,20 @@ namespace UI.PaymentModule
                     }
                 }
                 catch { }
+
+                intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
+                strInstrument = ddlInstrument.SelectedItem.ToString();
+
+                dt = new DataTable();
+                dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnUnit.Value), strInstrument);
+                if (dt.Rows.Count > 0)
+                {
+                    txtNo.Text = dt.Rows[0]["strCode"].ToString();
+                }
+                else
+                {
+                    txtNo.Text = "";
+                }
 
                 try
                 {
@@ -348,7 +363,6 @@ namespace UI.PaymentModule
             }
             catch { }
         }
-
         private void CreateVoucherXml(string accid, string accname, string narration, string debit, string credit)
         {
             XmlDocument doc = new XmlDocument();
@@ -449,8 +463,6 @@ namespace UI.PaymentModule
                 catch (Exception ex) { throw ex; }
             }
         }
-
-
         protected void btnSaveBP_Click(object sender, EventArgs e)
         {
             try
@@ -473,6 +485,21 @@ namespace UI.PaymentModule
                     monVoucherTotal = decimal.Parse(txtVoucherIssued.Text);
                     strNarration = txtNarration.Text;
 
+                    decimal Gross = 0;
+                    if (dgvReportForPaymentV.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dgvReportForPaymentV.Rows.Count; i++)
+                        {
+                            Gross = Gross + Convert.ToDecimal(((Label)dgvReportForPaymentV.Rows[i].FindControl("lblDebit")).Text.ToString());
+                        }
+                    }
+
+                    if (Gross > (monApproveAmount - monVoucherTotal))
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Total voucher amount Cannot be greater than approved amount.');", true); return;
+                    }
+
+
                     try
                     {
                         XmlDocument doc = new XmlDocument();
@@ -488,6 +515,7 @@ namespace UI.PaymentModule
                     //Final In Insert                                 
                     string message = objVoucher.InsertPaymentVoucherBP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                 }
             }
             catch { }

@@ -21,16 +21,7 @@
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
-    <script type="text/javascript">
-         function OpenHdnDiv() {
-             $("#hdnDivision").fadeIn("slow");
-             document.getElementById('hdnDivision').style.visibility = 'visible';
-         }
-
-         function CloseHdnDiv() {
-             $("#hdnDivision").fadeOut("slow"); 
-         }
-    </script>
+    
 
 
     <script type="text/javascript"> 
@@ -45,6 +36,7 @@
      <script>
          function Viewdetails(ReqId, ReqCode, dteReqDate, strDepartmentName, strReqBy, strApproveBy, intwh, DeptID, SectionID, SectionName) {
              window.open('IssueItemByRequesitionDetalis.aspx?ReqId=' + ReqId + '&ReqCode=' + ReqCode + '&dteReqDate=' + dteReqDate + '&strDepartmentName=' + strDepartmentName + '&strReqBy=' + strReqBy + '&strApproveBy=' + strApproveBy + '&intwh=' + intwh + '&DeptID=' + DeptID + '&SectionID=' + SectionID + '&SectionName=' + SectionName, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+              
          }
     </script>
   

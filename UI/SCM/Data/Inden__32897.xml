@@ -1,4 +1,4 @@
-<?xml version="1.0" standalone="yes"?>
+<?xml version="1.0"?>
 <voucher>
-  <voucherEntry itemId="117919" itemName="Angular Ball Bearing  01.22.0007.4(0339838)" qty="1" locationid="14942" location="DTI, Fk5-13" rate="33" remarks="test" />
+  <voucherEntry item="Navy 10s" itemid="290251" fromtime="12:00 AM" toTime="12:00 AM" bomid="2668" quantity="2" lineprocess="" invoice="test" batch="2" />
 </voucher>

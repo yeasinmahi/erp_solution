@@ -234,7 +234,7 @@ namespace UI.SCM
 
             node.Attributes.Append(Locationid);
             node.Attributes.Append(Location);
-            node.Attributes.Append(Rate);
+             
             node.Attributes.Append(Remarks);
 
             return node;
