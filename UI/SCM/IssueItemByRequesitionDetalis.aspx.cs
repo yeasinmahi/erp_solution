@@ -10,11 +10,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
-using Utility;
+
 
 namespace UI.SCM
 {
-    public partial class IssueItemByRequesitionDetalis : System.Web.UI.Page
+    public partial class IssueItemByRequesitionDetalis :BasePage
     {
         StoreIssue_BLL objIssue = new StoreIssue_BLL();
         Location_BLL objOperation = new Location_BLL();
@@ -57,22 +57,22 @@ namespace UI.SCM
             }
             else { }
 
-            string message;
-            for (int i=0;i<3;i++)
-            {
-                dynamic obj = new
-                {
-                    itemId = "117919",
-                    itemName = "Angular Ball Bearing  01.22.0007.4(0339838)",
-                    qty = "1",
-                    locationid = "14942",
-                    location = "DTI, Fk5-13",
-                    rate = "33",
-                    remarks = "test"
-                };
+            //string message;
+            //for (int i=0;i<3;i++)
+            //{
+            //    dynamic obj = new
+            //    {
+            //        itemId = "117919",
+            //        itemName = "Angular Ball Bearing  01.22.0007.4(0339838)",
+            //        qty = "1",
+            //        locationid = "14942",
+            //        location = "DTI, Fk5-13",
+            //        rate = "33",
+            //        remarks = "test"
+            //    };
                 
-                XmlParser.CreateXml("Vouchar", obj, filePathForXML,out message);
-            }
+            //    XmlParser.CreateXml("Vouchar", obj, filePathForXML,out message);
+            //}
             
         }
 

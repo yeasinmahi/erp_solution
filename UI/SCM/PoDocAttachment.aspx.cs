@@ -126,7 +126,17 @@ namespace UI.SCM
         {
             try
             {
-                DefaltPageLoad();
+                string dept = ddlDept.SelectedItem.ToString();
+                if (dept == "Local") { dept = "Local Purchase"; }
+                else if (dept == "Import") { dept = "Foreign Purchase"; }
+                else { dept = "Fabrication"; }
+                string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
+                dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
+                ddlSupplier.DataSource = dt;
+                ddlSupplier.DataTextField = "strName";
+                ddlSupplier.DataValueField = "Id";
+                ddlSupplier.DataBind();
+                dt.Clear();
             }
             catch { }
         }

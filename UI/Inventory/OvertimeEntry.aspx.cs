@@ -340,9 +340,7 @@ namespace UI.Inventory
 
 
                          }
-
-
-
+                         
                          else
                          {
 
@@ -418,8 +416,6 @@ namespace UI.Inventory
              {
                  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' You can not add more than one row');", true);
              }
-
-
          }
 
        
