@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<VoucherA>
+  <VoucherA insdate="2018-05-08" payto="M/S Joinal Construstion (A/C# 0013300008055)" amount="180,000.00" drcoa="167753" billcode="ACCL-ADV-MAY18-343" po="841932" bill="424373" party="M/S Joynal Construstion " />
+  <VoucherA insdate="2018-05-08" payto="S.S.CORPORATION (A/C# 2438901030268)" amount="860,000.00" drcoa="130243" billcode="ACCL-BLL-APR18-2493" po="781032" bill="417813" party="S.S. CORPORATION (ACRMC)" />
+  <VoucherA insdate="2018-01-03" payto="Virtual Construction Ltd (A/C# 0011020024125)" amount="830,000.00" drcoa="155054" billcode="ACCL-BLL-OCT17-5296" po="666820" bill="339384" party="Virtual Construction Ltd." />
+</VoucherA>

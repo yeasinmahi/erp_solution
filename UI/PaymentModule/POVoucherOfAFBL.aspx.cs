@@ -124,7 +124,7 @@ namespace UI.PaymentModule
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
 
             dt = new DataTable();
-            dt = objVoucher.GetBankList(int.Parse(hdnEnroll.Value));
+            dt = objVoucher.GetBankList(intUnitID);
             if (dt.Rows.Count > 0)
             {
                 ddlBank.DataTextField = "strBankName";

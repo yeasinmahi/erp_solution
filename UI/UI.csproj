@@ -349,6 +349,7 @@
     <Content Include="MedialManagement\ProgramCustEntry.aspx" />
     <Content Include="MedialManagement\ProgramScheduleEntry.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
+    <Content Include="PaymentModule\AllApprovedBillReport.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
     <Content Include="PaymentModule\BankPay.aspx" />
     <Content Include="PaymentModule\BillApproval.aspx" />
@@ -2621,6 +2622,13 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="PaymentModule\AllApprovedBillReport.aspx.cs">
+      <DependentUpon>AllApprovedBillReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AllApprovedBillReport.aspx.designer.cs">
+      <DependentUpon>AllApprovedBillReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\ApproveSingle.aspx.cs">
       <DependentUpon>ApproveSingle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
