@@ -1,6 +1,4 @@
 <?xml version="1.0"?>
 <CPVoucher>
-  <CPVoucher accid="15899" accname="Advance Income Tax " narration="Being the amount paid to Salary - March - 2018 against Code: APBML-BLL-APR18-1117" debit="11137603.0000" credit="0" />
-  <CPVoucher accid="15899" accname="Advance Income Tax " narration="Being the amount paid to Salary - March - 2018 against Code: APBML-BLL-APR18-1117" debit="523" credit="0" />
-  <CPVoucher accid="15899" accname="Advance Income Tax " narration="Being the amount paid to Salary - March - 2018 against Code: APBML-BLL-APR18-1117" debit="8888" credit="0" />
+  <CPVoucher accid="15989" accname="MJL Bangladesh Ltd " narration="Being the amount paid to MJL Bangladesh Ltd in advance against Code: APBML-ADV-MAR17-94, PO NO: 540002" debit="726440.00" credit="0" />
 </CPVoucher>

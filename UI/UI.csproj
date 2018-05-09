@@ -356,9 +356,12 @@
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
+    <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
+    <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\ClassFiles\AutoCompleteSearch.asmx" />
@@ -1199,6 +1202,8 @@
     <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierBlackListEntry.aspx" />
+    <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
@@ -2631,6 +2636,13 @@
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\MaterialCOABridge.aspx.cs">
+      <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MaterialCOABridge.aspx.designer.cs">
+      <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2645,12 +2657,26 @@
     <Compile Include="PaymentModule\PaymentVoucher.aspx.designer.cs">
       <DependentUpon>PaymentVoucher.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\POVoucherOfAFBL.aspx.cs">
+      <DependentUpon>POVoucherOfAFBL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\POVoucherOfAFBL.aspx.designer.cs">
+      <DependentUpon>POVoucherOfAFBL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.designer.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\SupplierCOA.aspx.cs">
+      <DependentUpon>SupplierCOA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\SupplierCOA.aspx.designer.cs">
+      <DependentUpon>SupplierCOA.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -5935,6 +5961,20 @@
     </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListEntry.aspx.cs">
+      <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListEntry.aspx.designer.cs">
+      <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListReport.aspx.cs">
+      <DependentUpon>SupplierBlackListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListReport.aspx.designer.cs">
+      <DependentUpon>SupplierBlackListReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SupplierManeger.aspx.cs">
       <DependentUpon>SupplierManeger.aspx</DependentUpon>

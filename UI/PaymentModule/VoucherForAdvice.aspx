@@ -20,9 +20,39 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
+    <script type="text/javascript">
+         $("[id*=chkHeader]").live("click", function () {
+             var chkHeader = $(this);
+             var grid = $(this).closest("table");
+             $("input[type=checkbox]", grid).each(function () {
+                 if (chkHeader.is(":checked")) {
+                     $(this).attr("checked", "checked");
+                     $("td", $(this).closest("tr")).addClass("selected");
+                 } else {
+                     $(this).removeAttr("checked");
+                     $("td", $(this).closest("tr")).removeClass("selected");
+                 }
+             });
+         });
+         $("[id*=chkRow]").live("click", function () {
+             var grid = $(this).closest("table");
+             var chkHeader = $("[id*=chkHeader]", grid);
+             if (!$(this).is(":checked")) {
+                 $("td", $(this).closest("tr")).removeClass("selected");
+                 chkHeader.removeAttr("checked");
+             } else {
+                 $("td", $(this).closest("tr")).addClass("selected");
+                 if ($("[id*=chkRow]", grid).length == $("[id*=chkRow]:checked", grid).length) {
+                     chkHeader.attr("checked", "checked");
+                 }
+             }
+         });
+    </script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
-    <form id="frmBillRegistration" runat="server">        
+    <form id="frmVoucherForAdvice" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -46,10 +76,12 @@
                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="A/C"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlAccount" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>                
+                <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
+                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClientClick="LoaderBusy()" OnClick="btnShow_Click"/></td> 
+                <td style="text-align:right; "><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
+                <td style="text-align:right; padding: 15px 0px 10px 0px"><asp:Button ID="btnPrepareAllVoucher" runat="server" class="myButton" Height="30px" Width="190px" Text="Prepare All Voucher"  OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click"/></td>  
             </tr>
-            <tr>
-                <td colspan="8" style="text-align:right; padding: 15px 0px 10px 0px"><asp:Button ID="btnPrepareAllVoucher" runat="server" class="myButton" Height="30px" Width="190px" Text="Prepare All Voucher"  OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click"/></td>  
-            </tr>
+            
         </table>
     </div>
 
@@ -86,43 +118,46 @@
 
             <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
             <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="150px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Bank Account" SortExpression="strAccount">
             <ItemTemplate><asp:Label ID="lblBankAccount" runat="server" Text='<%# Bind("strAccount") %>' Width="150px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="COA" SortExpression="intCOA">
             <ItemTemplate><asp:Label ID="lblCOA" runat="server" Text='<%# Bind("intCOA") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Book Value" SortExpression="Bookval">
-            <ItemTemplate><asp:Label ID="lblBookValue" runat="server" Text='<%# Bind("Bookval") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblBookValue" runat="server" Text='<%# Bind("Bookval", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Ledger Balance" SortExpression="Leadgerbal">
-            <ItemTemplate><asp:Label ID="lblLBalance" runat="server" Text='<%# Bind("Leadgerbal") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblLBalance" runat="server" Text='<%# Bind("Leadgerbal", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Bill Amount" SortExpression="BillAmount">
-            <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("BillAmount") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("BillAmount", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Previous Advance" SortExpression="Preadv">
-            <ItemTemplate><asp:Label ID="lblPreAdv" runat="server" Text='<%# Bind("Preadv") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblPreAdv" runat="server" Text='<%# Bind("Preadv", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="TDS" SortExpression="TDSval">
-            <ItemTemplate><asp:Label ID="lblTDS" runat="server" Text='<%# Bind("TDSval") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblTDS" runat="server" Text='<%# Bind("TDSval", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
                         
             <asp:TemplateField HeaderText="Approve Amount" SortExpression="monAppAmount">
-            <ItemTemplate><asp:Label ID="lblApproveAmount" runat="server" Text='<%# Bind("monAppAmount") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblApproveAmount" runat="server" Text='<%# Bind("monAppAmount", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Show Details" ItemStyle-HorizontalAlign="Center" Visible="false" SortExpression="">
+            <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
+            </ItemTemplate></asp:TemplateField>
+
+            <%--<asp:TemplateField HeaderText="Show Details" ItemStyle-HorizontalAlign="Center" Visible="false" SortExpression="">
             <ItemTemplate><asp:Button ID="btnShowDetails" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
-            Text="Show Details"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+            Text="Show Details"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>
                         
             </Columns>
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -131,9 +166,9 @@
             </td></tr> 
     </table>
 
-
-
-
+    <div class="loading" align="center">
+        <img src="../Content/images/gicon/Final-Product-2.GIF" />
+    </div>
 
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>

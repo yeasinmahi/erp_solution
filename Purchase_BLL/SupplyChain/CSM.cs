@@ -607,6 +607,30 @@ namespace Purchase_BLL.SupplyChain
             catch { return new DataTable(); }
         }
 
+        public DataTable GetSupplierProfileAllBlockList()
+        {
+            SupplierBlockListTableAdapter bll = new SupplierBlockListTableAdapter();
+            try
+            { return bll.GetSupplierProfileAllBlockList(); }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetSupplierProfileAllBlockList(string strSearchKey)
+        {
+            SupplierBlockListTableAdapter bll = new SupplierBlockListTableAdapter();
+            try
+            { return bll.GetSupplierProfileBlockListBySearchKey(strSearchKey); }
+            catch { return new DataTable(); }
+        }
+        public DataTable UpdateSupplierInBlock(int intBlockBy, string strBlockRemarks, int intSuppMasterID)
+        {
+            TblSupplierMaster_SupplierBlockTableAdapter bll = new TblSupplierMaster_SupplierBlockTableAdapter();
+            try
+            { return bll.UpdateSupplierBlock(intBlockBy, strBlockRemarks, intSuppMasterID); }
+            catch { return new DataTable(); }
+        }
+
+        
+
 
 
 

@@ -65,6 +65,9 @@ display:block;-moz-border-radius: 0px 0px 0 0; -webkit-border-top-left-radius: 0
 .txtBoxCenter {  width:215px; text-align:center;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
  -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black;}
 
+.txtBoxCenterTextAlignLeft {  width:215px; text-align:left;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
+ -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black;}
+
 
 .txtBox1 {  width:215px; height:23px;  border: 1px solid #ccc; font:normal 11px verdana; background-color:#FFF; border-radius: 5px; -moz-border-radius: 5px; 
  -webkit-border-top-left-radius: 5px; margin:0 0 0 0; -webkit-border-top-right-radius: 5px; color:black; padding:0px 0px 0px 3px;

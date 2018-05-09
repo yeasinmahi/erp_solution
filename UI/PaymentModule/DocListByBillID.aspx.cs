@@ -17,7 +17,7 @@ using System.Net;
 
 namespace UI.PaymentModule
 {
-    public partial class DocListByBillID : System.Web.UI.Page
+    public partial class DocListByBillID : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL();
