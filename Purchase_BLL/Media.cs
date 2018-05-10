@@ -147,5 +147,35 @@ namespace Purchase_BLL
             }
             catch { }
         }
+        public void InsertRyansReport(int intCustID, int intProgramID, DateTime dteStartDateTime, DateTime dteEndDateTime, int intDuration, int intUnitID)
+        {
+            InsertRyansReportTableAdapter adp = new InsertRyansReportTableAdapter();
+            try
+            {
+                adp.InsertRyansReport(intCustID, intProgramID, dteStartDateTime, dteEndDateTime, intDuration, intUnitID);
+            }
+            catch { }
+        }
+        public void InsertOthersReport(int intCustID, int intProgramID, DateTime dteStartDateTime, DateTime dteEndDateTime, int intDuration, int intUnitID)
+        {
+            InsertOthersReportTableAdapter adp = new InsertOthersReportTableAdapter();
+            try
+            {
+                adp.InsertOthersReport(intCustID, intProgramID, dteStartDateTime, dteEndDateTime, intDuration, intUnitID);
+            }
+            catch { }
+        }
+        public DataTable GetDuration(int intID)
+        {
+            GetDurationTableAdapter adp = new GetDurationTableAdapter();
+            try
+            {
+                return adp.GetDuration(intID);
+            }
+            catch { return new DataTable(); }
+        }
+
+
+
     }
 }

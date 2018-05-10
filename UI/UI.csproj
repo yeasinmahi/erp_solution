@@ -347,6 +347,8 @@
     <Content Include="MedialManagement\jquery.min.js" />
     <Content Include="MedialManagement\ProgramCustEntry.aspx" />
     <Content Include="MedialManagement\ProgramScheduleEntry.aspx" />
+    <Content Include="MedialManagement\ReportEntryOthers.aspx" />
+    <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
     <Content Include="PaymentModule\BankPay.aspx" />
@@ -2554,6 +2556,20 @@
     </Compile>
     <Compile Include="MedialManagement\ProgramScheduleEntry.aspx.designer.cs">
       <DependentUpon>ProgramScheduleEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedialManagement\ReportEntryOthers.aspx.cs">
+      <DependentUpon>ReportEntryOthers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedialManagement\ReportEntryOthers.aspx.designer.cs">
+      <DependentUpon>ReportEntryOthers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedialManagement\ReportEntryRyans.aspx.cs">
+      <DependentUpon>ReportEntryRyans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedialManagement\ReportEntryRyans.aspx.designer.cs">
+      <DependentUpon>ReportEntryRyans.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewProject\pg_ProjectCreate.aspx.cs">
       <DependentUpon>pg_ProjectCreate.aspx</DependentUpon>
@@ -6784,6 +6800,7 @@
     <Folder Include="Inventory\Data\" />
     <Folder Include="Libray\bin\" />
     <Folder Include="Libray\SqlServerTypes\" />
+    <Folder Include="MedialManagement\Data\" />
     <Folder Include="New_Project\QC_Management\Uploads\" />
     <Folder Include="Other\Data\" />
     <Folder Include="PaymentModule\Data\" />

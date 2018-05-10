@@ -64,7 +64,7 @@
                 <td style="text-align:right"><asp:Label ID="lblSupplierName" runat="server" CssClass="label" Text="Supplier Name :"></asp:Label></td>
                 <td style="text-align:left"><asp:DropDownList ID="ddlSupplierName" runat="server" CssClass="ddList" Width="225px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlSupplierName_SelectedIndexChanged"></asp:DropDownList></td>
                 <td style="text-align:right"><asp:Label ID="lblProgramName" runat="server" Text="Program Name :" CssClass="label"></asp:Label></td>
-                <td style="text-align:left"><asp:DropDownList ID="ddlProgramName" runat="server" CssClass="ddList" Width="225px" height="23px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td style="text-align:left"><asp:DropDownList ID="ddlProgramName" runat="server" CssClass="ddList" Width="225px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramName_SelectedIndexChanged"></asp:DropDownList></td>
             </tr>
             <tr>
                 
