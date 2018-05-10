@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class BillApproval : System.Web.UI.Page
+    public partial class BillApproval : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillReg = new Billing_BLL();
@@ -33,17 +33,19 @@ namespace UI.PaymentModule
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-
+                hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
+                filePathForXML = Server.MapPath("~/PaymentModule/Data/BillApp_" + hdnEnroll.Value + ".xml");
                 if (!IsPostBack)
                 {
-                    btnApproveAll.Enabled = false;
+                    File.Delete(filePathForXML);
+                    btnApproveAll.Visible = false;
                     hdnLevel.Value = "0";
                     dt = new DataTable();
                     dt = objBillReg.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
                     if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
                     {
                         hdnLevel.Value = "2";
-                        btnApproveAll.Enabled = true;
+                        btnApproveAll.Visible = true;
                         lblHeading.Text = "BILL APPROVAL (LEVEL-2)";
                     }
                     else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
@@ -83,7 +85,7 @@ namespace UI.PaymentModule
                         billid = ((Label)dgvBillReport.Rows[index].FindControl("lblID")).Text.ToString();
                         actionid = ((DropDownList)dgvBillReport.Rows[index].FindControl("ddlActionStatus")).SelectedValue.ToString();
 
-                        if (billid != "" || actionid != "")
+                        if (billid != "" && actionid != "" && actionid != "1")
                         {
                             CreateVoucherXml(billid, actionid);
                         }
@@ -106,8 +108,9 @@ namespace UI.PaymentModule
                 }
 
                 //*** Final Insert
-                string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                ////////string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
+                ////////ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                System.Threading.Thread.Sleep(1500);
                 LoadGrid();
             }
         }
@@ -176,6 +179,30 @@ namespace UI.PaymentModule
             dt = objBillReg.GetPaymentApprovalSummaryAllUnitForWeb(intUnitid, dteFDate, dteTDate, intAction, intEntryType, intLevel);
             dgvBillReport.DataSource = dt;
             dgvBillReport.DataBind();
+
+            dgvBillReport.Columns[12].Visible = false;
+            dgvBillReport.Columns[1].Visible = false;
+            dgvBillReport.Columns[7].Visible = false;
+            dgvBillReport.Columns[8].Visible = false;
+            dgvBillReport.Columns[11].Visible = false;
+
+            if (hdnLevel.Value == "1")
+            {
+                dgvBillReport.Columns[12].Visible = true;
+                dgvBillReport.Columns[1].Visible = true;
+                dgvBillReport.Columns[7].Visible = true;
+                dgvBillReport.Columns[8].Visible = true;
+                dgvBillReport.Columns[11].Visible = false;
+
+            }
+            else
+            {
+                dgvBillReport.Columns[12].Visible = false;
+                dgvBillReport.Columns[1].Visible = false;
+                dgvBillReport.Columns[7].Visible = false;
+                dgvBillReport.Columns[8].Visible = false;
+                dgvBillReport.Columns[11].Visible = true;
+            }
         }
         #endregion=====================================================================================
 
@@ -187,7 +214,7 @@ namespace UI.PaymentModule
             char[] ch1 = { ':', ':' };
             string[] temp1 = (row.FindControl("lblReff") as Label).Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
             string strPOCheck = temp1[0].ToString();
-            try { intPOID = int.Parse(temp1[1].ToString());} catch { return; }
+            try { intPOID = int.Parse(temp1[1].ToString());} catch { intPOID = 0; }
 
             if (e.CommandName == "S")
             {                

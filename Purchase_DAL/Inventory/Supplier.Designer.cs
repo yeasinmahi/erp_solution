@@ -112,6 +112,10 @@ namespace Purchase_DAL.Inventory {
         
         private GetDocDetailsDataDataTable tableGetDocDetailsData;
         
+        private SupplierBlockListDataTable tableSupplierBlockList;
+        
+        private TblSupplierMaster_SupplierBlockDataTable tableTblSupplierMaster_SupplierBlock;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -271,6 +275,12 @@ namespace Purchase_DAL.Inventory {
                 }
                 if ((ds.Tables["GetDocDetailsData"] != null)) {
                     base.Tables.Add(new GetDocDetailsDataDataTable(ds.Tables["GetDocDetailsData"]));
+                }
+                if ((ds.Tables["SupplierBlockList"] != null)) {
+                    base.Tables.Add(new SupplierBlockListDataTable(ds.Tables["SupplierBlockList"]));
+                }
+                if ((ds.Tables["TblSupplierMaster_SupplierBlock"] != null)) {
+                    base.Tables.Add(new TblSupplierMaster_SupplierBlockDataTable(ds.Tables["TblSupplierMaster_SupplierBlock"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -732,6 +742,26 @@ namespace Purchase_DAL.Inventory {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SupplierBlockListDataTable SupplierBlockList {
+            get {
+                return this.tableSupplierBlockList;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TblSupplierMaster_SupplierBlockDataTable TblSupplierMaster_SupplierBlock {
+            get {
+                return this.tableTblSupplierMaster_SupplierBlock;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -928,6 +958,12 @@ namespace Purchase_DAL.Inventory {
                 }
                 if ((ds.Tables["GetDocDetailsData"] != null)) {
                     base.Tables.Add(new GetDocDetailsDataDataTable(ds.Tables["GetDocDetailsData"]));
+                }
+                if ((ds.Tables["SupplierBlockList"] != null)) {
+                    base.Tables.Add(new SupplierBlockListDataTable(ds.Tables["SupplierBlockList"]));
+                }
+                if ((ds.Tables["TblSupplierMaster_SupplierBlock"] != null)) {
+                    base.Tables.Add(new TblSupplierMaster_SupplierBlockDataTable(ds.Tables["TblSupplierMaster_SupplierBlock"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -1226,6 +1262,18 @@ namespace Purchase_DAL.Inventory {
                     this.tableGetDocDetailsData.InitVars();
                 }
             }
+            this.tableSupplierBlockList = ((SupplierBlockListDataTable)(base.Tables["SupplierBlockList"]));
+            if ((initTable == true)) {
+                if ((this.tableSupplierBlockList != null)) {
+                    this.tableSupplierBlockList.InitVars();
+                }
+            }
+            this.tableTblSupplierMaster_SupplierBlock = ((TblSupplierMaster_SupplierBlockDataTable)(base.Tables["TblSupplierMaster_SupplierBlock"]));
+            if ((initTable == true)) {
+                if ((this.tableTblSupplierMaster_SupplierBlock != null)) {
+                    this.tableTblSupplierMaster_SupplierBlock.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1324,6 +1372,10 @@ namespace Purchase_DAL.Inventory {
             base.Tables.Add(this.tableGetDocTypes);
             this.tableGetDocDetailsData = new GetDocDetailsDataDataTable();
             base.Tables.Add(this.tableGetDocDetailsData);
+            this.tableSupplierBlockList = new SupplierBlockListDataTable();
+            base.Tables.Add(this.tableSupplierBlockList);
+            this.tableTblSupplierMaster_SupplierBlock = new TblSupplierMaster_SupplierBlockDataTable();
+            base.Tables.Add(this.tableTblSupplierMaster_SupplierBlock);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1592,6 +1644,18 @@ namespace Purchase_DAL.Inventory {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeSupplierBlockList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeTblSupplierMaster_SupplierBlock() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1776,6 +1840,12 @@ namespace Purchase_DAL.Inventory {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void GetDocDetailsDataRowChangeEventHandler(object sender, GetDocDetailsDataRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void SupplierBlockListRowChangeEventHandler(object sender, SupplierBlockListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void TblSupplierMaster_SupplierBlockRowChangeEventHandler(object sender, TblSupplierMaster_SupplierBlockRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -16037,6 +16107,844 @@ namespace Purchase_DAL.Inventory {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SupplierBlockListDataTable : global::System.Data.TypedTableBase<SupplierBlockListRow> {
+            
+            private global::System.Data.DataColumn columnintSuppMasterID;
+            
+            private global::System.Data.DataColumn columnstrSuppMasterName;
+            
+            private global::System.Data.DataColumn columnstrOrgAddress;
+            
+            private global::System.Data.DataColumn columnstrOrgMail;
+            
+            private global::System.Data.DataColumn columnstrOrgContactNo;
+            
+            private global::System.Data.DataColumn columnstrOrgFAXNo;
+            
+            private global::System.Data.DataColumn columnstrBusinessType;
+            
+            private global::System.Data.DataColumn columnstrServiceType;
+            
+            private global::System.Data.DataColumn columnstrBIN;
+            
+            private global::System.Data.DataColumn columnstrTIN;
+            
+            private global::System.Data.DataColumn columnstrVATRegNo;
+            
+            private global::System.Data.DataColumn columnstrTradeLisenceNo;
+            
+            private global::System.Data.DataColumn columnstrReprName;
+            
+            private global::System.Data.DataColumn columnstrReprContactNo;
+            
+            private global::System.Data.DataColumn columnstrPayToName;
+            
+            private global::System.Data.DataColumn columnstrSupplierType;
+            
+            private global::System.Data.DataColumn columnEnlistmentDate;
+            
+            private global::System.Data.DataColumn columnstrAccountName;
+            
+            private global::System.Data.DataColumn columnstrAccountNo;
+            
+            private global::System.Data.DataColumn columnstrRoutingNumber;
+            
+            private global::System.Data.DataColumn columnstrBankName;
+            
+            private global::System.Data.DataColumn columnstrBankBranchName;
+            
+            private global::System.Data.DataColumn columnstrBlockRemarks;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SupplierBlockListDataTable() {
+                this.TableName = "SupplierBlockList";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SupplierBlockListDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected SupplierBlockListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn intSuppMasterIDColumn {
+                get {
+                    return this.columnintSuppMasterID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strSuppMasterNameColumn {
+                get {
+                    return this.columnstrSuppMasterName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strOrgAddressColumn {
+                get {
+                    return this.columnstrOrgAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strOrgMailColumn {
+                get {
+                    return this.columnstrOrgMail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strOrgContactNoColumn {
+                get {
+                    return this.columnstrOrgContactNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strOrgFAXNoColumn {
+                get {
+                    return this.columnstrOrgFAXNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strBusinessTypeColumn {
+                get {
+                    return this.columnstrBusinessType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strServiceTypeColumn {
+                get {
+                    return this.columnstrServiceType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strBINColumn {
+                get {
+                    return this.columnstrBIN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strTINColumn {
+                get {
+                    return this.columnstrTIN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strVATRegNoColumn {
+                get {
+                    return this.columnstrVATRegNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strTradeLisenceNoColumn {
+                get {
+                    return this.columnstrTradeLisenceNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strReprNameColumn {
+                get {
+                    return this.columnstrReprName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strReprContactNoColumn {
+                get {
+                    return this.columnstrReprContactNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strPayToNameColumn {
+                get {
+                    return this.columnstrPayToName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strSupplierTypeColumn {
+                get {
+                    return this.columnstrSupplierType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EnlistmentDateColumn {
+                get {
+                    return this.columnEnlistmentDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strAccountNameColumn {
+                get {
+                    return this.columnstrAccountName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strAccountNoColumn {
+                get {
+                    return this.columnstrAccountNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strRoutingNumberColumn {
+                get {
+                    return this.columnstrRoutingNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strBankNameColumn {
+                get {
+                    return this.columnstrBankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strBankBranchNameColumn {
+                get {
+                    return this.columnstrBankBranchName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strBlockRemarksColumn {
+                get {
+                    return this.columnstrBlockRemarks;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SupplierBlockListRow this[int index] {
+                get {
+                    return ((SupplierBlockListRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SupplierBlockListRowChangeEventHandler SupplierBlockListRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SupplierBlockListRowChangeEventHandler SupplierBlockListRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SupplierBlockListRowChangeEventHandler SupplierBlockListRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SupplierBlockListRowChangeEventHandler SupplierBlockListRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddSupplierBlockListRow(SupplierBlockListRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SupplierBlockListRow AddSupplierBlockListRow(
+                        string strSuppMasterName, 
+                        string strOrgAddress, 
+                        string strOrgMail, 
+                        string strOrgContactNo, 
+                        string strOrgFAXNo, 
+                        string strBusinessType, 
+                        string strServiceType, 
+                        string strBIN, 
+                        string strTIN, 
+                        string strVATRegNo, 
+                        string strTradeLisenceNo, 
+                        string strReprName, 
+                        string strReprContactNo, 
+                        string strPayToName, 
+                        string strSupplierType, 
+                        string EnlistmentDate, 
+                        string strAccountName, 
+                        string strAccountNo, 
+                        string strRoutingNumber, 
+                        string strBankName, 
+                        string strBankBranchName, 
+                        string strBlockRemarks) {
+                SupplierBlockListRow rowSupplierBlockListRow = ((SupplierBlockListRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        strSuppMasterName,
+                        strOrgAddress,
+                        strOrgMail,
+                        strOrgContactNo,
+                        strOrgFAXNo,
+                        strBusinessType,
+                        strServiceType,
+                        strBIN,
+                        strTIN,
+                        strVATRegNo,
+                        strTradeLisenceNo,
+                        strReprName,
+                        strReprContactNo,
+                        strPayToName,
+                        strSupplierType,
+                        EnlistmentDate,
+                        strAccountName,
+                        strAccountNo,
+                        strRoutingNumber,
+                        strBankName,
+                        strBankBranchName,
+                        strBlockRemarks};
+                rowSupplierBlockListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSupplierBlockListRow);
+                return rowSupplierBlockListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SupplierBlockListDataTable cln = ((SupplierBlockListDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SupplierBlockListDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnintSuppMasterID = base.Columns["intSuppMasterID"];
+                this.columnstrSuppMasterName = base.Columns["strSuppMasterName"];
+                this.columnstrOrgAddress = base.Columns["strOrgAddress"];
+                this.columnstrOrgMail = base.Columns["strOrgMail"];
+                this.columnstrOrgContactNo = base.Columns["strOrgContactNo"];
+                this.columnstrOrgFAXNo = base.Columns["strOrgFAXNo"];
+                this.columnstrBusinessType = base.Columns["strBusinessType"];
+                this.columnstrServiceType = base.Columns["strServiceType"];
+                this.columnstrBIN = base.Columns["strBIN"];
+                this.columnstrTIN = base.Columns["strTIN"];
+                this.columnstrVATRegNo = base.Columns["strVATRegNo"];
+                this.columnstrTradeLisenceNo = base.Columns["strTradeLisenceNo"];
+                this.columnstrReprName = base.Columns["strReprName"];
+                this.columnstrReprContactNo = base.Columns["strReprContactNo"];
+                this.columnstrPayToName = base.Columns["strPayToName"];
+                this.columnstrSupplierType = base.Columns["strSupplierType"];
+                this.columnEnlistmentDate = base.Columns["EnlistmentDate"];
+                this.columnstrAccountName = base.Columns["strAccountName"];
+                this.columnstrAccountNo = base.Columns["strAccountNo"];
+                this.columnstrRoutingNumber = base.Columns["strRoutingNumber"];
+                this.columnstrBankName = base.Columns["strBankName"];
+                this.columnstrBankBranchName = base.Columns["strBankBranchName"];
+                this.columnstrBlockRemarks = base.Columns["strBlockRemarks"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnintSuppMasterID = new global::System.Data.DataColumn("intSuppMasterID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintSuppMasterID);
+                this.columnstrSuppMasterName = new global::System.Data.DataColumn("strSuppMasterName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSuppMasterName);
+                this.columnstrOrgAddress = new global::System.Data.DataColumn("strOrgAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOrgAddress);
+                this.columnstrOrgMail = new global::System.Data.DataColumn("strOrgMail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOrgMail);
+                this.columnstrOrgContactNo = new global::System.Data.DataColumn("strOrgContactNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOrgContactNo);
+                this.columnstrOrgFAXNo = new global::System.Data.DataColumn("strOrgFAXNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOrgFAXNo);
+                this.columnstrBusinessType = new global::System.Data.DataColumn("strBusinessType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBusinessType);
+                this.columnstrServiceType = new global::System.Data.DataColumn("strServiceType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrServiceType);
+                this.columnstrBIN = new global::System.Data.DataColumn("strBIN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBIN);
+                this.columnstrTIN = new global::System.Data.DataColumn("strTIN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTIN);
+                this.columnstrVATRegNo = new global::System.Data.DataColumn("strVATRegNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrVATRegNo);
+                this.columnstrTradeLisenceNo = new global::System.Data.DataColumn("strTradeLisenceNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTradeLisenceNo);
+                this.columnstrReprName = new global::System.Data.DataColumn("strReprName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrReprName);
+                this.columnstrReprContactNo = new global::System.Data.DataColumn("strReprContactNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrReprContactNo);
+                this.columnstrPayToName = new global::System.Data.DataColumn("strPayToName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPayToName);
+                this.columnstrSupplierType = new global::System.Data.DataColumn("strSupplierType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSupplierType);
+                this.columnEnlistmentDate = new global::System.Data.DataColumn("EnlistmentDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEnlistmentDate);
+                this.columnstrAccountName = new global::System.Data.DataColumn("strAccountName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAccountName);
+                this.columnstrAccountNo = new global::System.Data.DataColumn("strAccountNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAccountNo);
+                this.columnstrRoutingNumber = new global::System.Data.DataColumn("strRoutingNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrRoutingNumber);
+                this.columnstrBankName = new global::System.Data.DataColumn("strBankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBankName);
+                this.columnstrBankBranchName = new global::System.Data.DataColumn("strBankBranchName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBankBranchName);
+                this.columnstrBlockRemarks = new global::System.Data.DataColumn("strBlockRemarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBlockRemarks);
+                this.columnintSuppMasterID.AutoIncrement = true;
+                this.columnintSuppMasterID.AutoIncrementSeed = -1;
+                this.columnintSuppMasterID.AutoIncrementStep = -1;
+                this.columnintSuppMasterID.AllowDBNull = false;
+                this.columnintSuppMasterID.ReadOnly = true;
+                this.columnstrSuppMasterName.MaxLength = 500;
+                this.columnstrOrgAddress.MaxLength = 1000;
+                this.columnstrOrgMail.MaxLength = 500;
+                this.columnstrOrgContactNo.MaxLength = 500;
+                this.columnstrOrgFAXNo.MaxLength = 500;
+                this.columnstrBusinessType.MaxLength = 50;
+                this.columnstrServiceType.MaxLength = 50;
+                this.columnstrBIN.MaxLength = 50;
+                this.columnstrTIN.MaxLength = 50;
+                this.columnstrVATRegNo.MaxLength = 50;
+                this.columnstrTradeLisenceNo.MaxLength = 50;
+                this.columnstrReprName.MaxLength = 500;
+                this.columnstrReprContactNo.MaxLength = 500;
+                this.columnstrPayToName.MaxLength = 500;
+                this.columnstrSupplierType.MaxLength = 50;
+                this.columnEnlistmentDate.ReadOnly = true;
+                this.columnEnlistmentDate.MaxLength = 30;
+                this.columnstrAccountName.MaxLength = 500;
+                this.columnstrAccountNo.MaxLength = 50;
+                this.columnstrRoutingNumber.MaxLength = 10;
+                this.columnstrBankName.MaxLength = 200;
+                this.columnstrBankBranchName.MaxLength = 200;
+                this.columnstrBlockRemarks.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SupplierBlockListRow NewSupplierBlockListRow() {
+                return ((SupplierBlockListRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SupplierBlockListRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SupplierBlockListRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SupplierBlockListRowChanged != null)) {
+                    this.SupplierBlockListRowChanged(this, new SupplierBlockListRowChangeEvent(((SupplierBlockListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SupplierBlockListRowChanging != null)) {
+                    this.SupplierBlockListRowChanging(this, new SupplierBlockListRowChangeEvent(((SupplierBlockListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SupplierBlockListRowDeleted != null)) {
+                    this.SupplierBlockListRowDeleted(this, new SupplierBlockListRowChangeEvent(((SupplierBlockListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SupplierBlockListRowDeleting != null)) {
+                    this.SupplierBlockListRowDeleting(this, new SupplierBlockListRowChangeEvent(((SupplierBlockListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveSupplierBlockListRow(SupplierBlockListRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Supplier ds = new Supplier();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SupplierBlockListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TblSupplierMaster_SupplierBlockDataTable : global::System.Data.TypedTableBase<TblSupplierMaster_SupplierBlockRow> {
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TblSupplierMaster_SupplierBlockDataTable() {
+                this.TableName = "TblSupplierMaster_SupplierBlock";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TblSupplierMaster_SupplierBlockDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected TblSupplierMaster_SupplierBlockDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TblSupplierMaster_SupplierBlockRow this[int index] {
+                get {
+                    return ((TblSupplierMaster_SupplierBlockRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TblSupplierMaster_SupplierBlockRowChangeEventHandler TblSupplierMaster_SupplierBlockRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TblSupplierMaster_SupplierBlockRowChangeEventHandler TblSupplierMaster_SupplierBlockRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TblSupplierMaster_SupplierBlockRowChangeEventHandler TblSupplierMaster_SupplierBlockRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TblSupplierMaster_SupplierBlockRowChangeEventHandler TblSupplierMaster_SupplierBlockRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddTblSupplierMaster_SupplierBlockRow(TblSupplierMaster_SupplierBlockRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TblSupplierMaster_SupplierBlockRow AddTblSupplierMaster_SupplierBlockRow() {
+                TblSupplierMaster_SupplierBlockRow rowTblSupplierMaster_SupplierBlockRow = ((TblSupplierMaster_SupplierBlockRow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowTblSupplierMaster_SupplierBlockRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblSupplierMaster_SupplierBlockRow);
+                return rowTblSupplierMaster_SupplierBlockRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TblSupplierMaster_SupplierBlockDataTable cln = ((TblSupplierMaster_SupplierBlockDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TblSupplierMaster_SupplierBlockDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TblSupplierMaster_SupplierBlockRow NewTblSupplierMaster_SupplierBlockRow() {
+                return ((TblSupplierMaster_SupplierBlockRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TblSupplierMaster_SupplierBlockRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TblSupplierMaster_SupplierBlockRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TblSupplierMaster_SupplierBlockRowChanged != null)) {
+                    this.TblSupplierMaster_SupplierBlockRowChanged(this, new TblSupplierMaster_SupplierBlockRowChangeEvent(((TblSupplierMaster_SupplierBlockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TblSupplierMaster_SupplierBlockRowChanging != null)) {
+                    this.TblSupplierMaster_SupplierBlockRowChanging(this, new TblSupplierMaster_SupplierBlockRowChangeEvent(((TblSupplierMaster_SupplierBlockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TblSupplierMaster_SupplierBlockRowDeleted != null)) {
+                    this.TblSupplierMaster_SupplierBlockRowDeleted(this, new TblSupplierMaster_SupplierBlockRowChangeEvent(((TblSupplierMaster_SupplierBlockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TblSupplierMaster_SupplierBlockRowDeleting != null)) {
+                    this.TblSupplierMaster_SupplierBlockRowDeleting(this, new TblSupplierMaster_SupplierBlockRowChangeEvent(((TblSupplierMaster_SupplierBlockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveTblSupplierMaster_SupplierBlockRow(TblSupplierMaster_SupplierBlockRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Supplier ds = new Supplier();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TblSupplierMaster_SupplierBlockDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tblMasterSupplierDumpRow : global::System.Data.DataRow {
@@ -23435,6 +24343,663 @@ namespace Purchase_DAL.Inventory {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SupplierBlockListRow : global::System.Data.DataRow {
+            
+            private SupplierBlockListDataTable tableSupplierBlockList;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SupplierBlockListRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSupplierBlockList = ((SupplierBlockListDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int intSuppMasterID {
+                get {
+                    return ((int)(this[this.tableSupplierBlockList.intSuppMasterIDColumn]));
+                }
+                set {
+                    this[this.tableSupplierBlockList.intSuppMasterIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strSuppMasterName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strSuppMasterNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSuppMasterName\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strSuppMasterNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strOrgAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strOrgAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOrgAddress\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strOrgAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strOrgMail {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strOrgMailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOrgMail\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strOrgMailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strOrgContactNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strOrgContactNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOrgContactNo\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strOrgContactNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strOrgFAXNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strOrgFAXNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOrgFAXNo\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strOrgFAXNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strBusinessType {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strBusinessTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBusinessType\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strBusinessTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strServiceType {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strServiceTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strServiceType\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strServiceTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strBIN {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strBINColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBIN\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strBINColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strTIN {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strTINColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTIN\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strTINColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strVATRegNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strVATRegNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strVATRegNo\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strVATRegNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strTradeLisenceNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strTradeLisenceNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTradeLisenceNo\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strTradeLisenceNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strReprName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strReprNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strReprName\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strReprNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strReprContactNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strReprContactNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strReprContactNo\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strReprContactNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strPayToName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strPayToNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPayToName\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strPayToNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strSupplierType {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strSupplierTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSupplierType\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strSupplierTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string EnlistmentDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.EnlistmentDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EnlistmentDate\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.EnlistmentDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strAccountName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strAccountNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAccountName\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strAccountNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strAccountNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strAccountNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAccountNo\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strAccountNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strRoutingNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strRoutingNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRoutingNumber\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strRoutingNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strBankName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strBankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBankName\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strBankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strBankBranchName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strBankBranchNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBankBranchName\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strBankBranchNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strBlockRemarks {
+                get {
+                    try {
+                        return ((string)(this[this.tableSupplierBlockList.strBlockRemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBlockRemarks\' in table \'SupplierBlockList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSupplierBlockList.strBlockRemarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrSuppMasterNameNull() {
+                return this.IsNull(this.tableSupplierBlockList.strSuppMasterNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrSuppMasterNameNull() {
+                this[this.tableSupplierBlockList.strSuppMasterNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrOrgAddressNull() {
+                return this.IsNull(this.tableSupplierBlockList.strOrgAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrOrgAddressNull() {
+                this[this.tableSupplierBlockList.strOrgAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrOrgMailNull() {
+                return this.IsNull(this.tableSupplierBlockList.strOrgMailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrOrgMailNull() {
+                this[this.tableSupplierBlockList.strOrgMailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrOrgContactNoNull() {
+                return this.IsNull(this.tableSupplierBlockList.strOrgContactNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrOrgContactNoNull() {
+                this[this.tableSupplierBlockList.strOrgContactNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrOrgFAXNoNull() {
+                return this.IsNull(this.tableSupplierBlockList.strOrgFAXNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrOrgFAXNoNull() {
+                this[this.tableSupplierBlockList.strOrgFAXNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrBusinessTypeNull() {
+                return this.IsNull(this.tableSupplierBlockList.strBusinessTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrBusinessTypeNull() {
+                this[this.tableSupplierBlockList.strBusinessTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrServiceTypeNull() {
+                return this.IsNull(this.tableSupplierBlockList.strServiceTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrServiceTypeNull() {
+                this[this.tableSupplierBlockList.strServiceTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrBINNull() {
+                return this.IsNull(this.tableSupplierBlockList.strBINColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrBINNull() {
+                this[this.tableSupplierBlockList.strBINColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrTINNull() {
+                return this.IsNull(this.tableSupplierBlockList.strTINColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrTINNull() {
+                this[this.tableSupplierBlockList.strTINColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrVATRegNoNull() {
+                return this.IsNull(this.tableSupplierBlockList.strVATRegNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrVATRegNoNull() {
+                this[this.tableSupplierBlockList.strVATRegNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrTradeLisenceNoNull() {
+                return this.IsNull(this.tableSupplierBlockList.strTradeLisenceNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrTradeLisenceNoNull() {
+                this[this.tableSupplierBlockList.strTradeLisenceNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrReprNameNull() {
+                return this.IsNull(this.tableSupplierBlockList.strReprNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrReprNameNull() {
+                this[this.tableSupplierBlockList.strReprNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrReprContactNoNull() {
+                return this.IsNull(this.tableSupplierBlockList.strReprContactNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrReprContactNoNull() {
+                this[this.tableSupplierBlockList.strReprContactNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrPayToNameNull() {
+                return this.IsNull(this.tableSupplierBlockList.strPayToNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrPayToNameNull() {
+                this[this.tableSupplierBlockList.strPayToNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrSupplierTypeNull() {
+                return this.IsNull(this.tableSupplierBlockList.strSupplierTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrSupplierTypeNull() {
+                this[this.tableSupplierBlockList.strSupplierTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEnlistmentDateNull() {
+                return this.IsNull(this.tableSupplierBlockList.EnlistmentDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEnlistmentDateNull() {
+                this[this.tableSupplierBlockList.EnlistmentDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrAccountNameNull() {
+                return this.IsNull(this.tableSupplierBlockList.strAccountNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrAccountNameNull() {
+                this[this.tableSupplierBlockList.strAccountNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrAccountNoNull() {
+                return this.IsNull(this.tableSupplierBlockList.strAccountNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrAccountNoNull() {
+                this[this.tableSupplierBlockList.strAccountNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrRoutingNumberNull() {
+                return this.IsNull(this.tableSupplierBlockList.strRoutingNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrRoutingNumberNull() {
+                this[this.tableSupplierBlockList.strRoutingNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrBankNameNull() {
+                return this.IsNull(this.tableSupplierBlockList.strBankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrBankNameNull() {
+                this[this.tableSupplierBlockList.strBankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrBankBranchNameNull() {
+                return this.IsNull(this.tableSupplierBlockList.strBankBranchNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrBankBranchNameNull() {
+                this[this.tableSupplierBlockList.strBankBranchNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrBlockRemarksNull() {
+                return this.IsNull(this.tableSupplierBlockList.strBlockRemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrBlockRemarksNull() {
+                this[this.tableSupplierBlockList.strBlockRemarksColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TblSupplierMaster_SupplierBlockRow : global::System.Data.DataRow {
+            
+            private TblSupplierMaster_SupplierBlockDataTable tableTblSupplierMaster_SupplierBlock;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TblSupplierMaster_SupplierBlockRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTblSupplierMaster_SupplierBlock = ((TblSupplierMaster_SupplierBlockDataTable)(this.Table));
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -24916,6 +26481,74 @@ namespace Purchase_DAL.Inventory {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GetDocDetailsDataRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class SupplierBlockListRowChangeEvent : global::System.EventArgs {
+            
+            private SupplierBlockListRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SupplierBlockListRowChangeEvent(SupplierBlockListRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SupplierBlockListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class TblSupplierMaster_SupplierBlockRowChangeEvent : global::System.EventArgs {
+            
+            private TblSupplierMaster_SupplierBlockRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TblSupplierMaster_SupplierBlockRowChangeEvent(TblSupplierMaster_SupplierBlockRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TblSupplierMaster_SupplierBlockRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -26958,7 +28591,7 @@ FROM            tblSupplierMaster AS SM LEFT OUTER JOIN
                          tblSupplierMasterRank AS SMR ON SMR.intRankID = SM.intRank LEFT OUTER JOIN
                          tblSupplierMasterBankAccountInfo AS AF ON SM.intSuppMasterID = AF.intSuppMasterID LEFT OUTER JOIN
                          ERP_Global.dbo.qryBankInfo AS qbi ON qbi.strRoutingNumber = AF.strRoutingNo
-WHERE        (SM.ysnActive = 1) and SM.strSuppMasterName like '%' + @searchKey + '%'
+WHERE        (SM.ysnActive = 1) and SM.strSuppMasterName like '%' + @searchKey + '%'  and ysnBlock is null
 ORDER BY SM.strSuppMasterName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@searchKey", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSuppMasterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26972,7 +28605,7 @@ FROM            tblSupplierMaster AS SM LEFT OUTER JOIN
                          tblSupplierMasterRank AS SMR ON SMR.intRankID = SM.intRank LEFT OUTER JOIN
                          tblSupplierMasterBankAccountInfo AS AF ON SM.intSuppMasterID = AF.intSuppMasterID LEFT OUTER JOIN
                          ERP_Global.dbo.qryBankInfo AS qbi ON qbi.strRoutingNumber = AF.strRoutingNo
-WHERE        (SM.ysnActive = 1) 
+WHERE        (SM.ysnActive = 1)   and ysnBlock is null
 ORDER BY SM.strSuppMasterName";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
@@ -34980,6 +36613,389 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SupplierBlockListTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public SupplierBlockListTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SupplierBlockList";
+            tableMapping.ColumnMappings.Add("intSuppMasterID", "intSuppMasterID");
+            tableMapping.ColumnMappings.Add("strSuppMasterName", "strSuppMasterName");
+            tableMapping.ColumnMappings.Add("strOrgAddress", "strOrgAddress");
+            tableMapping.ColumnMappings.Add("strOrgMail", "strOrgMail");
+            tableMapping.ColumnMappings.Add("strOrgContactNo", "strOrgContactNo");
+            tableMapping.ColumnMappings.Add("strOrgFAXNo", "strOrgFAXNo");
+            tableMapping.ColumnMappings.Add("strBusinessType", "strBusinessType");
+            tableMapping.ColumnMappings.Add("strServiceType", "strServiceType");
+            tableMapping.ColumnMappings.Add("strBIN", "strBIN");
+            tableMapping.ColumnMappings.Add("strTIN", "strTIN");
+            tableMapping.ColumnMappings.Add("strVATRegNo", "strVATRegNo");
+            tableMapping.ColumnMappings.Add("strTradeLisenceNo", "strTradeLisenceNo");
+            tableMapping.ColumnMappings.Add("strReprName", "strReprName");
+            tableMapping.ColumnMappings.Add("strReprContactNo", "strReprContactNo");
+            tableMapping.ColumnMappings.Add("strPayToName", "strPayToName");
+            tableMapping.ColumnMappings.Add("strSupplierType", "strSupplierType");
+            tableMapping.ColumnMappings.Add("EnlistmentDate", "EnlistmentDate");
+            tableMapping.ColumnMappings.Add("strAccountName", "strAccountName");
+            tableMapping.ColumnMappings.Add("strAccountNo", "strAccountNo");
+            tableMapping.ColumnMappings.Add("strRoutingNumber", "strRoutingNumber");
+            tableMapping.ColumnMappings.Add("strBankName", "strBankName");
+            tableMapping.ColumnMappings.Add("strBankBranchName", "strBankBranchName");
+            tableMapping.ColumnMappings.Add("strBlockRemarks", "strBlockRemarks");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Purchase_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT   SM.intSuppMasterID, SM.strSuppMasterName, SM.strOrgAddress, SM.strOrgMail, SM.strOrgContactNo, SM.strOrgFAXNo, SM.strBusinessType, SM.strServiceType, 
+                         SM.strBIN, SM.strTIN, SM.strVATRegNo, SM.strTradeLisenceNo, SM.strReprName, SM.strReprContactNo, SM.strPayToName, SM.strSupplierType, convert(varchar,SM.dteEnlistmentdate,106) as EnlistmentDate,
+                         AF.strAccountName, AF.strAccountNo, qbi.strRoutingNumber, qbi.strBankName, qbi.strBankBranchName, strBlockRemarks
+FROM            tblSupplierMaster AS SM LEFT OUTER JOIN
+                         tblPaymentInstrument AS SPI ON SM.intPreferedInstrument = SPI.intInstrumentID LEFT OUTER JOIN
+                         tblSupplierMasterRank AS SMR ON SMR.intRankID = SM.intRank LEFT OUTER JOIN
+                         tblSupplierMasterBankAccountInfo AS AF ON SM.intSuppMasterID = AF.intSuppMasterID LEFT OUTER JOIN
+                         ERP_Global.dbo.qryBankInfo AS qbi ON qbi.strRoutingNumber = AF.strRoutingNo
+WHERE        (SM.ysnActive = 0) and SM.strSuppMasterName like '%' + @searchKey + '%'  and ysnBlock = 1
+ORDER BY SM.strSuppMasterName";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@searchKey", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSuppMasterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT   SM.intSuppMasterID, SM.strSuppMasterName, SM.strOrgAddress, SM.strOrgMail, SM.strOrgContactNo, SM.strOrgFAXNo, SM.strBusinessType, SM.strServiceType, 
+                         SM.strBIN, SM.strTIN, SM.strVATRegNo, SM.strTradeLisenceNo, SM.strReprName, SM.strReprContactNo, SM.strPayToName, SM.strSupplierType, convert(varchar,SM.dteEnlistmentdate,106) as EnlistmentDate,
+                         AF.strAccountName, AF.strAccountNo, qbi.strRoutingNumber, qbi.strBankName, qbi.strBankBranchName, strBlockRemarks
+FROM            tblSupplierMaster AS SM LEFT OUTER JOIN
+                         tblPaymentInstrument AS SPI ON SM.intPreferedInstrument = SPI.intInstrumentID LEFT OUTER JOIN
+                         tblSupplierMasterRank AS SMR ON SMR.intRankID = SM.intRank LEFT OUTER JOIN
+                         tblSupplierMasterBankAccountInfo AS AF ON SM.intSuppMasterID = AF.intSuppMasterID LEFT OUTER JOIN
+                         ERP_Global.dbo.qryBankInfo AS qbi ON qbi.strRoutingNumber = AF.strRoutingNo
+WHERE        (SM.ysnActive = 0)   and ysnBlock = 1
+ORDER BY SM.strSuppMasterName";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual Supplier.SupplierBlockListDataTable GetSupplierProfileBlockListBySearchKey(string searchKey) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((searchKey == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(searchKey));
+            }
+            Supplier.SupplierBlockListDataTable dataTable = new Supplier.SupplierBlockListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual Supplier.SupplierBlockListDataTable GetSupplierProfileAllBlockList() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            Supplier.SupplierBlockListDataTable dataTable = new Supplier.SupplierBlockListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TblSupplierMaster_SupplierBlockTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public TblSupplierMaster_SupplierBlockTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Purchase_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "Update ERP_Inventory.dbo.tblSupplierMaster Set ysnActive = 0, ysnBlock = 1, intBl" +
+                "ockBy = @intBlockBy, dteBlockDateTime = Getdate(), strBlockRemarks = @strBlockRe" +
+                "marks Where intSuppMasterID = @intSuppMasterID";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intBlockBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBlockBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strBlockRemarks", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strBlockRemarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSuppMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual Supplier.TblSupplierMaster_SupplierBlockDataTable UpdateSupplierBlock(global::System.Nullable<int> intBlockBy, string strBlockRemarks, int intSuppMasterID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intBlockBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intBlockBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((strBlockRemarks == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strBlockRemarks));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intSuppMasterID));
+            Supplier.TblSupplierMaster_SupplierBlockDataTable dataTable = new Supplier.TblSupplierMaster_SupplierBlockDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -35219,6 +37235,15 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._getDocTypesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GetDocTypes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._getDocTypesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._getItemCategoryTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.GetItemCategory.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -35246,15 +37271,6 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tblSupplierMaster1TableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblSupplierMaster1.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblSupplierMaster1TableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._enrollWiseSupplierTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.EnrollWiseSupplier.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -35264,12 +37280,12 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._getDocTypesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.GetDocTypes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tblSupplierMaster1TableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblSupplierMaster1.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._getDocTypesTableAdapter.Update(updatedRows));
+                    result = (result + this._tblSupplierMaster1TableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -35288,6 +37304,14 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._requestedSupplierTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._getDocTypesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GetDocTypes.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._getDocTypesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -35315,14 +37339,6 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tblSupplierMaster1TableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblSupplierMaster1.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblSupplierMaster1TableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._enrollWiseSupplierTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.EnrollWiseSupplier.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -35331,11 +37347,11 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._getDocTypesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.GetDocTypes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tblSupplierMaster1TableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblSupplierMaster1.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._getDocTypesTableAdapter.Update(addedRows));
+                    result = (result + this._tblSupplierMaster1TableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -35349,11 +37365,11 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(Supplier dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._getDocTypesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.GetDocTypes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tblSupplierMaster1TableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblSupplierMaster1.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._getDocTypesTableAdapter.Update(deletedRows));
+                    result = (result + this._tblSupplierMaster1TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -35362,14 +37378,6 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._enrollWiseSupplierTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tblSupplierMaster1TableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblSupplierMaster1.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblSupplierMaster1TableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -35394,6 +37402,14 @@ where  r.ysnactive=1 and r.intWHID IN (462, 471, 448, 449, 450, 451, 452, 453, 4
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._getItemCategoryTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._getDocTypesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GetDocTypes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._getDocTypesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

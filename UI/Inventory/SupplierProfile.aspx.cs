@@ -115,7 +115,7 @@ namespace UI.Inventory
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes.Add("onmouseover",
-                "this.originalcolor=this.style.backgroundColor;" + " this.style.backgroundColor='#FEEC9C';");
+                "this.originalcolor=this.style.backgroundColor;" + " this.style.backgroundColor='#FF0000';");
 
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalcolor;");
 

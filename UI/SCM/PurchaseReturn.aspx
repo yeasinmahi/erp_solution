@@ -31,7 +31,31 @@
         }
 
 </script> 
+    <script type="text/javascript">
+      
+    $("[id*=txtReturnQty]").live("keyup", function () {
+            if (!jQuery.trim($(this).val()) == '') { 
+                if (!isNaN(parseFloat($(this).val()))) {
+                    var row = $(this).closest("tr");
+                    var isssueqty = parseFloat($("[id*=lblPoQty]", row).html());
+                    var returnQty = parseFloat($(this).val());
+               
+                    if (isssueqty > returnQty) {
+                         $("[id*=txtReturnQty]", row).val('0'); 
+                       alert('Please PO Qty Grather then Return Qty');
+                    }
+                    else {
+                      
+                    }
+                    
 
+                }
+            } else {
+                $(this).val('');
+            } 
+
+        });
+    </script>
    
 </head>
 

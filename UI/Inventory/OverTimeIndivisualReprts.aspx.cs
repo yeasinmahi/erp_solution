@@ -97,7 +97,7 @@ namespace UI.Inventory
             {
                 if (Int32.TryParse(searchKey, out enroll))
                 {
-                    date = DateTimeConverter.StringToDateTime(txtMonth.Text, "yyyy-MM");
+                    date = DateTimeConverter.StringToDateTime(txtMonth.Text, "yyyy-MMMM");
                     if(DateTime.TryParse(txtMonth.Text, out date))
                     {
                         OverTimeReport or = new OverTimeReport();

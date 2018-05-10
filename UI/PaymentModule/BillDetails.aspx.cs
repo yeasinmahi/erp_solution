@@ -78,12 +78,21 @@ namespace UI.PaymentModule
                     }
                 }
 
-                dt = new DataTable();
-                dt = objBillApp.GetPOIDByBillID(intBillID);
-                if (dt.Rows.Count > 0)
+                try
                 {
-                    hdnPOID.Value = dt.Rows[0]["strReffNo"].ToString();
+                    dt = new DataTable();
+                    dt = objBillApp.GetPOIDByBillID(intBillID);
+                    if (dt.Rows.Count > 0)
+                    {
+                        hdnPOID.Value = dt.Rows[0]["strReffNo"].ToString();
+                    }
+                    if (hdnPOID.Value == "")
+                    {
+                        hdnPOID.Value = "0";
+                    }
                 }
+                catch { hdnPOID.Value = "0"; }
+
                 txtPONo.Text = hdnPOID.Value;
                 txtBillID.Text = intBillID.ToString();
                 dt = new DataTable();

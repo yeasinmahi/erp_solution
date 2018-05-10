@@ -16,16 +16,16 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class PaymentVoucher : System.Web.UI.Page
+    public partial class PaymentVoucher : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillReg = new Billing_BLL();
         DataTable dt;
 
         int intDept, intType;
-        string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid;
+        string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
         #endregion ====================================================================================
-
+                
         protected void Page_Load(object sender, EventArgs e)
         {   
             try
@@ -133,11 +133,11 @@ namespace UI.PaymentModule
 
         protected void dgvReportForPaymentV_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int rowIndex = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = dgvReportForPaymentV.Rows[rowIndex];
-            
-            if (e.CommandName == "PV")
+            try
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = dgvReportForPaymentV.Rows[rowIndex];
+
                 unitid = ddlUnit.SelectedValue.ToString();
                 billid = (row.FindControl("lblID") as Label).Text;
                 entrycode = (row.FindControl("lblRegNo") as Label).Text;
@@ -147,13 +147,37 @@ namespace UI.PaymentModule
                 instrument = ddlInstrument.SelectedValue.ToString();
                 billtypeid = ddlType.SelectedValue.ToString();
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucher('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
-            }
-            else if (e.CommandName == "SD")
-            {
-                //int.Parse((row.FindControl("lblID") as Label).Text);
-            }
+                try
+                {
+                    if (txtDate.Text != "")
+                    {
+                        vdate = DateTime.Parse(txtDate.Text).ToString();
+                    }
+                    else
+                    {
+                        vdate = DateTime.Now.ToString("yyyy-MM-dd").ToString();
+                    }
+                }
+                catch { vdate = DateTime.Now.ToString("yyyy-MM-dd").ToString(); }
 
+                if (e.CommandName == "PV")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucher('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "', '" + vdate + "');", true);
+                }
+                else if (e.CommandName == "CP")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucherCP('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
+
+                }
+                else if (e.CommandName == "View")
+                {
+                    Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
+                    Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
+                }
+            }
+            catch { }
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)

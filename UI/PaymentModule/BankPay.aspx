@@ -19,6 +19,13 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+
+    <script>
+        function CloseWindow() {
+            window.close();
+        }
+    </script>
+
     </head>
 <body>
     <form id="frmBankPay" runat="server">        
@@ -69,7 +76,7 @@
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Instrument"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlInstrument" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false">
+                <asp:DropDownList ID="ddlInstrument" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlInstrument_SelectedIndexChanged">
                 <asp:ListItem Selected="True" Value="1">Cheque</asp:ListItem><asp:ListItem Value="2">Advice</asp:ListItem>
                 <asp:ListItem Value="3">Adjustment</asp:ListItem></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>  
@@ -105,8 +112,8 @@
             <tr><td colspan="6">   
                 <asp:GridView ID="dgvReportForPaymentV" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
                 CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-                HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                ForeColor="Black" GridLines="Vertical">
+                ShowFooter="true"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvReportForPaymentV_RowDataBound">
                 <AlternatingRowStyle BackColor="#CCCCCC" />    
                 <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
@@ -121,15 +128,21 @@
 
                 <asp:TemplateField HeaderText="NARRATION" SortExpression="narration">
                 <ItemTemplate><asp:Label ID="lblNarration" runat="server" Text='<%# Bind("narration") %>' Width="300px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="300px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="300px"/>
+                <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total" /></FooterTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="DEBIT" SortExpression="debit">
                 <ItemTemplate><asp:Label ID="lblDebit" runat="server" Text='<%# Bind("debit", "{0:n2}") %>' Width="100px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/>
+                <FooterTemplate><asp:Label ID="lblDebitTKTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# debitgrandtotal %>" /></FooterTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="CREDIT" SortExpression="credit">
                 <ItemTemplate><asp:Label ID="lblCredit" runat="server" Text='<%# Bind("credit", "{0:n2}") %>' Width="80px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/>
+                <FooterTemplate><asp:Label ID="lblCreditTKTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# creditgrandtotal %>" /></FooterTemplate>
+                </asp:TemplateField>
 
                 <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
 
@@ -144,7 +157,7 @@
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlPayTo" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label14" runat="server" Text=""></asp:Label></td>
-                <td colspan="2" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnSaveBP" runat="server" class="myButton" OnClientClick = "ConfirmAll()" Height="30px" Text="SAVE BP"/></td>        
+                <td colspan="2" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnSaveBP" runat="server" class="myButton" OnClientClick = "ConfirmAll()" Height="30px" Text="SAVE BP" OnClick="btnSaveBP_Click"/></td>        
             </tr>
 
         </table>

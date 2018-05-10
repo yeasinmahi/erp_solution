@@ -46,7 +46,7 @@
     <div style="padding-right:10px;">
         <%--<div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL REGISTRATION<hr /></div>--%>
         <table class="tbldecoration" style="width:auto; float:left;">
-            <tr><td colspan="2"><img src="img/Banner.png" width="950px"; height="120px" /></td></tr>            
+            <tr><td colspan="2"><img src="img/Banner.png" width="100%"; height="120px" /></td></tr>            
             <tr style="text-align:center">
                 <td style=" padding: 60px 0px 0px 0px"><asp:Button ID="btnCustomer" runat="server" CssClass="btnCustomer"  width=300px height=50px  Text="COUSTOMERS" Font-Bold="true" OnClick="btnCustomer_Click"/></td>  
                 <td style=" padding: 60px 0px 0px 0px"><asp:Button ID="btnSupport" runat="server" CssClass="btnSupport"  width=300px height=50px Text="SUPPORTERS" Font-Bold="true" OnClick="btnSupport_Click"/></td>  
@@ -77,7 +77,7 @@
             </td></tr>
             <tr>
                 <td>
-                    <span style="font-size:35px"><asp:CheckBox ID="CheckBox1" runat="server"/></span>
+                    <span style="font-size:35px"><asp:CheckBox ID="ckbAgree" runat="server"/></span>
                     <span style="font:bold; font-weight:900; padding-bottom:25px; font-size:22px;">I accept the terms & conditions in the agreement</span>
                 </td>
                 <td style="text-align:right; padding: 0px 0px 0px 0px; padding-top:18px"><asp:Button ID="btnGo" runat="server" class="myButton" Text="GO >>>" ToolTip="Go To Customer Support" OnClick="btnGo_Click"/></td>                       

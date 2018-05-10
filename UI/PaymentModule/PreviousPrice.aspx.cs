@@ -16,7 +16,7 @@ using System.Xml;
 
 namespace UI.PaymentModule
 {
-    public partial class PreviousPrice : System.Web.UI.Page
+    public partial class PreviousPrice : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL();
@@ -48,11 +48,10 @@ namespace UI.PaymentModule
                     dgvPriceList.DataBind();
                 }
 
-                dt = new DataTable();
-                dt = objBillApp.GetChartOfPrice(int.Parse(hdnItemID.Value));
-                Chart1.DataSource = dt;
-                Chart1.DataBind();
-                
+                //dt = new DataTable();
+                //dt = objBillApp.GetChartOfPrice(int.Parse(hdnItemID.Value));
+                //Chart1.DataSource = dt;
+                //Chart1.DataBind();                
             }
         }
 

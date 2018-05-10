@@ -177,6 +177,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HR_Closing_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupport\CreativeS_DAL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreativeS_DAL.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dispatch\DispatchGlobalTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -759,6 +764,17 @@
     </None>
     <None Include="Closing\HR_Closing_TDS.xss">
       <DependentUpon>HR_Closing_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="CreativeSupport\CreativeS_DAL.xsc">
+      <DependentUpon>CreativeS_DAL.xsd</DependentUpon>
+    </None>
+    <None Include="CreativeSupport\CreativeS_DAL.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CreativeS_DAL.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CreativeSupport\CreativeS_DAL.xss">
+      <DependentUpon>CreativeS_DAL.xsd</DependentUpon>
     </None>
     <None Include="Dispatch\DispatchGlobalTDS.xsc">
       <DependentUpon>DispatchGlobalTDS.xsd</DependentUpon>

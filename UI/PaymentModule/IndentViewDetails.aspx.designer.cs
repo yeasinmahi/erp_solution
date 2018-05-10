@@ -40,13 +40,13 @@ namespace UI.PaymentModule {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmLoanSummaryPrint control.
+        /// frmIndentDetailsView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmLoanSummaryPrint;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmIndentDetailsView;
         
         /// <summary>
         /// ScriptManager0 control.

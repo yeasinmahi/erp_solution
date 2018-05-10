@@ -48,12 +48,17 @@ namespace UI.SCM
 
         private void getIssueItem()
         {
+            arrayKey = txtItem.Text.Split(delimiterChars);
+            string item = ""; string itemid = "";
+            if (arrayKey.Length > 0)
+            { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
+
             enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             intwh = int.Parse(ddlWH.SelectedValue);
             DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
             DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
             string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-            dt = objIssue.GetViewData(6, xmlData, intwh, 0, DateTime.Now, enroll);
+            dt = objIssue.GetViewData(6, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
             dgvPoApp.DataSource = dt;
             dgvPoApp.DataBind();
         }
@@ -78,6 +83,8 @@ namespace UI.SCM
             }
             catch { }
         }
+
+        
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {

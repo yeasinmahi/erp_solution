@@ -117,15 +117,20 @@
              window.location.href("WorkOrderPartsPopUp.aspx")
              //newwindow =window.open(url,' ', 'scrollbars=yes,toolbar=0,height=600,width=1000,top=50,left=180, close=no');
              //if (window.focus) { newwindow.focus() }
-         }
-        
-        
+         } 
          function sp(reqsid) {
              window.open('ServiceMaterialsPopup.aspx?intID=' + reqsid, 'sub', "height=400, width=670, scrollbars=yes, left=330, top=50, resizable=no, title=Preview");
          }
          </script> 
    
-
+    <script type="text/javascript"> 
+        function funConfirmAll() { 
+        var confirm_value = document.createElement("INPUT"); 
+        confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; 
+        if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; } 
+        else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
+        } 
+    </script> 
 
     <style type="text/css">
         .leaveApplication_container {
@@ -149,89 +154,52 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
     <div style="height: 100px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>
-
-
-
-
-
+    </cc1:AlwaysVisibleControlExtender> 
 
 <%--=========================================Start My Code From Here===============================================--%>
      <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
-    <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnUnitIDByddl" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
+    <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnUnitIDByddl" runat="server" /><asp:HiddenField ID="hdnConfirm" runat="server" />
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />  <asp:HiddenField ID="HdnAssetid" runat="server" />        
     <div class="tabs_container" align="Center">Maintenance Services </div>
    
          <table  border="1px" width="900" class="tblrowodd">
-              <tr>
-                  
-       <td style="text-align:right;"> <asp:Label ID="Lbblorder" runat="server" CssClass="lbl" Text="Work Order#:"></asp:Label></td>
-                  
-                  
-           <td style="text-align:left;"> <asp:TextBox ID="TxtOrder" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
-                      
-                         
-         <td style="text-align:right;"><asp:Label ID="LblStatus" runat="server" CssClass="lbl" Text="Status:"></asp:Label> </td>
-         <td style="text-align:left;"><asp:DropDownList ID="DdlStatus" runat="server" CssClass="ddList" Font-Bold="False">
-                              <asp:ListItem>Open</asp:ListItem>
-                              <asp:ListItem>Pending</asp:ListItem>
-                              <asp:ListItem>Wating for parts</asp:ListItem>
-                              <asp:ListItem>Close</asp:ListItem>
-                          </asp:DropDownList>
-                          
-                             <td style="text-align:right;"> <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Reparing Type:"></asp:Label></td>
-                          
-                         
-                 <td style="text-align:left;"><asp:DropDownList ID="DdlReType" runat="server" CssClass="ddList" Font-Bold="False">
-                    <asp:ListItem>Prenventive</asp:ListItem>
-                                  <asp:ListItem>Repair</asp:ListItem>
-                              </asp:DropDownList></td>
-                          
-                    </tr>
-             <tr>
-      <%--  <td style="text-align:right;"><asp:Label ID="LbldteIssue" runat="server" CssClass="lbl" Text="Issue Date:"></asp:Label></td>
-        <td><asp:TextBox ID="TxtdteIssue" runat="server" CssClass="txtBox"></asp:TextBox>
-        <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteIssue"></cc1:CalendarExtender> --%>
-        <td style="text-align:right;"><asp:Label ID="LbldteStarted" runat="server" CssClass="lbl" Text="Start Date:"></asp:Label></td>
-       <td><asp:TextBox ID="TxtdteStarted" runat="server" CssClass="txtBox"></asp:TextBox>
-        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteStarted"></cc1:CalendarExtender> 
+            <tr> 
+            <td style="text-align:right;"> <asp:Label ID="Lbblorder" runat="server" CssClass="lbl" Text="Work Order#:"></asp:Label></td> 
+            <td style="text-align:left;"> <asp:TextBox ID="TxtOrder" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox> 
+            <td style="text-align:right;"><asp:Label ID="LblStatus" runat="server" CssClass="lbl" Text="Status:"></asp:Label> </td>
+            <td style="text-align:left;"><asp:DropDownList ID="DdlStatus" runat="server" CssClass="ddList" Font-Bold="False">
+            <asp:ListItem>Open</asp:ListItem>
+            <asp:ListItem>Pending</asp:ListItem>
+            <asp:ListItem>Wating for parts</asp:ListItem>
+            <asp:ListItem>Close</asp:ListItem>
+            </asp:DropDownList> 
+            <td style="text-align:right;"> <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Reparing Type:"></asp:Label></td> 
+            <td style="text-align:left;"><asp:DropDownList ID="DdlReType" runat="server" CssClass="ddList" Font-Bold="False">
+            <asp:ListItem>Prenventive</asp:ListItem> <asp:ListItem>Repair</asp:ListItem> </asp:DropDownList></td>  
+            </tr>
+            <tr> 
+            <td style="text-align:right;"><asp:Label ID="LbldteStarted" runat="server" CssClass="lbl" Text="Start Date:"></asp:Label></td>
+            <td><asp:TextBox ID="TxtdteStarted" runat="server" CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteStarted"></cc1:CalendarExtender>  
 
-        <%--<td style="text-align:right;"><asp:Label ID="LbldteEnd" runat="server" CssClass="lbl" Text=" End Date:"></asp:Label></td>
-        <td><asp:TextBox ID="TxtdteEnd" runat="server" CssClass="txtBox"></asp:TextBox>
-        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteEnd"></cc1:CalendarExtender> --%>
-       <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Priority:"></asp:Label> </td>
-         <td style="text-align:left;"><asp:DropDownList ID="DdlPriority" runat="server" CssClass="ddList" Font-Bold="False">
-         <asp:ListItem>Normal</asp:ListItem><asp:ListItem>High</asp:ListItem><asp:ListItem>Low</asp:ListItem></asp:DropDownList>
-        <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Cost Center:"></asp:Label> </td>
-         <td style="text-align:left;"><asp:DropDownList ID="DdlCostCenter" runat="server" CssClass="ddList" Font-Bold="False">
-         </asp:DropDownList>
-      
-         </tr> 
-             <tr>
-         <%--<td style="text-align:right;"><asp:Label ID="LblAssetName" runat="server" CssClass="lbl" Text="Asset Name:"></asp:Label> </td>
-          <td style="text-align:left;"> <asp:TextBox ID="TxtAssetName" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
-        --%>
-                                
-                 
-           </tr>
+            <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Priority:"></asp:Label> </td>
+            <td style="text-align:left;"><asp:DropDownList ID="DdlPriority" runat="server" CssClass="ddList" Font-Bold="False">
+            <asp:ListItem>Normal</asp:ListItem><asp:ListItem>High</asp:ListItem><asp:ListItem>Low</asp:ListItem></asp:DropDownList>
+            
+            <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Cost Center:"></asp:Label> </td>
+            <td style="text-align:left;"><asp:DropDownList ID="DdlCostCenter" runat="server" CssClass="ddList" Font-Bold="False">
+            </asp:DropDownList> 
+            </tr> 
              </table>
          <table  border="1px" width="900" class="tblroweven">
             
              <tr>
                  <td class="auto-style1">Assign To</td>
-                <%--  <td><asp:RadioButton ID="RadioButton3" Text="Employee" runat="server" /></td>
-                <td><asp:RadioButton ID="RadioButton4" Text="Vendor" runat="server" /></td>
-
-                --%> 
+               
                   <td class="auto-style1" style="text-align:left;">
                              <asp:TextBox ID="TxtAssign" runat="server" CssClass="txtBox" AutoPostBack="false" onchange="javascript: Changeds();" placeholder="Please Search Enroll" Font-Bold="False"></asp:TextBox>  
              <asp:HiddenField ID="HdfTechnicinCode" runat="server" /><asp:HiddenField ID="HdfTechnicinSearchbox" runat="server" /></td>
-                 <%--<td style="text-align:left;">
-                     <asp:DropDownList ID="DdlAssign" runat="server" CssClass="ddList" Font-Bold="False">
-                         <asp:ListItem>Md. Abu Said Sarkar</asp:ListItem>
-                         <asp:ListItem>Softtech</asp:ListItem>
-                         <asp:ListItem>Houni</asp:ListItem>
-                     </asp:DropDownList>--%>
+                
 
                      <td class="auto-style1" style="text-align:right;">
                          <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Notes:"></asp:Label>
@@ -315,9 +283,26 @@
               <tr>
                      <td><asp:GridView ID="dgvTask" runat="server" AutoGenerateColumns="False">
                          <Columns>
+                             <asp:TemplateField HeaderText="ID" Visible="false">
+                                 <ItemTemplate>
+                                     <asp:Label ID="lblServiceID" Text='<%# Bind("intID") %>' runat="server"/>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+
                              <asp:BoundField HeaderText="ID" DataField="intID" SortExpression="intID" />
                              <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
                              <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+                             <asp:TemplateField HeaderText="Service Cost">
+                                 <ItemTemplate>
+                                     <asp:TextBox ID="txtServiceCharge" Text='<%# Bind("monServiceCost","{0:n2}") %>' runat="server"    />
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Update">
+                                 <ItemTemplate>
+                                     <asp:Button ID="btnServiceCharge" runat="server" Text="Update" OnClientClick="funConfirmAll();"  BackColor="LightYellow"   OnClick="btnServiceCharge_Click"/>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+
                              <asp:TemplateField HeaderText="AddService">
                                  <ItemTemplate>
                                      <asp:Button ID="BtnService" runat="server" Text="Add Service"  BackColor="YellowGreen" CommandName="Detalis"  CommandArgument='<%# Eval("intID")%>' OnClick="BtnService_Click" />

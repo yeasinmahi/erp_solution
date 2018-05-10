@@ -57,7 +57,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
      <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
-     <div class="tabs_container" style="text-align:left">Issue Statement<hr /></div>
+     <div class="tabs_container" style="text-align:left"><hr /></div>
          
          <table style="width:700px"> 
                 <tr><td colspan="2" style="text-align:center; font:bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor:pointer" onclick="Print()">Print</a></td></tr>
@@ -100,39 +100,39 @@
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
  
-            <asp:TemplateField HeaderText="Procurement Personal" SortExpression="strSrNo"><ItemTemplate>
-            <asp:Label ID="lblProcurement" runat="server" Text='<%# Bind("strSrNo") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Procurement Personal" SortExpression="Personal"><ItemTemplate>
+            <asp:Label ID="lblProcurement" runat="server" Text='<%# Bind("Personal") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="60px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Value of Total PO"   ItemStyle-HorizontalAlign="right" SortExpression="dteSrDate" >
-            <ItemTemplate><asp:Label ID="lblValueTo" runat="server"  Text='<%# Bind("dteSrDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Value of Total PO"   ItemStyle-HorizontalAlign="right" SortExpression="POTotal" >
+            <ItemTemplate><asp:Label ID="lblValueTo" runat="server"  Text='<%# Bind("POTotal") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
                 
-            <asp:TemplateField HeaderText="Number of Total PO"   ItemStyle-HorizontalAlign="right" SortExpression="strDepatrment" >
-            <ItemTemplate><asp:Label ID="lblNumsTP" runat="server"  Text='<%# Bind("strDepatrment") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Number of Total PO"   ItemStyle-HorizontalAlign="right" SortExpression="NoOfPo" >
+            <ItemTemplate><asp:Label ID="lblNumsTP" runat="server"  Text='<%# Bind("NoOfPo") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
-            <asp:TemplateField HeaderText="Number of Unique Supp"   ItemStyle-HorizontalAlign="right" SortExpression="dteIssueDate" >
-            <ItemTemplate><asp:Label ID="lblNumUN" runat="server"  Text='<%# Bind("dteIssueDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Number of Unique Supp"   ItemStyle-HorizontalAlign="right" SortExpression="NoOfEniqueSuppliers" >
+            <ItemTemplate><asp:Label ID="lblNumUN" runat="server"  Text='<%# Bind("NoOfEniqueSuppliers") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
-            <asp:TemplateField HeaderText="No of Unique Itms" ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
-            <ItemTemplate><asp:Label ID="lblUnique" runat="server"   Text='<%# Bind("strItem","{0:n2}") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="No of Total Itms" ItemStyle-HorizontalAlign="right" SortExpression="NoOfTotalItems" >
+            <ItemTemplate><asp:Label ID="lblUnique" runat="server"   Text='<%# Bind("NoOfTotalItems") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="AVG Item Per PO" ItemStyle-HorizontalAlign="right" SortExpression="strUseFor" >
-            <ItemTemplate><asp:Label ID="lblAvgItem" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strUseFor") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="AVG Item Per PO" ItemStyle-HorizontalAlign="right" SortExpression="AvgItemperPo" >
+            <ItemTemplate><asp:Label ID="lblAvgItem" runat="server"  Text='<%# Bind("AvgItemperPo") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
            
-            <asp:TemplateField HeaderText="Rating"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblRating" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="NoOfUniqueItems"   ItemStyle-HorizontalAlign="right" SortExpression="NoOfUniqueItems" >
+            <ItemTemplate><asp:Label ID="lblRating" runat="server"  Text='<%# Bind("NoOfUniqueItems") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
             
-            <asp:TemplateField HeaderText="Highest Value PO"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblHeigstPOVal" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Highest Value PO"   ItemStyle-HorizontalAlign="right" SortExpression="HeighestPoValue" >
+            <ItemTemplate><asp:Label ID="lblHeigstPOVal" runat="server"  Text='<%# Bind("HeighestPoValue" ) %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
             
-            <asp:TemplateField HeaderText="Rating"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
+            <%--<asp:TemplateField HeaderText="Rating"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
             <ItemTemplate><asp:Label ID="lblRating2" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
 
@@ -142,7 +142,7 @@
 
             <asp:TemplateField HeaderText="Maximum Total Value Procured"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
             <ItemTemplate><asp:Label ID="lblVlueProcured" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> --%>
 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

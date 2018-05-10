@@ -21,6 +21,7 @@
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+
     <script type="text/javascript">
         $("[id*=txtIssue]").live("change", function () {
             if (!jQuery.trim($(this).val()) == '') {
@@ -60,12 +61,7 @@
         }
 
 </script> 
-       <script type="text/javascript" language="javascript">
-           function closeWin() {
-               window.close();
-           }
-      </script>
-  
+      
     <style type="text/css"> 
         .rounds {
         height: 80px;

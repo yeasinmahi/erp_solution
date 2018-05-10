@@ -92,6 +92,7 @@
     <Compile Include="BulkSMS\BulkSMSBLL.cs" />
     <Compile Include="Cafeteria\GlobalBLL.cs" />
     <Compile Include="Closing\HR_Closing.cs" />
+    <Compile Include="CreativeSupport\CreativeS_BLL.cs" />
     <Compile Include="Dispatch\DispatchBLL.cs" />
     <Compile Include="Dispatch\DispatchGlobalBLL.cs" />
     <Compile Include="Document Inventory\docLocationConfig_BLL.cs" />

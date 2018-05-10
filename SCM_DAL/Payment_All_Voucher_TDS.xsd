@@ -2,11 +2,12 @@
 <xs:schema id="Payment_All_Voucher_TDS" targetNamespace="http://tempuri.org/Payment_All_Voucher_TDS.xsd" xmlns:mstns="http://tempuri.org/Payment_All_Voucher_TDS.xsd" xmlns="http://tempuri.org/Payment_All_Voucher_TDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="3" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PaymentConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PaymentConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_PaymentConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AccountsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AccountsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_AccountsConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_InventoryConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprGetUnitTableAdapter" GeneratorDataComponentClassName="SprGetUnitTableAdapter" Name="SprGetUnit" UserDataComponentName="SprGetUnitTableAdapter">
@@ -42,7 +43,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BankAndAccountListTableAdapter" GeneratorDataComponentClassName="BankAndAccountListTableAdapter" Name="BankAndAccountList" UserDataComponentName="BankAndAccountListTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAccountList" GetMethodModifier="Public" GetMethodName="GetAccountList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAccountList" UserSourceName="GetAccountList">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.tblBankAccountInfo" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAccountList" GetMethodModifier="Public" GetMethodName="GetAccountList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAccountList" UserSourceName="GetAccountList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ba.intAccountID, bb.strShortBR+ ': '+ ba.strAccountNo AS strBankAccount FROM ERP_Accounts.dbo.tblBankAccountInfo ba JOIN ERP_Accounts.dbo.tblBankBranchInfo bb ON ba.intBankBranchID=bb.intBranchID JOIN ERP_Accounts.dbo.tblBankInfo bi ON bb.intBankID=bi.intBankID WHERE ba.intUnitID=@intUnitID AND ba.intAccTypeID NOT IN (5,6) AND bb.intBankID=@intBankID</CommandText>
@@ -70,7 +71,7 @@ WHERE ysnMainCA=1 AND ba.intUnitID=@intUnitID</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetBankList" GetMethodModifier="Public" GetMethodName="GetBankList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBankList" UserSourceName="GetBankList">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.tblBankInfo" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetBankList" GetMethodModifier="Public" GetMethodName="GetBankList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBankList" UserSourceName="GetBankList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT bi.intBankID, bi.strBankName FROM ERP_Accounts.dbo.tblBankAccountInfo ba JOIN ERP_Accounts.dbo.tblBankBranchInfo bb ON ba.intBankBranchID=bb.intBranchID JOIN ERP_Accounts.dbo.tblBankInfo bi ON bb.intBankID=bi.intBankID WHERE ba.intUnitID=@intUnitID GROUP BY bi.intBankID, bi.strBankName ORDER BY bi.intBankID</CommandText>
@@ -126,6 +127,449 @@ WHERE ysnMainCA=1 AND ba.intUnitID=@intUnitID</CommandText>
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="strVoucherCode" DataSetColumn="strVoucherCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprPaymentVoucherBPForWebTableAdapter" GeneratorDataComponentClassName="SprPaymentVoucherBPForWebTableAdapter" Name="SprPaymentVoucherBPForWeb" UserDataComponentName="SprPaymentVoucherBPForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprPaymentVoucherBPForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertPaymentVoucherBP" GetMethodModifier="Public" GetMethodName="InsertPaymentVoucherBP" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="InsertPaymentVoucherBP" UserSourceName="InsertPaymentVoucherBP">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprPaymentVoucherBPForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strCCName" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCCID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBank" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankAcc" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strInstrument" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteInstrumentDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteVoucherDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strPayTo" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBillID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strBillCode" Precision="0" ProviderType="VarChar" Scale="0" Size="200" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@monApproveAmount" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@monVoucherTotal" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strNarration" Precision="0" ProviderType="VarChar" Scale="0" Size="2000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xml" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strInstrumentNo" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprBankGetCheckNoForWebTableAdapter" GeneratorDataComponentClassName="SprBankGetCheckNoForWebTableAdapter" Name="SprBankGetCheckNoForWeb" UserDataComponentName="SprBankGetCheckNoForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprBankGetCheckNoForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetChequeOrAdvice" GetMethodModifier="Public" GetMethodName="GetChequeOrAdvice" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetChequeOrAdvice" UserSourceName="GetChequeOrAdvice">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprBankGetCheckNoForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankAccID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strInstrument" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strCode" DataSetColumn="strCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprPaymentVoucherCPForWebTableAdapter" GeneratorDataComponentClassName="SprPaymentVoucherCPForWebTableAdapter" Name="SprPaymentVoucherCPForWeb" UserDataComponentName="SprPaymentVoucherCPForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprPaymentVoucherCPForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertPaymentVoucherCP" GetMethodModifier="Public" GetMethodName="InsertPaymentVoucherCP" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="InsertPaymentVoucherCP" UserSourceName="InsertPaymentVoucherCP">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprPaymentVoucherCPForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strCCName" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCCID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBank" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankAcc" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strInstrument" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteInstrumentDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteVoucherDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strPayTo" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBillID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strBillCode" Precision="0" ProviderType="VarChar" Scale="0" Size="200" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@monApproveAmount" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="decimal" DbType="Decimal" Direction="Input" ParameterName="@monVoucherTotal" Precision="18" ProviderType="Decimal" Scale="4" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strNarration" Precision="0" ProviderType="VarChar" Scale="0" Size="2000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xml" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strInstrumentNo" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVoucherCode" DataSetColumn="strVoucherCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter" GeneratorDataComponentClassName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter" Name="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL" UserDataComponentName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertPOVoucherForAFBL" GetMethodModifier="Public" GetMethodName="InsertPOVoucherForAFBL" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="InsertPOVoucherForAFBL" UserSourceName="InsertPOVoucherForAFBL">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUser" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBank" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankAcc" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xml" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVoucherCode" DataSetColumn="strVoucherCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SupplierListForAddToChartOfAccountTableAdapter" GeneratorDataComponentClassName="SupplierListForAddToChartOfAccountTableAdapter" Name="SupplierListForAddToChartOfAccount" UserDataComponentName="SupplierListForAddToChartOfAccountTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetSupplierListForAddToChartOfAcount" GetMethodModifier="Public" GetMethodName="GetSupplierListForAddToChartOfAcount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetSupplierListForAddToChartOfAcount" UserSourceName="GetSupplierListForAddToChartOfAcount">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select s.intSupplierID, strSupplierName, strSupplierType, isnull(s.intCOAID,0) as intCOAID, coa.strCode, coa.strAccName 
+From ERP_Inventory.dbo.tblSupplier s LEFT JOIN ERP_Accounts.dbo.tblAccountsChartOfAcc coa on s.intCOAID=coa.intAccID 
+Where s.intUnitID= @intUnitID AND s.ysnActive=1 AND s.strSupplierType IS NOT NULL and ISNULL(s.intCOAID,0)= 0 ORDER BY strSupplierName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.tblSupplier" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intSupplierID" DataSetColumn="intSupplierID" />
+              <Mapping SourceColumn="strSupplierName" DataSetColumn="strSupplierName" />
+              <Mapping SourceColumn="strSupplierType" DataSetColumn="strSupplierType" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="strCode" DataSetColumn="strCode" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprGetAccountHeadByParentIDAndUnitIDForWebTableAdapter" GeneratorDataComponentClassName="SprGetAccountHeadByParentIDAndUnitIDForWebTableAdapter" Name="SprGetAccountHeadByParentIDAndUnitIDForWeb" UserDataComponentName="SprGetAccountHeadByParentIDAndUnitIDForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprGetAccountHeadByParentIDAndUnitIDForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAccountHeadForSupplierBridgeCOA" GetMethodModifier="Public" GetMethodName="GetAccountHeadForSupplierBridgeCOA" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAccountHeadForSupplierBridgeCOA" UserSourceName="GetAccountHeadForSupplierBridgeCOA">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprGetAccountHeadByParentIDAndUnitIDForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intAccID" DataSetColumn="intAccID" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprInsertUpdateSupplierCOAForWebTableAdapter" GeneratorDataComponentClassName="SprInsertUpdateSupplierCOAForWebTableAdapter" Name="SprInsertUpdateSupplierCOAForWeb" UserDataComponentName="SprInsertUpdateSupplierCOAForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprInsertUpdateSupplierCOAForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertAndUpdateSupplierCOA" GetMethodModifier="Public" GetMethodName="InsertAndUpdateSupplierCOA" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="InsertAndUpdateSupplierCOA" UserSourceName="InsertAndUpdateSupplierCOA">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprInsertUpdateSupplierCOAForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPart" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intSupplierID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strSupplier" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUser" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCOAID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemForCOABridgeTableAdapter" GeneratorDataComponentClassName="ItemForCOABridgeTableAdapter" Name="ItemForCOABridge" UserDataComponentName="ItemForCOABridgeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemForCOABridge" GetMethodModifier="Public" GetMethodName="GetItemForCOABridge" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemForCOABridge" UserSourceName="GetItemForCOABridge">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName
+From ERP_Inventory.dbo.qryItemList i Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
+where i.intUnitID=@intUnitID And i.ysnActive=1 AND ISNULL(coa.intAccID,0)=0 Order By i.strItem</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.qryItemList" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="strItem" DataSetColumn="strItem" />
+              <Mapping SourceColumn="strReqItemCategory" DataSetColumn="strReqItemCategory" />
+              <Mapping SourceColumn="strSubCategory" DataSetColumn="strSubCategory" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemForCOABridgeByUnitAndCategoryTableAdapter" GeneratorDataComponentClassName="ItemForCOABridgeByUnitAndCategoryTableAdapter" Name="ItemForCOABridgeByUnitAndCategory" UserDataComponentName="ItemForCOABridgeByUnitAndCategoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemForCOABridgeByUnitAndCategory" GetMethodModifier="Public" GetMethodName="GetItemForCOABridgeByUnitAndCategory" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemForCOABridgeByUnitAndCategory" UserSourceName="GetItemForCOABridgeByUnitAndCategory">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName
+From ERP_Inventory.dbo.qryItemList i Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
+where i.intUnitID=@intUnitID and i.intCategoryID=@intCategoryID And i.ysnActive=1 AND ISNULL(coa.intAccID,0)=0 Order By i.strItem</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.qryItemList" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCategoryID" ColumnName="intCategoryID" DataSourceName="ERP_Inventory.dbo.qryItemList" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCategoryID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCategoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="strItem" DataSetColumn="strItem" />
+              <Mapping SourceColumn="strReqItemCategory" DataSetColumn="strReqItemCategory" />
+              <Mapping SourceColumn="strSubCategory" DataSetColumn="strSubCategory" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprGetCOAChildByUnitTableAdapter" GeneratorDataComponentClassName="SprGetCOAChildByUnitTableAdapter" Name="SprGetCOAChildByUnit" UserDataComponentName="SprGetCOAChildByUnitTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprGetCOAChildByUnit" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemCOA" GetMethodModifier="Public" GetMethodName="GetItemCOA" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemCOA" UserSourceName="GetItemCOA">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprGetCOAChildByUnit</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnAdvance" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnPurchase" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnCreditors" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnAll" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ysnBillReg" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+              <Mapping SourceColumn="intAccID" DataSetColumn="intAccID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblItemCategoryTableAdapter" GeneratorDataComponentClassName="TblItemCategoryTableAdapter" Name="TblItemCategory" UserDataComponentName="TblItemCategoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.tblItemCategory" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCategory" GetMethodModifier="Public" GetMethodName="GetCategory" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCategory" UserSourceName="GetCategory">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ERP_Inventory].[dbo].[tblItemCategory] WHERE (((@IsNull_strReqItemCategory = 1 AND [strReqItemCategory] IS NULL) OR ([strReqItemCategory] = @Original_strReqItemCategory)) AND ([intAutoID] = @Original_intAutoID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strReqItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strReqItemCategory" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strReqItemCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strReqItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intAutoID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAutoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_Inventory].[dbo].[tblItemCategory] ([strReqItemCategory]) VALUES (@strReqItemCategory);
+SELECT strReqItemCategory, intAutoID FROM tblItemCategory WHERE (intAutoID = SCOPE_IDENTITY()) ORDER BY intAutoID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strReqItemCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strReqItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strReqItemCategory,intAutoID from ERP_Inventory.dbo.tblItemCategory order by intAutoID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [ERP_Inventory].[dbo].[tblItemCategory] SET [strReqItemCategory] = @strReqItemCategory WHERE (((@IsNull_strReqItemCategory = 1 AND [strReqItemCategory] IS NULL) OR ([strReqItemCategory] = @Original_strReqItemCategory)) AND ([intAutoID] = @Original_intAutoID));
+SELECT strReqItemCategory, intAutoID FROM tblItemCategory WHERE (intAutoID = @intAutoID) ORDER BY intAutoID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strReqItemCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strReqItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strReqItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strReqItemCategory" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strReqItemCategory" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strReqItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intAutoID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intAutoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intAutoID" ColumnName="intAutoID" DataSourceName="ERP_Inventory.dbo.tblItemCategory" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAutoID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAutoID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strReqItemCategory" DataSetColumn="strReqItemCategory" />
+              <Mapping SourceColumn="intAutoID" DataSetColumn="intAutoID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QryItemListTableAdapter" GeneratorDataComponentClassName="QryItemListTableAdapter" Name="QryItemList" UserDataComponentName="QryItemListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.qryItemList" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCOABankItem" GetMethodModifier="Public" GetMethodName="GetCOABankItem" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCOABankItem" UserSourceName="GetCOABankItem">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select i.intItemID, i.strItem, CASE WHEN i.intCategoryID IS NULL THEN cg.strComGroupName ELSE i.strCategory END as strReqItemCategory, 
+CASE WHEN i.intCategoryID IS NULL THEN cat.strCategory ELSE i.strSubCategory END as strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName  From ERP_Inventory.dbo.qryItemList i
+Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID LEFT JOIN ERP_Inventory.dbo.tblItemMasterCommodityGroup cg ON i.intMasterComGroup=cg.intComGroup 
+LEFT JOIN ERP_Inventory.dbo.tblItemMasterCategory cat ON i.intMasterCategory=cat.intCategory where i.intUnitID=@intUnitID AND ISNULL(i.intCOAID,0)=0 AND ISNULL(i.intMasterCategory,0) NOT IN (44,45)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.qryItemList" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="strItem" DataSetColumn="strItem" />
+              <Mapping SourceColumn="strReqItemCategory" DataSetColumn="strReqItemCategory" />
+              <Mapping SourceColumn="strSubCategory" DataSetColumn="strSubCategory" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="COABankItemByUnitAndCategoryIDTableAdapter" GeneratorDataComponentClassName="COABankItemByUnitAndCategoryIDTableAdapter" Name="COABankItemByUnitAndCategoryID" UserDataComponentName="COABankItemByUnitAndCategoryIDTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCOABankItemByUnitAndCategoryID" GetMethodModifier="Public" GetMethodName="GetCOABankItemByUnitAndCategoryID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCOABankItemByUnitAndCategoryID" UserSourceName="GetCOABankItemByUnitAndCategoryID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select intItemID, isnull(strItemName+' '+strDescription+' '+' '+strPartNo,'') as strItem, ic.strReqItemCategory, strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']','') as strAccName 
+From ERP_Inventory.dbo.tblItemList i Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
+where i.intUnitID=@intUnitID and intCategoryID=@intCategoryID AND ISNULL(i.intCOAID,0)=0 Order By strItemName+' '+strDescription+' '+' '+strPartNo</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intUnitID" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.tblItemList" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCategoryID" ColumnName="intCategoryID" DataSourceName="ERP_Inventory.dbo.tblItemList" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCategoryID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCategoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="strItem" DataSetColumn="strItem" />
+              <Mapping SourceColumn="strReqItemCategory" DataSetColumn="strReqItemCategory" />
+              <Mapping SourceColumn="strSubCategory" DataSetColumn="strSubCategory" />
+              <Mapping SourceColumn="intCOAID" DataSetColumn="intCOAID" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprMaterialCOABridgeForWebTableAdapter" GeneratorDataComponentClassName="SprMaterialCOABridgeForWebTableAdapter" Name="SprMaterialCOABridgeForWeb" UserDataComponentName="SprMaterialCOABridgeForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprMaterialCOABridgeForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="UpdateItemCOABridge" GetMethodModifier="Public" GetMethodName="UpdateItemCOABridge" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="UpdateItemCOABridge" UserSourceName="UpdateItemCOABridge">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprMaterialCOABridgeForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xml" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAllApprovedBillTableAdapter" GeneratorDataComponentClassName="SprAllApprovedBillTableAdapter" Name="SprAllApprovedBill" UserDataComponentName="SprAllApprovedBillTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprAllApprovedBill" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllApproveReport" GetMethodModifier="Public" GetMethodName="GetAllApproveReport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllApproveReport" UserSourceName="GetAllApproveReport">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprAllApprovedBill</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unit" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@fDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@tDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+              <Mapping SourceColumn="strBill" DataSetColumn="strBill" />
+              <Mapping SourceColumn="strParty" DataSetColumn="strParty" />
+              <Mapping SourceColumn="dteRcv" DataSetColumn="dteRcv" />
+              <Mapping SourceColumn="monBill" DataSetColumn="monBill" />
+              <Mapping SourceColumn="monNet" DataSetColumn="monNet" />
+              <Mapping SourceColumn="monL1" DataSetColumn="monL1" />
+              <Mapping SourceColumn="dteL1" DataSetColumn="dteL1" />
+              <Mapping SourceColumn="monL2" DataSetColumn="monL2" />
+              <Mapping SourceColumn="dteL2" DataSetColumn="dteL2" />
+              <Mapping SourceColumn="strRemarks" DataSetColumn="strRemarks" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprBillRegisterForWebTableAdapter" GeneratorDataComponentClassName="SprBillRegisterForWebTableAdapter" Name="SprBillRegisterForWeb" UserDataComponentName="SprBillRegisterForWebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprBillRegisterForWeb" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetBillRegisterForWeb" GetMethodModifier="Public" GetMethodName="GetBillRegisterForWeb" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBillRegisterForWeb" UserSourceName="GetBillRegisterForWeb">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprBillRegisterForWeb</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteFDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteTDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intBill" DataSetColumn="intBill" />
+              <Mapping SourceColumn="strBillCode" DataSetColumn="strBillCode" />
+              <Mapping SourceColumn="strParty" DataSetColumn="strParty" />
+              <Mapping SourceColumn="strReff" DataSetColumn="strReff" />
+              <Mapping SourceColumn="strBillNo" DataSetColumn="strBillNo" />
+              <Mapping SourceColumn="dteBillDate" DataSetColumn="dteBillDate" />
+              <Mapping SourceColumn="dteRcvDate" DataSetColumn="dteRcvDate" />
+              <Mapping SourceColumn="monBillAmount" DataSetColumn="monBillAmount" />
+              <Mapping SourceColumn="strRemarks" DataSetColumn="strRemarks" />
+              <Mapping SourceColumn="strAuditStatus" DataSetColumn="strAuditStatus" />
+              <Mapping SourceColumn="dteAuditDate" DataSetColumn="dteAuditDate" />
+              <Mapping SourceColumn="strAuditRemarks" DataSetColumn="strAuditRemarks" />
+              <Mapping SourceColumn="monApproveAmount" DataSetColumn="monApproveAmount" />
+              <Mapping SourceColumn="monApprovedAIT" DataSetColumn="monApprovedAIT" />
+              <Mapping SourceColumn="dtePayDate" DataSetColumn="dtePayDate" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -198,6 +642,377 @@ WHERE ysnMainCA=1 AND ba.intUnitID=@intUnitID</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprPaymentVoucherBPForWeb" msprop:Generator_TableClassName="SprPaymentVoucherBPForWebDataTable" msprop:Generator_TableVarName="tableSprPaymentVoucherBPForWeb" msprop:Generator_RowChangedName="SprPaymentVoucherBPForWebRowChanged" msprop:Generator_TablePropName="SprPaymentVoucherBPForWeb" msprop:Generator_RowDeletingName="SprPaymentVoucherBPForWebRowDeleting" msprop:Generator_RowChangingName="SprPaymentVoucherBPForWebRowChanging" msprop:Generator_RowEvHandlerName="SprPaymentVoucherBPForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprPaymentVoucherBPForWebRowDeleted" msprop:Generator_RowClassName="SprPaymentVoucherBPForWebRow" msprop:Generator_UserTableName="SprPaymentVoucherBPForWeb" msprop:Generator_RowEvArgName="SprPaymentVoucherBPForWebRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprBankGetCheckNoForWeb" msprop:Generator_TableClassName="SprBankGetCheckNoForWebDataTable" msprop:Generator_TableVarName="tableSprBankGetCheckNoForWeb" msprop:Generator_RowChangedName="SprBankGetCheckNoForWebRowChanged" msprop:Generator_TablePropName="SprBankGetCheckNoForWeb" msprop:Generator_RowDeletingName="SprBankGetCheckNoForWebRowDeleting" msprop:Generator_RowChangingName="SprBankGetCheckNoForWebRowChanging" msprop:Generator_RowEvHandlerName="SprBankGetCheckNoForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprBankGetCheckNoForWebRowDeleted" msprop:Generator_RowClassName="SprBankGetCheckNoForWebRow" msprop:Generator_UserTableName="SprBankGetCheckNoForWeb" msprop:Generator_RowEvArgName="SprBankGetCheckNoForWebRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprPaymentVoucherCPForWeb" msprop:Generator_TableClassName="SprPaymentVoucherCPForWebDataTable" msprop:Generator_TableVarName="tableSprPaymentVoucherCPForWeb" msprop:Generator_TablePropName="SprPaymentVoucherCPForWeb" msprop:Generator_RowDeletingName="SprPaymentVoucherCPForWebRowDeleting" msprop:Generator_RowChangingName="SprPaymentVoucherCPForWebRowChanging" msprop:Generator_RowEvHandlerName="SprPaymentVoucherCPForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprPaymentVoucherCPForWebRowDeleted" msprop:Generator_UserTableName="SprPaymentVoucherCPForWeb" msprop:Generator_RowChangedName="SprPaymentVoucherCPForWebRowChanged" msprop:Generator_RowEvArgName="SprPaymentVoucherCPForWebRowChangeEvent" msprop:Generator_RowClassName="SprPaymentVoucherCPForWebRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVoucherCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrVoucherCode" msprop:Generator_ColumnPropNameInRow="strVoucherCode" msprop:Generator_ColumnPropNameInTable="strVoucherCodeColumn" msprop:Generator_UserColumnName="strVoucherCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL" msprop:Generator_TableClassName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLDataTable" msprop:Generator_TableVarName="tableSprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL" msprop:Generator_RowChangedName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRowChanged" msprop:Generator_TablePropName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL" msprop:Generator_RowDeletingName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRowDeleting" msprop:Generator_RowChangingName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRowChanging" msprop:Generator_RowEvHandlerName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRowDeleted" msprop:Generator_RowClassName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRow" msprop:Generator_UserTableName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBL" msprop:Generator_RowEvArgName="SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVoucherCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrVoucherCode" msprop:Generator_ColumnPropNameInRow="strVoucherCode" msprop:Generator_ColumnPropNameInTable="strVoucherCodeColumn" msprop:Generator_UserColumnName="strVoucherCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SupplierListForAddToChartOfAccount" msprop:Generator_TableClassName="SupplierListForAddToChartOfAccountDataTable" msprop:Generator_TableVarName="tableSupplierListForAddToChartOfAccount" msprop:Generator_TablePropName="SupplierListForAddToChartOfAccount" msprop:Generator_RowDeletingName="SupplierListForAddToChartOfAccountRowDeleting" msprop:Generator_RowChangingName="SupplierListForAddToChartOfAccountRowChanging" msprop:Generator_RowEvHandlerName="SupplierListForAddToChartOfAccountRowChangeEventHandler" msprop:Generator_RowDeletedName="SupplierListForAddToChartOfAccountRowDeleted" msprop:Generator_UserTableName="SupplierListForAddToChartOfAccount" msprop:Generator_RowChangedName="SupplierListForAddToChartOfAccountRowChanged" msprop:Generator_RowEvArgName="SupplierListForAddToChartOfAccountRowChangeEvent" msprop:Generator_RowClassName="SupplierListForAddToChartOfAccountRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intSupplierID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintSupplierID" msprop:Generator_ColumnPropNameInRow="intSupplierID" msprop:Generator_ColumnPropNameInTable="intSupplierIDColumn" msprop:Generator_UserColumnName="intSupplierID" type="xs:int" />
+              <xs:element name="strSupplierName" msprop:Generator_ColumnVarNameInTable="columnstrSupplierName" msprop:Generator_ColumnPropNameInRow="strSupplierName" msprop:Generator_ColumnPropNameInTable="strSupplierNameColumn" msprop:Generator_UserColumnName="strSupplierName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSupplierType" msprop:Generator_ColumnVarNameInTable="columnstrSupplierType" msprop:Generator_ColumnPropNameInRow="strSupplierType" msprop:Generator_ColumnPropNameInTable="strSupplierTypeColumn" msprop:Generator_UserColumnName="strSupplierType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCOAID" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAccName" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprGetAccountHeadByParentIDAndUnitIDForWeb" msprop:Generator_TableClassName="SprGetAccountHeadByParentIDAndUnitIDForWebDataTable" msprop:Generator_TableVarName="tableSprGetAccountHeadByParentIDAndUnitIDForWeb" msprop:Generator_TablePropName="SprGetAccountHeadByParentIDAndUnitIDForWeb" msprop:Generator_RowDeletingName="SprGetAccountHeadByParentIDAndUnitIDForWebRowDeleting" msprop:Generator_RowChangingName="SprGetAccountHeadByParentIDAndUnitIDForWebRowChanging" msprop:Generator_RowEvHandlerName="SprGetAccountHeadByParentIDAndUnitIDForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprGetAccountHeadByParentIDAndUnitIDForWebRowDeleted" msprop:Generator_UserTableName="SprGetAccountHeadByParentIDAndUnitIDForWeb" msprop:Generator_RowChangedName="SprGetAccountHeadByParentIDAndUnitIDForWebRowChanged" msprop:Generator_RowEvArgName="SprGetAccountHeadByParentIDAndUnitIDForWebRowChangeEvent" msprop:Generator_RowClassName="SprGetAccountHeadByParentIDAndUnitIDForWebRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intAccID" msprop:Generator_ColumnVarNameInTable="columnintAccID" msprop:Generator_ColumnPropNameInRow="intAccID" msprop:Generator_ColumnPropNameInTable="intAccIDColumn" msprop:Generator_UserColumnName="intAccID" type="xs:int" minOccurs="0" />
+              <xs:element name="strAccName" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprInsertUpdateSupplierCOAForWeb" msprop:Generator_TableClassName="SprInsertUpdateSupplierCOAForWebDataTable" msprop:Generator_TableVarName="tableSprInsertUpdateSupplierCOAForWeb" msprop:Generator_TablePropName="SprInsertUpdateSupplierCOAForWeb" msprop:Generator_RowDeletingName="SprInsertUpdateSupplierCOAForWebRowDeleting" msprop:Generator_RowChangingName="SprInsertUpdateSupplierCOAForWebRowChanging" msprop:Generator_RowEvHandlerName="SprInsertUpdateSupplierCOAForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprInsertUpdateSupplierCOAForWebRowDeleted" msprop:Generator_UserTableName="SprInsertUpdateSupplierCOAForWeb" msprop:Generator_RowChangedName="SprInsertUpdateSupplierCOAForWebRowChanged" msprop:Generator_RowEvArgName="SprInsertUpdateSupplierCOAForWebRowChangeEvent" msprop:Generator_RowClassName="SprInsertUpdateSupplierCOAForWebRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ItemForCOABridge" msprop:Generator_TableClassName="ItemForCOABridgeDataTable" msprop:Generator_TableVarName="tableItemForCOABridge" msprop:Generator_TablePropName="ItemForCOABridge" msprop:Generator_RowDeletingName="ItemForCOABridgeRowDeleting" msprop:Generator_RowChangingName="ItemForCOABridgeRowChanging" msprop:Generator_RowEvHandlerName="ItemForCOABridgeRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemForCOABridgeRowDeleted" msprop:Generator_UserTableName="ItemForCOABridge" msprop:Generator_RowChangedName="ItemForCOABridgeRowChanged" msprop:Generator_RowEvArgName="ItemForCOABridgeRowChangeEvent" msprop:Generator_RowClassName="ItemForCOABridgeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" />
+              <xs:element name="strItem" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrItem" msprop:Generator_ColumnPropNameInRow="strItem" msprop:Generator_ColumnPropNameInTable="strItemColumn" msprop:Generator_UserColumnName="strItem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="752" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strReqItemCategory" msprop:Generator_ColumnVarNameInTable="columnstrReqItemCategory" msprop:Generator_ColumnPropNameInRow="strReqItemCategory" msprop:Generator_ColumnPropNameInTable="strReqItemCategoryColumn" msprop:Generator_UserColumnName="strReqItemCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSubCategory" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrSubCategory" msprop:Generator_ColumnPropNameInRow="strSubCategory" msprop:Generator_ColumnPropNameInTable="strSubCategoryColumn" msprop:Generator_UserColumnName="strSubCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCOAID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="strAccName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="303" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ItemForCOABridgeByUnitAndCategory" msprop:Generator_TableClassName="ItemForCOABridgeByUnitAndCategoryDataTable" msprop:Generator_TableVarName="tableItemForCOABridgeByUnitAndCategory" msprop:Generator_TablePropName="ItemForCOABridgeByUnitAndCategory" msprop:Generator_RowDeletingName="ItemForCOABridgeByUnitAndCategoryRowDeleting" msprop:Generator_RowChangingName="ItemForCOABridgeByUnitAndCategoryRowChanging" msprop:Generator_RowEvHandlerName="ItemForCOABridgeByUnitAndCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemForCOABridgeByUnitAndCategoryRowDeleted" msprop:Generator_UserTableName="ItemForCOABridgeByUnitAndCategory" msprop:Generator_RowChangedName="ItemForCOABridgeByUnitAndCategoryRowChanged" msprop:Generator_RowEvArgName="ItemForCOABridgeByUnitAndCategoryRowChangeEvent" msprop:Generator_RowClassName="ItemForCOABridgeByUnitAndCategoryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" />
+              <xs:element name="strItem" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrItem" msprop:Generator_ColumnPropNameInRow="strItem" msprop:Generator_ColumnPropNameInTable="strItemColumn" msprop:Generator_UserColumnName="strItem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="752" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strReqItemCategory" msprop:Generator_ColumnVarNameInTable="columnstrReqItemCategory" msprop:Generator_ColumnPropNameInRow="strReqItemCategory" msprop:Generator_ColumnPropNameInTable="strReqItemCategoryColumn" msprop:Generator_UserColumnName="strReqItemCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSubCategory" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrSubCategory" msprop:Generator_ColumnPropNameInRow="strSubCategory" msprop:Generator_ColumnPropNameInTable="strSubCategoryColumn" msprop:Generator_UserColumnName="strSubCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCOAID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="strAccName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="303" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprGetCOAChildByUnit" msprop:Generator_TableClassName="SprGetCOAChildByUnitDataTable" msprop:Generator_TableVarName="tableSprGetCOAChildByUnit" msprop:Generator_TablePropName="SprGetCOAChildByUnit" msprop:Generator_RowDeletingName="SprGetCOAChildByUnitRowDeleting" msprop:Generator_RowChangingName="SprGetCOAChildByUnitRowChanging" msprop:Generator_RowEvHandlerName="SprGetCOAChildByUnitRowChangeEventHandler" msprop:Generator_RowDeletedName="SprGetCOAChildByUnitRowDeleted" msprop:Generator_UserTableName="SprGetCOAChildByUnit" msprop:Generator_RowChangedName="SprGetCOAChildByUnitRowChanged" msprop:Generator_RowEvArgName="SprGetCOAChildByUnitRowChangeEvent" msprop:Generator_RowClassName="SprGetCOAChildByUnitRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strAccName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1003" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intAccID" msprop:Generator_ColumnVarNameInTable="columnintAccID" msprop:Generator_ColumnPropNameInRow="intAccID" msprop:Generator_ColumnPropNameInTable="intAccIDColumn" msprop:Generator_UserColumnName="intAccID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblItemCategory" msprop:Generator_TableClassName="TblItemCategoryDataTable" msprop:Generator_TableVarName="tableTblItemCategory" msprop:Generator_TablePropName="TblItemCategory" msprop:Generator_RowDeletingName="TblItemCategoryRowDeleting" msprop:Generator_RowChangingName="TblItemCategoryRowChanging" msprop:Generator_RowEvHandlerName="TblItemCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="TblItemCategoryRowDeleted" msprop:Generator_UserTableName="TblItemCategory" msprop:Generator_RowChangedName="TblItemCategoryRowChanged" msprop:Generator_RowEvArgName="TblItemCategoryRowChangeEvent" msprop:Generator_RowClassName="TblItemCategoryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strReqItemCategory" msprop:Generator_ColumnVarNameInTable="columnstrReqItemCategory" msprop:Generator_ColumnPropNameInRow="strReqItemCategory" msprop:Generator_ColumnPropNameInTable="strReqItemCategoryColumn" msprop:Generator_UserColumnName="strReqItemCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intAutoID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintAutoID" msprop:Generator_ColumnPropNameInRow="intAutoID" msprop:Generator_ColumnPropNameInTable="intAutoIDColumn" msprop:Generator_UserColumnName="intAutoID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="QryItemList" msprop:Generator_TableClassName="QryItemListDataTable" msprop:Generator_TableVarName="tableQryItemList" msprop:Generator_TablePropName="QryItemList" msprop:Generator_RowDeletingName="QryItemListRowDeleting" msprop:Generator_RowChangingName="QryItemListRowChanging" msprop:Generator_RowEvHandlerName="QryItemListRowChangeEventHandler" msprop:Generator_RowDeletedName="QryItemListRowDeleted" msprop:Generator_UserTableName="QryItemList" msprop:Generator_RowChangedName="QryItemListRowChanged" msprop:Generator_RowEvArgName="QryItemListRowChangeEvent" msprop:Generator_RowClassName="QryItemListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" />
+              <xs:element name="strItem" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrItem" msprop:Generator_ColumnPropNameInRow="strItem" msprop:Generator_ColumnPropNameInTable="strItemColumn" msprop:Generator_UserColumnName="strItem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="752" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strReqItemCategory" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrReqItemCategory" msprop:Generator_ColumnPropNameInRow="strReqItemCategory" msprop:Generator_ColumnPropNameInTable="strReqItemCategoryColumn" msprop:Generator_UserColumnName="strReqItemCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSubCategory" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrSubCategory" msprop:Generator_ColumnPropNameInRow="strSubCategory" msprop:Generator_ColumnPropNameInTable="strSubCategoryColumn" msprop:Generator_UserColumnName="strSubCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCOAID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="strAccName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="303" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="COABankItemByUnitAndCategoryID" msprop:Generator_TableClassName="COABankItemByUnitAndCategoryIDDataTable" msprop:Generator_TableVarName="tableCOABankItemByUnitAndCategoryID" msprop:Generator_TablePropName="COABankItemByUnitAndCategoryID" msprop:Generator_RowDeletingName="COABankItemByUnitAndCategoryIDRowDeleting" msprop:Generator_RowChangingName="COABankItemByUnitAndCategoryIDRowChanging" msprop:Generator_RowEvHandlerName="COABankItemByUnitAndCategoryIDRowChangeEventHandler" msprop:Generator_RowDeletedName="COABankItemByUnitAndCategoryIDRowDeleted" msprop:Generator_UserTableName="COABankItemByUnitAndCategoryID" msprop:Generator_RowChangedName="COABankItemByUnitAndCategoryIDRowChanged" msprop:Generator_RowEvArgName="COABankItemByUnitAndCategoryIDRowChangeEvent" msprop:Generator_RowClassName="COABankItemByUnitAndCategoryIDRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intItemID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" />
+              <xs:element name="strItem" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrItem" msprop:Generator_ColumnPropNameInRow="strItem" msprop:Generator_ColumnPropNameInTable="strItemColumn" msprop:Generator_UserColumnName="strItem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="753" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strReqItemCategory" msprop:Generator_ColumnVarNameInTable="columnstrReqItemCategory" msprop:Generator_ColumnPropNameInRow="strReqItemCategory" msprop:Generator_ColumnPropNameInTable="strReqItemCategoryColumn" msprop:Generator_UserColumnName="strReqItemCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strSubCategory" msprop:Generator_ColumnVarNameInTable="columnstrSubCategory" msprop:Generator_ColumnPropNameInRow="strSubCategory" msprop:Generator_ColumnPropNameInTable="strSubCategoryColumn" msprop:Generator_UserColumnName="strSubCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCOAID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintCOAID" msprop:Generator_ColumnPropNameInRow="intCOAID" msprop:Generator_ColumnPropNameInTable="intCOAIDColumn" msprop:Generator_UserColumnName="intCOAID" type="xs:int" minOccurs="0" />
+              <xs:element name="strAccName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="303" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprMaterialCOABridgeForWeb" msprop:Generator_TableClassName="SprMaterialCOABridgeForWebDataTable" msprop:Generator_TableVarName="tableSprMaterialCOABridgeForWeb" msprop:Generator_TablePropName="SprMaterialCOABridgeForWeb" msprop:Generator_RowDeletingName="SprMaterialCOABridgeForWebRowDeleting" msprop:Generator_RowChangingName="SprMaterialCOABridgeForWebRowChanging" msprop:Generator_RowEvHandlerName="SprMaterialCOABridgeForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprMaterialCOABridgeForWebRowDeleted" msprop:Generator_UserTableName="SprMaterialCOABridgeForWeb" msprop:Generator_RowChangedName="SprMaterialCOABridgeForWebRowChanged" msprop:Generator_RowEvArgName="SprMaterialCOABridgeForWebRowChangeEvent" msprop:Generator_RowClassName="SprMaterialCOABridgeForWebRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprAllApprovedBill" msprop:Generator_TableClassName="SprAllApprovedBillDataTable" msprop:Generator_TableVarName="tableSprAllApprovedBill" msprop:Generator_RowChangedName="SprAllApprovedBillRowChanged" msprop:Generator_TablePropName="SprAllApprovedBill" msprop:Generator_RowDeletingName="SprAllApprovedBillRowDeleting" msprop:Generator_RowChangingName="SprAllApprovedBillRowChanging" msprop:Generator_RowEvHandlerName="SprAllApprovedBillRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAllApprovedBillRowDeleted" msprop:Generator_RowClassName="SprAllApprovedBillRow" msprop:Generator_UserTableName="SprAllApprovedBill" msprop:Generator_RowEvArgName="SprAllApprovedBillRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" type="xs:long" minOccurs="0" />
+              <xs:element name="strBill" msprop:Generator_ColumnVarNameInTable="columnstrBill" msprop:Generator_ColumnPropNameInRow="strBill" msprop:Generator_ColumnPropNameInTable="strBillColumn" msprop:Generator_UserColumnName="strBill" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strParty" msprop:Generator_ColumnVarNameInTable="columnstrParty" msprop:Generator_ColumnPropNameInRow="strParty" msprop:Generator_ColumnPropNameInTable="strPartyColumn" msprop:Generator_UserColumnName="strParty" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteRcv" msprop:Generator_ColumnVarNameInTable="columndteRcv" msprop:Generator_ColumnPropNameInRow="dteRcv" msprop:Generator_ColumnPropNameInTable="dteRcvColumn" msprop:Generator_UserColumnName="dteRcv" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="monBill" msprop:Generator_ColumnVarNameInTable="columnmonBill" msprop:Generator_ColumnPropNameInRow="monBill" msprop:Generator_ColumnPropNameInTable="monBillColumn" msprop:Generator_UserColumnName="monBill" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monNet" msprop:Generator_ColumnVarNameInTable="columnmonNet" msprop:Generator_ColumnPropNameInRow="monNet" msprop:Generator_ColumnPropNameInTable="monNetColumn" msprop:Generator_UserColumnName="monNet" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monL1" msprop:Generator_ColumnVarNameInTable="columnmonL1" msprop:Generator_ColumnPropNameInRow="monL1" msprop:Generator_ColumnPropNameInTable="monL1Column" msprop:Generator_UserColumnName="monL1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dteL1" msprop:Generator_ColumnVarNameInTable="columndteL1" msprop:Generator_ColumnPropNameInRow="dteL1" msprop:Generator_ColumnPropNameInTable="dteL1Column" msprop:Generator_UserColumnName="dteL1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="monL2" msprop:Generator_ColumnVarNameInTable="columnmonL2" msprop:Generator_ColumnPropNameInRow="monL2" msprop:Generator_ColumnPropNameInTable="monL2Column" msprop:Generator_UserColumnName="monL2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dteL2" msprop:Generator_ColumnVarNameInTable="columndteL2" msprop:Generator_ColumnPropNameInRow="dteL2" msprop:Generator_ColumnPropNameInTable="dteL2Column" msprop:Generator_UserColumnName="dteL2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strRemarks" msprop:Generator_ColumnVarNameInTable="columnstrRemarks" msprop:Generator_ColumnPropNameInRow="strRemarks" msprop:Generator_ColumnPropNameInTable="strRemarksColumn" msprop:Generator_UserColumnName="strRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprBillRegisterForWeb" msprop:Generator_TableClassName="SprBillRegisterForWebDataTable" msprop:Generator_TableVarName="tableSprBillRegisterForWeb" msprop:Generator_TablePropName="SprBillRegisterForWeb" msprop:Generator_RowDeletingName="SprBillRegisterForWebRowDeleting" msprop:Generator_RowChangingName="SprBillRegisterForWebRowChanging" msprop:Generator_RowEvHandlerName="SprBillRegisterForWebRowChangeEventHandler" msprop:Generator_RowDeletedName="SprBillRegisterForWebRowDeleted" msprop:Generator_UserTableName="SprBillRegisterForWeb" msprop:Generator_RowChangedName="SprBillRegisterForWebRowChanged" msprop:Generator_RowEvArgName="SprBillRegisterForWebRowChangeEvent" msprop:Generator_RowClassName="SprBillRegisterForWebRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intBill" msprop:Generator_ColumnVarNameInTable="columnintBill" msprop:Generator_ColumnPropNameInRow="intBill" msprop:Generator_ColumnPropNameInTable="intBillColumn" msprop:Generator_UserColumnName="intBill" type="xs:int" minOccurs="0" />
+              <xs:element name="strBillCode" msprop:Generator_ColumnVarNameInTable="columnstrBillCode" msprop:Generator_ColumnPropNameInRow="strBillCode" msprop:Generator_ColumnPropNameInTable="strBillCodeColumn" msprop:Generator_UserColumnName="strBillCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strParty" msprop:Generator_ColumnVarNameInTable="columnstrParty" msprop:Generator_ColumnPropNameInRow="strParty" msprop:Generator_ColumnPropNameInTable="strPartyColumn" msprop:Generator_UserColumnName="strParty" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strReff" msprop:Generator_ColumnVarNameInTable="columnstrReff" msprop:Generator_ColumnPropNameInRow="strReff" msprop:Generator_ColumnPropNameInTable="strReffColumn" msprop:Generator_UserColumnName="strReff" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBillNo" msprop:Generator_ColumnVarNameInTable="columnstrBillNo" msprop:Generator_ColumnPropNameInRow="strBillNo" msprop:Generator_ColumnPropNameInTable="strBillNoColumn" msprop:Generator_UserColumnName="strBillNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteBillDate" msprop:Generator_ColumnVarNameInTable="columndteBillDate" msprop:Generator_ColumnPropNameInRow="dteBillDate" msprop:Generator_ColumnPropNameInTable="dteBillDateColumn" msprop:Generator_UserColumnName="dteBillDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteRcvDate" msprop:Generator_ColumnVarNameInTable="columndteRcvDate" msprop:Generator_ColumnPropNameInRow="dteRcvDate" msprop:Generator_ColumnPropNameInTable="dteRcvDateColumn" msprop:Generator_UserColumnName="dteRcvDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="monBillAmount" msprop:Generator_ColumnVarNameInTable="columnmonBillAmount" msprop:Generator_ColumnPropNameInRow="monBillAmount" msprop:Generator_ColumnPropNameInTable="monBillAmountColumn" msprop:Generator_UserColumnName="monBillAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strRemarks" msprop:Generator_ColumnVarNameInTable="columnstrRemarks" msprop:Generator_ColumnPropNameInRow="strRemarks" msprop:Generator_ColumnPropNameInTable="strRemarksColumn" msprop:Generator_UserColumnName="strRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAuditStatus" msprop:Generator_ColumnVarNameInTable="columnstrAuditStatus" msprop:Generator_ColumnPropNameInRow="strAuditStatus" msprop:Generator_ColumnPropNameInTable="strAuditStatusColumn" msprop:Generator_UserColumnName="strAuditStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteAuditDate" msprop:Generator_ColumnVarNameInTable="columndteAuditDate" msprop:Generator_ColumnPropNameInRow="dteAuditDate" msprop:Generator_ColumnPropNameInTable="dteAuditDateColumn" msprop:Generator_UserColumnName="dteAuditDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strAuditRemarks" msprop:Generator_ColumnVarNameInTable="columnstrAuditRemarks" msprop:Generator_ColumnPropNameInRow="strAuditRemarks" msprop:Generator_ColumnPropNameInTable="strAuditRemarksColumn" msprop:Generator_UserColumnName="strAuditRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monApproveAmount" msprop:Generator_ColumnVarNameInTable="columnmonApproveAmount" msprop:Generator_ColumnPropNameInRow="monApproveAmount" msprop:Generator_ColumnPropNameInTable="monApproveAmountColumn" msprop:Generator_UserColumnName="monApproveAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monApprovedAIT" msprop:Generator_ColumnVarNameInTable="columnmonApprovedAIT" msprop:Generator_ColumnPropNameInRow="monApprovedAIT" msprop:Generator_ColumnPropNameInTable="monApprovedAITColumn" msprop:Generator_UserColumnName="monApprovedAIT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dtePayDate" msprop:Generator_ColumnVarNameInTable="columndtePayDate" msprop:Generator_ColumnPropNameInRow="dtePayDate" msprop:Generator_ColumnPropNameInTable="dtePayDateColumn" msprop:Generator_UserColumnName="dtePayDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

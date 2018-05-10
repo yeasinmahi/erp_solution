@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Payment Voucher </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -21,8 +21,16 @@
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
      <script>
-         function ViewPrepareVoucher(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
-             window.open('BankPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         function ViewPrepareVoucher(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate) {
+             window.open('BankPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid + '&vdate=' + vdate, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         }
+
+         function ViewPrepareVoucherCP(unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid) {
+             window.open('CashPay.aspx?unitid=' + unitid + '&billid=' + billid + '&entrycode=' + entrycode + '&party=' + party + '&bank=' + bank + '&bankacc=' + bankacc + '&instrument=' + instrument + '&billtypeid=' + billtypeid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         }
+
+         function ViewBillDetailsPopup(Id) {
+             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
          }
     </script>
 
@@ -55,7 +63,7 @@
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Bank"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                         <td style="text-align:left;">
-                        <asp:DropDownList ID="ddlBank" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlBank" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlBank_SelectedIndexChanged"></asp:DropDownList></td>
                         <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="A/C No"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                         <td style="text-align:left;">
@@ -111,13 +119,17 @@
                     <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monApporveAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Prepare Voucher" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                    <asp:TemplateField HeaderText="V. BP" ItemStyle-HorizontalAlign="Center" SortExpression="">
                     <ItemTemplate><asp:Button ID="btnPrepareVoucher" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="PV"  
-                    Text="Prepare Voucher"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    Text="BP"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="V. CP" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                    <ItemTemplate><asp:Button ID="btnCP" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="CP"  
+                    Text="CP"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                    <ItemTemplate><asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
-                    Text="Show Detail"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    <ItemTemplate><asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"  
+                    Text="View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     </Columns>
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -126,6 +138,7 @@
                     </td></tr> 
             </table>
         </td></tr></table>
+
 
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>

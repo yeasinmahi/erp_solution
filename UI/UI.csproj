@@ -276,6 +276,7 @@
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
+    <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\HoldFeedback.aspx" />
     <Content Include="CreativeSupportModule\img\20171103 _ CREATIVE SUPPORT UI DASHBOARD _ FOOTER.png" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
@@ -350,16 +351,23 @@
     <Content Include="MedialManagement\ReportEntryOthers.aspx" />
     <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
+    <Content Include="PaymentModule\AllApprovedBillReport.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
     <Content Include="PaymentModule\BankPay.aspx" />
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
+    <Content Include="PaymentModule\BillRegisterReport.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
+    <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
+    <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
+    <Content Include="PaymentModule\PurchaseVoucher.aspx" />
+    <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\ClassFiles\AutoCompleteSearch.asmx" />
@@ -1165,7 +1173,44 @@
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
+    <Content Include="SAD\Vat\frmBrandroll.aspx" />
+    <Content Include="SAD\Vat\frmBrandrollReceive.aspx" />
+    <Content Include="SAD\Vat\frmCreditNote.aspx" />
+    <Content Include="SAD\Vat\frmCreditNotePrint.aspx" />
+    <Content Include="SAD\Vat\frmDebitNote.aspx" />
+    <Content Include="SAD\Vat\frmDebitNotePrint.aspx" />
+    <Content Include="SAD\Vat\frmDestroy.aspx" />
+    <Content Include="SAD\Vat\frmItemAndMatrialsAdd.aspx" />
+    <Content Include="SAD\Vat\frmItemMushok1.aspx" />
+    <Content Include="SAD\Vat\frmMushok11.aspx" />
+    <Content Include="SAD\Vat\frmMushok11Preivew.aspx" />
+    <Content Include="SAD\Vat\frmMushok11Print.aspx" />
+    <Content Include="SAD\Vat\frmMushok11PrintExport.aspx" />
+    <Content Include="SAD\Vat\frmOtherAdjusment.aspx" />
+    <Content Include="SAD\Vat\frmProductionEntry.aspx" />
+    <Content Include="SAD\Vat\frmPurchaseEntry.aspx" />
+    <Content Include="SAD\Vat\frmRebate.aspx" />
+    <Content Include="SAD\Vat\frmTresuaryEntry.aspx" />
+    <Content Include="SAD\Vat\frmTresuaryForcust.aspx" />
+    <Content Include="SAD\Vat\rptBandrollSummary.aspx" />
+    <Content Include="SAD\Vat\rptErrorReport.aspx" />
+    <Content Include="SAD\Vat\rptFGVatInventory.aspx" />
+    <Content Include="SAD\Vat\rptIssueSummary.aspx" />
+    <Content Include="SAD\Vat\rptM11NotPostedM1718.aspx" />
+    <Content Include="SAD\Vat\rptM1617.aspx" />
+    <Content Include="SAD\Vat\rptM18CurrentRegister.aspx" />
+    <Content Include="SAD\Vat\rptM18Summary.aspx" />
+    <Content Include="SAD\Vat\rptM19G.aspx" />
+    <Content Include="SAD\Vat\rptSalesSummary.aspx" />
+    <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\BOM\BillOfMaterial.aspx" />
+    <Content Include="SCM\BOM\EditRequisition.aspx" />
+    <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
+    <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
@@ -1174,10 +1219,14 @@
     <Content Include="SCM\IndentStatus.aspx" />
     <Content Include="SCM\IndentStatusDetalis.aspx" />
     <Content Include="SCM\IndentsVsPO.aspx" />
+    <Content Include="SCM\IndentWithoutReceive.aspx" />
+    <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
+    <Content Include="SCM\ItemManager.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -1195,8 +1244,13 @@
     <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
+    <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierBlackListEntry.aspx" />
+    <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
+    <Content Include="SCM\SupplierStatementReport.aspx" />
+    <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
@@ -1257,11 +1311,15 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="VAT_Management\BandrollReceive.aspx" />
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
     <Content Include="VAT_Management\OtherAdjustments.aspx" />
+    <Content Include="VAT_Management\PriceDeclarationM1.aspx" />
     <Content Include="VAT_Management\ProductionEntry.aspx" />
+    <Content Include="VAT_Management\PurchaseEntry.aspx" />
+    <Content Include="VAT_Management\TreasuryEntry.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\ItemAdd.aspx" />
     <Content Include="Wastage\ItemReceive.aspx" />
@@ -2214,6 +2272,13 @@
     <Compile Include="CreativeSupportModule\CustomerView.aspx.designer.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\DashboardReport.aspx.cs">
+      <DependentUpon>DashboardReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DashboardReport.aspx.designer.cs">
+      <DependentUpon>DashboardReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2581,6 +2646,13 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="PaymentModule\AllApprovedBillReport.aspx.cs">
+      <DependentUpon>AllApprovedBillReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AllApprovedBillReport.aspx.designer.cs">
+      <DependentUpon>AllApprovedBillReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\ApproveSingle.aspx.cs">
       <DependentUpon>ApproveSingle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2609,6 +2681,13 @@
     <Compile Include="PaymentModule\BillDetails.aspx.designer.cs">
       <DependentUpon>BillDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\BillRegisterReport.aspx.cs">
+      <DependentUpon>BillRegisterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BillRegisterReport.aspx.designer.cs">
+      <DependentUpon>BillRegisterReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2630,6 +2709,13 @@
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\MaterialCOABridge.aspx.cs">
+      <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MaterialCOABridge.aspx.designer.cs">
+      <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2644,12 +2730,40 @@
     <Compile Include="PaymentModule\PaymentVoucher.aspx.designer.cs">
       <DependentUpon>PaymentVoucher.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\POVoucherOfAFBL.aspx.cs">
+      <DependentUpon>POVoucherOfAFBL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\POVoucherOfAFBL.aspx.designer.cs">
+      <DependentUpon>POVoucherOfAFBL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.designer.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.cs">
+      <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.designer.cs">
+      <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucher.aspx.cs">
+      <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PurchaseVoucher.aspx.designer.cs">
+      <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\SupplierCOA.aspx.cs">
+      <DependentUpon>SupplierCOA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\SupplierCOA.aspx.designer.cs">
+      <DependentUpon>SupplierCOA.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -5704,12 +5818,271 @@
     <Compile Include="SAD\Transfer\FGTransferView.aspx.designer.cs">
       <DependentUpon>FGTransferView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Vat\frmBrandroll.aspx.cs">
+      <DependentUpon>frmBrandroll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmBrandroll.aspx.designer.cs">
+      <DependentUpon>frmBrandroll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmBrandrollReceive.aspx.cs">
+      <DependentUpon>frmBrandrollReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmBrandrollReceive.aspx.designer.cs">
+      <DependentUpon>frmBrandrollReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmCreditNote.aspx.cs">
+      <DependentUpon>frmCreditNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmCreditNote.aspx.designer.cs">
+      <DependentUpon>frmCreditNote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmCreditNotePrint.aspx.cs">
+      <DependentUpon>frmCreditNotePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmCreditNotePrint.aspx.designer.cs">
+      <DependentUpon>frmCreditNotePrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmDebitNote.aspx.cs">
+      <DependentUpon>frmDebitNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmDebitNote.aspx.designer.cs">
+      <DependentUpon>frmDebitNote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmDebitNotePrint.aspx.cs">
+      <DependentUpon>frmDebitNotePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmDebitNotePrint.aspx.designer.cs">
+      <DependentUpon>frmDebitNotePrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmDestroy.aspx.cs">
+      <DependentUpon>frmDestroy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmDestroy.aspx.designer.cs">
+      <DependentUpon>frmDestroy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemAndMatrialsAdd.aspx.cs">
+      <DependentUpon>frmItemAndMatrialsAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemAndMatrialsAdd.aspx.designer.cs">
+      <DependentUpon>frmItemAndMatrialsAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemMushok1.aspx.cs">
+      <DependentUpon>frmItemMushok1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmItemMushok1.aspx.designer.cs">
+      <DependentUpon>frmItemMushok1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11.aspx.cs">
+      <DependentUpon>frmMushok11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11.aspx.designer.cs">
+      <DependentUpon>frmMushok11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Preivew.aspx.cs">
+      <DependentUpon>frmMushok11Preivew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Preivew.aspx.designer.cs">
+      <DependentUpon>frmMushok11Preivew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Print.aspx.cs">
+      <DependentUpon>frmMushok11Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11Print.aspx.designer.cs">
+      <DependentUpon>frmMushok11Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11PrintExport.aspx.cs">
+      <DependentUpon>frmMushok11PrintExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmMushok11PrintExport.aspx.designer.cs">
+      <DependentUpon>frmMushok11PrintExport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmOtherAdjusment.aspx.cs">
+      <DependentUpon>frmOtherAdjusment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmOtherAdjusment.aspx.designer.cs">
+      <DependentUpon>frmOtherAdjusment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmProductionEntry.aspx.cs">
+      <DependentUpon>frmProductionEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmProductionEntry.aspx.designer.cs">
+      <DependentUpon>frmProductionEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmPurchaseEntry.aspx.cs">
+      <DependentUpon>frmPurchaseEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmPurchaseEntry.aspx.designer.cs">
+      <DependentUpon>frmPurchaseEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmRebate.aspx.cs">
+      <DependentUpon>frmRebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmRebate.aspx.designer.cs">
+      <DependentUpon>frmRebate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmTresuaryEntry.aspx.cs">
+      <DependentUpon>frmTresuaryEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmTresuaryEntry.aspx.designer.cs">
+      <DependentUpon>frmTresuaryEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\frmTresuaryForcust.aspx.cs">
+      <DependentUpon>frmTresuaryForcust.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\frmTresuaryForcust.aspx.designer.cs">
+      <DependentUpon>frmTresuaryForcust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptBandrollSummary.aspx.cs">
+      <DependentUpon>rptBandrollSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptBandrollSummary.aspx.designer.cs">
+      <DependentUpon>rptBandrollSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptErrorReport.aspx.cs">
+      <DependentUpon>rptErrorReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptErrorReport.aspx.designer.cs">
+      <DependentUpon>rptErrorReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptFGVatInventory.aspx.cs">
+      <DependentUpon>rptFGVatInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptFGVatInventory.aspx.designer.cs">
+      <DependentUpon>rptFGVatInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptIssueSummary.aspx.cs">
+      <DependentUpon>rptIssueSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptIssueSummary.aspx.designer.cs">
+      <DependentUpon>rptIssueSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM11NotPostedM1718.aspx.cs">
+      <DependentUpon>rptM11NotPostedM1718.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM11NotPostedM1718.aspx.designer.cs">
+      <DependentUpon>rptM11NotPostedM1718.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM1617.aspx.cs">
+      <DependentUpon>rptM1617.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM1617.aspx.designer.cs">
+      <DependentUpon>rptM1617.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM18CurrentRegister.aspx.cs">
+      <DependentUpon>rptM18CurrentRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM18CurrentRegister.aspx.designer.cs">
+      <DependentUpon>rptM18CurrentRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM18Summary.aspx.cs">
+      <DependentUpon>rptM18Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM18Summary.aspx.designer.cs">
+      <DependentUpon>rptM18Summary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM19G.aspx.cs">
+      <DependentUpon>rptM19G.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptM19G.aspx.designer.cs">
+      <DependentUpon>rptM19G.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Vat\rptSalesSummary.aspx.cs">
+      <DependentUpon>rptSalesSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Vat\rptSalesSummary.aspx.designer.cs">
+      <DependentUpon>rptSalesSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BillFowardToBillingRpt.aspx.cs">
+      <DependentUpon>BillFowardToBillingRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BillFowardToBillingRpt.aspx.designer.cs">
+      <DependentUpon>BillFowardToBillingRpt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BillRegistration.aspx.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\BillOfMaterial.aspx.cs">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\BillOfMaterial.aspx.designer.cs">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\EditRequisition.aspx.cs">
+      <DependentUpon>EditRequisition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\EditRequisition.aspx.designer.cs">
+      <DependentUpon>EditRequisition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\EditRequisitionDetalis.aspx.cs">
+      <DependentUpon>EditRequisitionDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\EditRequisitionDetalis.aspx.designer.cs">
+      <DependentUpon>EditRequisitionDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntry.aspx.cs">
+      <DependentUpon>FinishedGoodEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntry.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.cs">
+      <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrder.aspx.cs">
+      <DependentUpon>ProductionOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
+      <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ConsumpReport.aspx.cs">
+      <DependentUpon>ConsumpReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ConsumpReport.aspx.designer.cs">
+      <DependentUpon>ConsumpReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\DeliveryReturn.aspx.cs">
       <DependentUpon>DeliveryReturn.aspx</DependentUpon>
@@ -5753,6 +6126,27 @@
     <Compile Include="SCM\IndentsVsPO.aspx.designer.cs">
       <DependentUpon>IndentsVsPO.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\IndentWithoutReceive.aspx.cs">
+      <DependentUpon>IndentWithoutReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IndentWithoutReceive.aspx.designer.cs">
+      <DependentUpon>IndentWithoutReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\InventoryReport.aspx.cs">
+      <DependentUpon>InventoryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\InventoryReport.aspx.designer.cs">
+      <DependentUpon>InventoryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueForProduction.aspx.cs">
+      <DependentUpon>IssueForProduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueForProduction.aspx.designer.cs">
+      <DependentUpon>IssueForProduction.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\IssueItemByRequesition.aspx.cs">
       <DependentUpon>IssueItemByRequesition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5780,6 +6174,13 @@
     </Compile>
     <Compile Include="SCM\IssueStatement.aspx.designer.cs">
       <DependentUpon>IssueStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManager.aspx.cs">
+      <DependentUpon>ItemManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManager.aspx.designer.cs">
+      <DependentUpon>ItemManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
@@ -5900,6 +6301,13 @@
     <Compile Include="SCM\ReceiveMrr.aspx.designer.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\ReceiveWithoutPO.aspx.cs">
+      <DependentUpon>ReceiveWithoutPO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ReceiveWithoutPO.aspx.designer.cs">
+      <DependentUpon>ReceiveWithoutPO.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5907,12 +6315,40 @@
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\SupplierBlackListEntry.aspx.cs">
+      <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListEntry.aspx.designer.cs">
+      <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListReport.aspx.cs">
+      <DependentUpon>SupplierBlackListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierBlackListReport.aspx.designer.cs">
+      <DependentUpon>SupplierBlackListReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\SupplierManeger.aspx.cs">
       <DependentUpon>SupplierManeger.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SCM\SupplierManeger.aspx.designer.cs">
       <DependentUpon>SupplierManeger.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierStatementReport.aspx.cs">
+      <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierStatementReport.aspx.designer.cs">
+      <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\frmTransferReceive.aspx.cs">
+      <DependentUpon>frmTransferReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\frmTransferReceive.aspx.designer.cs">
+      <DependentUpon>frmTransferReceive.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferIn.aspx.cs">
       <DependentUpon>frmTransferIn.aspx</DependentUpon>
@@ -6362,6 +6798,13 @@
     <Compile Include="Vat\VatMonthlyReturnM19.aspx.designer.cs">
       <DependentUpon>VatMonthlyReturnM19.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VAT_Management\BandrollReceive.aspx.cs">
+      <DependentUpon>BandrollReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\BandrollReceive.aspx.designer.cs">
+      <DependentUpon>BandrollReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VAT_Management\BridgeFinishedItem.aspx.cs">
       <DependentUpon>BridgeFinishedItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6390,12 +6833,33 @@
     <Compile Include="VAT_Management\OtherAdjustments.aspx.designer.cs">
       <DependentUpon>OtherAdjustments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VAT_Management\PriceDeclarationM1.aspx.cs">
+      <DependentUpon>PriceDeclarationM1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\PriceDeclarationM1.aspx.designer.cs">
+      <DependentUpon>PriceDeclarationM1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VAT_Management\ProductionEntry.aspx.cs">
       <DependentUpon>ProductionEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VAT_Management\ProductionEntry.aspx.designer.cs">
       <DependentUpon>ProductionEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\PurchaseEntry.aspx.cs">
+      <DependentUpon>PurchaseEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\PurchaseEntry.aspx.designer.cs">
+      <DependentUpon>PurchaseEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\TreasuryEntry.aspx.cs">
+      <DependentUpon>TreasuryEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\TreasuryEntry.aspx.designer.cs">
+      <DependentUpon>TreasuryEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\BRTAProfile_Update_UI.aspx.cs">
       <DependentUpon>BRTAProfile_Update_UI.aspx</DependentUpon>
@@ -6782,6 +7246,7 @@
     <Folder Include="Asset\Uploads\" />
     <Folder Include="BudgetPlan\Data\" />
     <Folder Include="Content\Bundle\" />
+    <Folder Include="CreativeSupportModule\Data\" />
     <Folder Include="Dairy\Data\" />
     <Folder Include="Dairy\Uploads\" />
     <Folder Include="HR\Dispatch\Data\" />
@@ -6815,6 +7280,7 @@
     <Folder Include="SAD\Order\Uploads\" />
     <Folder Include="SAD\Sales\Data\" />
     <Folder Include="SAD\Transfer\Data\" />
+    <Folder Include="SAD\Vat\Data\" />
     <Folder Include="SCM\Data\" />
     <Folder Include="SCM\Uploads\" />
     <Folder Include="Shop\Data\" />

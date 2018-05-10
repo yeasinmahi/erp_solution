@@ -58,7 +58,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
      <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
-     <div class="tabs_container" style="text-align:left">Issue Statement<hr /></div>
+     <div class="tabs_container" style="text-align:left">Supplier Manager From<hr /></div>
           <table style="width:700px"> 
               <tr>   
                 <td></td>
@@ -66,93 +66,70 @@
                 </tr> 
            </table>
          <table style="width:700px"> 
-                
                 <tr>
-                    <td>Select Supplier</td>
-                    <td class="3"><asp:DropDownList ID="ddlSupplier" Width="300px" runat="server"></asp:DropDownList></td>
+                    <td>Department</td>
+                    <td class="3"><asp:DropDownList ID="ddlDept" Width="300px" runat="server" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged">
+                        <asp:ListItem Text="Local"></asp:ListItem>
+                         <asp:ListItem Text="Febrication"></asp:ListItem>
+                         <asp:ListItem Text="Import"></asp:ListItem>
+                         </asp:DropDownList></td>
+                </tr>
+                <tr>
+                <td>Supplier List</td>
+                <td><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtSupplier_TextChanged"    ></asp:TextBox>
+                <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtSupplier"
+                ServiceMethod="GetMasterSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                </cc1:AutoCompleteExtender> </td> 
                 </tr>
                <tr>
                    <td>Select Unit</td>
-                   <td colspan="3"><asp:DropDownList ID="ddlUnit" Width="300px" runat="server"></asp:DropDownList> 
-                    <asp:Button ID="btnAdd" runat="server" Text="Add Supplier" /></td>
+                   <td><asp:DropDownList ID="ddlUnit" Width="300px" runat="server"></asp:DropDownList> 
+                    <asp:Button ID="btnAdd" runat="server" Text="Add Supplier" OnClick="btnAdd_Click" /></td>
                </tr>
-              </table> 
-        <table style="width:700px">
-           <tr>  
-            
-            <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>            
-            <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom" runat="server"   CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
-            </cc1:CalendarExtender> </td>
+              </table>         
 
-            <td style="text-align:right;"><asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>            
-            <td style="text-align:left;"  ><asp:TextBox ID="txtdteTo" runat="server"   CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
-            </cc1:CalendarExtender> </td>
-            <td style="text-align:left"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Show"  OnClick="btnStatement_Click"/> </td>
-            </tr> 
-        </table>
-        
-
-         <table>
-           <tr><td> 
-            <asp:GridView ID="dgvStatement" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
-            <AlternatingRowStyle BackColor="#CCCCCC" /> 
-            <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
- 
-            <asp:TemplateField HeaderText="Procurement Personal" SortExpression="strSrNo"><ItemTemplate>
-            <asp:Label ID="lblProcurement" runat="server" Text='<%# Bind("strSrNo") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="60px"/></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Value of Total PO"   ItemStyle-HorizontalAlign="right" SortExpression="dteSrDate" >
-            <ItemTemplate><asp:Label ID="lblValueTo" runat="server"  Text='<%# Bind("dteSrDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
-                
-            <asp:TemplateField HeaderText="Number of Total PO"   ItemStyle-HorizontalAlign="right" SortExpression="strDepatrment" >
-            <ItemTemplate><asp:Label ID="lblNumsTP" runat="server"  Text='<%# Bind("strDepatrment") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
-            
-            <asp:TemplateField HeaderText="Number of Unique Supp"   ItemStyle-HorizontalAlign="right" SortExpression="dteIssueDate" >
-            <ItemTemplate><asp:Label ID="lblNumUN" runat="server"  Text='<%# Bind("dteIssueDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
-
-            <asp:TemplateField HeaderText="No of Unique Itms" ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
-            <ItemTemplate><asp:Label ID="lblUnique" runat="server"   Text='<%# Bind("strItem","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
-            
-            <asp:TemplateField HeaderText="AVG Item Per PO" ItemStyle-HorizontalAlign="right" SortExpression="strUseFor" >
-            <ItemTemplate><asp:Label ID="lblAvgItem" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strUseFor") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
-           
-            <asp:TemplateField HeaderText="Rating"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblRating" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
-            
-            <asp:TemplateField HeaderText="Highest Value PO"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblHeigstPOVal" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
-            
-            <asp:TemplateField HeaderText="Rating"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblRating2" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
-
-            <asp:TemplateField HeaderText="Maximum Procured"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblMaximPorocue" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
-
-            <asp:TemplateField HeaderText="Maximum Total Value Procured"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblVlueProcured" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
-
-            </Columns>
-                <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-
-            </asp:GridView></td> 
-        </tr> 
-           
+         <table >
+           <tr>
+               <td>Basic Information:</td>
+           </tr>
+            <tr>
+            <td><asp:Label ID="lbl1" Text="Supplier Name" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblSupplierName" runat="server"></asp:Label></td>
+            </tr>
+             <tr>
+            <td><asp:Label ID="Label1" Text="Postral Address" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblPostralAdd" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
+            <td><asp:Label ID="Label3" Text="Phone Number" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblPhoneNo" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
+            <td><asp:Label ID="Label5" Text="Fax No" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblFaxNo" runat="server"></asp:Label></td>
+            </tr>
+           <tr>
+            <td><asp:Label ID="Label7" Text="Email Address" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblEmail" runat="server"></asp:Label></td>
+            </tr>
+             <tr>
+            <td><asp:Label ID="Label9" Text="Contact Person" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblContactPerson" runat="server"></asp:Label></td>
+            <tr>
+            <td><asp:Label ID="Label11" Text="Contact No" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblContactNo" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
+            <td><asp:Label ID="Label13" Text="Pay To" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblPayTo" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
+            <td><asp:Label ID="Label15" Text="Status" runat="server"></asp:Label></td>
+            <td><asp:Label ID="lblStatus" runat="server"></asp:Label></td>
+            </tr>
+            </tr>
         </table>
         </div>
         

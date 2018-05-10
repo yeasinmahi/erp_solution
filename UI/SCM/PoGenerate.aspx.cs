@@ -193,7 +193,11 @@ namespace UI.SCM
                     string monPreviousRate = dt.Rows[i]["monPreviousRate"].ToString();
                     CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
 
-                } 
+                }
+                txtIndentNoDet.Text = "";
+                ddlItem.DataSource = "";
+                ddlItem.DataBind();
+                LoadGridwithXml();
             }
             catch { }
 
@@ -219,7 +223,7 @@ namespace UI.SCM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-            LoadGridwithXml();
+           
         }
 
         private XmlNode CreateItemNode(XmlDocument doc, string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
@@ -382,6 +386,7 @@ namespace UI.SCM
 
                 if(CheckDuplicate == 1)
                 {
+                    try { File.Delete(filePathForXML); } catch { };
                     dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, enroll);// Indent Detalis 
 
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -403,6 +408,36 @@ namespace UI.SCM
                         CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
 
                     }
+
+                    //============================
+                    if (dgvIndentDet.Rows.Count > 0)
+                    {
+                        enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                        for (int index = 0; index < dgvIndentDet.Rows.Count; index++)
+                        {
+
+                            string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text.ToString();
+                            string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
+                            string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
+                            string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text.ToString();
+                            string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
+                            string strDesc = ((Label)dgvIndentDet.Rows[index].FindControl("lblPurpose")).Text.ToString();// lblPurpose
+                            string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
+                            string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
+                            string numIndentQty = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentQty")).Text.ToString();
+                            string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
+                            string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
+                            string numNewPo = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text.ToString();
+                            string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text.ToString(); //lblSpecification as TextBox -- 
+                            string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
+
+                            
+                            CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
+                            
+                        }
+                    }
+                    LoadGridwithXml();
+                    //========================================
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
             }
@@ -747,6 +782,7 @@ namespace UI.SCM
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    txtGrossDiscount.Text = "0";txtOthers.Text = "0"; txtTransport.Text = "0";txtAit.Text = "0";
                     try { File.Delete(filePathForXMLPrepare); } catch { }
                     if (searchKey[1].ToString().Length > 2)
                     {

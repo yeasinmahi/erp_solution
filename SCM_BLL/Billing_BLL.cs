@@ -16,6 +16,7 @@ namespace SCM_BLL
         private static TblEmployeeDataTable[] tblEmpList = null;
         private static TblSupplierDataTable[] tblSupplierList = null;
         private static TblConfigOtherPartyListDataTable[] tblOtherPartyList = null;
+        
 
         public DataTable GetAllUnit()
         {
@@ -619,13 +620,7 @@ namespace SCM_BLL
             else { return null; }
         }
         #endregion=========================================================================
-
-
-
-
-
-
-
+        
 
 
 

@@ -25,6 +25,32 @@
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
      
+
+    <script type="text/javascript">
+       
+    $("[id*=txtReturnQty]").live("keyup", function () {
+            if (!jQuery.trim($(this).val()) == '') { 
+                if (!isNaN(parseFloat($(this).val()))) {
+                    var row = $(this).closest("tr");
+                    var isssueqty = parseFloat($("[id*=lblQty]", row).html());
+                    var returnQty = parseFloat($(this).val());
+               
+                    if (isssueqty > returnQty) {
+                         $("[id*=txtReturnQty]", row).val('0'); 
+                       alert('Please Return Qty Grather then Issue Qty');
+                    }
+                    else {
+                      
+                    }
+                    
+
+                }
+            } else {
+                $(this).val('');
+            } 
+
+        });
+    </script>
     <script type="text/javascript"> 
         function funConfirmAll() { 
             var confirm_value = document.createElement("INPUT"); 
@@ -75,7 +101,7 @@
        <table>
         <tr> 
         <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"    ></asp:DropDownList></td>                                                                                      
+        <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"    ></asp:DropDownList></td>                                                                                      
          
         <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>            
         <td style="text-align:left;"  ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"   ></asp:TextBox>

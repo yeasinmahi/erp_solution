@@ -40,8 +40,8 @@ namespace UI.PaymentModule
                 if (!IsPostBack)
                 {
                     File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
-
-                    if (hdnEnroll.Value != "1015" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "111353")
+                    
+                    if (hdnEnroll.Value != "1011" && hdnEnroll.Value != "1015" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1044" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "32897")
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not authorized to create payment voucher.');", true);
                         return;
@@ -111,9 +111,7 @@ namespace UI.PaymentModule
                             ddlAccount.DataBind();
                         }
                     }
-                    catch { }
-
-                    LoadGrid();
+                    catch { }                    
                 }
             }
             catch { }
@@ -124,7 +122,7 @@ namespace UI.PaymentModule
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
 
             dt = new DataTable();
-            dt = objVoucher.GetBankList(int.Parse(hdnEnroll.Value));
+            dt = objVoucher.GetBankList(intUnitID);
             if (dt.Rows.Count > 0)
             {
                 ddlBank.DataTextField = "strBankName";
@@ -148,10 +146,6 @@ namespace UI.PaymentModule
             }
             catch { }
             
-            if (hdnUnit.Value == "2" || hdnUnit.Value == "46" || hdnUnit.Value == "54" || hdnUnit.Value == "67" || hdnUnit.Value == "95")
-            {                
-                
-            }
             try
             {
                 dt = new DataTable();
@@ -163,13 +157,13 @@ namespace UI.PaymentModule
                 }
             }
             catch { }
-
-            LoadGrid();
+            File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
         }
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                 intBankID = int.Parse(ddlBank.SelectedValue.ToString());
                 dt = new DataTable();
                 dt = objVoucher.GetAccountList(intUnitID, intBankID);
@@ -183,11 +177,15 @@ namespace UI.PaymentModule
             }
             catch { }
         }
-
+        protected void btnShow_Click(object sender, EventArgs e)
+        {            
+            LoadGrid();
+        }
         private void LoadGrid()
         {
             try
             {
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                 dgvReportForPaymentV.DataSource = "";
                 dgvReportForPaymentV.DataBind();
                 dt = objVoucher.GetReportForPaymentVoucher(intUnitID);
@@ -213,22 +211,40 @@ namespace UI.PaymentModule
                 {
                     for (int index = 0; index < dgvReportForPaymentV.Rows.Count; index++)
                     {
-                        insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
-                        payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
-                        amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
-                        drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
-                        billcode = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblRegNo")).Text.ToString();
-                        po = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPOID")).Text.ToString();
-                        bill = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblID")).Text.ToString();
-                        party = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPartyName")).Text.ToString();
-                        
-                        if (strPayTo != "" || drcoa != "" || bill != "")
+                        if (((CheckBox)dgvReportForPaymentV.Rows[index].FindControl("chkRow")).Checked == true)
                         {
-                            CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party);
+                            if(txtAllPayDate.Text == "")
+                            {
+                                insdate = ((TextBox)dgvReportForPaymentV.Rows[index].FindControl("txtPayDate")).Text.ToString();
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    insdate = DateTime.Parse(txtAllPayDate.Text).ToString();
+                                }
+                                catch
+                                {
+                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date is incorrect. Date Format (YYYY-MM-DD)');", true);
+                                    return;
+                                }
+                            }
+
+                            payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
+                            amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
+                            drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
+                            billcode = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblRegNo")).Text.ToString();
+                            po = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPOID")).Text.ToString();
+                            bill = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblID")).Text.ToString();
+                            party = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPartyName")).Text.ToString();
+
+                            if (strPayTo != "" && drcoa != "" && bill != "")
+                            {
+                                CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party);
+                            }
                         }
                     }
                 }
-
                 if (dgvReportForPaymentV.Rows.Count > 0)
                 {
                     try

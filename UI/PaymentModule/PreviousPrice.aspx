@@ -106,7 +106,7 @@
         </td>
     </tr>
 
-    <tr>
+    <%--<tr>
         <td colspan="4">
             <asp:Chart ID="Chart1" runat="server" EorderlineWidth="0" Width="900px">
             <Series>
@@ -118,7 +118,7 @@
             <ChartAreas><asp:ChartArea Name="ChartArea1"></asp:ChartArea></ChartAreas>
             </asp:Chart>
         </td>
-    </tr>
+    </tr>--%>
     
     </table>
 

@@ -68,7 +68,7 @@
        <table>
            <tr>
             <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
+            <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
             <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Issue ID/NO: "></asp:Label></td>     
             <td><asp:TextBox ID="txtIssueNo" runat="server" ></asp:TextBox></td>
            </tr>
@@ -99,14 +99,14 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
  
             <asp:TemplateField HeaderText="SR NO" SortExpression="strSrNo"><ItemTemplate>
-            <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("strSrNo") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="60px"/></asp:TemplateField>
+            <asp:Label ID="lblIndent" runat="server" Width="95px" Text='<%# Bind("strSrNo") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" /></asp:TemplateField>
 
             <asp:TemplateField HeaderText="SR Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteSrDate" >
-            <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("dteSrDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblItemName" Width="60px" runat="server"  Text='<%# Bind("dteSrDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
                 
             <asp:TemplateField HeaderText="Section"   ItemStyle-HorizontalAlign="right" SortExpression="strDepatrment" >
@@ -114,7 +114,7 @@
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
             <asp:TemplateField HeaderText="Issue Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteIssueDate" >
-            <ItemTemplate><asp:Label ID="lblIssueDate" runat="server"  Text='<%# Bind("dteIssueDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblIssueDate" runat="server" Width="60px"  Text='<%# Bind("dteIssueDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Product" ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
@@ -130,7 +130,7 @@
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             
             <asp:TemplateField HeaderText="IssueQty"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
-            <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblIssQty" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
            

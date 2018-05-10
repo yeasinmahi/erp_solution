@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Bill Registration </title>
+    <title>::. Bill Approval </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -62,7 +62,7 @@
     
 </head>
 <body>
-    <form id="frmBillRegistration" runat="server">        
+    <form id="frmBillApproval" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -99,7 +99,7 @@
                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClick="btnShow_Click"/></td>        
+                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClientClick="LoaderBusy()" OnClick="btnShow_Click"/></td>        
                     </tr>
                     <tr><td colspan="5"><hr /></td></tr> 
                     <tr>
@@ -107,7 +107,7 @@
                         <td><asp:TextBox ID="txtBillRegNo" runat="server" CssClass="txtBox1"></asp:TextBox></td>
                         <td style="text-align:right; width:15px;"><asp:Label ID="Label9" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right; padding: 0px 0px 10px 0px"><asp:Button ID="btnGo" runat="server" class="myButton" Text="Go" OnClick="btnGo_Click"/></td>                       
-                        <td style="text-align:right; padding: 0px 0px 10px 0px"><asp:Button ID="btnApproveAll" runat="server" class="myButton" Text="Approve All" OnClick="btnApproveAll_Click"/></td>  
+                        <td style="text-align:right; padding: 0px 0px 10px 0px"><asp:Button ID="btnApproveAll" runat="server" class="myButton" Text="Approve All" OnClientClick = "ConfirmAll()" OnClick="btnApproveAll_Click"/></td>  
                     </tr>
                     <tr><td colspan="5"><hr /></td></tr>
                 </table>
@@ -117,17 +117,17 @@
             <table>
                 <tr><td><hr /></td></tr>
                     <tr><td>   
-                    <asp:GridView ID="dgvBillReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                    <asp:GridView ID="dgvBillReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" Font-Size="10px"
                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="10px" HeaderStyle-Font-Bold="true"
                     ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvBillReport_RowCommand">
                     <AlternatingRowStyle BackColor="#CCCCCC" />    
                     <Columns>
-                    <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                    <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
                     <asp:TemplateField HeaderText="ID" SortExpression="intBill">
-                    <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                    <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
                     <%--<asp:TemplateField HeaderText="Reg No" SortExpression="strBill">
                     <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="80px"></asp:Label>
@@ -136,24 +136,24 @@
                     <asp:TemplateField HeaderText="Reg No" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strBill" HeaderStyle-Height="30px" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
                     <HeaderTemplate>
                     <asp:Label ID="lblRegNoL" runat="server" CssClass="lbl" Text="Reg No"></asp:Label>
-                    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Text" runat="server"  width="200" TextMode="MultiLine" placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvBillReport')"></asp:TextBox></HeaderTemplate>
-                    <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Width="200px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strBill")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Text" runat="server"  width="125" placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvBillReport')"></asp:TextBox></HeaderTemplate>
+                    <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Width="125px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strBill")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
-                    <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="180px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Font-Bold="true" Text='<%# Bind("strParty") %>' Width="180px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="left" Width="180px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Description" SortExpression="strItem">
                     <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strItem") %>' Width="180px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="180px"/></asp:TemplateField>
+                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="180px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Last Price" SortExpression="monLastPtice">
                     <ItemTemplate><asp:Label ID="lblLastPrice" runat="server" Text='<%# Bind("monLastPtice") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Reff" SortExpression="strReff">
-                    <ItemTemplate><asp:Label ID="lblReff" runat="server" Text='<%# Bind("strReff") %>' Width="80px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                    <ItemTemplate><asp:Label ID="lblReff" runat="server" Text='<%# Bind("strReff") %>' Width="70px"></asp:Label>
+                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="70px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Rcv Date" SortExpression="dteBillRcvDate">
                     <ItemTemplate><asp:Label ID="lblRcvDate" runat="server" Text='<%#Eval("dteBillRcvDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
@@ -164,15 +164,15 @@
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>                
             
                     <asp:TemplateField HeaderText="Bill Amount" SortExpression="monbillAmount">
-                    <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monbillAmount", "{0:n2}") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" ForeColor="Blue" Text='<%# Bind("monbillAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Net Amount" SortExpression="monNetAmount">
-                    <ItemTemplate><asp:Label ID="lblNetAmount" runat="server" Text='<%# Bind("monNetAmount", "{0:n2}") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblNetAmount" runat="server" ForeColor="Blue" Text='<%# Bind("monNetAmount", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right" SortExpression="strApproveType" > 
-                    <ItemTemplate><asp:DropDownList ID="ddlActionStatus" runat="server" CssClass="ddList" Width="120px" DataSourceID="odsApproveType" DataTextField="strApproveType" DataValueField="intID"></asp:DropDownList>
+                    <ItemTemplate><asp:DropDownList ID="ddlActionStatus" runat="server" CssClass="ddList" Width="72px" DataSourceID="odsApproveType" DataTextField="strApproveType" DataValueField="intID"></asp:DropDownList>
                     <asp:ObjectDataSource ID="odsApproveType" runat="server" SelectMethod="GetApproveType" TypeName="SCM_BLL.Billing_BLL"></asp:ObjectDataSource>
                     </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
 
@@ -190,18 +190,18 @@
                                                     
                     <asp:TemplateField HeaderText="Show PO" ItemStyle-HorizontalAlign="Center" SortExpression="">
                     <ItemTemplate><asp:Button ID="btnShowPO" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="S"  
-                    Text="Show PO"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    Text="PO"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Show Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
                     <ItemTemplate><asp:Button ID="btnShowDetails" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
-                    Text="Show Details"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    Text="Details"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Approve Action" ItemStyle-HorizontalAlign="Center" SortExpression="">
                     <ItemTemplate><asp:Button ID="btnApproveAction" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="A"  
-                    Text="Approve Action"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                    Text="Action"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
                     </Columns>
-                        <FooterStyle Font-Size="11px" />
+                    <FooterStyle Font-Size="11px" />
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     </asp:GridView>
@@ -209,10 +209,7 @@
             </table>
         </td></tr>
     </table>
-
-
-
-
+        
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>
