@@ -23,7 +23,7 @@ namespace UI.SCM.BOM
         string filePathForXML; string xmlString = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
 
             if (!IsPostBack)
             {
@@ -147,7 +147,7 @@ namespace UI.SCM.BOM
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(18, xmlString, intWh, intBomStandard, DateTime.Now, enroll);
+                        string msg = objBom.BomPostData(4, xmlString, intWh, intBomStandard, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();

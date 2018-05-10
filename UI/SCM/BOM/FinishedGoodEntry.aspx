@@ -34,7 +34,13 @@
         } 
     </script> 
 
-  
+  <script>
+
+         function Viewdetails(productID,productName ,bomName ,batchName ,startTime,endTime,invoice,srNo,quantity,whid) {
+             window.open('FinishedGoodEntryFgSavePopUP.aspx?productID=' + productID + '&productName=' + productName + '&bomName=' + bomName + '&batchName=' + batchName + '&startTime=' + startTime + '&endTime=' + endTime + '&invoice=' + invoice + '&srNo=' + srNo + '&quantity=' + quantity + '&whid=' + whid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+              
+         }
+    </script>
      
 </head>
 
@@ -58,101 +64,35 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
     
-       <div class="tabs_container" style="text-align:left">Item Manager<hr/></div>
+       <div class="tabs_container" style="text-align:left">Finish Good Entry<hr/></div>
        <table>
-               <tr> 
-            <td style="text-align:left;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+                
+           <tr>
+            <td style="text-align:right;" ><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
+            <td style="text-align:left"><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td> 
+            
+            <td style="text-align:right;" ><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
+            <td style="text-align:left"><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td> 
+            <td style="text-align:right;" ><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
+            <td style="text-align:left"><asp:TextBox ID="txtDate" runat="server" CssClass="txtBox"></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td> 
+                 
+            </tr>
+           <tr>
+            <td style="text-align:left;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
 
-            <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>            
-            <td style="text-align:left;"  ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="250px" OnTextChanged="txtItem_TextChanged"   ></asp:TextBox>
-            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
-            ServiceMethod="GetItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
-            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-            </cc1:AutoCompleteExtender></td>
-               
-             <td style="text-align:left;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="BOM"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlBom" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       ></asp:DropDownList></td>                                                                                      
-
-            </tr>
-           <tr>
-               <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtQty" CssClass="txtBox" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>                                                                                      
-            <td style="text-align:right;" ><asp:Label ID="lblPurpose" runat="server" CssClass="lbl" Text="Batch No"></asp:Label></td>    
-            <td style="text-align:left;"><asp:TextBox ID="txtBatchNo" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> 
-            <td style="text-align:right;" ><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Line No"></asp:Label></td>    
-            <td style="text-align:left;"><asp:DropDownList ID="ddlLine" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       ></asp:DropDownList></td>   
-           </tr>
-           <tr>
-           <td style="text-align:right;" ><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
-            <td style="text-align:left" colspan="3"><asp:TextBox ID="txtdteDate" runat="server" CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender> 
-           <asp:DropDownList ID="ddlFromTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
-            <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-           </asp:DropDownList>
-            <asp:DropDownList ID="ddlFromToTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server" >
-                 <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-            </asp:DropDownList>
-            <td style="text-align:left;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Invoice"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtInvoice" CssClass="txtBox" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>  
-            </td> 
-            </tr>
-           <tr>
-             <td  style="text-align:right"  colspan="6"><asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"/><asp:Button ID="btnSubmit" runat="server"  Text="Submit" OnClick="btnSubmit_Click"/></td>
+             <td  style="text-align:right"  colspan="4"><asp:Button ID="btnEdit" runat="server" Text="Edit Production Order"  /><asp:Button ID="btnViewProductionOrder" runat="server"  Text="Show Production Order" OnClick="btnViewProductionOrder_Click"/></td>
+      
                             
            </tr>
        </table>
         <table> 
             <tr><td> 
 
-            <asp:GridView ID="dgvBom" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="850px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
+            <asp:GridView ID="dgvBom" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="850px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" 
 
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  >
 
@@ -161,44 +101,58 @@
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
 
-            <asp:TemplateField HeaderText="Product ID" Visible="false" SortExpression="itemid"><ItemTemplate>
-            <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("itemid") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Product ID" Visible="false" SortExpression="intProductionID"><ItemTemplate>
+            <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("intProductionID") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Product Name" SortExpression="item"><ItemTemplate>
-            <asp:Label ID="lblProductName" runat="server" Width="200px" Text='<%# Bind("item") %>'></asp:Label></ItemTemplate>
+                
+            <asp:TemplateField HeaderText="Product Name" SortExpression="strName"><ItemTemplate>
+            <asp:Label ID="lblProductName" runat="server" Width="200px" Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="300px"/></asp:TemplateField>
 
-           
-             <asp:TemplateField HeaderText="Start Time" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="toTime" >
-            <ItemTemplate><asp:Label ID="lblStartTime" Width="80px" runat="server"  Text='<%# Bind("toTime") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="BOM Name" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strBoMName" > 
+            <ItemTemplate><asp:Label ID="lblBomName" Width="120px"   runat="server"   Text='<%# Bind("strBoMName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+                
+            <asp:TemplateField HeaderText="Batch No" ItemStyle-HorizontalAlign="right" SortExpression="strBatchNo" > 
+            <ItemTemplate><asp:Label ID="lblBatch" runat="server"  Width="80px"  Text='<%# Bind("strBatchNo") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="Start Time" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="dteStartTime" >
+            <ItemTemplate><asp:Label ID="lblStartTime" Width="80px" runat="server"  Text='<%# Bind("dteStartTime") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
                 
-            <asp:TemplateField HeaderText="End Time" ItemStyle-HorizontalAlign="right" SortExpression="qty" >
-            <ItemTemplate><asp:Label ID="lblEndTime"  Width="80px" runat="server"   Text='<%# Bind("fromtime" ) %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="End Time" ItemStyle-HorizontalAlign="right" SortExpression="dteEndtTime" >
+            <ItemTemplate><asp:Label ID="lblEndTime"  Width="80px" runat="server"   Text='<%# Bind("dteEndtTime" ) %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
               
-            <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="wasquantitytage" >
-            <ItemTemplate><asp:Label ID="lblQuantity" runat="server"  Width="80px" DataFormatString="{0:0.00}" Text='<%# Bind("quantity") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-            
-            <asp:TemplateField HeaderText="BOM Used" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="bomname" > 
-            <ItemTemplate><asp:Label ID="lblBomUsed" Width="120px"   runat="server"   Text='<%# Bind("quantity") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Invoice No" ItemStyle-HorizontalAlign="right" SortExpression="strCinvoiceode" > 
+            <ItemTemplate><asp:Label ID="lblInvoice" runat="server"  ></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Batch" ItemStyle-HorizontalAlign="right" SortExpression="strCode" > 
-            <ItemTemplate><asp:Label ID="lblBatch" runat="server"  Width="80px" DataFormatString="{0:0.00}" Text='<%# Bind("batch") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="SR NO" ItemStyle-HorizontalAlign="right" SortExpression="strCode" >
+            <ItemTemplate><asp:Label ID="lblSrNO" runat="server"  Width="80px"  Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-            
-             <asp:TemplateField HeaderText="Invoice No" ItemStyle-HorizontalAlign="right" SortExpression="strCinvoiceode" > 
-            <ItemTemplate><asp:Label ID="lblInvoice" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("invoice") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-            
-            <asp:TemplateField HeaderText="Line/Process/Machine" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess" > 
-            <ItemTemplate><asp:Label ID="lblLine" runat="server"  Width="80px" DataFormatString="{0:0.00}" Text='<%# Bind("lineprocess") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-            <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
 
+            <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numOrderQty" >
+            <ItemTemplate><asp:Label ID="lblQuantity" runat="server"  Width="80px"   Text='<%# Bind("numOrderQty") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+             
+            
+            <asp:TemplateField HeaderText="Line/Process/Machine" ItemStyle-HorizontalAlign="right" SortExpression="strplantname" > 
+            <ItemTemplate><asp:Label ID="lblLine" runat="server"  Width="80px"  Text='<%# Bind("strplantname") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Save FG" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess" > 
+            <ItemTemplate><asp:Button ID="btnSaveFG" runat="server"  Width="80px"  OnClick="btnSaveFG_Click"  Text="Save FG"></asp:Button></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="SR Detail" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess" > 
+            <ItemTemplate><asp:Button ID="btnSRDetail" runat="server"  Width="80px"   Text="SR Detail"></asp:Button></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Inactive Order" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess" > 
+            <ItemTemplate><asp:Button ID="btnInactive" runat="server"  Width="83px"   Text="Inactive Order"></asp:Button></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

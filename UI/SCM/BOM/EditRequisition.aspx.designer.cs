@@ -10,7 +10,7 @@
 namespace UI.SCM.BOM {
     
     
-    public partial class FinishedGoodEntry {
+    public partial class EditRequisition {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -121,31 +121,22 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.HiddenField hdnIndentDate;
         
         /// <summary>
-        /// lblTo control.
+        /// hdnDueDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTo;
+        protected global::System.Web.UI.WebControls.HiddenField hdnDueDate;
         
         /// <summary>
-        /// txtFromDate control.
+        /// hdnIndentType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
-        
-        /// <summary>
-        /// dteTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender dteTo;
+        protected global::System.Web.UI.WebControls.HiddenField hdnIndentType;
         
         /// <summary>
         /// Label1 control.
@@ -157,22 +148,49 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtToDate control.
+        /// ddlWH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtToDate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWH;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// lblFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::System.Web.UI.WebControls.Label lblFrom;
+        
+        /// <summary>
+        /// ddlInterval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInterval;
+        
+        /// <summary>
+        /// lblTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTo;
+        
+        /// <summary>
+        /// txtdteDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdteDate;
         
         /// <summary>
         /// Label2 control.
@@ -184,66 +202,39 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtDate control.
+        /// ddlvTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlvTypes;
         
         /// <summary>
-        /// CalendarExtender2 control.
+        /// btnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// Label3 control.
+        /// dgvReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.GridView dgvReq;
         
         /// <summary>
-        /// ddlWH control.
+        /// dgvItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWH;
-        
-        /// <summary>
-        /// btnEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
-        
-        /// <summary>
-        /// btnViewProductionOrder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewProductionOrder;
-        
-        /// <summary>
-        /// dgvBom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvBom;
+        protected global::System.Web.UI.WebControls.GridView dgvItem;
     }
 }

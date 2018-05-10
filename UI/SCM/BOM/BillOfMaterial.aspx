@@ -163,10 +163,8 @@
 
             <asp:TemplateField HeaderText="Code" ItemStyle-HorizontalAlign="right" SortExpression="strCode" > 
             <ItemTemplate><asp:Label ID="lblCode" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
-            
-            <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
-
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
+            <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" /> 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

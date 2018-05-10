@@ -86,6 +86,8 @@ namespace SCM_BLL
 
         }
 
+       
+
         public string BomPostData(int type, string xmlString, int intWh, int bomid, DateTime dteDate, int enroll)
         { 
             string strMsg = "";
