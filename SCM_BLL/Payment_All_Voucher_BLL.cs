@@ -174,7 +174,21 @@ namespace SCM_BLL
             }
             catch (Exception ex) { return ex.ToString(); }
         }
-        
+        public DataTable GetAllApproveReport(int intUnitID, DateTime dteFDate, DateTime dteTDate)
+        {
+            SprAllApprovedBillTableAdapter adp = new SprAllApprovedBillTableAdapter();
+            try
+            { return adp.GetAllApproveReport(intUnitID, dteFDate, dteTDate); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetBillRegisterForWeb(int intUnitID, DateTime dteFDate, DateTime dteTDate)
+        {
+            SprBillRegisterForWebTableAdapter adp = new SprBillRegisterForWebTableAdapter();
+            try
+            { return adp.GetBillRegisterForWeb(intUnitID, dteFDate, dteTDate); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
         
 
 

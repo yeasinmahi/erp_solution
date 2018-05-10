@@ -49,6 +49,17 @@ namespace SAD_BLL.Vat
         }
 
         #endregion ==================================================================
+        public DataTable GetDropDownDataBindForCreateItemAndMaterial(int intPart, int intUnitID, int ysnFactory, int intVATAccountID)
+        {
+            SprCreateNewItemAndMaterialDropDownBindTableAdapter adp = new SprCreateNewItemAndMaterialDropDownBindTableAdapter();
+            try
+            { return adp.GetDataForCreateNewItemAndMaterial(intPart, intUnitID, ysnFactory, intVATAccountID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        #region ===== Create New Item And Material Option ================================
+
+        #endregion =======================================================================
+        
 
         #region ===== Bridge Option ======================================================
         public DataTable GetVATItemList(int intUnitID, int intVATAccountID)

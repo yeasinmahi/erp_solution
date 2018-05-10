@@ -36,7 +36,7 @@
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnVATAccID" runat="server" /><asp:HiddenField ID="hdnysnFactory" runat="server" />
+    <asp:HiddenField ID="hdnVATAccID" runat="server" /><asp:HiddenField ID="hdnysnFactory" runat="server" /><asp:HiddenField ID="hdnconfirmTax" runat="server" />
           
     <div class="divbody" style="padding-right:10px;">
         
@@ -67,7 +67,7 @@
                 <td style="text-align:right;"><asp:Label ID="lblEName" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
-                <td colspan="2" style="text-align:right;"><asp:CheckBox ID="cbTax" runat="server" Text=" Tax Exempted" /></td>
+                <td colspan="2" style="text-align:right;"><asp:CheckBox ID="cbTax" runat="server" Text=" Tax Exempted" OnCheckedChanged="cbTax_CheckedChanged" /></td>
             </tr>
             <tr>                
                 <td colspan="2" style="text-align:right; padding-top:15px;"><asp:Button ID="btnUpdateUOM" runat="server" class="myButton" Text="Udate UOM" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateUOM_Click"/></td>

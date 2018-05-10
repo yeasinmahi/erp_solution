@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllApprovedBillReport.aspx.cs" Inherits="UI.PaymentModule.AllApprovedBillReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BillRegisterReport.aspx.cs" Inherits="UI.PaymentModule.BillRegisterReport" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>::. All Approved Bill Report </title>
+    <title>::. Bill Registration </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -20,6 +20,12 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
+    <script>
+         function ViewBillDetailsPopup(Id) {
+             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+         }
+    </script>
+
 
     </head>
 <body>
@@ -34,9 +40,8 @@
     <asp:HiddenField ID="hdnEmail" runat="server" />
 
     <div class="divbody" style="padding-right:10px;">
-        <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Approved Bill Statement" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
+        <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Bill Register" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
-
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" width="110px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>
@@ -49,7 +54,7 @@
                 <td><asp:TextBox ID="txtTo" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTo"></cc1:CalendarExtender></td>
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>  
-                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 
+                <td style="text-align:right; padding: 5px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 
             </tr>
         </table>
     </div>
@@ -60,54 +65,78 @@
         <tr><td style='text-align: center;'><asp:Label ID="lblFromToDate" runat="server" Font-Bold="true" Font-Size="16px"></asp:Label></td></tr>
         <tr><td><hr /></td></tr>
             <tr><td>   
-            <asp:GridView ID="dgvReportForPaymentV" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+            <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
             CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-            HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-            ForeColor="Black" GridLines="Vertical">
+            HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" RowStyle-Height="25px"
+            ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvReport_RowCommand">
             <AlternatingRowStyle BackColor="#CCCCCC" />    
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Reg Code" SortExpression="strBill">
-            <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="150px"></asp:Label>
+            <asp:TemplateField HeaderText="Bill ID" SortExpression="intBill">
+            <ItemTemplate><asp:Label ID="lblBillID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="50px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Bill Reg Code" SortExpression="strBillCode">
+            <ItemTemplate><asp:Label ID="lblBillRegNo" runat="server" Text='<%# Bind("strBillCode") %>' Width="150px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
             <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="250px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Rcv Date" SortExpression="dteRcv">
-            <ItemTemplate><asp:Label ID="lblRcvDate" runat="server" Text='<%# Bind("dteRcv", "{0:yyyy-MM-dd}") %>' Width="90px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="90px"/></asp:TemplateField>
+            <asp:TemplateField HeaderText="Reff" SortExpression="strReff">
+            <ItemTemplate><asp:Label ID="lblReff" runat="server" Text='<%# Bind("strReff") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="80px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Bill Amount" SortExpression="monBill">
-            <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monBill", "{0:n2}") %>' Width="100px"></asp:Label>
+            <asp:TemplateField HeaderText="Bill No" SortExpression="strBillNo">
+            <ItemTemplate><asp:Label ID="lblBillNo" runat="server" Text='<%# Bind("strBillNo") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="80px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Bill Date" SortExpression="dteBillDate">
+            <ItemTemplate><asp:Label ID="lblBillDate" runat="server" Text='<%# Bind("dteBillDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Rcv Date" SortExpression="dteRcvDate">
+            <ItemTemplate><asp:Label ID="lblRcvDate" runat="server" Text='<%# Bind("dteRcvDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Bill Amount" SortExpression="monBillAmount">
+            <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monBillAmount", "{0:n2}") %>' Width="100px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Net Amount" SortExpression="monNet">
-            <ItemTemplate><asp:Label ID="lblNetAmount" runat="server" Text='<%# Bind("monNet", "{0:n2}") %>' Width="100px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Approve Amount L1" SortExpression="monL1">
-            <ItemTemplate><asp:Label ID="lblApproveAmountL1" runat="server" Text='<%# Bind("monL1", "{0:n2}") %>' Width="100px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Approve Date L1" SortExpression="dteL1">
-            <ItemTemplate><asp:Label ID="lblApproveDateL1" runat="server" Text='<%#Eval("dteL1", "{0:yyyy-MM-dd}") %>' Width="100px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Approve Amount L2" SortExpression="monL2">
-            <ItemTemplate><asp:Label ID="lblApproveAmountL2" runat="server" Text='<%# Bind("monL2", "{0:n2}") %>' Width="100px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Approve Date L2" SortExpression="dteL2">
-            <ItemTemplate><asp:Label ID="lblApproveDateL2" runat="server" Text='<%#Eval("dteL2", "{0:yyyy-MM-dd}") %>' Width="100px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px" /></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Remarks" SortExpression="strRemarks">
             <ItemTemplate><asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strRemarks") %>' Width="150px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px" /></asp:TemplateField>
-                        
+
+            <asp:TemplateField HeaderText="Audit Status" SortExpression="strAuditStatus">
+            <ItemTemplate><asp:Label ID="lblAuditStatus" runat="server" Text='<%# Bind("strAuditStatus") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="100px" /></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Audit Date" SortExpression="dteAuditDate">
+            <ItemTemplate><asp:Label ID="lblAuditDate" runat="server" Text='<%# Bind("dteAuditDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Audit Remarks" SortExpression="strAuditRemarks">
+            <ItemTemplate><asp:Label ID="lblAuditRemarks" runat="server" Text='<%# Bind("strAuditRemarks") %>' Width="150px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px" /></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Approve Amount" SortExpression="monApproveAmount">
+            <ItemTemplate><asp:Label ID="lblApproveAmount" runat="server" Text='<%# Bind("monApproveAmount", "{0:n2}") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Approve AIT" SortExpression="monApprovedAIT" Visible="false">
+            <ItemTemplate><asp:Label ID="lblApproveAIT" runat="server" Text='<%# Bind("monApprovedAIT", "{0:n2}") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Pay Date" SortExpression="dtePayDate">
+            <ItemTemplate><asp:Label ID="lblPayDate" runat="server" Text='<%# Bind("dtePayDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="80px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"  
+            Text="View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                                        
             </Columns>
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

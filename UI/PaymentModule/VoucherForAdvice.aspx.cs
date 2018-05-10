@@ -178,8 +178,7 @@ namespace UI.PaymentModule
             catch { }
         }
         protected void btnShow_Click(object sender, EventArgs e)
-        {
-            System.Threading.Thread.Sleep(1500);
+        {            
             LoadGrid();
         }
         private void LoadGrid()
@@ -214,7 +213,23 @@ namespace UI.PaymentModule
                     {
                         if (((CheckBox)dgvReportForPaymentV.Rows[index].FindControl("chkRow")).Checked == true)
                         {
-                            insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
+                            if(txtAllPayDate.Text == "")
+                            {
+                                insdate = ((TextBox)dgvReportForPaymentV.Rows[index].FindControl("txtPayDate")).Text.ToString();
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    insdate = DateTime.Parse(txtAllPayDate.Text).ToString();
+                                }
+                                catch
+                                {
+                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date is incorrect. Date Format (YYYY-MM-DD)');", true);
+                                    return;
+                                }
+                            }
+
                             payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
                             amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
                             drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
