@@ -17,6 +17,7 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.AEFPS;
 using SAD_BLL.Vat;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Vat
 {
@@ -25,7 +26,7 @@ namespace UI.SAD.Vat
         string Itemaneme;
         int? intItem = null; int Accid;
         DataTable dt;decimal numQty, monValue, monSD;
-        DateTime strM11DateChallan, dtedate;
+        DateTime dtetdate, dtedate;
         char[] delimiterChars = { '[', ']' }; string[] arrayKeyItem;
         Mushok11 objMush = new Mushok11();
         protected void Page_Load(object sender, EventArgs e)
@@ -48,17 +49,21 @@ namespace UI.SAD.Vat
             }
         }
 
-        protected void txtMatrialName_TextChanged(object sender, EventArgs e)
-        {
-          
-        }
+       
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
             char[] delimiterCharss = { '[', ']' };
-            dt = objMush.getIssueSummary( txtdtefdate.Text, txttodate.Text, int.Parse(hdnAccno.Value), int.Parse(ddlShorby.SelectedValue));
-            dgvPurChaseRpt.DataSource = dt;
-            dgvPurChaseRpt.DataBind();
+            dtedate = DateFormat.GetDateAtSQLDateFormat(txtdtefdate.Text).Value;
+           
+            dtetdate = DateFormat.GetDateAtSQLDateFormat(txttodate.Text).Value;
+          
+            dt = objMush.getIssueSummary(dtedate, dtetdate, int.Parse(Session["VatAccid"].ToString()), int.Parse(ddlShorby.SelectedValue));
+            if (dt.Rows.Count > 0)
+            {
+                dgvPurChaseRpt.DataSource = dt;
+                dgvPurChaseRpt.DataBind();
+            }
         }
        
         protected double TotalQty=0, TotalValue = 0;
@@ -75,13 +80,13 @@ namespace UI.SAD.Vat
                 {
                     TotalQty += double.Parse(((Label)e.Row.Cells[3].FindControl("lblQuantity")).Text);
                 }
-                if (((Label)e.Row.Cells[6].FindControl("lblvalue")).Text == "")
+                if (((Label)e.Row.Cells[4].FindControl("lblvalue")).Text == "")
                 {
                     TotalValue += 0;
                 }
                 else
                 {
-                    TotalValue += double.Parse(((Label)e.Row.Cells[6].FindControl("lblvalue")).Text);
+                    TotalValue += double.Parse(((Label)e.Row.Cells[4].FindControl("lblvalue")).Text);
                 }
                
             }

@@ -18,12 +18,12 @@ namespace UI.SCM.BOM
     {
         Bom_BLL objBom = new Bom_BLL();
         DataTable dt = new DataTable();
-        int intwh,enroll, BomId; string xmlData;
+        int intwh,enroll, BomId,intBomStandard; string xmlData;
         int  CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         string filePathForXML; string xmlString = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
 
             if (!IsPostBack)
             {
@@ -139,11 +139,15 @@ namespace UI.SCM.BOM
                     XmlNode dSftTm = doc.SelectSingleNode("voucher");
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
-
+                    if(chkBom.Checked==true)
+                    {
+                        intBomStandard = 1;
+                    }
+                    else { intBomStandard = 0; }
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(18, xmlString, intWh, BomId, DateTime.Now, enroll);
+                        string msg = objBom.BomPostData(4, xmlString, intWh, intBomStandard, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
@@ -238,6 +242,8 @@ namespace UI.SCM.BOM
         {
             try
             {
+                try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
+                catch { }
                 BomId = int.Parse(ListDatas.SelectedValue.ToString());
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(3, xmlData, intwh, BomId, DateTime.Now, enroll);

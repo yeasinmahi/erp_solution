@@ -67,8 +67,8 @@
             width: 34px; height: 23px; vertical-align: bottom;" /></td>
         <td><asp:DropDownList ID="ddlShorby" runat="server">
             <asp:ListItem Value="1">Day</asp:ListItem>          
-            <asp:ListItem Value="2">Material</asp:ListItem>
-            <asp:ListItem Value="3">Challan</asp:ListItem>
+            <asp:ListItem Value="2">Product</asp:ListItem>
+            <asp:ListItem Value="3">M11 Challan</asp:ListItem>
             </asp:DropDownList>
         </td>
      </tr> 
@@ -93,7 +93,7 @@
         <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px" /><ItemTemplate>  <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
  
         <asp:TemplateField HeaderText="M-18 Entry Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldate" runat="server" Text='<%# Bind("Column2","{0:d}") %>' Width="100px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lbldate" runat="server" Text='<%# Bind("Column2") %>' Width="100px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Material Name" SortExpression="itemname">
@@ -101,7 +101,7 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="200px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Challan/BoE No" SortExpression="qty">
-        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Column4","{0:n0}") %>' Width="80px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblQuantityC" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Column4","{0:n0}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
         </asp:TemplateField>
 

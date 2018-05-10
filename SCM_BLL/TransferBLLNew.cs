@@ -87,9 +87,52 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable getLocationList(string Whid)
+        {
+            
+             try
+            {
+                tblWearHouseStoreLocationTableAdapter adpItemlist = new tblWearHouseStoreLocationTableAdapter();
+                return adpItemlist.GetData(int.Parse(Whid));
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getProductionItemList(int Productionid)
+        {
+            try
+            {
+                tblProductionItemListTableAdapter adpItemlist = new tblProductionItemListTableAdapter();
+                return adpItemlist.GetProductionReceive(Productionid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getRpt(int intWHID, int intOutWHid, string text1, string text2, bool v)
         {
             throw new NotImplementedException();
+        }
+
+        public void ReceiveEntry(int autoid, int itemid, DateTime dtedate, decimal qty, int unitid, int intWHID, int intLocationid)
+        {  
+            try
+            {
+                tblInventoryTableAdapter adpIL = new tblInventoryTableAdapter();
+                 adpIL.GetReceive(autoid, itemid, dtedate, qty, unitid, intWHID, intLocationid);
+                
+            }
+            catch  {  }
+        }
+
+        public void ReceiveUpdate(decimal qty,int productionid, int itemid, int unitid)
+        {
+            try
+            {
+                tblInventoryTableAdapter adpIL = new tblInventoryTableAdapter();
+                adpIL.GetReceiveUpdate(qty,productionid, itemid, unitid);
+
+            }
+            catch { }
         }
 
         public DataTable getRWH(int whid)
@@ -246,6 +289,17 @@ namespace SCM_BLL
                 return null;
             }
         }
+
+        public DataTable GetTransferReceive(int unitid)
+        {
+            try
+            {
+                tblProductionDetailTableAdapter adpPLIst = new tblProductionDetailTableAdapter();
+                return adpPLIst.GetProductionList(unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getShippontList(int unitid)
         {
             try
