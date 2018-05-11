@@ -1033,6 +1033,8 @@
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
     <Content Include="SAD\DisPoint\SetPriceVar.aspx" />
     <Content Include="SAD\ExcelChallan\frmAutoChallan.aspx" />
+    <Content Include="SAD\ExcelChallan\frmExcelUploadDairy.aspx" />
+    <Content Include="SAD\ExcelChallan\frmLoadingSlipChallanDairy.aspx" />
     <Content Include="SAD\ExcelChallan\frmLoadingSlipChallan.aspx" />
     <Content Include="SAD\ExcelChallan\frmProductView.aspx" />
     <Content Include="SAD\ExcelChallan\frmVehicleSetbyTransport.aspx" />
@@ -4838,6 +4840,20 @@
     </Compile>
     <Compile Include="SAD\ExcelChallan\frmAutoChallan.aspx.designer.cs">
       <DependentUpon>frmAutoChallan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\ExcelChallan\frmExcelUploadDairy.aspx.cs">
+      <DependentUpon>frmExcelUploadDairy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\ExcelChallan\frmExcelUploadDairy.aspx.designer.cs">
+      <DependentUpon>frmExcelUploadDairy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\ExcelChallan\frmLoadingSlipChallanDairy.aspx.cs">
+      <DependentUpon>frmLoadingSlipChallanDairy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\ExcelChallan\frmLoadingSlipChallanDairy.aspx.designer.cs">
+      <DependentUpon>frmLoadingSlipChallanDairy.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\ExcelChallan\frmLoadingSlipChallan.aspx.cs">
       <DependentUpon>frmLoadingSlipChallan.aspx</DependentUpon>

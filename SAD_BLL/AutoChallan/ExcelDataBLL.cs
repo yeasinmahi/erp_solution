@@ -59,6 +59,29 @@ namespace SAD_BLL.AutoChallan
             catch (Exception e) { msg = e.ToString();  return new DataTable(); }
         }
 
+        public DataTable UploadDataOrderDairy(int shipid, DateTime dtedate)
+        {
+            try
+            {
+                tblDairyOrderViewTableAdapter adp = new tblDairyOrderViewTableAdapter();
+                return adp.GetData(shipid, dtedate.ToString());
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getProductviewDairy(int custid, int shipid, int part, int offid, DateTime dtedate)
+        {
+
+            try
+            {
+                sprExcelAutoChallanViewDairyTableAdapter adp = new sprExcelAutoChallanViewDairyTableAdapter();
+                return adp.GetData(custid, shipid, part, offid,dtedate);
+            }
+            catch { return new DataTable(); }
+        }
+
+      
+
         public DataTable getShippoint(int userid, int Unitid, bool Active)
         {
             try
