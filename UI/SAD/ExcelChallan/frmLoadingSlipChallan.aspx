@@ -26,14 +26,22 @@
               if (!isNaN(parseFloat($(this).val()))) {
                   var row = $(this).closest("tr");
                   var free = parseFloat($("[id*=lblFreeQty]", row).html());
-                  var UOM = parseFloat($("[id*=uomqty]", row).val());
+                  var UOM = parseFloat($("[id*=uomqty]", row).val());                   
                   var qty = parseFloat($(this).val());
                   $("[id*=lblFreeQtys]", row).html((free / UOM) * qty);
-                  $("[id*=lblTotalqty]", row).html((free / UOM) * qty) + qty;
+                  $("[id*=lblTotalqty]", row).html(((free / UOM) * qty) + qty);
+
               }
           } else {
               $(this).val('');
           }
+           var grandTotalqty = 0;
+        
+
+          $("[id*=lblTotalqty]").each(function () {
+              grandTotalqty = grandTotalqty + parseFloat($(this).html());
+          });
+          $("[id*=lblPending]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
       } ) ;
    </script>   
 </head>
@@ -71,6 +79,7 @@
         </FooterTemplate></asp:TemplateField>
                         
         <asp:TemplateField HeaderText="strProductName" SortExpression="itemid"><ItemTemplate>
+         <asp:HiddenField  ID="hdnvat" runat="server" Value='<%# Bind("intvat") %>'></asp:HiddenField>
         <asp:HiddenField  ID="hdnpId" runat="server" Value='<%# Bind("pId", "{0:0.0000}") %>'></asp:HiddenField>
         <asp:HiddenField  ID="rate" runat="server" Value='<%# Bind("price", "{0:0.0000}") %>'></asp:HiddenField>
         <asp:HiddenField  ID="intCOAIDtxt" runat="server" Value='<%# Bind("intCOAID", "{0:0}") %>'></asp:HiddenField>
@@ -96,7 +105,7 @@
 
         <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity"><ItemTemplate>
         <asp:HiddenField  ID="hdnFreeQty" runat="server" Value='<%# Bind("Free","{0:n2}") %>'></asp:HiddenField>
-        <asp:TextBox ID="lblQuantity" CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="true"    ></asp:TextBox></ItemTemplate>
+        <asp:TextBox ID="lblQuantity" CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
         <ItemStyle HorizontalAlign="Left" Width="75px" /></asp:TemplateField>
         
         <asp:TemplateField HeaderText="Free Qty" SortExpression="itemid"><ItemTemplate>

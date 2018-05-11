@@ -38,6 +38,16 @@ namespace SAD_BLL.AutoChallan
             catch { return new DataTable(); }
         }
 
+        public DataTable getOfficebyShippoint(int unitid, int userid, bool process)
+        {
+            try
+            {
+                tblSalesOfficeTableAdapter adp = new tblSalesOfficeTableAdapter();
+                return adp.GetOff(unitid, userid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getProductview(int custid, int shipid, int part)
         {
             string msg = "";
