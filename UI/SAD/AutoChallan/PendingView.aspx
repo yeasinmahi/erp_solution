@@ -12,66 +12,7 @@
     <webopt:BundleReference ID="BundleReference4" runat="server" Path="~/Content/Bundle/hrCSS" />
      <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
-    <style type="text/css">
-        .auto-style2 {
-            width: 4px;
-        }
-    </style>
-         <script>
-             $(document).ready(function () {
-                 SearchText();
-             });
-             function Changed() {
-                 document.getElementById('hdfSearchBoxTextChange').value = 'true';
-             }
-             function SearchText() {
-                 $("#txtVehicleno").autocomplete({
-                     source: function (request, response) {
-                         $.ajax({
-                             type: "POST",
-                             contentType: "application/json;",
-                             url: "TransportSet.aspx/GetAutoCompleteData",
-                             data: '{"strSearchKey":"' + document.getElementById('txtVehicleno').value + '"}',
-                             dataType: "json",
-                             success: function (data) {
-                                 response(data.d);
-                             },
-                             error: function (result) {
 
-                             }
-                         });
-                     }
-                 });
-             }
-    </script>
-
-      <script>
-          $(document).ready(function () {
-              SearchTexts();
-          });
-          function Changeds() {
-              document.getElementById('hdfSearchBoxTextChange').value = 'true';
-          }
-          function SearchTexts() {
-              $("#txtdrivername").autocomplete({
-                  source: function (request, response) {
-                      $.ajax({
-                          type: "POST",
-                          contentType: "application/json;",
-                          url: "TransportSet.aspx/GetAutoCompleteDatas",
-                          data: '{"strSearchKey":"' + document.getElementById('txtdrivername').value + '"}',
-                          dataType: "json",
-                          success: function (data) {
-                              response(data.d);
-                          },
-                          error: function (result) {
-
-                          }
-                      });
-                  }
-              });
-          }
-    </script>
      <script> function CloseWindow() {
      window.close();
         }
@@ -119,10 +60,22 @@ Product Free
             <tr>
                 <td style="background-color:#e9dddd"><asp:HiddenField ID="hdncustid" runat="server" /><asp:HiddenField ID="hdnvehicle" runat="server" /><asp:HiddenField ID="hdncompany" runat="server" />
                     <asp:HiddenField ID="hdnsession" runat="server" />
-                    <asp:Label ID="Vehicle" runat="server" Text="">Vehicle No Search :</asp:Label><asp:TextBox ID="txtVehicleno" onchange="javascript: Changed();"  runat="server" CssClass="txtBox" Width="190px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" OnTextChanged="txtVehicle_TextChanged"></asp:TextBox>
+                    <asp:Label ID="Vehicle" runat="server" Text="">Vehicle No Search :</asp:Label><%--<asp:TextBox ID="txtVehicleno" onchange="javascript: Changed();"  runat="server" CssClass="txtBox" Width="190px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" OnTextChanged="txtVehicle_TextChanged"></asp:TextBox>--%>
+                    <asp:TextBox ID="txtVehicleno" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox>
+                    <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtVehicleno"
+                    ServiceMethod="VehicleSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                    </cc1:AutoCompleteExtender>
                     </td>
-                <td style="background-color:#e9dddd">
-                    <asp:Label ID="Label1" runat="server" Text="">Driver Name         :</asp:Label><asp:TextBox ID="txtdrivername"  onchange="javascript: Changeds();"   runat="server" CssClass="txtBox" Width="150px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" OnTextChanged="txtVehicle1_TextChanged"></asp:TextBox>
+                   <td style="background-color:#e9dddd">
+                    <asp:Label ID="Label1" runat="server" Text="">Driver Name         :</asp:Label><%--<asp:TextBox ID="txtdrivername"  onchange="javascript: Changeds();"   runat="server" CssClass="txtBox" Width="150px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" OnTextChanged="txtVehicle1_TextChanged"></asp:TextBox>--%>
+                    <asp:TextBox ID="txtdrivername" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="180px" ></asp:TextBox>
+                    <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtdrivername"
+                    ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                    </cc1:AutoCompleteExtender>
                      <%--<asp:TextBox ID="txtDriverName" onchange="javascript: Changed();"   CssClass="txtBox" Width="190px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" runat="server"></asp:TextBox>--%>
                    </td>
                 <td style="background-color:#e9dddd" class="auto-style2">

@@ -24,6 +24,9 @@ using SAD_BLL.AutoChallanBll;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Xml;
+using SAD_BLL.AutoChallan;
+using SAD_BLL.AEFPS;
+
 namespace UI.SAD.AutoChallan
 {
     public partial class PendingView : BasePage
@@ -34,19 +37,15 @@ namespace UI.SAD.AutoChallan
         protected void Page_Load(object sender, EventArgs e)
         {
             string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
-           // string strEnroll = Convert.ToString("1355".ToString());
             filePathForXML = Server.MapPath("Pendinginputform" + strEnroll + ".xml");
-
-            // filePathForXML = Server.MapPath("orderinputform.xml");
+        
             if (!IsPostBack)
             {
                 UpdatePanel1.DataBind();
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
                 catch { }
-                txtVehicleno.Attributes.Add("onkeyUp", "SearchText();");
-                txtdrivername.Attributes.Add("onkeyUp", "SearchTexts();");
-                //txtDriverName.Attributes.Add("onkeyUp", "SearchTextempnew();");
+
                 hdncustid.Value = Session["Custid"].ToString();
 
                 int shipid = int.Parse(Session["Shippointid"].ToString());
@@ -499,6 +498,22 @@ namespace UI.SAD.AutoChallan
         {
             txtsupplierName.Visible = true;
             hdncompany.Value = "3rdparty";
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] VehicleSearch(string prefixText)
+        {
+           
+            ExcelDataBLL objAutoSearch_BLL = new ExcelDataBLL();
+            return objAutoSearch_BLL.GetVehicle(prefixText);
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] EmployeeSearch(string prefixText, int count = 0)
+        {
+            FPSSalesEntryBLL objFPSSaleEntry = new FPSSalesEntryBLL();
+            return objFPSSaleEntry.GetEmployeeSearch(prefixText);
+
         }
     }
 }

@@ -63,7 +63,7 @@
         <tr><td>Sales Qty</td>
             <td><asp:TextBox ID="txtSalesQty" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>
             <td>Region List</td> 
-            <td colspan="2"><asp:DropDownList ID="ddlRegion" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlRegion_SelectedIndexChanged"> </asp:DropDownList></td>
+            <td colspan="2"><asp:DropDownList ID="ddlRegion" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlRegion_SelectedIndexChanged" AutoPostBack="True"> </asp:DropDownList></td>
         </tr> 
         <tr><td>Promotion Product</td>
             <td><asp:TextBox ID="txtPromotionItem" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox>
@@ -95,7 +95,9 @@
             </cc1:CalendarExtender>
             <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px;
              width: 34px; height: 23px; vertical-align: bottom;" /></td></td>
-        </tr> 
+        </tr>
+         <tr><td style="text-align:right" colspan="4"><asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" /></td></tr>
+         <tr><td colspan="4">Report<hr /></td></tr>
         <tr><td>Report Tyep</td>
             <td><asp:DropDownList ID="ddlReporType" CssClass="ddllist" runat="server">
             <asp:ListItem Value="1">Active</asp:ListItem>
@@ -116,7 +118,7 @@
                 <asp:ListItem Value="4">Single Customer End Date</asp:ListItem>
             </asp:DropDownList></td>
             <td colspan="3" style="text-align:left">
-            <asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" />
+            
             &nbsp; &nbsp; &nbsp;<asp:Button ID="btnReport" runat="server" Font-Bold="true" OnClick="btnReport_Click" Text="Report" />
             &nbsp;&nbsp;&nbsp;&nbsp; <asp:Button ID="btnCancel" runat="server" Font-Bold="true" OnClick="btnCancel_Click" Text="Cancel" />
             </td>

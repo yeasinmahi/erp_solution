@@ -13,6 +13,7 @@ using UI.ClassFiles;
 using System.Xml;
 using System.IO;
 
+
 namespace UI.SCM.Transfer
 {
     public partial class frmTransferReceive : BasePage
@@ -39,8 +40,8 @@ namespace UI.SCM.Transfer
                 ddlshippoint.DataBind();
                 dt.Clear();
                 getLocation();
-               
-               
+                getTransferInId();
+
             }
             else {  }
         }
@@ -50,12 +51,21 @@ namespace UI.SCM.Transfer
         }
         private void getLocation()
         {
-            dt = TBLL.getLocationList(ddlshippoint.SelectedItem.ToString());
+          //  dt = TBLL.getLocationList("553");
+          //  ddlLocation.DataTextField = "strLocationName";
+          //  ddlLocation.DataValueField = "intStoreLocationID";
+           // ddlLocation.DataSource = dt;
+           // ddlLocation.DataBind();
+           
+        }
+        private void getLocations()
+        {
+            dt = TBLL.getLocationListof(ddlshippoint.SelectedValue.ToString());
             ddlLocation.DataTextField = "strLocationName";
             ddlLocation.DataValueField = "intStoreLocationID";
             ddlLocation.DataSource = dt;
             ddlLocation.DataBind();
-           
+
         }
 
         protected void ddlProductionList_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,7 +75,11 @@ namespace UI.SCM.Transfer
             ddlItem.DataValueField = "intItemID";
             ddlItem.DataSource = dt;
             ddlItem.DataBind();
-            getTransferInId();
+           // getTransferInId();
+
+            txtQty.Text = dt.Rows[0]["numSendStoreQty"].ToString();
+            lblFromDate.Text = dt.Rows[0]["EntryTime"].ToString();
+            hdnTransfromValue.Value = dt.Rows[0]["intAutoID"].ToString();
 
         }
        
@@ -107,11 +121,12 @@ namespace UI.SCM.Transfer
             ddlProductionList.DataValueField = "intProductionID";
             ddlProductionList.DataSource = dt;
             ddlProductionList.DataBind();
-
+            dt = TBLL.getProductionItemList(int.Parse(ddlProductionList.SelectedValue));
             txtQty.Text = dt.Rows[0]["numSendStoreQty"].ToString();
             lblFromDate.Text = dt.Rows[0]["EntryTime"].ToString();
             hdnTransfromValue.Value = dt.Rows[0]["intAutoID"].ToString();
-            
+
+
         }
 
     }
