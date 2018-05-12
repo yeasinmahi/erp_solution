@@ -34,6 +34,7 @@ namespace UI.SAD.AutoChallan
         DataTable dtProductPending = new DataTable();
         challanandPending Report = new challanandPending();
         string filePathForXML; int driverenroll; string drivermobile;
+        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
@@ -215,9 +216,9 @@ namespace UI.SAD.AutoChallan
 
             if (hdnsession.Value == "")
             {
-                string strSearchKey = txtdrivername.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ",");
-                HdfTechnicinCode.Value = searchKey[1];
+                char[] delimiterCharss = { '[', ']' };
+                arrayKeyItem = txtdrivername.Text.Split(delimiterCharss);
+                HdfTechnicinCode.Value = (arrayKeyItem[1].ToString());
                 Int32 technichin = Int32.Parse(HdfTechnicinCode.Value.ToString());
                 driverenrolls = Convert.ToInt32(technichin.ToString());
                 Session["driverenroll"] = driverenrolls;
@@ -236,9 +237,13 @@ namespace UI.SAD.AutoChallan
             if (hdnsession.Value == "")
             {
                 int Vehicleidss;
-                string strSearchKey = txtVehicleno.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ",");
-                hdnvehicle.Value = searchKey[1];
+                char[] delimiterCharss = { '[', ']' };
+                arrayKeyItem = txtVehicleno.Text.Split(delimiterCharss);
+                hdnvehicle.Value = (arrayKeyItem[1].ToString());
+
+                //string strSearchKey = txtVehicleno.Text;
+                //string[] searchKey = Regex.Split(strSearchKey, ",");
+                //hdnvehicle.Value = searchKey[1];
                 Int32 technichin = Int32.Parse(hdnvehicle.Value.ToString());
                 Vehicleidss = Convert.ToInt32(technichin.ToString());
 
