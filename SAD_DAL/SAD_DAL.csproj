@@ -113,6 +113,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoChallanReportTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AutoChallan\DairyChallan.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DairyChallan.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AutoChallan\ExcelDataTDS.cs">
       <DependentUpon>ExcelDataTDS.xsd</DependentUpon>
     </Compile>
@@ -493,6 +498,17 @@
     </None>
     <None Include="AutoChallan\AutoChallanReportTDS.xss">
       <DependentUpon>AutoChallanReportTDS.xsd</DependentUpon>
+    </None>
+    <None Include="AutoChallan\DairyChallan.xsc">
+      <DependentUpon>DairyChallan.xsd</DependentUpon>
+    </None>
+    <None Include="AutoChallan\DairyChallan.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DairyChallan.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AutoChallan\DairyChallan.xss">
+      <DependentUpon>DairyChallan.xsd</DependentUpon>
     </None>
     <None Include="AutoChallan\ExcelDataTDS.xsc">
       <DependentUpon>ExcelDataTDS.xsd</DependentUpon>

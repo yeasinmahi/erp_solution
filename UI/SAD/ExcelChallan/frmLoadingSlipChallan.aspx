@@ -66,7 +66,7 @@
         <tr class="tblrowodd"> 
           <td>Supplier Name:</td>
           <td><asp:Label ID="lblSupplierName" runat="server"></asp:Label></td>
-          <td colspan="2" style="text-align:right"><asp:Button ID="btnSave" Font-Bold="true" runat="server"  Text="Save" CssClass="btnbutton" OnClick="btnSave_Click" /></td>
+          <td colspan="2" style="text-align:right"><asp:Button ID="btnSave" Font-Bold="true" runat="server"  Text="Challan Save" CssClass="btnbutton" OnClick="btnSave_Click" /></td>
         </tr>
         <tr class="tblrowodd"> <td colspan="4"></td> </tr>
         <tr class="tblrowodd"><td colspan="4">        

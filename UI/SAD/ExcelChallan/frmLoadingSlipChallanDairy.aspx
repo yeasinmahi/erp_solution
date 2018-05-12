@@ -49,6 +49,7 @@
 </head>
 <body>
     <form id="frmAutoChallanView" runat="server">
+         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
        <asp:HiddenField ID="hdnEnroll"  runat="server"/><asp:HiddenField ID="hdnVid"  runat="server"/><asp:HiddenField ID="hdnSupplier"  runat="server"/>
        <asp:HiddenField ID="hdnBalance"  runat="server"/><asp:HiddenField ID="hdnAmount"  runat="server"/>
        <asp:HiddenField ID="hdnCustAddress"  runat="server"/><asp:HiddenField ID="hdnCustType"  runat="server"/>
@@ -64,7 +65,7 @@
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
         <td>Driver Name :</td>
-        <td><asp:TextBox ID="txtDriverName" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtEmployee_TextChanged"  ></asp:TextBox>
+        <td><asp:TextBox ID="txtDriverName" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"  ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtDriverName"
             ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -78,7 +79,7 @@
         <tr class="tblrowodd"> 
           <td>Supplier Name:</td>
           <td><asp:Label ID="lblSupplierName" runat="server"></asp:Label></td>
-          <td colspan="2" style="text-align:right"><asp:Button ID="btnSave" Font-Bold="true" runat="server"  Text="Save" CssClass="btnbutton" OnClick="btnSave_Click" /></td>
+          <td colspan="2" style="text-align:right"><asp:Button ID="btnSave" Font-Bold="true" runat="server"  Text="Challan Save" CssClass="btnbutton" OnClick="btnSave_Click" /></td>
         </tr>
         <tr class="tblrowodd"> <td colspan="4"></td> </tr>
         <tr class="tblrowodd"><td colspan="4">        

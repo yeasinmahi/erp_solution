@@ -42,7 +42,7 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnDataView_Click(object sender, EventArgs e)
         {
-            dt = objExcel.UploadDataOrderDairy(int.Parse(ddlshippoint.SelectedValue),DateTime.Now);
+            dt = objExcel.UploadDataOrderDairy(int.Parse(ddlshippoint.SelectedValue),DateTime.Parse(txtFrom.Text));
             dgvExcelOrder.DataSource = dt;
             dgvExcelOrder.DataBind();
             dgvExcelOrder.Visible = true;
@@ -82,7 +82,8 @@ namespace UI.SAD.ExcelChallan
                 string[] searchKey = temp.Split(delimiterChars);
                 hdnCustid.Value = searchKey[0].ToString();
                 hdnCustname.Value = searchKey[1].ToString();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowPopUpCust('frmProductView.aspx?');", true);
+                Session["dtedate"] = txtFrom.Text;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowPopUpCust('frmLoadingSlipChallanDairy.aspx?');", true);
             }
             catch { }
         }

@@ -8,6 +8,7 @@ using SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters;
 using SAD_DAL.Global.ShipPointTDSTableAdapters;
 using SAD_DAL.Global.SalesOfficeTDSTableAdapters;
 using SAD_DAL.AutoChallan;
+using SAD_DAL.AutoChallan.DairyChallanTableAdapters;
 
 namespace SAD_BLL.AutoChallan
 {
@@ -69,6 +70,17 @@ namespace SAD_BLL.AutoChallan
             catch { return new DataTable(); }
         }
 
+        public DataTable getCustINfo(int custid)
+        {
+            
+            try
+            {
+                tblCustomerTableAdapter adp = new tblCustomerTableAdapter();
+                return adp.GetData(custid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getProductviewDairy(int custid, int shipid, int part, int offid, DateTime dtedate)
         {
 
@@ -79,8 +91,17 @@ namespace SAD_BLL.AutoChallan
             }
             catch { return new DataTable(); }
         }
+        public DataTable getProductviewDairyBalance(int custid, int shipid, int part, int offid, DateTime dtedate)
+        {
 
-      
+            try
+            {
+                sprExcelAutoChallanViewDairyBalanceTableAdapter adp = new sprExcelAutoChallanViewDairyBalanceTableAdapter();
+                return adp.GetData(custid, shipid, part, offid, dtedate);
+            }
+            catch { return new DataTable(); }
+        }
+
 
         public DataTable getShippoint(int userid, int Unitid, bool Active)
         {
@@ -280,6 +301,17 @@ namespace SAD_BLL.AutoChallan
              
                 tblVehileProgramToFatory1TableAdapter adpupdate = new tblVehileProgramToFatory1TableAdapter();
                 adpupdate.GetData(custid);
+            }
+            catch { }
+        }
+
+        public void getCustomerInsertdairy(int custid, DateTime dateTime)
+        {
+            try
+            {
+                
+                tblDepotDairyorderTableAdapter adpupdateslip = new tblDepotDairyorderTableAdapter();
+                adpupdateslip.GetData(custid.ToString(), dateTime.ToString());
             }
             catch { }
         }

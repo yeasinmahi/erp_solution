@@ -48,14 +48,10 @@
             <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint" runat="server" OnSelectedIndexChanged="ddlshippoint_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>  </td>
             <td style='text-align: right; width:120px;'>Office Name: </td>
             <td style='text-align: center;'><asp:DropDownList ID="ddlOfficeName" runat="server"></asp:DropDownList></td> 
-            <td style="text-align:right;"> 
-            <asp:Button ID="btnDataView" Font-Bold="true" runat="server" Text="Report" OnClick="btnDataView_Click" /> &nbsp&nbsp                       
-            </td>
+            <td style="text-align:right;"><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+            <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender></td>
          </tr>    
-        <tr><td colspan="5">Upload
-            <a href="#" onclick="ShowPopUp('frmAutoChallan.aspx?')">           
-            <img alt="" src="../../Content/images/icons/Add.ico" style="border: 0px;" title="Add Customer" /></a>
-            </td>
+        <tr><td colspan="5"><asp:Button ID="btnDataView" Font-Bold="true" runat="server" Text="Report" OnClick="btnDataView_Click" />  </td>
          </tr>                       
         <tr><td colspan="5"><hr />
             <asp:GridView ID="dgvExcelOrder" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small" OnRowDataBound="dgvExcelOrder_RowDataBound" ShowFooter="True">

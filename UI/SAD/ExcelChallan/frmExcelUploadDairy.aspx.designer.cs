@@ -148,6 +148,24 @@ namespace UI.SAD.ExcelChallan {
         protected global::System.Web.UI.WebControls.DropDownList ddlOfficeName;
         
         /// <summary>
+        /// txtFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFrom;
+        
+        /// <summary>
+        /// fdt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender fdt;
+        
+        /// <summary>
         /// btnDataView control.
         /// </summary>
         /// <remarks>

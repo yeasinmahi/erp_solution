@@ -94,7 +94,7 @@ namespace UI.SAD.ExcelChallan
                     CustType = Convert.ToInt32(hdnCustType.Value.ToString());
                     totalBalance = ((decimal.Parse(balance.ToString())));
 
-                    if (decimal.Parse(hdnAmount.Value) > totalBalance)
+                    if ( totalBalance> decimal.Parse(hdnAmount.Value))
                     {
                         intDisPointId = int.Parse("0".ToString());
                         bool ysnDO2 = false;
@@ -265,11 +265,12 @@ namespace UI.SAD.ExcelChallan
 
                                 #endregion ------------ Insertion End ----------------
 
-                                dgvPending.DataBind();
+                                
                             }
                             objExcel.getUpdateSlipnobyCustomer(slip, Custid);
                             Report.getBalanceUpdate(Custid, Shipid);
                             objExcel.getOrderdelete(Custid, Shipid);
+                            dgvPending.DataBind();
                         }
                         #endregion ******************** End XML ***********************************
                     }
