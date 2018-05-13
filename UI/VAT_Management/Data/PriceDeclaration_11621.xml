@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ItemAdd>
+  <ItemAdd itemid="7089" itemname="Akij Plain Particle Board-8x4-16mm (Raw Board)" uom="Pcs" qty="1.000000" wastage="0.000100" rate="529.00000" amount="529.0000" />
+  <ItemAdd itemid="6741" itemname="Melamine Impregnated Decorative Paper All Colour" uom="Pcs" qty="2.000000" wastage="0.020000" rate="130.44000" amount="260.8800" />
+  <ItemAdd itemid="12" itemname="CNG, Fuel &amp; Oil" uom="TK" qty="1.000000" wastage="0.000000" rate="5.00000" amount="5.0000" />
+  <ItemAdd itemid="10" itemname="Spare Parts,Cable,CopperWire,Oxygen-AcetylineGas,WeldingRod" uom="TK" qty="1.000000" wastage="0.000000" rate="3.00000" amount="3.0000" />
+  <ItemAdd itemid="11" itemname="C &amp; F,Bank Charge, LC Com, Insuran,Phone,Etc" uom="TK" qty="1.000000" wastage="0.000000" rate="2.00000" amount="2.0000" />
+  <ItemAdd itemid="6636" itemname="Electricity &amp; Gas" uom="TK" qty="1.000000" wastage="0.000000" rate="10.00000" amount="10.0000" />
+  <ItemAdd itemid="26" itemname="Profit" uom="TK" qty="1.000000" wastage="0.000000" rate="40.00000" amount="40.0000" />
+  <ItemAdd itemid="22" itemname="Salary &amp; wages" uom="TK" qty="1.000000" wastage="0.000000" rate="25.00000" amount="25.0000" />
+  <ItemAdd itemid="23" itemname="Transportation " uom="TK" qty="1.000000" wastage="0.000000" rate="20.00000" amount="20.0000" />
+  <ItemAdd itemid="4489" itemname="OverHead" uom="TK" qty="1.000000" wastage="0.000000" rate="6.87000" amount="6.8700" />
+  <ItemAdd itemid="27" itemname="Marketing Expense " uom="TK" qty="1.000000" wastage="0.000000" rate="6.00000" amount="6.0000" />
+  <ItemAdd itemid="4491" itemname="BankCharge,Commission&amp;interest" uom="TK" qty="1.000000" wastage="0.000000" rate="4.35000" amount="4.3500" />
+  <ItemAdd itemid="4493" itemname="IT, Phone,Printing and Stationary" uom="TK" qty="1.000000" wastage="0.000000" rate="4.00000" amount="4.0000" />
+  <ItemAdd itemid="29" itemname="Maintenance" uom="TK" qty="1.000000" wastage="0.000000" rate="4.00000" amount="4.0000" />
+  <ItemAdd itemid="30" itemname="Depreciation" uom="TK" qty="1.000000" wastage="0.000000" rate="4.00000" amount="4.0000" />
+  <ItemAdd itemid="74" itemname="Others" uom="TK" qty="1.000000" wastage="0.000000" rate="2.20000" amount="2.2000" />
+  <ItemAdd itemid="4492" itemname="Insurance,Clearing,C&amp;F &amp; Tax" uom="TK" qty="1.000000" wastage="0.000000" rate="2.20000" amount="2.2000" />
+  <ItemAdd itemid="4495" itemname="Entertainment" uom="TK" qty="1.000000" wastage="0.000000" rate="2.00000" amount="2.0000" />
+  <ItemAdd itemid="8" itemname="Electricity, Gas" uom="TK" qty="1.000000" wastage="0.000000" rate="2.00000" amount="2.0000" />
+  <ItemAdd itemid="9" itemname="Advertisement" uom="TK" qty="1.000000" wastage="0.000000" rate="0.50000" amount="0.5000" />
+  <ItemAdd itemid="13" itemname="Abrasive On Stiff Z-Polyester Cloth" uom="Kg" qty="55" wastage="5" rate="5" amount="275" />
+</ItemAdd>

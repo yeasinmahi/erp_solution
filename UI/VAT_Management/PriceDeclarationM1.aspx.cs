@@ -22,11 +22,13 @@ namespace UI.VAT_Management
         VAT_BLL objvat = new VAT_BLL();
         DataTable dt;
 
-        int intVatItemID, intMushokType;
+        int intVatItemID, intMushokType, intProductID, intUnit, intUserID, intType, intVATAccountID;
         string filePathForXML, xmlString = "", xml, strMessage;
         string itemid, itemname, uom, qty, wastage, rate, amount;
-        DateTime dteDate;
-
+        DateTime dteDate, dteValidFrom;
+        decimal monSDChargable, monSDPercent, monVATPercent, monSCPercent, monVatPrice, monWholeSale, monMRP, monVatChargeable, monSD, monSurCharge;
+        bool ysnFactory;
+        
         #endregion =====================================================================================
 
         protected void Page_Load(object sender, EventArgs e)
@@ -281,7 +283,85 @@ namespace UI.VAT_Management
         #region ===============================================================================
         protected void btnSaveM1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (hdnconfirm.Value == "1")
+                {
+                    intProductID = int.Parse(ddlProductName.SelectedValue.ToString());
 
+                    if(txtSDChargeable.Text == "")
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Put A Valid SD Chargeable Price');", true);
+                        return;
+                    }
+                    try
+                    {
+                        monSDChargable = decimal.Parse(txtSDChargeable.Text);
+                    }
+                    catch
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Put A Valid SD Chargeable Price');", true);
+                        return;
+                    }
+
+                    monSDPercent = decimal.Parse(txtSD.Text);
+                    monSD = (monSDChargable * monSDPercent / 100);
+                    if (hdnUnit.Value == "16")
+                    {
+                        monVatChargeable = monSDChargable;
+                    }
+                    else
+                    {
+                        monVatChargeable = (monSDChargable + monSD);
+                    }
+                    monVATPercent = decimal.Parse(txtVAT.Text);
+                    decimal monVat = (monVatChargeable * monVATPercent / 100);
+                    monSCPercent = decimal.Parse(txtSurChargePercentage.Text);
+                    monSurCharge = (monVatChargeable * monSCPercent / 100);
+                    if (hdnUnit.Value == "16")
+                    {
+                        monVatPrice = monVatChargeable;
+                    }
+                    else
+                    {
+                        monVatPrice = monVatChargeable + monVat + monSurCharge;
+                    }
+                    intUnit = int.Parse(hdnUnit.Value);
+                    intUserID = int.Parse(hdnEnroll.Value);
+
+                    try
+                    {
+                        dteValidFrom = DateTime.Parse(txtValidFromDate.Text);
+                    }
+                    catch
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Valid from date is not valid.');", true);
+                        return;
+                    }
+
+                    intType = int.Parse(ddlType.SelectedValue.ToString());
+                    intVATAccountID = int.Parse(ddlVatAccount.SelectedValue.ToString());                    
+                    if(hdnysnFactory.Value == "1") {ysnFactory = true; }
+                    else { ysnFactory = false;}
+                    monWholeSale = decimal.Parse(txtWholeSale.Text);
+                    monMRP = decimal.Parse(txtMRP.Text);
+
+                    string message = objvat.InsertPriceDeclaration(intProductID, monSDChargable, monSDPercent, monVATPercent, intUnit, intUserID, dteValidFrom, intType, intVATAccountID, monSCPercent, ysnFactory, monVatPrice, monWholeSale, monMRP, xml);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+
+                    txtValidFromDate.Text = "";
+                    txtSDChargeable.Text = "";
+                    txtSD.Text = "";
+                    txtMRP.Text = "";
+                    txtRate.Text = "";
+                    txtVAT.Text = "";
+                    txtSurChargePercentage.Text = "";
+                    txtWastage.Text = "";
+                    txtWholeSale.Text = "";
+                    txtTotalQty.Text = "";
+                }
+            }
+            catch { }
         }
         #endregion ============================================================================
 

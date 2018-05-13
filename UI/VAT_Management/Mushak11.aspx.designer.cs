@@ -10,7 +10,7 @@
 namespace UI.VAT_Management {
     
     
-    public partial class CreateItemAndMaterial {
+    public partial class Mushak11 {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -166,6 +166,42 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label lblVatAccount;
         
         /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+        
+        /// <summary>
+        /// lblAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddress;
+        
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+        
+        /// <summary>
+        /// lblVATReg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVATReg;
+        
+        /// <summary>
         /// lblHeading control.
         /// </summary>
         /// <remarks>
@@ -175,40 +211,49 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// Label1 control.
+        /// lblRegNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblRegNo;
         
         /// <summary>
-        /// txtProduct control.
+        /// txtChallanSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProduct;
+        protected global::System.Web.UI.WebControls.TextBox txtChallanSearch;
         
         /// <summary>
-        /// ddlProduct control.
+        /// AutoCompleteExtender2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProduct;
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
-        /// Label13 control.
+        /// lblFCompany control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.WebControls.Label lblFCompany;
+        
+        /// <summary>
+        /// txtCustomerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
         
         /// <summary>
         /// Label2 control.
@@ -220,58 +265,22 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// ddlUOM control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUOM;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lblEName control.
+        /// txtChallanPaidDateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEName;
-        
-        /// <summary>
-        /// txtHSCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHSCode;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// cbTax control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTax;
-        
-        /// <summary>
-        /// btnCreateItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateItem;
+        protected global::System.Web.UI.WebControls.TextBox txtChallanPaidDateTime;
         
         /// <summary>
         /// Label3 control.
@@ -283,22 +292,13 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// txtMaterial control.
+        /// txtVehicleNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaterial;
-        
-        /// <summary>
-        /// ddlMaterial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMaterial;
+        protected global::System.Web.UI.WebControls.TextBox txtVehicleNo;
         
         /// <summary>
         /// Label5 control.
@@ -310,6 +310,24 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// txtCustomerVAT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerVAT;
+        
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>
@@ -319,13 +337,13 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// ddlUOMM control.
+        /// txtFinalDestination control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUOMM;
+        protected global::System.Web.UI.WebControls.TextBox txtFinalDestination;
         
         /// <summary>
         /// Label7 control.
@@ -337,39 +355,12 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// ddlType control.
+        /// btnM11Save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlType;
-        
-        /// <summary>
-        /// Label8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
-        /// <summary>
-        /// cbTaxM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTaxM;
-        
-        /// <summary>
-        /// btnCreateMaterial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateMaterial;
+        protected global::System.Web.UI.WebControls.Button btnM11Save;
     }
 }
