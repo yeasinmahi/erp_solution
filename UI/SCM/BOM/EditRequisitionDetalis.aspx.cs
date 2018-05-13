@@ -32,7 +32,7 @@ namespace UI.SCM.BOM
                 string Vtype = Request.QueryString["Vtype"].ToString();
                 string dteFrom = Request.QueryString["dteFrom"].ToString();
                 string dteTo = Request.QueryString["dteTo"].ToString();
-               // txtDate.Text
+                claenderDte.SelectedDate =DateTime.Parse(dteFrom.ToString());
                 xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 if (Vtype=="Item")
                 {
