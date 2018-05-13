@@ -32,9 +32,9 @@ namespace UI.SAD.ExcelChallan
                 ddlshippoint.DataSource = dt;
                 ddlshippoint.DataBind();
                 dt.Clear();
-                dt = objExcel.getOffice(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(Session[SessionParams.UNIT_ID].ToString()), true);
+                dt = objExcel.getOfficebyShippoint(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlshippoint.SelectedValue.ToString()), true);
                 ddlOfficeName.DataTextField = "strName";
-                ddlOfficeName.DataValueField = "intSalesOffId";
+                ddlOfficeName.DataValueField = "intId";
                 ddlOfficeName.DataSource = dt;
                 ddlOfficeName.DataBind();
                 dt.Clear();

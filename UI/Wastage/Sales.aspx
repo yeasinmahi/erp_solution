@@ -149,7 +149,7 @@
                 <td><asp:TextBox ID="TextBox4" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td> 
             </tr>           
             <tr>
-                <td colspan="5" style="text-align:right; padding: 15px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" Width="100px"/></td>        
+                <td colspan="5" style="text-align:right; padding: 15px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" Width="100px" OnClick="btnShow_Click"/></td>        
             </tr>
             <tr><td colspan="5"><hr /></td></tr>
         </table>

@@ -54,6 +54,7 @@ namespace UI.MedialManagement
                 LoadSupplier();
                 LoadProgName();
                 LoadPOList();
+                GetDuration();
             }
             catch { }
         }
@@ -155,10 +156,12 @@ namespace UI.MedialManagement
                     if (intPOID == 0)
                     {
                         bll.InsertProgramScheduleWithoutPO(intCustID, intProgramID, FDateTime, TDateTime, intProgramCount, ysnScheduleOwn, intProgramReportID, intDuration, strNarration, strCustProgramName, intProgramType, intUnitID, intHeight, intWidth);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Schedule Inserted without PO.');", true);
                     }
                     else
                     {
                         bll.InsertProgramScheduleWihtPO(intCustID, intProgramID, FDateTime, TDateTime, intProgramCount, ysnScheduleOwn, intProgramReportID, intDuration, strNarration, strCustProgramName, intProgramType, intUnitID, intHeight, intWidth, intPOID);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Schedule Inserted with PO.');", true);
                     }
                 }
             }
@@ -192,7 +195,7 @@ namespace UI.MedialManagement
             LoadSupplier();
             LoadProgName();
             LoadPOList();
-
+            GetDuration();
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,10 +203,31 @@ namespace UI.MedialManagement
             LoadSupplier();
             LoadProgName();
             LoadPOList();
+            GetDuration();
         }
         protected void txtFromDate_TextChanged(object sender, EventArgs e)
         {
             LoadPOList();
+        }
+        protected void ddlProgramName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetDuration();
+        }
+
+        private void GetDuration()
+        {
+            try
+            {
+                intProgramID = int.Parse(ddlProgramName.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetDuration(intProgramID);
+                if (dt.Rows.Count == 1)
+                {
+                    txtDuration.Text = dt.Rows[0][0].ToString();
+                }
+                else { txtDuration.Text = ""; }
+            }
+            catch { txtDuration.Text = ""; }
         }
     }
 }

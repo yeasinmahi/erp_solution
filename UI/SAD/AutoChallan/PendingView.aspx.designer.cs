@@ -184,6 +184,15 @@ namespace UI.SAD.AutoChallan {
         protected global::System.Web.UI.WebControls.TextBox txtVehicleno;
         
         /// <summary>
+        /// AutoCompleteExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -200,6 +209,15 @@ namespace UI.SAD.AutoChallan {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtdrivername;
+        
+        /// <summary>
+        /// empsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender empsearch;
         
         /// <summary>
         /// Button1 control.

@@ -24,6 +24,9 @@ using SAD_BLL.AutoChallanBll;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Xml;
+using SAD_BLL.AutoChallan;
+using SAD_BLL.AEFPS;
+
 namespace UI.SAD.AutoChallan
 {
     public partial class PendingView : BasePage
@@ -31,22 +34,19 @@ namespace UI.SAD.AutoChallan
         DataTable dtProductPending = new DataTable();
         challanandPending Report = new challanandPending();
         string filePathForXML; int driverenroll; string drivermobile;
+        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
-           // string strEnroll = Convert.ToString("1355".ToString());
             filePathForXML = Server.MapPath("Pendinginputform" + strEnroll + ".xml");
-
-            // filePathForXML = Server.MapPath("orderinputform.xml");
+        
             if (!IsPostBack)
             {
                 UpdatePanel1.DataBind();
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
                 catch { }
-                txtVehicleno.Attributes.Add("onkeyUp", "SearchText();");
-                txtdrivername.Attributes.Add("onkeyUp", "SearchTexts();");
-                //txtDriverName.Attributes.Add("onkeyUp", "SearchTextempnew();");
+
                 hdncustid.Value = Session["Custid"].ToString();
 
                 int shipid = int.Parse(Session["Shippointid"].ToString());
@@ -216,9 +216,9 @@ namespace UI.SAD.AutoChallan
 
             if (hdnsession.Value == "")
             {
-                string strSearchKey = txtdrivername.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ",");
-                HdfTechnicinCode.Value = searchKey[1];
+                char[] delimiterCharss = { '[', ']' };
+                arrayKeyItem = txtdrivername.Text.Split(delimiterCharss);
+                HdfTechnicinCode.Value = (arrayKeyItem[1].ToString());
                 Int32 technichin = Int32.Parse(HdfTechnicinCode.Value.ToString());
                 driverenrolls = Convert.ToInt32(technichin.ToString());
                 Session["driverenroll"] = driverenrolls;
@@ -237,9 +237,13 @@ namespace UI.SAD.AutoChallan
             if (hdnsession.Value == "")
             {
                 int Vehicleidss;
-                string strSearchKey = txtVehicleno.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ",");
-                hdnvehicle.Value = searchKey[1];
+                char[] delimiterCharss = { '[', ']' };
+                arrayKeyItem = txtVehicleno.Text.Split(delimiterCharss);
+                hdnvehicle.Value = (arrayKeyItem[1].ToString());
+
+                //string strSearchKey = txtVehicleno.Text;
+                //string[] searchKey = Regex.Split(strSearchKey, ",");
+                //hdnvehicle.Value = searchKey[1];
                 Int32 technichin = Int32.Parse(hdnvehicle.Value.ToString());
                 Vehicleidss = Convert.ToInt32(technichin.ToString());
 
@@ -499,6 +503,22 @@ namespace UI.SAD.AutoChallan
         {
             txtsupplierName.Visible = true;
             hdncompany.Value = "3rdparty";
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] VehicleSearch(string prefixText)
+        {
+           
+            ExcelDataBLL objAutoSearch_BLL = new ExcelDataBLL();
+            return objAutoSearch_BLL.GetVehicle(prefixText);
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] EmployeeSearch(string prefixText, int count = 0)
+        {
+            FPSSalesEntryBLL objFPSSaleEntry = new FPSSalesEntryBLL();
+            return objFPSSaleEntry.GetEmployeeSearch(prefixText);
+
         }
     }
 }

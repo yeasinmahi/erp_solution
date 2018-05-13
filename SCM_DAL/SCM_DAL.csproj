@@ -66,6 +66,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InventoryTransferTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LocationTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,10 +100,23 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ReceiveTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TransferTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WastageNewTDS.cs">
+      <DependentUpon>WastageNewTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WastageNewTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WastageNewTDS.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +155,17 @@
     </None>
     <None Include="IndentTDS.xss">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryTransferTDS.xsc">
+      <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
+    </None>
+    <None Include="InventoryTransferTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryTransferTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="InventoryTransferTDS.xss">
+      <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
     </None>
     <None Include="LocationTDS.xsc">
       <DependentUpon>LocationTDS.xsd</DependentUpon>
@@ -186,16 +215,38 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="ReceiveTDS.xsc">
+      <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ReceiveTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReceiveTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReceiveTDS.xss">
+      <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </None>
     <None Include="TransferTDS.xsc">
       <DependentUpon>TransferTDS.xsd</DependentUpon>
     </None>
     <None Include="TransferTDS.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>TransferTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="TransferTDS.xss">
       <DependentUpon>TransferTDS.xsd</DependentUpon>
+    </None>
+    <None Include="WastageNewTDS.xsc">
+      <DependentUpon>WastageNewTDS.xsd</DependentUpon>
+    </None>
+    <None Include="WastageNewTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WastageNewTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WastageNewTDS.xss">
+      <DependentUpon>WastageNewTDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
