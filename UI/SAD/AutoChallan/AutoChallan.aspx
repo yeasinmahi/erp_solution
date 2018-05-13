@@ -16,6 +16,7 @@
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
+   
     
      <%--<link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />--%>
     <%--<script src="../../Content/JS/datepickr.min.js"></script>--%>
@@ -44,46 +45,7 @@
         }
     </script>
 
-    <style type="text/css">
-        .hide
-        {
-            display: none;
-        }
-        .auto-style1 {
-            width: 11px;
-        }
-        .auto-style2 {
-            width: 31px;
-        }
-        .auto-style3 {
-            width: 67px;
-        }
-      
-        .auto-style4 {
-            width: 88px;
-        }
-      
-        .auto-style5 {
-            width: 190px;
-        }
-      
-        .auto-style6 {
-            width: 11px;
-            height: 38px;
-        }
-        .auto-style7 {
-            width: 88px;
-            height: 38px;
-        }
-        .auto-style8 {
-            height: 38px;
-        }
-        .auto-style9 {
-            width: 67px;
-            height: 38px;
-        }
-      
-    </style>
+  
      <script>
          function Registration(url) {
              newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=700,top=50,left=200, close=no');
@@ -194,12 +156,15 @@
                                 From
                             </td>
                             <td class="auto-style8">
-                                <asp:TextBox ID="txtFrom" runat="server" Enabled="false" OnTextChanged="txtFrom_TextChanged" Height="22px"></asp:TextBox>
+                            <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color:red">*</span></td>
+                             <td><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender>
+                                <%--<asp:TextBox ID="txtFrom" runat="server" Enabled="false" OnTextChanged="txtFrom_TextChanged" Height="22px"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
                                     ID="CalendarExtender1" runat="server" EnableViewState="true">
                                 </cc1:CalendarExtender>
                                 <img id="imgCal_1" src="../../Content/images/img/calbtn.gif" style="border: 0px;
-                                    width: 34px; height: 23px; vertical-align: bottom;" />
+                                    width: 34px; height: 23px; vertical-align: bottom;" />--%>
 
                                 <asp:RadioButton ID="RadioButton1" AutoPostBack="true" GroupName="Pending" Text="Pending" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" />
                                  <asp:RadioButton ID="RadioButton2" AutoPostBack="true" GroupName="Pending" Text="Loading Slip" runat="server" OnCheckedChanged="RadioButton2_CheckedChanged" />
@@ -271,8 +236,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small" OnRowDataBound="GridView1_RowDataBound" ShowFooter="True">
-                    <AlternatingRowStyle BackColor="#CCCCCC" />
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"   OnRowDataBound="GridView1_RowDataBound" ShowFooter="True"
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
+            <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
                        <%-- <asp:BoundField DataField="dtedate" HeaderText="Date" ReadOnly="True" SortExpression="Date" DataFormatString="{0:d}"/>--%>
               <asp:TemplateField HeaderText="Custid" SortExpression="Custid"><ItemTemplate><asp:Label ID="lblCustid" runat="server" Text='<%# Bind("Custid") %>'></asp:Label></ItemTemplate>
@@ -297,14 +263,9 @@
               </ItemTemplate>
             </asp:TemplateField>
                     </Columns>
-                <FooterStyle BackColor="#F3CCC2" BorderStyle="None" />
-                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+
                 </asp:GridView>
 
 
@@ -312,8 +273,9 @@
         
                         
                         
-     <asp:GridView ID="GridView2" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small" OnRowDataBound="GridView2_RowDataBound" ShowFooter="True">
-                    <AlternatingRowStyle BackColor="#CCCCCC" />
+     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"   OnRowDataBound="GridView2_RowDataBound" ShowFooter="True"
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
+            <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
                        <%-- <asp:BoundField DataField="dtedate" HeaderText="Date" ReadOnly="True" SortExpression="Date" DataFormatString="{0:d}"/>--%>
               <asp:TemplateField HeaderText="Custid" SortExpression="Custid"><ItemTemplate><asp:Label ID="lblCustid" runat="server" Text='<%# Bind("custid") %>'></asp:Label></ItemTemplate>
@@ -347,18 +309,12 @@
               </ItemTemplate>
             </asp:TemplateField>
 
-                    </Columns>
-                <FooterStyle BackColor="#F3CCC2" BorderStyle="None" />
-                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#383838" />
-                </asp:GridView>                                   
-                                 </td>
-                </tr>
+            </Columns>
+            <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView>                                   
+                </td>
+            </tr>
             </table>
             <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
             ValidationGroup="valCom"></asp:CustomValidator>

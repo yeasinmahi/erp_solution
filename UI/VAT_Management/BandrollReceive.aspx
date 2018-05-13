@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <td colspan="6" style="text-align:right; padding: 10px 20px 10px 0px;"><asp:Button ID="btnAdd" runat="server" class="myButton" Text="ADD" OnClick="btnAdd_Click"/></td>
-                <td colspan="2" style="text-align:right; padding: 10px 0px 10px 0px;"><asp:Button ID="btnSaveReceive" runat="server" class="myButton" Text="Save Receive" OnClientClick = "ConfirmAll()"/></td>
+                <td colspan="2" style="text-align:right; padding: 10px 0px 10px 0px;"><asp:Button ID="btnSaveReceive" runat="server" class="myButton" Text="Save Receive" OnClientClick = "ConfirmAll()" OnClick="btnSaveReceive_Click"/></td>
             </tr>
          </table>
         <table>

@@ -27,7 +27,7 @@ namespace UI.VAT_Management
         decimal monAmount;
         string strTrChallanNo, strInstrumentNo, filePathForXML, xmlString = "", xml, brid, brname, demno, demdate, dono, dodate, recdate, recqty;
         #endregion =====================================================================================
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -80,9 +80,10 @@ namespace UI.VAT_Management
             lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
         }
 
-        #region ===== Bandroll Receive Submit Action ==========================================
 
-        protected void btnSaveTreasury_Click(object sender, EventArgs e)
+
+        #region ===== Bandroll Receive Submit Action ==========================================
+        protected void btnSaveReceive_Click(object sender, EventArgs e)
         {
             try
             {
@@ -90,7 +91,7 @@ namespace UI.VAT_Management
                 {
                     //string message = objvat.InsertTreasuryDeposit(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value), intDepositType, monAmount, int.Parse(hdnEnroll.Value), strTrChallanNo, dteTrChallan, strInstrumentNo, dteInstrument, dteTransactionDate);
                     //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                    
+
                 }
             }
             catch { }

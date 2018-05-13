@@ -1,4 +1,14 @@
 ﻿
+
+function ConfirmTAX() {
+    document.getElementById("ConfirmTAX").value = "0";
+    var confirm_value = document.createElement("INPUT");
+    confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+    if (confirm("Check this Option will stop recording any SD or VAT for this Product. Do you want to save this item as Tax exempted?")) { confirm_value.value = "Yes"; document.getElementById("ConfirmTAX").value = "1"; }
+    else { confirm_value.value = "No"; document.getElementById("ConfirmTAX").value = "0"; }
+}
+
+
 function ConfirmAll() {
     document.getElementById("hdnconfirm").value = "0";
     var confirm_value = document.createElement("INPUT");

@@ -90,7 +90,7 @@
         <asp:Label ID="lblFQty" runat="server" Text='<%# Bind("Free","{0:n2}") %>'></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Left" Width="80px"/></asp:TemplateField> 
 
-        <asp:TemplateField HeaderText="Total Free Qty" SortExpression="itemid"><ItemTemplate>
+        <asp:TemplateField HeaderText="Free Qty" SortExpression="itemid"><ItemTemplate>
         <asp:Label ID="lblFreeQty" runat="server" Text='<%# Bind("TotalFree","{0:n2}") %>'></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Left" Width="80px"/></asp:TemplateField> 
 

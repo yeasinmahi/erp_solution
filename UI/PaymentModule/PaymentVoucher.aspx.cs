@@ -25,7 +25,7 @@ namespace UI.PaymentModule
         int intDept, intType;
         string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
         #endregion ====================================================================================
-
+                
         protected void Page_Load(object sender, EventArgs e)
         {   
             try
