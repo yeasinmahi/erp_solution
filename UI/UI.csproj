@@ -1249,6 +1249,11 @@
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
+    <Content Include="SCM\Transfer\InventoryFGReceive.aspx" />
+    <Content Include="SCM\Transfer\InventoryLoanPay.aspx" />
+    <Content Include="SCM\Transfer\InventoryLoanReceive.aspx" />
+    <Content Include="SCM\Transfer\InventoryTransferIN.aspx" />
+    <Content Include="SCM\Transfer\InventoryTransferOut.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
     <Content Include="SCM\Transfer\frmTransferOut.aspx" />
@@ -6332,6 +6337,41 @@
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferIn.aspx.designer.cs">
       <DependentUpon>frmTransferIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryFGReceive.aspx.cs">
+      <DependentUpon>InventoryFGReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryFGReceive.aspx.designer.cs">
+      <DependentUpon>InventoryFGReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryLoanPay.aspx.cs">
+      <DependentUpon>InventoryLoanPay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryLoanPay.aspx.designer.cs">
+      <DependentUpon>InventoryLoanPay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryLoanReceive.aspx.cs">
+      <DependentUpon>InventoryLoanReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryLoanReceive.aspx.designer.cs">
+      <DependentUpon>InventoryLoanReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryTransferIN.aspx.cs">
+      <DependentUpon>InventoryTransferIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryTransferIN.aspx.designer.cs">
+      <DependentUpon>InventoryTransferIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryTransferOut.aspx.cs">
+      <DependentUpon>InventoryTransferOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryTransferOut.aspx.designer.cs">
+      <DependentUpon>InventoryTransferOut.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\rptTransferReport.aspx.cs">
       <DependentUpon>rptTransferReport.aspx</DependentUpon>
