@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SCM_DAL">
-      <HintPath>..\..\TFS2017\UI\bin\SCM_DAL.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +52,10 @@
     <ProjectReference Include="..\Projects_DAL\Projects_DAL.csproj">
       <Project>{12bea211-c8c2-4027-a3ad-39c5d1b8f75e}</Project>
       <Name>Projects_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCM_DAL\SCM_DAL.csproj">
+      <Project>{43e9d794-020b-425f-857c-d313068c4bd5}</Project>
+      <Name>SCM_DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
