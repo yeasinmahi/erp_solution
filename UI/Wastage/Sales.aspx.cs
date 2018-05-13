@@ -23,7 +23,7 @@ namespace UI.Wastage
         #region ===== Variable Decliaration ===================================================================
         Project_Class objDairy = new Project_Class();
         DataTable dt;
-
+        int enroll;
         string filePathForXML, xmlString, xml;
         string itemid, itemname, uom, qty, rate, value, remarks;
         #endregion ============================================================================================
