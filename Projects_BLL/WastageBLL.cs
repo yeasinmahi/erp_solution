@@ -19,6 +19,7 @@ namespace Projects_BLL
             try
             { return adp.GetUnitList(intEnroll); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
+          
         }
 
         public DataTable getUom()
@@ -71,6 +72,7 @@ namespace Projects_BLL
                     sprPendingSalesReportTableAdapter adps = new sprPendingSalesReportTableAdapter();
                     return adps.GetData(DateTime.Parse(dtefate),DateTime.Parse(dtetdate), whid);
                 }
+               
             } 
             catch { return new DataTable(); }
         }
@@ -176,7 +178,7 @@ namespace Projects_BLL
         public DataTable ItemListRpt(string itemName, int? intItemid, int? intItemCategoryID, int? Unitid, int? Userid, DateTime? dteinsertdate, bool active, int? intUOMID, int? intWorkCount, string custname, string CustAdd, string PhoneNo, int? CustTypeid, int? intCOAID, string Coaname, int? intCustid)
         {
           
-                sprItemAddTableAdapter adp = new sprItemAddTableAdapter();
+              sprItemAddTableAdapter adp = new sprItemAddTableAdapter();
               return   adp.GetData(itemName, intItemid, intItemCategoryID, Unitid, Userid, dteinsertdate, active, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
            
         }
@@ -238,6 +240,8 @@ namespace Projects_BLL
             }
             catch { }
         }
+
+      
 
         public DataTable CustomerList(int intunitid)
         {

@@ -15,6 +15,7 @@ using UI.ClassFiles;
 using Projects_BLL;
 using System.IO;
 using System.Xml;
+using SCM_BLL;
 
 namespace UI.Wastage
 {
@@ -23,9 +24,10 @@ namespace UI.Wastage
 
         #region ===== Variable Decliaration ===================================================================
         WastageBLL obj = new WastageBLL();
+        TransferBLLNew objwestage = new TransferBLLNew();
         DataTable dt;     
         string COAName, HOCOAName, filePathForXML,narration, xmlString, qty, rate, value, remarks, MRRNO, monOutRate, monOutValue;
-        int intItemid, intSalesOrderQty, intIssuedQty, intTransactionTypeID, unitid, intinsertby, intWastageWareHouseID, intInOutReffID;
+        int intItemid,intSalesId, intSalesOrderQty, intIssuedQty, intTransactionTypeID, unitid, intinsertby, intWastageWareHouseID, intInOutReffID;
         int? COAid=null, HOCOAid = null, intQty = null, intOutQty = null, intWHID = null, intSalesID = null, intCustromerID = null, intDeliveryChallanNo = null, intWeightIDNo = null,
         intDepartmentID = null, strRequisitionID = null, intTransferWastageWareHouseID = null;
         DateTime dteTransactionDate;
@@ -115,16 +117,7 @@ namespace UI.Wastage
             dgvSOItem.DataBind();
         }
 
-        protected void btnReceive_Click(object sender, EventArgs e)
-        {
-            string senderdata = ((Button)sender).CommandArgument.ToString();
-            string strSearchKey = senderdata;
-            string[] searchKey = Regex.Split(strSearchKey, ",");
-            int id = int.Parse(searchKey[0].ToString());
-            int intEntryid = int.Parse(Session[SessionParams.USER_ID].ToString());
-
-
-        }
+      
         #region ===== Item Add & Load Grid Action ===========================================================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -173,11 +166,19 @@ namespace UI.Wastage
 
            
         }
-
-        protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnDelete_Click(object sender, EventArgs e)
         {
+            string senderdata = ((Button)sender).CommandArgument.ToString();
+            string strSearchKey = senderdata;
+            string[] searchKey = Regex.Split(strSearchKey, ",");
+            intSalesId =int.Parse(searchKey[0].ToString());
 
+            objwestage.IssueDelete(int.Parse(Session[SessionParams.UNIT_ID].ToString()),intSalesId);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
+            getRpt();
+           
         }
+      
         private void CreateAddXml(string itemid, string itemname, string uom, string qty, string rate, string value, string remarks)
         {
             XmlDocument doc = new XmlDocument();

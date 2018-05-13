@@ -26,18 +26,22 @@ namespace UI.Wastage
                 
             
                 dt = objWastage.GetUnitList(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()));              
+                ddlUnit.DataTextField = "strUnit";
+                ddlUnit.DataValueField = "intUnitID";
+                ddlUnit.DataSource = dt;
+                ddlUnit.DataBind();
                 ddlUnitCust.DataTextField = "strUnit";
                 ddlUnitCust.DataValueField = "intUnitID";
                 ddlUnitCust.DataSource = dt;
                 ddlUnitCust.DataBind();
                 Panel1.Visible = false;
 
-                intWorkCount = 5;
-                dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), empid, dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
-                ddlUnitCust.DataTextField = "strUnit";
-                ddlUnitCust.DataValueField = "intUnitID";
-                ddlUnitCust.DataSource = dt;
-                ddlUnitCust.DataBind();
+                //intWorkCount = 5;
+                //dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), empid, dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
+                //ddlUnitCust.DataTextField = "strUnit";
+                //ddlUnitCust.DataValueField = "intUnitID";
+                //ddlUnitCust.DataSource = dt;
+                //ddlUnitCust.DataBind();
 
             }
         }

@@ -40,8 +40,7 @@
     <div class="divbody" style="padding-right:10px;">
       <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> CUSTOMER CREATE &amp; BRIDGE<hr /></div>               
         <table>
-        <tr><td><asp:RadioButton ID="rdnItem" AutoPostBack="true" Text="Item" GroupName="itemCust" runat="server" OnCheckedChanged="rdnItem_CheckedChanged" />
-            <asp:RadioButton ID="rdnCust" AutoPostBack="true" Text="Customer" GroupName="itemCust" runat="server" OnCheckedChanged="rdnCust_CheckedChanged" /></td>
+        <tr><td>&nbsp;</td>
         </tr>               
         <tr><td>
         <asp:Panel ID="Panel1" runat="server">

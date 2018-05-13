@@ -118,6 +118,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WastageNewTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="WestageTDSRPT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WestageTDSRPT.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -247,6 +252,17 @@
     </None>
     <None Include="WastageNewTDS.xss">
       <DependentUpon>WastageNewTDS.xsd</DependentUpon>
+    </None>
+    <None Include="WestageTDSRPT.xsc">
+      <DependentUpon>WestageTDSRPT.xsd</DependentUpon>
+    </None>
+    <None Include="WestageTDSRPT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WestageTDSRPT.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WestageTDSRPT.xss">
+      <DependentUpon>WestageTDSRPT.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

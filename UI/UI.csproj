@@ -7418,6 +7418,7 @@
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\Uploads\" />
     <Folder Include="VAT_Management\Data\" />
+    <Folder Include="Wastage\Data\" />
     <Folder Include="WoodPurchase\Data\" />
   </ItemGroup>
   <ItemGroup>

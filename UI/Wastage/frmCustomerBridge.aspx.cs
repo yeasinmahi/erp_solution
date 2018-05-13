@@ -58,6 +58,9 @@ namespace UI.Wastage
                 dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(Session[SessionParams.USER_ID].ToString()), dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
                 dgvCustomerList.DataSource = dt;
                 dgvCustomerList.DataBind();
+
+                Panel1.Visible = true;
+                Panel2.Visible = true;
             }
 
         }

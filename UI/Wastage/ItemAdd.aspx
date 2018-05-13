@@ -58,7 +58,7 @@
             </tr>
             <tr>
             <td style="text-align:right;"><asp:Label ID="lblItemName" runat="server" CssClass="lbl" Text="Item Name"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtItemName" runat="server" CssClass="txtBox1"  BackColor="WhiteSmoke"></asp:TextBox> </td>
+            <td style="text-align:left;"><asp:TextBox ID="txtItemName" runat="server" CssClass="txtBox"  BackColor="WhiteSmoke"></asp:TextBox> </td>
             <td style="text-align:right; "><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
             <td style="text-align:right;"><span style="color:red; font-size:14px;">*</span><span> </span></td>                
             <td>&nbsp;</td>
