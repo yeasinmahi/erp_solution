@@ -81,7 +81,7 @@
             <tr>
              <td></td><td></td>  <td></td><td></td> 
             <td style="text-align:right;">WH Name:</td>
-            <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged"></asp:DropDownList>  </td> 
+            <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True"  ></asp:DropDownList>  </td> 
         </tr>
             <tr>
                 <td></td>
@@ -90,7 +90,7 @@
         <table>
               <tr>
             <td style='text-align: right;'>Item Name</td>
-            <td><asp:TextBox ID="txtFgItem" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true" Width="600px"    OnTextChanged="txtItem_TextChanged"    ></asp:TextBox>
+            <td><asp:TextBox ID="txtFgItem" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true" Width="600px"      ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" TargetControlID="txtFgItem"
             ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -104,7 +104,7 @@
          
             <tr>
             <td style='text-align: right;'>Name</td>
-            <td><asp:TextBox ID="txtAsset" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"    OnTextChanged="txtItem_TextChanged"    ></asp:TextBox>
+            <td><asp:TextBox ID="txtAsset" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"         ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAsset"
             ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -173,7 +173,7 @@
             </tr>
             
              <tr>
-            <td colspan="6"> <asp:GridView ID="GridView1" Width="600px" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvWolabor_RowDeleting">
+            <td colspan="6"> <asp:GridView ID="GridView1" Width="600px" runat="server" AutoGenerateColumns="False"  >
             <Columns>
             <asp:BoundField DataField="strEmployeeName" HeaderText="Performer by" SortExpression="strEmployeeName" />
             <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
@@ -200,7 +200,7 @@
              </tr>
             <tr> 
             <td style='text-align: right;'>Name</td>
-            <td><asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"    OnTextChanged="txtItem_TextChanged"    ></asp:TextBox>
+            <td><asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"       ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtItem"
             ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -267,7 +267,7 @@
             <td style="text-align:right" colspan="4"><asp:Button ID="Button1" Text="Add" runat="server" /> 
             </tr>
              <tr>
-            <td colspan="6"> <asp:GridView ID="dgvWolabor" Width="600px" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvWolabor_RowDeleting">
+            <td colspan="6"> <asp:GridView ID="dgvWolabor" Width="600px" runat="server" AutoGenerateColumns="False"  >
             <Columns>
             <asp:BoundField DataField="strEmployeeName" HeaderText="Performer by" SortExpression="strEmployeeName" />
             <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
@@ -289,7 +289,7 @@
             <caption style="text-align:left">Man power</caption> 
             <tr>
             <td style='text-align: right;'>Item Name</td>
-            <td><asp:TextBox ID="TextBox3" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"    OnTextChanged="txtItem_TextChanged"    ></asp:TextBox>
+            <td><asp:TextBox ID="TextBox3" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"     ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender3" runat="server" TargetControlID="txtItem"
             ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
