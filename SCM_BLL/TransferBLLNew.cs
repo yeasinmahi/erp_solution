@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using SCM_DAL.TransferTDSTableAdapters;
 using SCM_DAL;
 using SCM_DAL.BomTDSTableAdapters;
+using SCM_DAL.WestageTDSRPTTableAdapters;
+
 
 namespace SCM_BLL
 {   
@@ -294,6 +296,16 @@ namespace SCM_BLL
             {
                 return null;
             }
+        }
+
+        public void IssueDelete(int unitid, int intSalesId)
+        {
+            try
+            {
+                tblWMSalesTableAdapter adp = new tblWMSalesTableAdapter();
+                adp.GetUpdate(unitid, intSalesId);
+            }
+            catch {  }
         }
 
         public DataTable GetTransferReceive(int unitid)

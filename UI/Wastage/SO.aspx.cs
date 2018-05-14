@@ -39,7 +39,7 @@ namespace UI.Wastage
             {
                 try
                 {
-                    pnlUpperControl.DataBind();
+                   
                     File.Delete(filePathForXML);
 
                     dt = new DataTable();
@@ -51,6 +51,7 @@ namespace UI.Wastage
                     CustList();
                     WHlist();
                     Itemlist();
+                    pnlUpperControl.DataBind();
                 }
                 catch (Exception ex)
                 {

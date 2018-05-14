@@ -112,24 +112,6 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.HiddenField hdnLoanID;
         
         /// <summary>
-        /// rdnItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdnItem;
-        
-        /// <summary>
-        /// rdnCust control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdnCust;
-        
-        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>

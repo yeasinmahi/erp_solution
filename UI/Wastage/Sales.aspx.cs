@@ -52,6 +52,11 @@ namespace UI.Wastage
 
         }
 
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         #region ===== Item Add & Load Grid Action ===========================================================
         protected void btnAdd_Click(object sender, EventArgs e)
