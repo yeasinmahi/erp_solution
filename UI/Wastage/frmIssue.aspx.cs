@@ -30,6 +30,8 @@ namespace UI.Wastage
         int intItemid,intSalesId, intSalesOrderQty, intIssuedQty, intTransactionTypeID, unitid, intinsertby, intWastageWareHouseID, intInOutReffID;
         int? COAid=null, HOCOAid = null, intQty = null, intOutQty = null, intWHID = null, intSalesID = null, intCustromerID = null, intDeliveryChallanNo = null, intWeightIDNo = null,
         intDepartmentID = null, strRequisitionID = null, intTransferWastageWareHouseID = null;
+
+      
         DateTime dteTransactionDate;
         string strRemarks, strSalesOrderNo; bool? ysnActive = null, ysnIssueComplete = null;
         Decimal? monInRate = null, monInValue = null, monTotalIssueAmount=null;
@@ -50,14 +52,16 @@ namespace UI.Wastage
                     File.Delete(filePathForXML);
 
                     dt = new DataTable();
-                    dt = obj.getInvintoryWH(int.Parse(hdnEnroll.Value));
-                    ddlLocation.DataTextField = "strUnit";
-                    ddlLocation.DataValueField = "intUnitID";
+                    dt = obj.getInvintoryWH(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+                    ddlLocation.DataTextField = "strWareHoseName";
+                    ddlLocation.DataValueField = "intWHID";
                     ddlLocation.DataSource = dt;
                     ddlLocation.DataBind();
                  
                     WHlist();
-                  
+                    getSO();
+                    getSODetails();
+
                 }
                 catch (Exception ex)
                 {
@@ -65,6 +69,11 @@ namespace UI.Wastage
                 }
             }
         }
+        protected void ddlSO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getSODetails();
+        }
+
         private void WHlist()
         {
             dt = obj.getWH(int.Parse(Session[SessionParams.USER_ID].ToString()));
@@ -92,17 +101,33 @@ namespace UI.Wastage
 
         protected void ddlWHName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            getSO();
+            getSODetails();
+        }
+
+        private void getSO()
+        {
             dt = obj.getSalesOrderList(int.Parse(ddlWHName.SelectedValue));
-            ddlSO.DataTextField = "strSalesOrderNo";
-            ddlSO.DataValueField = "intCustomerID";
-            ddlSO.DataSource = dt;
-            ddlSO.DataBind();
+            if (dt.Rows.Count > 0)
+            {
+                ddlSO.DataTextField = "strSalesOrderNo";
+                ddlSO.DataValueField = "intCustomerID";
+                ddlSO.DataSource = dt;
+                ddlSO.DataBind();
+            }
+        }
 
-            dt = obj.getSODetails(int.Parse(ddlWHName.SelectedValue),ddlSO.SelectedValue);
-            txtMRRN.Text =dt.Rows[0]["strMoneyRecNo"].ToString();
-            txtDate.Text =DateTime.Parse(dt.Rows[0]["dteSalesDate"].ToString()).ToString("yyyy/mm/dd");
-            txtCustomer.Text = dt.Rows[0]["strCustomerName"].ToString();
+        private void getSODetails()
+        {
+          
 
+            dt = obj.getSODetails(int.Parse(ddlWHName.SelectedValue),(ddlSO.SelectedItem.ToString()));
+            if (dt.Rows.Count > 0)
+            {
+                txtMRRN.Text = dt.Rows[0]["strMoneyRecNo"].ToString();
+                txtDate.Text = DateTime.Parse(dt.Rows[0]["dteSalesDate"].ToString()).ToString("yyyy/mm/dd");
+                txtCustomer.Text = dt.Rows[0]["strCustomerName"].ToString();
+            }
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
