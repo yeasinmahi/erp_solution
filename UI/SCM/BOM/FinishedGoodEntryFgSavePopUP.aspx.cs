@@ -31,7 +31,7 @@ namespace UI.SCM.BOM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
 
             if (!IsPostBack)
             {
@@ -58,10 +58,12 @@ namespace UI.SCM.BOM
                 txtItem.Text = productName+"["+ productionID+"]";
 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(8, xmlData, intwh, BomId, DateTime.Now, enroll);
+                dt = objBom.GetBomData(8, xmlData, intwh, int.Parse(productionID), DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
                     //txtItem.Text = dt.Rows[0]["strName"].ToString();
+                    lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
+                   
                     dgvProductionEntry.DataSource = dt;
                     dgvProductionEntry.DataBind();
                 }
@@ -105,6 +107,7 @@ namespace UI.SCM.BOM
                 string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); uom = arrayKey[1].ToString(); itemid = arrayKey[3].ToString(); }
+                
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
                 {
