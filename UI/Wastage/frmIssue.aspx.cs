@@ -113,8 +113,11 @@ namespace UI.Wastage
         private void getRpt()
         {
             dt = obj.getSalesOrderView(ddlSO.SelectedItem.ToString(), int.Parse(Session[SessionParams.UNIT_ID].ToString()));
-            dgvSOItem.DataSource = dt;
-            dgvSOItem.DataBind();
+            if (dt.Rows.Count > 0)
+            {
+                dgvSOItem.DataSource = dt;
+                dgvSOItem.DataBind();
+            }
         }
 
       
@@ -160,6 +163,7 @@ namespace UI.Wastage
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
                     getRpt();
                 }
+                getRpt();
             }
 
             #endregion **************** End **************
