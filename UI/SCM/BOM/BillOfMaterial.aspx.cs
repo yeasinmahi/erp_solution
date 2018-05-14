@@ -50,22 +50,27 @@ namespace UI.SCM.BOM
         {
             try
             {
-                arrayKey = txtItem.Text.Split(delimiterChars);
-                intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = "";string uom=""; bool proceed = false;
-                if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
-                checkXmlItemData(itemid);
-                if (CheckItem == 1)
+                if(hdnPreConfirm.Value=="1")
                 {
-                    string qty = txtQuantity.Text.ToString();
-                    string wastage = txtWastage.Text.ToString();
-                    string bomname = txtBomName.Text.ToString();
-                    string strCode = txtCode.Text.ToString();
-                    CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
-                    txtItem.Text = "";
+                    arrayKey = txtItem.Text.Split(delimiterChars);
+                    intWh = int.Parse(ddlWH.SelectedValue);
+                    string item = ""; string itemid = ""; string uom = "";  
+                    if (arrayKey.Length > 0)
+                    { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                    checkXmlItemData(itemid);
+                    if (CheckItem == 1)
+                    {
+                        string qty = txtQuantity.Text.ToString();
+                        string wastage = txtWastage.Text.ToString();
+                        string bomname = txtBomName.Text.ToString();
+                        string strCode = txtCode.Text.ToString();
+                        CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
+                        txtItem.Text = "";
+                    }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); } 
+               
             }
             catch { }
         }
@@ -151,6 +156,11 @@ namespace UI.SCM.BOM
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
+                        txtCode.Text = "";
+                        txtBomName.Text = "";
+                        txtQuantity.Text = "0";
+                        txtWastage.Text = "0";
+                        txtItem.Text = "";
 
                     }
 
@@ -259,6 +269,7 @@ namespace UI.SCM.BOM
                         string itemid = dt.Rows[i]["intItemID"].ToString();
                         string item = dt.Rows[i]["strItem"].ToString();
                         string uom = dt.Rows[i]["strUoM"].ToString();
+                        txtBomName.Text = bomname;txtCode.Text = strCode;
                         CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
                     }
                    

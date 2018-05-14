@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventoryTransferOut.aspx.cs" Inherits="UI.SCM.Transfer.InventoryTransferOut" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventoryFGTransferOut.aspx.cs" Inherits="UI.SCM.Transfer.InventoryFGTransferOut" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
