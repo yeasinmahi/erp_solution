@@ -73,9 +73,9 @@
             <td style="text-align:left">Production ID:
             <asp:Label ID="lblProductionId" runat="server"></asp:Label></td>
             <td>Plan Qty :
-            <asp:Label ID="lblPlanQty" Text="100" runat="server"></asp:Label></td>
+            <asp:Label ID="lblPlanQty"   runat="server"></asp:Label></td>
             <td>Date & Time :
-            <asp:Label ID="lblDate" Text="2018-05-07 To 2018-05-07" runat="server"></asp:Label></td>
+            <asp:Label ID="lblDate"   runat="server"></asp:Label></td>
             </tr> 
         </table>
         
@@ -116,6 +116,9 @@
             </tr>
              
             </table>
+        <table>
+            <tr><td></td></tr>
+        </table>
         <table style="border-color:black;  width:900px;border-radius:10px;">
             <tr>
              <td>
@@ -155,7 +158,11 @@
             </tr>
              
         </table>
-
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
          <table style="border-color:black;  width:900px;border-radius:10px; border:1px solid blue;">
              <caption style="text-align:left; color:blue">Previous Entry</caption>
             <tr>

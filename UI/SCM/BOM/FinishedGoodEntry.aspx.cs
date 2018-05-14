@@ -85,22 +85,21 @@ namespace UI.SCM.BOM
                 Label lblQuantity = row.FindControl("lblQuantity") as Label;
                 Label lblLine = row.FindControl("lblLine") as Label;
                 string productID = lblProductID.Text.ToString();
-                string productName = lblProductName.Text.ToString();
+                string product  = lblProductName.Text.ToString();
                 string whid = ddlWH.SelectedValue.ToString();
-                string bomName = lblBomName.Text.ToString();
+                string bom  = lblBomName.Text.ToString();
                 string batchName = lblBatch.Text.ToString();
                 string startTime = lblStartTime.Text.ToString();
                 string endTime = lblEndTime.Text.ToString();
                 string invoice = lblInvoice.Text.ToString();
                 string srNo = lblSrNO.Text.ToString();
                 string quantity = lblQuantity.Text.ToString();
-                string line = lblLine.Text.ToString();
-
-                
-
-
+                string line = lblLine.Text.ToString(); 
+                string productName = product.Replace("\"", string.Empty).Replace("'", string.Empty);
+                string bomName = bom.Replace("\"", string.Empty).Replace("'", string.Empty);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + productID + "','" + productName.ToString() + "','" + bomName + "','" + batchName + "','" + startTime + "','" + endTime + "','" + invoice.ToString() + "','" + srNo + "','" + quantity + "','" + whid + "');", true);
+
 
             }
             catch { }

@@ -10,7 +10,7 @@
 namespace UI.SCM.Transfer {
     
     
-    public partial class InventoryTransferOut {
+    public partial class InventoryFGTransferOut {
         
         /// <summary>
         /// PlaceHolder1 control.

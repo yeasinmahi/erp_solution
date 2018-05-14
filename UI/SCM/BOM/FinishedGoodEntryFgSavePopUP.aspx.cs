@@ -53,13 +53,15 @@ namespace UI.SCM.BOM
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
                 txtTime.Text= startTime.ToString("HH:ss");
                 txtProductQty.Text = quantity.ToString();
-               
+                lblPlanQty.Text= quantity.ToString();
+             
+                txtItem.Text = productName+"["+ productionID+"]";
 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(8, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
-                    txtItem.Text = dt.Rows[0]["strName"].ToString();
+                    //txtItem.Text = dt.Rows[0]["strName"].ToString();
                     dgvProductionEntry.DataSource = dt;
                     dgvProductionEntry.DataBind();
                 }

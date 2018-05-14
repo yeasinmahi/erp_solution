@@ -33,6 +33,31 @@
 
 
     <script type="text/javascript"> 
+        function AddConfirm() {
+                //var e = document.getElementById("ddlTransType");
+                //var transferType = e.options[e.selectedIndex].value;
+                //var e = document.getElementById("ddlLcation");
+                //var locationId = e.options[e.selectedIndex].value;
+            
+                var inItem = document.getElementById("txtItem").value;
+                var quantity = parseFloat(document.getElementById("txtQuantity").value);
+                var wastage = parseFloat(document.getElementById("txtWastage").value);
+                var code = document.getElementById("txtCode").value;
+                var name =document.getElementById("txtBomName").value;
+              AddConfirm
+           
+             if ($.trim(wastage) == 0 || $.trim(wastage) == "" || $.trim(wastage) == null || $.trim(wastage) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input wastage%'); }
+             else if ($.trim(code) == 0 || $.trim(code) == "" || $.trim(code) == null || $.trim(code) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Code'); }
+             else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
+             else if ($.trim(name) == 0 || $.trim(name) == "" || $.trim(name) == null || $.trim(name) == undefined || $.trim(name) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Name'); }
+             else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
+              
+
+             else {
+                  document.getElementById("hdnPreConfirm").value = "1";
+             }
+        }
+
         function funConfirmAll() { 
             var confirm_value = document.createElement("INPUT");
 
@@ -82,7 +107,7 @@
 <%--=========================================Start My Code From Here===============================================--%>
 
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" /> 
-       <asp:HiddenField ID="hdnDA" runat="server" />  
+       <asp:HiddenField ID="hdnPreConfirm" runat="server" />  
        <div class="tabs_container">Bill of Material From<hr/></div> 
         <div>
            <div style="Text-align:left;" class="auto-style2">
@@ -102,10 +127,10 @@
             </tr>
            <tr>
             <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtQuantity" CssClass="txtBox" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>                                                                                      
+            <td style="text-align:left;"><asp:TextBox ID="txtQuantity" CssClass="txtBox" Text="0" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>                                                                                      
           <td style="text-align:right;" ><asp:Label ID="lblPurpose" runat="server" CssClass="lbl" Text="Wastage(%)"></asp:Label></td>            
 
-            <td style="text-align:left;"><asp:TextBox ID="txtWastage" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> 
+            <td style="text-align:left;"><asp:TextBox ID="txtWastage" Text="0" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> 
                  
             </td>                                                                                      
       
@@ -118,7 +143,7 @@
             </tr>
             <tr>
            
-           <td style="text-align:right" colspan="4"><asp:CheckBox ID="chkBom" AutoPostBack="true" Text="ExistBom" runat="server" OnCheckedChanged="chkBom_CheckedChanged" /><asp:Button ID="btnAdd" runat="server" Font-Bold="true" Text="Add" OnClick="btnAdd_Click"     />
+           <td style="text-align:right" colspan="4"><asp:CheckBox ID="chkBom" AutoPostBack="true" Text="ExistBom" runat="server" OnCheckedChanged="chkBom_CheckedChanged" /><asp:Button ID="btnAdd" runat="server" Font-Bold="true" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"     />
            <asp:Button ID="btnSubmit" runat="server" Text="Submit" Font-Bold="true" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click"    />
                
            </td>  
