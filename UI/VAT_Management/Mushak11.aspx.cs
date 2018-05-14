@@ -176,6 +176,12 @@ namespace UI.VAT_Management
                 {
                     dt = new DataTable();
                     dt = objvat.GetM11PrintGetM11Print(strChallanNo, intVATAccountID, strCustVATRegNo, strFinalDistanitionAddress, strVehicleRegNo, intVatChallanNo, dteM11DateTime, intUserID, dteChallanDate, intUnitID, strCustomerName);
+                    txtChallanSearch.Text = "";
+                    txtChallanPaidDateTime.Text = "";
+                    txtCustomerName.Text = "";
+                    txtCustomerVAT.Text = "";
+                    txtFinalDestination.Text = "";
+                    txtVehicleNo.Text = "";                    
                 }
                 catch (Exception ex) { ex.ToString(); }
             }
