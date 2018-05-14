@@ -29,7 +29,7 @@ namespace UI.Wastage
                 ddlUnitCust.DataValueField = "intUnitID";
                 ddlUnitCust.DataSource = dt;
                 ddlUnitCust.DataBind();
-                Panel1.Visible = false;
+                Panel1.Visible = true;
 
                 intWorkCount = 5;
                 dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), empid, dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);

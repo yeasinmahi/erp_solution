@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>::. Loan Application </title>
+    <title>::.  </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -58,7 +58,7 @@
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
     <asp:HiddenField ID="hdnLoanID" runat="server" />      
     <div class="divbody" style="padding-right:10px;">
-    <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> SALES ORDER<hr /></div>
+    <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> ADJUSTMENT<hr /></div>
     <table class="tbldecoration" style="width:auto; float:left;">
         <tr>
             <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
