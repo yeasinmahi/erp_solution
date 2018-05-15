@@ -120,8 +120,7 @@ namespace UI.Wastage
         #region ===== Submit Action =========================================================================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (hdnconfirm.Value == "1")
-            {
+           
                 if ((txtQty.Text != "") && (txtRate.Text != ""))
                 {
                     intItemid = int.Parse(ddlItem.SelectedValue);
@@ -159,7 +158,7 @@ namespace UI.Wastage
                     }
 
                 }
-            }
+            
         }
 
         #endregion ==========================================================================================

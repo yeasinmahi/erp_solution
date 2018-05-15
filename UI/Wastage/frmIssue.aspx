@@ -19,27 +19,39 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../../Content/JS/datepickr.min.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script> 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript">        
-        function onlyNumbers(evt) {
-            var e = event || evt;
-            var charCode = e.which || e.keyCode;
+   
+  
+  <script type="text/javascript">
+        $("[id*=txtIssue]").live("keyup", function () {
+          if (!jQuery.trim($(this).val()) == '') {
+              var sum = 0;
+              if (!isNaN(parseFloat($(this).val()))) {
+                  var row = $(this).closest("tr");
+                 
+                  var rate= parseFloat($("[id*=lblRate]", row).html());
+                  var qty = parseFloat($(this).val());
+                  $("[id*=txtIssueValues]", row).html((qty * rate));
+                   $("[id*=hdnisueValues]", row).html((qty*rate));
+                
+              }
+          } else {
+              $(this).val('');
+          }
+  
+          var grandTotalqty = 0;
+        
 
-            if ((charCode > 57))
-                return false;
-            return true;
-        }  
-    </script>
-    <script>
-       function Add() {
-           var a, b, c;
-            var a = document.forms["frmSO"]["txtQty"].value;           
-            if (isNaN(a) == true) { a = 0; }
-              var b = document.forms["frmSO"]["txtRate"].value;
-            if (isNaN(b) == true) { b = 0; }            
-            document.forms["frmSO"]["txtValue"].value = (a*b).toFixed(0);
-        }
-  </script>          
+          $("[id*=txtIssueValue]").each(function () {
+              grandTotalqty = grandTotalqty + parseFloat($(this).html());
+          });
+          $("[id*=lblIsseValueTotal]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
+
+      } ) ;
+   </script>  
 </head>
 <body>
     <form id="frmIssue" runat="server">        
@@ -66,7 +78,7 @@
             <asp:DropDownList ID="ddlWHName" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false" OnSelectedIndexChanged="ddlWHName_SelectedIndexChanged"></asp:DropDownList></td>
             <td style="text-align:right; width:15px;"><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
             <td style="text-align:right;"><asp:Label ID="lblWH" runat="server" CssClass="lbl" Text="Sales Order NO"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlSO" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
+            <td style="text-align:left;"><asp:DropDownList ID="ddlSO" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="True" OnSelectedIndexChanged="ddlSO_SelectedIndexChanged"></asp:DropDownList></td>
          </tr>
          <tr>               
             <td style="text-align:right;"><asp:Label ID="lblCustName" runat="server" CssClass="lbl" Text="Customer Name"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
@@ -111,7 +123,7 @@
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
             <asp:TemplateField HeaderText="Item ID" SortExpression="itemid">
-            <ItemTemplate><asp:HiddenField ID="hdnSalesId" runat="server" Value='<%# Bind("intSalesID") %>'/><asp:Label ID="lblItemID" runat="server" Text='<%# Bind("itemid") %>' Width="80px"></asp:Label>
+            <ItemTemplate><asp:HiddenField ID="hdnSalesId" runat="server" Value='<%# Bind("intSalesID") %>'/><asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intitemid") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
                 
             <asp:TemplateField HeaderText="Item Name" SortExpression="itemname">
@@ -124,19 +136,19 @@
             </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="60px" />
             <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total" /></FooterTemplate></asp:TemplateField>
                                 
-            <asp:TemplateField HeaderText="Quantity" SortExpression="qty">
+            <asp:TemplateField HeaderText="Order Quantity" SortExpression="qty">
             <ItemTemplate><asp:Label ID="lblQty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("intSalesqty") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             <FooterTemplate><asp:Label ID="lblQtyTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalqty %>" /></FooterTemplate></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Quantity" SortExpression="qty">
-            <ItemTemplate><asp:Label ID="lblIssue" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Expr1") %>' Width="80px"></asp:Label>
+            <asp:TemplateField HeaderText="Issued Quantity" SortExpression="qty">
+            <ItemTemplate><asp:Label ID="lblIssued" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Expr1") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             </asp:TemplateField>
 
 
             <asp:TemplateField HeaderText="Rate" SortExpression="rate">
-            <ItemTemplate><asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monSalesRate") %>' Width="80px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monSalesRate","{0:n2}") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Value" SortExpression="value">
@@ -148,11 +160,23 @@
             <ItemTemplate><asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strSalesRemarks") %>' Width="200px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="200px" /></asp:TemplateField>
             
-                
-            <asp:TemplateField HeaderText="Issue Quantity" SortExpression="qty">
-            <ItemTemplate><asp:TextBox ID="txtIssue" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("0") %>' Width="80px"></asp:TextBox>
+             <asp:TemplateField HeaderText="Balance Qty" SortExpression="qty">
+            <ItemTemplate><asp:TextBox ID="txtBqty" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Bqty") %>' Width="80px"></asp:TextBox>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             </asp:TemplateField>
+                
+            <asp:TemplateField HeaderText="Issue Quantity" SortExpression="qty">
+            <ItemTemplate><asp:TextBox ID="txtIssue" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("Expr2") %>' Width="80px"></asp:TextBox>
+            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+            </asp:TemplateField>
+
+         
+            <asp:TemplateField HeaderText="Issue Value" SortExpression="rate">
+            <ItemTemplate><asp:HiddenField ID="hdnisueValues" runat="server" /><asp:Label ID="txtIssueValues" runat="server"   Text='<%# Bind("Expr3") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+            <FooterTemplate><asp:Label ID="lblIsseValueTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalIssuevalue %>" /></FooterTemplate>
+            </asp:TemplateField>
+
 
             <asp:TemplateField HeaderText="Available Qty" SortExpression="remarks">
             <ItemTemplate><asp:Label ID="lblStockBalanceQty" runat="server" Text='<%# Bind("StockBalanceQty") %>' Width="200px"></asp:Label>

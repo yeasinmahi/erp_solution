@@ -37,8 +37,8 @@ namespace UI.Wastage
                 Panel1.Visible = false;
 
                 dt = objWastage.getUom();
-                ddlUOM.DataTextField = "strUOMNme";
-                ddlUOM.DataValueField = "intid";
+                ddlUOM.DataTextField = "strUOM";
+                ddlUOM.DataValueField = "intUOMID";
                 ddlUOM.DataSource = dt;
                 ddlUOM.DataBind();
             }
