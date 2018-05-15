@@ -150,7 +150,7 @@
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Inactive Order" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess" > 
-            <ItemTemplate><asp:Button ID="btnInactive" runat="server"  Width="83px"   Text="Inactive Order"></asp:Button></ItemTemplate>
+            <ItemTemplate><asp:Button ID="btnInactive" runat="server"  Width="83px"  OnClick="btnInactive_Click"   Text="Inactive Order"></asp:Button></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

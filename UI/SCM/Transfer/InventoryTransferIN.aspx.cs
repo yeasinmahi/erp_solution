@@ -34,10 +34,16 @@ namespace UI.SCM.Transfer
                 ddlWh.DataValueField = "Id"; 
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
+                dt = objTransfer.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, enroll);
+                ddlTransferItem.DataSource = dt;
+                ddlTransferItem.DataTextField = "strName";
+                ddlTransferItem.DataValueField = "Id";
+                ddlTransferItem.DataBind();
+                ddlTransferItem.Items.Insert(0, new ListItem("Select", "0"));
 
 
 
-            } 
+            }
         }
 
         #region========================Auto Search============================ 

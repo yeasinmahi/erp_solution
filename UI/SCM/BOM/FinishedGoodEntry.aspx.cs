@@ -43,12 +43,29 @@ namespace UI.SCM.BOM
 
         }
 
+        protected void btnInactive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblProductID = row.FindControl("lblProductID") as Label;
+                
+                int producttionID = int.Parse(lblProductID.Text.ToString());
+                string msg = objBom.BomPostData(4, xmlString, intWh, producttionID, DateTime.Now, enroll);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+
+            }
+            catch { }
+        }
+
         protected void btnViewProductionOrder_Click(object sender, EventArgs e)
         {
             try
             {
                 string dteFrom = txtFromDate.Text.ToString();
                 string dteTo = txtToDate.Text.ToString();
+                intwh = int.Parse(ddlWH.SelectedValue);
                 DateTime dteDate = DateTime.Parse(txtDate.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
