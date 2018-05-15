@@ -628,6 +628,16 @@ namespace SAD_BLL.Sales
 
         }
 
+        public DataTable getProductGroupvsChallanDet(DateTime fromDate, DateTime toDate, int unitID, int intrptType)
+        {
+            try
+            {
+                SprItemvsDelvWithCOdeTableAdapter bll = new SprItemvsDelvWithCOdeTableAdapter();
+                return bll.GetDataItemvsDelvWithCOde(fromDate, toDate, unitID, intrptType);
+            }
+            catch (Exception ex) { return new DataTable(); }
+
+        }
 
 
     }

@@ -6,13 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UI.ClassFiles;
 
 namespace UI.SAD.Sales.Report
 {
     public partial class YearlyOperationalSummeryRpt : System.Web.UI.Page
     {
         #region =========== Global Variable Declareation ==========
-        int unitid, teritoryid, areaid, regionid, shippoint, salesoffice, rpttype, custid;
+        int unitid, teritoryid, areaid, regionid, shippoint, salesoffice, rpttype, custid,enrol;
 
        
         decimal gtotaldoqnt, gtotaldoamount, gtotalchlqnt, gtotalchamount, gpendingqnt, gpendingamount;
@@ -42,7 +43,8 @@ namespace UI.SAD.Sales.Report
                 shippoint = int.Parse(ddlShip.SelectedValue.ToString());
                 salesoffice = int.Parse(ddlSo.SelectedValue.ToString());
                 rpttype = int.Parse(drdlrpttype.SelectedValue.ToString());
-                custid = 0;
+                enrol = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            custid = 0;
                 if (rpttype == 1|| rpttype == 2 || rpttype == 3 || rpttype == 4 || rpttype == 5 || rpttype == 6 || rpttype == 7 || rpttype == 8 || rpttype == 9)
                 {
                     //fromdate,  todate,  rpttype,  salesoffid,  unitid,  intteritoryid,  intareaid,  regionid
@@ -92,6 +94,68 @@ namespace UI.SAD.Sales.Report
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
             }
+
+            else if (rpttype == 16 || rpttype == 17 || rpttype == 18)
+            {
+                //fromDate, toDate, customerId, productId, userID, unitID, intCusType, intSOid, intrptType
+                dt = bll.getProductGroupvsChallanDet( fromdate, todate,  unitid,rpttype);
+
+                if (dt.Rows.Count > 0)
+                {
+                    dgvYearlysDOSummery.DataSource = null;
+                    dgvYearlysDOSummery.DataBind();
+                    grdvItemCatgBasis.DataSource = null;
+                    grdvItemCatgBasis.DataBind();
+                    grdvDOCHPENDING.DataSource = null;
+                    grdvDOCHPENDING.DataBind();
+                    grdvProductGroupbaseChallan.DataSource = dt;
+                    grdvProductGroupbaseChallan.DataBind();
+
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
+            }
+
+            else if ( rpttype == 17 )
+            {
+                //fromDate, toDate, customerId, productId, userID, unitID, intCusType, intSOid, intrptType
+                dt = bll.getProductGroupvsChallanDet(fromdate, todate, unitid, rpttype);
+
+                if (dt.Rows.Count > 0)
+                {
+                    dgvYearlysDOSummery.DataSource = null;
+                    dgvYearlysDOSummery.DataBind();
+                    grdvItemCatgBasis.DataSource = null;
+                    grdvItemCatgBasis.DataBind();
+                    grdvDOCHPENDING.DataSource = null;
+                    grdvDOCHPENDING.DataBind();
+                    grdvProductGroupbaseChallan.DataSource = dt;
+                    grdvProductGroupbaseChallan.DataBind();
+
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
+            }
+
+            else if (rpttype == 18)
+            {
+                //fromDate, toDate, customerId, productId, userID, unitID, intCusType, intSOid, intrptType
+                dt = bll.getProductGroupvsChallanDet(fromdate, todate, unitid, rpttype);
+
+                if (dt.Rows.Count > 0)
+                {
+                    dgvYearlysDOSummery.DataSource = null;
+                    dgvYearlysDOSummery.DataBind();
+                    grdvItemCatgBasis.DataSource = null;
+                    grdvItemCatgBasis.DataBind();
+                    grdvDOCHPENDING.DataSource = null;
+                    grdvDOCHPENDING.DataBind();
+                    grdvProductGroupbaseChallan.DataSource = dt;
+                    grdvProductGroupbaseChallan.DataBind();
+
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
+            }
+
+
 
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
 
@@ -148,6 +212,25 @@ namespace UI.SAD.Sales.Report
                 grdvDOCHPENDING.Columns[4].Visible = true;
 
             }
+            if (rpttype == 16)
+            {
+                grdvProductGroupbaseChallan.Columns[0].Visible = true;
+                grdvProductGroupbaseChallan.Columns[1].Visible = true;
+                grdvProductGroupbaseChallan.Columns[2].Visible = true;
+                grdvProductGroupbaseChallan.Columns[3].Visible = true;
+                grdvProductGroupbaseChallan.Columns[4].Visible = true;
+                grdvProductGroupbaseChallan.Columns[5].Visible = true;
+                grdvProductGroupbaseChallan.Columns[6].Visible = true;
+                grdvProductGroupbaseChallan.Columns[7].Visible = true;
+                grdvProductGroupbaseChallan.Columns[8].Visible = true;
+                grdvProductGroupbaseChallan.Columns[9].Visible = true;
+                grdvProductGroupbaseChallan.Columns[10].Visible = true;
+
+
+            }
+
+
+
 
         }
         #endregion change event
