@@ -26,12 +26,13 @@ namespace UI.Wastage
         WastageBLL obj = new WastageBLL();
         TransferBLLNew objwestage = new TransferBLLNew();
         DataTable dt;     
-        string COAName, HOCOAName, filePathForXML,narration, xmlString, qty, rate, value, remarks, MRRNO, monOutRate, monOutValue;
+        string COAName, HOCOAName, filePathForXML,narration, xmlString, qty, rate, value, remarks, MRRNO;
         int intItemid,intSalesId, intSalesOrderQty, intIssuedQty, intTransactionTypeID, unitid, intinsertby, intWastageWareHouseID, intInOutReffID;
         int? COAid=null, HOCOAid = null, intQty = null, intOutQty = null, intWHID = null, intSalesID = null, intCustromerID = null, intDeliveryChallanNo = null, intWeightIDNo = null,
         intDepartmentID = null, strRequisitionID = null, intTransferWastageWareHouseID = null;
+        Decimal monOutRate, monOutValue;
 
-      
+
         DateTime dteTransactionDate;
         string strRemarks, strSalesOrderNo; bool? ysnActive = null, ysnIssueComplete = null;
         Decimal? monInRate = null, monInValue = null, monTotalIssueAmount=null;
@@ -137,7 +138,11 @@ namespace UI.Wastage
 
         private void getRpt()
         {
-            dt = obj.getSalesOrderView(ddlSO.SelectedItem.ToString(), int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            if(unitid==11)
+            { unitid = 16; }
+            else { unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString()); }
+            dt = obj.getSalesOrderView(ddlSO.SelectedItem.ToString(), unitid);
             if (dt.Rows.Count > 0)
             {
                 dgvSOItem.DataSource = dt;
@@ -149,48 +154,60 @@ namespace UI.Wastage
         #region ===== Item Add & Load Grid Action ===========================================================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            dt = obj.getCOA(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlSO.SelectedValue));
-            COAid =int.Parse(dt.Rows[0]["intCOAID"].ToString());
-            COAName = (dt.Rows[0]["strCOAName"].ToString());
-            dt = obj.getCOAAcc(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
-            HOCOAid = int.Parse(dt.Rows[0]["intWastageSalesACCID"].ToString());
-            HOCOAName = (dt.Rows[0]["strWastageSalesACCName"].ToString());
-
-            monTotalIssueAmount = 0;
-            #region ********** XML ************
-            for (int index = 0; index < dgvSOItem.Rows.Count; index++)
+            if (txtSODate.Text == "")
             {
-                intItemid =int.Parse(((Label)dgvSOItem.Rows[index].FindControl("hdnPid")).Text.ToString());
-                intOutQty =int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("lblQuantity")).Text.ToString());
-                intIssuedQty = int.Parse(((HiddenField)dgvSOItem.Rows[index].FindControl("hdnFreeQty")).Value.ToString());
-                intSalesOrderQty = int.Parse(((HiddenField)dgvSOItem.Rows[index].FindControl("hdnprice")).Value.ToString());
-                monOutRate = ((Label)dgvSOItem.Rows[index].FindControl("lblQuantity")).Text.ToString();
-                monOutValue = ((Label)dgvSOItem.Rows[index].FindControl("lblQuantity")).Text.ToString();
-                intSalesID = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("lblQuantity")).Text.ToString());
-                if (decimal.Parse(qty) > 0)
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Date.');", true);
+
+            }
+            else
+            {
+                dt = obj.getCOA(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlSO.SelectedValue));
+                COAid = int.Parse(dt.Rows[0]["intCOAID"].ToString());
+                COAName = (dt.Rows[0]["strCOAName"].ToString());
+                dt = obj.getCOAAcc(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+                HOCOAid = int.Parse(dt.Rows[0]["intWastageSalesACCID"].ToString());
+                HOCOAName = (dt.Rows[0]["strWastageSalesACCName"].ToString());
+
+                monTotalIssueAmount = 0;
+                #region ********** XML ************
+                for (int index = 0; index < dgvSOItem.Rows.Count; index++)
                 {
-                                   
-                    dteTransactionDate = DateTime.Parse(txtSODate.Text);
-                    intTransactionTypeID = 3;
-                    unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                    intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    ysnIssueComplete = true;
-                    ysnActive = true;
-                    intWHID = int.Parse(ddlLocation.SelectedValue);
-                    intWastageWareHouseID = int.Parse(ddlWHName.SelectedValue);
-                    monTotalIssueAmount = monTotalIssueAmount +decimal.Parse(monOutValue);
-                    intDeliveryChallanNo =int.Parse(txtDeliveryChallano.Text);
-                    intCustromerID = int.Parse(ddlSO.SelectedValue);
-                    strSalesOrderNo = ddlSO.SelectedItem.ToString();
-                    obj.getReceiveEntry(intInOutReffID, dteTransactionDate, intItemid, intQty, monInRate, monInValue, intOutQty,decimal.Parse(monOutRate), decimal.Parse(monOutValue), intTransactionTypeID, unitid, intinsertby, DateTime.Now, intWHID, ysnActive, strRemarks, ysnIssueComplete, intSalesID, intCustromerID, intDeliveryChallanNo, strSalesOrderNo, intWeightIDNo, intDepartmentID, int.Parse(Session[SessionParams.JOBSTATION_ID].ToString()), strRequisitionID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWastageWareHouseID, intTransferWastageWareHouseID);
-                    narration = "Wastage Sales Order No. " + ddlSO.SelectedItem.ToString() + " & Delivery Challan No. " + txtDeliveryChallano.Text;
-                    obj.gtCreateVoucher(dteTransactionDate, unitid, narration, monTotalIssueAmount, COAid, COAName, HOCOAid, HOCOAName, int.Parse(Session[SessionParams.USER_ID].ToString()));
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
+                    intItemid = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblItemID")).Text.ToString());
+                    intOutQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("txtIssue")).Text.ToString());
+                    intIssuedQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
+                    intSalesOrderQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblQty")).Text.ToString());
+                    monOutRate = decimal.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblRate")).Text.ToString());
+                    monOutValue = decimal.Parse(monOutRate.ToString()) * decimal.Parse(intOutQty.ToString());
+
+                    intSalesID = int.Parse(((HiddenField)dgvSOItem.Rows[index].FindControl("hdnSalesId")).Value.ToString());
+                    if (decimal.Parse(intOutQty.ToString()) > 0)
+                    {
+
+                        dteTransactionDate = DateTime.Parse(txtSODate.Text);
+                        intTransactionTypeID = 3;
+                        unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                        intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
+                        ysnIssueComplete = true;
+                        ysnActive = true;
+                        intWHID = int.Parse(ddlLocation.SelectedValue);
+                        intWastageWareHouseID = int.Parse(ddlWHName.SelectedValue);
+                        monTotalIssueAmount = monTotalIssueAmount + (monOutValue);
+                        if (txtDeliveryChallano.Text == "")
+                        {
+                            intDeliveryChallanNo = int.Parse(txtDeliveryChallano.Text);
+                        }
+                        else { intDeliveryChallanNo = 0; }
+                        intCustromerID = int.Parse(ddlSO.SelectedValue);
+                        strSalesOrderNo = ddlSO.SelectedItem.ToString();
+                        obj.getReceiveEntry(intInOutReffID, dteTransactionDate, intItemid, intQty, monInRate, monInValue, intOutQty, monOutRate, monOutValue, intTransactionTypeID, unitid, intinsertby, DateTime.Now, intWHID, ysnActive, strRemarks, ysnIssueComplete, intSalesID, intCustromerID, intDeliveryChallanNo, strSalesOrderNo, intWeightIDNo, intDepartmentID, int.Parse(Session[SessionParams.JOBSTATION_ID].ToString()), strRequisitionID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWastageWareHouseID, intTransferWastageWareHouseID);
+                        narration = "Wastage Sales Order No. " + ddlSO.SelectedItem.ToString() + " & Delivery Challan No. " + txtDeliveryChallano.Text;
+                        obj.gtCreateVoucher(dteTransactionDate, unitid, narration, monTotalIssueAmount, COAid, COAName, HOCOAid, HOCOAName, int.Parse(Session[SessionParams.USER_ID].ToString()));
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
+                        getRpt();
+                    }
                     getRpt();
                 }
-                getRpt();
             }
-
             #endregion **************** End **************
 
            
@@ -294,7 +311,7 @@ namespace UI.Wastage
         }
 
         protected decimal totalqty = 0;
-        protected decimal totalvalue = 0;
+        protected decimal totalvalue = 0, totalIssuevalue=0;
         protected void dgvSOItem_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
@@ -303,6 +320,8 @@ namespace UI.Wastage
                 {
                     totalqty += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblQtyTotal")).Text);
                     totalvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblValueTotal")).Text);
+                    totalIssuevalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("txtIssueValue")).Text);
+
                 }
             }
             catch { }
