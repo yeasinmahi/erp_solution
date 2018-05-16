@@ -11398,13 +11398,19 @@ SELECT intWHID, strWareHoseName FROM tblWearHouse WHERE (intWHID = @intWHID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT   intID, strNameOfAsset,strAssetID   FROM [ERP_Asset].[dbo].[tblFixedAsset" +
                 "Register] where ysnActive=@Active";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "YsnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT   intID, strNameOfAsset,strAssetID   FROM [ERP_Asset].[dbo].[tblFixedAsset" +
+                "Register] where  intunit =@unit and ysnActive=1";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUNIT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11415,6 +11421,23 @@ SELECT intWHID, strWareHoseName FROM tblWearHouse WHERE (intWHID = @intWHID)";
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Active.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((bool)(Active.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            SearchTDS.TblAutoSearchAssetRegisterDataTable dataTable = new SearchTDS.TblAutoSearchAssetRegisterDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual SearchTDS.TblAutoSearchAssetRegisterDataTable GetAssetUnitByData(global::System.Nullable<int> unit) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((unit.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unit.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;

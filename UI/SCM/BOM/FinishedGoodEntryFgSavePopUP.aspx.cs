@@ -252,8 +252,7 @@ namespace UI.SCM.BOM
 
         protected void btnSaves_Click(object sender, EventArgs e)
         {
-            try { File.Delete(filePathForXML); }catch { }
-
+            
             try
             {
                 if (hdnConfirm.Value.ToString() == "1")

@@ -601,8 +601,76 @@ namespace Purchase_BLL.Asset
         }
 
 
-       
-       
+        public string[] GetAssetItemByUnit(string unit, string prefix)
+        {
+
+            
+           
+                tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(1)];
+                TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
+                tableCusts1[e] = adpCOA.GetAssetUnitByData(Convert.ToInt32(unit));
+           
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableCusts1[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strNameOfAsset
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableCusts1[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strNameOfAsset.ToLower().Contains(prefix) || tmp.strAssetID.ToLower().Contains(prefix)
+                                   orderby tmp.intID
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+
+
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["strAssetID"] + "]" + "[" + tbl.Rows[i]["intID"] + "]";
+         
+                }
+
+                return retStr;
+
+            }
+
+
+            else
+            {
+                return null;
+            }
+        }
+
+
+
+
 
 
     }
