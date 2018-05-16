@@ -19310,27 +19310,27 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
                 "ial.dbo.tblWMSales.intItemID)) AS Expr1, AG_WastageMaterial.dbo.tblWMSales.monSa" +
                 "lesRate, AG_WastageMaterial.dbo.tblWMSales.monSalesValue, AG_WastageMaterial.dbo" +
                 ".tblWMSales.strSalesRemarks, AG_WastageMaterial.dbo.tblWMSales.intItemID, AG_Was" +
-                "tageMaterial.dbo.tblWMSales.intSalesID, \'\' AS Expr2, \'\' AS Expr3, \'\' AS Expr4, (" +
-                "SELECT SUM(ISNULL(intInQty, 0)) - SUM(ISNULL(intOutQty, 0)) AS intOpeningQty FRO" +
-                "M AG_WastageMaterial.dbo.tblWMInventory\r\nWHERE (intWastageWareHouseID = AG_Wasta" +
-                "geMaterial.dbo.tblWMSales.intWastageWareHouseID) AND (intItemID = AG_WastageMate" +
-                "rial.dbo.tblWMSales.intItemID)) AS StockBalanceQty FROM AG_Global.dbo.tblAG_Item" +
-                " INNER JOIN AG_WastageMaterial.dbo.tblWMSales ON AG_Global.dbo.tblAG_Item.intIte" +
-                "mID = AG_WastageMaterial.dbo.tblWMSales.intItemID INNER JOIN AG_Global.dbo.tblAG" +
-                "_UOM ON AG_Global.dbo.tblAG_Item.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID LEF" +
-                "T OUTER JOIN AG_WastageMaterial.dbo.tblWMReceive ON AG_WastageMaterial.dbo.tblWM" +
-                "Sales.intItemID = AG_WastageMaterial.dbo.tblWMReceive.intItemID LEFT OUTER JOIN " +
-                "AG_WastageMaterial.dbo.tblWMIssue AS tblWMIssue_1 \r\nON AG_WastageMaterial.dbo.tb" +
-                "lWMSales.intSalesID = tblWMIssue_1.intSalesID WHERE (AG_WastageMaterial.dbo.tblW" +
-                "MSales.strSalesOrderNo = @Oid) AND (AG_WastageMaterial.dbo.tblWMSales.intUnitID " +
-                "= @uid) AND (AG_WastageMaterial.dbo.tblWMSales.ysnIssueComplete = 0) AND (AG_Was" +
-                "tageMaterial.dbo.tblWMSales.ysnActive = 1) GROUP BY AG_Global.dbo.tblAG_Item.str" +
-                "ItemName, AG_Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWMSales.intS" +
-                "alesQty, AG_WastageMaterial.dbo.tblWMSales.monSalesRate, AG_WastageMaterial.dbo." +
-                "tblWMSales.monSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSalesRemarks, AG_" +
-                "WastageMaterial.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo.tblWMSales.intS" +
-                "alesID, AG_WastageMaterial.dbo.tblWMSales.intUnitID, AG_WastageMaterial.dbo.tblW" +
-                "MSales.intWastageWareHouseID";
+                "tageMaterial.dbo.tblWMSales.intSalesID, \'0\' AS Expr2, \'0\' AS Expr3, \'0\' AS Expr4" +
+                ", (SELECT SUM(ISNULL(intInQty, 0)) - SUM(ISNULL(intOutQty, 0)) AS intOpeningQty " +
+                "FROM AG_WastageMaterial.dbo.tblWMInventory\r\nWHERE (intWastageWareHouseID = AG_Wa" +
+                "stageMaterial.dbo.tblWMSales.intWastageWareHouseID) AND (intItemID = AG_WastageM" +
+                "aterial.dbo.tblWMSales.intItemID)) AS StockBalanceQty FROM AG_Global.dbo.tblAG_I" +
+                "tem INNER JOIN AG_WastageMaterial.dbo.tblWMSales ON AG_Global.dbo.tblAG_Item.int" +
+                "ItemID = AG_WastageMaterial.dbo.tblWMSales.intItemID INNER JOIN AG_Global.dbo.tb" +
+                "lAG_UOM ON AG_Global.dbo.tblAG_Item.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID " +
+                "LEFT OUTER JOIN AG_WastageMaterial.dbo.tblWMReceive ON AG_WastageMaterial.dbo.tb" +
+                "lWMSales.intItemID = AG_WastageMaterial.dbo.tblWMReceive.intItemID LEFT OUTER JO" +
+                "IN AG_WastageMaterial.dbo.tblWMIssue AS tblWMIssue_1 \r\nON AG_WastageMaterial.dbo" +
+                ".tblWMSales.intSalesID = tblWMIssue_1.intSalesID WHERE (AG_WastageMaterial.dbo.t" +
+                "blWMSales.strSalesOrderNo = @Oid) AND (AG_WastageMaterial.dbo.tblWMSales.intUnit" +
+                "ID = @uid) AND (AG_WastageMaterial.dbo.tblWMSales.ysnIssueComplete = 0) AND (AG_" +
+                "WastageMaterial.dbo.tblWMSales.ysnActive = 1) GROUP BY AG_Global.dbo.tblAG_Item." +
+                "strItemName, AG_Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWMSales.i" +
+                "ntSalesQty, AG_WastageMaterial.dbo.tblWMSales.monSalesRate, AG_WastageMaterial.d" +
+                "bo.tblWMSales.monSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSalesRemarks, " +
+                "AG_WastageMaterial.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo.tblWMSales.i" +
+                "ntSalesID, AG_WastageMaterial.dbo.tblWMSales.intUnitID, AG_WastageMaterial.dbo.t" +
+                "blWMSales.intWastageWareHouseID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Oid", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSalesOrderNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@uid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

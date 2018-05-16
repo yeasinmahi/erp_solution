@@ -140,10 +140,10 @@ namespace UI.Wastage
 
         private void getRpt()
         {
-            unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString().ToString());
             if(unitid==11)
             { unitid = 16; }
-            else { unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString()); }
+            else { unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString().ToString()); }
             dt = obj.getSalesOrderView(ddlSO.SelectedItem.ToString(), unitid);
             if (dt.Rows.Count > 0)
             {
@@ -176,7 +176,6 @@ namespace UI.Wastage
                 {
                     intItemid = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblItemID")).Text.ToString());
                     intOutQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("txtIssue")).Text.ToString());
-                    intIssuedQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
                     intSalesOrderQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblQty")).Text.ToString());
                     monOutRate = decimal.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblRate")).Text.ToString());
                     monOutValue = decimal.Parse(monOutRate.ToString()) * decimal.Parse(intOutQty.ToString());
@@ -205,10 +204,11 @@ namespace UI.Wastage
                         narration = "Wastage Sales Order No. " + ddlSO.SelectedItem.ToString() + " & Delivery Challan No. " + txtDeliveryChallano.Text;
                         obj.gtCreateVoucher(dteTransactionDate, unitid, narration, monTotalIssueAmount, COAid, COAName, HOCOAid, HOCOAName, int.Parse(Session[SessionParams.USER_ID].ToString()));
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
-                        getRpt();
+                       
                     }
-                    getRpt();
+                   
                 }
+                getRpt();
             }
             #endregion **************** End **************
 
@@ -320,9 +320,9 @@ namespace UI.Wastage
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    totalqty += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblQtyTotal")).Text);
-                    totalvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblValueTotal")).Text);
-                    totalIssuevalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("txtIssueValue")).Text);
+                    totalqty += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblQty")).Text);
+                    totalvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblValue")).Text);
+                    totalIssuevalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("txtIssueValues")).Text);
 
                 }
             }
