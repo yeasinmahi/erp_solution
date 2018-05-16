@@ -53,24 +53,32 @@ namespace UI.Wastage
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (txtWeightID.Text =="")
-            { intWeightIDNo = 0; }
-            else { intWeightIDNo = int.Parse(txtWeightID.Text); }
-            intItemid = int.Parse(ddlItem.SelectedValue);
-            monInRate = decimal.Parse(hdnRate.Value);
-            intQty = int.Parse(txtQty.Text);
-            dteTransactionDate =DateTime.Parse(txtRecDate.Text);
-            monInValue = intQty * monInRate;
-            intTransactionTypeID = 1;
-            unitid= int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-            ysnActive = true;
-            strRemarks = txtRemarks.Text;
-            intWeightIDNo = 0;
-            intWastageWareHouseID = int.Parse(ddlWHName.SelectedValue);          
-            intInOutReffID = int.Parse(hdnReffid.Value);
-            objWastage.getReceiveEntry(intInOutReffID, dteTransactionDate, intItemid, intQty, monInRate, monInValue, intOutQty,monOutRate,monOutValue, intTransactionTypeID, unitid, intinsertby, DateTime.Now, intWHID, ysnActive, strRemarks, ysnIssueComplete, intSalesID, intCustromerID, intDeliveryChallanNo, strSalesOrderNo, intWeightIDNo, intDepartmentID, intTransferJobStationID, strRequisitionID, intTransferUnit, intWastageWareHouseID, intTransferWastageWareHouseID);
+            if ((txtQty.Text != "")||(txtRecDate.Text!=""))
+            {
+                if (txtWeightID.Text == "")
+                { intWeightIDNo = 0; }
+                else { intWeightIDNo = int.Parse(txtWeightID.Text); }
+                intItemid = int.Parse(ddlItem.SelectedValue);
+                monInRate = decimal.Parse(hdnRate.Value);
+                intQty = int.Parse(txtQty.Text);
+                dteTransactionDate = DateTime.Parse(txtRecDate.Text);
+                monInValue = intQty * monInRate;
+                intTransactionTypeID = 1;
+                unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
+                ysnActive = true;
+                strRemarks = txtRemarks.Text;
+                intWeightIDNo = 0;
+                intWastageWareHouseID = int.Parse(ddlWHName.SelectedValue);
+                intInOutReffID = int.Parse(hdnReffid.Value);
+                objWastage.getReceiveEntry(intInOutReffID, dteTransactionDate, intItemid, intQty, monInRate, monInValue, intOutQty, monOutRate, monOutValue, intTransactionTypeID, unitid, intinsertby, DateTime.Now, intWHID, ysnActive, strRemarks, ysnIssueComplete, intSalesID, intCustromerID, intDeliveryChallanNo, strSalesOrderNo, intWeightIDNo, intDepartmentID, intTransferJobStationID, strRequisitionID, intTransferUnit, intWastageWareHouseID, intTransferWastageWareHouseID);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
+                txtQty.Text = "";
+                txtRate.Text = "";
+                txtRecDate.Text = "";
 
+            }
+            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Qty.');", true); }
         }
     }
 }

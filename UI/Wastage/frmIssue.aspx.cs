@@ -82,7 +82,7 @@ namespace UI.Wastage
             ddlWHName.DataValueField = "intWastageWHID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
-            dt=obj.getSalesOrderList(int.Parse(Session[SessionParams.USER_ID].ToString()));
+            //dt=obj.getSalesOrderList(int.Parse(Session[SessionParams.USER_ID].ToString()));
         }
    
         protected void dgv_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -112,7 +112,7 @@ namespace UI.Wastage
             if (dt.Rows.Count > 0)
             {
                 ddlSO.DataTextField = "strSalesOrderNo";
-                ddlSO.DataValueField = "intCustomerID";
+                ddlSO.DataValueField = "strSalesOrderNo";
                 ddlSO.DataSource = dt;
                 ddlSO.DataBind();
             }
@@ -128,6 +128,8 @@ namespace UI.Wastage
                 txtMRRN.Text = dt.Rows[0]["strMoneyRecNo"].ToString();
                 txtDate.Text = DateTime.Parse(dt.Rows[0]["dteSalesDate"].ToString()).ToString("yyyy/mm/dd");
                 txtCustomer.Text = dt.Rows[0]["strCustomerName"].ToString();
+                hdncustomerid.Value = dt.Rows[0]["intCustomerID"].ToString();
+                
             }
         }
 
@@ -161,7 +163,7 @@ namespace UI.Wastage
             }
             else
             {
-                dt = obj.getCOA(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlSO.SelectedValue));
+                dt = obj.getCOA(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdncustomerid.Value));
                 COAid = int.Parse(dt.Rows[0]["intCOAID"].ToString());
                 COAName = (dt.Rows[0]["strCOAName"].ToString());
                 dt = obj.getCOAAcc(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
@@ -197,7 +199,7 @@ namespace UI.Wastage
                             intDeliveryChallanNo = int.Parse(txtDeliveryChallano.Text);
                         }
                         else { intDeliveryChallanNo = 0; }
-                        intCustromerID = int.Parse(ddlSO.SelectedValue);
+                        intCustromerID = int.Parse(hdncustomerid.Value);
                         strSalesOrderNo = ddlSO.SelectedItem.ToString();
                         obj.getReceiveEntry(intInOutReffID, dteTransactionDate, intItemid, intQty, monInRate, monInValue, intOutQty, monOutRate, monOutValue, intTransactionTypeID, unitid, intinsertby, DateTime.Now, intWHID, ysnActive, strRemarks, ysnIssueComplete, intSalesID, intCustromerID, intDeliveryChallanNo, strSalesOrderNo, intWeightIDNo, intDepartmentID, int.Parse(Session[SessionParams.JOBSTATION_ID].ToString()), strRequisitionID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWastageWareHouseID, intTransferWastageWareHouseID);
                         narration = "Wastage Sales Order No. " + ddlSO.SelectedItem.ToString() + " & Delivery Challan No. " + txtDeliveryChallano.Text;
