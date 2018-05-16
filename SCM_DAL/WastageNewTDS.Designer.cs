@@ -6163,8 +6163,6 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrUOM;
             
-            private global::System.Data.DataColumn columnintSalesQty;
-            
             private global::System.Data.DataColumn columnExpr1;
             
             private global::System.Data.DataColumn columnmonSalesRate;
@@ -6233,14 +6231,6 @@ namespace SCM_DAL {
             public global::System.Data.DataColumn strUOMColumn {
                 get {
                     return this.columnstrUOM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSalesQtyColumn {
-                get {
-                    return this.columnintSalesQty;
                 }
             }
             
@@ -6369,12 +6359,11 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderViewRow AddtblSalesOrderViewRow(string strItemName, string strUOM, int intSalesQty, int Expr1, decimal monSalesRate, decimal monSalesValue, string strSalesRemarks, int intItemID, string Expr2, string Expr3, string Expr4, int StockBalanceQty, int Bqty) {
+            public tblSalesOrderViewRow AddtblSalesOrderViewRow(string strItemName, string strUOM, int Expr1, decimal monSalesRate, decimal monSalesValue, string strSalesRemarks, int intItemID, string Expr2, string Expr3, string Expr4, int StockBalanceQty, int Bqty) {
                 tblSalesOrderViewRow rowtblSalesOrderViewRow = ((tblSalesOrderViewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strItemName,
                         strUOM,
-                        intSalesQty,
                         Expr1,
                         monSalesRate,
                         monSalesValue,
@@ -6417,7 +6406,6 @@ namespace SCM_DAL {
             internal void InitVars() {
                 this.columnstrItemName = base.Columns["strItemName"];
                 this.columnstrUOM = base.Columns["strUOM"];
-                this.columnintSalesQty = base.Columns["intSalesQty"];
                 this.columnExpr1 = base.Columns["Expr1"];
                 this.columnmonSalesRate = base.Columns["monSalesRate"];
                 this.columnmonSalesValue = base.Columns["monSalesValue"];
@@ -6438,8 +6426,6 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrItemName);
                 this.columnstrUOM = new global::System.Data.DataColumn("strUOM", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrUOM);
-                this.columnintSalesQty = new global::System.Data.DataColumn("intSalesQty", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSalesQty);
                 this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpr1);
                 this.columnmonSalesRate = new global::System.Data.DataColumn("monSalesRate", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -12540,22 +12526,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSalesQty {
-                get {
-                    try {
-                        return ((int)(this[this.tabletblSalesOrderView.intSalesQtyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intSalesQty\' in table \'tblSalesOrderView\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSalesOrderView.intSalesQtyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Expr1 {
                 get {
                     try {
@@ -12747,18 +12717,6 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrUOMNull() {
                 this[this.tabletblSalesOrderView.strUOMColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintSalesQtyNull() {
-                return this.IsNull(this.tabletblSalesOrderView.intSalesQtyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintSalesQtyNull() {
-                this[this.tabletblSalesOrderView.intSalesQtyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19273,7 +19231,6 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
             tableMapping.DataSetTable = "tblSalesOrderView";
             tableMapping.ColumnMappings.Add("strItemName", "strItemName");
             tableMapping.ColumnMappings.Add("strUOM", "strUOM");
-            tableMapping.ColumnMappings.Add("intSalesQty", "intSalesQty");
             tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             tableMapping.ColumnMappings.Add("monSalesRate", "monSalesRate");
             tableMapping.ColumnMappings.Add("monSalesValue", "monSalesValue");
@@ -19302,37 +19259,37 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT AG_Global.dbo.tblAG_Item.strItemName, AG_Global.dbo.tblAG_UOM.strUOM, AG_W" +
-                "astageMaterial.dbo.tblWMSales.intSalesQty, AG_WastageMaterial.dbo.tblWMSales.int" +
-                "SalesQty-((SELECT SUM(intIssueQty) AS Expr1 FROM AG_WastageMaterial.dbo.tblWMIss" +
-                "ue WHERE (strSalesOrderNo = @Oid) AND (intItemID = AG_WastageMaterial.dbo.tblWMS" +
-                "ales.intItemID))) Bqty, (SELECT SUM(intIssueQty) AS Expr1 FROM AG_WastageMateria" +
-                "l.dbo.tblWMIssue WHERE (strSalesOrderNo = @Oid) AND (intItemID = AG_WastageMater" +
-                "ial.dbo.tblWMSales.intItemID)) AS Expr1, AG_WastageMaterial.dbo.tblWMSales.monSa" +
-                "lesRate, AG_WastageMaterial.dbo.tblWMSales.monSalesValue, AG_WastageMaterial.dbo" +
-                ".tblWMSales.strSalesRemarks, AG_WastageMaterial.dbo.tblWMSales.intItemID, AG_Was" +
-                "tageMaterial.dbo.tblWMSales.intSalesID, \'0\' AS Expr2, \'0\' AS Expr3, \'0\' AS Expr4" +
-                ", (SELECT SUM(ISNULL(intInQty, 0)) - SUM(ISNULL(intOutQty, 0)) AS intOpeningQty " +
-                "FROM AG_WastageMaterial.dbo.tblWMInventory\r\nWHERE (intWastageWareHouseID = AG_Wa" +
-                "stageMaterial.dbo.tblWMSales.intWastageWareHouseID) AND (intItemID = AG_WastageM" +
-                "aterial.dbo.tblWMSales.intItemID)) AS StockBalanceQty FROM AG_Global.dbo.tblAG_I" +
-                "tem INNER JOIN AG_WastageMaterial.dbo.tblWMSales ON AG_Global.dbo.tblAG_Item.int" +
-                "ItemID = AG_WastageMaterial.dbo.tblWMSales.intItemID INNER JOIN AG_Global.dbo.tb" +
-                "lAG_UOM ON AG_Global.dbo.tblAG_Item.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID " +
-                "LEFT OUTER JOIN AG_WastageMaterial.dbo.tblWMReceive ON AG_WastageMaterial.dbo.tb" +
-                "lWMSales.intItemID = AG_WastageMaterial.dbo.tblWMReceive.intItemID LEFT OUTER JO" +
-                "IN AG_WastageMaterial.dbo.tblWMIssue AS tblWMIssue_1 \r\nON AG_WastageMaterial.dbo" +
-                ".tblWMSales.intSalesID = tblWMIssue_1.intSalesID WHERE (AG_WastageMaterial.dbo.t" +
-                "blWMSales.strSalesOrderNo = @Oid) AND (AG_WastageMaterial.dbo.tblWMSales.intUnit" +
-                "ID = @uid) AND (AG_WastageMaterial.dbo.tblWMSales.ysnIssueComplete = 0) AND (AG_" +
-                "WastageMaterial.dbo.tblWMSales.ysnActive = 1) GROUP BY AG_Global.dbo.tblAG_Item." +
-                "strItemName, AG_Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWMSales.i" +
-                "ntSalesQty, AG_WastageMaterial.dbo.tblWMSales.monSalesRate, AG_WastageMaterial.d" +
-                "bo.tblWMSales.monSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSalesRemarks, " +
-                "AG_WastageMaterial.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo.tblWMSales.i" +
-                "ntSalesID, AG_WastageMaterial.dbo.tblWMSales.intUnitID, AG_WastageMaterial.dbo.t" +
-                "blWMSales.intWastageWareHouseID";
+                "astageMaterial.dbo.tblWMSales.intSalesQty-isnull((SELECT SUM(intIssueQty) AS Exp" +
+                "r1 FROM AG_WastageMaterial.dbo.tblWMIssue WHERE (strSalesOrderNo = @soid) AND (i" +
+                "ntItemID = AG_WastageMaterial.dbo.tblWMSales.intItemID)),0) Bqty, isnull((SELECT" +
+                " isnull(SUM(intIssueQty),0) AS Expr1 FROM AG_WastageMaterial.dbo.tblWMIssue WHER" +
+                "E (strSalesOrderNo = @soid) AND (intItemID = AG_WastageMaterial.dbo.tblWMSales.i" +
+                "ntItemID)),0) AS Expr1, AG_WastageMaterial.dbo.tblWMSales.monSalesRate, AG_Wasta" +
+                "geMaterial.dbo.tblWMSales.monSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSa" +
+                "lesRemarks, AG_WastageMaterial.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo." +
+                "tblWMSales.intSalesID, \'0\' AS Expr2, \'0\' AS Expr3, \'0\' AS Expr4, (SELECT SUM(ISN" +
+                "ULL(intInQty, 0)) - SUM(ISNULL(intOutQty, 0)) AS intOpeningQty FROM AG_WastageMa" +
+                "terial.dbo.tblWMInventory\r\nWHERE (intWastageWareHouseID = AG_WastageMaterial.dbo" +
+                ".tblWMSales.intWastageWareHouseID) AND (intItemID = AG_WastageMaterial.dbo.tblWM" +
+                "Sales.intItemID)) AS StockBalanceQty FROM AG_Global.dbo.tblAG_Item INNER JOIN AG" +
+                "_WastageMaterial.dbo.tblWMSales ON AG_Global.dbo.tblAG_Item.intItemID = AG_Wasta" +
+                "geMaterial.dbo.tblWMSales.intItemID INNER JOIN AG_Global.dbo.tblAG_UOM ON AG_Glo" +
+                "bal.dbo.tblAG_Item.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID LEFT OUTER JOIN A" +
+                "G_WastageMaterial.dbo.tblWMReceive ON AG_WastageMaterial.dbo.tblWMSales.intItemI" +
+                "D = AG_WastageMaterial.dbo.tblWMReceive.intItemID LEFT OUTER JOIN AG_WastageMate" +
+                "rial.dbo.tblWMIssue AS tblWMIssue_1 \r\nON AG_WastageMaterial.dbo.tblWMSales.intSa" +
+                "lesID = tblWMIssue_1.intSalesID WHERE (AG_WastageMaterial.dbo.tblWMSales.strSale" +
+                "sOrderNo = @soid) AND (AG_WastageMaterial.dbo.tblWMSales.intUnitID = @uid) AND (" +
+                "AG_WastageMaterial.dbo.tblWMSales.ysnIssueComplete = 0) AND (AG_WastageMaterial." +
+                "dbo.tblWMSales.ysnActive = 1) GROUP BY AG_Global.dbo.tblAG_Item.strItemName, AG_" +
+                "Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWMSales.intSalesQty, AG_W" +
+                "astageMaterial.dbo.tblWMSales.monSalesRate, AG_WastageMaterial.dbo.tblWMSales.mo" +
+                "nSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSalesRemarks, AG_WastageMateri" +
+                "al.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo.tblWMSales.intSalesID, AG_Wa" +
+                "stageMaterial.dbo.tblWMSales.intUnitID, AG_WastageMaterial.dbo.tblWMSales.intWas" +
+                "tageWareHouseID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Oid", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSalesOrderNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@soid", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSalesOrderNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@uid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -19340,13 +19297,13 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual WastageNewTDS.tblSalesOrderViewDataTable GetSOView(string Oid, global::System.Nullable<int> uid) {
+        public virtual WastageNewTDS.tblSalesOrderViewDataTable GetSOView(string soid, global::System.Nullable<int> uid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Oid == null)) {
+            if ((soid == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Oid));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(soid));
             }
             if ((uid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(uid.Value));

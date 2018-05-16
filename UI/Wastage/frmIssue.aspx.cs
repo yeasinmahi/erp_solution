@@ -176,11 +176,12 @@ namespace UI.Wastage
                 {
                     intItemid = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblItemID")).Text.ToString());
                     intOutQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("txtIssue")).Text.ToString());
+                    intIssuedQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
                     intSalesOrderQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblQty")).Text.ToString());
                     monOutRate = decimal.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblRate")).Text.ToString());
                     monOutValue = decimal.Parse(monOutRate.ToString()) * decimal.Parse(intOutQty.ToString());
-
                     intSalesID = int.Parse(((HiddenField)dgvSOItem.Rows[index].FindControl("hdnSalesId")).Value.ToString());
+
                     if (decimal.Parse(intOutQty.ToString()) > 0)
                     {
 
@@ -188,7 +189,11 @@ namespace UI.Wastage
                         intTransactionTypeID = 3;
                         unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                         intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                        ysnIssueComplete = true;
+                        if (intSalesOrderQty == (intOutQty + intIssuedQty))
+                        {
+                            ysnIssueComplete = true;
+                        }
+                        else { ysnIssueComplete = false; }
                         ysnActive = true;
                         intWHID = int.Parse(ddlLocation.SelectedValue);
                         intWastageWareHouseID = int.Parse(ddlWHName.SelectedValue);
