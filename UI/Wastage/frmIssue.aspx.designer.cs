@@ -94,6 +94,15 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
+        /// hdncustomerid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdncustomerid;
+        
+        /// <summary>
         /// hdnUnit control.
         /// </summary>
         /// <remarks>
