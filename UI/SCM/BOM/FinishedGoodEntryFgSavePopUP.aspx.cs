@@ -25,7 +25,7 @@ namespace UI.SCM.BOM
 
      
 
-        string productionID, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
+        string productionID,itemId, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
        
 
@@ -48,6 +48,7 @@ namespace UI.SCM.BOM
                 srNo = Request.QueryString["srNo"].ToString();
                 quantity = Request.QueryString["quantity"].ToString();
                 whid = Request.QueryString["whid"].ToString();
+                itemId = Request.QueryString["itemId"].ToString();
                 lblProductName.Text = productName;
                 lblProductionId.Text = productionID;
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
@@ -55,8 +56,8 @@ namespace UI.SCM.BOM
                 txtProductQty.Text = quantity.ToString();
                 lblPlanQty.Text= quantity.ToString();
              
-                txtItem.Text = productName+"["+ productionID+"]";
-
+                txtItem.Text = productName+"["+ itemId + "]";
+                txtProductQty.Visible = true;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(8, xmlData, intwh, int.Parse(productionID), DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
@@ -271,10 +272,12 @@ namespace UI.SCM.BOM
                     if (xmlString.Length > 5)
                     {
                         string msg = objBom.BomPostData(9, xmlString, intWh, productionId, DateTime.Now, enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        
                         dgvStore.DataSource = "";
-                        dgvStore.DataBind();
-
+                        dgvStore.DataBind(); 
+                        txtProductQty.Text = "0";  
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                     }
 
                 }

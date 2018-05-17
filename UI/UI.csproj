@@ -1212,6 +1212,7 @@
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
@@ -6102,6 +6103,13 @@
     </Compile>
     <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.designer.cs">
       <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx.cs">
+      <DependentUpon>FinishedGoodRoutingDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx.designer.cs">
+      <DependentUpon>FinishedGoodRoutingDetalis.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\FinishGoodRouting.aspx.cs">
       <DependentUpon>FinishGoodRouting.aspx</DependentUpon>

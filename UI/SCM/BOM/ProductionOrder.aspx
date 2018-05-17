@@ -160,6 +160,9 @@
             </td> 
             </tr>
            <tr>
+                <td style="text-align:right;" ><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Workstation"></asp:Label></td>    
+            <td style="text-align:left;"><asp:DropDownList ID="ddlStation" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       ></asp:DropDownList></td>   
+
              <td  style="text-align:right"  colspan="6"><asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="AddConfirm();" OnClick="btnAdd_Click"/><asp:Button ID="btnSubmit" runat="server" OnClientClick="funConfirmAll();"  Text="Submit" OnClick="btnSubmit_Click"/></td>
                             
            </tr>

@@ -120,8 +120,8 @@ namespace UI.SCM
                     try { File.Delete(filePathForXML); } catch { }
                     string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now, enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "closeWin();", true);
-                    
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
 
                 }
             }

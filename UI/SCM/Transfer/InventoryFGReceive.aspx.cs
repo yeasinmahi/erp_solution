@@ -103,7 +103,7 @@ namespace UI.SCM.Transfer
                 dt = objTransfer.GetTtransferDatas(11, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlProduct.DataSource = dt;
                 ddlProduct.DataTextField = "strName";
-                ddlProduct.DataValueField = "Id";
+                ddlProduct.DataValueField = "intItemID";
                 ddlProduct.DataBind();
                 ddlProduct.Items.Insert(0, new ListItem("Select", "0"));
                 txtReceQty.Text = "";

@@ -33,17 +33,31 @@ namespace UI.SCM.BOM
 
                 try { File.Delete(filePathForXML); dgvRoute.DataSource = ""; dgvRoute.DataBind(); }
                 catch { }
-                dgvRoute.Visible = false;
-                dgvReport.Visible = false;
+                
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
-                {            
+                { 
                     ddlWh.DataSource = dt;
                     ddlWh.DataTextField = "strName";
                     ddlWh.DataValueField = "Id";
                     ddlWh.DataBind();
+                } 
+
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                    Session["unit"] = hdnUnit.Value.ToString();
                 }
+
+                dt = objBom.getBomRouting(5, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
+                ddlStation.DataSource = dt;
+                ddlStation.DataTextField = "strName";
+                ddlStation.DataValueField = "Id";
+                ddlStation.DataBind();
+
             }
         }
         
@@ -54,41 +68,44 @@ namespace UI.SCM.BOM
         {
             Bom_BLL objBoms = new Bom_BLL();
 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText);
 
         }
 
 
-        [WebMethod]
-        [ScriptMethod]
-        public static string[] GetAssetItemSerach(string prefixText, int count)
-        {
-            AutoSearch_BLL objBoms = new AutoSearch_BLL(); 
-            return objBoms.GetAssetItemByUnit(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText); 
-        }
-
+        
 
         protected void btnAssetAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                dgvRoute.Visible = true;
-                dgvReport.Visible = false;
-                if (hdnPreConfirm.Value=="1")
-                {
-                    arrayKey = txtAsset.Text.Split(delimiterChars);
+
+                dgvRptw.Visible = false;
+                dgvRoute.Visible =true;
+
+                arrayKey = txtFgItem.Text.Split(delimiterChars);
                     intWh = int.Parse(ddlWh.SelectedValue);
-                    string assetname = ""; string assetId = ""; string strAssetCode = "";
+                    string item = ""; string itemId = "";  
                     if (arrayKey.Length > 0)
-                    { assetname = arrayKey[0].ToString(); assetId = arrayKey[3].ToString(); }
-                    string strHour = txtHour.Text.ToString();
-                    checkXmlItemData(assetId);
+                    { item = arrayKey[0].ToString(); itemId = arrayKey[3].ToString(); }
+                    string workName = ddlStation.SelectedValue.ToString();
+                    string strcode = "0".ToString();
+                    string workId = ddlStation.SelectedValue.ToString();
+                    string itemName = item;
+                    checkXmlItemData(itemId);
+                if (int.Parse(itemId) > 0)
+                {
                     if (CheckItem == 1)
                     {
-                        CreateXml(assetname, assetId, strHour);
+                        CreateXml(itemName, itemId, workName, workId, strcode);
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
-                } 
+                }
+
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input FG Item');", true); }
+
+
+
             }
             catch { }
 
@@ -117,14 +134,14 @@ namespace UI.SCM.BOM
             catch { }
 
         }
-        private void CreateXml(string assetname, string assetId, string strHour)
+        private void CreateXml(string itemName,string itemId,string workName,string workId,string strcode)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, assetname, assetId, strHour);
+                XmlNode addItem = CreateItemNode(doc, itemName, itemId, workName, workId, strcode);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -132,7 +149,7 @@ namespace UI.SCM.BOM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, assetname, assetId, strHour);
+                XmlNode addItem = CreateItemNode(doc, itemName, itemId, workName, workId, strcode);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -145,19 +162,18 @@ namespace UI.SCM.BOM
             try
             {
                 arrayKey = txtFgItem.Text.Split(delimiterChars);
-                string item = ""; string itemid = ""; string strAssetCode = "";
+                string item = ""; string itemid = "";  
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); itemid = arrayKey[3].ToString(); }
-
+                { item = arrayKey[0].ToString(); itemid = arrayKey[3].ToString(); } 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 if(int.Parse(itemid)>0)
                 {
-                    dt = objBom.getBomRouting(3, xmlString, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                    dgvRptw.Visible = true;
                     dgvRoute.Visible = false;
-                    dgvReport.Visible = true;
+                    dt = objBom.getBomRouting(6, xmlString, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                    dgvRptw.DataSource = dt;
+                    dgvRptw.DataBind();
 
-                    dgvReport.DataSource = dt;
-                    dgvReport.DataBind();
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select FG Item');", true); }
              
@@ -166,23 +182,56 @@ namespace UI.SCM.BOM
             catch { }
         }
 
+        protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            { 
+
+                intwh = int.Parse(ddlWh.SelectedValue);
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                    Session["unit"] = hdnUnit.Value.ToString();
+                }
+                dt = objBom.getBomRouting(5, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
+                ddlStation.DataSource = dt;
+                ddlStation.DataTextField = "strName";
+                ddlStation.DataValueField = "Id";
+                ddlStation.DataBind();
+            }
+            catch { }
+        }
+
+        protected void btnDetalis_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try { File.Delete(filePathForXML); }
+                catch { }
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer; 
+                Label lblItem = row.FindControl("lblItem") as Label;
+                Label lblSectionName = row.FindControl("lblSectionName") as Label;
+                Label lblWorkstationId = row.FindControl("lblWorkstationId") as Label;
+                intwh = int.Parse(ddlWh.SelectedValue);
+                string itemname = lblItem.Text.ToString();
+                string stationName = lblSectionName.Text.ToString();
+                string stationId = lblWorkstationId.Text.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + itemname + "','" + stationName.ToString() + "','" + stationId + "','" + intwh + "');", true);
+
+
+               
+            }
+            catch { }
+        }
+
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
             try
             {
-                if(hdnConfirm.Value=="1")
-                {
-                    arrayKey = txtFgItem.Text.Split(delimiterChars);
-                    string item = ""; string itemid = ""; string strAssetCode = "";
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); itemid = arrayKey[3].ToString(); }
-                    string strHour = txtHoursMan.Text.ToString();
-                    string qty = txtQty.Text.ToString();
-                    string remarks = txtRemarks.Text.ToString();
-
-                    string xmlData = "<voucher><voucherentry qty=" + '"' + qty + '"' + " remarks=" + '"' + remarks + '"' + " strHour=" + '"' + strHour + '"' + "/></voucher>".ToString();
-                    if (decimal.Parse(qty) > 0)
-                    {
+                        
                         enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                         XmlDocument doc = new XmlDocument();
                         intWh = int.Parse(ddlWh.SelectedValue);
@@ -191,16 +240,16 @@ namespace UI.SCM.BOM
                         xmlString = dSftTm.InnerXml;
                         xmlString = "<voucher>" + xmlString + "</voucher>";
                         try { File.Delete(filePathForXML); } catch { }
-                        string msg = objBom.GetRoutingData(2, xmlString, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                        string msg = objBom.GetRoutingData(2, xmlString, xmlData, intWh, 0, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvRoute.DataSource = "";
                         dgvRoute.DataBind();
-                        txtQty.Text = "0";
-                        txtHoursMan.Text = "0";
-                        txtRemarks.Text = "0";
-                    }
-                }
-               
+                        txtFgItem.Text = "";
+                       
+                        
+                    
+                 
+
 
             }
             catch { }
@@ -227,21 +276,30 @@ namespace UI.SCM.BOM
             catch { }
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string assetname, string assetId, string strHour)
+        private XmlNode CreateItemNode(XmlDocument doc,string itemName,string itemId,string workName,string workId,string strcode)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
-
-            XmlAttribute Assetname = doc.CreateAttribute("assetname");
-            Assetname.Value = assetname;
-            XmlAttribute AssetId = doc.CreateAttribute("assetId");
-            AssetId.Value = assetId;
-            XmlAttribute StrHour = doc.CreateAttribute("strHour");
-            StrHour.Value = strHour;
              
+                 XmlAttribute ItemName = doc.CreateAttribute("itemName");
+            ItemName.Value = itemName;
 
-            node.Attributes.Append(Assetname);
-            node.Attributes.Append(AssetId);
-            node.Attributes.Append(StrHour); 
+            XmlAttribute ItemId = doc.CreateAttribute("itemId");
+            ItemId.Value = itemId;
+            XmlAttribute WorkName = doc.CreateAttribute("workName");
+            WorkName.Value = workName;
+
+            XmlAttribute WorkId = doc.CreateAttribute("workId");
+            WorkId.Value = workId;
+
+            XmlAttribute Strcode = doc.CreateAttribute("strcode");
+            Strcode.Value = strcode;
+
+            node.Attributes.Append(ItemName);
+            node.Attributes.Append(ItemId);
+            node.Attributes.Append(WorkName);
+            node.Attributes.Append(WorkId);
+            node.Attributes.Append(Strcode);
+ 
             return node;
         }
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)

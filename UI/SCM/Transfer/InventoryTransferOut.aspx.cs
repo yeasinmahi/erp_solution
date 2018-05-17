@@ -21,7 +21,7 @@ namespace UI.SCM.Transfer
         AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
         StoreIssue_BLL objWH = new StoreIssue_BLL();
         DataTable dt = new DataTable(); string xmlString, filePathForXML; int Id;
-        int enroll, intWh; string[] arrayKey, arrayKeyV; char[] delimiterChars = { '[', ']' };
+        int enroll,intvehicleId, intWh; string[] arrayKey, arrayKeyV; char[] delimiterChars = { '[', ']' };
         int CheckItem = 1;decimal values;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -130,8 +130,11 @@ namespace UI.SCM.Transfer
                     if (arrayKeyV.Length > 0)
                     { vehicle = arrayKeyV[1].ToString(); }
 
-                    if(int.Parse(vehicle)>0)
+                    if (int.Parse(vehicle) > 0)
                     {
+
+                    }
+                    else { vehicle = "0"; }
                         string locationId = ddlLcation.SelectedValue.ToString();
                         string locationName = ddlLcation.SelectedValue.ToString();
                         string transType = ddlTransType.SelectedItem.ToString();
@@ -157,7 +160,7 @@ namespace UI.SCM.Transfer
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set Vehicle No');", true); }
                    
 
-                }
+                 
 
 
 

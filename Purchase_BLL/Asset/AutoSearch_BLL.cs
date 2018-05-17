@@ -278,7 +278,7 @@ namespace Purchase_BLL.Asset
         }
 
         public static string[] AutoSearchLocationItem(string WHID, string prefix)
-        {
+       {
 
            Inatialize(int.Parse(WHID));
             //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];

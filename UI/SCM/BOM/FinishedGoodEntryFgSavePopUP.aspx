@@ -23,7 +23,24 @@
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
        
-     
+      <script type="text/javascript"> 
+         
+        function Confirms() { 
+                var confirm_value = document.createElement("INPUT");
+                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
+                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
+             
+        }
+    </script> 
+     <script>   function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
+        function RefreshParent() {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.location.reload();
+            }
+        }
+
+    </script> 
   
     <style type="text/css"> 
         .rounds {
@@ -111,7 +128,7 @@
                  <td><asp:Label ID="lblUom2" ForeColor="Blue" runat="server"></asp:Label></td>
                 
                  <td style="text-align:right" ><asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnSaves" ForeColor="Black" BackColor="#ffccff" Font-Bold="true" runat="server" Text="Save" OnClick="btnSaves_Click" /></td> 
+                <asp:Button ID="btnSaves" ForeColor="Black" BackColor="#ffccff" Font-Bold="true" runat="server" OnClientClick="Confirms();" Text="Save" OnClick="btnSaves_Click" /></td> 
      
             </tr>
              

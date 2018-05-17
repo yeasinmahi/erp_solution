@@ -101,6 +101,7 @@ namespace UI.SCM.BOM
                 Label lblSrNO = row.FindControl("lblSrNO") as Label;
                 Label lblQuantity = row.FindControl("lblQuantity") as Label;
                 Label lblLine = row.FindControl("lblLine") as Label;
+                Label lblItem= row.FindControl("lblItemID") as Label; 
                 string productID = lblProductID.Text.ToString();
                 string product  = lblProductName.Text.ToString();
                 string whid = ddlWH.SelectedValue.ToString();
@@ -111,11 +112,12 @@ namespace UI.SCM.BOM
                 string invoice = lblInvoice.Text.ToString();
                 string srNo = lblSrNO.Text.ToString();
                 string quantity = lblQuantity.Text.ToString();
-                string line = lblLine.Text.ToString(); 
+                string line = lblLine.Text.ToString();
+                string itemId = lblItem.Text.ToString();
                 string productName = product.Replace("\"", string.Empty).Replace("'", string.Empty);
                 string bomName = bom.Replace("\"", string.Empty).Replace("'", string.Empty);
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + productID + "','" + productName.ToString() + "','" + bomName + "','" + batchName + "','" + startTime + "','" + endTime + "','" + invoice.ToString() + "','" + srNo + "','" + quantity + "','" + whid + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + productID + "','" + productName.ToString() + "','" + bomName + "','" + batchName + "','" + startTime + "','" + endTime + "','" + invoice.ToString() + "','" + srNo + "','" + quantity + "','" + whid + "','" + itemId + "');", true); 
 
 
             }

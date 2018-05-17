@@ -21,7 +21,8 @@ namespace UI.SCM.BOM
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            filePathForXML = Server.MapPath("~/SCM/Data/ber__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            if (!IsPostBack)
             {
                 try { File.Delete(filePathForXML);  }
                 catch { }

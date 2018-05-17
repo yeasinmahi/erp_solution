@@ -127,11 +127,7 @@ namespace UI.SCM.BOM
                 string itemId = lblReqId.Text.ToString();
                 string whid = ddlWH.SelectedValue.ToString();
                 string Vtype = ddlvTypes.SelectedItem.ToString();
-
-
-
-
-
+                 
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + srrId + "','" + itemId.ToString() + "','" + whid + "','" + Vtype + "','" + dteFrom + "','" + dteTo + "');", true);
 
