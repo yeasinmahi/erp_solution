@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalesTrendAnalysis.aspx.cs" Inherits="UI.SAD.Sales.Report.RptRemoteSales.SalesTrendAnalysis" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalesAnalysis.aspx.cs" Inherits="UI.SAD.Sales.Report.RptRemoteSales.SalesAnalysis" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -15,7 +15,7 @@
     <script src="../../../../Content/JS/JQUERY/MigrateJS.js"></script>
     <script src="../../../../Content/JS/JQUERY/GridviewScroll.min.js"></script>
 
-
+    <%--  --%>
  
       
 </head>
@@ -55,9 +55,19 @@
                  </asp:ObjectDataSource>
             </td>
 
-
+             <td style="text-align:right"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Total Day:  "></asp:Label></td>
+            <td>
+                <asp:TextBox ID="txttotaltday" runat="server"></asp:TextBox>
+            </td>
     
           </tr>
+
+            <tr>
+                  <td style="text-align:right"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Running Day:  "></asp:Label></td>
+            <td>
+                <asp:TextBox ID="txtRunningDay" runat="server"></asp:TextBox>
+            </td>
+            </tr>
          
             <tr class="tblrowOdd"><td style="text-align:right" > <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
                 
@@ -68,7 +78,7 @@
          <div class="leaveApplication_container"> 
              <table>
                  <tr class="tblroweven"><td>
-              <asp:GridView ID="grdvCashDOCommission" runat="server" AutoGenerateColumns="False" AllowPaging="false" ShowFooter="true"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="grdvCashDOCommission_PageIndexChanging" OnRowDataBound="grdvCashDOCommission_RowDataBound"  >
+              <asp:GridView ID="grdvsalestrend" runat="server" AutoGenerateColumns="False" AllowPaging="false" ShowFooter="true"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" >
                   <AlternatingRowStyle BackColor="#CCCCCC" />
                   <Columns>
                      

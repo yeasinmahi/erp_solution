@@ -542,7 +542,7 @@ namespace UI.Transport.TripvsCost
         {
             Session["jobStationId"] = (sender as DropDownList).SelectedValue;
         }
-
+        //
         protected void txttrip_TextChanged(object sender, EventArgs e)
         {
             string tripcode = txttrip.Text.ToString();

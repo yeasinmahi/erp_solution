@@ -10,7 +10,7 @@
 namespace UI.SAD.Sales.Report.RptRemoteSales {
     
     
-    public partial class SalesTrendAnalysis {
+    public partial class SalesAnalysis {
         
         /// <summary>
         /// Head1 control.
@@ -175,6 +175,42 @@ namespace UI.SAD.Sales.Report.RptRemoteSales {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsUnitNameByEnrol;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// txttotaltday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttotaltday;
+        
+        /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// txtRunningDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRunningDay;
+        
+        /// <summary>
         /// btnShow control.
         /// </summary>
         /// <remarks>
@@ -184,12 +220,12 @@ namespace UI.SAD.Sales.Report.RptRemoteSales {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// grdvCashDOCommission control.
+        /// grdvsalestrend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvCashDOCommission;
+        protected global::System.Web.UI.WebControls.GridView grdvsalestrend;
     }
 }

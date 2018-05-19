@@ -150,7 +150,7 @@ namespace UI.SAD.Sales.Report
                     grdvDOCHPENDING.DataBind();
                     grdvProductGroupbaseChallan.DataSource = dt;
                     grdvProductGroupbaseChallan.DataBind();
-
+                    //GG
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
             }
