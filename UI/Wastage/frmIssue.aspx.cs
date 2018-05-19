@@ -82,7 +82,7 @@ namespace UI.Wastage
             ddlWHName.DataValueField = "intWastageWHID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
-            dt=obj.getSalesOrderList(int.Parse(Session[SessionParams.USER_ID].ToString()));
+            //dt=obj.getSalesOrderList(int.Parse(Session[SessionParams.USER_ID].ToString()));
         }
    
         protected void dgv_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -112,7 +112,7 @@ namespace UI.Wastage
             if (dt.Rows.Count > 0)
             {
                 ddlSO.DataTextField = "strSalesOrderNo";
-                ddlSO.DataValueField = "intCustomerID";
+                ddlSO.DataValueField = "strSalesOrderNo";
                 ddlSO.DataSource = dt;
                 ddlSO.DataBind();
             }
@@ -128,6 +128,8 @@ namespace UI.Wastage
                 txtMRRN.Text = dt.Rows[0]["strMoneyRecNo"].ToString();
                 txtDate.Text = DateTime.Parse(dt.Rows[0]["dteSalesDate"].ToString()).ToString("yyyy/mm/dd");
                 txtCustomer.Text = dt.Rows[0]["strCustomerName"].ToString();
+                hdncustomerid.Value = dt.Rows[0]["intCustomerID"].ToString();
+                
             }
         }
 
@@ -138,10 +140,10 @@ namespace UI.Wastage
 
         private void getRpt()
         {
-            unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString().ToString());
             if(unitid==11)
             { unitid = 16; }
-            else { unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString()); }
+            else { unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString().ToString()); }
             dt = obj.getSalesOrderView(ddlSO.SelectedItem.ToString(), unitid);
             if (dt.Rows.Count > 0)
             {
@@ -161,7 +163,7 @@ namespace UI.Wastage
             }
             else
             {
-                dt = obj.getCOA(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlSO.SelectedValue));
+                dt = obj.getCOA(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdncustomerid.Value));
                 COAid = int.Parse(dt.Rows[0]["intCOAID"].ToString());
                 COAName = (dt.Rows[0]["strCOAName"].ToString());
                 dt = obj.getCOAAcc(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
@@ -174,12 +176,12 @@ namespace UI.Wastage
                 {
                     intItemid = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblItemID")).Text.ToString());
                     intOutQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("txtIssue")).Text.ToString());
-                    intIssuedQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
+                    intIssuedQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
                     intSalesOrderQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblQty")).Text.ToString());
                     monOutRate = decimal.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblRate")).Text.ToString());
                     monOutValue = decimal.Parse(monOutRate.ToString()) * decimal.Parse(intOutQty.ToString());
-
                     intSalesID = int.Parse(((HiddenField)dgvSOItem.Rows[index].FindControl("hdnSalesId")).Value.ToString());
+
                     if (decimal.Parse(intOutQty.ToString()) > 0)
                     {
 
@@ -187,7 +189,11 @@ namespace UI.Wastage
                         intTransactionTypeID = 3;
                         unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                         intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                        ysnIssueComplete = true;
+                        if (intSalesOrderQty == (intOutQty + intIssuedQty))
+                        {
+                            ysnIssueComplete = true;
+                        }
+                        else { ysnIssueComplete = false; }
                         ysnActive = true;
                         intWHID = int.Parse(ddlLocation.SelectedValue);
                         intWastageWareHouseID = int.Parse(ddlWHName.SelectedValue);
@@ -197,16 +203,17 @@ namespace UI.Wastage
                             intDeliveryChallanNo = int.Parse(txtDeliveryChallano.Text);
                         }
                         else { intDeliveryChallanNo = 0; }
-                        intCustromerID = int.Parse(ddlSO.SelectedValue);
+                        intCustromerID = int.Parse(hdncustomerid.Value);
                         strSalesOrderNo = ddlSO.SelectedItem.ToString();
                         obj.getReceiveEntry(intInOutReffID, dteTransactionDate, intItemid, intQty, monInRate, monInValue, intOutQty, monOutRate, monOutValue, intTransactionTypeID, unitid, intinsertby, DateTime.Now, intWHID, ysnActive, strRemarks, ysnIssueComplete, intSalesID, intCustromerID, intDeliveryChallanNo, strSalesOrderNo, intWeightIDNo, intDepartmentID, int.Parse(Session[SessionParams.JOBSTATION_ID].ToString()), strRequisitionID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWastageWareHouseID, intTransferWastageWareHouseID);
                         narration = "Wastage Sales Order No. " + ddlSO.SelectedItem.ToString() + " & Delivery Challan No. " + txtDeliveryChallano.Text;
                         obj.gtCreateVoucher(dteTransactionDate, unitid, narration, monTotalIssueAmount, COAid, COAName, HOCOAid, HOCOAName, int.Parse(Session[SessionParams.USER_ID].ToString()));
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully.');", true);
-                        getRpt();
+                       
                     }
-                    getRpt();
+                   
                 }
+                getRpt();
             }
             #endregion **************** End **************
 
@@ -318,9 +325,9 @@ namespace UI.Wastage
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    totalqty += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblQtyTotal")).Text);
-                    totalvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblValueTotal")).Text);
-                    totalIssuevalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("txtIssueValue")).Text);
+                    totalqty += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblQty")).Text);
+                    totalvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblValue")).Text);
+                    totalIssuevalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("txtIssueValues")).Text);
 
                 }
             }

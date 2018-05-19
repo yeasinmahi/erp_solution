@@ -93,7 +93,7 @@ namespace UI.Wastage
             dt = obj.getIteminfo(ddlItem.SelectedValue);
             txtRate.Text = dt.Rows[0]["monRate"].ToString(); 
             txtUOM.Text = dt.Rows[0]["strUOM"].ToString();
-            dt = obj.getOpeningStock(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(ddlItem.SelectedValue));
+            dt = obj.getOpeningStock(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlItem.SelectedValue));
             if (dt.Rows.Count > 0)
             {
                 hdnOpening.Value = dt.Rows[0]["intOpeningQty"].ToString();
@@ -124,10 +124,16 @@ namespace UI.Wastage
                 if ((txtQty.Text != "") && (txtRate.Text != ""))
                 {
                     intItemid = int.Parse(ddlItem.SelectedValue);
+                if (txtRate.Text == "")
+                { monOutRate = 0; }
+                else
+                {
                     monOutRate = decimal.Parse(txtRate.Text);
+                }
+                    
                     intOutQty = int.Parse(txtQty.Text);
                     dteTransactionDate = DateTime.Parse(txtSODate.Text);
-                    monOutValue = intOutQty * monInRate;
+                    monOutValue = intOutQty * monOutRate;
                     intTransactionTypeID = 4;
                     unitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                     intinsertby = int.Parse(Session[SessionParams.USER_ID].ToString());

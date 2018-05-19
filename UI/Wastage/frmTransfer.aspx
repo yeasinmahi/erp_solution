@@ -33,11 +33,11 @@
     <script>
        function Add() {
            var a, b, c;
-            var a = document.forms["frmSO"]["txtQty"].value;           
+            var a = document.forms["frmTransfer"]["txtQty"].value;           
             if (isNaN(a) == true) { a = 0; }
-              var b = document.forms["frmSO"]["txtRate"].value;
+              var b = document.forms["frmTransfer"]["txtRate"].value;
             if (isNaN(b) == true) { b = 0; }            
-            document.forms["frmSO"]["txtValue"].value = (a*b).toFixed(0);
+            document.forms["frmTransfer"]["txtValue"].value = (a*b).toFixed(0);
         }
   </script>          
 </head>
@@ -99,7 +99,7 @@
             <td><asp:TextBox ID="txtValue" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td> 
           </tr>
           <tr><td>Requisition No</td>
-             <td><asp:TextBox ID="txtRequNo" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
+             <td><asp:TextBox ID="txtRequNo" runat="server" CssClass="txtBox1"  BackColor="WhiteSmoke"></asp:TextBox></td>
              <td colspan="3" style="text-align:right; padding: 0px 0px 0px 0px">&nbsp&nbsp <asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submnit" OnClick="btnSubmit_Click" /> </td>        
           </tr>
     </table>

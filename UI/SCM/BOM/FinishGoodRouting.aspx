@@ -23,36 +23,33 @@
    
     <script type="text/javascript"> 
          
-        function Confirms() {
-             var r=  document.getElementById('txtRemarsk')
-            var e = document.getElementById("ddlTransferItem");
-            var transferID = e.options[e.selectedIndex].value;
-            var e = document.getElementById("ddlLcation");
-            var locationId = e.options[e.selectedIndex].value; 
-
-            var inItem = document.getElementById("txtItem").value;
-            var remarks = document.getElementById("txtRemarsk").value;
-            var quantity =parseFloat(document.getElementById("txtQty").value);
-           var inQty= parseFloat(document.getElementById("hdnInQty").value); 
-      
-            if ($.trim(transferID) == 0 || $.trim(transferID) == "" || $.trim(transferID) == null || $.trim(transferID) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Transfer In Item'); }
-            else if ($.trim(locationId) == 0 || $.trim(locationId) == "" || $.trim(locationId) == null || $.trim(locationId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Sotre Location'); }
-            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
-            else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please Input Remarks'); }
-            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-            else if ( parseFloat(inQty)<parseFloat(quantity)){ document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Transfer In Quantity'); }
-                else {
+        
+         function  ConfirmAdd() {  
+           
+             var fgitem = document.getElementById("txtFgItem").value;  
+       
+            if ($.trim(fgitem) == 0 || $.trim(fgitem) == "" || $.trim(fgitem) == null || $.trim(fgitem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select FG  Item'); }
+           
+            else {
+               document.getElementById("hdnPreConfirm").value = "1";
+               
+            } 
+        }
+          function  Confirm() {   
+            
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnPreConfirm").value = "1"; }
-                else { confirm_value.value = "No"; document.getElementById("hdnPreConfirm").value = "0"; } 
-
-               // document.getElementById("hdnPreConfirm").value = "1";
-            }
-             
-           
+                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
+                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
         }
     </script> 
+    <script> 
+         function Viewdetails( itemname,stationName,stationId,intwh) {
+             window.open('FinishedGoodRoutingDetalis.aspx?itemname=' + itemname + '&stationName=' + stationName + '&stationId=' + stationId +'&intwh=' + intwh, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+               
+         }
+    </script>
+  
     <style type="text/css">
         .auto-style1 {
             width: 668px;
@@ -73,289 +70,176 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" />
-        <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnTransfromValue" runat="server" /><asp:HiddenField ID="hdnInQty" runat="server" />
-       <div class="tabs_container">INVENTORY TRANSFER <hr /></div>
+    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" />
+        <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" /><asp:HiddenField ID="hdnInQty" runat="server" />
+         <td><asp:HiddenField ID="hdn1" runat="server" /><asp:HiddenField ID="hdn2" runat="server" /><asp:HiddenField ID="hdn3" runat="server" />
+    <asp:HiddenField ID="hdn4" runat="server" /><asp:HiddenField ID="hdn5" runat="server" /><asp:HiddenField ID="hdn6" runat="server" />
+    <asp:HiddenField ID="hdn7" runat="server" /><asp:HiddenField ID="hdn8" runat="server" /><asp:HiddenField ID="hdn9" runat="server" />
+    <asp:HiddenField ID="hdn10" runat="server" /><asp:HiddenField ID="hdnOpID" runat="server" /><asp:HiddenField ID="hdnOpName" runat="server" /></td>
+       <div class="tabs_container">PROCESS ROUTING<hr /></div>
         
         <table    style="width:750px; text-align:center ">   
             <tr>
-             <td></td><td></td>  <td></td><td></td> 
+             <td></td><td></td>  <td></td> 
             <td style="text-align:right;">WH Name:</td>
-            <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True"  ></asp:DropDownList>  </td> 
+            <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged"  ></asp:DropDownList>  </td> 
         </tr>
             <tr>
                 <td></td>
             </tr>
          </table>
         <table>
-              <tr>
-            <td style='text-align: right;'>Item Name</td>
+            <tr >
+            <td style="text-align:left" >Item Name</td>
             <td><asp:TextBox ID="txtFgItem" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true" Width="600px"      ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" TargetControlID="txtFgItem"
-            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+            ServiceMethod="GetItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>  
 
             </tr>
-        </table>
-        <table style="border-radius:1px; width:800px; border-style:groove">
-            <caption style="text-align:left">Asset</caption>
+            <tr>
+            <td colspan="2"><asp:LinkButton ID="LinkButton1" runat="server" Font-Size="Small" OnCommand="LinkButton1_Click" Text="0"></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton2" runat="server" Font-Size="Small" OnCommand="LinkButton2_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton3" runat="server" Font-Size="Small" OnCommand="LinkButton3_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton4" runat="server" Font-Size="Small" OnCommand="LinkButton4_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton5" runat="server" Font-Size="Small"  OnCommand="LinkButton5_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton6" runat="server" Font-Size="Small" OnCommand="LinkButton6_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton7" runat="server" Font-Size="Small" OnCommand="LinkButton7_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton8" runat="server" Font-Size="Small" OnCommand="LinkButton8_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton9" runat="server" Font-Size="Small" OnCommand="LinkButton9_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton10" runat="server" Font-Size="Small" OnCommand="LinkButton10_Click" ></asp:LinkButton> 
+           </td>                  
+            </tr>
+            </tr>
+            <td>Workstation:</td>
+            <td>
+                <asp:ListBox ID="ListBox1" runat="server" AutoPostBack="True" Height="50px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="600px"></asp:ListBox>
+            </td>
+             
+            <tr>
+                <td>Type</td>
+                <td><asp:DropDownList ID="ddlType" runat="server" CssClass="ddList" Width="600px"> 
+                    <asp:ListItem Text="Administrative"></asp:ListItem><asp:ListItem Text="Manufacturing"></asp:ListItem>
+                    <asp:ListItem Text="Seling and Distribution"></asp:ListItem>
+                    </asp:DropDownList></td>
+            </tr>
+            <caption>
+        
+                <tr>
+                    <td>Remarks</td>
+                    <td>
+                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox" Width="600px"> </asp:TextBox>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="text-align:right">
+                        <asp:Button ID="btnAssetAdd" runat="server" OnClick="btnAssetAdd_Click" OnClientClick=" ConfirmAdd();" Text="Add" />
+                        <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" OnClientClick="Confirm();" Text="Submit" />
+                        <asp:Button ID="btnReport" runat="server" OnClick="btnReport_Click" Text="Report" />
+                    </td>
+                </tr>
+            </caption>
+        </table> 
+         <table style="width:800px"> 
+            <tr><td> 
+
+            <asp:GridView ID="dgvRoute" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="650px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
+
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  >
+
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+
+            <Columns>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+                 
+             <asp:TemplateField HeaderText="Item Name" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="itemName" >
+            <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("itemName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+                
+            <asp:TemplateField HeaderText="itemId" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="itemId" >
+            <ItemTemplate><asp:Label ID="lblItemId" runat="server"   Text='<%# Bind("itemId") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+              
+           <asp:TemplateField HeaderText="Workstation" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="workName" >
+            <ItemTemplate><asp:Label ID="lblWorkstation" runat="server"  Text='<%# Bind("workName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+                
+            <asp:TemplateField HeaderText="workId" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="workId" >
+            <ItemTemplate><asp:Label ID="lblWorkId" runat="server"   Text='<%# Bind("workId") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+             <asp:TemplateField HeaderText="Type" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="StrTypeName" >
+            <ItemTemplate><asp:Label ID="lblType" runat="server"  Text='<%# Bind("StrTypeName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+                
+            <asp:TemplateField HeaderText="TypeID" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="StrTypeID" >
+            <ItemTemplate><asp:Label ID="lblTypeId" runat="server"   Text='<%# Bind("StrTypeID") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+             <asp:TemplateField HeaderText="Remarks" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="Strcode" >
+            <ItemTemplate><asp:Label ID="lblRemarks" runat="server"  Text='<%# Bind("Strcode") %>' ></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
+
+            <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" /> 
+            </Columns>
+                <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+
+            </asp:GridView></td>
+        </tr> 
+      </table>
+           <table style="width:800px"> 
+            <tr><td> 
+
+            <asp:GridView ID="dgvRptw" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="650px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
+
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  >
+
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+
+            <Columns>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+                 
+             <asp:TemplateField HeaderText="Item Name" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="strItemName" >
+            <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("strItemName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+                
+            <asp:TemplateField HeaderText="Workstation" ItemStyle-HorizontalAlign="right"   SortExpression="strName" >
+            <ItemTemplate><asp:Label ID="lblSectionName" runat="server"   Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+              
+           <asp:TemplateField HeaderText="workstation" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="intAutoId" >
+            <ItemTemplate><asp:Label ID="lblWorkstationId" runat="server"  Text='<%# Bind("intAutoId") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+                
+            
+           <asp:TemplateField HeaderText="Code" ItemStyle-HorizontalAlign="right" SortExpression="strCode" >
+            <ItemTemplate><asp:Label ID="lblCode" runat="server"   Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+             <asp:TemplateField HeaderText="Type" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strType" >
+            <ItemTemplate><asp:Label ID="lblType" runat="server"   Text='<%# Bind("strType") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+               
+            <asp:TemplateField HeaderText="Remarks" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks" >
+            <ItemTemplate><asp:Label ID="lblRemarks" runat="server"  Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
+             
          
-            <tr>
-            <td style='text-align: right;'>Name</td>
-            <td><asp:TextBox ID="txtAsset" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"         ></asp:TextBox>
-            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAsset"
-            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
-            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-            </cc1:AutoCompleteExtender></td>  
-           <td style="text-align:right;" ><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
-
-            <td style="text-align:left"><asp:TextBox ID="txtdteDate" runat="server" CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender> 
-           <asp:DropDownList ID="ddlFromTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
-            <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-           </asp:DropDownList>
-            <asp:DropDownList ID="ddlFromToTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server" >
-                 <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-            </asp:DropDownList> </td>
-           </tr>
-            <tr>
-            
-            <td style="text-align:right" colspan="4"><asp:Button ID="btnAssetAdd" Text="Add" runat="server" /> 
-            </tr>
-            
-             <tr>
-            <td colspan="6"> <asp:GridView ID="GridView1" Width="600px" runat="server" AutoGenerateColumns="False"  >
-            <Columns>
-            <asp:BoundField DataField="strEmployeeName" HeaderText="Performer by" SortExpression="strEmployeeName" />
-            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-            <asp:BoundField DataField="strDescription" HeaderText="Description" SortExpression="strDescription" />
-            <asp:BoundField DataField="strHour" HeaderText="Hour" SortExpression="strHour" />
-            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
-            <asp:TemplateField HeaderText="ID" Visible="False">
-            <ItemTemplate>
-            <asp:Label ID="Label20" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
-            </ItemTemplate>
-            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Detalis" ItemStyle-HorizontalAlign="right"  > 
+            <ItemTemplate><asp:Button ID="btnDetalis" Width="60px" runat="server" OnClick="btnDetalis_Click"      Text="Detalis"></asp:Button></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
+      
             </Columns>
-            </asp:GridView> </td>
-            </tr>
-            
-            
-        </table>
+                <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
 
-        <table><tr><td></td></tr></table> 
-         <table style="border-radius:1px; width:800px; border-style:groove">
-            <caption style="text-align:left">Man Power</caption> 
-             <tr>
-             <td colspan="4"><asp:RadioButton ID="radLocal" AutoPostBack="true" runat="server" Text="Local" GroupName="man" /><asp:RadioButton ID="radVendor" AutoPostBack="true" runat="server"  Text="Vendor" GroupName="man" /></td>
-             </tr>
-            <tr> 
-            <td style='text-align: right;'>Name</td>
-            <td><asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"       ></asp:TextBox>
-            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtItem"
-            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
-            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-            </cc1:AutoCompleteExtender></td>  
-           <td style="text-align:right;" ><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
-
-            <td style="text-align:left"><asp:TextBox ID="TextBox2" runat="server" CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender> 
-           <asp:DropDownList ID="DropDownList1" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
-            <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-           </asp:DropDownList>
-            <asp:DropDownList ID="DropDownList2" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server" >
-                 <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-            </asp:DropDownList> </td>
-           </tr>
-            <tr> 
-            <td style="text-align:right" colspan="4"><asp:Button ID="Button1" Text="Add" runat="server" /> 
-            </tr>
-             <tr>
-            <td colspan="6"> <asp:GridView ID="dgvWolabor" Width="600px" runat="server" AutoGenerateColumns="False"  >
-            <Columns>
-            <asp:BoundField DataField="strEmployeeName" HeaderText="Performer by" SortExpression="strEmployeeName" />
-            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-            <asp:BoundField DataField="strDescription" HeaderText="Description" SortExpression="strDescription" />
-            <asp:BoundField DataField="strHour" HeaderText="Hour" SortExpression="strHour" />
-            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
-            <asp:TemplateField HeaderText="ID" Visible="False">
-            <ItemTemplate>
-            <asp:Label ID="Label20" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
-            </ItemTemplate>
-            </asp:TemplateField>
-            </Columns>
-            </asp:GridView> </td>
-            </tr>
-        </table>
-
-        <table><tr><td></td></tr></table> 
-         <table style="border-radius:1px; width:800px; border-style:groove">
-            <caption style="text-align:left">Man power</caption> 
-            <tr>
-            <td style='text-align: right;'>Item Name</td>
-            <td><asp:TextBox ID="TextBox3" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true"     ></asp:TextBox>
-            <cc1:AutoCompleteExtender ID="AutoCompleteExtender3" runat="server" TargetControlID="txtItem"
-            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
-            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-            </cc1:AutoCompleteExtender></td>  
-           <td style="text-align:right;" ><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
-
-            <td style="text-align:left"><asp:TextBox ID="TextBox4" runat="server" CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender> 
-           <asp:DropDownList ID="DropDownList3" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
-            <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-           </asp:DropDownList>
-            <asp:DropDownList ID="DropDownList4" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server" >
-                 <asp:ListItem>12:00 AM</asp:ListItem>
-            <asp:ListItem>1:00 AM</asp:ListItem>
-            <asp:ListItem>2:00 AM</asp:ListItem>
-            <asp:ListItem>3:00 AM</asp:ListItem>
-            <asp:ListItem>4:00 AM</asp:ListItem>
-            <asp:ListItem>5:00 AM</asp:ListItem>
-            <asp:ListItem>6:00 AM</asp:ListItem>
-            <asp:ListItem>7:00 AM</asp:ListItem>
-            <asp:ListItem>8:00 AM</asp:ListItem>
-            <asp:ListItem>9:00 AM</asp:ListItem>
-            <asp:ListItem>10:00 AM</asp:ListItem>
-            <asp:ListItem>11:00 AM</asp:ListItem>
-            <asp:ListItem>12:00 PM</asp:ListItem>
-            <asp:ListItem>1:00 PM</asp:ListItem>
-            <asp:ListItem>2:00 PM</asp:ListItem>
-            <asp:ListItem>3:00 PM</asp:ListItem>
-            <asp:ListItem>4:00 PM</asp:ListItem>
-            <asp:ListItem>5:00 PM</asp:ListItem>
-            <asp:ListItem>6:00 PM</asp:ListItem>
-            <asp:ListItem>7:00 PM</asp:ListItem>
-            <asp:ListItem>8:00 PM</asp:ListItem>
-            <asp:ListItem>9:00 PM</asp:ListItem>
-            <asp:ListItem>10:00 PM</asp:ListItem>
-            <asp:ListItem>11:59 PM</asp:ListItem> 
-            </asp:DropDownList> </td>
-           </tr>
-            <tr> 
-            <td style="text-align:right" colspan="4"><asp:Button ID="Button2" Text="Add" runat="server" /> 
-            </tr> 
-        </table>
+            </asp:GridView></td>
+        </tr> 
+      </table>
         </div>
 
 <%--=========================================End My Code From Here=================================================--%>

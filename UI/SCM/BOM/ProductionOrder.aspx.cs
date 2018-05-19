@@ -29,19 +29,39 @@ namespace UI.SCM.BOM
             {
                 try { File.Delete(filePathForXML); dgvBom.DataSource = ""; dgvBom.DataBind(); }
                 catch { }
+                
+                DefaultDataBind();
+            }
+            else { }
+        }
+
+        private void DefaultDataBind()
+        {
+            try
+            {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
-                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    try { Session["Unit"] = hdnUnit.Value; } catch { }
+
                     ddlWH.DataSource = dt;
                     ddlWH.DataTextField = "strName";
                     ddlWH.DataValueField = "Id";
                     ddlWH.DataBind();
                 }
+
+              
+
+                intwh = int.Parse(ddlWH.SelectedValue);
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                    Session["unit"] = hdnUnit.Value.ToString();
+                }
             }
-            else { }
+            catch { }
         }
         #region========================Auto Search============================ 
         [WebMethod]
@@ -49,7 +69,7 @@ namespace UI.SCM.BOM
         public static string[] GetItemSerach(string prefixText, int count)
         {
             Bom_BLL objBoms = new Bom_BLL(); 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText);
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText);
 
         } 
         #endregion====================Close======================================
@@ -160,13 +180,15 @@ namespace UI.SCM.BOM
         {
             try
             {
+                intwh = int.Parse(ddlWH.SelectedValue);
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
+                dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    try { Session["Unit"] = hdnUnit.Value; } catch { }
-                    
+                    Session["unit"] = hdnUnit.Value.ToString();
+
+
                 }
             }
             catch { }
@@ -187,6 +209,12 @@ namespace UI.SCM.BOM
                 ddlBom.DataTextField = "strName";
                 ddlBom.DataValueField = "Id";
                 ddlBom.DataBind();
+
+                dt = objBom.GetBomData(14, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                ddlStation.DataSource = dt;
+                ddlStation.DataTextField = "strName";
+                ddlStation.DataValueField = "Id";
+                ddlStation.DataBind();
 
             }
             catch { }
