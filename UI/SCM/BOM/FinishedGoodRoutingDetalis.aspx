@@ -17,9 +17,7 @@
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
-    <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%> 
-  
-    
+    <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>  
    
     <script type="text/javascript"> 
          
@@ -30,6 +28,21 @@
             if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
             else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
         }
+
+          function  ConfirmAdd() {  
+           
+              var asset = document.getElementById("txtAsset").value;
+              var hour = document.getElementById("txtMacHour").value;
+       
+            if ($.trim(asset) == 0 || $.trim(asset) == "" || $.trim(asset) == null || $.trim(asset) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Machine  Item'); }
+           else if ($.trim(hour) == 0 || $.trim(hour) == "" || $.trim(hour) == null || $.trim(hour) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Hour'); }
+
+            else {
+               document.getElementById("hdnPreConfirm").value = "1";
+               
+            } 
+        }
+
     </script> 
     <style type="text/css">
         .auto-style2 {
@@ -92,8 +105,8 @@
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
              
-                <asp:TemplateField HeaderText="Workstation" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strSectionName" >
-            <ItemTemplate><asp:Label ID="lblwork" runat="server"  Text='<%# Bind("strSectionName") %>'></asp:Label></ItemTemplate>
+                <asp:TemplateField HeaderText="Workstation" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strName" >
+            <ItemTemplate><asp:Label ID="lblwork" runat="server"  Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
                 
             <asp:TemplateField HeaderText="Man Quantity" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="numQty" >
@@ -136,7 +149,7 @@
              
              <td>Hour</td>
                 <td><asp:TextBox ID="txtMacHour" runat="server"></asp:TextBox> 
-                <asp:Button ID="btnMAdd" Text="Add" runat="server" OnClick="btnMAdd_Click"    /><asp:Button ID="btnSubmitM" Text="Submit" runat="server" OnClick="btnSubmitM_Click"/><td>
+                <asp:Button ID="btnMAdd" Text="Add" runat="server" OnClick="btnMAdd_Click"    /><asp:Button ID="btnSubmitM" Text="Submit" runat="server" OnClientClick="confirm();" OnClick="btnSubmitM_Click"/><td>
             </tr> 
 
              <tr><td colspan="5">  

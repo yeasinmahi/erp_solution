@@ -22,15 +22,16 @@ namespace UI.SCM.BOM
         DataTable dt = new DataTable();
         int intwh, enroll, BomId; string xmlData;
         int CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string filePathForXML; string xmlString = "", xmlstring2 = ""; 
-       
+        string filePathForXML; string xmlString = "", xmlstring2 = "";
+
+        int check;
+        string pID, pIDName, accountName, LocationData, Location;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomR__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
-            {
-
+            { 
                 try { File.Delete(filePathForXML); dgvRoute.DataSource = ""; dgvRoute.DataBind(); }
                 catch { }
                 
@@ -51,18 +52,47 @@ namespace UI.SCM.BOM
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
                     Session["unit"] = hdnUnit.Value.ToString();
                 }
-
                 dt = objBom.getBomRouting(5, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
-                ddlStation.DataSource = dt;
-                ddlStation.DataTextField = "strName";
-                ddlStation.DataValueField = "Id";
-                ddlStation.DataBind();
+                ddlType.DataSource = dt;
+                ddlType.DataTextField = "strName";
+                ddlType.DataValueField = "Id";
+                ddlType.DataBind(); 
+
+                dt = objBom.getWorkstationParent(intwh);
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                try
+                {
+                    pID = ListBox1.SelectedValue.ToString();
+                    pIDName = ListBox1.SelectedItem.ToString();
+                    hdnOpID.Value = pID;
+                    hdnOpName.Value = pIDName;
+                }
+                catch { }
+
+                checkParent();
+
+                pnlUpperControl.DataBind();
 
             }
         }
-        
 
-       [WebMethod]
+        private void checkParent()
+        {
+            if (LinkButton2.Text == string.Empty)
+            {
+                
+            }
+            else
+            {
+               
+            }
+
+        }
+        [WebMethod]
         [ScriptMethod]
         public static string[] GetItemSerach(string prefixText, int count)
         {
@@ -79,30 +109,35 @@ namespace UI.SCM.BOM
         {
             try
             {
+                if(hdnPreConfirm.Value=="1")
+                {
+                    dgvRptw.Visible = false;
+                    dgvRoute.Visible = true;
 
-                dgvRptw.Visible = false;
-                dgvRoute.Visible =true;
-
-                arrayKey = txtFgItem.Text.Split(delimiterChars);
+                    arrayKey = txtFgItem.Text.Split(delimiterChars);
                     intWh = int.Parse(ddlWh.SelectedValue);
-                    string item = ""; string itemId = "";  
+                    string item = ""; string itemId = "";
                     if (arrayKey.Length > 0)
                     { item = arrayKey[0].ToString(); itemId = arrayKey[3].ToString(); }
-                    string workName = ddlStation.SelectedValue.ToString();
-                    string strcode = "0".ToString();
-                    string workId = ddlStation.SelectedValue.ToString();
+                    string workName = hdnOpName.Value.ToString();
+                    string strcode = txtRemarks.Text.ToString();
+                    string workId =hdnOpID.Value.ToString();
+                    string strTypeID = ddlType.SelectedValue.ToString();
+                    string strTypeName = ddlType.SelectedItem.ToString();
                     string itemName = item;
-                    checkXmlItemData(itemId);
-                if (int.Parse(itemId) > 0)
-                {
-                    if (CheckItem == 1)
+                    checkXmlItemData(workId, strTypeID);
+                    if (int.Parse(itemId) > 0 && int.Parse(hdnOpID.Value.ToString())>0)
                     {
-                        CreateXml(itemName, itemId, workName, workId, strcode);
+                        if (CheckItem == 1)
+                        {
+                            CreateXml(itemName, itemId, workName, workId, strcode, strTypeID, strTypeName);
+                        }
+                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Workstation already added');", true); }
                     }
-                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
-                }
 
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input FG Item');", true); }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input FG Item or select Workstation');", true); }
+                }
+               
 
 
 
@@ -110,7 +145,7 @@ namespace UI.SCM.BOM
             catch { }
 
         }
-        private void checkXmlItemData(string assetId)
+        private void checkXmlItemData(string workId,string strTypeID)
         {
             try
             {
@@ -120,7 +155,7 @@ namespace UI.SCM.BOM
                 int i = 0;
                 for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                 {
-                    if (assetId == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
+                    if (workId == (ds.Tables[0].Rows[i].ItemArray[3].ToString()))
                     {
                         CheckItem = 0;
                         break;
@@ -134,14 +169,14 @@ namespace UI.SCM.BOM
             catch { }
 
         }
-        private void CreateXml(string itemName,string itemId,string workName,string workId,string strcode)
+        private void CreateXml(string itemName,string itemId,string workName,string workId,string strcode,string strTypeID,string strTypeName)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemName, itemId, workName, workId, strcode);
+                XmlNode addItem = CreateItemNode(doc, itemName, itemId, workName, workId, strcode, strTypeID, strTypeName);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -149,7 +184,7 @@ namespace UI.SCM.BOM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemName, itemId, workName, workId, strcode);
+                XmlNode addItem = CreateItemNode(doc, itemName, itemId, workName, workId, strcode,strTypeID, strTypeName);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -195,11 +230,21 @@ namespace UI.SCM.BOM
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
                     Session["unit"] = hdnUnit.Value.ToString();
                 }
-                dt = objBom.getBomRouting(5, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
-                ddlStation.DataSource = dt;
-                ddlStation.DataTextField = "strName";
-                ddlStation.DataValueField = "Id";
-                ddlStation.DataBind();
+               
+                txtFgItem.Text = ""; 
+                dt = objBom.getWorkstationParent(intwh);
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+                pID = ListBox1.SelectedValue.ToString();
+                pIDName = ListBox1.SelectedItem.ToString();
+                hdnOpID.Value = pID;
+                hdnOpName.Value = pIDName;
+
+                LinkButton2.Text = string.Empty;
+                LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
             }
             catch { }
         }
@@ -276,7 +321,7 @@ namespace UI.SCM.BOM
             catch { }
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc,string itemName,string itemId,string workName,string workId,string strcode)
+        private XmlNode CreateItemNode(XmlDocument doc,string itemName,string itemId,string workName,string workId,string strcode,string strTypeID, string strTypeName)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
              
@@ -294,12 +339,22 @@ namespace UI.SCM.BOM
             XmlAttribute Strcode = doc.CreateAttribute("strcode");
             Strcode.Value = strcode;
 
+            XmlAttribute StrTypeID = doc.CreateAttribute("strTypeID");
+            StrTypeID.Value = strTypeID;
+
+            XmlAttribute StrTypeName = doc.CreateAttribute("strTypeName");
+            StrTypeName.Value = strTypeName;
+
+         
             node.Attributes.Append(ItemName);
             node.Attributes.Append(ItemId);
             node.Attributes.Append(WorkName);
             node.Attributes.Append(WorkId);
             node.Attributes.Append(Strcode);
- 
+
+            node.Attributes.Append(StrTypeID);
+            node.Attributes.Append(StrTypeName);
+
             return node;
         }
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -321,5 +376,252 @@ namespace UI.SCM.BOM
             catch { }
         }
 
+
+        protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dt = new DataTable();
+                accountName = ">" + ListBox1.SelectedItem.ToString();
+                pID = ListBox1.SelectedValue.ToString();
+                pIDName = ListBox1.SelectedItem.ToString();
+                hdnOpID.Value = pID;
+                hdnOpName.Value = pIDName;
+
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                if (LinkButton2.Text.Length == 0) { LinkButton2.Text = accountName.ToString(); hdn1.Value = pID; }
+                else if (LinkButton3.Text.Length == 0) { LinkButton3.Text = accountName.ToString(); hdn2.Value = pID; }
+                else if (LinkButton4.Text.Length == 0) { LinkButton4.Text = accountName.ToString(); hdn3.Value = pID; }
+                else if (LinkButton5.Text.Length == 0) { LinkButton5.Text = accountName.ToString(); hdn4.Value = pID; }
+                else if (LinkButton6.Text.Length == 0) { LinkButton6.Text = accountName.ToString(); hdn5.Value = pID; }
+                else if (LinkButton7.Text.Length == 0) { LinkButton7.Text = accountName.ToString(); hdn6.Value = pID; }
+                else if (LinkButton8.Text.Length == 0) { LinkButton8.Text = accountName.ToString(); hdn7.Value = pID; }
+                else if (LinkButton9.Text.Length == 0) { LinkButton9.Text = accountName.ToString(); hdn8.Value = pID; }
+                else if (LinkButton10.Text.Length == 0) { LinkButton10.Text = accountName.ToString(); hdn9.Value = pID; }
+               
+
+            }
+            catch { }
+        }
+
+        #region==================Link Button Chaild View======================
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dt = new DataTable();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getWorkstationParent(intwh);
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+
+                LinkButton2.Text = string.Empty;
+                LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pID = hdn1.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton2.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                pID = hdn2.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton3.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+                LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                pID = hdn3.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton4.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                pID = hdn4.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton5.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                pID = hdn5.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton6.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                pID = hdn6.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton7.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+
+                LinkButton8.Text = string.Empty;
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                pID = hdn7.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton8.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+                LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+
+        protected void LinkButton9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                pID = hdn8.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton9.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+                LinkButton10.Text = string.Empty;
+                checkParent();
+            }
+            catch { }
+
+        }
+        protected void LinkButton10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pID = hdn9.Value;
+                hdnOpID.Value = pID;
+                hdnOpName.Value = LinkButton10.Text.ToString();
+                intwh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getChildData(intwh, int.Parse(pID));
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strName";
+                ListBox1.DataValueField = "Id";
+                ListBox1.DataBind();
+                checkParent();
+            }
+            catch { }
+
+        }
+
+        #endregion=================Close================================================
     }
 }

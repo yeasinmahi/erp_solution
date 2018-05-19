@@ -50,11 +50,7 @@ namespace UI.SCM.BOM
                     ddlWH.DataBind();
                 }
 
-                dt = objBom.GetBomData(14, xmlData, intwh, BomId, DateTime.Now, enroll);
-                ddlStation.DataSource = dt;
-                ddlStation.DataTextField = "strName";
-                ddlStation.DataValueField = "Id";
-                ddlStation.DataBind();
+              
 
                 intwh = int.Parse(ddlWH.SelectedValue);
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -213,6 +209,12 @@ namespace UI.SCM.BOM
                 ddlBom.DataTextField = "strName";
                 ddlBom.DataValueField = "Id";
                 ddlBom.DataBind();
+
+                dt = objBom.GetBomData(14, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                ddlStation.DataSource = dt;
+                ddlStation.DataTextField = "strName";
+                ddlStation.DataValueField = "Id";
+                ddlStation.DataBind();
 
             }
             catch { }

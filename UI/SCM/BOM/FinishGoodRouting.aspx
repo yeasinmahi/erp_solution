@@ -28,14 +28,10 @@
            
              var fgitem = document.getElementById("txtFgItem").value;  
        
-            if ($.trim(fgitem) == 0 || $.trim(fgitem) == "" || $.trim(fgitem) == null || $.trim(fgitem) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select FG  Item'); }
+            if ($.trim(fgitem) == 0 || $.trim(fgitem) == "" || $.trim(fgitem) == null || $.trim(fgitem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select FG  Item'); }
            
             else {
-                var confirm_value = document.createElement("INPUT");
-                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
-                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-
+               document.getElementById("hdnPreConfirm").value = "1";
                
             } 
         }
@@ -76,7 +72,11 @@
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" />
         <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" /><asp:HiddenField ID="hdnInQty" runat="server" />
-       <div class="tabs_container">ROUTING<hr /></div>
+         <td><asp:HiddenField ID="hdn1" runat="server" /><asp:HiddenField ID="hdn2" runat="server" /><asp:HiddenField ID="hdn3" runat="server" />
+    <asp:HiddenField ID="hdn4" runat="server" /><asp:HiddenField ID="hdn5" runat="server" /><asp:HiddenField ID="hdn6" runat="server" />
+    <asp:HiddenField ID="hdn7" runat="server" /><asp:HiddenField ID="hdn8" runat="server" /><asp:HiddenField ID="hdn9" runat="server" />
+    <asp:HiddenField ID="hdn10" runat="server" /><asp:HiddenField ID="hdnOpID" runat="server" /><asp:HiddenField ID="hdnOpName" runat="server" /></td>
+       <div class="tabs_container">PROCESS ROUTING<hr /></div>
         
         <table    style="width:750px; text-align:center ">   
             <tr>
@@ -90,7 +90,7 @@
          </table>
         <table>
             <tr >
-            <td style='text-align: right;'>Item Name</td>
+            <td style="text-align:left" >Item Name</td>
             <td><asp:TextBox ID="txtFgItem" runat="server" AutoCompleteType="Search"   CssClass="txtBox" AutoPostBack="true" Width="600px"      ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" TargetControlID="txtFgItem"
             ServiceMethod="GetItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
@@ -100,18 +100,48 @@
 
             </tr>
             <tr>
-                <td>WorkStation</td>
-                <td><asp:DropDownList ID="ddlStation" runat="server" CssClass="ddList" Width="600px"> </asp:DropDownList></td>
+            <td colspan="2"><asp:LinkButton ID="LinkButton1" runat="server" Font-Size="Small" OnCommand="LinkButton1_Click" Text="0"></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton2" runat="server" Font-Size="Small" OnCommand="LinkButton2_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton3" runat="server" Font-Size="Small" OnCommand="LinkButton3_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton4" runat="server" Font-Size="Small" OnCommand="LinkButton4_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton5" runat="server" Font-Size="Small"  OnCommand="LinkButton5_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton6" runat="server" Font-Size="Small" OnCommand="LinkButton6_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton7" runat="server" Font-Size="Small" OnCommand="LinkButton7_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton8" runat="server" Font-Size="Small" OnCommand="LinkButton8_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton9" runat="server" Font-Size="Small" OnCommand="LinkButton9_Click" Text=""></asp:LinkButton>
+            <asp:LinkButton ID="LinkButton10" runat="server" Font-Size="Small" OnCommand="LinkButton10_Click" ></asp:LinkButton> 
+           </td>                  
             </tr>
-            <%--<tr>
-                <td>Routing Code</td>
-                <td><asp:TextBox ID="txtCode" runat="server" CssClass="txtBox" Width="600px"> </asp:TextBox></td>
-            </tr> --%>
-            <tr> 
-            <td style="text-align:right" colspan="2" >
-            <asp:Button ID="btnAssetAdd" Text="Add" runat="server"  OnClientClick=" ConfirmAdd();"  OnClick="btnAssetAdd_Click" />
-            <asp:Button ID="btnsubmit" Text="Submit" runat="server" OnClientClick="Confirm();" OnClick="btnsubmit_Click" /><asp:Button ID="btnReport" Text="Report" runat="server" OnClick="btnReport_Click"   /></td>
-            </tr> 
+            </tr>
+            <td>Workstation:</td>
+            <td>
+                <asp:ListBox ID="ListBox1" runat="server" AutoPostBack="True" Height="50px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="600px"></asp:ListBox>
+            </td>
+             
+            <tr>
+                <td>Type</td>
+                <td><asp:DropDownList ID="ddlType" runat="server" CssClass="ddList" Width="600px"> 
+                    <asp:ListItem Text="Administrative"></asp:ListItem><asp:ListItem Text="Manufacturing"></asp:ListItem>
+                    <asp:ListItem Text="Seling and Distribution"></asp:ListItem>
+                    </asp:DropDownList></td>
+            </tr>
+            <caption>
+        
+                <tr>
+                    <td>Remarks</td>
+                    <td>
+                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox" Width="600px"> </asp:TextBox>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="text-align:right">
+                        <asp:Button ID="btnAssetAdd" runat="server" OnClick="btnAssetAdd_Click" OnClientClick=" ConfirmAdd();" Text="Add" />
+                        <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" OnClientClick="Confirm();" Text="Submit" />
+                        <asp:Button ID="btnReport" runat="server" OnClick="btnReport_Click" Text="Report" />
+                    </td>
+                </tr>
+            </caption>
         </table> 
          <table style="width:800px"> 
             <tr><td> 
@@ -141,8 +171,18 @@
             <ItemTemplate><asp:Label ID="lblWorkId" runat="server"   Text='<%# Bind("workId") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
 
-             
-         
+             <asp:TemplateField HeaderText="Type" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="StrTypeName" >
+            <ItemTemplate><asp:Label ID="lblType" runat="server"  Text='<%# Bind("StrTypeName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+                
+            <asp:TemplateField HeaderText="TypeID" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="StrTypeID" >
+            <ItemTemplate><asp:Label ID="lblTypeId" runat="server"   Text='<%# Bind("StrTypeID") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+             <asp:TemplateField HeaderText="Remarks" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="Strcode" >
+            <ItemTemplate><asp:Label ID="lblRemarks" runat="server"  Text='<%# Bind("Strcode") %>' ></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
+
             <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" /> 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
@@ -167,11 +207,11 @@
             <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("strItemName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
                 
-            <asp:TemplateField HeaderText="Workstation" ItemStyle-HorizontalAlign="right"   SortExpression="strSectionName" >
-            <ItemTemplate><asp:Label ID="lblSectionName" runat="server"   Text='<%# Bind("strSectionName") %>'></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Workstation" ItemStyle-HorizontalAlign="right"   SortExpression="strName" >
+            <ItemTemplate><asp:Label ID="lblSectionName" runat="server"   Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
               
-           <asp:TemplateField HeaderText="sectionId" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="intAutoId" >
+           <asp:TemplateField HeaderText="workstation" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="intAutoId" >
             <ItemTemplate><asp:Label ID="lblWorkstationId" runat="server"  Text='<%# Bind("intAutoId") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
                 
@@ -179,9 +219,18 @@
            <asp:TemplateField HeaderText="Code" ItemStyle-HorizontalAlign="right" SortExpression="strCode" >
             <ItemTemplate><asp:Label ID="lblCode" runat="server"   Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+
+             <asp:TemplateField HeaderText="Type" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strType" >
+            <ItemTemplate><asp:Label ID="lblType" runat="server"   Text='<%# Bind("strType") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+               
+            <asp:TemplateField HeaderText="Remarks" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks" >
+            <ItemTemplate><asp:Label ID="lblRemarks" runat="server"  Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
+             
          
             <asp:TemplateField HeaderText="Detalis" ItemStyle-HorizontalAlign="right"  > 
-            <ItemTemplate><asp:Button ID="btnDetalis" runat="server" OnClick="btnDetalis_Click"      Text="Detalis"></asp:Button></ItemTemplate>
+            <ItemTemplate><asp:Button ID="btnDetalis" Width="60px" runat="server" OnClick="btnDetalis_Click"      Text="Detalis"></asp:Button></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
       
             </Columns>

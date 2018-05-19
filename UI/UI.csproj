@@ -1215,6 +1215,7 @@
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
@@ -6124,6 +6125,13 @@
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\WorkStationCreate.aspx.cs">
+      <DependentUpon>WorkStationCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\WorkStationCreate.aspx.designer.cs">
+      <DependentUpon>WorkStationCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
