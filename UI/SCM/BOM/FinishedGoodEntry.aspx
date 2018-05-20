@@ -36,10 +36,9 @@
 
   <script>
 
-         function Viewdetails(productID,productName ,bomName ,batchName ,startTime,endTime,invoice,srNo,quantity,whid) {
-             window.open('FinishedGoodEntryFgSavePopUP.aspx?productID=' + productID + '&productName=' + productName + '&bomName=' + bomName + '&batchName=' + batchName + '&startTime=' + startTime + '&endTime=' + endTime + '&invoice=' + invoice + '&srNo=' + srNo + '&quantity=' + quantity + '&whid=' + whid, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
-              
-         }
+      function Viewdetails(productID, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid,itemId) {
+          window.open('FinishedGoodEntryFgSavePopUP.aspx?productID=' + productID + '&productName=' + productName + '&bomName=' + bomName + '&batchName=' + batchName + '&startTime=' + startTime + '&endTime=' + endTime + '&invoice=' + invoice + '&srNo=' + srNo + '&quantity=' + quantity + '&whid=' + whid + '&itemId=' + itemId, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+      }
     </script>
      
 </head>
@@ -101,10 +100,13 @@
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
 
-            <asp:TemplateField HeaderText="Product ID" Visible="false" SortExpression="intProductionID"><ItemTemplate>
+            <asp:TemplateField HeaderText="Production ID" Visible="false" SortExpression="intProductionID"><ItemTemplate>
             <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("intProductionID") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
-                
+               <asp:TemplateField HeaderText="Item ID" Visible="false" SortExpression="intItemID"><ItemTemplate>
+            <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
+  
             <asp:TemplateField HeaderText="Product Name" SortExpression="strName"><ItemTemplate>
             <asp:Label ID="lblProductName" runat="server" Width="200px" Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="300px"/></asp:TemplateField>
@@ -151,7 +153,7 @@
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Inactive Order" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess" > 
-            <ItemTemplate><asp:Button ID="btnInactive" runat="server"  Width="83px"   Text="Inactive Order"></asp:Button></ItemTemplate>
+            <ItemTemplate><asp:Button ID="btnInactive" runat="server"  Width="83px"  OnClick="btnInactive_Click"   Text="Inactive Order"></asp:Button></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

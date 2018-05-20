@@ -21,8 +21,9 @@ namespace UI.VAT_Management
         VAT_BLL objvat = new VAT_BLL();
         DataTable dt;
 
-        string strVatItem, strUOM, strHSCode;
-        int intUserID, intUOM, intPart, intUnitID, ysnFactory, intVATAccountID;
+        string strVatItem, strUOM, strHSCode, strName, strUoM;
+        int intUserID, intUOM, intPart, intUnitID, ysnFactory, intVATAccountID, intMaterialType;       
+        bool ysnExempted;
 
         #endregion =====================================================================================
 
@@ -123,73 +124,38 @@ namespace UI.VAT_Management
         protected void cbTax_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (MessageBox.Show("Really delete?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
+            //if (MessageBox.Show("Really delete?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
 
-            }
-            if (hdnconfirmTax.Value == "1")
-            {
-                cbTax.Checked = true;
-            }
-            else
-            {
-                cbTax.Checked = false;
-            }
+            //}
+            //if (hdnconfirmTax.Value == "1")
+            //{
+            //    cbTax.Checked = true;
+            //}
+            //else
+            //{
+            //    cbTax.Checked = false;
+            //}
 
-            ClientScriptManager CSM = Page.ClientScript;
-            if (!ReturnValue())
-            {
-                string strconfirm = "<script>if(!window.confirm('Are you sure?')){window.location.href='Default.aspx'}</script>";
-                CSM.RegisterClientScriptBlock(this.GetType(), "Confirm", strconfirm, false);
-            }
+            //ClientScriptManager CSM = Page.ClientScript;
+            //if (!ReturnValue())
+            //{
+            //    string strconfirm = "<script>if(!window.confirm('Are you sure?')){window.location.href='Default.aspx'}</script>";
+            //    CSM.RegisterClientScriptBlock(this.GetType(), "Confirm", strconfirm, false);
+            //}
         }
         bool ReturnValue()
         {
             return false;
         }
-
-
-
-        protected void cbTax_Click(object sender, EventArgs e)
-        {
-
-            if(hdnconfirmTax.Value == "1")
-            {
-                cbTax.Checked = true;
-            }
-            else
-            {
-                cbTax.Checked = false;
-            }
-        }
         
-
         private void button3_Click(object sender, System.EventArgs e)
         {
             if (MessageBox.Show("Really delete?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
             { 
             }
         }
-
-        private bool wasAlreadyClickedOnce;
-
-        private void uxCheckBoxMouseClick(object sender, MouseEventArgs e)
-        {
-            ////if (!wasAlreadyClickedOnce)
-            ////{
-            ////    wasAlreadyClickedOnce = true;
-            ////    return;
-            ////}
-
-            if (cbTax.Checked)
-            {
-                MessageBox.Show("Test");
-                cbTax.Checked = false;
-
-            }
-        }
-
-     
+            
 
         protected void btnUpdateUOM_Click(object sender, EventArgs e)
         {
@@ -198,14 +164,62 @@ namespace UI.VAT_Management
 
         protected void btnCreateItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (hdnconfirm.Value == "1")
+                {
+                    intPart = 1;
+                    intUnitID = int.Parse(hdnUnit.Value);
+                    strName = txtProduct.Text;
+                    if(txtProduct.Text == "")
+                    {
+                        return;
+                    }
+                    intUserID = int.Parse(hdnEnroll.Value);
+                    intUOM = int.Parse(ddlUOM.SelectedValue.ToString());
+                    strUoM = ddlUOM.SelectedItem.ToString();
+                    strHSCode = txtHSCode.Text;
+                    ysnExempted = cbTax.Checked;
+                    intVATAccountID = int.Parse(ddlVatAccount.SelectedValue.ToString());
+                    intMaterialType = 0;
 
-            //@intUnitID,@strVatItem,1,getdate(),@intUserID,@intUoM,@strUoM,@strHSCode,@ysnTaxExempted,@intVATAccountID
+                    string message = objvat.InsertVatItemAndMaterial(intPart, intUnitID, strName, intUserID, intUOM, strUoM, strHSCode, ysnExempted, intVATAccountID, intMaterialType);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    txtProduct.Text = "";
+                    txtHSCode.Text = "";
+                }
+            }
+            catch { }
         }
 
         protected void btnCreateMaterial_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (hdnconfirm.Value == "1")
+                {
+                    intPart = 2;
+                    intUnitID = int.Parse(hdnUnit.Value);
+                    strName = txtMaterial.Text;
+                    if (txtMaterial.Text == "")
+                    {
+                        return;
+                    }
+                    intUserID = int.Parse(hdnEnroll.Value);
+                    intUOM = 0; //int.Parse(ddlUOMM.SelectedValue.ToString());
+                    strUoM = ddlUOMM.SelectedItem.ToString();
+                    strHSCode = "";
+                    ysnExempted = cbTaxM.Checked;
+                    intVATAccountID = int.Parse(ddlVatAccount.SelectedValue.ToString());
+                    intMaterialType = int.Parse(ddlType.SelectedValue.ToString());
 
-        }
+                    string message = objvat.InsertVatItemAndMaterial(intPart, intUnitID, strName, intUserID, intUOM, strUoM, strHSCode, ysnExempted, intVATAccountID, intMaterialType);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    txtMaterial.Text = "";
+                }
+            }
+            catch { }
+        }   
 
         protected void ddlVatAccount_SelectedIndexChanged(object sender, EventArgs e)
         {

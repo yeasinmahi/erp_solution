@@ -107,5 +107,16 @@ namespace SCM_DAL.Properties {
                 return ((string)(this["ERP_VATConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=AG_WastageMaterial;Persist Security Info=True;Us" +
+            "er ID=sqlrw;Password=RWsql@123")]
+        public string AG_WastageMaterialConnectionString {
+            get {
+                return ((string)(this["AG_WastageMaterialConnectionString"]));
+            }
+        }
     }
 }

@@ -48,8 +48,7 @@
              }
          });
     </script>
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
     </head>
 <body>
     <form id="frmPOPaymentVoucher" runat="server">        
@@ -78,7 +77,7 @@
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlAccount" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>                
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
-                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClientClick="LoaderBusy()" OnClick="btnShow_Click"/></td> 
+                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 
                 <td style="text-align:right; "><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnPreAllVoucher" runat="server" class="myButton" Text="Prepare All Voucher" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click" /></td>
             </tr>            
@@ -166,9 +165,6 @@
         </table>
     </div>
 
-    <div class="loading" align="center">
-        <img src="../Content/images/gicon/Final-Product-2.GIF" />
-    </div>
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>

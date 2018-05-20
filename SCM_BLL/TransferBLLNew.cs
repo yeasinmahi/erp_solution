@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 using SCM_DAL.TransferTDSTableAdapters;
 using SCM_DAL;
+using SCM_DAL.BomTDSTableAdapters;
+using SCM_DAL.WestageTDSRPTTableAdapters;
 
 
 namespace SCM_BLL
@@ -87,13 +89,19 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable getLocationListof(string whid)
+        {
+            tblWearHouseStoreLocation1TableAdapter adp = new tblWearHouseStoreLocation1TableAdapter();
+            return adp.GetData(int.Parse(whid));
+        }
+
         public DataTable getLocationList(string Whid)
         {
             
              try
             {
-                tblWearHouseStoreLocationTableAdapter adpItemlist = new tblWearHouseStoreLocationTableAdapter();
-                return adpItemlist.GetData(int.Parse(Whid));
+                tblWearHouseStoreLocationNewTableAdapter adp = new tblWearHouseStoreLocationNewTableAdapter();
+                return adp.GetData(int.Parse(Whid));
             }
             catch { return new DataTable(); }
         }
@@ -288,6 +296,16 @@ namespace SCM_BLL
             {
                 return null;
             }
+        }
+
+        public void IssueDelete(int unitid, int intSalesId)
+        {
+            try
+            {
+                tblWMSalesTableAdapter adp = new tblWMSalesTableAdapter();
+                adp.GetUpdate(unitid, intSalesId);
+            }
+            catch {  }
         }
 
         public DataTable GetTransferReceive(int unitid)

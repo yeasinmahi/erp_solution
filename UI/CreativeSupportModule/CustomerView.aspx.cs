@@ -29,13 +29,14 @@ namespace UI.CreativeSupportModule
         string strDocUploadPath, fileName, strFileName, strRemarks, name, qty, point, itemid, strJobType;        
         int intAssignTo, intAssignBy, intJobDescriptionID, intTotalPoint, intPOID, intItemID, intRowCount;
         DateTime dteRequiredDate;
-        TimeSpan tmRequiredTime;
+        TimeSpan tmRequiredTime; decimal qtyq;
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-
+            hdnPoint.Value = "0";
             filePathForXMLDocUpload = Server.MapPath("~/CreativeSupportModule/Data/DocUpload_" + hdnEnroll.Value + ".xml");
             filePathForXML = Server.MapPath("~/CreativeSupportModule/Data/Item_" + hdnEnroll.Value + ".xml");
             if (!IsPostBack)
@@ -63,12 +64,14 @@ namespace UI.CreativeSupportModule
                     rdoMinor.Enabled = false;
                     txtCRItem.Enabled = false;
                     txtQty.Enabled = false;
+                    btnItemAdd.Visible = false;
                     //ddlJobDescription.Enabled = false;
                 }
                 catch { }
             }
             else if (hdnconfirm.Value == "2") { FTPUpload(); }
             else if (hdnconfirm.Value == "3") { FinalUpload(); }
+            else if (hdnconfirm.Value == "4") { CalculatePoint(); }
         }
 
         #region ===== Job Create (Insert Action) =============================================
@@ -164,7 +167,7 @@ namespace UI.CreativeSupportModule
                     }
 
                     //Final In Insert
-                    string message = objcr.InsertAllBillApproval(intAssignBy, dteRequiredDate, tmRequiredTime, intAssignTo, intJobDescriptionID, strJobType, intTotalPoint, strRemarks, xmlItem, xmlDoc);
+                    string message = objcr.InsertAllBillApproval(intAssignBy, dteRequiredDate, tmRequiredTime, intAssignTo, intJobDescriptionID, strJobType, intTotalPoint, strRemarks, xmlItem, xmlDoc, intPOID);
                     
                     hdnconfirm.Value = "0";                    
                     if (filePathForXML != null) { File.Delete(filePathForXML); }                   
@@ -287,6 +290,12 @@ namespace UI.CreativeSupportModule
             node.Attributes.Append(StrFileName);           
             return node;
         }
+
+        protected void txtQty_TextChanged(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
+        }
+
         protected void dgvDocUp_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -314,6 +323,11 @@ namespace UI.CreativeSupportModule
                 else { LoadGridwithXmlDocUpload(); }
             }
             catch { }
+        }
+
+        protected void txtCRItem_TextChanged1(object sender, EventArgs e)
+        {
+
         }
 
         #endregion ===========================================================================
@@ -407,6 +421,7 @@ namespace UI.CreativeSupportModule
 
                 txtCRItem.Enabled = true;
                 txtQty.Enabled = true;
+                btnItemAdd.Visible = true;
             }
             else
             {
@@ -420,11 +435,47 @@ namespace UI.CreativeSupportModule
 
                 txtCRItem.Enabled = false;
                 txtQty.Enabled = false;
+                btnItemAdd.Visible = false;
             }
             txtPoint.Text = "";
             txtCRItem.Text = "";
             txtQty.Text = "";
         }
+
+        protected void CalculatePoint()
+        {
+            try
+            {
+                try
+                {
+                    char[] ch1 = { '[', ']' };
+                    string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                    intItemID = int.Parse(temp1[1].ToString());
+                }
+                catch { intItemID = 0; }
+
+                dt = new DataTable();
+                dt = objcr.GetItemWisePoint(intItemID);
+                if (dt.Rows.Count > 0)
+                {
+                    if(txtQty.Text == "")
+                    {
+                        qtyq = 0;
+                    }
+                    else
+                    {
+                       qtyq = decimal.Parse(txtQty.Text);
+                    }
+                    //txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
+                    hdnPoint.Value = dt.Rows[0]["intPoint"].ToString();
+                    txtPoint.Text = (decimal.Parse(hdnPoint.Value) * qtyq).ToString();
+                }
+                else { txtPoint.Text = "0"; }
+                
+            }
+            catch { }
+        }
+
         protected void txtCRItem_TextChanged(object sender, EventArgs e)
         {
             try
@@ -439,9 +490,13 @@ namespace UI.CreativeSupportModule
             dt = objcr.GetItemWisePoint(intItemID);
             if (dt.Rows.Count > 0)
             {
-                txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
+                //txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
+                hdnPoint.Value = dt.Rows[0]["intPoint"].ToString();
             }
             else { txtPoint.Text = "0"; }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
+            return;
         }
         protected void rdoLarge_CheckedChanged(object sender, EventArgs e)
         {
@@ -623,7 +678,20 @@ namespace UI.CreativeSupportModule
             }
             catch { }
         }
-
+        protected int totalqty = 0;
+        protected int totalpoint = 0;
+        protected void dgvCrItem_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                try
+                {
+                    totalqty += int.Parse(((Label)e.Row.Cells[2].FindControl("lblQty")).Text);
+                    totalpoint += int.Parse(((Label)e.Row.Cells[3].FindControl("lblPoint")).Text);
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
         #endregion ==========================================================================
 
         protected void btnClear_Click(object sender, EventArgs e)
@@ -653,6 +721,7 @@ namespace UI.CreativeSupportModule
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
         }
 
+        
 
 
 

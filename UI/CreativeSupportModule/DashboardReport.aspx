@@ -23,9 +23,11 @@
      <script language="javascript">        
         
         function ViewCustomerView(Id) {
-            window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+            window.open('CreativeSupportJobDetail.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
     </script>
+
+
 
 </head>
 <body>
@@ -108,8 +110,8 @@
         </table>
     </div>
 
-    <div id="Footer" class="footer">
-        <img height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
+    <div >
+        <img style="padding-top:37px" height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
     </div>
 
     

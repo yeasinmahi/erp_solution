@@ -180,7 +180,6 @@ namespace UI.PaymentModule
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(1500);
             LoadGrid();
         }
         private void LoadGrid()

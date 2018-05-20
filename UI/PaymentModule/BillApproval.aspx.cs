@@ -103,14 +103,13 @@ namespace UI.PaymentModule
                         xmlString = "<BillApp>" + xmlString + "</BillApp>";
                         xml = xmlString;
                     }
-                    catch { }
-                    if (xml == "") { return; }
+                    catch { }                    
                 }
+                if (xml == "") { return; }
 
                 //*** Final Insert
-                ////////string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
-                ////////ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                System.Threading.Thread.Sleep(1500);
+                string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);                
                 LoadGrid();
             }
         }

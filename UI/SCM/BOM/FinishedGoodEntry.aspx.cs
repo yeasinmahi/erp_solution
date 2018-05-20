@@ -43,12 +43,29 @@ namespace UI.SCM.BOM
 
         }
 
+        protected void btnInactive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblProductID = row.FindControl("lblProductID") as Label;
+                
+                int producttionID = int.Parse(lblProductID.Text.ToString());
+                string msg = objBom.BomPostData(4, xmlString, intWh, producttionID, DateTime.Now, enroll);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+
+            }
+            catch { }
+        }
+
         protected void btnViewProductionOrder_Click(object sender, EventArgs e)
         {
             try
             {
                 string dteFrom = txtFromDate.Text.ToString();
                 string dteTo = txtToDate.Text.ToString();
+                intwh = int.Parse(ddlWH.SelectedValue);
                 DateTime dteDate = DateTime.Parse(txtDate.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -84,10 +101,11 @@ namespace UI.SCM.BOM
                 Label lblSrNO = row.FindControl("lblSrNO") as Label;
                 Label lblQuantity = row.FindControl("lblQuantity") as Label;
                 Label lblLine = row.FindControl("lblLine") as Label;
+                Label lblItem= row.FindControl("lblItemID") as Label; 
                 string productID = lblProductID.Text.ToString();
-                string productName = lblProductName.Text.ToString();
+                string product  = lblProductName.Text.ToString();
                 string whid = ddlWH.SelectedValue.ToString();
-                string bomName = lblBomName.Text.ToString();
+                string bom  = lblBomName.Text.ToString();
                 string batchName = lblBatch.Text.ToString();
                 string startTime = lblStartTime.Text.ToString();
                 string endTime = lblEndTime.Text.ToString();
@@ -95,12 +113,12 @@ namespace UI.SCM.BOM
                 string srNo = lblSrNO.Text.ToString();
                 string quantity = lblQuantity.Text.ToString();
                 string line = lblLine.Text.ToString();
+                string itemId = lblItem.Text.ToString();
+                string productName = product.Replace("\"", string.Empty).Replace("'", string.Empty);
+                string bomName = bom.Replace("\"", string.Empty).Replace("'", string.Empty);
 
-                
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + productID + "','" + productName.ToString() + "','" + bomName + "','" + batchName + "','" + startTime + "','" + endTime + "','" + invoice.ToString() + "','" + srNo + "','" + quantity + "','" + whid + "','" + itemId + "');", true); 
 
-
-
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + productID + "','" + productName.ToString() + "','" + bomName + "','" + batchName + "','" + startTime + "','" + endTime + "','" + invoice.ToString() + "','" + srNo + "','" + quantity + "','" + whid + "');", true);
 
             }
             catch { }

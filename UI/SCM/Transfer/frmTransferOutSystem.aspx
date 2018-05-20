@@ -7,8 +7,13 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <link href="~/Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />  
+    <script src="../../Content/JS/datepickr.min.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script> 
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
 </head>
 <body>
 <form id="frmTransferOrder" runat="server">
@@ -24,20 +29,20 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
+    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnItemid" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
        <div class="tabs_container"> TRANSFER ORDER<hr /></div>
         <table  class="tbldecoration" style="width:auto; float:left;">                           
         <tr><td colspan="5"><hr /></td></tr>                              
         <tr class="tblrowodd">           
             <td style="text-align:left;">WH Name:</td>
-            <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint" runat="server"></asp:DropDownList>  </td>
+            <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint"  CssClass="ddList" runat="server"></asp:DropDownList>  </td>
             <td style='text-align: left; width:120px;'>Transfer Type</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlTType" runat="server"  AutoPostBack="True"></asp:DropDownList></td> 
+            <td style='text-align: left;'><asp:DropDownList ID="ddlTType" runat="server" CssClass="ddList" AutoPostBack="True"></asp:DropDownList></td> 
             <td style="text-align:right;"> 
                 &nbsp;</td>
         </tr>    
         <tr class="tblroweven"><td>Item Name</td>
-            <td><asp:TextBox ID="txtItemName" Height="25" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox>
+            <td><asp:TextBox ID="txtItemName" Height="25" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" OnTextChanged="txtItemName_TextChanged" ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtItemName"
             ServiceMethod="ItemnameSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -55,10 +60,10 @@
             <td></td>
         </tr> 
         <tr><td>Transfer To</td>
-            <td><asp:DropDownList ID="ddlToWH" runat="server"  AutoPostBack="True"></asp:DropDownList>
+            <td><asp:DropDownList ID="ddlToWH" runat="server"  CssClass="ddList"  AutoPostBack="True" ></asp:DropDownList>
             </td>
             <td>Location</td>
-            <td colspan="2"><asp:DropDownList ID="ddlLocation" runat="server"  AutoPostBack="True"></asp:DropDownList></td></tr> 
+            <td colspan="2"><asp:DropDownList ID="ddlLocation" runat="server"  CssClass="ddList" AutoPostBack="True"></asp:DropDownList></td></tr> 
         <tr><td>Quantity </td>
             <td><asp:TextBox ID="txtQty" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="10"></asp:TextBox></td>
             <td>Rate </td><td><asp:TextBox ID="txtRate" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="10"></asp:TextBox></td>

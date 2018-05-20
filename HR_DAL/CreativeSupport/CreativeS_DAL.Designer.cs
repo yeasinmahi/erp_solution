@@ -40,6 +40,8 @@ namespace HR_DAL.CreativeSupport {
         
         private StatusListDataTable tableStatusList;
         
+        private SprCreativeSupportReportForViewDetailsDataTable tableSprCreativeSupportReportForViewDetails;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -91,6 +93,9 @@ namespace HR_DAL.CreativeSupport {
                 }
                 if ((ds.Tables["StatusList"] != null)) {
                     base.Tables.Add(new StatusListDataTable(ds.Tables["StatusList"]));
+                }
+                if ((ds.Tables["SprCreativeSupportReportForViewDetails"] != null)) {
+                    base.Tables.Add(new SprCreativeSupportReportForViewDetailsDataTable(ds.Tables["SprCreativeSupportReportForViewDetails"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -192,6 +197,16 @@ namespace HR_DAL.CreativeSupport {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprCreativeSupportReportForViewDetailsDataTable SprCreativeSupportReportForViewDetails {
+            get {
+                return this.tableSprCreativeSupportReportForViewDetails;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -281,6 +296,9 @@ namespace HR_DAL.CreativeSupport {
                 if ((ds.Tables["StatusList"] != null)) {
                     base.Tables.Add(new StatusListDataTable(ds.Tables["StatusList"]));
                 }
+                if ((ds.Tables["SprCreativeSupportReportForViewDetails"] != null)) {
+                    base.Tables.Add(new SprCreativeSupportReportForViewDetailsDataTable(ds.Tables["SprCreativeSupportReportForViewDetails"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -362,6 +380,12 @@ namespace HR_DAL.CreativeSupport {
                     this.tableStatusList.InitVars();
                 }
             }
+            this.tableSprCreativeSupportReportForViewDetails = ((SprCreativeSupportReportForViewDetailsDataTable)(base.Tables["SprCreativeSupportReportForViewDetails"]));
+            if ((initTable == true)) {
+                if ((this.tableSprCreativeSupportReportForViewDetails != null)) {
+                    this.tableSprCreativeSupportReportForViewDetails.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -388,6 +412,8 @@ namespace HR_DAL.CreativeSupport {
             base.Tables.Add(this.tableReportForDashboardWithoutComplete);
             this.tableStatusList = new StatusListDataTable();
             base.Tables.Add(this.tableStatusList);
+            this.tableSprCreativeSupportReportForViewDetails = new SprCreativeSupportReportForViewDetailsDataTable();
+            base.Tables.Add(this.tableSprCreativeSupportReportForViewDetails);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +461,12 @@ namespace HR_DAL.CreativeSupport {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeStatusList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeSprCreativeSupportReportForViewDetails() {
             return false;
         }
         
@@ -516,6 +548,9 @@ namespace HR_DAL.CreativeSupport {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void StatusListRowChangeEventHandler(object sender, StatusListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void SprCreativeSupportReportForViewDetailsRowChangeEventHandler(object sender, SprCreativeSupportReportForViewDetailsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2736,6 +2771,410 @@ namespace HR_DAL.CreativeSupport {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprCreativeSupportReportForViewDetailsDataTable : global::System.Data.TypedTableBase<SprCreativeSupportReportForViewDetailsRow> {
+            
+            private global::System.Data.DataColumn columnintJobID;
+            
+            private global::System.Data.DataColumn columndteRequiredDate;
+            
+            private global::System.Data.DataColumn columntmRequiredTime;
+            
+            private global::System.Data.DataColumn columnAssignBy;
+            
+            private global::System.Data.DataColumn columnAssignTo;
+            
+            private global::System.Data.DataColumn columnReceiver;
+            
+            private global::System.Data.DataColumn columnintJobStatusID;
+            
+            private global::System.Data.DataColumn columnintPOID;
+            
+            private global::System.Data.DataColumn columnstrRemarks;
+            
+            private global::System.Data.DataColumn columnstrJobType;
+            
+            private global::System.Data.DataColumn columnstrJobDescription;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SprCreativeSupportReportForViewDetailsDataTable() {
+                this.TableName = "SprCreativeSupportReportForViewDetails";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SprCreativeSupportReportForViewDetailsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected SprCreativeSupportReportForViewDetailsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn intJobIDColumn {
+                get {
+                    return this.columnintJobID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn dteRequiredDateColumn {
+                get {
+                    return this.columndteRequiredDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tmRequiredTimeColumn {
+                get {
+                    return this.columntmRequiredTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AssignByColumn {
+                get {
+                    return this.columnAssignBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AssignToColumn {
+                get {
+                    return this.columnAssignTo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ReceiverColumn {
+                get {
+                    return this.columnReceiver;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn intJobStatusIDColumn {
+                get {
+                    return this.columnintJobStatusID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn intPOIDColumn {
+                get {
+                    return this.columnintPOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strRemarksColumn {
+                get {
+                    return this.columnstrRemarks;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strJobTypeColumn {
+                get {
+                    return this.columnstrJobType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strJobDescriptionColumn {
+                get {
+                    return this.columnstrJobDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SprCreativeSupportReportForViewDetailsRow this[int index] {
+                get {
+                    return ((SprCreativeSupportReportForViewDetailsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SprCreativeSupportReportForViewDetailsRowChangeEventHandler SprCreativeSupportReportForViewDetailsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SprCreativeSupportReportForViewDetailsRowChangeEventHandler SprCreativeSupportReportForViewDetailsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SprCreativeSupportReportForViewDetailsRowChangeEventHandler SprCreativeSupportReportForViewDetailsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SprCreativeSupportReportForViewDetailsRowChangeEventHandler SprCreativeSupportReportForViewDetailsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddSprCreativeSupportReportForViewDetailsRow(SprCreativeSupportReportForViewDetailsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SprCreativeSupportReportForViewDetailsRow AddSprCreativeSupportReportForViewDetailsRow(string dteRequiredDate, string tmRequiredTime, string AssignBy, string AssignTo, string Receiver, int intJobStatusID, int intPOID, string strRemarks, string strJobType, string strJobDescription) {
+                SprCreativeSupportReportForViewDetailsRow rowSprCreativeSupportReportForViewDetailsRow = ((SprCreativeSupportReportForViewDetailsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        dteRequiredDate,
+                        tmRequiredTime,
+                        AssignBy,
+                        AssignTo,
+                        Receiver,
+                        intJobStatusID,
+                        intPOID,
+                        strRemarks,
+                        strJobType,
+                        strJobDescription};
+                rowSprCreativeSupportReportForViewDetailsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprCreativeSupportReportForViewDetailsRow);
+                return rowSprCreativeSupportReportForViewDetailsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprCreativeSupportReportForViewDetailsDataTable cln = ((SprCreativeSupportReportForViewDetailsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprCreativeSupportReportForViewDetailsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnintJobID = base.Columns["intJobID"];
+                this.columndteRequiredDate = base.Columns["dteRequiredDate"];
+                this.columntmRequiredTime = base.Columns["tmRequiredTime"];
+                this.columnAssignBy = base.Columns["AssignBy"];
+                this.columnAssignTo = base.Columns["AssignTo"];
+                this.columnReceiver = base.Columns["Receiver"];
+                this.columnintJobStatusID = base.Columns["intJobStatusID"];
+                this.columnintPOID = base.Columns["intPOID"];
+                this.columnstrRemarks = base.Columns["strRemarks"];
+                this.columnstrJobType = base.Columns["strJobType"];
+                this.columnstrJobDescription = base.Columns["strJobDescription"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnintJobID = new global::System.Data.DataColumn("intJobID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintJobID);
+                this.columndteRequiredDate = new global::System.Data.DataColumn("dteRequiredDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteRequiredDate);
+                this.columntmRequiredTime = new global::System.Data.DataColumn("tmRequiredTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntmRequiredTime);
+                this.columnAssignBy = new global::System.Data.DataColumn("AssignBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAssignBy);
+                this.columnAssignTo = new global::System.Data.DataColumn("AssignTo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAssignTo);
+                this.columnReceiver = new global::System.Data.DataColumn("Receiver", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReceiver);
+                this.columnintJobStatusID = new global::System.Data.DataColumn("intJobStatusID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintJobStatusID);
+                this.columnintPOID = new global::System.Data.DataColumn("intPOID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPOID);
+                this.columnstrRemarks = new global::System.Data.DataColumn("strRemarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrRemarks);
+                this.columnstrJobType = new global::System.Data.DataColumn("strJobType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobType);
+                this.columnstrJobDescription = new global::System.Data.DataColumn("strJobDescription", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobDescription);
+                this.columnintJobID.AutoIncrement = true;
+                this.columnintJobID.AutoIncrementSeed = -1;
+                this.columnintJobID.AutoIncrementStep = -1;
+                this.columnintJobID.AllowDBNull = false;
+                this.columnintJobID.ReadOnly = true;
+                this.columndteRequiredDate.ReadOnly = true;
+                this.columndteRequiredDate.MaxLength = 30;
+                this.columntmRequiredTime.ReadOnly = true;
+                this.columntmRequiredTime.MaxLength = 30;
+                this.columnAssignBy.MaxLength = 1000;
+                this.columnAssignTo.MaxLength = 1000;
+                this.columnReceiver.MaxLength = 1000;
+                this.columnintJobStatusID.ReadOnly = true;
+                this.columnintPOID.ReadOnly = true;
+                this.columnstrRemarks.MaxLength = 2000;
+                this.columnstrJobType.MaxLength = 50;
+                this.columnstrJobDescription.MaxLength = 200;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SprCreativeSupportReportForViewDetailsRow NewSprCreativeSupportReportForViewDetailsRow() {
+                return ((SprCreativeSupportReportForViewDetailsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprCreativeSupportReportForViewDetailsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprCreativeSupportReportForViewDetailsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprCreativeSupportReportForViewDetailsRowChanged != null)) {
+                    this.SprCreativeSupportReportForViewDetailsRowChanged(this, new SprCreativeSupportReportForViewDetailsRowChangeEvent(((SprCreativeSupportReportForViewDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprCreativeSupportReportForViewDetailsRowChanging != null)) {
+                    this.SprCreativeSupportReportForViewDetailsRowChanging(this, new SprCreativeSupportReportForViewDetailsRowChangeEvent(((SprCreativeSupportReportForViewDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprCreativeSupportReportForViewDetailsRowDeleted != null)) {
+                    this.SprCreativeSupportReportForViewDetailsRowDeleted(this, new SprCreativeSupportReportForViewDetailsRowChangeEvent(((SprCreativeSupportReportForViewDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprCreativeSupportReportForViewDetailsRowDeleting != null)) {
+                    this.SprCreativeSupportReportForViewDetailsRowDeleting(this, new SprCreativeSupportReportForViewDetailsRowChangeEvent(((SprCreativeSupportReportForViewDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveSprCreativeSupportReportForViewDetailsRow(SprCreativeSupportReportForViewDetailsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                CreativeS_DAL ds = new CreativeS_DAL();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprCreativeSupportReportForViewDetailsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class JobDesctionListRow : global::System.Data.DataRow {
@@ -3399,6 +3838,322 @@ namespace HR_DAL.CreativeSupport {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprCreativeSupportReportForViewDetailsRow : global::System.Data.DataRow {
+            
+            private SprCreativeSupportReportForViewDetailsDataTable tableSprCreativeSupportReportForViewDetails;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SprCreativeSupportReportForViewDetailsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprCreativeSupportReportForViewDetails = ((SprCreativeSupportReportForViewDetailsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int intJobID {
+                get {
+                    return ((int)(this[this.tableSprCreativeSupportReportForViewDetails.intJobIDColumn]));
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.intJobIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string dteRequiredDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.dteRequiredDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteRequiredDate\' in table \'SprCreativeSupportReportForViewD" +
+                                "etails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.dteRequiredDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tmRequiredTime {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.tmRequiredTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tmRequiredTime\' in table \'SprCreativeSupportReportForViewDe" +
+                                "tails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.tmRequiredTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AssignBy {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.AssignByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AssignBy\' in table \'SprCreativeSupportReportForViewDetails\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.AssignByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AssignTo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.AssignToColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AssignTo\' in table \'SprCreativeSupportReportForViewDetails\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.AssignToColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Receiver {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.ReceiverColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Receiver\' in table \'SprCreativeSupportReportForViewDetails\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.ReceiverColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int intJobStatusID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprCreativeSupportReportForViewDetails.intJobStatusIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intJobStatusID\' in table \'SprCreativeSupportReportForViewDe" +
+                                "tails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.intJobStatusIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int intPOID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprCreativeSupportReportForViewDetails.intPOIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intPOID\' in table \'SprCreativeSupportReportForViewDetails\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.intPOIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strRemarks {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.strRemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRemarks\' in table \'SprCreativeSupportReportForViewDetail" +
+                                "s\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.strRemarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strJobType {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.strJobTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobType\' in table \'SprCreativeSupportReportForViewDetail" +
+                                "s\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.strJobTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strJobDescription {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCreativeSupportReportForViewDetails.strJobDescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobDescription\' in table \'SprCreativeSupportReportForVie" +
+                                "wDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCreativeSupportReportForViewDetails.strJobDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsdteRequiredDateNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.dteRequiredDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetdteRequiredDateNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.dteRequiredDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IstmRequiredTimeNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.tmRequiredTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SettmRequiredTimeNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.tmRequiredTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAssignByNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.AssignByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAssignByNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.AssignByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAssignToNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.AssignToColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAssignToNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.AssignToColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsReceiverNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.ReceiverColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetReceiverNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.ReceiverColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsintJobStatusIDNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.intJobStatusIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetintJobStatusIDNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.intJobStatusIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsintPOIDNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.intPOIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetintPOIDNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.intPOIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrRemarksNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.strRemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrRemarksNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.strRemarksColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrJobTypeNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.strJobTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrJobTypeNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.strJobTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrJobDescriptionNull() {
+                return this.IsNull(this.tableSprCreativeSupportReportForViewDetails.strJobDescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrJobDescriptionNull() {
+                this[this.tableSprCreativeSupportReportForViewDetails.strJobDescriptionColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3656,6 +4411,40 @@ namespace HR_DAL.CreativeSupport {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public StatusListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class SprCreativeSupportReportForViewDetailsRowChangeEvent : global::System.EventArgs {
+            
+            private SprCreativeSupportReportForViewDetailsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SprCreativeSupportReportForViewDetailsRowChangeEvent(SprCreativeSupportReportForViewDetailsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SprCreativeSupportReportForViewDetailsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4451,6 +5240,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strRemarks", global::System.Data.SqlDbType.VarChar, 2000, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlItem", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlDoc", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPOID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strmsgvcd", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4458,7 +5248,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CreativeS_DAL.SprCreativeSupportEntryDataTable InsertCreativeSupport(global::System.Nullable<int> intAssignBy, global::System.Nullable<global::System.DateTime> dteRequiredDate, global::System.Nullable<global::System.TimeSpan> tmRequiredTime, global::System.Nullable<int> intAssignTo, global::System.Nullable<int> intJobDescriptionID, string strJobType, global::System.Nullable<int> intTotalPoint, string strRemarks, object xmlItem, object xmlDoc, ref string strmsgvcd) {
+        public virtual CreativeS_DAL.SprCreativeSupportEntryDataTable InsertCreativeSupport(global::System.Nullable<int> intAssignBy, global::System.Nullable<global::System.DateTime> dteRequiredDate, global::System.Nullable<global::System.TimeSpan> tmRequiredTime, global::System.Nullable<int> intAssignTo, global::System.Nullable<int> intJobDescriptionID, string strJobType, global::System.Nullable<int> intTotalPoint, string strRemarks, object xmlItem, object xmlDoc, global::System.Nullable<int> intPOID, ref string strmsgvcd) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intAssignBy.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intAssignBy.Value));
@@ -4520,20 +5310,26 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll";
             else {
                 this.Adapter.SelectCommand.Parameters[10].Value = ((object)(xmlDoc));
             }
-            if ((strmsgvcd == null)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            if ((intPOID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intPOID.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strmsgvcd));
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((strmsgvcd == null)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(strmsgvcd));
             }
             CreativeS_DAL.SprCreativeSupportEntryDataTable dataTable = new CreativeS_DAL.SprCreativeSupportEntryDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[11].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[11].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[12].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[12].Value.GetType() == typeof(global::System.DBNull)))) {
                 strmsgvcd = null;
             }
             else {
-                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[11].Value));
+                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[12].Value));
             }
             return dataTable;
         }
@@ -5044,6 +5840,185 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll";
         public virtual CreativeS_DAL.StatusListDataTable GetStatusList() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             CreativeS_DAL.StatusListDataTable dataTable = new CreativeS_DAL.StatusListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprCreativeSupportReportForViewDetailsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public SprCreativeSupportReportForViewDetailsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprCreativeSupportReportForViewDetails";
+            tableMapping.ColumnMappings.Add("intJobID", "intJobID");
+            tableMapping.ColumnMappings.Add("dteRequiredDate", "dteRequiredDate");
+            tableMapping.ColumnMappings.Add("tmRequiredTime", "tmRequiredTime");
+            tableMapping.ColumnMappings.Add("AssignBy", "AssignBy");
+            tableMapping.ColumnMappings.Add("AssignTo", "AssignTo");
+            tableMapping.ColumnMappings.Add("Receiver", "Receiver");
+            tableMapping.ColumnMappings.Add("intJobStatusID", "intJobStatusID");
+            tableMapping.ColumnMappings.Add("intPOID", "intPOID");
+            tableMapping.ColumnMappings.Add("strRemarks", "strRemarks");
+            tableMapping.ColumnMappings.Add("strJobType", "strJobType");
+            tableMapping.ColumnMappings.Add("strJobDescription", "strJobDescription");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.AG_GlobalConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprCreativeSupportReportForViewDetails";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPart", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intJobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual CreativeS_DAL.SprCreativeSupportReportForViewDetailsDataTable GetJobDetailsR(global::System.Nullable<int> intPart, global::System.Nullable<int> intJobID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intPart.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intPart.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((intJobID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intJobID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            CreativeS_DAL.SprCreativeSupportReportForViewDetailsDataTable dataTable = new CreativeS_DAL.SprCreativeSupportReportForViewDetailsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

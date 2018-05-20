@@ -21,7 +21,8 @@ namespace UI.SCM.BOM
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            filePathForXML = Server.MapPath("~/SCM/Data/ber__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            if (!IsPostBack)
             {
                 try { File.Delete(filePathForXML);  }
                 catch { }
@@ -32,7 +33,7 @@ namespace UI.SCM.BOM
                 string Vtype = Request.QueryString["Vtype"].ToString();
                 string dteFrom = Request.QueryString["dteFrom"].ToString();
                 string dteTo = Request.QueryString["dteTo"].ToString();
-               // txtDate.Text
+                claenderDte.SelectedDate =DateTime.Parse(dteFrom.ToString());
                 xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 if (Vtype=="Item")
                 {

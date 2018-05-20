@@ -197,6 +197,9 @@
                              <asp:ListItem  Text="Specific Sales Office(Item Catg Basis)" Value="13"></asp:ListItem>
                               <asp:ListItem  Text="All Sales Office Top sheet(DO CH PEND.)" Value="14"></asp:ListItem>
                                <asp:ListItem  Text="All Sales Office Detaills(DO CH PEND.)" Value="15"></asp:ListItem>
+                             <asp:ListItem  Text="Product Group vs Challan Det" Value="16"></asp:ListItem>
+                              <asp:ListItem  Text="Product Group vs Challan Topsheet" Value="17"></asp:ListItem>
+                               <asp:ListItem  Text="Product Group vs Grand Total challan" Value="18"></asp:ListItem>
                          </asp:DropDownList>
                      </td>
 
@@ -457,6 +460,78 @@
 
         </table>
             </div>
+
+          <div>
+            <table>
+              <tr><td>
+
+    <asp:GridView ID="grdvProductGroupbaseChallan" runat="server" AllowPaging="True" PageSize="111125"   AutoGenerateColumns="False" CellPadding="3" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" ShowFooter="True" CellSpacing="1" GridLines="None">
+
+                    <Columns>
+
+
+
+
+
+
+<asp:BoundField DataField="intsl" HeaderText="SL" SortExpression="insl" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+
+<asp:BoundField DataField="strcustname" HeaderText="strcustname" SortExpression="strcustname" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+<asp:BoundField DataField="intcustomerid" HeaderText="intcustomerid" SortExpression="intcustomerid" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+<asp:BoundField DataField="strProductName" HeaderText="strProductName" SortExpression="strProductName" ItemStyle-HorizontalAlign="Center" >
+
+<ItemStyle HorizontalAlign="Center" />
+</asp:BoundField>
+<asp:BoundField DataField="intPrdctid" HeaderText="intPrdctid" SortExpression="intPrdctid" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+<asp:BoundField DataField="prdgroupname" HeaderText="prdgroupname" SortExpression="prdgroupname" ItemStyle-HorizontalAlign="Center" >
+
+<ItemStyle HorizontalAlign="Center" />
+</asp:BoundField>
+
+<asp:BoundField DataField="salesofficename" HeaderText="salesofficename" SortExpression="salesofficename" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+<asp:BoundField DataField="strshippinname" HeaderText="strshippinname" SortExpression="strshippinname" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+<asp:BoundField DataField="strUOM" HeaderText="strUOM" SortExpression="strUOM" ItemStyle-HorizontalAlign="Center" >
+
+<ItemStyle HorizontalAlign="Center" />
+</asp:BoundField>
+<asp:BoundField DataField="numQuantity" HeaderText="numQuantity" SortExpression="numQuantity" ItemStyle-HorizontalAlign="Center" >
+
+<ItemStyle HorizontalAlign="Center" />
+</asp:BoundField>
+
+<asp:BoundField DataField="monAmount" HeaderText="monAmount" SortExpression="monAmount" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+<asp:BoundField DataField="prdrfid" HeaderText="prdrfid" SortExpression="prdrfid" ItemStyle-HorizontalAlign="Center" >
+
+<ItemStyle HorizontalAlign="Center" />
+</asp:BoundField>
+
+
+                    
+</Columns>
+
+
+<FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+<HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+<PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+<RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+<SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+<SortedAscendingCellStyle BackColor="#F1F1F1" />
+<SortedAscendingHeaderStyle BackColor="#594B9C" />
+<SortedDescendingCellStyle BackColor="#CAC9C9" />
+<SortedDescendingHeaderStyle BackColor="#33276A" />
+
+
+</asp:GridView>
+    </td></tr>
+
+        </table>
+            </div>
+
+
+
+
  <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>   

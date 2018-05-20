@@ -23,7 +23,7 @@ namespace UI.Wastage
         #region ===== Variable Decliaration ===================================================================
         Project_Class objDairy = new Project_Class();
         DataTable dt;
-
+        int enroll;
         string filePathForXML, xmlString, xml;
         string itemid, itemname, uom, qty, rate, value, remarks;
         #endregion ============================================================================================
@@ -39,14 +39,6 @@ namespace UI.Wastage
                 {
                     pnlUpperControl.DataBind();
                     File.Delete(filePathForXML);
-
-                    //dt = new DataTable();
-                    //dt = objDairy.GetChillingCenterName();
-                    //ddlChillingCenter.DataTextField = "strChillingCenterName";
-                    //ddlChillingCenter.DataValueField = "intChillingCenterID";
-                    //ddlChillingCenter.DataSource = dt;
-                    //ddlChillingCenter.DataBind();
-
                 }
                 catch (Exception ex)
                 {
@@ -55,25 +47,24 @@ namespace UI.Wastage
             }
         }
 
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         #region ===== Item Add & Load Grid Action ===========================================================
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            //itemid = ddlItem.SelectedValue.ToString();
-            //itemname = ddlItem.SelectedItem.ToString();
-            //uom = txtUOM.Text;
-            //qty = txtQty.Text;
-            //rate = txtRate.Text;
-            //value = txtValue.Text;
-            //remarks = txtRemarks.Text;
+            
 
             CreateAddXml(itemid, itemname, uom, qty, rate, value, remarks);
-
-            //txtUOM.Text = "";
-            //txtQty.Text = "";
-            //txtRate.Text = "";
-            //txtValue.Text = "";
-            //txtRemarks.Text = "";
+          
         }
         private void CreateAddXml(string itemid, string itemname, string uom, string qty, string rate, string value, string remarks)
         {

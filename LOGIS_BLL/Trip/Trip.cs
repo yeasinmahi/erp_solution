@@ -308,6 +308,14 @@ namespace LOGIS_BLL.Trip
             }
             catch { return new DataTable(); }
         }
-
+        public DataTable GetThanrate(int shippointid, DateTime dtfrom, DateTime dtto, int type)
+        {
+            try
+            {
+                SprThanaRateCheckingTableAdapter bll = new SprThanaRateCheckingTableAdapter();
+                return bll.GetDataThanaRateChecking(shippointid, dtfrom, dtto, type);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace SCM_BLL
         public string[] AutoSearchBomId(string unit, string prefix)
         {
 
-            tableBomItem = new BomTDS.qryItemListDataTable[Convert.ToInt32(unit)];
+           tableBomItem = new BomTDS.qryItemListDataTable[Convert.ToInt32(unit)];
             qryItemListTableAdapter adpCOA = new qryItemListTableAdapter();
             tableBomItem[e] = adpCOA.GetItemSearchData(Convert.ToInt32(unit));
 
@@ -86,7 +86,15 @@ namespace SCM_BLL
 
         }
 
-       
+        public DataTable getWorkstationParent(int intwh)
+        {
+            try
+            {
+                TblProcessWorkstationTableAdapter adp = new TblProcessWorkstationTableAdapter();
+                return adp.GetWorkstationData(intwh);
+            }
+            catch {return new DataTable(); }
+        }
 
         public string BomPostData(int type, string xmlString, int intWh, int bomid, DateTime dteDate, int enroll)
         { 
@@ -101,5 +109,41 @@ namespace SCM_BLL
             return strMsg;
 
         }
+
+        public DataTable getChildData(int intwh, int parent)
+        {
+            try
+            {
+                TblProcessWorkstationTableAdapter adp = new TblProcessWorkstationTableAdapter();
+                return adp.GetChildData(intwh, parent);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public string GetRoutingData(int Type, string xmlMachine, string xmlAsset, int intWh, int Id, DateTime dteDate, int enroll)
+        {
+            string strMsg = "";
+            try
+            {
+                SprBillOfMaterialRoutingTableAdapter adp = new SprBillOfMaterialRoutingTableAdapter();
+                adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
+            }
+           
+            catch (Exception ex) { return strMsg = ex.ToString(); }
+            return strMsg;
+        }
+
+        public DataTable getBomRouting(int Type, string xmlMachine, string xmlAsset, int intWh, int Id, DateTime dteDate, int enroll)
+        {
+            try
+            {
+                string strMsg = "";
+                SprBillOfMaterialRoutingTableAdapter adp = new SprBillOfMaterialRoutingTableAdapter();
+               return adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
+            }
+            catch { return new DataTable(); }
+        }
+
+       
     }
 }

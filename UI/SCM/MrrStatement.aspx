@@ -66,7 +66,10 @@
            
         <td   style="text-align:right;"><asp:Label ID="Label2"   runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlDept"  Enabled="false"  CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     >
-         <asp:ListItem>Local</asp:ListItem></asp:DropDownList></td>      
+         <asp:ListItem>Local</asp:ListItem>
+          <asp:ListItem>Fabrication</asp:ListItem>
+          <asp:ListItem>Import</asp:ListItem>
+           </asp:DropDownList></td>      
                                                                                                                      
 
         </tr>

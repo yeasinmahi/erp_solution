@@ -148,7 +148,7 @@
                     </ItemTemplate><ItemStyle HorizontalAlign="left" Width="180px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Last Price" SortExpression="monLastPtice">
-                    <ItemTemplate><asp:Label ID="lblLastPrice" runat="server" Text='<%# Bind("monLastPtice") %>' Width="80px"></asp:Label>
+                    <ItemTemplate><asp:Label ID="lblLastPrice" runat="server" Text='<%# Bind("monLastPtice", "{0:n2}") %>' Width="80px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Reff" SortExpression="strReff">

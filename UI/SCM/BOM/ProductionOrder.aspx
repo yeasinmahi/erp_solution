@@ -32,6 +32,21 @@
         if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; } 
         else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
         } 
+
+        function AddConfirm() { 
+                  var e = document.getElementById("ddlBom");
+                  var bomtype = e.options[e.selectedIndex].value; 
+                  var inItem = document.getElementById("txtItem").value;
+                  var quantity = parseFloat(document.getElementById("txtQty").value);
+                
+             if ($.trim(bomtype) == 0 || $.trim(bomtype) == "" || $.trim(bomtype) == null || $.trim(bomtype) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select BOM '); }
+             else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select   Item'); }
+             else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
+              
+             else {
+                  document.getElementById("hdnPreConfirm").value = "1";
+             }
+        }
     </script> 
 
   
@@ -56,11 +71,11 @@
 <%--=========================================Start My Code From Here===============================================--%>
 
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-     <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
+     <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnPreConfirm" runat="server" />
     
-       <div class="tabs_container" style="text-align:left">Item Manager<hr/></div>
+       <div class="tabs_container" style="text-align:left">Production Order<hr/></div>
        <table>
-               <tr> 
+            <tr> 
             <td style="text-align:left;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
 
@@ -78,14 +93,14 @@
             </tr>
            <tr>
                <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtQty" CssClass="txtBox" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>                                                                                      
+            <td style="text-align:left;"><asp:TextBox ID="txtQty" CssClass="txtBox" Font-Bold="False" TextMode="Number" AutoPostBack="false" Text="0" runat="server"   ></asp:TextBox></td>                                                                                      
             <td style="text-align:right;" ><asp:Label ID="lblPurpose" runat="server" CssClass="lbl" Text="Batch No"></asp:Label></td>    
             <td style="text-align:left;"><asp:TextBox ID="txtBatchNo" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> 
             <td style="text-align:right;" ><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Line No"></asp:Label></td>    
             <td style="text-align:left;"><asp:DropDownList ID="ddlLine" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       ></asp:DropDownList></td>   
            </tr>
            <tr>
-           <td style="text-align:right;" ><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
+           <td style="text-align:right;" ><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
             <td style="text-align:left" colspan="3"><asp:TextBox ID="txtdteDate" runat="server" CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender> 
            <asp:DropDownList ID="ddlFromTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
@@ -145,7 +160,10 @@
             </td> 
             </tr>
            <tr>
-             <td  style="text-align:right"  colspan="6"><asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"/><asp:Button ID="btnSubmit" runat="server"  Text="Submit" OnClick="btnSubmit_Click"/></td>
+                <td style="text-align:right;" ><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Workstation"></asp:Label></td>    
+            <td style="text-align:left;"><asp:DropDownList ID="ddlStation" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       ></asp:DropDownList></td>   
+
+             <td  style="text-align:right"  colspan="6"><asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="AddConfirm();" OnClick="btnAdd_Click"/><asp:Button ID="btnSubmit" runat="server" OnClientClick="funConfirmAll();"  Text="Submit" OnClick="btnSubmit_Click"/></td>
                             
            </tr>
        </table>
@@ -183,7 +201,7 @@
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="BOM Used" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="bomname" > 
-            <ItemTemplate><asp:Label ID="lblBomUsed" Width="120px"   runat="server"   Text='<%# Bind("quantity") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblBomUsed" Width="120px"   runat="server"   Text='<%# Bind("bomName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Batch" ItemStyle-HorizontalAlign="right" SortExpression="strCode" > 

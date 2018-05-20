@@ -184,6 +184,15 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// txtProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProduct;
+        
+        /// <summary>
         /// ddlProduct control.
         /// </summary>
         /// <remarks>
@@ -256,15 +265,6 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.CheckBox cbTax;
         
         /// <summary>
-        /// btnUpdateUOM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateUOM;
-        
-        /// <summary>
         /// btnCreateItem control.
         /// </summary>
         /// <remarks>
@@ -281,6 +281,15 @@ namespace UI.VAT_Management {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// txtMaterial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMaterial;
         
         /// <summary>
         /// ddlMaterial control.

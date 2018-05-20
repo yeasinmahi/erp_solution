@@ -21,6 +21,8 @@ namespace UI.SCM.Transfer
         decimal Qty,Values,Stock;string xmlpath = "", xmlString,ItemName,UOM,msg,Remarks;
         DataTable dt;
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
+
+
         TransferBLLNew TBLL = new TransferBLLNew();
         ExcelDataBLL objExcel = new ExcelDataBLL();
      
@@ -42,7 +44,7 @@ namespace UI.SCM.Transfer
                 getTransferType();
                 getSavePermission(int.Parse(Session[SessionParams.USER_ID].ToString()));
             }
-            else { GETItemUomInof(); }
+            else {  }
         }
 
         private void getSavePermission(int Enroll)
@@ -58,6 +60,11 @@ namespace UI.SCM.Transfer
                 btnSave.Visible = false;
                 btnTransfer.Visible = true;
             }
+        }
+
+        protected void txtItemName_TextChanged(object sender, EventArgs e)
+        {
+            GETItemUomInof();
         }
         protected void btnTransfer_Click(object sender, EventArgs e)
         {
@@ -131,12 +138,19 @@ namespace UI.SCM.Transfer
                 }
                 else
                 {
-                    dt = TBLL.getStockAlternative(itemid);
-                    lblstock.Text = "0".ToString();
-                    lblStockvalue.Text = "0".ToString();
-                    lblUOM.Text = dt.Rows[0]["strUoM"].ToString();
-                    ddlLocation.Items.Add(new ListItem(dt.Rows[0]["strlocationname"].ToString(), dt.Rows[0]["intlocationid"].ToString()));
-                    
+                    if(hdnItemid.Value=="")
+                    {
+                        hdnItemid.Value = "0";
+                    }
+                    if (int.Parse(hdnItemid.Value.ToString()) != itemid)
+                    {
+                        dt = TBLL.getStockAlternative(itemid);
+                        lblstock.Text = "0".ToString();
+                        lblStockvalue.Text = "0".ToString();
+                        lblUOM.Text = dt.Rows[0]["strUoM"].ToString();
+                        ddlLocation.Items.Add(new ListItem(dt.Rows[0]["strlocationname"].ToString(), dt.Rows[0]["intlocationid"].ToString()));
+                        hdnItemid.Value = itemid.ToString();
+                    }
 
                 }
                

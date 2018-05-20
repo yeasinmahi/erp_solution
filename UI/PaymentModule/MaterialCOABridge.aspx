@@ -67,13 +67,13 @@
 
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblLoanType" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" width="110px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
+                <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" width="110px" height="23px" AutoPostBack="true" ></asp:DropDownList>
                 </td>                
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Category :"></asp:Label></td>
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlCategory" CssClass="ddList" Font-Bold="False" runat="server" width="130px" height="23px" AutoPostBack="false"></asp:DropDownList>
                 <span style="padding-left:30px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show All Item" Height="30px" OnClick="btnShow_Click"/></span>
-                <span style="padding-left:30px"><asp:Button ID="btnCOABankItem" runat="server" class="myButton" Text="COA Bank Item" Height="30px" OnClick="btnCOABankItem_Click1"/></span>
+                <span style="padding-left:30px"><asp:Button ID="btnCOABankItem" runat="server" class="myButton" Text="COA Bank Item" Height="30px" OnClick="btnCOABankItem_Click"/></span>
                 <span style="padding-left:30px"><asp:Button ID="btnUpdateBridge" runat="server" class="myButton" Text="Update Bridge" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateBridge_Click"/></span>
                 </td>
             </tr>
@@ -83,7 +83,7 @@
                 <asp:GridView ID="dgvItemList" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" Font-Size="10px"
                 CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
                 HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="10px" HeaderStyle-Font-Bold="true"
-                ForeColor="Black" GridLines="Vertical" OnDataBound="dgvItemList_DataBound">
+                ForeColor="Black" GridLines="Vertical">
                 <AlternatingRowStyle BackColor="#CCCCCC" />    
                 <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
@@ -112,7 +112,7 @@
                 <ItemTemplate><asp:DropDownList ID="ddlAccountName" runat="server" CssClass="ddList" Width="300px" DataSourceID="odsItemCOA" DataTextField="strAccName" DataValueField="intAccID"></asp:DropDownList>
                 <asp:ObjectDataSource ID="odsItemCOA" runat="server" SelectMethod="GetItemCOA" TypeName="SCM_BLL.Payment_All_Voucher_BLL">
                 <SelectParameters><asp:ControlParameter ControlID="ddlUnit" Name="intUnitID" PropertyName="SelectedValue" Type="Int32" /></SelectParameters></asp:ObjectDataSource>
-                <asp:HiddenField ID="hdnCOAID" runat="server" Value='<%# Bind("intCOAID") %>' />
+                <%--<asp:HiddenField ID="hdnCOAID" runat="server" Value='<%# Bind("intCOAID") %>' />--%>
                 </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
 
                 <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
