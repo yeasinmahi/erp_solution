@@ -28,16 +28,10 @@ namespace UI.Asset
         {
             if (!IsPostBack)
             {
-                hdnField.Value = "0";
-
-
+                hdnField.Value = "0"; 
                 TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextVendor();");
-                SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();");
-              
-               
-                wt = new DataTable();
-               
-                
+                SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();"); 
+                wt = new DataTable(); 
                 TxtTCost.Visible = false;
                 TxtTCost.Visible = false;
                 TxtLabor.Visible = false;

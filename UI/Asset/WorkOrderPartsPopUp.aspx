@@ -282,20 +282,20 @@
                         </Columns>
                        </asp:GridView> </td>
 
-                  <td colspan="3"> <asp:GridView ID="dgvWolabor" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvWolabor_RowDeleting">
+                        <td colspan="3"> <asp:GridView ID="dgvWolabor" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvWolabor_RowDeleting">
                         <Columns>
-                            <asp:BoundField DataField="strEmployeeName" HeaderText="Performer by" SortExpression="strEmployeeName" />
-                            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-                            <asp:BoundField DataField="strDescription" HeaderText="Description" SortExpression="strDescription" />
-                            <asp:BoundField DataField="strHour" HeaderText="Hour" SortExpression="strHour" />
-                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
-                            <asp:TemplateField HeaderText="ID" Visible="False">
-                                <ItemTemplate>
-                                    <asp:Label ID="Label20" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                        <asp:BoundField DataField="strEmployeeName" HeaderText="Performer by" SortExpression="strEmployeeName" />
+                        <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+                        <asp:BoundField DataField="strDescription" HeaderText="Description" SortExpression="strDescription" />
+                        <asp:BoundField DataField="strHour" HeaderText="Hour" SortExpression="strHour" />
+                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
+                        <asp:TemplateField HeaderText="ID" Visible="False">
+                        <ItemTemplate>
+                        <asp:Label ID="Label20" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
+                        </ItemTemplate>
+                        </asp:TemplateField>
                         </Columns>
-                       </asp:GridView> </td>
+                        </asp:GridView> </td>
              </tr>
              </table>
          

@@ -345,5 +345,17 @@ namespace SAD_BLL.Sales
             try { return adp.GetDataDamageDOCreateInfo(type, actionby, xml, id, fdate, tdate, unitid, chalan); }
             catch { return new DataTable(); }
         }
+        public DataTable Getsalestrendinfo(int unit, DateTime fdateMonth, DateTime tdateMonth, DateTime fdateday, DateTime tdateday, DateTime fdateLastYr, DateTime tdateLastYr, int totalday, int runningday)
+        {
+            SprSalesTrandAnalysisTableAdapter adp = new SprSalesTrandAnalysisTableAdapter();
+            try { return adp.GetDataSalesTrandAnalysis(unit, fdateMonth, tdateMonth, fdateday, tdateday, fdateLastYr, tdateLastYr, totalday, runningday); }
+            catch { return new DataTable(); }
+        }
+        public DataTable getTripInfo(string tripcode)
+        {
+            TblTripDetinfoTableAdapter adp = new TblTripDetinfoTableAdapter();
+            try { return adp.GetDataTripChallaninfo(tripcode); }
+            catch { return new DataTable(); }
+        }
     }
 }

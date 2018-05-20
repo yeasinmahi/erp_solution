@@ -216,11 +216,11 @@
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monRate" > 
-                        <ItemTemplate><asp:Label ID="lblRate"  Width="50px" runat="server"  Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblRate"  Width="50px" runat="server"  Text='<%# Bind("monRate") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField>  
                             
                         <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue" > 
-                        <ItemTemplate><asp:Label ID="lblValue" runat="server"    Text='<%# Bind("monValue","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblValue" runat="server"    Text='<%# Bind("monValue") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px"/></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monVat" > 
@@ -232,7 +232,7 @@
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Previous Receive" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreRecvQty" > 
-                        <ItemTemplate><asp:Label ID="lblPreviousReceive" runat="server"   Text='<%# Bind("monPreRecvQty","{0:n2}" ) %>'  ></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblPreviousReceive" runat="server"   Text='<%# Bind("monPreRecvQty" ) %>'  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" /></asp:TemplateField> 
 
                          <asp:TemplateField HeaderText="YsnQC" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="ysnNeedQc" > 

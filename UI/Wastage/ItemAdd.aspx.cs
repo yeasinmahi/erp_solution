@@ -36,13 +36,11 @@ namespace UI.Wastage
                 ddlUnitCust.DataBind();
                 Panel1.Visible = false;
 
-                //intWorkCount = 5;
-                //dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), empid, dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
-                //ddlUnitCust.DataTextField = "strUnit";
-                //ddlUnitCust.DataValueField = "intUnitID";
-                //ddlUnitCust.DataSource = dt;
-                //ddlUnitCust.DataBind();
-
+                dt = objWastage.getUom();
+                ddlUOM.DataTextField = "strUOM";
+                ddlUOM.DataValueField = "intUOMID";
+                ddlUOM.DataSource = dt;
+                ddlUOM.DataBind();
             }
         }
         protected void btnShow_Click(object sender, EventArgs e)

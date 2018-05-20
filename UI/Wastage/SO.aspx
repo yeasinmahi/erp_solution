@@ -99,7 +99,7 @@
             <td><asp:TextBox ID="txtUOM" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td> 
             <td style="text-align:right; width:15px;"><asp:Label ID="Label11" runat="server" Text=""></asp:Label></td>
             <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Rate" CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:TextBox ID="txtRate" runat="server" CssClass="txtBox1" Enabled="false" onkeypress="return onlyNumbers();"></asp:TextBox></td>                
+            <td><asp:TextBox ID="txtRate" runat="server" CssClass="txtBox1"  onkeypress="return onlyNumbers();"></asp:TextBox></td>                
          </tr>
          <tr>
             <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Remarks :" CssClass="lbl"></asp:Label></td>

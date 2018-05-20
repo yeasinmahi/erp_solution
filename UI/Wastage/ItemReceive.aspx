@@ -19,7 +19,16 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
-
+     <script>
+       function Add() {
+           var a, b, c;
+            var a = document.forms["frmItemReceive"]["txtQty"].value;           
+            if (isNaN(a) == true) { a = 0; }
+              var b = document.forms["frmItemReceive"]["txtRate"].value;
+            if (isNaN(b) == true) { b = 0; }            
+            document.forms["frmItemReceive"]["txtValue"].value = (a*b).toFixed(0);
+        }
+  </script>  
 </head>
 <body>
     <form id="frmItemReceive" runat="server">        
@@ -57,7 +66,7 @@
             <asp:DropDownList ID="ddlItem" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="True" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged"></asp:DropDownList></td>
             <td style="text-align:right; " class="auto-style2"><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
             <td style="text-align:right;" class="auto-style1"><asp:Label ID="Label7" runat="server" Text="Quantity" CssClass="lbl" ></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td class="auto-style1"><asp:TextBox ID="txtQty" runat="server" CssClass="txtBox1" onkeypress="return onlyNumbers();"></asp:TextBox></td>                 
+            <td class="auto-style1"><asp:TextBox ID="txtQty" runat="server" CssClass="txtBox1" onKeyUp="javascript:Add();" ></asp:TextBox></td>                 
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="Label6" runat="server" Text="UOM :" CssClass="lbl"></asp:Label></td>

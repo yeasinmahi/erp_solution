@@ -20,6 +20,7 @@ namespace UI.SCM.Transfer
         InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
         AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
         StoreIssue_BLL objWH = new StoreIssue_BLL();
+        Bom_BLL objBom = new Bom_BLL();
         DataTable dt = new DataTable(); string xmlString, filePathForXML; int Id;
         int enroll, intWh; string[] arrayKey, arrayKeyV; char[] delimiterChars = { '[', ']' };
         int CheckItem = 1; decimal values;
@@ -56,6 +57,15 @@ namespace UI.SCM.Transfer
                 ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
 
+
+                intWh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getBomRouting(4, xmlString, "", intWh, 0, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                    Session["unit"] = hdnUnit.Value.ToString();
+                }
+
             }
 
         }
@@ -70,6 +80,14 @@ namespace UI.SCM.Transfer
                 ddlLcation.DataBind();
                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
                 hdnStockQty.Value = "0";
+
+                intWh = int.Parse(ddlWh.SelectedValue);
+                dt = objBom.getBomRouting(4, xmlString, "", intWh, 0, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                    Session["unit"] = hdnUnit.Value.ToString();
+                }
             }
             catch { }
         }
@@ -81,7 +99,7 @@ namespace UI.SCM.Transfer
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
+                { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[3].ToString(); }
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
 
@@ -130,15 +148,17 @@ namespace UI.SCM.Transfer
                         arrayKey = txtItem.Text.Split(delimiterChars);
                         string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                         if (arrayKey.Length > 0)
-                        { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
+                        { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[3].ToString(); }
 
                         arrayKeyV = txtItem.Text.Split(delimiterChars);
-                        string vehicle = "";
+                        string vehicle = "0";
                         if (arrayKeyV.Length > 0)
                         { vehicle = arrayKeyV[1].ToString(); }
 
-                        if (int.Parse(vehicle) > 0)
-                        {
+                        try { if (int.Parse(vehicle) > 0) { } else { vehicle = "0"; } } catch { vehicle = "0"; }
+                        
+                        
+
                             string locationId = ddlLcation.SelectedValue.ToString();
                             string locationName = ddlLcation.SelectedValue.ToString();
                             string transType = ddlTransType.SelectedItem.ToString();
@@ -160,8 +180,8 @@ namespace UI.SCM.Transfer
                                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
                             }
                             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
-                        }
-                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set Vehicle No');", true); }
+                        
+                       // else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set Vehicle No');", true); }
 
                     }
                 }
@@ -309,7 +329,7 @@ namespace UI.SCM.Transfer
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
+                        string msg = objTransfer.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();
@@ -350,16 +370,25 @@ namespace UI.SCM.Transfer
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            Bom_BLL objBoms = new Bom_BLL();
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText);
 
         }
+
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static string[] GetIndentItemSerachs(string prefixText, int count)
+        //{
+        //    return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+
+        //}
 
         [WebMethod]
         [ScriptMethod]
         public static string[] GetVehicleSerach(string prefixText, int count)
         {
             InventoryTransfer_BLL objserch = new InventoryTransfer_BLL();
-            return objserch.AutoSearchVehicle(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
+            return objserch.AutoSearchVehicle(HttpContext.Current.Session["unit"].ToString(), prefixText);
 
         }
 

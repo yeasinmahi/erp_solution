@@ -88,6 +88,8 @@ namespace SCM_DAL {
         
         private DataTable2DataTable tableDataTable2;
         
+        private DataTable3DataTable tableDataTable3;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -211,6 +213,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["DataTable2"] != null)) {
                     base.Tables.Add(new DataTable2DataTable(ds.Tables["DataTable2"]));
+                }
+                if ((ds.Tables["DataTable3"] != null)) {
+                    base.Tables.Add(new DataTable3DataTable(ds.Tables["DataTable3"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -552,6 +557,16 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DataTable3DataTable DataTable3 {
+            get {
+                return this.tableDataTable3;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -712,6 +727,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["DataTable2"] != null)) {
                     base.Tables.Add(new DataTable2DataTable(ds.Tables["DataTable2"]));
+                }
+                if ((ds.Tables["DataTable3"] != null)) {
+                    base.Tables.Add(new DataTable3DataTable(ds.Tables["DataTable3"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -938,6 +956,12 @@ namespace SCM_DAL {
                     this.tableDataTable2.InitVars();
                 }
             }
+            this.tableDataTable3 = ((DataTable3DataTable)(base.Tables["DataTable3"]));
+            if ((initTable == true)) {
+                if ((this.tableDataTable3 != null)) {
+                    this.tableDataTable3.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1012,6 +1036,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tablesprGetUnitByUser);
             this.tableDataTable2 = new DataTable2DataTable();
             base.Tables.Add(this.tableDataTable2);
+            this.tableDataTable3 = new DataTable3DataTable();
+            base.Tables.Add(this.tableDataTable3);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1208,6 +1234,12 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeDataTable3() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1357,6 +1389,9 @@ namespace SCM_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void DataTable2RowChangeEventHandler(object sender, DataTable2RowChangeEvent e);
         
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void DataTable3RowChangeEventHandler(object sender, DataTable3RowChangeEvent e);
+        
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
@@ -1364,9 +1399,9 @@ namespace SCM_DAL {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblItemUOMDataTable : global::System.Data.TypedTableBase<tblItemUOMRow> {
             
-            private global::System.Data.DataColumn columnstrUOMNme;
+            private global::System.Data.DataColumn columnstrUOM;
             
-            private global::System.Data.DataColumn columnintid;
+            private global::System.Data.DataColumn columnintUOMID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1403,17 +1438,17 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strUOMNmeColumn {
+            public global::System.Data.DataColumn strUOMColumn {
                 get {
-                    return this.columnstrUOMNme;
+                    return this.columnstrUOM;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intidColumn {
+            public global::System.Data.DataColumn intUOMIDColumn {
                 get {
-                    return this.columnintid;
+                    return this.columnintUOMID;
                 }
             }
             
@@ -1454,21 +1489,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblItemUOMRow AddtblItemUOMRow(string strUOMNme) {
+            public tblItemUOMRow AddtblItemUOMRow(string strUOM) {
                 tblItemUOMRow rowtblItemUOMRow = ((tblItemUOMRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        strUOMNme,
+                        strUOM,
                         null};
                 rowtblItemUOMRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblItemUOMRow);
                 return rowtblItemUOMRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblItemUOMRow FindByintid(int intid) {
-                return ((tblItemUOMRow)(this.Rows.Find(new object[] {
-                            intid})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1488,26 +1516,23 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnstrUOMNme = base.Columns["strUOMNme"];
-                this.columnintid = base.Columns["intid"];
+                this.columnstrUOM = base.Columns["strUOM"];
+                this.columnintUOMID = base.Columns["intUOMID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnstrUOMNme = new global::System.Data.DataColumn("strUOMNme", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrUOMNme);
-                this.columnintid = new global::System.Data.DataColumn("intid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintid);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintid}, true));
-                this.columnstrUOMNme.MaxLength = 50;
-                this.columnintid.AutoIncrement = true;
-                this.columnintid.AutoIncrementSeed = -1;
-                this.columnintid.AutoIncrementStep = -1;
-                this.columnintid.AllowDBNull = false;
-                this.columnintid.ReadOnly = true;
-                this.columnintid.Unique = true;
+                this.columnstrUOM = new global::System.Data.DataColumn("strUOM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUOM);
+                this.columnintUOMID = new global::System.Data.DataColumn("intUOMID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUOMID);
+                this.columnstrUOM.MaxLength = 50;
+                this.columnintUOMID.AutoIncrement = true;
+                this.columnintUOMID.AutoIncrementSeed = -1;
+                this.columnintUOMID.AutoIncrementStep = -1;
+                this.columnintUOMID.AllowDBNull = false;
+                this.columnintUOMID.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6138,8 +6163,6 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrUOM;
             
-            private global::System.Data.DataColumn columnintSalesQty;
-            
             private global::System.Data.DataColumn columnExpr1;
             
             private global::System.Data.DataColumn columnmonSalesRate;
@@ -6159,6 +6182,8 @@ namespace SCM_DAL {
             private global::System.Data.DataColumn columnExpr4;
             
             private global::System.Data.DataColumn columnStockBalanceQty;
+            
+            private global::System.Data.DataColumn columnBqty;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -6206,14 +6231,6 @@ namespace SCM_DAL {
             public global::System.Data.DataColumn strUOMColumn {
                 get {
                     return this.columnstrUOM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSalesQtyColumn {
-                get {
-                    return this.columnintSalesQty;
                 }
             }
             
@@ -6299,6 +6316,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn BqtyColumn {
+                get {
+                    return this.columnBqty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6334,12 +6359,11 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderViewRow AddtblSalesOrderViewRow(string strItemName, string strUOM, int intSalesQty, int Expr1, decimal monSalesRate, decimal monSalesValue, string strSalesRemarks, int intItemID, string Expr2, string Expr3, string Expr4, int StockBalanceQty) {
+            public tblSalesOrderViewRow AddtblSalesOrderViewRow(string strItemName, string strUOM, int Expr1, decimal monSalesRate, decimal monSalesValue, string strSalesRemarks, int intItemID, string Expr2, string Expr3, string Expr4, int StockBalanceQty, int Bqty) {
                 tblSalesOrderViewRow rowtblSalesOrderViewRow = ((tblSalesOrderViewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strItemName,
                         strUOM,
-                        intSalesQty,
                         Expr1,
                         monSalesRate,
                         monSalesValue,
@@ -6349,7 +6373,8 @@ namespace SCM_DAL {
                         Expr2,
                         Expr3,
                         Expr4,
-                        StockBalanceQty};
+                        StockBalanceQty,
+                        Bqty};
                 rowtblSalesOrderViewRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblSalesOrderViewRow);
                 return rowtblSalesOrderViewRow;
@@ -6381,7 +6406,6 @@ namespace SCM_DAL {
             internal void InitVars() {
                 this.columnstrItemName = base.Columns["strItemName"];
                 this.columnstrUOM = base.Columns["strUOM"];
-                this.columnintSalesQty = base.Columns["intSalesQty"];
                 this.columnExpr1 = base.Columns["Expr1"];
                 this.columnmonSalesRate = base.Columns["monSalesRate"];
                 this.columnmonSalesValue = base.Columns["monSalesValue"];
@@ -6392,6 +6416,7 @@ namespace SCM_DAL {
                 this.columnExpr3 = base.Columns["Expr3"];
                 this.columnExpr4 = base.Columns["Expr4"];
                 this.columnStockBalanceQty = base.Columns["StockBalanceQty"];
+                this.columnBqty = base.Columns["Bqty"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6401,8 +6426,6 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrItemName);
                 this.columnstrUOM = new global::System.Data.DataColumn("strUOM", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrUOM);
-                this.columnintSalesQty = new global::System.Data.DataColumn("intSalesQty", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSalesQty);
                 this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpr1);
                 this.columnmonSalesRate = new global::System.Data.DataColumn("monSalesRate", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -6423,6 +6446,8 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnExpr4);
                 this.columnStockBalanceQty = new global::System.Data.DataColumn("StockBalanceQty", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStockBalanceQty);
+                this.columnBqty = new global::System.Data.DataColumn("Bqty", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBqty);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintSalesID}, true));
                 this.columnstrItemName.MaxLength = 500;
@@ -6442,6 +6467,7 @@ namespace SCM_DAL {
                 this.columnExpr4.ReadOnly = true;
                 this.columnExpr4.MaxLength = 1;
                 this.columnStockBalanceQty.ReadOnly = true;
+                this.columnBqty.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10747,6 +10773,254 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class DataTable3DataTable : global::System.Data.TypedTableBase<DataTable3Row> {
+            
+            private global::System.Data.DataColumn columnintOpeningQty;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DataTable3DataTable() {
+                this.TableName = "DataTable3";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal DataTable3DataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected DataTable3DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intOpeningQtyColumn {
+                get {
+                    return this.columnintOpeningQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DataTable3Row this[int index] {
+                get {
+                    return ((DataTable3Row)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event DataTable3RowChangeEventHandler DataTable3RowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event DataTable3RowChangeEventHandler DataTable3RowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event DataTable3RowChangeEventHandler DataTable3RowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event DataTable3RowChangeEventHandler DataTable3RowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddDataTable3Row(DataTable3Row row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DataTable3Row AddDataTable3Row(int intOpeningQty) {
+                DataTable3Row rowDataTable3Row = ((DataTable3Row)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intOpeningQty};
+                rowDataTable3Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataTable3Row);
+                return rowDataTable3Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                DataTable3DataTable cln = ((DataTable3DataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new DataTable3DataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintOpeningQty = base.Columns["intOpeningQty"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintOpeningQty = new global::System.Data.DataColumn("intOpeningQty", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintOpeningQty);
+                this.columnintOpeningQty.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DataTable3Row NewDataTable3Row() {
+                return ((DataTable3Row)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new DataTable3Row(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(DataTable3Row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.DataTable3RowChanged != null)) {
+                    this.DataTable3RowChanged(this, new DataTable3RowChangeEvent(((DataTable3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.DataTable3RowChanging != null)) {
+                    this.DataTable3RowChanging(this, new DataTable3RowChangeEvent(((DataTable3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.DataTable3RowDeleted != null)) {
+                    this.DataTable3RowDeleted(this, new DataTable3RowChangeEvent(((DataTable3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.DataTable3RowDeleting != null)) {
+                    this.DataTable3RowDeleting(this, new DataTable3RowChangeEvent(((DataTable3Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveDataTable3Row(DataTable3Row row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                WastageNewTDS ds = new WastageNewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "DataTable3DataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tblItemUOMRow : global::System.Data.DataRow {
@@ -10762,41 +11036,41 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strUOMNme {
+            public string strUOM {
                 get {
                     try {
-                        return ((string)(this[this.tabletblItemUOM.strUOMNmeColumn]));
+                        return ((string)(this[this.tabletblItemUOM.strUOMColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strUOMNme\' in table \'tblItemUOM\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUOM\' in table \'tblItemUOM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblItemUOM.strUOMNmeColumn] = value;
+                    this[this.tabletblItemUOM.strUOMColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intid {
+            public int intUOMID {
                 get {
-                    return ((int)(this[this.tabletblItemUOM.intidColumn]));
+                    return ((int)(this[this.tabletblItemUOM.intUOMIDColumn]));
                 }
                 set {
-                    this[this.tabletblItemUOM.intidColumn] = value;
+                    this[this.tabletblItemUOM.intUOMIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrUOMNmeNull() {
-                return this.IsNull(this.tabletblItemUOM.strUOMNmeColumn);
+            public bool IsstrUOMNull() {
+                return this.IsNull(this.tabletblItemUOM.strUOMColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrUOMNmeNull() {
-                this[this.tabletblItemUOM.strUOMNmeColumn] = global::System.Convert.DBNull;
+            public void SetstrUOMNull() {
+                this[this.tabletblItemUOM.strUOMColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12252,22 +12526,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSalesQty {
-                get {
-                    try {
-                        return ((int)(this[this.tabletblSalesOrderView.intSalesQtyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intSalesQty\' in table \'tblSalesOrderView\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSalesOrderView.intSalesQtyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Expr1 {
                 get {
                     try {
@@ -12423,6 +12681,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Bqty {
+                get {
+                    try {
+                        return ((int)(this[this.tabletblSalesOrderView.BqtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bqty\' in table \'tblSalesOrderView\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSalesOrderView.BqtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrItemNameNull() {
                 return this.IsNull(this.tabletblSalesOrderView.strItemNameColumn);
             }
@@ -12443,18 +12717,6 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrUOMNull() {
                 this[this.tabletblSalesOrderView.strUOMColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintSalesQtyNull() {
-                return this.IsNull(this.tabletblSalesOrderView.intSalesQtyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintSalesQtyNull() {
-                this[this.tabletblSalesOrderView.intSalesQtyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12563,6 +12825,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetStockBalanceQtyNull() {
                 this[this.tabletblSalesOrderView.StockBalanceQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsBqtyNull() {
+                return this.IsNull(this.tabletblSalesOrderView.BqtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetBqtyNull() {
+                this[this.tabletblSalesOrderView.BqtyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14353,6 +14627,49 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class DataTable3Row : global::System.Data.DataRow {
+            
+            private DataTable3DataTable tableDataTable3;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal DataTable3Row(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDataTable3 = ((DataTable3DataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intOpeningQty {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataTable3.intOpeningQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intOpeningQty\' in table \'DataTable3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable3.intOpeningQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintOpeningQtyNull() {
+                return this.IsNull(this.tableDataTable3.intOpeningQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintOpeningQtyNull() {
+                this[this.tableDataTable3.intOpeningQtyColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -15439,6 +15756,40 @@ namespace SCM_DAL {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class DataTable3RowChangeEvent : global::System.EventArgs {
+            
+            private DataTable3Row eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DataTable3RowChangeEvent(DataTable3Row row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DataTable3Row Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace SCM_DAL.WastageNewTDSTableAdapters {
@@ -15565,34 +15916,9 @@ namespace SCM_DAL.WastageNewTDSTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tblItemUOM";
-            tableMapping.ColumnMappings.Add("strUOMNme", "strUOMNme");
-            tableMapping.ColumnMappings.Add("intid", "intid");
+            tableMapping.ColumnMappings.Add("strUOM", "strUOM");
+            tableMapping.ColumnMappings.Add("intUOMID", "intUOMID");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [AG_WastageMaterial].[dbo].[tblItemUOM] WHERE (((@IsNull_strUOMNme = " +
-                "1 AND [strUOMNme] IS NULL) OR ([strUOMNme] = @Original_strUOMNme)) AND ([intid] " +
-                "= @Original_intid))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strUOMNme", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUOMNme", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strUOMNme", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUOMNme", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [AG_WastageMaterial].[dbo].[tblItemUOM] ([strUOMNme]) VALUES (@strUOM" +
-                "Nme);\r\nSELECT strUOMNme, intid FROM tblItemUOM WHERE (intid = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUOMNme", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUOMNme", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [AG_WastageMaterial].[dbo].[tblItemUOM] SET [strUOMNme] = @strUOMNme WHERE (((@IsNull_strUOMNme = 1 AND [strUOMNme] IS NULL) OR ([strUOMNme] = @Original_strUOMNme)) AND ([intid] = @Original_intid));
-SELECT strUOMNme, intid FROM tblItemUOM WHERE (intid = @intid)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUOMNme", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUOMNme", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strUOMNme", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUOMNme", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strUOMNme", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUOMNme", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15608,7 +15934,7 @@ SELECT strUOMNme, intid FROM tblItemUOM WHERE (intid = @intid)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select [strUOMNme],intid from  AG_WastageMaterial.[dbo].[tblItemUOM]";
+            this._commandCollection[0].CommandText = "SELECT [strUOM],[intUOMID] FROM [AG_Global].[dbo].[tblAG_UOM] Where ysnActive=1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -15621,137 +15947,6 @@ SELECT strUOMNme, intid FROM tblItemUOM WHERE (intid = @intid)";
             WastageNewTDS.tblItemUOMDataTable dataTable = new WastageNewTDS.tblItemUOMDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(WastageNewTDS.tblItemUOMDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(WastageNewTDS dataSet) {
-            return this.Adapter.Update(dataSet, "tblItemUOM");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_strUOMNme, int Original_intid) {
-            if ((Original_strUOMNme == null)) {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_strUOMNme));
-            }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_intid));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string strUOMNme) {
-            if ((strUOMNme == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(strUOMNme));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string strUOMNme, string Original_strUOMNme, int Original_intid, int intid) {
-            if ((strUOMNme == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(strUOMNme));
-            }
-            if ((Original_strUOMNme == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_strUOMNme));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_intid));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(intid));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string strUOMNme, string Original_strUOMNme, int Original_intid) {
-            return this.Update(strUOMNme, Original_strUOMNme, Original_intid, Original_intid);
         }
     }
     
@@ -17519,7 +17714,7 @@ SELECT strUOMNme, intid FROM tblItemUOM WHERE (intid = @intid)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT AG_Global.dbo.tblAG_Item.strItemName, AG_WastageMaterial.dbo.tblWM_RateChart.intItemID, AG_Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWM_RateChart.intUOMID, AG_WastageMaterial.dbo.tblWM_RateChart.monRate FROM AG_WastageMaterial.dbo.tblWM_RateChart INNER JOIN AG_Global.dbo.tblAG_Item ON AG_WastageMaterial.dbo.tblWM_RateChart.intItemID = AG_Global.dbo.tblAG_Item.intItemID INNER JOIN AG_Global.dbo.tblAG_UOM ON AG_WastageMaterial.dbo.tblWM_RateChart.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID Where AG_Global.dbo.tblAG_Item.intUnitID=@unitid";
+            this._commandCollection[0].CommandText = @"SELECT AG_Global.dbo.tblAG_Item.strItemName, AG_WastageMaterial.dbo.tblWM_RateChart.intItemID, AG_Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWM_RateChart.intUOMID, AG_WastageMaterial.dbo.tblWM_RateChart.monRate FROM AG_WastageMaterial.dbo.tblWM_RateChart INNER JOIN AG_Global.dbo.tblAG_Item ON AG_WastageMaterial.dbo.tblWM_RateChart.intItemID = AG_Global.dbo.tblAG_Item.intItemID INNER JOIN AG_Global.dbo.tblAG_UOM ON AG_WastageMaterial.dbo.tblWM_RateChart.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID Where AG_Global.dbo.tblAG_Item.intUnitID=@unitid order by AG_Global.dbo.tblAG_Item.strItemName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -19036,7 +19231,6 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
             tableMapping.DataSetTable = "tblSalesOrderView";
             tableMapping.ColumnMappings.Add("strItemName", "strItemName");
             tableMapping.ColumnMappings.Add("strUOM", "strUOM");
-            tableMapping.ColumnMappings.Add("intSalesQty", "intSalesQty");
             tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             tableMapping.ColumnMappings.Add("monSalesRate", "monSalesRate");
             tableMapping.ColumnMappings.Add("monSalesValue", "monSalesValue");
@@ -19047,6 +19241,7 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
             tableMapping.ColumnMappings.Add("Expr3", "Expr3");
             tableMapping.ColumnMappings.Add("Expr4", "Expr4");
             tableMapping.ColumnMappings.Add("StockBalanceQty", "StockBalanceQty");
+            tableMapping.ColumnMappings.Add("Bqty", "Bqty");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19064,51 +19259,54 @@ SELECT strDepatrment, intDepartmentID FROM tblDepartment WHERE (intDepartmentID 
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT AG_Global.dbo.tblAG_Item.strItemName, AG_Global.dbo.tblAG_UOM.strUOM, AG_W" +
-                "astageMaterial.dbo.tblWMSales.intSalesQty, (SELECT SUM(intIssueQty) AS Expr1 FRO" +
-                "M AG_WastageMaterial.dbo.tblWMIssue WHERE (strSalesOrderNo = \'\" & strSalesOrderN" +
-                "o & \"\') AND (intItemID = AG_WastageMaterial.dbo.tblWMSales.intItemID)) AS Expr1," +
-                " AG_WastageMaterial.dbo.tblWMSales.monSalesRate, AG_WastageMaterial.dbo.tblWMSal" +
-                "es.monSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSalesRemarks, AG_WastageM" +
-                "aterial.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo.tblWMSales.intSalesID, " +
-                "\'\' AS Expr2, \'\' AS Expr3, \'\' AS Expr4, (SELECT SUM(ISNULL(intInQty, 0)) - SUM(IS" +
-                "NULL(intOutQty, 0)) AS intOpeningQty FROM AG_WastageMaterial.dbo.tblWMInventory " +
-                "\r\n   WHERE (intWastageWareHouseID = AG_WastageMaterial.dbo.tblWMSales.intWastage" +
-                "WareHouseID) AND (intItemID = AG_WastageMaterial.dbo.tblWMSales.intItemID)) AS S" +
-                "tockBalanceQty FROM AG_Global.dbo.tblAG_Item INNER JOIN AG_WastageMaterial.dbo.t" +
-                "blWMSales ON AG_Global.dbo.tblAG_Item.intItemID = AG_WastageMaterial.dbo.tblWMSa" +
-                "les.intItemID INNER JOIN AG_Global.dbo.tblAG_UOM ON AG_Global.dbo.tblAG_Item.int" +
-                "UOMID = AG_Global.dbo.tblAG_UOM.intUOMID LEFT OUTER JOIN AG_WastageMaterial.dbo." +
-                "tblWMReceive ON AG_WastageMaterial.dbo.tblWMSales.intItemID = AG_WastageMaterial" +
-                ".dbo.tblWMReceive.intItemID LEFT OUTER JOIN AG_WastageMaterial.dbo.tblWMIssue AS" +
-                " tblWMIssue_1 \r\nON AG_WastageMaterial.dbo.tblWMSales.intSalesID = tblWMIssue_1.i" +
-                "ntSalesID WHERE (AG_WastageMaterial.dbo.tblWMSales.strSalesOrderNo = @sono) AND " +
-                "(AG_WastageMaterial.dbo.tblWMSales.intUnitID =@unitid) AND (AG_WastageMaterial.d" +
-                "bo.tblWMSales.ysnIssueComplete = 0) AND (AG_WastageMaterial.dbo.tblWMSales.ysnAc" +
-                "tive = 1) GROUP BY AG_Global.dbo.tblAG_Item.strItemName, AG_Global.dbo.tblAG_UOM" +
-                ".strUOM, AG_WastageMaterial.dbo.tblWMSales.intSalesQty, AG_WastageMaterial.dbo.t" +
-                "blWMSales.monSalesRate, AG_WastageMaterial.dbo.tblWMSales.monSalesValue, AG_Wast" +
-                "ageMaterial.dbo.tblWMSales.strSalesRemarks, AG_WastageMaterial.dbo.tblWMSales.in" +
-                "tItemID, AG_WastageMaterial.dbo.tblWMSales.intSalesID, AG_WastageMaterial.dbo.tb" +
-                "lWMSales.intUnitID, AG_WastageMaterial.dbo.tblWMSales.intWastageWareHouseID\r\n";
+                "astageMaterial.dbo.tblWMSales.intSalesQty-isnull((SELECT SUM(intIssueQty) AS Exp" +
+                "r1 FROM AG_WastageMaterial.dbo.tblWMIssue WHERE (strSalesOrderNo = @soid) AND (i" +
+                "ntItemID = AG_WastageMaterial.dbo.tblWMSales.intItemID)),0) Bqty, isnull((SELECT" +
+                " isnull(SUM(intIssueQty),0) AS Expr1 FROM AG_WastageMaterial.dbo.tblWMIssue WHER" +
+                "E (strSalesOrderNo = @soid) AND (intItemID = AG_WastageMaterial.dbo.tblWMSales.i" +
+                "ntItemID)),0) AS Expr1, AG_WastageMaterial.dbo.tblWMSales.monSalesRate, AG_Wasta" +
+                "geMaterial.dbo.tblWMSales.monSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSa" +
+                "lesRemarks, AG_WastageMaterial.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo." +
+                "tblWMSales.intSalesID, \'0\' AS Expr2, \'0\' AS Expr3, \'0\' AS Expr4, (SELECT SUM(ISN" +
+                "ULL(intInQty, 0)) - SUM(ISNULL(intOutQty, 0)) AS intOpeningQty FROM AG_WastageMa" +
+                "terial.dbo.tblWMInventory\r\nWHERE (intWastageWareHouseID = AG_WastageMaterial.dbo" +
+                ".tblWMSales.intWastageWareHouseID) AND (intItemID = AG_WastageMaterial.dbo.tblWM" +
+                "Sales.intItemID)) AS StockBalanceQty FROM AG_Global.dbo.tblAG_Item INNER JOIN AG" +
+                "_WastageMaterial.dbo.tblWMSales ON AG_Global.dbo.tblAG_Item.intItemID = AG_Wasta" +
+                "geMaterial.dbo.tblWMSales.intItemID INNER JOIN AG_Global.dbo.tblAG_UOM ON AG_Glo" +
+                "bal.dbo.tblAG_Item.intUOMID = AG_Global.dbo.tblAG_UOM.intUOMID LEFT OUTER JOIN A" +
+                "G_WastageMaterial.dbo.tblWMReceive ON AG_WastageMaterial.dbo.tblWMSales.intItemI" +
+                "D = AG_WastageMaterial.dbo.tblWMReceive.intItemID LEFT OUTER JOIN AG_WastageMate" +
+                "rial.dbo.tblWMIssue AS tblWMIssue_1 \r\nON AG_WastageMaterial.dbo.tblWMSales.intSa" +
+                "lesID = tblWMIssue_1.intSalesID WHERE (AG_WastageMaterial.dbo.tblWMSales.strSale" +
+                "sOrderNo = @soid) AND (AG_WastageMaterial.dbo.tblWMSales.intUnitID = @uid) AND (" +
+                "AG_WastageMaterial.dbo.tblWMSales.ysnIssueComplete = 0) AND (AG_WastageMaterial." +
+                "dbo.tblWMSales.ysnActive = 1) GROUP BY AG_Global.dbo.tblAG_Item.strItemName, AG_" +
+                "Global.dbo.tblAG_UOM.strUOM, AG_WastageMaterial.dbo.tblWMSales.intSalesQty, AG_W" +
+                "astageMaterial.dbo.tblWMSales.monSalesRate, AG_WastageMaterial.dbo.tblWMSales.mo" +
+                "nSalesValue, AG_WastageMaterial.dbo.tblWMSales.strSalesRemarks, AG_WastageMateri" +
+                "al.dbo.tblWMSales.intItemID, AG_WastageMaterial.dbo.tblWMSales.intSalesID, AG_Wa" +
+                "stageMaterial.dbo.tblWMSales.intUnitID, AG_WastageMaterial.dbo.tblWMSales.intWas" +
+                "tageWareHouseID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sono", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSalesOrderNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@soid", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strSalesOrderNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@uid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual WastageNewTDS.tblSalesOrderViewDataTable GetSOView(string sono, global::System.Nullable<int> unitid) {
+        public virtual WastageNewTDS.tblSalesOrderViewDataTable GetSOView(string soid, global::System.Nullable<int> uid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((sono == null)) {
+            if ((soid == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(sono));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(soid));
             }
-            if ((unitid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(unitid.Value));
+            if ((uid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(uid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -21889,6 +22087,177 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class DataTable3TableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public DataTable3TableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "DataTable3";
+            tableMapping.ColumnMappings.Add("intOpeningQty", "intOpeningQty");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.AG_WastageMaterialConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = " SELECT (Sum(Isnull([intInQty],0))-Sum(Isnull([intOutQty],0))) as intOpeningQty F" +
+                "ROM AG_WastageMaterial.dbo.tblWMInventory Where AG_WastageMaterial.dbo.tblWMInve" +
+                "ntory.intUnitID=@intUnitID and AG_WastageMaterial.dbo.tblWMInventory.intItemID=@" +
+                "intItemID";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual WastageNewTDS.DataTable3DataTable GetOPS(global::System.Nullable<int> intUnitID, global::System.Nullable<int> intItemID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((intItemID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intItemID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            WastageNewTDS.DataTable3DataTable dataTable = new WastageNewTDS.DataTable3DataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -21899,8 +22268,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
     public partial class TableAdapterManager : global::System.ComponentModel.Component {
         
         private UpdateOrderOption _updateOrder;
-        
-        private tblItemUOMTableAdapter _tblItemUOMTableAdapter;
         
         private tblDepartmentTableAdapter _tblDepartmentTableAdapter;
         
@@ -21920,20 +22287,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblItemUOMTableAdapter tblItemUOMTableAdapter {
-            get {
-                return this._tblItemUOMTableAdapter;
-            }
-            set {
-                this._tblItemUOMTableAdapter = value;
             }
         }
         
@@ -21998,10 +22351,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tblItemUOMTableAdapter != null) 
-                            && (this._tblItemUOMTableAdapter.Connection != null))) {
-                    return this._tblItemUOMTableAdapter.Connection;
-                }
                 if (((this._tblDepartmentTableAdapter != null) 
                             && (this._tblDepartmentTableAdapter.Connection != null))) {
                     return this._tblDepartmentTableAdapter.Connection;
@@ -22027,9 +22376,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tblItemUOMTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._tblDepartmentTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -22050,15 +22396,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(WastageNewTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblItemUOMTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblItemUOM.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblItemUOMTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tblWearHouseStoreLocation11TableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tblWearHouseStoreLocation11.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -22096,14 +22433,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(WastageNewTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblItemUOMTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblItemUOM.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblItemUOMTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tblWearHouseStoreLocation11TableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tblWearHouseStoreLocation11.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -22162,14 +22491,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tblItemUOMTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblItemUOM.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblItemUOMTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -22208,11 +22529,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._tblItemUOMTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblItemUOMTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             if (((this._tblDepartmentTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblDepartmentTableAdapter.Connection) == false))) {
@@ -22261,15 +22577,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tblItemUOMTableAdapter != null)) {
-                    revertConnections.Add(this._tblItemUOMTableAdapter, this._tblItemUOMTableAdapter.Connection);
-                    this._tblItemUOMTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblItemUOMTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblItemUOMTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblItemUOMTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblItemUOMTableAdapter.Adapter);
-                    }
-                }
                 if ((this._tblDepartmentTableAdapter != null)) {
                     revertConnections.Add(this._tblDepartmentTableAdapter, this._tblDepartmentTableAdapter.Connection);
                     this._tblDepartmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -22354,10 +22661,6 @@ SELECT strLocationName, intStoreLocationID FROM tblWearHouseStoreLocation WHERE 
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tblItemUOMTableAdapter != null)) {
-                    this._tblItemUOMTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblItemUOMTableAdapter]));
-                    this._tblItemUOMTableAdapter.Transaction = null;
                 }
                 if ((this._tblDepartmentTableAdapter != null)) {
                     this._tblDepartmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblDepartmentTableAdapter]));

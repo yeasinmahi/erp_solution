@@ -157,7 +157,7 @@
             <td  style="text-align:left"><asp:TextBox ID="txtRate" CssClass="txtBox" Width="80px" Text="0" runat="server" TextMode="Number"></asp:TextBox>  
             <asp:Label ID="lblValue" runat="server"  ForeColor="Blue"></asp:Label></td>
             <td colspan="2"> <asp:Button ID="btnAdd" runat="server" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"    />
-            <asp:Button ID="btnSubmit" runat="server" OnClientClick="Confirm();" Text="Save" OnClick="btnSubmit_Click"    />
+            <asp:Button ID="btnSubmit" runat="server" OnClientClick="Confirm();" Text="Save" OnClick="btnSubmit_Click" />
             </td> 
             </tr> 
         </table>
