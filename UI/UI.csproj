@@ -1147,6 +1147,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\RmtTADARptNoEmailEmployee.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RptLastTransactionDateAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RptSalesOrderSummery.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\SalesAnalysis.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionwithJVCreation.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ShopidvsSales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ShopList.aspx" />
@@ -1215,6 +1216,7 @@
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Indent.aspx">
@@ -1299,6 +1301,8 @@
     <Content Include="Transport\InternalTVehicleMovementDetails.aspx" />
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
+    <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
+    <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
     <Content Include="Transport\Utility_LocListView.aspx" />
@@ -5650,6 +5654,13 @@
     <Compile Include="SAD\Sales\Report\RptRemoteSales\RptSalesOrderSummery.aspx.designer.cs">
       <DependentUpon>RptSalesOrderSummery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesAnalysis.aspx.cs">
+      <DependentUpon>SalesAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesAnalysis.aspx.designer.cs">
+      <DependentUpon>SalesAnalysis.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionwithJVCreation.aspx.cs">
       <DependentUpon>SalesCommissionwithJVCreation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6125,6 +6136,13 @@
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\WorkStationCreate.aspx.cs">
+      <DependentUpon>WorkStationCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\WorkStationCreate.aspx.designer.cs">
+      <DependentUpon>WorkStationCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
@@ -6727,6 +6745,20 @@
     </Compile>
     <Compile Include="Transport\RentedVehicleReg.aspx.designer.cs">
       <DependentUpon>RentedVehicleReg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\PumpFoodingBill.aspx.cs">
+      <DependentUpon>PumpFoodingBill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\PumpFoodingBill.aspx.designer.cs">
+      <DependentUpon>PumpFoodingBill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\ThanaRateChecking.aspx.cs">
+      <DependentUpon>ThanaRateChecking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\ThanaRateChecking.aspx.designer.cs">
+      <DependentUpon>ThanaRateChecking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\TripCost.aspx.cs">
       <DependentUpon>TripCost.aspx</DependentUpon>

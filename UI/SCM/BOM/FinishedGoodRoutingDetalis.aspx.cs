@@ -80,21 +80,26 @@ namespace UI.SCM.BOM
         {
             try
             {
-                arrayKey = txtAsset.Text.Split(delimiterChars);
-                intwh = int.Parse(Request.QueryString["intwh"].ToString());
-                int workstationId = int.Parse(Request.QueryString["stationId"].ToString());
-                string asset = ""; string assetId = "";
-                if (arrayKey.Length > 0)
-                { asset = arrayKey[0].ToString(); assetId = arrayKey[3].ToString(); }
-                int intAssetId =int.Parse(assetId.ToString());
-                decimal hours = decimal.Parse(txtMacHour.Text.ToString());
-                if(intAssetId>0 && hours>0)
+                if(hdnPreConfirm.Value=="1")
                 {
-                    dgvMachine.Visible = true;
-                    dgvMachineRpt.Visible = false;
-                    CreateXml(asset, intAssetId.ToString(), hours.ToString());
+                    arrayKey = txtAsset.Text.Split(delimiterChars);
+                    intwh = int.Parse(Request.QueryString["intwh"].ToString());
+                    int workstationId = int.Parse(Request.QueryString["stationId"].ToString());
+                    string asset = ""; string assetId = "";
+                    if (arrayKey.Length > 0)
+                    { asset = arrayKey[0].ToString(); assetId = arrayKey[3].ToString(); }
+                    int intAssetId = int.Parse(assetId.ToString());
+                    decimal hours = decimal.Parse(txtMacHour.Text.ToString());
+                    if (intAssetId > 0 && hours > 0)
+                    {
+                        dgvMachine.Visible = true;
+                        dgvMachineRpt.Visible = false;
+                        CreateXml(asset, intAssetId.ToString(), hours.ToString());
+                    }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input Asset and hour');", true); }
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input Asset and hour');", true); }
+                else { }
+              
               
             }
             catch { }

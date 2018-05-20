@@ -40,8 +40,15 @@ namespace UI.SCM
                         lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();
                         lblIndentBY.Text = dt.Rows[0]["indentBy"].ToString();
                         lblApproveBy.Text = dt.Rows[0]["ApproveBY"].ToString();
-                        string unit = dt.Rows[0]["intUnit"].ToString(); 
-                        imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
+                        string unit = dt.Rows[0]["intUnit"].ToString();
+                        int job = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
+                        if (job == 28)
+                        {
+                            imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
+                        }
+                        else { imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); }
+
+                         
                     }
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();
