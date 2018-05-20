@@ -21,6 +21,7 @@
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+
     <script type="text/javascript">
         $("[id*=txtIssue]").live("change", function () {
             if (!jQuery.trim($(this).val()) == '') {
@@ -49,7 +50,14 @@
 
         });
     </script>
+     <script>   function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
+        function RefreshParent() {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.location.reload();
+            }
+        }
 
+    </script> 
 
     <script type="text/javascript"> 
         function funConfirmAll() { 
@@ -60,12 +68,7 @@
         }
 
 </script> 
-       <script type="text/javascript" language="javascript">
-           function closeWin() {
-               window.close();
-           }
-      </script>
-  
+      
     <style type="text/css"> 
         .rounds {
         height: 80px;
@@ -155,7 +158,7 @@
                 <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
             
                 <asp:TemplateField HeaderText="Issue Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIssueQty" > 
-                <ItemTemplate><asp:Label ID="lblIssueQty"    runat="server"   Text='<%# Bind("numIssueQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblIssueQty"    runat="server"   Text='<%# Bind("numIssueQty") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
             
                 <asp:TemplateField HeaderText="Approve Qty" ItemStyle-HorizontalAlign="right" SortExpression="numApproveQty" > 
@@ -163,11 +166,11 @@
                 <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
 
                 <asp:TemplateField HeaderText="Remain Issue" ItemStyle-HorizontalAlign="right" SortExpression="numRemainToIssueQty" > 
-                <ItemTemplate><asp:Label ID="lblRemainIssue"    runat="server"   Text='<%# Bind("numRemainToIssueQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblRemainIssue"    runat="server"   Text='<%# Bind("numRemainToIssueQty") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField> 
 
                 <asp:TemplateField HeaderText="Stock" ItemStyle-HorizontalAlign="right" SortExpression="monStock" > 
-                <ItemTemplate><asp:Label ID="lblStock"    runat="server"   Text='<%# Bind("monStock","{0:n2}") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblStock"    runat="server"   Text='<%# Bind("monStock") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
                     
                 <asp:TemplateField HeaderText="Issue" ItemStyle-HorizontalAlign="right" SortExpression="monValue" > 
@@ -179,7 +182,7 @@
                  <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField>  
 
                 <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue"  > 
-                <ItemTemplate><asp:Label ID="lblValue"    runat="server"   Text='<%# Bind("monValue","{0:n2}") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblValue"    runat="server"   Text='<%# Bind("monValue") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>   
 
                 <asp:TemplateField HeaderText="Locations" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="strLocation" > 

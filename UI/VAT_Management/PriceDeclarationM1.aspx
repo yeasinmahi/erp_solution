@@ -96,7 +96,7 @@
                 <td><asp:TextBox ID="txtMRP" runat="server" CssClass="txtBox1"></asp:TextBox></td>
             </tr>
             <tr>
-                <td colspan="8" style="text-align:right; padding: 10px 0px 0px 0px;"><asp:Button ID="btnSaveM1" runat="server" class="myButton" Text="Save M1" Height="30px" Width="150px" OnClick="btnSaveM1_Click"/></td>
+                <td colspan="8" style="text-align:right; padding: 10px 0px 0px 0px;"><asp:Button ID="btnSaveM1" runat="server" class="myButton" Text="Save M1" Height="30px" Width="150px" OnClientClick = "ConfirmAll()" OnClick="btnSaveM1_Click"/></td>
             </tr>
             <tr><td colspan="8"><hr /></td></tr> 
         </table>
@@ -143,15 +143,15 @@
                 </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Wastage" SortExpression="wastage">
-                <ItemTemplate><asp:Label ID="lblWastage" runat="server" Text='<%# Bind("wastage") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblWastage" runat="server" Text='<%# Bind("wastage", "{0:n4}") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Rate (TK)" SortExpression="rate">
-                <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Total (TK)" SortExpression="amount">
-                <ItemTemplate><asp:Label ID="lblTotalTK" runat="server" Text='<%# Bind("amount") %>' Width="110px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblTotalTK" runat="server" Text='<%# Bind("amount", "{0:n4}") %>' Width="110px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" Width="110px"/></asp:TemplateField>
                     
                 <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 

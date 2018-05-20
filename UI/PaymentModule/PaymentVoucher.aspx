@@ -63,7 +63,7 @@
                     <tr>
                         <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Bank"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                         <td style="text-align:left;">
-                        <asp:DropDownList ID="ddlBank" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlBank" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlBank_SelectedIndexChanged"></asp:DropDownList></td>
                         <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
                         <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="A/C No"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                         <td style="text-align:left;">

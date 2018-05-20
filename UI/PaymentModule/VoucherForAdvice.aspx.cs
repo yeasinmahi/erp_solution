@@ -41,7 +41,7 @@ namespace UI.PaymentModule
                 {
                     File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
                     
-                    if (hdnEnroll.Value != "1015" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "111353")
+                    if (hdnEnroll.Value != "1011" && hdnEnroll.Value != "1015" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1044" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "32897")
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not authorized to create payment voucher.');", true);
                         return;
@@ -122,7 +122,7 @@ namespace UI.PaymentModule
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
 
             dt = new DataTable();
-            dt = objVoucher.GetBankList(int.Parse(hdnEnroll.Value));
+            dt = objVoucher.GetBankList(intUnitID);
             if (dt.Rows.Count > 0)
             {
                 ddlBank.DataTextField = "strBankName";
@@ -157,6 +157,7 @@ namespace UI.PaymentModule
                 }
             }
             catch { }
+            File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
         }
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -177,8 +178,7 @@ namespace UI.PaymentModule
             catch { }
         }
         protected void btnShow_Click(object sender, EventArgs e)
-        {
-            System.Threading.Thread.Sleep(1500);
+        {            
             LoadGrid();
         }
         private void LoadGrid()
@@ -213,7 +213,23 @@ namespace UI.PaymentModule
                     {
                         if (((CheckBox)dgvReportForPaymentV.Rows[index].FindControl("chkRow")).Checked == true)
                         {
-                            insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
+                            if(txtAllPayDate.Text == "")
+                            {
+                                insdate = ((TextBox)dgvReportForPaymentV.Rows[index].FindControl("txtPayDate")).Text.ToString();
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    insdate = DateTime.Parse(txtAllPayDate.Text).ToString();
+                                }
+                                catch
+                                {
+                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date is incorrect. Date Format (YYYY-MM-DD)');", true);
+                                    return;
+                                }
+                            }
+
                             payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
                             amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
                             drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
@@ -222,14 +238,13 @@ namespace UI.PaymentModule
                             bill = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblID")).Text.ToString();
                             party = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPartyName")).Text.ToString();
 
-                            if (strPayTo != "" || drcoa != "" || bill != "")
+                            if (strPayTo != "" && drcoa != "" && bill != "")
                             {
                                 CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party);
                             }
                         }
                     }
                 }
-
                 if (dgvReportForPaymentV.Rows.Count > 0)
                 {
                     try

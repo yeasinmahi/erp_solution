@@ -100,6 +100,7 @@ namespace UI.VAT_Management
                 string message = objvat.InsertPurchaseEntry(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value), int.Parse(hdnEnroll.Value), intPurTypeID, dtePurchaseDate, int.Parse(hdnysnFactory.Value), xml);                
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 txtPurDate.Text = "";
+                File.Delete(filePathForXML); dgvPurchaseEntry.DataSource = ""; dgvPurchaseEntry.DataBind();
             }
         }
 

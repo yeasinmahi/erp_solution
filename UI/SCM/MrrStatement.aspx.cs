@@ -26,7 +26,7 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                dt = obj.DataView(3, "", intWh, 0, DateTime.Now, enroll);
+                dt = obj.DataView(2, "", intWh, 0, DateTime.Now, enroll);
                 ddlDept.DataSource = dt;
                 ddlDept.DataTextField = "strName";
                 ddlDept.DataValueField = "Id";

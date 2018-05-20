@@ -54,7 +54,10 @@ namespace UI.PaymentModule
                         ddlCategory.DataValueField = "intAutoID";
                         ddlCategory.DataSource = dt;
                         ddlCategory.DataBind();
+                        ddlCategory.Items.Insert(0, new ListItem("All Category", "0"));
                     }
+
+                    //LoadGrid();
                 }
             }
             catch { }
@@ -70,8 +73,7 @@ namespace UI.PaymentModule
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                 try { intCategoryID = int.Parse(ddlCategory.SelectedValue.ToString());}
                 catch { intCategoryID = 0; }
-
-                if(intCategoryID == 0)
+                if (intCategoryID == 0)
                 {
                     dt = new DataTable();
                     dt = objVoucher.GetItemForCOABridge(intUnitID);
@@ -85,7 +87,7 @@ namespace UI.PaymentModule
                 dgvItemList.DataBind();
             }
             catch { }
-        }     
+        }
         protected void dgvItemList_DataBound(object sender, EventArgs e)
         {
             foreach (GridViewRow gvRow in dgvItemList.Rows)
@@ -107,11 +109,7 @@ namespace UI.PaymentModule
         protected void btnCOABankItem_Click(object sender, EventArgs e)
         {
             LoadGridBankItem();
-        }
-        protected void btnCOABankItem_Click1(object sender, EventArgs e)
-        {
-            LoadGridBankItem();
-        }
+        }        
         private void LoadGridBankItem()
         {
             try

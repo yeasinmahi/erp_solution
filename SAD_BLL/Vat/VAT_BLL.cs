@@ -5,12 +5,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SAD_DAL.Vat.VAT_TDS;
 
 namespace SAD_BLL.Vat
 {
     public class VAT_BLL
     {
-
         #region ===== List Bind & Others =================================================
         public DataTable GetVMaterialList(int intUnitID, int intVATAccountID)
         {
@@ -49,6 +49,29 @@ namespace SAD_BLL.Vat
         }
 
         #endregion ==================================================================
+
+        #region ===== Create New Item And Material Option ================================
+        public DataTable GetDropDownDataBindForCreateItemAndMaterial(int intPart, int intUnitID, int ysnFactory, int intVATAccountID)
+        {
+            SprCreateNewItemAndMaterialDropDownBindTableAdapter adp = new SprCreateNewItemAndMaterialDropDownBindTableAdapter();
+            try
+            { return adp.GetDataForCreateNewItemAndMaterial(intPart, intUnitID, ysnFactory, intVATAccountID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public string InsertVatItemAndMaterial(int intPart, int intUnitID, string strName, int intUserID, int intUoM, string strUoM, string strHSCode, bool ysnExempted, int intVATAccountID, int intMaterialType)
+        {
+            string msg = "";
+            try
+            {
+                SprCreateVatItemAndMaterialForWebTableAdapter adp = new SprCreateVatItemAndMaterialForWebTableAdapter();
+                adp.InsertVatItemAndMaterial(intPart, intUnitID, strName, intUserID, intUoM, strUoM, strHSCode, ysnExempted, intVATAccountID, intMaterialType, ref msg);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+                
+        #endregion =======================================================================
+
 
         #region ===== Bridge Option ======================================================
         public DataTable GetVATItemList(int intUnitID, int intVATAccountID)
@@ -211,6 +234,18 @@ namespace SAD_BLL.Vat
             { return adp.GetUOMByItemID(intMaterialID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public string InsertPriceDeclaration(int intProductID, decimal monSDChargable, decimal monSDPercent, decimal monVATPercent, int intUnit, int intUserID, DateTime dteValidFrom, int intType, int intVATAccountID, decimal monSCPercent, bool ysnFactory, decimal monVatPrice, decimal monWholeSale, decimal monMRP, string xml)
+        {
+            string msg = "";
+            try
+            {
+                SprPriceDeclarationForWebTableAdapter adp = new SprPriceDeclarationForWebTableAdapter();
+                adp.InsertPriceDeclaration(intProductID, monSDChargable, monSDPercent, monVATPercent, intUnit, intUserID, dteValidFrom, intType, intVATAccountID, monSCPercent, ysnFactory, monVatPrice, monWholeSale, monMRP, xml, ref msg);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+        
         #endregion =======================================================================
 
         #region ===== Treasury Deposit ===================================================
@@ -232,6 +267,94 @@ namespace SAD_BLL.Vat
             catch (Exception ex) { msg = ex.ToString(); }
             return msg;
         }
+        #endregion =======================================================================
+
+        #region ===== M11 Started ========================================================
+        public DataTable GetVatAccAddressAndNumber(int intUserID, int intVatAccountID)
+        {
+            TblVATAccountTableAdapter adp = new TblVATAccountTableAdapter();
+            try
+            { return adp.GetVatAccAddressAndNumber(intUserID, intVatAccountID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+        int e;
+        private static QrySalesChallanForM11PrintDataTable[] tblChallanListForM11 = null;
+
+        public string[] AutoSearchChallanNoForM11(string intVatAcID, string prefix)
+        {
+            if (prefix.Trim().Length >= 3)
+            {
+                int intVatAccID = int.Parse(intVatAcID.ToString());
+                tblChallanListForM11 = new QrySalesChallanForM11PrintDataTable[intVatAccID];
+                QrySalesChallanForM11PrintTableAdapter adpCOAList = new QrySalesChallanForM11PrintTableAdapter();
+                tblChallanListForM11[e] = adpCOAList.GetChallanNoSearchForM11(intVatAccID);
+
+                DataTable tbl = new DataTable();
+
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tblChallanListForM11[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strCode
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tblChallanListForM11[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strCode.ToLower().Contains(prefix) || tmp.strName.ToLower().Contains(prefix) || tmp.strVehicleRegNo.ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
+                                   orderby tmp.strCode
+                                   select tmp;
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+                        }
+                    }
+                    catch { return null; }
+                }
+
+                if (tbl.Rows.Count > 0)
+                {
+                    string[] retStr = new string[tbl.Rows.Count];
+                    for (int i = 0; i < tbl.Rows.Count; i++)
+                    {
+                        retStr[i] = tbl.Rows[i]["strCode"] + " [" + tbl.Rows[i]["strName"] + "]" + " [" + tbl.Rows[i]["strVehicleRegNo"] + "]" + " [" + tbl.Rows[i]["strAddress"] + "]";
+                    }
+                    return retStr;
+                }
+                else { return null; }
+            }
+            else { return null; }
+        }
+
+        public DataTable GetM11PrintGetM11Print(string strChallanNo, int intVatAccountID, string strCustVATRegNo, string strFinalDistanitionAddress, string strVehicleRegNo, int intVatChallanNo, DateTime dteM11DateTime, int intUserID, DateTime dteChallanDate, int intUnitID, string strCustomerName)
+        {
+            DateTime dteCheck2 = DateTime.Parse("1900-01-01".ToString());
+            DateTime dteCheck3 = DateTime.Parse(dteCheck2.ToString("yyyy-MM-dd"));
+
+            SprVATChallanCreateTableAdapter adp = new SprVATChallanCreateTableAdapter();
+
+            if(dteM11DateTime == dteCheck3)
+            {
+                try
+                { return adp.GetM11Print(strChallanNo, intVatAccountID, strCustVATRegNo, strFinalDistanitionAddress, strVehicleRegNo, null, null, intUserID, null, null, strCustomerName); }
+                catch (Exception ex) { ex.ToString(); return new DataTable(); }
+            }
+            else
+            {
+                try
+                { return adp.GetM11Print(strChallanNo, intVatAccountID, strCustVATRegNo, strFinalDistanitionAddress, strVehicleRegNo, null, dteM11DateTime, intUserID, null, null, strCustomerName); }
+                catch (Exception ex) { ex.ToString(); return new DataTable(); }
+            }
+            
+        }
+
+        
         #endregion =======================================================================
 
 

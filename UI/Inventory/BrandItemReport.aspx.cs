@@ -164,7 +164,7 @@ namespace UI.Inventory
                   
 
                 }
-
+            //
          else   if (rptTypeid == 1023)               //grdvSinglePointAllotmentVsRcvCompare
             {
 

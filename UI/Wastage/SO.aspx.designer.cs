@@ -40,13 +40,13 @@ namespace UI.Wastage {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmLoanApplication control.
+        /// frmSO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmLoanApplication;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmSO;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -409,15 +409,6 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// dgvSOItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvSOItem;
-        
-        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>
@@ -425,5 +416,14 @@ namespace UI.Wastage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// dgvSOItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvSOItem;
     }
 }

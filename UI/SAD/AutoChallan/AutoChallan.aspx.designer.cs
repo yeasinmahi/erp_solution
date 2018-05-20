@@ -103,6 +103,15 @@ namespace UI.SAD.AutoChallan {
         protected global::System.Web.UI.WebControls.DropDownList ddlSo;
         
         /// <summary>
+        /// lblFromDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFromDate;
+        
+        /// <summary>
         /// txtFrom control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace UI.SAD.AutoChallan {
         protected global::System.Web.UI.WebControls.TextBox txtFrom;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// fdt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender fdt;
         
         /// <summary>
         /// RadioButton1 control.

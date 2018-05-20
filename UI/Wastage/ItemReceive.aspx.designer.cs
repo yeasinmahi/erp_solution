@@ -40,13 +40,13 @@ namespace UI.Wastage {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmLoanApplication control.
+        /// frmItemReceive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmLoanApplication;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmItemReceive;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -110,6 +110,42 @@ namespace UI.Wastage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
+        
+        /// <summary>
+        /// hdnReffid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnReffid;
+        
+        /// <summary>
+        /// hdnRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnRate;
+        
+        /// <summary>
+        /// hdnuom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnuom;
+        
+        /// <summary>
+        /// hdnuomId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnuomId;
         
         /// <summary>
         /// hdnLoanID control.

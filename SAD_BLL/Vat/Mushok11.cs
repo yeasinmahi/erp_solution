@@ -167,12 +167,12 @@ namespace SAD_BLL.Vat
             catch { return new DataTable(); }
         }
 
-        public DataTable GetSalesSummary(int unitid, int Accid, string dtefdate, string dtetdate, bool ysnDay, bool ysnMaterial, bool ysnChallan)
+        public DataTable GetSalesSummary(int unitid, int Accid, DateTime dtefdate, DateTime  dtetdate, bool ysnDay, bool ysnMaterial, bool ysnChallan)
         {
             try
-            {               
-                    sprGetSalesSummaryDataTableAdapter adp = new sprGetSalesSummaryDataTableAdapter();
-                    return adp.GetSalesSummary(unitid, Accid, DateTime.Parse(dtefdate), DateTime.Parse(dtetdate),ysnDay,ysnMaterial,ysnChallan); 
+            {
+                sprGetSalesSummaryDataTableAdapter adp = new sprGetSalesSummaryDataTableAdapter();
+                    return adp.GetSalesSummary(unitid, Accid, dtefdate, dtetdate,ysnDay,ysnMaterial,ysnChallan);
             }
             catch { return new DataTable(); }
         }
@@ -197,27 +197,27 @@ namespace SAD_BLL.Vat
             catch { return new DataTable(); }
         }
 
-        public DataTable getIssueSummary(string dtefdate, string dtetdate, int accid, int type)
+        public DataTable getIssueSummary(DateTime  dtefdate, DateTime  dtetdate, int accid, int type)
         {
-            try
-            {
+            //try
+            //{
                 if (type == 1)
                 {
                     tblIssueSummaryTableAdapter adp = new tblIssueSummaryTableAdapter();
-                    return adp.GetByDay((dtefdate), (dtetdate), accid);
+                    return adp.GetByDay((dtefdate.ToString()), (dtetdate.ToString()), accid);
                 }
                 else if(type == 2)
                 {
                     tblIssueSummaryTableAdapter adp = new tblIssueSummaryTableAdapter();
-                    return adp.GetByDay((dtefdate), (dtetdate), accid);
+                    return adp.GetbyMaterial((dtefdate.ToString()), (dtetdate.ToString()), accid);
                 }
                 else 
                 {
                     tblIssueSummaryTableAdapter adp = new tblIssueSummaryTableAdapter();
-                    return adp.GetByDay((dtefdate), (dtetdate), accid);
+                    return adp.GetTotal(dtefdate,dtetdate, accid);
                 }
-            }
-            catch { return new DataTable(); }
+            //}
+            //catch { return new DataTable(); }
         }
 
         public DataTable getImport(int Itemid,int part)

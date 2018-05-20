@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 using SCM_DAL.TransferTDSTableAdapters;
 using SCM_DAL;
+using SCM_DAL.BomTDSTableAdapters;
+using SCM_DAL.WestageTDSRPTTableAdapters;
 
 
 namespace SCM_BLL
@@ -87,9 +89,58 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable getLocationListof(string whid)
+        {
+            tblWearHouseStoreLocation1TableAdapter adp = new tblWearHouseStoreLocation1TableAdapter();
+            return adp.GetData(int.Parse(whid));
+        }
+
+        public DataTable getLocationList(string Whid)
+        {
+            
+             try
+            {
+                tblWearHouseStoreLocationNewTableAdapter adp = new tblWearHouseStoreLocationNewTableAdapter();
+                return adp.GetData(int.Parse(Whid));
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getProductionItemList(int Productionid)
+        {
+            try
+            {
+                tblProductionItemListTableAdapter adpItemlist = new tblProductionItemListTableAdapter();
+                return adpItemlist.GetProductionReceive(Productionid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getRpt(int intWHID, int intOutWHid, string text1, string text2, bool v)
         {
             throw new NotImplementedException();
+        }
+
+        public void ReceiveEntry(int autoid, int itemid, DateTime dtedate, decimal qty, int unitid, int intWHID, int intLocationid)
+        {  
+            try
+            {
+                tblInventoryTableAdapter adpIL = new tblInventoryTableAdapter();
+                 adpIL.GetReceive(autoid, itemid, dtedate, qty, unitid, intWHID, intLocationid);
+                
+            }
+            catch  {  }
+        }
+
+        public void ReceiveUpdate(decimal qty,int productionid, int itemid, int unitid)
+        {
+            try
+            {
+                tblInventoryTableAdapter adpIL = new tblInventoryTableAdapter();
+                adpIL.GetReceiveUpdate(qty,productionid, itemid, unitid);
+
+            }
+            catch { }
         }
 
         public DataTable getRWH(int whid)
@@ -246,6 +297,27 @@ namespace SCM_BLL
                 return null;
             }
         }
+
+        public void IssueDelete(int unitid, int intSalesId)
+        {
+            try
+            {
+                tblWMSalesTableAdapter adp = new tblWMSalesTableAdapter();
+                adp.GetUpdate(unitid, intSalesId);
+            }
+            catch {  }
+        }
+
+        public DataTable GetTransferReceive(int unitid)
+        {
+            try
+            {
+                tblProductionDetailTableAdapter adpPLIst = new tblProductionDetailTableAdapter();
+                return adpPLIst.GetProductionList(unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getShippontList(int unitid)
         {
             try

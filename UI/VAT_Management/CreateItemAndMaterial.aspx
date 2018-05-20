@@ -36,7 +36,7 @@
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnVATAccID" runat="server" /><asp:HiddenField ID="hdnysnFactory" runat="server" />
+    <asp:HiddenField ID="hdnVATAccID" runat="server" /><asp:HiddenField ID="hdnysnFactory" runat="server" /><asp:HiddenField ID="hdnconfirmTax" runat="server" />
           
     <div class="divbody" style="padding-right:10px;">
         
@@ -54,8 +54,8 @@
             <tr><td colspan="5">Create New Item<hr /></td></tr> 
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Product :"></asp:Label></td>
-                <td style="text-align:left;">
-                <asp:DropDownList ID="ddlProduct" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList>                                                                                       
+                <td style="text-align:left;"><asp:TextBox ID="txtProduct" runat="server" CssClass="txtBox1" ></asp:TextBox>
+                <asp:DropDownList ID="ddlProduct" CssClass="ddList" Visible="false" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList>                                                                                       
                 </td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="UOM :"></asp:Label></td>
@@ -67,18 +67,18 @@
                 <td style="text-align:right;"><asp:Label ID="lblEName" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
-                <td colspan="2" style="text-align:right;"><asp:CheckBox ID="cbTax" runat="server" Text=" Tax Exempted" /></td>
+                <td colspan="2" style="text-align:right;"><asp:CheckBox ID="cbTax" runat="server" Text=" Tax Exempted"/></td>
             </tr>
             <tr>                
-                <td colspan="2" style="text-align:right; padding-top:15px;"><asp:Button ID="btnUpdateUOM" runat="server" class="myButton" Text="Udate UOM" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateUOM_Click"/></td>
-                <td colspan="3" style="text-align:right;  padding-top:15px"><asp:Button ID="btnCreateItem" runat="server" class="myButton" Text="Create Item" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnCreateItem_Click"/></td>
+                <%--<td colspan="2" style="text-align:right; padding-top:15px;"><asp:Button ID="btnUpdateUOM" runat="server" class="myButton" Text="Udate UOM" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateUOM_Click"/></td>--%>
+                <td colspan="5" style="text-align:right;  padding-top:15px"><asp:Button ID="btnCreateItem" runat="server" class="myButton" Text="Create Item" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnCreateItem_Click"/></td>
             </tr>
             <tr><td colspan="5"><hr /></td></tr> 
             <tr><td colspan="5">Create New Material<hr /></td></tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Material :"></asp:Label></td>
-                <td style="text-align:left;">
-                <asp:DropDownList ID="ddlMaterial" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList>                                                                                       
+                <td style="text-align:left;"><asp:TextBox ID="txtMaterial" runat="server" CssClass="txtBox1" ></asp:TextBox>
+                <asp:DropDownList ID="ddlMaterial" CssClass="ddList" Visible="false" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList>                                                                                       
                 </td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="UOM :"></asp:Label></td>

@@ -49,7 +49,7 @@
          });
     </script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
 </head>
 <body>
     <form id="frmVoucherForAdvice" runat="server">        
@@ -77,9 +77,16 @@
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlAccount" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>                
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
-                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClientClick="LoaderBusy()" OnClick="btnShow_Click"/></td> 
+                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 
                 <td style="text-align:right; "><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
-                <td style="text-align:right; padding: 15px 0px 10px 0px"><asp:Button ID="btnPrepareAllVoucher" runat="server" class="myButton" Height="30px" Width="190px" Text="Prepare All Voucher"  OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click"/></td>  
+            </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Pay Date :" Width="70px"></asp:Label></td>                
+                <td colspan="6"><asp:TextBox ID="txtAllPayDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="90px"></asp:TextBox>
+                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAllPayDate"></cc1:CalendarExtender>
+                <span style="padding-left:15px"><asp:Button ID="btnPrepareAllVoucher" runat="server" class="myButton" Height="30px" Width="190px" Text="Prepare All Voucher"  OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click"/></span>
+                </td>
+               
             </tr>
             
         </table>
@@ -97,24 +104,30 @@
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
             <asp:TemplateField HeaderText="ID" SortExpression="intBill">
-            <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Registration Code" SortExpression="strBill">
             <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="150px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="PO ID" SortExpression="strReff">
-            <ItemTemplate><asp:Label ID="lblPOID" runat="server" Text='<%# Bind("strReff") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblPOID" runat="server" Text='<%# Bind("strReff") %>' Width="50px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Pay Date" SortExpression="dtePayDate">
+            <%--<asp:TemplateField HeaderText="Pay Date" SortExpression="dtePayDate">
             <ItemTemplate><asp:Label ID="lblPayDate" runat="server" Text='<%#Eval("dtePayDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>--%>
+
+            <asp:TemplateField HeaderText="Pay Date" ItemStyle-HorizontalAlign="right">
+            <ItemTemplate><asp:TextBox ID="txtPayDate" runat="server" CssClass="txtBoxCenter" Width="80px" Text='<%#Eval("dtePayDate", "{0:yyyy-MM-dd}") %>'></asp:TextBox>
+            <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtPayDate">
+            </cc1:CalendarExtender> </ItemTemplate>
+            </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
-            <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
             <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="150px"></asp:Label>
@@ -125,8 +138,8 @@
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="COA" SortExpression="intCOA">
-            <ItemTemplate><asp:Label ID="lblCOA" runat="server" Text='<%# Bind("intCOA") %>' Width="80px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblCOA" runat="server" Text='<%# Bind("intCOA") %>' Width="50px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Book Value" SortExpression="Bookval">
             <ItemTemplate><asp:Label ID="lblBookValue" runat="server" Text='<%# Bind("Bookval", "{0:n2}") %>' Width="100px"></asp:Label>
@@ -145,11 +158,11 @@
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="TDS" SortExpression="TDSval">
-            <ItemTemplate><asp:Label ID="lblTDS" runat="server" Text='<%# Bind("TDSval", "{0:n2}") %>' Width="100px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
+            <ItemTemplate><asp:Label ID="lblTDS" runat="server" Text='<%# Bind("TDSval", "{0:n2}") %>' Width="60px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="60px"/></asp:TemplateField>
                         
             <asp:TemplateField HeaderText="Approve Amount" SortExpression="monAppAmount">
-            <ItemTemplate><asp:Label ID="lblApproveAmount" runat="server" Text='<%# Bind("monAppAmount", "{0:n2}") %>' Width="100px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblApproveAmount" runat="server" Text='<%# Bind("monAppAmount", "{0:n2}") %>' ForeColor="blue" Width="100px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
 
             <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
@@ -166,9 +179,9 @@
             </td></tr> 
     </table>
 
-    <div class="loading" align="center">
+<%--    <div class="loading" align="center">
         <img src="../Content/images/gicon/Final-Product-2.GIF" />
-    </div>
+    </div>--%>
 
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>

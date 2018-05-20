@@ -18,7 +18,7 @@ using System.Xml;
 
 namespace UI.Wastage
 {
-    public partial class SO : System.Web.UI.Page
+    public partial class SO : BasePage
     {
 
         #region ===== Variable Decliaration ===================================================================
@@ -26,20 +26,20 @@ namespace UI.Wastage
         DataTable dt;
 
         int intEnroll;
-        string filePathForXML, xmlString, xml;
-        string itemid, itemname, uom, qty, rate, value, remarks;
+        string filePathForXML, xmlString, xml, itemid, itemname, uom, qty, rate, value, remarks,MRRNO;
+         
         #endregion ============================================================================================
 
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-            filePathForXML = Server.MapPath("~/Dairy/Data/MilkMRR_" + hdnEnroll.Value + ".xml");
+            filePathForXML = Server.MapPath("~/Wastage/Data/SO_" + hdnEnroll.Value + ".xml");
 
             if (!IsPostBack)
             {
                 try
                 {
-                    pnlUpperControl.DataBind();
+                   
                     File.Delete(filePathForXML);
 
                     dt = new DataTable();
@@ -48,33 +48,86 @@ namespace UI.Wastage
                     ddlUnitName.DataValueField = "intUnitID";
                     ddlUnitName.DataSource = dt;
                     ddlUnitName.DataBind();
-
+                    CustList();
+                    WHlist();
+                    Itemlist();
+                    pnlUpperControl.DataBind();
                 }
                 catch (Exception ex)
                 {
                     ex.ToString();
                 }
             }
-        }        
+        }
+
+        private void Itemlist()
+        {
+            dt = obj.ItemListRpt(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            ddlItem.DataTextField = "strItemName";
+            ddlItem.DataValueField = "intItemID";
+            ddlItem.DataSource = dt;
+            ddlItem.DataBind();
+        }
+
+        private void WHlist()
+        {
+            dt = obj.getWHbyUnit(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            ddlWHName.DataTextField = "strWastageWareHouseName";
+            ddlWHName.DataValueField = "intWastageWareHouseID";
+            ddlWHName.DataSource = dt;
+            ddlWHName.DataBind();
+        }
+
+        private void CustList()
+        {
+            dt = obj.CustomerList(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            ddlCustomer.DataTextField = "strCustomerName";
+            ddlCustomer.DataValueField = "intCustomerID";
+            ddlCustomer.DataSource = dt;
+            ddlCustomer.DataBind();
+
+        }
+
+        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dt = obj.getIteminfo(ddlItem.SelectedValue);
+            txtRate.Text = dt.Rows[0]["monRate"].ToString(); 
+            txtUOM.Text = dt.Rows[0]["strUOM"].ToString(); 
+        }
+
+        protected void dgv_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                LoadGridwithXml();
+                DataSet dsGrid = (DataSet)dgvSOItem.DataSource;
+                dsGrid.Tables[0].Rows[dgvSOItem.Rows[e.RowIndex].DataItemIndex].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)dgvSOItem.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0) { File.Delete(filePathForXML); dgvSOItem.DataSource = ""; dgvSOItem.DataBind(); }
+                else { LoadGridwithXml(); }
+            }
+            catch { }
+        }
         #region ===== Item Add & Load Grid Action ===========================================================
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            itemid = ddlItem.SelectedValue.ToString();
-            itemname = ddlItem.SelectedItem.ToString();
-            uom = txtUOM.Text;
-            qty = txtQty.Text;
-            rate = txtRate.Text;
-            value = txtValue.Text;
-            remarks = txtRemarks.Text;
+            if ((txtQty.Text != "")&&(txtRate.Text!=""))
+            {
+                CreateAddXml(ddlItem.SelectedValue.ToString(), ddlItem.SelectedItem.ToString(), txtUOM.Text, txtQty.Text, txtRate.Text, txtValue.Text, txtRemarks.Text);
 
-            CreateAddXml(itemid, itemname, uom, qty, rate, value, remarks);
+                txtUOM.Text = "";
+                txtQty.Text = "";
+                txtRate.Text = "";
+                txtValue.Text = "";
+                txtRemarks.Text = "";
+            }
+        }
 
-            txtUOM.Text = "";
-            txtQty.Text = "";
-            txtRate.Text = "";
-            txtValue.Text = "";
-            txtRemarks.Text = "";
-        }   
+        protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         private void CreateAddXml(string itemid, string itemname, string uom, string qty, string rate, string value, string remarks)
         {
             XmlDocument doc = new XmlDocument();
@@ -180,8 +233,7 @@ namespace UI.Wastage
         #region ===== Submit Action =========================================================================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (hdnconfirm.Value == "1")
-            {
+           
                 if (dgvSOItem.Rows.Count > 0)
                 {
                     try
@@ -196,14 +248,16 @@ namespace UI.Wastage
                     catch { }
                     if (xml == "") { return; }
                 }
-
-                //Final Update
-                //string message = objDairy.InsertMilkMrrForFactory(dteMRRDate, intCCID, intVehicleID, decMRRFat, intInsertBy, xml);
-
-                //if (filePathForXML != null) { File.Delete(filePathForXML); }
-                //dgvSOItem.DataSource = ""; dgvSOItem.DataBind();
-                //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-            }
+                if (txtMRNo.Text =="")
+                { MRRNO = "0"; }
+                if ((txtSODate.Text != "")||(int.Parse(ddlUnitName.SelectedValue)!=0) || (int.Parse(ddlWHName.SelectedValue) != 0))
+                {
+                    string message = obj.insertSales(DateTime.Parse(txtSODate.Text),int.Parse(ddlCustomer.SelectedValue), int.Parse(ddlUnitName.SelectedValue),intEnroll,MRRNO,int.Parse(ddlWHName.SelectedValue),  xml);
+                    if (filePathForXML != null) { File.Delete(filePathForXML); }
+                    dgvSOItem.DataSource = ""; dgvSOItem.DataBind();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                }
+           
         }
 
         #endregion ==========================================================================================

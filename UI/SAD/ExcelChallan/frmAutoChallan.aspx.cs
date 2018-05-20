@@ -76,7 +76,7 @@ namespace UI.SAD.ExcelChallan
                 #region ********* Excel Data Get *************
                 for (int i = 1; i < dtTable.Rows.Count; i++)
                 {
-                    for (int j = 2; j < dtTable.Columns.Count; j++)
+                    for (int j = 4; j < dtTable.Columns.Count; j++)
                     {
                         string cid = dtTable.Rows[i][0].ToString();
                         string id = dtTable.Rows[0][j].ToString();

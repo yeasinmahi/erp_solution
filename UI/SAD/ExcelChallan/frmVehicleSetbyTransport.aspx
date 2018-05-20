@@ -81,7 +81,10 @@
             <asp:BoundField DataField="strTerritory" HeaderText="Territory" ReadOnly="True" SortExpression="strTerritory"/>
             <asp:BoundField DataField="strPoint" HeaderText="Point" ReadOnly="True" SortExpression="Point"/>
             <asp:BoundField DataField="strName" HeaderText="strName" ReadOnly="True" SortExpression="strName"/>             
-                
+            <asp:TemplateField HeaderText="Pending Qty" SortExpression="Pending">
+            <ItemTemplate><asp:Label ID="lblqty" runat="server" Text='<%# (""+Eval("qty","{0:n0}")) %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" Width="120px"/><FooterTemplate><asp:Label ID="lblPending" runat="server" Text='<%# Pendingtotal %>' /></FooterTemplate>
+            </asp:TemplateField>    
            
            
             </Columns>

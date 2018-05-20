@@ -45,7 +45,7 @@
         <table class="tbldecoration" style="width:auto; float:left;">                                  
         <tr class="tblrowodd">           
             <td style="text-align:right;">Shippoint Name:</td>
-            <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint" runat="server" OnSelectedIndexChanged="ddlshippoint_SelectedIndexChanged"></asp:DropDownList>  </td>
+            <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint" runat="server" OnSelectedIndexChanged="ddlshippoint_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>  </td>
             <td style='text-align: right; width:120px;'>Office Name: </td>
             <td style='text-align: center;'><asp:DropDownList ID="ddlOfficeName" runat="server"></asp:DropDownList></td> 
             <td style="text-align:right;"> 
@@ -106,7 +106,7 @@
             <asp:TemplateField HeaderText="Custid" SortExpression="Custid"><ItemTemplate><asp:Label ID="lblCustid" runat="server" Text='<%# Bind("intCustid") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="70px"/><FooterTemplate><div style="padding:0 0 5px 0"><asp:Label ID="lbl" Width="100px"  runat="server" Text="Grand-Total :" /></div>
             </FooterTemplate></asp:TemplateField>  
-                          
+             <asp:BoundField DataField="strSlipNo" HeaderText="Slip No" ReadOnly="True" SortExpression="strline"/>                        
             <asp:BoundField DataField="strLine" HeaderText="line" ReadOnly="True" SortExpression="strline"/>
             <asp:BoundField DataField="strregion" HeaderText="Region" ReadOnly="True" SortExpression="strregion"/>
             <asp:BoundField DataField="strarea" HeaderText="Area" ReadOnly="True" SortExpression="strarea"/>
