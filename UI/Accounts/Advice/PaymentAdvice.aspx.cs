@@ -16,7 +16,7 @@ namespace UI.Accounts.Advice
     public partial class PaymentAdvice : BasePage
     {
         DataTable dt; AdviceBLL bll = new AdviceBLL();
-        int intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy, intChillingID;
+        int intID, intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy, intChillingID;
         string strAccountMandatory, strBankName, xmlpath; DateTime dteDate;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace UI.Accounts.Advice
                     dt = bll.GetUnitAddress(intUnitID);
                     lblUnitIBBL.Text = dt.Rows[0]["strDescription"].ToString();
                     lblForUnitIBBL.Text = "For " + dt.Rows[0]["strDescription"].ToString();
-                    lblUnitIBBL.Text = dt.Rows[0]["strAddress"].ToString();
+                    lblUnitAddIBBL.Text = dt.Rows[0]["strAddress"].ToString();
 
                     dteDate = DateTime.Parse(txtDate.Text.ToString());
                     intWork = 0;
@@ -296,7 +296,7 @@ namespace UI.Accounts.Advice
                         dt = bll.GetAccountDetails(intAutoID);
                         lblBankNameIBBL.Text = dt.Rows[0]["strBankDetailsName"].ToString();
                         lblBankAddressIBBL.Text = dt.Rows[0]["strBankAddress"].ToString();
-                        lblMailBodyIBBL.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our" + "<br/>" + "CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
+                        lblMailBodyIBBL.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
 
                         AmountFormat formatAmount = new AmountFormat();
                         string totalAmountInWord = formatAmount.GetTakaInWords(totalamountibbl, "", "Only");
@@ -469,5 +469,16 @@ namespace UI.Accounts.Advice
             }
             catch { }
         }
+        //protected void btnPrint_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        char[] delimiterChars = { '^' };
+        //        string senderdata = ((Button)sender).CommandArgument.ToString();
+        //        intID = int.Parse(senderdata.ToString());
+        //    }
+        //    catch { intID = 0; return; }
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewDispatchPopup('" + intID.ToString() + "');", true);
+        //}
     }
 }
