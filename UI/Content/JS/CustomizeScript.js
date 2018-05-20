@@ -161,6 +161,10 @@ function ViewConfirmDispatch(id) { document.getElementById('hdnDivisionDispatch'
 function ViewConfirm(id) {
     document.getElementById('hdnDivision').style.visibility = 'visible';    
 }
+function ViewConfirmAgrement(id) {
+    document.getElementById('hdnDivision').style.visibility = 'visible';
+    document.getElementById('btnGo').style.visibility = "Hidden";   
+}
 function ViewQRCode(id) {
     document.getElementById('hdnDivision').style.visibility = 'visible';
 
@@ -177,6 +181,7 @@ function ClosehdnDivision(sts) {
         alert(sts); $("#hdnDivision").fadeOut("slow");        
     }
 }
+
 
 function LoaderBusy() {
     $('form').live("submit", function () {

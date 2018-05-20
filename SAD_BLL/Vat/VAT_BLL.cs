@@ -166,6 +166,7 @@ namespace SAD_BLL.Vat
             catch (Exception ex) { msg = ex.ToString(); }
             return msg;
         }
+
         #endregion =======================================================================
 
         #region ===== Other Adjustment ===================================================
@@ -201,7 +202,6 @@ namespace SAD_BLL.Vat
             { return adp.GetSupplierList(intUnitID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
 
         #endregion ========================================================================
 
@@ -354,9 +354,36 @@ namespace SAD_BLL.Vat
             
         }
 
-        
+
         #endregion =======================================================================
 
+        #region ===== M-19 Print =============================================================
+        public DataTable GetVATAccountInfoByID(int intVATAccountID)
+        {
+            TblVATAccount_InfoTableAdapter adp = new TblVATAccount_InfoTableAdapter();
+            try
+            { return adp.GetVATAccountInfoByID(intVATAccountID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetM19Data(int intVATAccountID, DateTime dteDate)
+        {
+            SprVatMonthlyReturnReportForExcelM19ForWebTableAdapter adp = new SprVatMonthlyReturnReportForExcelM19ForWebTableAdapter();
+            try
+            { return adp.GetM19Data(intVATAccountID, dteDate); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public string InsertM19(DateTime dteTransactionDate, int intVatAcc, int intUserID)
+        {
+            string msg = "";
+            try
+            {
+                SprVatMonthlyReturnM19TableAdapter adp = new SprVatMonthlyReturnM19TableAdapter();
+                adp.InsertM19(dteTransactionDate, intVatAcc, intUserID, ref msg);
+            }
+            catch (Exception ex) { msg = ex.ToString(); }
+            return msg;
+        }
+        #endregion ===========================================================================
 
 
 

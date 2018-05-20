@@ -79,7 +79,22 @@ namespace UI.VAT_Management
                     ddlMIssueBy.DataTextField = "strName";
                     ddlMIssueBy.DataValueField = "intMusokTypeID";
                     ddlMIssueBy.DataSource = dt;
-                    ddlMIssueBy.DataBind();                    
+                    ddlMIssueBy.DataBind();    
+                    
+                    if(hdnVatAccID.Value == "6")
+                    {
+                        lblBandroll.Visible = true;
+                        ddlBandroll.Visible = true;
+                        lblWastage.Visible = true;
+                        txtWastage.Visible = true;
+                    }
+                    else
+                    {
+                        lblBandroll.Visible = false;
+                        ddlBandroll.Visible = false;
+                        lblWastage.Visible = false;
+                        txtWastage.Visible = false;
+                    }
                 }
             }
             catch { }
@@ -108,36 +123,39 @@ namespace UI.VAT_Management
                     catch { numBRWastage = 0; }
                     strMessage = "";
 
-                    dt = new DataTable();
-                    dt = objvat.GetBandrollCountCheck(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value), intVatItemID);
-                    if (dt.Rows.Count > 0)
+                    if (intVatItemID == 6)
                     {
-                        intBandrollCount = int.Parse(dt.Rows[0]["intBandrollCount"].ToString());
-                        numUsePerUnit = decimal.Parse(dt.Rows[0]["numUsePerUnitQty"].ToString());
-                    }
-
-                    intMushakID = int.Parse(ddlMIssueBy.SelectedValue.ToString());
-                    if (intBandrollCount == 0 && intMushakID != 4)
-                    {
-                        try { numBRWastage = decimal.Parse(txtWastage.Text); }
-                        catch { numBRWastage = 0; }
-                        decimal dec = Decimal.Parse("0.01");
-                        numBandWastageLimit = (numQty * (numUsePerUnit * dec));
-
-                        if (int.Parse(hdnVatAccID.Value) != 2 && numBRWastage >= numBandWastageLimit)
+                        dt = new DataTable();
+                        dt = objvat.GetBandrollCountCheck(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value), intVatItemID);
+                        if (dt.Rows.Count > 0)
                         {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Maximum Limit of Bandroll Wastage for Production of " + numQty + " unit is: Below " + numBandWastageLimit + "');", true);
-                            return;
+                            intBandrollCount = int.Parse(dt.Rows[0]["intBandrollCount"].ToString());
+                            numUsePerUnit = decimal.Parse(dt.Rows[0]["numUsePerUnitQty"].ToString());
+                        }
+
+                        intMushakID = int.Parse(ddlMIssueBy.SelectedValue.ToString());
+                        if (intBandrollCount == 0 && intMushakID != 4)
+                        {
+                            try { numBRWastage = decimal.Parse(txtWastage.Text); }
+                            catch { numBRWastage = 0; }
+                            decimal dec = Decimal.Parse("0.01");
+                            numBandWastageLimit = (numQty * (numUsePerUnit * dec));
+
+                            if (int.Parse(hdnVatAccID.Value) != 2 && numBRWastage >= numBandWastageLimit)
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Maximum Limit of Bandroll Wastage for Production of " + numQty + " unit is: Below " + numBandWastageLimit + "');", true);
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            intBandroll = 0;
+                            numBRWastage = 0;
                         }
                     }
-                    else
-                    {
-                        intBandroll = 0;
-                        numBRWastage = 0;
-                    }
-
+                    
                     string message = objvat.InsertProductionEntry(intVatItemID, numQty, dteDate, int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value), int.Parse(hdnEnroll.Value), intType, strMessage, intBandroll, numBRWastage);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Submit Successfully.');", true);
                     txtDate.Text = "";
                     txtQuantity.Text = "";
                     txtWastage.Text = "";
@@ -148,7 +166,21 @@ namespace UI.VAT_Management
 
         protected void ddlVatAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();            
+            lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
+            if (ddlVatAccount.SelectedValue.ToString() == "6")
+            {
+                lblBandroll.Visible = true; 
+                ddlBandroll.Visible = true;
+                lblWastage.Visible = true;
+                txtWastage.Visible = true;
+            }
+            else
+            {
+                lblBandroll.Visible = false;
+                ddlBandroll.Visible = false;
+                lblWastage.Visible = false;
+                txtWastage.Visible = false;
+            }
         }
 
         protected void ddlMIssueBy_SelectedIndexChanged(object sender, EventArgs e)

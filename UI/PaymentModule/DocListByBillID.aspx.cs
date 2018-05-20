@@ -120,7 +120,6 @@ namespace UI.PaymentModule
                 }
             }
             catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse).StatusDescription); }
-
         }
 
         protected void btnBillDetails_Click(object sender, EventArgs e)
