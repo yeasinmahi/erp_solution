@@ -1,15 +1,14 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Dynamic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
+using Model;
 
 
 namespace UI.SCM
@@ -21,8 +20,10 @@ namespace UI.SCM
         DataTable dt = new DataTable();
         int enroll, intwh;
         string filePathForXML,  xmlString = "";
+        private string filePathForText;
         protected void Page_Load(object sender, EventArgs e)
         {
+            filePathForText = Server.MapPath("~/SCM/Data/Item.txt");
             filePathForXML = Server.MapPath("~/SCM/Data/sIn__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {
@@ -83,7 +84,7 @@ namespace UI.SCM
                 if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
                 {
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    try { File.Delete(filePathForXML); } catch { }
+                    try { File.Delete(filePathForXML); File.Delete(filePathForText); } catch { }
 
                     string receiveBy = txtReceiveBy.Text.ToString();
                     string reqId=Request.QueryString["ReqId"].ToString();
@@ -96,6 +97,8 @@ namespace UI.SCM
                     for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                     { 
                         string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text.ToString(); 
+                        string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text.ToString(); 
+                        string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text.ToString(); 
                         string issueQty= ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text.ToString();
 
                         string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text.ToString();
@@ -109,7 +112,11 @@ namespace UI.SCM
 
                            CreateXmlIssue( itemId,issueQty,stockVlaue,locationId,stockQty,reqId,reqCode,deptId,strSection,reqBy,receiveBy);
                         }
-                       
+
+                        ModularItem modularItem = GetModularItem(itemId, itemName, itemUnit);
+                        string message = String.Empty;
+                        TextParser.CreateText(modularItem, filePathForText, out message);
+
                     }
 
                     XmlDocument doc = new XmlDocument();
@@ -128,6 +135,15 @@ namespace UI.SCM
             catch { }
         }
 
+        private ModularItem GetModularItem(string itemCode, string itemName, string itemUnit)
+        {
+            return new ModularItem
+            {
+                ItemCode = itemCode,
+                ItemName = itemName,
+                Unit = itemUnit
+            };
+        }
         private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy)
         {
             XmlDocument doc = new XmlDocument();
