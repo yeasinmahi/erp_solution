@@ -118,7 +118,7 @@ namespace UI.SCM
                         TextParser.CreateText(modularItem, filePathForText, out message);
 
                     }
-
+                    bool isCopy = CopyText();
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXML);
                     XmlNode dSftTm = doc.SelectSingleNode("issue");
@@ -135,6 +135,10 @@ namespace UI.SCM
             catch { }
         }
 
+        private bool CopyText()
+        {
+            return Common.CopyFile(filePathForText, @"\\fs\RS1ESQLBackup\DEVESQL\TEST\Item.txt");
+        }
         private ModularItem GetModularItem(string itemCode, string itemName, string itemUnit)
         {
             return new ModularItem

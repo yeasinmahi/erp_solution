@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -8,6 +9,20 @@ namespace Utility
     public class Common
     {
 
+        public static bool CopyFile(string source, string destionation)
+        {
+            try
+            {
+                File.Copy(source, destionation, false);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
+        }
         public static PropertyInfo[] GetProperties(object obj)
         {
             return obj.GetType().GetProperties();
