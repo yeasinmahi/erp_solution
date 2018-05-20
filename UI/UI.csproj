@@ -1262,6 +1262,7 @@
     <Content Include="SCM\Transfer\InventoryLoanPay.aspx" />
     <Content Include="SCM\Transfer\InventoryLoanReceive.aspx" />
     <Content Include="SCM\Transfer\InventoryTransferIN.aspx" />
+    <Content Include="SCM\Transfer\InventoryTransferDamage.aspx" />
     <Content Include="SCM\Transfer\InventoryTransferOut.aspx" />
     <Content Include="SCM\Transfer\rptTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
@@ -6439,6 +6440,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\InventoryTransferIN.aspx.designer.cs">
       <DependentUpon>InventoryTransferIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryTransferDamage.aspx.cs">
+      <DependentUpon>InventoryTransferDamage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryTransferDamage.aspx.designer.cs">
+      <DependentUpon>InventoryTransferDamage.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\InventoryTransferOut.aspx.cs">
       <DependentUpon>InventoryTransferOut.aspx</DependentUpon>
