@@ -26,7 +26,16 @@
     width:40%; height: 60%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 0px 20px 20px 20px;}    
     </style>
 
-    <script language="javascript">        
+    <script language="javascript" type="text/javascript">       
+        $("[id*=ckbAgree]").live("change", function () {
+            
+            if (this.checked) {
+                document.getElementById('<%=btnGo.ClientID %>').style.visibility = "visible";
+            }
+            else {
+                document.getElementById('<%=btnGo.ClientID %>').style.visibility = "Hidden";
+            }
+        });
         
         function ViewCustomerView(Id) {
             window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
@@ -42,7 +51,7 @@
     
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnLoanID" runat="server" />            
+    <asp:HiddenField ID="hdnLoanID" runat="server" />                 
     <div style="padding-right:10px;">
         <%--<div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL REGISTRATION<hr /></div>--%>
         <table class="tbldecoration" style="width:auto; float:left;">
@@ -77,10 +86,10 @@
             </td></tr>
             <tr>
                 <td>
-                    <span style="font-size:35px"><asp:CheckBox ID="ckbAgree" runat="server"/></span>
+                    <span style="font-size:35px"><asp:CheckBox ID="ckbAgree" runat="server" /></span>
                     <span style="font:bold; font-weight:900; padding-bottom:25px; font-size:22px;">I accept the terms & conditions in the agreement</span>
                 </td>
-                <td style="text-align:right; padding: 0px 0px 0px 0px; padding-top:18px"><asp:Button ID="btnGo" runat="server" class="myButton" Text="GO >>>" ToolTip="Go To Customer Support" OnClick="btnGo_Click"/></td>                       
+                <td style="text-align:right; padding: 0px 0px 0px 0px; padding-top:18px"><asp:Button ID="btnGo" runat="server" class="myButton" style="" Text="GO >>>" ToolTip="Go To Customer Support" OnClick="btnGo_Click"/></td>                       
                 <%--<td style="color:blue; font-weight:900; padding-top:20px"><a id="btnGo" href="" style="cursor:pointer; text-align:right; font-size:20px; color:blue; " onclick="">GO>>></a></td>--%>
             </tr>
         

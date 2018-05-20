@@ -276,8 +276,10 @@
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\DashboardReport.aspx" />
+    <Content Include="CreativeSupportModule\DocView.aspx" />
     <Content Include="CreativeSupportModule\HoldFeedback.aspx" />
     <Content Include="CreativeSupportModule\img\20171103 _ CREATIVE SUPPORT UI DASHBOARD _ FOOTER.png" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
@@ -1325,6 +1327,7 @@
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
     <Content Include="VAT_Management\Mushak11.aspx" />
+    <Content Include="VAT_Management\Mushak19MonthlyReturn.aspx" />
     <Content Include="VAT_Management\OtherAdjustments.aspx" />
     <Content Include="VAT_Management\PriceDeclarationM1.aspx" />
     <Content Include="VAT_Management\ProductionEntry.aspx" />
@@ -2283,6 +2286,13 @@
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.cs">
+      <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.designer.cs">
+      <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\CustomerView.aspx.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2296,6 +2306,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\DashboardReport.aspx.designer.cs">
       <DependentUpon>DashboardReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DocView.aspx.cs">
+      <DependentUpon>DocView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DocView.aspx.designer.cs">
+      <DependentUpon>DocView.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
@@ -6906,6 +6923,13 @@
     </Compile>
     <Compile Include="VAT_Management\Mushak11.aspx.designer.cs">
       <DependentUpon>Mushak11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\Mushak19MonthlyReturn.aspx.cs">
+      <DependentUpon>Mushak19MonthlyReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\Mushak19MonthlyReturn.aspx.designer.cs">
+      <DependentUpon>Mushak19MonthlyReturn.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\OtherAdjustments.aspx.cs">
       <DependentUpon>OtherAdjustments.aspx</DependentUpon>

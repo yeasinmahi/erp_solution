@@ -42,7 +42,7 @@
 
 </head>
 <body>
-    <form id="frmDocumentView" runat="server">
+   <form id="frmDocumentView" runat="server">
    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
 <%--=========================================Start My Code From Here===============================================--%>
         <asp:TextBox ID="txtdgvFTTotal" runat="server" Width="0.1px" CssClass="txtBox" Height="0.1px" MaxLength="10" BackColor="White" ForeColor="White" ></asp:TextBox>        
