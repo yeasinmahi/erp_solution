@@ -41,8 +41,7 @@ namespace UI.CreativeSupportModule
             if (e.CommandName == "View")
             {
                 intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewCustomerView('" + 0 + "');", true);
-                //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewApproveActionPopup('" + intJobID.ToString() + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewCustomerView('" + intJobID.ToString() + "');", true);
             }
         }
         protected void dgvDashboardReport_DataBound(object sender, EventArgs e)

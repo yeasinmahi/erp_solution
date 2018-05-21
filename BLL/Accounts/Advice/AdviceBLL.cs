@@ -91,5 +91,23 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetPrintData(int intID)
+        {
+            try
+            {
+                GetPrintDataTableAdapter adp = new GetPrintDataTableAdapter();
+                return adp.GetPrintData(intID);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetVoucherPrintData(string strCodeNo, int intUnitID, int intPartID)
+        {
+            try
+            {
+                SprAdviceVoucherPrintTableAdapter adp = new SprAdviceVoucherPrintTableAdapter();
+                return adp.GetVoucherPrintData(strCodeNo, intUnitID, intPartID);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }
