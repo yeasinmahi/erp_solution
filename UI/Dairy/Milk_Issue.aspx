@@ -76,7 +76,7 @@
         $("[id*=lblAveFatPer]").each(function () {
             grandTotalftp = grandTotalftp + parseFloat($(this).html());
         });
-
+        
         $("[id*=lblbalancqty]").each(function () {
             gtblqt = gtblqt + parseFloat($(this).html());
         });        

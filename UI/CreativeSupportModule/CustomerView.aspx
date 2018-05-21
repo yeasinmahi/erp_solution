@@ -33,7 +33,11 @@
     function FTPUpload() {
         document.getElementById("hdnconfirm").value = "2";
         __doPostBack();
-    }
+        }
+        function FTPUpload2() {
+            document.getElementById("hdnconfirm").value = "4";
+            __doPostBack();
+        }
     function FTPUpload1() {
         document.getElementById("hdnconfirm").value = "0";
         var confirm_value = document.createElement("INPUT");
@@ -48,7 +52,17 @@
         }
 </script>
 
-<script language="javascript">  
+<script language="javascript" type="text/javascript">  
+    
+
+    function onlyNumbers(evt) {
+        var e = event || evt; // for trans-browser compatibility
+        var charCode = e.which || e.keyCode;
+
+        if ((charCode > 57))
+            return false;
+        return true;
+    }
     function ViewCustomerView(Id) {
         window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
     }
@@ -64,7 +78,7 @@
     
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnLoanID" runat="server" />            
+    <asp:HiddenField ID="hdnLoanID" runat="server" /> <asp:HiddenField ID="hdnPoint" runat="server" />           
     <div style="padding-right:10px;">
         <%--<div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> BILL REGISTRATION<hr /></div>--%>
         <table class="tbldecoration" style="width:auto; float:left;">
@@ -118,7 +132,7 @@
             <tr>
                 <td style="text-align:right; padding-top:10px"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Item :"></asp:Label></td>
                 <td style="text-align:left; padding-top:10px">
-                <asp:TextBox ID="txtCRItem" runat="server" AutoPostBack="true"  CssClass="txtBox1" OnTextChanged="txtCRItem_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="txtCRItem" runat="server" AutoPostBack="false" CssClass="txtBox1"></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtCRItem"
                 ServiceMethod="AutoCreativeItem" MinimumPrefixLength="1" CompletionSetCount="1"
                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -127,7 +141,7 @@
 
                 <td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td> 
                 <td colspan="2" style="text-align:right; padding-top:10px""><asp:Label ID="Label8" runat="server" Text="Quantity :" CssClass="lbl" ></asp:Label>
-                <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox1" Width="50px"></asp:TextBox>
+                <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox1" Width="50px" AutoPostBack="false" onKeyUp="javascript:FTPUpload2();"></asp:TextBox>
                 <asp:Label ID="Label7" runat="server" Text="Point" CssClass="lbl" ></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span>
                 <asp:TextBox ID="txtPoint" runat="server" CssClass="txtBox1" Width="50px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
                 <td style="text-align:right; padding: 15px 26px 8px 10px"><asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"/></td>
@@ -135,23 +149,31 @@
             <tr>
                 <td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
                 <td colspan="5"> 
-                <asp:GridView ID="dgvCrItem" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-                BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvCrItem_RowDeleting">
-                <AlternatingRowStyle BackColor="#CCCCCC" />
+                <asp:GridView ID="dgvCrItem" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true" RowStyle-Height="16px"
+                HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="center" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvCrItem_RowDataBound" OnRowDeleting="dgvCrItem_RowDeleting">
+                <AlternatingRowStyle BackColor="#CCCCCC" />                 
                 <Columns>
-                <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="15px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+                <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
                     
                 <asp:TemplateField HeaderText="Item Name" SortExpression="name"><ItemTemplate>            
                 <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("name") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="Left" Width="265px"/></asp:TemplateField>
+                <ItemStyle HorizontalAlign="Left" Width="265px"/>
+                <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total" /></FooterTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Quantity" SortExpression="qty"><ItemTemplate>            
                 <asp:Label ID="lblQty" runat="server" Text='<%# Bind("qty") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="center" Width="90px"/></asp:TemplateField>
+                <ItemStyle HorizontalAlign="center" Width="85px"/>
+                <FooterTemplate ><asp:Label ID="lblQtyTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalqty %>" /></FooterTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Point" SortExpression="point"><ItemTemplate>            
                 <asp:Label ID="lblPoint" runat="server" Text='<%# Bind("point") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="center" Width="90px"/></asp:TemplateField>
+                <ItemStyle HorizontalAlign="center" Width="85px"/>
+                <FooterTemplate><asp:Label ID="lblPointTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalpoint %>" /></FooterTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="ItemID" SortExpression="itemid" Visible="false"><ItemTemplate>            
                 <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("itemid") %>'></asp:Label></ItemTemplate>
@@ -175,16 +197,16 @@
             <tr><td colspan="6"><hr /></td></tr>  
             <tr>
                 <td style="text-align:right; "><asp:Label ID="Label12" runat="server" Text=""></asp:Label></td>
-                <td colspan="5"> 
-                <asp:GridView ID="dgvDocUp" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-                BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvDocUp_RowDeleting">
+                <td colspan="5">
+                <asp:GridView ID="dgvDocUp" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvDocUp_RowDeleting">
                 <AlternatingRowStyle BackColor="#CCCCCC" />
                 <Columns>
-                <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="15px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+                <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
                     
                 <asp:TemplateField HeaderText="File Name" SortExpression="strFileName"><ItemTemplate>            
                 <asp:Label ID="lblFileName" runat="server" Text='<%# Bind("strFileName") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="Left" Width="465px"/></asp:TemplateField>
+                <ItemStyle HorizontalAlign="Left" Width="440px"/></asp:TemplateField>
                        
                 <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
 

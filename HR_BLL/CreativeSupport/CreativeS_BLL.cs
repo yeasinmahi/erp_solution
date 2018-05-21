@@ -131,13 +131,13 @@ namespace HR_BLL.CreativeSupport
             else { return null; }
         }
 
-        public string InsertAllBillApproval(int intAssignBy, DateTime dteRequiredDate, TimeSpan tmRequiredTime, int intAssignTo, int intJobDescriptionID, string strJobType, int intTotalPoint, string strRemarks, string xmlItem, string xmlDoc)
+        public string InsertAllBillApproval(int intAssignBy, DateTime dteRequiredDate, TimeSpan tmRequiredTime, int intAssignTo, int intJobDescriptionID, string strJobType, int intTotalPoint, string strRemarks, string xmlItem, string xmlDoc, int intPOID)
         {
             try
             {
                 string msg = "";
                 SprCreativeSupportEntryTableAdapter adp = new SprCreativeSupportEntryTableAdapter();
-                adp.InsertCreativeSupport(intAssignBy, dteRequiredDate, tmRequiredTime, intAssignTo, intJobDescriptionID, strJobType, intTotalPoint, strRemarks, xmlItem, xmlDoc, ref msg);
+                adp.InsertCreativeSupport(intAssignBy, dteRequiredDate, tmRequiredTime, intAssignTo, intJobDescriptionID, strJobType, intTotalPoint, strRemarks, xmlItem, xmlDoc, intPOID, ref msg);
                 return msg;
             }
             catch (Exception ex) { return ex.ToString(); }
@@ -170,9 +170,17 @@ namespace HR_BLL.CreativeSupport
             { return adp.GetStatusList(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
+        public DataTable GetJobDetailsR(int intPart, int intJobID)
+        {
+            SprCreativeSupportReportForViewDetailsTableAdapter adp = new SprCreativeSupportReportForViewDetailsTableAdapter();
+            try
+            { return adp.GetJobDetailsR(intPart, intJobID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
         
+
+
 
 
 
