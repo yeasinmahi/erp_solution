@@ -105,10 +105,11 @@ namespace UI.SAD.Item
                 Rid = int.Parse(ddlRegion.SelectedValue);
                 Aid = int.Parse(ddlAreaList.SelectedValue);
                 Groupid = int.Parse(ddlPGroup.SelectedValue);
-                dteFdate = DateTime.Parse(txtFrom.Text);
+                dteFdate = CommonClass.GetDateAtSQLDateFormat(txtFrom.Text).Date;
                 if (txtTo.Text == "")
                 { dteTdate = DateTime.Parse("2009-1-1"); }
-                else { dteTdate = DateTime.Parse(txtTo.Text); }
+                else {  dteTdate = CommonClass.GetDateAtSQLDateFormat(txtTo.Text).Date;
+                }
 
 
                 SalesQty = decimal.Parse(txtSalesQty.Text);

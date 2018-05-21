@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SCM_DAL.DmageTDSTableAdapters;
 
 namespace SCM_BLL
 {
@@ -25,7 +26,7 @@ namespace SCM_BLL
             catch { return new DataTable(); }
            
         }
-
+        
         public string PostTransfer(int Type, string xmlString, int intWh, int id, DateTime dteDate, int enroll)
         {
             string strMsg = "";
@@ -38,7 +39,18 @@ namespace SCM_BLL
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+        public string PostTransferDamage(int Type, string xmlString, int intWh, int id, DateTime dteDate, int enroll)
+        {
+            string strMsg = "";
+            try
+            {
 
+                sprInventoryTransferWebDamageEntryTableAdapter adp = new sprInventoryTransferWebDamageEntryTableAdapter();
+                adp.GetData(Type, xmlString, intWh, id, dteDate, enroll, ref strMsg);
+            }
+            catch (Exception ex) { return strMsg = ex.ToString(); }
+            return strMsg;
+        }
         public string[] AutoSearchVehicle(string unit, string prefix)
         {
 
