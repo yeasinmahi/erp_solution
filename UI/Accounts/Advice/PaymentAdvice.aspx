@@ -38,6 +38,9 @@
             html = html.replace(/</g, '&lt;');
             $("input[id$='HdnValueIBBL']").val(html);
         }
+        function ViewDispatchPopup(Id) {
+            window.open('VoucherPrint.aspx?ID=' + Id, 'sub', "height=500, width=900, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
      </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <style type="text/css"> 
@@ -307,16 +310,16 @@
         <tr><td>
          <div id="divExportIBBL" runat="server">
          <table>
-            <tr><td style="font-weight:bold; text-decoration:underline; font-size:22px; color:#000000; text-align:center"><asp:Label ID="lblUnitIBBL" runat="server"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; text-decoration:underline; font-size:18px; color:#000000; text-align:center"><asp:Label ID="lblUnitAddIBBL" runat="server"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblToIBBL" runat="server" Text="To"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblManagerIBBL" runat="server" Text="The Manager"></asp:Label></td></tr>
-            <tr><td style="font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblBankNameIBBL" runat="server"></asp:Label></td></tr>
-            <tr><td style="font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblBankAddressIBBL" runat="server"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblSubjectIBBL" runat="server" Text="<u>Subject : Payment Instruction.</u>"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblDearSirIBBL" runat="server" Text="Dear Sir,"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblMailBodyIBBL" runat="server"></asp:Label></td></tr>
-            <tr><td style="font-weight:bold; font-size:15px; color:#000000; text-align:left"><asp:Label ID="lblDetailsIBBL" runat="server" Text="Detailed particulars of each Account Holder :"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; text-decoration:underline; font-size:20px; color:#000000; text-align:center"><asp:Label ID="lblUnitIBBL" runat="server"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; text-decoration:underline; font-size:16px; color:#000000; text-align:center"><asp:Label ID="lblUnitAddIBBL" runat="server"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblToIBBL" runat="server" Text="To"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblManagerIBBL" runat="server" Text="The Manager"></asp:Label></td></tr>
+            <tr><td style="font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblBankNameIBBL" runat="server"></asp:Label></td></tr>
+            <tr><td style="font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblBankAddressIBBL" runat="server"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblSubjectIBBL" runat="server" Text="<u>Subject : Payment Instruction.</u>"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblDearSirIBBL" runat="server" Text="Dear Sir,"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblMailBodyIBBL" runat="server" Width="520px"></asp:Label></td></tr>
+            <tr><td style="font-weight:bold; font-size:14px; color:#000000; text-align:left"><asp:Label ID="lblDetailsIBBL" runat="server" Text="Detailed particulars of each Account Holder :"></asp:Label></td></tr>
          
             <tr><td>
                <asp:GridView ID="dgvAdviceIBBL" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="true"
@@ -327,11 +330,11 @@
 
                 <asp:TemplateField HeaderText="Account No" ItemStyle-HorizontalAlign="right" SortExpression="strBankAccountNo">
                 <ItemTemplate><asp:Label ID="lblAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="100px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="90px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Account Name" SortExpression="strSupplier">
                 <ItemTemplate><asp:Label ID="lblAccountName" runat="server" Text='<%# Bind("strSupplier") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="Left" Width="220px" /><FooterTemplate><asp:Label ID="lblTTText" runat="server" Text="Total :"></asp:Label></FooterTemplate></asp:TemplateField>
+                <ItemStyle HorizontalAlign="Left" Width="190px" /><FooterTemplate><asp:Label ID="lblTTText" runat="server" Text="Total :"></asp:Label></FooterTemplate></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Code No" ItemStyle-HorizontalAlign="right" SortExpression="intSuppID" Visible="false">
                 <ItemTemplate><asp:Label ID="lblCodeNo" runat="server" Text='<%# Bind("intSuppID") %>'></asp:Label>
@@ -341,8 +344,8 @@
                 <ItemTemplate><asp:Label ID="lblAmount" runat="server" Text='<%# Eval("monVoucher", "{0:0,0.00}") %>'></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="right" /><FooterTemplate><asp:Label ID="lblTTTotal" runat="server"></asp:Label></FooterTemplate></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="right" SortExpression="strPaymentInfo">
-                <ItemTemplate><asp:Label ID="lblPaymentInfo" runat="server" Text='<%# Bind("strPaymentInfo") %>'></asp:Label>
+                <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="right" SortExpression="intInstrumentNo">
+                <ItemTemplate><asp:Label ID="lblPaymentInfo" runat="server" Text='<%# Bind("intInstrumentNo") %>'></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" /></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Bank Name" ItemStyle-HorizontalAlign="right" SortExpression="strBankName" Visible="false">

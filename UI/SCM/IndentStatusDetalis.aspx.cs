@@ -44,7 +44,7 @@ namespace UI.SCM
                         int job = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
                         if (job == 28)
                         {
-                            imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
+                              imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png".ToString();
                         }
                         else { imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); }
 

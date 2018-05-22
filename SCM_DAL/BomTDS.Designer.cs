@@ -1615,13 +1615,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblProcessWorkstationRow FindById(int Id) {
-                return ((TblProcessWorkstationRow)(this.Rows.Find(new object[] {
-                            Id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TblProcessWorkstationDataTable cln = ((TblProcessWorkstationDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1648,14 +1641,11 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnId);
                 this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
                 this.columnId.AutoIncrement = true;
                 this.columnId.AutoIncrementSeed = -1;
                 this.columnId.AutoIncrementStep = -1;
                 this.columnId.AllowDBNull = false;
                 this.columnId.ReadOnly = true;
-                this.columnId.Unique = true;
                 this.columnstrName.MaxLength = 300;
             }
             
@@ -3396,14 +3386,12 @@ SELECT intWorkstationId AS Id, strName FROM tblProcessWorkstation WHERE (intWork
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "Select  [intWorkstationId] as Id,strName FROM  dbo.[tblProcessWorkstation]\r\nWhere" +
-                " intWHID = @intwh and intParentID = 0   and ysnActive = 1 ";
+                " intWHID = 0 and intParentID = 0    and ysnActive = 1 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intwh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "   Select [intWorkstationId] as Id,strName FROM ERP_Inventory.dbo.[tblProcessWork" +
-                "station]\r\n   Where intWHID = @intWh    and intParentID = @intParent    and ysnAc" +
-                "tive = 1";
+            this._commandCollection[1].CommandText = "SELECT intWorkstationId AS Id, strName FROM tblProcessWorkstation WHERE (intWHID " +
+                "= @intWh) AND (intParentId = @intParent) AND (ysnActive = 1)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intParent", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intParentId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3413,14 +3401,8 @@ SELECT intWorkstationId AS Id, strName FROM tblProcessWorkstation WHERE (intWork
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BomTDS.TblProcessWorkstationDataTable GetWorkstationData(global::System.Nullable<int> intwh) {
+        public virtual BomTDS.TblProcessWorkstationDataTable GetWorkstationData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intwh.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intwh.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
             BomTDS.TblProcessWorkstationDataTable dataTable = new BomTDS.TblProcessWorkstationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
