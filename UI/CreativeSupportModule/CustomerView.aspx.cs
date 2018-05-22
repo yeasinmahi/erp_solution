@@ -32,7 +32,6 @@ namespace UI.CreativeSupportModule
         TimeSpan tmRequiredTime; decimal qtyq;
 
         protected void Page_Load(object sender, EventArgs e)
-
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
@@ -335,7 +334,7 @@ namespace UI.CreativeSupportModule
         #region ===== Document Upload Procedure ==============================================
         protected void DynamicUpload()
         {
-            FileUploadFTP(Server.MapPath("~/Transport/Uploads/"), fileName, "ftp://ftp.akij.net/InternalTransportDocList/", "erp@akij.net", "erp123");
+            FileUploadFTP(Server.MapPath("~/CreativeSupportModule/Data/"), fileName, "ftp://ftp.akij.net/InternalTransportDocList/", "erp@akij.net", "erp123");
         }
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
@@ -365,7 +364,7 @@ namespace UI.CreativeSupportModule
                 fileStream.Close();
 
                 requestFTPUploader = null;
-                File.Delete(Server.MapPath("~/Transport/Uploads/") + fileName);
+                File.Delete(Server.MapPath("~/CreativeSupportModule/Data/") + fileName);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -718,7 +717,7 @@ namespace UI.CreativeSupportModule
         }
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
         }
 
         

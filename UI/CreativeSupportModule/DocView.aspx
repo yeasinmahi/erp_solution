@@ -40,9 +40,9 @@
     <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnBillID" runat="server" />
         <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnJobID" runat="server" />
         
-        <table>
+        <%--<table>
         <tr><td colspan="9" style="color:blue; font-weight:900;"><a id="btnprint" href="BillDetails.aspx" class="nextclick" style="cursor:pointer; text-align:right;">Back</a></td></tr> 
-        </table>
+        </table>--%>
         
 
     <%--=========================================End My Code From Here=================================================--%>
