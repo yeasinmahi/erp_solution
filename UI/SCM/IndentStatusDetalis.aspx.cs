@@ -48,7 +48,6 @@ namespace UI.SCM
                         }
                         else { imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); }
 
-                         
                     }
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();
