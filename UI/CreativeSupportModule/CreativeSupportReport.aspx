@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DashboardReport.aspx.cs" Inherits="UI.CreativeSupportModule.DashboardReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreativeSupportReport.aspx.cs" Inherits="UI.CreativeSupportModule.CreativeSupportReport" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -52,14 +52,36 @@
     </div>
         
     <div class="divbody" style="margin-left:5px; margin-top:20px; padding-left:15px; text-align:center;">
-        <div style="text-align:center; padding-top:5px;"> <span style="font-size:20px; text-align:center; font-weight:bold;"> Creative Support Display Board </span></div>
+        <div style="text-align:center; padding-top:5px;"> <span style="font-size:20px; text-align:center; font-weight:bold;"> Creative Support Report </span></div>
         <table class="tbldecoration" style="width:auto; text-align:center; ">
-            <tr><td><hr /></td></tr>
-            <tr><td>   
-            <asp:GridView ID="dgvDashboardReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+            <tr style="text-align:center;">
+                <td style="text-align:right; padding-top:10px"><asp:Label ID="Label14" runat="server" Text="Special Assign To " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px; width:50px">*</span><span> :</span></td>
+                <td colspan="5" style="text-align:left; padding-top:10px">                
+                <asp:TextBox ID="txtSearchAssignedTo" runat="server" AutoPostBack="false"  CssClass="txtBox1" Width="330px"></asp:TextBox>
+                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtSearchAssignedTo"
+                ServiceMethod="GetEmpListForCreativeSupportList" MinimumPrefixLength="1" CompletionSetCount="1"
+                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                </cc1:AutoCompleteExtender>
+                </td>  
+
+                <td style="text-align:right; padding-top:10px"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="From Date"></asp:Label><span style="color:red; font-size:14px; width:50px">*</span><span> :</span></td>                
+                <td style="padding-top:10px"><asp:TextBox ID="txtFrom" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="120px"></asp:TextBox>
+                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender></td>
+
+                <td style="text-align:right; padding-top:10px"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
+                <td style="padding-top:10px"><asp:TextBox ID="txtTo" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"  Width="120px"></asp:TextBox>
+                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTo"></cc1:CalendarExtender></td>
+
+                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClick="btnShow_Click"/></td>        
+            </tr>
+            
+            <tr><td colspan="15"><hr /></td></tr>
+            <tr><td colspan="15">   
+            <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
             CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-            HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-            ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvDashboardReport_RowCommand" OnDataBound="dgvDashboardReport_DataBound">
+            ShowFooter="true"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+            FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvReport_RowDataBound">
             <AlternatingRowStyle BackColor="#CCCCCC" />    
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
@@ -94,15 +116,21 @@
 
             <asp:TemplateField HeaderText="Receiver" SortExpression="strEmployeeName2">
             <ItemTemplate><asp:Label ID="lblReceiver" runat="server" Text='<%# Bind("strEmployeeName2") %>' Width="130px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="130px"/></asp:TemplateField>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="130px"/>
+            <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total Point" /></FooterTemplate>
+            </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="right" SortExpression="strApproveType"> 
-            <ItemTemplate><asp:DropDownList ID="ddlJStatus" runat="server" CssClass="ddList" Width="90px" DataSourceID="odsJStatus" DataTextField="strCreativeSupportStatus" DataValueField="intStatusID" AutoPostBack="True" onchange="ConfirmAll()" OnSelectedIndexChanged="ddlJStatus_SelectedIndexChanged"  ></asp:DropDownList> 
-            <asp:HiddenField ID="hdnStatusID" runat="server" Value='<%# Bind("intJobStatusID") %>' />
-            <asp:ObjectDataSource ID="odsJStatus" runat="server" SelectMethod="GetStatusList" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
-            </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
+            <asp:TemplateField HeaderText="Point" SortExpression="intTotalPoint">
+            <ItemTemplate><asp:Label ID="lblPoint" runat="server" Text='<%# Bind("intTotalPoint") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px"/>
+            <FooterTemplate><asp:Label ID="lblGTotalPoint" runat="server" DataFormatString="{0:0.00}" Text="<%# grandtpoint %>" /></FooterTemplate>
+            </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Job Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <asp:TemplateField HeaderText="Status" SortExpression="strCreativeSupportStatus">
+            <ItemTemplate><asp:Label ID="lblStatus" runat="server" Text='<%# Bind("strCreativeSupportStatus") %>' Width="100px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="100px"/></asp:TemplateField>
+                
+            <asp:TemplateField HeaderText="Job Details" ItemStyle-HorizontalAlign="Center" SortExpression="" Visible="false">
             <ItemTemplate><asp:Button ID="btnJobDetails" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"  
             Text="View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
@@ -116,7 +144,7 @@
     </div>
 
     <div >
-        <img style="padding-top:37px" height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
+        <img style="padding-top:280px" height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
     </div>
    
 

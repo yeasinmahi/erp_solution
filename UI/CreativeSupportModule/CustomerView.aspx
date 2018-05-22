@@ -144,7 +144,7 @@
                 <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox1" Width="50px" AutoPostBack="false" onKeyUp="javascript:FTPUpload2();"></asp:TextBox>
                 <asp:Label ID="Label7" runat="server" Text="Point" CssClass="lbl" ></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span>
                 <asp:TextBox ID="txtPoint" runat="server" CssClass="txtBox1" Width="50px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
-                <td style="text-align:right; padding: 15px 26px 8px 10px"><asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"/></td>
+                <td style="text-align:right; padding: 15px 2px 8px 10px"><asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"/></td>
             </tr>
             <tr>
                 <td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
@@ -189,9 +189,9 @@
                 <td style="text-align: right; width:120px;"><asp:Label ID="Label11" runat="server" CssClass="lbl" Text="PO ID :"></asp:Label></td>
                 <td colspan="5" style="text-align:left;">
                 <asp:TextBox ID="txtPOID" runat="server" CssClass="txtBox1"></asp:TextBox>
-                <span style="text-align: right; padding-left:16px;"><asp:Label ID="Label10" runat="server" CssClass="lbl" Text="Work Order :"></asp:Label>
-                <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true" Height="25px" Width="153px"/>
-                <asp:Button ID="btnDocUpload" runat="server" class="myButton" Text="Add" Height="30px" OnClientClick="FTPUpload()"/></span>
+                <span style="text-align: right; padding-left:16px; "><span style="padding-top:200px;"><asp:Label ID="Label10" runat="server" CssClass="lbl" Text="Work Order/ Attachment:" Width="73px"></asp:Label>
+                <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true" Height="25px" Width="153px"/></span>
+                <span style="padding-left:18px"><asp:Button ID="btnDocUpload" runat="server" class="myButton" Text="Add" Height="30px" OnClientClick="FTPUpload()"/></span></span>
                 </td>          
             </tr>
             <tr><td colspan="6"><hr /></td></tr>  
@@ -219,10 +219,10 @@
                 <td colspan="5" style="padding-top:10px"><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox1" TextMode="MultiLine" Width="547px" Height="50px"></asp:TextBox></td>                
             </tr> 
             <tr>
-                <td colspan="6" style="text-align:right; padding: 15px 26px 8px 10px">
+                <td colspan="6" style="text-align:right; padding: 15px 2px 8px 10px">
                 <span ><asp:Button ID="btnClose" runat="server" class="myButton" Text="Close" Height="30px" OnClick="btnClose_Click"/></span>
                 <span style="padding-left:50px"><asp:Button ID="btnClear" runat="server" class="myButton" Text="Clear" Height="30px" OnClick="btnClear_Click"/></span>
-                <span style="padding-left:50px"><asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Height="30px" OnClientClick="FTPUpload1()"/></span></td>
+                <span style="padding-left:50px;"><asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Height="30px" OnClientClick="FTPUpload1()"/></span></td>
             </tr>
         </table>
     </div>

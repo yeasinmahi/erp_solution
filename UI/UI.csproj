@@ -277,6 +277,7 @@
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
+    <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\DocView.aspx" />
@@ -2299,6 +2300,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.designer.cs">
       <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportReport.aspx.cs">
+      <DependentUpon>CreativeSupportReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportReport.aspx.designer.cs">
+      <DependentUpon>CreativeSupportReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\CustomerView.aspx.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
