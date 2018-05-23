@@ -57,9 +57,7 @@ namespace UI.CreativeSupportModule
                     intReceiver = int.Parse(temp1[3].ToString());
                 }
                 catch { intReceiver = 0; }
-
-                intReceiver = 11621;
-
+                
                 dt = objcr.GetAllReport(intPart, intReceiver, dteFrom, dteTo);
                 dgvReport.DataSource = dt;
                 dgvReport.DataBind();
