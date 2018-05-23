@@ -13,7 +13,7 @@ namespace Utility
         {
             try
             {
-                File.Copy(source, destionation, false);
+                File.Copy(source, destionation, true);
                 return true;
             }
             catch (Exception e)
@@ -36,7 +36,18 @@ namespace Utility
             }
             return null;
         }
+        public enum ModulaFileName
+        {
+            Item,
+            Order,
+            OrderLine,
+            StrockUpdate
+        }
 
+        public static string GetModulaFullPath(string path, Enum fileName)
+        {
+            return path + fileName.ToString("F") + ".txt";
+        }
         //public static bool CreateFile(string fileName)
         //{
         //    if (!File.Exists(path))

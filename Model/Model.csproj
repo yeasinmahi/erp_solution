@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModularItem.cs" />
+    <Compile Include="ModularOrder.cs" />
+    <Compile Include="ModularOrderLine.cs" />
+    <Compile Include="ModularStockUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
