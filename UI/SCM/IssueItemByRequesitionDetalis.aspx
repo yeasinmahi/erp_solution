@@ -51,11 +51,11 @@
         });
     </script>
      <script>   function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
-        function RefreshParent() {
-            if (window.opener != null && !window.opener.closed) {
-                window.opener.location.reload();
-            }
-        }
+        //function RefreshParent() {
+        //    if (window.opener != null && !window.opener.closed) {
+        //        window.opener.location.reload();
+        //    }
+        //}
 
     </script> 
 

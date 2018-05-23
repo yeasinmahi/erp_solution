@@ -64,7 +64,7 @@
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Type :"></asp:Label></td>
                 <td style="text-align:left;"><asp:DropDownList ID="ddlType" CssClass="ddList" Font-Bold="False" runat="server" height="23px" width="220px">
-                <asp:ListItem Selected="True" Value="1">Musok</asp:ListItem><asp:ListItem Value="2">Musok 1(Ka)</asp:ListItem>
+                <asp:ListItem Selected="True" Value="1">Musok-1</asp:ListItem><asp:ListItem Value="2">Musok 1(Ka)</asp:ListItem>
                 <asp:ListItem Value="2">Musok 1(Ga)</asp:ListItem></asp:DropDownList></td>              
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Valid From :" CssClass="lbl"></asp:Label></td>               

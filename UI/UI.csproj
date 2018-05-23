@@ -278,6 +278,7 @@
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
+    <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\DocView.aspx" />
@@ -1219,6 +1220,7 @@
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
@@ -2308,6 +2310,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.designer.cs">
       <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportReport.aspx.cs">
+      <DependentUpon>CreativeSupportReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportReport.aspx.designer.cs">
+      <DependentUpon>CreativeSupportReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\CustomerView.aspx.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
@@ -6162,6 +6171,13 @@
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProfitCenter.aspx.cs">
+      <DependentUpon>ProfitCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProfitCenter.aspx.designer.cs">
+      <DependentUpon>ProfitCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\WorkStationCreate.aspx.cs">
       <DependentUpon>WorkStationCreate.aspx</DependentUpon>
