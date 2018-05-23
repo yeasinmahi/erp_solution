@@ -118,8 +118,14 @@ namespace UI.SAD.Item
                 part = int.Parse(ddlPGroup.SelectedValue);
                 PromotionName = txtPromotionName.Text;
 
-                msg = objPromotion.getPromotionEntry(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.UNIT_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
+                msg = objPromotion.getPromotionEntry(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                txtCustomer.Text = "";
+                txtPromotionItem.Text = "";
+                txtSalesItem.Text = "";
+                txtSalesQty.Text = "";
+                txtPromQty.Text = "";
+                txtPromotionName.Text = "";
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Promotion Name');", true); }
             }
