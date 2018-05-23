@@ -1264,6 +1264,7 @@
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
+    <Content Include="SCM\Transfer\InventoryAdjustment.aspx" />
     <Content Include="SCM\Transfer\InventoryFGReceive.aspx" />
     <Content Include="SCM\Transfer\InventoryFGTransferOut.aspx" />
     <Content Include="SCM\Transfer\InventoryLoanPay.aspx" />
@@ -6464,6 +6465,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferIn.aspx.designer.cs">
       <DependentUpon>frmTransferIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryAdjustment.aspx.cs">
+      <DependentUpon>InventoryAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryAdjustment.aspx.designer.cs">
+      <DependentUpon>InventoryAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\InventoryFGReceive.aspx.cs">
       <DependentUpon>InventoryFGReceive.aspx</DependentUpon>
