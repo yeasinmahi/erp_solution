@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventoryTransferDamage.aspx.cs" Inherits="UI.SCM.Transfer.InventoryTransferDamage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventoryAdjustment.aspx.cs" Inherits="UI.SCM.Transfer.InventoryAdjustment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -103,7 +103,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" />
         <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUom" runat="server" /><asp:HiddenField ID="hdnStockQty" runat="server" />
      <asp:HiddenField ID="hdnValue" runat="server" />
-       <div class="tabs_container">INVENTORY DAMAGE ENTRY <hr /></div>
+       <div class="tabs_container">INVENTORY ADJUSTMENT <hr /></div>
         
         <table    style="width:800px; text-align:right ">   
             <tr>
@@ -118,7 +118,7 @@
             </tr>
          </table>
         <table style="border-radius:10px; width:800px; border-style:groove">
-            <caption style="text-align:left">Damage Entry</caption>
+            <caption style="text-align:left">Inventory Adjustment</caption>
         <tr>
             <td style='text-align: left;'>Item</td>
             <td ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  Width="400px" OnTextChanged="txtItem_TextChanged"     ></asp:TextBox>
@@ -127,43 +127,29 @@
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
-           <td style='text-align: left;'>Location</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlLcation" runat="server" CssClass="ddList"   ></asp:DropDownList></td>  
-            <td style='text-align: left;'>Transfer To</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlToWh" runat="server" CssClass="ddList"  AutoPostBack="True" ></asp:DropDownList></td>  
-
-        </tr>
-             <tr>
-                <td class="auto-style1" ><asp:Label ID="Label2" Text="Remarks"    runat="server"></asp:Label></td>
-                <td class="auto-style1"><asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px"   runat="server"></asp:TextBox> 
-                <td style='text-align: left;' class="auto-style1">Vehicle</td> 
-                <td style='text-align: left;'><asp:TextBox ID="txtVehicle" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"   ></asp:TextBox>
-                <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtVehicle"
-                ServiceMethod="GetVehicleSerach" MinimumPrefixLength="1" CompletionSetCount="1"
-                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                </cc1:AutoCompleteExtender></td>
-                
-                <td style='text-align: left;' class="auto-style1">ItemType</td>
-                <td style='text-align: left;' class="auto-style1"><asp:DropDownList ID="ddlTransType" runat="server" CssClass="ddList"  AutoPostBack="True" >
-                    <asp:ListItem Value="2">Damage Product</asp:ListItem>
-                    <asp:ListItem Value="4">Production Fault</asp:ListItem>
-                    <asp:ListItem Value="3">Lickage Product</asp:ListItem>
-                    </asp:DropDownList></td>  
+             <td style='text-align: left;'>Type</td>
+            <td style='text-align: left;'><asp:DropDownList ID="ddlType" runat="server" CssClass="ddList"  AutoPostBack="True" >
+             <asp:ListItem Text="Increase Inventory"></asp:ListItem> <asp:ListItem Text="Decrease"></asp:ListItem>  </asp:DropDownList></td>  
+            </tr>
+            <tr>
+                <td style='text-align: left;'>Location</td>
+            <td style='text-align: left;' colspan="3"><asp:DropDownList ID="ddlLcation" Width="320px" runat="server" CssClass="ddList"   ></asp:DropDownList>
+            <asp:Label ID="Label3" Text="Quantity"    runat="server"></asp:Label>
+             <asp:TextBox ID="txtQty" CssClass="txtBox"  Width="130px"  runat="server"></asp:TextBox> 
+                 <asp:Label ID="Label4" Text="Rate"    runat="server"></asp:Label>
+             <asp:TextBox ID="txtRate" CssClass="txtBox"  Width="130px"  runat="server"></asp:TextBox> 
+            </td>
+ 
 
             </tr>
-          
-            <tr>
-            <td ><asp:Label ID="Label1" Text="Transfer.Qty"   runat="server"></asp:Label></td>
-            <td  colspan="1"><asp:TextBox ID="txTransferQty" CssClass="txtBox" Width="100px"  onkeyup="GetTransQty(this);"  runat="server"></asp:TextBox>
-            <asp:Label ID="lblDetalis" ForeColor="Blue" runat="server"  ></asp:Label></td>
-            <td>Rate</td>
-            <td  style="text-align:left"><asp:TextBox ID="txtRate" CssClass="txtBox" Width="80px" Text="0" runat="server" TextMode="Number"></asp:TextBox>  
-            <asp:Label ID="lblValue" runat="server"  ForeColor="Blue"></asp:Label></td>
-            <td colspan="2"> <asp:Button ID="btnAdd" runat="server" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"    />
-            <asp:Button ID="btnSubmit" runat="server" OnClientClick="Confirm();" Text="Save" OnClick="btnSubmit_Click" />
+             <tr>
+                <td class="auto-style1" ><asp:Label ID="Label2" Text="Remarks"    runat="server"></asp:Label></td>
+                <td class="auto-style1"><asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px"   runat="server"></asp:TextBox>  
+                <td colspan="2" style="text-align:right"> <asp:Button ID="btnAdd" runat="server" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"    />
+                <asp:Button ID="btnSubmit" runat="server" OnClientClick="Confirm();" Text="Submit" OnClick="btnSubmit_Click" />
             </td> 
-            </tr> 
+            </tr>
+           
         </table>
 
          <table style="border-color:black;  width:900px;border-radius:10px;">
@@ -183,7 +169,15 @@
             <asp:TemplateField HeaderText="Quantity"   ItemStyle-HorizontalAlign="right" SortExpression="qty" >
             <ItemTemplate><asp:Label ID="lblQty" runat="server"  Text='<%# Bind("qty") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+
+            <asp:TemplateField HeaderText="Rate"   ItemStyle-HorizontalAlign="right" SortExpression="rate" >
+            <ItemTemplate><asp:Label ID="lblQty" runat="server"  Text='<%# Bind("rate") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
+            <asp:TemplateField HeaderText="Value"   ItemStyle-HorizontalAlign="right" SortExpression="monValue" >
+            <ItemTemplate><asp:Label ID="lblValue" runat="server"  Text='<%# Bind("monValue") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+
              <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="uom" >
             <ItemTemplate><asp:Label ID="lblUom" runat="server"  Width=""  Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 

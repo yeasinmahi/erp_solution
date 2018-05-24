@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventoryTransferDamage.aspx.cs" Inherits="UI.SCM.Transfer.InventoryTransferDamage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InventoryDistributorReceive.aspx.cs" Inherits="UI.SCM.Transfer.InventoryDistributorReceive" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -65,19 +65,12 @@
 
           function Confirm() {
                  
-                  var e = document.getElementById("ddlToWh");
-                 var towh = e.options[e.selectedIndex].value; 
-                  var vehicle = document.getElementById("txtVehicle").value;
-              
-              if ($.trim(towh) == 0 || $.trim(towh) == "" || $.trim(towh) == null || $.trim(towh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Transfer Warehouse'); }
-              else  if ($.trim(vehicle) == 0 || $.trim(vehicle) == "" || $.trim(vehicle) == null || $.trim(vehicle) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please input Vehicle Number'); }
-
-              else {
+                 
                 var confirm_value = document.createElement("INPUT"); 
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; 
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; } 
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-              }
+              
               }
     </script> 
     <style type="text/css">
@@ -103,7 +96,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" />
         <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUom" runat="server" /><asp:HiddenField ID="hdnStockQty" runat="server" />
      <asp:HiddenField ID="hdnValue" runat="server" />
-       <div class="tabs_container">INVENTORY DAMAGE ENTRY <hr /></div>
+       <div class="tabs_container">INVENTORY DISTRIBUTOR RECEIVE<hr /></div>
         
         <table    style="width:800px; text-align:right ">   
             <tr>
@@ -118,7 +111,7 @@
             </tr>
          </table>
         <table style="border-radius:10px; width:800px; border-style:groove">
-            <caption style="text-align:left">Damage Entry</caption>
+            <caption style="text-align:left">Distributor Receive</caption>
         <tr>
             <td style='text-align: left;'>Item</td>
             <td ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  Width="400px" OnTextChanged="txtItem_TextChanged"     ></asp:TextBox>
@@ -127,40 +120,38 @@
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
-           <td style='text-align: left;'>Location</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlLcation" runat="server" CssClass="ddList"   ></asp:DropDownList></td>  
-            <td style='text-align: left;'>Transfer To</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlToWh" runat="server" CssClass="ddList"  AutoPostBack="True" ></asp:DropDownList></td>  
+           <td style='text-align: left;'>Distributor Name</td>
+            <td style='text-align: left;'><asp:TextBox ID="txtVehicle" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"   ></asp:TextBox>
+                <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtVehicle"
+                ServiceMethod="GetDistributorSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                </cc1:AutoCompleteExtender></td>  
+            <td style='text-align: left;'>&nbsp;</td>
+            <td style='text-align: left;'>&nbsp;</td>  
 
         </tr>
              <tr>
                 <td class="auto-style1" ><asp:Label ID="Label2" Text="Remarks"    runat="server"></asp:Label></td>
                 <td class="auto-style1"><asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px"   runat="server"></asp:TextBox> 
-                <td style='text-align: left;' class="auto-style1">Vehicle</td> 
-                <td style='text-align: left;'><asp:TextBox ID="txtVehicle" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"   ></asp:TextBox>
-                <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtVehicle"
-                ServiceMethod="GetVehicleSerach" MinimumPrefixLength="1" CompletionSetCount="1"
-                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                </cc1:AutoCompleteExtender></td>
+                <td style='text-align: left;' class="auto-style1">ItemType</td> 
+                <td style='text-align: left;'><asp:DropDownList ID="ddlTransType" runat="server" CssClass="ddList"  AutoPostBack="True" >
+                    <asp:ListItem Value="1">Good Product</asp:ListItem>
+                    </asp:DropDownList></td>
                 
-                <td style='text-align: left;' class="auto-style1">ItemType</td>
-                <td style='text-align: left;' class="auto-style1"><asp:DropDownList ID="ddlTransType" runat="server" CssClass="ddList"  AutoPostBack="True" >
-                    <asp:ListItem Value="2">Damage Product</asp:ListItem>
-                    <asp:ListItem Value="4">Production Fault</asp:ListItem>
-                    <asp:ListItem Value="3">Lickage Product</asp:ListItem>
-                    </asp:DropDownList></td>  
+                <td style='text-align: left;' class="auto-style1"></td>
+                  
 
             </tr>
           
             <tr>
-            <td ><asp:Label ID="Label1" Text="Transfer.Qty"   runat="server"></asp:Label></td>
+            <td ><asp:Label ID="Label1" Text="Receive Qty"   runat="server"></asp:Label></td>
             <td  colspan="1"><asp:TextBox ID="txTransferQty" CssClass="txtBox" Width="100px"  onkeyup="GetTransQty(this);"  runat="server"></asp:TextBox>
             <asp:Label ID="lblDetalis" ForeColor="Blue" runat="server"  ></asp:Label></td>
             <td>Rate</td>
             <td  style="text-align:left"><asp:TextBox ID="txtRate" CssClass="txtBox" Width="80px" Text="0" runat="server" TextMode="Number"></asp:TextBox>  
             <asp:Label ID="lblValue" runat="server"  ForeColor="Blue"></asp:Label></td>
-            <td colspan="2"> <asp:Button ID="btnAdd" runat="server" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"    />
+            <td colspan="2"> <asp:Button ID="btnAdd" runat="server"  Text="Add" OnClick="btnAdd_Click"    />
             <asp:Button ID="btnSubmit" runat="server" OnClientClick="Confirm();" Text="Save" OnClick="btnSubmit_Click" />
             </td> 
             </tr> 

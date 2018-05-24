@@ -58,6 +58,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BomTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DmageTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="IndentTDS.cs">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </Compile>
@@ -149,6 +154,17 @@
     </None>
     <None Include="BomTDS.xss">
       <DependentUpon>BomTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DmageTDS.xsc">
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DmageTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DmageTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DmageTDS.xss">
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
     </None>
     <None Include="IndentTDS.xsc">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
