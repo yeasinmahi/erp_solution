@@ -26,7 +26,7 @@ namespace UI.CreativeSupportModule
         DataTable dt;
 
         string filePathForXMLDocUpload, xmlStringDocUpload = "", xmlDoc, filePathForXML, xmlString = "", xmlItem;        
-        string strDocUploadPath, fileName, strFileName, strRemarks, name, qty, point, itemid, strJobType;        
+        string strDocUploadPath, fileName, strFileName, strRemarks, name, qty, point, itemid, strJobType, strJobT;        
         int intAssignTo, intAssignBy, intJobDescriptionID, intTotalPoint, intPOID, intItemID, intRowCount;
         DateTime dteRequiredDate;
         TimeSpan tmRequiredTime; decimal qtyq;
@@ -44,27 +44,18 @@ namespace UI.CreativeSupportModule
                 {
                     File.Delete(filePathForXMLDocUpload); dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
                     File.Delete(filePathForXML); dgvCrItem.DataSource = ""; dgvCrItem.DataBind();
-                    rdoLarge.Checked = false;
-                    rdoModerate.Checked = false;
-                    rdoMinor.Checked = false;
-
+                    
                     dt = new DataTable();
                     dt = objcr.GetLoginInfo(int.Parse(hdnEnroll.Value));
                     if (dt.Rows.Count > 0)
                     {
                         txtName.Text = dt.Rows[0]["EmpInfo"].ToString();
                     }
-
-                    rdoLarge.Checked = false;
-                    rdoModerate.Checked = false;
-                    rdoMinor.Checked = false;
-                    rdoLarge.Enabled = false;
-                    rdoModerate.Enabled = false;
-                    rdoMinor.Enabled = false;
+                    
                     txtCRItem.Enabled = false;
                     txtQty.Enabled = false;
                     btnItemAdd.Visible = false;
-                    //ddlJobDescription.Enabled = false;
+                    ddlJobType.Enabled = false;
                 }
                 catch { }
             }
@@ -97,14 +88,11 @@ namespace UI.CreativeSupportModule
                     catch { intAssignTo = 0; }
 
                     intJobDescriptionID = int.Parse(ddlJobDescription.SelectedValue.ToString());
-                    if (rdoLarge.Checked == true) { strJobType = "Large"; }
-                    else if (rdoModerate.Checked == true) { strJobType = "Moderate"; }
-                    else if (rdoMinor.Checked == true) { strJobType = "Minor"; }
-                    else { strJobType = "N/A"; }
-
+                    strJobType = ddlJobType.SelectedItem.ToString();
+                    
                     if(intJobDescriptionID != 1)
                     {
-                        if(rdoLarge.Checked == false && rdoModerate.Checked == false && rdoMinor.Checked == false)
+                        if(ddlJobType.SelectedValue.ToString() == "0")
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Job Type Select.');", true);
                             return;
@@ -179,12 +167,9 @@ namespace UI.CreativeSupportModule
                     txtPOID.Text = "";
                     txtRemarks.Text = "";
                     txtReqDate.Text = "";
-                    rdoLarge.Checked = false;
-                    rdoModerate.Checked = false;
-                    rdoMinor.Checked = false;
-                    rdoLarge.Enabled = false;
-                    rdoModerate.Enabled = false;
-                    rdoMinor.Enabled = false;
+                    //rdoLarge.Enabled = false;
+                    //rdoModerate.Enabled = false;
+                    //rdoMinor.Enabled = false;
                     txtCRItem.Enabled = false;
                     txtQty.Enabled = false;
 
@@ -377,6 +362,23 @@ namespace UI.CreativeSupportModule
         {
         }
 
+        protected void ddlJobType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string strJT = ddlJobType.SelectedItem.ToString();
+
+                dt = new DataTable();
+                dt = objcr.GetJobTypeWisePoint(strJT);
+                if (dt.Rows.Count > 0)
+                {
+                    txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
+                }
+                else { txtPoint.Text = "0"; }
+            }
+            catch { }
+        }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetSearchAssignedTo(string prefixText, int count)
@@ -410,31 +412,18 @@ namespace UI.CreativeSupportModule
         {
             if(ddlJobDescription.SelectedItem.ToString() == "POSM")
             {
-                rdoLarge.Checked = false;
-                rdoModerate.Checked = false;
-                rdoMinor.Checked = false;
-
-                rdoLarge.Enabled = false;
-                rdoModerate.Enabled = false;
-                rdoMinor.Enabled = false;
-
+                ddlJobType.SelectedValue = "0";
+                ddlJobType.Enabled = false;
                 txtCRItem.Enabled = true;
                 txtQty.Enabled = true;
                 btnItemAdd.Visible = true;
             }
             else
             {
-                rdoLarge.Checked = false;
-                rdoModerate.Checked = false;
-                rdoMinor.Checked = false;
-
-                rdoLarge.Enabled = true;
-                rdoModerate.Enabled = true;
-                rdoMinor.Enabled = true;
-
                 txtCRItem.Enabled = false;
                 txtQty.Enabled = false;
                 btnItemAdd.Visible = false;
+                ddlJobType.Enabled = true;
             }
             txtPoint.Text = "";
             txtCRItem.Text = "";
@@ -497,48 +486,7 @@ namespace UI.CreativeSupportModule
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
             return;
         }
-        protected void rdoLarge_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoLarge.Checked == true)
-            {
-                rdoModerate.Checked = false; rdoMinor.Checked = false;
-                dt = new DataTable();
-                dt = objcr.GetJobTypeWisePoint("Large");
-                if (dt.Rows.Count > 0)
-                {
-                    txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
-                }
-                else { txtPoint.Text = "0"; }
-            }
-        }        
-        protected void rdoModerate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoModerate.Checked == true)
-            {
-                rdoLarge.Checked = false; rdoMinor.Checked = false;
-                dt = new DataTable();
-                dt = objcr.GetJobTypeWisePoint("Moderate");
-                if (dt.Rows.Count > 0)
-                {
-                    txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
-                }
-                else { txtPoint.Text = "0"; }
-            }
-        }
-        protected void rdoMinor_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoMinor.Checked == true)
-            {
-                rdoModerate.Checked = false; rdoLarge.Checked = false;
-                dt = new DataTable();
-                dt = objcr.GetJobTypeWisePoint("Minor");
-                if (dt.Rows.Count > 0)
-                {
-                    txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
-                }
-                else { txtPoint.Text = "0"; }
-            }
-        }
+        
         //protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
         //{
         //    try
@@ -702,13 +650,13 @@ namespace UI.CreativeSupportModule
             txtPoint.Text = "";
             txtPOID.Text = "";
             txtRemarks.Text = "";
-            txtReqDate.Text = "";
-            rdoLarge.Checked = false;
-            rdoModerate.Checked = false;
-            rdoMinor.Checked = false;
-            rdoLarge.Enabled = false;
-            rdoModerate.Enabled = false;
-            rdoMinor.Enabled = false;
+            //txtReqDate.Text = "";
+            //rdoLarge.Checked = false;
+            //rdoModerate.Checked = false;
+            //rdoMinor.Checked = false;
+            //rdoLarge.Enabled = false;
+            //rdoModerate.Enabled = false;
+            //rdoMinor.Enabled = false;
             txtCRItem.Enabled = false;
             txtQty.Enabled = false;
 

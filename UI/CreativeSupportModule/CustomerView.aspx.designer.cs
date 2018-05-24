@@ -157,13 +157,13 @@ namespace UI.CreativeSupportModule {
         protected global::AjaxControlToolkit.CalendarExtender fdt;
         
         /// <summary>
-        /// Label1 control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// Label4 control.
@@ -256,40 +256,31 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Label2 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// rdoLarge control.
+        /// Label15 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoLarge;
+        protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// rdoModerate control.
+        /// ddlJobType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoModerate;
-        
-        /// <summary>
-        /// rdoMinor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoMinor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobType;
         
         /// <summary>
         /// Label5 control.
