@@ -214,7 +214,7 @@
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" /> 
             </asp:GridView></td> 
         </tr>  
-            <tr><td></td> </tr> 
+            <tr><td colspan="5"><asp:Label ID="lblInWard"  Font-Bold="true" runat="server"></asp:Label></td> </tr> 
             <tr> <td></td></tr>
              </table>
              <table>
