@@ -1248,6 +1248,7 @@
     <Content Include="SCM\PoDetalisView.aspx" />
     <Content Include="SCM\PoDocAttachment.aspx" />
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
+    <Content Include="SCM\IndentRFQ.aspx" />
     <Content Include="SCM\PoGenerate.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
@@ -6355,6 +6356,13 @@
     </Compile>
     <Compile Include="SCM\PoDocAttachmentDetalis.aspx.designer.cs">
       <DependentUpon>PoDocAttachmentDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IndentRFQ.aspx.cs">
+      <DependentUpon>IndentRFQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IndentRFQ.aspx.designer.cs">
+      <DependentUpon>IndentRFQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoGenerate.aspx.cs">
       <DependentUpon>PoGenerate.aspx</DependentUpon>

@@ -27,6 +27,20 @@
     .rounds { height: 500px; width: 60px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #ffffff; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
     width:50%; height: 100%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; }    
+        .auto-style1 {
+            width: 215px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            border: 1px solid #ccc;
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 0;
+            background-color: #FFF;
+        }
     </style>
 
     <script>
@@ -97,7 +111,7 @@
                 <td style="text-align:right; padding-top:10px"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Required Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
                 <td style="padding-top:10px"><asp:TextBox ID="txtReqDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReqDate"></cc1:CalendarExtender></td>
-                <td style="text-align:right; "><asp:Label ID="Label1" runat="server" Text=""></asp:Label></td>
+                <td style="text-align:right; "><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td  style="text-align:right; padding-left:55px"><asp:Label ID="lblstart" runat="server" CssClass="lbl" Text="Required Time"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td><MKB:TimeSelector ID="tmsReqTime" runat="server" SelectedTimeFormat="TwentyFour"></MKB:TimeSelector>
@@ -122,12 +136,17 @@
                 <asp:DropDownList ID="ddlJobDescription" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" DataSourceID="odsJobDes" DataTextField="strJobDescription" DataValueField="intJobDesID" AutoPostBack="true" OnSelectedIndexChanged="ddlJobDescription_SelectedIndexChanged"></asp:DropDownList>
                     <asp:ObjectDataSource ID="odsJobDes" runat="server" SelectMethod="GetJobDescription" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
                 </td>
+             
+
                 <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
-                <td style="text-align:right; padding-top:10px; padding-left:20px"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Job Type :"></asp:Label></td>
-                <td colspan="2" style="padding-top:10px; padding-left:10px"><span style="border-left-style:groove; border-left-width:0.1px; border-color:gainsboro; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoLarge" runat="server" Checked="true" Text=" Large" AutoPostBack="true" OnCheckedChanged="rdoLarge_CheckedChanged"/></span>
-                <span style=" border-left-style:groove; border-left-width:0.1px; border-color:gainsboro; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoModerate" runat="server" Text=" Moderate" AutoPostBack="true" OnCheckedChanged="rdoModerate_CheckedChanged" /></span>
-                <span style="border-left-style:groove; border-left-width:0.1px; border-color:gainsboro; padding: 10px 10px 10px 5px"><asp:RadioButton ID="rdoMinor" runat="server" Text=" Minor" AutoPostBack="true" OnCheckedChanged="rdoMinor_CheckedChanged" /></span>
+                <td style="text-align:right; padding-top:10px; padding-left:20px"><asp:Label ID="Label1" runat="server" CssClass="lbl" ForeColor="White" Text="Job Type.. :"></asp:Label></td>
+                <td colspan="2" style="padding-top:10px; padding-left:10px"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="Job Type :"></asp:Label>
+                <asp:DropDownList ID="ddlJobType" CssClass="ddList" Font-Bold="False" runat="server" width="160px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlJobType_SelectedIndexChanged" >
+                <asp:ListItem Selected="True" Value="0">Please Select Job Type</asp:ListItem><asp:ListItem Value="1">Large</asp:ListItem>
+                <asp:ListItem Value="2">Moderate</asp:ListItem><asp:ListItem Value="3">Minor</asp:ListItem></asp:DropDownList>
                 </td>
+
+
             </tr>
             <tr>
                 <td style="text-align:right; padding-top:10px"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Item :"></asp:Label></td>

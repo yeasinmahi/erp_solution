@@ -42,6 +42,7 @@ namespace UI.AEFPS
         {
             try
             {
+                
                 if ((txtfdate.Text != "") || (txttdate.Text != ""))
                 {
                     if (ddlReporttype.SelectedValue == "1")
@@ -50,8 +51,9 @@ namespace UI.AEFPS
                         dtetdate = DateTime.Parse(txttdate.Text.ToString());
                         empid = int.Parse(hdnEnroll.Value.ToString());
                         intWID = int.Parse(ddlWH.SelectedValue);
-                        lblfdate.Text = dtefdate.ToString("dd-MM-yyyy");
-                        lbltdate.Text = dtetdate.ToString("dd-MM-yyyy");
+                        lblWHName.Text = ddlWH.SelectedItem.ToString();
+                        lblDate.Text ="Date From :"+ dtefdate.ToString("dd-MM-yyyy")+" To :"+ dtetdate.ToString("dd-MM-yyyy");
+                        lblHeading.Text = "Cash Book";
 
                         part = 1;
                         dt = objAEFPS.getCashbook(dtefdate, dtetdate, intWID, part);
@@ -66,12 +68,8 @@ namespace UI.AEFPS
                         lblCashinHand.Text = Math.Round(decimal.Parse((dt.Rows[0]["CashInHand"].ToString()))).ToString();
                         intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-                        dt = objAEFPS.getWH(intInsertby);
-                        ddlWH.DataTextField = "strName";
-                        ddlWH.DataValueField = "Id";
-                        ddlWH.DataSource = dt;
-                        ddlWH.DataBind();
-                        Label2.Text = "Cost";
+                       
+                        Label2.Text = "Cost :";
 
                     }
                     else
@@ -81,6 +79,9 @@ namespace UI.AEFPS
                         dtetdate = DateTime.Parse(txttdate.Text.ToString());
                         part = 1;
                         dt = objAEFPS.getShopLedger(dtefdate, dtetdate, intWID, part);
+                        lblWHName.Text = ddlWH.SelectedItem.ToString();
+                        lblDate.Text = "Date From :" + dtefdate.ToString("dd-MM-yyyy") + " To :" + dtetdate.ToString("dd-MM-yyyy");
+                        lblHeading.Text = "Shop Ledger";
 
                         dgvRptTemp.DataSource = dt;
                         dgvRptTemp.DataBind();
@@ -103,5 +104,31 @@ namespace UI.AEFPS
             }
             catch { }
           }
+        protected decimal Totaldebit = 0, Totalcredit=0;
+        protected void dgvRptTemp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (((Label)e.Row.Cells[2].FindControl("lblDebitss")).Text == "")
+                {
+                    Totaldebit += 0;
+                }
+                else
+                {
+                    Totaldebit += decimal.Parse(((Label)e.Row.Cells[2].FindControl("lblDebitss")).Text);
+                }
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (((Label)e.Row.Cells[2].FindControl("lblmoncreditss")).Text == "")
+                {
+                    Totalcredit += 0;
+                }
+                else
+                {
+                    Totalcredit += decimal.Parse(((Label)e.Row.Cells[2].FindControl("lblmoncreditss")).Text);
+                }
+            }
+        }
     }
 }

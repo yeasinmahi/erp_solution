@@ -110,6 +110,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReceiveTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="RFQTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -246,6 +251,17 @@
     </None>
     <None Include="ReceiveTDS.xss">
       <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RFQTDS.xsc">
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RFQTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RFQTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RFQTDS.xss">
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
     </None>
     <None Include="TransferTDS.xsc">
       <DependentUpon>TransferTDS.xsd</DependentUpon>

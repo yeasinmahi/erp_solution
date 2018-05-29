@@ -43,8 +43,11 @@ namespace UI.AEFPS
         {
             if ((txtfdate.Text != "") )
             {
-               
                 dtefdate = DateTime.Parse(txtfdate.Text.ToString());
+                lblWHName.Text = ddlWH.SelectedItem.ToString();
+                lblHeading.Text = "Employee Due Report";
+                lblDate.Text = "AS On Date :" + dtefdate.ToString("dd-MM-yyyy");
+              
                 intWID = int.Parse(ddlWH.SelectedValue);
                 dt = objAEFPS.GetDueReport(dtefdate, intWID);
                 if (dt.Rows.Count > 0)
