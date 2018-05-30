@@ -103,7 +103,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" />
         <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUom" runat="server" /><asp:HiddenField ID="hdnStockQty" runat="server" />
      <asp:HiddenField ID="hdnValue" runat="server" />
-       <div class="tabs_container">INVENTORY TRANSFER <hr /></div>
+       <div class="tabs_container">INVENTORY DAMAGE ENTRY <hr /></div>
         
         <table    style="width:800px; text-align:right ">   
             <tr>
@@ -118,7 +118,7 @@
             </tr>
          </table>
         <table style="border-radius:10px; width:800px; border-style:groove">
-            <caption style="text-align:left">Transfer Out</caption>
+            <caption style="text-align:left">Damage Entry</caption>
         <tr>
             <td style='text-align: left;'>Item</td>
             <td ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  Width="400px" OnTextChanged="txtItem_TextChanged"     ></asp:TextBox>
@@ -145,7 +145,11 @@
                 </cc1:AutoCompleteExtender></td>
                 
                 <td style='text-align: left;' class="auto-style1">ItemType</td>
-                <td style='text-align: left;' class="auto-style1"><asp:DropDownList ID="ddlTransType" runat="server" CssClass="ddList"  AutoPostBack="True" ></asp:DropDownList></td>  
+                <td style='text-align: left;' class="auto-style1"><asp:DropDownList ID="ddlTransType" runat="server" CssClass="ddList"  AutoPostBack="True" >
+                    <asp:ListItem Value="2">Damage Product</asp:ListItem>
+                    <asp:ListItem Value="4">Production Fault</asp:ListItem>
+                    <asp:ListItem Value="3">Lickage Product</asp:ListItem>
+                    </asp:DropDownList></td>  
 
             </tr>
           

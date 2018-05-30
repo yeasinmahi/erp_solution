@@ -254,10 +254,19 @@ namespace UI.AEFPS
                 ddlMrrNo.DataValueField = "Id";
                 ddlMrrNo.DataBind();
 
-                mrrId = int.Parse(ddlMrrNo.SelectedValue.ToString());
-                dt = objRec.DataView(3, "", intWh, mrrId, DateTime.Now, enroll);
-                dgvReceive.DataSource = dt;
-                dgvReceive.DataBind();
+                try { mrrId = int.Parse(ddlMrrNo.SelectedValue.ToString()); } catch { mrrId = 0; }
+               dt = objRec.DataView(3, "", intWh, mrrId, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvReceive.DataSource = dt;
+                    dgvReceive.DataBind();
+                }
+                else
+                {
+                    dgvReceive.DataSource = "";
+                    dgvReceive.DataBind();
+                }
+                    
             }
             catch { }
         }

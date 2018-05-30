@@ -33,7 +33,7 @@ namespace UI.SCM.BOM
 
                 intwh = int.Parse(ddlWH.SelectedValue);
                
-                dt = objBom.getWorkstationParent(intwh);
+                dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";
@@ -62,7 +62,7 @@ namespace UI.SCM.BOM
             try
             {
                 intwh = int.Parse(ddlWH.SelectedValue);
-                dt = objBom.getWorkstationParent(intwh);
+                dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";
@@ -167,7 +167,7 @@ namespace UI.SCM.BOM
             {
                 dt = new DataTable();
                 intwh = int.Parse(ddlWH.SelectedValue); 
-                dt = objBom.getWorkstationParent(intwh);
+                dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";

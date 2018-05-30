@@ -278,6 +278,7 @@
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
+    <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\DocView.aspx" />
@@ -1219,6 +1220,7 @@
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
@@ -1231,6 +1233,7 @@
     <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IndentWithoutReceive.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
@@ -1245,6 +1248,7 @@
     <Content Include="SCM\PoDetalisView.aspx" />
     <Content Include="SCM\PoDocAttachment.aspx" />
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
+    <Content Include="SCM\IndentRFQ.aspx" />
     <Content Include="SCM\PoGenerate.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
@@ -1262,10 +1266,12 @@
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
+    <Content Include="SCM\Transfer\InventoryAdjustment.aspx" />
     <Content Include="SCM\Transfer\InventoryFGReceive.aspx" />
     <Content Include="SCM\Transfer\InventoryFGTransferOut.aspx" />
     <Content Include="SCM\Transfer\InventoryLoanPay.aspx" />
     <Content Include="SCM\Transfer\InventoryLoanReceive.aspx" />
+    <Content Include="SCM\Transfer\InventoryDistributorReceive.aspx" />
     <Content Include="SCM\Transfer\InventoryTransferIN.aspx" />
     <Content Include="SCM\Transfer\InventoryTransferDamage.aspx" />
     <Content Include="SCM\Transfer\InventoryTransferOut.aspx" />
@@ -2309,6 +2315,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.designer.cs">
       <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportReport.aspx.cs">
+      <DependentUpon>CreativeSupportReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\CreativeSupportReport.aspx.designer.cs">
+      <DependentUpon>CreativeSupportReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\CustomerView.aspx.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
@@ -6164,6 +6177,13 @@
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\BOM\ProfitCenter.aspx.cs">
+      <DependentUpon>ProfitCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProfitCenter.aspx.designer.cs">
+      <DependentUpon>ProfitCenter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BOM\WorkStationCreate.aspx.cs">
       <DependentUpon>WorkStationCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6233,6 +6253,13 @@
     </Compile>
     <Compile Include="SCM\InventoryReport.aspx.designer.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\InventoryValuetion.aspx.cs">
+      <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\InventoryValuetion.aspx.designer.cs">
+      <DependentUpon>InventoryValuetion.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\IssueForProduction.aspx.cs">
       <DependentUpon>IssueForProduction.aspx</DependentUpon>
@@ -6331,6 +6358,13 @@
     </Compile>
     <Compile Include="SCM\PoDocAttachmentDetalis.aspx.designer.cs">
       <DependentUpon>PoDocAttachmentDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IndentRFQ.aspx.cs">
+      <DependentUpon>IndentRFQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IndentRFQ.aspx.designer.cs">
+      <DependentUpon>IndentRFQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoGenerate.aspx.cs">
       <DependentUpon>PoGenerate.aspx</DependentUpon>
@@ -6451,6 +6485,13 @@
     <Compile Include="SCM\Transfer\frmTransferIn.aspx.designer.cs">
       <DependentUpon>frmTransferIn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\Transfer\InventoryAdjustment.aspx.cs">
+      <DependentUpon>InventoryAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryAdjustment.aspx.designer.cs">
+      <DependentUpon>InventoryAdjustment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Transfer\InventoryFGReceive.aspx.cs">
       <DependentUpon>InventoryFGReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6478,6 +6519,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\InventoryLoanReceive.aspx.designer.cs">
       <DependentUpon>InventoryLoanReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryDistributorReceive.aspx.cs">
+      <DependentUpon>InventoryDistributorReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryDistributorReceive.aspx.designer.cs">
+      <DependentUpon>InventoryDistributorReceive.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\InventoryTransferIN.aspx.cs">
       <DependentUpon>InventoryTransferIN.aspx</DependentUpon>
