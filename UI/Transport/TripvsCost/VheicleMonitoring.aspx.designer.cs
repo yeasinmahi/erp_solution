@@ -10,7 +10,7 @@
 namespace UI.Transport.TripvsCost {
     
     
-    public partial class TripCost {
+    public partial class VheicleMonitoring {
         
         /// <summary>
         /// Head1 control.
@@ -202,6 +202,15 @@ namespace UI.Transport.TripvsCost {
         protected global::System.Web.UI.WebControls.DropDownList drdlShippingpoint;
         
         /// <summary>
+        /// odsShippingp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsShippingp;
+        
+        /// <summary>
         /// btnShow control.
         /// </summary>
         /// <remarks>
@@ -220,30 +229,12 @@ namespace UI.Transport.TripvsCost {
         protected global::System.Web.UI.WebControls.Button btnExportToExcel;
         
         /// <summary>
-        /// grdvTripVsTADA control.
+        /// grdvVhclMonitoring control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvTripVsTADA;
-        
-        /// <summary>
-        /// grdvTripvsChallanDet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvTripvsChallanDet;
-        
-        /// <summary>
-        /// grdvShipPointvsRouteCost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvShipPointvsRouteCost;
+        protected global::System.Web.UI.WebControls.GridView grdvVhclMonitoring;
     }
 }

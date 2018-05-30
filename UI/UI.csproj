@@ -1308,6 +1308,8 @@
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
+    <Content Include="Transport\TripvsCost\TripVsFuelCost.aspx" />
+    <Content Include="Transport\TripvsCost\VheicleMonitoring.aspx" />
     <Content Include="Transport\Utility_LocListView.aspx" />
     <Content Include="Transport\Utility_PaymentReport.aspx" />
     <Content Include="Transport\Utility_Registration.aspx" />
@@ -6798,6 +6800,20 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\TripCostDetaills.aspx.designer.cs">
       <DependentUpon>TripCostDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\TripVsFuelCost.aspx.cs">
+      <DependentUpon>TripVsFuelCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\TripVsFuelCost.aspx.designer.cs">
+      <DependentUpon>TripVsFuelCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\VheicleMonitoring.aspx.cs">
+      <DependentUpon>VheicleMonitoring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\VheicleMonitoring.aspx.designer.cs">
+      <DependentUpon>VheicleMonitoring.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\Utility_LocListView.aspx.cs">
       <DependentUpon>Utility_LocListView.aspx</DependentUpon>
