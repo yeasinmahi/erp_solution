@@ -128,6 +128,12 @@ namespace UI.WoodPurchase
                 txtPrereceive.Text = "";
                 txtVatChallan.Text = "";
                 txtMoisture.Text = "";
+                txtChallanNo.Text = "";
+                txtGateEntry.Text = "";
+                txtVehicleNo.Text = "";
+                txtWeightID.Text = "";
+                txtTotalWeight.Text = "";
+                txtDeduction.Text = "";
 
                 intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
                 intItemID = int.Parse(ddlItemList.SelectedValue.ToString());
