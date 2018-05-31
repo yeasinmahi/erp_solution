@@ -79,7 +79,7 @@ namespace UI.CreativeSupportModule
             int intPart = 2;
             strStatusRemarks = "";
             xmlDoc = "";
-
+            
             if (intJobStatusID == 1)
             {
                 if (hdnconfirm.Value == "1")
@@ -117,13 +117,13 @@ namespace UI.CreativeSupportModule
                     string JobStatus = strJobStatus;
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + intJobID.ToString() + "','" + JobCode + "','" + JobStatus + "','" + JobStatusID + "');", true);
+                    ddlJStat.SelectedValue = "0";
                 }
                 else
                 {
                     ddlJStat.SelectedValue = "0";
                 }
-            }
-
+            }            
         }
 
 

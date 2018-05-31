@@ -37,6 +37,10 @@
             }
         });
         
+        function ViewConfirmAgrementPage(Id) {
+            window.open('AggrementPage.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
+
         function ViewCustomerView(Id) {
             window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }

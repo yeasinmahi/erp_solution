@@ -28,7 +28,9 @@ namespace UI.Task_Module
         protected void btnCustomer_Click(object sender, EventArgs e)
         {
             ckbAgree.Checked = false;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewConfirmAgrement('" + 0 + "');", true);          
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewConfirmAgrementPage('" + 0 + "');", true);
+           
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewConfirmAgrement('" + 0 + "');", true);          
         }
 
         protected void btnGo_Click(object sender, EventArgs e)
@@ -39,6 +41,7 @@ namespace UI.Task_Module
             }            
         }
         
+
 
 
 
