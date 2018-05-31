@@ -102,6 +102,7 @@
                   <asp:ListItem Value="3">Trip vs Challan Detaills</asp:ListItem> 
                  <asp:ListItem Value="4">Vheicle Vs Trip (Top sheet)</asp:ListItem> 
                   <asp:ListItem Value="5">Vheicle Vs Trip (Detaills)</asp:ListItem> 
+                   <asp:ListItem Value="6">Ship Point vs Route Cost (Detaills)</asp:ListItem> 
                      </asp:DropDownList>
                                  
                                     
@@ -197,6 +198,41 @@
             </table>
 
             </div>
+
+         <div class="leaveApplication_container"> 
+             <table>
+        
+             
+          <tr class="tblroweven"><td>
+            <asp:GridView ID="grdvShipPointvsRouteCost" runat="server" ShowFooter="True" AutoGenerateColumns="False" CellPadding="3" OnRowDataBound="grdvTripvsChallanDet_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
+            <Columns>
+                <%--strtripcode ,strchallan ,dteintime ,dteouttime ,decqntcft ,strdriver,strcontact ,strhelper--%>
+            <asp:TemplateField HeaderText="Sl"> <ItemTemplate> <%#Container.DataItemIndex+1 %> </ItemTemplate></asp:TemplateField>
+            <asp:BoundField DataField="strtripcode" HeaderText="strtripcode" SortExpression="strtripcode" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+            <asp:BoundField DataField="strchallan" HeaderText="strchallan" SortExpression="strchallan" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+            <asp:BoundField DataField="dteintime" HeaderText="dteintime" SortExpression="dteintime"  DataFormatString="{0:dd/MM/yyyy}"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+            <asp:BoundField DataField="dteouttime" HeaderText="dteouttime" SortExpression="dteouttime"  DataFormatString="{0:dd/MM/yyyy}"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+            <asp:BoundField DataField="decqntcft" HeaderText="decqntcft" SortExpression="decqntcft" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+            <asp:BoundField DataField="strdriver" HeaderText="strdriver" SortExpression="strdriver" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+           <asp:BoundField DataField="strhelper" HeaderText="strhelper" SortExpression="strhelper" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+            <asp:BoundField DataField="strcontact" HeaderText="strcontact" SortExpression="strcontact" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+            </Columns>
+            <FooterStyle BackColor="White" ForeColor="#000066" />
+            <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                <RowStyle ForeColor="#000066" />
+            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+            <SortedAscendingHeaderStyle BackColor="#007DBB" />
+            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+            <SortedDescendingHeaderStyle BackColor="#00547E" />
+            <HeaderStyle CssClass="GridviewScrollHeader" /><PagerStyle CssClass="GridviewScrollPager" />
+            </asp:GridView> </td>
+            </tr>  
+            </table>
+
+            </div>
+
        
 
 

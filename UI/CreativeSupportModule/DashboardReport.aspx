@@ -22,10 +22,15 @@
 
      <script language="javascript">        
         
-        function ViewCustomerView(Id) {
+        function ViewJobDetails(Id) {
             window.open('CreativeSupportJobDetail.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
-        }
+         }
+
+         function ViewHoldAndFeedback(Id, JobCode, JobStatus, JobStatusID) {
+             window.open('HoldFeedback.aspx?ID=' + Id + '&JobCode=' + JobCode + '&JobStatus=' + JobStatus + '&JobStatusID=' + JobStatusID, 'sub', "height=600, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+         }
     </script>
+
 
 
 
@@ -64,11 +69,11 @@
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Job Code" SortExpression="strJobCode">
-            <ItemTemplate><asp:Label ID="lblJobCode" runat="server" Text='<%# Bind("strJobCode") %>' Width="150px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblJobCode" runat="server" Text='<%# Bind("strJobCode") %>' Width="140px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Apply Date & Time" SortExpression="ReqDate">
-            <ItemTemplate><asp:Label ID="lblApplydDate" runat="server" Text='<%# Bind("ReqDate") %>' Width="120px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblApplydDate" runat="server" Text='<%# Bind("ReqDate") %>' Width="140px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="120px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Required Date" SortExpression="dteRequiredDate">
@@ -92,7 +97,7 @@
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="130px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="right" SortExpression="strApproveType"> 
-            <ItemTemplate><asp:DropDownList ID="ddlJStatus" runat="server" CssClass="ddList" Width="90px" DataSourceID="odsJStatus" DataTextField="strCreativeSupportStatus" DataValueField="intStatusID"></asp:DropDownList> 
+            <ItemTemplate><asp:DropDownList ID="ddlJStatus" runat="server" CssClass="ddList" Width="90px" DataSourceID="odsJStatus" DataTextField="strCreativeSupportStatus" DataValueField="intStatusID" AutoPostBack="True" onchange="ConfirmAll()" OnSelectedIndexChanged="ddlJStatus_SelectedIndexChanged"  ></asp:DropDownList> 
             <asp:HiddenField ID="hdnStatusID" runat="server" Value='<%# Bind("intJobStatusID") %>' />
             <asp:ObjectDataSource ID="odsJStatus" runat="server" SelectMethod="GetStatusList" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
             </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
@@ -113,8 +118,7 @@
     <div >
         <img style="padding-top:37px" height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
     </div>
-
-    
+   
 
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>

@@ -201,6 +201,13 @@
  </script>
 
           
+    <style type="text/css">
+        .auto-style1 {
+            height: 25px;
+        }
+    </style>
+
+          
 </head>
 <body>
     <form id="frmselfresign" runat="server">        

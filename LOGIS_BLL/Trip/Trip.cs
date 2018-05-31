@@ -317,5 +317,45 @@ namespace LOGIS_BLL.Trip
             }
             catch { return new DataTable(); }
         }
+
+
+        public DataTable GetTripVsCost(string  tripcode, int unitid)
+        {
+            try
+            {
+                SprTripVsFuelCostTableAdapter bll = new SprTripVsFuelCostTableAdapter();
+                return bll.GetDataTripVsFuelCost(tripcode, unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public string TripvsFuelinsertion(int Trip ,string Vehiclen , DateTime  FromDate , string Driver, string Customer , string Address 
+        , int intFuelID , int intToll , int GrandPrimary , string strAdditional ,int Addition , string strDeduct ,int Deduct 
+        ,int GrandFinal ,int InsertBy ,int LitterIncreased ,int LitterDecreased )
+        {
+
+            string msg = "";
+            try
+            {
+                SprTripVsFuelCostDetTableAdapter bll = new SprTripVsFuelCostDetTableAdapter();
+                 bll.GetDataTripVsFuelCostDet( Trip,  Vehiclen,   FromDate,  Driver,  Customer,  Address
+        ,  intFuelID,  intToll,  GrandPrimary,  strAdditional,  Addition,  strDeduct,  Deduct
+        ,  GrandFinal,  InsertBy,  LitterIncreased,  LitterDecreased,ref msg);
+            }
+            catch(Exception ex) { return ex.ToString(); }
+            return msg;
+        }
+
+        public DataTable GetVheicleMonitoringinfo(DateTime from,DateTime to, int unitid,int typeid)
+        {
+            try
+            {
+                SprVheicleStatusMonitoringTableAdapter bll = new SprVheicleStatusMonitoringTableAdapter();
+                return bll.GetDataVheicleStatusMonitoring(from, to, unitid, typeid);
+            }
+            catch { return new DataTable(); }
+        }
+
+
     }
 }

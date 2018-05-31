@@ -105,10 +105,11 @@ namespace UI.SAD.Item
                 Rid = int.Parse(ddlRegion.SelectedValue);
                 Aid = int.Parse(ddlAreaList.SelectedValue);
                 Groupid = int.Parse(ddlPGroup.SelectedValue);
-                dteFdate = DateTime.Parse(txtFrom.Text);
+                dteFdate = CommonClass.GetDateAtSQLDateFormat(txtFrom.Text).Date;
                 if (txtTo.Text == "")
                 { dteTdate = DateTime.Parse("2009-1-1"); }
-                else { dteTdate = DateTime.Parse(txtTo.Text); }
+                else {  dteTdate = CommonClass.GetDateAtSQLDateFormat(txtTo.Text).Date;
+                }
 
 
                 SalesQty = decimal.Parse(txtSalesQty.Text);
@@ -117,8 +118,14 @@ namespace UI.SAD.Item
                 part = int.Parse(ddlPGroup.SelectedValue);
                 PromotionName = txtPromotionName.Text;
 
-                msg = objPromotion.getPromotionEntry(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.UNIT_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
+                msg = objPromotion.getPromotionEntry(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                txtCustomer.Text = "";
+                txtPromotionItem.Text = "";
+                txtSalesItem.Text = "";
+                txtSalesQty.Text = "";
+                txtPromQty.Text = "";
+                txtPromotionName.Text = "";
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Promotion Name');", true); }
             }

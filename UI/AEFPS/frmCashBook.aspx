@@ -9,8 +9,17 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-   
-   <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+   <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/JSSettlement.js"></script>   
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../Content/JS/datepickr.min.js"></script>
 
 </head>
@@ -36,7 +45,7 @@
        <asp:HiddenField ID="hdnDTFCount" runat="server" /> <asp:HiddenField ID="hdnDTFCountCash" runat="server" /> 
        <asp:HiddenField ID="hdnstockQty" runat="server" /> <asp:HiddenField ID="hdnQty" runat="server" />
         <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" /><asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
-       <div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> Cash Book</b><hr /></div>
+       <div style="font-size:18px"  class="tabs_container"><b> Cash Book</b><hr /></div>
 
         <table  class="tbldecoration" style="width:auto; float:left;">
 
@@ -58,61 +67,63 @@
         </tr>
         <tr>
         <td style="text-align:right;"><asp:Label ID="lblemployeesearch" runat="server" CssClass="lbl" Text="Whare House :"></asp:Label></td>                
-        <td colspan="3"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" runat="server" Width="195px"></asp:DropDownList><asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" /></td> </tr>
+        <td colspan="2"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" runat="server" Width="195px"></asp:DropDownList><asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
+        
+        </td><td><asp:Button ID="btnSave" runat="server" Font-Bold="true" Text="Show" class="myButton" OnClick="btnShow_Click" /></td> </tr>
+        <tr><td style="text-align:right" colspan="4"></td></tr>             
         <tr><td colspan="4"><hr /></td></tr>             
-        <tr><td colspan="4"><hr /></td></tr>             
-        <tr><td colspan="4" style="font-weight:bold; background-color:cadetblue; font-size:18px; color:#000000;">Date :From <asp:Label ID="lblfdate" ForeColor="#ffffff" runat="server"></asp:Label>To:<asp:Label ID="lbltdate" ForeColor="#ffffff" runat="server"></asp:Label><hr /></td></tr>
-        <tr><td colspan="4" style="font-weight:bold; font-size:16px; color:#000000;">&nbsp;</td></tr>
-           
-        <tr>
-        <td style="text-align:right;" colspan="4">
-        <asp:Button ID="btnSave" runat="server" Text="Show" OnClick="btnShow_Click" />
+        <tr><td colspan="4" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblWHName" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
+        <tr><td colspan="4" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblHeading" runat="server"  CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
+        <tr><td colspan="4" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblDate" runat="server"  CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
+        <tr><td><asp:Label ID="lbl" Font-Bold="true" runat="server" Text="Opening Balance :"></asp:Label><asp:Label ID="lblops" runat="server" ></asp:Label></td>
+            <td>&nbsp&nbsp&nbsp<asp:Label ID="Label1"  Font-Bold="true" runat="server" Text="Receive :"></asp:Label><asp:Label ID="lblR" runat="server" ></asp:Label></td>
+            <td><asp:Label ID="Label2" runat="server"  Font-Bold="true" Text="Cost :"></asp:Label><asp:Label ID="lblCost" runat="server" ></asp:Label></td>
+            <td> <asp:Label ID="Label4" runat="server"  Font-Bold="true" Text="Cash In Hand :"></asp:Label><asp:Label ID="lblCashinHand" runat="server" ></asp:Label></td>
+        </tr>
+      
+        <tr><td style="text-align:right;" colspan="4">
+        
         <asp:GridView ID="dgvRptTemp" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-        BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical"   FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+        BorderWidth="1px" CellPadding="5" ShowFooter="true"  OnRowDataBound="dgvRptTemp_RowDataBound" ForeColor="Black" GridLines="Vertical"   FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
         <asp:TemplateField HeaderText="SL No" Visible="true"  ItemStyle-HorizontalAlign="left" SortExpression="strQRCode" >
         <ItemTemplate>         
         <asp:Label ID="lblSLNO" runat="server" Width="50px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("intid","{0:d}")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
    
-        <asp:TemplateField HeaderText="Date" Visible="true"  ItemStyle-HorizontalAlign="left" SortExpression="strQRCode" >
+        <asp:TemplateField HeaderText="Date"  Visible="true"  ItemStyle-HorizontalAlign="left" SortExpression="strQRCode" >
         <ItemTemplate>         
-        <asp:Label ID="lbldate" runat="server" Width="150px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("dtedate","{0:d}")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+        <asp:Label ID="lbldate" runat="server" Width="80px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("dtedate","{0:d}")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
 
         <asp:TemplateField HeaderText=" Code" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strQRCode" >
-        <ItemTemplate><asp:Label ID="lblstrQRCode" runat="server" Width="150px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("code")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+        <ItemTemplate><asp:Label ID="lblstrQRCode" runat="server" Width="90px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("code")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
                              
         <asp:TemplateField HeaderText="Discribtion" SortExpression="intProductID">
         <ItemTemplate><asp:Label ID="lbldiscribtions" runat="server" Text='<%# Bind("discribtion") %>' Width="200px"></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Center" Width="55px"/><FooterTemplate><asp:Label ID="lbldiscribtionID" runat="server" Text ="Total" /></FooterTemplate></asp:TemplateField>
-              
-        <asp:TemplateField HeaderText="Debit" Visible="true" ItemStyle-HorizontalAlign="center" SortExpression="mondebit" >
-        <ItemTemplate><asp:Label ID="lblmondebitNames" runat="server" Width="70px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("mondebit")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
-            
-        <asp:TemplateField HeaderText="Credit" ItemStyle-HorizontalAlign="right" SortExpression="MRRQty" >
-        <ItemTemplate><asp:Label ID="lblmoncredit" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("moncredit"))) %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="right" Width="40px"/></asp:TemplateField>
-           
+               
+        <asp:TemplateField HeaderText="Debit" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue" >
+        <ItemTemplate><asp:Label ID="lblDebitss" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("mondebit"))) %>'></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="right" Width="40px"/><FooterTemplate><asp:Label ID="lbldmmonAmount" runat="server" DataFormatString="{0:0.00}" Text ='<%# Totaldebit %>' /></FooterTemplate></asp:TemplateField>
+    
+        
+        <asp:TemplateField HeaderText="Credit" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue" >
+        <ItemTemplate><asp:Label ID="lblmoncreditss" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("moncredit"))) %>'></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="right" Width="40px"/><FooterTemplate><asp:Label ID="lbldmmonAmount" runat="server" DataFormatString="{0:0.00}" Text ='<%# Totalcredit %>' /></FooterTemplate></asp:TemplateField>
+          
         </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
         </asp:GridView>
         </td>
         </tr>  
         <tr><td colspan="4">
 
-        <asp:Label ID="lbl" runat="server" Text="Opening Balance :"></asp:Label><asp:Label ID="lblops" runat="server" ></asp:Label>
+        
         </td></tr>
+       
         <tr><td colspan="4">
 
-        <asp:Label ID="Label1" runat="server" Text="Receive :"></asp:Label><asp:Label ID="lblR" runat="server" ></asp:Label>
-        </td></tr>
-        <tr><td colspan="4">
-
-        <asp:Label ID="Label2" runat="server" Text="Cost :"></asp:Label><asp:Label ID="lblCost" runat="server" ></asp:Label>
-        </td></tr>
-        <tr><td colspan="4">
-
-        <asp:Label ID="Label4" runat="server" Text="Cash In Hand :"></asp:Label><asp:Label ID="lblCashinHand" runat="server" ></asp:Label>
+       
         </td></tr>
         <tr style="background-color:lightgray">
 

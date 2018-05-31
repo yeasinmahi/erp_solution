@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -80,6 +81,8 @@ namespace UI.SCM
                     lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString(); 
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
                    imgUnit.ImageUrl= "/Content/images/img/" + intunit.ToString() + ".png".ToString();
+
+                    
                 }
                 else
                 {
@@ -121,6 +124,10 @@ namespace UI.SCM
                     dgvPoDetalis.FooterRow.Cells[8].Text = "Total";
                     dgvPoDetalis.FooterRow.Cells[8].HorizontalAlign = HorizontalAlign.Right;
                     dgvPoDetalis.FooterRow.Cells[9].Text = total.ToString("N2");
+
+                    AmountFormat formatAmount = new AmountFormat();
+                    string totalAmountInWord = formatAmount.GetTakaInWords(total, "", "Only");
+                    lblInWard.Text = "In Word: " + totalAmountInWord.ToString();
                 }
                 else
                 {

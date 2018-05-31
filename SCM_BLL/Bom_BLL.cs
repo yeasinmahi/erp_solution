@@ -86,12 +86,12 @@ namespace SCM_BLL
 
         }
 
-        public DataTable getWorkstationParent(int intwh)
+        public DataTable getWorkstationParent()
         {
             try
             {
                 TblProcessWorkstationTableAdapter adp = new TblProcessWorkstationTableAdapter();
-                return adp.GetWorkstationData(intwh);
+                return adp.GetWorkstationData();
             }
             catch {return new DataTable(); }
         }

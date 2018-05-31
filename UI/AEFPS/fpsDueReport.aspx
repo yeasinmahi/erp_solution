@@ -9,7 +9,17 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-   
+    <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/JSSettlement.js"></script>   
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    
    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../Content/JS/datepickr.min.js"></script>
 
@@ -36,7 +46,7 @@
        <asp:HiddenField ID="hdnDTFCount" runat="server" /> <asp:HiddenField ID="hdnDTFCountCash" runat="server" /> 
        <asp:HiddenField ID="hdnstockQty" runat="server" /> <asp:HiddenField ID="hdnQty" runat="server" />
         <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" /><asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
-       <div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> EMPLOYEE </b>DUE REPORT<hr /></div>
+       <div style="font-size:18px"  class="tabs_container"><b> EMPLOYEEDUE REPORT </b><hr /></div>
 
         <table  class="tbldecoration" style="width:auto; float:left;">
 
@@ -52,14 +62,17 @@
             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfdate"></cc1:CalendarExtender></td>              
         </tr>
        
-                   
+               
         <tr><td colspan="4"><hr /></td></tr>             
-        <tr><td colspan="4" style="font-weight:bold; background-color:cadetblue; font-size:18px; color:#000000;"><hr /></td></tr>
-         <tr><td colspan="4" style="font-weight:bold; font-size:16px; color:#000000;">&nbsp;</td></tr>
-           
+        <tr><td colspan="4"><hr /></td></tr> 
+        <tr><td colspan="4" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblWHName" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
+        <tr><td colspan="4" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblHeading" runat="server" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
+        <tr><td colspan="4" style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblDate" runat="server"  CssClass="lbl" Font-Size="16px"></asp:Label>    </td></tr>
+        
           <tr>
-            <td style="text-align:right;" colspan="4">
-           <asp:Button ID="btnSave" runat="server" Text="Show" OnClick="btnSave_Click" />
+          <td style="text-align:right;" colspan="4">
+                
+           <asp:Button ID="btnSave" runat="server" class="myButton" Text="Show" OnClick="btnSave_Click" />
            <asp:GridView ID="dgvRptTemp" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5"  ForeColor="Black" GridLines="Vertical" ShowFooter="true"   FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnRowDataBound="GridView1_RowDataBound">
             <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -67,15 +80,15 @@
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="15px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
              
             <asp:TemplateField HeaderText="Enroll" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strQRCode" >
-            <ItemTemplate> <asp:Label ID="lbldate" runat="server" Width="150px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("intWHEnrollNo")) %>'></asp:Label>
+            <ItemTemplate> <asp:Label ID="lbldate" runat="server" Width="80px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("intWHEnrollNo")) %>'></asp:Label>
             </ItemTemplate></asp:TemplateField>
 
 
             <asp:TemplateField HeaderText="Employee Name" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strQRCode" >
             <ItemTemplate><asp:Label ID="lblstrEmployeeName" runat="server" Width="150px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strEmployeeName")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
                              
-            <asp:TemplateField HeaderText="designation" SortExpression="intProductID">
-            <ItemTemplate><asp:Label ID="lblstrdesignation" runat="server" Text='<%# Bind("strdesignation") %>' Width="200px"></asp:Label></ItemTemplate>
+            <asp:TemplateField HeaderText="Designation" ItemStyle-HorizontalAlign="Left"   SortExpression="intProductID">
+            <ItemTemplate ><asp:Label ID="lblstrdesignation"  runat="server" Text='<%# Bind("strdesignation") %>' Width="200px"></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Center" Width="55px"/><FooterTemplate><asp:Label ID="lbldiscribtionID" runat="server" Text ="Total" /></FooterTemplate></asp:TemplateField>
               
             <asp:TemplateField HeaderText="Unit Name" Visible="true" ItemStyle-HorizontalAlign="center" SortExpression="mondebit" >
@@ -85,7 +98,7 @@
             <ItemTemplate><asp:Label ID="lblstrDepatrment" runat="server" Width="70px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strDepatrment")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
          
 
-             <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue" >
+            <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue" >
             <ItemTemplate><asp:Label ID="lblmonAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("Amount"))) %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="right" Width="40px"/><FooterTemplate><asp:Label ID="lbldmmonAmount" runat="server" DataFormatString="{0:0.00}" Text ='<%# TotalAmounts %>' /></FooterTemplate></asp:TemplateField>
             

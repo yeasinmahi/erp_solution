@@ -58,6 +58,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BomTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DmageTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="IndentTDS.cs">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </Compile>
@@ -105,6 +110,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReceiveTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="RFQTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +159,17 @@
     </None>
     <None Include="BomTDS.xss">
       <DependentUpon>BomTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DmageTDS.xsc">
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DmageTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DmageTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DmageTDS.xss">
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
     </None>
     <None Include="IndentTDS.xsc">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
@@ -230,6 +251,17 @@
     </None>
     <None Include="ReceiveTDS.xss">
       <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RFQTDS.xsc">
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RFQTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RFQTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RFQTDS.xss">
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
     </None>
     <None Include="TransferTDS.xsc">
       <DependentUpon>TransferTDS.xsd</DependentUpon>
