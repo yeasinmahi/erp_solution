@@ -1234,6 +1234,7 @@
     <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IndentWithoutReceive.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
@@ -1248,6 +1249,7 @@
     <Content Include="SCM\PoDetalisView.aspx" />
     <Content Include="SCM\PoDocAttachment.aspx" />
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
+    <Content Include="SCM\IndentRFQ.aspx" />
     <Content Include="SCM\PoGenerate.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
@@ -1313,6 +1315,8 @@
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
+    <Content Include="Transport\TripvsCost\TripVsFuelCost.aspx" />
+    <Content Include="Transport\TripvsCost\VheicleMonitoring.aspx" />
     <Content Include="Transport\Utility_LocListView.aspx" />
     <Content Include="Transport\Utility_PaymentReport.aspx" />
     <Content Include="Transport\Utility_Registration.aspx" />
@@ -6258,6 +6262,13 @@
     <Compile Include="SCM\InventoryReport.aspx.designer.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\InventoryValuetion.aspx.cs">
+      <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\InventoryValuetion.aspx.designer.cs">
+      <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\IssueForProduction.aspx.cs">
       <DependentUpon>IssueForProduction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6355,6 +6366,13 @@
     </Compile>
     <Compile Include="SCM\PoDocAttachmentDetalis.aspx.designer.cs">
       <DependentUpon>PoDocAttachmentDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IndentRFQ.aspx.cs">
+      <DependentUpon>IndentRFQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IndentRFQ.aspx.designer.cs">
+      <DependentUpon>IndentRFQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoGenerate.aspx.cs">
       <DependentUpon>PoGenerate.aspx</DependentUpon>
@@ -6838,6 +6856,20 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\TripCostDetaills.aspx.designer.cs">
       <DependentUpon>TripCostDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\TripVsFuelCost.aspx.cs">
+      <DependentUpon>TripVsFuelCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\TripVsFuelCost.aspx.designer.cs">
+      <DependentUpon>TripVsFuelCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\VheicleMonitoring.aspx.cs">
+      <DependentUpon>VheicleMonitoring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\VheicleMonitoring.aspx.designer.cs">
+      <DependentUpon>VheicleMonitoring.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\Utility_LocListView.aspx.cs">
       <DependentUpon>Utility_LocListView.aspx</DependentUpon>

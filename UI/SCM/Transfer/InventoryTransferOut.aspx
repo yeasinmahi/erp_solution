@@ -55,7 +55,7 @@
              else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined || $.trim(remarks) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Remarks'); }
              else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
              else if (parseFloat(stockQty) < parseFloat(quantity)) { document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Stock Quantity'); }
-             else if ($.trim(vechile) == 0 || $.trim(vechile) == "" || $.trim(vechile) == null || $.trim(vechile) == undefined || $.trim(vechile) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Vehicle'); }
+             else if ( $.trim(vechile) == "" || $.trim(vechile) == null || $.trim(vechile) == undefined || $.trim(vechile) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Vehicle'); }
          
 
              else {

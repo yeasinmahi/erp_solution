@@ -219,6 +219,22 @@ namespace HR_BLL.TourPlan
 
         }
 
+        public List<string> getDepotName(int unitid,string pref)
+        {
+            List<string> result = new List<string>();
+            SprACLDepotSearchingTableAdapter bll = new SprACLDepotSearchingTableAdapter();
+            DataTable dt = new DataTable();
+            dt = bll.GetDataACLDepotSearching(unitid, pref);
+            if (dt.Rows.Count > 0)
+            {
+                for(int i = 0; i < dt.Rows.Count; i++)
+                {
+                    result.Add(dt.Rows[i]["strname"].ToString());
+                }
+            }
+            return result;
+        }
+
 
         public DataTable CreateStoreRequisitionForBrandItem(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate)
         {
@@ -917,6 +933,24 @@ namespace HR_BLL.TourPlan
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetBrandItemReceiveStatusVertically(DateTime from, DateTime to, int line, int unit, int type)
+        {
+            try
+            {
+                SprBrandItemReceiveProductVerticallyTableAdapter ta = new SprBrandItemReceiveProductVerticallyTableAdapter();
+                return ta.GetDataBrandItemReceiveProductVertically(from, to, line, unit, type);
+            }
+            catch { return new DataTable(); }
+        }
 
+        public DataTable GetBrandItemChallanStatusVertically(DateTime from, DateTime to,  int unit,int custmid,int itmid , int type)
+        {
+            try
+            {
+                SprBrandItemChallanVerticallyTableAdapter ta = new SprBrandItemChallanVerticallyTableAdapter();
+                return ta.GetDataBrandItemChallanVertically(from,  to,  unit,  custmid,  itmid,  type);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }
