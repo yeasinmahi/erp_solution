@@ -277,6 +277,7 @@
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
@@ -1233,6 +1234,7 @@
     <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IndentWithoutReceive.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
@@ -1313,6 +1315,8 @@
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
+    <Content Include="Transport\TripvsCost\TripVsFuelCost.aspx" />
+    <Content Include="Transport\TripvsCost\VheicleMonitoring.aspx" />
     <Content Include="Transport\Utility_LocListView.aspx" />
     <Content Include="Transport\Utility_PaymentReport.aspx" />
     <Content Include="Transport\Utility_Registration.aspx" />
@@ -2305,6 +2309,13 @@
     </Compile>
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\AggrementPage.aspx.cs">
+      <DependentUpon>AggrementPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\AggrementPage.aspx.designer.cs">
+      <DependentUpon>AggrementPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.cs">
       <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
@@ -6251,6 +6262,13 @@
     <Compile Include="SCM\InventoryReport.aspx.designer.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\InventoryValuetion.aspx.cs">
+      <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\InventoryValuetion.aspx.designer.cs">
+      <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\IssueForProduction.aspx.cs">
       <DependentUpon>IssueForProduction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6838,6 +6856,20 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\TripCostDetaills.aspx.designer.cs">
       <DependentUpon>TripCostDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\TripVsFuelCost.aspx.cs">
+      <DependentUpon>TripVsFuelCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\TripVsFuelCost.aspx.designer.cs">
+      <DependentUpon>TripVsFuelCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\VheicleMonitoring.aspx.cs">
+      <DependentUpon>VheicleMonitoring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\VheicleMonitoring.aspx.designer.cs">
+      <DependentUpon>VheicleMonitoring.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\Utility_LocListView.aspx.cs">
       <DependentUpon>Utility_LocListView.aspx</DependentUpon>

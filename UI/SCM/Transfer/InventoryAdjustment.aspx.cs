@@ -100,8 +100,7 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                if (hdnPreConfirm.Value == "1")
-                {
+                 
                     arrayKey = txtItem.Text.Split(delimiterChars);
                     string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                     if (arrayKey.Length > 0)
@@ -119,23 +118,23 @@ namespace UI.SCM.Transfer
                     decimal monValue = decimal.Parse(qty) * decimal.Parse(rate); 
                     string enroll = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
 
+                  
+                if (decimal.Parse(qty) > 0 || decimal.Parse(rate) > 0)
+                {
                     checkXmlItemData(itemid);
-                    if (monValue > 0 && CheckItem == 1)
+                    if (CheckItem == 1)
                     {
-                        CreateXml(item, itemid, qty, rate, monValue.ToString(),locationId, locationName, transType, transTypeId, uom, remarks);
+                        CreateXml(item, itemid, qty, rate, monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
                         txtItem.Text = ""; txtQty.Text = "0"; txtRate.Text = "0";
                         ddlLcation.DataSource = "";
                         ddlLcation.DataBind();
-                        ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set Vehicle No');", true); }
-
-
-
-
-
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input Valid Quantity and Rate');", true); }
+                   
+               
 
             }
             catch { }
@@ -233,6 +232,12 @@ namespace UI.SCM.Transfer
    
 
             return node;
+        }
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvStore.DataSource = "";
+            dgvStore.DataBind();
         }
 
         private void checkXmlItemData(string itemid)

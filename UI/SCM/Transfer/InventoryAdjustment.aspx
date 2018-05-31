@@ -21,65 +21,7 @@
   
     
    
-    <script type="text/javascript">  
-          function GetTransQty(txt) {   
-            var inItem = document.getElementById("txtItem").value; 
-            var quantity = parseFloat(txt.value);
-            var stockQty = parseFloat(document.getElementById("hdnStockQty").value); 
-
-              if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("txTransferQty").value = "0"; alert('Please input Transfer Qty'); }
-              else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("txTransferQty").value="0"; alert('Please Select Item'); }
-              else if ($.trim(stockQty) == 0 || $.trim(stockQty) == "" || $.trim(stockQty) == null || $.trim(stockQty) == undefined) { document.getElementById("txTransferQty").value = "0";alert('Stock is not avaiable'); }
-              
-              else if (parseFloat(stockQty) < parseFloat(quantity)) { document.getElementById("txTransferQty").value = "0"; alert('Input Quantity greater then stock quantity'); }
-              else {
-
-              } 
-        }
-          function AddConfirm() {
-                  var e = document.getElementById("ddlTransType");
-                  var transferType = e.options[e.selectedIndex].value;
-                  var e = document.getElementById("ddlLcation");
-                  var locationId = e.options[e.selectedIndex].value;
-
-                  var inItem = document.getElementById("txtItem").value;
-                  var quantity = parseFloat(document.getElementById("txTransferQty").value);
-                 var stockQty = parseFloat(document.getElementById("hdnStockQty").value);
-              var remarks = document.getElementById("txtRemarks").value;
-               var vechile =document.getElementById("txtVehicle").value;
-              
-           
-             if ($.trim(transferType) == 0 || $.trim(transferType) == "" || $.trim(transferType) == null || $.trim(transferType) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Transfer Type'); }
-             else if ($.trim(locationId) == 0 || $.trim(locationId) == "" || $.trim(locationId) == null || $.trim(locationId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Sotre Location'); }
-             else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
-             else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined || $.trim(remarks) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Remarks'); }
-             else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-             else if (parseFloat(stockQty) < parseFloat(quantity)) { document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Stock Quantity'); }
-             else if ($.trim(vechile) == 0 || $.trim(vechile) == "" || $.trim(vechile) == null || $.trim(vechile) == undefined || $.trim(vechile) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Vehicle'); }
-         
-
-             else {
-                  document.getElementById("hdnPreConfirm").value = "1";
-             }
-        }
-
-          function Confirm() {
-                 
-                  var e = document.getElementById("ddlToWh");
-                 var towh = e.options[e.selectedIndex].value; 
-                  var vehicle = document.getElementById("txtVehicle").value;
-              
-              if ($.trim(towh) == 0 || $.trim(towh) == "" || $.trim(towh) == null || $.trim(towh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Transfer Warehouse'); }
-              else  if ($.trim(vehicle) == 0 || $.trim(vehicle) == "" || $.trim(vehicle) == null || $.trim(vehicle) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please input Vehicle Number'); }
-
-              else {
-                var confirm_value = document.createElement("INPUT"); 
-                confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; 
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; } 
-                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-              }
-              }
-    </script> 
+    
     <style type="text/css">
         .auto-style1 {
             height: 23px;
@@ -128,16 +70,16 @@
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
              <td style='text-align: left;'>Type</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlType" runat="server" CssClass="ddList"  AutoPostBack="True" >
+            <td style='text-align: left;'><asp:DropDownList ID="ddlType" runat="server" CssClass="ddList"  AutoPostBack="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" >
              <asp:ListItem Text="Increase Inventory"></asp:ListItem> <asp:ListItem Text="Decrease"></asp:ListItem>  </asp:DropDownList></td>  
             </tr>
             <tr>
                 <td style='text-align: left;'>Location</td>
             <td style='text-align: left;' colspan="3"><asp:DropDownList ID="ddlLcation" Width="320px" runat="server" CssClass="ddList"   ></asp:DropDownList>
             <asp:Label ID="Label3" Text="Quantity"    runat="server"></asp:Label>
-             <asp:TextBox ID="txtQty" CssClass="txtBox"  Width="130px"  runat="server"></asp:TextBox> 
+             <asp:TextBox ID="txtQty" CssClass="txtBox"  Width="130px" Text="0"  runat="server"></asp:TextBox> 
                  <asp:Label ID="Label4" Text="Rate"    runat="server"></asp:Label>
-             <asp:TextBox ID="txtRate" CssClass="txtBox"  Width="130px"  runat="server"></asp:TextBox> 
+             <asp:TextBox ID="txtRate" CssClass="txtBox"  Width="130px" Text="0"  runat="server"></asp:TextBox> 
             </td>
  
 
@@ -145,8 +87,8 @@
              <tr>
                 <td class="auto-style1" ><asp:Label ID="Label2" Text="Remarks"    runat="server"></asp:Label></td>
                 <td class="auto-style1"><asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px"   runat="server"></asp:TextBox>  
-                <td colspan="2" style="text-align:right"> <asp:Button ID="btnAdd" runat="server" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"    />
-                <asp:Button ID="btnSubmit" runat="server" OnClientClick="Confirm();" Text="Submit" OnClick="btnSubmit_Click" />
+                <td colspan="2" style="text-align:right"> <asp:Button ID="btnAdd" runat="server"   Text="Add" OnClick="btnAdd_Click"    />
+                <asp:Button ID="btnSubmit" runat="server"   Text="Submit" OnClick="btnSubmit_Click" />
             </td> 
             </tr>
            
@@ -171,7 +113,7 @@
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Rate"   ItemStyle-HorizontalAlign="right" SortExpression="rate" >
-            <ItemTemplate><asp:Label ID="lblQty" runat="server"  Text='<%# Bind("rate") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblRate" runat="server"  Text='<%# Bind("rate") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
             <asp:TemplateField HeaderText="Value"   ItemStyle-HorizontalAlign="right" SortExpression="monValue" >

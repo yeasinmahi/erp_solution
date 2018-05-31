@@ -1,0 +1,4 @@
+<?xml version="1.0" standalone="yes"?>
+<voucher>
+  <voucherEntry item="Sheikh 10s Gold" itemid="290261" qty="0" rate="0" locationId="22056" locationName="22056" transType="Increase Inventory" transTypeId="Increase Inventory" uom="" monValue="0" remarks="test" />
+</voucher>

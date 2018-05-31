@@ -45,7 +45,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
         {
             try
             {
-
+                ////
                 email = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
                 DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                 DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;

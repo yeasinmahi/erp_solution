@@ -76,6 +76,37 @@
 
               </script>
 
+     <script type="text/javascript">
+         $(document).ready(function () {
+             SearchCustnameText();
+         });
+         function Changed() {
+             document.getElementById('hdfCustnamSearchbox').value = 'true';
+         }
+         function SearchCustnameText() {
+             $("#txtCustName").autocomplete({
+                 source: function (request, response) {
+                     $.ajax({
+                         type: "POST",
+                         contentType: "application/json;",
+                         url: "BrandItemReport.aspx/GetAutoCompleteDepotName",
+                         data: "{'prefix':'" + document.getElementById('txtCustName').value + "'}",
+                         dataType: "json",
+                         success: function (data) {
+                             response(data.d);
+                         },
+                         error: function (result) {
+                             alert("Error");
+                         }
+                         
+                     });
+                 }
+             });
+         }
+
+        
+
+ </script>
 
 
         
@@ -186,6 +217,18 @@
                           <asp:ListItem Value="1024">Stock status at a Glance Vertically</asp:ListItem>
                          <asp:ListItem Value="1025">Receive status at a Glance Vertically</asp:ListItem>
                           <asp:ListItem Value="1026">Receive status Vertically (Det)</asp:ListItem>
+                         <asp:ListItem Value="1027">Receive status Supplier Detaills (Specific Supplier)</asp:ListItem>
+                         <asp:ListItem Value="1028">RCV item vs grandtotal (Specific supplier) </asp:ListItem>
+                           <asp:ListItem Value="1029">RCV item vs grandtotal (All supplier) </asp:ListItem>
+
+                         <asp:ListItem Value="1030">Challan  at a Glance Vertically (Det)</asp:ListItem>
+                          <asp:ListItem Value="1031">Challan  at a Glance Vertically (Topsheet) </asp:ListItem>
+                         <asp:ListItem Value="1032">Challan  without challan Specifice customer</asp:ListItem>
+                         <asp:ListItem Value="1033">Challan  without challan Specifice Item </asp:ListItem>
+                           <asp:ListItem Value="1034">Challan  Specifice Item vs Specific customer </asp:ListItem>
+
+
+
                          </asp:DropDownList>
                                     
                                     
@@ -197,7 +240,7 @@
                     <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" onchange="javascript: Changed();" Text="Item List : "></asp:Label></td>
                     <td><asp:TextBox ID="txtItem" runat="server" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
                     <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfItemSearchBoxTextChange" runat="server" /><asp:HiddenField ID="hdfSupplierNameserachboxchange" runat="server" />
-                    <asp:HiddenField ID="hdnstation" runat="server"/>
+                    <asp:HiddenField ID="hdnstation" runat="server"/><asp:HiddenField ID="hdfCustnamSearchbox" runat="server" />
                     <asp:HiddenField ID="ApproverEnrol" runat="server"/><asp:HiddenField ID="hdnAreamanagerEnrol" runat="server"/>
                     <asp:HiddenField ID="hdnAction" runat="server"/><asp:HiddenField ID="hdnunit" runat="server"/><asp:HiddenField ID="hdnwh" runat="server"/>
                     </td>
@@ -226,6 +269,13 @@
 
 
                     </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="lblDepot" runat="server" CssClass="lbl" Text="Depot Name"></asp:Label></td>
+                <td>
+                <asp:TextBox ID="txtCustName" runat="server" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
+                </td>
+
+            </tr>
                     <tr class="tblrowOdd"><td style="text-align:right" > <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
                     <td style="text-align:right"> <asp:Button ID="btnExportToExcel" runat="server" Text="Export" OnClick="btnExportToExcel_Click" /></td>
                     </tr>
@@ -628,31 +678,36 @@
                     <tr class="tblrowodd">
                     <td>
                  
-                    <asp:GridView ID="grdvVerticalyrpt" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="3000" CellPadding="3" GridLines="Vertical" OnPageIndexChanging="grdvAllpointRcvCompare_PageIndexChanging" OnRowDataBound="grdvAllpointRcvCompare_RowDataBound" ForeColor="Black" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                    <asp:GridView ID="grdvVerticalyrptReceive" runat="server" AutoGenerateColumns="False" AllowPaging="True" ShowFooter="true" PageSize="3000" CellPadding="3" GridLines="Vertical" OnPageIndexChanging="grdvVerticalyrptReceive_PageIndexChanging" OnRowDataBound="grdvVerticalyrptReceive_RowDataBound" ForeColor="Black" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
                     <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
                     <asp:BoundField DataField="Sl" HeaderText="Sl" SortExpression="Sl" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
-                     <asp:BoundField DataField="strPointName" HeaderText="Point Name" ItemStyle-Width="200px" SortExpression="strPointName" ItemStyle-HorizontalAlign="Center" >
+                     <asp:BoundField DataField="rcvdate" HeaderText="Date" ItemStyle-Width="300px" SortExpression="rcvdate" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center"  />
                                </asp:BoundField>
-                    <asp:BoundField DataField="Items" HeaderText="Items" ItemStyle-Width="200px" SortExpression="Items" ItemStyle-HorizontalAlign="Center" >
+
+                     <asp:BoundField DataField="challan" HeaderText="challan" ItemStyle-Width="200px" SortExpression="Items" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+
+                    <asp:BoundField DataField="itmid" HeaderText="itmid" ItemStyle-Width="200px" SortExpression="Items" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center"  />
                     </asp:BoundField>
 
                        
-                    <asp:BoundField DataField="AppQuantity" HeaderText="Approve Quantity" SortExpression="AppQuantity" ItemStyle-HorizontalAlign="Center" >
+                    <asp:BoundField DataField="itmname" HeaderText="itmname" ItemStyle-Width="400px"  SortExpression="itmname" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center"  />
                     </asp:BoundField>
                       
-                      <asp:BoundField DataField="numQntRecvbyPoint" HeaderText="Rcv Quantity By Point" SortExpression="numQntRecvbyPoint" ItemStyle-HorizontalAlign="Center" >
+                      <asp:BoundField DataField="qnt" HeaderText="Rcv Quantity By Point" SortExpression="qnt" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center"  />
                     </asp:BoundField>
                       
                       
                          
-                    <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-Width="200px" SortExpression="Remarks" ItemStyle-HorizontalAlign="Center" >
+                    <asp:BoundField DataField="strsupplier" HeaderText="strsupplier" ItemStyle-Width="400px" SortExpression="Remarks" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center"  />
                     </asp:BoundField>
                     </Columns>
@@ -664,6 +719,68 @@
                     <SortedAscendingHeaderStyle BackColor="#808080" />
                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                     <SortedDescendingHeaderStyle BackColor="#383838" />
+                    </asp:GridView>
+                    </td>
+
+                    </tr>
+                    </table>
+
+
+        </div>
+
+           <div>
+                    <table>
+
+                    <tr class="tblrowodd">
+                    <td>
+                 
+                    <asp:GridView ID="grdvchallanVerticallay" runat="server" AutoGenerateColumns="False" ShowFooter="true" AllowPaging="True" PageSize="3000" CellPadding="3" GridLines="Vertical" OnPageIndexChanging="grdvchallanVerticallay_PageIndexChanging" OnRowDataBound="grdvchallanVerticallay_RowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px">
+                    <AlternatingRowStyle BackColor="#DCDCDC" />
+                    <Columns>
+                    <asp:BoundField DataField="Sl" HeaderText="Sl" SortExpression="Sl" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                     <asp:BoundField DataField="intcustid" HeaderText="CustomerID" ItemStyle-Width="300px" SortExpression="rcvdate" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                               </asp:BoundField>
+
+                     <asp:BoundField DataField="custname" HeaderText="Customer Name" ItemStyle-Width="200px" SortExpression="Items" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+
+                    <asp:BoundField DataField="dtedate" HeaderText="InsertDate"  ItemStyle-Width="400px" DataFormatString="{0:dd-MM-yyyy}" SortExpression="dtedate" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+
+                       
+                    <asp:BoundField DataField="productid" HeaderText="Item ID" ItemStyle-Width="400px"  SortExpression="itmname" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+                      
+                      <asp:BoundField DataField="strprdname" HeaderText="ItemName" ItemStyle-Width="600px" SortExpression="qnt" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+                      
+                      
+                         
+                    <asp:BoundField DataField="decqnt" HeaderText="Quantity" ItemStyle-Width="400px" SortExpression="Remarks" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+
+                     <asp:BoundField DataField="strchallannumber" HeaderText="Challan number" ItemStyle-Width="400px" SortExpression="strchallannumber" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center"  />
+                    </asp:BoundField>
+
+                    </Columns>
+                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle ForeColor="Black" HorizontalAlign="Center" BackColor="#999999" />
+                        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#000065" />
                     </asp:GridView>
                     </td>
 
