@@ -21,10 +21,9 @@
   
     
    
-    <script type="text/javascript"> 
-         
+    <script type="text/javascript">  
         function Confirms() {
-             var r=  document.getElementById('txtRemarsk')
+            var r=  document.getElementById('txtRemarsk')
             var e = document.getElementById("ddlTransferItem");
             var transferID = e.options[e.selectedIndex].value;
             var e = document.getElementById("ddlLcation");
@@ -33,7 +32,7 @@
             var inItem = document.getElementById("txtItem").value;
             var remarks = document.getElementById("txtRemarsk").value;
             var quantity =parseFloat(document.getElementById("txtQty").value);
-           var inQty= parseFloat(document.getElementById("hdnInQty").value); 
+            var inQty= parseFloat(document.getElementById("hdnInQty").value); 
       
             if ($.trim(transferID) == 0 || $.trim(transferID) == "" || $.trim(transferID) == null || $.trim(transferID) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Transfer In Item'); }
             else if ($.trim(locationId) == 0 || $.trim(locationId) == "" || $.trim(locationId) == null || $.trim(locationId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Sotre Location'); }
