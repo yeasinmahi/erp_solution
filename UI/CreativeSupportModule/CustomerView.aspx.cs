@@ -28,7 +28,7 @@ namespace UI.CreativeSupportModule
         string filePathForXMLDocUpload, xmlStringDocUpload = "", xmlDoc, filePathForXML, xmlString = "", xmlItem;        
         string strDocUploadPath, fileName, strFileName, strRemarks, name, qty, point, itemid, strJobType, strJobT;        
         int intAssignTo, intAssignBy, intJobDescriptionID, intTotalPoint, intPOID, intItemID, intRowCount;
-        DateTime dteRequiredDate;
+        DateTime dteRequiredDate, dteDatet;
         TimeSpan tmRequiredTime; decimal qtyq;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace UI.CreativeSupportModule
                     }
                     
                     txtCRItem.Enabled = false;
-                    txtQty.Enabled = false;
+                    //txtQty.Enabled = false;
                     btnItemAdd.Visible = false;
                     ddlJobType.Enabled = false;
                 }
@@ -75,10 +75,12 @@ namespace UI.CreativeSupportModule
                     intAssignBy = int.Parse(hdnEnroll.Value);
                     try { dteRequiredDate = DateTime.Parse(txtReqDate.Text); }
                     catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Required Date Select.');", true); }
-                    try { intPOID = int.Parse(txtPOID.Text); }
-                    catch { intPOID = 0; }
-                    tmRequiredTime = TimeSpan.Parse(tmsReqTime.Hour.ToString() + ":" + tmsReqTime.Minute.ToString() + ":" + tmsReqTime.Second.ToString());
-
+                    try { intPOID = int.Parse(txtPOID.Text); } catch { intPOID = 0; }
+                    //tmRequiredTime = TimeSpan.Parse(tmsReqTime.Hour.ToString() + ":" + tmsReqTime.Minute.ToString() + ":" + tmsReqTime.Second.ToString());
+                    ////tmRequiredTime = TimeSpan.Parse(string.Format("{0}:{1}:{2} {3}", tmsReqTime.Hour, tmsReqTime.Minute, tmsReqTime.Second, tmsReqTime.AmPm));
+                    dteDatet = DateTime.Parse(string.Format("{0}:{1}:{2} {3}", tmsReqTime.Hour, tmsReqTime.Minute, tmsReqTime.Second, tmsReqTime.AmPm));
+                    tmRequiredTime = TimeSpan.Parse(dteDatet.ToString("HH:mm"));
+                    
                     try
                     {
                         char[] ch1 = { '[', ']' };

@@ -560,7 +560,7 @@
                      
                       <td style="text-align:right;"><asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item: "></asp:Label></td>
                      <td><asp:DropDownList ID="ddlItem" CssClass="ddList"  runat="server"></asp:DropDownList></td>
-                     <td><asp:Button ID="btnAddItem" runat="server" Text="Add" OnClick="btnAddItem_Click" /><asp:Button ID="btnPrepare" runat="server" Text="Prepare RFQ" OnClick="btnPrepare_Click" /></td>
+                     <td><asp:Button ID="btnAddItem" runat="server" Text="Add" OnClick="btnAddItem_Click" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<asp:Button ID="btnPrepare" runat="server" Text="Prepare RFQ" OnClick="btnPrepare_Click" /></td>
                      </tr> 
                   
                     </table>

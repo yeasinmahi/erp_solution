@@ -147,17 +147,20 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ReportForDashboardWithoutCompleteTableAdapter" GeneratorDataComponentClassName="ReportForDashboardWithoutCompleteTableAdapter" Name="ReportForDashboardWithoutComplete" UserDataComponentName="ReportForDashboardWithoutCompleteTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>Select intJobID, strJobCode, convert(varchar,dteCreateDateTime,120) as ReqDate, convert(varchar,dteRequiredDate, 23) as dteRequiredDate, 
-  convert(varchar,tmRequiredTime,108) as tmRequiredTime, emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, 
-  isnull(intJobStatusID, 0) as intJobStatusID
-  FROM AG_Global.dbo.tblCreativeSupport s
-  Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
-  Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
-  Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
-  Where intJobStatusID != 3 or intJobStatusID is NULL</CommandText>
+                    <CommandText>Select intJobID, strJobCode, REPLACE(CONVERT(VARCHAR(11), dteCreateDateTime, 106), ' ', '-') +' '+STUFF(RIGHT( CONVERT(VARCHAR,dteCreateDateTime,100 ) ,7), 6, 0, ' ') as ReqDate, 
+convert(varchar,dteRequiredDate, 106) as dteRequiredDate, 
+REPLACE(REPLACE(CONVERT(varchar(15), CAST(tmRequiredTime AS TIME), 100), 'P', ' P'), 'A', ' A') as tmRequiredTime,
+emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, isnull(intJobStatusID, 0) as intJobStatusID
+FROM AG_Global.dbo.tblCreativeSupport s
+Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
+Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
+Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
+Where intJobStatusID != 3 or intJobStatusID is NULL
+Order by intJobID asc
+</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

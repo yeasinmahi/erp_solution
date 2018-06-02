@@ -277,6 +277,7 @@
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
@@ -2308,6 +2309,13 @@
     </Compile>
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\AggrementPage.aspx.cs">
+      <DependentUpon>AggrementPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\AggrementPage.aspx.designer.cs">
+      <DependentUpon>AggrementPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.cs">
       <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>

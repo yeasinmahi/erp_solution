@@ -69,11 +69,11 @@
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Job Code" SortExpression="strJobCode">
-            <ItemTemplate><asp:Label ID="lblJobCode" runat="server" Text='<%# Bind("strJobCode") %>' Width="150px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblJobCode" runat="server" Text='<%# Bind("strJobCode") %>' Width="140px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Apply Date & Time" SortExpression="ReqDate">
-            <ItemTemplate><asp:Label ID="lblApplydDate" runat="server" Text='<%# Bind("ReqDate") %>' Width="120px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblApplydDate" runat="server" Text='<%# Bind("ReqDate") %>' Width="140px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="120px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Required Date" SortExpression="dteRequiredDate">
