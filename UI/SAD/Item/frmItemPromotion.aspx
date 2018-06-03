@@ -25,7 +25,7 @@
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-       <div class="tabs_container"> Item Promotion Setup <hr /></div>
+       <div class="tabs_container">Sales Item Promotion Setup <hr /></div>
         <table  class="tbldecoration" style="width:auto; float:left;">                           
         <tr><td colspan="5"><hr /></td></tr>                              
         <tr class="tblrowodd">           
