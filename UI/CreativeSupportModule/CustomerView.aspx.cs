@@ -113,13 +113,12 @@ namespace UI.CreativeSupportModule
                         string xmlString = dSftTm.InnerXml;
                         xmlString = "<ItemAdd>" + xmlString + "</ItemAdd>";
                         xmlItem = xmlString;
-
                     }
                     catch { }
 
                     if(intJobDescriptionID == 1)
                     {
-                        if(xmlItem == "")
+                        if(xmlItem == null)
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Item Add.');", true);
                             return;
@@ -139,7 +138,7 @@ namespace UI.CreativeSupportModule
 
                     if (intJobDescriptionID != 1)
                     {
-                        if (xmlDoc == "" || intPOID == 0)
+                        if (xmlDoc == null || intPOID == 0)
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Document Add & PO ID Input.');", true);
                             return;

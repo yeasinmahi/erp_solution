@@ -26,7 +26,7 @@
     <style type="text/css"> 
     .rounds { height: 500px; width: 60px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #ffffff; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-    width:50%; height: 100%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; }    
+    width:50%; height: 100%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; }   
         
     </style>
 

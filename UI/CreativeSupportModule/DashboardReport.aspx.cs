@@ -122,8 +122,7 @@ namespace UI.CreativeSupportModule
                     string JobCode = lblJobCode.Text;
                     string JobStatus = strJobStatus;
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + intJobID.ToString() + "','" + JobCode + "','" + JobStatus + "','" + JobStatusID + "');", true);
-                    ddlJStat.SelectedValue = "0";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + intJobID.ToString() + "','" + JobCode + "','" + JobStatus + "','" + JobStatusID + "');", true);                    
                 }
                 else
                 {
