@@ -283,10 +283,12 @@
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\DocView.aspx" />
+    <Content Include="CreativeSupportModule\DocViewForHoldAndFeedback.aspx" />
     <Content Include="CreativeSupportModule\HoldFeedback.aspx" />
     <Content Include="CreativeSupportModule\img\20171103 _ CREATIVE SUPPORT UI DASHBOARD _ FOOTER.png" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
+    <Content Include="CreativeSupportModule\ItemCreateAndPointSet.aspx" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
     <Content Include="Dairy\Milk_Audit_R_Details.aspx" />
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
@@ -2352,12 +2354,26 @@
     <Compile Include="CreativeSupportModule\DocView.aspx.designer.cs">
       <DependentUpon>DocView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\DocViewForHoldAndFeedback.aspx.cs">
+      <DependentUpon>DocViewForHoldAndFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DocViewForHoldAndFeedback.aspx.designer.cs">
+      <DependentUpon>DocViewForHoldAndFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.designer.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.cs">
+      <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.designer.cs">
+      <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dairy\Milk_Audit_Approve.aspx.cs">
       <DependentUpon>Milk_Audit_Approve.aspx</DependentUpon>

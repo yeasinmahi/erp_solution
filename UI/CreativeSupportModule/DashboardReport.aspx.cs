@@ -44,10 +44,16 @@ namespace UI.CreativeSupportModule
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = dgvDashboardReport.Rows[rowIndex];
             
+
             if (e.CommandName == "View")
             {
                 intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewJobDetails('" + intJobID.ToString() + "');", true);
+            }
+            else if (e.CommandName == "Doc View")
+            {
+                intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewAllDocumentView('" + intJobID.ToString() + "');", true);
             }
         }
         protected void dgvDashboardReport_DataBound(object sender, EventArgs e)
