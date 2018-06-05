@@ -87,9 +87,10 @@
         <asp:ListItem Text="IN Use" value="1"></asp:ListItem>
         <asp:ListItem Text="IN Store" value="2"></asp:ListItem>
         <asp:ListItem Text="Expire" value="3"></asp:ListItem>
+        <asp:ListItem Text="Ledger" value="4"></asp:ListItem>
         </asp:DropDownList></td>    
                                                                                                              
-        <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text=" Enroll"  ></asp:Label></td>
+        <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text=" Enroll/AssetID"  ></asp:Label></td>
         <td style="text-align:left;"><asp:TextBox ID="txtEnroll" CssClass="txtBox"   Font-Bold="False"   runat="server"/> </td>
        <td> <asp:Button ID="btnAssetStatus" runat="server" Text="Asset Status" CssClass="btnButton" OnClick="btnAssetStatus_Click"   />
         </td>  

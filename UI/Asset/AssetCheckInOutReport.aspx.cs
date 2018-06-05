@@ -37,7 +37,8 @@ namespace UI.Asset
                 intType = int.Parse(ddlType.SelectedValue);
                 if(txtEnroll.Text.Length > 3)
                 {
-                    intResEnroll = int.Parse(txtEnroll.Text.ToString());
+                 
+                    if (intType == 4) { assetCode = txtEnroll.Text.ToString(); } else { intResEnroll = int.Parse(txtEnroll.Text.ToString()); }
                     dt = objCheck.AssetCheckInOutDataTable(8, stringXml, intType, intResEnroll, assetCode, intWHiD, strNaration, intActionBy);
                     dgvAssetStatus.DataSource = dt;
                     dgvAssetStatus.DataBind();
