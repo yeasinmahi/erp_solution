@@ -123,7 +123,7 @@
     <hr /></div>
     <table>
      <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Credit Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td>
+     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Desteroy Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td>
      <table  class="tbldecoration" style="width:auto; float:left;">                              
      <tr><td>Product Name</td>
         <td><asp:TextBox ID="txtVatItemList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" OnTextChanged="txtVatItemList_TextChanged" ></asp:TextBox>
