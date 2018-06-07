@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DocView.aspx.cs" Inherits="UI.CreativeSupportModule.DocView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DocViewForHoldAndFeedback.aspx.cs" Inherits="UI.CreativeSupportModule.DocViewForHoldAndFeedback" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -41,6 +41,31 @@
         <%--<table>
         <tr><td colspan="9" style="color:blue; font-weight:900;"><a id="btnprint" href="BillDetails.aspx" class="nextclick" style="cursor:pointer; text-align:right;">Back</a></td></tr> 
         </table>--%>
+        <div id="divcontentholder">
+        <table class="tbldecoration" style="width:auto; float:left;">
+        <tr class="tblheader"><td colspan="4"> Document List :<asp:HiddenField ID="hdnSeprationID" runat="server" /></td></tr>
+
+            <tr><td colspan="4">
+            <asp:GridView ID="dgvDocPath" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" 
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical">
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+            <Columns>
+             
+            <asp:BoundField DataField="strFilePath" HeaderText="File Path" ItemStyle-HorizontalAlign="Center" SortExpression="strFilePath">
+            <ItemStyle HorizontalAlign="left" Width="500px"/></asp:BoundField>
+
+            <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnDocDownload" class="myButtonGrid" runat="server" Font-Size="9px" OnClick="btnDocDownload_Click"
+            CommandArgument='<%# Eval("strFilePath") %>' Text="Download Document" /></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField>
+
+            </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView>
+            </td></tr>
+            <tr><td colspan="6"><hr /></td></tr>
+
+        </table>       
+    </div>
         
 
     <%--=========================================End My Code From Here=================================================--%>

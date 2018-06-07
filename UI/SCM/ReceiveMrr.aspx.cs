@@ -321,112 +321,134 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-          
+      
+            dgvMrr.DataSource = dt;
+            dgvMrr.DataBind();
             PoView();
         }
 
         private void PoView()
         {
-            try
-            {
-
-                intWh = int.Parse(ddlWH.SelectedValue);
-                if(intWh == 0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select WH');", true); return; }
-                if(int.Parse(ddlPoType.SelectedValue.ToString()) == 0)
+             
+                intWh = int.Parse(ddlWH.SelectedValue); 
+                if (txtPO.Text.Length > 3)
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select PO Type');", true); return;
-                }
 
-                if(txtPO.Text == "")
-                {
-                    intPo = int.Parse(ddlPo.SelectedValue);
+                    intPo = int.Parse(txtPO.Text);
+                    dt = obj.GetWHByPO(intPo, intWh);
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        if (dt.Rows[0]["strPoFor"].ToString() == "Local")
+                        {
+                            
+                            ddlPoType.SelectedValue = "1";
+                            ddlInvoice.Enabled = false;
+                            ddlInvoice.DataSource = "";
+                            ddlInvoice.DataBind();
+                    }
+                        else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
+                        {
+                           
+                            ddlPoType.SelectedValue = "2";
+                            ddlInvoice.Enabled = true;
+                            dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
+                            ddlInvoice.DataSource = dt;
+                            ddlInvoice.DataTextField = "strName";
+                            ddlInvoice.DataValueField = "Id";
+                            ddlInvoice.DataBind();
+                    }
+                        else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
+                        {
+                           
+                            ddlPoType.SelectedValue = "3";
+                        }
+
+                        string poType = ddlPoType.SelectedItem.ToString();
+                        intWh = int.Parse(ddlWH.SelectedValue.ToString());
+                        xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
+                        dt = obj.DataView(3, xmlString, intWh, 0, DateTime.Now, enroll);
+                        ddlPo.DataSource = dt;
+                        ddlPo.DataTextField = "strName";
+                        ddlPo.DataValueField = "Id";
+                        ddlPo.DataBind();
+
+                        ddlPo.SelectedValue = intPo.ToString();
+                    }
+                    else { ddlPo.DataSource = "";ddlPo.DataBind();ddlInvoice.DataSource = "";ddlInvoice.DataBind(); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO is not Found');", true); } 
                 }
                 else
                 {
-                    try { intPo = int.Parse(txtPO.Text); } catch { intPo = int.Parse(ddlPo.SelectedValue); }
+                intPo = int.Parse(ddlPo.SelectedValue);
                 }
 
                 try
-                {
-                    dt = new DataTable();
-                    dt = obj.GetWHByPO(intPo);
-                    if (dt.Rows.Count > 0)
-                    {
-                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
-                        if(dt.Rows[0]["strPoFor"].ToString() == "Local")
+                { 
+                        try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
+                        xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
+                        if (ddlInvoice.Enabled == true)
                         {
-                            ddlPoType.SelectedValue = "1";
+                            dt = obj.DataView(6, xmlString, intWh, intPo, DateTime.Now, enroll);
+                            strMssingCost = dt.Rows[0]["strMissingCost"].ToString();
+
+                            if (strMssingCost != "")
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["strMissingCost"].ToString() + "');", true);
+                            }
+                            else
+                            {
+                                dt = obj.DataView(7, xmlString, intWh, intPo, DateTime.Now, enroll);
+                                lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
+                                lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
+                                lblCurrency.Text = " Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
+                                lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
+                                monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
+                                lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
+
+                                dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);
+                                lblPoTotal.Text = "";
+                                lblProductCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monTotal"].ToString()) * monConverRate);
+                                lblTransportCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monFreight"].ToString()) * monConverRate);
+                                lblOtherCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monPacking"].ToString()) * monConverRate);
+                                lblDiscount.Text = "0";
+                            }
+
                         }
-                        else if(dt.Rows[0]["strPoFor"].ToString() == "Import")
+
+
+                        else
                         {
-                            ddlPoType.SelectedValue = "2";
+                            dt = obj.DataView(4, xmlString, intWh, intPo, DateTime.Now, enroll);
+                            if (dt.Rows.Count > 0)
+                            {
+                                lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
+                                lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
+                                //lblMrrNo.Text = dt.Rows[0][""].ToString();
+                                // lblMrrDate.Text= dt.Rows[0][""].ToString();
+                                lblPoTotal.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
+                                lblProductCost.Text = dt.Rows[0]["monPOAmount"].ToString();
+                                lblTransportCost.Text = dt.Rows[0]["monOther"].ToString();
+                                lblOtherCost.Text = dt.Rows[0]["monOther"].ToString();
+                                lblDiscount.Text = dt.Rows[0]["monDiscount"].ToString();
+                                lblCurrency.Text = "Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
+                                lblConversion.Text = "Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
+                                hdnConversion.Value = dt.Rows[0]["monBDTConversion"].ToString();
+                                lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
+
+                            }
+
                         }
-                        else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
-                        {
-                            ddlPoType.SelectedValue = "3";
-                        }
-                    }
+
+                        dt = obj.DataView(9, xmlString, intWh, intPo, DateTime.Now, enroll);
+                        dgvMrr.DataSource = dt;
+                        dgvMrr.DataBind();
+                         
+
+
+                    
                 }
-                catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Correct PO');", true); return; }
-                try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
-                xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
-                if (ddlInvoice.Enabled == true)
-                {
-                    dt = obj.DataView(6, xmlString, intWh, intPo, DateTime.Now, enroll);
-                    strMssingCost = dt.Rows[0]["strMissingCost"].ToString();
+                catch {} 
 
-                    if (strMssingCost != "")
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["strMissingCost"].ToString() + "');", true);
-                    }
-                    else
-                    {
-                        dt = obj.DataView(7, xmlString, intWh, intPo, DateTime.Now, enroll);
-                        lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
-                        lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
-                        lblCurrency.Text = " Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
-                        lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
-                        monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
-                        lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
-
-                        dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);
-                        lblPoTotal.Text = "";
-                        lblProductCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monTotal"].ToString()) * monConverRate);
-                        lblTransportCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monFreight"].ToString()) * monConverRate);
-                        lblOtherCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monPacking"].ToString()) * monConverRate);
-                        lblDiscount.Text = "0";
-                    }
-
-                }
-                else
-                {
-                    dt = obj.DataView(4, xmlString, intWh, intPo, DateTime.Now, enroll);
-                    if (dt.Rows.Count > 0)
-                    {
-                        lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
-                        lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
-                        //lblMrrNo.Text = dt.Rows[0][""].ToString();
-                        // lblMrrDate.Text= dt.Rows[0][""].ToString();
-                        lblPoTotal.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
-                        lblProductCost.Text = dt.Rows[0]["monPOAmount"].ToString();
-                        lblTransportCost.Text = dt.Rows[0]["monOther"].ToString();
-                        lblOtherCost.Text = dt.Rows[0]["monOther"].ToString();
-                        lblDiscount.Text = dt.Rows[0]["monDiscount"].ToString();
-                        lblCurrency.Text = "Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
-                        lblConversion.Text = "Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
-                        hdnConversion.Value = dt.Rows[0]["monBDTConversion"].ToString();
-                        lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
-
-                    }
-
-                }
-                dt = obj.DataView(9, xmlString, intWh, intPo, DateTime.Now, enroll);
-                dgvMrr.DataSource = dt;
-                dgvMrr.DataBind();
-
-
-            }
-            catch { }
         }
 
         private void DefaltBind()
