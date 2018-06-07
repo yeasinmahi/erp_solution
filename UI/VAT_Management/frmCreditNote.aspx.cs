@@ -70,23 +70,24 @@ namespace UI.VAT_Management
             string creditqty = txtCreditqty.Text;
             string sdnew = txtSD.Text;
             string othersdNew = txtWithoutSDVAT.Text;
-            string sur = txtSurcharge.Text;
+            string surnew = txtSurcharge.Text;
             string vatnew = txtVAT.Text;
             string m11vat = lblM11Vat.Text;
             string others = lblM11OthersTax.Text;
-           
+            decimal Decreasedothers = decimal.Parse(others) - decimal.Parse(surnew) - decimal.Parse(sdnew);
+            decimal DecreasedVat = decimal.Parse(m11vat) - decimal.Parse(vatnew);    
 
-           // CreateVoucherXml(intitemid, strChallanNo, dtedate, Pname, demdate, dono, dodate, recdate, recqty);
+            CreateVoucherXml(intitemid.ToString(), strChallanNo, dtedate.ToString(), Pname, creditqty, othersdNew, sdnew, surnew, vatnew, m11vat, others, Decreasedothers.ToString(), DecreasedVat.ToString());
 
         }
-        private void CreateVoucherXml(string brid, string brname, string demno, string demdate, string dono, string dodate, string recdate, string recqty)
+        private void CreateVoucherXml(string intitemid, string strChallanNo, string dtedate, string Pname, string creditqty, string othersdNew, string sdnew, string surnew, string vatnew, string m11vat, string others, string Decreasedothers, string DecreasedVat)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("ItemAdd");
-                XmlNode addItem = CreateItemNode(doc, brid, brname, demno, demdate, dono, dodate, recdate, recqty);
+                XmlNode addItem = CreateItemNode(doc, intitemid, strChallanNo, dtedate, Pname, creditqty, othersdNew, sdnew, surnew, vatnew, m11vat, others, Decreasedothers, DecreasedVat);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -94,7 +95,7 @@ namespace UI.VAT_Management
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("ItemAdd");
-                XmlNode addItem = CreateItemNode(doc, brid, brname, demno, demdate, dono, dodate, recdate, recqty);
+                XmlNode addItem = CreateItemNode(doc, intitemid, strChallanNo, dtedate, Pname, creditqty, othersdNew, sdnew, surnew, vatnew, m11vat, others, Decreasedothers, DecreasedVat);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -115,27 +116,40 @@ namespace UI.VAT_Management
             else { dgvVatProduct.DataSource = ""; }
             dgvVatProduct.DataBind();
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string brid, string brname, string demno, string demdate, string dono, string dodate, string recdate, string recqty)
+        private XmlNode CreateItemNode(XmlDocument doc, string intitemid, string strChallanNo, 
+            string dtedate, string Pname, string creditqty, string othersdNew, string sdnew, 
+            string surnew, string vatnew, string m11vat, string others, string Decreasedothers, string DecreasedVat)
         {
             XmlNode node = doc.CreateElement("ItemAdd");
 
-            XmlAttribute Brid = doc.CreateAttribute("brid"); Brid.Value = brid;
-            XmlAttribute Brname = doc.CreateAttribute("brname"); Brname.Value = brname;
-            XmlAttribute Demno = doc.CreateAttribute("demno"); Demno.Value = demno;
-            XmlAttribute Demdate = doc.CreateAttribute("demdate"); Demdate.Value = demdate;
-            XmlAttribute Dono = doc.CreateAttribute("dono"); Dono.Value = dono;
-            XmlAttribute Dodate = doc.CreateAttribute("dodate"); Dodate.Value = dodate;
-            XmlAttribute Recdate = doc.CreateAttribute("recdate"); Recdate.Value = recdate;
-            XmlAttribute Recqty = doc.CreateAttribute("recqty"); Recqty.Value = recqty;
+            XmlAttribute Intitemid = doc.CreateAttribute("intitemid"); Intitemid.Value = intitemid;
+            XmlAttribute StrChallanNo = doc.CreateAttribute("strChallanNo"); StrChallanNo.Value = strChallanNo;
+            XmlAttribute Dtedate = doc.CreateAttribute("dtedate"); Dtedate.Value = dtedate;
+            XmlAttribute pname = doc.CreateAttribute("Pname"); pname.Value = Pname;
+            XmlAttribute Creditqty = doc.CreateAttribute("creditqty"); Creditqty.Value = creditqty;
+            XmlAttribute OthersdNew = doc.CreateAttribute("othersdNew"); OthersdNew.Value = othersdNew;
+            XmlAttribute Sdnew = doc.CreateAttribute("sdnew"); Sdnew.Value = sdnew;
+            XmlAttribute Surnew = doc.CreateAttribute("surnew"); Surnew.Value = surnew;
+            XmlAttribute Vatnew = doc.CreateAttribute("vatnew"); Vatnew.Value = vatnew;
+            XmlAttribute M11vat = doc.CreateAttribute("m11vat"); M11vat.Value = m11vat;
+            XmlAttribute Others = doc.CreateAttribute("others"); Others.Value = others;
+            XmlAttribute decreasedothers = doc.CreateAttribute("Decreasedothers"); decreasedothers.Value = Decreasedothers;
+            XmlAttribute decreasedVat = doc.CreateAttribute("DecreasedVat"); decreasedVat.Value = DecreasedVat;
 
-            node.Attributes.Append(Brid);
-            node.Attributes.Append(Brname);
-            node.Attributes.Append(Demno);
-            node.Attributes.Append(Demdate);
-            node.Attributes.Append(Dono);
-            node.Attributes.Append(Dodate);
-            node.Attributes.Append(Recdate);
-            node.Attributes.Append(Recqty);
+
+            node.Attributes.Append(Intitemid);
+            node.Attributes.Append(StrChallanNo);
+            node.Attributes.Append(Dtedate);
+            node.Attributes.Append(pname);
+            node.Attributes.Append(Creditqty);
+            node.Attributes.Append(OthersdNew);
+            node.Attributes.Append(Sdnew);
+            node.Attributes.Append(Surnew);
+            node.Attributes.Append(Vatnew);
+            node.Attributes.Append(M11vat);
+            node.Attributes.Append(Others);
+            node.Attributes.Append(decreasedothers);
+            node.Attributes.Append(decreasedVat);
             return node;
         }
         protected void dgvBandrollReceive_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -186,11 +186,11 @@
         <Columns>
        
         <asp:TemplateField HeaderText="Vat Item" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblvatItemid" runat="server" Text='<%# Bind("intProductID") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblvatItemid" runat="server" Text='<%# Bind("intitemid") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Challan No" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblstrVATChallanNo" runat="server" Text='<%# Bind("strVATChallanNo") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblstrVATChallanNo" runat="server" Text='<%# Bind("strChallanNo") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Challan Date" SortExpression="itemname">
@@ -198,43 +198,43 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Product Name" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblstrVatProductName" runat="server" Text='<%# Bind("strVatProductName") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblstrVatProductName" runat="server" Text='<%# Bind("Pname") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Quantity" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("Qty") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("creditqty") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
          <asp:TemplateField HeaderText="Am. Without SD VAT" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblsdvat" runat="server" Text='<%# Bind("sdvat") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblsdvat" runat="server" Text='<%# Bind("othersdNew") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="SD" SortExpression="sd">
-        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sd") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="SurCharge" SortExpression="SurCharge">
-        <ItemTemplate><asp:Label ID="lblSurCharge" runat="server" Text='<%# Bind("SurCharge") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblSurCharge" runat="server" Text='<%# Bind("surnew") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
          <asp:TemplateField HeaderText="VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblVAT" runat="server" Text='<%# Bind("VAT") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblVAT" runat="server" Text='<%# Bind("vatnew") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="M11 Other Tax" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblM11txt" runat="server" Text='<%# Bind("tax") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblM11txt" runat="server" Text='<%# Bind("others") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="M11 VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblM11" runat="server" Text='<%# Bind("monVAT") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblM11" runat="server" Text='<%# Bind("m11vat") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Decreased Other Tax" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblDecrateOthervat" runat="server" Text='<%# Bind("DecrateOthervat") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblDecrateOthervat" runat="server" Text='<%# Bind("Decreasedothers") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
           <asp:TemplateField HeaderText="Decreased VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblDecratevat" runat="server" Text='<%# Bind("Decratevat") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblDecratevat" runat="server" Text='<%# Bind("DecreasedVat") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
        
 
