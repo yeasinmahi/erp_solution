@@ -377,6 +377,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UtilityTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Vat\CreditNoteTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditNoteTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Vat\Mushok11New.cs">
       <DependentUpon>Mushok11New.xsd</DependentUpon>
     </Compile>
@@ -1030,6 +1035,17 @@
     </None>
     <None Include="Transport\UtilityTDS.xss">
       <DependentUpon>UtilityTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\CreditNoteTDS.xsc">
+      <DependentUpon>CreditNoteTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\CreditNoteTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CreditNoteTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Vat\CreditNoteTDS.xss">
+      <DependentUpon>CreditNoteTDS.xsd</DependentUpon>
     </None>
     <None Include="Vat\Mushok11New.xsc">
       <DependentUpon>Mushok11New.xsd</DependentUpon>

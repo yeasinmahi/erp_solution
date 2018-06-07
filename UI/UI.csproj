@@ -1343,6 +1343,7 @@
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
+    <Content Include="VAT_Management\frmCreditNote.aspx" />
     <Content Include="VAT_Management\Mushak11.aspx" />
     <Content Include="VAT_Management\Mushak19MonthlyReturn.aspx" />
     <Content Include="VAT_Management\OtherAdjustments.aspx" />
@@ -7052,6 +7053,13 @@
     </Compile>
     <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.designer.cs">
       <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\frmCreditNote.aspx.cs">
+      <DependentUpon>frmCreditNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\frmCreditNote.aspx.designer.cs">
+      <DependentUpon>frmCreditNote.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\Mushak11.aspx.cs">
       <DependentUpon>Mushak11.aspx</DependentUpon>
