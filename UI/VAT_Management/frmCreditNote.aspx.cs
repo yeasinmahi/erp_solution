@@ -233,9 +233,9 @@ namespace UI.VAT_Management
         {
            // intM11Challanno =int.Parse(txtVatChallno.Text);
             intCustid = int.Parse(hdnCustid.Value);
-           // strCusName= hdnCustname.Value;
+           //strCusName= hdnCustname.Value;
             strCusAddress = hdnCustAddress.Value;
-          //  strVehicleTypeNo = txtVehicletypeno.Text;
+          // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;
             if (dtedate.Month >= 7)
             {
