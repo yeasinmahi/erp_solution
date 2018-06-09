@@ -45,6 +45,13 @@ namespace UI.SAD.Vat
                     Session["VatAccid"] = dt.Rows[0]["intVatPointID"].ToString();
                     hdnysnFactory.Value = dt.Rows[0]["ysnFactory"].ToString();
                 }
+                //dt = objvat.GetVATAccountListByEnroll(int.Parse(hdnEnroll.Value));
+                //ddlVatAccount.DataTextField = "strVATAccountName";
+                //ddlVatAccount.DataValueField = "intVatPointID";
+                //ddlVatAccount.DataSource = dt;
+                //ddlVatAccount.DataBind();
+                //lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
+                //hdnVatAccID.Value = ddlVatAccount.SelectedValue.ToString();
 
             }
         }

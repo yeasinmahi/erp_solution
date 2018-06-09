@@ -139,6 +139,7 @@
     <Compile Include="Transfer\Transfer.cs" />
     <Compile Include="Transport\InternalTransportBLL.cs" />
     <Compile Include="Transport\Utility_BLL.cs" />
+    <Compile Include="Vat\CreditNoteBLL.cs" />
     <Compile Include="Vat\Mushok11.cs" />
     <Compile Include="Vat\VAT_BLL.cs" />
   </ItemGroup>
