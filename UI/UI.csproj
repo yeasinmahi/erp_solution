@@ -365,10 +365,12 @@
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\BillRegisterReport.aspx" />
+    <Content Include="PaymentModule\BillTopSheet.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
+    <Content Include="PaymentModule\MDApprovalSheet.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
@@ -2777,6 +2779,13 @@
     <Compile Include="PaymentModule\BillRegisterReport.aspx.designer.cs">
       <DependentUpon>BillRegisterReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\BillTopSheet.aspx.cs">
+      <DependentUpon>BillTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BillTopSheet.aspx.designer.cs">
+      <DependentUpon>BillTopSheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2804,6 +2813,13 @@
     </Compile>
     <Compile Include="PaymentModule\MaterialCOABridge.aspx.designer.cs">
       <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MDApprovalSheet.aspx.cs">
+      <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MDApprovalSheet.aspx.designer.cs">
+      <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
