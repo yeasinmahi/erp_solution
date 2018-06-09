@@ -1253,6 +1253,7 @@
     <Content Include="SCM\PoGenerate.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
+    <Content Include="SCM\PoRegisterReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
@@ -6394,6 +6395,13 @@
     </Compile>
     <Compile Include="SCM\PONew1.aspx.designer.cs">
       <DependentUpon>PONew1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PoRegisterReport.aspx.cs">
+      <DependentUpon>PoRegisterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PoRegisterReport.aspx.designer.cs">
+      <DependentUpon>PoRegisterReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoWithoutIndent.aspx.cs">
       <DependentUpon>PoWithoutIndent.aspx</DependentUpon>

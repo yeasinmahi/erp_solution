@@ -31,33 +31,33 @@ namespace UI.HR.TourPlan
         public string strinformation = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                txtDteFrom.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
-                pnlUpperControl.DataBind();
-                hdnUserID.Value = Session[SessionParams.USER_ID].ToString();
-                hdnEmployeeID.Value = objEmployeeBasicInfo.GetEmployeeIdByUserIdOrEmpcode(int.Parse(hdnUserID.Value.ToString()), null);
-                dt = bll.GetdataforConferenceRoomLoadlist();
-                ddlLocation.DataTextField = "strConferenceRoomName";
-                ddlLocation.DataValueField = "intid";
-                ddlLocation.DataSource = dt;
-                ddlLocation.DataBind();
-                hallid = int.Parse(ddlLocation.SelectedValue.ToString());
-                dt = bll.GetdataforConferenceRoom(2, hallid);
-                DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-                lblLevelnumber.Text = dt.Rows[0]["LevelNumber"].ToString();
-                lblCapacitytotal.Text = dt.Rows[0]["SeatCapacity"].ToString();
-                lblProjector.Text = dt.Rows[0]["Projector"].ToString();
-                dt = bll.ConferenceRoomBookingStatus(fromdate, 1);
-                string bokst = dt.Rows[0]["strstatis"].ToString();
-                if (bokst == "Not Booked") { imgSignal.ImageUrl = "../../Content/images/img/GreenSignal.jpg"; }
-                else if (bokst == "booked") { imgSignal.ImageUrl = "../../Content/images/img/RedSignal.jpg"; }
-                else { }
-                fromdate = DateTime.Parse(txtDteFrom.Text);
-                string fromdated = fromdate.ToString("MMMM");
-                lblSelectMonth.Text = fromdated.ToString();
+            //if (!IsPostBack)
+            //{
+            //    txtDteFrom.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
+            //    pnlUpperControl.DataBind();
+            //    hdnUserID.Value = Session[SessionParams.USER_ID].ToString();
+            //    hdnEmployeeID.Value = objEmployeeBasicInfo.GetEmployeeIdByUserIdOrEmpcode(int.Parse(hdnUserID.Value.ToString()), null);
+            //    dt = bll.GetdataforConferenceRoomLoadlist();
+            //    ddlLocation.DataTextField = "strConferenceRoomName";
+            //    ddlLocation.DataValueField = "intid";
+            //    ddlLocation.DataSource = dt;
+            //    ddlLocation.DataBind();
+            //    hallid = int.Parse(ddlLocation.SelectedValue.ToString());
+            //    dt = bll.GetdataforConferenceRoom(2, hallid);
+            //    DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
+            //    lblLevelnumber.Text = dt.Rows[0]["LevelNumber"].ToString();
+            //    lblCapacitytotal.Text = dt.Rows[0]["SeatCapacity"].ToString();
+            //    lblProjector.Text = dt.Rows[0]["Projector"].ToString();
+            //    dt = bll.ConferenceRoomBookingStatus(fromdate, 1);
+            //    string bokst = dt.Rows[0]["strstatis"].ToString();
+            //    if (bokst == "Not Booked") { imgSignal.ImageUrl = "../../Content/images/img/GreenSignal.jpg"; }
+            //    else if (bokst == "booked") { imgSignal.ImageUrl = "../../Content/images/img/RedSignal.jpg"; }
+            //    else { }
+            //    fromdate = DateTime.Parse(txtDteFrom.Text);
+            //    string fromdated = fromdate.ToString("MMMM");
+            //    lblSelectMonth.Text = fromdated.ToString();
                
-            }
+            //}
 
 
 
@@ -66,145 +66,145 @@ namespace UI.HR.TourPlan
 
         }
 
-        protected void txtDteFrom_TextChanged(object sender, EventArgs e)
-        {
-            DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-            string fromdated = fromdate.ToString("MMMM");
-            lblSelectMonth.Text = fromdated.ToString();
+        //protected void txtDteFrom_TextChanged(object sender, EventArgs e)
+        //{
+        //    DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
+        //    string fromdated = fromdate.ToString("MMMM");
+        //    lblSelectMonth.Text = fromdated.ToString();
            
-        }
+        //}
 
        
 
        
 
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
-        {
+        //protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        //{
      
-            DateTime fromdate = DateTime.Parse(Calendar1.SelectedDate.ToString());
-        }
+        //    DateTime fromdate = DateTime.Parse(Calendar1.SelectedDate.ToString());
+        //}
 
-        #region =====================Submit Action ===================================
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
+        //#region =====================Submit Action ===================================
+        //protected void btnSubmit_Click(object sender, EventArgs e)
+        //{
 
 
-            if (hdnconfirm.Value == "1")
-            {
-                lblCapacitytotal.Text = (float.Parse(lblCapacitytotal.Text).ToString());
-                int cpv = int.Parse(lblCapacitytotal.Text);
-                int inputval = int.Parse(txtParticipant.Text);
-                TimeSpan tmstart = TimeSpan.Parse(tmStart.Date.ToString("HH:mm:ss"));
-                TimeSpan tmend = TimeSpan.Parse(tmEnd.Date.ToString("HH:mm:ss"));
-                if (tmstart < tmend)
-                {
-                    if (inputval >= cpv)
-                    {
-                        try
-                        {
-                            hallid = int.Parse(ddlLocation.SelectedValue.ToString());
-                            unitid = int.Parse(drdlUnit.SelectedValue.ToString());
-                            deptid = int.Parse(drdlDepartment.SelectedValue.ToString());
-                            totalparticipants = int.Parse(txtParticipant.Text.ToString());
-                            DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-                            actionBy = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                            string alertMessage = bll.SubmitConferenceroomshedulinfo(hallid, unitid, deptid, totalparticipants, fromdate, tmstart, tmend, actionBy);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertMessage + "');", true);
-                        }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry to submit this application !!!');", true); }
-                    }
-                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failled  !!!! Because participant must be equal or greater than capacity');", true); }
-                }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failled  !!!! End time can not greater than start time');", true); }
-            }
-        }
+        //    if (hdnconfirm.Value == "1")
+        //    {
+        //        lblCapacitytotal.Text = (float.Parse(lblCapacitytotal.Text).ToString());
+        //        int cpv = int.Parse(lblCapacitytotal.Text);
+        //        int inputval = int.Parse(txtParticipant.Text);
+        //        TimeSpan tmstart = TimeSpan.Parse(tmStart.Date.ToString("HH:mm:ss"));
+        //        TimeSpan tmend = TimeSpan.Parse(tmEnd.Date.ToString("HH:mm:ss"));
+        //        if (tmstart < tmend)
+        //        {
+        //            if (inputval >= cpv)
+        //            {
+        //                try
+        //                {
+        //                    hallid = int.Parse(ddlLocation.SelectedValue.ToString());
+        //                    unitid = int.Parse(drdlUnit.SelectedValue.ToString());
+        //                    deptid = int.Parse(drdlDepartment.SelectedValue.ToString());
+        //                    totalparticipants = int.Parse(txtParticipant.Text.ToString());
+        //                    DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
+        //                    actionBy = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+        //                    string alertMessage = bll.SubmitConferenceroomshedulinfo(hallid, unitid, deptid, totalparticipants, fromdate, tmstart, tmend, actionBy);
+        //                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertMessage + "');", true);
+        //                }
+        //                catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry to submit this application !!!');", true); }
+        //            }
+        //            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failled  !!!! Because participant must be equal or greater than capacity');", true); }
+        //        }
+        //        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failled  !!!! End time can not greater than start time');", true); }
+        //    }
+        //}
 
-        #endregion=====================Close==========================================
+        //#endregion=====================Close==========================================
 
-        #region =====================Selection Changed ================================
-        protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-             confID = int.Parse(ddlLocation.SelectedValue);
-            dt = bll.GetdataforConferenceRoom(2,confID);
-            lblLevelnumber.Text = dt.Rows[0]["LevelNumber"].ToString();
-            lblCapacitytotal.Text = dt.Rows[0]["SeatCapacity"].ToString();
-            lblProjector.Text= dt.Rows[0]["Projector"].ToString();
-            DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-            dt = bll.ConferenceRoomBookingStatus(fromdate, confID);
-            string bokst= dt.Rows[0]["strstatis"].ToString();
-            if (bokst == "Not Booked") { imgSignal.ImageUrl = "../../Content/images/img/GreenSignal.jpg";}
-            else if (bokst == "booked"){imgSignal.ImageUrl = "../../Content/images/img/RedSignal.jpg";}
-            else { }
+        //#region =====================Selection Changed ================================
+        //protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //     confID = int.Parse(ddlLocation.SelectedValue);
+        //    dt = bll.GetdataforConferenceRoom(2,confID);
+        //    lblLevelnumber.Text = dt.Rows[0]["LevelNumber"].ToString();
+        //    lblCapacitytotal.Text = dt.Rows[0]["SeatCapacity"].ToString();
+        //    lblProjector.Text= dt.Rows[0]["Projector"].ToString();
+        //    DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
+        //    dt = bll.ConferenceRoomBookingStatus(fromdate, confID);
+        //    string bokst= dt.Rows[0]["strstatis"].ToString();
+        //    if (bokst == "Not Booked") { imgSignal.ImageUrl = "../../Content/images/img/GreenSignal.jpg";}
+        //    else if (bokst == "booked"){imgSignal.ImageUrl = "../../Content/images/img/RedSignal.jpg";}
+        //    else { }
               
-            }
-            catch { }
-        }
-        #endregion =====================Close ===================================
+        //    }
+        //    catch { }
+        //}
+        //#endregion =====================Close ===================================
         
 
-        #region =====================Claender View Setup================================
+        //#region =====================Claender View Setup================================
 
-        override protected void OnInit(EventArgs e)
-        {
-            InitializeComponent();
-            base.OnInit(e);
-        }
-        private void InitializeComponent()
-        {
-            this.Calendar1.DayRender += new System.Web.UI.WebControls.DayRenderEventHandler(this.Calendar1_DayRender);
-            //this.Calendar1.DayRender += new System.Web.UI.WebControls.DayRenderEventHandler("2017-03-01");
-            this.Load += new System.EventHandler(this.Page_Load);
+        //override protected void OnInit(EventArgs e)
+        //{
+        //    InitializeComponent();
+        //    base.OnInit(e);
+        //}
+        //private void InitializeComponent()
+        //{
+        //    this.Calendar1.DayRender += new System.Web.UI.WebControls.DayRenderEventHandler(this.Calendar1_DayRender);
+        //    //this.Calendar1.DayRender += new System.Web.UI.WebControls.DayRenderEventHandler("2017-03-01");
+        //    this.Load += new System.EventHandler(this.Page_Load);
             
-        }
+        //}
        
 
         
-        private void Calendar1_DayRender(Object source, DayRenderEventArgs e)
-        {
-            confID = int.Parse(ddlLocation.SelectedValue);
+        //private void Calendar1_DayRender(Object source, DayRenderEventArgs e)
+        //{
+        //    confID = int.Parse(ddlLocation.SelectedValue);
 
-            int fromdate11 = Calendar1.VisibleDate.Month;
-            int fromdate2 = e.Day.Date.Month;
-            DateTime fromdate = e.Day.Date;
-            //DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-            Label lbldet = new Label();
-            Label lbldettooltip = new Label();
-           dt = bll.ConferenceRoomBookingMonthvsHallid(confID, fromdate);
-            if (dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
+        //    int fromdate11 = Calendar1.VisibleDate.Month;
+        //    int fromdate2 = e.Day.Date.Month;
+        //    DateTime fromdate = e.Day.Date;
+        //    //DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
+        //    Label lbldet = new Label();
+        //    Label lbldettooltip = new Label();
+        //   dt = bll.ConferenceRoomBookingMonthvsHallid(confID, fromdate);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        for (int i = 0; i < dt.Rows.Count; i++)
+        //        {
 
-                    if (e.Day.DayNumberText == dt.Rows[i]["daysorder"].ToString() )
-                        {
-                        if (dt.Rows[i]["status"].ToString() == "Approved") { e.Cell.BackColor = System.Drawing.Color.LightSkyBlue; }
-                        else { e.Cell.BackColor = System.Drawing.Color.Khaki; }
-                        Label lbl = new Label();
-                        lbl.ForeColor = System.Drawing.Color.DarkOrchid;
-                        lbl.Text = "<br/>" + dt.Rows[i]["Duration"].ToString();
-                        e.Cell.Controls.Add(lbl);
-                        lbldettooltip.Text += " " + dt.Rows[i]["DetaillsInfo"].ToString();
-                        e.Cell.Attributes.Add("title", lbldettooltip.Text.ToString());
-                        //lbldettooltip.BackColor("BackColor", "#00ffaa");
-                    }
-                }
+        //            if (e.Day.DayNumberText == dt.Rows[i]["daysorder"].ToString() )
+        //                {
+        //                if (dt.Rows[i]["status"].ToString() == "Approved") { e.Cell.BackColor = System.Drawing.Color.LightSkyBlue; }
+        //                else { e.Cell.BackColor = System.Drawing.Color.Khaki; }
+        //                Label lbl = new Label();
+        //                lbl.ForeColor = System.Drawing.Color.DarkOrchid;
+        //                lbl.Text = "<br/>" + dt.Rows[i]["Duration"].ToString();
+        //                e.Cell.Controls.Add(lbl);
+        //                lbldettooltip.Text += " " + dt.Rows[i]["DetaillsInfo"].ToString();
+        //                e.Cell.Attributes.Add("title", lbldettooltip.Text.ToString());
+        //                //lbldettooltip.BackColor("BackColor", "#00ffaa");
+        //            }
+        //        }
               
-            }
-            else
-            {
-                //e.Cell.BackColor = System.Drawing.Color.LightGray;
-                Label lbl = new Label();
-                lbl.Text = "";
-                e.Cell.Controls.Add(lbl);
+        //    }
+        //    else
+        //    {
+        //        //e.Cell.BackColor = System.Drawing.Color.LightGray;
+        //        Label lbl = new Label();
+        //        lbl.Text = "";
+        //        e.Cell.Controls.Add(lbl);
 
-            }
-        }
+        //    }
+        //}
       
 
 
-        #endregion =====================Close================================
+        //#endregion =====================Close================================
       
     }
 }
