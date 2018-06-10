@@ -23,7 +23,7 @@
              var problem = document.getElementById("TxtProblem").value;
       
             if ($.trim(asset).length < 3 ||$.trim(asset) == 0 || $.trim(asset) == "" || $.trim(asset) == null || $.trim(asset) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please input Asset ID'); }
-            else  if ($.trim(problem).length < 3||$.trim(problem) == 0 || $.trim(problem) == "" || $.trim(problem) == null || $.trim(problem) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please describe problem'); }
+            else  if ($.trim(problem).length < 5||$.trim(problem) == 0 || $.trim(problem) == "" || $.trim(problem) == null || $.trim(problem) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please describe problem Grather then 5 charcter'); }
 
             else {
                  var confirm_value = document.createElement("INPUT"); 
