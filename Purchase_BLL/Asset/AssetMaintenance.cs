@@ -29,7 +29,15 @@ namespace Purchase_BLL.Asset
             return taskgrid.TaskGridViewGetData(intItem, Mnumber,Convert.ToInt32("0"),Convert.ToInt32("0"),Convert.ToInt32("0"));
         }
 
-       
+        public DataTable MaintenaceJobstation()
+        {
+            try
+            {
+                TblJobstationByDeptTableAdapter adp = new TblJobstationByDeptTableAdapter();
+                return adp.GetServiceJobstationData();
+            }
+            catch { return new DataTable(); }
+        }
 
         public DataTable sparePartsView(int intItem, int Mnumber)
         {
@@ -434,10 +442,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UserRequestMaintenance(string name, string priority, string problem, int intenroll, int intjobid, string location, int dept)
+        public void UserRequestMaintenance(string name, string priority, string problem, int intenroll, int intLocationId, string location, int dept)
         {
             TblRequestServiceConfigureTableAdapter userrequestinsert = new TblRequestServiceConfigureTableAdapter();
-            userrequestinsert.UserRequestSupport(name, priority, problem, intenroll, intjobid, location, dept);
+            userrequestinsert.UserRequestSupport(name, priority, problem, intenroll, intLocationId, dept, location);
         }
 
         public DataTable GriedViewUserRequestData(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)
