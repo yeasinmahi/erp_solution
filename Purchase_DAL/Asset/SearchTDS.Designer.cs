@@ -1130,6 +1130,8 @@ namespace Purchase_DAL.Asset {
             
             private global::System.Data.DataColumn columnintID;
             
+            private global::System.Data.DataColumn columnintAssetType;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblAutoSearchAssetRegisterDataTable() {
@@ -1189,6 +1191,14 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intAssetTypeColumn {
+                get {
+                    return this.columnintAssetType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1224,12 +1234,13 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblAutoSearchAssetRegisterRow AddTblAutoSearchAssetRegisterRow(string strNameOfAsset, string strAssetID) {
+            public TblAutoSearchAssetRegisterRow AddTblAutoSearchAssetRegisterRow(string strNameOfAsset, string strAssetID, int intAssetType) {
                 TblAutoSearchAssetRegisterRow rowTblAutoSearchAssetRegisterRow = ((TblAutoSearchAssetRegisterRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strNameOfAsset,
                         strAssetID,
-                        null};
+                        null,
+                        intAssetType};
                 rowTblAutoSearchAssetRegisterRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblAutoSearchAssetRegisterRow);
                 return rowTblAutoSearchAssetRegisterRow;
@@ -1255,6 +1266,7 @@ namespace Purchase_DAL.Asset {
                 this.columnstrNameOfAsset = base.Columns["strNameOfAsset"];
                 this.columnstrAssetID = base.Columns["strAssetID"];
                 this.columnintID = base.Columns["intID"];
+                this.columnintAssetType = base.Columns["intAssetType"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1266,6 +1278,8 @@ namespace Purchase_DAL.Asset {
                 base.Columns.Add(this.columnstrAssetID);
                 this.columnintID = new global::System.Data.DataColumn("intID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintID);
+                this.columnintAssetType = new global::System.Data.DataColumn("intAssetType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintAssetType);
                 this.columnstrNameOfAsset.MaxLength = 250;
                 this.columnstrAssetID.MaxLength = 300;
                 this.columnintID.AutoIncrement = true;
@@ -5615,6 +5629,23 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intAssetType {
+                get {
+                    try {
+                        return ((int)(this[this.tableTblAutoSearchAssetRegister.intAssetTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intAssetType\' in table \'TblAutoSearchAssetRegister\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblAutoSearchAssetRegister.intAssetTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrNameOfAssetNull() {
                 return this.IsNull(this.tableTblAutoSearchAssetRegister.strNameOfAssetColumn);
             }
@@ -5635,6 +5666,18 @@ namespace Purchase_DAL.Asset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrAssetIDNull() {
                 this[this.tableTblAutoSearchAssetRegister.strAssetIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintAssetTypeNull() {
+                return this.IsNull(this.tableTblAutoSearchAssetRegister.intAssetTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintAssetTypeNull() {
+                this[this.tableTblAutoSearchAssetRegister.intAssetTypeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11358,34 +11401,41 @@ SELECT intWHID, strWareHoseName FROM tblWearHouse WHERE (intWHID = @intWHID)";
             tableMapping.ColumnMappings.Add("strNameOfAsset", "strNameOfAsset");
             tableMapping.ColumnMappings.Add("strAssetID", "strAssetID");
             tableMapping.ColumnMappings.Add("intID", "intID");
+            tableMapping.ColumnMappings.Add("intAssetType", "intAssetType");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ERP_Asset].[dbo].[tblFixedAssetRegister] WHERE (([intID] = @Original_intID) AND ((@IsNull_strNameOfAsset = 1 AND [strNameOfAsset] IS NULL) OR ([strNameOfAsset] = @Original_strNameOfAsset)) AND ((@IsNull_strAssetID = 1 AND [strAssetID] IS NULL) OR ([strAssetID] = @Original_strAssetID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ERP_Asset].[dbo].[tblFixedAssetRegister] WHERE (([intID] = @Original_intID) AND ((@IsNull_strNameOfAsset = 1 AND [strNameOfAsset] IS NULL) OR ([strNameOfAsset] = @Original_strNameOfAsset)) AND ((@IsNull_strAssetID = 1 AND [strAssetID] IS NULL) OR ([strAssetID] = @Original_strAssetID)) AND ((@IsNull_intAssetType = 1 AND [intAssetType] IS NULL) OR ([intAssetType] = @Original_intAssetType)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strNameOfAsset", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strNameOfAsset", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strNameOfAsset", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strNameOfAsset", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strAssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strAssetID", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intAssetType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetType", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intAssetType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_Asset].[dbo].[tblFixedAssetRegister] ([strNameOfAsset], [strAsse" +
-                "tID]) VALUES (@strNameOfAsset, @strAssetID)";
+                "tID], [intAssetType]) VALUES (@strNameOfAsset, @strAssetID, @intAssetType)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strNameOfAsset", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strNameOfAsset", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAssetID", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAssetType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_Asset].[dbo].[tblFixedAssetRegister] SET [strNameOfAsset] = @strNameOfAsset, [strAssetID] = @strAssetID WHERE (([intID] = @Original_intID) AND ((@IsNull_strNameOfAsset = 1 AND [strNameOfAsset] IS NULL) OR ([strNameOfAsset] = @Original_strNameOfAsset)) AND ((@IsNull_strAssetID = 1 AND [strAssetID] IS NULL) OR ([strAssetID] = @Original_strAssetID)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_Asset].[dbo].[tblFixedAssetRegister] SET [strNameOfAsset] = @strNameOfAsset, [strAssetID] = @strAssetID, [intAssetType] = @intAssetType WHERE (([intID] = @Original_intID) AND ((@IsNull_strNameOfAsset = 1 AND [strNameOfAsset] IS NULL) OR ([strNameOfAsset] = @Original_strNameOfAsset)) AND ((@IsNull_strAssetID = 1 AND [strAssetID] IS NULL) OR ([strAssetID] = @Original_strAssetID)) AND ((@IsNull_intAssetType = 1 AND [intAssetType] IS NULL) OR ([intAssetType] = @Original_intAssetType)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strNameOfAsset", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strNameOfAsset", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAssetID", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAssetType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strNameOfAsset", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strNameOfAsset", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strNameOfAsset", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strNameOfAsset", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strAssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strAssetID", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intAssetType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetType", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intAssetType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11401,14 +11451,14 @@ SELECT intWHID, strWareHoseName FROM tblWearHouse WHERE (intWHID = @intWHID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT   intID, strNameOfAsset,strAssetID   FROM [ERP_Asset].[dbo].[tblFixedAsset" +
-                "Register] where ysnActive=@Active";
+            this._commandCollection[0].CommandText = "SELECT   intID, strNameOfAsset,strAssetID,intAssetType   FROM [ERP_Asset].[dbo].[" +
+                "tblFixedAssetRegister] where ysnActive=@Active";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "YsnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT   intID, strNameOfAsset,strAssetID   FROM [ERP_Asset].[dbo].[tblFixedAsset" +
-                "Register] where  intunit =@unit and ysnActive=1";
+            this._commandCollection[1].CommandText = "SELECT intAssetType, intID, strAssetID, strNameOfAsset FROM tblFixedAssetRegister" +
+                " WHERE (intUNIT = @unit) AND (YsnActive = 1)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUNIT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

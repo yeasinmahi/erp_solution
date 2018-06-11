@@ -639,6 +639,14 @@ namespace SAD_BLL.Sales
 
         }
 
-
+        public DataTable getcustomerbasetotalchallanqnt(int tripid, int customerid)
+        {
+            try
+            {
+                SprChalanQntTripandCustomerBaseTableAdapter ta = new SprChalanQntTripandCustomerBaseTableAdapter();
+                return ta.GetDataChalanQntTripandCustomerBase(tripid, customerid);
+            }
+            catch (Exception ex) { return new DataTable(); }
+        }
     }
 }

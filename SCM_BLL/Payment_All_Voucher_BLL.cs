@@ -206,7 +206,21 @@ namespace SCM_BLL
             }
             catch (Exception ex) { return ex.ToString(); }
         }
-        
+        public DataTable GetMDApprovalData(int intUnit, DateTime fDate, DateTime tDate, int intType)
+        {
+            SprPaymentRequestStatementTableAdapter adp = new SprPaymentRequestStatementTableAdapter();
+            try
+            { return adp.GetMDApprovalData(intUnit, fDate, tDate, intType); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUnitAddress(int intUnitID)
+        {
+            SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
+            try
+            { return adp.GetUnitAddress(intUnitID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
 
 
 

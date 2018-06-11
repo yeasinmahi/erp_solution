@@ -61,7 +61,7 @@
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr><td colspan="2"><img src="img/Banner.png" width="100%"; height="120px" /></td></tr>            
             <tr style="text-align:center">
-                <td style=" padding: 60px 0px 0px 0px"><asp:Button ID="btnCustomer" runat="server" CssClass="btnCustomer"  width=300px height=50px  Text="COUSTOMERS" Font-Bold="true" OnClick="btnCustomer_Click"/></td>  
+                <td style=" padding: 60px 0px 0px 0px"><asp:Button ID="btnCustomer" runat="server" CssClass="btnCustomer"  width=300px height=50px  Text="CUSTOMERS" Font-Bold="true" OnClick="btnCustomer_Click"/></td>  
                 <td style=" padding: 60px 0px 0px 0px"><asp:Button ID="btnSupport" runat="server" CssClass="btnSupport"  width=300px height=50px Text="SUPPORTERS" Font-Bold="true" OnClick="btnSupport_Click"/></td>  
             </tr>
             

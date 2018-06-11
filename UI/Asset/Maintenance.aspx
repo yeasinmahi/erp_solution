@@ -391,7 +391,8 @@
                              <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" />
                              <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" />
                              <asp:BoundField DataField="dteFixed/Repair" HeaderText="Request Date" DataFormatString="{0:d}" SortExpression="dteFixed/Repair" />
-                             <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" />
+                             <asp:BoundField DataField="strUrgentRequest" HeaderText="Urgent" SortExpression="strUrgentRequest" />
+                             <asp:BoundField DataField="TypeOfMaintenance" HeaderText="Request Type" SortExpression="TypeOfMaintenance" />
                              <asp:BoundField DataField="Name" HeaderText="Request By" SortExpression="Name" />
                              <asp:TemplateField HeaderText="WorkOrder">
                                  <ItemTemplate>

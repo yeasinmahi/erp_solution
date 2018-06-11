@@ -952,5 +952,25 @@ namespace HR_BLL.TourPlan
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable GetBrandItemInventroyReport(DateTime from, DateTime to, int whid, int unit, int itmid, int type)
+        {
+            try
+            {
+                SprBranItemInventorySystemTableAdapter ta = new SprBranItemInventorySystemTableAdapter();
+                return ta.GetDataBranItemInventorySystem(from, to, whid,unit, itmid, type);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetBrandItemInventroyReportTopsheet(DateTime from, DateTime to, int whid, int unit, int itmid, int type)
+        {
+            try
+            {
+                SprBranItemInventorySystemTopSheetTableAdapter ta = new SprBranItemInventorySystemTopSheetTableAdapter();
+                return ta.GetDataBranItemInventorySystemTopSheet(from, to, whid, unit, itmid, type);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

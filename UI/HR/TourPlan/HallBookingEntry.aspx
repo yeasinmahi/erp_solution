@@ -104,13 +104,18 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-    <div class="leaveApplication_container"><b>Meeting Hall Room Booking Entry: </b><asp:HiddenField ID="hdnconfirm" runat="server" /> 
+        <div>
+            <a style="font-size:24px;padding-top:300px"  href="https://video.akij.net/watch/how-to-schedule-a-meeting-in-outlook-2016_4T44zgcZ3jkkuuY.html/list/o1PSWvwCr2vIzR5" target="_blank"><u>How to schedule a meeting in Outlook:</u></a>
+
+        </div>
+   <%-- <div class="leaveApplication_container"><b>Meeting Hall Room Booking Entry: </b><asp:HiddenField ID="hdnconfirm" runat="server" /> 
     <asp:HiddenField ID="hdnAppId" runat="server" /><asp:HiddenField ID="hdncontact" runat="server" />
           <asp:HiddenField ID="hdnEmployeeID" runat="server" />
         <asp:HiddenField ID="hdnUserID" runat="server" /> <asp:HiddenField ID="hdfEmpCode" runat="server" /> <asp:HiddenField ID="hdnName" runat="server" /><asp:HiddenField ID="hdnUnitName" runat="server" />
        <asp:HiddenField ID="hdnDepartmentName" runat="server" /><asp:HiddenField ID="hdnDesignation" runat="server" />
-        <input type="hidden" id="DATE" name="DATE" value="WOULD_LIKE_TO_ADD_DATE_HERE">
-    <table style="width:Auto";>
+        <input type="hidden" id="DATE" name="DATE" value="WOULD_LIKE_TO_ADD_DATE_HERE">--%>
+            
+    <%--<table style="width:Auto";>
         <tr class="tblroweven">
          <td style="text-align:right;"><asp:Label ID="lbldteFrom" CssClass="lbl" runat="server" Text="Date : "></asp:Label></td>
         <td><asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox" OnTextChanged="txtDteFrom_TextChanged"></asp:TextBox>
@@ -193,8 +198,8 @@
         <div id="btn" style="text-align:center;"><a class="nextclick" style="cursor:pointer; font-size:10px;" href="#" onclick="Print()">Print</a></div>
         </td>
         </tr>            
-        </table>
-        </div>
+        </table>--%>
+       <%-- </div>--%>
    
    
 <%--=========================================End My Code From Here=================================================--%>

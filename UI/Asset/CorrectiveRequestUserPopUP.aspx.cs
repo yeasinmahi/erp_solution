@@ -10,26 +10,20 @@ using Purchase_BLL.Asset;
 
 namespace UI.Asset
 {
-    public partial class CorrectiveRequestUserPopUP : System.Web.UI.Page
+    public partial class CorrectiveRequestUserPopUP :BasePage
     {
-        AssetMaintenance objUserRequest = new AssetMaintenance();
-        DataTable depertmnet = new DataTable();
-        DataTable dt = new DataTable();
-        DataTable asset = new DataTable();
-        int intItem;
+        AssetMaintenance objUserRequest = new AssetMaintenance(); 
+        DataTable dt = new DataTable(); 
+     
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Int32 Mnumber = Int32.Parse(Request.QueryString["ID"].ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                //Int32 Mnumber = int.Parse("0".ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                intItem = 51;
-                dt = objUserRequest.CorrectiveUserRequestDetalisView(intItem, Mnumber, intenroll, intjobid, intdept);
+                int Mnumber = int.Parse(Request.QueryString["ID"].ToString()); 
+                dt = objUserRequest.CorrectiveUserRequestDetalisView(51, Mnumber, 0, 0, 0);
                 dgvView.DataSource = dt;
                 dgvView.DataBind();
+                dt.Clear();
             }
 
         }

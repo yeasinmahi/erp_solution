@@ -7,103 +7,226 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Purchase_BLL.Asset;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Text.RegularExpressions;
 
 namespace UI.Asset
 {
     public partial class CorrectiveRequestUser : BasePage
     {
-        AssetMaintenance objrequest = new AssetMaintenance();
-        DataTable depertmnet = new DataTable();
+        AssetMaintenance objrequest = new AssetMaintenance(); 
         DataTable dt = new DataTable();
         DataTable asset = new DataTable();
-        int intItem;
+        int intItem, intjobid, intenroll, intdept, intAssetAutoId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //string problem = TxtProblem.Text.ToString();
-                //string priority = DdlREPriotiy.SelectedItem.ToString();
-                //string name = TxtName.Text.ToString();
-                ////Int32 dept =Int32.Parse(DdlDept.SelectedValue.ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 Mnumber = int.Parse("0".ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            
 
-                intItem = 36;
-                dt = objrequest.GriedViewUserRequestData(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvView.DataSource = dt;
-                dgvView.DataBind();
-                if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
-                {
-                    depertmnet = objrequest.DepartmentbyCorporate();
-                    DdlDept.DataSource = depertmnet;
-                    DdlDept.DataTextField = "strDepatrment";
-                    DdlDept.DataValueField = "intDepartmentID";
-                    DdlDept.DataBind();
-                }
+                  intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                  int Mnumber = int.Parse("0".ToString());
+                  intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                  intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-                else
-                {
+                dt = objrequest.MaintenaceJobstation();
+                ddlLocation.DataSource = dt;
+                ddlLocation.DataTextField = "strName";
+                ddlLocation.DataValueField = "Id";
+                ddlLocation.DataBind();
 
-                    depertmnet = objrequest.DepartmentbyJobstation(intjobid);
-                    DdlDept.DataSource = depertmnet;
-                    DdlDept.DataTextField = "strDepatrment";
-                    DdlDept.DataValueField = "intDepartmentID";
-                    DdlDept.DataBind();
-                }
+                dt = objrequest.NatureOfMaintenace();
+                ddlType.DataSource = dt;
+                ddlType.DataTextField = "strName";
+                ddlType.DataValueField = "Id";
+                ddlType.DataBind();
 
+                int location = int.Parse(ddlLocation.SelectedValue);
+                getDepartment(location);
+                ClearandBind(intenroll);
+                dt.Clear();
                 pnlUpperControl.DataBind();
+               
+
+                //if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
+                //{
+                //    depertmnet = objrequest.DepartmentbyCorporate();
+                //    DdlDept.DataSource = depertmnet;
+                //    DdlDept.DataTextField = "strDepatrment";
+                //    DdlDept.DataValueField = "intDepartmentID";
+                //    DdlDept.DataBind();
+                //} 
+                //else
+                //{
+
+                //    depertmnet = objrequest.DepartmentbyJobstation(intjobid);
+                //    DdlDept.DataSource = depertmnet;
+                //    DdlDept.DataTextField = "strDepatrment";
+                //    DdlDept.DataValueField = "intDepartmentID";
+                //    DdlDept.DataBind();
+                //}
+
+              
 
             }
+        }
+
+        private void getDepartment(int location)
+        {
+            try
+            {
+              
+                if(location==0)
+                {
+                    dt = objrequest.DepartmentbyCorporate();
+                    DdlDept.DataSource = dt;
+                    DdlDept.DataTextField = "strDepatrment";
+                    DdlDept.DataValueField = "intDepartmentID";
+                    DdlDept.DataBind();
+
+                }
+                else
+                {
+                    dt = objrequest.DepartmentbyJobstation(location);
+                    DdlDept.DataSource = dt;
+                    DdlDept.DataTextField = "strDepatrment";
+                    DdlDept.DataValueField = "intDepartmentID";
+                    DdlDept.DataBind();
+                }
+                dt.Clear();
+            }
+            catch { }
         }
 
         protected void BtnRequest_Click(object sender, EventArgs e)
         {
             try
             {
-                string problem = TxtProblem.Text.ToString();
-                string priority = DdlREPriotiy.SelectedItem.ToString();
-                string name = TxtAsset.Text.ToString();
-                string location = TxtLocation.Text.ToString();
-                Int32 dept = Int32.Parse(DdlDept.SelectedValue.ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 Mnumber = int.Parse("0".ToString());
-                objrequest.UserRequestMaintenance(name, priority, problem, intenroll, intjobid, location, dept);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
-                TxtAsset.Text = "";
-                TxtName.Text = "";
-                TxtProblem.Text = "";
-
-                intItem = 36;
-                dt = objrequest.GriedViewUserRequestData(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvView.DataSource = dt;
-                dgvView.DataBind();
-
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = ""; string assetName = ""; string type = ""; 
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); intAssetAutoId = int.Parse(arrayKey[3].ToString()); type = arrayKey[5].ToString(); }
+               
+                if (hdnConfirm.Value.ToString()=="1")
+                {
+                    string problem = TxtProblem.Text.ToString();
+                    string priority = DdlREPriotiy.SelectedItem.ToString(); 
+                    string location = ddlLocation.SelectedItem.ToString();
+                    string urgent = txtUrgent.Text.ToString();
+                    int intType = int.Parse(ddlType.SelectedValue);
+                    int requestToLocation = int.Parse(ddlLocation.SelectedValue);
+                    int dept = int.Parse(DdlDept.SelectedValue);
+                    int intUserjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                     
+                    if (requestToLocation == 0)
+                    {
+                        objrequest.UserRequestMaintenance(assetId, intAssetAutoId, priority, problem, intenroll, 15, location, dept, urgent,intType);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
+                    }
+                    else
+                    {
+                        objrequest.UserRequestMaintenance(assetId, intAssetAutoId,priority, problem, intenroll, requestToLocation, location, dept, urgent, intType);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
+                    }
+                    ClearandBind(intenroll);
+                   
+                }
+                else { }
+                
                 
             }
             catch { }
       
         }
 
+        private void ClearandBind(int enroll)
+        {
+            TxtAsset.Text = "";
+            TxtName.Text = "";
+            TxtProblem.Text = "";
+            txtUrgent.Text = "";
+            lblDetalis.Text = "";
+            lblDetalis.Visible = false;
+            if (DdlREPriotiy.SelectedItem.ToString() == "High")
+            {
+                lblUrgent.Visible = true;
+                txtUrgent.Visible = true;
+            }
+            else {
+                lblUrgent.Visible = false;
+                txtUrgent.Visible = false;
+            }
+           
+            lblValidity.Visible = false;
+            dt = objrequest.GriedViewUserRequestData(36, 0, enroll, 0, 0);
+            dgvView.DataSource = dt;
+            dgvView.DataBind();
+        }
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetAssetData(string prefixText, int count)
+        {
+
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+            int Active = int.Parse(1.ToString());
+            return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
+
+        }
+
+        protected void DdlREPriotiy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DdlREPriotiy.SelectedValue.ToString() == "High")
+                {
+                    lblUrgent.Visible = true; txtUrgent.Visible = true;
+                }
+                else { txtUrgent.Visible = false; lblUrgent.Visible = false; }
+            }
+            catch { }
+        }
+
         protected void TxtAsset_TextChanged(object sender, EventArgs e)
         {
-            string number = TxtAsset.Text.ToString();
-            asset = objrequest.showassetData(number);
-            if (asset.Rows.Count > 0)
+            try
             {
-                TxtName.Text = asset.Rows[0]["strNameOfAsset"].ToString();
-                TxtUnit.Text = asset.Rows[0]["strUnit"].ToString();
-                TxtStation.Text = asset.Rows[0]["strJobStationName"].ToString();
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = ""; string assetName = ""; string assetType = "";int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId =int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                asset = objrequest.showassetData(assetId);
+                if (asset.Rows.Count > 0)
+                {
+                    TxtName.Text = asset.Rows[0]["strNameOfAsset"].ToString();
+                    TxtUnit.Text = asset.Rows[0]["strUnit"].ToString();
+                    TxtStation.Text = asset.Rows[0]["strJobStationName"].ToString();
+                    if (assetType == "8")
+                    {
+                        lblDetalis.Visible = true;
+                        lblValidity.Visible = true;
+                        dt = objrequest.getVehicleInformation(assetId);
+                        DateTime dteTaxtoken = DateTime.Parse(dt.Rows[0]["taxtoken"].ToString());
+                        DateTime dteFitness = DateTime.Parse(dt.Rows[0]["Fitness"].ToString());
+                        DateTime dteRoutePermit = DateTime.Parse(dt.Rows[0]["RoutePermit"].ToString());
+                        lblDetalis.Text = "Tax Token:" + dteTaxtoken.ToString("dd-MM-yyyy") + "  Fitness:" + dteFitness.ToString("dd-MM-yyyy") + "  Rute Permit:" + dteRoutePermit.ToString("dd-MM-yyyy");
+                    }
+                    else
+                    {
+                        lblDetalis.Visible = false;
+                        lblValidity.Visible = false;
 
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+
+                }
             }
+            catch { }
+            
         }
 
         protected void BtnDetalis_Click(object sender, EventArgs e)
@@ -113,20 +236,24 @@ namespace UI.Asset
                 char[] delimiterChars = { '^' };
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
-                string[] searchKey = temp.Split(delimiterChars);
-
-                string ordernumber1 = searchKey[0].ToString();
-                Int32 id = Int32.Parse(ordernumber1.ToString());
-                // Response.Write(ordernumber); 
-
+                string[] searchKey = temp.Split(delimiterChars); 
+                int id = int.Parse(searchKey[0].ToString());
+                // Response.Write(ordernumber);  
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + id + "');", true);
-
-
-                
+                 
             }
             catch { }
         }
 
-       
+        protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+               int  location = int.Parse(ddlLocation.SelectedValue);
+                getDepartment(location);
+                 
+            }
+            catch { }
+        }
     }
 }

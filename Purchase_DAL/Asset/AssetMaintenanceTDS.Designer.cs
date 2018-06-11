@@ -96,6 +96,10 @@ namespace Purchase_DAL.Asset {
         
         private TblUpdatelMaintenanceTaskDataTable tableTblUpdatelMaintenanceTask;
         
+        private TblJobstationByDeptDataTable tableTblJobstationByDept;
+        
+        private VehicleRenewalInfoDataTableDataTable tableVehicleRenewalInfoDataTable;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -231,6 +235,12 @@ namespace Purchase_DAL.Asset {
                 }
                 if ((ds.Tables["TblUpdatelMaintenanceTask"] != null)) {
                     base.Tables.Add(new TblUpdatelMaintenanceTaskDataTable(ds.Tables["TblUpdatelMaintenanceTask"]));
+                }
+                if ((ds.Tables["TblJobstationByDept"] != null)) {
+                    base.Tables.Add(new TblJobstationByDeptDataTable(ds.Tables["TblJobstationByDept"]));
+                }
+                if ((ds.Tables["VehicleRenewalInfoDataTable"] != null)) {
+                    base.Tables.Add(new VehicleRenewalInfoDataTableDataTable(ds.Tables["VehicleRenewalInfoDataTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -612,6 +622,26 @@ namespace Purchase_DAL.Asset {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TblJobstationByDeptDataTable TblJobstationByDept {
+            get {
+                return this.tableTblJobstationByDept;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public VehicleRenewalInfoDataTableDataTable VehicleRenewalInfoDataTable {
+            get {
+                return this.tableVehicleRenewalInfoDataTable;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -784,6 +814,12 @@ namespace Purchase_DAL.Asset {
                 }
                 if ((ds.Tables["TblUpdatelMaintenanceTask"] != null)) {
                     base.Tables.Add(new TblUpdatelMaintenanceTaskDataTable(ds.Tables["TblUpdatelMaintenanceTask"]));
+                }
+                if ((ds.Tables["TblJobstationByDept"] != null)) {
+                    base.Tables.Add(new TblJobstationByDeptDataTable(ds.Tables["TblJobstationByDept"]));
+                }
+                if ((ds.Tables["VehicleRenewalInfoDataTable"] != null)) {
+                    base.Tables.Add(new VehicleRenewalInfoDataTableDataTable(ds.Tables["VehicleRenewalInfoDataTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -1034,6 +1070,18 @@ namespace Purchase_DAL.Asset {
                     this.tableTblUpdatelMaintenanceTask.InitVars();
                 }
             }
+            this.tableTblJobstationByDept = ((TblJobstationByDeptDataTable)(base.Tables["TblJobstationByDept"]));
+            if ((initTable == true)) {
+                if ((this.tableTblJobstationByDept != null)) {
+                    this.tableTblJobstationByDept.InitVars();
+                }
+            }
+            this.tableVehicleRenewalInfoDataTable = ((VehicleRenewalInfoDataTableDataTable)(base.Tables["VehicleRenewalInfoDataTable"]));
+            if ((initTable == true)) {
+                if ((this.tableVehicleRenewalInfoDataTable != null)) {
+                    this.tableVehicleRenewalInfoDataTable.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1116,6 +1164,10 @@ namespace Purchase_DAL.Asset {
             base.Tables.Add(this.tableSprBRTAVheicleTypeSearching);
             this.tableTblUpdatelMaintenanceTask = new TblUpdatelMaintenanceTaskDataTable();
             base.Tables.Add(this.tableTblUpdatelMaintenanceTask);
+            this.tableTblJobstationByDept = new TblJobstationByDeptDataTable();
+            base.Tables.Add(this.tableTblJobstationByDept);
+            this.tableVehicleRenewalInfoDataTable = new VehicleRenewalInfoDataTableDataTable();
+            base.Tables.Add(this.tableVehicleRenewalInfoDataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1336,6 +1388,18 @@ namespace Purchase_DAL.Asset {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeTblJobstationByDept() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeVehicleRenewalInfoDataTable() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1496,6 +1560,12 @@ namespace Purchase_DAL.Asset {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblUpdatelMaintenanceTaskRowChangeEventHandler(object sender, TblUpdatelMaintenanceTaskRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void TblJobstationByDeptRowChangeEventHandler(object sender, TblJobstationByDeptRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void VehicleRenewalInfoDataTableRowChangeEventHandler(object sender, VehicleRenewalInfoDataTableRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -11960,6 +12030,546 @@ namespace Purchase_DAL.Asset {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TblJobstationByDeptDataTable : global::System.Data.TypedTableBase<TblJobstationByDeptRow> {
+            
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columnstrName;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblJobstationByDeptDataTable() {
+                this.TableName = "TblJobstationByDept";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal TblJobstationByDeptDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected TblJobstationByDeptDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strNameColumn {
+                get {
+                    return this.columnstrName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblJobstationByDeptRow this[int index] {
+                get {
+                    return ((TblJobstationByDeptRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblJobstationByDeptRowChangeEventHandler TblJobstationByDeptRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblJobstationByDeptRowChangeEventHandler TblJobstationByDeptRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblJobstationByDeptRowChangeEventHandler TblJobstationByDeptRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblJobstationByDeptRowChangeEventHandler TblJobstationByDeptRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddTblJobstationByDeptRow(TblJobstationByDeptRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblJobstationByDeptRow AddTblJobstationByDeptRow(int Id, string strName) {
+                TblJobstationByDeptRow rowTblJobstationByDeptRow = ((TblJobstationByDeptRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Id,
+                        strName};
+                rowTblJobstationByDeptRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblJobstationByDeptRow);
+                return rowTblJobstationByDeptRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TblJobstationByDeptDataTable cln = ((TblJobstationByDeptDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TblJobstationByDeptDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnId = base.Columns["Id"];
+                this.columnstrName = base.Columns["strName"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrName);
+                this.columnstrName.MaxLength = 250;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblJobstationByDeptRow NewTblJobstationByDeptRow() {
+                return ((TblJobstationByDeptRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TblJobstationByDeptRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TblJobstationByDeptRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TblJobstationByDeptRowChanged != null)) {
+                    this.TblJobstationByDeptRowChanged(this, new TblJobstationByDeptRowChangeEvent(((TblJobstationByDeptRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TblJobstationByDeptRowChanging != null)) {
+                    this.TblJobstationByDeptRowChanging(this, new TblJobstationByDeptRowChangeEvent(((TblJobstationByDeptRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TblJobstationByDeptRowDeleted != null)) {
+                    this.TblJobstationByDeptRowDeleted(this, new TblJobstationByDeptRowChangeEvent(((TblJobstationByDeptRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TblJobstationByDeptRowDeleting != null)) {
+                    this.TblJobstationByDeptRowDeleting(this, new TblJobstationByDeptRowChangeEvent(((TblJobstationByDeptRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveTblJobstationByDeptRow(TblJobstationByDeptRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AssetMaintenanceTDS ds = new AssetMaintenanceTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TblJobstationByDeptDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class VehicleRenewalInfoDataTableDataTable : global::System.Data.TypedTableBase<VehicleRenewalInfoDataTableRow> {
+            
+            private global::System.Data.DataColumn columntaxtoken;
+            
+            private global::System.Data.DataColumn columnFitness;
+            
+            private global::System.Data.DataColumn columnRoutePermit;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRenewalInfoDataTableDataTable() {
+                this.TableName = "VehicleRenewalInfoDataTable";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal VehicleRenewalInfoDataTableDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected VehicleRenewalInfoDataTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn taxtokenColumn {
+                get {
+                    return this.columntaxtoken;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FitnessColumn {
+                get {
+                    return this.columnFitness;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RoutePermitColumn {
+                get {
+                    return this.columnRoutePermit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRenewalInfoDataTableRow this[int index] {
+                get {
+                    return ((VehicleRenewalInfoDataTableRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event VehicleRenewalInfoDataTableRowChangeEventHandler VehicleRenewalInfoDataTableRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event VehicleRenewalInfoDataTableRowChangeEventHandler VehicleRenewalInfoDataTableRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event VehicleRenewalInfoDataTableRowChangeEventHandler VehicleRenewalInfoDataTableRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event VehicleRenewalInfoDataTableRowChangeEventHandler VehicleRenewalInfoDataTableRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddVehicleRenewalInfoDataTableRow(VehicleRenewalInfoDataTableRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRenewalInfoDataTableRow AddVehicleRenewalInfoDataTableRow(System.DateTime taxtoken, System.DateTime Fitness, System.DateTime RoutePermit) {
+                VehicleRenewalInfoDataTableRow rowVehicleRenewalInfoDataTableRow = ((VehicleRenewalInfoDataTableRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        taxtoken,
+                        Fitness,
+                        RoutePermit};
+                rowVehicleRenewalInfoDataTableRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowVehicleRenewalInfoDataTableRow);
+                return rowVehicleRenewalInfoDataTableRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                VehicleRenewalInfoDataTableDataTable cln = ((VehicleRenewalInfoDataTableDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new VehicleRenewalInfoDataTableDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columntaxtoken = base.Columns["taxtoken"];
+                this.columnFitness = base.Columns["Fitness"];
+                this.columnRoutePermit = base.Columns["RoutePermit"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columntaxtoken = new global::System.Data.DataColumn("taxtoken", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntaxtoken);
+                this.columnFitness = new global::System.Data.DataColumn("Fitness", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFitness);
+                this.columnRoutePermit = new global::System.Data.DataColumn("RoutePermit", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoutePermit);
+                this.columntaxtoken.ReadOnly = true;
+                this.columnFitness.ReadOnly = true;
+                this.columnRoutePermit.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRenewalInfoDataTableRow NewVehicleRenewalInfoDataTableRow() {
+                return ((VehicleRenewalInfoDataTableRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new VehicleRenewalInfoDataTableRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(VehicleRenewalInfoDataTableRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.VehicleRenewalInfoDataTableRowChanged != null)) {
+                    this.VehicleRenewalInfoDataTableRowChanged(this, new VehicleRenewalInfoDataTableRowChangeEvent(((VehicleRenewalInfoDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.VehicleRenewalInfoDataTableRowChanging != null)) {
+                    this.VehicleRenewalInfoDataTableRowChanging(this, new VehicleRenewalInfoDataTableRowChangeEvent(((VehicleRenewalInfoDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.VehicleRenewalInfoDataTableRowDeleted != null)) {
+                    this.VehicleRenewalInfoDataTableRowDeleted(this, new VehicleRenewalInfoDataTableRowChangeEvent(((VehicleRenewalInfoDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.VehicleRenewalInfoDataTableRowDeleting != null)) {
+                    this.VehicleRenewalInfoDataTableRowDeleting(this, new VehicleRenewalInfoDataTableRowChangeEvent(((VehicleRenewalInfoDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveVehicleRenewalInfoDataTableRow(VehicleRenewalInfoDataTableRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AssetMaintenanceTDS ds = new AssetMaintenanceTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "VehicleRenewalInfoDataTableDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class TblAssetServicingListRow : global::System.Data.DataRow {
@@ -15787,6 +16397,178 @@ namespace Purchase_DAL.Asset {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TblJobstationByDeptRow : global::System.Data.DataRow {
+            
+            private TblJobstationByDeptDataTable tableTblJobstationByDept;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal TblJobstationByDeptRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTblJobstationByDept = ((TblJobstationByDeptDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Id {
+                get {
+                    try {
+                        return ((int)(this[this.tableTblJobstationByDept.IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'TblJobstationByDept\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblJobstationByDept.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strName {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblJobstationByDept.strNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'TblJobstationByDept\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblJobstationByDept.strNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIdNull() {
+                return this.IsNull(this.tableTblJobstationByDept.IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIdNull() {
+                this[this.tableTblJobstationByDept.IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrNameNull() {
+                return this.IsNull(this.tableTblJobstationByDept.strNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrNameNull() {
+                this[this.tableTblJobstationByDept.strNameColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class VehicleRenewalInfoDataTableRow : global::System.Data.DataRow {
+            
+            private VehicleRenewalInfoDataTableDataTable tableVehicleRenewalInfoDataTable;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal VehicleRenewalInfoDataTableRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableVehicleRenewalInfoDataTable = ((VehicleRenewalInfoDataTableDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime taxtoken {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableVehicleRenewalInfoDataTable.taxtokenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'taxtoken\' in table \'VehicleRenewalInfoDataTable\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleRenewalInfoDataTable.taxtokenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime Fitness {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableVehicleRenewalInfoDataTable.FitnessColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Fitness\' in table \'VehicleRenewalInfoDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleRenewalInfoDataTable.FitnessColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime RoutePermit {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableVehicleRenewalInfoDataTable.RoutePermitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RoutePermit\' in table \'VehicleRenewalInfoDataTable\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleRenewalInfoDataTable.RoutePermitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IstaxtokenNull() {
+                return this.IsNull(this.tableVehicleRenewalInfoDataTable.taxtokenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SettaxtokenNull() {
+                this[this.tableVehicleRenewalInfoDataTable.taxtokenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFitnessNull() {
+                return this.IsNull(this.tableVehicleRenewalInfoDataTable.FitnessColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFitnessNull() {
+                this[this.tableVehicleRenewalInfoDataTable.FitnessColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRoutePermitNull() {
+                return this.IsNull(this.tableVehicleRenewalInfoDataTable.RoutePermitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRoutePermitNull() {
+                this[this.tableVehicleRenewalInfoDataTable.RoutePermitColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -16996,6 +17778,74 @@ namespace Purchase_DAL.Asset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblUpdatelMaintenanceTaskRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class TblJobstationByDeptRowChangeEvent : global::System.EventArgs {
+            
+            private TblJobstationByDeptRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblJobstationByDeptRowChangeEvent(TblJobstationByDeptRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblJobstationByDeptRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class VehicleRenewalInfoDataTableRowChangeEvent : global::System.EventArgs {
+            
+            private VehicleRenewalInfoDataTableRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRenewalInfoDataTableRowChangeEvent(VehicleRenewalInfoDataTableRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRenewalInfoDataTableRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -20575,9 +21425,10 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"  Insert into [ERP_Asset].[dbo].[tblPMServiceConfigure]([strAssetNumber],[strServiceName],[YesnServiceType],[strPriroty],[dteFixed/Repair],[strProblem],[YesnComplete],[intInsertBy],[intJobStationID],[intDept],YsnWorkOrder,YsnMTask,YesnActive,strServiceProvideBy,YsnServiceProvideType,monServiceCost) values (@number,@repair,1,@priority, @dteRepair, @problem,0, @intenroll, @intjobid, @intdept,0,0,1,@provide,@ysnprovide,@repairsCost)";
+            this._commandCollection[0].CommandText = @"  Insert into [ERP_Asset].[dbo].[tblPMServiceConfigure]([strAssetNumber],intAssetAutoId,[strServiceName],[YesnServiceType],[strPriroty],[dteFixed/Repair],[strProblem],[YesnComplete],[intInsertBy],[intJobStationID],[intDept],YsnWorkOrder,YsnMTask,YesnActive,strServiceProvideBy,YsnServiceProvideType,monServiceCost,YsnUserRequest) values (@strAssetId,@intAssetAutoId,@repair,1,@priority, @dteRepair, @problem,0, @intenroll, @intjobid, @intdept,0,0,1,@provide,@ysnprovide,@repairsCost,0)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@number", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAssetId", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAssetAutoId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetAutoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@repair", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@priority", global::System.Data.SqlDbType.VarChar, 90, global::System.Data.ParameterDirection.Input, 0, 0, "strPriroty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteRepair", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "dteFixed/Repair", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20586,93 +21437,102 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@provide", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceProvideBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnprovide", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "YsnServiceProvideType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnprovide", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnServiceProvideType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@repairsCost", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @" Insert into [ERP_Asset].[dbo].[tblPMServiceConfigure]([strAssetNumber],[YesnServiceType],[strPriroty],[dteFixed/Repair],[strProblem],[YesnComplete],[intInsertBy],[intJobStationID],[intDept],YsnWorkOrder,YsnMTask,YesnActive,strLocation,intRequestToDept,YsnUserRequest,YsnServiceProvideType) 
-   values (@name,1,@priority,getDate(), @problem,0, @intenroll, @intjobid, 0,0,0,1,@Location,@dept,1,0)";
+            this._commandCollection[1].CommandText = @"  Insert into [ERP_Asset].[dbo].[tblPMServiceConfigure]([strAssetNumber],intAssetAutoId,[YesnServiceType],[strPriroty],[dteFixed/Repair],[strProblem],[YesnComplete],[intInsertBy],[intJobStationID],[intDept],YsnWorkOrder,YsnMTask,YesnActive,strLocation,YsnUserRequest,YsnServiceProvideType,strUrgentRequest,intTypeOfService) 
+   values (@strAssetId,@intAssetAutoID,1,@priority,getDate(), @problem,0, @intenroll, @intLocationId,@deptId,0,0,1,@strLocation,1,0,@urgent,@intType)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAssetId", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAssetAutoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetAutoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@priority", global::System.Data.SqlDbType.VarChar, 90, global::System.Data.ParameterDirection.Input, 0, 0, "strPriroty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@problem", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "strProblem", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Location", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strLocation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRequestToDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLocationId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deptId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strLocation", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strLocation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@urgent", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strUrgentRequest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intTypeOfService", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblRequestServiceConfigureDataTable RepairRequestConfigInsertGetData(string number, string repair, string priority, global::System.Nullable<global::System.DateTime> dteRepair, string problem, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, string provide, global::System.Nullable<bool> ysnprovide, global::System.Nullable<decimal> repairsCost) {
+        public virtual AssetMaintenanceTDS.TblRequestServiceConfigureDataTable RepairRequestConfigInsertGetData(string strAssetId, global::System.Nullable<int> intAssetAutoId, string repair, string priority, global::System.Nullable<global::System.DateTime> dteRepair, string problem, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, string provide, global::System.Nullable<bool> ysnprovide, global::System.Nullable<decimal> repairsCost) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((number == null)) {
+            if ((strAssetId == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(number));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(strAssetId));
             }
-            if ((repair == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            if ((intAssetAutoId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intAssetAutoId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(repair));
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((priority == null)) {
+            if ((repair == null)) {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(priority));
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(repair));
             }
-            if ((dteRepair.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(dteRepair.Value));
-            }
-            else {
+            if ((priority == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((problem == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(priority));
+            }
+            if ((dteRepair.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(dteRepair.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(problem));
-            }
-            if ((intenroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(intenroll.Value));
-            }
-            else {
+            if ((problem == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((intjobid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intjobid.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(problem));
+            }
+            if ((intenroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intenroll.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intdept.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intdept.Value));
+            if ((intjobid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intjobid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((provide == null)) {
+            if ((intdept.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intdept.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(provide));
-            }
-            if ((ysnprovide.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((bool)(ysnprovide.Value));
-            }
-            else {
+            if ((provide == null)) {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((repairsCost.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((decimal)(repairsCost.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(provide));
+            }
+            if ((ysnprovide.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((bool)(ysnprovide.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((repairsCost.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((decimal)(repairsCost.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             AssetMaintenanceTDS.TblRequestServiceConfigureDataTable dataTable = new AssetMaintenanceTDS.TblRequestServiceConfigureDataTable();
             this.Adapter.Fill(dataTable);
@@ -20683,49 +21543,67 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int UserRequestSupport(string name, string priority, string problem, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, string Location, global::System.Nullable<int> dept) {
+        public virtual int UserRequestSupport(string strAssetId, global::System.Nullable<int> intAssetAutoID, string priority, string problem, global::System.Nullable<int> intenroll, global::System.Nullable<int> intLocationId, global::System.Nullable<int> deptId, string strLocation, string urgent, global::System.Nullable<int> intType) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            if ((name == null)) {
+            if ((strAssetId == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[0].Value = ((string)(name));
+                command.Parameters[0].Value = ((string)(strAssetId));
             }
-            if ((priority == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
+            if ((intAssetAutoID.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(intAssetAutoID.Value));
             }
             else {
-                command.Parameters[1].Value = ((string)(priority));
+                command.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((problem == null)) {
+            if ((priority == null)) {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[2].Value = ((string)(problem));
+                command.Parameters[2].Value = ((string)(priority));
             }
-            if ((intenroll.HasValue == true)) {
-                command.Parameters[3].Value = ((int)(intenroll.Value));
-            }
-            else {
+            if ((problem == null)) {
                 command.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((intjobid.HasValue == true)) {
-                command.Parameters[4].Value = ((int)(intjobid.Value));
+            else {
+                command.Parameters[3].Value = ((string)(problem));
+            }
+            if ((intenroll.HasValue == true)) {
+                command.Parameters[4].Value = ((int)(intenroll.Value));
             }
             else {
                 command.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Location == null)) {
-                command.Parameters[5].Value = global::System.DBNull.Value;
+            if ((intLocationId.HasValue == true)) {
+                command.Parameters[5].Value = ((int)(intLocationId.Value));
             }
             else {
-                command.Parameters[5].Value = ((string)(Location));
+                command.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((dept.HasValue == true)) {
-                command.Parameters[6].Value = ((int)(dept.Value));
+            if ((deptId.HasValue == true)) {
+                command.Parameters[6].Value = ((int)(deptId.Value));
             }
             else {
                 command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((strLocation == null)) {
+                command.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[7].Value = ((string)(strLocation));
+            }
+            if ((urgent == null)) {
+                command.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[8].Value = ((string)(urgent));
+            }
+            if ((intType.HasValue == true)) {
+                command.Parameters[9].Value = ((int)(intType.Value));
+            }
+            else {
+                command.Parameters[9].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -25171,6 +26049,370 @@ ERP_Asset.dbo.tblFixedAssetRegister.intCostcenterID=@costid,ERP_Asset.dbo.tblFix
             }
             this.Adapter.SelectCommand.Parameters[1].Value = ((int)(serviceID));
             AssetMaintenanceTDS.TblUpdatelMaintenanceTaskDataTable dataTable = new AssetMaintenanceTDS.TblUpdatelMaintenanceTaskDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TblJobstationByDeptTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public TblJobstationByDeptTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TblJobstationByDept";
+            tableMapping.ColumnMappings.Add("Id", "Id");
+            tableMapping.ColumnMappings.Add("strName", "strName");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Purchase_DAL.Properties.Settings.Default.ERP_AssetConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT  dpt .intJobstationId as Id,job.strJobStationName  as strName
+FROM  erp_asset.dbo.tblJobstationByDept dpt inner join ERP_HR.dbo.tblEmployeeJobStation job on dpt.intJobstationId=job.intEmployeeJobStationId  group by dpt .intJobstationId ,job.strJobStationName
+union select 0 as Id,'Akij House Corporate' as strName";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT  bydpt.intDepartmentId as Id,hdpt.strDepatrment  as strName
+FROM  erp_asset.dbo.tblJobstationByDept bydpt  inner join ERP_HR.dbo.tblDepartment hdpt on bydpt.intDepartmentId=hdpt.intDepartmentID 
+where bydpt.intJobstationId=@jobid and bydpt.ysnActive=1 group by bydpt.intDepartmentId,hdpt.strDepatrment";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobstationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT  intAutoid as Id,strName   FROM [ERP_Asset].[dbo].[tblNatureOfMaintenance]" +
+                " where ysnactive=1";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual AssetMaintenanceTDS.TblJobstationByDeptDataTable GetServiceJobstationData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            AssetMaintenanceTDS.TblJobstationByDeptDataTable dataTable = new AssetMaintenanceTDS.TblJobstationByDeptDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual AssetMaintenanceTDS.TblJobstationByDeptDataTable GetDataJonbByDept(global::System.Nullable<int> jobid) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((jobid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            AssetMaintenanceTDS.TblJobstationByDeptDataTable dataTable = new AssetMaintenanceTDS.TblJobstationByDeptDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual AssetMaintenanceTDS.TblJobstationByDeptDataTable GetNatureofMaintenaceData() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            AssetMaintenanceTDS.TblJobstationByDeptDataTable dataTable = new AssetMaintenanceTDS.TblJobstationByDeptDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class VehicleRenewalInfoDataTableTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public VehicleRenewalInfoDataTableTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "VehicleRenewalInfoDataTable";
+            tableMapping.ColumnMappings.Add("taxtoken", "taxtoken");
+            tableMapping.ColumnMappings.Add("Fitness", "Fitness");
+            tableMapping.ColumnMappings.Add("RoutePermit", "RoutePermit");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Purchase_DAL.Properties.Settings.Default.ERP_AssetConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @" 
+   select (select top(1) dteExpireDate  from ERP_Asset.dbo.tblVehicleRenewalCofigure where intServiceID=310079 and strAssetID=@assetId and YsnAudit=1 order by AutoID desc) as taxtoken ,
+   (select top(1) dteExpireDate  from ERP_Asset.dbo.tblVehicleRenewalCofigure where intServiceID=310080 and strAssetID=@assetId and YsnAudit=1 order by AutoID desc) as Fitness ,
+   (select top(1)dteExpireDate  from ERP_Asset.dbo.tblVehicleRenewalCofigure where intServiceID=310081 and strAssetID=@assetId and YsnAudit=1 order by AutoID desc ) as RoutePermit
+";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetId", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual AssetMaintenanceTDS.VehicleRenewalInfoDataTableDataTable GetAssetVehicleRenewalData(string assetId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((assetId == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(assetId));
+            }
+            AssetMaintenanceTDS.VehicleRenewalInfoDataTableDataTable dataTable = new AssetMaintenanceTDS.VehicleRenewalInfoDataTableDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

@@ -366,10 +366,12 @@
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\BillRegisterReport.aspx" />
+    <Content Include="PaymentModule\BillTopSheet.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
+    <Content Include="PaymentModule\MDApprovalSheet.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
@@ -1034,6 +1036,7 @@
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
+    <Content Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx" />
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
@@ -1136,6 +1139,7 @@
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DeliveryCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
@@ -1256,6 +1260,7 @@
     <Content Include="SCM\PoGenerate.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
+    <Content Include="SCM\PoRegisterReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
@@ -2781,6 +2786,13 @@
     <Compile Include="PaymentModule\BillRegisterReport.aspx.designer.cs">
       <DependentUpon>BillRegisterReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\BillTopSheet.aspx.cs">
+      <DependentUpon>BillTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BillTopSheet.aspx.designer.cs">
+      <DependentUpon>BillTopSheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2808,6 +2820,13 @@
     </Compile>
     <Compile Include="PaymentModule\MaterialCOABridge.aspx.designer.cs">
       <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MDApprovalSheet.aspx.cs">
+      <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MDApprovalSheet.aspx.designer.cs">
+      <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
@@ -4874,6 +4893,13 @@
     <Compile Include="SAD\Customer\Report\Statement.aspx.designer.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx.cs">
+      <DependentUpon>StatementWithUndelvAmount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx.designer.cs">
+      <DependentUpon>StatementWithUndelvAmount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Customer\SetLogisVar.aspx.cs">
       <DependentUpon>SetLogisVar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5588,6 +5614,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx.designer.cs">
       <DependentUpon>AllRetaillersDeliveryATAGlance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx.cs">
+      <DependentUpon>AreaBaseCustomerTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx.designer.cs">
+      <DependentUpon>AreaBaseCustomerTarget.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx.cs">
       <DependentUpon>CollectionCommissionWithJV.aspx</DependentUpon>
@@ -6414,6 +6447,13 @@
     </Compile>
     <Compile Include="SCM\PONew1.aspx.designer.cs">
       <DependentUpon>PONew1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PoRegisterReport.aspx.cs">
+      <DependentUpon>PoRegisterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PoRegisterReport.aspx.designer.cs">
+      <DependentUpon>PoRegisterReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoWithoutIndent.aspx.cs">
       <DependentUpon>PoWithoutIndent.aspx</DependentUpon>

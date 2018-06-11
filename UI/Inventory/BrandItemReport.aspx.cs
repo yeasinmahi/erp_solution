@@ -314,6 +314,127 @@ namespace UI.Inventory
 
             }
 
+            else if (rptTypeid == 1035  )               //Receive status at a Glance Vertically
+            {
+                //from,  to,  unit,  custmid,  itmid,  type
+                try
+                {
+                    DateTime dteFromDate = DateTime.Parse(txtDueDate.Text);
+                    DateTime dteToDate = DateTime.Parse(txtToDate.Text);
+                    string Unit = (drdlUnitName.SelectedValue.ToString());
+                    string strsupplier = txtSupplierName.Text.ToString();
+                    arrayKey = strsupplier.Split(delimiterChars);
+                    string code = arrayKey[1].ToString();
+                    int supid = int.Parse(code);
+
+                    string itmname = txtItem.Text.ToString();
+                    arrayKey = itmname.Split(delimiterChars);
+                    string itmcode = arrayKey[1].ToString();
+                    int prdid = int.Parse(itmcode);
+
+                    string depotorcustomer = txtCustName.Text.ToString();
+                    arrayKey = depotorcustomer.Split(delimiterChars);
+                    string custcode = arrayKey[1].ToString();
+                    int custid = int.Parse(custcode);
+                    int whid = int.Parse(ddlWH.SelectedValue.ToString());
+
+                    dt = bll.GetBrandItemInventroyReport(dteFromDate, dteToDate,  whid, Convert.ToInt32(Unit),  prdid, rptTypeid);
+                    if (dt.Rows.Count > 0)
+                    {
+                        grdvStockStatusHorizontaly.DataSource = null;
+                        grdvStockStatusHorizontaly.DataBind();
+                        grdvBrandItemChallan.DataSource = null;
+                        grdvBrandItemChallan.DataBind();
+                        grdvReceiveChallan.DataSource = null;
+                        grdvReceiveChallan.DataBind();
+                        grdvVerticalyrptReceive.DataSource = null;
+                        grdvVerticalyrptReceive.DataBind();
+                        grdvVerticalyrptReceive.DataSource = null;
+                        grdvVerticalyrptReceive.DataBind();
+                        grdvchallanVerticallay.DataSource = null;
+                        grdvchallanVerticallay.DataBind();
+                        grdvBranditemInventoryRpt.DataSource = dt;
+                        grdvBranditemInventoryRpt.DataBind();
+                        //decimal totalqnt = dt.AsEnumerable().Sum(row => row.Field<decimal>("decqnt"));
+                        //grdvchallanVerticallay.FooterRow.Cells[5].Text = "zxTotal";
+                        //grdvchallanVerticallay.FooterRow.Cells[5].HorizontalAlign = HorizontalAlign.Right;
+                        //grdvchallanVerticallay.FooterRow.Cells[6].Text = totalqnt.ToString("N2");
+                    }
+
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    }
+                }
+
+                catch (Exception ex) { ex.ToString(); }
+
+
+
+            }
+
+            else if (rptTypeid == 1036)               //Receive status at a Glance Vertically
+            {
+                //from,  to,  unit,  custmid,  itmid,  type
+                try
+                {
+                    DateTime dteFromDate = DateTime.Parse(txtDueDate.Text);
+                    DateTime dteToDate = DateTime.Parse(txtToDate.Text);
+                    string Unit = (drdlUnitName.SelectedValue.ToString());
+                    string strsupplier = txtSupplierName.Text.ToString();
+                    arrayKey = strsupplier.Split(delimiterChars);
+                    string code = arrayKey[1].ToString();
+                    int supid = int.Parse(code);
+
+                    string itmname = txtItem.Text.ToString();
+                    arrayKey = itmname.Split(delimiterChars);
+                    string itmcode = arrayKey[1].ToString();
+                    int prdid = int.Parse(itmcode);
+
+                    string depotorcustomer = txtCustName.Text.ToString();
+                    arrayKey = depotorcustomer.Split(delimiterChars);
+                    string custcode = arrayKey[1].ToString();
+                    int custid = int.Parse(custcode);
+                    int whid = int.Parse(ddlWH.SelectedValue.ToString());
+
+                    dt = bll.GetBrandItemInventroyReportTopsheet(dteFromDate, dteToDate, whid, Convert.ToInt32(Unit), prdid, rptTypeid);
+                    if (dt.Rows.Count > 0)
+                    {
+                        grdvStockStatusHorizontaly.DataSource = null;
+                        grdvStockStatusHorizontaly.DataBind();
+                        grdvBrandItemChallan.DataSource = null;
+                        grdvBrandItemChallan.DataBind();
+                        grdvReceiveChallan.DataSource = null;
+                        grdvReceiveChallan.DataBind();
+                        grdvVerticalyrptReceive.DataSource = null;
+                        grdvVerticalyrptReceive.DataBind();
+                        grdvVerticalyrptReceive.DataSource = null;
+                        grdvVerticalyrptReceive.DataBind();
+                        grdvchallanVerticallay.DataSource = null;
+                        grdvchallanVerticallay.DataBind();
+                        grdvBranditemInventoryRpt.DataSource = null;
+                        grdvBranditemInventoryRpt.DataBind();
+                        grdvBrandItemInventoryTopsheet.DataSource = dt;
+                        grdvBrandItemInventoryTopsheet.DataBind();
+
+                        //decimal totalqnt = dt.AsEnumerable().Sum(row => row.Field<decimal>("decqnt"));
+                        //grdvchallanVerticallay.FooterRow.Cells[5].Text = "zxTotal";
+                        //grdvchallanVerticallay.FooterRow.Cells[5].HorizontalAlign = HorizontalAlign.Right;
+                        //grdvchallanVerticallay.FooterRow.Cells[6].Text = totalqnt.ToString("N2");
+                    }
+
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                    }
+                }
+
+                catch (Exception ex) { ex.ToString(); }
+
+
+
+            }
+
         }
 
         protected void btnExportToExcel_Click(object sender, EventArgs e)
@@ -522,6 +643,26 @@ namespace UI.Inventory
                 grdvchallanVerticallay.Columns[6].Visible = true;
                 grdvchallanVerticallay.Columns[7].Visible = false;
             }
+
+        }
+
+        protected void grdvBranditemInventoryRpt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void grdvBranditemInventoryRpt_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void grdvBrandItemInventoryTopsheet_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void grdvBrandItemInventoryTopsheet_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
 
         }
     }
