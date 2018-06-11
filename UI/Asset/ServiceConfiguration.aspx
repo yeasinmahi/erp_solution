@@ -119,7 +119,7 @@
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />       
           <asp:HiddenField ID="HdnServiceCost" runat="server" />   <asp:HiddenField ID="hdnRepairsCost" runat="server" />   
             
-    <div class="tabs_container" align="Center" >Maintenance Service Configuration </div>
+    <div class="tabs_container" align="left" >Maintenance Service Configuration </div>
    
        <table style="width:700px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #996633;"class="tblrowodd" >
             <tr  class="tblrowodd">
@@ -137,6 +137,7 @@
             <td style="text-align:left;"> <asp:TextBox ID="TxtUnit" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
        
             </tr>
+           
             <tr>
             <td style="text-align:right;"> <asp:Label ID="LblName" font-size="small" runat="server" CssClass="lbl" Text="Name of Asset:"></asp:Label></td>
             <td style="text-align:left;"> <asp:TextBox ID="TxtName" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
@@ -147,16 +148,10 @@
            </Table>
          <tr>
          <td>Request and Service Type</td><td><asp:RadioButton ID="RadioButton1" Text="Preventive"  autopostback="true" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" /></td><td><asp:RadioButton ID="RadioButton2" autopostback="true" Text="Corrective Maintenance" runat="server" OnCheckedChanged="RadioButton2_CheckedChanged" /></td>
-             </tr>
+          </tr>
          <table style="width:700px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #996633;"class="tblrowodd" >
-            <tr>
-            <%-- <td style="text-align: right;">
-            <asp:Label ID="LblSchedule" runat="server" font-size="small"  CssClass="lbl" Text="Schedule:"></asp:Label></td>
-
-            <td style="text-align: left;">
-            <asp:DropDownList ID="DdlSchedule" runat="server" CssClass="ddList" Font-Bold="False" AutoPostBack="True" OnSelectedIndexChanged="DdlSchedule_SelectedIndexChanged">
-            </asp:DropDownList><asp:Button ID="btnschedule" autopostback="true" BackColor="Wheat" ForeColor="red" runat="server" Text="+" OnClick="btnschedule_Click" />--%>
-
+            <tr class="tblrowodd">
+           
             <td style="text-align: right;">
             <asp:Label ID="LblService"  runat="server" font-size="small"  CssClass="lbl" Text="Service:"></asp:Label></td>
             <td style="text-align: left;">
@@ -187,8 +182,7 @@
             <td><asp:TextBox ID="TxtDayHour" runat="server" CssClass="txtBox" ></asp:TextBox>
                     
             </tr>
-            <tr>
-                
+            <tr class="tblrowodd"> 
             <td style="text-align: right;">
             <asp:Label ID="LblProvide" font-size="small"  runat="server" CssClass="lbl" Text="Service Provide By"></asp:Label></td>
                      
@@ -211,11 +205,11 @@
          
             </tr> 
          </table>
-        <table  width="700"  class="tblroweven" style="background-color: #FFCCFF; background-repeat: inherit; background-attachment: inherit; background-position: center center">
+        <table  width="700"    style=" background-repeat: inherit; background-attachment: inherit; background-position: center center">
         <tr>
 
         <td style="text-align:right;"><asp:Label ID="LblCommonRepair" runat="server" font-size="small"  CssClass="lbl" Text="Common Repair:"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="DdlCommonRepair" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="DdlCommonRepair_SelectedIndexChanged">
+        <td style="text-align:left;"><asp:DropDownList ID="DdlCommonRepair" runat="server" CssClass="ddList" Font-Bold="true" OnSelectedIndexChanged="DdlCommonRepair_SelectedIndexChanged">
         </asp:DropDownList><asp:Button ID="btnRepair" BackColor="Wheat" ForeColor="red" runat="server" Text="+" OnClick="btnRepair_Click" /> 
              
         <td style="text-align:right;"><asp:Label ID="LbldteRepair" runat="server" font-size="small"  CssClass="lbl" Text="Repair Date:"></asp:Label></td>
@@ -223,7 +217,7 @@
         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteRepair"></cc1:CalendarExtender> 
             
         </tr>
-        <tr> 
+        <tr class="tblrowodd"> 
         <td style="text-align:right;"><asp:Label ID="LblPrioritys" runat="server" font-size="small"  CssClass="lbl" Text="Priority:"></asp:Label></td>
       
         <td style="text-align:left;"><asp:DropDownList ID="DdlREPriotiyyd" runat="server" CssClass="ddList" Font-Bold="False">

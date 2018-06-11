@@ -10,6 +10,7 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
@@ -42,8 +43,8 @@
     
      <script>
          
-         function Viewdetails(id, status) {
-             window.open('CorrectiveRequestUserPopUP.aspx?ID=' + id , '', "height=600, width=750, scrollbars=yes, left=150, top=50, resizable=no, title=Preview");
+         function Viewdetails(id) {
+             window.open('CorrectiveRequestUserPopUP.aspx?ID=' + id , '', "height=600, width=800, scrollbars=yes, left=150, top=50, resizable=yes, title=Preview");
          }
              </script> 
    
@@ -75,12 +76,7 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
     <div style="height: 100px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>
-
-
-
-
-
+    </cc1:AlwaysVisibleControlExtender> 
 
 <%--=========================================Start My Code From Here===============================================--%>
       <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
@@ -109,10 +105,16 @@
         <td style="text-align:right;"> <asp:Label ID="LblStation" runat="server" font-size="small" CssClass="lbl" Text="JobStation:"></asp:Label></td>
           <td style="text-align:left;"> <asp:TextBox ID="TxtStation" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
         </tr>
+           
+            <tr class="tblrowodd">
+            <td style="text-align:right;" > <asp:Label ID="lblValidity" runat="server" Text="Validity Date" CssClass="lbl"   font-size="small"  ></asp:Label></td>
+            <td style="text-align:left;" colspan="3"> <asp:Label ID="lblDetalis" Font-Bold="true" runat="server" CssClass="lbl" Width="500px" font-size="small"  ></asp:Label></td>
+           </tr>
+           
             <tr  class="tblrowodd"> 
             <td style="text-align:right;"><asp:Label ID="LblPrioritys" runat="server" font-size="small"  CssClass="lbl" Text="Priority:"></asp:Label></td>
       
-            <td style="text-align:left;"><asp:DropDownList ID="DdlREPriotiy" runat="server" CssClass="ddList" Font-Bold="False">
+            <td style="text-align:left;"><asp:DropDownList ID="DdlREPriotiy" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="DdlREPriotiy_SelectedIndexChanged" AutoPostBack="True">
             <asp:ListItem>Low</asp:ListItem>
             <asp:ListItem>Medium</asp:ListItem>
             <asp:ListItem>High</asp:ListItem> 
@@ -136,40 +138,47 @@
             <td style="text-align:left;" colspan="3"> <asp:TextBox ID="TxtProblem" runat="server" Width="500px" CssClass="txtBox" Font-Bold="False" ></asp:TextBox>     
             </tr>
             <tr  class="tblrowodd">
-            <td style="text-align:right;"> <asp:Label ID="Label3" runat="server"  font-size="small"  CssClass="lbl" Text="Others:"></asp:Label></td>
+            <td style="text-align:right;"> <asp:Label ID="lblUrgent" runat="server"  font-size="small"  CssClass="lbl" Text="Why Urgent"></asp:Label></td>
             <td style="text-align:left;" colspan="3"> <asp:TextBox ID="txtUrgent" runat="server" Width="500px" CssClass="txtBox" Font-Bold="False" ></asp:TextBox>     
             </tr>
             <tr> 
             <td></td> 
             <td></td> <td></td>    
             <td style="text-align:right;">
-            <asp:Button ID="BtnRequest" runat="server" Text="Save" OnClick="BtnRequest_Click" OnClientClick="funConfirmAll();"   /></td>
+            <asp:Button ID="BtnRequest" runat="server" Text="Submit" Font-Bold="true" OnClick="BtnRequest_Click" OnClientClick="funConfirmAll();"   /></td>
             </tr>
            </table>
+          <table>
+              <tr>
+                  <td style="font-weight:300">Service Requesition Summary :</td>
+              </tr>
+              <tr>
+                  <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
+                        <Columns>
+                        <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                        <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
+                        <asp:BoundField DataField="strAssetNumber" ItemStyle-Width="150PX" HeaderText="Asset Code" SortExpression="strAssetNumber" Visible="False" />
+                        <asp:BoundField DataField="strNameOfAsset" HeaderText="Name of Asset" SortExpression="strNameOfAsset" />
+                        <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" Visible="False" />
+ 
+                        <asp:BoundField DataField="dteFixed/Repair" HeaderText="DateTime" SortExpression="dteFixed/Repair" />
+                        <asp:BoundField DataField="strProblem" ItemStyle-Width="300PX" HeaderText="Problem" SortExpression="strProblem" />
+                        <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" Visible="False" />
+                        <asp:BoundField DataField="strDepatrment" HeaderText="Request to Dept" SortExpression="strDepatrment" Visible="False" />
+                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" Visible="true" />
+                        <asp:TemplateField HeaderText="Detalis">
+                        <ItemTemplate>
+                        <asp:Button ID="BtnDetalis" runat="server" Text='Detalis'  CommandName="Detalis"  CommandArgument='<%# Eval("intID") %>' OnClick="BtnDetalis_Click"/>
+                        </ItemTemplate>
+                        </asp:TemplateField>
+                        </Columns>
+                     </asp:GridView>
+              </tr>
+          </table>
           </div>
            <div class="leaveSummary_container"> 
-        <div class="tabs_container">Service Requesition Summary :<hr /></div> 
-        
-                     <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
-                         <Columns>
-                             <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-                             <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
-                             <asp:BoundField DataField="strAssetNumber"  HeaderText="Asset Code" SortExpression="strAssetNumber" Visible="False" />
-                             <asp:BoundField DataField="strNameOfAsset" HeaderText="Name of Asset" SortExpression="strNameOfAsset" />
-                             <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" Visible="False" />
- 
-                             <asp:BoundField DataField="dteFixed/Repair" HeaderText="DateTime" SortExpression="dteFixed/Repair" />
-                             <asp:BoundField DataField="strProblem" ItemStyle-Width="100PX" HeaderText="Problem" SortExpression="strProblem" />
-                             <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" Visible="False" />
-                             <asp:BoundField DataField="strDepatrment" HeaderText="Request to Dept" SortExpression="strDepatrment" Visible="False" />
-                             <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" Visible="False" />
-                             <asp:TemplateField HeaderText="Detalis">
-                                 <ItemTemplate>
-                                     <asp:Button ID="BtnDetalis" runat="server" Text='<%# Bind("status") %>'  CommandName="Detalis"  CommandArgument='<%# Eval("intID") %>' OnClick="BtnDetalis_Click"/>
-                                 </ItemTemplate>
-                             </asp:TemplateField>
-                         </Columns>
-                     </asp:GridView>
+        <div class="tabs_container"> <hr /></div> 
+          
                 </div>
          
             

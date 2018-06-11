@@ -39,6 +39,16 @@ namespace Purchase_BLL.Asset
             catch { return new DataTable(); }
         }
 
+        public DataTable NatureOfMaintenace()
+        {
+            try
+            {
+                TblJobstationByDeptTableAdapter adp = new TblJobstationByDeptTableAdapter();
+                return adp.GetNatureofMaintenaceData();
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable sparePartsView(int intItem, int Mnumber)
         {
             SprMaintenanceLoadViewTableAdapter spaere = new SprMaintenanceLoadViewTableAdapter();
@@ -172,16 +182,20 @@ namespace Purchase_BLL.Asset
             return servicel.TaskGridViewGetData(intItem, Mnumber, intenroll, intjobid, intdept);
         }
 
+        public DataTable getVehicleInformation(string assetId)
+        {
+            try
+            {
+                VehicleRenewalInfoDataTableTableAdapter adp = new VehicleRenewalInfoDataTableTableAdapter();
+                return adp.GetAssetVehicleRenewalData(assetId);
+            }
+            catch { return new DataTable(); }
+        }
 
-
-
-
-
-
-        public void RepairRequestsInsertData(string number, string repair, string priority, DateTime dteRepair, string problem, int intenroll, int intjobid, int intdept, string provide, int ysnprovide, decimal repairsCost)
+        public void RepairRequestsInsertData(string strAssetId,int intAssetAutoId, string repair, string priority, DateTime dteRepair, string problem, int intenroll, int intjobid, int intdept, string provide, int ysnprovide, decimal repairsCost)
         {
             TblRequestServiceConfigureTableAdapter request = new TblRequestServiceConfigureTableAdapter();
-            request.RepairRequestConfigInsertGetData(number, repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, Convert.ToBoolean(ysnprovide), repairsCost);
+            request.RepairRequestConfigInsertGetData(strAssetId, intAssetAutoId,repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, Convert.ToBoolean(ysnprovide), repairsCost);
         }
 
         public DataTable dgvViewPMService(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)
@@ -442,10 +456,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UserRequestMaintenance(string name, string priority, string problem, int intenroll, int intLocationId, string location, int dept)
+        public void UserRequestMaintenance(string assetId,int intAssetAutoId, string priority, string problem, int intenroll, int intLocationId, string location, int dept, string urgent,int intType)
         {
             TblRequestServiceConfigureTableAdapter userrequestinsert = new TblRequestServiceConfigureTableAdapter();
-            userrequestinsert.UserRequestSupport(name, priority, problem, intenroll, intLocationId, dept, location);
+            userrequestinsert.UserRequestSupport(assetId, intAssetAutoId, priority, problem, intenroll, intLocationId, dept, location, urgent, intType);
         }
 
         public DataTable GriedViewUserRequestData(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)

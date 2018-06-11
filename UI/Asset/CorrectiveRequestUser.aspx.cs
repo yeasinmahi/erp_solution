@@ -18,7 +18,7 @@ namespace UI.Asset
         AssetMaintenance objrequest = new AssetMaintenance(); 
         DataTable dt = new DataTable();
         DataTable asset = new DataTable();
-        int intItem, intjobid, intenroll, intdept;
+        int intItem, intjobid, intenroll, intdept, intAssetAutoId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,13 +34,16 @@ namespace UI.Asset
                 ddlLocation.DataTextField = "strName";
                 ddlLocation.DataValueField = "Id";
                 ddlLocation.DataBind();
+
+                dt = objrequest.NatureOfMaintenace();
+                ddlType.DataSource = dt;
+                ddlType.DataTextField = "strName";
+                ddlType.DataValueField = "Id";
+                ddlType.DataBind();
+
                 int location = int.Parse(ddlLocation.SelectedValue);
                 getDepartment(location);
-                intItem = 36;
-                dt = objrequest.GriedViewUserRequestData(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvView.DataSource = dt;
-                dgvView.DataBind();
-
+                ClearandBind(intenroll);
                 dt.Clear();
                 pnlUpperControl.DataBind();
                
@@ -99,40 +102,35 @@ namespace UI.Asset
         {
             try
             {
-                string problem = TxtProblem.Text.ToString();
-                if (hdnConfirm.Value.ToString()=="1" && problem.Length>5)
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = ""; string assetName = ""; string type = ""; 
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); intAssetAutoId = int.Parse(arrayKey[3].ToString()); type = arrayKey[5].ToString(); }
+               
+                if (hdnConfirm.Value.ToString()=="1")
                 {
-                    string strSearchKey = TxtAsset.Text;
-                    string[] searchKey = Regex.Split(strSearchKey, ";");
-
-                    string priority = DdlREPriotiy.SelectedItem.ToString();
-                    string name = searchKey[1].ToString();
+                    string problem = TxtProblem.Text.ToString();
+                    string priority = DdlREPriotiy.SelectedItem.ToString(); 
                     string location = ddlLocation.SelectedItem.ToString();
+                    string urgent = txtUrgent.Text.ToString();
+                    int intType = int.Parse(ddlType.SelectedValue);
                     int requestToLocation = int.Parse(ddlLocation.SelectedValue);
-                    int dept = int.Parse(DdlDept.SelectedValue.ToString());
+                    int dept = int.Parse(DdlDept.SelectedValue);
                     int intUserjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    int Mnumber = 0;
+                     
                     if (requestToLocation == 0)
                     {
-                        objrequest.UserRequestMaintenance(name, priority, problem, intenroll, 15, location, dept);
+                        objrequest.UserRequestMaintenance(assetId, intAssetAutoId, priority, problem, intenroll, 15, location, dept, urgent,intType);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
                     }
                     else
                     {
-                        objrequest.UserRequestMaintenance(name, priority, problem, intenroll, requestToLocation, location, dept);
+                        objrequest.UserRequestMaintenance(assetId, intAssetAutoId,priority, problem, intenroll, requestToLocation, location, dept, urgent, intType);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
                     }
-
-                    TxtAsset.Text = "";
-                    TxtName.Text = "";
-                    TxtProblem.Text = "";
-
-                    intItem = 36;
-                    dt = objrequest.GriedViewUserRequestData(intItem, Mnumber, intenroll, intjobid, intdept);
-                    dgvView.DataSource = dt;
-                    dgvView.DataBind();
+                    ClearandBind(intenroll);
+                   
                 }
                 else { }
                 
@@ -141,6 +139,31 @@ namespace UI.Asset
             catch { }
       
         }
+
+        private void ClearandBind(int enroll)
+        {
+            TxtAsset.Text = "";
+            TxtName.Text = "";
+            TxtProblem.Text = "";
+            txtUrgent.Text = "";
+            lblDetalis.Text = "";
+            lblDetalis.Visible = false;
+            if (DdlREPriotiy.SelectedItem.ToString() == "High")
+            {
+                lblUrgent.Visible = true;
+                txtUrgent.Visible = true;
+            }
+            else {
+                lblUrgent.Visible = false;
+                txtUrgent.Visible = false;
+            }
+           
+            lblValidity.Visible = false;
+            dt = objrequest.GriedViewUserRequestData(36, 0, enroll, 0, 0);
+            dgvView.DataSource = dt;
+            dgvView.DataBind();
+        }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetAssetData(string prefixText, int count)
@@ -151,24 +174,59 @@ namespace UI.Asset
             return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
 
         }
+
+        protected void DdlREPriotiy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DdlREPriotiy.SelectedValue.ToString() == "High")
+                {
+                    lblUrgent.Visible = true; txtUrgent.Visible = true;
+                }
+                else { txtUrgent.Visible = false; lblUrgent.Visible = false; }
+            }
+            catch { }
+        }
+
         protected void TxtAsset_TextChanged(object sender, EventArgs e)
         {
-            string strSearchKey = TxtAsset.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";"); 
-
-            string number = searchKey[1].ToString();
-            asset = objrequest.showassetData(number);
-            if (asset.Rows.Count > 0)
+            try
             {
-                TxtName.Text = asset.Rows[0]["strNameOfAsset"].ToString();
-                TxtUnit.Text = asset.Rows[0]["strUnit"].ToString();
-                TxtStation.Text = asset.Rows[0]["strJobStationName"].ToString();
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = ""; string assetName = ""; string assetType = "";int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId =int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                asset = objrequest.showassetData(assetId);
+                if (asset.Rows.Count > 0)
+                {
+                    TxtName.Text = asset.Rows[0]["strNameOfAsset"].ToString();
+                    TxtUnit.Text = asset.Rows[0]["strUnit"].ToString();
+                    TxtStation.Text = asset.Rows[0]["strJobStationName"].ToString();
+                    if (assetType == "8")
+                    {
+                        lblDetalis.Visible = true;
+                        lblValidity.Visible = true;
+                        dt = objrequest.getVehicleInformation(assetId);
+                        DateTime dteTaxtoken = DateTime.Parse(dt.Rows[0]["taxtoken"].ToString());
+                        DateTime dteFitness = DateTime.Parse(dt.Rows[0]["Fitness"].ToString());
+                        DateTime dteRoutePermit = DateTime.Parse(dt.Rows[0]["RoutePermit"].ToString());
+                        lblDetalis.Text = "Tax Token:" + dteTaxtoken.ToString("dd-MM-yyyy") + "  Fitness:" + dteFitness.ToString("dd-MM-yyyy") + "  Rute Permit:" + dteRoutePermit.ToString("dd-MM-yyyy");
+                    }
+                    else
+                    {
+                        lblDetalis.Visible = false;
+                        lblValidity.Visible = false;
 
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+
+                }
             }
+            catch { }
+            
         }
 
         protected void BtnDetalis_Click(object sender, EventArgs e)
@@ -178,16 +236,11 @@ namespace UI.Asset
                 char[] delimiterChars = { '^' };
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
-                string[] searchKey = temp.Split(delimiterChars);
-
-                string ordernumber1 = searchKey[0].ToString();
-                Int32 id = Int32.Parse(ordernumber1.ToString());
-                // Response.Write(ordernumber); 
-
+                string[] searchKey = temp.Split(delimiterChars); 
+                int id = int.Parse(searchKey[0].ToString());
+                // Response.Write(ordernumber);  
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + id + "');", true);
-
-
-                
+                 
             }
             catch { }
         }

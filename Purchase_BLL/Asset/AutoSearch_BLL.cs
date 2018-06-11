@@ -518,8 +518,9 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
+                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["strAssetID"] + "]" + "[" + tbl.Rows[i]["intID"] + "]" + "[" + tbl.Rows[i]["intAssetType"] + "]";
 
-                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + ";" + tbl.Rows[i]["strAssetID"] ;
+                 //   retStr[i] = tbl.Rows[i]["strNameOfAsset"]+","+ tbl.Rows[i]["intAssetType"] + ";" + tbl.Rows[i]["strAssetID"] ;
 
                  }
 

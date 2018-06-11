@@ -211,6 +211,24 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.TextBox TxtStation;
         
         /// <summary>
+        /// lblValidity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidity;
+        
+        /// <summary>
+        /// lblDetalis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetalis;
+        
+        /// <summary>
         /// LblPrioritys control.
         /// </summary>
         /// <remarks>
@@ -301,13 +319,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.TextBox TxtProblem;
         
         /// <summary>
-        /// Label3 control.
+        /// lblUrgent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lblUrgent;
         
         /// <summary>
         /// txtUrgent control.
