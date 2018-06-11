@@ -49,8 +49,7 @@
 
         });
          
-        function MrrGenerateCheck() {
-            
+        function MrrGenerateCheck() { 
             var e = document.getElementById("ddlPo");
             var Po = e.options[e.selectedIndex].value; 
             var challan = document.getElementById("txtChallan").value;
@@ -70,12 +69,25 @@
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-
-            
                  
-            }
-         
+            } 
+        }
 
+
+        function PoViewCheck() { 
+              
+            var e = document.getElementById("ddlWH");
+            var wh = e.options[e.selectedIndex].value; 
+             var pt = document.getElementById("ddlPoType");
+            var poType = pt.options[e.selectedIndex].value;
+            
+
+            if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select WH'); }
+            else if ($.trim(poType) == 0 || $.trim(poType) == "" || $.trim(poType) == null || $.trim(poType) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type'); }
+                 
+            else {
+                document.getElementById("hdnConfirm").value = "1";  
+            } 
         }
     </script> 
 
@@ -136,7 +148,7 @@
                         <td colspan="3" style="text-align:right"><asp:Label ID="lblUnit"  Text="Ware House" runat="server" /></td> 
                         <td colspan="1" style="text-align:left"><asp:DropDownList ID="ddlWH" Font-Bold="true" runat="server" CssClass="txtBox" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td> 
                         <td style="text-align:right"><asp:Label ID="Label1"  Text="PO" runat="server" /></td> 
-                        <td><asp:TextBox ID="txtPO" runat="server" CssClass="txtBox"></asp:TextBox></td>
+                        <td><asp:TextBox ID="txtPO" runat="server" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>
                         </tr> 
                         <tr>
                         <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="PO Type"></asp:Label></td> 

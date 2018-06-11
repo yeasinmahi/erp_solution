@@ -29,6 +29,9 @@
          function ViewHoldAndFeedback(Id, JobCode, JobStatus, JobStatusID) {
              window.open('HoldFeedback.aspx?ID=' + Id + '&JobCode=' + JobCode + '&JobStatus=' + JobStatus + '&JobStatusID=' + JobStatusID, 'sub', "height=600, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
          }
+         function ViewAllDocumentView(Id) {
+             window.open('DocViewForHoldAndFeedback.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+         }
     </script>
 
 
@@ -69,11 +72,11 @@
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Job Code" SortExpression="strJobCode">
-            <ItemTemplate><asp:Label ID="lblJobCode" runat="server" Text='<%# Bind("strJobCode") %>' Width="150px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblJobCode" runat="server" Text='<%# Bind("strJobCode") %>' Width="140px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Apply Date & Time" SortExpression="ReqDate">
-            <ItemTemplate><asp:Label ID="lblApplydDate" runat="server" Text='<%# Bind("ReqDate") %>' Width="120px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblApplydDate" runat="server" Text='<%# Bind("ReqDate") %>' Width="140px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="120px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Required Date" SortExpression="dteRequiredDate">
@@ -105,6 +108,10 @@
             <asp:TemplateField HeaderText="Job Details" ItemStyle-HorizontalAlign="Center" SortExpression="">
             <ItemTemplate><asp:Button ID="btnJobDetails" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"  
             Text="View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnDocV" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Doc View"  
+            Text="Document View"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
 
             </Columns>
             <FooterStyle Font-Size="11px" />

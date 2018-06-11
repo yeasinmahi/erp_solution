@@ -73,10 +73,10 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemListForCreativeSTableAdapter" GeneratorDataComponentClassName="ItemListForCreativeSTableAdapter" Name="ItemListForCreativeS" UserDataComponentName="ItemListForCreativeSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT intCreativeItemID, strCreativeItemName  FROM AG_Global.dbo.tblCreativeItemList Where ysnEnable = 1</CommandText>
+                    <CommandText>SELECT intCreativeItemID, strCreativeItemName  FROM AG_Global.dbo.tblCreativeItemList Where ysnEnable = 1 Order by strCreativeItemName  asc</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -147,17 +147,20 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ReportForDashboardWithoutCompleteTableAdapter" GeneratorDataComponentClassName="ReportForDashboardWithoutCompleteTableAdapter" Name="ReportForDashboardWithoutComplete" UserDataComponentName="ReportForDashboardWithoutCompleteTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>Select intJobID, strJobCode, convert(varchar,dteCreateDateTime,120) as ReqDate, convert(varchar,dteRequiredDate, 23) as dteRequiredDate, 
-  convert(varchar,tmRequiredTime,108) as tmRequiredTime, emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, 
-  isnull(intJobStatusID, 0) as intJobStatusID
-  FROM AG_Global.dbo.tblCreativeSupport s
-  Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
-  Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
-  Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
-  Where intJobStatusID != 3 or intJobStatusID is NULL</CommandText>
+                    <CommandText>Select intJobID, strJobCode, REPLACE(CONVERT(VARCHAR(11), dteCreateDateTime, 106), ' ', '-') +' '+STUFF(RIGHT( CONVERT(VARCHAR,dteCreateDateTime,100 ) ,7), 6, 0, ' ') as ReqDate, 
+convert(varchar,dteRequiredDate, 106) as dteRequiredDate, 
+REPLACE(REPLACE(CONVERT(varchar(15), CAST(tmRequiredTime AS TIME), 100), 'P', ' P'), 'A', ' A') as tmRequiredTime,
+emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, isnull(intJobStatusID, 0) as intJobStatusID
+FROM AG_Global.dbo.tblCreativeSupport s
+Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
+Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
+Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
+Where intJobStatusID != 3 or intJobStatusID is NULL
+Order by intJobID asc
+</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -278,6 +281,47 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprItemCreateAndPointSetTableAdapter" GeneratorDataComponentClassName="SprItemCreateAndPointSetTableAdapter" Name="SprItemCreateAndPointSet" UserDataComponentName="SprItemCreateAndPointSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.sprItemCreateAndPointSet" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="ItemCreateAndPointSet" GetMethodModifier="Public" GetMethodName="ItemCreateAndPointSet" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="ItemCreateAndPointSet" UserSourceName="ItemCreateAndPointSet">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprItemCreateAndPointSet</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPart" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strItemName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPoint" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AllDocViewTableAdapter" GeneratorDataComponentClassName="AllDocViewTableAdapter" Name="AllDocView" UserDataComponentName="AllDocViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllDocumentView" GetMethodModifier="Public" GetMethodName="GetAllDocumentView" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllDocumentView" UserSourceName="GetAllDocumentView">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocList Where ysnEnable = 1 and intJobID = @intJobID
+Union
+SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocListForHoldAndFeedback Where ysnEnable = 1 and intJobID = @intJobID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intJobID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intJobID" Precision="0" Scale="0" Size="4" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strFilePath" DataSetColumn="strFilePath" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -286,7 +330,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
   <xs:element name="CreativeS_DAL" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CreativeS_DAL" msprop:Generator_UserDSName="CreativeS_DAL">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="JobDesctionList" msprop:Generator_TableClassName="JobDesctionListDataTable" msprop:Generator_TableVarName="tableJobDesctionList" msprop:Generator_RowChangedName="JobDesctionListRowChanged" msprop:Generator_TablePropName="JobDesctionList" msprop:Generator_RowDeletingName="JobDesctionListRowDeleting" msprop:Generator_RowChangingName="JobDesctionListRowChanging" msprop:Generator_RowEvHandlerName="JobDesctionListRowChangeEventHandler" msprop:Generator_RowDeletedName="JobDesctionListRowDeleted" msprop:Generator_RowClassName="JobDesctionListRow" msprop:Generator_UserTableName="JobDesctionList" msprop:Generator_RowEvArgName="JobDesctionListRowChangeEvent">
+        <xs:element name="JobDesctionList" msprop:Generator_TableClassName="JobDesctionListDataTable" msprop:Generator_TableVarName="tableJobDesctionList" msprop:Generator_TablePropName="JobDesctionList" msprop:Generator_RowDeletingName="JobDesctionListRowDeleting" msprop:Generator_RowChangingName="JobDesctionListRowChanging" msprop:Generator_RowEvHandlerName="JobDesctionListRowChangeEventHandler" msprop:Generator_RowDeletedName="JobDesctionListRowDeleted" msprop:Generator_UserTableName="JobDesctionList" msprop:Generator_RowChangedName="JobDesctionListRowChanged" msprop:Generator_RowEvArgName="JobDesctionListRowChangeEvent" msprop:Generator_RowClassName="JobDesctionListRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strJobDescription" msprop:Generator_ColumnVarNameInTable="columnstrJobDescription" msprop:Generator_ColumnPropNameInRow="strJobDescription" msprop:Generator_ColumnPropNameInTable="strJobDescriptionColumn" msprop:Generator_UserColumnName="strJobDescription" minOccurs="0">
@@ -300,7 +344,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="EmpListForCreativeSupport" msprop:Generator_TableClassName="EmpListForCreativeSupportDataTable" msprop:Generator_TableVarName="tableEmpListForCreativeSupport" msprop:Generator_RowChangedName="EmpListForCreativeSupportRowChanged" msprop:Generator_TablePropName="EmpListForCreativeSupport" msprop:Generator_RowDeletingName="EmpListForCreativeSupportRowDeleting" msprop:Generator_RowChangingName="EmpListForCreativeSupportRowChanging" msprop:Generator_RowEvHandlerName="EmpListForCreativeSupportRowChangeEventHandler" msprop:Generator_RowDeletedName="EmpListForCreativeSupportRowDeleted" msprop:Generator_RowClassName="EmpListForCreativeSupportRow" msprop:Generator_UserTableName="EmpListForCreativeSupport" msprop:Generator_RowEvArgName="EmpListForCreativeSupportRowChangeEvent">
+        <xs:element name="EmpListForCreativeSupport" msprop:Generator_TableClassName="EmpListForCreativeSupportDataTable" msprop:Generator_TableVarName="tableEmpListForCreativeSupport" msprop:Generator_TablePropName="EmpListForCreativeSupport" msprop:Generator_RowDeletingName="EmpListForCreativeSupportRowDeleting" msprop:Generator_RowChangingName="EmpListForCreativeSupportRowChanging" msprop:Generator_RowEvHandlerName="EmpListForCreativeSupportRowChangeEventHandler" msprop:Generator_RowDeletedName="EmpListForCreativeSupportRowDeleted" msprop:Generator_UserTableName="EmpListForCreativeSupport" msprop:Generator_RowChangedName="EmpListForCreativeSupportRowChanged" msprop:Generator_RowEvArgName="EmpListForCreativeSupportRowChangeEvent" msprop:Generator_RowClassName="EmpListForCreativeSupportRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
@@ -335,7 +379,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LoginUserInfo" msprop:Generator_TableClassName="LoginUserInfoDataTable" msprop:Generator_TableVarName="tableLoginUserInfo" msprop:Generator_RowChangedName="LoginUserInfoRowChanged" msprop:Generator_TablePropName="LoginUserInfo" msprop:Generator_RowDeletingName="LoginUserInfoRowDeleting" msprop:Generator_RowChangingName="LoginUserInfoRowChanging" msprop:Generator_RowEvHandlerName="LoginUserInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginUserInfoRowDeleted" msprop:Generator_RowClassName="LoginUserInfoRow" msprop:Generator_UserTableName="LoginUserInfo" msprop:Generator_RowEvArgName="LoginUserInfoRowChangeEvent">
+        <xs:element name="LoginUserInfo" msprop:Generator_TableClassName="LoginUserInfoDataTable" msprop:Generator_TableVarName="tableLoginUserInfo" msprop:Generator_TablePropName="LoginUserInfo" msprop:Generator_RowDeletingName="LoginUserInfoRowDeleting" msprop:Generator_RowChangingName="LoginUserInfoRowChanging" msprop:Generator_RowEvHandlerName="LoginUserInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginUserInfoRowDeleted" msprop:Generator_UserTableName="LoginUserInfo" msprop:Generator_RowChangedName="LoginUserInfoRowChanged" msprop:Generator_RowEvArgName="LoginUserInfoRowChangeEvent" msprop:Generator_RowClassName="LoginUserInfoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EmpInfo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmpInfo" msprop:Generator_ColumnPropNameInRow="EmpInfo" msprop:Generator_ColumnPropNameInTable="EmpInfoColumn" msprop:Generator_UserColumnName="EmpInfo" minOccurs="0">
@@ -348,7 +392,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ItemListForCreativeS" msprop:Generator_TableClassName="ItemListForCreativeSDataTable" msprop:Generator_TableVarName="tableItemListForCreativeS" msprop:Generator_TablePropName="ItemListForCreativeS" msprop:Generator_RowDeletingName="ItemListForCreativeSRowDeleting" msprop:Generator_RowChangingName="ItemListForCreativeSRowChanging" msprop:Generator_RowEvHandlerName="ItemListForCreativeSRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemListForCreativeSRowDeleted" msprop:Generator_UserTableName="ItemListForCreativeS" msprop:Generator_RowChangedName="ItemListForCreativeSRowChanged" msprop:Generator_RowEvArgName="ItemListForCreativeSRowChangeEvent" msprop:Generator_RowClassName="ItemListForCreativeSRow">
+        <xs:element name="ItemListForCreativeS" msprop:Generator_TableClassName="ItemListForCreativeSDataTable" msprop:Generator_TableVarName="tableItemListForCreativeS" msprop:Generator_RowChangedName="ItemListForCreativeSRowChanged" msprop:Generator_TablePropName="ItemListForCreativeS" msprop:Generator_RowDeletingName="ItemListForCreativeSRowDeleting" msprop:Generator_RowChangingName="ItemListForCreativeSRowChanging" msprop:Generator_RowEvHandlerName="ItemListForCreativeSRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemListForCreativeSRowDeleted" msprop:Generator_RowClassName="ItemListForCreativeSRow" msprop:Generator_UserTableName="ItemListForCreativeS" msprop:Generator_RowEvArgName="ItemListForCreativeSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intCreativeItemID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintCreativeItemID" msprop:Generator_ColumnPropNameInRow="intCreativeItemID" msprop:Generator_ColumnPropNameInTable="intCreativeItemIDColumn" msprop:Generator_UserColumnName="intCreativeItemID" type="xs:int" />
@@ -362,18 +406,18 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprCreativeSupportEntry" msprop:Generator_TableClassName="SprCreativeSupportEntryDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportEntry" msprop:Generator_TablePropName="SprCreativeSupportEntry" msprop:Generator_RowDeletingName="SprCreativeSupportEntryRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportEntryRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportEntryRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportEntryRowDeleted" msprop:Generator_UserTableName="SprCreativeSupportEntry" msprop:Generator_RowChangedName="SprCreativeSupportEntryRowChanged" msprop:Generator_RowEvArgName="SprCreativeSupportEntryRowChangeEvent" msprop:Generator_RowClassName="SprCreativeSupportEntryRow">
+        <xs:element name="SprCreativeSupportEntry" msprop:Generator_TableClassName="SprCreativeSupportEntryDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportEntry" msprop:Generator_RowChangedName="SprCreativeSupportEntryRowChanged" msprop:Generator_TablePropName="SprCreativeSupportEntry" msprop:Generator_RowDeletingName="SprCreativeSupportEntryRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportEntryRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportEntryRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportEntryRowDeleted" msprop:Generator_RowClassName="SprCreativeSupportEntryRow" msprop:Generator_UserTableName="SprCreativeSupportEntry" msprop:Generator_RowEvArgName="SprCreativeSupportEntryRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetPoint" msprop:Generator_TableClassName="GetPointDataTable" msprop:Generator_TableVarName="tableGetPoint" msprop:Generator_TablePropName="GetPoint" msprop:Generator_RowDeletingName="GetPointRowDeleting" msprop:Generator_RowChangingName="GetPointRowChanging" msprop:Generator_RowEvHandlerName="GetPointRowChangeEventHandler" msprop:Generator_RowDeletedName="GetPointRowDeleted" msprop:Generator_UserTableName="GetPoint" msprop:Generator_RowChangedName="GetPointRowChanged" msprop:Generator_RowEvArgName="GetPointRowChangeEvent" msprop:Generator_RowClassName="GetPointRow">
+        <xs:element name="GetPoint" msprop:Generator_TableClassName="GetPointDataTable" msprop:Generator_TableVarName="tableGetPoint" msprop:Generator_RowChangedName="GetPointRowChanged" msprop:Generator_TablePropName="GetPoint" msprop:Generator_RowDeletingName="GetPointRowDeleting" msprop:Generator_RowChangingName="GetPointRowChanging" msprop:Generator_RowEvHandlerName="GetPointRowChangeEventHandler" msprop:Generator_RowDeletedName="GetPointRowDeleted" msprop:Generator_RowClassName="GetPointRow" msprop:Generator_UserTableName="GetPoint" msprop:Generator_RowEvArgName="GetPointRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intPoint" msprop:Generator_ColumnVarNameInTable="columnintPoint" msprop:Generator_ColumnPropNameInRow="intPoint" msprop:Generator_ColumnPropNameInTable="intPointColumn" msprop:Generator_UserColumnName="intPoint" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ReportForDashboardWithoutComplete" msprop:Generator_TableClassName="ReportForDashboardWithoutCompleteDataTable" msprop:Generator_TableVarName="tableReportForDashboardWithoutComplete" msprop:Generator_TablePropName="ReportForDashboardWithoutComplete" msprop:Generator_RowDeletingName="ReportForDashboardWithoutCompleteRowDeleting" msprop:Generator_RowChangingName="ReportForDashboardWithoutCompleteRowChanging" msprop:Generator_RowEvHandlerName="ReportForDashboardWithoutCompleteRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportForDashboardWithoutCompleteRowDeleted" msprop:Generator_UserTableName="ReportForDashboardWithoutComplete" msprop:Generator_RowChangedName="ReportForDashboardWithoutCompleteRowChanged" msprop:Generator_RowEvArgName="ReportForDashboardWithoutCompleteRowChangeEvent" msprop:Generator_RowClassName="ReportForDashboardWithoutCompleteRow">
+        <xs:element name="ReportForDashboardWithoutComplete" msprop:Generator_TableClassName="ReportForDashboardWithoutCompleteDataTable" msprop:Generator_TableVarName="tableReportForDashboardWithoutComplete" msprop:Generator_RowChangedName="ReportForDashboardWithoutCompleteRowChanged" msprop:Generator_TablePropName="ReportForDashboardWithoutComplete" msprop:Generator_RowDeletingName="ReportForDashboardWithoutCompleteRowDeleting" msprop:Generator_RowChangingName="ReportForDashboardWithoutCompleteRowChanging" msprop:Generator_RowEvHandlerName="ReportForDashboardWithoutCompleteRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportForDashboardWithoutCompleteRowDeleted" msprop:Generator_RowClassName="ReportForDashboardWithoutCompleteRow" msprop:Generator_UserTableName="ReportForDashboardWithoutComplete" msprop:Generator_RowEvArgName="ReportForDashboardWithoutCompleteRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intJobID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintJobID" msprop:Generator_ColumnPropNameInRow="intJobID" msprop:Generator_ColumnPropNameInTable="intJobIDColumn" msprop:Generator_UserColumnName="intJobID" type="xs:int" />
@@ -430,7 +474,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="StatusList" msprop:Generator_TableClassName="StatusListDataTable" msprop:Generator_TableVarName="tableStatusList" msprop:Generator_TablePropName="StatusList" msprop:Generator_RowDeletingName="StatusListRowDeleting" msprop:Generator_RowChangingName="StatusListRowChanging" msprop:Generator_RowEvHandlerName="StatusListRowChangeEventHandler" msprop:Generator_RowDeletedName="StatusListRowDeleted" msprop:Generator_UserTableName="StatusList" msprop:Generator_RowChangedName="StatusListRowChanged" msprop:Generator_RowEvArgName="StatusListRowChangeEvent" msprop:Generator_RowClassName="StatusListRow">
+        <xs:element name="StatusList" msprop:Generator_TableClassName="StatusListDataTable" msprop:Generator_TableVarName="tableStatusList" msprop:Generator_RowChangedName="StatusListRowChanged" msprop:Generator_TablePropName="StatusList" msprop:Generator_RowDeletingName="StatusListRowDeleting" msprop:Generator_RowChangingName="StatusListRowChanging" msprop:Generator_RowEvHandlerName="StatusListRowChangeEventHandler" msprop:Generator_RowDeletedName="StatusListRowDeleted" msprop:Generator_RowClassName="StatusListRow" msprop:Generator_UserTableName="StatusList" msprop:Generator_RowEvArgName="StatusListRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intStatusID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintStatusID" msprop:Generator_ColumnPropNameInRow="intStatusID" msprop:Generator_ColumnPropNameInTable="intStatusIDColumn" msprop:Generator_UserColumnName="intStatusID" type="xs:int" />
@@ -444,7 +488,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprCreativeSupportReportForViewDetails" msprop:Generator_TableClassName="SprCreativeSupportReportForViewDetailsDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportReportForViewDetails" msprop:Generator_RowChangedName="SprCreativeSupportReportForViewDetailsRowChanged" msprop:Generator_TablePropName="SprCreativeSupportReportForViewDetails" msprop:Generator_RowDeletingName="SprCreativeSupportReportForViewDetailsRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportReportForViewDetailsRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportReportForViewDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportReportForViewDetailsRowDeleted" msprop:Generator_RowClassName="SprCreativeSupportReportForViewDetailsRow" msprop:Generator_UserTableName="SprCreativeSupportReportForViewDetails" msprop:Generator_RowEvArgName="SprCreativeSupportReportForViewDetailsRowChangeEvent">
+        <xs:element name="SprCreativeSupportReportForViewDetails" msprop:Generator_TableClassName="SprCreativeSupportReportForViewDetailsDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportReportForViewDetails" msprop:Generator_TablePropName="SprCreativeSupportReportForViewDetails" msprop:Generator_RowDeletingName="SprCreativeSupportReportForViewDetailsRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportReportForViewDetailsRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportReportForViewDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportReportForViewDetailsRowDeleted" msprop:Generator_UserTableName="SprCreativeSupportReportForViewDetails" msprop:Generator_RowChangedName="SprCreativeSupportReportForViewDetailsRowChanged" msprop:Generator_RowEvArgName="SprCreativeSupportReportForViewDetailsRowChangeEvent" msprop:Generator_RowClassName="SprCreativeSupportReportForViewDetailsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intJobID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintJobID" msprop:Generator_ColumnPropNameInRow="intJobID" msprop:Generator_ColumnPropNameInTable="intJobIDColumn" msprop:Generator_UserColumnName="intJobID" type="xs:int" />
@@ -509,11 +553,11 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprCreativeSupportStatusUpdate" msprop:Generator_TableClassName="SprCreativeSupportStatusUpdateDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportStatusUpdate" msprop:Generator_TablePropName="SprCreativeSupportStatusUpdate" msprop:Generator_RowDeletingName="SprCreativeSupportStatusUpdateRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportStatusUpdateRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportStatusUpdateRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportStatusUpdateRowDeleted" msprop:Generator_UserTableName="SprCreativeSupportStatusUpdate" msprop:Generator_RowChangedName="SprCreativeSupportStatusUpdateRowChanged" msprop:Generator_RowEvArgName="SprCreativeSupportStatusUpdateRowChangeEvent" msprop:Generator_RowClassName="SprCreativeSupportStatusUpdateRow">
+        <xs:element name="SprCreativeSupportStatusUpdate" msprop:Generator_TableClassName="SprCreativeSupportStatusUpdateDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportStatusUpdate" msprop:Generator_RowChangedName="SprCreativeSupportStatusUpdateRowChanged" msprop:Generator_TablePropName="SprCreativeSupportStatusUpdate" msprop:Generator_RowDeletingName="SprCreativeSupportStatusUpdateRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportStatusUpdateRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportStatusUpdateRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportStatusUpdateRowDeleted" msprop:Generator_RowClassName="SprCreativeSupportStatusUpdateRow" msprop:Generator_UserTableName="SprCreativeSupportStatusUpdate" msprop:Generator_RowEvArgName="SprCreativeSupportStatusUpdateRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprCreativeSupportAllReport" msprop:Generator_TableClassName="SprCreativeSupportAllReportDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportAllReport" msprop:Generator_TablePropName="SprCreativeSupportAllReport" msprop:Generator_RowDeletingName="SprCreativeSupportAllReportRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportAllReportRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportAllReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportAllReportRowDeleted" msprop:Generator_UserTableName="SprCreativeSupportAllReport" msprop:Generator_RowChangedName="SprCreativeSupportAllReportRowChanged" msprop:Generator_RowEvArgName="SprCreativeSupportAllReportRowChangeEvent" msprop:Generator_RowClassName="SprCreativeSupportAllReportRow">
+        <xs:element name="SprCreativeSupportAllReport" msprop:Generator_TableClassName="SprCreativeSupportAllReportDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportAllReport" msprop:Generator_RowChangedName="SprCreativeSupportAllReportRowChanged" msprop:Generator_TablePropName="SprCreativeSupportAllReport" msprop:Generator_RowDeletingName="SprCreativeSupportAllReportRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportAllReportRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportAllReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportAllReportRowDeleted" msprop:Generator_RowClassName="SprCreativeSupportAllReportRow" msprop:Generator_UserTableName="SprCreativeSupportAllReport" msprop:Generator_RowEvArgName="SprCreativeSupportAllReportRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intJobID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintJobID" msprop:Generator_ColumnPropNameInRow="intJobID" msprop:Generator_ColumnPropNameInTable="intJobIDColumn" msprop:Generator_UserColumnName="intJobID" type="xs:int" />
@@ -574,6 +618,23 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="intTotalPoint" msprop:Generator_ColumnVarNameInTable="columnintTotalPoint" msprop:Generator_ColumnPropNameInRow="intTotalPoint" msprop:Generator_ColumnPropNameInTable="intTotalPointColumn" msprop:Generator_UserColumnName="intTotalPoint" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprItemCreateAndPointSet" msprop:Generator_TableClassName="SprItemCreateAndPointSetDataTable" msprop:Generator_TableVarName="tableSprItemCreateAndPointSet" msprop:Generator_TablePropName="SprItemCreateAndPointSet" msprop:Generator_RowDeletingName="SprItemCreateAndPointSetRowDeleting" msprop:Generator_RowChangingName="SprItemCreateAndPointSetRowChanging" msprop:Generator_RowEvHandlerName="SprItemCreateAndPointSetRowChangeEventHandler" msprop:Generator_RowDeletedName="SprItemCreateAndPointSetRowDeleted" msprop:Generator_UserTableName="SprItemCreateAndPointSet" msprop:Generator_RowChangedName="SprItemCreateAndPointSetRowChanged" msprop:Generator_RowEvArgName="SprItemCreateAndPointSetRowChangeEvent" msprop:Generator_RowClassName="SprItemCreateAndPointSetRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AllDocView" msprop:Generator_TableClassName="AllDocViewDataTable" msprop:Generator_TableVarName="tableAllDocView" msprop:Generator_TablePropName="AllDocView" msprop:Generator_RowDeletingName="AllDocViewRowDeleting" msprop:Generator_RowChangingName="AllDocViewRowChanging" msprop:Generator_RowEvHandlerName="AllDocViewRowChangeEventHandler" msprop:Generator_RowDeletedName="AllDocViewRowDeleted" msprop:Generator_UserTableName="AllDocView" msprop:Generator_RowChangedName="AllDocViewRowChanged" msprop:Generator_RowEvArgName="AllDocViewRowChangeEvent" msprop:Generator_RowClassName="AllDocViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strFilePath" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrFilePath" msprop:Generator_ColumnPropNameInRow="strFilePath" msprop:Generator_ColumnPropNameInTable="strFilePathColumn" msprop:Generator_UserColumnName="strFilePath" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

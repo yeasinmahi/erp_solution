@@ -25,6 +25,66 @@
          }
          </script> 
 
+    <script type="text/javascript">
+        function Search_dgview(strKey, strGV) { 
+           var strData = strKey.value.toLowerCase().split(" ");
+           var tblData = document.getElementById(strGV);
+           var rowData;
+           for (var i = 1; i < tblData.rows.length; i++) {
+               rowData = tblData.rows[i].innerHTML;
+               var styleDisplay = 'none';
+               for (var j = 0; j < strData.length; j++) {
+                   if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                       styleDisplay = '';
+                   else {
+                       styleDisplay = 'none';
+                       break;
+                   }
+               }
+               tblData.rows[i].style.display = styleDisplay;
+           } 
+        }
+
+         function Search_dgvServiceCost(strKey, strGV) { 
+           var strData = strKey.value.toLowerCase().split(" ");
+           var tblData = document.getElementById(strGV);
+           var rowData;
+           for (var i = 1; i < tblData.rows.length; i++) {
+               rowData = tblData.rows[i].innerHTML;
+               var styleDisplay = 'none';
+               for (var j = 0; j < strData.length; j++) {
+                   if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                       styleDisplay = '';
+                   else {
+                       styleDisplay = 'none';
+                       break;
+                   }
+               }
+               tblData.rows[i].style.display = styleDisplay;
+           } 
+        }
+
+        function Search_dgvMaterial(strKey, strGV) { 
+           var strData = strKey.value.toLowerCase().split(" ");
+           var tblData = document.getElementById(strGV);
+           var rowData;
+           for (var i = 1; i < tblData.rows.length; i++) {
+               rowData = tblData.rows[i].innerHTML;
+               var styleDisplay = 'none';
+               for (var j = 0; j < strData.length; j++) {
+                   if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                       styleDisplay = '';
+                   else {
+                       styleDisplay = 'none';
+                       break;
+                   }
+               }
+               tblData.rows[i].style.display = styleDisplay;
+           }
+             
+       }
+    </script>
+
     <style type="text/css">
         .leaveApplication_container {
             margin-top: 0px;
@@ -88,6 +148,9 @@
                     <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
             <asp:TemplateField HeaderText="Sl.N">
+            <HeaderTemplate>
+            <asp:TextBox ID="TextBox2" Width="75"   onkeyup="Search_dgview(this, 'dgview')" PlaceHolder="Search" runat="server"></asp:TextBox>
+            </HeaderTemplate>
             <ItemTemplate>
             <%# Container.DataItemIndex + 1 %>
             </ItemTemplate>
@@ -95,6 +158,7 @@
             <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
             <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
             <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" />
+                <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" />
             <asp:BoundField DataField="strServiceName" HeaderText="ServiceName" SortExpression="strServiceName" /> 
             <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" /> 
              <asp:BoundField DataField="strRepairType" HeaderText="RepairType" SortExpression="strRepairType" />  
@@ -124,6 +188,9 @@
                     <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
             <asp:TemplateField HeaderText="Sl.N">
+                 <HeaderTemplate>
+            <asp:TextBox ID="TextBox4" Width="75"   onkeyup="Search_dgvMaterial(this, 'dgvMaterial')" PlaceHolder="Search" runat="server"></asp:TextBox>
+            </HeaderTemplate>
             <ItemTemplate>
             <%# Container.DataItemIndex + 1 %>
             </ItemTemplate>
@@ -158,6 +225,9 @@
                     <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
             <asp:TemplateField HeaderText="Sl.N">
+            <HeaderTemplate>
+            <asp:TextBox ID="TextBox3" Width="75"   onkeyup="Search_dgvServiceCost(this, 'dgvServiceCost')" PlaceHolder="Search" runat="server"></asp:TextBox>
+            </HeaderTemplate>
             <ItemTemplate>
             <%# Container.DataItemIndex + 1 %>
             </ItemTemplate>

@@ -17,9 +17,13 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll,intWh;
+        RFQBLL objRfq = new RFQBLL();
+        int enroll,intWh,intAutoid;
         string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; string xmlString = "";
-        int indentNo,whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule; DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
+        int indentNo,whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule;
+
+
+        DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/In__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -38,9 +42,10 @@ namespace UI.SCM
             }
         }
 
-       
 
-       
+
+
+      
 
         private void DefaltPageLoad()
         {
@@ -452,35 +457,32 @@ namespace UI.SCM
                     for (int index = 0; index < dgvIndentDet.Rows.Count; index++)
                     {
                         
-                            string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text.ToString();
-                            string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
-                            string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
-                            string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text.ToString();
-                            string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
-                            string strDesc = ((Label)dgvIndentDet.Rows[index].FindControl("lblPurpose")).Text.ToString();// lblPurpose
-                            string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
-                            string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
-                            string numIndentQty = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentQty")).Text.ToString();
-                            string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
-                            string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
-                            string numNewPo = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text.ToString();
-                            string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text.ToString(); //lblSpecification as TextBox -- 
-                            string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
+                        string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text.ToString();
+                        string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
+                        string hscode = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
+                        string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text.ToString();
+                        string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
+                        string numIndentQty = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentQty")).Text.ToString();
+                        string newRFQQTY = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text.ToString();
+                        dt = objRfq.getRFQBreakup(hscode);
+                         
+                        if (int.Parse(dt.Rows[0]["intCount"].ToString()) > 0)
+                        {
+                            if (int.Parse(newRFQQTY) > 0)
+                            {
+                                objRfq.getRFQItemUpdate(hscode, int.Parse(itemId));
+                                objRfq.getInsert(int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlWH.SelectedValue), enroll);
+                                dt = objRfq.getAutoid(int.Parse(Session[SessionParams.USER_ID].ToString()));
+                                intAutoid = int.Parse(dt.Rows[0]["intRFQID"].ToString());
+                                objRfq.getinsertDetailsRFQ(intAutoid, int.Parse(indentId), int.Parse(itemId), decimal.Parse(numIndentQty), decimal.Parse(newRFQQTY), int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(ddlWH.SelectedValue));
 
-                         if(decimal.Parse(numNewPo)>0)
-                           {
-                            CreateXmlPrepare(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                           } 
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+                                dgvIndentDet.DataBind();
+                            }
+                        }
+                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Some HS code is not valid. Please check it and correct it !');", true);}
                     }
-                    List<ListItem> items = new List<ListItem>();
-                    items.Add(new ListItem(hdnWHName.Value.ToString(), hdnWHId.Value.ToString()));
-                  
-                   
-                   
-                  
 
-
-                   
 
                     Tab1.CssClass = "Initial";
                     Tab2.CssClass = "Initial"; 
@@ -489,98 +491,14 @@ namespace UI.SCM
 
                 }
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXMLPrepare);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<voucher>" + xmlString + "</voucher>";
-                try { File.Delete(filePathForXML); } catch { }
+                
             }
 
 
             catch { }
         }
 
-        private void CreateXmlPrepare(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
-        {
-            XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLPrepare))
-            {
-                doc.Load(filePathForXMLPrepare);
-                XmlNode rootNode = doc.SelectSingleNode("issue");
-                XmlNode addItem = CreateItemNodePrepare(doc, indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                rootNode.AppendChild(addItem);
-            }
-            else
-            {
-                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
-                doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("issue");
-                XmlNode addItem = CreateItemNodePrepare(doc, indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                rootNode.AppendChild(addItem);
-                doc.AppendChild(rootNode);
-            }
-            doc.Save(filePathForXMLPrepare);
-            LoadGridwithXmlPrepare();
-        }
-
-        private XmlNode CreateItemNodePrepare(XmlDocument doc, string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
-        {
-            XmlNode node = doc.CreateElement("issueEntry");
-
-            XmlAttribute IndentId = doc.CreateAttribute("indentId");
-            IndentId.Value = indentId;
-            XmlAttribute ItemId = doc.CreateAttribute("itemId");
-            ItemId.Value = itemId;
-            XmlAttribute StrItem = doc.CreateAttribute("strItem");
-            StrItem.Value = strItem;
-            XmlAttribute StrUom = doc.CreateAttribute("strUom");
-            StrUom.Value = strUom;
-            XmlAttribute StrHsCode = doc.CreateAttribute("strHsCode");
-            StrHsCode.Value = strHsCode;
-            XmlAttribute StrDesc = doc.CreateAttribute("strDesc");
-            StrDesc.Value = strDesc;
-            XmlAttribute NumCurStock = doc.CreateAttribute("numCurStock");
-            NumCurStock.Value = numCurStock;
-
-            XmlAttribute NumSafetyStock = doc.CreateAttribute("numSafetyStock");
-            NumSafetyStock.Value = numSafetyStock;
-            XmlAttribute NumIndentQty = doc.CreateAttribute("numIndentQty");
-            NumIndentQty.Value = numIndentQty;
-            XmlAttribute NumPoIssued = doc.CreateAttribute("numPoIssued");
-            NumPoIssued.Value = numPoIssued;
-
-            XmlAttribute NumRemain = doc.CreateAttribute("numRemain");
-            NumRemain.Value = numRemain;
-            XmlAttribute NumNewPo = doc.CreateAttribute("numNewPo");
-            NumNewPo.Value = numNewPo;
-            XmlAttribute StrSpecification = doc.CreateAttribute("strSpecification");
-            StrSpecification.Value = strSpecification;
-
-            XmlAttribute MonPreviousRate = doc.CreateAttribute("monPreviousRate");
-            MonPreviousRate.Value = monPreviousRate;
-
-            node.Attributes.Append(IndentId);
-            node.Attributes.Append(ItemId);
-            node.Attributes.Append(StrItem);
-            node.Attributes.Append(StrUom);
-
-            node.Attributes.Append(StrHsCode);
-            node.Attributes.Append(StrDesc);
-            node.Attributes.Append(NumCurStock);
-            node.Attributes.Append(NumSafetyStock);
-            node.Attributes.Append(NumIndentQty);
-            node.Attributes.Append(NumPoIssued);
-
-            node.Attributes.Append(NumRemain);
-            node.Attributes.Append(NumNewPo);
-            node.Attributes.Append(StrSpecification);
-            node.Attributes.Append(NumSafetyStock);
-            node.Attributes.Append(MonPreviousRate);
-
-            return node;
-        }
-
+      
         private void LoadGridwithXmlPrepare()
         {
             try

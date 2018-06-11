@@ -7,8 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-
+using System.Web.UI.HtmlControls; 
 using UserSecurity;
 using HR_BLL.User;
 using HR_DAL.User;
@@ -56,9 +55,8 @@ namespace UI
             try
             {
                 string[] donainpatrs = domainUser.Split('\\');
-                id = donainpatrs[1] + "@akij.net";
-                //id = "minhaz.apl@akij.net";
-
+               id = donainpatrs[1] + "@akij.net";
+                // id = "ahad.acw@akij.net"; 
 
                 string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
                 if (ip == string.Empty || ip == null)

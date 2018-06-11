@@ -303,5 +303,16 @@ namespace SCM_BLL
                 return null;
             }
         }
+
+        public DataTable PoRegisterViewData(DateTime fDate  , DateTime tDate  ,string dept,int intWH  , int type  , int? intID  , int? intNewType)
+        {
+            try
+            {
+                SprPORegisterTableAdapter adpView = new SprPORegisterTableAdapter();
+                return adpView.GetPoRegisterData(fDate, tDate, dept, intWH, type, intID, intNewType);
+            }
+            catch { return new DataTable(); }
+           
+        }
     }
 }

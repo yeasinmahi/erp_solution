@@ -44,10 +44,16 @@ namespace UI.CreativeSupportModule
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = dgvDashboardReport.Rows[rowIndex];
             
+
             if (e.CommandName == "View")
             {
                 intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewJobDetails('" + intJobID.ToString() + "');", true);
+            }
+            else if (e.CommandName == "Doc View")
+            {
+                intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewAllDocumentView('" + intJobID.ToString() + "');", true);
             }
         }
         protected void dgvDashboardReport_DataBound(object sender, EventArgs e)
@@ -79,7 +85,7 @@ namespace UI.CreativeSupportModule
             int intPart = 2;
             strStatusRemarks = "";
             xmlDoc = "";
-
+            
             if (intJobStatusID == 1)
             {
                 if (hdnconfirm.Value == "1")
@@ -116,14 +122,13 @@ namespace UI.CreativeSupportModule
                     string JobCode = lblJobCode.Text;
                     string JobStatus = strJobStatus;
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + intJobID.ToString() + "','" + JobCode + "','" + JobStatus + "','" + JobStatusID + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + intJobID.ToString() + "','" + JobCode + "','" + JobStatus + "','" + JobStatusID + "');", true);                    
                 }
                 else
                 {
                     ddlJStat.SelectedValue = "0";
                 }
-            }
-
+            }            
         }
 
 

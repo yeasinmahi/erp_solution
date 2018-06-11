@@ -195,8 +195,32 @@ namespace HR_BLL.CreativeSupport
             { return adp.GetAllReport(intPart, intReceiver, dteFrom, dteTo); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public string ItemCreateAndPointSet(int intPart, string strItemName, int intPoint, int intID)
+        {
+            try
+            {
+                string msg = "";
+                SprItemCreateAndPointSetTableAdapter adp = new SprItemCreateAndPointSetTableAdapter();
+                adp.ItemCreateAndPointSet(intPart, strItemName, intPoint, intID, ref msg);
+                return msg;
+            }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+        public DataTable GetCreativeItemListForDDL()
+        {
+            ItemListForCreativeSTableAdapter adp = new ItemListForCreativeSTableAdapter();
+            try
+            { return adp.GetCreativeItemList(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetAllDocumentView(int intJobID)
+        {
+            AllDocViewTableAdapter adp = new AllDocViewTableAdapter();
+            try
+            { return adp.GetAllDocumentView(intJobID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
         
-
 
 
 

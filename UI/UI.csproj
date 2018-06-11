@@ -277,15 +277,18 @@
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
     <Content Include="CreativeSupportModule\CustomerView.aspx" />
     <Content Include="CreativeSupportModule\DashboardReport.aspx" />
     <Content Include="CreativeSupportModule\DocView.aspx" />
+    <Content Include="CreativeSupportModule\DocViewForHoldAndFeedback.aspx" />
     <Content Include="CreativeSupportModule\HoldFeedback.aspx" />
     <Content Include="CreativeSupportModule\img\20171103 _ CREATIVE SUPPORT UI DASHBOARD _ FOOTER.png" />
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
+    <Content Include="CreativeSupportModule\ItemCreateAndPointSet.aspx" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
     <Content Include="Dairy\Milk_Audit_R_Details.aspx" />
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
@@ -362,10 +365,12 @@
     <Content Include="PaymentModule\BillApproval.aspx" />
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\BillRegisterReport.aspx" />
+    <Content Include="PaymentModule\BillTopSheet.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
+    <Content Include="PaymentModule\MDApprovalSheet.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
@@ -1254,6 +1259,7 @@
     <Content Include="SCM\PoGenerate.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
+    <Content Include="SCM\PoRegisterReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
@@ -1344,6 +1350,8 @@
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
+    <Content Include="VAT_Management\frmDestroy.aspx" />
+    <Content Include="VAT_Management\frmCreditNote.aspx" />
     <Content Include="VAT_Management\Mushak11.aspx" />
     <Content Include="VAT_Management\Mushak19MonthlyReturn.aspx" />
     <Content Include="VAT_Management\OtherAdjustments.aspx" />
@@ -2311,6 +2319,13 @@
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\AggrementPage.aspx.cs">
+      <DependentUpon>AggrementPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\AggrementPage.aspx.designer.cs">
+      <DependentUpon>AggrementPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\CreativeSupportJobDetail.aspx.cs">
       <DependentUpon>CreativeSupportJobDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2346,12 +2361,26 @@
     <Compile Include="CreativeSupportModule\DocView.aspx.designer.cs">
       <DependentUpon>DocView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreativeSupportModule\DocViewForHoldAndFeedback.aspx.cs">
+      <DependentUpon>DocViewForHoldAndFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\DocViewForHoldAndFeedback.aspx.designer.cs">
+      <DependentUpon>DocViewForHoldAndFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreativeSupportModule\HoldFeedback.aspx.designer.cs">
       <DependentUpon>HoldFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.cs">
+      <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.designer.cs">
+      <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dairy\Milk_Audit_Approve.aspx.cs">
       <DependentUpon>Milk_Audit_Approve.aspx</DependentUpon>
@@ -2755,6 +2784,13 @@
     <Compile Include="PaymentModule\BillRegisterReport.aspx.designer.cs">
       <DependentUpon>BillRegisterReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\BillTopSheet.aspx.cs">
+      <DependentUpon>BillTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BillTopSheet.aspx.designer.cs">
+      <DependentUpon>BillTopSheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2782,6 +2818,13 @@
     </Compile>
     <Compile Include="PaymentModule\MaterialCOABridge.aspx.designer.cs">
       <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MDApprovalSheet.aspx.cs">
+      <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MDApprovalSheet.aspx.designer.cs">
+      <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
@@ -6403,6 +6446,13 @@
     <Compile Include="SCM\PONew1.aspx.designer.cs">
       <DependentUpon>PONew1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\PoRegisterReport.aspx.cs">
+      <DependentUpon>PoRegisterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PoRegisterReport.aspx.designer.cs">
+      <DependentUpon>PoRegisterReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\PoWithoutIndent.aspx.cs">
       <DependentUpon>PoWithoutIndent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7060,6 +7110,20 @@
     </Compile>
     <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.designer.cs">
       <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\frmDestroy.aspx.cs">
+      <DependentUpon>frmDestroy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\frmDestroy.aspx.designer.cs">
+      <DependentUpon>frmDestroy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\frmCreditNote.aspx.cs">
+      <DependentUpon>frmCreditNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\frmCreditNote.aspx.designer.cs">
+      <DependentUpon>frmCreditNote.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\Mushak11.aspx.cs">
       <DependentUpon>Mushak11.aspx</DependentUpon>

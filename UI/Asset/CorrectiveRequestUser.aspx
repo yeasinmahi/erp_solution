@@ -10,63 +10,41 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
        
-    <script>
-        function Save() {
-            document.getElementById("hdnField").value = "1";
-            __doPostBack();
+   <script type="text/javascript">
+
+        function funConfirmAll() {
+             var asset = document.getElementById("TxtAsset").value;
+             var problem = document.getElementById("TxtProblem").value;
+      
+            if ($.trim(asset).length < 3 ||$.trim(asset) == 0 || $.trim(asset) == "" || $.trim(asset) == null || $.trim(asset) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please input Asset ID'); }
+            else  if ($.trim(problem).length < 5||$.trim(problem) == 0 || $.trim(problem) == "" || $.trim(problem) == null || $.trim(problem) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please describe problem Grather then 5 charcter'); }
+
+            else {
+                 var confirm_value = document.createElement("INPUT"); 
+                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+
+                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
+
+                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+
+            }
+            
+
         }
 
-</script>
-    <script>
-        $(document).ready(function () {
-            SearchText();
-        });
-        function Changed() {
-            document.getElementById('hdfSearchBoxTextChange').value = 'true';
-        }
-        function SearchText() {
-            $("#txtPartsSearch").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json;",
-                        url: "IssueAssetMaintenance.aspx/GetAutoCompleteData",
-                        data: "{'strSearchKey':'" + document.getElementById('txtPartsSearch').value + "'}",
-                        dataType: "json",
-                        success: function (data) {
-                            response(data.d);
-                        },
-                        error: function (result) {
-                            alert("Error");
-                        }
-                    });
-                }
-            });
-        }
-
-    </script>
+</script> 
+    
      <script>
-         function Registration(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=700,top=150,left=350, close=no');
-             if (window.focus) { newwindow.focus() }
-         }
-
-         function Registrationparts(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=1000,top=150,left=350, close=no');
-             if (window.focus) { newwindow.focus() }
-         }
-         function RegistrationSchedule(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=700,top=150,left=350, close=no');
-             if (window.focus) { newwindow.focus() }
-         }
-         function Viewdetails(id, status) {
-             window.open('CorrectiveRequestUserPopUP.aspx?ID=' + id , '', "height=600, width=750, scrollbars=yes, left=150, top=50, resizable=no, title=Preview");
+         
+         function Viewdetails(id) {
+             window.open('CorrectiveRequestUserPopUP.aspx?ID=' + id , '', "height=600, width=800, scrollbars=yes, left=150, top=50, resizable=yes, title=Preview");
          }
              </script> 
    
@@ -98,25 +76,25 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
     <div style="height: 100px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>
-
-
-
-
-
+    </cc1:AlwaysVisibleControlExtender> 
 
 <%--=========================================Start My Code From Here===============================================--%>
       <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
-    <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnUnitIDByddl" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
-    <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />         
-    <div class="tabs_container" align="Center" >Maintenance Service Request</div>
+      <asp:HiddenField ID="hdnConfirm" runat="server" />
+           
+    <div class="tabs_container" align="left" >Maintenance Service Request</div>
    
        <table style="width:600px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #996633;"class="tblrowodd" >
            <tr  class="tblrowodd">
                   
        <td style="text-align:right;" > <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Asset Number:"></asp:Label></td>
-          <td style="text-align:left;"> <asp:TextBox ID="TxtAsset" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged"  ></asp:TextBox>
-                      
+        <td style="text-align:left;"> <asp:TextBox ID="TxtAsset" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged"  ></asp:TextBox>
+        <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="TxtAsset"
+        ServiceMethod="GetAssetData" MinimumPrefixLength="1" CompletionSetCount="1"
+        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+        </cc1:AutoCompleteExtender>
+        <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" /></td>                
            <td style="text-align:right;"> <asp:Label ID="LblUnit" runat="server" CssClass="lbl" font-size="small" Text="Unit:"></asp:Label></td>
           <td style="text-align:left;"> <asp:TextBox ID="TxtUnit" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
        
@@ -126,73 +104,81 @@
           <td style="text-align:left;"> <asp:TextBox ID="TxtName" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
         <td style="text-align:right;"> <asp:Label ID="LblStation" runat="server" font-size="small" CssClass="lbl" Text="JobStation:"></asp:Label></td>
           <td style="text-align:left;"> <asp:TextBox ID="TxtStation" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
-      
-       
-                  </tr>
-              <tr>
-
-               
-         <td style="text-align:right;"><asp:Label ID="LblPrioritys" runat="server" font-size="small"  CssClass="lbl" Text="Priority:"></asp:Label></td>
-      
-                <td style="text-align:left;"><asp:DropDownList ID="DdlREPriotiy" runat="server" CssClass="ddList" Font-Bold="False">
-                              <asp:ListItem>Low</asp:ListItem>
-                              <asp:ListItem>Medium</asp:ListItem>
-                              <asp:ListItem>High</asp:ListItem>
-                             
-                          </asp:DropDownList>  
-                    
-       <td style="text-align:right;"><asp:Label ID="LblCommonRepair" runat="server" font-size="small"  CssClass="lbl" Text="Service Department:"></asp:Label></td>
-      <td style="text-align:left;"><asp:DropDownList ID="DdlDept" runat="server" CssClass="ddList" Font-Bold="False">
-     </asp:DropDownList>
-   
-                     </td>
-                   
-                  
-       </tr>
-           <tr>
-                <td style="text-align:right;"> <asp:Label ID="Label1" runat="server"  font-size="small"  CssClass="lbl" Text="Location:"></asp:Label></td>
-               <td style="text-align:left;"> <asp:TextBox ID="TxtLocation" runat="server" CssClass="txtBox" Font-Bold="False" ></asp:TextBox>
+        </tr>
            
-                <td style="text-align:right;"> <asp:Label ID="LblProblem" runat="server"  font-size="small"  CssClass="lbl" Text="Problem:"></asp:Label></td>
-               <td style="text-align:left;"> <asp:TextBox ID="TxtProblem" runat="server" CssClass="txtBox" Font-Bold="False" ></asp:TextBox>
-           
+            <tr class="tblrowodd">
+            <td style="text-align:right;" > <asp:Label ID="lblValidity" runat="server" Text="Validity Date" CssClass="lbl"   font-size="small"  ></asp:Label></td>
+            <td style="text-align:left;" colspan="3"> <asp:Label ID="lblDetalis" Font-Bold="true" runat="server" CssClass="lbl" Width="500px" font-size="small"  ></asp:Label></td>
            </tr>
-     
-
-        
-        
-            
-             <tr>
+           
+            <tr  class="tblrowodd"> 
+            <td style="text-align:right;"><asp:Label ID="LblPrioritys" runat="server" font-size="small"  CssClass="lbl" Text="Priority:"></asp:Label></td>
+      
+            <td style="text-align:left;"><asp:DropDownList ID="DdlREPriotiy" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="DdlREPriotiy_SelectedIndexChanged" AutoPostBack="True">
+            <asp:ListItem>Low</asp:ListItem>
+            <asp:ListItem>Medium</asp:ListItem>
+            <asp:ListItem>High</asp:ListItem> 
+            </asp:DropDownList>  
+                    
+            <td style="text-align:right;"><asp:Label ID="LblCommonRepair" runat="server" font-size="small"  CssClass="lbl" Text="Service Type:"></asp:Label></td>
+            <td style="text-align:left;"><asp:DropDownList ID="ddlType" runat="server" CssClass="ddList" Font-Bold="False">
+            </asp:DropDownList></td> 
+            </tr>
+            <tr  class="tblrowodd">
+            <td style="text-align:right;"> <asp:Label ID="Label1" runat="server"  font-size="small"  CssClass="lbl" Text="Request Workstation:"></asp:Label></td>
+            <td style="text-align:left;"> <asp:DropDownList ID="ddlLocation" runat="server" CssClass="ddList" Font-Bold="False" AutoPostBack="true" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" ></asp:DropDownList>
+           
+            <td style="text-align:right;"><asp:Label ID="Label2" runat="server" font-size="small"  CssClass="lbl" Text="Service Department:"></asp:Label></td>
+            <td style="text-align:left;"><asp:DropDownList ID="DdlDept" runat="server" CssClass="ddList" Font-Bold="False">
+            </asp:DropDownList> 
                       
-               <td></td> 
-                 <td></td> <td></td>    
-               <td style="text-align:right;">
-                   <asp:Button ID="BtnRequest" runat="server" Text="Save" OnClick="BtnRequest_Click"   /></td>
-             </tr>
+            </tr> 
+            <tr  class="tblrowodd">
+            <td style="text-align:right;"> <asp:Label ID="LblProblem" runat="server"  font-size="small"  CssClass="lbl" Text="Problem:"></asp:Label></td>
+            <td style="text-align:left;" colspan="3"> <asp:TextBox ID="TxtProblem" runat="server" Width="500px" CssClass="txtBox" Font-Bold="False" ></asp:TextBox>     
+            </tr>
+            <tr  class="tblrowodd">
+            <td style="text-align:right;"> <asp:Label ID="lblUrgent" runat="server"  font-size="small"  CssClass="lbl" Text="Why Urgent"></asp:Label></td>
+            <td style="text-align:left;" colspan="3"> <asp:TextBox ID="txtUrgent" runat="server" Width="500px" CssClass="txtBox" Font-Bold="False" ></asp:TextBox>     
+            </tr>
+            <tr> 
+            <td></td> 
+            <td></td> <td></td>    
+            <td style="text-align:right;">
+            <asp:Button ID="BtnRequest" runat="server" Text="Submit" Font-Bold="true" OnClick="BtnRequest_Click" OnClientClick="funConfirmAll();"   /></td>
+            </tr>
            </table>
+          <table>
+              <tr>
+                  <td style="font-weight:300">Service Requesition Summary :</td>
+              </tr>
+              <tr>
+                  <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
+                        <Columns>
+                        <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                        <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
+                        <asp:BoundField DataField="strAssetNumber" ItemStyle-Width="150PX" HeaderText="Asset Code" SortExpression="strAssetNumber" Visible="False" />
+                        <asp:BoundField DataField="strNameOfAsset" HeaderText="Name of Asset" SortExpression="strNameOfAsset" />
+                        <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" Visible="False" />
+ 
+                        <asp:BoundField DataField="dteFixed/Repair" HeaderText="DateTime" SortExpression="dteFixed/Repair" />
+                        <asp:BoundField DataField="strProblem" ItemStyle-Width="300PX" HeaderText="Problem" SortExpression="strProblem" />
+                        <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" Visible="False" />
+                        <asp:BoundField DataField="strDepatrment" HeaderText="Request to Dept" SortExpression="strDepatrment" Visible="False" />
+                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" Visible="true" />
+                        <asp:TemplateField HeaderText="Detalis">
+                        <ItemTemplate>
+                        <asp:Button ID="BtnDetalis" runat="server" Text='Detalis'  CommandName="Detalis"  CommandArgument='<%# Eval("intID") %>' OnClick="BtnDetalis_Click"/>
+                        </ItemTemplate>
+                        </asp:TemplateField>
+                        </Columns>
+                     </asp:GridView>
+              </tr>
+          </table>
           </div>
            <div class="leaveSummary_container"> 
-        <div class="tabs_container">Service Requesition Summary :<hr /></div> 
-        
-                     <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
-                         <Columns>
-                             <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-                             <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
-                             <asp:BoundField DataField="strAssetNumber" HeaderText="Asset Code" SortExpression="strAssetNumber" Visible="False" />
-                             <asp:BoundField DataField="strNameOfAsset" HeaderText="Name of Asset" SortExpression="strNameOfAsset" />
-                             <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" Visible="False" />
-                             <asp:BoundField DataField="dteFixed/Repair" HeaderText="DateTime" SortExpression="dteFixed/Repair" />
-                             <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" />
-                             <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" Visible="False" />
-                             <asp:BoundField DataField="strDepatrment" HeaderText="Request to Dept" SortExpression="strDepatrment" Visible="False" />
-                             <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" Visible="False" />
-                             <asp:TemplateField HeaderText="Detalis">
-                                 <ItemTemplate>
-                                     <asp:Button ID="BtnDetalis" runat="server" Text='<%# Bind("status") %>'  CommandName="Detalis"  CommandArgument='<%# Eval("intID") %>' OnClick="BtnDetalis_Click"/>
-                                 </ItemTemplate>
-                             </asp:TemplateField>
-                         </Columns>
-                     </asp:GridView>
+        <div class="tabs_container"> <hr /></div> 
+          
                 </div>
          
             

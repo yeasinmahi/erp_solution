@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerView.aspx.cs" Inherits="UI.CreativeSupportModule.CustomerView" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="cc1" %>
-<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="MKB" %>
 <!DOCTYPE html>
 
 <html>
@@ -26,21 +26,8 @@
     <style type="text/css"> 
     .rounds { height: 500px; width: 60px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #ffffff; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-    width:50%; height: 100%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; }    
-        .auto-style1 {
-            width: 215px;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-border-top-left-radius: 5px;
-            -webkit-border-top-right-radius: 5px;
-            border: 1px solid #ccc;
-            margin-left: 0;
-            margin-right: 0;
-            margin-top: 0;
-            background-color: #FFF;
-        }
+    width:50%; height: 100%; margin-left:5px; margin-top: 120px; margin-right:50px; padding: 15px; }   
+        
     </style>
 
     <script>
@@ -114,8 +101,8 @@
                 <td style="text-align:right; "><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td  style="text-align:right; padding-left:55px"><asp:Label ID="lblstart" runat="server" CssClass="lbl" Text="Required Time"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><MKB:TimeSelector ID="tmsReqTime" runat="server" SelectedTimeFormat="TwentyFour"></MKB:TimeSelector>
-                    <%--<cc1:TimeSelector ID="tmsReqTime" runat="server" AllowSecondEditing="true"></cc1:TimeSelector>--%>
+                <td><%--<MKB:TimeSelector ID="tmsReqTime" runat="server" SelectedTimeFormat="TwentyFour"></MKB:TimeSelector>--%>
+                    <cc1:TimeSelector ID="tmsReqTime" runat="server" AllowSecondEditing="true"></cc1:TimeSelector>
                 </td>
                 
             </tr>
@@ -135,35 +122,35 @@
                 <td style="text-align:left; padding-top:10px">
                 <asp:DropDownList ID="ddlJobDescription" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" DataSourceID="odsJobDes" DataTextField="strJobDescription" DataValueField="intJobDesID" AutoPostBack="true" OnSelectedIndexChanged="ddlJobDescription_SelectedIndexChanged"></asp:DropDownList>
                     <asp:ObjectDataSource ID="odsJobDes" runat="server" SelectMethod="GetJobDescription" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
-                </td>
-             
+                </td>             
 
                 <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
-                <td style="text-align:right; padding-top:10px; padding-left:20px"><asp:Label ID="Label1" runat="server" CssClass="lbl" ForeColor="White" Text="Job Type.. :"></asp:Label></td>
-                <td colspan="2" style="padding-top:10px; padding-left:10px"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="Job Type :"></asp:Label>
-                <asp:DropDownList ID="ddlJobType" CssClass="ddList" Font-Bold="False" runat="server" width="160px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlJobType_SelectedIndexChanged" >
+                <td colspan="3" style="padding-top:10px; padding-left:15px"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="Job Type :"></asp:Label>
+                <asp:DropDownList ID="ddlJobType" CssClass="ddList" Font-Bold="False" runat="server" width="200px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlJobType_SelectedIndexChanged" >
                 <asp:ListItem Selected="True" Value="0">Please Select Job Type</asp:ListItem><asp:ListItem Value="1">Large</asp:ListItem>
                 <asp:ListItem Value="2">Moderate</asp:ListItem><asp:ListItem Value="3">Minor</asp:ListItem></asp:DropDownList>
                 </td>
-
-
             </tr>
             <tr>
                 <td style="text-align:right; padding-top:10px"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Item :"></asp:Label></td>
-                <td style="text-align:left; padding-top:10px">
-                <asp:TextBox ID="txtCRItem" runat="server" AutoPostBack="false" CssClass="txtBox1"></asp:TextBox>
+                <td colspan="5" style="text-align:left; padding-top:10px">
+                <asp:TextBox ID="txtCRItem" runat="server" AutoPostBack="false" CssClass="txtBox1"  Width="547px"></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtCRItem"
                 ServiceMethod="AutoCreativeItem" MinimumPrefixLength="1" CompletionSetCount="1"
                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                 </cc1:AutoCompleteExtender></td>
-
-                <td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td> 
-                <td colspan="2" style="text-align:right; padding-top:10px""><asp:Label ID="Label8" runat="server" Text="Quantity :" CssClass="lbl" ></asp:Label>
-                <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox1" Width="50px" AutoPostBack="false" onKeyUp="javascript:FTPUpload2();"></asp:TextBox>
-                <asp:Label ID="Label7" runat="server" Text="Point" CssClass="lbl" ></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span>
-                <asp:TextBox ID="txtPoint" runat="server" CssClass="txtBox1" Width="50px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
-                <td style="text-align:right; padding: 15px 2px 8px 10px"><asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right; padding-top:10px"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Quantity :"></asp:Label></td>
+                <td colspan="4" style="text-align:left; padding-top:10px"">
+                <asp:TextBox ID="txtQty" CssClass="txtBox1" runat="server"  Width="150px" AutoPostBack="false" onKeyUp="javascript:FTPUpload2();"></asp:TextBox>
+                <span style="padding-left:50px"><asp:Label ID="Label7" runat="server" Text="Point" CssClass="lbl" ></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span>
+                <asp:TextBox ID="txtPoint" runat="server" CssClass="txtBox1" Width="150px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></span>
+                </td>
+                
+                
+                <td style="text-align:right; padding: 15px 17px 8px 10px"><asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"/></td>
             </tr>
             <tr>
                 <td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
@@ -207,10 +194,10 @@
             <tr>
                 <td style="text-align: right; width:120px;"><asp:Label ID="Label11" runat="server" CssClass="lbl" Text="PO ID :"></asp:Label></td>
                 <td colspan="5" style="text-align:left;">
-                <asp:TextBox ID="txtPOID" runat="server" CssClass="txtBox1"></asp:TextBox>
+                <asp:TextBox ID="txtPOID" runat="server" CssClass="txtBox1" Width="150px"></asp:TextBox>
                 <span style="text-align: right; padding-left:16px; "><span style="padding-top:200px;"><asp:Label ID="Label10" runat="server" CssClass="lbl" Text="Work Order/ Attachment:" Width="73px"></asp:Label>
-                <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true" Height="25px" Width="153px"/></span>
-                <span style="padding-left:18px"><asp:Button ID="btnDocUpload" runat="server" class="myButton" Text="Add" Height="30px" OnClientClick="FTPUpload()"/></span></span>
+                <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true" Height="25px" Width="217px"/></span>
+                <span style="padding-left:22px"><asp:Button ID="btnDocUpload" runat="server" class="myButton" Text="Add" Height="30px" OnClientClick="FTPUpload()"/></span></span>
                 </td>          
             </tr>
             <tr><td colspan="6"><hr /></td></tr>  
@@ -238,7 +225,7 @@
                 <td colspan="5" style="padding-top:10px"><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox1" TextMode="MultiLine" Width="547px" Height="50px"></asp:TextBox></td>                
             </tr> 
             <tr>
-                <td colspan="6" style="text-align:right; padding: 15px 2px 8px 10px">
+                <td colspan="6" style="text-align:right; padding: 15px 15px 8px 10px">
                 <span ><asp:Button ID="btnClose" runat="server" class="myButton" Text="Close" Height="30px" OnClick="btnClose_Click"/></span>
                 <span style="padding-left:50px"><asp:Button ID="btnClear" runat="server" class="myButton" Text="Clear" Height="30px" OnClick="btnClear_Click"/></span>
                 <span style="padding-left:50px;"><asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Height="30px" OnClientClick="FTPUpload1()"/></span></td>
