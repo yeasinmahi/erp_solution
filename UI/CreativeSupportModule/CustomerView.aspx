@@ -100,7 +100,7 @@
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReqDate"></cc1:CalendarExtender></td>
                 <td style="text-align:right; "><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
-                <td  style="text-align:right; padding-left:55px"><asp:Label ID="lblstart" runat="server" CssClass="lbl" Text="Required Time"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+                <td  style="text-align:right; padding-left:55px"><asp:Label ID="lblstart" runat="server" CssClass="lbl" Text="Required Time :"></asp:Label></td>
                 <td><%--<MKB:TimeSelector ID="tmsReqTime" runat="server" SelectedTimeFormat="TwentyFour"></MKB:TimeSelector>--%>
                     <cc1:TimeSelector ID="tmsReqTime" runat="server" AllowSecondEditing="true"></cc1:TimeSelector>
                 </td>
@@ -145,7 +145,7 @@
                 <td style="text-align:right; padding-top:10px"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Quantity :"></asp:Label></td>
                 <td colspan="4" style="text-align:left; padding-top:10px"">
                 <asp:TextBox ID="txtQty" CssClass="txtBox1" runat="server"  Width="150px" AutoPostBack="false" onKeyUp="javascript:FTPUpload2();"></asp:TextBox>
-                <span style="padding-left:50px"><asp:Label ID="Label7" runat="server" Text="Point" CssClass="lbl" ></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span>
+                <span style="padding-left:50px"><asp:Label ID="Label7" runat="server" Text="Point :" CssClass="lbl" ></asp:Label>
                 <asp:TextBox ID="txtPoint" runat="server" CssClass="txtBox1" Width="150px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></span>
                 </td>
                 
