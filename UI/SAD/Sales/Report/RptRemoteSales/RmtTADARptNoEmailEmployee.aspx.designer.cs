@@ -461,5 +461,14 @@ namespace UI.SAD.Sales.Report.RptRemoteSales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdvCreditstationbillEmployeebase;
+        
+        /// <summary>
+        /// dgvPerkiloMlgAnalysis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvPerkiloMlgAnalysis;
     }
 }

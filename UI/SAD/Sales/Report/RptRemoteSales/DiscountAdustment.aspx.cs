@@ -136,9 +136,9 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
         {
             if (hdnconfirm.Value == "1")
             {
-                //try
-                //{
-                if (grdvDiscountAdjustment.Rows.Count > 0)
+                try
+                {
+                    if (grdvDiscountAdjustment.Rows.Count > 0)
                 {
                     for (int index = 0; index < grdvDiscountAdjustment.Rows.Count; index++)
                     {
@@ -176,7 +176,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                     XmlNode dSftTm = doc.SelectSingleNode("RemoteCommission");
                     string xmlString = dSftTm.InnerXml;
                     xmlString = "<RemoteCommission>" + xmlString + "</RemoteCommission>";
-                    dt = bll.insertdataforsalescommissionjv(xmlString, unitid, strVcode, strPrefix, glblnarration, totalcom, enrol, intmainheadcoaid);
+                    dt = bll.insertdataforDamagecommissionjv(xmlString, unitid, strVcode, strPrefix, glblnarration, totalcom, enrol, intmainheadcoaid,dtFromDate,dtToDate);
                     lblCreatedjvnumber.Text = dt.Rows[0]["creatjv"].ToString();
                     try { File.Delete(xmlpath); } catch { }
 
@@ -191,8 +191,8 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry(:  Please Select Detaills option then click Approve');", true);
                 }
-                //}
-                //catch { File.Delete(xmlpath); }
+                }
+                catch { File.Delete(xmlpath); }
 
 
             }

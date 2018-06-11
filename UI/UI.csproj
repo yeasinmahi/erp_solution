@@ -1030,6 +1030,7 @@
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
+    <Content Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx" />
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
@@ -1132,6 +1133,7 @@
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DeliveryCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
@@ -4846,6 +4848,13 @@
     <Compile Include="SAD\Customer\Report\Statement.aspx.designer.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx.cs">
+      <DependentUpon>StatementWithUndelvAmount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx.designer.cs">
+      <DependentUpon>StatementWithUndelvAmount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Customer\SetLogisVar.aspx.cs">
       <DependentUpon>SetLogisVar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5560,6 +5569,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx.designer.cs">
       <DependentUpon>AllRetaillersDeliveryATAGlance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx.cs">
+      <DependentUpon>AreaBaseCustomerTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx.designer.cs">
+      <DependentUpon>AreaBaseCustomerTarget.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx.cs">
       <DependentUpon>CollectionCommissionWithJV.aspx</DependentUpon>

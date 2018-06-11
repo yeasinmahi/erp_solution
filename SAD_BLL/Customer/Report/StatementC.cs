@@ -1954,6 +1954,22 @@ namespace SAD_BLL.Customer.Report
             }
             catch { return new DataTable(); }
         }
+
+
+        public DataTable insertdataforDamagecommissionjv(string xmlstring, int unitid, string gbcode, string prefix, string gbnarattion, decimal totalcommission, int enrol, int headcoaid, DateTime fromdate, DateTime dtto)
+        {
+            try
+            {
+                SprVoucherCreateForDamageCommissionTableAdapter bll = new SprVoucherCreateForDamageCommissionTableAdapter();
+                return bll.GetDataVoucherCreateForDamageCommission(xmlstring, unitid, gbcode, prefix, gbnarattion, totalcommission, enrol, headcoaid, fromdate, dtto);
+
+            }
+            catch { return new DataTable(); }
+        }
+
+
+
+
         public DataTable GetItembaseofUnit(int unitid)
         {
             try
@@ -2127,6 +2143,27 @@ namespace SAD_BLL.Customer.Report
                 SprUndelvQntWithSalesAmountTableAdapter bll = new SprUndelvQntWithSalesAmountTableAdapter();
                 return bll.GetData(from, to, custid, unitid, rpttype);
 
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getrptforTADAPersonalBreakge(DateTime dteFromDate, DateTime dteTodate,  int intUnitid, int intReportType)
+        {
+            try
+            {
+                SprZTADAPersonalBreakageTableAdapter bll = new SprZTADAPersonalBreakageTableAdapter();
+                return bll.GetDataZTADAPersonalBreakage(dteFromDate, dteTodate,  intUnitid, intReportType);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetPendingByCustomer(string customerId)
+        {
+
+            try
+            {
+                SprzCustomervsPendingTableAdapter ta = new SprzCustomervsPendingTableAdapter();
+            return ta.GetDataCustomervsPending(int.Parse(customerId));
             }
             catch { return new DataTable(); }
         }
