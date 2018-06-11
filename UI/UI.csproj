@@ -36,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -1378,6 +1379,7 @@
     <Content Include="WoodPurchase\WoodMRRReport.aspx" />
     <Content Include="WoodPurchase\WoodReceive.aspx" />
     <Content Include="WoodPurchase\WoodReceiveAMFL.aspx" />
+    <Content Include="WoodPurchase\WoodReceiveAMFLExcel.aspx" />
     <Content Include="WoodPurchase\WoodReceiveDetails.aspx" />
     <Content Include="WoodPurchase\WoodSupplierWiseReport.aspx" />
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
@@ -7491,6 +7493,13 @@
     <Compile Include="WoodPurchase\WoodReceiveAMFL.aspx.designer.cs">
       <DependentUpon>WoodReceiveAMFL.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WoodPurchase\WoodReceiveAMFLExcel.aspx.cs">
+      <DependentUpon>WoodReceiveAMFLExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WoodPurchase\WoodReceiveAMFLExcel.aspx.designer.cs">
+      <DependentUpon>WoodReceiveAMFLExcel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WoodPurchase\WoodReceiveDetails.aspx.cs">
       <DependentUpon>WoodReceiveDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7750,6 +7759,24 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
