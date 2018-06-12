@@ -121,7 +121,7 @@ namespace UI.PaymentModule
             {
                 if (hdnconfirm.Value == "1")
                 {
-                    intUnitID = int.Parse(hdnUnit.Value);
+                    intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                     intUser = int.Parse(hdnEnroll.Value);
                     strType = ddlType.SelectedItem.ToString();
                     intType = int.Parse(ddlType.SelectedValue.ToString());
@@ -144,6 +144,7 @@ namespace UI.PaymentModule
                         return;
                     }
 
+                    if (filePathForXML != null) { File.Delete(filePathForXML); }
 
                     if (dgvPurchaseV.Rows.Count > 0)
                     {
@@ -175,11 +176,13 @@ namespace UI.PaymentModule
                         }
                         catch { }
                     }
+                    if (xml == null) { return; }
                     if (xml == "") { return; }
 
                     //*** Final Insert
                     string message = objVoucher.InsertPurchaseVoucher(intUnitID, intUser, intType, xml);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    if (filePathForXML != null) { File.Delete(filePathForXML); }
                     LoadGrid();
                 }
             }
