@@ -14,7 +14,7 @@ using UI.ClassFiles;
 
 namespace UI.HR.Cafeteria
 {
-    public partial class CafeteriaReport : Page
+    public partial class CafeteriaReport : BasePage
     {
         GlobalBLL obj = new GlobalBLL(); DataTable dt;
         InternalTransportBLL objunit = new InternalTransportBLL();

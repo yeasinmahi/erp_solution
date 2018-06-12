@@ -38,11 +38,11 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
             int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
             int jobstationid = int.Parse(hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             int FuelStationid = int.Parse(drdlSupplierName.SelectedValue.ToString());
-             string strSearchKey = txtFullName.Text;
-              arrayKey = strSearchKey.Split(delimiterChars);
-               string code = arrayKey[1].ToString();
-               string strCustname = strSearchKey;
-               int enrol = int.Parse(code);
+            string strSearchKey = txtFullName.Text;
+            arrayKey = strSearchKey.Split(delimiterChars);
+            string code = arrayKey[1].ToString();
+            string strCustname = strSearchKey;
+            int enrol = int.Parse(code);
             if (rptTypeid == 1)               //Detaills report for None email individual
             {
 
@@ -678,9 +678,62 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
 
 
             }
+            else if (rptTypeid == 1033)               //Credit station bill vs Employee Enrol report
+            {
+
+                try
+                {
+                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+                    DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
+                    dt = bll.getrptforTADAPersonalBreakge(dteFromDate, dteToDate, unitid, rptTypeid);
+                }
+
+                catch
+                {
+
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    grdvForNoofficeEmailDetaills.DataSource = null;
+                    grdvForNoofficeEmailDetaills.DataBind();
+                    grdvTopsheetallEmploye.DataSource = null;
+                    grdvTopsheetallEmploye.DataBind();
+                    grdvNameVsTotalBillforNOemailemployee.DataSource = null;
+                    grdvNameVsTotalBillforNOemailemployee.DataBind();
+                    grdvRptStandVheicleDayBasis.DataSource = null;
+                    grdvRptStandVheicleDayBasis.DataBind();
+                    grdvRptStandVheicleSummery.DataSource = null;
+                    grdvRptStandVheicleSummery.DataBind();
+                    grdvOnlyOilReport.DataSource = null;
+                    grdvOnlyOilReport.DataBind();
+                    grdvRptOnlyCNG.DataSource = null;
+                    grdvRptOnlyCNG.DataBind();
+                    grdvCreditStationBillWithoutStandVheicle.DataSource = null;
+                    grdvCreditStationBillWithoutStandVheicle.DataBind();
+                    grdvFuelCreditStationbillvsEmployee.DataSource = null;
+                    grdvFuelCreditStationbillvsEmployee.DataBind();
+                    grdvOnlyCreditStationBill.DataSource = null;
+                    grdvOnlyCreditStationBill.DataBind();
+
+                    grdvCreditstationbillEmployeebase.DataSource = null;
+                    grdvCreditstationbillEmployeebase.DataBind();
+                    dgvPerkiloMlgAnalysis.DataSource = dt;
+                    dgvPerkiloMlgAnalysis.DataBind();
+                   
 
 
-      
+                }
+
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                }
+
+
+            }
+
+
 
 
 
@@ -848,6 +901,11 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
         }
 
         protected void grdvEntryByAnotherBikeCarUserDetaills_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void dgvPerkiloMlgAnalysis_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
         }
