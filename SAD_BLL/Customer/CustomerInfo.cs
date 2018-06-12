@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using SAD_DAL.Customer;
@@ -163,5 +164,14 @@ namespace SAD_BLL.Customer
             return ta.GetData(int.Parse(customerId), int.Parse(unitId), dte, int.Parse(userId));
         }
 
+        public DataTable getdataCustomerMonthlyTarget(int unit, int areaid, DateTime frm, DateTime dttodate, int reportoption, int customerCOAId, string xmlString,int insertby)
+        {
+            try
+            {
+                SprAreaBaseTargetTableAdapter bll = new SprAreaBaseTargetTableAdapter();
+                return bll.GetDataAreaBaseTarget(unit, areaid, frm,dttodate, reportoption, customerCOAId, xmlString, insertby);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

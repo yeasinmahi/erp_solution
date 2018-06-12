@@ -245,9 +245,9 @@ namespace UI.VAT_Management
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-           // intM11Challanno =int.Parse(txtVatChallno.Text);
+            intM11Challanno =int.Parse(txtVAT.Text);
             intCustid = int.Parse(hdnCustid.Value);
-           //strCusName= hdnCustname.Value;
+           strCusName= hdnAccno.Value;
             strCusAddress = hdnCustAddress.Value;
           // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;

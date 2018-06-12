@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChallanOneGPCustomize.aspx.cs" Inherits="UI.SAD.Order.ChallanOneGPCustomize" %>
 
-<!DOCTYPE html>
-
+<!DOCTYPE html >
 <html >
 <head id="Head1" runat="server">
     <title>Untitled Page</title>
@@ -70,7 +69,7 @@
 
            
             <tr>
-               <td style="width:500px; font-size:15px;text-align:center; text font-weight:bold;" colspan="5">Pending Item Detaills </td>      
+               <td style="width:500px; font-size:15px;text-align:center; text font-weight:bold;" colspan="5"> </td>      
             </tr>
             <tr>
                 <td class="auto-style1">
@@ -110,7 +109,9 @@
                         <asp:BoundField DataField="strCode" HeaderText="D.O Number" ItemStyle-Width="30%" SortExpression="intCustomerId" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="dteDate" HeaderText="CreationDate" ItemStyle-Width="60%" SortExpression="dteDate" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />
                          <asp:BoundField DataField="strProductName" HeaderText="Product Name" ItemStyle-Width="30%" SortExpression="strProductName" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="rate" HeaderText="Rate" ItemStyle-Width="30%" SortExpression="rate" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="numRestPieces" HeaderText="Quantity (Piece)" ItemStyle-Width="30%" SortExpression="numRestPieces" ItemStyle-HorizontalAlign="Center" />
+                       
                         <asp:BoundField DataField="pendingqntpricevalue" HeaderText="Amount (Taka)" ItemStyle-Width="30%" SortExpression="pendingqntpricevalue" ItemStyle-HorizontalAlign="Center" />
                        
                     
@@ -134,6 +135,12 @@
            </table>
 
        </div>
+
+      
+
+
+
+
         <div>
             <table style="width:700px; text-align:left;" align="center">
                 <tr>

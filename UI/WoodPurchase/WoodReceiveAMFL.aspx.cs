@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Purchase_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using UI.ClassFiles;
-using System.IO;
 using System.Xml;
+using UI.ClassFiles;
 
 namespace UI.WoodPurchase
 {
@@ -18,10 +20,16 @@ namespace UI.WoodPurchase
         decimal numPOQty, monRate, numTotalWeight, numDeduction;
         string strChallan, xml, xmlString, strVehicleNo, filePathForXML, message, tagno, length, circum, cft, rate, itemid;
         DateTime dteReceiveDate, dteChallanDate;
+
+        string xmlpath, strDocUploadPath, ext, path, ConStr;
+        int ShipId, Offid, enroll;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                xmlpath = Server.MapPath("~/WoodPurchase/Data/Excelupload_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+
                 if (!IsPostBack)
                 {
                     HttpContext.Current.Session["Enroll"] = Session[SessionParams.USER_ID].ToString();
@@ -45,6 +53,12 @@ namespace UI.WoodPurchase
                     hdnUnit.Value = dt.Rows[0]["intUnitID"].ToString();
                     hdnJobStaion.Value = dt.Rows[0]["intJobStationId"].ToString();
                     LoadDropDown();
+                    try
+                    {
+                        File.Delete(xmlpath);
+                        File.Delete(filePathForXML);
+                    }
+                    catch { }
                 }
             }
             catch { }
@@ -273,18 +287,7 @@ namespace UI.WoodPurchase
             catch { }
         }
 
-       
-
-
-
-
-
-
-
-
-
-
-
+        
 
     }
 }
