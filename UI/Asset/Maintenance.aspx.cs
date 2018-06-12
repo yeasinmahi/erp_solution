@@ -162,9 +162,9 @@ namespace UI.Asset
             
                 try
                 {
-                     Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                     Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                     Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
            
                     char[] delimiterChars = { '^' };
                     string temp1 = ((Button)sender).CommandArgument.ToString();
@@ -241,10 +241,10 @@ namespace UI.Asset
 
         protected void BtnRepWorkorder_Click(object sender, EventArgs e)
         {
-            
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                 try
                 {
                     char[] delimiterChars = { '^' };
