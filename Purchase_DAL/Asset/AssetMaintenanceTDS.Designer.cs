@@ -21425,10 +21425,11 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"  Insert into [ERP_Asset].[dbo].[tblPMServiceConfigure]([strAssetNumber],intAssetAutoId,[strServiceName],[YesnServiceType],[strPriroty],[dteFixed/Repair],[strProblem],[YesnComplete],[intInsertBy],[intJobStationID],[intDept],YsnWorkOrder,YsnMTask,YesnActive,strServiceProvideBy,YsnServiceProvideType,monServiceCost,YsnUserRequest) values (@strAssetId,@intAssetAutoId,@repair,1,@priority, @dteRepair, @problem,0, @intenroll, @intjobid, @intdept,0,0,1,@provide,@ysnprovide,@repairsCost,0)";
+            this._commandCollection[0].CommandText = @"  Insert into [ERP_Asset].[dbo].[tblPMServiceConfigure]([strAssetNumber],intAssetAutoId,intServiceId,[strServiceName],[YesnServiceType],[strPriroty],[dteFixed/Repair],[strProblem],[YesnComplete],[intInsertBy],[intJobStationID],[intDept],YsnWorkOrder,YsnMTask,YesnActive,strServiceProvideBy,YsnServiceProvideType,monServiceCost,YsnUserRequest) values (@strAssetId,@intAssetAutoId,@intServiceId,@repair,1,@priority, @dteRepair, @problem,0, @intenroll, @intjobid, @intdept,0,0,1,@provide,@ysnprovide,@repairsCost,0)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAssetId", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAssetAutoId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAssetAutoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intServiceId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intServiceId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@repair", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@priority", global::System.Data.SqlDbType.VarChar, 90, global::System.Data.ParameterDirection.Input, 0, 0, "strPriroty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteRepair", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "dteFixed/Repair", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21460,7 +21461,7 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblRequestServiceConfigureDataTable RepairRequestConfigInsertGetData(string strAssetId, global::System.Nullable<int> intAssetAutoId, string repair, string priority, global::System.Nullable<global::System.DateTime> dteRepair, string problem, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, string provide, global::System.Nullable<bool> ysnprovide, global::System.Nullable<decimal> repairsCost) {
+        public virtual AssetMaintenanceTDS.TblRequestServiceConfigureDataTable RepairRequestConfigInsertGetData(string strAssetId, global::System.Nullable<int> intAssetAutoId, global::System.Nullable<int> intServiceId, string repair, string priority, global::System.Nullable<global::System.DateTime> dteRepair, string problem, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, string provide, global::System.Nullable<bool> ysnprovide, global::System.Nullable<decimal> repairsCost) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((strAssetId == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -21474,65 +21475,71 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((repair == null)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((intServiceId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intServiceId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(repair));
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((priority == null)) {
+            if ((repair == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(priority));
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(repair));
             }
-            if ((dteRepair.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(dteRepair.Value));
-            }
-            else {
+            if ((priority == null)) {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((problem == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(priority));
+            }
+            if ((dteRepair.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(dteRepair.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(problem));
-            }
-            if ((intenroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intenroll.Value));
-            }
-            else {
+            if ((problem == null)) {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intjobid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intjobid.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(problem));
+            }
+            if ((intenroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intenroll.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((intdept.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intdept.Value));
+            if ((intjobid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intjobid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((provide == null)) {
+            if ((intdept.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intdept.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(provide));
-            }
-            if ((ysnprovide.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((bool)(ysnprovide.Value));
-            }
-            else {
+            if ((provide == null)) {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((repairsCost.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((decimal)(repairsCost.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(provide));
+            }
+            if ((ysnprovide.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((bool)(ysnprovide.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((repairsCost.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((decimal)(repairsCost.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             AssetMaintenanceTDS.TblRequestServiceConfigureDataTable dataTable = new AssetMaintenanceTDS.TblRequestServiceConfigureDataTable();
             this.Adapter.Fill(dataTable);
@@ -22440,6 +22447,8 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1,0, @intenroll, @intjob
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@number", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAssetAutoId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@service", global::System.Data.SqlDbType.VarChar, 450, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@priority", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dtefixed", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -22456,7 +22465,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1,0, @intenroll, @intjob
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.SprPMServiceDataTable PmServiceConfigGetData(string number, string service, string priority, global::System.Nullable<global::System.DateTime> dtefixed, global::System.Nullable<int> countday, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, string provide, string priode, global::System.Nullable<decimal> serviceCost) {
+        public virtual AssetMaintenanceTDS.SprPMServiceDataTable PmServiceConfigGetData(string number, global::System.Nullable<int> intAssetAutoId, global::System.Nullable<int> serviceId, string service, string priority, global::System.Nullable<global::System.DateTime> dtefixed, global::System.Nullable<int> countday, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, string provide, string priode, global::System.Nullable<decimal> serviceCost) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((number == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -22464,65 +22473,77 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1,0, @intenroll, @intjob
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(number));
             }
-            if ((service == null)) {
+            if ((intAssetAutoId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intAssetAutoId.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(service));
+            if ((serviceId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(serviceId.Value));
             }
-            if ((priority == null)) {
+            else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(priority));
-            }
-            if ((dtefixed.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(dtefixed.Value));
-            }
-            else {
+            if ((service == null)) {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((countday.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(countday.Value));
-            }
             else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(service));
+            }
+            if ((priority == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((intenroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intenroll.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(priority));
+            }
+            if ((dtefixed.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(dtefixed.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intjobid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intjobid.Value));
+            if ((countday.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(countday.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((intdept.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intdept.Value));
+            if ((intenroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intenroll.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((provide == null)) {
+            if ((intjobid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intjobid.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(provide));
+            if ((intdept.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intdept.Value));
             }
-            if ((priode == null)) {
+            else {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
+            if ((provide == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(priode));
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(provide));
+            }
+            if ((priode == null)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(priode));
             }
             if ((serviceCost.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((decimal)(serviceCost.Value));
+                this.Adapter.SelectCommand.Parameters[13].Value = ((decimal)(serviceCost.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             AssetMaintenanceTDS.SprPMServiceDataTable dataTable = new AssetMaintenanceTDS.SprPMServiceDataTable();
             this.Adapter.Fill(dataTable);

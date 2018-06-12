@@ -32,9 +32,7 @@ namespace UI.Asset
             if (!IsPostBack)
             {
 
-                // CommonDataBind();
-
-
+                // CommonDataBind(); 
 
                 //TransferXml();
                 //DisposalXml();
@@ -64,19 +62,14 @@ namespace UI.Asset
             ddlSaleJob.DataSource = dt;
             ddlSaleJob.DataTextField = "strJobStationName";
             ddlSaleJob.DataValueField = "intEmployeeJobStationId";
-            ddlSaleJob.DataBind();
-
-
+            ddlSaleJob.DataBind(); 
 
 
             dt = objregister.AssetTypeName();
             ddlSaMajorCat.DataSource = dt;
             ddlSaMajorCat.DataTextField = "strAssetTypeName";
             ddlSaMajorCat.DataValueField = "intAssetTypeID";
-            ddlSaMajorCat.DataBind();
-
-
-
+            ddlSaMajorCat.DataBind(); 
 
 
             dt = objregister.DropdownCategoryView(int.Parse(ddlSaleJob.SelectedValue));
@@ -99,14 +92,13 @@ namespace UI.Asset
             ddlSaCostCenter.DataBind();
 
             int Mnumber = int.Parse("1".ToString());
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetcode = searchKey[1];
-
-
-            DataTable rt = new DataTable();
-
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+             
+            DataTable rt = new DataTable(); 
+            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
 
             if (rt.Rows.Count > 0)
             {
@@ -401,10 +393,14 @@ namespace UI.Asset
 
 
             int Mnumber = int.Parse("1".ToString());
-            string assetcode = "162820122".ToString();
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
             DataTable rt = new DataTable();
 
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
+            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
 
             if (rt.Rows.Count > 0)
             {
@@ -634,15 +630,17 @@ namespace UI.Asset
             ddlRevCostCenter.DataValueField = "Id";
             ddlRevCostCenter.DataBind();
 
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetcode = searchKey[1];
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
 
             int Mnumber = int.Parse("1".ToString());
           
             DataTable rt = new DataTable();
 
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
+            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
 
             if (rt.Rows.Count > 0)
             {
@@ -706,12 +704,14 @@ namespace UI.Asset
             try { increse =decimal.Parse(txtRevIncrease.Text.ToString()); } catch { increse = 0; }
             string totalcost = txtRevTotalCost.Text.ToString();
 
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetid = searchKey[1];
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
 
             string totalRev = "".ToString();
-            CreateXmlRevalutation(assetid,reff, dtetransaction, remarks, increse.ToString(), totalcost, totalRev);
+            CreateXmlRevalutation(assetId, reff, dtetransaction, remarks, increse.ToString(), totalcost, totalRev);
         }
 
         private void CreateXmlRevalutation(string assetid,string reff, string dtetransaction, string remarks, string increse, string totalcost,string totalRev)
@@ -876,13 +876,15 @@ namespace UI.Asset
             ddlDispoCostCenter.DataBind();
 
             int Mnumber = int.Parse("1".ToString());
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetcode = searchKey[1];
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
 
             DataTable rt = new DataTable();
 
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
+            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
 
             if (rt.Rows.Count > 0)
             {
@@ -953,11 +955,12 @@ namespace UI.Asset
             try { depTotalvalue = decimal.Parse(txtDispoTotalDep.Text.ToString()); } catch { depTotalvalue = 0; }
             try { totalCost = decimal.Parse(txtDispoTotalCost.Text.ToString()); } catch { totalCost = 0; }
             try { capitallos = decimal.Parse(txtDispoCapitalLoss.Text.ToString()); } catch { capitallos = 0; }
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetid = searchKey[1];
-          
-            CreateXmlDisposal(assetid,reff, dteTransaction, remarks, "0", depTotalvalue.ToString(), totalCost.ToString(), capitallos.ToString());
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+             
+            CreateXmlDisposal(assetId,reff, dteTransaction, remarks, "0", depTotalvalue.ToString(), totalCost.ToString(), capitallos.ToString());
 
         }
 
@@ -1006,8 +1009,7 @@ namespace UI.Asset
             XmlAttribute TotalCost = doc.CreateAttribute("totalCost");
             TotalCost.Value = totalCost;
             XmlAttribute Capitallos = doc.CreateAttribute("capitallos");
-            Capitallos.Value = capitallos;
-
+            Capitallos.Value = capitallos; 
 
             node.Attributes.Append(Assetid);
             node.Attributes.Append(Reff);
@@ -1016,9 +1018,7 @@ namespace UI.Asset
             node.Attributes.Append(DepValue);
             node.Attributes.Append(DepTotalvalue);
             node.Attributes.Append(TotalCost);
-            node.Attributes.Append(Capitallos);
-
-
+            node.Attributes.Append(Capitallos); 
 
             return node;
         }
@@ -1125,17 +1125,20 @@ namespace UI.Asset
             ddlTrnsCostCenter.DataSource = dt;
             ddlTrnsCostCenter.DataTextField = "Name";
             ddlTrnsCostCenter.DataValueField = "Id";
-            ddlTrnsCostCenter.DataBind();
+            ddlTrnsCostCenter.DataBind(); 
 
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetcode = searchKey[1];
+
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if(arrayKey.Length > 0)
+            {assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
 
             int Mnumber = int.Parse("1".ToString());
              
                 DataTable rt = new DataTable();
         
-                rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
+                rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
 
                 if (rt.Rows.Count > 0)
                 {
@@ -1167,11 +1170,7 @@ namespace UI.Asset
                     try { ddlTrnsMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString(); } catch { }
 
                     try { ddlTrnsMinorCat1.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString(); } catch { }
-
-
-
-
-
+                 
                     dt = objregister.RegCostCenter(int.Parse(ddlTrnsUnit.SelectedValue));
                     ddlTrnsCostCenter.DataSource = dt;
                     ddlTrnsCostCenter.DataTextField = "Name";
@@ -1184,7 +1183,7 @@ namespace UI.Asset
                     }
                     catch { }
                     txtTrnsAssetName.Text = rt.Rows[0]["strNameOfAsset"].ToString();
-                  txtTrnsDescription.Text= rt.Rows[0]["strDescriptionAsset"].ToString();
+                    txtTrnsDescription.Text= rt.Rows[0]["strDescriptionAsset"].ToString();
               
 
             }
@@ -1207,9 +1206,11 @@ namespace UI.Asset
             string remarks = txtTrnsRemarks.Text.ToString();
             string dteTransaction = txtDteTrnsDate.Text.ToString();
             string trnType = ddlTransactionType.SelectedValue.ToString();
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetId = searchKey[1];
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
             CreateTransferXml(assetId, unit, jobstation,costcentrer, enroll, reffno, remarks, dteTransaction, trnType);
         }
 
@@ -1305,20 +1306,21 @@ namespace UI.Asset
 
         protected void ddlTrnsJobstation_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetcode = searchKey[1];
+        
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
 
             int Mnumber = int.Parse("1".ToString());
-
             DataTable rt = new DataTable();
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
+            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
             dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlTrnsJobstation.SelectedValue));//Parking List
 
             ddlTrnsMinorCat1.DataSource = dt;
@@ -1351,7 +1353,6 @@ namespace UI.Asset
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-
             divClose();
         }
 
@@ -1370,9 +1371,7 @@ namespace UI.Asset
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
                 try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-                ReClasificationPageLoad();
-              
-               
+                ReClasificationPageLoad(); 
                
             }
           else  if (type == 5)
@@ -1394,9 +1393,7 @@ namespace UI.Asset
                 DisposalPageLoad();
             }
 
-        }
-
-      
+        } 
 
         private void divClose()
         {
