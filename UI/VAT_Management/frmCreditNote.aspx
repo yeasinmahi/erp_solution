@@ -23,33 +23,34 @@
     <script>
         function ValidationBasicInfo() {
             document.getElementById("hdnconfirm").value = "0";
-            var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
-            var Amount = document.forms["frmPurchase"]["txtAmount"].value;
+            var txtCreditqty = document.forms["frmCreditnote"]["txtCreditqty"].value;
+            var txtWithoutSDVAT = document.forms["frmCreditnote"]["txtWithoutSDVAT"].value;
           
-            var Instrument = document.forms["frmPurchase"]["txtInstrument"].value;
-            var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Depositdate = document.forms["frmPurchase"]["txtDepositdate"].value;
-           var Installmentdate = document.forms["frmPurchase"]["txtInstallmentdate"].value;
+            var txtSD = document.forms["frmCreditnote"]["txtSD"].value;
+            var txtVat = document.forms["frmCreditnote"]["txtVAT"].value;
+            var txtSurcharge = document.forms["frmCreditnote"]["txtSurcharge"].value;
+           // var m11others = document.forms["frmCreditnote"]["lblM11Vat"].value;
 
-            if (ChallanNo == null || ChallanNo == "") {
-                alert("Please Fill-Up Challan No !");
+            if (txtCreditqty == null || txtCreditqty == "") {
+                alert("Please Fill-Up Qty !");
             }
 
-            else if (Amount == null || Amount == "") {
-                alert("Purchase Fill-up  Amount !");
+            else if (txtWithoutSDVAT == null || txtWithoutSDVAT == "") {
+                alert("Purchase Fill-up  Without SD VAT !");
             }
-            else if (Instrument == null || Instrument == "") {
-                alert("Please Fill-up  Instrument !");
-            }
-
-            else if (ChallanDate == null || ChallanDate == "") {
-                alert("Please Fill-up Challan Date!");
+            else if (txtSD == null || txtSD == "") {
+                alert("Please Fill-up  SD !");
             }
 
-            else if (Installmentdate == null || Installmentdate == "") {
-                alert("Please Fill-up Installment date!");
+            else if (txtVat == null || txtVat == "") {
+                alert("Please Fill-up VAT !");
+            }
+
+            else if (txtSurcharge == null || txtSurcharge == "") {
+                alert("Please Fill-up Surcharge!");
             }
           
+            
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
     </script>
@@ -98,9 +99,14 @@
           }
         });
    </script> 
+    <style type="text/css">
+        .auto-style1 {
+            height: 219px;
+        }
+    </style>
 </head>
 <body>
-    <form id="frmPurchase" runat="server">
+    <form id="frmCreditnote" runat="server">
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -123,7 +129,7 @@
     <hr /></div>
     <table>
      <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Credit Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td>
+     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Credit Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td class="auto-style1">
      <table  class="tbldecoration" style="width:auto; float:left;">                              
      <tr><td>Product Name</td>
         <td><asp:TextBox ID="txtVatItemList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" OnTextChanged="txtVatItemList_TextChanged" ></asp:TextBox>
@@ -133,7 +139,7 @@
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender> </td>
         <td>Challan No</td>
-        <td><asp:DropDownList ID="ddlChallanNo" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlChallanNo_SelectedIndexChanged"></asp:DropDownList> </td>
+        <td><asp:DropDownList ID="ddlChallanNo" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlChallanNo_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList> </td>
         <td></td>
         <td> <asp:Button ID="btnShowREPORT" runat="server" class="myButton" Text="Show Item List" OnClick="btnShowREPORT_Click" />
         </td>
@@ -177,10 +183,20 @@
     <tr><td style="text-align:right"></td>                                     
      <tr><td><hr /></td></tr> 
      <tr><td>
-        <asp:GridView ID="dgvVatProduct" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+        
+        </td></tr>  
+    </tr>             
+    </table>
+    </td></tr></table>
+        
+    </div>
+<table>
+            <tr>
+                <td>
+                    <asp:GridView ID="dgvVatProduct" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
         CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true" 
         HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical"  OnRowDataBound="dgvTresuryRpt_RowDataBound"
+        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvPurchaseEntry_RowDeleting"  OnRowDataBound="dgvTresuryRpt_RowDataBound"
         >
         <AlternatingRowStyle BackColor="#CCCCCC" />    
         <Columns>
@@ -194,7 +210,7 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Challan Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldtedate" runat="server" Text='<%# Bind("dtedate") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lbldtedate" runat="server" Text='<%# Bind("dtedate","0:d") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Product Name" SortExpression="itemname">
@@ -238,20 +254,20 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
        
 
-        <asp:TemplateField HeaderText="Delete"><ItemTemplate> 
+        <%--<asp:TemplateField HeaderText="Delete"><ItemTemplate> 
         <asp:Button ID="btndelete" ForeColor="Red" runat="server" Text="Delete" CommandName="complete"  OnClick="btnDelete" Font-Bold="true" BackColor="#00ccff"  CommandArgument='<%# Eval("intAutoID")%>' />
-        </ItemTemplate> </asp:TemplateField>
+        </ItemTemplate> </asp:TemplateField>--%>
+
+         <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
+
 
         </Columns>
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
         </asp:GridView>
-        </td></tr>  
-    </tr>             
-    </table>
-    </td></tr></table>
-    </div>
-
+                </td>
+            </tr>
+        </table>
 <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>
