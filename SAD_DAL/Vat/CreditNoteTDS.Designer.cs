@@ -606,6 +606,8 @@ namespace SAD_DAL.Vat {
             
             private global::System.Data.DataColumn columnstrCustVATRegNo;
             
+            private global::System.Data.DataColumn columndteSellingDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tblChallanINFODataTable() {
@@ -673,6 +675,14 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteSellingDateColumn {
+                get {
+                    return this.columndteSellingDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -708,13 +718,14 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblChallanINFORow AddtblChallanINFORow(int intCusID, string strCustName, string strCustAddress, string strCustVATRegNo) {
+            public tblChallanINFORow AddtblChallanINFORow(int intCusID, string strCustName, string strCustAddress, string strCustVATRegNo, System.DateTime dteSellingDate) {
                 tblChallanINFORow rowtblChallanINFORow = ((tblChallanINFORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intCusID,
                         strCustName,
                         strCustAddress,
-                        strCustVATRegNo};
+                        strCustVATRegNo,
+                        dteSellingDate};
                 rowtblChallanINFORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblChallanINFORow);
                 return rowtblChallanINFORow;
@@ -741,6 +752,7 @@ namespace SAD_DAL.Vat {
                 this.columnstrCustName = base.Columns["strCustName"];
                 this.columnstrCustAddress = base.Columns["strCustAddress"];
                 this.columnstrCustVATRegNo = base.Columns["strCustVATRegNo"];
+                this.columndteSellingDate = base.Columns["dteSellingDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -754,6 +766,8 @@ namespace SAD_DAL.Vat {
                 base.Columns.Add(this.columnstrCustAddress);
                 this.columnstrCustVATRegNo = new global::System.Data.DataColumn("strCustVATRegNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrCustVATRegNo);
+                this.columndteSellingDate = new global::System.Data.DataColumn("dteSellingDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteSellingDate);
                 this.columnstrCustName.MaxLength = 200;
                 this.columnstrCustAddress.MaxLength = 200;
                 this.columnstrCustVATRegNo.MaxLength = 50;
@@ -1406,6 +1420,22 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteSellingDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabletblChallanINFO.dteSellingDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteSellingDate\' in table \'tblChallanINFO\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblChallanINFO.dteSellingDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintCusIDNull() {
                 return this.IsNull(this.tabletblChallanINFO.intCusIDColumn);
             }
@@ -1450,6 +1480,18 @@ namespace SAD_DAL.Vat {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrCustVATRegNoNull() {
                 this[this.tabletblChallanINFO.strCustVATRegNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteSellingDateNull() {
+                return this.IsNull(this.tabletblChallanINFO.dteSellingDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteSellingDateNull() {
+                this[this.tabletblChallanINFO.dteSellingDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2178,6 +2220,7 @@ AND s.intUnitID = @unitid AND s.intVatAccountID=@VatAccid AND DATEADD(day,90,dte
             tableMapping.ColumnMappings.Add("strCustName", "strCustName");
             tableMapping.ColumnMappings.Add("strCustAddress", "strCustAddress");
             tableMapping.ColumnMappings.Add("strCustVATRegNo", "strCustVATRegNo");
+            tableMapping.ColumnMappings.Add("dteSellingDate", "dteSellingDate");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2194,10 +2237,7 @@ AND s.intUnitID = @unitid AND s.intVatAccountID=@VatAccid AND DATEADD(day,90,dte
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "\r\nSELECT TOP (1) intCusID, strCustName, strCustAddress, strCustVATRegNo FROM ERP_" +
-                "VAT.dbo.tblVATSales WHERE   strVATChallanNo = @Challanno AND intUnitID = @intUni" +
-                "tID AND intVatAccountID=@intVATAccountID AND DATEADD(day,90,dteSellingDate)>=GET" +
-                "DATE()";
+            this._commandCollection[0].CommandText = @"SELECT TOP (1) intCusID, strCustName, strCustAddress, strCustVATRegNo,dteSellingDate FROM ERP_VAT.dbo.tblVATSales WHERE   strVATChallanNo = @Challanno AND intUnitID = @intUnitID AND intVatAccountID=@intVATAccountID AND DATEADD(day,90,dteSellingDate)>=GETDATE()";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Challanno", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strVATChallanNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
