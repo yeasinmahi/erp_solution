@@ -361,11 +361,11 @@ namespace UI.Asset
                             if (DdlProvide.SelectedItem.Text == "In House")
                             {
 
-                                ysnprovide = Int32.Parse(0.ToString());
+                                ysnprovide =0;
                             }
                             if (DdlProvide.SelectedItem.Text == "Vendor")
                             {
-                                ysnprovide = Int32.Parse(1.ToString());
+                                ysnprovide = 1;
                             }
 
                             string repair = DdlCommonRepair.SelectedItem.ToString();
