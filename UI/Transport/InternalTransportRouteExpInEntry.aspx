@@ -87,6 +87,10 @@
                 if ((j + k) > 230)
                 { singlemillag = q; } else { singlemillag = n; }
             }
+            else if (unitid == 94) {
+                if ((j + k) > 130)
+                { singlemillag = q; } else { singlemillag = n; }
+            }
             else
             {
                 if ((j + k) > 100)

@@ -265,14 +265,15 @@ namespace UI.SAD.AutoChallan
                         decimal monExtraAmount = Convert.ToDecimal("0".ToString());
                         string strExtraCause = Convert.ToString("Pcs");
                         string strOther;
-                        if (txtBtachNo.Text == "")
-                        {
-                             strOther = "";
-                        }
-                        else
-                        {
-                            strOther = Convert.ToString(txtBtachNo.Text.ToString());
-                        }
+                        //if (txtBtachNo.Text == "")
+                        //{
+                        //     strOther = "";
+                        //}
+                        //else
+                        //{
+                        //    strOther = Convert.ToString(txtBtachNo.Text.ToString());
+                        //}
+                        strOther = "";
                         string strDrivername = Convert.ToString(Session["drivername"].ToString());
 
                         Int32 intshipingpointid = Convert.ToInt32(Session["Shippointid"].ToString());
