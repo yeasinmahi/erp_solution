@@ -402,6 +402,18 @@ namespace UI.Transport
                 dgvTripWiseCustomer.Columns[24].Visible = true;
                 dgvTripWiseCustomer.Columns[25].Visible = true;
             }
+            else if (intUnitID == 90)
+            {
+                dgvTripWiseCustomer.Columns[10].Visible = true;
+                dgvTripWiseCustomer.Columns[11].Visible = true;
+                dgvTripWiseCustomer.Columns[12].Visible = true;
+                dgvTripWiseCustomer.Columns[13].Visible = true;
+
+                dgvTripWiseCustomer.Columns[17].Visible = true;
+                dgvTripWiseCustomer.Columns[18].Visible = true;
+                dgvTripWiseCustomer.Columns[19].Visible = true;
+                dgvTripWiseCustomer.Columns[21].Visible = true;
+            }
             else
             {
                 dgvTripWiseCustomer.Columns[5].Visible = true;

@@ -56,7 +56,7 @@ namespace UI.Transport
                     ddlUnit.DataSource = dt;
                     ddlUnit.DataBind();
 
-                    if (int.Parse(ddlUnit.SelectedValue.ToString()) == 4)
+                    if (int.Parse(ddlUnit.SelectedValue.ToString()) == 4 || int.Parse(ddlUnit.SelectedValue.ToString()) == 94)
                     {
                         lblQty.Visible = true;
                         txtQty.Visible = true;
@@ -485,7 +485,7 @@ namespace UI.Transport
             ddlCustomer.DataSource = dt;
             ddlCustomer.DataBind();
 
-            if (int.Parse(ddlUnit.SelectedValue.ToString()) == 4)
+            if (intUnitID == 4 || intUnitID == 94)
             {
                 lblQty.Visible = true;
                 txtQty.Visible = true;
