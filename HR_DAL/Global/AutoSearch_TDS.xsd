@@ -156,7 +156,7 @@ AND dbo.QryEmployeeAutoSearch.intSuperviserId = @enroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CorporateCustSearchTableAdapter" GeneratorDataComponentClassName="CorporateCustSearchTableAdapter" Name="CorporateCustSearch" UserDataComponentName="CorporateCustSearchTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="CorporateCustAutosearchGetData" GetMethodModifier="Public" GetMethodName="CorporateCustAutosearchGetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="CorporateCustAutosearchGetData" UserSourceName="CorporateCustAutosearchGetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="CorporateCustAutosearchGetData" GetMethodModifier="Public" GetMethodName="CorporateCustAutosearchGetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="CorporateCustAutosearchGetData" UserSourceName="CorporateCustAutosearchGetData">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT cust.strname,corp.intcustid,corp.strstatus
@@ -203,7 +203,7 @@ and strOfficeEmail is not null and strOfficeEmail!=''</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CorporateProductSearchTableAdapter" GeneratorDataComponentClassName="CorporateProductSearchTableAdapter" Name="CorporateProductSearch" UserDataComponentName="CorporateProductSearchTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="CorporateProductList" GetMethodModifier="Public" GetMethodName="CorporateProductList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="CorporateProductList" UserSourceName="CorporateProductList">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="CorporateProductList" GetMethodModifier="Public" GetMethodName="CorporateProductList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="CorporateProductList" UserSourceName="CorporateProductList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT strShortCode,strProductName,intProductId,ysnactive FROM ERP_Production.dbo.tblAFBLCorporateSalesProduct where ysnEnable=@ysnEnable</CommandText>
@@ -276,6 +276,61 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblEmployeeByJobstationTableAdapter" GeneratorDataComponentClassName="TblEmployeeByJobstationTableAdapter" Name="TblEmployeeByJobstation" UserDataComponentName="TblEmployeeByJobstationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.tblEmployee" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetEmpByJobstationData" GetMethodModifier="Public" GetMethodName="GetEmpByJobstationData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetEmpByJobstationData" UserSourceName="GetEmpByJobstationData">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ERP_HR].[dbo].[tblEmployee] WHERE (((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ([intEmployeeID] = @Original_intEmployeeID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_HR].[dbo].[tblEmployee] ([strEmployeeName]) VALUES (@strEmployeeName);
+SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A') AS strEmployeeCode, ISNULL(emp.strOfficeEmail, 'N/A') AS strOfficeEmail FROM tblEmployee AS emp INNER JOIN tblEmployeeJobStationOperator AS opt ON emp.intJobStationID = opt.intJobStationId WHERE (emp.intEmployeeID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select strEmployeeName, emp.intEmployeeID, isnull(strEmployeeCode, 'N/A') as strEmployeeCode, isnull(strOfficeEmail, 'N/A') as strOfficeEmail From ERP_HR.dbo.tblEmployee  emp
+ inner join erp_hr.dbo.tblEmployeeJobStationOperator opt on emp.intJobStationID=opt.intJobStationId	WHERE opt.intEmployeeId=@enroll  and opt.ysnActive=1 and emp.ysnActive=1
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="enroll" ColumnName="intEmployeeId" DataSourceName="ERP_HR.dbo.tblEmployeeJobStationOperator" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@enroll" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [ERP_HR].[dbo].[tblEmployee] SET [strEmployeeName] = @strEmployeeName WHERE (((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ([intEmployeeID] = @Original_intEmployeeID));
+SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A') AS strEmployeeCode, ISNULL(emp.strOfficeEmail, 'N/A') AS strOfficeEmail FROM tblEmployee AS emp INNER JOIN tblEmployeeJobStationOperator AS opt ON emp.intJobStationID = opt.intJobStationId WHERE (emp.intEmployeeID = @intEmployeeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_strEmployeeName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_strEmployeeName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strEmployeeName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intEmployeeID" ColumnName="intEmployeeID" DataSourceName="ERP_HR.dbo.tblEmployee" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+              <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
+              <Mapping SourceColumn="strOfficeEmail" DataSetColumn="strOfficeEmail" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -284,7 +339,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
   <xs:element name="AutoSearch_TDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AutoSearch_TDS" msprop:Generator_UserDSName="AutoSearch_TDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SprAutoSearchEmployeeFilterByJobStation" msprop:Generator_TableClassName="SprAutoSearchEmployeeFilterByJobStationDataTable" msprop:Generator_TableVarName="tableSprAutoSearchEmployeeFilterByJobStation" msprop:Generator_TablePropName="SprAutoSearchEmployeeFilterByJobStation" msprop:Generator_RowDeletingName="SprAutoSearchEmployeeFilterByJobStationRowDeleting" msprop:Generator_RowChangingName="SprAutoSearchEmployeeFilterByJobStationRowChanging" msprop:Generator_RowEvHandlerName="SprAutoSearchEmployeeFilterByJobStationRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAutoSearchEmployeeFilterByJobStationRowDeleted" msprop:Generator_UserTableName="SprAutoSearchEmployeeFilterByJobStation" msprop:Generator_RowChangedName="SprAutoSearchEmployeeFilterByJobStationRowChanged" msprop:Generator_RowEvArgName="SprAutoSearchEmployeeFilterByJobStationRowChangeEvent" msprop:Generator_RowClassName="SprAutoSearchEmployeeFilterByJobStationRow">
+        <xs:element name="SprAutoSearchEmployeeFilterByJobStation" msprop:Generator_TableClassName="SprAutoSearchEmployeeFilterByJobStationDataTable" msprop:Generator_TableVarName="tableSprAutoSearchEmployeeFilterByJobStation" msprop:Generator_RowChangedName="SprAutoSearchEmployeeFilterByJobStationRowChanged" msprop:Generator_TablePropName="SprAutoSearchEmployeeFilterByJobStation" msprop:Generator_RowDeletingName="SprAutoSearchEmployeeFilterByJobStationRowDeleting" msprop:Generator_RowChangingName="SprAutoSearchEmployeeFilterByJobStationRowChanging" msprop:Generator_RowEvHandlerName="SprAutoSearchEmployeeFilterByJobStationRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAutoSearchEmployeeFilterByJobStationRowDeleted" msprop:Generator_RowClassName="SprAutoSearchEmployeeFilterByJobStationRow" msprop:Generator_UserTableName="SprAutoSearchEmployeeFilterByJobStation" msprop:Generator_RowEvArgName="SprAutoSearchEmployeeFilterByJobStationRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strEmployeeNameWithCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeNameWithCode" msprop:Generator_ColumnPropNameInRow="strEmployeeNameWithCode" msprop:Generator_ColumnPropNameInTable="strEmployeeNameWithCodeColumn" msprop:Generator_UserColumnName="strEmployeeNameWithCode" minOccurs="0">
@@ -297,7 +352,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblEmployee" msprop:Generator_TableClassName="TblEmployeeDataTable" msprop:Generator_TableVarName="tableTblEmployee" msprop:Generator_RowChangedName="TblEmployeeRowChanged" msprop:Generator_TablePropName="TblEmployee" msprop:Generator_RowDeletingName="TblEmployeeRowDeleting" msprop:Generator_RowChangingName="TblEmployeeRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeRowDeleted" msprop:Generator_RowClassName="TblEmployeeRow" msprop:Generator_UserTableName="TblEmployee" msprop:Generator_RowEvArgName="TblEmployeeRowChangeEvent">
+        <xs:element name="TblEmployee" msprop:Generator_TableClassName="TblEmployeeDataTable" msprop:Generator_TableVarName="tableTblEmployee" msprop:Generator_TablePropName="TblEmployee" msprop:Generator_RowDeletingName="TblEmployeeRowDeleting" msprop:Generator_RowChangingName="TblEmployeeRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeRowDeleted" msprop:Generator_UserTableName="TblEmployee" msprop:Generator_RowChangedName="TblEmployeeRowChanged" msprop:Generator_RowEvArgName="TblEmployeeRowChangeEvent" msprop:Generator_RowClassName="TblEmployeeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
@@ -311,7 +366,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AcclRemoteDistributor" msprop:Generator_TableClassName="AcclRemoteDistributorDataTable" msprop:Generator_TableVarName="tableAcclRemoteDistributor" msprop:Generator_RowChangedName="AcclRemoteDistributorRowChanged" msprop:Generator_TablePropName="AcclRemoteDistributor" msprop:Generator_RowDeletingName="AcclRemoteDistributorRowDeleting" msprop:Generator_RowChangingName="AcclRemoteDistributorRowChanging" msprop:Generator_RowEvHandlerName="AcclRemoteDistributorRowChangeEventHandler" msprop:Generator_RowDeletedName="AcclRemoteDistributorRowDeleted" msprop:Generator_RowClassName="AcclRemoteDistributorRow" msprop:Generator_UserTableName="AcclRemoteDistributor" msprop:Generator_RowEvArgName="AcclRemoteDistributorRowChangeEvent">
+        <xs:element name="AcclRemoteDistributor" msprop:Generator_TableClassName="AcclRemoteDistributorDataTable" msprop:Generator_TableVarName="tableAcclRemoteDistributor" msprop:Generator_TablePropName="AcclRemoteDistributor" msprop:Generator_RowDeletingName="AcclRemoteDistributorRowDeleting" msprop:Generator_RowChangingName="AcclRemoteDistributorRowChanging" msprop:Generator_RowEvHandlerName="AcclRemoteDistributorRowChangeEventHandler" msprop:Generator_RowDeletedName="AcclRemoteDistributorRowDeleted" msprop:Generator_UserTableName="AcclRemoteDistributor" msprop:Generator_RowChangedName="AcclRemoteDistributorRowChanged" msprop:Generator_RowEvArgName="AcclRemoteDistributorRowChangeEvent" msprop:Generator_RowClassName="AcclRemoteDistributorRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Distributors" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDistributors" msprop:Generator_ColumnPropNameInRow="Distributors" msprop:Generator_ColumnPropNameInTable="DistributorsColumn" msprop:Generator_UserColumnName="Distributors" minOccurs="0">
@@ -324,7 +379,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetEmployeeBySupervisor" msprop:Generator_TableClassName="GetEmployeeBySupervisorDataTable" msprop:Generator_TableVarName="tableGetEmployeeBySupervisor" msprop:Generator_TablePropName="GetEmployeeBySupervisor" msprop:Generator_RowDeletingName="GetEmployeeBySupervisorRowDeleting" msprop:Generator_RowChangingName="GetEmployeeBySupervisorRowChanging" msprop:Generator_RowEvHandlerName="GetEmployeeBySupervisorRowChangeEventHandler" msprop:Generator_RowDeletedName="GetEmployeeBySupervisorRowDeleted" msprop:Generator_UserTableName="GetEmployeeBySupervisor" msprop:Generator_RowChangedName="GetEmployeeBySupervisorRowChanged" msprop:Generator_RowEvArgName="GetEmployeeBySupervisorRowChangeEvent" msprop:Generator_RowClassName="GetEmployeeBySupervisorRow">
+        <xs:element name="GetEmployeeBySupervisor" msprop:Generator_TableClassName="GetEmployeeBySupervisorDataTable" msprop:Generator_TableVarName="tableGetEmployeeBySupervisor" msprop:Generator_RowChangedName="GetEmployeeBySupervisorRowChanged" msprop:Generator_TablePropName="GetEmployeeBySupervisor" msprop:Generator_RowDeletingName="GetEmployeeBySupervisorRowDeleting" msprop:Generator_RowChangingName="GetEmployeeBySupervisorRowChanging" msprop:Generator_RowEvHandlerName="GetEmployeeBySupervisorRowChangeEventHandler" msprop:Generator_RowDeletedName="GetEmployeeBySupervisorRowDeleted" msprop:Generator_RowClassName="GetEmployeeBySupervisorRow" msprop:Generator_UserTableName="GetEmployeeBySupervisor" msprop:Generator_RowEvArgName="GetEmployeeBySupervisorRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strEmployeeNameWithCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeNameWithCode" msprop:Generator_ColumnPropNameInRow="strEmployeeNameWithCode" msprop:Generator_ColumnPropNameInTable="strEmployeeNameWithCodeColumn" msprop:Generator_UserColumnName="strEmployeeNameWithCode" minOccurs="0">
@@ -337,7 +392,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprGuestHostSearch" msprop:Generator_TableClassName="SprGuestHostSearchDataTable" msprop:Generator_TableVarName="tableSprGuestHostSearch" msprop:Generator_TablePropName="SprGuestHostSearch" msprop:Generator_RowDeletingName="SprGuestHostSearchRowDeleting" msprop:Generator_RowChangingName="SprGuestHostSearchRowChanging" msprop:Generator_RowEvHandlerName="SprGuestHostSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="SprGuestHostSearchRowDeleted" msprop:Generator_UserTableName="SprGuestHostSearch" msprop:Generator_RowChangedName="SprGuestHostSearchRowChanged" msprop:Generator_RowEvArgName="SprGuestHostSearchRowChangeEvent" msprop:Generator_RowClassName="SprGuestHostSearchRow">
+        <xs:element name="SprGuestHostSearch" msprop:Generator_TableClassName="SprGuestHostSearchDataTable" msprop:Generator_TableVarName="tableSprGuestHostSearch" msprop:Generator_RowChangedName="SprGuestHostSearchRowChanged" msprop:Generator_TablePropName="SprGuestHostSearch" msprop:Generator_RowDeletingName="SprGuestHostSearchRowDeleting" msprop:Generator_RowChangingName="SprGuestHostSearchRowChanging" msprop:Generator_RowEvHandlerName="SprGuestHostSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="SprGuestHostSearchRowDeleted" msprop:Generator_RowClassName="SprGuestHostSearchRow" msprop:Generator_UserTableName="SprGuestHostSearch" msprop:Generator_RowEvArgName="SprGuestHostSearchRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Hosts" msprop:Generator_ColumnVarNameInTable="columnHosts" msprop:Generator_ColumnPropNameInRow="Hosts" msprop:Generator_ColumnPropNameInTable="HostsColumn" msprop:Generator_UserColumnName="Hosts" minOccurs="0">
@@ -357,7 +412,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CorporateCustSearch" msprop:Generator_TableClassName="CorporateCustSearchDataTable" msprop:Generator_TableVarName="tableCorporateCustSearch" msprop:Generator_TablePropName="CorporateCustSearch" msprop:Generator_RowDeletingName="CorporateCustSearchRowDeleting" msprop:Generator_RowChangingName="CorporateCustSearchRowChanging" msprop:Generator_RowEvHandlerName="CorporateCustSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="CorporateCustSearchRowDeleted" msprop:Generator_UserTableName="CorporateCustSearch" msprop:Generator_RowChangedName="CorporateCustSearchRowChanged" msprop:Generator_RowEvArgName="CorporateCustSearchRowChangeEvent" msprop:Generator_RowClassName="CorporateCustSearchRow">
+        <xs:element name="CorporateCustSearch" msprop:Generator_TableClassName="CorporateCustSearchDataTable" msprop:Generator_TableVarName="tableCorporateCustSearch" msprop:Generator_RowChangedName="CorporateCustSearchRowChanged" msprop:Generator_TablePropName="CorporateCustSearch" msprop:Generator_RowDeletingName="CorporateCustSearchRowDeleting" msprop:Generator_RowChangingName="CorporateCustSearchRowChanging" msprop:Generator_RowEvHandlerName="CorporateCustSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="CorporateCustSearchRowDeleted" msprop:Generator_RowClassName="CorporateCustSearchRow" msprop:Generator_UserTableName="CorporateCustSearch" msprop:Generator_RowEvArgName="CorporateCustSearchRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strname" msprop:Generator_ColumnVarNameInTable="columnstrname" msprop:Generator_ColumnPropNameInRow="strname" msprop:Generator_ColumnPropNameInTable="strnameColumn" msprop:Generator_UserColumnName="strname" minOccurs="0">
@@ -378,7 +433,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="QryEmployeeProfileAll" msprop:Generator_TableClassName="QryEmployeeProfileAllDataTable" msprop:Generator_TableVarName="tableQryEmployeeProfileAll" msprop:Generator_RowChangedName="QryEmployeeProfileAllRowChanged" msprop:Generator_TablePropName="QryEmployeeProfileAll" msprop:Generator_RowDeletingName="QryEmployeeProfileAllRowDeleting" msprop:Generator_RowChangingName="QryEmployeeProfileAllRowChanging" msprop:Generator_RowEvHandlerName="QryEmployeeProfileAllRowChangeEventHandler" msprop:Generator_RowDeletedName="QryEmployeeProfileAllRowDeleted" msprop:Generator_RowClassName="QryEmployeeProfileAllRow" msprop:Generator_UserTableName="QryEmployeeProfileAll" msprop:Generator_RowEvArgName="QryEmployeeProfileAllRowChangeEvent">
+        <xs:element name="QryEmployeeProfileAll" msprop:Generator_TableClassName="QryEmployeeProfileAllDataTable" msprop:Generator_TableVarName="tableQryEmployeeProfileAll" msprop:Generator_TablePropName="QryEmployeeProfileAll" msprop:Generator_RowDeletingName="QryEmployeeProfileAllRowDeleting" msprop:Generator_RowChangingName="QryEmployeeProfileAllRowChanging" msprop:Generator_RowEvHandlerName="QryEmployeeProfileAllRowChangeEventHandler" msprop:Generator_RowDeletedName="QryEmployeeProfileAllRowDeleted" msprop:Generator_UserTableName="QryEmployeeProfileAll" msprop:Generator_RowChangedName="QryEmployeeProfileAllRowChanged" msprop:Generator_RowEvArgName="QryEmployeeProfileAllRowChangeEvent" msprop:Generator_RowClassName="QryEmployeeProfileAllRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strOfficeEmail" msprop:Generator_ColumnVarNameInTable="columnstrOfficeEmail" msprop:Generator_ColumnPropNameInRow="strOfficeEmail" msprop:Generator_ColumnPropNameInTable="strOfficeEmailColumn" msprop:Generator_UserColumnName="strOfficeEmail" minOccurs="0">
@@ -420,7 +475,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CorporateProductSearch" msprop:Generator_TableClassName="CorporateProductSearchDataTable" msprop:Generator_TableVarName="tableCorporateProductSearch" msprop:Generator_TablePropName="CorporateProductSearch" msprop:Generator_RowDeletingName="CorporateProductSearchRowDeleting" msprop:Generator_RowChangingName="CorporateProductSearchRowChanging" msprop:Generator_RowEvHandlerName="CorporateProductSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="CorporateProductSearchRowDeleted" msprop:Generator_UserTableName="CorporateProductSearch" msprop:Generator_RowChangedName="CorporateProductSearchRowChanged" msprop:Generator_RowEvArgName="CorporateProductSearchRowChangeEvent" msprop:Generator_RowClassName="CorporateProductSearchRow">
+        <xs:element name="CorporateProductSearch" msprop:Generator_TableClassName="CorporateProductSearchDataTable" msprop:Generator_TableVarName="tableCorporateProductSearch" msprop:Generator_RowChangedName="CorporateProductSearchRowChanged" msprop:Generator_TablePropName="CorporateProductSearch" msprop:Generator_RowDeletingName="CorporateProductSearchRowDeleting" msprop:Generator_RowChangingName="CorporateProductSearchRowChanging" msprop:Generator_RowEvHandlerName="CorporateProductSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="CorporateProductSearchRowDeleted" msprop:Generator_RowClassName="CorporateProductSearchRow" msprop:Generator_UserTableName="CorporateProductSearch" msprop:Generator_RowEvArgName="CorporateProductSearchRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strShortCode" msprop:Generator_ColumnVarNameInTable="columnstrShortCode" msprop:Generator_ColumnPropNameInRow="strShortCode" msprop:Generator_ColumnPropNameInTable="strShortCodeColumn" msprop:Generator_UserColumnName="strShortCode" minOccurs="0">
@@ -442,7 +497,7 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblEmployeeSearch" msprop:Generator_TableClassName="TblEmployeeSearchDataTable" msprop:Generator_TableVarName="tableTblEmployeeSearch" msprop:Generator_RowChangedName="TblEmployeeSearchRowChanged" msprop:Generator_TablePropName="TblEmployeeSearch" msprop:Generator_RowDeletingName="TblEmployeeSearchRowDeleting" msprop:Generator_RowChangingName="TblEmployeeSearchRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeSearchRowDeleted" msprop:Generator_RowClassName="TblEmployeeSearchRow" msprop:Generator_UserTableName="TblEmployeeSearch" msprop:Generator_RowEvArgName="TblEmployeeSearchRowChangeEvent">
+        <xs:element name="TblEmployeeSearch" msprop:Generator_TableClassName="TblEmployeeSearchDataTable" msprop:Generator_TableVarName="tableTblEmployeeSearch" msprop:Generator_TablePropName="TblEmployeeSearch" msprop:Generator_RowDeletingName="TblEmployeeSearchRowDeleting" msprop:Generator_RowChangingName="TblEmployeeSearchRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeSearchRowDeleted" msprop:Generator_UserTableName="TblEmployeeSearch" msprop:Generator_RowChangedName="TblEmployeeSearchRowChanged" msprop:Generator_RowEvArgName="TblEmployeeSearchRowChangeEvent" msprop:Generator_RowClassName="TblEmployeeSearchRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
@@ -461,6 +516,34 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
                 </xs:simpleType>
               </xs:element>
               <xs:element name="strOfficeEmail" msprop:Generator_ColumnVarNameInTable="columnstrOfficeEmail" msprop:Generator_ColumnPropNameInRow="strOfficeEmail" msprop:Generator_ColumnPropNameInTable="strOfficeEmailColumn" msprop:Generator_UserColumnName="strOfficeEmail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblEmployeeByJobstation" msprop:Generator_TableClassName="TblEmployeeByJobstationDataTable" msprop:Generator_TableVarName="tableTblEmployeeByJobstation" msprop:Generator_TablePropName="TblEmployeeByJobstation" msprop:Generator_RowDeletingName="TblEmployeeByJobstationRowDeleting" msprop:Generator_RowChangingName="TblEmployeeByJobstationRowChanging" msprop:Generator_RowEvHandlerName="TblEmployeeByJobstationRowChangeEventHandler" msprop:Generator_RowDeletedName="TblEmployeeByJobstationRowDeleted" msprop:Generator_UserTableName="TblEmployeeByJobstation" msprop:Generator_RowChangedName="TblEmployeeByJobstationRowChanged" msprop:Generator_RowEvArgName="TblEmployeeByJobstationRowChangeEvent" msprop:Generator_RowClassName="TblEmployeeByJobstationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
+              <xs:element name="strEmployeeCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeCode" msprop:Generator_ColumnPropNameInRow="strEmployeeCode" msprop:Generator_ColumnPropNameInTable="strEmployeeCodeColumn" msprop:Generator_UserColumnName="strEmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strOfficeEmail" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrOfficeEmail" msprop:Generator_ColumnPropNameInRow="strOfficeEmail" msprop:Generator_ColumnPropNameInTable="strOfficeEmailColumn" msprop:Generator_UserColumnName="strOfficeEmail" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1000" />

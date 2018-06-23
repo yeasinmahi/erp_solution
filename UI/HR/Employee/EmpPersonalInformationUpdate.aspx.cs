@@ -20,7 +20,7 @@ namespace UI.HR.Employee
         DataTable details = new DataTable();
         DataTable personalDetails = new DataTable();
         DataTable countId = new DataTable();
-        char[] deli = { '[', ']' };
+        char[] deli = { '[', ']' }; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -34,10 +34,10 @@ namespace UI.HR.Employee
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             int number = 0; ;
-            string[] array = TxtEmployee.Text.Split(deli);
-            if (array.Length > 0)
+            arrayKey = TxtEmployee.Text.Split(delimiterChars); 
+            if (arrayKey.Length > 0)
             {
-                number = int.Parse(array[1].ToString());
+                number = int.Parse(arrayKey[3].ToString());
             }
 
             string strFatherName = TxtFather.Text.ToString();
@@ -93,15 +93,16 @@ namespace UI.HR.Employee
         protected void TxtEmployee_TextChanged(object sender, EventArgs e)
         {
             //TxtEmployee.Text.Split(deli);
-            int number = 0;
-            string[] array = TxtEmployee.Text.Split(deli);
-            if (array.Length > 0)
-            {
-                number = int.Parse(array[1].ToString());
-            }
+               int number = 0; 
 
-
-            details = bll.getEmployeeDetails(number);
+               arrayKey = TxtEmployee.Text.Split(delimiterChars);
+               
+                if (arrayKey.Length > 0)
+                {
+                    number= int.Parse(arrayKey[3].ToString()); 
+                }
+             
+              details = bll.getEmployeeDetails(number);
             if (details.Rows.Count > 0)
             {
                 TxtName.Text = details.Rows[0]["strEmployeeName"].ToString();
@@ -162,7 +163,7 @@ namespace UI.HR.Employee
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
             int Active = int.Parse(1.ToString());
 
-            return objAutoSearch_BLL.GetEmployeeLists(Convert.ToBoolean(Active), prefixText);
+            return objAutoSearch_BLL.GetEmployeeByJobstationOperator(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), prefixText);
 
         }
     }
