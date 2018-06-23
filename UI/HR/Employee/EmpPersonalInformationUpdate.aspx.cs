@@ -6,8 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using System.Web.Script.Services;
-using System.Web.Services;
- 
+using System.Web.Services; 
 using HR_BLL.Global;
 using HR_BLL.Employee;
 using System.Data;
@@ -32,110 +31,47 @@ namespace UI.HR.Employee
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            int number = 0; ;
-            arrayKey = TxtEmployee.Text.Split(delimiterChars); 
-            if (arrayKey.Length > 0)
+            try
             {
-                number = int.Parse(arrayKey[3].ToString());
-            }
-
-            string strFatherName = TxtFather.Text.ToString();
-            string strMotherName = TxtMother.Text.ToString();
-            string strSpouseName = TxtSpouse.Text.ToString();
-            string strPermanentVillage = TxtVillage.Text.ToString();
-            string strPermanentPostOffice = TxtPermanentPostOffice.Text.ToString();
-            string strPermanentPoliceStation = TxtPermanentPoliceStation.Text.ToString();
-            string strPermanentDistrict = TxtPermanentDistricts.Text.ToString();
-            string House = TxtHouse.Text.ToString();
-            int Road = int.Parse(TxtRoad.Text.ToString());
-            string PresentPostOffice = TxtPresentPostOffice.Text.ToString();
-            string PresentPoliceStation = TxtPresentPoliceStation.Text.ToString();
-            string PresentDistrict = TxtPresentDistricts.Text.ToString();
-
-            countId = bll.CountEmpId(number);
-            if (countId.Rows.Count > 0)
-            {
-                bll.updateEmployeeDetailById(strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
-                 PresentPoliceStation, PresentDistrict, number);
-
-            }
-            else
-            {
-                bll.insertEmployeePersonalData(number, strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
-                        PresentPoliceStation, PresentDistrict);
-
-            }
-
-
-
-
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
-
-            GVPersonalInfoUpdateList.Visible = true;
-            GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList(number);
-            GVPersonalInfoUpdateList.DataBind();
-            TxtFather.Text = "";
-            TxtMother.Text = "";
-            TxtHouse.Text = "";
-            TxtSpouse.Text = "";
-            TxtVillage.Text = "";
-            TxtPermanentDistricts.Text = "";
-            TxtPermanentPoliceStation.Text = "";
-            TxtPermanentPostOffice.Text = "";
-            TxtPresentDistricts.Text = "";
-            TxtPresentPoliceStation.Text = "";
-            TxtPresentPostOffice.Text = "";
-            TxtRoad.Text = "";
-
-        }
-
-        protected void TxtEmployee_TextChanged(object sender, EventArgs e)
-        {
-            //TxtEmployee.Text.Split(deli);
-               int number = 0; 
-
-               arrayKey = TxtEmployee.Text.Split(delimiterChars);
-               
+                int number = 0; ;
+                arrayKey = TxtEmployee.Text.Split(delimiterChars);
                 if (arrayKey.Length > 0)
                 {
-                    number= int.Parse(arrayKey[3].ToString()); 
+                    number = int.Parse(arrayKey[3].ToString());
                 }
-             
-              details = bll.getEmployeeDetails(number);
-            if (details.Rows.Count > 0)
-            {
-                TxtName.Text = details.Rows[0]["strEmployeeName"].ToString();
-                TxtUnit.Text = details.Rows[0]["strUnit"].ToString();
-                TxtJobStation.Text = details.Rows[0]["strJobStationName"].ToString();
-                TxtDepartment.Text = details.Rows[0]["strDepatrment"].ToString();
-                TxtDesignation.Text = details.Rows[0]["strDesignation"].ToString();
-                TxtDateOfJoin.Text = details.Rows[0]["dteJoiningDate"].ToString();
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
 
-            }
+                string strFatherName = TxtFather.Text.ToString();
+                string strMotherName = TxtMother.Text.ToString();
+                string strSpouseName = TxtSpouse.Text.ToString();
+                string strPermanentVillage = TxtVillage.Text.ToString();
+                string strPermanentPostOffice = TxtPermanentPostOffice.Text.ToString();
+                string strPermanentPoliceStation = TxtPermanentPoliceStation.Text.ToString();
+                string strPermanentDistrict = TxtPermanentDistricts.Text.ToString();
+                string House = TxtHouse.Text.ToString();
+                int Road = int.Parse(TxtRoad.Text.ToString());
+                string PresentPostOffice = TxtPresentPostOffice.Text.ToString();
+                string PresentPoliceStation = TxtPresentPoliceStation.Text.ToString();
+                string PresentDistrict = TxtPresentDistricts.Text.ToString();
 
-            personalDetails = bll.getEmployeePersonalDataByEmpId(number);
-            if (personalDetails.Rows.Count > 0)
-            {
-                TxtFather.Text = personalDetails.Rows[0]["strFatherName"].ToString();
-                TxtMother.Text = personalDetails.Rows[0]["strMotherName"].ToString();
-                TxtSpouse.Text = personalDetails.Rows[0]["strSpouseName"].ToString();
-                TxtVillage.Text = personalDetails.Rows[0]["strPermanentVillage"].ToString();
-                TxtPermanentPostOffice.Text = personalDetails.Rows[0]["strPermanentPostOffice"].ToString();
-                TxtPermanentPoliceStation.Text = personalDetails.Rows[0]["strPermanentPoliceStation"].ToString();
-                TxtPermanentDistricts.Text = personalDetails.Rows[0]["strPermanentDistrict"].ToString();
-                TxtHouse.Text = personalDetails.Rows[0]["strPresentHouseNo"].ToString();
-                TxtRoad.Text = personalDetails.Rows[0]["intPresentRoadNo"].ToString();
-                TxtPresentPostOffice.Text = personalDetails.Rows[0]["strPresentPostOffice"].ToString();
-                TxtPresentPoliceStation.Text = personalDetails.Rows[0]["strPresentPoliceStation"].ToString();
-                TxtPresentDistricts.Text = personalDetails.Rows[0]["strPresentDistrict"].ToString();
+                countId = bll.CountEmpId(number);
+                if (countId.Rows.Count > 0)
+                {
+                    bll.updateEmployeeDetailById(strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
+                     PresentPoliceStation, PresentDistrict, number);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Update Request');", true);
 
-            }
-            else
-            {
+                }
+                else
+                {
+                    bll.insertEmployeePersonalData(number, strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
+                            PresentPoliceStation, PresentDistrict);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
+
+                }
+
+                GVPersonalInfoUpdateList.Visible = true;
+                GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList(number);
+                GVPersonalInfoUpdateList.DataBind();
                 TxtFather.Text = "";
                 TxtMother.Text = "";
                 TxtHouse.Text = "";
@@ -148,10 +84,79 @@ namespace UI.HR.Employee
                 TxtPresentPoliceStation.Text = "";
                 TxtPresentPostOffice.Text = "";
                 TxtRoad.Text = "";
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Personal Data Not Found');", true);
+            }
+            catch { }
+           
+
+        }
+
+        protected void TxtEmployee_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int number = 0;
+                arrayKey = TxtEmployee.Text.Split(delimiterChars);
+
+                if (arrayKey.Length > 0)
+                {
+                    number = int.Parse(arrayKey[3].ToString());
+                }
+
+                details = bll.getEmployeeDetails(number);
+                if (details.Rows.Count > 0)
+                {
+                    TxtName.Text = details.Rows[0]["strEmployeeName"].ToString();
+                    TxtUnit.Text = details.Rows[0]["strUnit"].ToString();
+                    TxtJobStation.Text = details.Rows[0]["strJobStationName"].ToString();
+                    TxtDepartment.Text = details.Rows[0]["strDepatrment"].ToString();
+                    TxtDesignation.Text = details.Rows[0]["strDesignation"].ToString();
+                    TxtDateOfJoin.Text = details.Rows[0]["dteJoiningDate"].ToString();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+
+                }
+
+                personalDetails = bll.getEmployeePersonalDataByEmpId(number);
+                if (personalDetails.Rows.Count > 0)
+                {
+                    TxtFather.Text = personalDetails.Rows[0]["strFatherName"].ToString();
+                    TxtMother.Text = personalDetails.Rows[0]["strMotherName"].ToString();
+                    TxtSpouse.Text = personalDetails.Rows[0]["strSpouseName"].ToString();
+                    TxtVillage.Text = personalDetails.Rows[0]["strPermanentVillage"].ToString();
+                    TxtPermanentPostOffice.Text = personalDetails.Rows[0]["strPermanentPostOffice"].ToString();
+                    TxtPermanentPoliceStation.Text = personalDetails.Rows[0]["strPermanentPoliceStation"].ToString();
+                    TxtPermanentDistricts.Text = personalDetails.Rows[0]["strPermanentDistrict"].ToString();
+                    TxtHouse.Text = personalDetails.Rows[0]["strPresentHouseNo"].ToString();
+                    TxtRoad.Text = personalDetails.Rows[0]["intPresentRoadNo"].ToString();
+                    TxtPresentPostOffice.Text = personalDetails.Rows[0]["strPresentPostOffice"].ToString();
+                    TxtPresentPoliceStation.Text = personalDetails.Rows[0]["strPresentPoliceStation"].ToString();
+                    TxtPresentDistricts.Text = personalDetails.Rows[0]["strPresentDistrict"].ToString();
+
+                }
+                else
+                {
+                    TxtFather.Text = "";
+                    TxtMother.Text = "";
+                    TxtHouse.Text = "";
+                    TxtSpouse.Text = "";
+                    TxtVillage.Text = "";
+                    TxtPermanentDistricts.Text = "";
+                    TxtPermanentPoliceStation.Text = "";
+                    TxtPermanentPostOffice.Text = "";
+                    TxtPresentDistricts.Text = "";
+                    TxtPresentPoliceStation.Text = "";
+                    TxtPresentPostOffice.Text = "";
+                    TxtRoad.Text = "";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Personal Data Not Found');", true);
+
+                }
+
 
             }
-
+            catch { }
+               
         }
 
         [WebMethod]
