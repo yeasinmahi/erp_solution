@@ -26,8 +26,7 @@ namespace UI.HR.Employee
             if(!IsPostBack)
             {
                 GVPersonalInfoUpdateList.Visible = false;
-                GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList();
-                GVPersonalInfoUpdateList.DataBind();
+                
             }
         }
 
@@ -73,7 +72,7 @@ namespace UI.HR.Employee
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
 
             GVPersonalInfoUpdateList.Visible = true;
-            GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList();
+            GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList(number);
             GVPersonalInfoUpdateList.DataBind();
             TxtFather.Text = "";
             TxtMother.Text = "";
