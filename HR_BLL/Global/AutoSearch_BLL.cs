@@ -176,6 +176,69 @@ namespace HR_BLL.Global
             }
         }
 
+        public string[] GetEmployeeListByJob(Boolean active, string prefix)
+        {
+            tableEmpList = new AutoSearch_TDS.QryEmployeeProfileAllDataTable[Convert.ToInt32(active)];
+            QryEmployeeProfileAllTableAdapter emplists = new QryEmployeeProfileAllTableAdapter();
+            tableEmpList[e] = emplists.EmployeeListGetData(Convert.ToBoolean(active));
+
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableEmpList[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strOfficeEmail
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableEmpList[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strOfficeEmail.ToLower().Contains(prefix)
+                                   orderby tmp.strOfficeEmail
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["strOfficeEmail"] + "," + tbl.Rows[i]["strEmployeeName"] + "," + tbl.Rows[i]["strDesignation"] + "," + tbl.Rows[i]["strDepatrment"] + "," + tbl.Rows[i]["strJobStationName"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
+
+                    //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public DataTable SearchACLEmployees(string strSearchKey)
         {
             SprAutoSearchEmployeeFilterByJobStationTableAdapter ta = new SprAutoSearchEmployeeFilterByJobStationTableAdapter();

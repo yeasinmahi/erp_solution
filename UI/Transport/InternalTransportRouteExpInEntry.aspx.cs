@@ -40,7 +40,6 @@ namespace UI.Transport
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-            hdnUnit.Value = "94";
 
             filePathForXML = Server.MapPath("~/Transport/Data/InFuelStation_" + hdnEnroll.Value + ".xml");
             filePathForXMLDTFare = Server.MapPath("~/Transport/Data/InDTFare_" + hdnEnroll.Value + ".xml");
