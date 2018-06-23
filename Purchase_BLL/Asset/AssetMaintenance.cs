@@ -550,12 +550,12 @@ namespace Purchase_BLL.Asset
             WOToolsIn.WOToolsEquipmentInsert(Reffno, ToolsID, description, hour, intenroll, intjobid, intdept);
         }
 
-        public void ServiceChargeUpdate(int serviceId, decimal serviceCost)
+        public void ServiceChargeUpdate(int serviceId, decimal serviceCost,string serviceDesc)
         {
             try
             {
                 TblUpdatelMaintenanceTaskTableAdapter adp = new TblUpdatelMaintenanceTaskTableAdapter();
-                adp.UpdateServiceCostData(serviceCost, serviceId);
+                adp.UpdateServiceCostData(serviceCost, serviceDesc, serviceId);
             }
             catch { }
         }

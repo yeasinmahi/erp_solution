@@ -26050,9 +26050,10 @@ ERP_Asset.dbo.tblFixedAssetRegister.intCostcenterID=@costid,ERP_Asset.dbo.tblFix
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = " update dbo.tblMaintenanceTask set [monServiceCost]=@serviceCost,[dteInsertDate]=" +
-                "getdate() where [intID]=@serviceID";
+                "getdate(),strDescription=@serviceDesc  where [intID]=@serviceID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceCost", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceDesc", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -26060,7 +26061,7 @@ ERP_Asset.dbo.tblFixedAssetRegister.intCostcenterID=@costid,ERP_Asset.dbo.tblFix
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblUpdatelMaintenanceTaskDataTable UpdateServiceCostData(global::System.Nullable<decimal> serviceCost, int serviceID) {
+        public virtual AssetMaintenanceTDS.TblUpdatelMaintenanceTaskDataTable UpdateServiceCostData(global::System.Nullable<decimal> serviceCost, string serviceDesc, int serviceID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((serviceCost.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(serviceCost.Value));
@@ -26068,7 +26069,13 @@ ERP_Asset.dbo.tblFixedAssetRegister.intCostcenterID=@costid,ERP_Asset.dbo.tblFix
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(serviceID));
+            if ((serviceDesc == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(serviceDesc));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(serviceID));
             AssetMaintenanceTDS.TblUpdatelMaintenanceTaskDataTable dataTable = new AssetMaintenanceTDS.TblUpdatelMaintenanceTaskDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

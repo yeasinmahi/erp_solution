@@ -574,10 +574,12 @@ namespace UI.Asset
                 {
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     TextBox txtServiceCost = row.FindControl("txtServiceCharge") as TextBox;
+                    TextBox txtServiceDesc = row.FindControl("txtServiceDesc") as TextBox;
                     Label lblServiceID = row.FindControl("lblServiceID") as Label;
                     int serviceId = int.Parse(lblServiceID.Text.ToString());
                     decimal serviceCost = decimal.Parse(txtServiceCost.Text.ToString());
-                    objMaintenance.ServiceChargeUpdate(serviceId, serviceCost);
+                    string serviceDesc = txtServiceDesc.Text.ToString();
+                    objMaintenance.ServiceChargeUpdate(serviceId, serviceCost, serviceDesc);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Service Charge Updated');", true);
                 }
                 
