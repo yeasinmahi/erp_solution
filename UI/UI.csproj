@@ -270,10 +270,12 @@
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
+    <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
+    <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
@@ -312,6 +314,7 @@
     <Content Include="HR\DocumentTracking\DocumentRequisition.aspx" />
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
+    <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
     <Content Include="HR\Loan\ApproveLoanApplicationN.aspx" />
@@ -2537,6 +2540,13 @@
     </Compile>
     <Compile Include="HR\DocumentTracking\DocumentTransfer.aspx.designer.cs">
       <DependentUpon>DocumentTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
+      <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
+      <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Insurance\InsuranceDateRangeReport.aspx.cs">
       <DependentUpon>InsuranceDateRangeReport.aspx</DependentUpon>
