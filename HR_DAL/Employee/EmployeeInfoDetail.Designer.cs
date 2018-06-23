@@ -4985,16 +4985,17 @@ WHERE        (intEmployeeId = @intEmployeeId)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"
- SELECT        QRYEMPLOYEEPROFILEALL.strEmployeeName AS Name, QRYEMPLOYEEPROFILEALL.strDesignation AS Designation, QRYEMPLOYEEPROFILEALL.strDepatrment AS Department, QRYEMPLOYEEPROFILEALL.strUnit AS Unit, 
-                         QRYEMPLOYEEPROFILEALL.strJobStationName AS ""Job Station"", QRYEMPLOYEEPROFILEALL.dteJoiningDate AS ""Joining Date"", tblEmployeeInfoDetail.strFatherName AS ""Fathers Name"", 
-                         tblEmployeeInfoDetail.strMotherName AS ""Mothers Name"", tblEmployeeInfoDetail.strSpouseName AS ""Spouse Name"", tblEmployeeInfoDetail.strPermanentVillage AS ""Permanent Village"", 
-                         tblEmployeeInfoDetail.strPermanentPostOffice AS ""Permanent Post Office"", tblEmployeeInfoDetail.strPermanentPoliceStation AS ""Permanent Police Station"", tblEmployeeInfoDetail.strPermanentDistrict AS ""Permanent District"", 
-                         tblEmployeeInfoDetail.strPresentHouseNo AS ""House No"", tblEmployeeInfoDetail.intPresentRoadNo AS ""Road No"", tblEmployeeInfoDetail.strPresentPostOffice AS ""Present Post Office"", 
-                         tblEmployeeInfoDetail.strPresentPoliceStation AS ""Present Police Station"", tblEmployeeInfoDetail.strPresentDistrict AS ""Present District""
+            this._commandCollection[0].CommandText = @"SELECT        QRYEMPLOYEEPROFILEALL.strEmployeeName AS Name, QRYEMPLOYEEPROFILEALL.strDesignation AS Designation, QRYEMPLOYEEPROFILEALL.strDepatrment AS Department, QRYEMPLOYEEPROFILEALL.strUnit AS Unit, 
+                         QRYEMPLOYEEPROFILEALL.strJobStationName AS [Job Station], QRYEMPLOYEEPROFILEALL.dteJoiningDate AS [Joining Date], tblEmployeeInfoDetail.strFatherName AS [Fathers Name], 
+                         tblEmployeeInfoDetail.strMotherName AS [Mothers Name], tblEmployeeInfoDetail.strSpouseName AS [Spouse Name], tblEmployeeInfoDetail.strPermanentVillage AS [Permanent Village], 
+                         tblEmployeeInfoDetail.strPermanentPostOffice AS [Permanent Post Office], tblEmployeeInfoDetail.strPermanentPoliceStation AS [Permanent Police Station], tblEmployeeInfoDetail.strPermanentDistrict AS [Permanent District], 
+                         tblEmployeeInfoDetail.strPresentHouseNo AS [House No], tblEmployeeInfoDetail.intPresentRoadNo AS [Road No], tblEmployeeInfoDetail.strPresentPostOffice AS [Present Post Office], 
+                         tblEmployeeInfoDetail.strPresentPoliceStation AS [Present Police Station], tblEmployeeInfoDetail.strPresentDistrict AS [Present District]
 FROM            tblEmployeeInfoDetail INNER JOIN
-                         QRYEMPLOYEEPROFILEALL ON tblEmployeeInfoDetail.intEmployeeId = QRYEMPLOYEEPROFILEALL.intEmployeeID";
+                         QRYEMPLOYEEPROFILEALL ON tblEmployeeInfoDetail.intEmployeeId = QRYEMPLOYEEPROFILEALL.intEmployeeID
+WHERE        (tblEmployeeInfoDetail.intEmployeeId = @empId)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@empId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "select top(1) intEmployeeId  from erp_hr.dbo.tblEmployeeInfoDetail where intEmplo" +
@@ -5007,8 +5008,14 @@ FROM            tblEmployeeInfoDetail INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual EmployeeInfoDetail.EmpPersonalInfoUpdateListDataTable GetEmpPersonalUpdateData() {
+        public virtual EmployeeInfoDetail.EmpPersonalInfoUpdateListDataTable GetEmpPersonalUpdateData(global::System.Nullable<int> empId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((empId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(empId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             EmployeeInfoDetail.EmpPersonalInfoUpdateListDataTable dataTable = new EmployeeInfoDetail.EmpPersonalInfoUpdateListDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

@@ -23,10 +23,10 @@ namespace HR_BLL.Employee
             adp.InsertEmployeePersonalDetails(intEmployeeId, strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, strPresentHouseNo, intPresentRoadNo, strPresentPostOffice,
                          strPresentPoliceStation, strPresentDistrict);
         }
-        public DataTable getEmployeeUpdateInfoList()
+        public DataTable getEmployeeUpdateInfoList(int id)
         {
             EmpPersonalInfoUpdateListTableAdapter adp = new EmpPersonalInfoUpdateListTableAdapter();
-            return adp.GetEmpPersonalUpdateData();
+            return adp.GetEmpPersonalUpdateData(id);
         }
 
         public DataTable getEmployeePersonalDataByEmpId(int id)
