@@ -297,11 +297,7 @@
                                      <asp:TextBox ID="txtServiceCharge" Text='<%# Bind("monServiceCost","{0:n2}") %>' runat="server"    />
                                  </ItemTemplate>
                              </asp:TemplateField>
-                             <asp:TemplateField HeaderText="Service Cost">
-                                 <ItemTemplate>
-                                     <asp:TextBox ID="txtServiceCharge" Text='<%# Bind("monServiceCost","{0:n2}") %>' runat="server"    />
-                                 </ItemTemplate>
-                             </asp:TemplateField>
+                              
                              <asp:TemplateField HeaderText="Description">
                                  <ItemTemplate>
                                      <asp:TextBox ID="txtServiceDesc" Width="250px"  Text='<%# Bind("monServiceCost","{0:n2}") %>' runat="server"    />
