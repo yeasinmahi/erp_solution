@@ -25,8 +25,21 @@ namespace UI.HR.Employee
         {
             if(!IsPostBack)
             {
-               
-                
+                Label6.Visible = false;
+                LblSpouse.Visible = false;
+                Label11.Visible = false;
+                Label12.Visible = false;
+                Label13.Visible = false;
+                Label14.Visible = false;
+                Label15.Visible = false;
+                TxtMother.Visible = false;
+                TxtSpouse.Visible = false;
+                TxtHouse.Visible = false;
+                TxtRoad.Visible = false;
+                TxtPresentDistricts.Visible = false;
+                TxtPresentPoliceStation.Visible = false;
+                TxtPresentPostOffice.Visible = false;
+
             }
         }
 

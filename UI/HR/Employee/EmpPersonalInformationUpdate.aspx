@@ -32,17 +32,17 @@ function Confirm() {
     var UnitName = document.getElementById("TxtUnit").value;
     var JobStation = document.getElementById("TxtJobStation").value;
     var Father = document.getElementById("TxtFather").value;
-    var Mother = document.getElementById("TxtMother").value;
+    //var Mother = document.getElementById("TxtMother").value;
     //var Spouse = document.getElementById("TxtSpouse").value;
     var Village = document.getElementById("TxtVillage").value;
     var PermanentPostOffice = document.getElementById("TxtPermanentPostOffice").value;
     var PermanentPoliceStation = document.getElementById("TxtPermanentPoliceStation").value;
     var PermanentDistricts = document.getElementById("TxtPermanentDistricts").value;
-    var PresentPostOffice = document.getElementById("TxtPresentPostOffice").value;
-    var House = document.getElementById("TxtHouse").value;
-    var Road = document.getElementById("TxtRoad").value;
-    var PresentPoliceStation = document.getElementById("TxtPresentPoliceStation").value;
-    var PresentDistricts = document.getElementById("TxtPresentDistricts").value;
+    //var PresentPostOffice = document.getElementById("TxtPresentPostOffice").value;
+    //var House = document.getElementById("TxtHouse").value;
+    //var Road = document.getElementById("TxtRoad").value;
+    //var PresentPoliceStation = document.getElementById("TxtPresentPoliceStation").value;
+    //var PresentDistricts = document.getElementById("TxtPresentDistricts").value;
 
     if (EmployeeSearch == "") { document.getElementById("hdnConfirm").value = "0";
         alert("Enter Search Employee Field");
@@ -68,9 +68,9 @@ function Confirm() {
     else if (Father=="") { document.getElementById("hdnConfirm").value = "0";
         alert("Enter Father's Name");
     }
-    else if (Mother == "") { document.getElementById("hdnConfirm").value = "0";
-        alert("Enter Mother's Name");
-    }
+    //else if (Mother == "") { document.getElementById("hdnConfirm").value = "0";
+    //    alert("Enter Mother's Name");
+    //}
     else if (Village == "") { document.getElementById("hdnConfirm").value = "0";
         alert("Enter Village Name");
     }
@@ -83,22 +83,22 @@ function Confirm() {
     else if (PermanentPoliceStation == "") { document.getElementById("hdnConfirm").value = "0";
         alert("Enter Police Station Name");
     }
-    else if (House == "") { document.getElementById("hdnConfirm").value = "0";
-        alert("Enter House No");
-    }
-    else if (Road == "") { document.getElementById("hdnConfirm").value = "0";
-        alert("Enter Road No");
-    }
-    else if (PresentPostOffice == "") { document.getElementById("hdnConfirm").value = "0";
-        alert("Enter Post Office Name");
-    }
-    else if (PresentPoliceStation == "") { document.getElementById("hdnConfirm").value = "0";
-        alert("Enter Police Station Name");
+    //else if (House == "") { document.getElementById("hdnConfirm").value = "0";
+    //    alert("Enter House No");
+    //}
+    //else if (Road == "") { document.getElementById("hdnConfirm").value = "0";
+    //    alert("Enter Road No");
+    //}
+    //else if (PresentPostOffice == "") { document.getElementById("hdnConfirm").value = "0";
+    //    alert("Enter Post Office Name");
+    //}
+    //else if (PresentPoliceStation == "") { document.getElementById("hdnConfirm").value = "0";
+    //    alert("Enter Police Station Name");
         
-    }
-    else if (PresentDistricts == "") { document.getElementById("hdnConfirm").value = "0";
-        alert("Enter Districts Name");
-    }
+    //}
+    //else if (PresentDistricts == "") { document.getElementById("hdnConfirm").value = "0";
+    //    alert("Enter Districts Name");
+    //}
 
      else {
                  var confirm_value = document.createElement("INPUT"); 
@@ -257,11 +257,11 @@ function Confirm() {
                                 <asp:TextBox ID="TxtPermanentDistricts" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
+                       <%-- <tr class="tblrowodd">
                             <td colspan="4">
-                                <h4 style="text-decoration: underline;"><span>Present Address</span> </h4>
+                                <h4 style="text-decoration: underline;" id="presentAdd"><span>Present Address</span> </h4>
                             </td>
-                        </tr>
+                        </tr>--%>
                         <tr class="tblrowodd">
                             <td class="auto-style5" style="text-align: right;">
                                 <asp:Label ID="Label11" runat="server" CssClass="lbl" Font-Size="small" Text="House:"></asp:Label>
