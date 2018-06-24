@@ -48,7 +48,7 @@ namespace UI.HR.Employee
                 string strPermanentPoliceStation = TxtPermanentPoliceStation.Text.ToString();
                 string strPermanentDistrict = TxtPermanentDistricts.Text.ToString();
                 string House = TxtHouse.Text.ToString();
-                int Road = int.Parse(TxtRoad.Text.ToString());
+                string Road = TxtRoad.Text.ToString();
                 string PresentPostOffice = TxtPresentPostOffice.Text.ToString();
                 string PresentPoliceStation = TxtPresentPoliceStation.Text.ToString();
                 string PresentDistrict = TxtPresentDistricts.Text.ToString();
@@ -112,11 +112,11 @@ namespace UI.HR.Employee
                     TxtDesignation.Text = details.Rows[0]["strDesignation"].ToString();
                     TxtDateOfJoin.Text = details.Rows[0]["dteJoiningDate"].ToString();
                 }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                //else
+                //{
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
 
-                }
+                //}
 
                 personalDetails = bll.getEmployeePersonalDataByEmpId(number);
                 if (personalDetails.Rows.Count > 0)
@@ -149,7 +149,7 @@ namespace UI.HR.Employee
                     TxtPresentPoliceStation.Text = "";
                     TxtPresentPostOffice.Text = "";
                     TxtRoad.Text = "";
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Personal Data Not Found');", true);
+                  //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Personal Data Not Found');", true);
 
                 }
 
@@ -167,7 +167,7 @@ namespace UI.HR.Employee
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
             int Active = int.Parse(1.ToString());
 
-            return objAutoSearch_BLL.GetEmployeeByJobstationOperator(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), prefixText);
+            return objAutoSearch_BLL.GetEmployeeByJobstationOperator(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), prefixText.ToLower());
 
         }
     }

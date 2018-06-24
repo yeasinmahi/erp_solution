@@ -16,7 +16,7 @@ namespace HR_BLL.Employee
             return details.GetEmployeeDetailsByEmployeeId(id);
         }
 
-        public void insertEmployeePersonalData(int intEmployeeId, string strFatherName, string strMotherName, string strSpouseName, string strPermanentVillage, string strPermanentPostOffice, string strPermanentPoliceStation, string strPermanentDistrict, string strPresentHouseNo, int intPresentRoadNo, string strPresentPostOffice,
+        public void insertEmployeePersonalData(int intEmployeeId, string strFatherName, string strMotherName, string strSpouseName, string strPermanentVillage, string strPermanentPostOffice, string strPermanentPoliceStation, string strPermanentDistrict, string strPresentHouseNo, string intPresentRoadNo, string strPresentPostOffice,
                       string strPresentPoliceStation, string strPresentDistrict)
         {
             tblEmployeeInfoDetailTableAdapter adp = new tblEmployeeInfoDetailTableAdapter();
@@ -39,7 +39,7 @@ namespace HR_BLL.Employee
             EmpPersonalInfoUpdateListTableAdapter adp = new EmpPersonalInfoUpdateListTableAdapter();
             return adp.CountDataByEmpId(id);
         }
-        public void updateEmployeeDetailById(string strFatherName, string strMotherName, string strSpouseName, string strPermanentVillage, string strPermanentPostOffice, string strPermanentPoliceStation, string strPermanentDistrict, string strPresentHouseNo, int intPresentRoadNo, string strPresentPostOffice,
+        public void updateEmployeeDetailById(string strFatherName, string strMotherName, string strSpouseName, string strPermanentVillage, string strPermanentPostOffice, string strPermanentPoliceStation, string strPermanentDistrict, string strPresentHouseNo, string intPresentRoadNo, string strPresentPostOffice,
                          string strPresentPoliceStation, string strPresentDistrict, int intEmployeeId)
         {
             tblEmployeeInfoDetailTableAdapter adp = new tblEmployeeInfoDetailTableAdapter();
