@@ -88,11 +88,17 @@ namespace UI.HR.Employee
                     
                 }
                 else { }
+               
 
-              
             }
             catch { }
-           
+            TxtEmployee.Text = "";
+            TxtName.Text = "";
+            TxtDateOfJoin.Text = "";
+            TxtDesignation.Text = "";
+            TxtDepartment.Text = "";
+            TxtUnit.Text = "";
+            ClearControl();
 
         }
 
@@ -153,6 +159,7 @@ namespace UI.HR.Employee
 
         private void ClearControl()
         {
+            
             TxtFather.Text = "";
             TxtMother.Text = "";
             TxtHouse.Text = "";
