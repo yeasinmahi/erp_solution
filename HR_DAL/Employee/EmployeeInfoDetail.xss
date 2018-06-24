@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:tblEmployeeInfoDetail" ZOrder="1" X="239" Y="147" Height="112" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="254" SplitterPosition="24" />
     <Shape ID="DesignTable:EmpPersonalInfoUpdateList" ZOrder="3" X="587" Y="158" Height="94" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="24" OldDataTableHeight="254" SplitterPosition="24" />
     <Shape ID="DesignTable:QRYEMPLOYEEPROFILEALL" ZOrder="4" X="959" Y="157" Height="75" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="140" SplitterPosition="24" />
-    <Shape ID="DesignTable:TblEmployeeInfoDetailsData" ZOrder="2" X="939" Y="367" Height="75" Width="282" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="254" SplitterPosition="24" />
+    <Shape ID="DesignTable:TblEmployeeInfoDetailsData" ZOrder="2" X="939" Y="367" Height="305" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="254" SplitterPosition="254" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

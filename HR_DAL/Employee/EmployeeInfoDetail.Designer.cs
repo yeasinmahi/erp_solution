@@ -1723,6 +1723,8 @@ namespace HR_DAL.Employee {
             
             private global::System.Data.DataColumn columnintAutoId;
             
+            private global::System.Data.DataColumn columnintPresentRoadNo1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblEmployeeInfoDetailsDataDataTable() {
@@ -1862,6 +1864,14 @@ namespace HR_DAL.Employee {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intPresentRoadNo1Column {
+                get {
+                    return this.columnintPresentRoadNo1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1897,7 +1907,7 @@ namespace HR_DAL.Employee {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblEmployeeInfoDetailsDataRow AddTblEmployeeInfoDetailsDataRow(string strFatherName, string strMotherName, string strSpouseName, string strPermanentVillage, string strPermanentPostOffice, string strPermanentPoliceStation, string strPermanentDistrict, string strPresentHouseNo, int intPresentRoadNo, string strPresentPostOffice, string strPresentPoliceStation, string strPresentDistrict) {
+            public TblEmployeeInfoDetailsDataRow AddTblEmployeeInfoDetailsDataRow(string strFatherName, string strMotherName, string strSpouseName, string strPermanentVillage, string strPermanentPostOffice, string strPermanentPoliceStation, string strPermanentDistrict, string strPresentHouseNo, int intPresentRoadNo, string strPresentPostOffice, string strPresentPoliceStation, string strPresentDistrict, string intPresentRoadNo1) {
                 TblEmployeeInfoDetailsDataRow rowTblEmployeeInfoDetailsDataRow = ((TblEmployeeInfoDetailsDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strFatherName,
@@ -1912,7 +1922,8 @@ namespace HR_DAL.Employee {
                         strPresentPostOffice,
                         strPresentPoliceStation,
                         strPresentDistrict,
-                        null};
+                        null,
+                        intPresentRoadNo1};
                 rowTblEmployeeInfoDetailsDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblEmployeeInfoDetailsDataRow);
                 return rowTblEmployeeInfoDetailsDataRow;
@@ -1955,6 +1966,7 @@ namespace HR_DAL.Employee {
                 this.columnstrPresentPoliceStation = base.Columns["strPresentPoliceStation"];
                 this.columnstrPresentDistrict = base.Columns["strPresentDistrict"];
                 this.columnintAutoId = base.Columns["intAutoId"];
+                this.columnintPresentRoadNo1 = base.Columns["intPresentRoadNo1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1986,6 +1998,8 @@ namespace HR_DAL.Employee {
                 base.Columns.Add(this.columnstrPresentDistrict);
                 this.columnintAutoId = new global::System.Data.DataColumn("intAutoId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintAutoId);
+                this.columnintPresentRoadNo1 = new global::System.Data.DataColumn("intPresentRoadNo1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPresentRoadNo1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintAutoId}, true));
                 this.columnstrFatherName.MaxLength = 100;
@@ -2005,6 +2019,8 @@ namespace HR_DAL.Employee {
                 this.columnintAutoId.AllowDBNull = false;
                 this.columnintAutoId.ReadOnly = true;
                 this.columnintAutoId.Unique = true;
+                this.columnintPresentRoadNo1.Caption = "intPresentRoadNo";
+                this.columnintPresentRoadNo1.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3509,6 +3525,23 @@ namespace HR_DAL.Employee {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string intPresentRoadNo1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblEmployeeInfoDetailsData.intPresentRoadNo1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intPresentRoadNo1\' in table \'TblEmployeeInfoDetailsData\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblEmployeeInfoDetailsData.intPresentRoadNo1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrFatherNameNull() {
                 return this.IsNull(this.tableTblEmployeeInfoDetailsData.strFatherNameColumn);
             }
@@ -3649,6 +3682,18 @@ namespace HR_DAL.Employee {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrPresentDistrictNull() {
                 this[this.tableTblEmployeeInfoDetailsData.strPresentDistrictColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintPresentRoadNo1Null() {
+                return this.IsNull(this.tableTblEmployeeInfoDetailsData.intPresentRoadNo1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintPresentRoadNo1Null() {
+                this[this.tableTblEmployeeInfoDetailsData.intPresentRoadNo1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -5376,11 +5421,11 @@ WHERE        (tblEmployeeInfoDetail.intEmployeeId = @empId)";
             tableMapping.ColumnMappings.Add("strPermanentPoliceStation", "strPermanentPoliceStation");
             tableMapping.ColumnMappings.Add("strPermanentDistrict", "strPermanentDistrict");
             tableMapping.ColumnMappings.Add("strPresentHouseNo", "strPresentHouseNo");
-            tableMapping.ColumnMappings.Add("intPresentRoadNo", "intPresentRoadNo");
             tableMapping.ColumnMappings.Add("strPresentPostOffice", "strPresentPostOffice");
             tableMapping.ColumnMappings.Add("strPresentPoliceStation", "strPresentPoliceStation");
             tableMapping.ColumnMappings.Add("strPresentDistrict", "strPresentDistrict");
             tableMapping.ColumnMappings.Add("intAutoId", "intAutoId");
+            tableMapping.ColumnMappings.Add("intPresentRoadNo", "intPresentRoadNo1");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -5423,7 +5468,7 @@ WHERE        (tblEmployeeInfoDetail.intEmployeeId = @empId)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPresentHouseNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentHouseNo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strPresentHouseNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentHouseNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intPresentRoadNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPresentRoadNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPresentRoadNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPresentPostOffice", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPostOffice", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strPresentPostOffice", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPostOffice", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPresentPoliceStation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPoliceStation", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5444,7 +5489,7 @@ SELECT strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPerm
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPermanentPoliceStation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPermanentPoliceStation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPermanentDistrict", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPermanentDistrict", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentHouseNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentHouseNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPresentRoadNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPresentRoadNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentPostOffice", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPostOffice", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentPoliceStation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPoliceStation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentDistrict", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentDistrict", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5491,7 +5536,7 @@ SELECT strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPerm
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPermanentPoliceStation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPermanentPoliceStation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPermanentDistrict", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPermanentDistrict", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentHouseNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentHouseNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPresentRoadNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPresentRoadNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentPostOffice", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPostOffice", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentPoliceStation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPoliceStation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentDistrict", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentDistrict", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5512,7 +5557,7 @@ SELECT strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPerm
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPresentHouseNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentHouseNo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strPresentHouseNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentHouseNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intPresentRoadNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPresentRoadNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPresentRoadNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPresentRoadNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPresentPostOffice", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPostOffice", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strPresentPostOffice", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPostOffice", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPresentPoliceStation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentPoliceStation", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
