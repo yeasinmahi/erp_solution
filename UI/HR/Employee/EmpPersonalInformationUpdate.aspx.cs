@@ -33,57 +33,63 @@ namespace UI.HR.Employee
         {
             try
             {
-                int number = 0; ;
-                arrayKey = TxtEmployee.Text.Split(delimiterChars);
-                if (arrayKey.Length > 0)
+                if (hdnConfirm.Value == "1")
                 {
-                    number = int.Parse(arrayKey[3].ToString());
+                    int number = 0; ;
+                    arrayKey = TxtEmployee.Text.Split(delimiterChars);
+                    if (arrayKey.Length > 0)
+                    {
+                        number = int.Parse(arrayKey[3].ToString());
+                    }
+
+                    string strFatherName = TxtFather.Text.ToString();
+                    string strMotherName = TxtMother.Text.ToString();
+                    string strSpouseName = TxtSpouse.Text.ToString();
+                    string strPermanentVillage = TxtVillage.Text.ToString();
+                    string strPermanentPostOffice = TxtPermanentPostOffice.Text.ToString();
+                    string strPermanentPoliceStation = TxtPermanentPoliceStation.Text.ToString();
+                    string strPermanentDistrict = TxtPermanentDistricts.Text.ToString();
+                    string House = TxtHouse.Text.ToString();
+                    string Road = TxtRoad.Text.ToString();
+                    string PresentPostOffice = TxtPresentPostOffice.Text.ToString();
+                    string PresentPoliceStation = TxtPresentPoliceStation.Text.ToString();
+                    string PresentDistrict = TxtPresentDistricts.Text.ToString();
+
+                    countId = bll.CountEmpId(number);
+                    if (countId.Rows.Count > 0)
+                    {
+                        bll.updateEmployeeDetailById(strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
+                         PresentPoliceStation, PresentDistrict, number);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Update Request');", true);
+
+                    }
+                    else
+                    {
+                        bll.insertEmployeePersonalData(number, strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
+                                PresentPoliceStation, PresentDistrict);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
+
+                    }
+
+                    GVPersonalInfoUpdateList.Visible = true;
+                    GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList(number);
+                    GVPersonalInfoUpdateList.DataBind();
+                    TxtFather.Text = "";
+                    TxtMother.Text = "";
+                    TxtHouse.Text = "";
+                    TxtSpouse.Text = "";
+                    TxtVillage.Text = "";
+                    TxtPermanentDistricts.Text = "";
+                    TxtPermanentPoliceStation.Text = "";
+                    TxtPermanentPostOffice.Text = "";
+                    TxtPresentDistricts.Text = "";
+                    TxtPresentPoliceStation.Text = "";
+                    TxtPresentPostOffice.Text = "";
+                    TxtRoad.Text = "";
                 }
+                else { }
 
-                string strFatherName = TxtFather.Text.ToString();
-                string strMotherName = TxtMother.Text.ToString();
-                string strSpouseName = TxtSpouse.Text.ToString();
-                string strPermanentVillage = TxtVillage.Text.ToString();
-                string strPermanentPostOffice = TxtPermanentPostOffice.Text.ToString();
-                string strPermanentPoliceStation = TxtPermanentPoliceStation.Text.ToString();
-                string strPermanentDistrict = TxtPermanentDistricts.Text.ToString();
-                string House = TxtHouse.Text.ToString();
-                string Road = TxtRoad.Text.ToString();
-                string PresentPostOffice = TxtPresentPostOffice.Text.ToString();
-                string PresentPoliceStation = TxtPresentPoliceStation.Text.ToString();
-                string PresentDistrict = TxtPresentDistricts.Text.ToString();
-
-                countId = bll.CountEmpId(number);
-                if (countId.Rows.Count > 0)
-                {
-                    bll.updateEmployeeDetailById(strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
-                     PresentPoliceStation, PresentDistrict, number);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Update Request');", true);
-
-                }
-                else
-                {
-                    bll.insertEmployeePersonalData(number, strFatherName, strMotherName, strSpouseName, strPermanentVillage, strPermanentPostOffice, strPermanentPoliceStation, strPermanentDistrict, House, Road, PresentPostOffice,
-                            PresentPoliceStation, PresentDistrict);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted Request');", true);
-
-                }
-
-                GVPersonalInfoUpdateList.Visible = true;
-                GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList(number);
-                GVPersonalInfoUpdateList.DataBind();
-                TxtFather.Text = "";
-                TxtMother.Text = "";
-                TxtHouse.Text = "";
-                TxtSpouse.Text = "";
-                TxtVillage.Text = "";
-                TxtPermanentDistricts.Text = "";
-                TxtPermanentPoliceStation.Text = "";
-                TxtPermanentPostOffice.Text = "";
-                TxtPresentDistricts.Text = "";
-                TxtPresentPoliceStation.Text = "";
-                TxtPresentPostOffice.Text = "";
-                TxtRoad.Text = "";
+              
             }
             catch { }
            

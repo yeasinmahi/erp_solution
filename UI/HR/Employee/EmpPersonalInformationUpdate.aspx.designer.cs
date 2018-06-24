@@ -13,13 +13,40 @@ namespace UI.HR.Employee {
     public partial class EmpPersonalInformationUpdate {
         
         /// <summary>
-        /// form1 control.
+        /// PlaceHolder1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        
+        /// <summary>
+        /// BundleReference2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference2;
+        
+        /// <summary>
+        /// BundleReference3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
+        
+        /// <summary>
+        /// frmaccountsrealize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmaccountsrealize;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -29,6 +56,51 @@ namespace UI.HR.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager0;
+        
+        /// <summary>
+        /// UpdatePanel0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
+        
+        /// <summary>
+        /// pnlUpperControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUpperControl;
+        
+        /// <summary>
+        /// AlwaysVisibleControlExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
+        
+        /// <summary>
+        /// hdnEnroll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
+        
+        /// <summary>
+        /// hdnConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnConfirm;
         
         /// <summary>
         /// LblEmployee control.
@@ -49,13 +121,13 @@ namespace UI.HR.Employee {
         protected global::System.Web.UI.WebControls.TextBox TxtEmployee;
         
         /// <summary>
-        /// AutoCompleteExtender2 control.
+        /// AutoCompleteExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
         
         /// <summary>
         /// LblName control.
