@@ -10,6 +10,7 @@ using System.Web.Services;
 using HR_BLL.Global;
 using HR_BLL.Employee;
 using System.Data;
+using System.Globalization;
 
 namespace UI.HR.Employee
 {
@@ -24,7 +25,7 @@ namespace UI.HR.Employee
         {
             if(!IsPostBack)
             {
-                GVPersonalInfoUpdateList.Visible = false;
+               
                 
             }
         }
@@ -71,21 +72,7 @@ namespace UI.HR.Employee
 
                     }
 
-                    GVPersonalInfoUpdateList.Visible = true;
-                    GVPersonalInfoUpdateList.DataSource = bll.getEmployeeUpdateInfoList(number);
-                    GVPersonalInfoUpdateList.DataBind();
-                    TxtFather.Text = "";
-                    TxtMother.Text = "";
-                    TxtHouse.Text = "";
-                    TxtSpouse.Text = "";
-                    TxtVillage.Text = "";
-                    TxtPermanentDistricts.Text = "";
-                    TxtPermanentPoliceStation.Text = "";
-                    TxtPermanentPostOffice.Text = "";
-                    TxtPresentDistricts.Text = "";
-                    TxtPresentPoliceStation.Text = "";
-                    TxtPresentPostOffice.Text = "";
-                    TxtRoad.Text = "";
+                    
                 }
                 else { }
 
@@ -100,6 +87,7 @@ namespace UI.HR.Employee
         {
             try
             {
+                ClearControl(); 
                 int number = 0;
                 arrayKey = TxtEmployee.Text.Split(delimiterChars);
 
@@ -116,13 +104,16 @@ namespace UI.HR.Employee
                     TxtJobStation.Text = details.Rows[0]["strJobStationName"].ToString();
                     TxtDepartment.Text = details.Rows[0]["strDepatrment"].ToString();
                     TxtDesignation.Text = details.Rows[0]["strDesignation"].ToString();
-                    TxtDateOfJoin.Text = details.Rows[0]["dteJoiningDate"].ToString();
-                }
-                //else
-                //{
-                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                    try
+                    {
+                        DateTime dteJoin = DateTime.Parse(details.Rows[0]["dteJoiningDate"].ToString());
+                        string joinDate = dteJoin.ToString("dd-MM-yyyy");
+                        TxtDateOfJoin.Text = joinDate.ToString();
+                    }
+                    catch { }
 
-                //}
+                }
+                 
 
                 personalDetails = bll.getEmployeePersonalDataByEmpId(number);
                 if (personalDetails.Rows.Count > 0)
@@ -141,28 +132,28 @@ namespace UI.HR.Employee
                     TxtPresentDistricts.Text = personalDetails.Rows[0]["strPresentDistrict"].ToString();
 
                 }
-                else
-                {
-                    TxtFather.Text = "";
-                    TxtMother.Text = "";
-                    TxtHouse.Text = "";
-                    TxtSpouse.Text = "";
-                    TxtVillage.Text = "";
-                    TxtPermanentDistricts.Text = "";
-                    TxtPermanentPoliceStation.Text = "";
-                    TxtPermanentPostOffice.Text = "";
-                    TxtPresentDistricts.Text = "";
-                    TxtPresentPoliceStation.Text = "";
-                    TxtPresentPostOffice.Text = "";
-                    TxtRoad.Text = "";
-                  //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Personal Data Not Found');", true);
-
-                }
+                
 
 
             }
             catch { }
                
+        }
+
+        private void ClearControl()
+        {
+            TxtFather.Text = "";
+            TxtMother.Text = "";
+            TxtHouse.Text = "";
+            TxtSpouse.Text = "";
+            TxtVillage.Text = "";
+            TxtPermanentDistricts.Text = "";
+            TxtPermanentPoliceStation.Text = "";
+            TxtPermanentPostOffice.Text = "";
+            TxtPresentDistricts.Text = "";
+            TxtPresentPoliceStation.Text = "";
+            TxtPresentPostOffice.Text = "";
+            TxtRoad.Text = "";
         }
 
         [WebMethod]
