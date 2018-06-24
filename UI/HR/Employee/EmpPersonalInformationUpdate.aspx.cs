@@ -126,8 +126,6 @@ namespace UI.HR.Employee
                     catch { }
 
                 }
-                 
-
                 personalDetails = bll.getEmployeePersonalDataByEmpId(number);
                 if (personalDetails.Rows.Count > 0)
                 {
