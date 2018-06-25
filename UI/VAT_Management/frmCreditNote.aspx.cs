@@ -251,18 +251,7 @@ namespace UI.VAT_Management
 
         protected void btnShowREPORT_Click(object sender, EventArgs e)
         {
-           // //strChallanNo = txtVatChallno.Text;
-           //// intyear = int.Parse(txtYear.Text);
-
-           // dt = objMush.getVatChallano(intyear, strChallanNo, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), 1);
-           // hdnCustid.Value = dt.Rows[0]["intCusID"].ToString();
-           // //hdnCustname.Value = dt.Rows[0]["strCustName"].ToString();
-           //// hdnCustname.Value = dt.Rows[0]["strCustAddress"].ToString();
-           // txtCustomerVatReg.Text = dt.Rows[0]["strCustVATRegNo"].ToString();
-           // dt.Clear();
-           // dt = objMush.getVatChallano(intyear, strChallanNo, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), 2);
-           // dgvVatProduct.DataSource = dt;
-           // dgvVatProduct.DataBind();
+           
 
         }
 
@@ -274,7 +263,7 @@ namespace UI.VAT_Management
         {
             intM11Challanno =int.Parse(txtVAT.Text);
             intCustid = int.Parse(hdnCustid.Value);
-           strCusName= hdnAccno.Value;
+            strCusName= hdnAccno.Value;
             strCusAddress = hdnCustAddress.Value;
           // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;
@@ -317,19 +306,7 @@ namespace UI.VAT_Management
         protected double TotalValue = 0;
         protected void dgvTresuryRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    if (((Label)e.Row.Cells[6].FindControl("lblmonAmount")).Text == "")
-            //    {
-            //        TotalValue += 0;
-            //    }
-            //    else
-            //    {
-            //        TotalValue += double.Parse(((Label)e.Row.Cells[6].FindControl("lblmonAmount")).Text);
-            //    }
-               
-            //}
-
+           
         }
         protected void dgvPurchaseEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
