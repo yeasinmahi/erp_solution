@@ -175,7 +175,7 @@ namespace UI.Asset
                     string provideby = "0".ToString();
                     Session["provideType"] = provideby;
                     Session["intMaintenanceNo"] = ordernumber1;
-                    Int32 Mnumber = Int32.Parse(ordernumber1.ToString());
+                    int Mnumber = int.Parse(ordernumber1.ToString());
                     intItem = 24;
                     if (intItem==24)
                     {
