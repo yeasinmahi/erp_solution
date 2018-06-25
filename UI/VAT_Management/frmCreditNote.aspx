@@ -141,8 +141,7 @@
         <td>Challan No</td>
         <td><asp:DropDownList ID="ddlChallanNo" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlChallanNo_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList> </td>
         <td></td>
-        <td> <asp:Button ID="btnShowREPORT" runat="server" class="myButton" Text="Show Item List" OnClick="btnShowREPORT_Click" />
-        </td>
+        <td> &nbsp;</td>
      </tr> 
      <tr><td>Product Qty </td>
         <td><asp:Label ID="lblProductQty" runat="server" CssClass="lbl"   MaxLength="10" AutoPostBack="true" ></asp:Label></td>

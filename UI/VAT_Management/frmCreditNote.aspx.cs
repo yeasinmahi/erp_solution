@@ -249,11 +249,7 @@ namespace UI.VAT_Management
 
         }
 
-        protected void btnShowREPORT_Click(object sender, EventArgs e)
-        {
-           
-
-        }
+       
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
