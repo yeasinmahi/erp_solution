@@ -23,15 +23,14 @@ namespace UI.VAT_Management
     public partial class frmDestroy : BasePage
     {
         string filePathForXML,MaterialName,Pname, xmlString = "",strChallanNo, ItemName, strReason, strItem, strVehicleTypeNo, strCusName, strCusAddress, strCusVatReg, intVATTime;
-        int intItem, intitemid, intYear, intM12No, intM11Challanno,intCustid,VatChallanNo, intid,intyear,intMonth, intSL;
+        int intItem, intitemid, intYear, intM12No,intCustid, intid,intyear,intMonth, intSL;
         VAT_BLL objvat = new VAT_BLL();
         string[] arrayKeyItem;
         CreditNoteBLL objCreditBll = new CreditNoteBLL();
         DataTable dt;
-        decimal numQty, monRtnAmountWithoutSDnVAT, monValue, monSD, monSurCharge, monVAT, monM11Other, monM11VAT, monNewSD, monNewVAT;
+        decimal numQty, monValue, monSD, monVAT;
 
-
-        DateTime strM11DateChallan, dtedate;
+        DateTime dtedate;
         char[] delimiterChars = { '[', ']' };bool ysnFactory;
         Mushok11 objMush = new Mushok11();
         protected void Page_Load(object sender, EventArgs e)
@@ -41,8 +40,9 @@ namespace UI.VAT_Management
             {
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-               
-               
+                try { File.Delete(filePathForXML); }
+                catch { }
+
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
                 if (dt.Rows.Count > 0)
                 {
@@ -269,11 +269,9 @@ namespace UI.VAT_Management
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-           // intM11Challanno =int.Parse(txtVatChallno.Text);
+     
             intCustid = int.Parse(hdnAccno.Value);
-           //strCusName= hdnCustname.Value;
             strCusAddress = hdnCustAddress.Value;
-          // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;
             if (dtedate.Month >= 7)
             {
