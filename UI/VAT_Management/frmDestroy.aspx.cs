@@ -159,7 +159,6 @@ namespace UI.VAT_Management
             CreateVoucherXml(intitemid.ToString(), MaterialName,qty, values,sdnew,vatnew);
             txtCreditqty.Text = "";
             txtSD.Text = "";
-
             txtVAT.Text = "";
             txtSDCharableValue.Text = "";
         }
