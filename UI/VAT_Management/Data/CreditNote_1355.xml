@@ -1,0 +1,5 @@
+<?xml version="1.0" standalone="yes"?>
+<ItemAdd>
+  <ItemAdd mid="91" MaterialName="Sugar" qty="111" values="0" sdnew="0" vatnew="1.130000" />
+  <ItemAdd mid="4498" MaterialName="Tutti Fruity Flavour" qty="2" values="0" sdnew="0" vatnew="0.009570" />
+</ItemAdd>

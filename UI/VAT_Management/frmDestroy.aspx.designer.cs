@@ -85,13 +85,13 @@ namespace UI.VAT_Management {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnCustid control.
+        /// hdnperVat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCustid;
+        protected global::System.Web.UI.WebControls.HiddenField hdnperVat;
         
         /// <summary>
         /// hdnconfirm control.
@@ -220,6 +220,24 @@ namespace UI.VAT_Management {
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
         
         /// <summary>
+        /// ddlMaterialList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMaterialList;
+        
+        /// <summary>
+        /// lblMaterialUserStandard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMaterialUserStandard;
+        
+        /// <summary>
         /// ddlChallanNo control.
         /// </summary>
         /// <remarks>
@@ -229,58 +247,40 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.DropDownList ddlChallanNo;
         
         /// <summary>
-        /// btnShowREPORT control.
+        /// lblQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowREPORT;
+        protected global::System.Web.UI.WebControls.Label lblQty;
         
         /// <summary>
-        /// lblProductQty control.
+        /// lblVat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductQty;
+        protected global::System.Web.UI.WebControls.Label lblVat;
         
         /// <summary>
-        /// lblCustVatRegno control.
+        /// lblSD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCustVatRegno;
+        protected global::System.Web.UI.WebControls.Label lblSD;
         
         /// <summary>
-        /// lblChallanDate control.
+        /// lblWithouthvalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChallanDate;
-        
-        /// <summary>
-        /// lblM11OthersTax control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblM11OthersTax;
-        
-        /// <summary>
-        /// lblM11Vat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblM11Vat;
+        protected global::System.Web.UI.WebControls.Label lblWithouthvalue;
         
         /// <summary>
         /// btnSave control.
@@ -301,13 +301,13 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.TextBox txtCreditqty;
         
         /// <summary>
-        /// txtWithoutSDVAT control.
+        /// txtSDCharableValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtWithoutSDVAT;
+        protected global::System.Web.UI.WebControls.TextBox txtSDCharableValue;
         
         /// <summary>
         /// txtSD control.
@@ -319,15 +319,6 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.TextBox txtSD;
         
         /// <summary>
-        /// txtSurcharge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSurcharge;
-        
-        /// <summary>
         /// txtVAT control.
         /// </summary>
         /// <remarks>
@@ -335,6 +326,15 @@ namespace UI.VAT_Management {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVAT;
+        
+        /// <summary>
+        /// txtRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRemarks;
         
         /// <summary>
         /// btnAdd control.
