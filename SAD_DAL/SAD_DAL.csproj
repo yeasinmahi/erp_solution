@@ -299,6 +299,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RevenueDLL\RevinueTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SADCOA\customerManagementForCOATDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -855,6 +860,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RevenueDLL\RevinueTDS.xsc">
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RevenueDLL\RevinueTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RevinueTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RevenueDLL\RevinueTDS.xss">
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
     </None>
     <None Include="SADCOA\customerManagementForCOATDS.xsc">
       <DependentUpon>customerManagementForCOATDS.xsd</DependentUpon>
