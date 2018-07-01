@@ -1251,6 +1251,10 @@
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
+    <Content Include="SCM\ItemManagerAccounts.aspx" />
+    <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
+    <Content Include="SCM\ItemManagerStore.aspx" />
+    <Content Include="SCM\ItemManagerPurchase.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -6373,6 +6377,34 @@
     </Compile>
     <Compile Include="SCM\ItemManager.aspx.designer.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccounts.aspx.cs">
+      <DependentUpon>ItemManagerAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccounts.aspx.designer.cs">
+      <DependentUpon>ItemManagerAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.cs">
+      <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.designer.cs">
+      <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStore.aspx.cs">
+      <DependentUpon>ItemManagerStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStore.aspx.designer.cs">
+      <DependentUpon>ItemManagerStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchase.aspx.cs">
+      <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
+      <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
