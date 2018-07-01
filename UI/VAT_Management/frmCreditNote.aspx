@@ -155,7 +155,7 @@
             <td>   M11 Vat</td>
             <td><asp:Label ID="lblM11Vat" CssClass="lbl" runat="server"></asp:Label></td>
             <td></td>
-            <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnSave_Click" Text="Save Credit Note" /></td>
+            <td><asp:Button ID="btnSave" runat="server"  class="myButton" OnClick="btnSave_Click" Text="Save Credit Note" /></td>
     </tr>
     <tr><td colspan="6"><hr /></td></tr> 
     <tr>
@@ -209,7 +209,7 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Challan Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldtedate" runat="server" Text='<%# Bind("dtedate","0:d") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lbldtedates" runat="server" Text='<%# Bind("dtedate","{0:d}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Product Name" SortExpression="itemname">

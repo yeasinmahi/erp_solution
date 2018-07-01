@@ -35,7 +35,7 @@ namespace UI.SAD.Vat
             {
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-
+               
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
                 if (dt.Rows.Count > 0)
                 {

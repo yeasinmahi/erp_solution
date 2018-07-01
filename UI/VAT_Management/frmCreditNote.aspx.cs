@@ -41,8 +41,9 @@ namespace UI.VAT_Management
             {
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-               
-               
+                try { File.Delete(filePathForXML); }
+                catch { }
+
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
                 if (dt.Rows.Count > 0)
                 {
@@ -224,6 +225,8 @@ namespace UI.VAT_Management
             lblM11OthersTax.Text = dt.Rows[0]["OthersSDVAT"].ToString();
             lblChallanDate.Text = dt.Rows[0]["dteSellingDate"].ToString();
             lblM11Vat.Text= dt.Rows[0]["monVAT"].ToString();
+            hdnCustid.Value= dt.Rows[0]["intcusid"].ToString(); 
+            hdnCustAddress.Value = dt.Rows[0]["strcustaddress"].ToString();
 
         }
         protected void txtVatItemList_TextChanged(object sender, EventArgs e)
@@ -257,9 +260,9 @@ namespace UI.VAT_Management
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            intM11Challanno =int.Parse(txtVAT.Text);
+            intM11Challanno =int.Parse(ddlChallanNo.SelectedValue);
             intCustid = int.Parse(hdnCustid.Value);
-            strCusName= hdnAccno.Value;
+            strCusName= "N/A";
             strCusAddress = hdnCustAddress.Value;
           // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;
@@ -279,8 +282,10 @@ namespace UI.VAT_Management
                     intSL = intSL + 1;
 
                     intItem =int.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblvatItemid")).Text.ToString());
+                    intM11Challanno =int.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblstrVATChallanNo")).Text.ToString());
+
                     strChallanNo = ((Label)dgvVatProduct.Rows[index].FindControl("lblstrVATChallanNo")).Text.ToString();
-                    strM11DateChallan =DateTime.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lbldtedate")).Text.ToString());
+                    strM11DateChallan =DateTime.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lbldtedates")).Text.ToString());
                     strItem = ((Label)dgvVatProduct.Rows[index].FindControl("lblstrVatProductName")).Text.ToString();
                     numQty =decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblQuantity")).Text.ToString());
                     monValue = decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblsdvat")).Text.ToString());
@@ -296,6 +301,7 @@ namespace UI.VAT_Management
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
 
                 }
+                dgvVatProduct.DataBind();
             }
         }
         

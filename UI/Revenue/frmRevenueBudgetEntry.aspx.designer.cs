@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.VAT_Management {
+namespace UI.Revenue {
     
     
-    public partial class frmDestroy {
+    public partial class frmRevenueBudgetEntry {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -40,13 +40,13 @@ namespace UI.VAT_Management {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmPurchase control.
+        /// frmCreditnote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmPurchase;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmCreditnote;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -85,13 +85,13 @@ namespace UI.VAT_Management {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnperVat control.
+        /// hdnCustid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnperVat;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCustid;
         
         /// <summary>
         /// hdnconfirm control.
@@ -166,24 +166,6 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.HiddenField hdnCustAddress;
         
         /// <summary>
-        /// lblVatacc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVatacc;
-        
-        /// <summary>
-        /// ddlVatAccount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVatAccount;
-        
-        /// <summary>
         /// lblVatAccount control.
         /// </summary>
         /// <remarks>
@@ -202,85 +184,40 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// txtVatItemList control.
+        /// ddlMainHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVatItemList;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMainHead;
         
         /// <summary>
-        /// AutoCompleteExtender1 control.
+        /// ddlCompany control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
         
         /// <summary>
-        /// ddlMaterialList control.
+        /// ddl2ndHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMaterialList;
+        protected global::System.Web.UI.WebControls.DropDownList ddl2ndHead;
         
         /// <summary>
-        /// lblMaterialUserStandard control.
+        /// ddlLineG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMaterialUserStandard;
-        
-        /// <summary>
-        /// ddlChallanNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChallanNo;
-        
-        /// <summary>
-        /// lblQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQty;
-        
-        /// <summary>
-        /// lblVat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVat;
-        
-        /// <summary>
-        /// lblSD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSD;
-        
-        /// <summary>
-        /// lblWithouthvalue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWithouthvalue;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLineG;
         
         /// <summary>
         /// btnSave control.
@@ -292,66 +229,57 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// txtCreditqty control.
+        /// ddlregion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCreditqty;
+        protected global::System.Web.UI.WebControls.DropDownList ddlregion;
         
         /// <summary>
-        /// txtSDCharableValue control.
+        /// ddlregionG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSDCharableValue;
+        protected global::System.Web.UI.WebControls.DropDownList ddlregionG;
         
         /// <summary>
-        /// txtSD control.
+        /// btnRegionUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSD;
+        protected global::System.Web.UI.WebControls.Button btnRegionUpdate;
         
         /// <summary>
-        /// txtVAT control.
+        /// ddlArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVAT;
+        protected global::System.Web.UI.WebControls.DropDownList ddlArea;
         
         /// <summary>
-        /// txtRemarks control.
+        /// ddlAreaG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRemarks;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAreaG;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnareaG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
-        /// dgvVatProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvVatProduct;
+        protected global::System.Web.UI.WebControls.Button btnareaG;
     }
 }

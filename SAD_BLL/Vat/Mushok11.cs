@@ -417,8 +417,8 @@ namespace SAD_BLL.Vat
                 }
                 else
                 {
-                    sprInsertFinishGoodDestroyTableAdapter adpmaterial = new sprInsertFinishGoodDestroyTableAdapter();
-                    adpmaterial.GetInsertRMDestroy(unitid, accid, bool.Parse(factory), userid, intItemid, stritem, qty, value2, sd, vat, remarks);
+                    sprInsertRawMaterialDestroyTableAdapter adpmaterial = new sprInsertRawMaterialDestroyTableAdapter();
+                    adpmaterial.GetData(unitid, accid, bool.Parse(factory), userid, intItemid, stritem, qty, value2, sd, vat, remarks);
                 }
                 msg = "Successfully Save";
             }

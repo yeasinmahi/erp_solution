@@ -136,6 +136,7 @@
     <Compile Include="Item\ItemSt.cs" />
     <Compile Include="Item\ItemUnitOfMeasurement.cs" />
     <Compile Include="AutoChallan\AutoChallReportsBLL.cs" />
+    <Compile Include="RevenueBLL\RevenueClsBLL.cs" />
     <Compile Include="Sales\AppsSalesOrder_BLL.cs" />
     <Compile Include="Sales\DelivaryView.cs" />
     <Compile Include="Sales\OrderByTrip.cs" />
