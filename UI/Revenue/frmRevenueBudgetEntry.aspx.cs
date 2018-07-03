@@ -36,11 +36,14 @@ namespace UI.Revenue
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
                 lblVatAccount.Text = "Akij Food & Beverage Ltd.";
+                
                 getRevinuelist(0);
                 //  ProductShow();
                 getline();
                 getRegionG();
                 getAreaG();
+                // ddlCompany.Items.Add(ListItem(new "stest", "0"));
+                ddlCompany.Items.Add(new ListItem("Akij Food & Beverage Ltd.", "0"));
               
             }
         }

@@ -24,8 +24,9 @@ namespace SAD_BLL.RevenueBLL
         {
             try
             {
-                tblRevinueCenter1TableAdapter adp = new tblRevinueCenter1TableAdapter();
-                 adp.GetRCinsert(intheadid, headname, intUnitid, intEnroll, levelid);
+                //  tblRevinueCenter1TableAdapter adp = new tblRevinueCenter1TableAdapter();
+                sprRevenueCenterCreateTableAdapter adp = new sprRevenueCenterCreateTableAdapter();
+                adp.GetData(intheadid, headname, intUnitid, intEnroll, levelid);
             }
             catch { }
         }
@@ -37,6 +38,27 @@ namespace SAD_BLL.RevenueBLL
             {
                 tblProductListTableAdapter adp = new tblProductListTableAdapter();
                return  adp.GetData(Fggroupid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getyearlist()
+        {
+            
+                 try
+            {
+                yearlistTableAdapter adp = new yearlistTableAdapter();
+                return adp.GetData();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getRpt(DateTime dtefdate,int year)
+        {
+            try
+            {
+                sprRevenueBudgetVSSalesReportTableAdapter adp = new sprRevenueBudgetVSSalesReportTableAdapter();
+                return adp.GetData(dtefdate, year);
             }
             catch { return new DataTable(); }
         }
