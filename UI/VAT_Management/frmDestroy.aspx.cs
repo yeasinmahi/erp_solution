@@ -95,7 +95,15 @@ namespace UI.VAT_Management
 
         protected void txtCreditqty_TextChanged(object sender, EventArgs e)
         {
-          txtVAT.Text=  (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(hdnperVat.Value)).ToString();
+            if (decimal.Parse(hdnperVat.Value) == 0)
+            {
+                txtVAT.Text = "0";
+            }
+            else 
+                {
+                    txtVAT.Text = (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(hdnperVat.Value)).ToString();
+                }
+            
         }
 
         private void getChallaninfo()
@@ -293,8 +301,8 @@ namespace UI.VAT_Management
                     numQty =decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblQuantity")).Text.ToString());
                     monValue = 0;
                     monSD = decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblsd")).Text.ToString());
-                     monVAT = decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblVAT")).Text.ToString());
-                         string remarks;
+                    monVAT = decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblVAT")).Text.ToString());
+                    string remarks;
                     if (txtRemarks.Text == "")
                     {
                         remarks = "";
