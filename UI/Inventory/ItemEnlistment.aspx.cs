@@ -124,9 +124,9 @@ namespace UI.Inventory
             {
                // Enlist.INSERTMasterItemlist(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM,enroll);
 
-             string  id=  Enlist.INSERTMasterItemlistCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll);
+                Enlist.INSERTMasterItemlistCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll);
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item Added Successfully id "+ id+"');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item Added Successfully');", true);
             }                   
         }
 
