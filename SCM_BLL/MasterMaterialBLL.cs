@@ -10,19 +10,21 @@ namespace SCM_BLL
 {
     public class MasterMaterialBLL
     {
-        public DataTable InsertUpdateSelectForItem(int intPart, int intWHID, string strItemName, string strDescription, string strPart, string strModel, string strSerial, string strBrand, decimal numReOrderLevel, decimal numMinimumStock, decimal numMaximumStock,
+        public DataTable InsertUpdateSelectForItem(int intPart, int intWHID, string strItemName, string strDescription, string strPart, string strModel, string strSerial, string strBrand,
+                string strSpecification, string strOrigin, string strHSCode, decimal numReOrderLevel, decimal numMinimumStock, decimal numMaximumStock,
                 decimal numSafetyStock, int intUOM, string strUOM, int intLocationID, int intGroupID, string strGroupName, int intCategoryID, string strCategoryName, int intSubCategoryID, string strSubCategoryName, int intMinorCategory,
-                string strMinorCategory, int intPlantID, string strPlantName, string strABCClassification, string strFSNClassification, string strVDEClassification, int intInsertBy, int intPurchaseType,
-                string strPurchaseType, int intPOProcessingTime, int intShipmentTime, int intProcessTime, int intTotalLeadTime, string strLotSize, int intEOQ, int intMOQ, int intSDEClassification,
-                string strSDEClassification, int intHMLClassification, string strHMLClassification, bool ysnVATApplicable, int intAutoID)
+                string strMinorCategory, int intPlantID, string strPlantName, int intABC, string strABCClassification, int intFSN, string strFSNClassification, int intVDE, string strVDEClassification, int intInsertBy, int intPurchaseType,
+                string strPurchaseType, int intPOProcessingTime, int intShipmentTime, int intProcessTime, int intTotalLeadTime, int intSelfTime, string strLotSize, decimal numEOQ, decimal numMOQ, int intSDE,
+                string strSDEClassification, int intHML, string strHMLClassification, bool ysnVATApplicable, int intAutoID)
         {
             SprItemAddAndApproveTableAdapter adp = new SprItemAddAndApproveTableAdapter();
             try
             {
-                return adp.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM, intLocationID, intGroupID,
-                    strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, strABCClassification, strFSNClassification,
-                    strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime, intTotalLeadTime, strLotSize, intEOQ, intMOQ, intSDEClassification,
-                    strSDEClassification, intHMLClassification, strHMLClassification, ysnVATApplicable, intAutoID);
+                return adp.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode,
+                    numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM, intLocationID, intGroupID,
+                    strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intABC, strABCClassification, intFSN, strFSNClassification,
+                    intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime, intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE,
+                    strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
             }
             catch { return new DataTable(); }
         }

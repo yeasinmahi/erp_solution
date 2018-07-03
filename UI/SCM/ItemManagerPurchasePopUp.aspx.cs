@@ -10,7 +10,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class ItemManagerAccountsPopUp : BasePage
+    public partial class ItemManagerPurchasePopUp : System.Web.UI.Page
     {
         #region===== Variable & Object Declaration =====================================================
         MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
@@ -34,13 +34,12 @@ namespace UI.SCM
                 LoadPopUp();
             }
         }
-
         private void LoadPopUp()
         {
             try
             {
                 dt = new DataTable();
-                dt = bll.GetItemInfoForAccounts(intAutoID);
+                dt = bll.GetItemInfoForPurchase(intAutoID);
 
                 txtBaseName.Text = dt.Rows[0]["strItemName"].ToString();
                 txtDescription.Text = dt.Rows[0]["strDescription"].ToString();
@@ -62,15 +61,6 @@ namespace UI.SCM
                 txtSubCategory.Text = dt.Rows[0]["strSubCategoryName"].ToString();
                 txtMinorCategory.Text = dt.Rows[0]["strMinorCategory"].ToString();
                 txtPlant.Text = dt.Rows[0]["strPlantName"].ToString();
-                txtPurchaseType.Text = dt.Rows[0]["strPurchaseType"].ToString();
-                txtPOTime.Text = dt.Rows[0]["intPOProcessTime"].ToString();
-                txtDeliveryTime.Text = dt.Rows[0]["intShipmentDeliveryTime"].ToString();
-                txtProcessingTime.Text = dt.Rows[0]["intProcessingTime"].ToString();
-                txtTotalLeadTime.Text = dt.Rows[0]["intTotalLeadTime"].ToString();
-                txtLotSize.Text = dt.Rows[0]["strOrderingLotSize"].ToString();
-                txtEOQ.Text = dt.Rows[0]["numEconomicOrderQty"].ToString();
-                txtMOQ.Text = dt.Rows[0]["numMinimumOrderQty"].ToString();
-                txtSDE.Text = dt.Rows[0]["strSDEClassification"].ToString();
             }
             catch { }
         }
@@ -79,14 +69,22 @@ namespace UI.SCM
         {
             if (hdnconfirm.Value == "1")
             {
-                intPart = 10;
+                intPart = 9;
                 intAutoID = int.Parse(hdnItemID.Value.ToString());
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
-                intHML = int.Parse(ddlHML.SelectedValue.ToString());
-                strHMLClassification = ddlHML.SelectedItem.ToString();
-                try { ysnVATApplicable = bool.Parse(txtPOTime.Text); } catch { intPOProcessingTime = 0; }
+                intPurchaseType = int.Parse(ddlProcurementType.SelectedValue.ToString());
+                strPurchaseType = ddlProcurementType.SelectedItem.ToString();
+                try { intPOProcessingTime = int.Parse(txtPOTime.Text); } catch { intPOProcessingTime = 0; }
+                try { intShipmentTime = int.Parse(txtDeliveryTime.Text); } catch { intShipmentTime = 0; }
+                try { intProcessTime = int.Parse(txtProcessingTime.Text); } catch { intProcessTime = 0; }
+                try { intTotalLeadTime = int.Parse(txtTotalLeadTime.Text); } catch { intTotalLeadTime = 0; }
+                strLotSize = txtLotSize.Text;
+                try { numEOQ = decimal.Parse(txtEOQ.Text); } catch { numEOQ = 0; }
+                try { numMOQ = decimal.Parse(txtMOQ.Text); } catch { numMOQ = 0; }
+                intSDE = int.Parse(ddlSDE.SelectedValue.ToString());
+                strSDEClassification = ddlSDE.SelectedItem.ToString();
 
-                if (hdnItemID.Value == "" || hdnItemID.Value == "0")
+                if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtPOTime.Text == "" || txtDeliveryTime.Text == "" || txtProcessingTime.Text == "")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
                     return;
@@ -101,30 +99,6 @@ namespace UI.SCM
                 if (dt.Rows.Count > 0)
                 {
                     string msg = dt.Rows[0]["msg"].ToString();
-
-                    if(msg == "ITEM ADD SUCCESSFULLY.")
-                    {
-                        intPart = 13;
-                        dt = new DataTable();
-                        dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
-                                intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
-                                intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
-                                intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
-
-                        msg = dt.Rows[0]["msg"].ToString();
-                    }
-                    else
-                    {
-                        intPart = 14;
-                        dt = new DataTable();
-                        dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
-                                intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
-                                intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
-                                intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
-
-                        msg = dt.Rows[0]["msg"].ToString();
-                    }
-
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     //LoadGrid();
                     hdnconfirm.Value = "0";
