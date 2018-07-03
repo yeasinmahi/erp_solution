@@ -385,6 +385,7 @@
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
     <Content Include="Revenue\frmRevenueBudgetEntry.aspx" />
+    <Content Include="Revenue\frmBudgetVSRevenue.aspx" />
     <Content Include="Revenue\frmRevinueCenterCrate.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\AutoChallan\AutoChallan.aspx" />
@@ -2915,6 +2916,13 @@
     </Compile>
     <Compile Include="Revenue\frmRevenueBudgetEntry.aspx.designer.cs">
       <DependentUpon>frmRevenueBudgetEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmBudgetVSRevenue.aspx.cs">
+      <DependentUpon>frmBudgetVSRevenue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmBudgetVSRevenue.aspx.designer.cs">
+      <DependentUpon>frmBudgetVSRevenue.aspx</DependentUpon>
     </Compile>
     <Compile Include="Revenue\frmRevinueCenterCrate.aspx.cs">
       <DependentUpon>frmRevinueCenterCrate.aspx</DependentUpon>

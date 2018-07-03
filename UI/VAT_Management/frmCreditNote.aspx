@@ -99,11 +99,7 @@
           }
         });
    </script> 
-    <style type="text/css">
-        .auto-style1 {
-            height: 219px;
-        }
-    </style>
+   
 </head>
 <body>
     <form id="frmCreditnote" runat="server">
