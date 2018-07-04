@@ -226,8 +226,6 @@ namespace UI.SCM.Transfer
             }
             catch { }
            
-
-             
         }
     }
 }

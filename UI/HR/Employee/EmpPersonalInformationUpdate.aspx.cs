@@ -85,20 +85,18 @@ namespace UI.HR.Employee
 
                     }
 
-                    
+                    TxtEmployee.Text = "";
+                    TxtName.Text = "";
+                    TxtDateOfJoin.Text = "";
+                    TxtDesignation.Text = "";
+                    TxtDepartment.Text = "";
+                    TxtUnit.Text = "";
+                    ClearControl();
                 }
-                else { }
-               
-
+                else { } 
             }
             catch { }
-            TxtEmployee.Text = "";
-            TxtName.Text = "";
-            TxtDateOfJoin.Text = "";
-            TxtDesignation.Text = "";
-            TxtDepartment.Text = "";
-            TxtUnit.Text = "";
-            ClearControl();
+           
 
         }
 

@@ -245,6 +245,7 @@
     <Content Include="Asset\CommonRepaisListPopUp.aspx" />
     <Content Include="Asset\CorrectiveRequestUser.aspx" />
     <Content Include="Asset\CorrectiveRequestUserPopUP.aspx" />
+    <Content Include="Asset\CWIPAssetAccountsPart.aspx" />
     <Content Include="Asset\CwipAssetParking.aspx" />
     <Content Include="Asset\DepreciationCalculation.aspx" />
     <Content Include="Asset\DepreciationConfig_UI.aspx" />
@@ -2176,6 +2177,13 @@
     </Compile>
     <Compile Include="Asset\CorrectiveRequestUserPopUP.aspx.designer.cs">
       <DependentUpon>CorrectiveRequestUserPopUP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\CWIPAssetAccountsPart.aspx.cs">
+      <DependentUpon>CWIPAssetAccountsPart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\CWIPAssetAccountsPart.aspx.designer.cs">
+      <DependentUpon>CWIPAssetAccountsPart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\CwipAssetParking.aspx.cs">
       <DependentUpon>CwipAssetParking.aspx</DependentUpon>

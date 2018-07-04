@@ -34,8 +34,16 @@ namespace SAD_BLL.Item
                 {
                     TblItemTypeTableAdapter taTp = new TblItemTypeTableAdapter();
                     SAD_DAL.Item.ItemTDS.TblItemTypeDataTable tbl = taTp.GetTopFinishGoods(tblUnit[i].intUnitID);
-                    
-                    if (tbl.Rows.Count > 0) id = tbl[0].intID;
+
+                    if(tblUnit[i].intUnitID==105)
+                    {
+                        try { if (tbl.Rows.Count > 0) id = tbl[i].intID; } catch { }
+                    }
+                    else
+                    {
+                        if (tbl.Rows.Count > 0) id = tbl[0].intID;
+                    }
+                    //try { if (tbl.Rows.Count > 0) id = tbl[0].intID; } catch { }
 
                     ht.Add(tblUnit[i].intUnitID.ToString(), i);
                     tableProducts[i] = adpCOA.GetDataByUnit_Type(tblUnit[i].intUnitID, id, true);
