@@ -561,6 +561,8 @@ namespace SAD_DAL.Vat {
             
             private global::System.Data.DataColumn columnstrVATChallanNo;
             
+            private global::System.Data.DataColumn columnstrVATChallanNowith;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tblChallanListDataTable() {
@@ -604,6 +606,14 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strVATChallanNowithColumn {
+                get {
+                    return this.columnstrVATChallanNowith;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -639,10 +649,11 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblChallanListRow AddtblChallanListRow(string strVATChallanNo) {
+            public tblChallanListRow AddtblChallanListRow(string strVATChallanNo, string strVATChallanNowith) {
                 tblChallanListRow rowtblChallanListRow = ((tblChallanListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        strVATChallanNo};
+                        strVATChallanNo,
+                        strVATChallanNowith};
                 rowtblChallanListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblChallanListRow);
                 return rowtblChallanListRow;
@@ -666,6 +677,7 @@ namespace SAD_DAL.Vat {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnstrVATChallanNo = base.Columns["strVATChallanNo"];
+                this.columnstrVATChallanNowith = base.Columns["strVATChallanNowith"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -673,8 +685,12 @@ namespace SAD_DAL.Vat {
             private void InitClass() {
                 this.columnstrVATChallanNo = new global::System.Data.DataColumn("strVATChallanNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrVATChallanNo);
+                this.columnstrVATChallanNowith = new global::System.Data.DataColumn("strVATChallanNowith", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrVATChallanNowith);
                 this.columnstrVATChallanNo.AllowDBNull = false;
                 this.columnstrVATChallanNo.MaxLength = 250;
+                this.columnstrVATChallanNowith.ReadOnly = true;
+                this.columnstrVATChallanNowith.MaxLength = 300;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3437,6 +3453,34 @@ namespace SAD_DAL.Vat {
                     this[this.tabletblChallanList.strVATChallanNoColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strVATChallanNowith {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblChallanList.strVATChallanNowithColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strVATChallanNowith\' in table \'tblChallanList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblChallanList.strVATChallanNowithColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrVATChallanNowithNull() {
+                return this.IsNull(this.tabletblChallanList.strVATChallanNowithColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrVATChallanNowithNull() {
+                this[this.tabletblChallanList.strVATChallanNowithColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -5239,6 +5283,7 @@ namespace SAD_DAL.Vat.CreditNoteTDSTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tblChallanList";
             tableMapping.ColumnMappings.Add("strVATChallanNo", "strVATChallanNo");
+            tableMapping.ColumnMappings.Add("strVATChallanNowith", "strVATChallanNowith");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5255,12 +5300,12 @@ namespace SAD_DAL.Vat.CreditNoteTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT strVATChallanNo
+            this._commandCollection[0].CommandText = @"SELECT strVATChallanNo+' Qty-'+cast(numQuantity as varchar(50)) as strVATChallanNowith,strVATChallanNo
 FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i.intID WHERE dteSellingDate>dateadd(mm,-3,getdate())
-AND s.intUnitID = @unitid AND s.intVatAccountID=@VatAccid AND DATEADD(day,90,dteSellingDate)>=GETDATE() and intProductID=@itemid";
+AND s.intUnitID = @unitid AND s.intVatAccountID=@vataccid AND DATEADD(day,90,dteSellingDate)>=GETDATE() and intProductID=@itemid";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VatAccid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVATAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@vataccid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVATAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5268,7 +5313,7 @@ AND s.intUnitID = @unitid AND s.intVatAccountID=@VatAccid AND DATEADD(day,90,dte
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CreditNoteTDS.tblChallanListDataTable GetChallanList(global::System.Nullable<int> unitid, global::System.Nullable<int> VatAccid, global::System.Nullable<int> itemid) {
+        public virtual CreditNoteTDS.tblChallanListDataTable GetChallanList(global::System.Nullable<int> unitid, global::System.Nullable<int> vataccid, global::System.Nullable<int> itemid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((unitid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unitid.Value));
@@ -5276,8 +5321,8 @@ AND s.intUnitID = @unitid AND s.intVatAccountID=@VatAccid AND DATEADD(day,90,dte
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VatAccid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(VatAccid.Value));
+            if ((vataccid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(vataccid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;

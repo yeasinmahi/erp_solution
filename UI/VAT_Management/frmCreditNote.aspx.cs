@@ -244,7 +244,7 @@ namespace UI.VAT_Management
             intitemid = Int32.Parse(arrayKeyItem[1].ToString());
             hdnitemid.Value = arrayKeyItem[1].ToString();
             dt = objCreditBll.getCreditchallan(int.Parse(Session[SessionParams.UNIT_ID].ToString()),int.Parse(hdnAccno.Value),intitemid);
-            ddlChallanNo.DataTextField = "strVATChallanNo";
+            ddlChallanNo.DataTextField = "strVATChallanNowith";
             ddlChallanNo.DataValueField = "strVATChallanNo";
             ddlChallanNo.DataSource = dt;
             ddlChallanNo.DataBind();
