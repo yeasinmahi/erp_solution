@@ -1257,6 +1257,7 @@
     <Content Include="SCM\ItemManager.aspx" />
     <Content Include="SCM\ItemManagerAccounts.aspx" />
     <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
+    <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
@@ -6423,6 +6424,13 @@
     </Compile>
     <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.designer.cs">
       <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.cs">
+      <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.designer.cs">
+      <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ItemManagerStore.aspx.cs">
       <DependentUpon>ItemManagerStore.aspx</DependentUpon>

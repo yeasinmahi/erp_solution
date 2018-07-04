@@ -77,16 +77,28 @@
                 <td><asp:TextBox ID="txtBrand" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Re-Order Level :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtReOrder" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Minimum Stock Level :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>                
+                <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Specification :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtSpecification" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label21" runat="server" Text="Origin :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
             </tr>
             <tr>
+                <td style="text-align:right;"><asp:Label ID="Label22" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Re-Order Level :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtReOrder" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Minimum Stock Level :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Maximum Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
+            </tr>
+            <tr>
                 <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Safety Stock Level :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtSafety" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>                
+                <td><asp:TextBox ID="txtSafety" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="Self Time :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtSelfTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label5" runat="server" Text="UOM " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
