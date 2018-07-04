@@ -5300,7 +5300,7 @@ namespace SAD_DAL.Vat.CreditNoteTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT strVATChallanNo+' Qty-'+cast(numQuantity as varchar(50)) as strVATChallanNowith,strVATChallanNo
+            this._commandCollection[0].CommandText = @"SELECT strVATChallanNo+' Qty-'+cast(convert(decimal(18,1), numQuantity) as varchar(50)) as strVATChallanNowith,strVATChallanNo
 FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i.intID WHERE dteSellingDate>dateadd(mm,-3,getdate())
 AND s.intUnitID = @unitid AND s.intVatAccountID=@vataccid AND DATEADD(day,90,dteSellingDate)>=GETDATE() and intProductID=@itemid";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
