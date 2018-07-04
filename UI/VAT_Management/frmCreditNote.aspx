@@ -99,11 +99,7 @@
           }
         });
    </script> 
-    <style type="text/css">
-        .auto-style1 {
-            height: 219px;
-        }
-    </style>
+   
 </head>
 <body>
     <form id="frmCreditnote" runat="server">
@@ -141,8 +137,7 @@
         <td>Challan No</td>
         <td><asp:DropDownList ID="ddlChallanNo" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlChallanNo_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList> </td>
         <td></td>
-        <td> <asp:Button ID="btnShowREPORT" runat="server" class="myButton" Text="Show Item List" OnClick="btnShowREPORT_Click" />
-        </td>
+        <td> &nbsp;</td>
      </tr> 
      <tr><td>Product Qty </td>
         <td><asp:Label ID="lblProductQty" runat="server" CssClass="lbl"   MaxLength="10" AutoPostBack="true" ></asp:Label></td>
@@ -156,7 +151,7 @@
             <td>   M11 Vat</td>
             <td><asp:Label ID="lblM11Vat" CssClass="lbl" runat="server"></asp:Label></td>
             <td></td>
-            <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnSave_Click" Text="Save Credit Note" /></td>
+            <td><asp:Button ID="btnSave" runat="server"  class="myButton" OnClick="btnSave_Click" Text="Save Credit Note" /></td>
     </tr>
     <tr><td colspan="6"><hr /></td></tr> 
     <tr>
@@ -210,7 +205,7 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Challan Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldtedate" runat="server" Text='<%# Bind("dtedate","0:d") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lbldtedates" runat="server" Text='<%# Bind("dtedate","{0:d}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Product Name" SortExpression="itemname">

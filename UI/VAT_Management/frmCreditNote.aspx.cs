@@ -41,8 +41,9 @@ namespace UI.VAT_Management
             {
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-               
-               
+                try { File.Delete(filePathForXML); }
+                catch { }
+
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
                 if (dt.Rows.Count > 0)
                 {
@@ -224,6 +225,8 @@ namespace UI.VAT_Management
             lblM11OthersTax.Text = dt.Rows[0]["OthersSDVAT"].ToString();
             lblChallanDate.Text = dt.Rows[0]["dteSellingDate"].ToString();
             lblM11Vat.Text= dt.Rows[0]["monVAT"].ToString();
+            hdnCustid.Value= dt.Rows[0]["intcusid"].ToString(); 
+            hdnCustAddress.Value = dt.Rows[0]["strcustaddress"].ToString();
 
         }
         protected void txtVatItemList_TextChanged(object sender, EventArgs e)
@@ -241,7 +244,7 @@ namespace UI.VAT_Management
             intitemid = Int32.Parse(arrayKeyItem[1].ToString());
             hdnitemid.Value = arrayKeyItem[1].ToString();
             dt = objCreditBll.getCreditchallan(int.Parse(Session[SessionParams.UNIT_ID].ToString()),int.Parse(hdnAccno.Value),intitemid);
-            ddlChallanNo.DataTextField = "strVATChallanNo";
+            ddlChallanNo.DataTextField = "strVATChallanNowith";
             ddlChallanNo.DataValueField = "strVATChallanNo";
             ddlChallanNo.DataSource = dt;
             ddlChallanNo.DataBind();
@@ -249,22 +252,7 @@ namespace UI.VAT_Management
 
         }
 
-        protected void btnShowREPORT_Click(object sender, EventArgs e)
-        {
-           // //strChallanNo = txtVatChallno.Text;
-           //// intyear = int.Parse(txtYear.Text);
-
-           // dt = objMush.getVatChallano(intyear, strChallanNo, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), 1);
-           // hdnCustid.Value = dt.Rows[0]["intCusID"].ToString();
-           // //hdnCustname.Value = dt.Rows[0]["strCustName"].ToString();
-           //// hdnCustname.Value = dt.Rows[0]["strCustAddress"].ToString();
-           // txtCustomerVatReg.Text = dt.Rows[0]["strCustVATRegNo"].ToString();
-           // dt.Clear();
-           // dt = objMush.getVatChallano(intyear, strChallanNo, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), 2);
-           // dgvVatProduct.DataSource = dt;
-           // dgvVatProduct.DataBind();
-
-        }
+       
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
@@ -272,9 +260,9 @@ namespace UI.VAT_Management
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            intM11Challanno =int.Parse(txtVAT.Text);
+            intM11Challanno =int.Parse(ddlChallanNo.SelectedValue);
             intCustid = int.Parse(hdnCustid.Value);
-           strCusName= hdnAccno.Value;
+            strCusName= "N/A";
             strCusAddress = hdnCustAddress.Value;
           // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;
@@ -294,8 +282,10 @@ namespace UI.VAT_Management
                     intSL = intSL + 1;
 
                     intItem =int.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblvatItemid")).Text.ToString());
+                    intM11Challanno =int.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblstrVATChallanNo")).Text.ToString());
+
                     strChallanNo = ((Label)dgvVatProduct.Rows[index].FindControl("lblstrVATChallanNo")).Text.ToString();
-                    strM11DateChallan =DateTime.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lbldtedate")).Text.ToString());
+                    strM11DateChallan =DateTime.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lbldtedates")).Text.ToString());
                     strItem = ((Label)dgvVatProduct.Rows[index].FindControl("lblstrVatProductName")).Text.ToString();
                     numQty =decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblQuantity")).Text.ToString());
                     monValue = decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblsdvat")).Text.ToString());
@@ -311,25 +301,14 @@ namespace UI.VAT_Management
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
 
                 }
+                dgvVatProduct.DataBind();
             }
         }
         
         protected double TotalValue = 0;
         protected void dgvTresuryRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    if (((Label)e.Row.Cells[6].FindControl("lblmonAmount")).Text == "")
-            //    {
-            //        TotalValue += 0;
-            //    }
-            //    else
-            //    {
-            //        TotalValue += double.Parse(((Label)e.Row.Cells[6].FindControl("lblmonAmount")).Text);
-            //    }
-               
-            //}
-
+           
         }
         protected void dgvPurchaseEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

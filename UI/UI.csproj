@@ -384,6 +384,10 @@
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
+    <Content Include="Revenue\frmBudEntry.aspx" />
+    <Content Include="Revenue\frmRevenueBudgetEntry.aspx" />
+    <Content Include="Revenue\frmBudgetVSRevenue.aspx" />
+    <Content Include="Revenue\frmRevinueCenterCrate.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\AutoChallan\AutoChallan.aspx" />
     <Content Include="SAD\AutoChallan\PendingView.aspx" />
@@ -1252,6 +1256,11 @@
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
+    <Content Include="SCM\ItemManagerAccounts.aspx" />
+    <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
+    <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
+    <Content Include="SCM\ItemManagerStore.aspx" />
+    <Content Include="SCM\ItemManagerPurchase.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -2901,6 +2910,34 @@
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.designer.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmBudEntry.aspx.cs">
+      <DependentUpon>frmBudEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmBudEntry.aspx.designer.cs">
+      <DependentUpon>frmBudEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmRevenueBudgetEntry.aspx.cs">
+      <DependentUpon>frmRevenueBudgetEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmRevenueBudgetEntry.aspx.designer.cs">
+      <DependentUpon>frmRevenueBudgetEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmBudgetVSRevenue.aspx.cs">
+      <DependentUpon>frmBudgetVSRevenue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmBudgetVSRevenue.aspx.designer.cs">
+      <DependentUpon>frmBudgetVSRevenue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmRevinueCenterCrate.aspx.cs">
+      <DependentUpon>frmRevinueCenterCrate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmRevinueCenterCrate.aspx.designer.cs">
+      <DependentUpon>frmRevinueCenterCrate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx.cs">
       <DependentUpon>AppsRemoteOrderApporve.aspx</DependentUpon>
@@ -6381,6 +6418,41 @@
     </Compile>
     <Compile Include="SCM\ItemManager.aspx.designer.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccounts.aspx.cs">
+      <DependentUpon>ItemManagerAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccounts.aspx.designer.cs">
+      <DependentUpon>ItemManagerAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.cs">
+      <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.designer.cs">
+      <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.cs">
+      <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.designer.cs">
+      <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStore.aspx.cs">
+      <DependentUpon>ItemManagerStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStore.aspx.designer.cs">
+      <DependentUpon>ItemManagerStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchase.aspx.cs">
+      <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
+      <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>

@@ -99,6 +99,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MasterMaterialTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MrrReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -221,6 +226,17 @@
     </None>
     <None Include="LocationTDS.xss">
       <DependentUpon>LocationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MasterMaterialTDS.xsc">
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MasterMaterialTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MasterMaterialTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MasterMaterialTDS.xss">
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
     </None>
     <None Include="MrrReceiveTDS.xsc">
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>

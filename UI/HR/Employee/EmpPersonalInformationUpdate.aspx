@@ -113,16 +113,9 @@ function Confirm() {
 }
     </script>
     <style type="text/css">
-        /*.auto-style5 {
-            height: 40px;
-        }*/
+                
         
-        .auto-style6 {
-            height: 38px;
-        }
-        .auto-style7 {
-            height: 40px;
-        }
+        
         
     </style>
 
@@ -143,15 +136,15 @@ function Confirm() {
 
 
 <%--=========================================Start My Code From Here===============================================--%>   
-    <div class="tabs_container" align="left" > Update Employee Information</div>
+    <div class="divHeader">Update Employee Information</div>
         <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnConfirm" runat="server" />
    
-                    <table style="width: 600px; outline-color: blue; table-layout: auto; vertical-align: top; background-color: #DDD;" class="tblrowodd">
+                    <table style="width: 600px;  outline-color: blue;table-layout: auto; vertical-align: top; background-color: #DDD;" class="tblRowOdd">
                         <tr> 
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="tdBgColor tdHeight">
                                 <asp:Label ID="LblEmployee" runat="server" CssClass="lbl" Font-Size="small" Text="Search Employee:"></asp:Label>
                             </td> 
-                            <td style="text-align:left; " colspan="3" > <asp:TextBox ID="TxtEmployee" runat="server" CssClass="txtBox" Font-Bold="False" OnTextChanged="TxtEmployee_TextChanged" Width="500px" AutoPostBack="true"  ></asp:TextBox>
+                            <td style="text-align:left; " colspan="3" class="tdBgColor tdHeight"> <asp:TextBox ID="TxtEmployee" runat="server" CssClass="txtBox" Font-Bold="False" OnTextChanged="TxtEmployee_TextChanged" Width="530px" AutoPostBack="true"  ></asp:TextBox>
                             <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="TxtEmployee"
                             ServiceMethod="GetWearHouseRequesision" MinimumPrefixLength="1" CompletionSetCount="1"
                             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -159,148 +152,148 @@ function Confirm() {
  
                         </tr>
                         
-                        <tr class="tblrowodd">
-                            <td class="auto-style7" style="text-align: right;">
+                        <tr class="tblRowOdd">
+                            <td class="tdHeight tdColor" style="text-align: right; " >
                                 <asp:Label ID="LblName" runat="server" CssClass="lbl" Font-Size="small" Text="Name:"></asp:Label>
                             </td>
-                            <td class="auto-style7" style="text-align: left;">
+                            <td class="tdHeight tdColor" style="text-align: left; background-color:#cecece;" >
                                 <asp:TextBox ID="TxtName" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td class="auto-style7" style="text-align: right;">
+                            <td class="tdHeight tdColor" style="text-align: right; background-color:#cecece;">
                                 <asp:Label ID="LblDesignation" runat="server" CssClass="lbl" Font-Size="small" Text="Designation:"></asp:Label>
                             </td>
-                            <td class="auto-style7" style="text-align: left;">
+                            <td class="tdHeight tdColor" style="text-align: left; background-color:#cecece;">
                                 <asp:TextBox ID="TxtDesignation" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td style="text-align: right;">
+                        <tr class="tblRowOdd">
+                            <td style="text-align: right;" class="tdBgColor tdHeight">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Font-Size="small" Text="Department:"></asp:Label>
                             </td>
-                            <td style="text-align: left;">
+                            <td style="text-align: left;" class="tdBgColor tdHeight">
                                 <asp:TextBox ID="TxtDepartment" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="tdBgColor tdHeight">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Font-Size="small" Text="Date of Join:"></asp:Label>
                             </td>
-                            <td style="text-align: left;">
+                            <td style="text-align: left;" class="tdBgColor tdHeight">
                                 <asp:TextBox ID="TxtDateOfJoin" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td class="auto-style7" style="text-align: right;">
+                        <tr class="tblRowOdd">
+                            <td class="tdColor tdHeight" style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Font-Size="small" Text="Unit Name:"></asp:Label>
                             </td>
-                            <td class="auto-style7" style="text-align: left;">
+                            <td class="tdColor tdHeight" style="text-align: left;">
                                 <asp:TextBox ID="TxtUnit" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td class="auto-style7" style="text-align: right;">
+                            <td class="tdColor tdHeight" style="text-align: right;">
                                 <asp:Label ID="Label4" runat="server" CssClass="lbl" Font-Size="small" Text="Job Station:"></asp:Label>
                             </td>
-                            <td class="auto-style7" style="text-align: left;">
+                            <td class="tdColor tdHeight" style="text-align: left;">
                                 <asp:TextBox ID="TxtJobStation" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
                        
-                        <tr class="tblrowodd">
-                            <td class="auto-style5" style="text-align: right;">
+                        <tr class="" style="border: 0px solid #c4bcbc;">
+                            <td class="tdBgColor tdHeight" style="text-align: right;">
                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Size="small" Text="Father's Name:"></asp:Label>
                             </td>
-                            <td class="auto-style5" style="text-align: left;">
+                            <td class="tdHeight tdBgColor " style="text-align: left;" colspan="3">
                                 <asp:TextBox ID="TxtFather" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td class="auto-style5" style="text-align: right;">
+                            <%--<td class=" tdHeight tdBgColor" style="text-align: right;">
                                 <asp:Label ID="Label6" runat="server" CssClass="lbl" Font-Size="small" Text="Mother's Name:"></asp:Label>
                             </td>
-                            <td class="auto-style5" style="text-align: left;">
+                            <td class="tdHeight " style="text-align: left;">
                                 <asp:TextBox ID="TxtMother" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
-                            </td>
+                            </td>--%>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td class="auto-style5" style="text-align: right;">
+                       <%-- <tr class="" >
+                            <td class="" style="text-align: right;">
                                 <asp:Label ID="LblSpouse" runat="server" CssClass="lbl" Font-Size="Small" Text="Spouse Name:"></asp:Label>
                             </td>
-                            <td class="auto-style5" colspan="3" style="text-align: left;">
+                            <td class="" colspan="3" style="text-align: left;">
                                 <asp:TextBox ID="TxtSpouse" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                        </tr>
-                        <tr class="tblrowodd">
-                            <td colspan="4">
-                                <h4 style="text-decoration: underline;"><span>Permanent Address</span></h4>
+                        </tr>--%>
+                        <tr class="tblRowOdd">
+                            <td colspan="4" class="tdColor">
+                                <p style="text-decoration: underline; font-weight:bold;">Permanent Address</p>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td class="auto-style5" style="text-align: right;">
+                        <tr class="tblRowOdd">
+                            <td class="tdHeight tdBgColor" style="text-align: right;">
                                 <asp:Label ID="Label7" runat="server" CssClass="lbl" Font-Size="small" Text="Village:"></asp:Label>
                             </td>
-                            <td class="auto-style5" style="text-align: left;">
+                            <td class="tdHeight tdBgColor" style="text-align: left;">
                                 <asp:TextBox ID="TxtVillage" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td class="auto-style5" style="text-align: right;">
+                            <td class="tdHeight tdBgColor" style="text-align: right;">
                                 <asp:Label ID="Label8" runat="server" CssClass="lbl" Font-Size="small" Text="Post Office:"></asp:Label>
                             </td>
-                            <td class="auto-style5" style="text-align: left;">
+                            <td class="tdHeight tdBgColor" style="text-align: left;">
                                 <asp:TextBox ID="TxtPermanentPostOffice" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td style="text-align: right;">
+                        <tr class="tblRowOdd">
+                            <td style="text-align: right;" class="tdColor tdHeight">
                                 <asp:Label ID="Label9" runat="server" CssClass="lbl" Font-Size="small" Text="Police Station:"></asp:Label>
                             </td>
-                            <td style="text-align: left;">
+                            <td style="text-align: left;" class="tdColor tdHeight">
                                 <asp:TextBox ID="TxtPermanentPoliceStation" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="tdColor tdHeight">
                                 <asp:Label ID="Label10" runat="server" CssClass="lbl" Font-Size="small" Text="District:"></asp:Label>
                             </td>
-                            <td style="text-align: left;">
+                            <td style="text-align: left;" class="tdColor tdHeight">
                                 <asp:TextBox ID="TxtPermanentDistricts" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                       <%-- <tr class="tblrowodd">
+                       <%-- <tr class="tblRowOdd">
                             <td colspan="4">
                                 <h4 style="text-decoration: underline;" id="presentAdd"><span>Present Address</span> </h4>
                             </td>
                         </tr>--%>
-                        <tr class="tblrowodd">
-                            <td class="auto-style5" style="text-align: right;">
+                        <%--<tr class="">
+                            <td class=" " style="text-align: right;">
                                 <asp:Label ID="Label11" runat="server" CssClass="lbl" Font-Size="small" Text="House:"></asp:Label>
                             </td>
-                            <td class="auto-style6" style="text-align: left;">
+                            <td class="" style="text-align: left;">
                                 <asp:TextBox ID="TxtHouse" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td class="auto-style5" style="text-align: right;">
+                            <td class="" style="text-align: right;">
                                 <asp:Label ID="Label12" runat="server" CssClass="lbl" Font-Size="small" Text="Road No:"></asp:Label>
                             </td>
-                            <td class="auto-style5" style="text-align: left;">
+                            <td class="" style="text-align: left;">
                                 <asp:TextBox ID="TxtRoad" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td class="auto-style7" style="text-align: right;">
+                        <tr class="">
+                            <td class="" style="text-align: right;">
                                 <asp:Label ID="Label13" runat="server" CssClass="lbl" Font-Size="small" Text="Post Office:"></asp:Label>
                             </td>
-                            <td class="auto-style7" style="text-align: left;">
+                            <td class="" style="text-align: left;">
                                 <asp:TextBox ID="TxtPresentPostOffice" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                            <td class="auto-style7" style="text-align: right;">
+                            <td class="" style="text-align: right;">
                                 <asp:Label ID="Label14" runat="server" CssClass="lbl" Font-Size="small" Text="Police Station:"></asp:Label>
                             </td>
-                            <td class="auto-style7" style="text-align: left;">
+                            <td class="" style="text-align: left;">
                                 <asp:TextBox ID="TxtPresentPoliceStation" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr class="tblrowodd">
-                            <td class="auto-style5" style="text-align: right;">
+                        <tr class="">
+                            <td class="" style="text-align: right;">
                                 <asp:Label ID="Label15" runat="server" CssClass="lbl" Font-Size="small" Text="District:"></asp:Label>
                             </td>
-                            <td class="auto-style5" colspan="3" style="text-align: left;">
+                            <td class="" colspan="3" style="text-align: left;">
                                 <asp:TextBox ID="TxtPresentDistricts" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
                             </td>
-                        </tr>
-                        <tr class="tblrowfooter">
+                        </tr>--%>
+                        <tr class="tblRowFooter">
                             <td colspan="4" style="text-align: right;">
-                                <asp:Button ID="BtnUpdate" runat="server"   OnClick="BtnUpdate_Click" OnClientClick="return Confirm();" Text="Update" />
+                                <asp:Button ID="BtnUpdate" runat="server" CssClass="button" OnClick="BtnUpdate_Click" OnClientClick="return Confirm();" Text="Update" />
                             </td>
                         </tr>
                         

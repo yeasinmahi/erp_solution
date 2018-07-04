@@ -25,20 +25,20 @@ namespace UI.HR.Employee
         {
             if(!IsPostBack)
             {
-                Label6.Visible = false;
-                LblSpouse.Visible = false;
-                Label11.Visible = false;
-                Label12.Visible = false;
-                Label13.Visible = false;
-                Label14.Visible = false;
-                Label15.Visible = false;
-                TxtMother.Visible = false;
-                TxtSpouse.Visible = false;
-                TxtHouse.Visible = false;
-                TxtRoad.Visible = false;
-                TxtPresentDistricts.Visible = false;
-                TxtPresentPoliceStation.Visible = false;
-                TxtPresentPostOffice.Visible = false;
+                //Label6.Visible = false;
+                //LblSpouse.Visible = false;
+                //Label11.Visible = false;
+                //Label12.Visible = false;
+                //Label13.Visible = false;
+                //Label14.Visible = false;
+                //Label15.Visible = false;
+                //TxtMother.Visible = false;
+                //TxtSpouse.Visible = false;
+                //TxtHouse.Visible = false;
+                //TxtRoad.Visible = false;
+                //TxtPresentDistricts.Visible = false;
+                //TxtPresentPoliceStation.Visible = false;
+                //TxtPresentPostOffice.Visible = false;
 
             }
         }
@@ -57,17 +57,18 @@ namespace UI.HR.Employee
                     }
 
                     string strFatherName = TxtFather.Text.ToString();
-                    string strMotherName = TxtMother.Text.ToString();
-                    string strSpouseName = TxtSpouse.Text.ToString();
+                    //string strMotherName = TxtMother.Text.ToString();
+                    string strMotherName = "";
+                    string strSpouseName = "";
                     string strPermanentVillage = TxtVillage.Text.ToString();
                     string strPermanentPostOffice = TxtPermanentPostOffice.Text.ToString();
                     string strPermanentPoliceStation = TxtPermanentPoliceStation.Text.ToString();
                     string strPermanentDistrict = TxtPermanentDistricts.Text.ToString();
-                    string House = TxtHouse.Text.ToString();
-                    string Road = TxtRoad.Text.ToString();
-                    string PresentPostOffice = TxtPresentPostOffice.Text.ToString();
-                    string PresentPoliceStation = TxtPresentPoliceStation.Text.ToString();
-                    string PresentDistrict = TxtPresentDistricts.Text.ToString();
+                    string House = "";
+                    string Road = "";
+                    string PresentPostOffice = "";
+                    string PresentPoliceStation = "";
+                    string PresentDistrict = "";
 
                     countId = bll.CountEmpId(number);
                     if (countId.Rows.Count > 0)
@@ -90,13 +91,16 @@ namespace UI.HR.Employee
                     TxtDateOfJoin.Text = "";
                     TxtDesignation.Text = "";
                     TxtDepartment.Text = "";
+                    TxtJobStation.Text = "";
                     TxtUnit.Text = "";
                     ClearControl();
                 }
-                else { } 
+                else { }
+                
+
             }
             catch { }
-           
+            
 
         }
 
@@ -134,17 +138,17 @@ namespace UI.HR.Employee
                 if (personalDetails.Rows.Count > 0)
                 {
                     TxtFather.Text = personalDetails.Rows[0]["strFatherName"].ToString();
-                    TxtMother.Text = personalDetails.Rows[0]["strMotherName"].ToString();
-                    TxtSpouse.Text = personalDetails.Rows[0]["strSpouseName"].ToString();
+                    //TxtMother.Text = personalDetails.Rows[0]["strMotherName"].ToString();
+                    //TxtSpouse.Text = personalDetails.Rows[0]["strSpouseName"].ToString();
                     TxtVillage.Text = personalDetails.Rows[0]["strPermanentVillage"].ToString();
                     TxtPermanentPostOffice.Text = personalDetails.Rows[0]["strPermanentPostOffice"].ToString();
                     TxtPermanentPoliceStation.Text = personalDetails.Rows[0]["strPermanentPoliceStation"].ToString();
                     TxtPermanentDistricts.Text = personalDetails.Rows[0]["strPermanentDistrict"].ToString();
-                    TxtHouse.Text = personalDetails.Rows[0]["strPresentHouseNo"].ToString();
-                    TxtRoad.Text = personalDetails.Rows[0]["intPresentRoadNo"].ToString();
-                    TxtPresentPostOffice.Text = personalDetails.Rows[0]["strPresentPostOffice"].ToString();
-                    TxtPresentPoliceStation.Text = personalDetails.Rows[0]["strPresentPoliceStation"].ToString();
-                    TxtPresentDistricts.Text = personalDetails.Rows[0]["strPresentDistrict"].ToString();
+                    //TxtHouse.Text = personalDetails.Rows[0]["strPresentHouseNo"].ToString();
+                    //TxtRoad.Text = personalDetails.Rows[0]["intPresentRoadNo"].ToString();
+                    //TxtPresentPostOffice.Text = personalDetails.Rows[0]["strPresentPostOffice"].ToString();
+                    //TxtPresentPoliceStation.Text = personalDetails.Rows[0]["strPresentPoliceStation"].ToString();
+                    //TxtPresentDistricts.Text = personalDetails.Rows[0]["strPresentDistrict"].ToString();
 
                 }
                 
@@ -159,17 +163,17 @@ namespace UI.HR.Employee
         {
             
             TxtFather.Text = "";
-            TxtMother.Text = "";
-            TxtHouse.Text = "";
-            TxtSpouse.Text = "";
+            //TxtMother.Text = "";
+            //TxtHouse.Text = "";
+            //TxtSpouse.Text = "";
             TxtVillage.Text = "";
             TxtPermanentDistricts.Text = "";
             TxtPermanentPoliceStation.Text = "";
             TxtPermanentPostOffice.Text = "";
-            TxtPresentDistricts.Text = "";
-            TxtPresentPoliceStation.Text = "";
-            TxtPresentPostOffice.Text = "";
-            TxtRoad.Text = "";
+            //TxtPresentDistricts.Text = "";
+            //TxtPresentPoliceStation.Text = "";
+            //TxtPresentPostOffice.Text = "";
+            //TxtRoad.Text = "";
         }
 
         [WebMethod]
