@@ -2991,7 +2991,7 @@ SELECT intID, intUnitID, intTypeID, intLevelOneID, strProductName, ysnActive, in
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT intID, intUnitID, intTypeID, intLevelOneID, strProductName, ysnActive, int" +
@@ -3014,10 +3014,18 @@ SELECT intID, intUnitID, intTypeID, intLevelOneID, strProductName, ysnActive, in
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnActive", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT intDetailsCount, intID, intLevelOneID, intTypeID, intUnitID, strProductName, ysnActive FROM tblItem WHERE (intUnitID = @unitID) AND (ysnActive = @ysnActive) AND (intTypeID <> (SELECT intID FROM tblItemType WHERE (intUnitID = @unitID) AND (ysnFinishGoods = 1))) ORDER BY strProductName";
+            this._commandCollection[3].CommandText = "SELECT intDetailsCount, intID, intLevelOneID, intTypeID, intUnitID, strProductNam" +
+                "e, ysnActive FROM tblItem WHERE (intUnitID = @intUnitID) AND intTypeID in(274,28" +
+                "1) AND (ysnActive = @ysnActive) ORDER BY strProductName";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnActive", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"SELECT intDetailsCount, intID, intLevelOneID, intTypeID, intUnitID, strProductName, ysnActive FROM tblItem WHERE (intUnitID = @unitID) AND (ysnActive = @ysnActive) AND (intTypeID <> (SELECT intID FROM tblItemType WHERE (intUnitID = @unitID) AND (ysnFinishGoods = 1))) ORDER BY strProductName";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnActive", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3061,8 +3069,21 @@ SELECT intID, intUnitID, intTypeID, intLevelOneID, strProductName, ysnActive, in
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ItemTDS.TblItemDataTable GetDataUnit_CommercialItem(int unitID, bool ysnActive) {
+        public virtual ItemTDS.TblItemDataTable GetDataForUdtclItem(int intUnitID, bool ysnActive) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitID));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((bool)(ysnActive));
+            ItemTDS.TblItemDataTable dataTable = new ItemTDS.TblItemDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ItemTDS.TblItemDataTable GetDataUnit_CommercialItem(int unitID, bool ysnActive) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unitID));
             this.Adapter.SelectCommand.Parameters[1].Value = ((bool)(ysnActive));
             ItemTDS.TblItemDataTable dataTable = new ItemTDS.TblItemDataTable();
