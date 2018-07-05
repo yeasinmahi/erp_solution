@@ -132,8 +132,8 @@ namespace UI.SCM
 
                 dgvDetalis.DataSource = ""; dgvDetalis.DataBind();
                 dt = objIndent.DataView(7, "", intWh, 0, DateTime.Now, enroll);
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
+                //dgvIndent.DataSource = dt;
+                //dgvIndent.DataBind();
                 dgvIndent.Visible = true;
                 dt.Clear();
             }
@@ -217,8 +217,8 @@ namespace UI.SCM
                 string dteTo = txtdteTo.Text.ToString();
                 string xml = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
                 dt = objIndent.DataView(7, xml, intWh, 0, DateTime.Now, enroll);
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
+                //dgvIndent.DataSource = dt;
+                //dgvIndent.DataBind();
                 dgvIndent.Visible = true;
             }
 

@@ -34,11 +34,22 @@ namespace SAD_BLL.Item
                 {
                     TblItemTypeTableAdapter taTp = new TblItemTypeTableAdapter();
                     SAD_DAL.Item.ItemTDS.TblItemTypeDataTable tbl = taTp.GetTopFinishGoods(tblUnit[i].intUnitID);
-                    
-                    if (tbl.Rows.Count > 0) id = tbl[0].intID;
 
-                    ht.Add(tblUnit[i].intUnitID.ToString(), i);
-                    tableProducts[i] = adpCOA.GetDataByUnit_Type(tblUnit[i].intUnitID, id, true);
+                    if(tblUnit[i].intUnitID==105)
+                    {
+                        ht.Add(tblUnit[i].intUnitID.ToString(), i); 
+                        tableProducts[i] = adpCOA.GetDataForUdtclItem(tblUnit[i].intUnitID, true);
+                                                  
+                    }
+                    else
+                    {
+                        if (tbl.Rows.Count > 0) id = tbl[0].intID;
+                        ht.Add(tblUnit[i].intUnitID.ToString(), i);
+                        tableProducts[i] = adpCOA.GetDataByUnit_Type(tblUnit[i].intUnitID, id, true);
+                    }
+                    //try { if (tbl.Rows.Count > 0) id = tbl[0].intID; } catch { }
+
+                  
                 }
             }
         }
@@ -48,8 +59,7 @@ namespace SAD_BLL.Item
             Inatialize();
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
-
-
+             
             if (prefix == "" || prefix == "*")
             {
                 var rows = from tmp in tableProducts[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])                           
@@ -63,7 +73,8 @@ namespace SAD_BLL.Item
             else
             {
                 try
-                {
+                { 
+
                     var rows = from tmp in tableProducts[Convert.ToInt32(ht[unitID])]
                                where tmp.strProductName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
                                orderby tmp.strProductName
