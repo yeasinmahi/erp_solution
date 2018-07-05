@@ -1248,6 +1248,7 @@
     <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IndentWithoutReceive.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\InventoryStatement.aspx" />
     <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
@@ -6361,6 +6362,13 @@
     </Compile>
     <Compile Include="SCM\InventoryReport.aspx.designer.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\InventoryStatement.aspx.cs">
+      <DependentUpon>InventoryStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\InventoryStatement.aspx.designer.cs">
+      <DependentUpon>InventoryStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\InventoryValuetion.aspx.cs">
       <DependentUpon>InventoryValuetion.aspx</DependentUpon>
