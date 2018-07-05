@@ -410,7 +410,7 @@ namespace UI.SCM
                 }
                 else if (intSearchBy == 5) //Search By Minor Category
                 {
-                    intReportType = 8;
+                    intReportType = 7;
                     strID = ddlGroup.SelectedValue.ToString();
                 }
                 else if (intSearchBy == 6) //Search By Store Location
@@ -420,27 +420,27 @@ namespace UI.SCM
                 }
                 else if (intSearchBy == 7) //Search By Plant
                 {
-                    intReportType = 9;
+                    intReportType = 8;
                     strID = ddlGroup.SelectedValue.ToString();
                 }
                 else if (intSearchBy == 8) //Search By Purchase Type
                 {
-                    intReportType = 10;
+                    intReportType = 5;
                     strID = ddlGroup.SelectedValue.ToString();
                 }
                 else if (intSearchBy == 9) //Search By ABC Classification
                 {
-                    intReportType = 10;
+                    intReportType = 9;
                     strID = ddlGroup.SelectedValue.ToString();
                 }
                 else if (intSearchBy == 10) //Search By FSN Classification
                 {
-                    intReportType = 11;
+                    intReportType = 10;
                     strID = ddlGroup.SelectedValue.ToString();
                 }
                 else if (intSearchBy == 11) //Search By VDE Classification
                 {
-                    intReportType = 12;
+                    intReportType = 11;
                     strID = ddlGroup.SelectedValue.ToString();
                 }
                 dt = new DataTable();
