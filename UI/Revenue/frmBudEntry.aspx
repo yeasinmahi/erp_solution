@@ -19,7 +19,7 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
-    
+   
    
 </head>
 <body>
@@ -43,100 +43,56 @@
     <asp:HiddenField ID="hdnEnroll" runat="server" /> <asp:HiddenField ID="hdnitemid" runat="server" /> <asp:HiddenField ID="hdnCustAddress" runat="server" />
     <div class="tabs_container"> </div>
     <table>
-     <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Credit Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
-     <tr><td class="auto-style1"><asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" /><asp:GridView ID="dgvPending" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
-        CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"  
-        HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical"
-        >
-        <AlternatingRowStyle BackColor="#CCCCCC" />    
+     <tr><td colspan="2" style="text-align:center; padding: 0px 0px 20px 0px;" class="auto-style1"><asp:Label ID="lblHeading" runat="server" Text="Inventory Summary Report" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
+     <tr><td style="text-align:right;">WH Name:</td> <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True"></asp:DropDownList>  </td>  </tr>
+     <tr><td>Report Type :</td><td class="auto-style1"><asp:DropDownList ID="ddlRptType"  CssClass="ddList" runat="server" AutoPostBack="True">
+         <asp:ListItem Value="0">ALL</asp:ListItem>
+         <asp:ListItem Value="1">Local</asp:ListItem>
+         <asp:ListItem Value="2">Import</asp:ListItem>
+         </asp:DropDownList></td></tr>
+     <tr><td>From Date :</td><td><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+         <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender></td></tr>
+     <tr><td>From Date :</td><td><asp:TextBox ID="txtTo" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+         <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTo"></cc1:CalendarExtender></td></tr>
+     <tr><td>&nbsp;</td><td style="text-align:right"><asp:Button ID="btnShow" Text="Show" runat="server" OnClick="btnShow_Click" /></td></tr>
+     <tr><td colspan="2"> 
+         <asp:GridView ID="dgvRpt"  runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="false">
+        <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-       
-        <asp:TemplateField HeaderText="Productid" Visible="false" SortExpression="Productid"><ItemTemplate>
-        <asp:Label ID="lblProductid" runat="server"  Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField>
+        <asp:TemplateField HeaderText="Group Name" Visible="false" SortExpression="Productid"><ItemTemplate>
+        <asp:Label ID="lblstrGroupName" runat="server"  Text='<%# Bind("strGroupName") %>'></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Left" Width="70px"/><FooterTemplate><div style="padding:0 0 5px 0"><asp:Label ID="lbl" Width="100px"  runat="server" Text="Grand-Total :" /></div>
+        </FooterTemplate></asp:TemplateField>
          
-        <asp:TemplateField HeaderText="Product Code" SortExpression="itemid"><ItemTemplate>
-        <asp:Label ID="lblstrProductName" runat="server" Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="Left" Width="80px"/></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Product Name" SortExpression="itemid"><ItemTemplate>
-        <%--<asp:HiddenField  ID="rate" runat="server" Value='<%# Bind("monCurrentPrice", "{0:0.0000}") %>'></asp:HiddenField>--%> 
-        <%--<asp:HiddenField  ID="hdnQty" runat="server" Value='<%# Bind("qty", "{0:0.0000}") %>'></asp:HiddenField>--%>       
-        <asp:Label ID="lblstrProductName" runat="server" Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="Left"  Width="150px"/></asp:TemplateField>
-          
-             <asp:TemplateField HeaderText="Issue Quantity" SortExpression="qty">
-            <ItemTemplate><asp:TextBox ID="txtIssue" runat="server"   Text='<%# Bind("qty","{0:n0}") %>' Width="80px"></asp:TextBox>
-            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
-            </asp:TemplateField>
-   <%--         <asp:TemplateField HeaderText="Jans" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblQuantitys" runat="server" Width="60px"  Text='<%# Bind("intItemID") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>--%>
-        
-<%--        <asp:TemplateField HeaderText="Jan" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-       
-        <asp:TemplateField HeaderText="Feb" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblfebQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
+      
+        <asp:TemplateField HeaderText="Open Value" SortExpression="monOpenValue"><ItemTemplate>
+        <asp:Label ID="lblmonOpenValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monOpenValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-        <asp:TemplateField HeaderText="March" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblMarQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
+        <asp:TemplateField HeaderText="Receive Value" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblrmonRcvValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monRcvValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-        <asp:TemplateField HeaderText="April" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblAprilQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
+        <asp:TemplateField HeaderText="Issue Value" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblissueValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("issueValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-        <asp:TemplateField HeaderText="May" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblMayQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="June" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblJuneQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
+         <asp:TemplateField HeaderText="Closing Value" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblrmonCloseValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monCloseValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-        <asp:TemplateField HeaderText="July" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblJulyQuantity" CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-      
-        <asp:TemplateField HeaderText="Aug" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblAugQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-      
-        
-        <asp:TemplateField HeaderText="Sep" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblSepQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-      
-        <asp:TemplateField HeaderText="Oct" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblOctQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-      
-        <asp:TemplateField HeaderText="Nov" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblNovQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-      
-        <asp:TemplateField HeaderText="Dec" SortExpression="Quantity"><ItemTemplate>
-        <asp:TextBox ID="lblDecQuantity" CssClass="txtBox" runat="server" Width="60px" TextMode="Number" Text='<%# Bind("qty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
-     
-        <asp:TemplateField HeaderText="Total" SortExpression="itemid"><ItemTemplate>
-        <asp:Label ID="lblTotalqty" runat="server" Text='<%# Bind("qty","{0:n0}") %>'></asp:Label></ItemTemplate>
-        <ItemStyle HorizontalAlign="Right" Width="100px"/><FooterTemplate><asp:Label ID="lblPending" runat="server"  /></FooterTemplate></asp:TemplateField>
---%>
-
         </Columns>
+        <FooterStyle BackColor="#F3CCC2" BorderStyle="None" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-        </asp:GridView></td></tr>
-    <tr><td>
-    
-    </td></tr></table>
-        
+        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+        <SortedAscendingHeaderStyle BackColor="#808080" />
+        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+        <SortedDescendingHeaderStyle BackColor="#383838" />
+        </asp:GridView>
+
+         </td></tr></table>
     </div>
 
 <%--=========================================End My Code From Here=================================================--%>
