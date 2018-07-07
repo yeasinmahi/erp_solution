@@ -55,8 +55,8 @@
         <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> ITEM ADD FORM <font color="red">[LEVEL-1] [STORE PART]</font><hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="WH Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">* :</span></td>
-                <td style="text-align:left;"><asp:DropDownList ID="ddlWH" runat="server" CssClass="ddList" Font-Bold="false" Width="220px" Height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
+                <td colspan="4" style="text-align:center;"><asp:Label ID="Label14" runat="server" Text="WH Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span><%--</td>--%>
+                <%--<td style="text-align:left;">--%><asp:DropDownList ID="ddlWH" runat="server" CssClass="ddList" Font-Bold="false" Width="220px" Height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblBaseName" runat="server" Text="Product Base Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>

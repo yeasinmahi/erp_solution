@@ -232,7 +232,7 @@ namespace UI.Asset
                     string type = DdlType.SelectedItem.ToString();
                     try {  cost = decimal.Parse(TxtCost.Text.ToString()); }
                     catch {  cost = decimal.Parse(0.ToString()); }
-                    int Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+                    int Mnumber = int.Parse(TxtOrder.Text.ToString());
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());

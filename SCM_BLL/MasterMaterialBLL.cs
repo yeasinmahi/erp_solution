@@ -63,5 +63,19 @@ namespace SCM_BLL
             { return adp.GetItemInfoForAccounts(intAutoID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetDropDaownData(int intPart, int intWHID, int intInsertBy, int intGroupID, int intCategoryID)
+        {
+            SprGetDropDownListForInventoryStatementTableAdapter adp = new SprGetDropDownListForInventoryStatementTableAdapter();
+            try
+            { return adp.GetDropdownData(intPart, intWHID, intInsertBy, intGroupID, intCategoryID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetInventoryStatement(int intWHID, DateTime dteFDate, DateTime dteTDate, int intSearchBy, string strID, int intCatNew)
+        {
+            SprInventoryStatementGlobalTableAdapter adp = new SprInventoryStatementGlobalTableAdapter();
+            try
+            { return adp.GetInventoryStatement(intWHID, dteFDate, dteTDate, intSearchBy, strID, intCatNew); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
     }
 }
