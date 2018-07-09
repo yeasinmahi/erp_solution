@@ -264,8 +264,8 @@ namespace UI.SCM
                 strGroupName = ddlGroup.SelectedItem.ToString();
                 intCategoryID = int.Parse(ddlCategory.SelectedValue.ToString());
                 strCategoryName = ddlCategory.SelectedItem.ToString();
-                intSubCategoryID = int.Parse(ddlSubCategory.SelectedValue.ToString());
-                strSubCategoryName = ddlSubCategory.SelectedItem.ToString();
+                try { intSubCategoryID = int.Parse(ddlSubCategory.SelectedValue.ToString()); } catch { }
+                try { strSubCategoryName = ddlSubCategory.SelectedItem.ToString(); } catch { }
                 try { intMinorCategory = int.Parse(ddlMinorCategory.SelectedValue.ToString()); } catch { }
                 try { strMinorCategory = ddlMinorCategory.SelectedItem.ToString(); } catch { }
                 try { intPlantID = int.Parse(ddlPlant.SelectedValue.ToString()); } catch { }
