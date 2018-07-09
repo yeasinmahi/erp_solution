@@ -10,7 +10,7 @@
 namespace UI.Revenue {
     
     
-    public partial class frmBudEntry {
+    public partial class frmInventorySummary {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -166,6 +166,15 @@ namespace UI.Revenue {
         protected global::System.Web.UI.WebControls.HiddenField hdnCustAddress;
         
         /// <summary>
+        /// lblVatAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVatAccount;
+        
+        /// <summary>
         /// lblHeading control.
         /// </summary>
         /// <remarks>
@@ -175,58 +184,22 @@ namespace UI.Revenue {
         protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// ddlWh control.
+        /// ddlMainHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWh;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMainHead;
         
         /// <summary>
-        /// ddlRptType control.
+        /// ddlSubList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRptType;
-        
-        /// <summary>
-        /// txtFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFrom;
-        
-        /// <summary>
-        /// fdt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender fdt;
-        
-        /// <summary>
-        /// txtTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTo;
-        
-        /// <summary>
-        /// tdt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender tdt;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubList;
         
         /// <summary>
         /// btnShow control.
@@ -238,12 +211,12 @@ namespace UI.Revenue {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// dgvRpt control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvRpt;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

@@ -299,6 +299,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RevenueDLL\RevinueTDS.cs">
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RevenueDLL\RevinueTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
