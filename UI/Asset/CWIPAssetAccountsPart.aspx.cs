@@ -41,9 +41,6 @@ namespace UI.Asset
             if (!IsPostBack)
             {
 
-
-
-
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -53,8 +50,6 @@ namespace UI.Asset
                 dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
-
-
 
             }
             else
@@ -630,7 +625,7 @@ namespace UI.Asset
                 try { File.Delete(filePathForXMlAssetParking); } catch { }
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-                string message = parking.InsertParkingData(8, xmlString, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
+                string message = parking.InsertParkingData(15, xmlString, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
             }
@@ -1312,7 +1307,7 @@ namespace UI.Asset
 
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-                string message = parking.InsertParkingData(9, xmlString, xmlStringDag, XMLBuilding, XMLLand, 0, intenroll);
+                string message = parking.InsertParkingData(16, xmlString, xmlStringDag, XMLBuilding, XMLLand, 0, intenroll);
                 dgvLand.DataSource = ""; dgvLand.DataBind();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
@@ -1835,7 +1830,7 @@ namespace UI.Asset
                 try { File.Delete(filePathForXMlAssetParking); } catch { }
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-                string message = parking.InsertParkingData(10, xmlString, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
+                string message = parking.InsertParkingData(17, xmlString, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
 
@@ -1886,7 +1881,7 @@ namespace UI.Asset
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
 
-                dt = objregister.Unitname(5, 1, intenroll, intjobid, intdept, "0"); ;
+                dt = objregister.Unitname(5, 1, intenroll, intjobid, intdept, "0"); 
                 ddlUnit.DataSource = dt;
                 ddlUnit.DataTextField = "strUnit";
                 ddlUnit.DataValueField = "intUnitID";
@@ -2221,7 +2216,7 @@ namespace UI.Asset
                 int intAutoID = int.Parse(datas[0].ToString());
                 int majorType = int.Parse(datas[1].ToString());
                 hdnReceive.Value = intAutoID.ToString();
-                if (majorType == 8)
+                if (majorType == 8) //vehicle
                 {
 
                     try { File.Delete(filePathXMlCwipLand); } catch { } 
@@ -2229,7 +2224,7 @@ namespace UI.Asset
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivVehicle();", true);
                     VehicleAssetInfoLoad();
                 }
-                else if (majorType == 5)
+                else if (majorType == 5)  //land
                 {
                     try { File.Delete(filePathXMlCwipLand); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnLandDiv();", true);
@@ -2237,14 +2232,14 @@ namespace UI.Asset
                     LandAssetInfoLoad();
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
                 }
-                else if (majorType == 6)
+                else if (majorType == 6)  //building
                 {
                     try { File.Delete(filePathXMlCwipLand); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnBuildingDiv();", true);
                     BuildingAssetInfoLoad();
 
                 }
-                else
+                else  //general
                 {
                     try { File.Delete(filePathXMlCwipLand); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
