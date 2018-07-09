@@ -196,11 +196,11 @@
             <tr><td colspan="4"><hr /></td></tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label22" runat="server" Text="HML Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlHML" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="1">High Cost</asp:ListItem><asp:ListItem Value="2">Medium Cost</asp:ListItem><asp:ListItem Value="3">Low Cost</asp:ListItem>
-                </asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlHML" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text="Select HML Classification"></asp:ListItem>
+                <asp:ListItem Value="1" Text="High Cost"></asp:ListItem><asp:ListItem Value="2" Text="Medium Cost"></asp:ListItem><asp:ListItem Value="3" Text="Low Cost"></asp:ListItem></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="VAT Applicable " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlVAT" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0">No</asp:ListItem><asp:ListItem Value="1">Yes</asp:ListItem>
-                </asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlVAT" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="3" Text="Select VAT Applicable or not"></asp:ListItem>
+                <asp:ListItem Value="0" Text="No"></asp:ListItem><asp:ListItem Value="1" Text="Yes"></asp:ListItem></asp:DropDownList></td>
             </tr>
             <tr>
                 <td colspan="4" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnApprove" runat="server" class="myButton" OnClick="btnApprove_Click" OnClientClick="ConfirmAll()" Text="Approve" /></td>

@@ -52,7 +52,7 @@
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
     <asp:HiddenField ID="hdnWHID" runat="server" /> <asp:HiddenField ID="hdnGroupID" runat="server" /><asp:HiddenField ID="hdnCategoryID" runat="server" />      
     <div class="divbody" style="padding-right:10px;">
-        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> ITEM ADD FORM <font color="red">[LEVEL-1] [STORE PART]</font><hr /></div>
+        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> PRODUCT ENLISHMENT <font color="red">[STORE PART]</font><hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr>
                 <td colspan="4" style="text-align:center;"><asp:Label ID="Label14" runat="server" Text="WH Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span><%--</td>--%>
@@ -102,9 +102,9 @@
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label5" runat="server" Text="UOM " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlUOM" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlUOM" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label17" runat="server" Text="Location " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlLocation" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlLocation" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" Text="Group " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
@@ -114,27 +114,27 @@
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label6" runat="server" Text="Sub-Category " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label7" runat="server" Text="Minor Category :" CssClass="lbl"></asp:Label></td>
-                <td><asp:DropDownList ID="ddlMinorCategory" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlMinorCategory" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="false"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label8" runat="server" Text="Plant :" CssClass="lbl"></asp:Label></td>
-                <td><asp:DropDownList ID="ddlPlant" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlPlant" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="ABC Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlABC" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"><asp:ListItem Selected="True" Value="1">A</asp:ListItem><asp:ListItem Value="2">B</asp:ListItem>
-                <asp:ListItem Value="3">C</asp:ListItem></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlABC" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"><asp:ListItem Selected="True" Value="0"> Please Select ABC Classification.</asp:ListItem>
+                <asp:ListItem Value="1">A</asp:ListItem><asp:ListItem Value="2">B</asp:ListItem><asp:ListItem Value="3">C</asp:ListItem></asp:DropDownList></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="FSN Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlFSN" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"><asp:ListItem Selected="True" Value="1">Fast</asp:ListItem><asp:ListItem Value="2">Slow</asp:ListItem>
-                <asp:ListItem Value="3">Non-Moving</asp:ListItem></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlFSN" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"><asp:ListItem Selected="True" Value="0"> Please Select FSN Classification.</asp:ListItem>
+                <asp:ListItem Value="1">Fast</asp:ListItem><asp:ListItem Value="2">Slow</asp:ListItem><asp:ListItem Value="3">Non-Moving</asp:ListItem></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="VDE Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlVDE" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"><asp:ListItem Selected="True" Value="1">Vital</asp:ListItem><asp:ListItem Value="2">Essential</asp:ListItem>
-                <asp:ListItem Value="3">Desireable</asp:ListItem></asp:DropDownList></td>
+                <td><asp:DropDownList ID="ddlVDE" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true"><asp:ListItem Selected="True" Value="0"> Please Select VDE Classification.</asp:ListItem>
+                <asp:ListItem Value="1">Vital</asp:ListItem><asp:ListItem Value="2">Essential</asp:ListItem><asp:ListItem Value="3">Desireable</asp:ListItem></asp:DropDownList></td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click"/></td>        
+                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click" OnClientClick="ConfirmAll()"/></td>        
             </tr>            
         </table>
     </div>

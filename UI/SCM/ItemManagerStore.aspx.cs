@@ -277,43 +277,98 @@ namespace UI.SCM
                 intVDE = int.Parse(ddlVDE.SelectedValue.ToString());
                 strVDEClassification = ddlVDE.SelectedItem.ToString();
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
-                intSelfTime = int.Parse(txtSelfTime.Text.ToString());
+                try { intSelfTime = int.Parse(txtSelfTime.Text.ToString()); } catch { }
 
-                if(strItemName == "" || intUOM == 0 || intLocationID == 0 || intGroupID == 0 || intCategoryID == 0 || intSubCategoryID == 0)
+                if(strItemName == "")
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Product Base Name must be filled.');", true);
+                    return;
+                }
+                else if(intUOM == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Unit of Measurement.');", true);
+                    return;
+                }
+                else if (intLocationID == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select a valid Location.');", true);
+                    return;
+                }
+                else if (intGroupID == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Product Group.');", true);
+                    return;
+                }
+                else if (intGroupID == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Product Group.');", true);
+                    return;
+                }
+                else if (intCategoryID == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Product Category.');", true);
+                    return;
+                }
+                else if (intSubCategoryID == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Product Sub-Category.');", true);
+                    return;
+                }
+                else if (intABC == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select ABC Classification.');", true);
+                    return;
+                }
+                else if (intFSN == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select FSN Classification.');", true);
+                    return;
+                }
+                else if (intVDE == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select VDE Classification.');", true);
                     return;
                 }
 
-                dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
+                if (hdnconfirm.Value == "1")
+                {
+                    dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
                         intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
                         intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
                         intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
 
-                if (dt.Rows.Count > 0)
-                {
-                    string msg = dt.Rows[0]["msg"].ToString();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    if (dt.Rows.Count > 0)
+                    {
+                        string msg = dt.Rows[0]["msg"].ToString();
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
 
-                    txtBaseName.Text = "";
-                    txtDescription.Text = "";
-                    txtPart.Text = "";
-                    txtModel.Text= "";
-                    txtSerial.Text = "";
-                    txtBrand.Text = "";
-                    txtSpecification.Text = "";
-                    txtOrigin.Text = "";
-                    txtHSCode.Text = "";
-                    txtReOrder.Text = "";
-                    txtMinimum.Text = "";
-                    txtMaximum.Text = "";
-                    txtSafety.Text = "";
-                    txtSelfTime.Text = "";
-                    LoadUOM();
-                    LoadLocation();
-                    LoadGroup();
-                    LoadMinorCategory();
-                    LoadPlant();
+                        txtBaseName.Text = "";
+                        txtDescription.Text = "";
+                        txtPart.Text = "";
+                        txtModel.Text = "";
+                        txtSerial.Text = "";
+                        txtBrand.Text = "";
+                        txtSpecification.Text = "";
+                        txtOrigin.Text = "";
+                        txtHSCode.Text = "";
+                        txtReOrder.Text = "";
+                        txtMinimum.Text = "";
+                        txtMaximum.Text = "";
+                        txtSafety.Text = "";
+                        txtSelfTime.Text = "";
+                        ddlUOM.SelectedIndex = 0;
+                        ddlLocation.SelectedIndex = 0;
+                        ddlGroup.SelectedIndex = 0;
+                        ddlCategory.SelectedIndex = 0;
+                        ddlMinorCategory.SelectedIndex = 0;
+                        ddlPlant.SelectedIndex = 0;
+                        ddlABC.SelectedIndex = 0;
+                        ddlFSN.SelectedIndex = 0;
+                        ddlVDE.SelectedIndex = 0;
+                        hdnconfirm.Value = "0";
+                        ddlSubCategory.DataSource = "";
+                        ddlSubCategory.DataBind();
+                    }
                 }
             }
             catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Error!!!!!');", true); }

@@ -1240,6 +1240,13 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemListForPurchaseRow FindByintAutoID(int intAutoID) {
+                return ((ItemListForPurchaseRow)(this.Rows.Find(new object[] {
+                            intAutoID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ItemListForPurchaseDataTable cln = ((ItemListForPurchaseDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1314,6 +1321,8 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrModel);
                 this.columnstrSerial = new global::System.Data.DataColumn("strSerial", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrSerial);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintAutoID}, true));
                 this.columnstrWareHoseName.MaxLength = 250;
                 this.columnstrItemName.MaxLength = 250;
                 this.columnstrDescription.MaxLength = 250;
@@ -1330,6 +1339,7 @@ namespace SCM_DAL {
                 this.columnintAutoID.AutoIncrementStep = -1;
                 this.columnintAutoID.AllowDBNull = false;
                 this.columnintAutoID.ReadOnly = true;
+                this.columnintAutoID.Unique = true;
                 this.columnstrModel.MaxLength = 100;
                 this.columnstrSerial.MaxLength = 100;
             }
@@ -4546,11 +4556,12 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"   SELECT intAutoID, strWareHoseName, strItemName, strDescription, strPart, strModel, strSerial, strBrand, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName
+            this._commandCollection[0].CommandText = @"  SELECT intAutoID, strWareHoseName, strItemName, strDescription, strPart, strModel, strSerial, strBrand, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName
   FROM ERP_Inventory.dbo.tblTempItemList item
   INNER JOIN ERP_Inventory.dbo.tblWearHouse wh ON item.intWHID = wh.intWHID
-  WHERE item.ysnActive = 1 AND ysnStore = 1 AND ysnProcurement IS NULL";
+  WHERE item.ysnActive = 1 AND ysnStore = 1 AND ysnProcurement IS NULL AND item.intWHID = @intWHID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = @"SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName,
@@ -4568,20 +4579,27 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAutoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @" SELECT intAutoID, strWareHoseName, strItemName, strDescription, strPart, strModel, strSerial, strBrand, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName,
+            this._commandCollection[3].CommandText = @"  SELECT intAutoID, strWareHoseName, strItemName, strDescription, strPart, strModel, strSerial, strBrand, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName,
   strPurchaseType, intPOProcessTime, intShipmentDeliveryTime, intProcessingTime, intTotalLeadTime, strOrderingLotSize, numEconomicOrderQty, numMinimumOrderQty, strSDEClassification
   FROM ERP_Inventory.dbo.tblTempItemList item
   INNER JOIN ERP_Inventory.dbo.tblWearHouse wh ON item.intWHID = wh.intWHID
-  WHERE item.ysnActive = 1 AND ysnStore = 1 AND ysnProcurement = 1 AND ysnAccounts IS NULL";
+  WHERE item.ysnActive = 1 AND ysnStore = 1 AND ysnProcurement = 1 AND ysnAccounts IS NULL AND item.intWHID = @intWHID";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MasterMaterialTDS.ItemListForPurchaseDataTable GetItemListforPurchase() {
+        public virtual MasterMaterialTDS.ItemListForPurchaseDataTable GetItemListforPurchase(global::System.Nullable<int> intWHID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intWHID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWHID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             MasterMaterialTDS.ItemListForPurchaseDataTable dataTable = new MasterMaterialTDS.ItemListForPurchaseDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -4615,8 +4633,14 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual MasterMaterialTDS.ItemListForPurchaseDataTable GetItemListforAccounts() {
+        public virtual MasterMaterialTDS.ItemListForPurchaseDataTable GetItemListforAccounts(global::System.Nullable<int> intWHID) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((intWHID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWHID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             MasterMaterialTDS.ItemListForPurchaseDataTable dataTable = new MasterMaterialTDS.ItemListForPurchaseDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
