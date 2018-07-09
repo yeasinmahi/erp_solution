@@ -102,7 +102,7 @@ namespace UI.SCM
                 {
                     string msg = dt.Rows[0]["msg"].ToString();
 
-                    if(msg == "ITEM ADD SUCCESSFULLY.")
+                    if(msg == "Updated")
                     {
                         intPart = 13;
                         dt = new DataTable();

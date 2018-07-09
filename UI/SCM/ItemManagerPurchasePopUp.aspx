@@ -162,15 +162,15 @@
         <tr><td colspan="4"><hr /></td></tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Procure Type " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="1">Local</asp:ListItem><asp:ListItem Value="2">Import</asp:ListItem><asp:ListItem Value="3">Fabrication</asp:ListItem>
-            </asp:DropDownList></td>
-            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="PO Processing Time :" CssClass="lbl"></asp:Label></td>
+            <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text=" Select Procure Type"></asp:ListItem>
+            <asp:ListItem Value="1" Text="Local"></asp:ListItem><asp:ListItem Value="2" Text="Import"></asp:ListItem><asp:ListItem Value="3" Text="Fabrication"></asp:ListItem><asp:ListItem Value="4" Text="Common"></asp:ListItem></asp:DropDownList></td>
+            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="PO Processing Time " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td><asp:TextBox ID="txtPOTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();" onKeyUp="javascript:TotalLeadTime();"></asp:TextBox></td>
         </tr>
         <tr>
-            <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Delivery Time :" CssClass="lbl"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Delivery Time " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td><asp:TextBox ID="txtDeliveryTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();" onKeyUp="javascript:TotalLeadTime();"></asp:TextBox></td>
-            <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="Processing Time for Goods Reveips :" CssClass="lbl"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="Processing Time for Goods Reveips " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td><asp:TextBox ID="txtProcessingTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();" onKeyUp="javascript:TotalLeadTime();"></asp:TextBox></td>                
         </tr>
         <tr>
@@ -187,8 +187,8 @@
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="Label21" runat="server" Text="SDE Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:DropDownList ID="ddlSDE" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="1">Scarce</asp:ListItem><asp:ListItem Value="2">Difficult</asp:ListItem>
-            <asp:ListItem Value="3">Easily</asp:ListItem></asp:DropDownList></td>
+            <td><asp:DropDownList ID="ddlSDE" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text=" Select SDE Classification"></asp:ListItem>
+            <asp:ListItem Value="1">Scarce</asp:ListItem><asp:ListItem Value="2">Difficult</asp:ListItem><asp:ListItem Value="3">Easily</asp:ListItem></asp:DropDownList></td>
             <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnApprove" runat="server" class="myButton" OnClick="btnApprove_Click" OnClientClick="ConfirmAll()" Text="Approve" /></td>
         </tr>
         </table>
