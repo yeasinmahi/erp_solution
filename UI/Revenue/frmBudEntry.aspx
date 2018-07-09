@@ -43,8 +43,9 @@
     <asp:HiddenField ID="hdnEnroll" runat="server" /> <asp:HiddenField ID="hdnitemid" runat="server" /> <asp:HiddenField ID="hdnCustAddress" runat="server" />
     <div class="tabs_container"> </div>
     <table>
+     <tr><td colspan="2" style="text-align:center; padding: 0px 0px 20px 0px;" class="auto-style1"><asp:Label ID="lblCompany" runat="server" CssClass="lbl" Font-Size="20px"></asp:Label></td></tr>
      <tr><td colspan="2" style="text-align:center; padding: 0px 0px 20px 0px;" class="auto-style1"><asp:Label ID="lblHeading" runat="server" Text="Inventory Summary Report" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
-     <tr><td style="text-align:right;">WH Name:</td> <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True"></asp:DropDownList>  </td>  </tr>
+     <tr><td style="text-align:left;">WH Name:</td> <td style="text-align:left;"> <asp:DropDownList ID="ddlWh"  CssClass="ddList" runat="server" AutoPostBack="True"></asp:DropDownList>  </td>  </tr>
      <tr><td>Report Type :</td><td class="auto-style1"><asp:DropDownList ID="ddlRptType"  CssClass="ddList" runat="server" AutoPostBack="True">
          <asp:ListItem Value="0">ALL</asp:ListItem>
          <asp:ListItem Value="1">Local</asp:ListItem>
@@ -59,28 +60,50 @@
          <asp:GridView ID="dgvRpt"  runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="false">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-        <asp:TemplateField HeaderText="Group Name" Visible="false" SortExpression="Productid"><ItemTemplate>
-        <asp:Label ID="lblstrGroupName" runat="server"  Text='<%# Bind("strGroupName") %>'></asp:Label></ItemTemplate>
+        <asp:TemplateField HeaderText="Item ID"  SortExpression="Productid"><ItemTemplate>
+        <asp:Label ID="lblintItem" runat="server"  Text='<%# Bind("intItem") %>'></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Left" Width="70px"/><FooterTemplate><div style="padding:0 0 5px 0"><asp:Label ID="lbl" Width="100px"  runat="server" Text="Grand-Total :" /></div>
+        </FooterTemplate></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Item Name"  SortExpression="Productid"><ItemTemplate>
+        <asp:Label ID="lblstrMaterialName" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Left" Width="70px"/><FooterTemplate><div style="padding:0 0 5px 0"><asp:Label ID="lbl" Width="100px"  runat="server" Text="Grand-Total :" /></div>
         </FooterTemplate></asp:TemplateField>
          
       
-        <asp:TemplateField HeaderText="Open Value" SortExpression="monOpenValue"><ItemTemplate>
-        <asp:Label ID="lblmonOpenValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monOpenValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <asp:TemplateField HeaderText="UoM" SortExpression="monOpenValue"><ItemTemplate>
+        <asp:Label ID="lblstrUoM"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("strUoM","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-        <asp:TemplateField HeaderText="Receive Value" SortExpression="Quantity"><ItemTemplate>
-        <asp:Label ID="lblrmonRcvValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monRcvValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <asp:TemplateField HeaderText="MRR No" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblintMRRID"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("intMRRID","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-        <asp:TemplateField HeaderText="Issue Value" SortExpression="Quantity"><ItemTemplate>
-        <asp:Label ID="lblissueValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("issueValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <asp:TemplateField HeaderText="MRR Date" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lbldteMRRDate"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("dteMRRDate","{0:d}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
-         <asp:TemplateField HeaderText="Closing Value" SortExpression="Quantity"><ItemTemplate>
-        <asp:Label ID="lblrmonCloseValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monCloseValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+         <asp:TemplateField HeaderText="MRR Qty" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblMRRQty"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("MRRQty","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
       
+        <asp:TemplateField HeaderText="Present Stock" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblmonPresentStock"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monPresentStock","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
+      
+        <asp:TemplateField HeaderText="Stock Value" SortExpression="Quantity"><ItemTemplate>
+        <asp:Label ID="lblmonPresentValue"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("monPresentValue","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Expairy Date" SortExpression="ExpairyDate"><ItemTemplate>
+        <asp:Label ID="lblExpairyDate"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("ExpairyDate","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="NO Of Days" SortExpression="ExpairyDate"><ItemTemplate>
+        <asp:Label ID="lblDaycount"  runat="server" Width="60px" TextMode="Number" Text='<%# Bind("Daycount","{0:n0}") %>' AutoPostBack="false"    ></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Right" Width="60px"/></asp:TemplateField>
+
+
         </Columns>
         <FooterStyle BackColor="#F3CCC2" BorderStyle="None" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
