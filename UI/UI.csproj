@@ -385,6 +385,7 @@
     <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
+    <Content Include="Revenue\rptExpiaryDate.aspx" />
     <Content Include="Revenue\frmRevenueBudgetEntry.aspx" />
     <Content Include="Revenue\frmBudgetVSRevenue.aspx" />
     <Content Include="Revenue\frmRevinueCenterCrate.aspx" />
@@ -2918,6 +2919,13 @@
     </Compile>
     <Compile Include="Revenue\frmBudEntry.aspx.designer.cs">
       <DependentUpon>frmBudEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\rptExpiaryDate.aspx.cs">
+      <DependentUpon>rptExpiaryDate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\rptExpiaryDate.aspx.designer.cs">
+      <DependentUpon>rptExpiaryDate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Revenue\frmRevenueBudgetEntry.aspx.cs">
       <DependentUpon>frmRevenueBudgetEntry.aspx</DependentUpon>

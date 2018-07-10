@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.SCM {
+namespace UI.Revenue {
     
     
-    public partial class ItemMangerPurchase {
+    public partial class frmInventorySummary {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -40,13 +40,13 @@ namespace UI.SCM {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmLoanApplication control.
+        /// frmCreditnote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmLoanApplication;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmCreditnote;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -85,6 +85,15 @@ namespace UI.SCM {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
+        /// hdnCustid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCustid;
+        
+        /// <summary>
         /// hdnconfirm control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,42 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnconfirm;
+        
+        /// <summary>
+        /// hdnVatAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVatAccount;
+        
+        /// <summary>
+        /// hdnVatRegNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVatRegNo;
+        
+        /// <summary>
+        /// hdnAccno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnAccno;
+        
+        /// <summary>
+        /// hdnysnFactory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnysnFactory;
         
         /// <summary>
         /// hdnEnroll control.
@@ -103,67 +148,58 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
-        /// hdnUnit control.
+        /// hdnitemid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
+        protected global::System.Web.UI.WebControls.HiddenField hdnitemid;
         
         /// <summary>
-        /// hdnWHID control.
+        /// hdnCustAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnWHID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCustAddress;
         
         /// <summary>
-        /// hdnGroupID control.
+        /// lblVatAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnGroupID;
+        protected global::System.Web.UI.WebControls.Label lblVatAccount;
         
         /// <summary>
-        /// hdnCategoryID control.
+        /// lblHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCategoryID;
+        protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// hdnItemID control.
+        /// ddlMainHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnItemID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMainHead;
         
         /// <summary>
-        /// Label14 control.
+        /// ddlSubList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
-        
-        /// <summary>
-        /// ddlWH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWH;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubList;
         
         /// <summary>
         /// btnShow control.
@@ -175,12 +211,12 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// dgvItem control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvItem;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

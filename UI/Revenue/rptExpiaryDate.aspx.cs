@@ -20,7 +20,7 @@ using SAD_BLL.Vat;
 
 namespace UI.VAT_Management
 {
-    public partial class frmCreditNote : BasePage
+    public partial class rptExpiaryDate : BasePage
     {
         string filePathForXML,Pname, xmlString = "",strChallanNo, ItemName, strReason, strItem, strVehicleTypeNo, strCusName, strCusAddress, strCusVatReg, intVATTime;
         int intItem, intitemid, intYear, intM12No, intM11Challanno,intCustid,VatChallanNo, intid,intyear,intMonth, intSL;
@@ -58,7 +58,7 @@ namespace UI.VAT_Management
                 ddlVatAccount.DataValueField = "intVatPointID";
                 ddlVatAccount.DataSource = dt;
                 ddlVatAccount.DataBind();
-                lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
+                lblunit.Text = Session[SessionParams.UNIT_NAME].ToString(); ;
                // hdnVatAccID.Value = ddlVatAccount.SelectedValue.ToString();
                 dt.Clear();
             }
@@ -66,7 +66,7 @@ namespace UI.VAT_Management
 
         protected void ddlVatAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
+            lblunit.Text = ddlVatAccount.SelectedItem.ToString();
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {

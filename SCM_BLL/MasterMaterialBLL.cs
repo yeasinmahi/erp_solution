@@ -35,11 +35,11 @@ namespace SCM_BLL
             { return adp.GetLocationByWH(intWHID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetItemListForPurchase()
+        public DataTable GetItemListForPurchase(int intWHID)
         {
             ItemListForPurchaseTableAdapter adp = new ItemListForPurchaseTableAdapter();
             try
-            { return adp.GetItemListforPurchase(); }
+            { return adp.GetItemListforPurchase(intWHID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetItemInfoForPurchase(int intAutoID)
@@ -49,11 +49,11 @@ namespace SCM_BLL
             { return adp.GetItemInfoForPurchase(intAutoID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetItemListForAccounts()
+        public DataTable GetItemListForAccounts(int intWHID)
         {
             ItemListForPurchaseTableAdapter adp = new ItemListForPurchaseTableAdapter();
             try
-            { return adp.GetItemListforAccounts(); }
+            { return adp.GetItemListforAccounts(intWHID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetItemInfoForAccounts(int intAutoID)

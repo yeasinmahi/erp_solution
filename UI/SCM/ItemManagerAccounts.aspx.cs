@@ -27,9 +27,18 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
-                try
+                try //WH List for Accounts
                 {
-                    LoadGrid();
+                    intPart = 16;
+                    intInsertBy = int.Parse(hdnEnroll.Value);
+                    dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
+                        intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
+                        intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
+                        intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
+                    ddlWH.DataTextField = "strWareHoseName";
+                    ddlWH.DataValueField = "intWHID";
+                    ddlWH.DataSource = dt;
+                    ddlWH.DataBind();
                 }
                 catch { }
             }
@@ -39,7 +48,7 @@ namespace UI.SCM
         private void LoadGrid()
         {
             dt = new DataTable();
-            dt = bll.GetItemListForAccounts();
+            dt = bll.GetItemListForAccounts(intWHID);
             dgvItem.DataSource = dt; dgvItem.DataBind();
         }
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -81,6 +90,24 @@ namespace UI.SCM
                     LoadGrid();
                 }
             }
+        }
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dgvItem.DataSource = "";
+                dgvItem.DataBind();
+            }
+            catch { }
+        }
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                intWHID = int.Parse(ddlWH.SelectedValue.ToString());
+                LoadGrid();
+            }
+            catch { }
         }
     }
 }
