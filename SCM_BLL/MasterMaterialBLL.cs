@@ -35,11 +35,11 @@ namespace SCM_BLL
             { return adp.GetLocationByWH(intWHID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetItemListForPurchase()
+        public DataTable GetItemListForPurchase(int intWHID)
         {
             ItemListForPurchaseTableAdapter adp = new ItemListForPurchaseTableAdapter();
             try
-            { return adp.GetItemListforPurchase(); }
+            { return adp.GetItemListforPurchase(intWHID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetItemInfoForPurchase(int intAutoID)
@@ -49,11 +49,11 @@ namespace SCM_BLL
             { return adp.GetItemInfoForPurchase(intAutoID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetItemListForAccounts()
+        public DataTable GetItemListForAccounts(int intWHID)
         {
             ItemListForPurchaseTableAdapter adp = new ItemListForPurchaseTableAdapter();
             try
-            { return adp.GetItemListforAccounts(); }
+            { return adp.GetItemListforAccounts(intWHID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetItemInfoForAccounts(int intAutoID)
@@ -61,6 +61,20 @@ namespace SCM_BLL
             ItemListForPurchaseTableAdapter adp = new ItemListForPurchaseTableAdapter();
             try
             { return adp.GetItemInfoForAccounts(intAutoID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetDropDaownData(int intPart, int intWHID, int intInsertBy, int intGroupID, int intCategoryID)
+        {
+            SprGetDropDownListForInventoryStatementTableAdapter adp = new SprGetDropDownListForInventoryStatementTableAdapter();
+            try
+            { return adp.GetDropdownData(intPart, intWHID, intInsertBy, intGroupID, intCategoryID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetInventoryStatement(int intWHID, DateTime dteFDate, DateTime dteTDate, int intSearchBy, string strID, int intCatNew)
+        {
+            SprInventoryStatementGlobalTableAdapter adp = new SprInventoryStatementGlobalTableAdapter();
+            try
+            { return adp.GetInventoryStatement(intWHID, dteFDate, dteTDate, intSearchBy, strID, intCatNew); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
     }

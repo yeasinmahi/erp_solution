@@ -56,7 +56,7 @@
             document.getElementById('txtTotalLeadTime').value = total;
           }
           function ViewDispatchPopup(Id) {
-            window.open('ItemManagerPurchasePopUp.aspx?ID=' + Id, 'sub', "height=750, width=750, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+            window.open('ItemManagerPurchasePopUp.aspx?ID=' + Id, 'sub', "height=700, width=750, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
         </script>
     <%--<style type="text/css"> 
@@ -83,11 +83,19 @@
     <asp:HiddenField ID="hdnWHID" runat="server" /> <asp:HiddenField ID="hdnGroupID" runat="server" /><asp:HiddenField ID="hdnCategoryID" runat="server" />
     <asp:HiddenField ID="hdnItemID" runat="server" />
         
-        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;">
-            ITEM ADD FORM <font color="red">[LEVEL-2][PROCUREMENT PART]</font><hr />
+        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> PRODUCT ENLISHMENT <font color="red">[PROCUREMENT PART]</font><hr />
         </div>
 
         <table class="tbldecoration" style="width:auto; float:left;">
+            <tr>
+                <td>
+                    <table class="tbldecoration" style="width:auto; float:left; border:solid"><tr>
+                        <td style="text-align:center;"><asp:Label ID="Label14" runat="server" Text="WH Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span><asp:DropDownList ID="ddlWH" runat="server" CssClass="ddList" Font-Bold="false" Width="220px" Height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:Button ID="btnShow" runat="server" Text="Show" class="myButtonGrey" Width="100px" OnClick="btnShow_Click" />
+                        </td>
+                    </tr></table>
+                </td>
+            </tr>
             <table>
                 <tr><td><hr /></td></tr>
                 <tr><td><asp:GridView ID="dgvItem" runat="server" AllowPaging="false" AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" CssClass="Grid" FooterStyle-BackColor="#808080" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="11px" FooterStyle-ForeColor="White" FooterStyle-Height="25px" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" HeaderStyle-Font-Bold="true" HeaderStyle-Font-Size="10px" PagerStyle-CssClass="pgr" PageSize="8" ShowFooter="false" OnRowCommand="dgvItem_RowCommand">

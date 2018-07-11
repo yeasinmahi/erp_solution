@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmCreditNote.aspx.cs" Inherits="UI.VAT_Management.frmCreditNote" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="rptExpiaryDate.aspx.cs" Inherits="UI.VAT_Management.rptExpiaryDate" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>
@@ -20,95 +20,10 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     
-    <script>
-        function ValidationBasicInfo() {
-            document.getElementById("hdnconfirm").value = "0";
-            var txtCreditqty = document.forms["frmCreditnote"]["txtCreditqty"].value;
-            var txtWithoutSDVAT = document.forms["frmCreditnote"]["txtWithoutSDVAT"].value;
-          
-            var txtSD = document.forms["frmCreditnote"]["txtSD"].value;
-            var txtVat = document.forms["frmCreditnote"]["txtVAT"].value;
-            var txtSurcharge = document.forms["frmCreditnote"]["txtSurcharge"].value;
-           // var m11others = document.forms["frmCreditnote"]["lblM11Vat"].value;
-
-            if (txtCreditqty == null || txtCreditqty == "") {
-                alert("Please Fill-Up Qty !");
-            }
-
-            else if (txtWithoutSDVAT == null || txtWithoutSDVAT == "") {
-                alert("Purchase Fill-up  Without SD VAT !");
-            }
-            else if (txtSD == null || txtSD == "") {
-                alert("Please Fill-up  SD !");
-            }
-
-            else if (txtVat == null || txtVat == "") {
-                alert("Please Fill-up VAT !");
-            }
-
-            else if (txtSurcharge == null || txtSurcharge == "") {
-                alert("Please Fill-up Surcharge!");
-            }
-          
-            
-            else {  document.getElementById("hdnconfirm").value = "1"; }
-        }
-    </script>
-    <script type="text/javascript">
-      $("[id*=lblsd]").live("keyup", function () {
-          if (!jQuery.trim($(this).val()) == '') {
-
-              if (!isNaN(parseFloat($(this).val()))) {
-                  var row = $(this).closest("tr");
-                  var m11 = parseFloat($("[id*=lblM11]", row).val());
-                  var surCharge = parseFloat($("[id*=lblSurCharge]", row).val());
-                  var sd = parseFloat($(this).val());
-                
-                   $("[id*=lblDecrateOthervat]", row).html((m11- sd-surCharge));
-              }
-          } else {
-              $(this).val('');
-          }
-        });
-         $("[id*=lblSurCharge]").live("keyup", function () {
-          if (!jQuery.trim($(this).val()) == '') {
-
-              if (!isNaN(parseFloat($(this).val()))) {
-                  var row = $(this).closest("tr");
-                  var sd = parseFloat($("[id*=lblsd]", row).val());
-                  var m11 = parseFloat($("[id*=lblM11]", row).val());
-                  var surCharge = parseFloat($(this).val());
-              
-                  $("[id*=lblDecrateOthervat]", row).html((m11- sd-surCharge));
-              }
-          } else {
-              $(this).val('');
-          }
-        });
-         $("[id*=lblvat]").live("keyup", function () {
-          if (!jQuery.trim($(this).val()) == '') {
-
-              if (!isNaN(parseFloat($(this).val()))) {
-                  var row = $(this).closest("tr");
-                  var m11 = parseFloat($("[id*=lblM11]", row).val());              
-                  var vat = parseFloat($(this).val());               
-                   $("[id*=Decratevat]", row).html((m11- vat));
-              }
-          } else {
-              $(this).val('');
-          }
-        });
-   </script> 
-   
-    <style type="text/css">
-        .auto-style1 {
-            height: 40px;
-        }
-    </style>
    
 </head>
 <body>
-    <form id="frmCreditnote" runat="server">
+    <form id="frmExpiary" runat="server">
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -130,8 +45,8 @@
     <asp:DropDownList ID="ddlVatAccount" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlVatAccount_SelectedIndexChanged"></asp:DropDownList>                                                                                       
     <hr /></div>
     <table>
-     <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Credit Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td class="auto-style1">
+     <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblunit" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
+     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Material Expiary Date Report" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td class="auto-style1">
      <table  class="tbldecoration" style="width:auto; float:left;">                              
      <tr><td>Product Name</td>
         <td><asp:TextBox ID="txtVatItemList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" OnTextChanged="txtVatItemList_TextChanged" ></asp:TextBox>

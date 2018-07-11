@@ -33,6 +33,7 @@ namespace UI.SCM.Transfer
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
+
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
                 dt = objTransfer.GetTtransferDatas(13, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlFrom.DataSource = dt;

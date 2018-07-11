@@ -31,6 +31,47 @@ namespace SAD_BLL.RevenueBLL
             catch { }
         }
 
+        public DataTable getMainHead()
+        {
+            try
+            {
+                tblCCSubListTableAdapter adp = new tblCCSubListTableAdapter();
+                return adp.GetData();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getInventoryMRRReport(int whid,int rpttype,DateTime dtefdate,DateTime dtetdate)
+        {
+            
+            try
+            {
+                sprInventoryStockValuByMaterialTableAdapter adp = new sprInventoryStockValuByMaterialTableAdapter();
+                return adp.GetData(whid,rpttype,dtefdate,dtetdate);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getRevenue(int whid, DateTime fdae, DateTime tdate, int partsearch, string importLocal)
+        {
+            try
+            {
+                sprInventoryMaterialGroupSummaryTableAdapter adp = new sprInventoryMaterialGroupSummaryTableAdapter();
+                return adp.GetData(whid, fdae, tdate, partsearch, importLocal);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getCCSub(int Mainid)
+        {
+            try
+            {
+                tblCCListTableAdapter adp = new tblCCListTableAdapter();
+                return adp.GetData(Mainid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getPshow(int Fggroupid)
         {
             

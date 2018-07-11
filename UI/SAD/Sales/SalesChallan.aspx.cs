@@ -63,7 +63,7 @@ namespace UI.SAD.Sales
             SalesConfigTDS.TblSalesConfigDataTable t = sc.GetInfoForDO(ddlUnit.SelectedValue);
             if (!t[0].IsysnSubledgerEntryFromDONull())
             {
-                if (t[0].ysnSubledgerEntryFromDO)
+                if(t[0].ysnSubledgerEntryFromDO)
                 {
                     sv.SubLedgerEntry(id, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), dt);
                 }
