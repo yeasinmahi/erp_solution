@@ -96,7 +96,7 @@ namespace UI.SCM
                 string DeptID = datas[6].ToString();
                 string SectionID = datas[7].ToString();
                 string SectionName = datas[8].ToString(); 
-
+               
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true); 
 
             }

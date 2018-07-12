@@ -217,8 +217,8 @@ namespace UI.BudgetPlan
                 dt = obj.getEntryDateCack(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
                 if(dt.Rows.Count>0)
                 {
-                DateTime dtedate =DateTime.Parse(dt.Rows[0][""].ToString());
-                DateTime dtedatenow = DateTime.Parse(dt.Rows[0][""].ToString());
+                DateTime dtedate =DateTime.Parse(dt.Rows[0]["dtedate"].ToString());
+                DateTime dtedatenow = DateTime.Parse(dt.Rows[0]["dtedatenow"].ToString());
 
                     if (dtedatenow <= dtedate)
                     {
