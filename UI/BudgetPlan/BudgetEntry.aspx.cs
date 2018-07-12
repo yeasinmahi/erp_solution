@@ -65,17 +65,25 @@ namespace UI.BudgetPlan
                 }
                 else { btnBudgetSave.Visible = false; return; }
 
-                dt = obj.GetYearList();
-                ddlYear.DataTextField = "intYear";
-                ddlYear.DataValueField = "intAutoID";
-                ddlYear.DataSource = dt;
-                ddlYear.DataBind();
+                //dt = obj.GetYearList();
+                //ddlYear.DataTextField = "intYear";
+                //ddlYear.DataValueField = "intAutoID";
+                //ddlYear.DataSource = dt;
+                //ddlYear.DataBind();
 
-                LoadGrid();                        
+                LoadGrid();
+                getYear();
             }
               
         }
-
+        private void getYear()
+        {
+            dt = obj.getyear();
+            ddlYear.DataTextField = "strYearList";
+            ddlYear.DataValueField = "intYear";
+            ddlYear.DataSource = dt;
+            ddlYear.DataBind();
+        }
         private void LoadGrid()
         {
             try
@@ -84,7 +92,7 @@ namespace UI.BudgetPlan
                 intCCID = int.Parse(ddlCostCenter.SelectedValue.ToString());
                 strYear = ddlYear.SelectedItem.ToString();
  
-                dt = obj.GetDataForBudgetEntry(intUnitID, strYear, 3, intCCID); //dt = obj.GetBudgetEntryR();
+                dt = obj.GetDataForBudgetEntry(intUnitID, strYear, 3, 0); //dt = obj.GetBudgetEntryR();
                 dgvBudget.DataSource = dt; 
                 dgvBudget.DataBind();
                 ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "gridviewScroll();", true);
@@ -205,105 +213,116 @@ namespace UI.BudgetPlan
         protected void btnBudgetSave_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
-            {   
-                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                intCCID = int.Parse(ddlCostCenter.SelectedValue.ToString());
-                intYear = int.Parse(ddlYear.SelectedItem.ToString());
-                intUserID = int.Parse(Session[SessionParams.USER_ID].ToString());
-
-                if (filePathForXML != null) { File.Delete(filePathForXML); }
-
-                if (dgvBudget.Rows.Count > 0) 
+            {
+                dt = obj.getEntryDateCack(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+                if(dt.Rows.Count>0)
                 {
-                    for (int index = 0; index < dgvBudget.Rows.Count; index++)
-                    {
-                        //coaid = ((Label)dgvBudget.Rows[index].FindControl("lblCOAID")).Text.ToString();
-                        coaid = ((TextBox)dgvBudget.Rows[index].FindControl("txtCOAID")).Text.ToString();
+                DateTime dtedate =DateTime.Parse(dt.Rows[0][""].ToString());
+                DateTime dtedatenow = DateTime.Parse(dt.Rows[0][""].ToString());
 
-                        strmonth = "7";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJulAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJulTol")).Text.ToString();
-                        if (decimal.Parse(bamo.ToString()) != 0)
+                    if (dtedatenow <= dtedate)
+                    {
+                        intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                        intCCID = int.Parse(ddlCostCenter.SelectedValue.ToString());
+                        intYear = int.Parse(ddlYear.SelectedItem.ToString());
+                        intUserID = int.Parse(Session[SessionParams.USER_ID].ToString());
+
+                        if (filePathForXML != null) { File.Delete(filePathForXML); }
+
+                        if (dgvBudget.Rows.Count > 0)
                         {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                            for (int index = 0; index < dgvBudget.Rows.Count; index++)
+                            {
+                                //coaid = ((Label)dgvBudget.Rows[index].FindControl("lblCOAID")).Text.ToString();
+                                coaid = ((TextBox)dgvBudget.Rows[index].FindControl("txtCOAID")).Text.ToString();
+
+                                strmonth = "7";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJulAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJulTol")).Text.ToString();
+                                if (decimal.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "8";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAugAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAugTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "9";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtSepAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtSepTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "10";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtOctAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtOctTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "11";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtNovAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtNovTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "12";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtDecAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtDecTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "1";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJanAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJanTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "2";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtFebAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtFebTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "3";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMarAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMarTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "4";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAprAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAprTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "5";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMayAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMayTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                                strmonth = "6";
+                                bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJunAmo")).Text.ToString();
+                                tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJunTol")).Text.ToString();
+                                if (int.Parse(bamo.ToString()) != 0)
+                                {
+                                    CreateVoucherXml(coaid, strmonth, bamo, tamo);
+                                }
+                            }
+
                         }
-                        strmonth = "8";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAugAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAugTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "9";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtSepAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtSepTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "10";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtOctAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtOctTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "11";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtNovAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtNovTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "12";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtDecAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtDecTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "1";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJanAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJanTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "2";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtFebAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtFebTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "3";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMarAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMarTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "4";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAprAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtAprTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "5";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMayAmo")).Text.ToString(); 
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtMayTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }
-                        strmonth = "6";
-                        bamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJunAmo")).Text.ToString();
-                        tamo = ((TextBox)dgvBudget.Rows[index].FindControl("txtJunTol")).Text.ToString();
-                        if (int.Parse(bamo.ToString()) != 0)
-                        {
-                            CreateVoucherXml(coaid, strmonth, bamo, tamo);
-                        }                        
                     }
                 }
             }
