@@ -1277,6 +1277,7 @@
     <Content Include="SCM\PoRegisterReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
+    <Content Include="SCM\ProductReport.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\PurchaserPermormance.aspx" />
@@ -6566,6 +6567,13 @@
     </Compile>
     <Compile Include="SCM\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ProductReport.aspx.cs">
+      <DependentUpon>ProductReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ProductReport.aspx.designer.cs">
+      <DependentUpon>ProductReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>
