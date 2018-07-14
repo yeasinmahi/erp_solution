@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAD_BLL.RevenueBLL;
 using SCM_BLL;
+using UI.ClassFiles;
 
 namespace UI.Revenue
 {
@@ -22,6 +23,8 @@ namespace UI.Revenue
         {
             if(!IsPostBack)
             {
+                lblCompany.Text = "Akij Food & Beverage Ltd.";
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlWh.DataSource = dt;
                 ddlWh.DataTextField = "strName";
@@ -35,7 +38,9 @@ namespace UI.Revenue
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            dt = objrev.getRevenue(int.Parse(ddlWh.SelectedValue), DateTime.Parse(txtFrom.Text), DateTime.Parse(txtTo.Text),int.Parse("5"),ddlRptType.SelectedValue.ToString());
+            //dt = objrev.getRevenue(int.Parse(ddlWh.SelectedValue), DateTime.Parse(txtFrom.Text), DateTime.Parse(txtTo.Text),int.Parse("5"),ddlRptType.SelectedValue.ToString());
+
+            dt = objrev.getInventoryMRRReport(int.Parse(ddlWh.SelectedValue.ToString()), int.Parse(ddlRptType.SelectedValue.ToString()),DateTime.Parse(txtFrom.Text),DateTime.Parse(txtTo.Text));
             dgvRpt.DataSource = dt;
             dgvRpt.DataBind();
 

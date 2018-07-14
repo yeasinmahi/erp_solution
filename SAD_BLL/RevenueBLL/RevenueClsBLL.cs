@@ -41,6 +41,17 @@ namespace SAD_BLL.RevenueBLL
             catch { return new DataTable(); }
         }
 
+        public DataTable getInventoryMRRReport(int whid,int rpttype,DateTime dtefdate,DateTime dtetdate)
+        {
+            
+            try
+            {
+                sprInventoryStockValuByMaterialTableAdapter adp = new sprInventoryStockValuByMaterialTableAdapter();
+                return adp.GetData(whid,rpttype,dtefdate,dtetdate);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getRevenue(int whid, DateTime fdae, DateTime tdate, int partsearch, string importLocal)
         {
             try
