@@ -7061,7 +7061,7 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT intMaterialID,strMaterialFullName,strUoM,intCoAID,strAccName, strCode,strOrigin,strHSCode,strGroupName,strCategoryName,strSubCategoryName,strMinorCategory,strPlantName,strProcureType
+            this._commandCollection[0].CommandText = @"SELECT intMaterialID,strMaterialFullName +' ['+strUoM+']' AS strMaterialFullName,strUoM,intCoAID,strAccName, strCode,strOrigin,strHSCode,strGroupName,strCategoryName,strSubCategoryName,strMinorCategory,strPlantName,strProcureType
       ,strMaterialType,intPOProcessTimeInDays,intVendorShipmentTimeInDays,intMaterialReceiveTimeInDays,intTotalLeadTimeInDays,numMinimumStock,numMaximumStock,numSafetyStock
       ,numReOrderPoint,strABC,strFSN,strVDE,intSelfLifeInDays,strOrderingLotSize,numEconomicOrderQty,numMinimumOrderQty,strSDE,strHML,ysnVATApplicable,intItemMasterIDOld,intItemIDOld
   FROM ERP_Inventory.dbo.qryMaterialList
