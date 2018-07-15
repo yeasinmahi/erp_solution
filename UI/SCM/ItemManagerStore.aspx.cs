@@ -55,6 +55,31 @@ namespace UI.SCM
                 LoadPlant();
             }
         }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string strSearch;
+            strSearch = txtSearch.Text;
+            intWHID = int.Parse(ddlWH.SelectedValue.ToString());
+
+            dt = new DataTable();
+            dt = bll.GetItemListReport(intWHID, strSearch);
+
+            if (dt.Rows.Count > 0)
+            {
+                ListBox1.DataSource = dt;
+                ListBox1.DataTextField = "strMaterialFullName";
+                ListBox1.DataValueField = "intMaterialID";
+                ListBox1.DataBind();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Item Found !!');", true);
+                ListBox1.DataSource = "";
+                ListBox1.DataBind();
+            }
+            
+
+        }
 
         #region ====== Loading DropDownList =======================================================================================================================
         private void LoadUOM()
