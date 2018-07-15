@@ -327,6 +327,7 @@
     <Content Include="HR\Loan\LoanStatusSummary.aspx" />
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
+    <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
@@ -2643,6 +2644,13 @@
     </Compile>
     <Compile Include="HR\Loan\Reward.aspx.designer.cs">
       <DependentUpon>Reward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.cs">
+      <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.designer.cs">
+      <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemChallanComplete.aspx.cs">
       <DependentUpon>BrandItemChallanComplete.aspx</DependentUpon>
@@ -7743,6 +7751,7 @@
     <Folder Include="HR\KPI\Data\" />
     <Folder Include="HR\KPI\Uploads\" />
     <Folder Include="HR\Loan\Data\" />
+    <Folder Include="HR\Reports\Data\" />
     <Folder Include="HR\Salary\FileExcell\" />
     <Folder Include="HR\Settlement\Uploads\" />
     <Folder Include="HR\TourPlan\Tour\" />

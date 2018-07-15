@@ -167,10 +167,15 @@
                     <asp:TemplateField HeaderText="SL.N"><HeaderTemplate>                                 
                                        
                      <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvGridView')"></asp:TextBox></HeaderTemplate>
-                                
-                         
-                     <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate></asp:TemplateField><asp:TemplateField HeaderText="AssetID"><ItemTemplate>
-                      <asp:Label ID="strAssetCode" runat="server" Text='<%# Eval("strAssetID") %>'></asp:Label></ItemTemplate></asp:TemplateField>
+
+
+                        <ItemTemplate><%# Container.DataItemIndex + 1 %>  </ItemTemplate>
+                    </asp:TemplateField>
+                       <asp:TemplateField HeaderText="AssetID">
+                           <ItemTemplate>
+                               <asp:Label ID="strAssetCode" runat="server" Text='<%# Eval("strAssetID") %>'></asp:Label>
+                           </ItemTemplate>
+                       </asp:TemplateField>
                            
                       <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset"/>
                        <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
@@ -227,9 +232,14 @@
                 </ItemTemplate> </asp:TemplateField>
                             
           <asp:CommandField DeleteText="Update" ShowDeleteButton="True" HeaderText="Update" />
-          <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" />
-          </HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" /></ItemTemplate>
-          </asp:TemplateField>
+                       <asp:TemplateField>
+                           <HeaderTemplate>
+                               <asp:CheckBox ID="chkHeader" runat="server" />
+                           </HeaderTemplate>
+                           <ItemTemplate>
+                               <asp:CheckBox ID="chkRow" runat="server" />
+                           </ItemTemplate>
+                       </asp:TemplateField>
            </Columns>
            </asp:GridView>
            </td>

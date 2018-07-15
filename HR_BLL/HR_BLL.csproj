@@ -168,6 +168,7 @@
     <Compile Include="Reports\BankSalaryReportInfo.cs" />
     <Compile Include="Reports\BonusReport.cs" />
     <Compile Include="Reports\EmployeeAttendanceReports.cs" />
+    <Compile Include="Reports\EmployeeDetailsReport.cs" />
     <Compile Include="Reports\EmployeeShiftReport.cs" />
     <Compile Include="Reports\EmployeeStatus.cs" />
     <Compile Include="Reports\EmpSalaryMonthlyStatement.cs" />
