@@ -77,5 +77,12 @@ namespace SCM_BLL
             { return adp.GetInventoryStatement(intWHID, dteFDate, dteTDate, intSearchBy, strID, intCatNew); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetItemListReport(int intWHID, string strSearchText)
+        {
+            QryMaterialListTableAdapter adp = new QryMaterialListTableAdapter();
+            try
+            { return adp.GetItemListReport(intWHID, strSearchText); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
     }
 }
