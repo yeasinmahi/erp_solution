@@ -2,8 +2,6 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
-    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <!DOCTYPE html>
 

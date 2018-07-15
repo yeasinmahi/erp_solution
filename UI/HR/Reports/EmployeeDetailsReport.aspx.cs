@@ -27,7 +27,8 @@ namespace UI.HR.Reports
             if (!IsPostBack)
             {               
                
-            }          
+            }
+            
             GVEmpAttendance.Visible = false;           
         }
 
