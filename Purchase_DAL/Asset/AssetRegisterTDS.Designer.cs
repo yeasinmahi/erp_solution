@@ -17439,20 +17439,20 @@ WHERE        (dbo.TblAssetPermission.intEmployeeID =@intenroll) and ysnActive=1 
             this._commandCollection[0].CommandText = @"SELECT        ERP_HR.dbo.tblDepartment.strDepatrment, ERP_HR.dbo.tblEmployee.intDepartmentID
 FROM            ERP_HR.dbo.tblEmployee INNER JOIN
                          ERP_HR.dbo.tblDepartment ON ERP_HR.dbo.tblEmployee.intDepartmentID = ERP_HR.dbo.tblDepartment.intDepartmentID
-WHERE        (ERP_HR.dbo.tblEmployee.intJobStationID =@jobstation)
+WHERE        (ERP_HR.dbo.tblEmployee.intJobStationID=@jobid)
 GROUP BY ERP_HR.dbo.tblDepartment.strDepatrment, ERP_HR.dbo.tblEmployee.intDepartmentID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobstation", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetRegisterTDS.DataTable5DataTable DepartmentNameGetData(global::System.Nullable<int> jobstation) {
+        public virtual AssetRegisterTDS.DataTable5DataTable DepartmentNameGetData(global::System.Nullable<int> jobid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((jobstation.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobstation.Value));
+            if ((jobid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
