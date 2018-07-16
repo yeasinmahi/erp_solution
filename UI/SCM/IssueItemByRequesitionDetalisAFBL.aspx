@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IssueItemByRequesitionDetalis.aspx.cs" Inherits="UI.SCM.IssueItemByRequesitionDetalis" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IssueItemByRequesitionDetalisAFBL.aspx.cs" Inherits="UI.SCM.IssueItemByRequesitionDetalisAFBL" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -103,8 +103,8 @@
 
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
-     <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
-        <asp:HiddenField ID="hdnEnroll" runat="server" /> 
+     <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" />
+        <asp:HiddenField ID="hdnEnroll" runat="server" />
      <div class="tabs_container" style="text-align:left">Store Issue From<hr /></div>
          
               <table> 
@@ -117,7 +117,11 @@
                 <td   style="text-align:right"><asp:Button ID="btnIssue" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Store Issue" OnClientClick="funConfirmAll()" OnClick="btnIssue_Click"  /> </td> 
                 </tr>
 
-                <tr><td></td></tr>
+                <tr><td>
+                   
+                    
+                    
+                    &nbsp;</td></tr>
               </table>
               <table style="width:900px; ">
                   <tr>
@@ -190,12 +194,34 @@
                 <ItemTemplate><asp:Label ID="lblLocationName"    runat="server"   Text='<%# Bind("strLocation") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
 
-               
-
                 <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks" > 
                 <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="150px" /> </asp:TemplateField>
                  
+                <asp:TemplateField HeaderText="Dist Name Evening" SortExpression="strMntCategory">
+                <ItemTemplate> 
+                <asp:DropDownList ID="DropDownList10" Width="120px" runat="server" DataSourceID="ObjectDataSource2" DataTextField="intMRRID" DataValueField="intMRRID"></asp:DropDownList>
+                <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="SCM_DAL.IndentTDSTableAdapters.tblFactoryReceiveMRRItemDetailTableAdapter">
+               <DeleteParameters>
+                            <asp:Parameter Name="Original_intMRRID" Type="Int32" />
+                            <asp:Parameter Name="Original_intAutoID" Type="Int32" />
+                        </DeleteParameters>
+                        <InsertParameters>
+                            <asp:Parameter Name="intMRRID" Type="Int32" />
+                        </InsertParameters>
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="hdnEnroll" Name="reqid" PropertyName="Value" Type="Int32" />
+                        </SelectParameters>
+                        <UpdateParameters>
+                            <asp:Parameter Name="intMRRID" Type="Int32" />
+                            <asp:Parameter Name="Original_intMRRID" Type="Int32" />
+                            <asp:Parameter Name="Original_intAutoID" Type="Int32" />
+                        </UpdateParameters>
+                    </asp:ObjectDataSource>
+                </ItemTemplate>
+                </asp:TemplateField>  
+
+
                 </Columns> 
                 </asp:GridView></td> 
                 </tr> 

@@ -1254,6 +1254,7 @@
     <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
+    <Content Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
@@ -6406,6 +6407,13 @@
     </Compile>
     <Compile Include="SCM\IssueItemByRequesition.aspx.designer.cs">
       <DependentUpon>IssueItemByRequesition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisAFBL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx.designer.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisAFBL.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\IssueItemByRequesitionDetalis.aspx.cs">
       <DependentUpon>IssueItemByRequesitionDetalis.aspx</DependentUpon>

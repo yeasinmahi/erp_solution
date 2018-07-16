@@ -10,7 +10,7 @@
 namespace UI.SCM {
     
     
-    public partial class IssueItemByRequesitionDetalis {
+    public partial class IssueItemByRequesitionDetalisAFBL {
         
         /// <summary>
         /// PlaceHolder1 control.

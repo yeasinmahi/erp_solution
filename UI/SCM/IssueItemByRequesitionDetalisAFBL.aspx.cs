@@ -14,7 +14,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IssueItemByRequesitionDetalis :BasePage
+    public partial class IssueItemByRequesitionDetalisAFBL : BasePage
     {
         StoreIssue_BLL objIssue = new StoreIssue_BLL();
         Location_BLL objOperation = new Location_BLL();
@@ -37,7 +37,9 @@ namespace UI.SCM
                 string SectionID= Request.QueryString["SectionID"].ToString();
                 string SectionName = Request.QueryString["SectionName"].ToString();
                 intwh = int.Parse(Request.QueryString["intwh"].ToString());
-                
+                hdnEnroll.Value = ReqId.ToString();
+
+ ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ReqId + "');", true);
                 lblReqCode.Text = ReqCode;
                 lblReqDate.Text = dteReqDate.ToString("dd-MM-yyyy");
                 lblReqDept.Text = strDepartmentName;
@@ -54,6 +56,10 @@ namespace UI.SCM
                 dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, enroll);
                 dgvDetalis.DataSource = dt;
                 dgvDetalis.DataBind();
+
+                dt.Clear();
+                dt = objIssue.getMRRList(int.Parse(Request.QueryString["ReqId"].ToString()));
+                
             }
             else { }
 
@@ -101,13 +107,14 @@ namespace UI.SCM
                         string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text.ToString();
                         string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue.ToString();
 
-                        string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text.ToString(); 
-                       
+                        string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text.ToString();
                         
+
+
                         if (decimal.Parse(issueQty) > 0)
                         {
 
-                           CreateXmlIssue( itemId,issueQty,stockVlaue,locationId,stockQty,reqId,reqCode,deptId,strSection,reqBy,receiveBy);
+                           CreateXmlIssue( itemId,issueQty,stockVlaue,locationId,stockQty,reqId,reqCode,deptId,strSection,reqBy,receiveBy,ddlCost.SelectedValue.ToString());
                         }
                        
                     }
@@ -128,14 +135,14 @@ namespace UI.SCM
             catch { }
         }
 
-        private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy)
+        private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy,string mrrid)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
-                XmlNode addItem = CreateItemNode(doc, itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
+                XmlNode addItem = CreateItemNode(doc, itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy,mrrid);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -143,14 +150,14 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("issue");
-                XmlNode addItem = CreateItemNode(doc, itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
+                XmlNode addItem = CreateItemNode(doc, itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy,mrrid);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy)
+        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy,string mrrid)
         {
             XmlNode node = doc.CreateElement("issueEntry");
 
@@ -176,7 +183,9 @@ namespace UI.SCM
             XmlAttribute ReqBy = doc.CreateAttribute("reqBy");
             ReqBy.Value = reqBy;
             XmlAttribute ReceiveBy = doc.CreateAttribute("receiveBy");
-            ReceiveBy.Value = receiveBy; 
+            ReceiveBy.Value = receiveBy;
+            XmlAttribute Mrrid = doc.CreateAttribute("mrrid");
+            Mrrid.Value = mrrid;
 
             node.Attributes.Append(ItemId);
             node.Attributes.Append(IssueQty);
@@ -189,7 +198,8 @@ namespace UI.SCM
             node.Attributes.Append(StrSection);
             node.Attributes.Append(ReqBy);
 
-            node.Attributes.Append(ReceiveBy); 
+            node.Attributes.Append(ReceiveBy);
+            node.Attributes.Append(Mrrid);
             return node;
         }
 

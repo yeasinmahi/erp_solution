@@ -57,7 +57,13 @@ namespace Budget_BLL.Budget
 
         public DataTable getyear()
         {
-            throw new NotImplementedException();
+            
+                 try
+            {
+                YearListTableAdapter adp = new YearListTableAdapter();
+                return adp.GetData();
+            }
+            catch { return new DataTable(); }
         }
 
         public DataTable getEntryDateCack(int unitid)

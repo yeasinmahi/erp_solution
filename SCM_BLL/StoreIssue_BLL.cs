@@ -57,5 +57,15 @@ namespace SCM_BLL
             catch { return new DataTable(); }
           
         }
+
+        public DataTable getMRRList(int mrrid)
+        {
+            try
+            {
+                tblFactoryReceiveMRRItemDetailTableAdapter adpCOA = new tblFactoryReceiveMRRItemDetailTableAdapter();
+                return adpCOA.GetData(mrrid);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

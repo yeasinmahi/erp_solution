@@ -39,7 +39,12 @@
               
          }
     </script>
-  
+   <script>
+         function ViewdetailsAFBL(ReqId, ReqCode, dteReqDate, strDepartmentName, strReqBy, strApproveBy, intwh, DeptID, SectionID, SectionName) {
+             window.open('IssueItemByRequesitionDetalisAFBL.aspx?ReqId=' + ReqId + '&ReqCode=' + ReqCode + '&dteReqDate=' + dteReqDate + '&strDepartmentName=' + strDepartmentName + '&strReqBy=' + strReqBy + '&strApproveBy=' + strApproveBy + '&intwh=' + intwh + '&DeptID=' + DeptID + '&SectionID=' + SectionID + '&SectionName=' + SectionName, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+              
+         }
+    </script>
     <style type="text/css"> 
         .rounds {
         height: 80px;
