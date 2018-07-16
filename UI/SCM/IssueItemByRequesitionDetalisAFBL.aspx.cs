@@ -108,7 +108,8 @@ namespace UI.SCM
                         string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue.ToString();
 
                         string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text.ToString();
-                        
+                        string mrrid = ((DropDownList)dgvDetalis.Rows[index].FindControl("DropDownList10")).SelectedItem.ToString();
+
 
 
                         if (decimal.Parse(issueQty) > 0)
@@ -118,7 +119,7 @@ namespace UI.SCM
                         }
                        
                     }
-
+                   
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXML);
                     XmlNode dSftTm = doc.SelectSingleNode("issue");

@@ -96,16 +96,16 @@ namespace UI.SCM
                 string DeptID = datas[6].ToString();
                 string SectionID = datas[7].ToString();
                 string SectionName = datas[8].ToString();
-                if (int.Parse(Session[SessionParams.UNIT_ID].ToString()) == 2)
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewdetailsAFBL('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
-                }
-                else
-                {
+                //if (int.Parse(Session[SessionParams.UNIT_ID].ToString()) == 2)
+                //{
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewdetailsAFBL('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
+                //}
+                //else
+                //{
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
 
 
-                }
+                //}
             }
             catch { }
         }
