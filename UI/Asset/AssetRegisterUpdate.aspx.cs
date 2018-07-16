@@ -189,14 +189,14 @@ namespace UI.Asset
         private void loadTab1FactoryReg()
         {
             dt = new DataTable();
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
             string assetcode = "0".ToString();
-            Int32 Mnumber = Int32.Parse("1".ToString());
+            int Mnumber = int.Parse("1".ToString());
             dt = objregisterUpdate.AssetTypeName();
             DdlAssetType.DataSource = dt;
             DdlAssetType.DataTextField = "strAssetTypeName";
@@ -216,7 +216,7 @@ namespace UI.Asset
             //DdlCostCenterF.DataBind();
 
             dt = new DataTable();
-            Mnumber = Int32.Parse(DdlUnit.SelectedValue.ToString());
+            Mnumber = int.Parse(DdlUnit.SelectedValue.ToString());
 
             dt = objregisterUpdate.JobstationName(6, Mnumber, intenroll, intjobid, intdept, assetcode);
             DlJobStation.DataSource = dt;
@@ -434,10 +434,15 @@ namespace UI.Asset
                     DdlCategory.DataBind();
                     DataTable  dpt = new DataTable();
                     dpt = objregisterUpdate.DepertmentName(int.Parse(DlJobStation.SelectedValue));
-                    DdlDept.DataSource = dt;
-                    DdlDept.DataTextField = "strDepatrment";
-                    DdlDept.DataValueField = "intDepartmentID";
-                    DdlDept.DataBind();
+                    if (dpt.Rows.Count > 0)
+                    {
+                        DdlDept.DataSource = dt;
+                        DdlDept.DataTextField = "strDepatrment";
+                        DdlDept.DataValueField = "intDepartmentID";
+                        DdlDept.DataBind();
+                    }
+                    else { DdlDept.Items.Add(new ListItem("None", "0")); }
+                   
                     dpt.Clear();
 
 
@@ -523,20 +528,20 @@ namespace UI.Asset
         {
             DateTime dtelc; DateTime dtepo; DateTime dteacusition;
             DateTime WarrintyPreoid;
-            int Costcenterid; int Plantname; int category;
+            int Costcenterid; int Plantname; int category, department;
 
             string assetcode = TxtAssetCode.Text.ToString();
-            Int32 intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            int intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
+            int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             //Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-            Int32 intdept = Int32.Parse(Session[SessionParams.DEPT_ID].ToString());
+            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-            Int32 unit = Int32.Parse(DdlUnit.SelectedValue.ToString());
-            Int32 intjobid = Int32.Parse(DlJobStation.SelectedValue.ToString());
+            int unit = int.Parse(DdlUnit.SelectedValue.ToString());
+            int intjobid = int.Parse(DlJobStation.SelectedValue.ToString());
 
-            Int32 assettype = Int32.Parse(DdlAssetType.Text.ToString());
+            int assettype = int.Parse(DdlAssetType.Text.ToString());
             String assetname = TxtAssetName.Text.ToString(); 
-            string assetid = (DdlDept.Text.ToString());
+            
             string hscode = (TxtHSCode.Text.ToString());
             String description = TxtAssetDescription.Text.ToString();
             String manufacture = TxtManufacturer.Text.ToString();
@@ -564,7 +569,7 @@ namespace UI.Asset
             string capacity = TxtCapacity.Text.ToString();
             DateTime dteinstalation = DateTime.Parse(TxtDteInstalation.Text);
             Decimal erectioncost = Decimal.Parse(TxtErectionCost.Text.ToString());
-            int department = int.Parse(DdlDept.SelectedValue.ToString());
+            try {  department = int.Parse(DdlDept.SelectedValue.ToString()); } catch { department = 0;}
 
             try { dteacusition = DateTime.Parse(TxtDteAcusition.Text); }
             catch { dteacusition = DateTime.Parse("1990-01-01".ToString()); }
