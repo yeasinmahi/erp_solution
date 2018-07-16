@@ -1156,6 +1156,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\MoneyReceiptStatus.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ProductBaseCommission.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RemoteCustomerStatement.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RemoteGhatInventory.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RemoteGhatTransferChallan.aspx" />
@@ -1196,6 +1197,7 @@
     <Content Include="SAD\Sales\SalesChallanATML.aspx" />
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
+    <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
     <Content Include="SAD\Vat\frmBrandroll.aspx" />
@@ -5737,6 +5739,13 @@
     <Compile Include="SAD\Sales\Report\RptRemoteSales\ProductBaseCommission.aspx.designer.cs">
       <DependentUpon>ProductBaseCommission.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx.cs">
+      <DependentUpon>ProductTransferJV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx.designer.cs">
+      <DependentUpon>ProductTransferJV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\RemoteCustomerStatement.aspx.cs">
       <DependentUpon>RemoteCustomerStatement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6016,6 +6025,13 @@
     </Compile>
     <Compile Include="SAD\Sales\SalesMarketting.aspx.designer.cs">
       <DependentUpon>SalesMarketting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\SalesPosting.aspx.cs">
+      <DependentUpon>SalesPosting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
+      <DependentUpon>SalesPosting.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Transfer\FGTransfer.aspx.cs">
       <DependentUpon>FGTransfer.aspx</DependentUpon>

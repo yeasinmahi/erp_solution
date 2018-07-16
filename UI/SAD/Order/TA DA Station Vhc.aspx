@@ -83,9 +83,9 @@
             if (txtTotal == "")
                 txtTotal = 0;
 
-
+            //+ parseFloat(txtOilCredit) + parseFloat(txtCNGCredit)
             var result = parseFloat(txtoilcash) + parseFloat(txtCNGCash) + parseFloat(txtMntVh) + parseFloat(txtOwnDA)
-                         + parseFloat(txtOwnHotel) + parseFloat(txtOtherCost) + parseFloat(txtOilCredit) + parseFloat(txtCNGCredit);
+                         + parseFloat(txtOwnHotel) + parseFloat(txtOtherCost) ;
 
             if (!isNaN(result)) {
                 document.getElementById('txtTotal').value = result;
@@ -106,14 +106,14 @@
                      $.ajax({
                          type: "POST",
                          contentType: "application/json;",
-                         url: "TA DA Station Vhc.aspx/GetSupplierList",
+                         url: "TA DA Station Vhc.aspx/GetstationvhclDriverList",
                          data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
                          dataType: "json",
                          success: function (data) {
                              response(data.d);
                          },
                          error: function (result) {
-                             //alert("Error");
+                             alert("Error");
                          }
                      });
                  }
@@ -123,54 +123,44 @@
 
     </script>
 
-     <script type="text/javascript">
-         $(document).ready(function () {
-             SearchTextVheicleList();
-         });
-         function Changed() {
-             document.getElementById('hdfSerachBoxForVheicleName').value = 'true';
-         }
-         //GetAutoCompleteDataForTADA
-         function SearchTextVheicleList() {
-             $("#txtVheicleName").autocomplete({
-                 source: function (request, response) {
-                     $.ajax({
-                         type: "POST",
-                         contentType: "application/json;",
-                         url: "TA DA Station Vhc.aspx/GetSupplierList",
-                         data: "{'strSearchKey':'" + document.getElementById('txtVheicleName').value + "'}",
-                         dataType: "json",
-                         success: function (data) {
-                             response(data.d);
-                         },
-                         error: function (result) {
-                             //alert("Error");
-                         }
-                     });
-                 }
-             });
-         }
+   
+
+    <script type="text/javascript">
+    $(document).ready(function () {    
+    SearchTextVheicleList();
+});
+function Changed() {
+    document.getElementById('hdfSearchBoxTextChange').value = 'true';
+}
+function SearchTextVheicleList() {
+    $("#txtVheicleName").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;",
+                url: "TA DA Station Vhc.aspx/Getstationvhcllist",
+                data: "{'strSearchKey':'" + document.getElementById('txtVheicleName').value + "'}",
+                dataType: "json",
+                success: function (data) {
+                    response(data.d);
+                },
+                error: function (result) {
+                    alert("Error");
+                }
+            });
+        }
+    });
+}
 
 
     </script>
-
-
 
 
 </head>
 <body>
     <form id="frmpdv" runat="server">
    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
-    <ContentTemplate>
-    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
-    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
-    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
-    <div style="height: 100px;"></div>
-    <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>
+
 
 <%--=========================================Start My Code From Here===============================================--%>
 
@@ -195,29 +185,25 @@
                         <td style="text-align:right;"><asp:Label ID="lblfullname" CssClass="lbl" runat="server"  Text="Employee Name: "></asp:Label></td>
             <td><asp:TextBox ID="txtFullName" runat="server"  placeholder="Type  Name" AutoCompleteType="Search"  Font-Bold="true" CssClass="txtBox" AutoPostBack="True"></asp:TextBox>
                 <span style="color:red">*</span>
-                             <cc1:AutoCompleteExtender ID="AutoCompleteExtender" runat="server" TargetControlID="txtFullName"
-                                     ServiceMethod="GetStandVheicleDriverList" MinimumPrefixLength="1" CompletionSetCount="1"
-                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                                </cc1:AutoCompleteExtender>
+                            
 
 
                  
             </td>
-            <td style="text-align:right;"><asp:Label ID="lblEnrol" CssClass="lbl" runat="server" Text="Code: "></asp:Label> </td>
+            <td style="text-align:right;"><asp:Label ID="lblEnrol" CssClass="lbl" runat="server" Text="Employee Code: "></asp:Label> </td>
             <td><asp:TextBox ID="textEnrol" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc"  CssClass="txtBox" Enabled="false"></asp:TextBox> </td>
             
             <td style="text-align:right;"><asp:Label ID="lblVhcName" CssClass="lbl" runat="server" Text="Vehicle Name: "></asp:Label> </td>
-            <td><%--<asp:DropDownList ID="drdlVhehicleList" runat="server" DataSourceID="odsStationVhcList" DataTextField="strvhname" DataValueField="intVhid"></asp:DropDownList>
-                <asp:ObjectDataSource ID="odsStationVhcList" runat="server" SelectMethod="getStandVhDetaills" TypeName="SAD_BLL.Customer.Report.StatementC"></asp:ObjectDataSource>--%>
+            <%--<td>
                        <asp:TextBox ID="txtVheicleName" runat="server"  placeholder="Type  Name" AutoCompleteType="Search"  Font-Bold="true" CssClass="txtBox" AutoPostBack="True"></asp:TextBox>
                         <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtVheicleName"
                                      ServiceMethod="GetSupplierList" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
-                 </td> 
-
+                 </td> --%>
+           <td><asp:TextBox ID="txtVheicleName" runat="server" BackColor="#ffff99"  AutoPostBack="false" CssClass="txtBox"  Width="200px" ></asp:TextBox></td> 
+            
         </tr>
          <tr class="tblrowOdd">
                         <td style="text-align:right"><asp:Label ID="lblCategory" CssClass="lbl" runat="server" Text="From Address:  " ></asp:Label><span style="color:red">*</span></td>
@@ -251,10 +237,11 @@
             </tr>
                 <tr class="tblrowOdd" style="background-color:lightcyan">
                     <td><asp:Label ID="lblpaytype" runat="server" CssClass="lbl"  Text="Oil station Payment: "></asp:Label><span style="color:red">*</span></td>
-                    <td><asp:RadioButtonList ID="rdbOilstationpay" runat="server" OnSelectedIndexChanged="rdbOilstationpay_SelectedIndexChanged"
+                    <td><asp:RadioButtonList ID="rdbOilstationpay" CssClass="lbl" runat="server" OnSelectedIndexChanged="rdbOilstationpay_SelectedIndexChanged"
                     RepeatDirection="Horizontal" AutoPostBack="true">
-                    <asp:ListItem Text="Cash Oil" Value="0"></asp:ListItem>
+                    <asp:ListItem  Text="Cash Oil" Value="0"></asp:ListItem>
                     <asp:ListItem Text="Credit Oil" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Both Type" Value="2"></asp:ListItem>
                    
                     </asp:RadioButtonList>
                     </td>  
@@ -273,15 +260,16 @@
                         <td> <asp:TextBox ID="txtoilcash" onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>      
 
                         <td style="text-align:right"><asp:Label ID="lblSupplierOilBill" CssClass="lbl" runat="server" Text="Supplier Oil Credit:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtOilCredit"   AutoPostBack="false" onkeyup="sum();" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>      
+                        <td> <asp:TextBox ID="txtOilCredit"   AutoPostBack="false"  runat="server" Width="200px" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>      
                 </tr>
           
                 <tr class="tblrowOdd" style="background-color:lightsteelblue">
                     <td><asp:Label ID="Label1" runat="server" CssClass="lbl"  Text="CNG station Payment: "></asp:Label><span style="color:red">*</span></td>
-                    <td><asp:RadioButtonList ID="rdbCNGSupplierpay" runat="server" OnSelectedIndexChanged="rdbCNGSupplierpay_SelectedIndexChanged"
+                    <td><asp:RadioButtonList ID="rdbCNGSupplierpay" runat="server" CssClass="lbl" OnSelectedIndexChanged="rdbCNGSupplierpay_SelectedIndexChanged"
                     RepeatDirection="Horizontal" AutoPostBack="true">
-                    <asp:ListItem Text="Cash CNG" Value="0"></asp:ListItem>
+                    <asp:ListItem Text="Cash CNG"  Value="0"></asp:ListItem>
                     <asp:ListItem Text="Credit CNG" Value="1"></asp:ListItem>
+                     <asp:ListItem Text="Both Type" Value="2"></asp:ListItem>
                    
                     </asp:RadioButtonList>
                     </td>  
@@ -300,7 +288,7 @@
                         <td> <asp:TextBox ID="txtCNGCash" onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"  onkeypress="javascript:return isNumber (event)"></asp:TextBox></td>      
 
                         <td style="text-align:right"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Supplier CNG Credit:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtCNGCredit" onkeyup="sum();"  AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"  onkeypress="javascript:return isNumber (event)"></asp:TextBox></td>      
+                        <td> <asp:TextBox ID="txtCNGCredit"   AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"  onkeypress="javascript:return isNumber (event)"></asp:TextBox></td>      
                 </tr>
 
 
@@ -404,7 +392,7 @@
                             <asp:BoundField DataField="personalusedMilageQnt" HeaderText="Pers MQnt" SortExpression="personalusedMilageQnt" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                             <asp:BoundField DataField="personalusemilageTotcost" HeaderText="Pers MCost" SortExpression="personalusemilageTotcost" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
                             <asp:BoundField DataField="OtherCost" HeaderText="OthCost" SortExpression="OtherCost" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                             <asp:BoundField DataField="totalcost" HeaderText="Total(Own)" SortExpression="decTotal" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="totalcost" HeaderText="Total(Tk.)" SortExpression="totalcost" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:TemplateField  HeaderText="SL."><ItemTemplate><%# Container.DataItemIndex + 1 %><asp:HiddenField ID="hdnSL" runat="server" Value='<%# Bind("fromAddress") %>' /></ItemTemplate></asp:TemplateField> 
 
                             
@@ -437,8 +425,7 @@
 
 
          <%--=========================================End My Code From Here=================================================--%>
-   </ContentTemplate>
-    </asp:UpdatePanel>
+  
     </form>
 </body>
 </html>

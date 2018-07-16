@@ -24,6 +24,7 @@
     <script type="text/javascript">
         function SetPrice() {
         var price = parseFloat(document.getElementById('lblPrice').value);
+             //var price = "5";
         var logGain = parseFloat(document.getElementById('lblLogisGain').value);
         var qnt = parseFloat(document.getElementById('txtQun').value);
         var tot=0;

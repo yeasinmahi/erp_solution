@@ -196,15 +196,40 @@
                               <asp:ListItem  Text="Region Basis (UnDelv.)" Value="15"></asp:ListItem>
                                <asp:ListItem  Text="Specifice ShippingPoint(UnDelv.)" Value="16"></asp:ListItem>
                               <asp:ListItem  Text="Specifice SalesOffice (UnDelv.)" Value="17"></asp:ListItem>
-
-
-
+                             <asp:ListItem  Text="Territory base collection" Value="18"></asp:ListItem>
+                             <asp:ListItem  Text="Area base collection" Value="19"></asp:ListItem>
+                             <asp:ListItem  Text="Region base collection" Value="20"></asp:ListItem>
+                             <asp:ListItem  Text="Specific Sales office collection" Value="21"></asp:ListItem>
+                              <asp:ListItem  Text="Specific Sales office collection" Value="22"></asp:ListItem>
                          </asp:DropDownList>
                      </td>
+                     <td>
+                         <asp:Label ID="lblcustype" runat="server" Text="Customer Type"></asp:Label>
+                     </td>
 
-                      <td colspan="2">
-                          <asp:Button ID="btnShow" runat="server" Text="Show Report" CssClass="button" OnClick="btnShow_Click"/></td>
+                            <td align="left">
+                                <asp:DropDownList ID="ddlCusType" runat="server" AutoPostBack="true" DataSourceID="ods3"
+                                    DataTextField="strTypeName" DataValueField="intTypeID" OnDataBound="ddlCusType_DataBound"
+                                    OnSelectedIndexChanged="ddlCusType_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:ObjectDataSource ID="ods3" runat="server" SelectMethod="GetCustomerTypeBySOForDO"
+                                    TypeName="SAD_BLL.Customer.CustomerType" OldValuesParameterFormatString="original_{0}">
+                                    <SelectParameters>
+                                        <asp:ControlParameter ControlID="ddlSo" Name="soId" PropertyName="SelectedValue"
+                                            Type="String" />
+                                    </SelectParameters>
+                                </asp:ObjectDataSource>
+                            </td>
+
+
+
+
+                    
                  </tr>
+            <tr>
+                  <td colspan="4">
+                          <asp:Button ID="btnShow" runat="server" Text="Show Report" CssClass="button" OnClick="btnShow_Click"/></td>
+            </tr>
            </table>
              </div>
         <div>
@@ -503,7 +528,58 @@
         </table>
             </div>
 
+          <div>
+            <table>
+              <tr><td>
+                 
 
+
+    <asp:GridView ID="grdvcollectionreport" runat="server" AllowPaging="True" PageSize="1125" OnPageIndexChanging="grdvcollectionreport_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="3" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" GridLines="Vertical" ShowFooter="True">
+
+                    <AlternatingRowStyle BackColor="#DCDCDC" />
+
+                    <Columns>
+                      
+                     
+
+<%--intsl,strterrity,strare,strregion,strsalesof,dtedate,intcustid,strcustname,openinging,debit,credit,balance
+	,intterritoryid ,intarea ,intregion ,intsalesoffice--%>
+                    <asp:BoundField DataField="intsl" HeaderText="SL" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="strterrity" HeaderText="Territroy" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="strare" HeaderText="Area" SortExpression="strare" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="strregion" HeaderText="Region" SortExpression="strregion" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                    <asp:BoundField DataField="strsalesof" HeaderText="Sales Office" SortExpression="strsalesof" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="intcustid" HeaderText="Customer ID" SortExpression="intcustid" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="strcustname" HeaderText="Customer" SortExpression="strare" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="openinging" HeaderText="openinging" SortExpression="openinging" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                    <asp:BoundField DataField="debit" HeaderText="Debit Amount" SortExpression="strsalesof" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="credit" HeaderText="Credit" SortExpression="credit" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="balance" HeaderText="balance" SortExpression="balance" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+             
+
+
+                    
+                    </Columns>
+
+
+                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#000065" />
+
+
+                    </asp:GridView>
+    </td></tr>
+
+        </table>
+            </div>
  <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>   

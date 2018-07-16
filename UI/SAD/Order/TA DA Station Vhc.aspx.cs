@@ -15,7 +15,7 @@ using UI.ClassFiles;
 
 namespace UI.SAD.Order
 {
-    public partial class TA_DA_Station_Vhc : System.Web.UI.Page
+    public partial class TA_DA_Station_Vhc : BasePage
     {
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey; string serial;
@@ -31,18 +31,32 @@ namespace UI.SAD.Order
         protected decimal cngfairTotal = 0; protected decimal RickfaiTotal = 0; protected decimal busfairTotal = 0;
         int enr;
 
+        string startmilage = "0", endmilage = "0", consumed = "0", totoilltr = "0",
+            OilCashAmount = "0", OilcreditAmount = "0", CNGCashAmount = "0", CNGCreditAmount = "0", TotalGas = "0",
+            mntCost = "0", ownda = "0", ownhotelfair = "0", personalusedMilageQnt = "0", personalusemilageTotcost = "0", OtherCost = "", totalcost = "0";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/Order/Data/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadaForStandbyVheicle.xml");
             if (!IsPostBack)
             {
-                pnlUpperControl.DataBind();
                 hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
+                Int32 enroll = Convert.ToInt32(hdnAreamanagerEnrol.Value);
                 hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
-
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
-       
+                txtVheicleName.Attributes.Add("onkeyUp", "SearchTextVheicleList();");
+                DataTable dt = new DataTable();
+                dt = bll.getEndMilageApplicant(enroll);
+
+                if (dt.Rows.Count > 0) { txtStartMilage.Text = dt.Rows[0][0].ToString(); }
+                else { txtStartMilage.Text = "0"; }
+
+                if (dt.Rows.Count > 0) { txtFromAddr.Text = dt.Rows[0][1].ToString(); }
+                else { txtFromAddr.Text = ""; }
+
+                if (dt.Rows.Count > 0) { txtToaddr.Text = dt.Rows[0][2].ToString(); }
+                else { txtToaddr.Text = ""; }
+
                 hdnAction.Value = "0";
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
@@ -74,40 +88,28 @@ namespace UI.SAD.Order
 
         }
 
-        [WebMethod]
-        public static List<string> GetAutoCompleteDataForTADA(string strSearchKey)
-        {
+     
 
-            SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+        [WebMethod]
+        [ScriptMethod]
+        public static List<string> Getstationvhcllist(string strSearchKey)
+        {
+            VehicleSupplierST blst = new VehicleSupplierST();
+
             List<string> result = new List<string>();
-            result = bll.AutoSearchEmployeesDataTADA(//1399, 12, strSearchKey);
-            int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()), strSearchKey);
+            result = blst.AutoSearchStandVhclList(strSearchKey);
             return result;
         }
 
         [WebMethod]
         [ScriptMethod]
-        public static string[] GetSupplierList(string prefixText, int count)
+        public static List<string> GetstationvhclDriverList(string strSearchKey)
         {
-           
-                
-
-                return VehicleSupplierST.GetAllStandVheicleDataForAutoFillAll("4", prefixText);
-          
+            VehicleSupplierST blst = new VehicleSupplierST();
+            List<string> result = new List<string>();
+            result = blst.AutoSearchStandVhclDriverList(strSearchKey);
+            return result;
         }
-
-        [WebMethod]
-        [ScriptMethod]
-        public static string[] GetStandVheicleDriverList(string prefixText, int count)
-        {
-
-
-
-            return VehicleSupplierST.GetAllStandVheicleDriverNameListDataForAutoFillAll("4", prefixText);
-
-        }
-
-
 
 
 
@@ -315,24 +317,7 @@ namespace UI.SAD.Order
             return node;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         protected void GridviewForStationVheicle_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -342,11 +327,44 @@ namespace UI.SAD.Order
         {
 
         }
+        private void sumofcash()
+        {
+            OilCashAmount = txtoilcash.Text;
+            if (OilCashAmount.Length <= 0) { OilCashAmount = "0"; }
+
+            CNGCashAmount = txtCNGCash.Text;
+            if (CNGCashAmount.Length <= 0) { CNGCashAmount = "0"; }
+            CNGCreditAmount = txtCNGCredit.Text;
+
+            if (mntCost.Length <= 0) { mntCost = "0"; }
+            ownda = txtOwnDA.Text;
+            if (ownda.Length <= 0) { ownda = "0"; }
+            ownhotelfair = txtOwnHotel.Text;
+            if (ownhotelfair.Length <= 0) { ownhotelfair = "0"; }
+            personalusemilageTotcost = txtPmilagTotalCost.Text;
+            if (personalusemilageTotcost.Length <= 0) { personalusemilageTotcost = "0"; }
+
+            personalusedMilageQnt = txtPersMilagekm.Text;
+            if (personalusedMilageQnt.Length <= 0) { personalusedMilageQnt = "0"; }
+
+
+
+            OtherCost = txtOtherCost.Text;
+            if (OtherCost.Length <= 0) { OtherCost = "0"; }
+
+
+            double totalcostd = Convert.ToDouble(OilCashAmount) + Convert.ToDouble(CNGCashAmount) + Convert.ToDouble(mntCost) + Convert.ToDouble(ownda) + Convert.ToDouble(ownhotelfair) + Convert.ToDouble(OtherCost);
+            totalcost = Convert.ToString(totalcostd);
+            if (totalcost.Length <= 0) { totalcost = "0"; }
+            txtTotal.Text = totalcost.ToString();
+
+        }
 
         protected void btnAddBikeCarUser_Click(object sender, EventArgs e)
         {
             string tst = rdbOilstationpay.SelectedValue.ToString();
             string tstCNGGas = rdbCNGSupplierpay.SelectedValue.ToString();
+            string oilltr = txtOilLtr.Text;
             if (tst == "")
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "ScriptMessages", "alert('Please select Oil station Payment Mode !')", true);
@@ -356,12 +374,12 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "ScriptMessages", "alert('Please select CNG Gas station Payment Mode !')", true);
             }
-           string oilltr = txtOilLtr.Text;
+          
 
-           if (oilltr == string.Empty || oilltr == "")
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Gas Qnt  can not blank !')", true);
-            }
+           //if (oilltr == string.Empty || oilltr == "")
+           // {
+           //     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Gas Qnt  can not blank !')", true);
+           // }
 
 
             else
@@ -369,9 +387,9 @@ namespace UI.SAD.Order
                 tst = rdbOilstationpay.SelectedValue.ToString();
                 tstCNGGas = rdbCNGSupplierpay.SelectedValue.ToString();
 
-                string startmilage = "0", endmilage = "0", consumed = "0", totoilltr = "0",
-             OilCashAmount = "0", OilcreditAmount = "0", CNGCashAmount = "0", CNGCreditAmount = "0", TotalGas = "0",
-             mntCost = "0", ownda = "0", ownhotelfair = "0", personalusedMilageQnt = "0", personalusemilageTotcost = "0", OtherCost = "", totalcost = "0";
+             //   string startmilage = "0", endmilage = "0", consumed = "0", totoilltr = "0",
+             //OilCashAmount = "0", OilcreditAmount = "0", CNGCashAmount = "0", CNGCreditAmount = "0", TotalGas = "0",
+             //mntCost = "0", ownda = "0", ownhotelfair = "0", personalusedMilageQnt = "0", personalusemilageTotcost = "0", OtherCost = "", totalcost = "0";
                 string oilPaymentTypeid, oilSupplierID,
                cngPaymentTypeid, CNGSupplierID;
 
@@ -559,7 +577,10 @@ namespace UI.SAD.Order
                     OtherCost = txtOtherCost.Text;
                     if (OtherCost.Length <= 0) { OtherCost = "0"; }
 
-                    totalcost = txtTotal.Text;
+                 
+                   double totalcostd =Convert.ToDouble( OilCashAmount) + Convert.ToDouble(CNGCashAmount) + Convert.ToDouble(mntCost) + Convert.ToDouble(ownda) + Convert.ToDouble(ownhotelfair) + Convert.ToDouble(OtherCost);
+                    totalcost = Convert.ToString(totalcostd);
+                    if (totalcost.Length <= 0) { totalcost = "0"; }
 
 
 
@@ -585,202 +606,10 @@ namespace UI.SAD.Order
 
                     }
 
-                    else if (grdvForStandByVehicle.Rows.Count == 2)
-                    {
-                        serial = "3";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-   remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-   OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-   mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-   );
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 3)
-                    {
-                        serial = "4";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-   remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-   OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-   mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-   );
-                    }
 
-                    else if (grdvForStandByVehicle.Rows.Count == 4)
-                    {
-                        serial = "5";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-     remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-     OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-     mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-     );
-
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 5)
-                    {
-                        serial = "6";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-    remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-    OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-    mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-    );
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 6)
-                    {
-                        serial = "7";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-   remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-   OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-   mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-   );
-
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 7)
-                    {
-                        serial = "8";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-    remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-    OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-    mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-    );
-
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 8)
-                    {
-                        serial = "9";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
- remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
- OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
- mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
- );
-
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 9)
-                    {
-                        serial = "10";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-       remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-       OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-       mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-       );
-
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 10)
-                    {
-                        serial = "11";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-                     remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-                     OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-                     mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-                     );
-
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 11)
-                    {
-                        serial = "12";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-  remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-  OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-  mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-  );
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 12)
-                    {
-                        serial = "13";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-  remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-  OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-  mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-  );
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 13)
-                    {
-                        serial = "14";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
- remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
- OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
- mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
- );
-
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 14)
-                    {
-                        serial = "15";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-   remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-   OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-   mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-   );
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 15)
-                    {
-                        serial = "16";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-               remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-               OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-               mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-               );
-
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 16)
-                    {
-                        serial = "17";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-          remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-          OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-          mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-          );
-
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 17)
-                    {
-                        serial = "18";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-              remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-              OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-              mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-              );
-
-                    }
-                    else if (grdvForStandByVehicle.Rows.Count == 18)
-                    {
-                        serial = "19";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-          remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-          OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-          mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-          );
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 19)
-                    {
-                        serial = "20";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-    remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-    OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-    mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-    );
-                    }
-
-                    else if (grdvForStandByVehicle.Rows.Count == 20)
-                    {
-                        serial = "21";
-                        CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
-  remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
-  OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
-  mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
-  );
-
-                    }
                     else
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You are not allow to add more than Twenty  rows !')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You are not allow to add more than two  rows !')", true);
 
                     }
 
@@ -805,93 +634,180 @@ namespace UI.SAD.Order
         
 
             if (rdbOilstationpay.SelectedItem.Text == "Credit Oil")
+            {
                 drdlSupplierName.Enabled = true;
-
-            else
-                drdlSupplierName.Enabled = false;
-
-            if (rdbOilstationpay.SelectedItem.Text == "Credit Oil")
-
                 txtOilCredit.Enabled = true;
+                txtoilcash.Enabled = false;
+                string txtEnd = txtEndMilage.Text.ToString();
+                if (txtEnd.Length <= 0 || txtEnd == "") { txtEnd = "1"; }
+                string txtstart = txtStartMilage.Text.ToString();
+                if (txtstart.Length <= 0 || txtstart == "") { txtstart = "1"; }
+                double consume = Convert.ToDouble(txtEnd) - Convert.ToDouble(txtstart);
+                txtConsumed.Text = Convert.ToString(consume);
+                sumofcash();
+            }
+               
+
+            //else
+            //    drdlSupplierName.Enabled = false;
+
+            //if (rdbOilstationpay.SelectedItem.Text == "Credit Oil")
+
+               
          
-            else
+            //else
 
-                txtOilCredit.Enabled = false;
+            //    txtOilCredit.Enabled = false;
 
-            if (rdbOilstationpay.SelectedItem.Text == "Credit Oil")
+            //if (rdbOilstationpay.SelectedItem.Text == "Credit Oil")
 
-                txtoilcash.Enabled = false;
+               
 
-            else
+            //else
 
-                txtoilcash.Enabled = true;
+               
+           
 
 
-            if (rdbOilstationpay.SelectedItem.Text == "Cash Oil")
+
+          else  if (rdbOilstationpay.SelectedItem.Text == "Cash Oil")
+            {
                 drdlSupplierName.Enabled = false;
-
-            else
-                drdlSupplierName.Enabled = true;
-
-            if (rdbOilstationpay.SelectedItem.Text == "Cash Oil")
-
                 txtoilcash.Enabled = true;
-
-            else
-
-                txtoilcash.Enabled = false;
-
-            if (rdbOilstationpay.SelectedItem.Text == "Cash Oil")
-
                 txtOilCredit.Enabled = false;
+                string txtEnds = txtEndMilage.Text.ToString();
+                if (txtEnds.Length <= 0 || txtEnds == "") { txtEnds = "1"; }
+                string txtstarts = txtStartMilage.Text.ToString();
+                if (txtstarts.Length <= 0 || txtstarts == "") { txtstarts = "1"; }
+                double consumes = Convert.ToDouble(txtEnds) - Convert.ToDouble(txtstarts);
+                txtConsumed.Text = Convert.ToString(consumes);
+                sumofcash();
+            }
+              
 
-            else
+            //else
+            //    drdlSupplierName.Enabled = true;
 
+            //if (rdbOilstationpay.SelectedItem.Text == "Cash Oil")
+
+              
+
+            //else
+
+            //    txtoilcash.Enabled = false;
+
+            //if (rdbOilstationpay.SelectedItem.Text == "Cash Oil")
+
+                
+
+            //else
+
+            //    txtOilCredit.Enabled = true;
+
+           
+
+
+          else  if (rdbOilstationpay.SelectedItem.Text == "Both Type") {
+                drdlSupplierName.Enabled = true;
+                txtoilcash.Enabled = true;
                 txtOilCredit.Enabled = true;
-
-
-
+                string txtEndb = txtEndMilage.Text.ToString();
+                if (txtEndb.Length <= 0 || txtEndb == "") { txtEndb = "1"; }
+                string txtstartb = txtStartMilage.Text.ToString();
+                if (txtstartb.Length <= 0 || txtstartb == "") { txtstartb = "1"; }
+                double consumeb = Convert.ToDouble(txtEndb) - Convert.ToDouble(txtstartb);
+                txtConsumed.Text = Convert.ToString(consumeb);
+                sumofcash();
+            }
+              
         }
-    
+
 
 
 
         protected void rdbCNGSupplierpay_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rdbCNGSupplierpay.SelectedItem.Text == "Cash CNG")
+            {
                 DropDownList1.Enabled = false;
-            else
-                DropDownList1.Enabled = true;
-
-            if (rdbCNGSupplierpay.SelectedItem.Text == "Cash CNG")
                 txtCNGCash.Enabled = true;
-            else
-                txtCNGCash.Enabled = false;
-
-
-            if (rdbCNGSupplierpay.SelectedItem.Text == "Cash CNG")
                 txtCNGCredit.Enabled = false;
-            else
-                txtCNGCredit.Enabled = true;
+                string txtEnds = txtEndMilage.Text.ToString();
+                if (txtEnds.Length <= 0 || txtEnds == "") { txtEnds = "1"; }
+                string txtstarts = txtStartMilage.Text.ToString();
+                if (txtstarts.Length <= 0 || txtstarts == "") { txtstarts = "1"; }
+                double consumes = Convert.ToDouble(txtEnds) - Convert.ToDouble(txtstarts);
+                txtConsumed.Text = Convert.ToString(consumes);
+                sumofcash();
+            }
+               
+            //else
+            //    DropDownList1.Enabled = true;
+
+            //if (rdbCNGSupplierpay.SelectedItem.Text == "Cash CNG")
+             
+            //else
+            //    txtCNGCash.Enabled = false;
+
+
+            //if (rdbCNGSupplierpay.SelectedItem.Text == "Cash CNG")
+               
+            //else
+            //    txtCNGCredit.Enabled = true;
+           
 
 
 
-
-            if (rdbCNGSupplierpay.SelectedItem.Text == "Credit CNG")
+          else  if (rdbCNGSupplierpay.SelectedItem.Text == "Credit CNG")
+            {
                 DropDownList1.Enabled = true;
-            else
-                DropDownList1.Enabled = false;
-
-            if (rdbCNGSupplierpay.SelectedItem.Text == "Credit CNG")
                 txtCNGCash.Enabled = false;
-            else
-                txtCNGCash.Enabled = true;
-
-
-            if (rdbCNGSupplierpay.SelectedItem.Text == "Credit CNG")
                 txtCNGCredit.Enabled = true;
+                string txtEnd = txtEndMilage.Text.ToString();
+                if (txtEnd.Length <= 0 || txtEnd == "") { txtEnd = "1"; }
+                string txtstart = txtStartMilage.Text.ToString();
+                if (txtstart.Length <= 0 || txtstart == "") { txtstart = "1"; }
+                double consume = Convert.ToDouble(txtEnd) - Convert.ToDouble(txtstart);
+                txtConsumed.Text = Convert.ToString(consume);
+                sumofcash();
+            }
+               
+            //else
+            //    DropDownList1.Enabled = false;
+
+            //if (rdbCNGSupplierpay.SelectedItem.Text == "Credit CNG")
+              
+            //else
+            //    txtCNGCash.Enabled = true;
+
+
+            //if (rdbCNGSupplierpay.SelectedItem.Text == "Credit CNG")
+             
+            //else
+            //    txtCNGCredit.Enabled = false;
+
+           
+
+
+         else   if (rdbCNGSupplierpay.SelectedItem.Text == "Both Type")
+            {
+                DropDownList1.Enabled = true;
+                txtCNGCash.Enabled = true;
+                txtCNGCredit.Enabled = true;
+                string txtEndb = txtEndMilage.Text.ToString();
+                if (txtEndb.Length <= 0 || txtEndb=="") { txtEndb = "1"; }
+                string txtstartb = txtStartMilage.Text.ToString();
+                if (txtstartb.Length <= 0 || txtstartb=="") { txtstartb = "1"; }
+                double consumeb = Convert.ToDouble(txtEndb) - Convert.ToDouble(txtstartb);
+                txtConsumed.Text = Convert.ToString(consumeb);
+                sumofcash();
+            }
+
             else
-                txtCNGCredit.Enabled = false;
+            {
+
+            }
+            
 
 
 
@@ -962,10 +878,10 @@ namespace UI.SAD.Order
 
 
             }
+            grdvForStandByVehicle.DataSource = null;
             grdvForStandByVehicle.DataBind();
             File.Delete(filePathForXML);
-            grdvForStandByVehicle.DataSource = "";
-            grdvForStandByVehicle.DataBind();
+           
 
 
         }
