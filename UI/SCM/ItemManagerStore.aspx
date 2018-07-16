@@ -63,12 +63,23 @@
                 <td><asp:TextBox ID="txtBaseName" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="lblDescription" runat="server" Text="Description :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtDescription" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
+
+                <td style="text-align:right;" class="auto-style7">&nbsp;</td> 
+                <td style="text-align:right;"><asp:Label ID="lblSearch" runat="server" CssClass="lbl" Text="Search :"></asp:Label></td>
+            
+                <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="txtSearch" runat="server" CssClass="txtBox1" Width="248px" Height="19px" BackColor="WhiteSmoke"  ForeColor="Black"></asp:TextBox>                                             
+                <td style="text-align:right;"><asp:Button ID="btnSearch" runat="server" class="myButtonGrey" Text="Search" OnClick="btnSearch_Click" /></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label2" runat="server" Text="Part :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtPart" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label18" runat="server" Text="Model :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtModel" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
+
+                    <td style="text-align:right;"></td>
+                    <td style="text-align:right;" colspan="3"; rowspan="11" >
+                    <asp:ListBox ID="ListBox1" runat="server" Height="280px" Width="400px"></asp:ListBox>
+                  </td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label19" runat="server" Text="Serial :" CssClass="lbl"></asp:Label></td>

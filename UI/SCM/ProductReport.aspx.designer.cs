@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.WoodPurchase {
+namespace UI.SCM {
     
     
-    public partial class WoodReceiveAMFLExcel {
+    public partial class ProductReport {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -58,6 +58,15 @@ namespace UI.WoodPurchase {
         protected global::System.Web.UI.ScriptManager ScriptManager0;
         
         /// <summary>
+        /// UpdatePanel0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
+        
+        /// <summary>
         /// pnlUpperControl control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace UI.WoodPurchase {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlUpperControl;
+        
+        /// <summary>
+        /// AlwaysVisibleControlExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
         /// hdnconfirm control.
@@ -94,49 +112,31 @@ namespace UI.WoodPurchase {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnPOAmount control.
+        /// hdnWHID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnPOAmount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnWHID;
         
         /// <summary>
-        /// hdnSupplierID control.
+        /// hdnGroupID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnSupplierID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnGroupID;
         
         /// <summary>
-        /// hdnJobStaion control.
+        /// hdnCategoryID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnJobStaion;
-        
-        /// <summary>
-        /// lblWH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWH;
-        
-        /// <summary>
-        /// ddlWHList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWHList;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCategoryID;
         
         /// <summary>
         /// Label14 control.
@@ -148,138 +148,48 @@ namespace UI.WoodPurchase {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// ddlPOList control.
+        /// ddlWH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPOList;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWH;
         
         /// <summary>
-        /// Label10 control.
+        /// lblSearchText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label lblSearchText;
         
         /// <summary>
-        /// txtVehicleNo control.
+        /// txtSearchText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVehicleNo;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchText;
         
         /// <summary>
-        /// Label3 control.
+        /// btnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// txtGateEntry control.
+        /// dgvInvnetory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGateEntry;
-        
-        /// <summary>
-        /// Label9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
-        
-        /// <summary>
-        /// ddlMokam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMokam;
-        
-        /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
-        /// <summary>
-        /// ddlWoodType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWoodType;
-        
-        /// <summary>
-        /// lblTag control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTag;
-        
-        /// <summary>
-        /// txtTag control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTag;
-        
-        /// <summary>
-        /// FileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-        
-        /// <summary>
-        /// btnUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// gvExcelFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvExcelFile;
+        protected global::System.Web.UI.WebControls.GridView dgvInvnetory;
     }
 }
