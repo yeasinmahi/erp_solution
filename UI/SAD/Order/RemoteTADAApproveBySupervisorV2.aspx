@@ -34,6 +34,19 @@
           window.open('TADAAprvSingleEmployeeByImsSuperv.aspx?ID=' + url, '', "height=600, width=1350, scrollbars=yes, left=50, top=100, resizable=yes, title=Preview");
                   }
 </script>
+
+
+    
+
+
+
+
+
+
+
+
+
+
 </head>
 <body>
     <form id="frmpdv" runat="server">

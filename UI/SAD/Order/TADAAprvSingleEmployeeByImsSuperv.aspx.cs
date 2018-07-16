@@ -134,537 +134,537 @@ namespace UI.SAD.Order
 
 
 
-        private void calculateRowTotal(int RowIndex)
-        {
-            string strpetrolcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostPetrolT")).Text;
-            if (strpetrolcost == "") { petrolcost = 0; }
-            else
-                petrolcost = decimal.Parse(strpetrolcost);
-            if (petrolcost <= 0)
-            {
-                petrolcost = 0;
-            }
-            string stroctencost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostOctenT")).Text;
-            if (stroctencost == "") { octencost = 0; }
-            else
-
-                octencost = decimal.Parse(stroctencost);
-            if (octencost <= 0)
-            {
-                octencost = 0;
-            }
-
-            string strcngcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostCarbonNitGasT")).Text;
-            if (strcngcost == "") { cngcost = 0; }
-            else
-                cngcost = decimal.Parse(strcngcost);
-            if (cngcost <= 0)
-            {
-                cngcost = 0;
-            }
-
-            string strlubriantcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostLubricant")).Text;
-            if (strlubriantcost == "") { lubriantcost = 0; }
-            else
-                lubriantcost = decimal.Parse(strlubriantcost);
-            if (lubriantcost <= 0)
-            {
-                lubriantcost = 0;
-            }
-
-            string strbusfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBusAmountT")).Text;
-            if (strbusfare == "") { busfare = 0; }
-            else
-
-                busfare = decimal.Parse(strbusfare);
-            if (busfare <= 0)
-            {
-                busfare = 0;
-            }
-
-            string strRickfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareRickshawAmountT")).Text;
-            if (strRickfare == "") { Rickfare = 0; }
-            else
-                Rickfare = decimal.Parse(strRickfare);
-            if (Rickfare <= 0)
-            {
-                Rickfare = 0;
-            }
-
-            string strcngfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareCNGAmountT")).Text;
-            if (strcngfare == "") { cngfare = 0; }
-            else
-                cngfare = decimal.Parse(strcngfare);
-            if (cngfare <= 0)
-            {
-                cngfare = 0;
-            }
-            string strtrainfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareTrainAmountT")).Text;
-            if (strtrainfare == "") { trainfare = 0; }
-            else
-
-                trainfare = decimal.Parse(strtrainfare);
-            if (trainfare <= 0)
-            {
-                trainfare = 0;
-            }
-
-            string strBoatfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBoatT")).Text;
-            if (strBoatfare == "") { boatfare = 0; }
-            else
-
-                boatfare = decimal.Parse(strBoatfare);
-            if (trainfare <= 0)
-            {
-                boatfare = 0;
-            }
-
-
-
-            string strairplance = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareAirPlaneT")).Text;
-            if (strairplance == "") { airplance = 0; }
-            else
-
-                airplance = decimal.Parse(strairplance);
-            if (airplance <= 0)
-            {
-                airplance = 0;
-            }
-
-            string strothervhfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareOtherVheicleAmountT")).Text;
-            if (strothervhfare == "") { othervhfare = 0; }
-            else
-
-                othervhfare = decimal.Parse(strothervhfare);
-            if (othervhfare <= 0)
-            {
-                othervhfare = 0;
-            }
-
-            string strmntcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostAmountMaintenaceT")).Text;
-            if (strmntcost == "") { mntcost = 0; }
-            else
-                mntcost = decimal.Parse(strmntcost);
-            if (mntcost <= 0)
-            {
-                mntcost = 0;
-            }
-            string strferrytol = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFeryTollCostT")).Text;
-            if (strferrytol == "") { ferrytol = 0; }
-            else
-
-                ferrytol = decimal.Parse(strferrytol);
-            if (ferrytol <= 0)
-            {
-                ferrytol = 0;
-            }
-
-            string strownda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDAAmountT")).Text;
-            if (strownda == "") { ownda = 0; }
-            else
-                ownda = decimal.Parse(strownda);
-            if (ownda <= 0)
-            {
-                ownda = 0;
-            }
-
-            string strdriverda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverDACostT")).Text;
-            if (strdriverda == "") { driverda = 0; }
-            else
-
-                driverda = decimal.Parse(strdriverda);
-            if (driverda <= 0)
-            {
-                driverda = 0;
-            }
-            string strownhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecHotelBillAmountT")).Text;
-            if (strownhotel == "") { ownhotel = 0; }
-            else
-
-                ownhotel = decimal.Parse(strownhotel);
-            if (ownhotel <= 0)
-            {
-                ownhotel = 0;
-            }
-
-            string strdriverhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverHotelBillAmountT")).Text;
-            if (strdriverhotel == "") { driverhotel = 0; }
-            else
-
-
-
-                driverhotel = decimal.Parse(strdriverhotel);
-            if (driverhotel <= 0)
-            {
-                driverhotel = 0;
-            }
-
-            string strphotocopy = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPhotoCopyCostT")).Text;
-            if (strphotocopy == "") { photocopy = 0; }
-            else
-
-                photocopy = decimal.Parse(strphotocopy);
-            if (photocopy <= 0)
-            {
-                photocopy = 0;
-            }
-
-
-
-            string strc = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCourierCostT")).Text;
-            if (strc == "") { courier = 0; }
-            else
-            {
-                courier = decimal.Parse(strc);
-                if (courier <= 0)
-                { courier = 0; }
-            }
-            string strOthBill = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecOtherBillAmountT")).Text;
-            if
-                (strOthBill == "") { othercost = 0; }
-
-            else
-
-                othercost = decimal.Parse(strOthBill);
-            if (othercost <= 0)
-            {
-                othercost = 0;
-            }
-
-            string strtotalcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecRowTotalT")).Text;
-            if (strtotalcost == "") { totalcost = 0; }
-            else
-
-
-
-                totalcost = decimal.Parse(strtotalcost);
-            if (totalcost <= 0)
-            {
-                totalcost = 0;
-            }
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecRowTotalT")).Text =
-
-          (petrolcost + octencost + cngcost + lubriantcost + busfare + Rickfare + cngfare + trainfare + boatfare + airplance + othervhfare + mntcost
-          + ferrytol + ownda + driverda + ownhotel + driverhotel + photocopy + courier + othercost).ToString();
-
-
-        }
-
-        private void CalculateGrandTotal()
-        {
-            petrolcost = 0; octencost = 0; cngcost = 0; lubriantcost = 0;
-            busfare = 0; Rickfare = 0; cngfare = 0; trainfare = 0; boatfare = 0; airplance = 0; othervhfare = 0;
-            mntcost = 0; ferrytol = 0;
-
-            ownda = 0; driverda = 0; ownhotel = 0; driverhotel = 0;
-            photocopy = 0; courier = 0; othercost = 0; totalcost = 0;
-
-
-            int cnt = grdvForApproveTADAByImmdediatesupervisor.Rows.Count;
-            for (int RowIndex = 0; RowIndex < cnt - 1; RowIndex++)
-            {
-
-                string strpetrolcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostPetrolT")).Text;
-                if (strpetrolcost == "") { petrolcost = 0; }
-                else
-                    petrolcost = petrolcost + decimal.Parse(strpetrolcost);
-
-                string stroctencost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostOctenT")).Text;
-                if (stroctencost == "") { octencost = 0; }
-                else
-                    octencost = octencost + decimal.Parse(stroctencost);
-
-                string strcngcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostCarbonNitGasT")).Text;
-                if (strcngcost == "") { cngcost = 0; }
-                else
-                    cngcost = cngcost + decimal.Parse(strcngcost);
-
-                string strlubriantcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostLubricant")).Text;
-                if (strlubriantcost == "") { lubriantcost = 0; }
-                else
-                    lubriantcost = lubriantcost + decimal.Parse(strlubriantcost);
-
-                string strbusfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBusAmountT")).Text;
-                if (strbusfare == "") { busfare = 0; }
-                else
-                    busfare = busfare + decimal.Parse(strbusfare);
-
-                string strRickfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareRickshawAmountT")).Text;
-                if (strRickfare == "") { Rickfare = 0; }
-                Rickfare = Rickfare + decimal.Parse(strRickfare);
-
-                string strcngfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareCNGAmountT")).Text;
-                if (strcngfare == "") { cngfare = 0; }
-                else
-                    cngfare = cngfare + decimal.Parse(strcngfare);
-
-                string strtrainfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareTrainAmountT")).Text;
-                if (strtrainfare == "") { trainfare = 0; }
-                else
-                    trainfare = trainfare + decimal.Parse(strtrainfare);
-
-
-                string strboatfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBoatT")).Text;
-                if (strboatfare == "") { boatfare = 0; }
-                else
-                    boatfare = boatfare + decimal.Parse(strboatfare);
-
-
-                string strairplance = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareAirPlaneT")).Text;
-                if (strairplance == "") { airplance = 0; }
-                else
-                    airplance = airplance + decimal.Parse(strairplance);
-
-                string strothervhfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareOtherVheicleAmountT")).Text;
-                if (strothervhfare == "") { othervhfare = 0; }
-                else
-                    othervhfare = othervhfare + decimal.Parse(strothervhfare);
-
-
-                string strmntcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostAmountMaintenaceT")).Text;
-                if (strmntcost == "") { mntcost = 0; }
-                else
-                    mntcost = mntcost + decimal.Parse(strmntcost);
-
-                string strferrytol = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFeryTollCostT")).Text;
-                if (strferrytol == "") { ferrytol = 0; }
-                else
-
-                    ferrytol = ferrytol + decimal.Parse(strferrytol);
-
-                string strownda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDAAmountT")).Text;
-                if (strownda == "") { ownda = 0; }
-                else
-                    ownda = ownda + decimal.Parse(strownda);
-
-                string strdriverda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverDACostT")).Text;
-                if (strdriverda == "") { driverda = 0; }
-                else
-                    driverda = driverda + decimal.Parse(strdriverda);
-
-                string strownhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecHotelBillAmountT")).Text;
-                if (strownhotel == "") { ownhotel = 0; }
-                else
-
-                    ownhotel = ownhotel + decimal.Parse(strownhotel);
-
-                string strdriverhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverHotelBillAmountT")).Text;
-                if (strdriverhotel == "") { driverhotel = 0; }
-                else
-                    driverhotel = driverhotel + decimal.Parse(strdriverhotel);
-
-                string strphotocopy = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPhotoCopyCostT")).Text;
-                if (strphotocopy == "") { photocopy = 0; }
-                else
-                    photocopy = photocopy + decimal.Parse(strphotocopy);
-
-                string strcourier = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCourierCostT")).Text;
-                if (strcourier == "") { courier = 0; }
-
-                courier = courier + decimal.Parse(strcourier);
-
-                string strothercost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecOtherBillAmountT")).Text;
-                if (strothercost == "") { othercost = 0; }
-                else
-                    othercost = othercost + decimal.Parse(strothercost);
-
-                string strtotalcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecRowTotalT")).Text;
-                if (strtotalcost == "") { totalcost = 0; }
-                else
-                    totalcost = totalcost + decimal.Parse(strtotalcost);
-
-                string strPersonalqnt = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPersonalMilage")).Text;
-                if (strPersonalqnt == "") { personalMlgqnt = 0; }
-                else
-                    personalMlgqnt = personalMlgqnt + decimal.Parse(strPersonalqnt);
-
-                string strPersonalMlgTCost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPersonalTotalcost")).Text;
-                if (strPersonalMlgTCost == "") { personalTotalCost = 0; }
-                else
-                    personalTotalCost = personalTotalCost + decimal.Parse(strPersonalMlgTCost);
-            }
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostPetrolT")).Text = petrolcost.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostOctenT")).Text = octencost.ToString();
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostCarbonNitGasT")).Text = cngcost.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostLubricant")).Text = lubriantcost.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareBusAmountT")).Text = busfare.ToString();
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareRickshawAmountT")).Text = Rickfare.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareCNGAmountT")).Text = cngfare.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareTrainAmountT")).Text = trainfare.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareBoatT")).Text = boatfare.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareAirPlaneT")).Text = airplance.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareOtherVheicleAmountT")).Text = othervhfare.ToString();
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostAmountMaintenaceT")).Text = mntcost.ToString();
-
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFeryTollCostT")).Text = ferrytol.ToString();
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecDAAmountT")).Text = ownda.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecDriverDACostT")).Text = driverda.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecHotelBillAmountT")).Text = ownhotel.ToString();
-
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecDriverHotelBillAmountT")).Text = driverhotel.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecPhotoCopyCostT")).Text = photocopy.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCourierCostT")).Text = courier.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecOtherBillAmountT")).Text = othercost.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecRowTotalT")).Text = totalcost.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecPersonalMilage")).Text = personalMlgqnt.ToString();
-            ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecPersonalTotalcost")).Text = personalTotalCost.ToString();
-
-        }
-
-
-
-        protected void txtdecCostPetrolT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecCostOctenT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecCostCarbonNitGasT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecCostLubricant_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareBusAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareRickshawAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareCNGAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareTrainAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareBoatT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareAirPlaneT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFareOtherVheicleAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecCostAmountMaintenaceT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecFeryTollCostT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecDAAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecDriverDACostT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecHotelBillAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecDriverHotelBillAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecPhotoCopyCostT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecCourierCostT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecOtherBillAmountT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
-
-        protected void txtdecRowTotalT_TextChanged(object sender, EventArgs e)
-        {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
-        }
+        //private void calculateRowTotal(int RowIndex)
+        //{
+        //    string strpetrolcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostPetrolT")).Text;
+        //    if (strpetrolcost == "") { petrolcost = 0; }
+        //    else
+        //        petrolcost = decimal.Parse(strpetrolcost);
+        //    if (petrolcost <= 0)
+        //    {
+        //        petrolcost = 0;
+        //    }
+        //    string stroctencost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostOctenT")).Text;
+        //    if (stroctencost == "") { octencost = 0; }
+        //    else
+
+        //        octencost = decimal.Parse(stroctencost);
+        //    if (octencost <= 0)
+        //    {
+        //        octencost = 0;
+        //    }
+
+        //    string strcngcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostCarbonNitGasT")).Text;
+        //    if (strcngcost == "") { cngcost = 0; }
+        //    else
+        //        cngcost = decimal.Parse(strcngcost);
+        //    if (cngcost <= 0)
+        //    {
+        //        cngcost = 0;
+        //    }
+
+        //    string strlubriantcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtlubricantcost")).Text;
+        //    if (strlubriantcost == "") { lubriantcost = 0; }
+        //    else
+        //        lubriantcost = decimal.Parse(strlubriantcost);
+        //    if (lubriantcost <= 0)
+        //    {
+        //        lubriantcost = 0;
+        //    }
+
+        //    string strbusfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBusAmountT")).Text;
+        //    if (strbusfare == "") { busfare = 0; }
+        //    else
+
+        //        busfare = decimal.Parse(strbusfare);
+        //    if (busfare <= 0)
+        //    {
+        //        busfare = 0;
+        //    }
+
+        //    string strRickfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareRickshawAmountT")).Text;
+        //    if (strRickfare == "") { Rickfare = 0; }
+        //    else
+        //        Rickfare = decimal.Parse(strRickfare);
+        //    if (Rickfare <= 0)
+        //    {
+        //        Rickfare = 0;
+        //    }
+
+        //    string strcngfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareCNGAmountT")).Text;
+        //    if (strcngfare == "") { cngfare = 0; }
+        //    else
+        //        cngfare = decimal.Parse(strcngfare);
+        //    if (cngfare <= 0)
+        //    {
+        //        cngfare = 0;
+        //    }
+        //    string strtrainfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareTrainAmountT")).Text;
+        //    if (strtrainfare == "") { trainfare = 0; }
+        //    else
+
+        //        trainfare = decimal.Parse(strtrainfare);
+        //    if (trainfare <= 0)
+        //    {
+        //        trainfare = 0;
+        //    }
+
+        //    string strBoatfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBoatT")).Text;
+        //    if (strBoatfare == "") { boatfare = 0; }
+        //    else
+
+        //        boatfare = decimal.Parse(strBoatfare);
+        //    if (trainfare <= 0)
+        //    {
+        //        boatfare = 0;
+        //    }
+
+
+
+        //    string strairplance = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareAirPlaneT")).Text;
+        //    if (strairplance == "") { airplance = 0; }
+        //    else
+
+        //        airplance = decimal.Parse(strairplance);
+        //    if (airplance <= 0)
+        //    {
+        //        airplance = 0;
+        //    }
+
+        //    string strothervhfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareOtherVheicleAmountT")).Text;
+        //    if (strothervhfare == "") { othervhfare = 0; }
+        //    else
+
+        //        othervhfare = decimal.Parse(strothervhfare);
+        //    if (othervhfare <= 0)
+        //    {
+        //        othervhfare = 0;
+        //    }
+
+        //    string strmntcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostAmountMaintenaceT")).Text;
+        //    if (strmntcost == "") { mntcost = 0; }
+        //    else
+        //        mntcost = decimal.Parse(strmntcost);
+        //    if (mntcost <= 0)
+        //    {
+        //        mntcost = 0;
+        //    }
+        //    string strferrytol = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFeryTollCostT")).Text;
+        //    if (strferrytol == "") { ferrytol = 0; }
+        //    else
+
+        //        ferrytol = decimal.Parse(strferrytol);
+        //    if (ferrytol <= 0)
+        //    {
+        //        ferrytol = 0;
+        //    }
+
+        //    string strownda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDAAmountT")).Text;
+        //    if (strownda == "") { ownda = 0; }
+        //    else
+        //        ownda = decimal.Parse(strownda);
+        //    if (ownda <= 0)
+        //    {
+        //        ownda = 0;
+        //    }
+
+        //    string strdriverda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverDACostT")).Text;
+        //    if (strdriverda == "") { driverda = 0; }
+        //    else
+
+        //        driverda = decimal.Parse(strdriverda);
+        //    if (driverda <= 0)
+        //    {
+        //        driverda = 0;
+        //    }
+        //    string strownhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecHotelBillAmountT")).Text;
+        //    if (strownhotel == "") { ownhotel = 0; }
+        //    else
+
+        //        ownhotel = decimal.Parse(strownhotel);
+        //    if (ownhotel <= 0)
+        //    {
+        //        ownhotel = 0;
+        //    }
+
+        //    string strdriverhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverHotelBillAmountT")).Text;
+        //    if (strdriverhotel == "") { driverhotel = 0; }
+        //    else
+
+
+
+        //        driverhotel = decimal.Parse(strdriverhotel);
+        //    if (driverhotel <= 0)
+        //    {
+        //        driverhotel = 0;
+        //    }
+
+        //    string strphotocopy = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPhotoCopyCostT")).Text;
+        //    if (strphotocopy == "") { photocopy = 0; }
+        //    else
+
+        //        photocopy = decimal.Parse(strphotocopy);
+        //    if (photocopy <= 0)
+        //    {
+        //        photocopy = 0;
+        //    }
+
+
+
+        //    string strc = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCourierCostT")).Text;
+        //    if (strc == "") { courier = 0; }
+        //    else
+        //    {
+        //        courier = decimal.Parse(strc);
+        //        if (courier <= 0)
+        //        { courier = 0; }
+        //    }
+        //    string strOthBill = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecOtherBillAmountT")).Text;
+        //    if
+        //        (strOthBill == "") { othercost = 0; }
+
+        //    else
+
+        //        othercost = decimal.Parse(strOthBill);
+        //    if (othercost <= 0)
+        //    {
+        //        othercost = 0;
+        //    }
+
+        //    string strtotalcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecRowTotalT")).Text;
+        //    if (strtotalcost == "") { totalcost = 0; }
+        //    else
+
+
+
+        //        totalcost = decimal.Parse(strtotalcost);
+        //    if (totalcost <= 0)
+        //    {
+        //        totalcost = 0;
+        //    }
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecRowTotalT")).Text =
+
+        //  (petrolcost + octencost + cngcost + lubriantcost + busfare + Rickfare + cngfare + trainfare + boatfare + airplance + othervhfare + mntcost
+        //  + ferrytol + ownda + driverda + ownhotel + driverhotel + photocopy + courier + othercost).ToString();
+
+
+        //}
+
+        //private void CalculateGrandTotal()
+        //{
+        //    petrolcost = 0; octencost = 0; cngcost = 0; lubriantcost = 0;
+        //    busfare = 0; Rickfare = 0; cngfare = 0; trainfare = 0; boatfare = 0; airplance = 0; othervhfare = 0;
+        //    mntcost = 0; ferrytol = 0;
+
+        //    ownda = 0; driverda = 0; ownhotel = 0; driverhotel = 0;
+        //    photocopy = 0; courier = 0; othercost = 0; totalcost = 0;
+
+
+        //    int cnt = grdvForApproveTADAByImmdediatesupervisor.Rows.Count;
+        //    for (int RowIndex = 0; RowIndex < cnt - 1; RowIndex++)
+        //    {
+
+        //        string strpetrolcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostPetrolT")).Text;
+        //        if (strpetrolcost == "") { petrolcost = 0; }
+        //        else
+        //            petrolcost = petrolcost + decimal.Parse(strpetrolcost);
+
+        //        string stroctencost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostOctenT")).Text;
+        //        if (stroctencost == "") { octencost = 0; }
+        //        else
+        //            octencost = octencost + decimal.Parse(stroctencost);
+
+        //        string strcngcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostCarbonNitGasT")).Text;
+        //        if (strcngcost == "") { cngcost = 0; }
+        //        else
+        //            cngcost = cngcost + decimal.Parse(strcngcost);
+
+        //        string strlubriantcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtlubricantcost")).Text;
+        //        if (strlubriantcost == "") { lubriantcost = 0; }
+        //        else
+        //            lubriantcost = lubriantcost + decimal.Parse(strlubriantcost);
+
+        //        string strbusfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBusAmountT")).Text;
+        //        if (strbusfare == "") { busfare = 0; }
+        //        else
+        //            busfare = busfare + decimal.Parse(strbusfare);
+
+        //        string strRickfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareRickshawAmountT")).Text;
+        //        if (strRickfare == "") { Rickfare = 0; }
+        //        Rickfare = Rickfare + decimal.Parse(strRickfare);
+
+        //        string strcngfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareCNGAmountT")).Text;
+        //        if (strcngfare == "") { cngfare = 0; }
+        //        else
+        //            cngfare = cngfare + decimal.Parse(strcngfare);
+
+        //        string strtrainfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareTrainAmountT")).Text;
+        //        if (strtrainfare == "") { trainfare = 0; }
+        //        else
+        //            trainfare = trainfare + decimal.Parse(strtrainfare);
+
+
+        //        string strboatfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareBoatT")).Text;
+        //        if (strboatfare == "") { boatfare = 0; }
+        //        else
+        //            boatfare = boatfare + decimal.Parse(strboatfare);
+
+
+        //        string strairplance = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareAirPlaneT")).Text;
+        //        if (strairplance == "") { airplance = 0; }
+        //        else
+        //            airplance = airplance + decimal.Parse(strairplance);
+
+        //        string strothervhfare = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFareOtherVheicleAmountT")).Text;
+        //        if (strothervhfare == "") { othervhfare = 0; }
+        //        else
+        //            othervhfare = othervhfare + decimal.Parse(strothervhfare);
+
+
+        //        string strmntcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCostAmountMaintenaceT")).Text;
+        //        if (strmntcost == "") { mntcost = 0; }
+        //        else
+        //            mntcost = mntcost + decimal.Parse(strmntcost);
+
+        //        string strferrytol = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecFeryTollCostT")).Text;
+        //        if (strferrytol == "") { ferrytol = 0; }
+        //        else
+
+        //            ferrytol = ferrytol + decimal.Parse(strferrytol);
+
+        //        string strownda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDAAmountT")).Text;
+        //        if (strownda == "") { ownda = 0; }
+        //        else
+        //            ownda = ownda + decimal.Parse(strownda);
+
+        //        string strdriverda = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverDACostT")).Text;
+        //        if (strdriverda == "") { driverda = 0; }
+        //        else
+        //            driverda = driverda + decimal.Parse(strdriverda);
+
+        //        string strownhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecHotelBillAmountT")).Text;
+        //        if (strownhotel == "") { ownhotel = 0; }
+        //        else
+
+        //            ownhotel = ownhotel + decimal.Parse(strownhotel);
+
+        //        string strdriverhotel = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecDriverHotelBillAmountT")).Text;
+        //        if (strdriverhotel == "") { driverhotel = 0; }
+        //        else
+        //            driverhotel = driverhotel + decimal.Parse(strdriverhotel);
+
+        //        string strphotocopy = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPhotoCopyCostT")).Text;
+        //        if (strphotocopy == "") { photocopy = 0; }
+        //        else
+        //            photocopy = photocopy + decimal.Parse(strphotocopy);
+
+        //        string strcourier = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecCourierCostT")).Text;
+        //        if (strcourier == "") { courier = 0; }
+
+        //        courier = courier + decimal.Parse(strcourier);
+
+        //        string strothercost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecOtherBillAmountT")).Text;
+        //        if (strothercost == "") { othercost = 0; }
+        //        else
+        //            othercost = othercost + decimal.Parse(strothercost);
+
+        //        string strtotalcost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecRowTotalT")).Text;
+        //        if (strtotalcost == "") { totalcost = 0; }
+        //        else
+        //            totalcost = totalcost + decimal.Parse(strtotalcost);
+
+        //        string strPersonalqnt = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPersonalMilage")).Text;
+        //        if (strPersonalqnt == "") { personalMlgqnt = 0; }
+        //        else
+        //            personalMlgqnt = personalMlgqnt + decimal.Parse(strPersonalqnt);
+
+        //        string strPersonalMlgTCost = ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[RowIndex].FindControl("txtdecPersonalTotalcost")).Text;
+        //        if (strPersonalMlgTCost == "") { personalTotalCost = 0; }
+        //        else
+        //            personalTotalCost = personalTotalCost + decimal.Parse(strPersonalMlgTCost);
+        //    }
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostPetrolT")).Text = petrolcost.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostOctenT")).Text = octencost.ToString();
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostCarbonNitGasT")).Text = cngcost.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtlubricantcost")).Text = lubriantcost.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareBusAmountT")).Text = busfare.ToString();
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareRickshawAmountT")).Text = Rickfare.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareCNGAmountT")).Text = cngfare.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareTrainAmountT")).Text = trainfare.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareBoatT")).Text = boatfare.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareAirPlaneT")).Text = airplance.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFareOtherVheicleAmountT")).Text = othervhfare.ToString();
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCostAmountMaintenaceT")).Text = mntcost.ToString();
+
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecFeryTollCostT")).Text = ferrytol.ToString();
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecDAAmountT")).Text = ownda.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecDriverDACostT")).Text = driverda.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecHotelBillAmountT")).Text = ownhotel.ToString();
+
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecDriverHotelBillAmountT")).Text = driverhotel.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecPhotoCopyCostT")).Text = photocopy.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecCourierCostT")).Text = courier.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecOtherBillAmountT")).Text = othercost.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecRowTotalT")).Text = totalcost.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecPersonalMilage")).Text = personalMlgqnt.ToString();
+        //    ((TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[cnt - 1].FindControl("txtdecPersonalTotalcost")).Text = personalTotalCost.ToString();
+
+        //}
+
+
+
+        //protected void txtdecCostPetrolT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecCostOctenT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecCostCarbonNitGasT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtlubricantcost_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareBusAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareRickshawAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareCNGAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareTrainAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareBoatT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareAirPlaneT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFareOtherVheicleAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecCostAmountMaintenaceT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecFeryTollCostT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecDAAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecDriverDACostT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecHotelBillAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecDriverHotelBillAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecPhotoCopyCostT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecCourierCostT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecOtherBillAmountT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
+
+        //protected void txtdecRowTotalT_TextChanged(object sender, EventArgs e)
+        //{
+        //    //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+        //    //calculateRowTotal(RowIndex);
+        //    //CalculateGrandTotal();
+        //}
 
         protected void txtdecSupplierCNG_TextChanged(object sender, EventArgs e)
         {
@@ -678,9 +678,9 @@ namespace UI.SAD.Order
 
         protected void txtdecPersonalMilage_TextChanged(object sender, EventArgs e)
         {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
+            //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            //calculateRowTotal(RowIndex);
+            //CalculateGrandTotal();
         }
 
         protected void txtdecMlgRate_TextChanged(object sender, EventArgs e)
@@ -690,9 +690,9 @@ namespace UI.SAD.Order
 
         protected void txtdecPersonalTotalcost_TextChanged(object sender, EventArgs e)
         {
-            RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            calculateRowTotal(RowIndex);
-            CalculateGrandTotal();
+            //RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            //calculateRowTotal(RowIndex);
+            //CalculateGrandTotal();
         }
 
         protected void txtPaymentType_TextChanged(object sender, EventArgs e)
@@ -711,8 +711,8 @@ namespace UI.SAD.Order
          
 
             int rptTypeid = 1;
-            try
-            {
+            //try
+            //{
                 if (hdnconfirm.Value == "1")
                 {
 
@@ -759,7 +759,7 @@ namespace UI.SAD.Order
 
 
                                 TextBox txtdecQntLubricant = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[21].FindControl("txtdecQntLubricant");
-                                TextBox txtdecCostLubricant = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[22].FindControl("txtdecCostLubricant");
+                                TextBox txtlubricantcost = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[22].FindControl("txtlubricantcost");
 
 
                                 TextBox txtdecFareBusAmountT = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[23].FindControl("txtdecFareBusAmountT");
@@ -792,7 +792,7 @@ namespace UI.SAD.Order
                                 TextBox txtdecMlgRate = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[43].FindControl("txtdecMlgRate");
                                 TextBox txtdecPersonalTotalcost = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[44].FindControl("txtdecPersonalTotalcost");
                                 TextBox txtPaymentType = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[45].FindControl("txtPaymentType");
-                                TextBox txtstrFuelStationaname = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[46].FindControl("txtstrFuelStationaname");
+                                TextBox txtstrFuelStationaname = (TextBox)grdvForApproveTADAByImmdediatesupervisor.Rows[rowIndex].Cells[48].FindControl("txtstrFuelStationaname");
 
 
                                 string strBillDate = txtdteFromdateNoBikeDet.Text;
@@ -819,7 +819,7 @@ namespace UI.SAD.Order
                                 string strQntCarBonNitr = txtdecQntCarbonNitGasT.Text;
                                 string strCostCarbonNit = txtdecCostCarbonNitGasT.Text;
                                 string strQntLubricant = txtdecQntLubricant.Text;
-                                string strCostLubricant = txtdecCostLubricant.Text;
+                                string strCostLubricant = txtlubricantcost.Text;
 
                                 string strBusFareTaka = txtdecFareBusAmountT.Text;
                                 string strRickFare = txtdecFareRickshawAmountT.Text;
@@ -912,8 +912,8 @@ namespace UI.SAD.Order
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry(:  Please Select Topsheet then click Approve');", true);
                 }
 
-            }
-            catch { File.Delete(filePathForXML); }
+            //}
+            //catch { File.Delete(filePathForXML); }
 
         }
 
@@ -1184,7 +1184,30 @@ namespace UI.SAD.Order
             }
         }
 
-       
+        protected void grdvForApproveTADAByImmdediatesupervisor_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
 
+            //    bool CellValueattach = Convert.ToBoolean(e.Row.Cells[51].Text);
+
+
+
+
+            //    if (CellValueattach == true)
+            //    {
+            //        e.Row.Cells[1].BackColor = System.Drawing.Color.Green;
+            //    }
+
+            //    else { e.Row.Cells[1].BackColor = System.Drawing.Color.Red; }
+
+
+            //}
+        }
+
+        protected void grdvForApproveTADAByImmdediatesupervisor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -559,6 +559,15 @@ namespace UI.SAD.Order
                         , hdnUom.Value, ddlExtra.SelectedValue
                         , ddlIncentive.SelectedValue, narrTop
                         , ref code, ref id);
+                    //                vs.VehicleAssignTest(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
+                    //, hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
+                    //, (rdoVhlCompany.SelectedIndex == 2 ? false : true)
+                    //, (rdoVhlCompany.SelectedIndex == 0 ? true : false)
+                    //, rdo3rdPartyCharge.SelectedIndex == 0 ? true : false
+                    //, decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
+                    //, hdnUom.Value, ddlExtra.SelectedValue
+                    //, ddlIncentive.SelectedValue, narrTop
+                    //, ref code, ref id);
 
                     //Response.Redirect("../../Accounts/Voucher/Exit.aspx");
 
