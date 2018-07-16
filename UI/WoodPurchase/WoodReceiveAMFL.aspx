@@ -120,6 +120,7 @@
                 <td></td>
                 <td colspan="3" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click"/></td>        
             </tr>
+            
             <tr>
                 <td colspan="4">
             <asp:GridView ID="dgvReceive" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
@@ -159,8 +160,8 @@
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             </asp:GridView></td>
-            </tr>           
-        </table>
+            </tr>
+            </table>
     </div>
     
   

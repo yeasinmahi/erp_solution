@@ -40,13 +40,13 @@ namespace UI.VAT_Management {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmPurchase control.
+        /// frmCreditnote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmPurchase;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmCreditnote;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -227,15 +227,6 @@ namespace UI.VAT_Management {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlChallanNo;
-        
-        /// <summary>
-        /// btnShowREPORT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowREPORT;
         
         /// <summary>
         /// lblProductQty control.

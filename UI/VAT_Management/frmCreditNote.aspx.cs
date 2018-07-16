@@ -29,6 +29,8 @@ namespace UI.VAT_Management
         CreditNoteBLL objCreditBll = new CreditNoteBLL();
         DataTable dt;
         decimal numQty, monRtnAmountWithoutSDnVAT, monValue, monSD, monSurCharge, monVAT, monM11Other, monM11VAT, monNewSD, monNewVAT;
+
+
         DateTime strM11DateChallan, dtedate;
         char[] delimiterChars = { '[', ']' };bool ysnFactory;
         Mushok11 objMush = new Mushok11();
@@ -39,8 +41,9 @@ namespace UI.VAT_Management
             {
                 UpdatePanel0.DataBind();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-               
-               
+                try { File.Delete(filePathForXML); }
+                catch { }
+
                 dt = objMush.getVatAccountS(int.Parse(Session[SessionParams.USER_ID].ToString()));
                 if (dt.Rows.Count > 0)
                 {
@@ -61,24 +64,49 @@ namespace UI.VAT_Management
             }
         }
 
+        protected void ddlVatAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
+        }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            intitemid =int.Parse(hdnitemid.Value.ToString());
-            strChallanNo = ddlChallanNo.SelectedValue.ToString();
-            Pname= ddlChallanNo.SelectedItem.ToString();
-            dtedate = DateTime.Parse(lblChallanDate.Text);
-            string creditqty = txtCreditqty.Text;
-            string sdnew = txtSD.Text;
-            string othersdNew = txtWithoutSDVAT.Text;
-            string surnew = txtSurcharge.Text;
-            string vatnew = txtVAT.Text;
-            string m11vat = lblM11Vat.Text;
-            string others = lblM11OthersTax.Text;
-            decimal Decreasedothers = decimal.Parse(others) - decimal.Parse(surnew) - decimal.Parse(sdnew);
-            decimal DecreasedVat = decimal.Parse(m11vat) - decimal.Parse(vatnew);    
+            if (hdnconfirm.Value == "1")
+            {
+                if (lblM11Vat.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select New Item');", true);
+                }
+                else
+                {
+                    intitemid = int.Parse(hdnitemid.Value.ToString());
+                    strChallanNo = ddlChallanNo.SelectedValue.ToString();
+                    Pname = txtVatItemList.Text.ToString();
+                    dtedate = DateTime.Parse(lblChallanDate.Text);
+                    string creditqty = txtCreditqty.Text;
+                    string sdnew = txtSD.Text;
+                    string othersdNew = txtWithoutSDVAT.Text;
+                    string surnew = txtSurcharge.Text;
+                    string vatnew = txtVAT.Text;
+                    string m11vat = lblM11Vat.Text;
+                    string others = lblM11OthersTax.Text;
+                    decimal Decreasedothers = decimal.Parse(others) - decimal.Parse(surnew) - decimal.Parse(sdnew);
+                    decimal DecreasedVat = decimal.Parse(m11vat) - decimal.Parse(vatnew);
 
-            CreateVoucherXml(intitemid.ToString(), strChallanNo, dtedate.ToString(), Pname, creditqty, othersdNew, sdnew, surnew, vatnew, m11vat, others, Decreasedothers.ToString(), DecreasedVat.ToString());
+                    CreateVoucherXml(intitemid.ToString(), strChallanNo, dtedate.ToString(), Pname, creditqty, othersdNew, sdnew, surnew, vatnew, m11vat, others, Decreasedothers.ToString(), DecreasedVat.ToString());
 
+                    txtCreditqty.Text = "";
+                    txtSD.Text = "";
+                    txtWithoutSDVAT.Text = "";
+                    txtSurcharge.Text = "";
+                    txtVAT.Text = "";
+                    lblM11Vat.Text = "";
+                    lblM11OthersTax.Text = "";
+                    lblProductQty.Text = "";
+                    lblChallanDate.Text = "";
+                }
+            
+
+            }
         }
         private void CreateVoucherXml(string intitemid, string strChallanNo, string dtedate, string Pname, string creditqty, string othersdNew, string sdnew, string surnew, string vatnew, string m11vat, string others, string Decreasedothers, string DecreasedVat)
         {
@@ -164,17 +192,7 @@ namespace UI.VAT_Management
                 StringReader sr = new StringReader(xmlString);
                 DataSet ds = new DataSet();
                 ds.ReadXml(sr);
-                //dgvBandrollReceive.DataSource = ds;
-
-                //DataSet dsGrid = (DataSet)dgvBandrollReceive.DataSource;
-               // dsGrid.Tables[0].Rows[dgvBandrollReceive.Rows[e.RowIndex].DataItemIndex].Delete();
-              //  dsGrid.WriteXml(filePathForXML);
-              //  DataSet dsGridAfterDelete = (DataSet)dgvBandrollReceive.DataSource;
-              //  if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-              //  {
-              //      File.Delete(filePathForXML); dgvBandrollReceive.DataSource = ""; dgvBandrollReceive.DataBind();
-              //  }
-              //  else { LoadGridwithXml(); }
+               
             }
             catch { }
         }
@@ -187,16 +205,18 @@ namespace UI.VAT_Management
             ItemName = (arrayKeyItem[0].ToString());
             intitemid = Int32.Parse(arrayKeyItem[1].ToString());
 
-            dt = objCreditBll.GETCreditlist(ddlChallanNo.SelectedValue.ToString(), int.Parse(Session[SessionParams.USER_ID].ToString()),int.Parse(hdnAccno.Value));
+            dt = objCreditBll.GETCreditlist(ddlChallanNo.SelectedValue.ToString(), int.Parse(Session[SessionParams.UNIT_ID].ToString()),int.Parse(hdnAccno.Value));
             
             lblCustVatRegno.Text = dt.Rows[0]["strCustVATRegNo"].ToString();
-            lblChallanDate.Text = dt.Rows[0]["ysnFactory"].ToString();
+            lblChallanDate.Text = dt.Rows[0]["dteSellingDate"].ToString();
 
-            dt = objCreditBll.getChallanInfo(ddlChallanNo.SelectedValue.ToString(), int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(hdnAccno.Value), intitemid);
+            dt = objCreditBll.getChallanInfo(ddlChallanNo.SelectedValue.ToString(), int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), intitemid);
             lblProductQty.Text = dt.Rows[0]["numQuantity"].ToString();
             lblM11OthersTax.Text = dt.Rows[0]["OthersSDVAT"].ToString();
             lblChallanDate.Text = dt.Rows[0]["dteSellingDate"].ToString();
             lblM11Vat.Text= dt.Rows[0]["monVAT"].ToString();
+            hdnCustid.Value= dt.Rows[0]["intcusid"].ToString(); 
+            hdnCustAddress.Value = dt.Rows[0]["strcustaddress"].ToString();
 
         }
         protected void txtVatItemList_TextChanged(object sender, EventArgs e)
@@ -213,8 +233,8 @@ namespace UI.VAT_Management
             ItemName = (arrayKeyItem[0].ToString());
             intitemid = Int32.Parse(arrayKeyItem[1].ToString());
             hdnitemid.Value = arrayKeyItem[1].ToString();
-            dt = objCreditBll.getCreditchallan(int.Parse(Session[SessionParams.USER_ID].ToString()),int.Parse(hdnAccno.Value),intitemid);
-            ddlChallanNo.DataTextField = "strVATChallanNo";
+            dt = objCreditBll.getCreditchallan(int.Parse(Session[SessionParams.UNIT_ID].ToString()),int.Parse(hdnAccno.Value),intitemid);
+            ddlChallanNo.DataTextField = "strVATChallanNowith";
             ddlChallanNo.DataValueField = "strVATChallanNo";
             ddlChallanNo.DataSource = dt;
             ddlChallanNo.DataBind();
@@ -222,22 +242,7 @@ namespace UI.VAT_Management
 
         }
 
-        protected void btnShowREPORT_Click(object sender, EventArgs e)
-        {
-           // //strChallanNo = txtVatChallno.Text;
-           //// intyear = int.Parse(txtYear.Text);
-
-           // dt = objMush.getVatChallano(intyear, strChallanNo, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), 1);
-           // hdnCustid.Value = dt.Rows[0]["intCusID"].ToString();
-           // //hdnCustname.Value = dt.Rows[0]["strCustName"].ToString();
-           //// hdnCustname.Value = dt.Rows[0]["strCustAddress"].ToString();
-           // txtCustomerVatReg.Text = dt.Rows[0]["strCustVATRegNo"].ToString();
-           // dt.Clear();
-           // dt = objMush.getVatChallano(intyear, strChallanNo, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(hdnAccno.Value), 2);
-           // dgvVatProduct.DataSource = dt;
-           // dgvVatProduct.DataBind();
-
-        }
+       
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
@@ -245,9 +250,9 @@ namespace UI.VAT_Management
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-           // intM11Challanno =int.Parse(txtVatChallno.Text);
+            intM11Challanno =int.Parse(ddlChallanNo.SelectedValue);
             intCustid = int.Parse(hdnCustid.Value);
-           //strCusName= hdnCustname.Value;
+            strCusName= "N/A";
             strCusAddress = hdnCustAddress.Value;
           // strVehicleTypeNo = txtVehicletypeno.Text;
             dtedate = DateTime.Now;
@@ -267,8 +272,10 @@ namespace UI.VAT_Management
                     intSL = intSL + 1;
 
                     intItem =int.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblvatItemid")).Text.ToString());
+                    intM11Challanno =int.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblstrVATChallanNo")).Text.ToString());
+
                     strChallanNo = ((Label)dgvVatProduct.Rows[index].FindControl("lblstrVATChallanNo")).Text.ToString();
-                    strM11DateChallan =DateTime.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lbldtedate")).Text.ToString());
+                    strM11DateChallan =DateTime.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lbldtedates")).Text.ToString());
                     strItem = ((Label)dgvVatProduct.Rows[index].FindControl("lblstrVatProductName")).Text.ToString();
                     numQty =decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblQuantity")).Text.ToString());
                     monValue = decimal.Parse(((Label)dgvVatProduct.Rows[index].FindControl("lblsdvat")).Text.ToString());
@@ -284,52 +291,41 @@ namespace UI.VAT_Management
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
 
                 }
+                dgvVatProduct.DataBind();
+                try { File.Delete(filePathForXML); }
+                catch { }
             }
+           
         }
         
         protected double TotalValue = 0;
         protected void dgvTresuryRpt_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (((Label)e.Row.Cells[6].FindControl("lblmonAmount")).Text == "")
-                {
-                    TotalValue += 0;
-                }
-                else
-                {
-                    TotalValue += double.Parse(((Label)e.Row.Cells[6].FindControl("lblmonAmount")).Text);
-                }
-               
-            }
-
+           
         }
-        protected void btnDelete(object sender, EventArgs e)
+        protected void dgvPurchaseEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                char[] delimiterChars = { '^' };
-                string temp1 = ((Button)sender).CommandArgument.ToString();
-                string temp = temp1.Replace("'", " ");
-                string[] searchKey = temp.Split(delimiterChars);
-                intid = int.Parse(searchKey[0].ToString());
-                dt = objMush.getTreasuryYear(intid);
-                intyear = int.Parse(dt.Rows[0]["intYear"].ToString());
-                intMonth = int.Parse(dt.Rows[0]["intMonth"].ToString());
-                dt = objMush.getTreasuryCount(int.Parse(hdnAccno.Value),intyear,intMonth);
-                if (int.Parse(dt.Rows[0]["intCount"].ToString()) == 0)
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("ItemAdd");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<ItemAdd>" + xmlString + "</ItemAdd>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                dgvVatProduct.DataSource = ds;
+
+                DataSet dsGrid = (DataSet)dgvVatProduct.DataSource;
+                dsGrid.Tables[0].Rows[dgvVatProduct.Rows[e.RowIndex].DataItemIndex].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)dgvVatProduct.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 {
-                    objMush.gepPurchasedelete(int.Parse(hdnAccno.Value), intid, 3);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
-
+                    File.Delete(filePathForXML); dgvVatProduct.DataSource = ""; dgvVatProduct.DataBind();
                 }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Mushak-19 for this purchase already created. Therefore, delete is not possible!');", true);
-                }
-
-
-
+                else { LoadGridwithXml(); }
             }
             catch { }
         }

@@ -297,19 +297,19 @@ namespace UI.Transport
         }
 
         //** Gridview Customer Wise Route Cost Add Start ******************************************************
-        private void CustomerWiseRouteCost() 
+        private void CustomerWiseRouteCost()
         {
             intWork = 1;
             intID = int.Parse(HttpContext.Current.Session["intID"].ToString());
             dt = new DataTable();
             dt = obj.GetCustomerWiseCostForUpdate(intWork, intID);
             dgvTripWiseCustomer.DataSource = dt;
-            dgvTripWiseCustomer.DataBind(); 
+            dgvTripWiseCustomer.DataBind();
             if (dt.Rows.Count > 0)
             {
                 intUnitID = int.Parse(dt.Rows[0]["unitid"].ToString());
             }
-            
+
             dgvTripWiseCustomer.Columns[5].Visible = false;
             dgvTripWiseCustomer.Columns[6].Visible = false;
             dgvTripWiseCustomer.Columns[7].Visible = false;
@@ -362,15 +362,15 @@ namespace UI.Transport
             else if (intUnitID == 4 || intUnitID == 8)
             {
                 dgvTripWiseCustomer.Columns[11].Visible = true;
-                dgvTripWiseCustomer.Columns[12].Visible = true;                
+                dgvTripWiseCustomer.Columns[12].Visible = true;
                 dgvTripWiseCustomer.Columns[15].Visible = true;
                 dgvTripWiseCustomer.Columns[18].Visible = true;
-                dgvTripWiseCustomer.Columns[19].Visible = true;                
+                dgvTripWiseCustomer.Columns[19].Visible = true;
                 dgvTripWiseCustomer.Columns[23].Visible = true;
                 dgvTripWiseCustomer.Columns[25].Visible = true;
-                 
+
             }
-            else if (intUnitID == 16)
+            else if (intUnitID == 16 || intUnitID == 105)
             {
                 //dgvTripWiseCustomer.Columns[5].Visible = true;
 
@@ -401,6 +401,18 @@ namespace UI.Transport
                 dgvTripWiseCustomer.Columns[21].Visible = true;
                 dgvTripWiseCustomer.Columns[24].Visible = true;
                 dgvTripWiseCustomer.Columns[25].Visible = true;
+            }
+            else if (intUnitID == 90)
+            {
+                dgvTripWiseCustomer.Columns[10].Visible = true;
+                dgvTripWiseCustomer.Columns[11].Visible = true;
+                dgvTripWiseCustomer.Columns[12].Visible = true;
+                dgvTripWiseCustomer.Columns[13].Visible = true;
+
+                dgvTripWiseCustomer.Columns[17].Visible = true;
+                dgvTripWiseCustomer.Columns[18].Visible = true;
+                dgvTripWiseCustomer.Columns[19].Visible = true;
+                dgvTripWiseCustomer.Columns[21].Visible = true;
             }
             else
             {
@@ -729,7 +741,7 @@ namespace UI.Transport
                                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Route Cost Update.');", true); return;
                             }
                         }
-                        else if (intUnitID == 16)
+                        else if (intUnitID == 16 || intUnitID == 105)
                         {
                             if (millage == "" || millage == "0" || tf10ton == "" || tf10ton == "0" || tf7ton == "" || tf7ton == "0" || tf5ton == "" || tf5ton == "0" || tf3ton == "" || tf3ton == "0" || tf1andhalfton == "" || tf1andhalfton == "0")
                             {
@@ -792,6 +804,7 @@ namespace UI.Transport
                 {
                     intWork = 3;
                     intReffID = int.Parse(txtDriverEn.Text);
+                    //intInsertBy = int.Parse(HttpContext.Current.Session["intUnitID"].ToString());
                     intInsertBy = int.Parse(HttpContext.Current.Session["intUnitID"].ToString());
 
                     string message = obj.InsertAndUpdateCustInfoBridge(intWork, intReffID, intInsertBy, xml);

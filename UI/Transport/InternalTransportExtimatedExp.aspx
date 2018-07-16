@@ -289,6 +289,7 @@
             <td style="text-align:left;"><asp:TextBox ID="txtFerryToll" runat="server" CssClass="txtBox" BackColor="LightGray" BorderColor="Gray" Width="70px" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>                                                               
         </tr> 
         <tr>
+
             <td style="text-align:right;"><asp:Label ID="lblLabourExp" runat="server" CssClass="lbl" Text="Labour Exp. :"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtLabourExp" runat="server" CssClass="txtBox" Width="190px" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>                                                               
 

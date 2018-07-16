@@ -1,0 +1,104 @@
+﻿
+/*------------------------ Site Decoration ------------------------*/
+/*body { background-color:white; font-family:Verdana; font-size:11px; cursor:pointer; color:#000; border: 0px solid #999;border-radius: 5px; 
+-moz-border-radius: 5px; -webkit-border-top-left-radius: 5px; margin:0 0 0 -6px; -webkit-border-top-right-radius: 5px; padding: 5px; margin: 0 auto;}*/
+
+/*------------------------ End Site Decoration ------------------------*/
+
+/*------------------------ Site Controls Decoration -------------------*/
+.lbl {
+    width: 215px;
+    font: normal 12px verdana;
+    text-align: right;
+    /*display:inline-block;*/
+}
+
+.txtBox {
+    width: 215px;
+    border: 1px solid #ccc;
+    font: normal 12px verdana;
+    background-color: #FFF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    margin: 0 0 0 0;
+    -webkit-border-top-right-radius: 5px;
+    color: black;
+}
+
+
+.txtBoxSearch {
+    width: 530px;
+    border: 1px solid #ccc;
+    font: normal 12px verdana;
+    background-color: #FFF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    margin: 0 0 0 0;
+    -webkit-border-top-right-radius: 5px;
+    color: black;
+}
+
+
+.button, .signout, .headermenu {
+    border: 0px solid #e8dcff;
+    padding: 1px 2px 1px 2px;
+    text-decoration: none;
+    border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    -webkit-border-top-left-radius: 2px;
+    cursor: pointer;
+    -webkit-border-top-right-radius: 2px;
+    text-align: right;
+    font: bold 15px verdana;
+    cursor: pointer;
+    float: right;
+    color: #fff;
+}
+
+.signout {
+    color: red;
+}
+
+
+    .button:hover, .signout:hover, .headermenu:hover {
+        background-color: #c7d1d6;
+        color: Black;
+    }
+.tdHeight {
+    height: 38px;
+}
+
+.divHeader {
+    background-color: #45546d;
+    border: 0px solid #000;
+    text-align: center;
+    color: #fff;
+    width: 630px;
+    height: 25px;
+    font-weight: bold;
+}
+.tdBgColor {
+    /*width: 90px;*/
+    background-color: #c4bcbc;
+}
+.tdColor {
+    background-color: #cecece;
+}
+.tblRowOdd {
+    border: 0px solid #000;
+    color: #000000;
+    background-color: #DDD;
+}
+.tblRowFooter {
+    border: 0px solid #000;
+    color: #000000;
+    background-color: #45546d;
+    
+}
+
+/* ------------------------ End Site Controls Decoration -------------------*/
+
+
+

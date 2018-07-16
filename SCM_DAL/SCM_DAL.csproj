@@ -34,6 +34,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,6 +98,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MasterMaterialTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="MrrReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -203,6 +226,17 @@
     </None>
     <None Include="LocationTDS.xss">
       <DependentUpon>LocationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MasterMaterialTDS.xsc">
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MasterMaterialTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MasterMaterialTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MasterMaterialTDS.xss">
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
     </None>
     <None Include="MrrReceiveTDS.xsc">
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>

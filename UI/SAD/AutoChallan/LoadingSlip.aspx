@@ -184,7 +184,9 @@
                     &nbsp&nbsp&nbsp&nbsp<asp:Button ID="Button1" runat="server" Text="Auto Challan" OnClick="Button1_Click1"></asp:Button>
                     </td>
                     <td class="auto-style7">
-                    <label id="Label8" runat="server" ></label>
+                 <%--   <label id="Label8" runat="server" visible="false" >Batch No :</label>--%>
+                    </td>
+                    <td><%--<asp:TextBox ID="txtBtachNo" runat="server"></asp:TextBox>--%>
                     </td>
 
                 </tr>

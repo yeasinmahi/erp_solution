@@ -122,7 +122,15 @@ namespace UI.SAD.ExcelChallan
                         intsalestypeid = int.Parse("8");
                         monExtraAmount = Convert.ToDecimal("0".ToString());
                         strExtraCause = Convert.ToString("Pcs");
-                        strOther = Convert.ToString("".ToString());
+                        string strOther;
+                        if (txtBatchno.Text == "")
+                        {
+                            strOther = "";
+                        }
+                        else
+                        {
+                            strOther = Convert.ToString(txtBatchno.Text.ToString());
+                        }
                         strDrivername = Convert.ToString(txtDriverName.Text.ToString());
                         strChallanNo = Convert.ToString("".ToString());
                         #region *************** Xml **************                                           

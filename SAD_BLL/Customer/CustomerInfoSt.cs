@@ -123,6 +123,8 @@ namespace SAD_BLL.Customer
             {
                 try
                 {
+                    
+
                     var rows = from tmp in tableCusts[Convert.ToInt32(ht[unitID])]
                                where tmp.intCusType.ToString() == type
                                && tmp.intSalesOffId.ToString() == salesOffice

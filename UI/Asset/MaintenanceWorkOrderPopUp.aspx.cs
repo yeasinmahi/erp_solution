@@ -232,7 +232,7 @@ namespace UI.Asset
                     string type = DdlType.SelectedItem.ToString();
                     try {  cost = decimal.Parse(TxtCost.Text.ToString()); }
                     catch {  cost = decimal.Parse(0.ToString()); }
-                    int Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+                    int Mnumber = int.Parse(TxtOrder.Text.ToString());
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -574,10 +574,12 @@ namespace UI.Asset
                 {
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     TextBox txtServiceCost = row.FindControl("txtServiceCharge") as TextBox;
+                    TextBox txtServiceDesc = row.FindControl("txtServiceDesc") as TextBox;
                     Label lblServiceID = row.FindControl("lblServiceID") as Label;
                     int serviceId = int.Parse(lblServiceID.Text.ToString());
                     decimal serviceCost = decimal.Parse(txtServiceCost.Text.ToString());
-                    objMaintenance.ServiceChargeUpdate(serviceId, serviceCost);
+                    string serviceDesc = txtServiceDesc.Text.ToString();
+                    objMaintenance.ServiceChargeUpdate(serviceId, serviceCost, serviceDesc);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Service Charge Updated');", true);
                 }
                 

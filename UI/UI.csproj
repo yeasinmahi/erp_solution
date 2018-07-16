@@ -36,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -244,6 +245,7 @@
     <Content Include="Asset\CommonRepaisListPopUp.aspx" />
     <Content Include="Asset\CorrectiveRequestUser.aspx" />
     <Content Include="Asset\CorrectiveRequestUserPopUP.aspx" />
+    <Content Include="Asset\CWIPAssetAccountsPart.aspx" />
     <Content Include="Asset\CwipAssetParking.aspx" />
     <Content Include="Asset\DepreciationCalculation.aspx" />
     <Content Include="Asset\DepreciationConfig_UI.aspx" />
@@ -269,10 +271,12 @@
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
+    <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
+    <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
@@ -311,6 +315,7 @@
     <Content Include="HR\DocumentTracking\DocumentRequisition.aspx" />
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
+    <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
     <Content Include="HR\Loan\ApproveLoanApplicationN.aspx" />
@@ -379,6 +384,11 @@
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
+    <Content Include="Revenue\frmBudEntry.aspx" />
+    <Content Include="Revenue\rptExpiaryDate.aspx" />
+    <Content Include="Revenue\frmRevenueBudgetEntry.aspx" />
+    <Content Include="Revenue\frmBudgetVSRevenue.aspx" />
+    <Content Include="Revenue\frmRevinueCenterCrate.aspx" />
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\AutoChallan\AutoChallan.aspx" />
     <Content Include="SAD\AutoChallan\PendingView.aspx" />
@@ -1242,6 +1252,7 @@
     <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IndentWithoutReceive.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
+    <Content Include="SCM\InventoryStatement.aspx" />
     <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
@@ -1249,6 +1260,11 @@
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
+    <Content Include="SCM\ItemManagerAccounts.aspx" />
+    <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
+    <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
+    <Content Include="SCM\ItemManagerStore.aspx" />
+    <Content Include="SCM\ItemManagerPurchase.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -1264,6 +1280,7 @@
     <Content Include="SCM\PoRegisterReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
+    <Content Include="SCM\ProductReport.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\PurchaserPermormance.aspx" />
@@ -1385,6 +1402,7 @@
     <Content Include="WoodPurchase\WoodMRRReport.aspx" />
     <Content Include="WoodPurchase\WoodReceive.aspx" />
     <Content Include="WoodPurchase\WoodReceiveAMFL.aspx" />
+    <Content Include="WoodPurchase\WoodReceiveAMFLExcel.aspx" />
     <Content Include="WoodPurchase\WoodReceiveDetails.aspx" />
     <Content Include="WoodPurchase\WoodSupplierWiseReport.aspx" />
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
@@ -2174,6 +2192,13 @@
     <Compile Include="Asset\CorrectiveRequestUserPopUP.aspx.designer.cs">
       <DependentUpon>CorrectiveRequestUserPopUP.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\CWIPAssetAccountsPart.aspx.cs">
+      <DependentUpon>CWIPAssetAccountsPart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\CWIPAssetAccountsPart.aspx.designer.cs">
+      <DependentUpon>CWIPAssetAccountsPart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\CwipAssetParking.aspx.cs">
       <DependentUpon>CwipAssetParking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2538,6 +2563,13 @@
     <Compile Include="HR\DocumentTracking\DocumentTransfer.aspx.designer.cs">
       <DependentUpon>DocumentTransfer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
+      <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
+      <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Insurance\InsuranceDateRangeReport.aspx.cs">
       <DependentUpon>InsuranceDateRangeReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2883,6 +2915,41 @@
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.designer.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmBudEntry.aspx.cs">
+      <DependentUpon>frmBudEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmBudEntry.aspx.designer.cs">
+      <DependentUpon>frmBudEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\rptExpiaryDate.aspx.cs">
+      <DependentUpon>rptExpiaryDate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\rptExpiaryDate.aspx.designer.cs">
+      <DependentUpon>rptExpiaryDate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmRevenueBudgetEntry.aspx.cs">
+      <DependentUpon>frmRevenueBudgetEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmRevenueBudgetEntry.aspx.designer.cs">
+      <DependentUpon>frmRevenueBudgetEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmBudgetVSRevenue.aspx.cs">
+      <DependentUpon>frmBudgetVSRevenue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmBudgetVSRevenue.aspx.designer.cs">
+      <DependentUpon>frmBudgetVSRevenue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue\frmRevinueCenterCrate.aspx.cs">
+      <DependentUpon>frmRevinueCenterCrate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revenue\frmRevinueCenterCrate.aspx.designer.cs">
+      <DependentUpon>frmRevinueCenterCrate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx.cs">
       <DependentUpon>AppsRemoteOrderApporve.aspx</DependentUpon>
@@ -6329,6 +6396,13 @@
     <Compile Include="SCM\InventoryReport.aspx.designer.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\InventoryStatement.aspx.cs">
+      <DependentUpon>InventoryStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\InventoryStatement.aspx.designer.cs">
+      <DependentUpon>InventoryStatement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\InventoryValuetion.aspx.cs">
       <DependentUpon>InventoryValuetion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6377,6 +6451,41 @@
     </Compile>
     <Compile Include="SCM\ItemManager.aspx.designer.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccounts.aspx.cs">
+      <DependentUpon>ItemManagerAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccounts.aspx.designer.cs">
+      <DependentUpon>ItemManagerAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.cs">
+      <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.designer.cs">
+      <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.cs">
+      <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.designer.cs">
+      <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStore.aspx.cs">
+      <DependentUpon>ItemManagerStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStore.aspx.designer.cs">
+      <DependentUpon>ItemManagerStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchase.aspx.cs">
+      <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
+      <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
@@ -6482,6 +6591,13 @@
     </Compile>
     <Compile Include="SCM\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ProductReport.aspx.cs">
+      <DependentUpon>ProductReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ProductReport.aspx.designer.cs">
+      <DependentUpon>ProductReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>
@@ -7547,6 +7663,13 @@
     <Compile Include="WoodPurchase\WoodReceiveAMFL.aspx.designer.cs">
       <DependentUpon>WoodReceiveAMFL.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WoodPurchase\WoodReceiveAMFLExcel.aspx.cs">
+      <DependentUpon>WoodReceiveAMFLExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WoodPurchase\WoodReceiveAMFLExcel.aspx.designer.cs">
+      <DependentUpon>WoodReceiveAMFLExcel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WoodPurchase\WoodReceiveDetails.aspx.cs">
       <DependentUpon>WoodReceiveDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7806,6 +7929,24 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

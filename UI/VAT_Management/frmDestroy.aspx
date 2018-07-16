@@ -23,32 +23,13 @@
     <script>
         function ValidationBasicInfo() {
             document.getElementById("hdnconfirm").value = "0";
-            var ChallanNo = document.forms["frmPurchase"]["txtChallanNo"].value;
-            var Amount = document.forms["frmPurchase"]["txtAmount"].value;
+            var txtCreditqty = document.forms["frmPurchase"]["txtCreditqty"].value;
+           
+            if (txtCreditqty == null || txtCreditqty == "") {
+                alert("Please Entry Qty !");
+            }
+
           
-            var Instrument = document.forms["frmPurchase"]["txtInstrument"].value;
-            var ChallanDate = document.forms["frmPurchase"]["txtChallandate"].value;
-            var Depositdate = document.forms["frmPurchase"]["txtDepositdate"].value;
-           var Installmentdate = document.forms["frmPurchase"]["txtInstallmentdate"].value;
-
-            if (ChallanNo == null || ChallanNo == "") {
-                alert("Please Fill-Up Challan No !");
-            }
-
-            else if (Amount == null || Amount == "") {
-                alert("Purchase Fill-up  Amount !");
-            }
-            else if (Instrument == null || Instrument == "") {
-                alert("Please Fill-up  Instrument !");
-            }
-
-            else if (ChallanDate == null || ChallanDate == "") {
-                alert("Please Fill-up Challan Date!");
-            }
-
-            else if (Installmentdate == null || Installmentdate == "") {
-                alert("Please Fill-up Installment date!");
-            }
           
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
@@ -114,7 +95,7 @@
     </cc1:AlwaysVisibleControlExtender>
 
 <%--=========================================Start My Code From Here===============================================--%>
-    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnCustid" runat="server" /><asp:HiddenField ID="hdnconfirm" runat="server" />
+    <div class="leaveApplication_container"> <asp:HiddenField ID="hdnperVat" runat="server" /><asp:HiddenField ID="hdnconfirm" runat="server" />
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
     <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnEnroll" runat="server" /> <asp:HiddenField ID="hdnitemid" runat="server" /> <asp:HiddenField ID="hdnCustAddress" runat="server" />
@@ -132,40 +113,39 @@
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender> </td>
-        <td>Challan No</td>
-        <td><asp:DropDownList ID="ddlChallanNo" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlChallanNo_SelectedIndexChanged"></asp:DropDownList> </td>
-        <td></td>
-        <td> <asp:Button ID="btnShowREPORT" runat="server" class="myButton" Text="Show Item List" OnClick="btnShowREPORT_Click" />
-        </td>
+        <td>Material Name </td>
+        <td><asp:DropDownList ID="ddlMaterialList" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlMaterialList_SelectedIndexChanged" AutoPostBack="True" ></asp:DropDownList> </td>
+        <td>Standard Use </td>
+        <td> <asp:Label ID="lblMaterialUserStandard" runat="server" CssClass="lbl"   MaxLength="10" AutoPostBack="true" ></asp:Label></td>
      </tr> 
-     <tr><td>Product Qty </td>
-        <td><asp:Label ID="lblProductQty" runat="server" CssClass="lbl"   MaxLength="10" AutoPostBack="true" ></asp:Label></td>
-        <td>Customer Vat Reg</td>
-        <td><asp:Label ID="lblCustVatRegno" runat="server" CssClass="lbl"   MaxLength="10" AutoPostBack="true" ></asp:Label></td>
-        <td>Challan Date</td>
-        <td><asp:Label ID="lblChallanDate" CssClass="lbl" runat="server"></asp:Label></td>
+     <tr><td>Challan No</td>
+        <td><asp:DropDownList ID="ddlChallanNo" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlChallanNo_SelectedIndexChanged1" AutoPostBack="True" ></asp:DropDownList></td>
+        <td>Quantity</td>
+        <td><asp:Label ID="lblQty" runat="server" CssClass="lbl"   MaxLength="10" AutoPostBack="true" ></asp:Label></td>
+        <td>Vat </td>
+        <td><asp:Label ID="lblVat" CssClass="lbl" runat="server"></asp:Label></td>
      </tr>
-     <tr><td> M11 Others Tax</td>
-            <td><asp:Label ID="lblM11OthersTax" CssClass="lbl" runat="server"></asp:Label> </td>
-            <td>   M11 Vat</td>
-            <td><asp:Label ID="lblM11Vat" CssClass="lbl" runat="server"></asp:Label></td>
+     <tr><td> SD</td>
+            <td><asp:Label ID="lblSD" CssClass="lbl" runat="server"></asp:Label> </td>
+            <td>   SD Chargeable Value</td>
+            <td><asp:Label ID="lblWithouthvalue" CssClass="lbl" runat="server"></asp:Label></td>
             <td></td>
-            <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnSave_Click" Text="Save Credit Note" /></td>
+            <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnSave_Click" Text="Save" /></td>
     </tr>
     <tr><td colspan="6"><hr /></td></tr> 
     <tr>
-        <td>Credit Qty:</td>
-        <td><asp:TextBox ID="txtCreditqty" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
-        <td>Am.Without SD VAT:</td>
-        <td><asp:TextBox ID="txtWithoutSDVAT" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
+        <td>Destroy Qty:</td>
+        <td><asp:TextBox ID="txtCreditqty" CssClass="txtBox"   MaxLength="10" runat="server" AutoPostBack="true" OnTextChanged="txtCreditqty_TextChanged"></asp:TextBox></td>
+        <td>SD Chargeable Value:</td>
+        <td><asp:TextBox ID="txtSDCharableValue" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
         <td>SD :</td>
         <td><asp:TextBox ID="txtSD" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>  
     </tr>
     <tr>
-        <td>Surcharge:</td>
-        <td><asp:TextBox ID="txtSurcharge" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
-        <td> VAT:</td>
+        <td>Vat:</td>
         <td><asp:TextBox ID="txtVAT" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
+        <td> Remarks:</td>
+        <td><asp:TextBox ID="txtRemarks" CssClass="txtBox" TextMode="MultiLine"  MaxLength="10" runat="server"></asp:TextBox></td>
         <td>&nbsp;</td>
         <td><asp:Button ID="btnAdd" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnAdd_Click" Text="Add" /></td>  
     </tr>
@@ -179,68 +159,38 @@
      <tr><td>
         <asp:GridView ID="dgvVatProduct" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
         CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true" 
-        HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical"  OnRowDataBound="dgvTresuryRpt_RowDataBound"
+        HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" OnRowDeleting="dgvPurchaseEntry_RowDeleting"
+        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical"  
         >
         <AlternatingRowStyle BackColor="#CCCCCC" />    
         <Columns>
        
-        <asp:TemplateField HeaderText="Vat Item" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblvatItemid" runat="server" Text='<%# Bind("intProductID") %>' Width="50px"></asp:Label>
+        <asp:TemplateField HeaderText="Matrial Id" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblMatrialid" runat="server" Text='<%# Bind("mid") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Challan No" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblstrVATChallanNo" runat="server" Text='<%# Bind("strVATChallanNo") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Challan Date" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lbldtedate" runat="server" Text='<%# Bind("dtedate") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Product Name" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblstrVatProductName" runat="server" Text='<%# Bind("strVatProductName") %>' Width="50px"></asp:Label>
+      
+         <asp:TemplateField HeaderText="Material Name" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblstrVatProductName" runat="server" Text='<%# Bind("MaterialName") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Quantity" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("Qty") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("qty") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-         <asp:TemplateField HeaderText="Am. Without SD VAT" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblsdvat" runat="server" Text='<%# Bind("sdvat") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="SD" SortExpression="sd">
-        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sd") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="SurCharge" SortExpression="SurCharge">
-        <ItemTemplate><asp:Label ID="lblSurCharge" runat="server" Text='<%# Bind("SurCharge") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-         <asp:TemplateField HeaderText="VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblVAT" runat="server" Text='<%# Bind("VAT") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="M11 Other Tax" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblM11txt" runat="server" Text='<%# Bind("tax") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="M11 VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblM11" runat="server" Text='<%# Bind("monVAT") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Decreased Other Tax" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblDecrateOthervat" runat="server" Text='<%# Bind("DecrateOthervat") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
-
-          <asp:TemplateField HeaderText="Decreased VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblDecratevat" runat="server" Text='<%# Bind("Decratevat") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
        
+        <asp:TemplateField HeaderText="SD" SortExpression="sd">
+        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Delete"><ItemTemplate> 
-        <asp:Button ID="btndelete" ForeColor="Red" runat="server" Text="Delete" CommandName="complete"  OnClick="btnDelete" Font-Bold="true" BackColor="#00ccff"  CommandArgument='<%# Eval("intAutoID")%>' />
-        </ItemTemplate> </asp:TemplateField>
+      
+         <asp:TemplateField HeaderText="VAT" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblVAT" runat="server" Text='<%# Bind("vatnew") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+
+       <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
+
 
         </Columns>
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

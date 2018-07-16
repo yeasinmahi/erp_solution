@@ -192,10 +192,10 @@ namespace Purchase_BLL.Asset
             catch { return new DataTable(); }
         }
 
-        public void RepairRequestsInsertData(string strAssetId,int intAssetAutoId, string repair, string priority, DateTime dteRepair, string problem, int intenroll, int intjobid, int intdept, string provide, int ysnprovide, decimal repairsCost)
+        public void RepairRequestsInsertData(string strAssetId,int intAssetAutoId, int serviceId, string repair, string priority, DateTime dteRepair, string problem, int intenroll, int intjobid, int intdept, string provide, int ysnprovide, decimal repairsCost)
         {
             TblRequestServiceConfigureTableAdapter request = new TblRequestServiceConfigureTableAdapter();
-            request.RepairRequestConfigInsertGetData(strAssetId, intAssetAutoId,repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, Convert.ToBoolean(ysnprovide), repairsCost);
+            request.RepairRequestConfigInsertGetData(strAssetId,intAssetAutoId, serviceId,repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, Convert.ToBoolean(ysnprovide), repairsCost);
         }
 
         public DataTable dgvViewPMService(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)
@@ -337,10 +337,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void InsertPMServicerequestdata(string number, string service, string priority, DateTime dtefixed, int countday, int intenroll, int intjobid, int intdept, string provide, string priode, decimal serviceCost)
+        public void InsertPMServicerequestdata(string strAssetID,int intAssetAutoId, int serviceId, string service, string priority, DateTime dtefixed, int countday, int intenroll, int intjobid, int intdept, string provide, string priode, decimal serviceCost)
         {
             SprPMServiceTableAdapter pmserviceRe = new SprPMServiceTableAdapter();
-            pmserviceRe.PmServiceConfigGetData(number, service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
+            pmserviceRe.PmServiceConfigGetData(strAssetID, intAssetAutoId, serviceId,service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
         }
 
         public DataTable dgvViewServiceName(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)
@@ -550,12 +550,12 @@ namespace Purchase_BLL.Asset
             WOToolsIn.WOToolsEquipmentInsert(Reffno, ToolsID, description, hour, intenroll, intjobid, intdept);
         }
 
-        public void ServiceChargeUpdate(int serviceId, decimal serviceCost)
+        public void ServiceChargeUpdate(int serviceId, decimal serviceCost,string serviceDesc)
         {
             try
             {
                 TblUpdatelMaintenanceTaskTableAdapter adp = new TblUpdatelMaintenanceTaskTableAdapter();
-                adp.UpdateServiceCostData(serviceCost, serviceId);
+                adp.UpdateServiceCostData(serviceCost, serviceDesc, serviceId);
             }
             catch { }
         }

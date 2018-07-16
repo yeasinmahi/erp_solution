@@ -39,5 +39,48 @@ namespace SAD_BLL.Vat
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable getMatrialList(int intitemid,int typeid,DateTime dtedate)
+        {
+            
+            try
+            {
+                sprGetVATDeclaredPriceM1TableAdapter adp = new sprGetVATDeclaredPriceM1TableAdapter();
+                return adp.GetData(intitemid, typeid,dtedate);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getuseStandard(int intitemid, int Matrilal)
+        {
+            
+            try
+            {
+                tblConfigItemBOMUseTableAdapter adp = new tblConfigItemBOMUseTableAdapter();
+                return adp.GetMatrialUse(intitemid, Matrilal);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getPurChallanList(int Matrialid, int unitid, int Vatacid)
+        {
+            try
+            {
+                tblVATPurchaseTableAdapter adp = new tblVATPurchaseTableAdapter();
+                return adp.GetData(Matrialid, unitid, Vatacid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getChallanProductqty(string Challanno, int Materialid)
+        {
+            
+            try
+            {
+                tblVATPurchase1TableAdapter adp = new tblVATPurchase1TableAdapter();
+                return adp.GetData(Challanno, Materialid);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

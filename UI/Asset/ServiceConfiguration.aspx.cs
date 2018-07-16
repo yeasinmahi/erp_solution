@@ -23,7 +23,7 @@ namespace UI.Asset
         DataTable asset = new DataTable();
         DataTable dgview = new DataTable();
 
-        int intItem; int ysnprovide, intAssetAutoId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        int intItem; int ysnprovide, intAssetAutoId, serviceId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -323,16 +323,16 @@ namespace UI.Asset
                         string assetId = ""; string assetName = ""; string assetType = "";  
                         if (arrayKey.Length > 0)
                         { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); intAssetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
-
-
+                         
                         int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                         int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                         int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
                         if (RadioButton1.Checked == true)
-                        {
+                        { 
                             //int schedule = int.Parse(DdlSchedule.SelectedValue.ToString());
                             string service = DdlService.SelectedItem.ToString();
+                            serviceId = int.Parse(DdlService.SelectedValue);
                             string priority = DdlPrePriority.SelectedItem.ToString();
                             DateTime dtefixed = DateTime.Parse(TxtdteFixed.Text);
                             int countday = int.Parse(TxtDayHour.Text.ToString());
@@ -341,7 +341,7 @@ namespace UI.Asset
                             string priode = DdlRequred.SelectedItem.Text.ToString();
                             decimal serviceCost = decimal.Parse(HdnServiceCost.Value.ToString());
 
-                            objPMConfigure.InsertPMServicerequestdata(assetId, service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
+                            objPMConfigure.InsertPMServicerequestdata(assetId, intAssetAutoId, serviceId,service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully PM Service Request');", true);
 
                             showdata();
@@ -361,18 +361,19 @@ namespace UI.Asset
                             if (DdlProvide.SelectedItem.Text == "In House")
                             {
 
-                                ysnprovide = Int32.Parse(0.ToString());
+                                ysnprovide =0;
                             }
                             if (DdlProvide.SelectedItem.Text == "Vendor")
                             {
-                                ysnprovide = Int32.Parse(1.ToString());
+                                ysnprovide = 1;
                             }
 
                             string repair = DdlCommonRepair.SelectedItem.ToString();
+                            serviceId = int.Parse(DdlCommonRepair.SelectedValue);
                             string priority = DdlREPriotiyyd.SelectedItem.ToString();
                             DateTime dteRepair = DateTime.Parse(TxtdteRepair.Text);
                             string problem = TxtProblem.Text.ToString();
-                            objPMConfigure.RepairRequestsInsertData(assetId, intAssetAutoId, repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, ysnprovide, repairsCost);
+                            objPMConfigure.RepairRequestsInsertData(assetId,  intAssetAutoId, serviceId, repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, ysnprovide, repairsCost);
 
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully Repair Request');", true);
                         }
