@@ -146,8 +146,8 @@
                 </HeaderTemplate>  
                 <ItemTemplate><asp:CheckBox ID="chkbx" runat="server"/></ItemTemplate></asp:TemplateField>
                     <asp:TemplateField HeaderText="Sl"> <ItemTemplate> <%#Container.DataItemIndex+1 %> 
-                    <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustid1") %>' />
-                    <asp:HiddenField ID="hdncustcoaid" runat="server" Value='<%# Eval("intCustCoAid1") %>' />
+                    <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustid") %>' />
+                    <asp:HiddenField ID="hdncustcoaid" runat="server" Value='<%# Eval("intCOId1") %>' />
                      <asp:HiddenField ID="hdncustnarrationindividual" runat="server" Value='<%# Eval("Narration1") %>' />
                     <asp:HiddenField ID="hdncustomercommissionndividual" runat="server" Value='<%# Eval("monCashCommission1") %>' />
                     <asp:HiddenField ID="hdncustname" runat="server" Value='<%# Eval("strCustName1") %>' />

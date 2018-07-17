@@ -67,33 +67,6 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.ScriptManager ScriptManager0;
         
         /// <summary>
-        /// UpdatePanel0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
-        
-        /// <summary>
-        /// pnlUpperControl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlUpperControl;
-        
-        /// <summary>
-        /// AlwaysVisibleControlExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
-        
-        /// <summary>
         /// hdnSeprationID control.
         /// </summary>
         /// <remarks>

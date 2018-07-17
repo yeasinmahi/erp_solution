@@ -6625,13 +6625,10 @@ From ERP_HR.dbo.tblEmployee Where ysnActive = 1 and intJobStationID = 1";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @" SELECT [intYear],strYearList
-  FROM [ERP_Accounts].[dbo].[tblBudgetYearList]
-  where [intYear]=DATEPART(YYYY,getDATE())
-  union
+            this._commandCollection[0].CommandText = @"
   SELECT  [intYear],strYearList
   FROM [ERP_Accounts].[dbo].[tblBudgetYearList]
-  where [intYear]=DATEPART(YYYY,dateadd(yyyy,-1,getdate()))
+  where [intYear]=DATEPART(YYYY,dateadd(yyyy,0,getdate()))
    union
   SELECT  [intYear],strYearList
   FROM [ERP_Accounts].[dbo].[tblBudgetYearList]
