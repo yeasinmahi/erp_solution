@@ -123,12 +123,12 @@ namespace Purchase_BLL.WoodPurchase
             }
             catch { return new DataTable(); }
         }
-        public DataTable InsertWOPO(int intUnitID, int intWH, int intActionBy, int intItemID, decimal rcvQty, decimal monRate, int intLocation, string strRemarks)
+        public DataTable InsertWOPO(int intUnitID, int intWH, int intActionBy, int intItemID, decimal rcvQty, decimal monRate, int intLocation, string strRemarks, DateTime dteDate)
         {
             SprInsertMrrItemDetailWithoutPOTableAdapter adp = new SprInsertMrrItemDetailWithoutPOTableAdapter();
             try
             {
-                return adp.InsertMRRWithoutPO(intUnitID, intWH, intActionBy, intItemID, rcvQty, monRate, intLocation, strRemarks);
+                return adp.InsertMRRWithoutPO(intUnitID, intWH, intActionBy, intItemID, rcvQty, monRate, intLocation, strRemarks, dteDate);
             }
             catch { return new DataTable(); }
         }

@@ -128,8 +128,8 @@
                 <td><asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
           </tr>
         <tr>
-                <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Re-Order Qty :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtReOrderQty" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Re-Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtReOrder" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
@@ -167,18 +167,18 @@
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Procure Type :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtPurchaseType" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false" ></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="PO Processing Time :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtPOTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Delivery Time :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtDeliveryTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="Processing Time for Goods Reveips :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtProcessingTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>                
+                <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Max Lead Time :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtMaxLeadTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="Min Lead Time :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtMinLeadTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>                
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label17" runat="server" Text="Total Lead Time :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtTotalLeadTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false" ></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label17" runat="server" Text="Avg Lead Time :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtAvgLeadTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false" ></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label18" runat="server" Text="Ordering Lot Size :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtLotSize" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>                
             </tr>
@@ -203,7 +203,9 @@
                 <asp:ListItem Value="0" Text="No"></asp:ListItem><asp:ListItem Value="1" Text="Yes"></asp:ListItem></asp:DropDownList></td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnApprove" runat="server" class="myButton" OnClick="btnApprove_Click" OnClientClick="ConfirmAll()" Text="Approve" /></td>
+                <td style="text-align:right"><asp:Label ID="lblCOA" runat="server" Text="COA Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+                <td style="text-align:left"><asp:DropDownList ID="ddlCOA" runat="server" CssClass="ddlList" Font-Bold="false" Width="220px" Height="24px" BackColor="White"></asp:DropDownList></td>
+                <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnApprove" runat="server" class="myButton" OnClick="btnApprove_Click" OnClientClick="ConfirmAll()" Text="Approve" /></td>
             </tr>
             </table>
             </div>

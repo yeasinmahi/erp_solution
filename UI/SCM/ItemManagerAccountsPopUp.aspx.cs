@@ -14,12 +14,11 @@ namespace UI.SCM
     {
         #region===== Variable & Object Declaration =====================================================
         MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
-        int intPart, intWHID, intUOM, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intInsertBy, intLocationID, intPurchaseType, intPOProcessingTime, intShipmentTime,
-            intProcessTime, intTotalLeadTime, intAutoID, intABC, intFSN, intVDE, intSelfTime, intSDE, intHML;
-        string strItemName, strDescription, strPart, strModel, strSerial, strUOM, strGroupName, strCategoryName, strSubCategoryName, strBrand, strMinorCategory, strPlantName, strABCClassification, strFSNClassification,
-            strVDEClassification, strLotSize, strPurchaseType, strSDEClassification, strHMLClassification, strSpecification, strOrigin, strHSCode;
-        decimal numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, numEOQ, numMOQ;
-        bool ysnVATApplicable;
+        int intUnitID, intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID;
+        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+            strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
+        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        bool ysnVATApplicable, ysnAdvance, ysnPurchase, ysnCreditors, ysnAll, ysnBillReg;
         #endregion =====================================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,6 +50,7 @@ namespace UI.SCM
                 txtSpecification.Text = dt.Rows[0]["strSpecifiaction"].ToString();
                 txtOrigin.Text = dt.Rows[0]["strOrigin"].ToString();
                 txtHSCode.Text = dt.Rows[0]["strHSCode"].ToString();
+                txtReOrderQty.Text = dt.Rows[0]["numReOrderQty"].ToString();
                 txtReOrder.Text = dt.Rows[0]["numReOrderLevel"].ToString();
                 txtMinimum.Text = dt.Rows[0]["numMinimumStock"].ToString();
                 txtMaximum.Text = dt.Rows[0]["numMaximumStock"].ToString();
@@ -63,14 +63,33 @@ namespace UI.SCM
                 txtMinorCategory.Text = dt.Rows[0]["strMinorCategory"].ToString();
                 txtPlant.Text = dt.Rows[0]["strPlantName"].ToString();
                 txtPurchaseType.Text = dt.Rows[0]["strPurchaseType"].ToString();
-                txtPOTime.Text = dt.Rows[0]["intPOProcessTime"].ToString();
-                txtDeliveryTime.Text = dt.Rows[0]["intShipmentDeliveryTime"].ToString();
-                txtProcessingTime.Text = dt.Rows[0]["intProcessingTime"].ToString();
-                txtTotalLeadTime.Text = dt.Rows[0]["intTotalLeadTime"].ToString();
+                txtMaxLeadTime.Text = dt.Rows[0]["numMaxLeadTime"].ToString();
+                txtMinLeadTime.Text = dt.Rows[0]["numMinLeadTime"].ToString();
+                txtAvgLeadTime.Text = dt.Rows[0]["numAvgLeadTime"].ToString();
                 txtLotSize.Text = dt.Rows[0]["strOrderingLotSize"].ToString();
                 txtEOQ.Text = dt.Rows[0]["numEconomicOrderQty"].ToString();
                 txtMOQ.Text = dt.Rows[0]["numMinimumOrderQty"].ToString();
                 txtSDE.Text = dt.Rows[0]["strSDEClassification"].ToString();
+
+                intPart = 17;
+                intWHID = int.Parse(dt.Rows[0]["intWHID"].ToString());
+                dt = new DataTable();
+                dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                        intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                        numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+
+
+                intUnitID = int.Parse(dt.Rows[0]["intUnitID"].ToString());
+
+                ysnPurchase = true;
+                dt = new DataTable();
+                dt = bll.GetCOAList(intUnitID, ysnAdvance, ysnPurchase, ysnCreditors, ysnAll, ysnBillReg);
+
+                ddlCOA.DataTextField = "strAccName";
+                ddlCOA.DataValueField = "intAccID";
+                ddlCOA.DataSource = dt;
+                ddlCOA.DataBind();
             }
             catch { }
         }
@@ -83,8 +102,8 @@ namespace UI.SCM
                 intAutoID = int.Parse(hdnItemID.Value.ToString());
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
                 intHML = int.Parse(ddlHML.SelectedValue.ToString());
-                strHMLClassification = ddlHML.SelectedItem.ToString();
-                try { ysnVATApplicable = bool.Parse(txtPOTime.Text); } catch { intPOProcessingTime = 0; }
+                strHML = ddlHML.SelectedItem.ToString();
+                try { ysnVATApplicable = bool.Parse(ddlVAT.SelectedValue.ToString()); } catch { ysnVATApplicable = false; }
 
                 if (hdnItemID.Value == "" || hdnItemID.Value == "0")
                 {
@@ -93,10 +112,10 @@ namespace UI.SCM
                 }
 
                 dt = new DataTable();
-                dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
-                        intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
-                        intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
-                        intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
+                dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                        intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                        numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
 
                 if (dt.Rows.Count > 0)
                 {
@@ -106,10 +125,10 @@ namespace UI.SCM
                     {
                         intPart = 13;
                         dt = new DataTable();
-                        dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
-                                intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
-                                intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
-                                intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
+                        dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                            intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                            numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                            numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
 
                         msg = dt.Rows[0]["msg"].ToString();
                     }
@@ -117,10 +136,10 @@ namespace UI.SCM
                     {
                         intPart = 14;
                         dt = new DataTable();
-                        dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
-                                intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
-                                intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
-                                intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
+                        dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                            intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                            numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                            numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
 
                         msg = dt.Rows[0]["msg"].ToString();
                     }

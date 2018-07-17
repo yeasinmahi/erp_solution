@@ -36,6 +36,8 @@ namespace SCM_DAL {
         
         private QryMaterialListDataTable tableQryMaterialList;
         
+        private SprGetCOAChildByUnitDataTable tableSprGetCOAChildByUnit;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -81,6 +83,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["QryMaterialList"] != null)) {
                     base.Tables.Add(new QryMaterialListDataTable(ds.Tables["QryMaterialList"]));
+                }
+                if ((ds.Tables["SprGetCOAChildByUnit"] != null)) {
+                    base.Tables.Add(new SprGetCOAChildByUnitDataTable(ds.Tables["SprGetCOAChildByUnit"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -157,6 +162,16 @@ namespace SCM_DAL {
         public QryMaterialListDataTable QryMaterialList {
             get {
                 return this.tableQryMaterialList;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprGetCOAChildByUnitDataTable SprGetCOAChildByUnit {
+            get {
+                return this.tableSprGetCOAChildByUnit;
             }
         }
         
@@ -245,6 +260,9 @@ namespace SCM_DAL {
                 if ((ds.Tables["QryMaterialList"] != null)) {
                     base.Tables.Add(new QryMaterialListDataTable(ds.Tables["QryMaterialList"]));
                 }
+                if ((ds.Tables["SprGetCOAChildByUnit"] != null)) {
+                    base.Tables.Add(new SprGetCOAChildByUnitDataTable(ds.Tables["SprGetCOAChildByUnit"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -314,6 +332,12 @@ namespace SCM_DAL {
                     this.tableQryMaterialList.InitVars();
                 }
             }
+            this.tableSprGetCOAChildByUnit = ((SprGetCOAChildByUnitDataTable)(base.Tables["SprGetCOAChildByUnit"]));
+            if ((initTable == true)) {
+                if ((this.tableSprGetCOAChildByUnit != null)) {
+                    this.tableSprGetCOAChildByUnit.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -336,6 +360,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tableSprInventoryStatementGlobal);
             this.tableQryMaterialList = new QryMaterialListDataTable();
             base.Tables.Add(this.tableQryMaterialList);
+            this.tableSprGetCOAChildByUnit = new SprGetCOAChildByUnitDataTable();
+            base.Tables.Add(this.tableSprGetCOAChildByUnit);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -371,6 +397,12 @@ namespace SCM_DAL {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeQryMaterialList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprGetCOAChildByUnit() {
             return false;
         }
         
@@ -446,6 +478,9 @@ namespace SCM_DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void QryMaterialListRowChangeEventHandler(object sender, QryMaterialListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprGetCOAChildByUnitRowChangeEventHandler(object sender, SprGetCOAChildByUnitRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3066,6 +3101,269 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprGetCOAChildByUnitDataTable : global::System.Data.TypedTableBase<SprGetCOAChildByUnitRow> {
+            
+            private global::System.Data.DataColumn columnstrAccName;
+            
+            private global::System.Data.DataColumn columnintAccID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprGetCOAChildByUnitDataTable() {
+                this.TableName = "SprGetCOAChildByUnit";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprGetCOAChildByUnitDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprGetCOAChildByUnitDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strAccNameColumn {
+                get {
+                    return this.columnstrAccName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intAccIDColumn {
+                get {
+                    return this.columnintAccID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprGetCOAChildByUnitRow this[int index] {
+                get {
+                    return ((SprGetCOAChildByUnitRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprGetCOAChildByUnitRowChangeEventHandler SprGetCOAChildByUnitRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprGetCOAChildByUnitRowChangeEventHandler SprGetCOAChildByUnitRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprGetCOAChildByUnitRowChangeEventHandler SprGetCOAChildByUnitRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprGetCOAChildByUnitRowChangeEventHandler SprGetCOAChildByUnitRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprGetCOAChildByUnitRow(SprGetCOAChildByUnitRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprGetCOAChildByUnitRow AddSprGetCOAChildByUnitRow(string strAccName, int intAccID) {
+                SprGetCOAChildByUnitRow rowSprGetCOAChildByUnitRow = ((SprGetCOAChildByUnitRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        strAccName,
+                        intAccID};
+                rowSprGetCOAChildByUnitRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprGetCOAChildByUnitRow);
+                return rowSprGetCOAChildByUnitRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprGetCOAChildByUnitDataTable cln = ((SprGetCOAChildByUnitDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprGetCOAChildByUnitDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnstrAccName = base.Columns["strAccName"];
+                this.columnintAccID = base.Columns["intAccID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAccName);
+                this.columnintAccID = new global::System.Data.DataColumn("intAccID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintAccID);
+                this.columnstrAccName.ReadOnly = true;
+                this.columnstrAccName.MaxLength = 1003;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprGetCOAChildByUnitRow NewSprGetCOAChildByUnitRow() {
+                return ((SprGetCOAChildByUnitRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprGetCOAChildByUnitRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprGetCOAChildByUnitRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprGetCOAChildByUnitRowChanged != null)) {
+                    this.SprGetCOAChildByUnitRowChanged(this, new SprGetCOAChildByUnitRowChangeEvent(((SprGetCOAChildByUnitRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprGetCOAChildByUnitRowChanging != null)) {
+                    this.SprGetCOAChildByUnitRowChanging(this, new SprGetCOAChildByUnitRowChangeEvent(((SprGetCOAChildByUnitRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprGetCOAChildByUnitRowDeleted != null)) {
+                    this.SprGetCOAChildByUnitRowDeleted(this, new SprGetCOAChildByUnitRowChangeEvent(((SprGetCOAChildByUnitRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprGetCOAChildByUnitRowDeleting != null)) {
+                    this.SprGetCOAChildByUnitRowDeleting(this, new SprGetCOAChildByUnitRowChangeEvent(((SprGetCOAChildByUnitRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprGetCOAChildByUnitRow(SprGetCOAChildByUnitRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MasterMaterialTDS ds = new MasterMaterialTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprGetCOAChildByUnitDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class TblWearHouseRow : global::System.Data.DataRow {
@@ -5303,6 +5601,77 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprGetCOAChildByUnitRow : global::System.Data.DataRow {
+            
+            private SprGetCOAChildByUnitDataTable tableSprGetCOAChildByUnit;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprGetCOAChildByUnitRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprGetCOAChildByUnit = ((SprGetCOAChildByUnitDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strAccName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprGetCOAChildByUnit.strAccNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAccName\' in table \'SprGetCOAChildByUnit\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprGetCOAChildByUnit.strAccNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intAccID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprGetCOAChildByUnit.intAccIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intAccID\' in table \'SprGetCOAChildByUnit\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprGetCOAChildByUnit.intAccIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrAccNameNull() {
+                return this.IsNull(this.tableSprGetCOAChildByUnit.strAccNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrAccNameNull() {
+                this[this.tableSprGetCOAChildByUnit.strAccNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintAccIDNull() {
+                return this.IsNull(this.tableSprGetCOAChildByUnit.intAccIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintAccIDNull() {
+                this[this.tableSprGetCOAChildByUnit.intAccIDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -5492,6 +5861,40 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryMaterialListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprGetCOAChildByUnitRowChangeEvent : global::System.EventArgs {
+            
+            private SprGetCOAChildByUnitRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprGetCOAChildByUnitRowChangeEvent(SprGetCOAChildByUnitRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprGetCOAChildByUnitRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5813,27 +6216,22 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprItemAddAndApprove";
+            this._commandCollection[0].CommandText = "dbo.sprProductEnlishment";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPart", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strItemName", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strMaterialName", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDescription", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPart", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strModel", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSerial", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strBrand", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSpecification", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strOrigin", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHSCode", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numReOrderLevel", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMinimumStock", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMaximumStock", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numSafetyStock", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOM", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUOM", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strOrigin", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLocationID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHSCode", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intGroupID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strGroupName", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCategoryID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5844,29 +6242,36 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strMinorCategory", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPlantID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPlantName", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProcureType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strProcureType", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMaxLeadTime", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMinLeadTime", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMinimumStock", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMaximumStock", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numSafetyStock", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numReOrderPoint", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numReOrderQty", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intABC", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strABCClassification", global::System.Data.SqlDbType.VarChar, 5, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strABC", global::System.Data.SqlDbType.VarChar, 5, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intFSN", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strFSNClassification", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strFSN", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intVDE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strVDEClassification", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPurchaseType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPurchaseType", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPOProcessingTime", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipmentTime", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProcessTime", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intTotalLeadTime", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSelfTime", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strLotSize", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numEOQ", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMOQ", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strVDE", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSelfLife", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strOrderingLotSize", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numEOQ", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMOQ", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMaxDailyConsump", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numMinDailyConsump", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSDE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSDEClassification", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSDE", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intHML", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHMLClassification", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHML", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnVATApplicable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAutoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCOAID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5875,23 +6280,18 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual MasterMaterialTDS.SprItemAddAndApproveDataTable InsertUpdateSelectForItem(
                     global::System.Nullable<int> intPart, 
-                    global::System.Nullable<int> intWHID, 
-                    string strItemName, 
+                    string strMaterialName, 
                     string strDescription, 
                     string strPart, 
                     string strModel, 
                     string strSerial, 
                     string strBrand, 
                     string strSpecification, 
-                    string strOrigin, 
-                    string strHSCode, 
-                    global::System.Nullable<decimal> numReOrderLevel, 
-                    global::System.Nullable<decimal> numMinimumStock, 
-                    global::System.Nullable<decimal> numMaximumStock, 
-                    global::System.Nullable<decimal> numSafetyStock, 
                     global::System.Nullable<int> intUOM, 
                     string strUOM, 
+                    string strOrigin, 
                     global::System.Nullable<int> intLocationID, 
+                    string strHSCode, 
                     global::System.Nullable<int> intGroupID, 
                     string strGroupName, 
                     global::System.Nullable<int> intCategoryID, 
@@ -5902,29 +6302,36 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
                     string strMinorCategory, 
                     global::System.Nullable<int> intPlantID, 
                     string strPlantName, 
+                    global::System.Nullable<int> intProcureType, 
+                    string strProcureType, 
+                    global::System.Nullable<decimal> numMaxLeadTime, 
+                    global::System.Nullable<decimal> numMinLeadTime, 
+                    global::System.Nullable<decimal> numMinimumStock, 
+                    global::System.Nullable<decimal> numMaximumStock, 
+                    global::System.Nullable<decimal> numSafetyStock, 
+                    global::System.Nullable<decimal> numReOrderPoint, 
+                    global::System.Nullable<decimal> numReOrderQty, 
                     global::System.Nullable<int> intABC, 
-                    string strABCClassification, 
+                    string strABC, 
                     global::System.Nullable<int> intFSN, 
-                    string strFSNClassification, 
+                    string strFSN, 
                     global::System.Nullable<int> intVDE, 
-                    string strVDEClassification, 
-                    global::System.Nullable<int> intInsertBy, 
-                    global::System.Nullable<int> intPurchaseType, 
-                    string strPurchaseType, 
-                    global::System.Nullable<int> intPOProcessingTime, 
-                    global::System.Nullable<int> intShipmentTime, 
-                    global::System.Nullable<int> intProcessTime, 
-                    global::System.Nullable<int> intTotalLeadTime, 
-                    global::System.Nullable<int> intSelfTime, 
-                    string strLotSize, 
+                    string strVDE, 
+                    global::System.Nullable<int> intSelfLife, 
+                    string strOrderingLotSize, 
                     global::System.Nullable<decimal> numEOQ, 
                     global::System.Nullable<decimal> numMOQ, 
+                    global::System.Nullable<decimal> numMaxDailyConsump, 
+                    global::System.Nullable<decimal> numMinDailyConsump, 
                     global::System.Nullable<int> intSDE, 
-                    string strSDEClassification, 
+                    string strSDE, 
                     global::System.Nullable<int> intHML, 
-                    string strHMLClassification, 
+                    string strHML, 
                     global::System.Nullable<bool> ysnVATApplicable, 
-                    global::System.Nullable<int> intAutoID) {
+                    global::System.Nullable<int> intWHID, 
+                    global::System.Nullable<int> intAutoID, 
+                    global::System.Nullable<int> intInsertBy, 
+                    global::System.Nullable<int> intCOAID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intPart.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intPart.Value));
@@ -5932,296 +6339,296 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((intWHID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intWHID.Value));
-            }
-            else {
+            if ((strMaterialName == null)) {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((strItemName == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(strMaterialName));
+            }
+            if ((strDescription == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strItemName));
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strDescription));
             }
-            if ((strDescription == null)) {
+            if ((strPart == null)) {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strDescription));
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strPart));
             }
-            if ((strPart == null)) {
+            if ((strModel == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(strPart));
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(strModel));
             }
-            if ((strModel == null)) {
+            if ((strSerial == null)) {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(strModel));
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(strSerial));
             }
-            if ((strSerial == null)) {
+            if ((strBrand == null)) {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(strSerial));
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(strBrand));
             }
-            if ((strBrand == null)) {
+            if ((strSpecification == null)) {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(strBrand));
+                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(strSpecification));
             }
-            if ((strSpecification == null)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((intUOM.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intUOM.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(strSpecification));
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((strOrigin == null)) {
+            if ((strUOM == null)) {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strOrigin));
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strUOM));
             }
-            if ((strHSCode == null)) {
+            if ((strOrigin == null)) {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strHSCode));
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strOrigin));
             }
-            if ((numReOrderLevel.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[12].Value = ((decimal)(numReOrderLevel.Value));
+            if ((intLocationID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(intLocationID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((numMinimumStock.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[13].Value = ((decimal)(numMinimumStock.Value));
-            }
-            else {
+            if ((strHSCode == null)) {
                 this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((numMaximumStock.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[14].Value = ((decimal)(numMaximumStock.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((string)(strHSCode));
+            }
+            if ((intGroupID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[14].Value = ((int)(intGroupID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((numSafetyStock.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[15].Value = ((decimal)(numSafetyStock.Value));
-            }
-            else {
+            if ((strGroupName == null)) {
                 this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((intUOM.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[16].Value = ((int)(intUOM.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[15].Value = ((string)(strGroupName));
+            }
+            if ((intCategoryID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[16].Value = ((int)(intCategoryID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((strUOM == null)) {
+            if ((strCategoryName == null)) {
                 this.Adapter.SelectCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[17].Value = ((string)(strUOM));
+                this.Adapter.SelectCommand.Parameters[17].Value = ((string)(strCategoryName));
             }
-            if ((intLocationID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[18].Value = ((int)(intLocationID.Value));
+            if ((intSubCategoryID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[18].Value = ((int)(intSubCategoryID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((intGroupID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[19].Value = ((int)(intGroupID.Value));
-            }
-            else {
+            if ((strSubCategoryName == null)) {
                 this.Adapter.SelectCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
-            if ((strGroupName == null)) {
-                this.Adapter.SelectCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[20].Value = ((string)(strGroupName));
-            }
-            if ((intCategoryID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[21].Value = ((int)(intCategoryID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((strCategoryName == null)) {
-                this.Adapter.SelectCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[22].Value = ((string)(strCategoryName));
-            }
-            if ((intSubCategoryID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[23].Value = ((int)(intSubCategoryID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((strSubCategoryName == null)) {
-                this.Adapter.SelectCommand.Parameters[24].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[24].Value = ((string)(strSubCategoryName));
+                this.Adapter.SelectCommand.Parameters[19].Value = ((string)(strSubCategoryName));
             }
             if ((intMinorCategory.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[25].Value = ((int)(intMinorCategory.Value));
+                this.Adapter.SelectCommand.Parameters[20].Value = ((int)(intMinorCategory.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             if ((strMinorCategory == null)) {
-                this.Adapter.SelectCommand.Parameters[26].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[26].Value = ((string)(strMinorCategory));
+                this.Adapter.SelectCommand.Parameters[21].Value = ((string)(strMinorCategory));
             }
             if ((intPlantID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[27].Value = ((int)(intPlantID.Value));
+                this.Adapter.SelectCommand.Parameters[22].Value = ((int)(intPlantID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((strPlantName == null)) {
+                this.Adapter.SelectCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[23].Value = ((string)(strPlantName));
+            }
+            if ((intProcureType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[24].Value = ((int)(intProcureType.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((strProcureType == null)) {
+                this.Adapter.SelectCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[25].Value = ((string)(strProcureType));
+            }
+            if ((numMaxLeadTime.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[26].Value = ((decimal)(numMaxLeadTime.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            if ((numMinLeadTime.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[27].Value = ((decimal)(numMinLeadTime.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
-            if ((strPlantName == null)) {
-                this.Adapter.SelectCommand.Parameters[28].Value = global::System.DBNull.Value;
+            if ((numMinimumStock.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[28].Value = ((decimal)(numMinimumStock.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[28].Value = ((string)(strPlantName));
+                this.Adapter.SelectCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
-            if ((intABC.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[29].Value = ((int)(intABC.Value));
+            if ((numMaximumStock.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[29].Value = ((decimal)(numMaximumStock.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            if ((strABCClassification == null)) {
-                this.Adapter.SelectCommand.Parameters[30].Value = global::System.DBNull.Value;
+            if ((numSafetyStock.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[30].Value = ((decimal)(numSafetyStock.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[30].Value = ((string)(strABCClassification));
+                this.Adapter.SelectCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
-            if ((intFSN.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[31].Value = ((int)(intFSN.Value));
+            if ((numReOrderPoint.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[31].Value = ((decimal)(numReOrderPoint.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[31].Value = global::System.DBNull.Value;
             }
-            if ((strFSNClassification == null)) {
-                this.Adapter.SelectCommand.Parameters[32].Value = global::System.DBNull.Value;
+            if ((numReOrderQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[32].Value = ((decimal)(numReOrderQty.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[32].Value = ((string)(strFSNClassification));
+                this.Adapter.SelectCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
-            if ((intVDE.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[33].Value = ((int)(intVDE.Value));
+            if ((intABC.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[33].Value = ((int)(intABC.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[33].Value = global::System.DBNull.Value;
             }
-            if ((strVDEClassification == null)) {
+            if ((strABC == null)) {
                 this.Adapter.SelectCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[34].Value = ((string)(strVDEClassification));
+                this.Adapter.SelectCommand.Parameters[34].Value = ((string)(strABC));
             }
-            if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[35].Value = ((int)(intInsertBy.Value));
+            if ((intFSN.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[35].Value = ((int)(intFSN.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[35].Value = global::System.DBNull.Value;
             }
-            if ((intPurchaseType.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[36].Value = ((int)(intPurchaseType.Value));
-            }
-            else {
+            if ((strFSN == null)) {
                 this.Adapter.SelectCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
-            if ((strPurchaseType == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[36].Value = ((string)(strFSN));
+            }
+            if ((intVDE.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[37].Value = ((int)(intVDE.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[37].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[37].Value = ((string)(strPurchaseType));
-            }
-            if ((intPOProcessingTime.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[38].Value = ((int)(intPOProcessingTime.Value));
-            }
-            else {
+            if ((strVDE == null)) {
                 this.Adapter.SelectCommand.Parameters[38].Value = global::System.DBNull.Value;
             }
-            if ((intShipmentTime.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[39].Value = ((int)(intShipmentTime.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[38].Value = ((string)(strVDE));
+            }
+            if ((intSelfLife.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[39].Value = ((int)(intSelfLife.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[39].Value = global::System.DBNull.Value;
             }
-            if ((intProcessTime.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[40].Value = ((int)(intProcessTime.Value));
-            }
-            else {
+            if ((strOrderingLotSize == null)) {
                 this.Adapter.SelectCommand.Parameters[40].Value = global::System.DBNull.Value;
             }
-            if ((intTotalLeadTime.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[41].Value = ((int)(intTotalLeadTime.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[40].Value = ((string)(strOrderingLotSize));
+            }
+            if ((numEOQ.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[41].Value = ((decimal)(numEOQ.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[41].Value = global::System.DBNull.Value;
             }
-            if ((intSelfTime.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[42].Value = ((int)(intSelfTime.Value));
+            if ((numMOQ.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[42].Value = ((decimal)(numMOQ.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[42].Value = global::System.DBNull.Value;
             }
-            if ((strLotSize == null)) {
-                this.Adapter.SelectCommand.Parameters[43].Value = global::System.DBNull.Value;
+            if ((numMaxDailyConsump.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[43].Value = ((decimal)(numMaxDailyConsump.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[43].Value = ((string)(strLotSize));
+                this.Adapter.SelectCommand.Parameters[43].Value = global::System.DBNull.Value;
             }
-            if ((numEOQ.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[44].Value = ((decimal)(numEOQ.Value));
+            if ((numMinDailyConsump.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[44].Value = ((decimal)(numMinDailyConsump.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[44].Value = global::System.DBNull.Value;
             }
-            if ((numMOQ.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[45].Value = ((decimal)(numMOQ.Value));
+            if ((intSDE.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[45].Value = ((int)(intSDE.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[45].Value = global::System.DBNull.Value;
             }
-            if ((intSDE.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[46].Value = ((int)(intSDE.Value));
-            }
-            else {
+            if ((strSDE == null)) {
                 this.Adapter.SelectCommand.Parameters[46].Value = global::System.DBNull.Value;
             }
-            if ((strSDEClassification == null)) {
-                this.Adapter.SelectCommand.Parameters[47].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[47].Value = ((string)(strSDEClassification));
+                this.Adapter.SelectCommand.Parameters[46].Value = ((string)(strSDE));
             }
             if ((intHML.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[48].Value = ((int)(intHML.Value));
+                this.Adapter.SelectCommand.Parameters[47].Value = ((int)(intHML.Value));
             }
             else {
+                this.Adapter.SelectCommand.Parameters[47].Value = global::System.DBNull.Value;
+            }
+            if ((strHML == null)) {
                 this.Adapter.SelectCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
-            if ((strHMLClassification == null)) {
-                this.Adapter.SelectCommand.Parameters[49].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[49].Value = ((string)(strHMLClassification));
+                this.Adapter.SelectCommand.Parameters[48].Value = ((string)(strHML));
             }
             if ((ysnVATApplicable.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[50].Value = ((bool)(ysnVATApplicable.Value));
+                this.Adapter.SelectCommand.Parameters[49].Value = ((bool)(ysnVATApplicable.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
+            if ((intWHID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[50].Value = ((int)(intWHID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[50].Value = global::System.DBNull.Value;
@@ -6231,6 +6638,18 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             }
             else {
                 this.Adapter.SelectCommand.Parameters[51].Value = global::System.DBNull.Value;
+            }
+            if ((intInsertBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[52].Value = ((int)(intInsertBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[52].Value = global::System.DBNull.Value;
+            }
+            if ((intCOAID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[53].Value = ((int)(intCOAID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[53].Value = global::System.DBNull.Value;
             }
             MasterMaterialTDS.SprItemAddAndApproveDataTable dataTable = new MasterMaterialTDS.SprItemAddAndApproveDataTable();
             this.Adapter.Fill(dataTable);
@@ -6401,15 +6820,15 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName,
- strPurchaseType, intPOProcessTime, intShipmentDeliveryTime, intProcessingTime, intTotalLeadTime, strOrderingLotSize, numEconomicOrderQty, numMinimumOrderQty, strSDEClassification
+            this._commandCollection[1].CommandText = @"SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, numReOrderQty, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName,
+ strPurchaseType, numMaxLeadTime, numMinLeadTime, (ISNULL(numMaxLeadTime,0) + ISNULL(numMinLeadTime,0))/2 AS numAvgLeadTime, strOrderingLotSize, numEconomicOrderQty, numMinimumOrderQty, strSDEClassification, intWHID
  FROM ERP_Inventory.dbo.tblTempItemList
  WHERE intAutoID = @intAutoID";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAutoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @" SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName
+            this._commandCollection[2].CommandText = @" SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, numReOrderQty, numReOrderLevel, numMinimumStock, numMaximumStock, numMaxDailyConsump, numMinDailyConsump, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName
  FROM ERP_Inventory.dbo.tblTempItemList
  WHERE intAutoID = @intAutoID";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
@@ -6417,7 +6836,7 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = @"  SELECT intAutoID, strWareHoseName, strItemName, strDescription, strPart, strModel, strSerial, strBrand, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName,
-  strPurchaseType, intPOProcessTime, intShipmentDeliveryTime, intProcessingTime, intTotalLeadTime, strOrderingLotSize, numEconomicOrderQty, numMinimumOrderQty, strSDEClassification
+  strPurchaseType, numMaxLeadTime, numMinLeadTime, strOrderingLotSize, numEconomicOrderQty, numMinimumOrderQty, strSDEClassification
   FROM ERP_Inventory.dbo.tblTempItemList item
   INNER JOIN ERP_Inventory.dbo.tblWearHouse wh ON item.intWHID = wh.intWHID
   WHERE item.ysnActive = 1 AND ysnStore = 1 AND ysnProcurement = 1 AND ysnAccounts IS NULL AND item.intWHID = @intWHID";
@@ -7090,6 +7509,204 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strSearchText));
             }
             MasterMaterialTDS.QryMaterialListDataTable dataTable = new MasterMaterialTDS.QryMaterialListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprGetCOAChildByUnitTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprGetCOAChildByUnitTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprGetCOAChildByUnit";
+            tableMapping.ColumnMappings.Add("strAccName", "strAccName");
+            tableMapping.ColumnMappings.Add("intAccID", "intAccID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_PaymentConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprGetCOAChildByUnit";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnAdvance", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnPurchase", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnCreditors", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnAll", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnBillReg", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual MasterMaterialTDS.SprGetCOAChildByUnitDataTable GetCOAList(global::System.Nullable<int> intUnit, global::System.Nullable<bool> ysnAdvance, global::System.Nullable<bool> ysnPurchase, global::System.Nullable<bool> ysnCreditors, global::System.Nullable<bool> ysnAll, global::System.Nullable<bool> ysnBillReg) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intUnit.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUnit.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((ysnAdvance.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((bool)(ysnAdvance.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((ysnPurchase.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(ysnPurchase.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((ysnCreditors.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((bool)(ysnCreditors.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((ysnAll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((bool)(ysnAll.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((ysnBillReg.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((bool)(ysnBillReg.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            MasterMaterialTDS.SprGetCOAChildByUnitDataTable dataTable = new MasterMaterialTDS.SprGetCOAChildByUnitDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

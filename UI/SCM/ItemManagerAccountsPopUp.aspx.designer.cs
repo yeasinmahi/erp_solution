@@ -301,13 +301,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// txtHSCode control.
+        /// txtReOrderQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHSCode;
+        protected global::System.Web.UI.WebControls.TextBox txtReOrderQty;
         
         /// <summary>
         /// Label15 control.
@@ -535,13 +535,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// txtPOTime control.
+        /// txtHSCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPOTime;
+        protected global::System.Web.UI.WebControls.TextBox txtHSCode;
         
         /// <summary>
         /// Label14 control.
@@ -553,13 +553,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// txtDeliveryTime control.
+        /// txtMaxLeadTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeliveryTime;
+        protected global::System.Web.UI.WebControls.TextBox txtMaxLeadTime;
         
         /// <summary>
         /// Label16 control.
@@ -571,13 +571,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
-        /// txtProcessingTime control.
+        /// txtMinLeadTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProcessingTime;
+        protected global::System.Web.UI.WebControls.TextBox txtMinLeadTime;
         
         /// <summary>
         /// Label17 control.
@@ -589,13 +589,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
-        /// txtTotalLeadTime control.
+        /// txtAvgLeadTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotalLeadTime;
+        protected global::System.Web.UI.WebControls.TextBox txtAvgLeadTime;
         
         /// <summary>
         /// Label18 control.
@@ -704,6 +704,24 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlVAT;
+        
+        /// <summary>
+        /// lblCOA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCOA;
+        
+        /// <summary>
+        /// ddlCOA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCOA;
         
         /// <summary>
         /// btnApprove control.
