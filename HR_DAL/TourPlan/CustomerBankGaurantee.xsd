@@ -75,7 +75,7 @@ FROM ERP_Global.dbo.tblBankInfo binf join ERP_Global.dbo.tblBankName bank on ban
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblSalesOfficeTableAdapter" GeneratorDataComponentClassName="TblSalesOfficeTableAdapter" Name="TblSalesOffice" UserDataComponentName="TblSalesOfficeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetSalesOfficeByUnitId" GetMethodModifier="Public" GetMethodName="GetSalesOfficeByUnitId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSalesOfficeByUnitId" UserSourceName="GetSalesOfficeByUnitId">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetSalesOfficeByUnitId" GetMethodModifier="Public" GetMethodName="GetSalesOfficeByUnitId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSalesOfficeByUnitId" UserSourceName="GetSalesOfficeByUnitId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>select strName,intId from erp_sad.dbo.tblSalesOffice where intUnitId=@intUnitId</CommandText>
@@ -94,7 +94,7 @@ FROM ERP_Global.dbo.tblBankInfo binf join ERP_Global.dbo.tblBankName bank on ban
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblCustomerTableAdapter" GeneratorDataComponentClassName="TblCustomerTableAdapter" Name="TblCustomer" UserDataComponentName="TblCustomerTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCustomerNameBySalesOfficeId" GetMethodModifier="Public" GetMethodName="GetCustomerNameBySalesOfficeId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCustomerNameBySalesOfficeId" UserSourceName="GetCustomerNameBySalesOfficeId">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomer" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCustomerNameBySalesOfficeId" GetMethodModifier="Public" GetMethodName="GetCustomerNameBySalesOfficeId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCustomerNameBySalesOfficeId" UserSourceName="GetCustomerNameBySalesOfficeId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT cust.strname,cust.intCusID FROM [ERP_SAD].[dbo].tblCustomer cust  left join erp_sad.dbo.tblItemPriceManager pm on pm.intID=cust.intPriceCatagory left join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID
@@ -158,6 +158,51 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             <Mappings />
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CustomerBankGauranteeListTableAdapter" GeneratorDataComponentClassName="CustomerBankGauranteeListTableAdapter" Name="CustomerBankGauranteeList" UserDataComponentName="CustomerBankGauranteeListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BrandTradeMktConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCustomerBankGauranteeList" GetMethodModifier="Public" GetMethodName="GetCustomerBankGauranteeList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCustomerBankGauranteeList" UserSourceName="GetCustomerBankGauranteeList">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> SELECT binfo.intID,cust.strName, pm.strText,pm1.strText,pm2.strText, so.strName,bn.strBankName, binfo.strBranchName,
+binfo.strLienNo,binfo.monBGAmount,convert(char(10),binfo.dteIssuDate,126),
+convert(char(10),binfo.dteExpireDate,126),(-1)*DATEDIFF(year,binfo.dteExpireDate,binfo.dteIssuDate),
+empl.strEmployeeName,CONVERT(char(10) ,binfo.dteInsertionDate,126) 
+FROM [BrandTradeMkt].[dbo].[tblBankGuranteeInfo] binfo 
+ join erp_sad.dbo.tblCustomer cust on binfo.intCustID=cust.intCusID 
+ join ERP_Global.dbo.tblBankName bn on bn.intID=binfo.intBankID 
+ left join erp_sad.dbo.tblItemPriceManager pm on pm.intID=cust.intPriceCatagory 
+ left join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID 
+ left join erp_sad.dbo.tblItemPriceManager pm2 on pm2.intID=pm1.intParentID
+ left join erp_sad.dbo.tblSalesOffice so on so.intId =cust.intSalesOffId 
+ left join erp_hr.dbo.tblEmployee empl on empl.intEmployeeID=binfo.intInsertBy 
+ where binfo.dteInsertionDate between @dteFromDate and @dteToDate order by so.strName,pm2.strCode,pm1.strCode,pm.strCode asc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteFromDate" ColumnName="dteInsertionDate" DataSourceName="BrandTradeMkt.dbo.tblBankGuranteeInfo" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@dteFromDate" Precision="0" Scale="0" Size="8" SourceColumn="dteInsertionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteToDate" ColumnName="dteInsertionDate" DataSourceName="BrandTradeMkt.dbo.tblBankGuranteeInfo" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@dteToDate" Precision="0" Scale="0" Size="8" SourceColumn="dteInsertionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+              <Mapping SourceColumn="strName" DataSetColumn="strName" />
+              <Mapping SourceColumn="strText" DataSetColumn="strText" />
+              <Mapping SourceColumn="strText1" DataSetColumn="strText1" />
+              <Mapping SourceColumn="strText2" DataSetColumn="strText2" />
+              <Mapping SourceColumn="strName1" DataSetColumn="strName1" />
+              <Mapping SourceColumn="strBankName" DataSetColumn="strBankName" />
+              <Mapping SourceColumn="strBranchName" DataSetColumn="strBranchName" />
+              <Mapping SourceColumn="strLienNo" DataSetColumn="strLienNo" />
+              <Mapping SourceColumn="monBGAmount" DataSetColumn="monBGAmount" />
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+              <Mapping SourceColumn="Column2" DataSetColumn="Column2" />
+              <Mapping SourceColumn="Column3" DataSetColumn="Column3" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="Column4" DataSetColumn="Column4" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -166,7 +211,7 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
   <xs:element name="CustomerBankGaurantee" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CustomerBankGaurantee" msprop:Generator_UserDSName="CustomerBankGaurantee">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TblBankName" msprop:Generator_TableClassName="TblBankNameDataTable" msprop:Generator_TableVarName="tableTblBankName" msprop:Generator_TablePropName="TblBankName" msprop:Generator_RowDeletingName="TblBankNameRowDeleting" msprop:Generator_RowChangingName="TblBankNameRowChanging" msprop:Generator_RowEvHandlerName="TblBankNameRowChangeEventHandler" msprop:Generator_RowDeletedName="TblBankNameRowDeleted" msprop:Generator_UserTableName="TblBankName" msprop:Generator_RowChangedName="TblBankNameRowChanged" msprop:Generator_RowEvArgName="TblBankNameRowChangeEvent" msprop:Generator_RowClassName="TblBankNameRow">
+        <xs:element name="TblBankName" msprop:Generator_TableClassName="TblBankNameDataTable" msprop:Generator_TableVarName="tableTblBankName" msprop:Generator_RowChangedName="TblBankNameRowChanged" msprop:Generator_TablePropName="TblBankName" msprop:Generator_RowDeletingName="TblBankNameRowDeleting" msprop:Generator_RowChangingName="TblBankNameRowChanging" msprop:Generator_RowEvHandlerName="TblBankNameRowChangeEventHandler" msprop:Generator_RowDeletedName="TblBankNameRowDeleted" msprop:Generator_RowClassName="TblBankNameRow" msprop:Generator_UserTableName="TblBankName" msprop:Generator_RowEvArgName="TblBankNameRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName">
@@ -180,7 +225,7 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblBankBranchName" msprop:Generator_TableClassName="TblBankBranchNameDataTable" msprop:Generator_TableVarName="tableTblBankBranchName" msprop:Generator_TablePropName="TblBankBranchName" msprop:Generator_RowDeletingName="TblBankBranchNameRowDeleting" msprop:Generator_RowChangingName="TblBankBranchNameRowChanging" msprop:Generator_RowEvHandlerName="TblBankBranchNameRowChangeEventHandler" msprop:Generator_RowDeletedName="TblBankBranchNameRowDeleted" msprop:Generator_UserTableName="TblBankBranchName" msprop:Generator_RowChangedName="TblBankBranchNameRowChanged" msprop:Generator_RowEvArgName="TblBankBranchNameRowChangeEvent" msprop:Generator_RowClassName="TblBankBranchNameRow">
+        <xs:element name="TblBankBranchName" msprop:Generator_TableClassName="TblBankBranchNameDataTable" msprop:Generator_TableVarName="tableTblBankBranchName" msprop:Generator_RowChangedName="TblBankBranchNameRowChanged" msprop:Generator_TablePropName="TblBankBranchName" msprop:Generator_RowDeletingName="TblBankBranchNameRowDeleting" msprop:Generator_RowChangingName="TblBankBranchNameRowChanging" msprop:Generator_RowEvHandlerName="TblBankBranchNameRowChangeEventHandler" msprop:Generator_RowDeletedName="TblBankBranchNameRowDeleted" msprop:Generator_RowClassName="TblBankBranchNameRow" msprop:Generator_UserTableName="TblBankBranchName" msprop:Generator_RowEvArgName="TblBankBranchNameRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strBankBranchName" msprop:Generator_ColumnVarNameInTable="columnstrBankBranchName" msprop:Generator_ColumnPropNameInRow="strBankBranchName" msprop:Generator_ColumnPropNameInTable="strBankBranchNameColumn" msprop:Generator_UserColumnName="strBankBranchName">
@@ -194,7 +239,7 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblDistrict" msprop:Generator_TableClassName="TblDistrictDataTable" msprop:Generator_TableVarName="tableTblDistrict" msprop:Generator_TablePropName="TblDistrict" msprop:Generator_RowDeletingName="TblDistrictRowDeleting" msprop:Generator_RowChangingName="TblDistrictRowChanging" msprop:Generator_RowEvHandlerName="TblDistrictRowChangeEventHandler" msprop:Generator_RowDeletedName="TblDistrictRowDeleted" msprop:Generator_UserTableName="TblDistrict" msprop:Generator_RowChangedName="TblDistrictRowChanged" msprop:Generator_RowEvArgName="TblDistrictRowChangeEvent" msprop:Generator_RowClassName="TblDistrictRow">
+        <xs:element name="TblDistrict" msprop:Generator_TableClassName="TblDistrictDataTable" msprop:Generator_TableVarName="tableTblDistrict" msprop:Generator_RowChangedName="TblDistrictRowChanged" msprop:Generator_TablePropName="TblDistrict" msprop:Generator_RowDeletingName="TblDistrictRowDeleting" msprop:Generator_RowChangingName="TblDistrictRowChanging" msprop:Generator_RowEvHandlerName="TblDistrictRowChangeEventHandler" msprop:Generator_RowDeletedName="TblDistrictRowDeleted" msprop:Generator_RowClassName="TblDistrictRow" msprop:Generator_UserTableName="TblDistrict" msprop:Generator_RowEvArgName="TblDistrictRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strDistrict" msprop:Generator_ColumnVarNameInTable="columnstrDistrict" msprop:Generator_ColumnPropNameInRow="strDistrict" msprop:Generator_ColumnPropNameInTable="strDistrictColumn" msprop:Generator_UserColumnName="strDistrict" minOccurs="0">
@@ -208,7 +253,7 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblSalesOffice" msprop:Generator_TableClassName="TblSalesOfficeDataTable" msprop:Generator_TableVarName="tableTblSalesOffice" msprop:Generator_TablePropName="TblSalesOffice" msprop:Generator_RowDeletingName="TblSalesOfficeRowDeleting" msprop:Generator_RowChangingName="TblSalesOfficeRowChanging" msprop:Generator_RowEvHandlerName="TblSalesOfficeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblSalesOfficeRowDeleted" msprop:Generator_UserTableName="TblSalesOffice" msprop:Generator_RowChangedName="TblSalesOfficeRowChanged" msprop:Generator_RowEvArgName="TblSalesOfficeRowChangeEvent" msprop:Generator_RowClassName="TblSalesOfficeRow">
+        <xs:element name="TblSalesOffice" msprop:Generator_TableClassName="TblSalesOfficeDataTable" msprop:Generator_TableVarName="tableTblSalesOffice" msprop:Generator_RowChangedName="TblSalesOfficeRowChanged" msprop:Generator_TablePropName="TblSalesOffice" msprop:Generator_RowDeletingName="TblSalesOfficeRowDeleting" msprop:Generator_RowChangingName="TblSalesOfficeRowChanging" msprop:Generator_RowEvHandlerName="TblSalesOfficeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblSalesOfficeRowDeleted" msprop:Generator_RowClassName="TblSalesOfficeRow" msprop:Generator_UserTableName="TblSalesOffice" msprop:Generator_RowEvArgName="TblSalesOfficeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName">
@@ -222,7 +267,7 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblCustomer" msprop:Generator_TableClassName="TblCustomerDataTable" msprop:Generator_TableVarName="tableTblCustomer" msprop:Generator_TablePropName="TblCustomer" msprop:Generator_RowDeletingName="TblCustomerRowDeleting" msprop:Generator_RowChangingName="TblCustomerRowChanging" msprop:Generator_RowEvHandlerName="TblCustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="TblCustomerRowDeleted" msprop:Generator_UserTableName="TblCustomer" msprop:Generator_RowChangedName="TblCustomerRowChanged" msprop:Generator_RowEvArgName="TblCustomerRowChangeEvent" msprop:Generator_RowClassName="TblCustomerRow">
+        <xs:element name="TblCustomer" msprop:Generator_TableClassName="TblCustomerDataTable" msprop:Generator_TableVarName="tableTblCustomer" msprop:Generator_RowChangedName="TblCustomerRowChanged" msprop:Generator_TablePropName="TblCustomer" msprop:Generator_RowDeletingName="TblCustomerRowDeleting" msprop:Generator_RowChangingName="TblCustomerRowChanging" msprop:Generator_RowEvHandlerName="TblCustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="TblCustomerRowDeleted" msprop:Generator_RowClassName="TblCustomerRow" msprop:Generator_UserTableName="TblCustomer" msprop:Generator_RowEvArgName="TblCustomerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strname" msprop:Generator_ColumnVarNameInTable="columnstrname" msprop:Generator_ColumnPropNameInRow="strname" msprop:Generator_ColumnPropNameInTable="strnameColumn" msprop:Generator_UserColumnName="strname" minOccurs="0">
@@ -236,7 +281,7 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblCustomerInfo" msprop:Generator_TableClassName="TblCustomerInfoDataTable" msprop:Generator_TableVarName="tableTblCustomerInfo" msprop:Generator_TablePropName="TblCustomerInfo" msprop:Generator_RowDeletingName="TblCustomerInfoRowDeleting" msprop:Generator_RowChangingName="TblCustomerInfoRowChanging" msprop:Generator_RowEvHandlerName="TblCustomerInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="TblCustomerInfoRowDeleted" msprop:Generator_UserTableName="TblCustomerInfo" msprop:Generator_RowChangedName="TblCustomerInfoRowChanged" msprop:Generator_RowEvArgName="TblCustomerInfoRowChangeEvent" msprop:Generator_RowClassName="TblCustomerInfoRow">
+        <xs:element name="TblCustomerInfo" msprop:Generator_TableClassName="TblCustomerInfoDataTable" msprop:Generator_TableVarName="tableTblCustomerInfo" msprop:Generator_RowChangedName="TblCustomerInfoRowChanged" msprop:Generator_TablePropName="TblCustomerInfo" msprop:Generator_RowDeletingName="TblCustomerInfoRowDeleting" msprop:Generator_RowChangingName="TblCustomerInfoRowChanging" msprop:Generator_RowEvHandlerName="TblCustomerInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="TblCustomerInfoRowDeleted" msprop:Generator_RowClassName="TblCustomerInfoRow" msprop:Generator_UserTableName="TblCustomerInfo" msprop:Generator_RowEvArgName="TblCustomerInfoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strname" msprop:Generator_ColumnVarNameInTable="columnstrname" msprop:Generator_ColumnPropNameInRow="strname" msprop:Generator_ColumnPropNameInTable="strnameColumn" msprop:Generator_UserColumnName="strname" minOccurs="0">
@@ -271,8 +316,101 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="insertCustomerBankGauranteeXmlData" msprop:Generator_TableClassName="insertCustomerBankGauranteeXmlDataDataTable" msprop:Generator_TableVarName="tableinsertCustomerBankGauranteeXmlData" msprop:Generator_TablePropName="insertCustomerBankGauranteeXmlData" msprop:Generator_RowDeletingName="insertCustomerBankGauranteeXmlDataRowDeleting" msprop:Generator_RowChangingName="insertCustomerBankGauranteeXmlDataRowChanging" msprop:Generator_RowEvHandlerName="insertCustomerBankGauranteeXmlDataRowChangeEventHandler" msprop:Generator_RowDeletedName="insertCustomerBankGauranteeXmlDataRowDeleted" msprop:Generator_UserTableName="insertCustomerBankGauranteeXmlData" msprop:Generator_RowChangedName="insertCustomerBankGauranteeXmlDataRowChanged" msprop:Generator_RowEvArgName="insertCustomerBankGauranteeXmlDataRowChangeEvent" msprop:Generator_RowClassName="insertCustomerBankGauranteeXmlDataRow">
+        <xs:element name="insertCustomerBankGauranteeXmlData" msprop:Generator_TableClassName="insertCustomerBankGauranteeXmlDataDataTable" msprop:Generator_TableVarName="tableinsertCustomerBankGauranteeXmlData" msprop:Generator_RowChangedName="insertCustomerBankGauranteeXmlDataRowChanged" msprop:Generator_TablePropName="insertCustomerBankGauranteeXmlData" msprop:Generator_RowDeletingName="insertCustomerBankGauranteeXmlDataRowDeleting" msprop:Generator_RowChangingName="insertCustomerBankGauranteeXmlDataRowChanging" msprop:Generator_RowEvHandlerName="insertCustomerBankGauranteeXmlDataRowChangeEventHandler" msprop:Generator_RowDeletedName="insertCustomerBankGauranteeXmlDataRowDeleted" msprop:Generator_RowClassName="insertCustomerBankGauranteeXmlDataRow" msprop:Generator_UserTableName="insertCustomerBankGauranteeXmlData" msprop:Generator_RowEvArgName="insertCustomerBankGauranteeXmlDataRowChangeEvent">
           <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CustomerBankGauranteeList" msprop:Generator_TableClassName="CustomerBankGauranteeListDataTable" msprop:Generator_TableVarName="tableCustomerBankGauranteeList" msprop:Generator_TablePropName="CustomerBankGauranteeList" msprop:Generator_RowDeletingName="CustomerBankGauranteeListRowDeleting" msprop:Generator_RowChangingName="CustomerBankGauranteeListRowChanging" msprop:Generator_RowEvHandlerName="CustomerBankGauranteeListRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomerBankGauranteeListRowDeleted" msprop:Generator_UserTableName="CustomerBankGauranteeList" msprop:Generator_RowChangedName="CustomerBankGauranteeListRowChanged" msprop:Generator_RowEvArgName="CustomerBankGauranteeListRowChangeEvent" msprop:Generator_RowClassName="CustomerBankGauranteeListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+              <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn" msprop:Generator_UserColumnName="strText" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strText1" msprop:Generator_ColumnVarNameInTable="columnstrText1" msprop:Generator_ColumnPropNameInRow="strText1" msprop:Generator_ColumnPropNameInTable="strText1Column" msprop:Generator_UserColumnName="strText1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strText2" msprop:Generator_ColumnVarNameInTable="columnstrText2" msprop:Generator_ColumnPropNameInRow="strText2" msprop:Generator_ColumnPropNameInTable="strText2Column" msprop:Generator_UserColumnName="strText2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strName1" msprop:Generator_ColumnVarNameInTable="columnstrName1" msprop:Generator_ColumnPropNameInRow="strName1" msprop:Generator_ColumnPropNameInTable="strName1Column" msprop:Generator_UserColumnName="strName1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBranchName" msprop:Generator_ColumnVarNameInTable="columnstrBranchName" msprop:Generator_ColumnPropNameInRow="strBranchName" msprop:Generator_ColumnPropNameInTable="strBranchNameColumn" msprop:Generator_UserColumnName="strBranchName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strLienNo" msprop:Generator_ColumnVarNameInTable="columnstrLienNo" msprop:Generator_ColumnPropNameInRow="strLienNo" msprop:Generator_ColumnPropNameInTable="strLienNoColumn" msprop:Generator_UserColumnName="strLienNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monBGAmount" msprop:Generator_ColumnVarNameInTable="columnmonBGAmount" msprop:Generator_ColumnPropNameInRow="monBGAmount" msprop:Generator_ColumnPropNameInTable="monBGAmountColumn" msprop:Generator_UserColumnName="monBGAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Column2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn2" msprop:Generator_ColumnPropNameInRow="Column2" msprop:Generator_ColumnPropNameInTable="Column2Column" msprop:Generator_UserColumnName="Column2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Column3" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn3" msprop:Generator_ColumnPropNameInRow="Column3" msprop:Generator_ColumnPropNameInTable="Column3Column" msprop:Generator_UserColumnName="Column3" type="xs:int" minOccurs="0" />
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Column4" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn4" msprop:Generator_ColumnPropNameInRow="Column4" msprop:Generator_ColumnPropNameInTable="Column4Column" msprop:Generator_UserColumnName="Column4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
@@ -296,6 +434,10 @@ WHERE  so.intid=@intSalesId  order by pm2.strtext,pm1.strText,pm.strText,cust.st
     <xs:unique name="TblCustomerInfo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblCustomerInfo" />
       <xs:field xpath="mstns:intCusID" />
+    </xs:unique>
+    <xs:unique name="CustomerBankGauranteeList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CustomerBankGauranteeList" />
+      <xs:field xpath="mstns:intID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

@@ -329,6 +329,7 @@
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
+    <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
@@ -2657,6 +2658,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.designer.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
+      <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.designer.cs">
+      <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuarantee.aspx.cs">
       <DependentUpon>CustomerBankGuarantee.aspx</DependentUpon>

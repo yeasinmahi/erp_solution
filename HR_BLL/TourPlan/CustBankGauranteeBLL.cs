@@ -22,5 +22,11 @@ namespace HR_BLL.TourPlan
                 return adp.InsertCustomerBankGauranteeXmlData(xml);
 
         }
+
+        public DataTable getCustomerBankGauranteeList(DateTime dteFromDate,DateTime dteToDate)
+        {
+            CustomerBankGauranteeListTableAdapter adp = new CustomerBankGauranteeListTableAdapter();
+            return adp.GetCustomerBankGauranteeList(dteFromDate, dteToDate);
+        }
     }
 }
