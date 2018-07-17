@@ -14,11 +14,10 @@ namespace UI.SCM
     {
         #region===== Variable & Object Declaration =====================================================
         MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
-        int intPart, intWHID, intUOM, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intInsertBy, intLocationID, intPurchaseType, intPOProcessingTime, intShipmentTime,
-            intProcessTime, intTotalLeadTime, intAutoID, intABC, intFSN, intVDE, intSelfTime, intSDE, intHML;
-        string strItemName, strDescription, strPart, strModel, strSerial, strUOM, strGroupName, strCategoryName, strSubCategoryName, strBrand, strMinorCategory, strPlantName, strABCClassification, strFSNClassification,
-            strVDEClassification, strLotSize, strPurchaseType, strSDEClassification, strHMLClassification, strSpecification, strOrigin, strHSCode;
-        decimal numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, numEOQ, numMOQ;
+        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID;
+        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+            strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
+        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
         bool ysnVATApplicable;
         #endregion =====================================================================================
         protected void Page_Load(object sender, EventArgs e)
@@ -49,10 +48,12 @@ namespace UI.SCM
                 txtBrand.Text = dt.Rows[0]["strBrand"].ToString();
                 txtSpecification.Text = dt.Rows[0]["strSpecifiaction"].ToString();
                 txtOrigin.Text = dt.Rows[0]["strOrigin"].ToString();
-                txtHSCode.Text = dt.Rows[0]["strHSCode"].ToString();
+                txtReorderQty.Text=dt.Rows[0]["numReOrderQty"].ToString();
                 txtReOrder.Text = dt.Rows[0]["numReOrderLevel"].ToString();
                 txtMinimum.Text = dt.Rows[0]["numMinimumStock"].ToString();
                 txtMaximum.Text = dt.Rows[0]["numMaximumStock"].ToString();
+                txtMaxDailyConsum.Text = dt.Rows[0]["numMaxDailyConsump"].ToString();
+                txtMinDailyConsum.Text = dt.Rows[0]["numMinDailyConsump"].ToString();
                 txtSafety.Text = dt.Rows[0]["numSafetyStock"].ToString();
                 txtSelfTime.Text = dt.Rows[0]["intSelfTime"].ToString();
                 txtUOM.Text = dt.Rows[0]["strUOM"].ToString();
@@ -72,29 +73,28 @@ namespace UI.SCM
                 intPart = 9;
                 intAutoID = int.Parse(hdnItemID.Value.ToString());
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
-                intPurchaseType = int.Parse(ddlProcurementType.SelectedValue.ToString());
-                strPurchaseType = ddlProcurementType.SelectedItem.ToString();
-                try { intPOProcessingTime = int.Parse(txtPOTime.Text); } catch { intPOProcessingTime = 0; }
-                try { intShipmentTime = int.Parse(txtDeliveryTime.Text); } catch { intShipmentTime = 0; }
-                try { intProcessTime = int.Parse(txtProcessingTime.Text); } catch { intProcessTime = 0; }
-                try { intTotalLeadTime = int.Parse(txtTotalLeadTime.Text); } catch { intTotalLeadTime = 0; }
-                strLotSize = txtLotSize.Text;
+                intProcureType = int.Parse(ddlProcurementType.SelectedValue.ToString());
+                strProcureType = ddlProcurementType.SelectedItem.ToString();
+                strHSCode = txtHSCode.Text;
+                try { numMaxLeadTime = int.Parse(txtMaxLeadTime.Text); } catch { numMaxLeadTime = 0; }
+                try { numMinLeadTime = int.Parse(txtMinLeadTime.Text); } catch { numMinLeadTime = 0; }
+                strOrderingLotSize = txtLotSize.Text;
                 try { numEOQ = decimal.Parse(txtEOQ.Text); } catch { numEOQ = 0; }
                 try { numMOQ = decimal.Parse(txtMOQ.Text); } catch { numMOQ = 0; }
                 intSDE = int.Parse(ddlSDE.SelectedValue.ToString());
-                strSDEClassification = ddlSDE.SelectedItem.ToString();
+                strSDE = ddlSDE.SelectedItem.ToString();
 
-                if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtPOTime.Text == "" || txtDeliveryTime.Text == "" || txtProcessingTime.Text == "")
+                if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtMaxLeadTime.Text == "" || txtMinLeadTime.Text == "")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
                     return;
                 }
 
                 dt = new DataTable();
-                dt = bll.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode, numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM,
-                        intLocationID, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName,
-                        intABC, strABCClassification, intFSN, strFSNClassification, intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime,
-                        intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE, strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
+                dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                        intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                        numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
 
                 if (dt.Rows.Count > 0)
                 {

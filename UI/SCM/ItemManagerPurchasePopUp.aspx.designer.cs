@@ -301,13 +301,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// txtHSCode control.
+        /// txtReorderQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHSCode;
+        protected global::System.Web.UI.WebControls.TextBox txtReorderQty;
         
         /// <summary>
         /// Label12 control.
@@ -362,6 +362,42 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMaximum;
+        
+        /// <summary>
+        /// Label28 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label28;
+        
+        /// <summary>
+        /// txtMaxDailyConsum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMaxDailyConsum;
+        
+        /// <summary>
+        /// Label29 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label29;
+        
+        /// <summary>
+        /// txtMinDailyConsum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMinDailyConsum;
         
         /// <summary>
         /// Label26 control.
@@ -535,13 +571,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// txtPOTime control.
+        /// txtHSCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPOTime;
+        protected global::System.Web.UI.WebControls.TextBox txtHSCode;
         
         /// <summary>
         /// Label14 control.
@@ -553,13 +589,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// txtDeliveryTime control.
+        /// txtMaxLeadTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeliveryTime;
+        protected global::System.Web.UI.WebControls.TextBox txtMaxLeadTime;
         
         /// <summary>
         /// Label16 control.
@@ -571,31 +607,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
-        /// txtProcessingTime control.
+        /// txtMinLeadTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProcessingTime;
-        
-        /// <summary>
-        /// Label17 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
-        
-        /// <summary>
-        /// txtTotalLeadTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotalLeadTime;
+        protected global::System.Web.UI.WebControls.TextBox txtMinLeadTime;
         
         /// <summary>
         /// Label18 control.
