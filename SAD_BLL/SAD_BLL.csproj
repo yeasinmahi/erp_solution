@@ -143,6 +143,7 @@
     <Compile Include="Sales\RemoteSales.cs" />
     <Compile Include="Sales\Report\Challan.cs" />
     <Compile Include="Sales\Report\SalesByCusPro.cs" />
+    <Compile Include="Sales\Report\UDTCLSalesBLL.cs" />
     <Compile Include="Sales\SalesConfig.cs" />
     <Compile Include="Sales\SalesEntry.cs" />
     <Compile Include="Item\StaticItem.cs" />
