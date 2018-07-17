@@ -124,8 +124,8 @@
                 <td><asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
           </tr>
         <tr>
-                <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Re-Order Qty :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtReorderQty" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Re-Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtReOrder" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
@@ -134,6 +134,12 @@
                 <td><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Maximum Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="Label28" runat="server" Text="Max Daily Consump :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtMaxDailyConsum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="Label29" runat="server" Text="Min Daily Consump :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtMinDailyConsum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label26" runat="server" Text="Safety Stock Level :" CssClass="lbl"></asp:Label></td>
@@ -164,32 +170,30 @@
             <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Procure Type " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text=" Select Procure Type"></asp:ListItem>
             <asp:ListItem Value="1" Text="Local"></asp:ListItem><asp:ListItem Value="2" Text="Import"></asp:ListItem><asp:ListItem Value="3" Text="Fabrication"></asp:ListItem><asp:ListItem Value="4" Text="Common"></asp:ListItem></asp:DropDownList></td>
-            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="PO Processing Time " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:TextBox ID="txtPOTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();" onKeyUp="javascript:TotalLeadTime();"></asp:TextBox></td>
+            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="HS Code " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+            <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox></td>
         </tr>
         <tr>
-            <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Delivery Time " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:TextBox ID="txtDeliveryTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();" onKeyUp="javascript:TotalLeadTime();"></asp:TextBox></td>
-            <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="Processing Time for Goods Reveips " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:TextBox ID="txtProcessingTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();" onKeyUp="javascript:TotalLeadTime();"></asp:TextBox></td>                
+            <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Max Lead Time " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+            <td><asp:TextBox ID="txtMaxLeadTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>
+            <td style="text-align:right;"><asp:Label ID="Label16" runat="server" Text="Min Lead Time " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+            <td><asp:TextBox ID="txtMinLeadTime" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>                
         </tr>
         <tr>
-            <td style="text-align:right;"><asp:Label ID="Label17" runat="server" Text="Total Lead Time :" CssClass="lbl"></asp:Label></td>
-            <td><asp:TextBox ID="txtTotalLeadTime" runat="server" CssClass="txtBox1" BackColor="White" Enabled="false"></asp:TextBox></td>
             <td style="text-align:right;"><asp:Label ID="Label18" runat="server" Text="Ordering Lot Size :" CssClass="lbl"></asp:Label></td>
-            <td><asp:TextBox ID="txtLotSize" runat="server" CssClass="txtBox1" BackColor="White" ></asp:TextBox></td>                
-        </tr>
-        <tr>
+            <td><asp:TextBox ID="txtLotSize" runat="server" CssClass="txtBox1" BackColor="White" ></asp:TextBox></td>
             <td style="text-align:right;"><asp:Label ID="Label19" runat="server" Text="Economic Order Qty. :" CssClass="lbl"></asp:Label></td>
             <td><asp:TextBox ID="txtEOQ" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>
-            <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Minimum Order Qty. :" CssClass="lbl"></asp:Label></td>
-            <td><asp:TextBox ID="txtMOQ" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>                
         </tr>
         <tr>
+            <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Minimum Order Qty. :" CssClass="lbl"></asp:Label></td>
+            <td><asp:TextBox ID="txtMOQ" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             <td style="text-align:right;"><asp:Label ID="Label21" runat="server" Text="SDE Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td><asp:DropDownList ID="ddlSDE" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text=" Select SDE Classification"></asp:ListItem>
             <asp:ListItem Value="1">Scarce</asp:ListItem><asp:ListItem Value="2">Difficult</asp:ListItem><asp:ListItem Value="3">Easily</asp:ListItem></asp:DropDownList></td>
-            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnApprove" runat="server" class="myButton" OnClick="btnApprove_Click" OnClientClick="ConfirmAll()" Text="Approve" /></td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnApprove" runat="server" class="myButton" OnClick="btnApprove_Click" OnClientClick="ConfirmAll()" Text="Approve" /></td>
         </tr>
         </table>
         </div>

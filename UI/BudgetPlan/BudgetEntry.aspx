@@ -124,7 +124,7 @@
 
             <td style="text-align:right;"><asp:Label ID="lblYear" runat="server" CssClass="lbl" Text="Year:"></asp:Label></td>
             <td style="text-align:left;">
-                <asp:DropDownList ID="ddlYear" CssClass="ddList" Font-Bold="False" Width="120px" runat="server"></asp:DropDownList>                                                                       
+                <asp:DropDownList ID="ddlYear" CssClass="ddList" Font-Bold="False" Width="120px" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged"></asp:DropDownList>                                                                       
             </td>
             <td style="width:5px"></td>    
             <td style="text-align:left;"><asp:Button ID="btnBudgetSave" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick"  Visible="false" Text="Save Budget" OnClientClick="ConfirmAll()"  OnClick="btnBudgetSave_Click"/></td>                                                    

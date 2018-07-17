@@ -10,21 +10,21 @@ namespace SCM_BLL
 {
     public class MasterMaterialBLL
     {
-        public DataTable InsertUpdateSelectForItem(int intPart, int intWHID, string strItemName, string strDescription, string strPart, string strModel, string strSerial, string strBrand,
-                string strSpecification, string strOrigin, string strHSCode, decimal numReOrderLevel, decimal numMinimumStock, decimal numMaximumStock,
-                decimal numSafetyStock, int intUOM, string strUOM, int intLocationID, int intGroupID, string strGroupName, int intCategoryID, string strCategoryName, int intSubCategoryID, string strSubCategoryName, int intMinorCategory,
-                string strMinorCategory, int intPlantID, string strPlantName, int intABC, string strABCClassification, int intFSN, string strFSNClassification, int intVDE, string strVDEClassification, int intInsertBy, int intPurchaseType,
-                string strPurchaseType, int intPOProcessingTime, int intShipmentTime, int intProcessTime, int intTotalLeadTime, int intSelfTime, string strLotSize, decimal numEOQ, decimal numMOQ, int intSDE,
-                string strSDEClassification, int intHML, string strHMLClassification, bool ysnVATApplicable, int intAutoID)
+        public DataTable InsertUpdateSelectForItem(int intPart, string strMaterialName, string strDescription, string strPart, string strModel, string strSerial, string strBrand, string strSpecification,
+                    int intUOM, string strUOM, string strOrigin, int intLocationID, string strHSCode, int intGroupID, string strGroupName, int intCategoryID, string strCategoryName, int intSubCategoryID,
+                    string strSubCategoryName, int intMinorCategory, string strMinorCategory, int intPlantID, string strPlantName, int intProcureType, string strProcureType, decimal numMaxLeadTime,
+                    decimal numMinLeadTime, decimal numMinimumStock, decimal numMaximumStock, decimal numSafetyStock, decimal numReOrderPoint, decimal numReOrderQty, int intABC, string strABC, int intFSN,
+                    string strFSN, int intVDE, string strVDE, int intSelfLife, string strOrderingLotSize, decimal numEOQ, decimal numMOQ, decimal numMaxDailyConsump, decimal numMinDailyConsump, int intSDE,
+                    string strSDE, int intHML, string strHML, bool ysnVATApplicable, int intWHID, int intAutoID, int intInsertBy, int intCOAID)
         {
             SprItemAddAndApproveTableAdapter adp = new SprItemAddAndApproveTableAdapter();
             try
             {
-                return adp.InsertUpdateSelectForItem(intPart, intWHID, strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strOrigin, strHSCode,
-                    numReOrderLevel, numMinimumStock, numMaximumStock, numSafetyStock, intUOM, strUOM, intLocationID, intGroupID,
-                    strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intABC, strABCClassification, intFSN, strFSNClassification,
-                    intVDE, strVDEClassification, intInsertBy, intPurchaseType, strPurchaseType, intPOProcessingTime, intShipmentTime, intProcessTime, intTotalLeadTime, intSelfTime, strLotSize, numEOQ, numMOQ, intSDE,
-                    strSDEClassification, intHML, strHMLClassification, ysnVATApplicable, intAutoID);
+                return adp.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin,
+                    intLocationID, strHSCode, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID,
+                    strPlantName, intProcureType, strProcureType, numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC,
+                    strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable,
+                    intWHID, intAutoID, intInsertBy, intCOAID);
             }
             catch { return new DataTable(); }
         }
@@ -82,6 +82,13 @@ namespace SCM_BLL
             QryMaterialListTableAdapter adp = new QryMaterialListTableAdapter();
             try
             { return adp.GetItemListReport(intWHID, strSearchText); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetCOAList(int intUnitID, bool ysnAdvance, bool ysnPurchase, bool ysnCreditors, bool ysnAll, bool ysnBillReg)
+        {
+            SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
+            try
+            { return adp.GetCOAList(intUnitID, ysnAdvance, ysnPurchase, ysnCreditors, ysnAll, ysnBillReg); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
     }

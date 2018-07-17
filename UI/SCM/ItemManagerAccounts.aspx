@@ -164,6 +164,16 @@
                                 <ItemStyle HorizontalAlign="center" />
                                 </asp:TemplateField>
 
+                                <asp:TemplateField HeaderText="Max Lead Time" SortExpression="numMaxLeadTime">
+                                <ItemTemplate><asp:Label ID="lblMaxLeadTime" runat="server" Text='<%# Eval("numMaxLeadTime", "{0:0,0.00}") %>'></asp:Label></ItemTemplate>
+                                <ItemStyle HorizontalAlign="center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Min Lead time" SortExpression="numMinLeadTime">
+                                <ItemTemplate><asp:Label ID="lblMinLeadTime" runat="server" Text='<%# Eval("numMinLeadTime", "{0:0,0.00}") %>'></asp:Label></ItemTemplate>
+                                <ItemStyle HorizontalAlign="center" />
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="UOM" SortExpression="strUOM">
                                 <ItemTemplate><asp:Label ID="lblUOM" runat="server" Text='<%# Bind("strUOM") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="center" />
@@ -197,26 +207,6 @@
                                 <asp:TemplateField HeaderText="Procurement Type" SortExpression="strPurchaseType">
                                 <ItemTemplate><asp:Label ID="lblPurchase" runat="server" Text='<%# Bind("strPurchaseType") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="PO Processing Time" SortExpression="intPOProcessTime">
-                                <ItemTemplate><asp:Label ID="lblPOTime" runat="server" Text='<%# Bind("intPOProcessTime") %>'></asp:Label></ItemTemplate>
-                                <ItemStyle HorizontalAlign="center" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Shipment Delivery Time" SortExpression="intShipmentDeliveryTime">
-                                <ItemTemplate><asp:Label ID="lblShipmentTime" runat="server" Text='<%# Bind("intShipmentDeliveryTime") %>'></asp:Label></ItemTemplate>
-                                <ItemStyle HorizontalAlign="center" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Process Time" SortExpression="intProcessingTime">
-                                <ItemTemplate><asp:Label ID="lblProcessTime" runat="server" Text='<%# Bind("intProcessingTime") %>'></asp:Label></ItemTemplate>
-                                <ItemStyle HorizontalAlign="center" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Total Lead Time" SortExpression="intTotalLeadTime">
-                                <ItemTemplate><asp:Label ID="lblTotalTime" runat="server" Text='<%# Bind("intTotalLeadTime") %>'></asp:Label></ItemTemplate>
-                                <ItemStyle HorizontalAlign="center" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Ordering Lot Size" SortExpression="strOrderingLotSize">
