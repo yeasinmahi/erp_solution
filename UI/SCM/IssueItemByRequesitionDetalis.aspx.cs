@@ -36,8 +36,8 @@ namespace UI.SCM
                 string DeptId= Request.QueryString["DeptId"].ToString();
                 string SectionID= Request.QueryString["SectionID"].ToString();
                 string SectionName = Request.QueryString["SectionName"].ToString();
-                intwh = int.Parse(Request.QueryString["intwh"].ToString()); 
-
+                intwh = int.Parse(Request.QueryString["intwh"].ToString());
+                
                 lblReqCode.Text = ReqCode;
                 lblReqDate.Text = dteReqDate.ToString("dd-MM-yyyy");
                 lblReqDept.Text = strDepartmentName;

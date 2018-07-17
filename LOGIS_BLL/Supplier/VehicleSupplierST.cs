@@ -267,7 +267,39 @@ namespace LOGIS_BLL.Supplier
         }
 
 
+        public List<string> AutoSearchStandVhclList(string strSearchKey)
+        {
+            List<string> result = new List<string>();
+            SprStandByVheicleSearchingTableAdapter obj = new SprStandByVheicleSearchingTableAdapter();
+            DataTable oDT = new DataTable();
+            oDT = obj.GetDataStandByVheicleSearching(strSearchKey);
+            if (oDT.Rows.Count > 0)
+            {
+                for (int index = 0; index < oDT.Rows.Count; index++)
+                {
+                    result.Add(oDT.Rows[index]["strVehicleNo"].ToString());
+                }
 
+            }
+            return result;
+        }
+
+        public List<string> AutoSearchStandVhclDriverList(string strSearchKey)
+        {
+            List<string> result = new List<string>();
+            SprStandByVheicleDriverSearchingTableAdapter obj = new SprStandByVheicleDriverSearchingTableAdapter();
+            DataTable oDT = new DataTable();
+            oDT = obj.GetDataStandByVheicleDriverSearching(strSearchKey);
+            if (oDT.Rows.Count > 0)
+            {
+                for (int index = 0; index < oDT.Rows.Count; index++)
+                {
+                    result.Add(oDT.Rows[index]["strEmployeeName"].ToString());
+                }
+
+            }
+            return result;
+        }
 
 
     }

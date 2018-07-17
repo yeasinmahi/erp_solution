@@ -8,6 +8,7 @@ using SAD_DAL.Customer.Report.StatementTDSTableAdapters;
 using System.Data;
 using System.Collections;
 
+
 namespace SAD_BLL.Customer.Report
 {
     public class StatementC
@@ -2167,6 +2168,32 @@ namespace SAD_BLL.Customer.Report
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable getdataACCLCommonJV(DateTime dtfromdate, DateTime dttodate, int salesofice, string reptname, int unitid)
+        {
+            try
+            {
+                SprDiscountAdjustmentTableAdapter bll = new SprDiscountAdjustmentTableAdapter();
+                return bll.GetDatasprDiscountAdjustment(dtfromdate, dttodate, salesofice, reptname, unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getStandByVheicleRpt(int intvhcleid , int intjobstation , int intunit ,DateTime fromdate , DateTime todate ,int rpttype ,int intcngstationid ,int intoilstationid )
+        {
+            try
+            {
+                SprZStandVheicleTADATableAdapter bll = new SprZStandVheicleTADATableAdapter();
+                return bll.GetDataZStandVheicleTADA(intvhcleid, intjobstation, intunit, fromdate, todate, rpttype, intcngstationid, intoilstationid);
+
+            }
+            catch (Exception ex)
+            {
+
+                return new DataTable();
+            }
+        }
+
 
     }
 }

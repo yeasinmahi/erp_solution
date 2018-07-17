@@ -13,13 +13,21 @@ namespace UI.SAD.Sales.Report
     public partial class OperationalSetupBaseStatus : System.Web.UI.Page
     {
         #region =========== Global Variable Declareation ==========
-        int unitid, teritoryid,  areaid,  regionid,shippoint,salesoffice,  rpttype;
-        decimal gtotaldoqnt, gtotaldoamount, gtotalchlqnt, gtotalchamount,gpendingqnt,gpendingamount;
+        int unitid, teritoryid,  areaid,  regionid,shippoint,salesoffice,  rpttype,customertypeid;
+        decimal gtotaldoqnt, gtotaldoamount, gtotalchlqnt, gtotalchamount,gpendingqnt,gpendingamount,debitamount,creditamount;
         DateTime fromdate ,  todate;
+
+       
+
         SalesView bll = new SalesView();
         DataTable dt = new DataTable();
         #endregion
 
+
+        protected void grdvcollectionreport_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
 
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -43,14 +51,15 @@ namespace UI.SAD.Sales.Report
             try
             {
                 fromdate = DateTime.Parse(txtFDate.Text);
-                 todate = DateTime.Parse(txtTo.Text);
+                todate = DateTime.Parse(txtTo.Text);
                 teritoryid = int.Parse(drdlTerritory.SelectedValue.ToString());
                 areaid = int.Parse(drdlArea.SelectedValue.ToString());
                 regionid= int.Parse(drdlRegionName.SelectedValue.ToString());
                 unitid = int.Parse(drdlUnitName.SelectedValue.ToString());
-            shippoint= int.Parse(ddlShip.SelectedValue.ToString());
-            salesoffice= int.Parse(ddlSo.SelectedValue.ToString());
-            rpttype = int.Parse(drdlrpttype.SelectedValue.ToString());
+                shippoint= int.Parse(ddlShip.SelectedValue.ToString());
+                salesoffice= int.Parse(ddlSo.SelectedValue.ToString());
+                rpttype = int.Parse(drdlrpttype.SelectedValue.ToString());
+                customertypeid = int.Parse(ddlCusType.SelectedValue.ToString());
                 if (rpttype == 1 || rpttype == 2 || rpttype == 3 || rpttype == 4)
                 {
                     dt = bll.getDOAndChallan(unitid, fromdate, todate, teritoryid, areaid, regionid, rpttype);
@@ -60,6 +69,8 @@ namespace UI.SAD.Sales.Report
                         grdvUndelvQntAndAmount.DataBind();
                         grdvUndelvTopsheet.DataSource = null;
                         grdvUndelvTopsheet.DataBind();
+                        grdvcollectionreport.DataSource = null;
+                        grdvcollectionreport.DataBind();
                         dgvDOAndChallanqnt.DataSource = dt;
                         dgvDOAndChallanqnt.DataBind();
                         gtotaldoqnt = dt.AsEnumerable().Sum(row => row.Field<decimal>("decOrderqnt"));
@@ -89,6 +100,8 @@ namespace UI.SAD.Sales.Report
                         dgvDOAndChallanqnt.DataBind();
                         grdvUndelvQntAndAmount.DataSource = null;
                         grdvUndelvQntAndAmount.DataBind();
+                        grdvcollectionreport.DataSource = null;
+                        grdvcollectionreport.DataBind();
                         grdvUndelvTopsheet.DataSource = dtundelv;
                         grdvUndelvTopsheet.DataBind();
 
@@ -111,6 +124,34 @@ namespace UI.SAD.Sales.Report
 
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
+                }
+                else if (rpttype == 18 || rpttype == 19 || rpttype == 20 || rpttype == 21 || rpttype == 22)
+                {
+                    fromdate = DateTime.Parse(txtFDate.Text);
+                    todate = DateTime.Parse(txtTo.Text);
+                    DataTable dtundelv = new DataTable();
+                    //fromdate, todate, intunitid, salesofficeid, customertypeid, reporttype, intteritoryid, intareaid, regionid
+                    dtundelv = bll.getSetupvsCollection( fromdate, todate, unitid, salesoffice, customertypeid, rpttype,  teritoryid, areaid, regionid);
+
+                    if (dtundelv.Rows.Count > 0)
+                    {
+                        dgvDOAndChallanqnt.DataSource = null;
+                        dgvDOAndChallanqnt.DataBind();
+                        grdvUndelvQntAndAmount.DataSource = null;
+                        grdvUndelvQntAndAmount.DataBind();
+                        grdvUndelvTopsheet.DataSource = null;
+                        grdvUndelvTopsheet.DataBind();
+                        grdvcollectionreport.DataSource = dtundelv;
+                        grdvcollectionreport.DataBind();
+                        debitamount = dtundelv.AsEnumerable().Sum(row => row.Field<decimal>("debit"));
+                        creditamount = dtundelv.AsEnumerable().Sum(row => row.Field<decimal>("credit"));
+                        grdvcollectionreport.FooterRow.Cells[6].Text = "Total";
+                        grdvcollectionreport.FooterRow.Cells[8].Text = debitamount.ToString("N2");
+                        grdvcollectionreport.FooterRow.Cells[9].Text = creditamount.ToString("N2");
+
+
+                    }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
                 }
 
 
@@ -167,7 +208,17 @@ namespace UI.SAD.Sales.Report
         {
 
         }
+        protected void ddlCusType_DataBound(object sender, EventArgs e)
+        {
 
+            Session[SessionParams.CURRENT_CUS_TYPE] = ddlCusType.SelectedValue;
+        }
+
+        protected void ddlCusType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            Session[SessionParams.CURRENT_CUS_TYPE] = ddlCusType.SelectedValue;
+        }
         protected void grdvUndelvTopsheet_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             rpttype = int.Parse(drdlrpttype.SelectedValue);

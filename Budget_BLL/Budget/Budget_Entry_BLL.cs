@@ -26,9 +26,9 @@ namespace Budget_BLL.Budget
         }
         public DataTable GetYearList() 
         {
-            TblCostCenterTableAdapter adp = new TblCostCenterTableAdapter();
+            YearListTableAdapter adp = new YearListTableAdapter();
             try
-            { return adp.GetYearList(); }
+            { return adp.GetData(); }
             catch { return new DataTable(); }
         }
 
@@ -54,10 +54,29 @@ namespace Budget_BLL.Budget
             adp.InsertBudgetEntry(intUnitID, intCOAID, intYear, intMonth, monBAmount, monTAmount, intUserID, intCCID);
             return msg;
         }
-        
+
+        public DataTable getyear()
+        {
+            
+                 try
+            {
+                YearListTableAdapter adp = new YearListTableAdapter();
+                return adp.GetData();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getEntryDateCack(int unitid)
+        {   try
+            {
+                tblBudgetEntryDateTableAdapter adp = new tblBudgetEntryDateTableAdapter();
+                return adp.GetData(unitid); }
+            catch { return new DataTable(); }
+        }
+
 
         //@intUnitID int, @intCOAID int, @intYear int, @intMonth int, @monBAmount money, @monTAmount money, @intUserID int, @intCCID
-        
+
 
 
 

@@ -25,7 +25,7 @@ namespace UI.SAD.Order
 
         ChallanTDS.TblGatePassDataTable tblGP = new ChallanTDS.TblGatePassDataTable();
         DataRow dr;
-
+        DateTime chDate;
         string userName = "", challanList = "", vehicle = "", driver = "", driverPh = ""
             , unitName = "", unitAddress = "";
         char separator = '-';
@@ -173,7 +173,7 @@ namespace UI.SAD.Order
             StringBuilder sbPending = new StringBuilder();
             StringBuilder sbtotaldelvparybase = new StringBuilder();
 
-
+         
 
             //string promItem = "";
             decimal count = 0, promCount = 0;
@@ -214,23 +214,45 @@ namespace UI.SAD.Order
                     , delevaryAddress, vehicle, contactAt, driver, contactPhone, driverPh).ToString());
 
                 {
-                    sbPending.Append("<table style=\"width:100%;\"  class=\"TablePR\">");
+                   
                     sbtotaldelvparybase.Append("<table style=\"width:100%;\"  class=\"TablePR\">");
-                    
+                    sbPending.Append("<table style=\"width:100%;\"  class=\"TablePR\">");
+
                 }
 
 
                 if (maxChallan)
                 {
+                    sbtotaldelvparybase.Append(@"<tr style=""font-size:10px;background-color:#A0A0A0"">
+                            <th style=""width:20px;text-align:center"">
+                                SL</th>
+                            <th style=""text-align:center"">
+                               DELIVERY PRODUCT </th>
+                            <th style=""width:67px;text-align:center"">
+                             D.O NUMBER</th>
+                             <th style=""width:67px;text-align:center"">
+                               D. O  DATE</th>
+                             <th style=""width:67px;text-align:center"">
+                               CHALAN NUMBER</th>
+                             <th style=""width:67px;text-align:center"">
+                                                             RATE.</th>
+                            <th style=""width:67px;text-align:center"">
+                                DELIVERY QNT.</th>
+                            
+                            <th style=""width:100px;text-align:center"">
+                              DELIVERY  AMOUNT</th>
+                        </tr>");
                     sbPending.Append(@"<tr style=""font-size:10px;background-color:#A0A0A0"">
                             <th style=""width:20px;text-align:center"">
                                 SL</th>
                             <th style=""text-align:center"">
                                PENDING PRODUCT </th>
                             <th style=""width:67px;text-align:center"">
-                              PENDING  D.O</th>
+                                D.O NUMBER </th>
                              <th style=""width:67px;text-align:center"">
-                               D. O Creation DATE</th>
+                               D. O  DATE</th>
+                             <th style=""width:67px;text-align:center"">
+                               CHALAN NUMBER</th>
                              <th style=""width:67px;text-align:center"">
                                                              RATE.</th>
                             <th style=""width:67px;text-align:center"">
@@ -241,29 +263,6 @@ namespace UI.SAD.Order
                         </tr>");
 
 
-                    sbtotaldelvparybase.Append(@"<tr style=""font-size:10px;background-color:#A0A0A0"">
-                            <th style=""width:20px;text-align:center"">
-                                SL</th>
-                            <th style=""text-align:center"">
-                               DELIVERY PRODUCT </th>
-                            <th style=""width:67px;text-align:center"">
-                              DELIVERY  D.O</th>
-                             <th style=""width:67px;text-align:center"">
-                               D. O Creation DATE</th>
-                             <th style=""width:67px;text-align:center"">
-                                                             RATE.</th>
-                            <th style=""width:67px;text-align:center"">
-                                DELIVERY QNT.</th>
-                            
-                            <th style=""width:100px;text-align:center"">
-                              DELIVERY  AMOUNT</th>
-                        </tr>");
-
-
-                //    temp.Append(@"<td align=""center"" style=""padding-top:50px; font-size:11px; width:30%"">
-                //    Driver's Signature</td>                
-                //<td align=""right""style="" padding-top:50px; font-size:11px; width:40%"">
-                //    Receiver's Signature With Seal & Date &nbsp;&nbsp;</td>");
 
                 }
 
@@ -273,6 +272,40 @@ namespace UI.SAD.Order
                 #region ********************************************** 
                 if (maxChallan)
                 {
+
+                   
+
+                    chdt = bllsv.getcustomerbasetotalchallanqnt(int.Parse(tripId), customerId);
+                    for (int K = 0; K < chdt.Rows.Count; K++)
+                    {
+                        string chProduct = chdt.Rows[K]["strProductName"].ToString();
+                        string chDo = chdt.Rows[K]["strdonumber"].ToString();
+                        try
+                        {
+                            string dtedate = chdt.Rows[K]["dtedodate"].ToString();
+                        chDate = DateTime.Parse(chdt.Rows[K]["dtedodate"].ToString());
+                        }
+                        catch { }
+                        //chDate = DateTime.Parse(dt.Rows[K]["dtedodate"].ToString());
+                        string chNumber = chdt.Rows[K]["strchallannumber"].ToString();
+                        string chQty = chdt.Rows[K]["decchallanqnt"].ToString();
+                        string chrate = chdt.Rows[K]["rate"].ToString();
+                        string chPrice = chdt.Rows[K]["monAmount"].ToString();
+                        sbtotaldelvparybase.Append("<tr style=\" font-size:10px;\"><td>" + chdt.Rows[K]["intsl"] + @"</td>");
+                        sbtotaldelvparybase.Append("<td>" + chProduct + "</td>");
+                        sbtotaldelvparybase.Append("<td>" + chDo + "</td>");
+                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chDate.ToString("yyyy-MM-dd") + "</td>");
+                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chNumber + "</td>");
+                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chrate + "</td>");
+                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chQty + "</td>");
+                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
+                        sbtotaldelvparybase.Append("</tr>");
+
+
+
+
+
+                    }
 
                     dt = bllsv.getcustomerbasependingqnt(int.Parse(tripId), customerId);
 
@@ -288,55 +321,17 @@ namespace UI.SAD.Order
                         sbPending.Append("<td>" + Product + "</td>");
                         sbPending.Append("<td>" + Do + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingDate + "</td>");
+                        sbPending.Append("<td style=\"text-align:right\">" + "  " + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + pendingrate + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingQty + "</td>");
-
                         sbPending.Append("<td style=\"text-align:right\">" + Price + "</td>");
                         sbPending.Append("</tr>");
 
-
-                        //sbtotaldelvparybase.Append("<tr style=\" font-size:10px;\"><td>" + dt.Rows[j]["insl"] + @"</td>");
-                        //sbtotaldelvparybase.Append("<td>" + Product + "</td>");
-                        //sbtotaldelvparybase.Append("<td>" + Do + "</td>");
-                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + PendingDate + "</td>");
-                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + pendingrate + "</td>");
-                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + PendingQty + "</td>");
-
-                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + Price + "</td>");
-                        //sbtotaldelvparybase.Append("</tr>");
-
+                        
 
 
                     }
 
-                    chdt = bllsv.getcustomerbasetotalchallanqnt(int.Parse(tripId), customerId);
-                    for (int K = 0; K < chdt.Rows.Count; K++)
-                    {
-                        string chProduct = chdt.Rows[K]["strProductName"].ToString();
-                        string chDo = chdt.Rows[K]["strdonumber"].ToString();
-                        string chDate = chdt.Rows[K]["dtedodate"].ToString();
-                        string chQty = chdt.Rows[K]["decchallanqnt"].ToString();
-                        string chrate = chdt.Rows[K]["rate"].ToString();
-                        string chPrice = chdt.Rows[K]["monAmount"].ToString();
-                        sbtotaldelvparybase.Append("<tr style=\" font-size:10px;\"><td>" + chdt.Rows[K]["intsl"] + @"</td>");
-                        sbtotaldelvparybase.Append("<td>" + chProduct + "</td>");
-                        sbtotaldelvparybase.Append("<td>" + chDo + "</td>");
-                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chDate + "</td>");
-                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chrate + "</td>");
-                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chQty + "</td>");
-
-                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
-                        sbtotaldelvparybase.Append("</tr>");
-
-
-
-
-
-                    }
-
-
-                    //tempD.Append("</td></tr></table>");
-                    //tempD.Append(Footer(true).ToString());
                 }
 
 
@@ -344,27 +339,34 @@ namespace UI.SAD.Order
 
                 #endregion*****************************************************
                 //sbPending.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + 22 + "</th><th style=\"text-align:right;\">" + 232 + "</th></tr>");
-                sbPending.Append("</table>");
+               
                 sbtotaldelvparybase.Append("</table>");
-
+                sbPending.Append("</table>");
                 if (maxChallan)
                 {
 
                     tempD.Append("</td></tr></table>");
-                    tempD.Append(Footer(true).ToString());
+                   
                 }
 
             }
 
 
             tempD.Append(sb.ToString());
-            tempD.Append(sbPending.ToString());
             tempD.Append(sbtotaldelvparybase.ToString());
+            tempD.Append(sbPending.ToString());
+           
             tempD.Append(sbP.ToString());
             tempD.Append(sbGT.ToString());
             tempD.Append(sbT.ToString());
             //tempD.Append("</td></tr></table>");
             //tempD.Append(Footer(true).ToString());
+            if (maxChallan)
+            {
+
+                 
+                tempD.Append(Footer(true).ToString());
+            }
 
             if (rowCount > 0)
             {
@@ -403,7 +405,7 @@ namespace UI.SAD.Order
 
                 temp.Append(@"<tr>
                 <td rowspan=""4"" align=""left"">
-                <img alt=""Logo"" src=../../Content/images/img/" + Request.QueryString["unit"] + @".png />
+                <img alt=""Logo""  height=""57px"" width=""150px"" src=../../Content/images/img/" + Request.QueryString["unit"] + @".png />
                 </td>
                 <td colspan=""3""  style=""text-align:center; font-size:17px; font-weight:bold;"">
                     " + heading + @"</td>
@@ -496,11 +498,11 @@ namespace UI.SAD.Order
             , string date, string time
             , string vehicle, string driver, string driverPhone)
         {
-            StringBuilder temp = new StringBuilder();
+            StringBuilder temp = new StringBuilder(); 
 
             temp.Append(@"<tr>
                 <td rowspan=""4"" align=""left"">
-                <img alt=""Logo"" src=../../Content/images/img/" + Request.QueryString["unit"] + @".png />
+                <img alt=""Logo""  height=""57px"" width=""150px"" src=../../Content/images/img/" + Request.QueryString["unit"] + @".png />
                 </td>
                 <td colspan=""3""  style=""text-align:center; font-size:17px; font-weight:bold;"">
                     " + heading + @"</td>

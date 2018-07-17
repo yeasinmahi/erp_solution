@@ -1159,6 +1159,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\MoneyReceiptStatus.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ProductBaseCommission.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RemoteCustomerStatement.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RemoteGhatInventory.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RemoteGhatTransferChallan.aspx" />
@@ -1199,6 +1200,7 @@
     <Content Include="SAD\Sales\SalesChallanATML.aspx" />
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
+    <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
     <Content Include="SAD\Vat\frmBrandroll.aspx" />
@@ -1257,6 +1259,7 @@
     <Content Include="SCM\InventoryValuetion.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
+    <Content Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
@@ -1281,6 +1284,7 @@
     <Content Include="SCM\PoRegisterReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
+    <Content Include="SCM\ProductReport.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\PurchaserPermormance.aspx" />
@@ -5752,6 +5756,13 @@
     <Compile Include="SAD\Sales\Report\RptRemoteSales\ProductBaseCommission.aspx.designer.cs">
       <DependentUpon>ProductBaseCommission.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx.cs">
+      <DependentUpon>ProductTransferJV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx.designer.cs">
+      <DependentUpon>ProductTransferJV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\RemoteCustomerStatement.aspx.cs">
       <DependentUpon>RemoteCustomerStatement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6031,6 +6042,13 @@
     </Compile>
     <Compile Include="SAD\Sales\SalesMarketting.aspx.designer.cs">
       <DependentUpon>SalesMarketting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\SalesPosting.aspx.cs">
+      <DependentUpon>SalesPosting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
+      <DependentUpon>SalesPosting.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Transfer\FGTransfer.aspx.cs">
       <DependentUpon>FGTransfer.aspx</DependentUpon>
@@ -6424,6 +6442,13 @@
     <Compile Include="SCM\IssueItemByRequesition.aspx.designer.cs">
       <DependentUpon>IssueItemByRequesition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisAFBL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx.designer.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisAFBL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\IssueItemByRequesitionDetalis.aspx.cs">
       <DependentUpon>IssueItemByRequesitionDetalis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6591,6 +6616,13 @@
     </Compile>
     <Compile Include="SCM\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ProductReport.aspx.cs">
+      <DependentUpon>ProductReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ProductReport.aspx.designer.cs">
+      <DependentUpon>ProductReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PurchaseOrder.aspx.cs">
       <DependentUpon>PurchaseOrder.aspx</DependentUpon>

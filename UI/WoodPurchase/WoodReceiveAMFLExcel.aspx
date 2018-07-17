@@ -35,6 +35,7 @@
     <asp:HiddenField ID="hdnSupplierID" runat="server" /> <asp:HiddenField ID="hdnJobStaion" runat="server" />      
     <div class="divbody" style="padding-right:10px;">
         <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> Wood Receive<hr /></div>
+        <table><tr><td>
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr><td colspan="4" style="text-align:center"><asp:Label ID="lblWH" runat="server" CssClass="label" Text="Weare House :"></asp:Label>
             <asp:DropDownList ID="ddlWHList" runat="server" CssClass="ddList" width="220px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWHList_SelectedIndexChanged"></asp:DropDownList></td></tr>
@@ -44,7 +45,6 @@
                 <td><asp:DropDownList ID="ddlPOList" runat="server" CssClass="ddList"  width="220px" height="23px" BackColor="White" OnSelectedIndexChanged="ddlPOList_SelectedIndexChanged"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Vehicle No :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtVehicleNo" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox></td> 
-                <td style="text-align:right;"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Challan Date :"></asp:Label></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" Text="Gate Entry No :" CssClass="lbl"></asp:Label></td>
@@ -61,6 +61,7 @@
             </tr>
             
             </table>
+            </td></tr><tr><td>
             <table>
             <div>        
                 Import Excel File:   
@@ -85,6 +86,7 @@
                 </asp:GridView>   
             </div>  
         </table>
+        </td></tr></table>
     </div>
     
   
