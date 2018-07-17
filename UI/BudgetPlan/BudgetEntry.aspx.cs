@@ -90,8 +90,8 @@ namespace UI.BudgetPlan
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                 intCCID = int.Parse(ddlCostCenter.SelectedValue.ToString());
-                strYear = ddlYear.SelectedItem.ToString();
- 
+                strYear = ddlYear.SelectedValue.ToString();
+                
                 dt = obj.GetDataForBudgetEntry(intUnitID, strYear, 3, 0); //dt = obj.GetBudgetEntryR();
                 dgvBudget.DataSource = dt; 
                 dgvBudget.DataBind();
@@ -224,7 +224,7 @@ namespace UI.BudgetPlan
                     {
                         intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                         intCCID = int.Parse(ddlCostCenter.SelectedValue.ToString());
-                        intYear = int.Parse(ddlYear.SelectedItem.ToString());
+                        intYear = int.Parse(ddlYear.SelectedValue.ToString());
                         intUserID = int.Parse(Session[SessionParams.USER_ID].ToString());
 
                         if (filePathForXML != null) { File.Delete(filePathForXML); }
@@ -516,7 +516,12 @@ namespace UI.BudgetPlan
               
         }
 
-      
+        protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
 
