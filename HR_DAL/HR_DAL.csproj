@@ -548,6 +548,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TeamAndShiftInformationTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TourPlan\CustomerBankGaurantee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerBankGaurantee.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TourPlan\TourPlanningTDS.cs">
       <DependentUpon>TourPlanningTDS.xsd</DependentUpon>
     </Compile>
@@ -1463,6 +1468,17 @@
     </None>
     <None Include="TeamBuild\TeamAndShiftInformationTDS.xss">
       <DependentUpon>TeamAndShiftInformationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="TourPlan\CustomerBankGaurantee.xsc">
+      <DependentUpon>CustomerBankGaurantee.xsd</DependentUpon>
+    </None>
+    <None Include="TourPlan\CustomerBankGaurantee.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustomerBankGaurantee.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TourPlan\CustomerBankGaurantee.xss">
+      <DependentUpon>CustomerBankGaurantee.xsd</DependentUpon>
     </None>
     <None Include="TourPlan\TourPlanningTDS.xsc">
       <DependentUpon>TourPlanningTDS.xsd</DependentUpon>

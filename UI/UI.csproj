@@ -278,6 +278,7 @@
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
+    <Content Include="Content\JS\jquery-3.3.1.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
@@ -328,6 +329,7 @@
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
+    <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
@@ -2651,6 +2653,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.designer.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\TourPlan\CustomerBankGuarantee.aspx.cs">
+      <DependentUpon>CustomerBankGuarantee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\TourPlan\CustomerBankGuarantee.aspx.designer.cs">
+      <DependentUpon>CustomerBankGuarantee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemChallanComplete.aspx.cs">
       <DependentUpon>BrandItemChallanComplete.aspx</DependentUpon>
@@ -7754,6 +7763,7 @@
     <Folder Include="HR\Reports\Data\" />
     <Folder Include="HR\Salary\FileExcell\" />
     <Folder Include="HR\Settlement\Uploads\" />
+    <Folder Include="HR\TourPlan\Data\" />
     <Folder Include="HR\TourPlan\Tour\" />
     <Folder Include="Inventory\Data\" />
     <Folder Include="Libray\bin\" />

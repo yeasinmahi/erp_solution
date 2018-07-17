@@ -180,6 +180,7 @@
     <Compile Include="Settlement\HRClass.cs" />
     <Compile Include="Settlement\SelfClass.cs" />
     <Compile Include="TeamBuild\TeamAndShiftInformation.cs" />
+    <Compile Include="TourPlan\CustBankGauranteeBLL.cs" />
     <Compile Include="TourPlan\TourPlanning.cs" />
     <Compile Include="User\ChildUser.cs" />
     <Compile Include="User\UserInfo.cs" />
