@@ -345,6 +345,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.cs">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Report\UDTCLSalesTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

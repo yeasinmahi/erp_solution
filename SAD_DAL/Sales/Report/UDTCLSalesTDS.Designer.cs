@@ -616,6 +616,8 @@ namespace SAD_DAL.Sales.Report {
             
             private global::System.Data.DataColumn columndtechallandate;
             
+            private global::System.Data.DataColumn columnstrnarration;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprUDTCLSalesStausDataTable() {
@@ -747,6 +749,14 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strnarrationColumn {
+                get {
+                    return this.columnstrnarration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -782,7 +792,7 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUDTCLSalesStausRow AddsprUDTCLSalesStausRow(string strchallan, decimal pdqnt, decimal pdprice, string strcustname, string strProductname, string strSalesoffice, string strPoint, int intcustid, int intitmid, int intsalesoffid, int intshippingpointid, System.DateTime dtechallandate) {
+            public sprUDTCLSalesStausRow AddsprUDTCLSalesStausRow(string strchallan, decimal pdqnt, decimal pdprice, string strcustname, string strProductname, string strSalesoffice, string strPoint, int intcustid, int intitmid, int intsalesoffid, int intshippingpointid, System.DateTime dtechallandate, string strnarration) {
                 sprUDTCLSalesStausRow rowsprUDTCLSalesStausRow = ((sprUDTCLSalesStausRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strchallan,
@@ -796,7 +806,8 @@ namespace SAD_DAL.Sales.Report {
                         intitmid,
                         intsalesoffid,
                         intshippingpointid,
-                        dtechallandate};
+                        dtechallandate,
+                        strnarration};
                 rowsprUDTCLSalesStausRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsprUDTCLSalesStausRow);
                 return rowsprUDTCLSalesStausRow;
@@ -831,6 +842,7 @@ namespace SAD_DAL.Sales.Report {
                 this.columnintsalesoffid = base.Columns["intsalesoffid"];
                 this.columnintshippingpointid = base.Columns["intshippingpointid"];
                 this.columndtechallandate = base.Columns["dtechallandate"];
+                this.columnstrnarration = base.Columns["strnarration"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -860,11 +872,14 @@ namespace SAD_DAL.Sales.Report {
                 base.Columns.Add(this.columnintshippingpointid);
                 this.columndtechallandate = new global::System.Data.DataColumn("dtechallandate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndtechallandate);
+                this.columnstrnarration = new global::System.Data.DataColumn("strnarration", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrnarration);
                 this.columnstrchallan.MaxLength = 500;
                 this.columnstrcustname.MaxLength = 500;
                 this.columnstrProductname.MaxLength = 500;
                 this.columnstrSalesoffice.MaxLength = 500;
                 this.columnstrPoint.MaxLength = 500;
+                this.columnstrnarration.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1237,6 +1252,22 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strnarration {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprUDTCLSalesStaus.strnarrationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strnarration\' in table \'sprUDTCLSalesStaus\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprUDTCLSalesStaus.strnarrationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrchallanNull() {
                 return this.IsNull(this.tablesprUDTCLSalesStaus.strchallanColumn);
             }
@@ -1377,6 +1408,18 @@ namespace SAD_DAL.Sales.Report {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetdtechallandateNull() {
                 this[this.tablesprUDTCLSalesStaus.dtechallandateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrnarrationNull() {
+                return this.IsNull(this.tablesprUDTCLSalesStaus.strnarrationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrnarrationNull() {
+                this[this.tablesprUDTCLSalesStaus.strnarrationColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1789,6 +1832,7 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
             tableMapping.ColumnMappings.Add("intsalesoffid", "intsalesoffid");
             tableMapping.ColumnMappings.Add("intshippingpointid", "intshippingpointid");
             tableMapping.ColumnMappings.Add("dtechallandate", "dtechallandate");
+            tableMapping.ColumnMappings.Add("strnarration", "strnarration");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

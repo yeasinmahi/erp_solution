@@ -10,19 +10,13 @@
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
      <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <%--<link href="../../Content/CSS/MyStyle.css" rel="stylesheet" />--%>
+     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />   
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-    <style type="text/css">
-        .auto-style1 {
-            width: 700px;
-            table-layout: auto;
-        }
-    </style>
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -42,7 +36,7 @@
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div>
                     
-                    <table style="vertical-align: top; background-color: #DDD;" class="auto-style1">
+                    <table style="width: 700px; table-layout: auto; vertical-align: top; background-color: #DDD;" class="tblRowOdd">
                         <tr>
                             <td style="text-align:right;">
                                 <asp:Label ID="Label1" runat="server" Text="Issue Date:" CssClass="lbl"></asp:Label></td>
