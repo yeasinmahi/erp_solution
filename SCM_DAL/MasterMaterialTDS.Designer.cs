@@ -38,6 +38,10 @@ namespace SCM_DAL {
         
         private SprGetCOAChildByUnitDataTable tableSprGetCOAChildByUnit;
         
+        private MaterialsDetailsDataTable tableMaterialsDetails;
+        
+        private TblMaterialDetailDataTable tableTblMaterialDetail;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -86,6 +90,12 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["SprGetCOAChildByUnit"] != null)) {
                     base.Tables.Add(new SprGetCOAChildByUnitDataTable(ds.Tables["SprGetCOAChildByUnit"]));
+                }
+                if ((ds.Tables["MaterialsDetails"] != null)) {
+                    base.Tables.Add(new MaterialsDetailsDataTable(ds.Tables["MaterialsDetails"]));
+                }
+                if ((ds.Tables["TblMaterialDetail"] != null)) {
+                    base.Tables.Add(new TblMaterialDetailDataTable(ds.Tables["TblMaterialDetail"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -177,6 +187,26 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MaterialsDetailsDataTable MaterialsDetails {
+            get {
+                return this.tableMaterialsDetails;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TblMaterialDetailDataTable TblMaterialDetail {
+            get {
+                return this.tableTblMaterialDetail;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -263,6 +293,12 @@ namespace SCM_DAL {
                 if ((ds.Tables["SprGetCOAChildByUnit"] != null)) {
                     base.Tables.Add(new SprGetCOAChildByUnitDataTable(ds.Tables["SprGetCOAChildByUnit"]));
                 }
+                if ((ds.Tables["MaterialsDetails"] != null)) {
+                    base.Tables.Add(new MaterialsDetailsDataTable(ds.Tables["MaterialsDetails"]));
+                }
+                if ((ds.Tables["TblMaterialDetail"] != null)) {
+                    base.Tables.Add(new TblMaterialDetailDataTable(ds.Tables["TblMaterialDetail"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -338,6 +374,18 @@ namespace SCM_DAL {
                     this.tableSprGetCOAChildByUnit.InitVars();
                 }
             }
+            this.tableMaterialsDetails = ((MaterialsDetailsDataTable)(base.Tables["MaterialsDetails"]));
+            if ((initTable == true)) {
+                if ((this.tableMaterialsDetails != null)) {
+                    this.tableMaterialsDetails.InitVars();
+                }
+            }
+            this.tableTblMaterialDetail = ((TblMaterialDetailDataTable)(base.Tables["TblMaterialDetail"]));
+            if ((initTable == true)) {
+                if ((this.tableTblMaterialDetail != null)) {
+                    this.tableTblMaterialDetail.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -362,6 +410,10 @@ namespace SCM_DAL {
             base.Tables.Add(this.tableQryMaterialList);
             this.tableSprGetCOAChildByUnit = new SprGetCOAChildByUnitDataTable();
             base.Tables.Add(this.tableSprGetCOAChildByUnit);
+            this.tableMaterialsDetails = new MaterialsDetailsDataTable();
+            base.Tables.Add(this.tableMaterialsDetails);
+            this.tableTblMaterialDetail = new TblMaterialDetailDataTable();
+            base.Tables.Add(this.tableTblMaterialDetail);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -403,6 +455,18 @@ namespace SCM_DAL {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprGetCOAChildByUnit() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeMaterialsDetails() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeTblMaterialDetail() {
             return false;
         }
         
@@ -481,6 +545,12 @@ namespace SCM_DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprGetCOAChildByUnitRowChangeEventHandler(object sender, SprGetCOAChildByUnitRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void MaterialsDetailsRowChangeEventHandler(object sender, MaterialsDetailsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void TblMaterialDetailRowChangeEventHandler(object sender, TblMaterialDetailRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2325,72 +2395,6 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrMaterialFullName;
             
-            private global::System.Data.DataColumn columnstrUoM;
-            
-            private global::System.Data.DataColumn columnintCoAID;
-            
-            private global::System.Data.DataColumn columnstrAccName;
-            
-            private global::System.Data.DataColumn columnstrCode;
-            
-            private global::System.Data.DataColumn columnstrOrigin;
-            
-            private global::System.Data.DataColumn columnstrHSCode;
-            
-            private global::System.Data.DataColumn columnstrGroupName;
-            
-            private global::System.Data.DataColumn columnstrCategoryName;
-            
-            private global::System.Data.DataColumn columnstrSubCategoryName;
-            
-            private global::System.Data.DataColumn columnstrMinorCategory;
-            
-            private global::System.Data.DataColumn columnstrPlantName;
-            
-            private global::System.Data.DataColumn columnstrProcureType;
-            
-            private global::System.Data.DataColumn columnstrMaterialType;
-            
-            private global::System.Data.DataColumn columnintPOProcessTimeInDays;
-            
-            private global::System.Data.DataColumn columnintVendorShipmentTimeInDays;
-            
-            private global::System.Data.DataColumn columnintMaterialReceiveTimeInDays;
-            
-            private global::System.Data.DataColumn columnintTotalLeadTimeInDays;
-            
-            private global::System.Data.DataColumn columnnumMinimumStock;
-            
-            private global::System.Data.DataColumn columnnumMaximumStock;
-            
-            private global::System.Data.DataColumn columnnumSafetyStock;
-            
-            private global::System.Data.DataColumn columnnumReOrderPoint;
-            
-            private global::System.Data.DataColumn columnstrABC;
-            
-            private global::System.Data.DataColumn columnstrFSN;
-            
-            private global::System.Data.DataColumn columnstrVDE;
-            
-            private global::System.Data.DataColumn columnintSelfLifeInDays;
-            
-            private global::System.Data.DataColumn columnstrOrderingLotSize;
-            
-            private global::System.Data.DataColumn columnnumEconomicOrderQty;
-            
-            private global::System.Data.DataColumn columnnumMinimumOrderQty;
-            
-            private global::System.Data.DataColumn columnstrSDE;
-            
-            private global::System.Data.DataColumn columnstrHML;
-            
-            private global::System.Data.DataColumn columnysnVATApplicable;
-            
-            private global::System.Data.DataColumn columnintItemMasterIDOld;
-            
-            private global::System.Data.DataColumn columnintItemIDOld;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryMaterialListDataTable() {
@@ -2442,270 +2446,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strUoMColumn {
-                get {
-                    return this.columnstrUoM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCoAIDColumn {
-                get {
-                    return this.columnintCoAID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAccNameColumn {
-                get {
-                    return this.columnstrAccName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strCodeColumn {
-                get {
-                    return this.columnstrCode;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strOriginColumn {
-                get {
-                    return this.columnstrOrigin;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strHSCodeColumn {
-                get {
-                    return this.columnstrHSCode;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strGroupNameColumn {
-                get {
-                    return this.columnstrGroupName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strCategoryNameColumn {
-                get {
-                    return this.columnstrCategoryName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strSubCategoryNameColumn {
-                get {
-                    return this.columnstrSubCategoryName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strMinorCategoryColumn {
-                get {
-                    return this.columnstrMinorCategory;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strPlantNameColumn {
-                get {
-                    return this.columnstrPlantName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strProcureTypeColumn {
-                get {
-                    return this.columnstrProcureType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strMaterialTypeColumn {
-                get {
-                    return this.columnstrMaterialType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intPOProcessTimeInDaysColumn {
-                get {
-                    return this.columnintPOProcessTimeInDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intVendorShipmentTimeInDaysColumn {
-                get {
-                    return this.columnintVendorShipmentTimeInDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intMaterialReceiveTimeInDaysColumn {
-                get {
-                    return this.columnintMaterialReceiveTimeInDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intTotalLeadTimeInDaysColumn {
-                get {
-                    return this.columnintTotalLeadTimeInDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numMinimumStockColumn {
-                get {
-                    return this.columnnumMinimumStock;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numMaximumStockColumn {
-                get {
-                    return this.columnnumMaximumStock;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numSafetyStockColumn {
-                get {
-                    return this.columnnumSafetyStock;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numReOrderPointColumn {
-                get {
-                    return this.columnnumReOrderPoint;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strABCColumn {
-                get {
-                    return this.columnstrABC;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strFSNColumn {
-                get {
-                    return this.columnstrFSN;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strVDEColumn {
-                get {
-                    return this.columnstrVDE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSelfLifeInDaysColumn {
-                get {
-                    return this.columnintSelfLifeInDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strOrderingLotSizeColumn {
-                get {
-                    return this.columnstrOrderingLotSize;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numEconomicOrderQtyColumn {
-                get {
-                    return this.columnnumEconomicOrderQty;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numMinimumOrderQtyColumn {
-                get {
-                    return this.columnnumMinimumOrderQty;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strSDEColumn {
-                get {
-                    return this.columnstrSDE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strHMLColumn {
-                get {
-                    return this.columnstrHML;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnVATApplicableColumn {
-                get {
-                    return this.columnysnVATApplicable;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intItemMasterIDOldColumn {
-                get {
-                    return this.columnintItemMasterIDOld;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intItemIDOldColumn {
-                get {
-                    return this.columnintItemIDOld;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2741,79 +2481,11 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QryMaterialListRow AddQryMaterialListRow(
-                        int intMaterialID, 
-                        string strMaterialFullName, 
-                        string strUoM, 
-                        int intCoAID, 
-                        string strAccName, 
-                        string strCode, 
-                        string strOrigin, 
-                        string strHSCode, 
-                        string strGroupName, 
-                        string strCategoryName, 
-                        string strSubCategoryName, 
-                        string strMinorCategory, 
-                        string strPlantName, 
-                        string strProcureType, 
-                        string strMaterialType, 
-                        int intPOProcessTimeInDays, 
-                        int intVendorShipmentTimeInDays, 
-                        int intMaterialReceiveTimeInDays, 
-                        string intTotalLeadTimeInDays, 
-                        decimal numMinimumStock, 
-                        decimal numMaximumStock, 
-                        decimal numSafetyStock, 
-                        decimal numReOrderPoint, 
-                        string strABC, 
-                        string strFSN, 
-                        string strVDE, 
-                        int intSelfLifeInDays, 
-                        string strOrderingLotSize, 
-                        decimal numEconomicOrderQty, 
-                        decimal numMinimumOrderQty, 
-                        string strSDE, 
-                        string strHML, 
-                        bool ysnVATApplicable, 
-                        int intItemMasterIDOld, 
-                        int intItemIDOld) {
+            public QryMaterialListRow AddQryMaterialListRow(int intMaterialID, string strMaterialFullName) {
                 QryMaterialListRow rowQryMaterialListRow = ((QryMaterialListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intMaterialID,
-                        strMaterialFullName,
-                        strUoM,
-                        intCoAID,
-                        strAccName,
-                        strCode,
-                        strOrigin,
-                        strHSCode,
-                        strGroupName,
-                        strCategoryName,
-                        strSubCategoryName,
-                        strMinorCategory,
-                        strPlantName,
-                        strProcureType,
-                        strMaterialType,
-                        intPOProcessTimeInDays,
-                        intVendorShipmentTimeInDays,
-                        intMaterialReceiveTimeInDays,
-                        intTotalLeadTimeInDays,
-                        numMinimumStock,
-                        numMaximumStock,
-                        numSafetyStock,
-                        numReOrderPoint,
-                        strABC,
-                        strFSN,
-                        strVDE,
-                        intSelfLifeInDays,
-                        strOrderingLotSize,
-                        numEconomicOrderQty,
-                        numMinimumOrderQty,
-                        strSDE,
-                        strHML,
-                        ysnVATApplicable,
-                        intItemMasterIDOld,
-                        intItemIDOld};
+                        strMaterialFullName};
                 rowQryMaterialListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryMaterialListRow);
                 return rowQryMaterialListRow;
@@ -2838,39 +2510,6 @@ namespace SCM_DAL {
             internal void InitVars() {
                 this.columnintMaterialID = base.Columns["intMaterialID"];
                 this.columnstrMaterialFullName = base.Columns["strMaterialFullName"];
-                this.columnstrUoM = base.Columns["strUoM"];
-                this.columnintCoAID = base.Columns["intCoAID"];
-                this.columnstrAccName = base.Columns["strAccName"];
-                this.columnstrCode = base.Columns["strCode"];
-                this.columnstrOrigin = base.Columns["strOrigin"];
-                this.columnstrHSCode = base.Columns["strHSCode"];
-                this.columnstrGroupName = base.Columns["strGroupName"];
-                this.columnstrCategoryName = base.Columns["strCategoryName"];
-                this.columnstrSubCategoryName = base.Columns["strSubCategoryName"];
-                this.columnstrMinorCategory = base.Columns["strMinorCategory"];
-                this.columnstrPlantName = base.Columns["strPlantName"];
-                this.columnstrProcureType = base.Columns["strProcureType"];
-                this.columnstrMaterialType = base.Columns["strMaterialType"];
-                this.columnintPOProcessTimeInDays = base.Columns["intPOProcessTimeInDays"];
-                this.columnintVendorShipmentTimeInDays = base.Columns["intVendorShipmentTimeInDays"];
-                this.columnintMaterialReceiveTimeInDays = base.Columns["intMaterialReceiveTimeInDays"];
-                this.columnintTotalLeadTimeInDays = base.Columns["intTotalLeadTimeInDays"];
-                this.columnnumMinimumStock = base.Columns["numMinimumStock"];
-                this.columnnumMaximumStock = base.Columns["numMaximumStock"];
-                this.columnnumSafetyStock = base.Columns["numSafetyStock"];
-                this.columnnumReOrderPoint = base.Columns["numReOrderPoint"];
-                this.columnstrABC = base.Columns["strABC"];
-                this.columnstrFSN = base.Columns["strFSN"];
-                this.columnstrVDE = base.Columns["strVDE"];
-                this.columnintSelfLifeInDays = base.Columns["intSelfLifeInDays"];
-                this.columnstrOrderingLotSize = base.Columns["strOrderingLotSize"];
-                this.columnnumEconomicOrderQty = base.Columns["numEconomicOrderQty"];
-                this.columnnumMinimumOrderQty = base.Columns["numMinimumOrderQty"];
-                this.columnstrSDE = base.Columns["strSDE"];
-                this.columnstrHML = base.Columns["strHML"];
-                this.columnysnVATApplicable = base.Columns["ysnVATApplicable"];
-                this.columnintItemMasterIDOld = base.Columns["intItemMasterIDOld"];
-                this.columnintItemIDOld = base.Columns["intItemIDOld"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2880,100 +2519,9 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintMaterialID);
                 this.columnstrMaterialFullName = new global::System.Data.DataColumn("strMaterialFullName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrMaterialFullName);
-                this.columnstrUoM = new global::System.Data.DataColumn("strUoM", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrUoM);
-                this.columnintCoAID = new global::System.Data.DataColumn("intCoAID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCoAID);
-                this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrAccName);
-                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrCode);
-                this.columnstrOrigin = new global::System.Data.DataColumn("strOrigin", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrOrigin);
-                this.columnstrHSCode = new global::System.Data.DataColumn("strHSCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrHSCode);
-                this.columnstrGroupName = new global::System.Data.DataColumn("strGroupName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrGroupName);
-                this.columnstrCategoryName = new global::System.Data.DataColumn("strCategoryName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrCategoryName);
-                this.columnstrSubCategoryName = new global::System.Data.DataColumn("strSubCategoryName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrSubCategoryName);
-                this.columnstrMinorCategory = new global::System.Data.DataColumn("strMinorCategory", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrMinorCategory);
-                this.columnstrPlantName = new global::System.Data.DataColumn("strPlantName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrPlantName);
-                this.columnstrProcureType = new global::System.Data.DataColumn("strProcureType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrProcureType);
-                this.columnstrMaterialType = new global::System.Data.DataColumn("strMaterialType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrMaterialType);
-                this.columnintPOProcessTimeInDays = new global::System.Data.DataColumn("intPOProcessTimeInDays", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintPOProcessTimeInDays);
-                this.columnintVendorShipmentTimeInDays = new global::System.Data.DataColumn("intVendorShipmentTimeInDays", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintVendorShipmentTimeInDays);
-                this.columnintMaterialReceiveTimeInDays = new global::System.Data.DataColumn("intMaterialReceiveTimeInDays", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintMaterialReceiveTimeInDays);
-                this.columnintTotalLeadTimeInDays = new global::System.Data.DataColumn("intTotalLeadTimeInDays", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintTotalLeadTimeInDays);
-                this.columnnumMinimumStock = new global::System.Data.DataColumn("numMinimumStock", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumMinimumStock);
-                this.columnnumMaximumStock = new global::System.Data.DataColumn("numMaximumStock", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumMaximumStock);
-                this.columnnumSafetyStock = new global::System.Data.DataColumn("numSafetyStock", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumSafetyStock);
-                this.columnnumReOrderPoint = new global::System.Data.DataColumn("numReOrderPoint", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumReOrderPoint);
-                this.columnstrABC = new global::System.Data.DataColumn("strABC", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrABC);
-                this.columnstrFSN = new global::System.Data.DataColumn("strFSN", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrFSN);
-                this.columnstrVDE = new global::System.Data.DataColumn("strVDE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrVDE);
-                this.columnintSelfLifeInDays = new global::System.Data.DataColumn("intSelfLifeInDays", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSelfLifeInDays);
-                this.columnstrOrderingLotSize = new global::System.Data.DataColumn("strOrderingLotSize", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrOrderingLotSize);
-                this.columnnumEconomicOrderQty = new global::System.Data.DataColumn("numEconomicOrderQty", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumEconomicOrderQty);
-                this.columnnumMinimumOrderQty = new global::System.Data.DataColumn("numMinimumOrderQty", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumMinimumOrderQty);
-                this.columnstrSDE = new global::System.Data.DataColumn("strSDE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrSDE);
-                this.columnstrHML = new global::System.Data.DataColumn("strHML", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrHML);
-                this.columnysnVATApplicable = new global::System.Data.DataColumn("ysnVATApplicable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnVATApplicable);
-                this.columnintItemMasterIDOld = new global::System.Data.DataColumn("intItemMasterIDOld", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintItemMasterIDOld);
-                this.columnintItemIDOld = new global::System.Data.DataColumn("intItemIDOld", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintItemIDOld);
                 this.columnintMaterialID.AllowDBNull = false;
                 this.columnstrMaterialFullName.ReadOnly = true;
-                this.columnstrMaterialFullName.MaxLength = 1253;
-                this.columnstrUoM.MaxLength = 50;
-                this.columnstrAccName.MaxLength = 200;
-                this.columnstrCode.MaxLength = 100;
-                this.columnstrOrigin.MaxLength = 50;
-                this.columnstrHSCode.MaxLength = 50;
-                this.columnstrGroupName.MaxLength = 250;
-                this.columnstrCategoryName.MaxLength = 250;
-                this.columnstrSubCategoryName.MaxLength = 250;
-                this.columnstrMinorCategory.MaxLength = 250;
-                this.columnstrPlantName.MaxLength = 250;
-                this.columnstrProcureType.MaxLength = 100;
-                this.columnstrMaterialType.MaxLength = 100;
-                this.columnintTotalLeadTimeInDays.ReadOnly = true;
-                this.columnintTotalLeadTimeInDays.MaxLength = 12;
-                this.columnstrABC.ReadOnly = true;
-                this.columnstrABC.MaxLength = 1;
-                this.columnstrFSN.ReadOnly = true;
-                this.columnstrFSN.MaxLength = 10;
-                this.columnstrVDE.ReadOnly = true;
-                this.columnstrVDE.MaxLength = 10;
-                this.columnstrOrderingLotSize.MaxLength = 150;
-                this.columnstrSDE.ReadOnly = true;
-                this.columnstrSDE.MaxLength = 9;
-                this.columnstrHML.ReadOnly = true;
-                this.columnstrHML.MaxLength = 11;
+                this.columnstrMaterialFullName.MaxLength = 1059;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3323,6 +2871,606 @@ namespace SCM_DAL {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SprGetCOAChildByUnitDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MaterialsDetailsDataTable : global::System.Data.TypedTableBase<MaterialsDetailsRow> {
+            
+            private global::System.Data.DataColumn columnintMasterID;
+            
+            private global::System.Data.DataColumn columnstrMaterialName;
+            
+            private global::System.Data.DataColumn columnstrDescription;
+            
+            private global::System.Data.DataColumn columnstrPartNo;
+            
+            private global::System.Data.DataColumn columnstrModelNo;
+            
+            private global::System.Data.DataColumn columnstrSerialNo;
+            
+            private global::System.Data.DataColumn columnstrBrand;
+            
+            private global::System.Data.DataColumn columnstrUoM;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MaterialsDetailsDataTable() {
+                this.TableName = "MaterialsDetails";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal MaterialsDetailsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected MaterialsDetailsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMasterIDColumn {
+                get {
+                    return this.columnintMasterID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strMaterialNameColumn {
+                get {
+                    return this.columnstrMaterialName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strDescriptionColumn {
+                get {
+                    return this.columnstrDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPartNoColumn {
+                get {
+                    return this.columnstrPartNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strModelNoColumn {
+                get {
+                    return this.columnstrModelNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSerialNoColumn {
+                get {
+                    return this.columnstrSerialNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strBrandColumn {
+                get {
+                    return this.columnstrBrand;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUoMColumn {
+                get {
+                    return this.columnstrUoM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MaterialsDetailsRow this[int index] {
+                get {
+                    return ((MaterialsDetailsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MaterialsDetailsRowChangeEventHandler MaterialsDetailsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MaterialsDetailsRowChangeEventHandler MaterialsDetailsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MaterialsDetailsRowChangeEventHandler MaterialsDetailsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MaterialsDetailsRowChangeEventHandler MaterialsDetailsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddMaterialsDetailsRow(MaterialsDetailsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MaterialsDetailsRow AddMaterialsDetailsRow(int intMasterID, string strMaterialName, string strDescription, string strPartNo, string strModelNo, string strSerialNo, string strBrand, string strUoM) {
+                MaterialsDetailsRow rowMaterialsDetailsRow = ((MaterialsDetailsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intMasterID,
+                        strMaterialName,
+                        strDescription,
+                        strPartNo,
+                        strModelNo,
+                        strSerialNo,
+                        strBrand,
+                        strUoM};
+                rowMaterialsDetailsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMaterialsDetailsRow);
+                return rowMaterialsDetailsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                MaterialsDetailsDataTable cln = ((MaterialsDetailsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MaterialsDetailsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintMasterID = base.Columns["intMasterID"];
+                this.columnstrMaterialName = base.Columns["strMaterialName"];
+                this.columnstrDescription = base.Columns["strDescription"];
+                this.columnstrPartNo = base.Columns["strPartNo"];
+                this.columnstrModelNo = base.Columns["strModelNo"];
+                this.columnstrSerialNo = base.Columns["strSerialNo"];
+                this.columnstrBrand = base.Columns["strBrand"];
+                this.columnstrUoM = base.Columns["strUoM"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintMasterID = new global::System.Data.DataColumn("intMasterID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMasterID);
+                this.columnstrMaterialName = new global::System.Data.DataColumn("strMaterialName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrMaterialName);
+                this.columnstrDescription = new global::System.Data.DataColumn("strDescription", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDescription);
+                this.columnstrPartNo = new global::System.Data.DataColumn("strPartNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPartNo);
+                this.columnstrModelNo = new global::System.Data.DataColumn("strModelNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrModelNo);
+                this.columnstrSerialNo = new global::System.Data.DataColumn("strSerialNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSerialNo);
+                this.columnstrBrand = new global::System.Data.DataColumn("strBrand", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBrand);
+                this.columnstrUoM = new global::System.Data.DataColumn("strUoM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUoM);
+                this.columnintMasterID.AllowDBNull = false;
+                this.columnstrMaterialName.MaxLength = 250;
+                this.columnstrDescription.MaxLength = 200;
+                this.columnstrPartNo.MaxLength = 100;
+                this.columnstrModelNo.MaxLength = 50;
+                this.columnstrSerialNo.MaxLength = 50;
+                this.columnstrBrand.MaxLength = 50;
+                this.columnstrUoM.MaxLength = 100;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MaterialsDetailsRow NewMaterialsDetailsRow() {
+                return ((MaterialsDetailsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MaterialsDetailsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(MaterialsDetailsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MaterialsDetailsRowChanged != null)) {
+                    this.MaterialsDetailsRowChanged(this, new MaterialsDetailsRowChangeEvent(((MaterialsDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MaterialsDetailsRowChanging != null)) {
+                    this.MaterialsDetailsRowChanging(this, new MaterialsDetailsRowChangeEvent(((MaterialsDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MaterialsDetailsRowDeleted != null)) {
+                    this.MaterialsDetailsRowDeleted(this, new MaterialsDetailsRowChangeEvent(((MaterialsDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MaterialsDetailsRowDeleting != null)) {
+                    this.MaterialsDetailsRowDeleting(this, new MaterialsDetailsRowChangeEvent(((MaterialsDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveMaterialsDetailsRow(MaterialsDetailsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MasterMaterialTDS ds = new MasterMaterialTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MaterialsDetailsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TblMaterialDetailDataTable : global::System.Data.TypedTableBase<TblMaterialDetailRow> {
+            
+            private global::System.Data.DataColumn columnintUnitID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblMaterialDetailDataTable() {
+                this.TableName = "TblMaterialDetail";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal TblMaterialDetailDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected TblMaterialDetailDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIDColumn {
+                get {
+                    return this.columnintUnitID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblMaterialDetailRow this[int index] {
+                get {
+                    return ((TblMaterialDetailRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblMaterialDetailRowChangeEventHandler TblMaterialDetailRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblMaterialDetailRowChangeEventHandler TblMaterialDetailRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblMaterialDetailRowChangeEventHandler TblMaterialDetailRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblMaterialDetailRowChangeEventHandler TblMaterialDetailRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddTblMaterialDetailRow(TblMaterialDetailRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblMaterialDetailRow AddTblMaterialDetailRow(int intUnitID) {
+                TblMaterialDetailRow rowTblMaterialDetailRow = ((TblMaterialDetailRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intUnitID};
+                rowTblMaterialDetailRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblMaterialDetailRow);
+                return rowTblMaterialDetailRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TblMaterialDetailDataTable cln = ((TblMaterialDetailDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TblMaterialDetailDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintUnitID = base.Columns["intUnitID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitID);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblMaterialDetailRow NewTblMaterialDetailRow() {
+                return ((TblMaterialDetailRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TblMaterialDetailRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TblMaterialDetailRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TblMaterialDetailRowChanged != null)) {
+                    this.TblMaterialDetailRowChanged(this, new TblMaterialDetailRowChangeEvent(((TblMaterialDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TblMaterialDetailRowChanging != null)) {
+                    this.TblMaterialDetailRowChanging(this, new TblMaterialDetailRowChangeEvent(((TblMaterialDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TblMaterialDetailRowDeleted != null)) {
+                    this.TblMaterialDetailRowDeleted(this, new TblMaterialDetailRowChangeEvent(((TblMaterialDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TblMaterialDetailRowDeleting != null)) {
+                    this.TblMaterialDetailRowDeleting(this, new TblMaterialDetailRowChangeEvent(((TblMaterialDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveTblMaterialDetailRow(TblMaterialDetailRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MasterMaterialTDS ds = new MasterMaterialTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TblMaterialDetailDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4661,538 +4809,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strUoM {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strUoMColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strUoMColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCoAID {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intCoAIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCoAID\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intCoAIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strAccName {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strAccNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strAccName\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strAccNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strCode\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strOrigin {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strOriginColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strOrigin\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strOriginColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strHSCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strHSCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strHSCode\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strHSCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strGroupName {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strGroupNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strGroupName\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strGroupNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strCategoryName {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strCategoryNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strCategoryName\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strCategoryNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strSubCategoryName {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strSubCategoryNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strSubCategoryName\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strSubCategoryNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strMinorCategory {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strMinorCategoryColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strMinorCategory\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strMinorCategoryColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strPlantName {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strPlantNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strPlantName\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strPlantNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strProcureType {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strProcureTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strProcureType\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strProcureTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strMaterialType {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strMaterialTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strMaterialType\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strMaterialTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intPOProcessTimeInDays {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intPOProcessTimeInDaysColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intPOProcessTimeInDays\' in table \'QryMaterialList\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intPOProcessTimeInDaysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intVendorShipmentTimeInDays {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intVendorShipmentTimeInDaysColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intVendorShipmentTimeInDays\' in table \'QryMaterialList\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intVendorShipmentTimeInDaysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intMaterialReceiveTimeInDays {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intMaterialReceiveTimeInDaysColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intMaterialReceiveTimeInDays\' in table \'QryMaterialList\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intMaterialReceiveTimeInDaysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string intTotalLeadTimeInDays {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.intTotalLeadTimeInDaysColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intTotalLeadTimeInDays\' in table \'QryMaterialList\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intTotalLeadTimeInDaysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numMinimumStock {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryMaterialList.numMinimumStockColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numMinimumStock\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.numMinimumStockColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numMaximumStock {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryMaterialList.numMaximumStockColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numMaximumStock\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.numMaximumStockColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numSafetyStock {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryMaterialList.numSafetyStockColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numSafetyStock\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.numSafetyStockColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numReOrderPoint {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryMaterialList.numReOrderPointColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numReOrderPoint\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.numReOrderPointColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strABC {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strABCColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strABC\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strABCColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strFSN {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strFSNColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strFSN\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strFSNColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strVDE {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strVDEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strVDE\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strVDEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSelfLifeInDays {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intSelfLifeInDaysColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intSelfLifeInDays\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intSelfLifeInDaysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strOrderingLotSize {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strOrderingLotSizeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strOrderingLotSize\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strOrderingLotSizeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numEconomicOrderQty {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryMaterialList.numEconomicOrderQtyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numEconomicOrderQty\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.numEconomicOrderQtyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numMinimumOrderQty {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryMaterialList.numMinimumOrderQtyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numMinimumOrderQty\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.numMinimumOrderQtyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strSDE {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strSDEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strSDE\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strSDEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strHML {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryMaterialList.strHMLColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strHML\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.strHMLColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnVATApplicable {
-                get {
-                    try {
-                        return ((bool)(this[this.tableQryMaterialList.ysnVATApplicableColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ysnVATApplicable\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.ysnVATApplicableColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intItemMasterIDOld {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intItemMasterIDOldColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intItemMasterIDOld\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intItemMasterIDOldColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intItemIDOld {
-                get {
-                    try {
-                        return ((int)(this[this.tableQryMaterialList.intItemIDOldColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intItemIDOld\' in table \'QryMaterialList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryMaterialList.intItemIDOldColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrMaterialFullNameNull() {
                 return this.IsNull(this.tableQryMaterialList.strMaterialFullNameColumn);
             }
@@ -5201,402 +4817,6 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrMaterialFullNameNull() {
                 this[this.tableQryMaterialList.strMaterialFullNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrUoMNull() {
-                return this.IsNull(this.tableQryMaterialList.strUoMColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrUoMNull() {
-                this[this.tableQryMaterialList.strUoMColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCoAIDNull() {
-                return this.IsNull(this.tableQryMaterialList.intCoAIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCoAIDNull() {
-                this[this.tableQryMaterialList.intCoAIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrAccNameNull() {
-                return this.IsNull(this.tableQryMaterialList.strAccNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrAccNameNull() {
-                this[this.tableQryMaterialList.strAccNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrCodeNull() {
-                return this.IsNull(this.tableQryMaterialList.strCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrCodeNull() {
-                this[this.tableQryMaterialList.strCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrOriginNull() {
-                return this.IsNull(this.tableQryMaterialList.strOriginColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrOriginNull() {
-                this[this.tableQryMaterialList.strOriginColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrHSCodeNull() {
-                return this.IsNull(this.tableQryMaterialList.strHSCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrHSCodeNull() {
-                this[this.tableQryMaterialList.strHSCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrGroupNameNull() {
-                return this.IsNull(this.tableQryMaterialList.strGroupNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrGroupNameNull() {
-                this[this.tableQryMaterialList.strGroupNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrCategoryNameNull() {
-                return this.IsNull(this.tableQryMaterialList.strCategoryNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrCategoryNameNull() {
-                this[this.tableQryMaterialList.strCategoryNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrSubCategoryNameNull() {
-                return this.IsNull(this.tableQryMaterialList.strSubCategoryNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrSubCategoryNameNull() {
-                this[this.tableQryMaterialList.strSubCategoryNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrMinorCategoryNull() {
-                return this.IsNull(this.tableQryMaterialList.strMinorCategoryColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrMinorCategoryNull() {
-                this[this.tableQryMaterialList.strMinorCategoryColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrPlantNameNull() {
-                return this.IsNull(this.tableQryMaterialList.strPlantNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrPlantNameNull() {
-                this[this.tableQryMaterialList.strPlantNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrProcureTypeNull() {
-                return this.IsNull(this.tableQryMaterialList.strProcureTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrProcureTypeNull() {
-                this[this.tableQryMaterialList.strProcureTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrMaterialTypeNull() {
-                return this.IsNull(this.tableQryMaterialList.strMaterialTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrMaterialTypeNull() {
-                this[this.tableQryMaterialList.strMaterialTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintPOProcessTimeInDaysNull() {
-                return this.IsNull(this.tableQryMaterialList.intPOProcessTimeInDaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintPOProcessTimeInDaysNull() {
-                this[this.tableQryMaterialList.intPOProcessTimeInDaysColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintVendorShipmentTimeInDaysNull() {
-                return this.IsNull(this.tableQryMaterialList.intVendorShipmentTimeInDaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintVendorShipmentTimeInDaysNull() {
-                this[this.tableQryMaterialList.intVendorShipmentTimeInDaysColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintMaterialReceiveTimeInDaysNull() {
-                return this.IsNull(this.tableQryMaterialList.intMaterialReceiveTimeInDaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintMaterialReceiveTimeInDaysNull() {
-                this[this.tableQryMaterialList.intMaterialReceiveTimeInDaysColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintTotalLeadTimeInDaysNull() {
-                return this.IsNull(this.tableQryMaterialList.intTotalLeadTimeInDaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintTotalLeadTimeInDaysNull() {
-                this[this.tableQryMaterialList.intTotalLeadTimeInDaysColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumMinimumStockNull() {
-                return this.IsNull(this.tableQryMaterialList.numMinimumStockColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumMinimumStockNull() {
-                this[this.tableQryMaterialList.numMinimumStockColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumMaximumStockNull() {
-                return this.IsNull(this.tableQryMaterialList.numMaximumStockColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumMaximumStockNull() {
-                this[this.tableQryMaterialList.numMaximumStockColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumSafetyStockNull() {
-                return this.IsNull(this.tableQryMaterialList.numSafetyStockColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumSafetyStockNull() {
-                this[this.tableQryMaterialList.numSafetyStockColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumReOrderPointNull() {
-                return this.IsNull(this.tableQryMaterialList.numReOrderPointColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumReOrderPointNull() {
-                this[this.tableQryMaterialList.numReOrderPointColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrABCNull() {
-                return this.IsNull(this.tableQryMaterialList.strABCColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrABCNull() {
-                this[this.tableQryMaterialList.strABCColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrFSNNull() {
-                return this.IsNull(this.tableQryMaterialList.strFSNColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrFSNNull() {
-                this[this.tableQryMaterialList.strFSNColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrVDENull() {
-                return this.IsNull(this.tableQryMaterialList.strVDEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrVDENull() {
-                this[this.tableQryMaterialList.strVDEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintSelfLifeInDaysNull() {
-                return this.IsNull(this.tableQryMaterialList.intSelfLifeInDaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintSelfLifeInDaysNull() {
-                this[this.tableQryMaterialList.intSelfLifeInDaysColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrOrderingLotSizeNull() {
-                return this.IsNull(this.tableQryMaterialList.strOrderingLotSizeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrOrderingLotSizeNull() {
-                this[this.tableQryMaterialList.strOrderingLotSizeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumEconomicOrderQtyNull() {
-                return this.IsNull(this.tableQryMaterialList.numEconomicOrderQtyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumEconomicOrderQtyNull() {
-                this[this.tableQryMaterialList.numEconomicOrderQtyColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumMinimumOrderQtyNull() {
-                return this.IsNull(this.tableQryMaterialList.numMinimumOrderQtyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumMinimumOrderQtyNull() {
-                this[this.tableQryMaterialList.numMinimumOrderQtyColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrSDENull() {
-                return this.IsNull(this.tableQryMaterialList.strSDEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrSDENull() {
-                this[this.tableQryMaterialList.strSDEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrHMLNull() {
-                return this.IsNull(this.tableQryMaterialList.strHMLColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrHMLNull() {
-                this[this.tableQryMaterialList.strHMLColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsysnVATApplicableNull() {
-                return this.IsNull(this.tableQryMaterialList.ysnVATApplicableColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetysnVATApplicableNull() {
-                this[this.tableQryMaterialList.ysnVATApplicableColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintItemMasterIDOldNull() {
-                return this.IsNull(this.tableQryMaterialList.intItemMasterIDOldColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintItemMasterIDOldNull() {
-                this[this.tableQryMaterialList.intItemMasterIDOldColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintItemIDOldNull() {
-                return this.IsNull(this.tableQryMaterialList.intItemIDOldColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintItemIDOldNull() {
-                this[this.tableQryMaterialList.intItemIDOldColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5668,6 +4888,271 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintAccIDNull() {
                 this[this.tableSprGetCOAChildByUnit.intAccIDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class MaterialsDetailsRow : global::System.Data.DataRow {
+            
+            private MaterialsDetailsDataTable tableMaterialsDetails;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal MaterialsDetailsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMaterialsDetails = ((MaterialsDetailsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intMasterID {
+                get {
+                    return ((int)(this[this.tableMaterialsDetails.intMasterIDColumn]));
+                }
+                set {
+                    this[this.tableMaterialsDetails.intMasterIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strMaterialName {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strMaterialNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strMaterialName\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strMaterialNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strDescription {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strDescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDescription\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPartNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strPartNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPartNo\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strPartNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strModelNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strModelNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strModelNo\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strModelNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSerialNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strSerialNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSerialNo\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strSerialNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strBrand {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strBrandColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBrand\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strBrandColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUoM {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterialsDetails.strUoMColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'MaterialsDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterialsDetails.strUoMColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrMaterialNameNull() {
+                return this.IsNull(this.tableMaterialsDetails.strMaterialNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrMaterialNameNull() {
+                this[this.tableMaterialsDetails.strMaterialNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDescriptionNull() {
+                return this.IsNull(this.tableMaterialsDetails.strDescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDescriptionNull() {
+                this[this.tableMaterialsDetails.strDescriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrPartNoNull() {
+                return this.IsNull(this.tableMaterialsDetails.strPartNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrPartNoNull() {
+                this[this.tableMaterialsDetails.strPartNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrModelNoNull() {
+                return this.IsNull(this.tableMaterialsDetails.strModelNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrModelNoNull() {
+                this[this.tableMaterialsDetails.strModelNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrSerialNoNull() {
+                return this.IsNull(this.tableMaterialsDetails.strSerialNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrSerialNoNull() {
+                this[this.tableMaterialsDetails.strSerialNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrBrandNull() {
+                return this.IsNull(this.tableMaterialsDetails.strBrandColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrBrandNull() {
+                this[this.tableMaterialsDetails.strBrandColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUoMNull() {
+                return this.IsNull(this.tableMaterialsDetails.strUoMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUoMNull() {
+                this[this.tableMaterialsDetails.strUoMColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TblMaterialDetailRow : global::System.Data.DataRow {
+            
+            private TblMaterialDetailDataTable tableTblMaterialDetail;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal TblMaterialDetailRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTblMaterialDetail = ((TblMaterialDetailDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intUnitID {
+                get {
+                    try {
+                        return ((int)(this[this.tableTblMaterialDetail.intUnitIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitID\' in table \'TblMaterialDetail\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblMaterialDetail.intUnitIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintUnitIDNull() {
+                return this.IsNull(this.tableTblMaterialDetail.intUnitIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintUnitIDNull() {
+                this[this.tableTblMaterialDetail.intUnitIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5908,6 +5393,74 @@ namespace SCM_DAL {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class MaterialsDetailsRowChangeEvent : global::System.EventArgs {
+            
+            private MaterialsDetailsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MaterialsDetailsRowChangeEvent(MaterialsDetailsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MaterialsDetailsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class TblMaterialDetailRowChangeEvent : global::System.EventArgs {
+            
+            private TblMaterialDetailRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblMaterialDetailRowChangeEvent(TblMaterialDetailRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblMaterialDetailRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace SCM_DAL.MasterMaterialTDSTableAdapters {
@@ -6049,7 +5602,7 @@ namespace SCM_DAL.MasterMaterialTDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"Select ' Please Select Store Location' as strLocationName, 0 as intStoreLocationID
@@ -6057,6 +5610,12 @@ Union
 select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseStoreLocation where intWHID= @intWHID AND ysnHasChild=0 and ysnActive=1 Order by strLocationName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT TOP(1) intUnitID FROM ERP_Inventory.dbo.tblWearHouse WHERE intWHID = @intW" +
+                "HID";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6071,6 +5630,18 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
+            MasterMaterialTDS.TblWearHouseDataTable dataTable = new MasterMaterialTDS.TblWearHouseDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MasterMaterialTDS.TblWearHouseDataTable GetUnitID(int intWHID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWHID));
             MasterMaterialTDS.TblWearHouseDataTable dataTable = new MasterMaterialTDS.TblWearHouseDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -6272,6 +5843,7 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAutoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCOAID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMaterialMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6331,7 +5903,8 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
                     global::System.Nullable<int> intWHID, 
                     global::System.Nullable<int> intAutoID, 
                     global::System.Nullable<int> intInsertBy, 
-                    global::System.Nullable<int> intCOAID) {
+                    global::System.Nullable<int> intCOAID, 
+                    global::System.Nullable<int> intMaterialMasterID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intPart.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intPart.Value));
@@ -6650,6 +6223,12 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             }
             else {
                 this.Adapter.SelectCommand.Parameters[53].Value = global::System.DBNull.Value;
+            }
+            if ((intMaterialMasterID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[54].Value = ((int)(intMaterialMasterID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[54].Value = global::System.DBNull.Value;
             }
             MasterMaterialTDS.SprItemAddAndApproveDataTable dataTable = new MasterMaterialTDS.SprItemAddAndApproveDataTable();
             this.Adapter.Fill(dataTable);
@@ -7431,39 +7010,6 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             tableMapping.DataSetTable = "QryMaterialList";
             tableMapping.ColumnMappings.Add("intMaterialID", "intMaterialID");
             tableMapping.ColumnMappings.Add("strMaterialFullName", "strMaterialFullName");
-            tableMapping.ColumnMappings.Add("strUoM", "strUoM");
-            tableMapping.ColumnMappings.Add("intCoAID", "intCoAID");
-            tableMapping.ColumnMappings.Add("strAccName", "strAccName");
-            tableMapping.ColumnMappings.Add("strCode", "strCode");
-            tableMapping.ColumnMappings.Add("strOrigin", "strOrigin");
-            tableMapping.ColumnMappings.Add("strHSCode", "strHSCode");
-            tableMapping.ColumnMappings.Add("strGroupName", "strGroupName");
-            tableMapping.ColumnMappings.Add("strCategoryName", "strCategoryName");
-            tableMapping.ColumnMappings.Add("strSubCategoryName", "strSubCategoryName");
-            tableMapping.ColumnMappings.Add("strMinorCategory", "strMinorCategory");
-            tableMapping.ColumnMappings.Add("strPlantName", "strPlantName");
-            tableMapping.ColumnMappings.Add("strProcureType", "strProcureType");
-            tableMapping.ColumnMappings.Add("strMaterialType", "strMaterialType");
-            tableMapping.ColumnMappings.Add("intPOProcessTimeInDays", "intPOProcessTimeInDays");
-            tableMapping.ColumnMappings.Add("intVendorShipmentTimeInDays", "intVendorShipmentTimeInDays");
-            tableMapping.ColumnMappings.Add("intMaterialReceiveTimeInDays", "intMaterialReceiveTimeInDays");
-            tableMapping.ColumnMappings.Add("intTotalLeadTimeInDays", "intTotalLeadTimeInDays");
-            tableMapping.ColumnMappings.Add("numMinimumStock", "numMinimumStock");
-            tableMapping.ColumnMappings.Add("numMaximumStock", "numMaximumStock");
-            tableMapping.ColumnMappings.Add("numSafetyStock", "numSafetyStock");
-            tableMapping.ColumnMappings.Add("numReOrderPoint", "numReOrderPoint");
-            tableMapping.ColumnMappings.Add("strABC", "strABC");
-            tableMapping.ColumnMappings.Add("strFSN", "strFSN");
-            tableMapping.ColumnMappings.Add("strVDE", "strVDE");
-            tableMapping.ColumnMappings.Add("intSelfLifeInDays", "intSelfLifeInDays");
-            tableMapping.ColumnMappings.Add("strOrderingLotSize", "strOrderingLotSize");
-            tableMapping.ColumnMappings.Add("numEconomicOrderQty", "numEconomicOrderQty");
-            tableMapping.ColumnMappings.Add("numMinimumOrderQty", "numMinimumOrderQty");
-            tableMapping.ColumnMappings.Add("strSDE", "strSDE");
-            tableMapping.ColumnMappings.Add("strHML", "strHML");
-            tableMapping.ColumnMappings.Add("ysnVATApplicable", "ysnVATApplicable");
-            tableMapping.ColumnMappings.Add("intItemMasterIDOld", "intItemMasterIDOld");
-            tableMapping.ColumnMappings.Add("intItemIDOld", "intItemIDOld");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -7480,33 +7026,25 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT intMaterialID,strMaterialFullName +' ['+strUoM+']' AS strMaterialFullName,strUoM,intCoAID,strAccName, strCode,strOrigin,strHSCode,strGroupName,strCategoryName,strSubCategoryName,strMinorCategory,strPlantName,strProcureType
-      ,strMaterialType,intPOProcessTimeInDays,intVendorShipmentTimeInDays,intMaterialReceiveTimeInDays,intTotalLeadTimeInDays,numMinimumStock,numMaximumStock,numSafetyStock
-      ,numReOrderPoint,strABC,strFSN,strVDE,intSelfLifeInDays,strOrderingLotSize,numEconomicOrderQty,numMinimumOrderQty,strSDE,strHML,ysnVATApplicable,intItemMasterIDOld,intItemIDOld
-  FROM ERP_Inventory.dbo.qryMaterialList
-  WHERE ysnActive = 1 AND intWHID = @intWHID AND strMaterialFullName LIKE '%'+@strSearchText+'%'";
+            this._commandCollection[0].CommandText = @"  SELECT strMaterialFullName+'  ['+struom+']' as strMaterialFullName,intMasterID as intMaterialID
+  FROM  ERP_Inventory.dbo.tblMaterialMaster
+  WHERE  (ysnActive = 1) AND (strMaterialFullName LIKE '%' + @strSearchText + '%')
+ORDER BY strMaterialFullName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSearchText", global::System.Data.SqlDbType.VarChar, 1253, global::System.Data.ParameterDirection.Input, 0, 0, "strMaterialFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSearchText", global::System.Data.SqlDbType.VarChar, 953, global::System.Data.ParameterDirection.Input, 0, 0, "strMaterialFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MasterMaterialTDS.QryMaterialListDataTable GetItemListReport(global::System.Nullable<int> intWHID, string strSearchText) {
+        public virtual MasterMaterialTDS.QryMaterialListDataTable GetItemListReport(string strSearchText) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intWHID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWHID.Value));
-            }
-            else {
+            if ((strSearchText == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((strSearchText == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strSearchText));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(strSearchText));
             }
             MasterMaterialTDS.QryMaterialListDataTable dataTable = new MasterMaterialTDS.QryMaterialListDataTable();
             this.Adapter.Fill(dataTable);
@@ -7707,6 +7245,370 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             MasterMaterialTDS.SprGetCOAChildByUnitDataTable dataTable = new MasterMaterialTDS.SprGetCOAChildByUnitDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MaterialsDetailsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public MaterialsDetailsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MaterialsDetails";
+            tableMapping.ColumnMappings.Add("intMasterID", "intMasterID");
+            tableMapping.ColumnMappings.Add("strMaterialName", "strMaterialName");
+            tableMapping.ColumnMappings.Add("strDescription", "strDescription");
+            tableMapping.ColumnMappings.Add("strPartNo", "strPartNo");
+            tableMapping.ColumnMappings.Add("strModelNo", "strModelNo");
+            tableMapping.ColumnMappings.Add("strSerialNo", "strSerialNo");
+            tableMapping.ColumnMappings.Add("strBrand", "strBrand");
+            tableMapping.ColumnMappings.Add("strUoM", "strUoM");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT intMasterID, strMaterialName, strDescription, strPartNo, strModelNo, strSe" +
+                "rialNo, strBrand, strUoM\r\n  FROM [ERP_Inventory].[dbo].[tblMaterialMaster]\r\n  WH" +
+                "ERE intMasterID = @intMasterID AND ysnActive = 1";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT intUnitID FROM ERP_Inventory.dbo.tblMaterialDetail WHERE intMaterialMaster" +
+                "ID = @intMasterID AND intUnitID = @intUnitID";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMaterialMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual MasterMaterialTDS.MaterialsDetailsDataTable GetMaterialDetails(int intMasterID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intMasterID));
+            MasterMaterialTDS.MaterialsDetailsDataTable dataTable = new MasterMaterialTDS.MaterialsDetailsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MasterMaterialTDS.MaterialsDetailsDataTable GetUnitCheck(global::System.Nullable<int> intMasterID, global::System.Nullable<int> intUnitID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((intMasterID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intMasterID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUnitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            MasterMaterialTDS.MaterialsDetailsDataTable dataTable = new MasterMaterialTDS.MaterialsDetailsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TblMaterialDetailTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public TblMaterialDetailTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TblMaterialDetail";
+            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT intUnitID FROM ERP_Inventory.dbo.tblMaterialDetail WHERE intMaterialMaster" +
+                "ID = @intMasterID AND intUnitID = @intUnitID";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMaterialMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual MasterMaterialTDS.TblMaterialDetailDataTable GetUnitCheck(global::System.Nullable<int> intMasterID, global::System.Nullable<int> intUnitID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intMasterID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intMasterID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUnitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            MasterMaterialTDS.TblMaterialDetailDataTable dataTable = new MasterMaterialTDS.TblMaterialDetailDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

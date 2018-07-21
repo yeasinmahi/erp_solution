@@ -148,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
     <Content Include="Accounts\Approval\IndentApproval_UI.aspx" />
@@ -1413,6 +1414,13 @@
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Advice\BankStatementUpload.aspx.cs">
+      <DependentUpon>BankStatementUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\BankStatementUpload.aspx.designer.cs">
+      <DependentUpon>BankStatementUpload.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\PaymentAdvice.aspx.cs">
       <DependentUpon>PaymentAdvice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
