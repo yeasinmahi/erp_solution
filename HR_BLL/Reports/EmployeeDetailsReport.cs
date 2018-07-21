@@ -15,10 +15,10 @@ namespace HR_BLL.Reports
             return adp.GetUnitDataByUserId(intUserId);
         }
 
-        public DataTable GetJobStation(int intlogInId, int intUnitId)
+        public DataTable GetJobStation(int UnitId, int intlogInId)
         {
             sprGetJobStationTableAdapter adp = new sprGetJobStationTableAdapter();
-            return adp.GetJobStationDataByUnitId(intlogInId, intUnitId);
+            return adp.GetJobStationDataByUnitId(UnitId, intlogInId);
         }
         public DataTable GetDepartment()
         {

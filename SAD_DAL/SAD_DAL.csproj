@@ -345,6 +345,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.cs">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Sales\SalesConfigTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -951,6 +959,17 @@
     </None>
     <None Include="Sales\Report\SalesByCusProTDS.xss">
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xsc">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UDTCLSalesTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xss">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
     </None>
     <None Include="Sales\SalesConfigTDS.xsc">
       <DependentUpon>SalesConfigTDS.xsd</DependentUpon>
