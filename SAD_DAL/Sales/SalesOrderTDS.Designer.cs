@@ -19407,7 +19407,7 @@ namespace SAD_DAL.Sales.SalesOrderTDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT [intId]
@@ -19539,13 +19539,66 @@ and ysnEnable = 1";
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "strCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "UPDATE tblSalesOrder \r\nSET intShipPointId = @intNewShipPoint\r\nWHERE (intUnitId = " +
-                "@intUnitId) AND (strCode = @strCode) AND (intShipPointId = @intShipPointId)\r\n\r\n";
+            this._commandCollection[5].CommandText = @"SELECT top(1) intId
+      ,strCode
+      ,strNarration
+      ,intUnitId
+      ,intCustomerId
+      ,dteDate
+      ,ysnEnable
+      ,ysnCompleted
+      ,dteInsertionTime
+      ,intInsertedBy
+      ,dteLastModificationTime
+      ,intLastModifiedBy
+      ,intCompletedBy
+      ,strName
+      ,strPhone
+      ,monCreditLimit
+      ,monTotalAmount
+      ,numPieces
+      ,intPriceVarId
+      ,intVehicleVarId
+      ,monExtraAmount
+      ,strExtraCause
+      ,intCustomerType
+      ,strAddress
+      ,strOtherInfo
+      ,intDisPointId
+      ,strDisPointName
+      ,ysnLogistic
+      ,intChargeId
+      ,numCharge
+      ,intCurrencyId
+      ,intSalesTypeId
+      ,intIncentiveId
+      ,numIncentive
+      ,intSalesOffId
+      ,numConversionRate
+      ,intShipPointId
+      ,numApprPieces
+      ,strContactAt
+      ,strContactPhone
+      ,dteReqDelivaryDate
+      ,dteCopmplitionTime
+      ,ysnDOCompleted
+      ,intDOCompletedBy
+      ,dteDOCopmplitionTime
+      ,numRestPieces
+      ,ysnChallanCompleted
+FROM QrySalesOrderCustomer 
+where intUnitId = 53  and isnull(ysnChallanCompleted,0) = 0
+and ysnEnable = 1 order by intId desc";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intNewShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "strCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPointId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = "UPDATE tblSalesOrder \r\nSET intShipPointId = @intNewShipPoint\r\nWHERE (intUnitId = " +
+                "@intUnitId) AND (strCode = @strCode) AND (intShipPointId = @intShipPointId)\r\n\r\n";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intNewShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "strCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPointId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19611,6 +19664,17 @@ and ysnEnable = 1";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual SalesOrderTDS.QrySalesOrderCustomerDataTable GetDONotchallancompleted() {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            SalesOrderTDS.QrySalesOrderCustomerDataTable dataTable = new SalesOrderTDS.QrySalesOrderCustomerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<long> ExistsDO(int intUnitId, string strCode, int intShipPointId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(intUnitId));
@@ -19649,7 +19713,7 @@ and ysnEnable = 1";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateShipPoint(int intNewShipPoint, int intUnitId, string strCode, int intShipPointId) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             command.Parameters[0].Value = ((int)(intNewShipPoint));
             command.Parameters[1].Value = ((int)(intUnitId));
             if ((strCode == null)) {

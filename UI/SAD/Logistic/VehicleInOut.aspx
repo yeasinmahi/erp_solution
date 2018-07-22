@@ -15,16 +15,7 @@
                 args.IsValid = false;
                 isProceed = false;
             }
-            else if (document.getElementById("txtSupplier") != null && document.getElementById("hdnSpCs").value == '') {
-                alert('Please enter supplier / customer');
-                args.IsValid = false;
-                isProceed = false;
-            }
-            else if (document.getElementById("txtDO").value != '' && document.getElementById("hdnDo").value == '') {
-                alert('Please check the DO');
-                args.IsValid = false;
-                isProceed = false;
-            }
+           
             else if (!confirm('Is this vehicle checked In?')) {
                 args.IsValid = false;
                 isProceed = false;

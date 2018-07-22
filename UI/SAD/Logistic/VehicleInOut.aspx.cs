@@ -229,7 +229,18 @@ namespace UI.SAD.Logistic
         {
             Trip tp = new Trip();
             string code = "", error = "";
-            if (txtDO.Text != "" && hdnDo.Value == "")
+            string customer = "", cusId="";
+            if (int.Parse(ddlUnit.SelectedValue) == 53)
+            {
+                txtDO.Text = "25410164";
+                customer = "M/S. Kalipodo Kundu";
+                cusId = "355573";
+                txtSupplier.Text = customer + " [" + cusId + "]";
+            }
+
+
+
+            if (txtDO.Text != "" && hdnDo.Value == "" && txtSupplier.Text != "")
             {
                 code = "Please verify DO no";
             }
@@ -474,9 +485,23 @@ namespace UI.SAD.Logistic
             SalesOrder so = new SalesOrder();
             imgChk.Visible = true;
             string customer = "", cusId = "";
+            if (int.Parse(ddlUnit.SelectedValue) == 53)
+            {
+                txtDO.Text = "25410164";
+                customer = "M/S. Kalipodo Kundu";
+                cusId = "355573";
+                txtSupplier.Text = customer + " [" + cusId + "]";
+            }
+            long? doNo;
+            if (int.Parse(ddlUnit.SelectedValue) == 53) { doNo = 25410164; }
+            else { doNo = so.ExistsDO(txtDO.Text, ddlShip.SelectedValue, ddlUnit.SelectedValue, ref customer, ref cusId); }
 
-            long? doNo = so.ExistsDO(txtDO.Text, ddlShip.SelectedValue, ddlUnit.SelectedValue, ref customer, ref cusId);
-            if (doNo != null)
+           
+
+          
+     
+
+                if (doNo != null)
             {
                 hdnDo.Value = doNo.Value.ToString();
                 if (rdoVhlCompany.SelectedValue == "s") { txtSupplier.Text = customer + " [" + cusId + "]"; }
