@@ -55,7 +55,7 @@ namespace UI.SCM
                 intWHID = int.Parse(ddlWH.SelectedValue.ToString());
                 strSearchText = txtSearchText.Text;
                 dt = new DataTable();
-                dt = bll.GetItemListReport(intWHID, strSearchText);
+                dt = bll.GetItemListReport(strSearchText);
                 dgvInvnetory.DataSource = dt;
                 dgvInvnetory.DataBind();
             }

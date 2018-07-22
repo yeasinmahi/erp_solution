@@ -15,7 +15,7 @@ namespace SCM_BLL
                     string strSubCategoryName, int intMinorCategory, string strMinorCategory, int intPlantID, string strPlantName, int intProcureType, string strProcureType, decimal numMaxLeadTime,
                     decimal numMinLeadTime, decimal numMinimumStock, decimal numMaximumStock, decimal numSafetyStock, decimal numReOrderPoint, decimal numReOrderQty, int intABC, string strABC, int intFSN,
                     string strFSN, int intVDE, string strVDE, int intSelfLife, string strOrderingLotSize, decimal numEOQ, decimal numMOQ, decimal numMaxDailyConsump, decimal numMinDailyConsump, int intSDE,
-                    string strSDE, int intHML, string strHML, bool ysnVATApplicable, int intWHID, int intAutoID, int intInsertBy, int intCOAID)
+                    string strSDE, int intHML, string strHML, bool ysnVATApplicable, int intWHID, int intAutoID, int intInsertBy, int intCOAID, int intMaterialMasterID)
         {
             SprItemAddAndApproveTableAdapter adp = new SprItemAddAndApproveTableAdapter();
             try
@@ -24,7 +24,7 @@ namespace SCM_BLL
                     intLocationID, strHSCode, intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID,
                     strPlantName, intProcureType, strProcureType, numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC,
                     strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable,
-                    intWHID, intAutoID, intInsertBy, intCOAID);
+                    intWHID, intAutoID, intInsertBy, intCOAID, intMaterialMasterID);
             }
             catch { return new DataTable(); }
         }
@@ -77,11 +77,11 @@ namespace SCM_BLL
             { return adp.GetInventoryStatement(intWHID, dteFDate, dteTDate, intSearchBy, strID, intCatNew); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetItemListReport(int intWHID, string strSearchText)
+        public DataTable GetItemListReport(string strSearchText)
         {
             QryMaterialListTableAdapter adp = new QryMaterialListTableAdapter();
             try
-            { return adp.GetItemListReport(intWHID, strSearchText); }
+            { return adp.GetItemListReport(strSearchText); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetCOAList(int intUnitID, bool ysnAdvance, bool ysnPurchase, bool ysnCreditors, bool ysnAll, bool ysnBillReg)
@@ -89,6 +89,27 @@ namespace SCM_BLL
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
             try
             { return adp.GetCOAList(intUnitID, ysnAdvance, ysnPurchase, ysnCreditors, ysnAll, ysnBillReg); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetMaterialDetails(int intMasterID)
+        {
+            MaterialsDetailsTableAdapter adp = new MaterialsDetailsTableAdapter();
+            try
+            { return adp.GetMaterialDetails(intMasterID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUnitID(int intWHID)
+        {
+            TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+            try
+            { return adp.GetUnitID(intWHID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetUnitCheck(int intMasterID, int intUnitID)
+        {
+            TblMaterialDetailTableAdapter adp = new TblMaterialDetailTableAdapter();
+            try
+            { return adp.GetUnitCheck(intMasterID, intUnitID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
     }
