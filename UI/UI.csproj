@@ -388,6 +388,7 @@
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
+    <Content Include="PaymentModule\TreasuryChallan.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
     <Content Include="Revenue\rptExpiaryDate.aspx" />
@@ -1146,6 +1147,7 @@
     <Content Include="SAD\Order\VehicleSelectView.aspx" />
     <Content Include="SAD\Order\VehicleSelectViewCustomize.aspx" />
     <Content Include="SAD\SADCOA\CusManageForCOA.aspx" />
+    <Content Include="SAD\Sales\Data\PrintSVforAccounts.aspx" />
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
@@ -1153,6 +1155,7 @@
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
+    <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
@@ -2944,6 +2947,13 @@
     </Compile>
     <Compile Include="PaymentModule\SupplierCOA.aspx.designer.cs">
       <DependentUpon>SupplierCOA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\TreasuryChallan.aspx.cs">
+      <DependentUpon>TreasuryChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\TreasuryChallan.aspx.designer.cs">
+      <DependentUpon>TreasuryChallan.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -5669,6 +5679,13 @@
     <Compile Include="SAD\SADCOA\CusManageForCOA.aspx.designer.cs">
       <DependentUpon>CusManageForCOA.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Data\PrintSVforAccounts.aspx.cs">
+      <DependentUpon>PrintSVforAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Data\PrintSVforAccounts.aspx.designer.cs">
+      <DependentUpon>PrintSVforAccounts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\DOEntry.aspx.cs">
       <DependentUpon>DOEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5717,6 +5734,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.designer.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\PrintAccountsSV.aspx.cs">
+      <DependentUpon>PrintAccountsSV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\PrintAccountsSV.aspx.designer.cs">
+      <DependentUpon>PrintAccountsSV.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx.cs">
       <DependentUpon>AllRetaillersDeliveryATAGlance.aspx</DependentUpon>
@@ -7845,7 +7869,6 @@
     <Folder Include="SAD\Order\Data\DO\" />
     <Folder Include="SAD\Order\Data\OR\" />
     <Folder Include="SAD\Order\Uploads\" />
-    <Folder Include="SAD\Sales\Data\" />
     <Folder Include="SAD\Transfer\Data\" />
     <Folder Include="SAD\Vat\Data\" />
     <Folder Include="SCM\Data\" />

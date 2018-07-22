@@ -23,7 +23,7 @@
             var fromdate = document.getElementById("txtFormDate").value;
             var todate = document.getElementById("txtToDate").value;
             var report = document.getElementById("DdlReport").value;
-            var customer = document.getElementById("DdlCustomer").value;
+            
             if (fromdate == null || fromdate=="") {
                 alert('Insert From Date');
                 return false;
@@ -32,10 +32,7 @@
                 alert('Insert To Date');
                 return false;
             }
-            else if (customer == null || customer=="") {
-                alert('Insert Customer');
-                return false;               
-            }
+           
              else if (report == null || report=="") {
                 alert('Insert Report Type');
                 return false;
@@ -46,13 +43,13 @@
     </script>
     <style>
         .divHeader{
-            background-color:#9bb4dd; /*#45546d;*/
+            background-color:#9bb4dd; 
              border: 0px solid #000;
             text-align: center;
             color: #fff;
             width: 700px;
             height: 25px;
-         font-weight: bold;
+           font-weight: bold;
         }
        
        
@@ -79,13 +76,13 @@
                     <table style="width: 700px; table-layout: auto; vertical-align: top; background-color: #DDD;" class="tblRowOdd">
                         <tr >
                            <td style="text-align:right;">
-                                <asp:Label ID="Label1" runat="server" Text="Issue Date:" ></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" Text="From Date:" ></asp:Label></td>
                             <td>
                                     <asp:TextBox ID="txtFormDate" runat="server"></asp:TextBox>
                                     <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFormDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                                     <img id="imgCal_1"  src="../../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                                 </td>
-                            <td style="text-align:right;"><asp:Label ID="Label2"  runat="server" Text="Expire Date:"></asp:Label></td>
+                            <td style="text-align:right;"><asp:Label ID="Label2"  runat="server" Text="To Date:"></asp:Label></td>
                             <td>
                                     <asp:TextBox ID="txtToDate" runat="server"></asp:TextBox>
                                     <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtToDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
@@ -113,12 +110,15 @@
                             
                         </tr>
                          <tr>
-                             <td style="text-align:right;"><asp:Label ID="Label4"  runat="server" Text="Customer Name:"></asp:Label></td>
+                             <td style="text-align:right;"><asp:Label ID="Label6"  runat="server" Text="Report Type:"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="DdlCustomer" runat="server" >
-                                    <asp:ListItem Value="">---Select Customer---</asp:ListItem>
-                                    <asp:ListItem Value="0">Transfer Challan</asp:ListItem>
-                                    <asp:ListItem Value="1">Customer</asp:ListItem>
+                                <asp:DropDownList ID="DdlReport" runat="server" >
+                                    <asp:ListItem Value="">---Select Report Type---</asp:ListItem>
+                                    <asp:ListItem Value="1">Transfer Challan and Customer Challan</asp:ListItem>
+                                    <asp:ListItem Value="2">Only  Transfer Challan Details</asp:ListItem>
+                                    <asp:ListItem Value="3">Only Customer Challan</asp:ListItem>
+                                    <%--<asp:ListItem Value="4">Only  Transfer Challan Topsheet</asp:ListItem>
+                                    <asp:ListItem Value="5">Only  Customer Challan Topsheet</asp:ListItem>--%>
                                 </asp:DropDownList></td>
                             <td style="text-align:right;"><asp:Label ID="Label5"  runat="server" Text="Shipping Point:"></asp:Label></td>
                             <td>
@@ -131,20 +131,7 @@
                              </td>
                             
                         </tr>
-                        <tr>
-                            <td style="text-align:right;"><asp:Label ID="Label6"  runat="server" Text="Report Type:"></asp:Label></td>
-                            <td>
-                                <asp:DropDownList ID="DdlReport" runat="server" >
-                                    <asp:ListItem Value="">---Select Report Type---</asp:ListItem>
-                                    <asp:ListItem Value="1">Transfer Challan and Customer Challan</asp:ListItem>
-                                    <asp:ListItem Value="2">Only  Transfer Challan Details</asp:ListItem>
-                                    <asp:ListItem Value="3">Only Customer Challan</asp:ListItem>
-                                    <%--<asp:ListItem Value="4">Only  Transfer Challan Topsheet</asp:ListItem>
-                                    <asp:ListItem Value="5">Only  Customer Challan Topsheet</asp:ListItem>--%>
-                                </asp:DropDownList></td>
-                             <td style="text-align:right;">&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
+                       
                         
                         <tr>
                             <td colspan="6" style="text-align:right;">
@@ -159,7 +146,9 @@
                             <td>
                                 <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="odsSalesReport" OnRowDataBound="GvSalesReport_RowDataBound" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
                                     <Columns>
-                                       
+                                       <asp:TemplateField HeaderText="SL">
+                                            <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField DataField="strchallan" HeaderText="Challan No" SortExpression="strchallan" ItemStyle-HorizontalAlign="Center" >
                                         <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
@@ -203,8 +192,7 @@
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="txtFormDate" Name="fromdate" PropertyName="Text" Type="DateTime" />
                                         <asp:ControlParameter ControlID="txtToDate" Name="todate" PropertyName="Text" Type="DateTime" />
-                                        <asp:ControlParameter ControlID="ddlUnit" Name="intunitid" PropertyName="SelectedValue" Type="Int32" />
-                                        <asp:ControlParameter ControlID="DdlCustomer" Name="intcustid" PropertyName="SelectedValue" Type="Int32" />
+                                        <asp:ControlParameter ControlID="ddlUnit" Name="intunitid" PropertyName="SelectedValue" Type="Int32" />                                     
                                         <asp:ControlParameter ControlID="DdlReport" Name="rpttype" PropertyName="SelectedValue" Type="Int32" />
                                         <asp:ControlParameter ControlID="DdlSalesOffice" Name="intsalesoffid" PropertyName="SelectedValue" Type="Int32" />
                                         <asp:ControlParameter ControlID="DdlShippingPoint" Name="intshippingpointid" PropertyName="SelectedValue" Type="Int32" />
@@ -263,7 +251,6 @@
                                         <asp:ControlParameter ControlID="txtFormDate" Name="fromdate" PropertyName="Text" Type="DateTime" />
                                         <asp:ControlParameter ControlID="txtToDate" Name="todate" PropertyName="Text" Type="DateTime" />
                                         <asp:ControlParameter ControlID="ddlUnit" Name="intunitid" PropertyName="SelectedValue" Type="Int32" />
-                                        <asp:ControlParameter ControlID="DdlCustomer" Name="intcustid" PropertyName="SelectedValue" Type="Int32" />
                                         <asp:ControlParameter ControlID="DdlReport" Name="rpttype" PropertyName="SelectedValue" Type="Int32" />
                                         <asp:ControlParameter ControlID="DdlSalesOffice" Name="intsalesoffid" PropertyName="SelectedValue" Type="Int32" />
                                         <asp:ControlParameter ControlID="DdlShippingPoint" Name="intshippingpointid" PropertyName="SelectedValue" Type="Int32" />

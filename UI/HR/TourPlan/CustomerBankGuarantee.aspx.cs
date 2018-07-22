@@ -29,9 +29,19 @@ namespace UI.HR.TourPlan
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            GVCustDetails.Visible = true;
-            btnAdd.Visible = true;
-            btnSubmit.Visible = false;
+            int count = GVCustDetails.Rows.Count;
+            if(count>0)
+            {
+                GVCustDetails.Visible = true;
+                btnAdd.Visible = true;
+                //btnSubmit.Visible = false;
+            }
+            else
+            {
+                GVCustDetails.Visible = false;
+                btnAdd.Visible = false;
+            }
+           
             if (GVCustList.Visible==true)
             {
                 btnSubmit.Visible = true;
@@ -62,10 +72,10 @@ namespace UI.HR.TourPlan
                 string bankName = DdlBank.SelectedItem.Text.ToString();
                 string branchName = DdlBranch.SelectedItem.Text.ToString();
                 string remarks = "Na";
-                //bool proceed = false;
                 //int count = GVCustList.Rows.Count;
+                
 
-                 CreateXml(custId, bankId, branchId, districtId, BGNo, Amount, fromdate, todate, bankName, branchName, remarks, unitId, InsertBy);                   
+                CreateXml(custId, bankId, branchId, districtId, BGNo, Amount, fromdate, todate, bankName, branchName, remarks, unitId, InsertBy);                   
                  btnSubmit.Visible = true;
 
             }
@@ -157,14 +167,18 @@ namespace UI.HR.TourPlan
                     File.Delete(xmlpath);
                     GVCustList.DataSource = "";
                     GVCustList.DataBind();
+                    GVCustList.Visible = false;
+                    btnSubmit.Visible = false;
+                    GVCustDetails.Visible = false;
                 }
                 else
                 {
+                    GVCustDetails.Visible = true;
+                    GVCustList.Visible = true;
+                    btnSubmit.Visible = true;
                     LoadXml();
                 }
-                GVCustDetails.Visible = true;
-                GVCustList.Visible = true;
-                btnSubmit.Visible = true;
+                
             }
             catch { }
         }

@@ -90,13 +90,13 @@
     
        <div class="tabs_container" style="text-align:left">Bill by Supplier<hr /></div>
          
-       <table>
+       <table style="width:850px">
         <tr> 
         <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>                                                                                      
          
         <td  style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>     
+        <td style="text-align:left;"><asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged"></asp:DropDownList></td>     
         </tr> 
            <tr>
             <td style="text-align:right;"><asp:Label ID="lblFrom" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
@@ -110,7 +110,7 @@
         <tr>                                                                                                        
         <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="PO Issuer"></asp:Label></td>
         <td style="text-align:left;">
-        <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"   ></asp:TextBox>
+        <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" placeholder="Search Issuer" CssClass="txtBox" AutoPostBack="true" Width="300px"   ></asp:TextBox>
         <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtPoUser"
         ServiceMethod="GetPoUserSearch" MinimumPrefixLength="1" CompletionSetCount="1"
         CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -121,8 +121,15 @@
         <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton" OnClick="btnPoUserShow_Click"  />
         </td>  
         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Supplier"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlSupplier" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
-          </asp:DropDownList>
+        <td><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="200px"      ></asp:TextBox>
+        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
+        ServiceMethod="GetMasterSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+        </cc1:AutoCompleteExtender>  
+
+        <%--<td style="text-align:left;"><asp:DropDownList ID="ddlSupplier" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
+          </asp:DropDownList>--%>
         <asp:Button ID="btnPoSuppShow" runat="server" Text="Show" OnClick="btnPoSuppShow_Click"     />
         </td> 
       </tr> 
@@ -163,7 +170,7 @@
                 <ItemTemplate><asp:Label ID="lblmonBillAmount" runat="server" Width="90px"  Text='<%# Bind("monBillAmount","{0:n2}") %>'></asp:Label></ItemTemplate>
                   <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Of Attachment" ItemStyle-HorizontalAlign="right"  Visible="false"  SortExpression="intAttachment" >
+                <asp:TemplateField HeaderText="Of Attachment" ItemStyle-HorizontalAlign="right"  Visible="true"  SortExpression="intAttachment" >
                 <ItemTemplate><asp:Label ID="lblIntAttachement"   runat="server"   Text='<%# Bind("intAttachment") %>'  ></asp:Label></ItemTemplate>
                  <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
 

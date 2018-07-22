@@ -116,5 +116,16 @@ namespace HR_DAL.Properties {
                 return ((string)(this["Archive_HRConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=sqlrw" +
+            ";Password=RWsql@123")]
+        public string ERP_VATConnectionString {
+            get {
+                return ((string)(this["ERP_VATConnectionString"]));
+            }
+        }
     }
 }

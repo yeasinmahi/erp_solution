@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace HR_DAL.Global {
+namespace HR_DAL.Payment {
     
     
     /// <summary>
@@ -20,21 +20,23 @@ namespace HR_DAL.Global {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("UnitTDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("TreasuryChallanTDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class UnitTDS : global::System.Data.DataSet {
+    public partial class TreasuryChallanTDS : global::System.Data.DataSet {
         
-        private TblUnitDataTable tableTblUnit;
+        private sprGetVATAccountByAccountsUserDataTable tablesprGetVATAccountByAccountsUser;
         
-        private SprGetUnitDataTable tableSprGetUnit;
+        private TblChallanListDataTable tableTblChallanList;
         
-        private SprGetPfUnitByLoginUserIdDataTable tableSprGetPfUnitByLoginUserId;
+        private TblDetailsDataTable tableTblDetails;
+        
+        private TblVatDataTable tableTblVat;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public UnitTDS() {
+        public TreasuryChallanTDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -45,7 +47,7 @@ namespace HR_DAL.Global {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected UnitTDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected TreasuryChallanTDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -58,14 +60,17 @@ namespace HR_DAL.Global {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["TblUnit"] != null)) {
-                    base.Tables.Add(new TblUnitDataTable(ds.Tables["TblUnit"]));
+                if ((ds.Tables["sprGetVATAccountByAccountsUser"] != null)) {
+                    base.Tables.Add(new sprGetVATAccountByAccountsUserDataTable(ds.Tables["sprGetVATAccountByAccountsUser"]));
                 }
-                if ((ds.Tables["SprGetUnit"] != null)) {
-                    base.Tables.Add(new SprGetUnitDataTable(ds.Tables["SprGetUnit"]));
+                if ((ds.Tables["TblChallanList"] != null)) {
+                    base.Tables.Add(new TblChallanListDataTable(ds.Tables["TblChallanList"]));
                 }
-                if ((ds.Tables["SprGetPfUnitByLoginUserId"] != null)) {
-                    base.Tables.Add(new SprGetPfUnitByLoginUserIdDataTable(ds.Tables["SprGetPfUnitByLoginUserId"]));
+                if ((ds.Tables["TblDetails"] != null)) {
+                    base.Tables.Add(new TblDetailsDataTable(ds.Tables["TblDetails"]));
+                }
+                if ((ds.Tables["TblVat"] != null)) {
+                    base.Tables.Add(new TblVatDataTable(ds.Tables["TblVat"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -89,9 +94,9 @@ namespace HR_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TblUnitDataTable TblUnit {
+        public sprGetVATAccountByAccountsUserDataTable sprGetVATAccountByAccountsUser {
             get {
-                return this.tableTblUnit;
+                return this.tablesprGetVATAccountByAccountsUser;
             }
         }
         
@@ -99,9 +104,9 @@ namespace HR_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprGetUnitDataTable SprGetUnit {
+        public TblChallanListDataTable TblChallanList {
             get {
-                return this.tableSprGetUnit;
+                return this.tableTblChallanList;
             }
         }
         
@@ -109,9 +114,19 @@ namespace HR_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprGetPfUnitByLoginUserIdDataTable SprGetPfUnitByLoginUserId {
+        public TblDetailsDataTable TblDetails {
             get {
-                return this.tableSprGetPfUnitByLoginUserId;
+                return this.tableTblDetails;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TblVatDataTable TblVat {
+            get {
+                return this.tableTblVat;
             }
         }
         
@@ -157,7 +172,7 @@ namespace HR_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            UnitTDS cln = ((UnitTDS)(base.Clone()));
+            TreasuryChallanTDS cln = ((TreasuryChallanTDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -182,14 +197,17 @@ namespace HR_DAL.Global {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["TblUnit"] != null)) {
-                    base.Tables.Add(new TblUnitDataTable(ds.Tables["TblUnit"]));
+                if ((ds.Tables["sprGetVATAccountByAccountsUser"] != null)) {
+                    base.Tables.Add(new sprGetVATAccountByAccountsUserDataTable(ds.Tables["sprGetVATAccountByAccountsUser"]));
                 }
-                if ((ds.Tables["SprGetUnit"] != null)) {
-                    base.Tables.Add(new SprGetUnitDataTable(ds.Tables["SprGetUnit"]));
+                if ((ds.Tables["TblChallanList"] != null)) {
+                    base.Tables.Add(new TblChallanListDataTable(ds.Tables["TblChallanList"]));
                 }
-                if ((ds.Tables["SprGetPfUnitByLoginUserId"] != null)) {
-                    base.Tables.Add(new SprGetPfUnitByLoginUserIdDataTable(ds.Tables["SprGetPfUnitByLoginUserId"]));
+                if ((ds.Tables["TblDetails"] != null)) {
+                    base.Tables.Add(new TblDetailsDataTable(ds.Tables["TblDetails"]));
+                }
+                if ((ds.Tables["TblVat"] != null)) {
+                    base.Tables.Add(new TblVatDataTable(ds.Tables["TblVat"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -224,22 +242,28 @@ namespace HR_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTblUnit = ((TblUnitDataTable)(base.Tables["TblUnit"]));
+            this.tablesprGetVATAccountByAccountsUser = ((sprGetVATAccountByAccountsUserDataTable)(base.Tables["sprGetVATAccountByAccountsUser"]));
             if ((initTable == true)) {
-                if ((this.tableTblUnit != null)) {
-                    this.tableTblUnit.InitVars();
+                if ((this.tablesprGetVATAccountByAccountsUser != null)) {
+                    this.tablesprGetVATAccountByAccountsUser.InitVars();
                 }
             }
-            this.tableSprGetUnit = ((SprGetUnitDataTable)(base.Tables["SprGetUnit"]));
+            this.tableTblChallanList = ((TblChallanListDataTable)(base.Tables["TblChallanList"]));
             if ((initTable == true)) {
-                if ((this.tableSprGetUnit != null)) {
-                    this.tableSprGetUnit.InitVars();
+                if ((this.tableTblChallanList != null)) {
+                    this.tableTblChallanList.InitVars();
                 }
             }
-            this.tableSprGetPfUnitByLoginUserId = ((SprGetPfUnitByLoginUserIdDataTable)(base.Tables["SprGetPfUnitByLoginUserId"]));
+            this.tableTblDetails = ((TblDetailsDataTable)(base.Tables["TblDetails"]));
             if ((initTable == true)) {
-                if ((this.tableSprGetPfUnitByLoginUserId != null)) {
-                    this.tableSprGetPfUnitByLoginUserId.InitVars();
+                if ((this.tableTblDetails != null)) {
+                    this.tableTblDetails.InitVars();
+                }
+            }
+            this.tableTblVat = ((TblVatDataTable)(base.Tables["TblVat"]));
+            if ((initTable == true)) {
+                if ((this.tableTblVat != null)) {
+                    this.tableTblVat.InitVars();
                 }
             }
         }
@@ -247,34 +271,42 @@ namespace HR_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "UnitTDS";
+            this.DataSetName = "TreasuryChallanTDS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/UnitTDS.xsd";
+            this.Namespace = "http://tempuri.org/TreasuryChallanTDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTblUnit = new TblUnitDataTable();
-            base.Tables.Add(this.tableTblUnit);
-            this.tableSprGetUnit = new SprGetUnitDataTable();
-            base.Tables.Add(this.tableSprGetUnit);
-            this.tableSprGetPfUnitByLoginUserId = new SprGetPfUnitByLoginUserIdDataTable();
-            base.Tables.Add(this.tableSprGetPfUnitByLoginUserId);
+            this.tablesprGetVATAccountByAccountsUser = new sprGetVATAccountByAccountsUserDataTable();
+            base.Tables.Add(this.tablesprGetVATAccountByAccountsUser);
+            this.tableTblChallanList = new TblChallanListDataTable();
+            base.Tables.Add(this.tableTblChallanList);
+            this.tableTblDetails = new TblDetailsDataTable();
+            base.Tables.Add(this.tableTblDetails);
+            this.tableTblVat = new TblVatDataTable();
+            base.Tables.Add(this.tableTblVat);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeTblUnit() {
+        private bool ShouldSerializesprGetVATAccountByAccountsUser() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprGetUnit() {
+        private bool ShouldSerializeTblChallanList() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprGetPfUnitByLoginUserId() {
+        private bool ShouldSerializeTblDetails() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeTblVat() {
             return false;
         }
         
@@ -289,7 +321,7 @@ namespace HR_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            UnitTDS ds = new UnitTDS();
+            TreasuryChallanTDS ds = new TreasuryChallanTDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -334,29 +366,38 @@ namespace HR_DAL.Global {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void TblUnitRowChangeEventHandler(object sender, TblUnitRowChangeEvent e);
+        public delegate void sprGetVATAccountByAccountsUserRowChangeEventHandler(object sender, sprGetVATAccountByAccountsUserRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprGetUnitRowChangeEventHandler(object sender, SprGetUnitRowChangeEvent e);
+        public delegate void TblChallanListRowChangeEventHandler(object sender, TblChallanListRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprGetPfUnitByLoginUserIdRowChangeEventHandler(object sender, SprGetPfUnitByLoginUserIdRowChangeEvent e);
+        public delegate void TblDetailsRowChangeEventHandler(object sender, TblDetailsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void TblVatRowChangeEventHandler(object sender, TblVatRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TblUnitDataTable : global::System.Data.TypedTableBase<TblUnitRow> {
+        public partial class sprGetVATAccountByAccountsUserDataTable : global::System.Data.TypedTableBase<sprGetVATAccountByAccountsUserRow> {
             
-            private global::System.Data.DataColumn columnintUnitID;
+            private global::System.Data.DataColumn columnintVatAccountID;
             
-            private global::System.Data.DataColumn columnstrUnit;
+            private global::System.Data.DataColumn columnstrDescription;
+            
+            private global::System.Data.DataColumn columnunit;
+            
+            private global::System.Data.DataColumn columnstrVatAccountName;
+            
+            private global::System.Data.DataColumn columnstrAddress;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitDataTable() {
-                this.TableName = "TblUnit";
+            public sprGetVATAccountByAccountsUserDataTable() {
+                this.TableName = "sprGetVATAccountByAccountsUser";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -364,7 +405,7 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal TblUnitDataTable(global::System.Data.DataTable table) {
+            internal sprGetVATAccountByAccountsUserDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -381,24 +422,48 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected TblUnitDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sprGetVATAccountByAccountsUserDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIDColumn {
+            public global::System.Data.DataColumn intVatAccountIDColumn {
                 get {
-                    return this.columnintUnitID;
+                    return this.columnintVatAccountID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strUnitColumn {
+            public global::System.Data.DataColumn strDescriptionColumn {
                 get {
-                    return this.columnstrUnit;
+                    return this.columnstrDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn unitColumn {
+                get {
+                    return this.columnunit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strVatAccountNameColumn {
+                get {
+                    return this.columnstrVatAccountName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strAddressColumn {
+                get {
+                    return this.columnstrAddress;
                 }
             }
             
@@ -413,53 +478,49 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitRow this[int index] {
+            public sprGetVATAccountByAccountsUserRow this[int index] {
                 get {
-                    return ((TblUnitRow)(this.Rows[index]));
+                    return ((sprGetVATAccountByAccountsUserRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblUnitRowChangeEventHandler TblUnitRowChanging;
+            public event sprGetVATAccountByAccountsUserRowChangeEventHandler sprGetVATAccountByAccountsUserRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblUnitRowChangeEventHandler TblUnitRowChanged;
+            public event sprGetVATAccountByAccountsUserRowChangeEventHandler sprGetVATAccountByAccountsUserRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblUnitRowChangeEventHandler TblUnitRowDeleting;
+            public event sprGetVATAccountByAccountsUserRowChangeEventHandler sprGetVATAccountByAccountsUserRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblUnitRowChangeEventHandler TblUnitRowDeleted;
+            public event sprGetVATAccountByAccountsUserRowChangeEventHandler sprGetVATAccountByAccountsUserRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddTblUnitRow(TblUnitRow row) {
+            public void AddsprGetVATAccountByAccountsUserRow(sprGetVATAccountByAccountsUserRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitRow AddTblUnitRow(string strUnit) {
-                TblUnitRow rowTblUnitRow = ((TblUnitRow)(this.NewRow()));
+            public sprGetVATAccountByAccountsUserRow AddsprGetVATAccountByAccountsUserRow(string strDescription, int unit, string strVatAccountName, string strAddress) {
+                sprGetVATAccountByAccountsUserRow rowsprGetVATAccountByAccountsUserRow = ((sprGetVATAccountByAccountsUserRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        strUnit};
-                rowTblUnitRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTblUnitRow);
-                return rowTblUnitRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitRow FindByintUnitID(int intUnitID) {
-                return ((TblUnitRow)(this.Rows.Find(new object[] {
-                            intUnitID})));
+                        strDescription,
+                        unit,
+                        strVatAccountName,
+                        strAddress};
+                rowsprGetVATAccountByAccountsUserRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprGetVATAccountByAccountsUserRow);
+                return rowsprGetVATAccountByAccountsUserRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TblUnitDataTable cln = ((TblUnitDataTable)(base.Clone()));
+                sprGetVATAccountByAccountsUserDataTable cln = ((sprGetVATAccountByAccountsUserDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -467,59 +528,67 @@ namespace HR_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TblUnitDataTable();
+                return new sprGetVATAccountByAccountsUserDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintUnitID = base.Columns["intUnitID"];
-                this.columnstrUnit = base.Columns["strUnit"];
+                this.columnintVatAccountID = base.Columns["intVatAccountID"];
+                this.columnstrDescription = base.Columns["strDescription"];
+                this.columnunit = base.Columns["unit"];
+                this.columnstrVatAccountName = base.Columns["strVatAccountName"];
+                this.columnstrAddress = base.Columns["strAddress"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitID);
-                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrUnit);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintUnitID}, true));
-                this.columnintUnitID.AutoIncrement = true;
-                this.columnintUnitID.AutoIncrementSeed = -1;
-                this.columnintUnitID.AutoIncrementStep = -1;
-                this.columnintUnitID.AllowDBNull = false;
-                this.columnintUnitID.ReadOnly = true;
-                this.columnintUnitID.Unique = true;
-                this.columnstrUnit.AllowDBNull = false;
-                this.columnstrUnit.MaxLength = 50;
+                this.columnintVatAccountID = new global::System.Data.DataColumn("intVatAccountID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintVatAccountID);
+                this.columnstrDescription = new global::System.Data.DataColumn("strDescription", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDescription);
+                this.columnunit = new global::System.Data.DataColumn("unit", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnunit);
+                this.columnstrVatAccountName = new global::System.Data.DataColumn("strVatAccountName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrVatAccountName);
+                this.columnstrAddress = new global::System.Data.DataColumn("strAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAddress);
+                this.columnintVatAccountID.AutoIncrement = true;
+                this.columnintVatAccountID.AutoIncrementSeed = -1;
+                this.columnintVatAccountID.AutoIncrementStep = -1;
+                this.columnintVatAccountID.AllowDBNull = false;
+                this.columnintVatAccountID.ReadOnly = true;
+                this.columnstrDescription.MaxLength = 250;
+                this.columnstrVatAccountName.MaxLength = 250;
+                this.columnstrAddress.ReadOnly = true;
+                this.columnstrAddress.MaxLength = 515;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitRow NewTblUnitRow() {
-                return ((TblUnitRow)(this.NewRow()));
+            public sprGetVATAccountByAccountsUserRow NewsprGetVATAccountByAccountsUserRow() {
+                return ((sprGetVATAccountByAccountsUserRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TblUnitRow(builder);
+                return new sprGetVATAccountByAccountsUserRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TblUnitRow);
+                return typeof(sprGetVATAccountByAccountsUserRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TblUnitRowChanged != null)) {
-                    this.TblUnitRowChanged(this, new TblUnitRowChangeEvent(((TblUnitRow)(e.Row)), e.Action));
+                if ((this.sprGetVATAccountByAccountsUserRowChanged != null)) {
+                    this.sprGetVATAccountByAccountsUserRowChanged(this, new sprGetVATAccountByAccountsUserRowChangeEvent(((sprGetVATAccountByAccountsUserRow)(e.Row)), e.Action));
                 }
             }
             
@@ -527,8 +596,8 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TblUnitRowChanging != null)) {
-                    this.TblUnitRowChanging(this, new TblUnitRowChangeEvent(((TblUnitRow)(e.Row)), e.Action));
+                if ((this.sprGetVATAccountByAccountsUserRowChanging != null)) {
+                    this.sprGetVATAccountByAccountsUserRowChanging(this, new sprGetVATAccountByAccountsUserRowChangeEvent(((sprGetVATAccountByAccountsUserRow)(e.Row)), e.Action));
                 }
             }
             
@@ -536,8 +605,8 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TblUnitRowDeleted != null)) {
-                    this.TblUnitRowDeleted(this, new TblUnitRowChangeEvent(((TblUnitRow)(e.Row)), e.Action));
+                if ((this.sprGetVATAccountByAccountsUserRowDeleted != null)) {
+                    this.sprGetVATAccountByAccountsUserRowDeleted(this, new sprGetVATAccountByAccountsUserRowChangeEvent(((sprGetVATAccountByAccountsUserRow)(e.Row)), e.Action));
                 }
             }
             
@@ -545,14 +614,14 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TblUnitRowDeleting != null)) {
-                    this.TblUnitRowDeleting(this, new TblUnitRowChangeEvent(((TblUnitRow)(e.Row)), e.Action));
+                if ((this.sprGetVATAccountByAccountsUserRowDeleting != null)) {
+                    this.sprGetVATAccountByAccountsUserRowDeleting(this, new sprGetVATAccountByAccountsUserRowChangeEvent(((sprGetVATAccountByAccountsUserRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveTblUnitRow(TblUnitRow row) {
+            public void RemovesprGetVATAccountByAccountsUserRow(sprGetVATAccountByAccountsUserRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -561,7 +630,7 @@ namespace HR_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                UnitTDS ds = new UnitTDS();
+                TreasuryChallanTDS ds = new TreasuryChallanTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -579,7 +648,7 @@ namespace HR_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TblUnitDataTable";
+                attribute2.FixedValue = "sprGetVATAccountByAccountsUserDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -625,16 +694,16 @@ namespace HR_DAL.Global {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprGetUnitDataTable : global::System.Data.TypedTableBase<SprGetUnitRow> {
+        public partial class TblChallanListDataTable : global::System.Data.TypedTableBase<TblChallanListRow> {
             
-            private global::System.Data.DataColumn columnintUnitID;
+            private global::System.Data.DataColumn columnstrTreasury;
             
-            private global::System.Data.DataColumn columnstrUnit;
+            private global::System.Data.DataColumn columnintAutoID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitDataTable() {
-                this.TableName = "SprGetUnit";
+            public TblChallanListDataTable() {
+                this.TableName = "TblChallanList";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -642,7 +711,7 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprGetUnitDataTable(global::System.Data.DataTable table) {
+            internal TblChallanListDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -659,24 +728,24 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprGetUnitDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TblChallanListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIDColumn {
+            public global::System.Data.DataColumn strTreasuryColumn {
                 get {
-                    return this.columnintUnitID;
+                    return this.columnstrTreasury;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strUnitColumn {
+            public global::System.Data.DataColumn intAutoIDColumn {
                 get {
-                    return this.columnstrUnit;
+                    return this.columnintAutoID;
                 }
             }
             
@@ -691,53 +760,46 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitRow this[int index] {
+            public TblChallanListRow this[int index] {
                 get {
-                    return ((SprGetUnitRow)(this.Rows[index]));
+                    return ((TblChallanListRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetUnitRowChangeEventHandler SprGetUnitRowChanging;
+            public event TblChallanListRowChangeEventHandler TblChallanListRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetUnitRowChangeEventHandler SprGetUnitRowChanged;
+            public event TblChallanListRowChangeEventHandler TblChallanListRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetUnitRowChangeEventHandler SprGetUnitRowDeleting;
+            public event TblChallanListRowChangeEventHandler TblChallanListRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetUnitRowChangeEventHandler SprGetUnitRowDeleted;
+            public event TblChallanListRowChangeEventHandler TblChallanListRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprGetUnitRow(SprGetUnitRow row) {
+            public void AddTblChallanListRow(TblChallanListRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitRow AddSprGetUnitRow(string strUnit) {
-                SprGetUnitRow rowSprGetUnitRow = ((SprGetUnitRow)(this.NewRow()));
+            public TblChallanListRow AddTblChallanListRow(string strTreasury) {
+                TblChallanListRow rowTblChallanListRow = ((TblChallanListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        strUnit};
-                rowSprGetUnitRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprGetUnitRow);
-                return rowSprGetUnitRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitRow FindByintUnitID(int intUnitID) {
-                return ((SprGetUnitRow)(this.Rows.Find(new object[] {
-                            intUnitID})));
+                        strTreasury,
+                        null};
+                rowTblChallanListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblChallanListRow);
+                return rowTblChallanListRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SprGetUnitDataTable cln = ((SprGetUnitDataTable)(base.Clone()));
+                TblChallanListDataTable cln = ((TblChallanListDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -745,58 +807,56 @@ namespace HR_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SprGetUnitDataTable();
+                return new TblChallanListDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintUnitID = base.Columns["intUnitID"];
-                this.columnstrUnit = base.Columns["strUnit"];
+                this.columnstrTreasury = base.Columns["strTreasury"];
+                this.columnintAutoID = base.Columns["intAutoID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitID);
-                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrUnit);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintUnitID}, true));
-                this.columnintUnitID.AutoIncrement = true;
-                this.columnintUnitID.AutoIncrementSeed = -1;
-                this.columnintUnitID.AutoIncrementStep = -1;
-                this.columnintUnitID.AllowDBNull = false;
-                this.columnintUnitID.ReadOnly = true;
-                this.columnintUnitID.Unique = true;
-                this.columnstrUnit.MaxLength = 50;
+                this.columnstrTreasury = new global::System.Data.DataColumn("strTreasury", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTreasury);
+                this.columnintAutoID = new global::System.Data.DataColumn("intAutoID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintAutoID);
+                this.columnstrTreasury.ReadOnly = true;
+                this.columnstrTreasury.MaxLength = 275;
+                this.columnintAutoID.AutoIncrement = true;
+                this.columnintAutoID.AutoIncrementSeed = -1;
+                this.columnintAutoID.AutoIncrementStep = -1;
+                this.columnintAutoID.AllowDBNull = false;
+                this.columnintAutoID.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitRow NewSprGetUnitRow() {
-                return ((SprGetUnitRow)(this.NewRow()));
+            public TblChallanListRow NewTblChallanListRow() {
+                return ((TblChallanListRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprGetUnitRow(builder);
+                return new TblChallanListRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SprGetUnitRow);
+                return typeof(TblChallanListRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SprGetUnitRowChanged != null)) {
-                    this.SprGetUnitRowChanged(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
+                if ((this.TblChallanListRowChanged != null)) {
+                    this.TblChallanListRowChanged(this, new TblChallanListRowChangeEvent(((TblChallanListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -804,8 +864,8 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SprGetUnitRowChanging != null)) {
-                    this.SprGetUnitRowChanging(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
+                if ((this.TblChallanListRowChanging != null)) {
+                    this.TblChallanListRowChanging(this, new TblChallanListRowChangeEvent(((TblChallanListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -813,8 +873,8 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SprGetUnitRowDeleted != null)) {
-                    this.SprGetUnitRowDeleted(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
+                if ((this.TblChallanListRowDeleted != null)) {
+                    this.TblChallanListRowDeleted(this, new TblChallanListRowChangeEvent(((TblChallanListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -822,14 +882,14 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SprGetUnitRowDeleting != null)) {
-                    this.SprGetUnitRowDeleting(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
+                if ((this.TblChallanListRowDeleting != null)) {
+                    this.TblChallanListRowDeleting(this, new TblChallanListRowChangeEvent(((TblChallanListRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprGetUnitRow(SprGetUnitRow row) {
+            public void RemoveTblChallanListRow(TblChallanListRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -838,7 +898,7 @@ namespace HR_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                UnitTDS ds = new UnitTDS();
+                TreasuryChallanTDS ds = new TreasuryChallanTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -856,7 +916,7 @@ namespace HR_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprGetUnitDataTable";
+                attribute2.FixedValue = "TblChallanListDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -902,16 +962,24 @@ namespace HR_DAL.Global {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprGetPfUnitByLoginUserIdDataTable : global::System.Data.TypedTableBase<SprGetPfUnitByLoginUserIdRow> {
+        public partial class TblDetailsDataTable : global::System.Data.TypedTableBase<TblDetailsRow> {
             
-            private global::System.Data.DataColumn columnstrUnit;
+            private global::System.Data.DataColumn columnstrDepositorName;
             
-            private global::System.Data.DataColumn columnintPfUnitId;
+            private global::System.Data.DataColumn columnstrDepositorAddress;
+            
+            private global::System.Data.DataColumn columnmonAmount;
+            
+            private global::System.Data.DataColumn columnColumn1;
+            
+            private global::System.Data.DataColumn columnstrTreasuryDepositDescription;
+            
+            private global::System.Data.DataColumn columnColumn2;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetPfUnitByLoginUserIdDataTable() {
-                this.TableName = "SprGetPfUnitByLoginUserId";
+            public TblDetailsDataTable() {
+                this.TableName = "TblDetails";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -919,7 +987,7 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprGetPfUnitByLoginUserIdDataTable(global::System.Data.DataTable table) {
+            internal TblDetailsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -936,24 +1004,56 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprGetPfUnitByLoginUserIdDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TblDetailsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strUnitColumn {
+            public global::System.Data.DataColumn strDepositorNameColumn {
                 get {
-                    return this.columnstrUnit;
+                    return this.columnstrDepositorName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intPfUnitIdColumn {
+            public global::System.Data.DataColumn strDepositorAddressColumn {
                 get {
-                    return this.columnintPfUnitId;
+                    return this.columnstrDepositorAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monAmountColumn {
+                get {
+                    return this.columnmonAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Column1Column {
+                get {
+                    return this.columnColumn1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strTreasuryDepositDescriptionColumn {
+                get {
+                    return this.columnstrTreasuryDepositDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Column2Column {
+                get {
+                    return this.columnColumn2;
                 }
             }
             
@@ -968,46 +1068,50 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetPfUnitByLoginUserIdRow this[int index] {
+            public TblDetailsRow this[int index] {
                 get {
-                    return ((SprGetPfUnitByLoginUserIdRow)(this.Rows[index]));
+                    return ((TblDetailsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetPfUnitByLoginUserIdRowChangeEventHandler SprGetPfUnitByLoginUserIdRowChanging;
+            public event TblDetailsRowChangeEventHandler TblDetailsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetPfUnitByLoginUserIdRowChangeEventHandler SprGetPfUnitByLoginUserIdRowChanged;
+            public event TblDetailsRowChangeEventHandler TblDetailsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetPfUnitByLoginUserIdRowChangeEventHandler SprGetPfUnitByLoginUserIdRowDeleting;
+            public event TblDetailsRowChangeEventHandler TblDetailsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprGetPfUnitByLoginUserIdRowChangeEventHandler SprGetPfUnitByLoginUserIdRowDeleted;
+            public event TblDetailsRowChangeEventHandler TblDetailsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprGetPfUnitByLoginUserIdRow(SprGetPfUnitByLoginUserIdRow row) {
+            public void AddTblDetailsRow(TblDetailsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetPfUnitByLoginUserIdRow AddSprGetPfUnitByLoginUserIdRow(string strUnit, int intPfUnitId) {
-                SprGetPfUnitByLoginUserIdRow rowSprGetPfUnitByLoginUserIdRow = ((SprGetPfUnitByLoginUserIdRow)(this.NewRow()));
+            public TblDetailsRow AddTblDetailsRow(string strDepositorName, string strDepositorAddress, decimal monAmount, string Column1, string strTreasuryDepositDescription, int Column2) {
+                TblDetailsRow rowTblDetailsRow = ((TblDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        strUnit,
-                        intPfUnitId};
-                rowSprGetPfUnitByLoginUserIdRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprGetPfUnitByLoginUserIdRow);
-                return rowSprGetPfUnitByLoginUserIdRow;
+                        strDepositorName,
+                        strDepositorAddress,
+                        monAmount,
+                        Column1,
+                        strTreasuryDepositDescription,
+                        Column2};
+                rowTblDetailsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblDetailsRow);
+                return rowTblDetailsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SprGetPfUnitByLoginUserIdDataTable cln = ((SprGetPfUnitByLoginUserIdDataTable)(base.Clone()));
+                TblDetailsDataTable cln = ((TblDetailsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1015,51 +1119,68 @@ namespace HR_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SprGetPfUnitByLoginUserIdDataTable();
+                return new TblDetailsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnstrUnit = base.Columns["strUnit"];
-                this.columnintPfUnitId = base.Columns["intPfUnitId"];
+                this.columnstrDepositorName = base.Columns["strDepositorName"];
+                this.columnstrDepositorAddress = base.Columns["strDepositorAddress"];
+                this.columnmonAmount = base.Columns["monAmount"];
+                this.columnColumn1 = base.Columns["Column1"];
+                this.columnstrTreasuryDepositDescription = base.Columns["strTreasuryDepositDescription"];
+                this.columnColumn2 = base.Columns["Column2"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrUnit);
-                this.columnintPfUnitId = new global::System.Data.DataColumn("intPfUnitId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintPfUnitId);
-                this.columnstrUnit.AllowDBNull = false;
-                this.columnstrUnit.MaxLength = 50;
+                this.columnstrDepositorName = new global::System.Data.DataColumn("strDepositorName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDepositorName);
+                this.columnstrDepositorAddress = new global::System.Data.DataColumn("strDepositorAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDepositorAddress);
+                this.columnmonAmount = new global::System.Data.DataColumn("monAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonAmount);
+                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn1);
+                this.columnstrTreasuryDepositDescription = new global::System.Data.DataColumn("strTreasuryDepositDescription", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTreasuryDepositDescription);
+                this.columnColumn2 = new global::System.Data.DataColumn("Column2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn2);
+                this.columnstrDepositorName.MaxLength = 250;
+                this.columnstrDepositorAddress.MaxLength = 2147483647;
+                this.columnColumn1.ReadOnly = true;
+                this.columnColumn1.MaxLength = 216;
+                this.columnstrTreasuryDepositDescription.AllowDBNull = false;
+                this.columnstrTreasuryDepositDescription.MaxLength = 200;
+                this.columnColumn2.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetPfUnitByLoginUserIdRow NewSprGetPfUnitByLoginUserIdRow() {
-                return ((SprGetPfUnitByLoginUserIdRow)(this.NewRow()));
+            public TblDetailsRow NewTblDetailsRow() {
+                return ((TblDetailsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprGetPfUnitByLoginUserIdRow(builder);
+                return new TblDetailsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SprGetPfUnitByLoginUserIdRow);
+                return typeof(TblDetailsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SprGetPfUnitByLoginUserIdRowChanged != null)) {
-                    this.SprGetPfUnitByLoginUserIdRowChanged(this, new SprGetPfUnitByLoginUserIdRowChangeEvent(((SprGetPfUnitByLoginUserIdRow)(e.Row)), e.Action));
+                if ((this.TblDetailsRowChanged != null)) {
+                    this.TblDetailsRowChanged(this, new TblDetailsRowChangeEvent(((TblDetailsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1067,8 +1188,8 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SprGetPfUnitByLoginUserIdRowChanging != null)) {
-                    this.SprGetPfUnitByLoginUserIdRowChanging(this, new SprGetPfUnitByLoginUserIdRowChangeEvent(((SprGetPfUnitByLoginUserIdRow)(e.Row)), e.Action));
+                if ((this.TblDetailsRowChanging != null)) {
+                    this.TblDetailsRowChanging(this, new TblDetailsRowChangeEvent(((TblDetailsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1076,8 +1197,8 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SprGetPfUnitByLoginUserIdRowDeleted != null)) {
-                    this.SprGetPfUnitByLoginUserIdRowDeleted(this, new SprGetPfUnitByLoginUserIdRowChangeEvent(((SprGetPfUnitByLoginUserIdRow)(e.Row)), e.Action));
+                if ((this.TblDetailsRowDeleted != null)) {
+                    this.TblDetailsRowDeleted(this, new TblDetailsRowChangeEvent(((TblDetailsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1085,14 +1206,14 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SprGetPfUnitByLoginUserIdRowDeleting != null)) {
-                    this.SprGetPfUnitByLoginUserIdRowDeleting(this, new SprGetPfUnitByLoginUserIdRowChangeEvent(((SprGetPfUnitByLoginUserIdRow)(e.Row)), e.Action));
+                if ((this.TblDetailsRowDeleting != null)) {
+                    this.TblDetailsRowDeleting(this, new TblDetailsRowChangeEvent(((TblDetailsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprGetPfUnitByLoginUserIdRow(SprGetPfUnitByLoginUserIdRow row) {
+            public void RemoveTblDetailsRow(TblDetailsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1101,7 +1222,7 @@ namespace HR_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                UnitTDS ds = new UnitTDS();
+                TreasuryChallanTDS ds = new TreasuryChallanTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1119,7 +1240,270 @@ namespace HR_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprGetPfUnitByLoginUserIdDataTable";
+                attribute2.FixedValue = "TblDetailsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TblVatDataTable : global::System.Data.TypedTableBase<TblVatRow> {
+            
+            private global::System.Data.DataColumn columnstrTreasuryCode;
+            
+            private global::System.Data.DataColumn columnstrVATRegNo;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblVatDataTable() {
+                this.TableName = "TblVat";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal TblVatDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected TblVatDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strTreasuryCodeColumn {
+                get {
+                    return this.columnstrTreasuryCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strVATRegNoColumn {
+                get {
+                    return this.columnstrVATRegNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblVatRow this[int index] {
+                get {
+                    return ((TblVatRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblVatRowChangeEventHandler TblVatRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblVatRowChangeEventHandler TblVatRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblVatRowChangeEventHandler TblVatRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event TblVatRowChangeEventHandler TblVatRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddTblVatRow(TblVatRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblVatRow AddTblVatRow(string strTreasuryCode, string strVATRegNo) {
+                TblVatRow rowTblVatRow = ((TblVatRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        strTreasuryCode,
+                        strVATRegNo};
+                rowTblVatRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblVatRow);
+                return rowTblVatRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TblVatDataTable cln = ((TblVatDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TblVatDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnstrTreasuryCode = base.Columns["strTreasuryCode"];
+                this.columnstrVATRegNo = base.Columns["strVATRegNo"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnstrTreasuryCode = new global::System.Data.DataColumn("strTreasuryCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTreasuryCode);
+                this.columnstrVATRegNo = new global::System.Data.DataColumn("strVATRegNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrVATRegNo);
+                this.columnstrTreasuryCode.MaxLength = 250;
+                this.columnstrVATRegNo.MaxLength = 250;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblVatRow NewTblVatRow() {
+                return ((TblVatRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TblVatRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TblVatRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TblVatRowChanged != null)) {
+                    this.TblVatRowChanged(this, new TblVatRowChangeEvent(((TblVatRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TblVatRowChanging != null)) {
+                    this.TblVatRowChanging(this, new TblVatRowChangeEvent(((TblVatRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TblVatRowDeleted != null)) {
+                    this.TblVatRowDeleted(this, new TblVatRowChangeEvent(((TblVatRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TblVatRowDeleting != null)) {
+                    this.TblVatRowDeleting(this, new TblVatRowChangeEvent(((TblVatRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveTblVatRow(TblVatRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                TreasuryChallanTDS ds = new TreasuryChallanTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TblVatDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1163,146 +1547,432 @@ namespace HR_DAL.Global {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TblUnitRow : global::System.Data.DataRow {
+        public partial class sprGetVATAccountByAccountsUserRow : global::System.Data.DataRow {
             
-            private TblUnitDataTable tableTblUnit;
+            private sprGetVATAccountByAccountsUserDataTable tablesprGetVATAccountByAccountsUser;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal TblUnitRow(global::System.Data.DataRowBuilder rb) : 
+            internal sprGetVATAccountByAccountsUserRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTblUnit = ((TblUnitDataTable)(this.Table));
+                this.tablesprGetVATAccountByAccountsUser = ((sprGetVATAccountByAccountsUserDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intUnitID {
+            public int intVatAccountID {
                 get {
-                    return ((int)(this[this.tableTblUnit.intUnitIDColumn]));
+                    return ((int)(this[this.tablesprGetVATAccountByAccountsUser.intVatAccountIDColumn]));
                 }
                 set {
-                    this[this.tableTblUnit.intUnitIDColumn] = value;
+                    this[this.tablesprGetVATAccountByAccountsUser.intVatAccountIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strUnit {
+            public string strDescription {
                 get {
-                    return ((string)(this[this.tableTblUnit.strUnitColumn]));
+                    try {
+                        return ((string)(this[this.tablesprGetVATAccountByAccountsUser.strDescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDescription\' in table \'sprGetVATAccountByAccountsUser\' i" +
+                                "s DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableTblUnit.strUnitColumn] = value;
+                    this[this.tablesprGetVATAccountByAccountsUser.strDescriptionColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int unit {
+                get {
+                    try {
+                        return ((int)(this[this.tablesprGetVATAccountByAccountsUser.unitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'unit\' in table \'sprGetVATAccountByAccountsUser\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprGetVATAccountByAccountsUser.unitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strVatAccountName {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprGetVATAccountByAccountsUser.strVatAccountNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strVatAccountName\' in table \'sprGetVATAccountByAccountsUser" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprGetVATAccountByAccountsUser.strVatAccountNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprGetVATAccountByAccountsUser.strAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAddress\' in table \'sprGetVATAccountByAccountsUser\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprGetVATAccountByAccountsUser.strAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDescriptionNull() {
+                return this.IsNull(this.tablesprGetVATAccountByAccountsUser.strDescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDescriptionNull() {
+                this[this.tablesprGetVATAccountByAccountsUser.strDescriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsunitNull() {
+                return this.IsNull(this.tablesprGetVATAccountByAccountsUser.unitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetunitNull() {
+                this[this.tablesprGetVATAccountByAccountsUser.unitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrVatAccountNameNull() {
+                return this.IsNull(this.tablesprGetVATAccountByAccountsUser.strVatAccountNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrVatAccountNameNull() {
+                this[this.tablesprGetVATAccountByAccountsUser.strVatAccountNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrAddressNull() {
+                return this.IsNull(this.tablesprGetVATAccountByAccountsUser.strAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrAddressNull() {
+                this[this.tablesprGetVATAccountByAccountsUser.strAddressColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SprGetUnitRow : global::System.Data.DataRow {
+        public partial class TblChallanListRow : global::System.Data.DataRow {
             
-            private SprGetUnitDataTable tableSprGetUnit;
+            private TblChallanListDataTable tableTblChallanList;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprGetUnitRow(global::System.Data.DataRowBuilder rb) : 
+            internal TblChallanListRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSprGetUnit = ((SprGetUnitDataTable)(this.Table));
+                this.tableTblChallanList = ((TblChallanListDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intUnitID {
-                get {
-                    return ((int)(this[this.tableSprGetUnit.intUnitIDColumn]));
-                }
-                set {
-                    this[this.tableSprGetUnit.intUnitIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strUnit {
+            public string strTreasury {
                 get {
                     try {
-                        return ((string)(this[this.tableSprGetUnit.strUnitColumn]));
+                        return ((string)(this[this.tableTblChallanList.strTreasuryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strUnit\' in table \'SprGetUnit\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTreasury\' in table \'TblChallanList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSprGetUnit.strUnitColumn] = value;
+                    this[this.tableTblChallanList.strTreasuryColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrUnitNull() {
-                return this.IsNull(this.tableSprGetUnit.strUnitColumn);
+            public int intAutoID {
+                get {
+                    return ((int)(this[this.tableTblChallanList.intAutoIDColumn]));
+                }
+                set {
+                    this[this.tableTblChallanList.intAutoIDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrUnitNull() {
-                this[this.tableSprGetUnit.strUnitColumn] = global::System.Convert.DBNull;
+            public bool IsstrTreasuryNull() {
+                return this.IsNull(this.tableTblChallanList.strTreasuryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrTreasuryNull() {
+                this[this.tableTblChallanList.strTreasuryColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SprGetPfUnitByLoginUserIdRow : global::System.Data.DataRow {
+        public partial class TblDetailsRow : global::System.Data.DataRow {
             
-            private SprGetPfUnitByLoginUserIdDataTable tableSprGetPfUnitByLoginUserId;
+            private TblDetailsDataTable tableTblDetails;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprGetPfUnitByLoginUserIdRow(global::System.Data.DataRowBuilder rb) : 
+            internal TblDetailsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSprGetPfUnitByLoginUserId = ((SprGetPfUnitByLoginUserIdDataTable)(this.Table));
+                this.tableTblDetails = ((TblDetailsDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strUnit {
-                get {
-                    return ((string)(this[this.tableSprGetPfUnitByLoginUserId.strUnitColumn]));
-                }
-                set {
-                    this[this.tableSprGetPfUnitByLoginUserId.strUnitColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intPfUnitId {
+            public string strDepositorName {
                 get {
                     try {
-                        return ((int)(this[this.tableSprGetPfUnitByLoginUserId.intPfUnitIdColumn]));
+                        return ((string)(this[this.tableTblDetails.strDepositorNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intPfUnitId\' in table \'SprGetPfUnitByLoginUserId\' is DBNull" +
-                                ".", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDepositorName\' in table \'TblDetails\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSprGetPfUnitByLoginUserId.intPfUnitIdColumn] = value;
+                    this[this.tableTblDetails.strDepositorNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintPfUnitIdNull() {
-                return this.IsNull(this.tableSprGetPfUnitByLoginUserId.intPfUnitIdColumn);
+            public string strDepositorAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblDetails.strDepositorAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDepositorAddress\' in table \'TblDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDetails.strDepositorAddressColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintPfUnitIdNull() {
-                this[this.tableSprGetPfUnitByLoginUserId.intPfUnitIdColumn] = global::System.Convert.DBNull;
+            public decimal monAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDetails.monAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monAmount\' in table \'TblDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDetails.monAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Column1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblDetails.Column1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'TblDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDetails.Column1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strTreasuryDepositDescription {
+                get {
+                    return ((string)(this[this.tableTblDetails.strTreasuryDepositDescriptionColumn]));
+                }
+                set {
+                    this[this.tableTblDetails.strTreasuryDepositDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Column2 {
+                get {
+                    try {
+                        return ((int)(this[this.tableTblDetails.Column2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column2\' in table \'TblDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDetails.Column2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDepositorNameNull() {
+                return this.IsNull(this.tableTblDetails.strDepositorNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDepositorNameNull() {
+                this[this.tableTblDetails.strDepositorNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDepositorAddressNull() {
+                return this.IsNull(this.tableTblDetails.strDepositorAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDepositorAddressNull() {
+                this[this.tableTblDetails.strDepositorAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonAmountNull() {
+                return this.IsNull(this.tableTblDetails.monAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonAmountNull() {
+                this[this.tableTblDetails.monAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsColumn1Null() {
+                return this.IsNull(this.tableTblDetails.Column1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetColumn1Null() {
+                this[this.tableTblDetails.Column1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsColumn2Null() {
+                return this.IsNull(this.tableTblDetails.Column2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetColumn2Null() {
+                this[this.tableTblDetails.Column2Column] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TblVatRow : global::System.Data.DataRow {
+            
+            private TblVatDataTable tableTblVat;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal TblVatRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTblVat = ((TblVatDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strTreasuryCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblVat.strTreasuryCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTreasuryCode\' in table \'TblVat\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblVat.strTreasuryCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strVATRegNo {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblVat.strVATRegNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strVATRegNo\' in table \'TblVat\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblVat.strVATRegNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrTreasuryCodeNull() {
+                return this.IsNull(this.tableTblVat.strTreasuryCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrTreasuryCodeNull() {
+                this[this.tableTblVat.strTreasuryCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrVATRegNoNull() {
+                return this.IsNull(this.tableTblVat.strVATRegNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrVATRegNoNull() {
+                this[this.tableTblVat.strVATRegNoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1310,22 +1980,22 @@ namespace HR_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class TblUnitRowChangeEvent : global::System.EventArgs {
+        public class sprGetVATAccountByAccountsUserRowChangeEvent : global::System.EventArgs {
             
-            private TblUnitRow eventRow;
+            private sprGetVATAccountByAccountsUserRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitRowChangeEvent(TblUnitRow row, global::System.Data.DataRowAction action) {
+            public sprGetVATAccountByAccountsUserRowChangeEvent(sprGetVATAccountByAccountsUserRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblUnitRow Row {
+            public sprGetVATAccountByAccountsUserRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1344,22 +2014,22 @@ namespace HR_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprGetUnitRowChangeEvent : global::System.EventArgs {
+        public class TblChallanListRowChangeEvent : global::System.EventArgs {
             
-            private SprGetUnitRow eventRow;
+            private TblChallanListRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitRowChangeEvent(SprGetUnitRow row, global::System.Data.DataRowAction action) {
+            public TblChallanListRowChangeEvent(TblChallanListRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetUnitRow Row {
+            public TblChallanListRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1378,22 +2048,56 @@ namespace HR_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprGetPfUnitByLoginUserIdRowChangeEvent : global::System.EventArgs {
+        public class TblDetailsRowChangeEvent : global::System.EventArgs {
             
-            private SprGetPfUnitByLoginUserIdRow eventRow;
+            private TblDetailsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetPfUnitByLoginUserIdRowChangeEvent(SprGetPfUnitByLoginUserIdRow row, global::System.Data.DataRowAction action) {
+            public TblDetailsRowChangeEvent(TblDetailsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGetPfUnitByLoginUserIdRow Row {
+            public TblDetailsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class TblVatRowChangeEvent : global::System.EventArgs {
+            
+            private TblVatRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblVatRowChangeEvent(TblVatRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblVatRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1409,7 +2113,7 @@ namespace HR_DAL.Global {
         }
     }
 }
-namespace HR_DAL.Global.UnitTDSTableAdapters {
+namespace HR_DAL.Payment.TreasuryChallanTDSTableAdapters {
     
     
     /// <summary>
@@ -1421,7 +2125,7 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TblUnitTableAdapter : global::System.ComponentModel.Component {
+    public partial class sprGetVATAccountByAccountsUserTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1435,7 +2139,7 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public TblUnitTableAdapter() {
+        public sprGetVATAccountByAccountsUserTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1532,225 +2236,12 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TblUnit";
-            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
-            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[tblUnit] WHERE (([intUnitID] = @Original_intUnitID) AND ([strU" +
-                "nit] = @Original_strUnit))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strUnit", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[tblUnit] SET [strUnit] = @strUnit WHERE (([intUnitID] = @Original_i" +
-                "ntUnitID) AND ([strUnit] = @Original_strUnit));\r\nSELECT intUnitID, strUnit FROM " +
-                "tblUnit WHERE (intUnitID = @intUnitID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUnit", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strUnit", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_HRConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT intUnitID, strUnit FROM dbo.tblUnit";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT intUnitID, strUnit FROM dbo.tblUnit\r\nwhere ysnEnable = 1";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UnitTDS.TblUnitDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            UnitTDS.TblUnitDataTable dataTable = new UnitTDS.TblUnitDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual UnitTDS.TblUnitDataTable GetActiveData() {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            UnitTDS.TblUnitDataTable dataTable = new UnitTDS.TblUnitDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(UnitTDS.TblUnitDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(UnitTDS dataSet) {
-            return this.Adapter.Update(dataSet, "TblUnit");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprGetUnitTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprGetUnitTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprGetUnit";
-            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
-            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
+            tableMapping.DataSetTable = "sprGetVATAccountByAccountsUser";
+            tableMapping.ColumnMappings.Add("intVatAccountID", "intVatAccountID");
+            tableMapping.ColumnMappings.Add("strDescription", "strDescription");
+            tableMapping.ColumnMappings.Add("unit", "unit");
+            tableMapping.ColumnMappings.Add("strVatAccountName", "strVatAccountName");
+            tableMapping.ColumnMappings.Add("strAddress", "strAddress");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1758,7 +2249,7 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_HRConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_VATConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1767,25 +2258,25 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprGetUnit";
+            this._commandCollection[0].CommandText = "dbo.sprGetVATAccountByAccountsUser";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUserID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUser", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UnitTDS.SprGetUnitDataTable GetData(global::System.Nullable<int> intUserID) {
+        public virtual TreasuryChallanTDS.sprGetVATAccountByAccountsUserDataTable GetUnitByUserId(global::System.Nullable<int> intUser) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intUserID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUserID.Value));
+            if ((intUser.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUser.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            UnitTDS.SprGetUnitDataTable dataTable = new UnitTDS.SprGetUnitDataTable();
+            TreasuryChallanTDS.sprGetVATAccountByAccountsUserDataTable dataTable = new TreasuryChallanTDS.sprGetVATAccountByAccountsUserDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1800,7 +2291,7 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprGetPfUnitByLoginUserIdTableAdapter : global::System.ComponentModel.Component {
+    public partial class TblChallanListTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1814,7 +2305,7 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprGetPfUnitByLoginUserIdTableAdapter() {
+        public TblChallanListTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1911,9 +2402,9 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprGetPfUnitByLoginUserId";
-            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
-            tableMapping.ColumnMappings.Add("intPfUnitId", "intPfUnitId");
+            tableMapping.DataSetTable = "TblChallanList";
+            tableMapping.ColumnMappings.Add("strTreasury", "strTreasury");
+            tableMapping.ColumnMappings.Add("intAutoID", "intAutoID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1921,7 +2412,7 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_HRConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_VATConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1930,23 +2421,348 @@ namespace HR_DAL.Global.UnitTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        tblUnitPfConfiguration.intPfUnitId, tblUnit.strUnit
-FROM            tblEmployee INNER JOIN
-                         tblUnitPfConfiguration ON tblEmployee.intUnitID = tblUnitPfConfiguration.intUnitId INNER JOIN
-                         tblUnit ON tblUnit.intUnitID = tblUnitPfConfiguration.intPfUnitId
-WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUnit = 1)";
+            this._commandCollection[0].CommandText = @"SELECT trc.strTreasuryDepositDescription+' ('+ isnull(tr.strBPVoucherNo,'')+': ' + CONVERT(VARCHAR(20), tr.monAmount, 1)+')' AS strTreasury, tr.intAutoID 
+FROM ERP_VAT.dbo.tblVATTreasuryDeposit tr JOIN ERP_VAT.dbo.tblConfigTreasuryDepositCode trc ON tr.intTrDepositID=trc.intTreasuryDepositID
+ WHERE intVatAccountID=@intVatAccountID AND ISNULL(ysnComplete,0)=0";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLoginUserId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intVatAccountID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVatAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UnitTDS.SprGetPfUnitByLoginUserIdDataTable GetAllPfUnitIdAndName(int intLoginUserId) {
+        public virtual TreasuryChallanTDS.TblChallanListDataTable GetChallanDataByVatAcountId(global::System.Nullable<int> intVatAccountID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intLoginUserId));
-            UnitTDS.SprGetPfUnitByLoginUserIdDataTable dataTable = new UnitTDS.SprGetPfUnitByLoginUserIdDataTable();
+            if ((intVatAccountID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intVatAccountID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            TreasuryChallanTDS.TblChallanListDataTable dataTable = new TreasuryChallanTDS.TblChallanListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TblDetailsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public TblDetailsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TblDetails";
+            tableMapping.ColumnMappings.Add("strDepositorName", "strDepositorName");
+            tableMapping.ColumnMappings.Add("strDepositorAddress", "strDepositorAddress");
+            tableMapping.ColumnMappings.Add("monAmount", "monAmount");
+            tableMapping.ColumnMappings.Add("Column1", "Column1");
+            tableMapping.ColumnMappings.Add("strTreasuryDepositDescription", "strTreasuryDepositDescription");
+            tableMapping.ColumnMappings.Add("Column2", "Column2");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_VATConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @" SELECT strDepositorName, strDepositorAddress, tc.strTreasuryDepositDescription,+ ' Cheque No: '+CHAR(13)+'  Date: '+ CONVERT(VARCHAR(50),GETDATE(),106), td.monAmount, 0 
+ FROM ERP_VAT.dbo.tblVATTreasuryDeposit td 
+ JOIN ERP_VAT.dbo.tblConfigTreasuryDepositCode tc ON td.intTrDepositID=tc.intTreasuryDepositID
+ JOIN ERP_VAT.dbo.tblConfigTreasuryDepositVoucher tv ON td.intTrDepositID=tv.intTreasuryTypeID AND td.intVatAccountID=tv.intVatAcc 
+ WHERE td.intAutoID=@intTreasuryId";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intTreasuryId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual TreasuryChallanTDS.TblDetailsDataTable GetDetails(int intTreasuryId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intTreasuryId));
+            TreasuryChallanTDS.TblDetailsDataTable dataTable = new TreasuryChallanTDS.TblDetailsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TblVatTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public TblVatTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TblVat";
+            tableMapping.ColumnMappings.Add("strTreasuryCode", "strTreasuryCode");
+            tableMapping.ColumnMappings.Add("strVATRegNo", "strVATRegNo");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_VATConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT tv.strTreasuryCode, va.strVATRegNo FROM ERP_VAT.dbo.tblVATTreasuryDeposit td JOIN ERP_VAT.dbo.tblConfigTreasuryDepositVoucher tv ON td.intTrDepositID=tv.intTreasuryTypeID AND td.intVatAccountID=tv.intVatAcc JOIN ERP_VAT.dbo.tblVATAccount va ON td.intVatAccountID=va.intVatAccountID WHERE td.intAutoID =@intTreasuryId  ";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intTreasuryId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual TreasuryChallanTDS.TblVatDataTable GetVatRegData(int intTreasuryId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intTreasuryId));
+            TreasuryChallanTDS.TblVatDataTable dataTable = new TreasuryChallanTDS.TblVatDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1964,8 +2780,6 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
         
         private UpdateOrderOption _updateOrder;
         
-        private TblUnitTableAdapter _tblUnitTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -1978,20 +2792,6 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public TblUnitTableAdapter TblUnitTableAdapter {
-            get {
-                return this._tblUnitTableAdapter;
-            }
-            set {
-                this._tblUnitTableAdapter = value;
             }
         }
         
@@ -2014,10 +2814,6 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tblUnitTableAdapter != null) 
-                            && (this._tblUnitTableAdapter.Connection != null))) {
-                    return this._tblUnitTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -2031,9 +2827,6 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tblUnitTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -2043,17 +2836,8 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(UnitTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(TreasuryChallanTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblUnitTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TblUnit.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblUnitTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -2062,16 +2846,8 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(UnitTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(TreasuryChallanTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblUnitTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TblUnit.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblUnitTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -2080,16 +2856,8 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(UnitTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(TreasuryChallanTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tblUnitTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TblUnit.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblUnitTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -2122,17 +2890,12 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(UnitTDS dataSet) {
+        public virtual int UpdateAll(TreasuryChallanTDS dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._tblUnitTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblUnitTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
@@ -2166,15 +2929,6 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tblUnitTableAdapter != null)) {
-                    revertConnections.Add(this._tblUnitTableAdapter, this._tblUnitTableAdapter.Connection);
-                    this._tblUnitTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblUnitTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblUnitTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblUnitTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblUnitTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -2232,10 +2986,6 @@ WHERE        (tblEmployee.intEmployeeID = @intLoginUserId) AND (tblUnit.ysnPFUni
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tblUnitTableAdapter != null)) {
-                    this._tblUnitTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblUnitTableAdapter]));
-                    this._tblUnitTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
