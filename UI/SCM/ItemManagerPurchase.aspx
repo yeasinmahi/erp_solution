@@ -96,6 +96,7 @@
                     </tr></table>
                 </td>
             </tr>
+            <tr><td>
             <table>
                 <tr><td><hr /></td></tr>
                 <tr><td><asp:GridView ID="dgvItem" runat="server" AllowPaging="false" AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" CssClass="Grid" FooterStyle-BackColor="#808080" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="11px" FooterStyle-ForeColor="White" FooterStyle-Height="25px" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" HeaderStyle-Font-Bold="true" HeaderStyle-Font-Size="10px" PagerStyle-CssClass="pgr" PageSize="8" ShowFooter="false" OnRowCommand="dgvItem_RowCommand">
@@ -214,6 +215,7 @@
                     </td>
                 </tr>
             </table>
+            </td></tr>
             <%--=========================================End My Code From Here=================================================--%>
         </table>
     </ContentTemplate>

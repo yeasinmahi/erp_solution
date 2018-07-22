@@ -14,7 +14,8 @@ namespace UI.SCM
     {
         MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
 
-        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID;
+        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID,
+            intAutoID, intInsertBy, intCOAID, intUnitID, intMasterID;
         string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
         decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
@@ -22,7 +23,6 @@ namespace UI.SCM
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-            hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             intInsertBy = int.Parse(hdnEnroll.Value);
             
             if (!IsPostBack)
@@ -34,14 +34,14 @@ namespace UI.SCM
                     dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                     ddlWH.DataTextField = "strWareHoseName";
                     ddlWH.DataValueField = "intWHID";
                     ddlWH.DataSource = dt;
                     ddlWH.DataBind();
                 }
                 catch { }
-
+                hdnMaterialId.Value = "0";
                 hdnWHID.Value = ddlWH.SelectedValue.ToString();
                 LoadUOM();
                 LoadLocation();
@@ -52,16 +52,16 @@ namespace UI.SCM
                 LoadSubCategory();
                 LoadMinorCategory();
                 LoadPlant();
+                LoadUnitID();
             }
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string strSearch;
             strSearch = txtSearch.Text;
-            intWHID = int.Parse(ddlWH.SelectedValue.ToString());
 
             dt = new DataTable();
-            dt = bll.GetItemListReport(intWHID, strSearch);
+            dt = bll.GetItemListReport(strSearch);
 
             if (dt.Rows.Count > 0)
             {
@@ -90,7 +90,7 @@ namespace UI.SCM
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                 ddlUOM.DataTextField = "strUoM";
                 ddlUOM.DataValueField = "intUoM";
                 ddlUOM.DataSource = dt;
@@ -127,7 +127,7 @@ namespace UI.SCM
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                 ddlGroup.DataTextField = "strGroupName";
                 ddlGroup.DataValueField = "intGroupID";
                 ddlGroup.DataSource = dt;
@@ -153,7 +153,7 @@ namespace UI.SCM
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                 ddlCategory.DataTextField = "strCategoryName";
                 ddlCategory.DataValueField = "intCategoryID";
                 ddlCategory.DataSource = dt;
@@ -176,7 +176,7 @@ namespace UI.SCM
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                 ddlSubCategory.DataTextField = "strSubCategoryName";
                 ddlSubCategory.DataValueField = "intSubCategoryID";
                 ddlSubCategory.DataSource = dt;
@@ -197,7 +197,7 @@ namespace UI.SCM
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                 ddlMinorCategory.DataTextField = "strMinorCategory";
                 ddlMinorCategory.DataValueField = "intMinorCategory";
                 ddlMinorCategory.DataSource = dt;
@@ -218,7 +218,7 @@ namespace UI.SCM
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
                 ddlPlant.DataTextField = "strPlantName";
                 ddlPlant.DataValueField = "intPlantID";
                 ddlPlant.DataSource = dt;
@@ -238,9 +238,20 @@ namespace UI.SCM
                 LoadCategory();
                 LoadMinorCategory();
                 LoadPlant();
+                LoadUnitID();
+                Reset();
             }
             catch { }
         }
+
+        private void LoadUnitID()
+        {
+            intWHID = int.Parse(ddlWH.SelectedValue.ToString());
+            dt = new DataTable();
+            dt = bll.GetUnitID(intWHID);
+            hdnUnit.Value = dt.Rows[0]["intUnitID"].ToString();
+        }
+
         protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -259,6 +270,50 @@ namespace UI.SCM
             }
             catch { }
         }
+        protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                intUnitID = int.Parse(hdnUnit.Value.ToString());
+                intMasterID = int.Parse(ListBox1.SelectedValue.ToString());
+
+                dt = new DataTable();
+                dt = bll.GetUnitCheck(intMasterID, intUnitID);
+                if (dt.Rows.Count > 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This item already included in this Unit.');", true);
+                    return;
+                }
+                dt = new DataTable();
+                dt = bll.GetMaterialDetails(intMasterID);
+
+                if (dt.Rows.Count == 1)
+                {
+                    hdnMaterialId.Value = intMasterID.ToString();
+                    txtBaseName.Text = dt.Rows[0]["strMaterialName"].ToString();
+                    txtDescription.Text = dt.Rows[0]["strDescription"].ToString();
+                    txtPart.Text = dt.Rows[0]["strPartNo"].ToString();
+                    txtModel.Text = dt.Rows[0]["strModelNo"].ToString();
+                    txtSerial.Text = dt.Rows[0]["strSerialNo"].ToString();
+                    txtBrand.Text = dt.Rows[0]["strBrand"].ToString();
+                    //ddlUOM.Text = dt.Rows[0]["strUoM"].ToString();
+
+                    txtBaseName.Enabled = false;
+                    txtDescription.Enabled = false;
+                    txtPart.Enabled = false;
+                    txtModel.Enabled = false;
+                    txtSerial.Enabled = false;
+                    txtBrand.Enabled = false;
+                    ddlUOM.Enabled = false;
+                }
+                else
+                {
+                    hdnMaterialId.Value = "0";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something wrong.');", true);
+                }
+            }
+            catch { }
+        }
         #endregion ====== Selection Change =======================================================================================================================
 
         #region ========= Final Submit ====================================================================================================================
@@ -267,6 +322,7 @@ namespace UI.SCM
             try
             {
                 intPart = 8;
+                intMasterID = int.Parse(hdnMaterialId.Value.ToString());
                 intWHID = int.Parse(ddlWH.SelectedValue.ToString());
                 strMaterialName = txtBaseName.Text;
                 strDescription = txtDescription.Text;
@@ -310,7 +366,7 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Product Base Name must be filled.');", true);
                     return;
                 }
-                else if(intUOM == 0)
+                else if(intUOM == 0 && hdnMaterialId.Value =="0")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Unit of Measurement.');", true);
                     return;
@@ -361,7 +417,7 @@ namespace UI.SCM
                     dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID);
+                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
 
                     if (dt.Rows.Count > 0)
                     {
@@ -393,11 +449,52 @@ namespace UI.SCM
                         hdnconfirm.Value = "0";
                         ddlSubCategory.DataSource = "";
                         ddlSubCategory.DataBind();
+                        Reset();
                     }
                 }
             }
             catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Error!!!!!');", true); }
         }
         #endregion ====== Final Submit ======================================================================================================================
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            
+            Reset();
+        }
+
+        private void Reset()
+        {
+            txtBaseName.Enabled = true;
+            txtDescription.Enabled = true;
+            txtPart.Enabled = true;
+            txtModel.Enabled = true;
+            txtSerial.Enabled = true;
+            txtBrand.Enabled = true;
+            ddlUOM.Enabled = true;
+
+            txtBaseName.Text = "";
+            txtDescription.Text = "";
+            txtPart.Text = "";
+            txtModel.Text = "";
+            txtSerial.Text = "";
+            txtBrand.Text = "";
+
+            txtSearch.Text = "";
+            ListBox1.DataSource = "";
+            ListBox1.DataBind();
+
+            ddlUOM.SelectedIndex = 0;
+            ddlLocation.SelectedIndex = 0;
+            ddlGroup.SelectedIndex = 0;
+            ddlCategory.SelectedIndex = 0;
+            ddlMinorCategory.SelectedIndex = 0;
+            ddlPlant.SelectedIndex = 0;
+            ddlABC.SelectedIndex = 0;
+            ddlFSN.SelectedIndex = 0;
+            ddlVDE.SelectedIndex = 0;
+
+            hdnMaterialId.Value = "0";
+        }
     }
 }

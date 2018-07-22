@@ -90,25 +90,11 @@
              
          </tr>
             <tr> <td style="text-align:right;"><asp:Label ID="lblUnit" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-             <td><asp:DropDownList ID="drdlUnitName"  runat="server" DataSourceID="odsUnitNameByEnrol" DataTextField="strUnit" DataValueField="intUnitID"></asp:DropDownList>
-            
-                 <asp:ObjectDataSource ID="odsUnitNameByEnrol" runat="server" SelectMethod="getUnitNamebyEnrol" TypeName="HR_BLL.TourPlan.TourPlanning">
-                     <SelectParameters>
-                         <asp:SessionParameter Name="Enrol" SessionField="sesUserID" Type="Int32" />
-                     </SelectParameters>
-                 </asp:ObjectDataSource>
+             <td><asp:DropDownList ID="ddlUnit"  runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged" ></asp:DropDownList>
             </td>
             <td style="text-align:right;"><asp:Label ID="lblArea" CssClass="lbl" runat="server" Text="Jobstation Name: "></asp:Label></td>
-             <td><asp:DropDownList ID="drdlArea" CssClass="drdl" runat="server" DataSourceID="odsJobstationName" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"></asp:DropDownList>
+             <td><asp:DropDownList ID="ddlJobStation" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
              
-
-                 <asp:ObjectDataSource ID="odsJobstationName" runat="server" SelectMethod="getJobstationbyEnrol" TypeName="HR_BLL.TourPlan.TourPlanning">
-                     <SelectParameters>
-                         <asp:SessionParameter Name="Enrol" SessionField="sesUserID" Type="Int32" />
-                     </SelectParameters>
-                 </asp:ObjectDataSource>
-             
-
             </tr>
              <tr>
                 <td> <asp:Button ID="btnShowReport" runat="server" Text="Show" BackColor="#ff9999" OnClick="btnShowReport_Click" /> </td>

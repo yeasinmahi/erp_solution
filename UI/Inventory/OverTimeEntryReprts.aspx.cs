@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using HR_BLL.Global;
 using UI.ClassFiles;
 
 namespace UI.Inventory
@@ -27,18 +28,23 @@ namespace UI.Inventory
 
             txtFullName.Attributes.Add("onkeyUp", "SearchText();");
             hdnAction.Value = "0";
+            if (!IsPostBack)
+            {
+                LoadUnitDropDown(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
+                LoadJobStationDropDown(GetUnitID(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
+            }
+            
         }
 
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
-
             Loadgrid();
         }
 
         private void Loadgrid()
         {
-            int jobstationid= int.Parse(drdlArea.SelectedValue.ToString());
-            int unitid = int.Parse(drdlUnitName.SelectedValue.ToString());
+            int jobstationid= int.Parse(ddlJobStation.SelectedValue.ToString());
+            int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
             int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
           
             
@@ -104,28 +110,14 @@ namespace UI.Inventory
 
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
         [WebMethod]
         public static List<string> GetAutoCompleteDataForTADA(string strSearchKey)
         {
-
-            SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
             List<string> result = new List<string>();
-            result = bll.AutoSearchEmployeesDataTADA(//1399, 12, strSearchKey);
-            int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()), strSearchKey);
+            result = objAutoSearch_BLL.AutoSearchEmployeesData(//1399, 12, strSearchKey);
+                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
             return result;
         }
         protected void grdvOverTimeReports_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -153,6 +145,43 @@ namespace UI.Inventory
         {
             gdvJstopsheet.PageIndex = e.NewPageIndex;
             Loadgrid();
+        }
+
+        public int GetUnitID(int enrol)
+        {
+            return Int32.Parse(bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
+        }
+        public void LoadJobStationDropDown(int unitId)
+        {
+            ddlJobStation.DataSource = bll.GetJobStation(unitId);
+            ddlJobStation.DataValueField = "intEmployeeJobStationId";
+            ddlJobStation.DataTextField = "strJobStationName";
+            ddlJobStation.DataBind();
+        }
+        public void LoadUnitDropDown(int enrol)
+        {
+            ddlUnit.DataSource = bll.GetUnitName(enrol);
+            ddlUnit.DataValueField = "intUnitID";
+            ddlUnit.DataTextField = "strUnit";
+            ddlUnit.DataBind();
+        }
+
+        protected void txtFullName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+       
+
+        protected void ddlJobStation_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["jobStationId"] = (sender as DropDownList).SelectedValue;
+        }
+
+        protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);
+            LoadJobStationDropDown(unitId);
+            ddlJobStation_OnSelectedIndexChanged(ddlJobStation, null);
         }
     }
 }

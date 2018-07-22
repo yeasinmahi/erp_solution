@@ -99,7 +99,7 @@
                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClientClick="LoaderBusy()" OnClick="btnShow_Click"/></td>        
+                        <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClick="btnShow_Click"/></td>        
                     </tr>
                     <tr><td colspan="5"><hr /></td></tr> 
                     <tr>

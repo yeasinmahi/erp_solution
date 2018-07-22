@@ -220,7 +220,24 @@ namespace UI.PaymentModule
                         {
                             if (((CheckBox)dgvReportForPaymentV.Rows[index].FindControl("chkRow")).Checked == true)
                             {
-                                insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
+                                if (txtAllPayDate.Text == "")
+                                {
+                                    insdate = ((TextBox)dgvReportForPaymentV.Rows[index].FindControl("txtPayDate")).Text.ToString();
+                                }
+                                else
+                                {
+                                    try
+                                    {
+                                        insdate = DateTime.Parse(txtAllPayDate.Text).ToString();
+                                    }
+                                    catch
+                                    {
+                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date is incorrect. Date Format (YYYY-MM-DD)');", true);
+                                        return;
+                                    }
+                                }
+
+                                //insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
                                 payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
                                 amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
                                 drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
@@ -252,7 +269,7 @@ namespace UI.PaymentModule
                         catch { }
                         if (xml == "") { return; }
                     }
-
+                    
                     dt = new DataTable();
                     dt = objVoucher.InsertPOVoucherForAFBL(intUnitID, intUser, intBankID, intBankAcc, xml);
                     if (dt.Rows.Count > 0)
@@ -308,7 +325,6 @@ namespace UI.PaymentModule
             node.Attributes.Append(Tds);
             return node;
         }
-
         protected void dgvReportForPaymentV_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);

@@ -19,10 +19,10 @@ namespace SAD_BLL.Sales.Report
             return adp.GetShippingPointDataByUnitid(unitid);
         }
 
-        public DataTable getUDTCLSalesData(DateTime fromDate,DateTime toDate,int unitId,int CustId,int reportType,int salesOffId,int shippingId)
+        public DataTable getUDTCLSalesData(DateTime fromDate,DateTime toDate,int unitId,int reportType,int salesOffId,int shippingId)
         {
             sprUDTCLSalesStausTableAdapter adp = new sprUDTCLSalesStausTableAdapter();
-            return adp.GetUDTCLSalesData(fromDate, toDate, unitId, CustId, reportType, salesOffId, shippingId);
+            return adp.GetUDTCLSalesData(fromDate, toDate, unitId, reportType, salesOffId, shippingId);
         }
 
         public string SVPrintView(int unit, string code, int Id)

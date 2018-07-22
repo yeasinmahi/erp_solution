@@ -441,6 +441,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OfficialMovementTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Payment\TreasuryChallanTDS.cs">
+      <DependentUpon>TreasuryChallanTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\TreasuryChallanTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TreasuryChallanTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PaySlip\PayslipTDS.Designer.cs">
       <DependentUpon>PayslipTDS.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1295,6 +1303,17 @@
     </None>
     <None Include="OfficialMovement\OfficialMovementTDS.xss">
       <DependentUpon>OfficialMovementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Payment\TreasuryChallanTDS.xsc">
+      <DependentUpon>TreasuryChallanTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Payment\TreasuryChallanTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TreasuryChallanTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Payment\TreasuryChallanTDS.xss">
+      <DependentUpon>TreasuryChallanTDS.xsd</DependentUpon>
     </None>
     <None Include="PaySlip\PayslipTDS.xsc">
       <DependentUpon>PayslipTDS.xsd</DependentUpon>

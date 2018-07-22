@@ -104,7 +104,19 @@
                 <ItemTemplate><asp:Label ID="lblSubCategory" runat="server" Text='<%# Bind("strSubCategory") %>' Width="110px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="COA ID" SortExpression="intCOAID">
+                <asp:TemplateField HeaderText="Cluster" SortExpression="strCluster">
+                <ItemTemplate><asp:Label ID="lblCluster" runat="server" Text='<%# Bind("strCluster") %>' Width="110px"></asp:Label>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Commodity" SortExpression="strComGroupName">
+                <ItemTemplate><asp:Label ID="lblCommodity" runat="server" Text='<%# Bind("strComGroupName") %>' Width="110px"></asp:Label>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
+
+                <asp:TemplateField HeaderText="New Category" SortExpression="strNewCategory">
+                <ItemTemplate><asp:Label ID="lblNewCategory" runat="server" Text='<%# Bind("strNewCategory") %>' Width="110px"></asp:Label>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
+
+                <asp:TemplateField HeaderText="COA ID" SortExpression="intCOAID" Visible="false">
                 <ItemTemplate><asp:Label ID="lblCOAID" runat="server" Text='<%# Bind("intCOAID") %>' Width="70px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="70px"/></asp:TemplateField>
 

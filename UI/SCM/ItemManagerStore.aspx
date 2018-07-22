@@ -50,13 +50,12 @@
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnWHID" runat="server" /> <asp:HiddenField ID="hdnGroupID" runat="server" /><asp:HiddenField ID="hdnCategoryID" runat="server" />      
+    <asp:HiddenField ID="hdnWHID" runat="server" /> <asp:HiddenField ID="hdnGroupID" runat="server" /><asp:HiddenField ID="hdnCategoryID" runat="server" /><asp:HiddenField ID="hdnMaterialId" runat="server" />      
     <div class="divbody" style="padding-right:10px;">
         <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> PRODUCT ENLISHMENT <font color="red">[STORE PART]</font><hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr>
-                <td colspan="4" style="text-align:center;"><asp:Label ID="Label14" runat="server" Text="WH Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span><%--</td>--%>
-                <%--<td style="text-align:left;">--%><asp:DropDownList ID="ddlWH" runat="server" CssClass="ddList" Font-Bold="false" Width="220px" Height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
+                <td colspan="4" style="text-align:center;"><asp:Label ID="Label14" runat="server" Text="WH Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span><%--</td>--%><%--<td style="text-align:left;">--%><asp:DropDownList ID="ddlWH" runat="server" CssClass="ddList" Font-Bold="false" Width="220px" Height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblBaseName" runat="server" Text="Product Base Name " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
@@ -77,8 +76,8 @@
                 <td><asp:TextBox ID="txtModel" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
 
                     <td style="text-align:right;"></td>
-                    <td style="text-align:right;" colspan="3"; rowspan="11" >
-                    <asp:ListBox ID="ListBox1" runat="server" Height="280px" Width="400px"></asp:ListBox>
+                    <td style="text-align:right;" colspan="3"; rowspan="12" >
+                    <asp:ListBox ID="ListBox1" runat="server" Height="300px" Width="400px" AutoPostBack="true" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged"></asp:ListBox>
                   </td>
             </tr>
             <tr>
@@ -96,23 +95,23 @@
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Re-Order Qty :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtReOrderQty" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Minimum Stock Level :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Min Stock Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Maximum Order Level :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Max Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Safety Stock Level :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Safety Stock :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtSafety" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label24" runat="server" Text="Max Daily Consump. :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label24" runat="server" Text="Max Daily Consum. :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMaxConsum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label25" runat="server" Text="Min Daily Consump. :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label25" runat="server" Text="Min Daily Consum. :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMinConsum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="Self Time :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="Self Time in Days:" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtSelfTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label21" runat="server" Text="Origin :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
@@ -151,7 +150,8 @@
                 <asp:ListItem Value="1">Vital</asp:ListItem><asp:ListItem Value="2">Essential</asp:ListItem><asp:ListItem Value="3">Desireable</asp:ListItem></asp:DropDownList></td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click" OnClientClick="ConfirmAll()"/></td>        
+                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click" OnClientClick="ConfirmAll()"/></td>
+                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnReset" runat="server" class="myButtonGrey" Text="Reset" Width="100px" OnClick="btnReset_Click"/></td>
             </tr>            
         </table>
     </div>

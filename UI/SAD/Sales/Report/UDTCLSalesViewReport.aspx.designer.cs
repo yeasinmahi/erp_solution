@@ -193,22 +193,22 @@ namespace UI.SAD.Sales.Report {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesOffice;
         
         /// <summary>
-        /// Label4 control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// DdlCustomer control.
+        /// DdlReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList DdlReport;
         
         /// <summary>
         /// Label5 control.
@@ -238,24 +238,6 @@ namespace UI.SAD.Sales.Report {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsShippingPoint;
         
         /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// DdlReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlReport;
-        
-        /// <summary>
         /// btnShow control.
         /// </summary>
         /// <remarks>
@@ -281,5 +263,23 @@ namespace UI.SAD.Sales.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesReport;
+        
+        /// <summary>
+        /// GvSalesReportAnother control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GvSalesReportAnother;
+        
+        /// <summary>
+        /// odsSalesReportanother control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesReportanother;
     }
 }
