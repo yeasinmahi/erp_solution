@@ -49,7 +49,7 @@
   <xs:element name="VehicleSelectTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="VehicleSelectTDS" msprop:Generator_UserDSName="VehicleSelectTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SprVehicleAssign" msprop:Generator_TableClassName="SprVehicleAssignDataTable" msprop:Generator_TableVarName="tableSprVehicleAssign" msprop:Generator_TablePropName="SprVehicleAssign" msprop:Generator_RowDeletingName="SprVehicleAssignRowDeleting" msprop:Generator_UserTableName="SprVehicleAssign" msprop:Generator_RowChangingName="SprVehicleAssignRowChanging" msprop:Generator_RowEvHandlerName="SprVehicleAssignRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVehicleAssignRowDeleted" msprop:Generator_RowEvArgName="SprVehicleAssignRowChangeEvent" msprop:Generator_RowChangedName="SprVehicleAssignRowChanged" msprop:Generator_RowClassName="SprVehicleAssignRow">
+        <xs:element name="SprVehicleAssign" msprop:Generator_TableClassName="SprVehicleAssignDataTable" msprop:Generator_TableVarName="tableSprVehicleAssign" msprop:Generator_RowChangedName="SprVehicleAssignRowChanged" msprop:Generator_TablePropName="SprVehicleAssign" msprop:Generator_RowDeletingName="SprVehicleAssignRowDeleting" msprop:Generator_RowChangingName="SprVehicleAssignRowChanging" msprop:Generator_RowEvHandlerName="SprVehicleAssignRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVehicleAssignRowDeleted" msprop:Generator_RowClassName="SprVehicleAssignRow" msprop:Generator_UserTableName="SprVehicleAssign" msprop:Generator_RowEvArgName="SprVehicleAssignRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>

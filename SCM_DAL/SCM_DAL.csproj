@@ -34,6 +34,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +76,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BomTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DmageTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="IndentTDS.cs">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </Compile>
@@ -75,6 +98,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MasterMaterialTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="MrrReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -104,6 +132,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RFQTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="TransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -150,6 +183,17 @@
     <None Include="BomTDS.xss">
       <DependentUpon>BomTDS.xsd</DependentUpon>
     </None>
+    <None Include="DmageTDS.xsc">
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DmageTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DmageTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DmageTDS.xss">
+      <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </None>
     <None Include="IndentTDS.xsc">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </None>
@@ -182,6 +226,17 @@
     </None>
     <None Include="LocationTDS.xss">
       <DependentUpon>LocationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MasterMaterialTDS.xsc">
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MasterMaterialTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MasterMaterialTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MasterMaterialTDS.xss">
+      <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
     </None>
     <None Include="MrrReceiveTDS.xsc">
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>
@@ -230,6 +285,17 @@
     </None>
     <None Include="ReceiveTDS.xss">
       <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RFQTDS.xsc">
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RFQTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RFQTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RFQTDS.xss">
+      <DependentUpon>RFQTDS.xsd</DependentUpon>
     </None>
     <None Include="TransferTDS.xsc">
       <DependentUpon>TransferTDS.xsd</DependentUpon>

@@ -639,6 +639,67 @@ namespace SAD_BLL.Sales
 
         }
 
+        public DataTable getcustomerbasetotalchallanqnt(int tripid, int customerid)
+        {
+            try
+            {
+                SprChalanQntTripandCustomerBaseTableAdapter ta = new SprChalanQntTripandCustomerBaseTableAdapter();
+                return ta.GetDataChalanQntTripandCustomerBase(tripid, customerid);
+            }
+            catch (Exception ex) { return new DataTable(); }
+        }
+      
+        public DataTable getSetupvsCollection(DateTime fromdate, DateTime todate, int intunitid, int salesofficeid, int customertypeid, int reporttype, int intteritoryid, int intareaid, int regionid)
+        {
+            try
+            {
+                SprSetupvsDebitCreditTableAdapter bll = new SprSetupvsDebitCreditTableAdapter();
+                return bll.GetDataSetupvsDebitCredit(fromdate, todate, intunitid, salesofficeid, customertypeid, reporttype, intteritoryid, intareaid, regionid);
+            }
+            catch (Exception ex) { return new DataTable(); }
 
+        }
+
+        public DataTable getTransferProductSalesOffice()
+        {
+            try
+            {
+                TblTransferSalesOfficeTableAdapter bll = new TblTransferSalesOfficeTableAdapter();
+                return bll.GetData();
+            }
+            catch (Exception ex) { return new DataTable(); }
+
+        }
+
+        //@dteFormDate datetime, @dteToDate datetime,@factrate decimal,@ghatRate decimal,@salesoffice varchar(500),@intsalesofficeid int,@reportname varchar(500),@intUnitid int
+
+        public DataTable getdataSalesCommissionCommon(DateTime dtfromdate, DateTime dttodate, string factoryrate, string ghatrate, string salesofname, int salesofice, string reptname, int unitid)
+        {
+            try
+            {
+                SprSalesCommissionCommonjvTableAdapter bll = new SprSalesCommissionCommonjvTableAdapter();
+                return bll.GetDataSalesCommissionCommonjv(dtfromdate, dttodate, Convert.ToDecimal(factoryrate), Convert.ToDecimal(ghatrate), salesofname, salesofice, reptname, unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getdataIHBandDistributor(DateTime dtfromdate, DateTime dttodate)
+        {
+            try
+            {
+                SprACCLDistributorandIHBSalesTableAdapter bll = new SprACCLDistributorandIHBSalesTableAdapter();
+                return bll.GetDataACCLDistributorandIHBSales(dtfromdate, dttodate);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable getdatauom()
+        {
+            try
+            {
+                TblUOMTableAdapter bll = new TblUOMTableAdapter();
+                return bll.GetDataUOM();
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

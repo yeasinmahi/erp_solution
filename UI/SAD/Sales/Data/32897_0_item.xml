@@ -1,0 +1,4 @@
+<?xml version="1.0" standalone="yes"?>
+<node>
+  <item Pid="167462" PName="CIG-Navy-10 HL " Qnt="10000" Pr="4.6000" AccId="184518" AccName="Cigarette L" ExtId="28" ExtName="No" ExtPr="0.00" Uom="1105" Cur="1" Narr="10000 Sticks CIG-Navy-10 HL  Sold To Amirabad " SType="108" LogisId="" Logis="0.00" Prom="0.00" Comm="0.00" IncId="26" IncPr="0.00" SupTax="0.00" Vat="0.00" VatPr="0.00" UomTxt="Sticks" PromItemId="0" PromItem="" PromUom="0" PromUomText="" LogisGain="0.00" PromPr="0.0000" PromItemCOA="0" />
+</node>

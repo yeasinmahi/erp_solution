@@ -274,6 +274,15 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.HiddenField hdnstation;
         
         /// <summary>
+        /// hdfCustnamSearchbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfCustnamSearchbox;
+        
+        /// <summary>
         /// ApproverEnrol control.
         /// </summary>
         /// <remarks>
@@ -353,6 +362,24 @@ namespace UI.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource odsDirectPointList;
+        
+        /// <summary>
+        /// lblDepot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDepot;
+        
+        /// <summary>
+        /// txtCustName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustName;
         
         /// <summary>
         /// btnShow control.
@@ -454,12 +481,39 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.GridView grdvReceiveChallan;
         
         /// <summary>
-        /// grdvVerticalyrpt control.
+        /// grdvVerticalyrptReceive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvVerticalyrpt;
+        protected global::System.Web.UI.WebControls.GridView grdvVerticalyrptReceive;
+        
+        /// <summary>
+        /// grdvchallanVerticallay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvchallanVerticallay;
+        
+        /// <summary>
+        /// grdvBranditemInventoryRpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvBranditemInventoryRpt;
+        
+        /// <summary>
+        /// grdvBrandItemInventoryTopsheet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvBrandItemInventoryTopsheet;
     }
 }

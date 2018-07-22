@@ -158,6 +158,20 @@ namespace Purchase_BLL.SupplyChain
 
         }
 
+        public string    INSERTMasterItemlistCreate(string strName, string strDescription, string strPartNo, string strBrand, int intClusterId, int intCommodityId, int intCategoryId, string strUoM, int enroll)
+        {
+            int? ids = 0;
+
+            try
+            {
+                sprItemMasterListCreateTableAdapter ins = new sprItemMasterListCreateTableAdapter();
+                ins.GetItemMasterCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll);
+
+            }
+            catch(Exception e) { ids = 0; }
+            return ids.ToString();
+            
+         }
 
         public DataTable EnrollWiseSupplier(int intRequestBy)
         {

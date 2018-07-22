@@ -51,11 +51,11 @@
         });
     </script>
      <script>   function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
-        function RefreshParent() {
-            if (window.opener != null && !window.opener.closed) {
-                window.opener.location.reload();
-            }
-        }
+        //function RefreshParent() {
+        //    if (window.opener != null && !window.opener.closed) {
+        //        window.opener.location.reload();
+        //    }
+        //}
 
     </script> 
 
@@ -104,6 +104,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
      <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
+        <asp:HiddenField ID="hdnEnroll" runat="server" /> 
      <div class="tabs_container" style="text-align:left">Store Issue From<hr /></div>
          
               <table> 
@@ -188,6 +189,8 @@
                 <asp:TemplateField HeaderText="Locations" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="strLocation" > 
                 <ItemTemplate><asp:Label ID="lblLocationName"    runat="server"   Text='<%# Bind("strLocation") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
+
+               
 
                 <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks" > 
                 <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>

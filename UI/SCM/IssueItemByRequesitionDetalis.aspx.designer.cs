@@ -139,6 +139,15 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.HiddenField hdnIndentType;
         
         /// <summary>
+        /// hdnEnroll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
+        
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>

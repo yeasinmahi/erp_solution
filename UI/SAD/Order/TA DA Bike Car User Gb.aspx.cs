@@ -126,7 +126,7 @@ namespace UI.SAD.Order
             txtStarTime.Text = ""; txtEndTime.Text = "";
 
             txtNightStay.Text = ""; txtStartMilage.Text = ""; txtEndMilage.Text = ""; txtConsumed.Text = "";
-            txtPetrolQnt.Text = ""; txtPetrolCost.Text = ""; ; txtOcten.Text = ""; txtOctenCost.Text = ""; txtCNGQnt.Text = ""; txtCNGCost.Text = ""; txtMobilQnt.Text = ""; txtMobilCost.Text = "";
+            txtPetrolQnt.Text = ""; txtPetrolCost.Text = "";  txtOcten.Text = ""; txtOctenCost.Text = ""; txtCNGQnt.Text = ""; txtCNGCost.Text = ""; txtMobilQnt.Text = ""; txtMobilCost.Text = "";
             txtAirPlane.Text = ""; txtMntVh.Text = ""; txtSupporting.Text = "";
 
 

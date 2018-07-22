@@ -22,10 +22,7 @@ namespace UI.Inventory
         CSM Enlist = new CSM();
         CSM bankcheck = new CSM();
         CSM report = new CSM();
-
-         
-
-       int enroll; int intClusterid;  int intCommodityId; int intCategoryId;  string strName; string strDescription; string strPartNo; string strBrand; string strUoM; int intLastActionBy;
+        int enroll; int intClusterid;  int intCommodityId; int intCategoryId;  string strName; string strDescription; string strPartNo; string strBrand; string strUoM; int intLastActionBy;
         //string filePathForXML; string xmlString = ""; string xml;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -44,8 +41,6 @@ namespace UI.Inventory
                 txtPartNo.Text = "";
                 txtstrBrand.Text = "";
 
-                
-               
                 dt = Enlist.GetDataCluster();
                 ddlCluster.DataTextField = "strCluster";
                 ddlCluster.DataValueField = "intCluster";
@@ -127,8 +122,11 @@ namespace UI.Inventory
             else if (UoM == null || UoM == "") {ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select UoM.');", true);}
             else
             {
-                Enlist.INSERTMasterItemlist(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM,enroll);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item Added Successfully ');", true);
+               // Enlist.INSERTMasterItemlist(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM,enroll);
+
+                Enlist.INSERTMasterItemlistCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll);
+
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item Added Successfully');", true);
             }                   
         }
 

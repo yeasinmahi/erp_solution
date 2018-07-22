@@ -73,10 +73,10 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemListForCreativeSTableAdapter" GeneratorDataComponentClassName="ItemListForCreativeSTableAdapter" Name="ItemListForCreativeS" UserDataComponentName="ItemListForCreativeSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT intCreativeItemID, strCreativeItemName  FROM AG_Global.dbo.tblCreativeItemList Where ysnEnable = 1</CommandText>
+                    <CommandText>SELECT intCreativeItemID, strCreativeItemName  FROM AG_Global.dbo.tblCreativeItemList Where ysnEnable = 1 Order by strCreativeItemName  asc</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -147,17 +147,20 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ReportForDashboardWithoutCompleteTableAdapter" GeneratorDataComponentClassName="ReportForDashboardWithoutCompleteTableAdapter" Name="ReportForDashboardWithoutComplete" UserDataComponentName="ReportForDashboardWithoutCompleteTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>Select intJobID, strJobCode, convert(varchar,dteCreateDateTime,120) as ReqDate, convert(varchar,dteRequiredDate, 23) as dteRequiredDate, 
-  convert(varchar,tmRequiredTime,108) as tmRequiredTime, emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, 
-  isnull(intJobStatusID, 0) as intJobStatusID
-  FROM AG_Global.dbo.tblCreativeSupport s
-  Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
-  Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
-  Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
-  Where intJobStatusID != 3 or intJobStatusID is NULL</CommandText>
+                    <CommandText>Select intJobID, strJobCode, REPLACE(CONVERT(VARCHAR(11), dteCreateDateTime, 106), ' ', '-') +' '+STUFF(RIGHT( CONVERT(VARCHAR,dteCreateDateTime,100 ) ,7), 6, 0, ' ') as ReqDate, 
+convert(varchar,dteRequiredDate, 106) as dteRequiredDate, 
+REPLACE(REPLACE(CONVERT(varchar(15), CAST(tmRequiredTime AS TIME), 100), 'P', ' P'), 'A', ' A') as tmRequiredTime,
+emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, isnull(intJobStatusID, 0) as intJobStatusID
+FROM AG_Global.dbo.tblCreativeSupport s
+Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
+Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
+Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
+Where intJobStatusID != 3 or intJobStatusID is NULL
+Order by intJobID asc
+</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -220,6 +223,102 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
               <Mapping SourceColumn="strRemarks" DataSetColumn="strRemarks" />
               <Mapping SourceColumn="strJobType" DataSetColumn="strJobType" />
               <Mapping SourceColumn="strJobDescription" DataSetColumn="strJobDescription" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCreativeSupportStatusUpdateTableAdapter" GeneratorDataComponentClassName="SprCreativeSupportStatusUpdateTableAdapter" Name="SprCreativeSupportStatusUpdate" UserDataComponentName="SprCreativeSupportStatusUpdateTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.sprCreativeSupportStatusUpdate" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="UpdateJobStatus" GetMethodModifier="Public" GetMethodName="UpdateJobStatus" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="UpdateJobStatus" UserSourceName="UpdateJobStatus">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCreativeSupportStatusUpdate</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPart" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intJobID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intJobStatusID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strStatus" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strStatusRemarks" Precision="0" ProviderType="VarChar" Scale="0" Size="2000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="xml" DbType="Xml" Direction="Input" ParameterName="@xmlDoc" Precision="0" ProviderType="Xml" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCreativeSupportAllReportTableAdapter" GeneratorDataComponentClassName="SprCreativeSupportAllReportTableAdapter" Name="SprCreativeSupportAllReport" UserDataComponentName="SprCreativeSupportAllReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.sprCreativeSupportAllReport" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllReport" GetMethodModifier="Public" GetMethodName="GetAllReport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllReport" UserSourceName="GetAllReport">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprCreativeSupportAllReport</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPart" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intReceiver" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteFrom" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteTo" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intJobID" DataSetColumn="intJobID" />
+              <Mapping SourceColumn="strJobCode" DataSetColumn="strJobCode" />
+              <Mapping SourceColumn="ReqDate" DataSetColumn="ReqDate" />
+              <Mapping SourceColumn="dteRequiredDate" DataSetColumn="dteRequiredDate" />
+              <Mapping SourceColumn="tmRequiredTime" DataSetColumn="tmRequiredTime" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strEmployeeName1" DataSetColumn="strEmployeeName1" />
+              <Mapping SourceColumn="strEmployeeName2" DataSetColumn="strEmployeeName2" />
+              <Mapping SourceColumn="strCreativeSupportStatus" DataSetColumn="strCreativeSupportStatus" />
+              <Mapping SourceColumn="intTotalPoint" DataSetColumn="intTotalPoint" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprItemCreateAndPointSetTableAdapter" GeneratorDataComponentClassName="SprItemCreateAndPointSetTableAdapter" Name="SprItemCreateAndPointSet" UserDataComponentName="SprItemCreateAndPointSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.sprItemCreateAndPointSet" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="ItemCreateAndPointSet" GetMethodModifier="Public" GetMethodName="ItemCreateAndPointSet" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="ItemCreateAndPointSet" UserSourceName="ItemCreateAndPointSet">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprItemCreateAndPointSet</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPart" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strItemName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPoint" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="InputOutput" ParameterName="@strmsgvcd" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AllDocViewTableAdapter" GeneratorDataComponentClassName="AllDocViewTableAdapter" Name="AllDocView" UserDataComponentName="AllDocViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllDocumentView" GetMethodModifier="Public" GetMethodName="GetAllDocumentView" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllDocumentView" UserSourceName="GetAllDocumentView">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocList Where ysnEnable = 1 and intJobID = @intJobID
+Union
+SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocListForHoldAndFeedback Where ysnEnable = 1 and intJobID = @intJobID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intJobID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intJobID" Precision="0" Scale="0" Size="4" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strFilePath" DataSetColumn="strFilePath" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -445,6 +544,91 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="strJobDescription" msprop:Generator_ColumnVarNameInTable="columnstrJobDescription" msprop:Generator_ColumnPropNameInRow="strJobDescription" msprop:Generator_ColumnPropNameInTable="strJobDescriptionColumn" msprop:Generator_UserColumnName="strJobDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCreativeSupportStatusUpdate" msprop:Generator_TableClassName="SprCreativeSupportStatusUpdateDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportStatusUpdate" msprop:Generator_RowChangedName="SprCreativeSupportStatusUpdateRowChanged" msprop:Generator_TablePropName="SprCreativeSupportStatusUpdate" msprop:Generator_RowDeletingName="SprCreativeSupportStatusUpdateRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportStatusUpdateRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportStatusUpdateRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportStatusUpdateRowDeleted" msprop:Generator_RowClassName="SprCreativeSupportStatusUpdateRow" msprop:Generator_UserTableName="SprCreativeSupportStatusUpdate" msprop:Generator_RowEvArgName="SprCreativeSupportStatusUpdateRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprCreativeSupportAllReport" msprop:Generator_TableClassName="SprCreativeSupportAllReportDataTable" msprop:Generator_TableVarName="tableSprCreativeSupportAllReport" msprop:Generator_RowChangedName="SprCreativeSupportAllReportRowChanged" msprop:Generator_TablePropName="SprCreativeSupportAllReport" msprop:Generator_RowDeletingName="SprCreativeSupportAllReportRowDeleting" msprop:Generator_RowChangingName="SprCreativeSupportAllReportRowChanging" msprop:Generator_RowEvHandlerName="SprCreativeSupportAllReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SprCreativeSupportAllReportRowDeleted" msprop:Generator_RowClassName="SprCreativeSupportAllReportRow" msprop:Generator_UserTableName="SprCreativeSupportAllReport" msprop:Generator_RowEvArgName="SprCreativeSupportAllReportRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intJobID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintJobID" msprop:Generator_ColumnPropNameInRow="intJobID" msprop:Generator_ColumnPropNameInTable="intJobIDColumn" msprop:Generator_UserColumnName="intJobID" type="xs:int" />
+              <xs:element name="strJobCode" msprop:Generator_ColumnVarNameInTable="columnstrJobCode" msprop:Generator_ColumnPropNameInRow="strJobCode" msprop:Generator_ColumnPropNameInTable="strJobCodeColumn" msprop:Generator_UserColumnName="strJobCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReqDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnReqDate" msprop:Generator_ColumnPropNameInRow="ReqDate" msprop:Generator_ColumnPropNameInTable="ReqDateColumn" msprop:Generator_UserColumnName="ReqDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteRequiredDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndteRequiredDate" msprop:Generator_ColumnPropNameInRow="dteRequiredDate" msprop:Generator_ColumnPropNameInTable="dteRequiredDateColumn" msprop:Generator_UserColumnName="dteRequiredDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tmRequiredTime" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntmRequiredTime" msprop:Generator_ColumnPropNameInRow="tmRequiredTime" msprop:Generator_ColumnPropNameInTable="tmRequiredTimeColumn" msprop:Generator_UserColumnName="tmRequiredTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName1" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName1" msprop:Generator_ColumnPropNameInRow="strEmployeeName1" msprop:Generator_ColumnPropNameInTable="strEmployeeName1Column" msprop:Generator_UserColumnName="strEmployeeName1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName2" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName2" msprop:Generator_ColumnPropNameInRow="strEmployeeName2" msprop:Generator_ColumnPropNameInTable="strEmployeeName2Column" msprop:Generator_UserColumnName="strEmployeeName2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strCreativeSupportStatus" msprop:Generator_ColumnVarNameInTable="columnstrCreativeSupportStatus" msprop:Generator_ColumnPropNameInRow="strCreativeSupportStatus" msprop:Generator_ColumnPropNameInTable="strCreativeSupportStatusColumn" msprop:Generator_UserColumnName="strCreativeSupportStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intTotalPoint" msprop:Generator_ColumnVarNameInTable="columnintTotalPoint" msprop:Generator_ColumnPropNameInRow="intTotalPoint" msprop:Generator_ColumnPropNameInTable="intTotalPointColumn" msprop:Generator_UserColumnName="intTotalPoint" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprItemCreateAndPointSet" msprop:Generator_TableClassName="SprItemCreateAndPointSetDataTable" msprop:Generator_TableVarName="tableSprItemCreateAndPointSet" msprop:Generator_TablePropName="SprItemCreateAndPointSet" msprop:Generator_RowDeletingName="SprItemCreateAndPointSetRowDeleting" msprop:Generator_RowChangingName="SprItemCreateAndPointSetRowChanging" msprop:Generator_RowEvHandlerName="SprItemCreateAndPointSetRowChangeEventHandler" msprop:Generator_RowDeletedName="SprItemCreateAndPointSetRowDeleted" msprop:Generator_UserTableName="SprItemCreateAndPointSet" msprop:Generator_RowChangedName="SprItemCreateAndPointSetRowChanged" msprop:Generator_RowEvArgName="SprItemCreateAndPointSetRowChangeEvent" msprop:Generator_RowClassName="SprItemCreateAndPointSetRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AllDocView" msprop:Generator_TableClassName="AllDocViewDataTable" msprop:Generator_TableVarName="tableAllDocView" msprop:Generator_TablePropName="AllDocView" msprop:Generator_RowDeletingName="AllDocViewRowDeleting" msprop:Generator_RowChangingName="AllDocViewRowChanging" msprop:Generator_RowEvHandlerName="AllDocViewRowChangeEventHandler" msprop:Generator_RowDeletedName="AllDocViewRowDeleted" msprop:Generator_UserTableName="AllDocView" msprop:Generator_RowChangedName="AllDocViewRowChanged" msprop:Generator_RowEvArgName="AllDocViewRowChangeEvent" msprop:Generator_RowClassName="AllDocViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strFilePath" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrFilePath" msprop:Generator_ColumnPropNameInRow="strFilePath" msprop:Generator_ColumnPropNameInTable="strFilePathColumn" msprop:Generator_UserColumnName="strFilePath" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />

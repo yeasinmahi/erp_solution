@@ -128,6 +128,12 @@ namespace UI.WoodPurchase
                 txtPrereceive.Text = "";
                 txtVatChallan.Text = "";
                 txtMoisture.Text = "";
+                txtChallanNo.Text = "";
+                txtGateEntry.Text = "";
+                txtVehicleNo.Text = "";
+                txtWeightID.Text = "";
+                txtTotalWeight.Text = "";
+                txtDeduction.Text = "";
 
                 intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
                 intItemID = int.Parse(ddlItemList.SelectedValue.ToString());
@@ -209,7 +215,7 @@ namespace UI.WoodPurchase
                     {
                         intUnitID = int.Parse(hdnUnit.Value.ToString());
                         dt = new DataTable();
-                        dt = obj.InsertWOPO(intUnitID, intWH, intEnroll, intItemID, numDeduction, monReceRate, intLocationID, strRemarks);
+                        dt = obj.InsertWOPO(intUnitID, intWH, intEnroll, intItemID, numDeduction, monReceRate, intLocationID, strRemarks, dteReceiveDate);
 
                         message = dt.Rows[0]["strMessage"].ToString();
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);

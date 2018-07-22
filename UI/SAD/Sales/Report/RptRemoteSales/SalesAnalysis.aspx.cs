@@ -43,9 +43,9 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            try
-            {
-
+            //try
+            //{
+                ////
                 email = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
                 DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                 DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
@@ -79,8 +79,8 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
                 }
-            }
-            catch { }
+            //}
+            //catch { }
 
 
         }

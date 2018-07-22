@@ -58,6 +58,24 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -214,6 +232,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Employee.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeInfoDetail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmpRegistrationTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -460,6 +483,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bonus_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\EmployeeDetailsReport.cs">
+      <DependentUpon>EmployeeDetailsReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\EmployeeDetailsReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeDetailsReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\OverTime.cs">
       <DependentUpon>OverTime.xsd</DependentUpon>
     </Compile>
@@ -516,6 +547,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TeamAndShiftInformationTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TourPlan\CustomerBankGaurantee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerBankGaurantee.xsd</DependentUpon>
     </Compile>
     <Compile Include="TourPlan\TourPlanningTDS.cs">
       <DependentUpon>TourPlanningTDS.xsd</DependentUpon>
@@ -841,6 +877,17 @@
     </None>
     <None Include="Employee\Employee.xss">
       <DependentUpon>Employee.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeInfoDetail.xsc">
+      <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeInfoDetail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeInfoDetail.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Employee\EmployeeInfoDetail.xss">
+      <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
     </None>
     <None Include="Employee\EmpRegistrationTDS.xsc">
       <DependentUpon>EmpRegistrationTDS.xsd</DependentUpon>
@@ -1323,6 +1370,17 @@
     <None Include="Reports\Bonus_TDS.xss">
       <DependentUpon>Bonus_TDS.xsd</DependentUpon>
     </None>
+    <None Include="Reports\EmployeeDetailsReport.xsc">
+      <DependentUpon>EmployeeDetailsReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\EmployeeDetailsReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeDetailsReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\EmployeeDetailsReport.xss">
+      <DependentUpon>EmployeeDetailsReport.xsd</DependentUpon>
+    </None>
     <None Include="Reports\OverTime.xsc">
       <DependentUpon>OverTime.xsd</DependentUpon>
     </None>
@@ -1410,6 +1468,17 @@
     </None>
     <None Include="TeamBuild\TeamAndShiftInformationTDS.xss">
       <DependentUpon>TeamAndShiftInformationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="TourPlan\CustomerBankGaurantee.xsc">
+      <DependentUpon>CustomerBankGaurantee.xsd</DependentUpon>
+    </None>
+    <None Include="TourPlan\CustomerBankGaurantee.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustomerBankGaurantee.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TourPlan\CustomerBankGaurantee.xss">
+      <DependentUpon>CustomerBankGaurantee.xsd</DependentUpon>
     </None>
     <None Include="TourPlan\TourPlanningTDS.xsc">
       <DependentUpon>TourPlanningTDS.xsd</DependentUpon>

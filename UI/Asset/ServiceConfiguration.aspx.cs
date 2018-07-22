@@ -23,7 +23,7 @@ namespace UI.Asset
         DataTable asset = new DataTable();
         DataTable dgview = new DataTable();
 
-        int intItem; int ysnprovide;
+        int intItem; int ysnprovide, intAssetAutoId, serviceId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -44,16 +44,14 @@ namespace UI.Asset
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                 int Mnumber = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-                intItem = 9;
-                dt = new DataTable();
-                dt = objPMConfigure.dgvViewServiceName(intItem, Mnumber, intenroll, intjobid, intdept);
+                 
+                dt = objPMConfigure.dgvViewServiceName(9, Mnumber, intenroll, intjobid, intdept);
                 DdlService.DataSource = dt;
                 DdlService.DataTextField = "strServiceName";
                 DdlService.DataValueField = "ID";
                 DdlService.DataBind();
-                Int32 serviceID = Int32.Parse(DdlService.SelectedValue.ToString());
-                dt = new DataTable();
+                int serviceID = int.Parse(DdlService.SelectedValue.ToString());
+                
                 dt = objPMConfigure.ViewServiceData(serviceID);
                 if (dt.Rows.Count > 0)
                 {
@@ -61,14 +59,14 @@ namespace UI.Asset
                     HdnServiceCost.Value = dt.Rows[0]["monServiceCharge"].ToString();
 
                 } 
-                intItem = 11;
-                common = objPMConfigure.RepairsCommonList(intItem, Mnumber, intenroll, intjobid, intdept);
-                DdlCommonRepair.DataSource = common;
+               
+                dt = objPMConfigure.RepairsCommonList(11, Mnumber, intenroll, intjobid, intdept);
+                DdlCommonRepair.DataSource = dt;
                 DdlCommonRepair.DataTextField = "strRepairs";
                 DdlCommonRepair.DataValueField = "intID";
                 DdlCommonRepair.DataBind();
-                int repairsID = Int32.Parse(DdlCommonRepair.SelectedValue.ToString());
-                dt = new DataTable();
+                int repairsID = int.Parse(DdlCommonRepair.SelectedValue.ToString());
+             
                 dt = objPMConfigure.commonrepairsView(repairsID);
                 if (dt.Rows.Count > 0)
                 {
@@ -77,10 +75,11 @@ namespace UI.Asset
                 }
                  
 
-                intItem = 14;
-                dgview = objPMConfigure.dgvViewPMService(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvservice.DataSource = dgview;
+             
+                dt = objPMConfigure.dgvViewPMService(14, Mnumber, intenroll, intjobid, intdept);
+                dgvservice.DataSource = dt;
                 dgvservice.DataBind();
+                dt.Clear();
             }
             catch { }
            
@@ -212,7 +211,7 @@ namespace UI.Asset
 
         protected void btnschedule_Click(object sender, EventArgs e)
         {
-            try
+               try
                 { 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PMSchedule.aspx');", true);
 
@@ -222,7 +221,7 @@ namespace UI.Asset
 
         protected void btnservice_Click(object sender, EventArgs e)
         {
-            {
+             
                 try
                 {
                     char[] delimiterChars = { '^' };
@@ -231,16 +230,13 @@ namespace UI.Asset
                     string[] searchKey = temp.Split(delimiterChars);
 
                     string ordernumber1 = searchKey[0].ToString();
-                    //Int32 items = Int32.Parse(DdlSchedule.SelectedValue.ToString());
-
-                    // Response.Write(ordernumber); 
-                    //Session["intMaintenanceNo"] = ordernumber1;
+                     
                     Session["intID"] = ordernumber1;
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "RegistrationSchedule('PMScheduleServicePopUp.aspx');", true);
 
                 }
                 catch { }
-            }
+            
         }
 
         protected void btnRepair_Click(object sender, EventArgs e)
@@ -249,7 +245,7 @@ namespace UI.Asset
                 { 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('CommonRepaisListPopUp.aspx');", true);
                 }
-                catch { } 
+            catch { }
         }
 
         protected void DdlSchedule_SelectedIndexChanged(object sender, EventArgs e)
@@ -285,13 +281,13 @@ namespace UI.Asset
         {
             if (!String.IsNullOrEmpty(TxtAsset.Text))
             {
-                string strSearchKey = TxtAsset.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ";");
-                hdfEmpCode.Value = searchKey[1];
-               
-                string number = hdfEmpCode.Value.ToString();
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                asset = objPMConfigure.showassetData(number);
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                 
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                asset = objPMConfigure.showassetData(assetId);
                 if (asset.Rows.Count > 0)
                 {
                     TxtName.Text = asset.Rows[0]["strNameOfAsset"].ToString();
@@ -311,83 +307,89 @@ namespace UI.Asset
         {
           
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            Int32 Active = Int32.Parse(1.ToString());
+            int Active = int.Parse(1.ToString());
             return objAutoSearch_BLL.GetAssetItem(Active,prefixText);
 
         }
         protected void BtnIssue_Click(object sender, EventArgs e)
         {
-           
-            if (!String.IsNullOrEmpty(TxtAsset.Text))
+            try
             {
-                string strSearchKey = TxtAsset.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ";");
-                hdfEmpCode.Value = searchKey[1];
-
-                string number = hdfEmpCode.Value.ToString();
-
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                
-                
-                if (RadioButton1.Checked == true)
+                if (hdnConfirm.Value == "1")
                 {
-                    //Int32 schedule = Int32.Parse(DdlSchedule.SelectedValue.ToString());
-                    string service = DdlService.SelectedItem.ToString();
-                    string priority = DdlPrePriority.SelectedItem.ToString();
-                    DateTime dtefixed = DateTime.Parse(TxtdteFixed.Text);
-                    Int32 countday = Int32.Parse(TxtDayHour.Text.ToString());
-
-                    string provide = DdlProvide.SelectedItem.Text.ToString();
-                    string priode = DdlRequred.SelectedItem.Text.ToString();
-                    decimal serviceCost = decimal.Parse(HdnServiceCost.Value.ToString()); 
-
-                    objPMConfigure.InsertPMServicerequestdata(number, service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully PM Service Request');", true);
-
-                    showdata();
-                }
-                else if (RadioButton2.Checked == true)
-                {
-                    DdlCommonRepair.Visible = true;
-                    TxtdteRepair.Visible = true;
-                    DdlREPriotiyyd.Visible = true;
-                    TxtProblem.Visible = true;
-                    RadioButton1.Checked = false;
-                    DdlRequred.Visible = false;
-                    LblHour.Visible = false;
-                    string provide = DdlProvide.SelectedItem.Text.ToString();
-                    decimal repairsCost = decimal.Parse(hdnRepairsCost.Value.ToString());
-                    //Note Service Provide Type In House=0 and Vendor=1//
-                    if (DdlProvide.SelectedItem.Text == "In House")
+                    if (!String.IsNullOrEmpty(TxtAsset.Text))
                     {
+                        arrayKey = TxtAsset.Text.Split(delimiterChars);
+                        string assetId = ""; string assetName = ""; string assetType = "";  
+                        if (arrayKey.Length > 0)
+                        { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); intAssetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                         
+                        int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                        int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                        int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-                        ysnprovide = Int32.Parse(0.ToString());
+                        if (RadioButton1.Checked == true)
+                        { 
+                            //int schedule = int.Parse(DdlSchedule.SelectedValue.ToString());
+                            string service = DdlService.SelectedItem.ToString();
+                            serviceId = int.Parse(DdlService.SelectedValue);
+                            string priority = DdlPrePriority.SelectedItem.ToString();
+                            DateTime dtefixed = DateTime.Parse(TxtdteFixed.Text);
+                            int countday = int.Parse(TxtDayHour.Text.ToString());
+
+                            string provide = DdlProvide.SelectedItem.Text.ToString();
+                            string priode = DdlRequred.SelectedItem.Text.ToString();
+                            decimal serviceCost = decimal.Parse(HdnServiceCost.Value.ToString());
+
+                            objPMConfigure.InsertPMServicerequestdata(assetId, intAssetAutoId, serviceId,service, priority, dtefixed, countday, intenroll, intjobid, intdept, provide, priode, serviceCost);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully PM Service Request');", true);
+
+                            showdata();
+                        }
+                        else if (RadioButton2.Checked == true)
+                        {
+                            DdlCommonRepair.Visible = true;
+                            TxtdteRepair.Visible = true;
+                            DdlREPriotiyyd.Visible = true;
+                            TxtProblem.Visible = true;
+                            RadioButton1.Checked = false;
+                            DdlRequred.Visible = false;
+                            LblHour.Visible = false;
+                            string provide = DdlProvide.SelectedItem.Text.ToString();
+                            decimal repairsCost = decimal.Parse(hdnRepairsCost.Value.ToString());
+                            //Note Service Provide Type In House=0 and Vendor=1//
+                            if (DdlProvide.SelectedItem.Text == "In House")
+                            {
+
+                                ysnprovide =0;
+                            }
+                            if (DdlProvide.SelectedItem.Text == "Vendor")
+                            {
+                                ysnprovide = 1;
+                            }
+
+                            string repair = DdlCommonRepair.SelectedItem.ToString();
+                            serviceId = int.Parse(DdlCommonRepair.SelectedValue);
+                            string priority = DdlREPriotiyyd.SelectedItem.ToString();
+                            DateTime dteRepair = DateTime.Parse(TxtdteRepair.Text);
+                            string problem = TxtProblem.Text.ToString();
+                            objPMConfigure.RepairRequestsInsertData(assetId,  intAssetAutoId, serviceId, repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, ysnprovide, repairsCost);
+
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully Repair Request');", true);
+                        }
+                        showdata();
                     }
-                    if (DdlProvide.SelectedItem.Text == "Vendor")
-                    {
-                        ysnprovide = Int32.Parse(1.ToString());
-                    }
-
-                    string repair = DdlCommonRepair.SelectedItem.ToString();
-                    string priority = DdlREPriotiyyd.SelectedItem.ToString();
-                    DateTime dteRepair = DateTime.Parse(TxtdteRepair.Text);
-                    string problem = TxtProblem.Text.ToString();
-                    objPMConfigure.RepairRequestsInsertData(number, repair, priority, dteRepair, problem, intenroll, intjobid, intdept, provide, ysnprovide, repairsCost);
-
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Succesfully Repair Request');", true);
                 }
-
-
-                showdata();
+                else { }
             }
+            catch { }
+          
+           
         }
 
         protected void BtnAdd_Click(object sender, EventArgs e)
         {
-            {
-                try
+              try
                 {
                     char[] delimiterChars = { '^' };
                     string temp1 = ((Button)sender).CommandArgument.ToString();
@@ -397,30 +399,23 @@ namespace UI.Asset
                     string ordernumber1 = searchKey[0].ToString();
 
                     // Response.Write(ordernumber); 
-                    Session["intID"] = ordernumber1;
-
-
-
+                    Session["intID"] = ordernumber1; 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registrationparts('ServiceConfigurePopUp.aspx');", true);
 
                 }
-                catch { }
-            }
-
-
-
+                catch { } 
         }
 
         protected void DdlCommonRepair_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int repairsID = Int32.Parse(DdlCommonRepair.SelectedValue.ToString());
-            dt = new DataTable();
+            int repairsID = int.Parse(DdlCommonRepair.SelectedValue.ToString());
+            
             dt = objPMConfigure.commonrepairsView(repairsID);
             if (dt.Rows.Count > 0)
-            {
-
+            { 
                 hdnRepairsCost.Value = dt.Rows[0]["monServiceCharge"].ToString();
             }
+            dt.Clear();
         }
     }
 }

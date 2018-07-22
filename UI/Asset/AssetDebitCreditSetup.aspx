@@ -63,7 +63,7 @@
         <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Transection Type : "></asp:Label></td>
         <td><asp:DropDownList ID="ddlTransecTionType" runat="server"  CssClass="ddList" AutoPostBack="True"> </asp:DropDownList> </td> 
    
-        <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Asset Type : "></asp:Label></td>
+        <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Asset Category : "></asp:Label></td>
         <td><asp:DropDownList ID="ddlAssetType" runat="server"  CssClass="ddList"  ></asp:DropDownList> </td>  
         </tr> 
                
@@ -73,7 +73,7 @@
         <td style="text-align:right;"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="AccountsCOA: "></asp:Label></td>
         <td><asp:DropDownList ID="ddlAccountsCOA" runat="server"  CssClass="ddList"></asp:DropDownList> </td></tr>--%>
         <tr> 
-        <td style="text-align:right;" > <asp:Label ID="lblAccCoa" runat="server" CssClass="lbl" font-size="small" Text="Accounts COA:"></asp:Label></td>
+        <td style="text-align:right;" > <asp:Label ID="lblAccCoa" runat="server" CssClass="lbl" font-size="small" Text="Accounts CoA"></asp:Label></td>
         <td style="text-align:left;"> <asp:TextBox ID="txtAccCoa" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true"  ></asp:TextBox>
         <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtAccCoa"
         ServiceMethod="GetAccCoaSearch" MinimumPrefixLength="1" CompletionSetCount="1"

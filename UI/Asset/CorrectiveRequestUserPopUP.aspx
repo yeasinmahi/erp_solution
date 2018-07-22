@@ -114,8 +114,10 @@
                              <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
                              <asp:BoundField DataField="strAssetNumber" HeaderText="Asset Code" SortExpression="strAssetNumber" />
                              <asp:BoundField DataField="strNameOfAsset" HeaderText="Name of Asset" SortExpression="strNameOfAsset" />
+                              <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
                              <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" />
-                             <asp:BoundField DataField="dteFixed/Repair" HeaderText="Date" SortExpression="dteFixed/Repair" />
+                             <asp:BoundField DataField="dteFixed/Repair" HeaderText="Req Date" SortExpression="dteFixed/Repair" />
+                             <asp:BoundField DataField="dteServiceEndDate" HeaderText="End Date" SortExpression="dteServiceEndDate" />
                              <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" />
                              <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" />
                              <asp:BoundField DataField="strDepatrment" HeaderText="Request to Dept" SortExpression="strDepatrment" />

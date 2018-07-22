@@ -58,7 +58,7 @@ namespace UI.SCM.BOM
                 ddlType.DataValueField = "Id";
                 ddlType.DataBind(); 
 
-                dt = objBom.getWorkstationParent(intwh);
+                dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";
@@ -232,7 +232,7 @@ namespace UI.SCM.BOM
                 }
                
                 txtFgItem.Text = ""; 
-                dt = objBom.getWorkstationParent(intwh);
+                dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";
@@ -417,7 +417,7 @@ namespace UI.SCM.BOM
             {
                 dt = new DataTable();
                 intwh = int.Parse(ddlWh.SelectedValue);
-                dt = objBom.getWorkstationParent(intwh);
+                dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";

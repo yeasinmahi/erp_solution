@@ -58,6 +58,24 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -281,6 +299,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RevenueDLL\RevinueTDS.cs">
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RevenueDLL\RevinueTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SADCOA\customerManagementForCOATDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -318,6 +344,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.cs">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Sales\SalesConfigTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -376,6 +410,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UtilityTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\CreditNoteTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditNoteTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Vat\Mushok11New.cs">
       <DependentUpon>Mushok11New.xsd</DependentUpon>
@@ -833,6 +872,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="RevenueDLL\RevinueTDS.xsc">
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </None>
+    <None Include="RevenueDLL\RevinueTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RevinueTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RevenueDLL\RevinueTDS.xss">
+      <DependentUpon>RevinueTDS.xsd</DependentUpon>
+    </None>
     <None Include="SADCOA\customerManagementForCOATDS.xsc">
       <DependentUpon>customerManagementForCOATDS.xsd</DependentUpon>
     </None>
@@ -909,6 +959,17 @@
     </None>
     <None Include="Sales\Report\SalesByCusProTDS.xss">
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xsc">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UDTCLSalesTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xss">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
     </None>
     <None Include="Sales\SalesConfigTDS.xsc">
       <DependentUpon>SalesConfigTDS.xsd</DependentUpon>
@@ -1030,6 +1091,17 @@
     </None>
     <None Include="Transport\UtilityTDS.xss">
       <DependentUpon>UtilityTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\CreditNoteTDS.xsc">
+      <DependentUpon>CreditNoteTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Vat\CreditNoteTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CreditNoteTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Vat\CreditNoteTDS.xss">
+      <DependentUpon>CreditNoteTDS.xsd</DependentUpon>
     </None>
     <None Include="Vat\Mushok11New.xsc">
       <DependentUpon>Mushok11New.xsd</DependentUpon>

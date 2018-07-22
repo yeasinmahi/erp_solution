@@ -49,12 +49,12 @@ namespace UI.SCM.Transfer
                 ddlToWh.Items.Insert(0, new ListItem("Select", "0"));
                 dt.Clear();
 
-                dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
-                ddlTransType.DataSource = dt;
-                ddlTransType.DataTextField = "strName";
-                ddlTransType.DataValueField = "Id";
-                ddlTransType.DataBind();
-                ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
+                //dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
+                //ddlTransType.DataSource = dt;
+                //ddlTransType.DataTextField = "strName";
+                //ddlTransType.DataValueField = "Id";
+                //ddlTransType.DataBind();
+                //ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
 
             }
@@ -305,7 +305,7 @@ namespace UI.SCM.Transfer
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg =objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
+                        string msg =objTransfer.PostTransferDamage(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();

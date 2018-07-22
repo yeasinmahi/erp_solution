@@ -40,7 +40,7 @@ namespace UI.Transport
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-            
+
             filePathForXML = Server.MapPath("~/Transport/Data/InFuelStation_" + hdnEnroll.Value + ".xml");
             filePathForXMLDTFare = Server.MapPath("~/Transport/Data/InDTFare_" + hdnEnroll.Value + ".xml");
             filePathForXMLDTFareCash = Server.MapPath("~/Transport/Data/InDTFareCash_" + hdnEnroll.Value + ".xml");
@@ -55,7 +55,6 @@ namespace UI.Transport
                     File.Delete(filePathForXMLDTFareCash); dgvDTFareCash.DataSource = ""; dgvDTFareCash.DataBind();
                     File.Delete(filePathForXMLDocUpload); dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
                     
-
                     intID = int.Parse(Request.QueryString["intID"].ToString());
                     HttpContext.Current.Session["intID"] = intID.ToString();
 
@@ -142,20 +141,29 @@ namespace UI.Transport
                 hdnMillage.Value = dt.Rows[0]["Millage"].ToString();                
                 hdnQty.Value = dt.Rows[0]["Quantity"].ToString();
                 txtQty.Text = dt.Rows[0]["Quantity"].ToString();
-                
+
+                if (hdnUnit.Value == "94")
+                {
+                    hdnTFare.Value = dt.Rows[0]["TripFare"].ToString();
+                    txtTotalTripFare.Text = dt.Rows[0]["TripFare"].ToString();
+                }
+
                 //lblTripNo.Text = dt.Rows[0]["TripNo"].ToString();                
                 //lblCustName.Text = dt.Rows[0]["CustomerName"].ToString();
                 //lblVehicleNo.Text = dt.Rows[0]["VehicleNo"].ToString();
                 //lblVehicleType.Text = dt.Rows[0]["VehicleType"].ToString();
             }
 
-            dt = new DataTable();
-            dt = obj.GetTripFareForInEntry(intID);
-            if (dt.Rows.Count > 0)
+            if (hdnUnit.Value != "94")
             {
-                hdnTFare.Value = dt.Rows[0]["monTripFare"].ToString();
-                txtTotalTripFare.Text = dt.Rows[0]["monTripFare"].ToString();
-            }           
+                dt = new DataTable();
+                dt = obj.GetTripFareForInEntry(intID);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnTFare.Value = dt.Rows[0]["monTripFare"].ToString();
+                    txtTotalTripFare.Text = dt.Rows[0]["monTripFare"].ToString();
+                }
+            }
 
         }
 

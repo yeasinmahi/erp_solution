@@ -58,6 +58,24 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -118,12 +136,14 @@
     <Compile Include="Item\ItemSt.cs" />
     <Compile Include="Item\ItemUnitOfMeasurement.cs" />
     <Compile Include="AutoChallan\AutoChallReportsBLL.cs" />
+    <Compile Include="RevenueBLL\RevenueClsBLL.cs" />
     <Compile Include="Sales\AppsSalesOrder_BLL.cs" />
     <Compile Include="Sales\DelivaryView.cs" />
     <Compile Include="Sales\OrderByTrip.cs" />
     <Compile Include="Sales\RemoteSales.cs" />
     <Compile Include="Sales\Report\Challan.cs" />
     <Compile Include="Sales\Report\SalesByCusPro.cs" />
+    <Compile Include="Sales\Report\UDTCLSalesBLL.cs" />
     <Compile Include="Sales\SalesConfig.cs" />
     <Compile Include="Sales\SalesEntry.cs" />
     <Compile Include="Item\StaticItem.cs" />
@@ -139,6 +159,7 @@
     <Compile Include="Transfer\Transfer.cs" />
     <Compile Include="Transport\InternalTransportBLL.cs" />
     <Compile Include="Transport\Utility_BLL.cs" />
+    <Compile Include="Vat\CreditNoteBLL.cs" />
     <Compile Include="Vat\Mushok11.cs" />
     <Compile Include="Vat\VAT_BLL.cs" />
   </ItemGroup>

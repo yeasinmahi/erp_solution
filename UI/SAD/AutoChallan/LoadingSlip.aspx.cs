@@ -264,7 +264,16 @@ namespace UI.SAD.AutoChallan
                         Int32 intsalestypeid = int.Parse("0"); //= Convert.ToInt32(dtsalestype.Rows[0]["intTypeID"].ToString());
                         decimal monExtraAmount = Convert.ToDecimal("0".ToString());
                         string strExtraCause = Convert.ToString("Pcs");
-                        string strOther = Convert.ToString("".ToString());
+                        string strOther;
+                        //if (txtBtachNo.Text == "")
+                        //{
+                        //     strOther = "";
+                        //}
+                        //else
+                        //{
+                        //    strOther = Convert.ToString(txtBtachNo.Text.ToString());
+                        //}
+                        strOther = "";
                         string strDrivername = Convert.ToString(Session["drivername"].ToString());
 
                         Int32 intshipingpointid = Convert.ToInt32(Session["Shippointid"].ToString());

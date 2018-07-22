@@ -57,6 +57,14 @@
                              <asp:SessionParameter Name="intLoginId" SessionField="sesUserID" Type="Int32" />
                          </SelectParameters>
                      </asp:ObjectDataSource>&nbsp
+                    <%-- <%--<asp:ObjectDataSource ID="odsJobStation" runat="server" 
+                         SelectMethod="GetAllJobStationByLoginId" TypeName="HR_BLL.Global.JobStation">
+                         <SelectParameters>
+                             <asp:SessionParameter Name="intLoginId" SessionField="sesUserID" Type="Int32" />
+                         </SelectParameters>
+                     </asp:ObjectDataSource>&nbsp--%> --%>
+
+
                         <asp:Button ID="btnSubmit" runat="server" Text="Show" 
                         onclick="btnSubmit_Click" />
 

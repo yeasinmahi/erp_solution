@@ -25,7 +25,7 @@
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-       <div class="tabs_container"> Item Promotion Setup <hr /></div>
+       <div class="tabs_container">Sales Item Promotion Setup <hr /></div>
         <table  class="tbldecoration" style="width:auto; float:left;">                           
         <tr><td colspan="5"><hr /></td></tr>                              
         <tr class="tblrowodd">           
@@ -124,7 +124,11 @@
             </td>
         </tr>                      
         <tr><td colspan="5"><hr />
-            <asp:GridView ID="dgvPromotionReport" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True">
+            
+            
+            </td></tr>          
+        </table>
+        <table><tr><td><asp:GridView ID="dgvPromotionReport" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns> 
                  
@@ -155,10 +159,7 @@
             <SortedAscendingHeaderStyle BackColor="#808080" />
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
-            </asp:GridView>
-            
-            </td></tr>          
-        </table>
+            </asp:GridView></td></tr></table>
         </div>
 
 <%--=========================================End My Code From Here=================================================--%>

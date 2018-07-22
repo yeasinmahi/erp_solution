@@ -8,6 +8,7 @@ using SAD_DAL.Customer.Report.StatementTDSTableAdapters;
 using System.Data;
 using System.Collections;
 
+
 namespace SAD_BLL.Customer.Report
 {
     public class StatementC
@@ -1954,6 +1955,22 @@ namespace SAD_BLL.Customer.Report
             }
             catch { return new DataTable(); }
         }
+
+
+        public DataTable insertdataforDamagecommissionjv(string xmlstring, int unitid, string gbcode, string prefix, string gbnarattion, decimal totalcommission, int enrol, int headcoaid, DateTime fromdate, DateTime dtto)
+        {
+            try
+            {
+                SprVoucherCreateForDamageCommissionTableAdapter bll = new SprVoucherCreateForDamageCommissionTableAdapter();
+                return bll.GetDataVoucherCreateForDamageCommission(xmlstring, unitid, gbcode, prefix, gbnarattion, totalcommission, enrol, headcoaid, fromdate, dtto);
+
+            }
+            catch { return new DataTable(); }
+        }
+
+
+
+
         public DataTable GetItembaseofUnit(int unitid)
         {
             try
@@ -2130,6 +2147,53 @@ namespace SAD_BLL.Customer.Report
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable getrptforTADAPersonalBreakge(DateTime dteFromDate, DateTime dteTodate,  int intUnitid, int intReportType)
+        {
+            try
+            {
+                SprZTADAPersonalBreakageTableAdapter bll = new SprZTADAPersonalBreakageTableAdapter();
+                return bll.GetDataZTADAPersonalBreakage(dteFromDate, dteTodate,  intUnitid, intReportType);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetPendingByCustomer(string customerId)
+        {
+
+            try
+            {
+                SprzCustomervsPendingTableAdapter ta = new SprzCustomervsPendingTableAdapter();
+            return ta.GetDataCustomervsPending(int.Parse(customerId));
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getdataACCLCommonJV(DateTime dtfromdate, DateTime dttodate, int salesofice, string reptname, int unitid)
+        {
+            try
+            {
+                SprDiscountAdjustmentTableAdapter bll = new SprDiscountAdjustmentTableAdapter();
+                return bll.GetDatasprDiscountAdjustment(dtfromdate, dttodate, salesofice, reptname, unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getStandByVheicleRpt(int intvhcleid , int intjobstation , int intunit ,DateTime fromdate , DateTime todate ,int rpttype ,int intcngstationid ,int intoilstationid )
+        {
+            try
+            {
+                SprZStandVheicleTADATableAdapter bll = new SprZStandVheicleTADATableAdapter();
+                return bll.GetDataZStandVheicleTADA(intvhcleid, intjobstation, intunit, fromdate, todate, rpttype, intcngstationid, intoilstationid);
+
+            }
+            catch (Exception ex)
+            {
+
+                return new DataTable();
+            }
+        }
+
 
     }
 }

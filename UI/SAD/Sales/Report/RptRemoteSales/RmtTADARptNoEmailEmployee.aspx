@@ -1029,6 +1029,107 @@
              </table>
             </div>
         
+        <div class="leaveApplication_container"> 
+             <table>
+       <tr class="tblroweven"><td>
+              <asp:GridView ID="dgvPerkiloMlgAnalysis" runat="server" AutoGenerateColumns="False" AllowPaging="false"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="dgvPerkiloMlgAnalysis_PageIndexChanging">
+                  <AlternatingRowStyle BackColor="#CCCCCC" />
+                  <Columns>
+                    
+                      
+                      <asp:BoundField DataField="Id" HeaderText="Sl" SortExpression="intid" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                      
+                       
+                       
+
+                      <asp:BoundField DataField="strNam" HeaderText="Employee  Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       <asp:BoundField DataField="strDesg" HeaderText="Designation" SortExpression="strDesg" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       
+                      
+
+                       <asp:BoundField DataField="decMovementDurationT" HeaderText="MovDuraion" SortExpression="decMovDuraion" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                        
+                       <asp:BoundField DataField="decConsumedKmT" HeaderText="ConsumedKmT" SortExpression="decBus" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                        <asp:BoundField DataField="decCostPetrolT" HeaderText="Cost PetrolT" SortExpression="decCostPetrolT" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                       <asp:BoundField DataField="decCostOctenT" HeaderText="Cost OctenT" SortExpression="decCostOctenT" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decCostCarbonNitGasT" HeaderText="Cost CarbonNitGasT" SortExpression="decTrain" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="lubricantcost" HeaderText="lubricant cost" SortExpression="decBoat" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decSupplierCNGcredit1" HeaderText="SupplierCNG credit1" SortExpression="decAnother" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decSupplierCNGcredit2" HeaderText="SupplierCNG credit2" SortExpression="strRemarks" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decSupplierGas" HeaderText="Supplier Gas" SortExpression="decOwnDA" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decPersonalMilageqnt" HeaderText="Personal Milageqnt" SortExpression="decOtherDA" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                       <asp:BoundField DataField="decPersonalTotalcost" HeaderText="Personal Totalcost" SortExpression="dechotel" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                       <asp:BoundField DataField="decTotalcashcost" HeaderText="Total cashcost " SortExpression="decOtherCostAmount" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="dectotalcredit" HeaderText="Total creditCost " SortExpression="decrowtotal" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decTotalcost" HeaderText="Totalcost" SortExpression="strContac" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="decperkilocost" HeaderText="Perkilo cost " SortExpression="strphone" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                       
+
+                  </Columns>
+                  <FooterStyle BackColor="#CCCCCC" />
+                  <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                  <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                  <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                  <SortedAscendingHeaderStyle BackColor="#808080" />
+                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                  <SortedDescendingHeaderStyle BackColor="#383838" />
+              </asp:GridView> </td>
+         </tr>    
+ 
+     </table>
+            </div>
        
 
 

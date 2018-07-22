@@ -137,7 +137,7 @@ namespace UI.SAD.Sales.Report
 
             else if (rpttype == 18)
             {
-                //fromDate, toDate, customerId, productId, userID, unitID, intCusType, intSOid, intrptType
+                ////fromDate, toDate, customerId, productId, userID, unitID, intCusType, intSOid, intrptType
                 dt = bll.getProductGroupvsChallanDet(fromdate, todate, unitid, rpttype);
 
                 if (dt.Rows.Count > 0)

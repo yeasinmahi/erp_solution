@@ -177,9 +177,50 @@ namespace HR_BLL.CreativeSupport
             { return adp.GetJobDetailsR(intPart, intJobID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
+        public string UpdateJobStatus(int intPart, int intJobID, int intJobStatusID, string strStatus, string strStatusRemarks, int intInsertBy, string xmlDoc)
+        {
+            try
+            {
+                string msg = "";
+                SprCreativeSupportStatusUpdateTableAdapter adp = new SprCreativeSupportStatusUpdateTableAdapter();
+                adp.UpdateJobStatus(intPart, intJobID, intJobStatusID, strStatus, strStatusRemarks, intInsertBy, xmlDoc, ref msg);
+                return msg;
+            }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+        public DataTable GetAllReport(int intPart, int intReceiver, DateTime dteFrom, DateTime dteTo)
+        {
+            SprCreativeSupportAllReportTableAdapter adp = new SprCreativeSupportAllReportTableAdapter();
+            try
+            { return adp.GetAllReport(intPart, intReceiver, dteFrom, dteTo); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public string ItemCreateAndPointSet(int intPart, string strItemName, int intPoint, int intID)
+        {
+            try
+            {
+                string msg = "";
+                SprItemCreateAndPointSetTableAdapter adp = new SprItemCreateAndPointSetTableAdapter();
+                adp.ItemCreateAndPointSet(intPart, strItemName, intPoint, intID, ref msg);
+                return msg;
+            }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+        public DataTable GetCreativeItemListForDDL()
+        {
+            ItemListForCreativeSTableAdapter adp = new ItemListForCreativeSTableAdapter();
+            try
+            { return adp.GetCreativeItemList(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetAllDocumentView(int intJobID)
+        {
+            AllDocViewTableAdapter adp = new AllDocViewTableAdapter();
+            try
+            { return adp.GetAllDocumentView(intJobID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
         
-
 
 
 
