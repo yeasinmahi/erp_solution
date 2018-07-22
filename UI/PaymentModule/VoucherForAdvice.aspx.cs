@@ -116,7 +116,6 @@ namespace UI.PaymentModule
             }
             catch { }
         }
-
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
