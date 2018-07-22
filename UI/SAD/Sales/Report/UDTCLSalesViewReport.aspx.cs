@@ -28,8 +28,7 @@ namespace UI.SAD.Sales.Report
             //{
             //    GvSalesReportAnother.Visible = true;
             //}
-            //else
-            //{ }
+           
             GvSalesReport.Visible = true;
             //int count = GvSalesReport.Rows.Count;
             //if(count==0)

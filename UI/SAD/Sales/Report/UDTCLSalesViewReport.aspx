@@ -43,13 +43,13 @@
     </script>
     <style>
         .divHeader{
-            background-color:#9bb4dd; /*#45546d;*/
+            background-color:#9bb4dd; 
              border: 0px solid #000;
             text-align: center;
             color: #fff;
             width: 700px;
             height: 25px;
-         font-weight: bold;
+           font-weight: bold;
         }
        
        
