@@ -29,10 +29,20 @@ namespace UI.SAD.Sales.Report
             //    GvSalesReportAnother.Visible = true;
             //}
             //else
+            //{ }
+            GvSalesReport.Visible = true;
+            //int count = GvSalesReport.Rows.Count;
+            //if(count==0)
             //{
-                GvSalesReport.Visible = true;
+            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
 
             //}
+            //else
+            //{
+            //    GvSalesReport.Visible = true;
+            //}
+
+            
           
 
         }

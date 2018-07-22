@@ -1855,7 +1855,6 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intunitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intcustid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rpttype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intsalesoffid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intshippingpointid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1865,7 +1864,7 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UDTCLSalesTDS.sprUDTCLSalesStausDataTable GetUDTCLSalesData(global::System.Nullable<global::System.DateTime> fromdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intunitid, global::System.Nullable<int> intcustid, global::System.Nullable<int> rpttype, global::System.Nullable<int> intsalesoffid, global::System.Nullable<int> intshippingpointid) {
+        public virtual UDTCLSalesTDS.sprUDTCLSalesStausDataTable GetUDTCLSalesData(global::System.Nullable<global::System.DateTime> fromdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intunitid, global::System.Nullable<int> rpttype, global::System.Nullable<int> intsalesoffid, global::System.Nullable<int> intshippingpointid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((fromdate.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fromdate.Value));
@@ -1885,29 +1884,23 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((intcustid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intcustid.Value));
+            if ((rpttype.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(rpttype.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((rpttype.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(rpttype.Value));
+            if ((intsalesoffid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(intsalesoffid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((intsalesoffid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intsalesoffid.Value));
+            if ((intshippingpointid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intshippingpointid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((intshippingpointid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intshippingpointid.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             UDTCLSalesTDS.sprUDTCLSalesStausDataTable dataTable = new UDTCLSalesTDS.sprUDTCLSalesStausDataTable();
             this.Adapter.Fill(dataTable);
