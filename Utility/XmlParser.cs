@@ -82,6 +82,13 @@ namespace Utility
             return node;
         }
 
+        public static string ConvertXmlToString(XmlDocument doc)
+        {
+            XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
+            string xmlString = dSftTm.InnerXml;
+            xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
+            return xmlString;
+        }
 
     }
 }

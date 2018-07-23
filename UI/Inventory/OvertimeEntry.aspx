@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+    <asp:PlaceHolder ID="PlaceHolder1" runat=server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <script>
