@@ -86,7 +86,7 @@
         <table style="border-radius:10px; width:700px; border-style:groove">
             <caption style="text-align:left">Loan Pay</caption>
         <tr>
-            <td style='text-align: left;'>From</td>
+            <td style='text-align: left;'>To Pay</td>
             <td style='text-align: left;'><asp:DropDownList ID="ddlFrom" CssClass="ddList"   runat="server"  Width="300px" AutoPostBack="True"    ></asp:DropDownList></td>  
             <td style='text-align: left; width:120px'>Location</td>
             <td style='text-align: left;'><asp:DropDownList ID="ddlLocation" CssClass="ddList"   runat="server" Width="300px"  AutoPostBack="false"    ></asp:DropDownList></td>  

@@ -154,6 +154,7 @@
     <Compile Include="Mail\MailType.cs" />
     <Compile Include="New_Projecl_BLL\NewProjectBll.cs" />
     <Compile Include="OfficialMovement\OfficialMovement.cs" />
+    <Compile Include="Payment\TreasuryChallanBLL.cs" />
     <Compile Include="PaySlip\PayslipGenerator.cs" />
     <Compile Include="Penalty\Penalty.cs" />
     <Compile Include="PiceRateCalculation\PiceRateCalculation_BLL.cs" />

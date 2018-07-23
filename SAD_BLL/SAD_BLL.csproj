@@ -101,6 +101,7 @@
     <Compile Include="Analysis\SalesAnalysisC.cs" />
     <Compile Include="AutoChallan\ChallanandPending.cs" />
     <Compile Include="AutoChallan\ExcelDataBLL.cs" />
+    <Compile Include="Consumer\StarConsumerEntryBll.cs" />
     <Compile Include="Corporate_sales\AutoSearch_BLL.cs" />
     <Compile Include="Corporate_sales\Bridge.cs" />
     <Compile Include="Corporate_sales\OrderInputClass.cs" />

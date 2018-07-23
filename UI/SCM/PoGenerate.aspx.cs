@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -20,6 +22,7 @@ namespace UI.SCM
         int enroll,intWh;
         string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; string xmlString = "";
         int indentNo,whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule; DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
+        string[] arrayKey; string strType; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/In__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -42,27 +45,74 @@ namespace UI.SCM
         {
             try
             {
-                Session["pono"] = txtPoNumber.Text.ToString();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
+                MrrReceive_BLL obj = new MrrReceive_BLL();
+                int  intPo = int.Parse(txtPoNumber.Text);
+                dt = obj.GetPO(intPo);
+                if (dt.Rows.Count > 0)
+                {
+                    Session["pono"] = txtPoNumber.Text.ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not Found');", true);
+
+                }
+
 
             }
             catch { }
         }
 
-        protected void ddlSuppliyer_SelectedIndexChanged(object sender, EventArgs e)
+        //protected void ddlSuppliyer_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+                
+        //        int suppid = int.Parse(ddlSuppliyer.SelectedValue);
+
+        //        dt = objPo.GetPoData(22, "", 0, suppid, DateTime.Now, enroll);
+        //        if(dt.Rows.Count>0)
+        //        {
+        //            lblSuppAddress.Text = dt.Rows[0]["strName"].ToString();
+        //        }
+        //    }
+        //    catch { }
+        //}
+        protected void txtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                int suppid = int.Parse(ddlSuppliyer.SelectedValue);
-
-                dt = objPo.GetPoData(22, "", 0, suppid, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                arrayKey = txtSupplier.Text.Split(delimiterChars);
+                string strSupp = ""; int supplierid = 0;
+                if (arrayKey.Length > 0)
+                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+             
+                dt = objPo.GetPoData(22, "", 0, supplierid, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
                 {
                     lblSuppAddress.Text = dt.Rows[0]["strName"].ToString();
                 }
+
             }
             catch { }
+
         }
+
+        #region=======================Auto Search=========================
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetSupplierSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["unitId"].ToString());
+        }
+
+
+        #endregion====================Close===============================
+
+      
 
         private void DefaltPageLoad()
         {
@@ -165,7 +215,9 @@ namespace UI.SCM
                     lblindentApproveDate.Text = DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
                     lblInDueDate.Text =DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
-              
+                string unitId = hdnUnitId.Value.ToString();
+                Session["unitId"] = unitId;
+
                 Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Clicked";
                 Tab3.CssClass = "Initial";
@@ -508,11 +560,11 @@ namespace UI.SCM
                     ddlCurrency.DataValueField = "Id";
                     ddlCurrency.DataBind();
 
-                    dt = objPo.GetPoData(6, "", intWh,int.Parse(hdnUnitId.Value), DateTime.Now, enroll); // get Suppliyer Data
-                    ddlSuppliyer.DataSource = dt;
-                    ddlSuppliyer.DataTextField = "strName";
-                    ddlSuppliyer.DataValueField = "Id";
-                    ddlSuppliyer.DataBind();
+                    //dt = objPo.GetPoData(6, "", intWh,int.Parse(hdnUnitId.Value), DateTime.Now, enroll); // get Suppliyer Data
+                    //ddlSuppliyer.DataSource = dt;
+                    //ddlSuppliyer.DataTextField = "strName";
+                    //ddlSuppliyer.DataValueField = "Id";
+                    //ddlSuppliyer.DataBind();
 
                     dt = objPo.GetPoData(7, "", intWh, int.Parse(hdnUnitId.Value), DateTime.Now, enroll);// Pay Date
                     ddlDtePay.DataSource = dt;
@@ -702,11 +754,22 @@ namespace UI.SCM
         protected void btnGeneratePO_Click(object sender, EventArgs e)
         {
             try
-            { 
-                try { File.Delete(filePathForXMLPo); } catch { } 
+            {
+                
+
+                try { File.Delete(filePathForXMLPo); } catch { }
+                try
+                {
+                    arrayKey = txtSupplier.Text.Split(delimiterChars);
+                    string strSupp = ""; supplierId = 0;
+                    if (arrayKey.Length > 0)
+                    { strSupp = arrayKey[0].ToString(); supplierId = int.Parse(arrayKey[1].ToString()); }
+                }
+                catch { supplierId = 0; }
+
                 try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { }
                 try { unitid = int.Parse(hdnUnitId.Value); } catch { }
-                try { supplierId = int.Parse(ddlSuppliyer.SelectedValue); } catch { supplierId = 0; }
+               
                 try { currencyId = int.Parse(ddlCurrency.SelectedValue); } catch { currencyId = 0; }
                 try { costId = int.Parse(ddlCostCenter.SelectedValue); } catch { }
                 try { payDate = ddlDtePay.SelectedValue.ToString(); } catch { payDate ="0"; }
