@@ -97,38 +97,20 @@
                                         </SelectParameters>
                                     </asp:ObjectDataSource>
                             </td>
-        <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl"  runat="server" Text="Sales Office:"></asp:Label></td>
-                            <td><asp:DropDownList ID="DdlSalesOffice" runat="server"   CssClass="dropdownList" DataSourceID="odsSalesOffice" DataTextField="strName" DataValueField="intId" AutoPostBack="true"></asp:DropDownList>
-                                <asp:ObjectDataSource ID="odsSalesOffice" runat="server"  SelectMethod="GetSalesOfficeByUnitId" TypeName="HR_DAL.TourPlan.CustomerBankGauranteeTableAdapters.TblSalesOfficeTableAdapter">
-                                    <SelectParameters>
-                                        <asp:ControlParameter ControlID="ddlUnit" Name="intUnitId" PropertyName="SelectedValue" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
-                            </td>
-        </tr>
-        <tr class="tblrowodd">
-        <td style="text-align:right;"><asp:Label ID="Label6" CssClass="lbl"  runat="server" Text="Report Type:"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="Label6" CssClass="lbl"  runat="server" Text="Report Type:"></asp:Label></td>
                             <td>
                                 <asp:DropDownList ID="DdlReport" runat="server" CssClass="dropdownList" >
                                     <asp:ListItem Value="">---Select Report Type---</asp:ListItem>
                                     <asp:ListItem Value="1">Factory sales</asp:ListItem>
                                     <asp:ListItem Value="2">Remote sales</asp:ListItem>
-                                    <asp:ListItem Value="3">Both sales</asp:ListItem>
-                                    <asp:ListItem Value="4">Gross sales</asp:ListItem>
-                                    <asp:ListItem Value="5">Transfer sales</asp:ListItem>
+                                    <asp:ListItem Value="3">Both sales</asp:ListItem>                                
+                                    <asp:ListItem Value="4">Transfer sales</asp:ListItem>
                                 </asp:DropDownList></td>
-                            <td style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl"  runat="server" Text="Shipping Point:"></asp:Label></td>
-                            <td>
-                                <asp:DropDownList ID="DdlShippingPoint" runat="server" CssClass="dropdownList" DataSourceID="odsShippingPoint" DataTextField="strName" DataValueField="intId"></asp:DropDownList>
-                                <asp:ObjectDataSource ID="odsShippingPoint" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetShippingPointDataByUnitid" TypeName="SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters.tblShippingPointTableAdapter">
-                                    <SelectParameters>
-                                        <asp:ControlParameter ControlID="ddlUnit" Name="intUnitId" PropertyName="SelectedValue" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
-                             </td>
-        </tr>
        
-        <tr class="tblroweven">
+        </tr>
+     
+       
+        <tr class="tblrowodd">
               
                 
             <td colspan="4" style="text-align:right;">
@@ -211,8 +193,7 @@
                                         <asp:ControlParameter ControlID="txtToDate" Name="todate" PropertyName="Text" Type="DateTime" />
                                         <asp:ControlParameter ControlID="ddlUnit" Name="intunitid" PropertyName="SelectedValue" Type="Int32" />                                     
                                         <asp:ControlParameter ControlID="DdlReport" Name="rpttype" PropertyName="SelectedValue" Type="Int32" />
-                                        <asp:ControlParameter ControlID="DdlSalesOffice" Name="intsalesoffid" PropertyName="SelectedValue" Type="Int32" />
-                                        <asp:ControlParameter ControlID="DdlShippingPoint" Name="intshippingpointid" PropertyName="SelectedValue" Type="Int32" />
+                                       
                                     </SelectParameters>
                                 </asp:ObjectDataSource>
                             </td>

@@ -33,10 +33,10 @@ namespace HR_BLL.Payment
             return adp.GetVatRegData(intTreasuryId);
         }
 
-        public DataTable updateVatReg(int IntTreasuryId)
+        public DataTable updateVat(string BankName, string strDistrict, string strBranch, string dteChallan, string strChallan, string strInstrument,int intTreasuryID)
         {
-            sprUPDATEtblVATTreasuryDepositTableAdapter adp = new sprUPDATEtblVATTreasuryDepositTableAdapter();
-            return adp.UpdateVatTreasury(IntTreasuryId);
+            tblVATTreasuryDepositTableAdapter adp = new tblVATTreasuryDepositTableAdapter();
+            return adp.UpdateData(BankName,strDistrict,strBranch,dteChallan,strChallan,strInstrument,intTreasuryID);
         }
 
 
