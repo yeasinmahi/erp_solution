@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExcelDataTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Consumer\StarConsumeEntry.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StarConsumeEntry.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Corporate_sales\Corporate.cs">
       <DependentUpon>Corporate.xsd</DependentUpon>
     </Compile>
@@ -559,6 +564,17 @@
     </None>
     <None Include="AutoChallan\ExcelDataTDS.xss">
       <DependentUpon>ExcelDataTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Consumer\StarConsumeEntry.xsc">
+      <DependentUpon>StarConsumeEntry.xsd</DependentUpon>
+    </None>
+    <None Include="Consumer\StarConsumeEntry.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StarConsumeEntry.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Consumer\StarConsumeEntry.xss">
+      <DependentUpon>StarConsumeEntry.xsd</DependentUpon>
     </None>
     <None Include="Corporate_sales\Corporate.xsc">
       <DependentUpon>Corporate.xsd</DependentUpon>

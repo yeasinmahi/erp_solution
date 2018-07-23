@@ -42,8 +42,21 @@ namespace UI.SCM
         {
             try
             {
-                Session["pono"] = txtPoNumber.Text.ToString();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
+                MrrReceive_BLL obj = new MrrReceive_BLL();
+                int  intPo = int.Parse(txtPoNumber.Text);
+                dt = obj.GetWHByPO(intPo, intWh);
+                if (dt.Rows.Count > 0)
+                {
+                    Session["pono"] = txtPoNumber.Text.ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not Found');", true);
+
+                }
+
 
             }
             catch { }

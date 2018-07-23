@@ -422,7 +422,7 @@
         OnClick="Tab3_Click"  BackColor="#FFCC99" />
         <asp:Button Text="View PO" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
         OnClick="Tab4_Click"  BackColor="#FFCC99" />
-       <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#FFCC99"  ></asp:Label>
+       <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#3FD131"  ></asp:Label>
         
 
         <asp:MultiView ID="MainView"  runat="server">

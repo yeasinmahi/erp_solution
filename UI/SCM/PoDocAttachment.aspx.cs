@@ -16,7 +16,7 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -58,10 +58,16 @@ namespace UI.SCM
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"'  + "/></voucher>".ToString();
                 dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
-                ddlSupplier.DataSource = dt;
-                ddlSupplier.DataTextField = "strName";
-                ddlSupplier.DataValueField = "Id";
-                ddlSupplier.DataBind();
+                //ddlSupplier.DataSource = dt;
+                //ddlSupplier.DataTextField = "strName";
+                //ddlSupplier.DataValueField = "Id";
+                //ddlSupplier.DataBind();
+
+                string strDept = ddlDept.SelectedItem.ToString();
+                Session["strType"] = dept;
+                string unitId = ddlUnit.SelectedValue.ToString();
+                Session["unitId"] = unitId;
+
                 dt.Clear();
             }
             catch { }
@@ -74,10 +80,20 @@ namespace UI.SCM
         public static string[] GetPoUserSearch(string prefixText)
         {
             return DataTableLoad.objPos.AutoSearchPoUser(prefixText);
-        } 
+        }
         #endregion====================Close===============================
 
+        #region=======================Auto Search=========================
 
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetMasterSupplierSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(),HttpContext.Current.Session["unitId"].ToString());
+        }
+
+
+        #endregion====================Close===============================
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
@@ -89,8 +105,14 @@ namespace UI.SCM
 
                 int unitID = int.Parse(ddlUnit.SelectedValue);
                 string dept = ddlDept.SelectedItem.ToString();
-                string strSupp = ddlSupplier.SelectedValue.ToString();
-                
+              
+                arrayKey = txtSupplier.Text.Split(delimiterChars);
+                string strSupp = ""; int supplierid = 0;
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                strSupp = supplierid.ToString();
+
+
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
@@ -109,8 +131,13 @@ namespace UI.SCM
             {
                 int unitID = int.Parse(ddlUnit.SelectedValue);
                 string dept = ddlDept.SelectedItem.ToString();
-                string strSupp = ddlSupplier.SelectedValue.ToString();
-                enroll = int.Parse(ddlSupplier.SelectedValue);
+
+                arrayKey = txtSupplier.Text.Split(delimiterChars);
+                string strSupp = ""; int supplierid = 0;
+                if (arrayKey.Length > 0)
+                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                strSupp = supplierid.ToString();
+                enroll = supplierid;
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
@@ -132,13 +159,39 @@ namespace UI.SCM
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
-                ddlSupplier.DataSource = dt;
-                ddlSupplier.DataTextField = "strName";
-                ddlSupplier.DataValueField = "Id";
-                ddlSupplier.DataBind();
+                //ddlSupplier.DataSource = dt;
+                //ddlSupplier.DataTextField = "strName";
+                //ddlSupplier.DataValueField = "Id";
+                //ddlSupplier.DataBind();
+
+                string strDept = ddlDept.SelectedItem.ToString();
+                Session["strType"] = dept;
+                string unitId = ddlUnit.SelectedValue.ToString();
+                Session["unitId"] = unitId;
                 dt.Clear();
             }
             catch { }
+        }
+
+        protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strDept = ddlDept.SelectedItem.ToString();
+            Session["strType"] = getDept(strDept);
+            string unitId = ddlUnit.SelectedValue.ToString();
+            Session["unitId"] = unitId;
+        }
+
+        private string getDept(string strDept)
+        {
+            try
+            {
+
+                if (strDept == "Local") { strType = "Local Purchase"; }
+                else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
+                else if (strDept == "Import") { strType = "Foreign Purchase"; }
+                return strType;
+            }
+            catch { return strType; }
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
