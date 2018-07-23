@@ -249,7 +249,7 @@ namespace SCM_BLL
         {
             tblSupplier = new PoGenerateTDS.TblSupplierDataTable[Convert.ToInt32(1)];
             TblSupplierTableAdapter adpCOA = new TblSupplierTableAdapter();
-            tblSupplier[e] = adpCOA.GetSupplierData(int.Parse(unit),strType);
+            tblSupplier[e] = adpCOA.GetSupplierData(int.Parse(unit));
 
             // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();

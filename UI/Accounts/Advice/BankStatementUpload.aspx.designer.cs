@@ -121,40 +121,58 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
         
         /// <summary>
-        /// lblProgramType control.
+        /// lblAccountNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProgramType;
+        protected global::System.Web.UI.WebControls.Label lblAccountNo;
         
         /// <summary>
-        /// ddlProgramType control.
+        /// ddlAccountNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProgramType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccountNo;
         
         /// <summary>
-        /// lblSupplier control.
+        /// lblAGAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSupplier;
+        protected global::System.Web.UI.WebControls.Label lblAGAccount;
         
         /// <summary>
-        /// ddlSupplier control.
+        /// txtAGAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
+        protected global::System.Web.UI.WebControls.TextBox txtAGAccount;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txtLastCollect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLastCollect;
         
         /// <summary>
         /// lblImport control.
@@ -182,6 +200,15 @@ namespace UI.Accounts.Advice {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpload;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
         /// gvExcelFile control.

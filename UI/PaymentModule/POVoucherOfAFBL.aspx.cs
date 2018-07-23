@@ -239,7 +239,7 @@ namespace UI.PaymentModule
 
                                 //insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
                                 payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
-                                amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
+                                amount = decimal.Parse(((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString()).ToString();
                                 drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
                                 billcode = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblRegNo")).Text.ToString();
                                 po = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPOID")).Text.ToString();
@@ -251,6 +251,9 @@ namespace UI.PaymentModule
                                 {
                                     CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party, tds);
                                 }
+
+                                File.Delete(filePathForXML);
+                                LoadGrid();
                             }
                         }
                     }

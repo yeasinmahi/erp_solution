@@ -387,6 +387,7 @@
     <Content Include="PaymentModule\PreviousPrice.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
+    <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
@@ -2941,6 +2942,13 @@
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucher.aspx.designer.cs">
       <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx.cs">
+      <DependentUpon>ShowAdviceOfTreasuryChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx.designer.cs">
+      <DependentUpon>ShowAdviceOfTreasuryChallan.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\SupplierCOA.aspx.cs">
       <DependentUpon>SupplierCOA.aspx</DependentUpon>
