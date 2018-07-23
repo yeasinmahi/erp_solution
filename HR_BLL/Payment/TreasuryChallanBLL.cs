@@ -39,7 +39,11 @@ namespace HR_BLL.Payment
             return adp.UpdateData(BankName,strDistrict,strBranch,dteChallan,strChallan,strInstrument,intTreasuryID);
         }
 
-
+        public DataTable getDetails(int intVatAcc)
+        {
+            sprAccountsAdviceForTreasuryDepositTableAdapter adp = new sprAccountsAdviceForTreasuryDepositTableAdapter();
+            return adp.GetDescription(intVatAcc);
+        }
 
 
 
