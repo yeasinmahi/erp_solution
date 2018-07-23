@@ -1,4 +1,5 @@
-﻿using Purchase_BLL;
+﻿using BLL.Accounts.Advice;
+using Purchase_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,11 @@ namespace UI.Accounts.Advice
 {
     public partial class BankStatementUpload : BasePage
     {
-        DataTable dt; Media bll = new Media();
-        int intCustID, intProgramID, intDuration, intUnitID, intEnroll, intProgramType;
+        DataTable dt; AdviceBLL bll = new AdviceBLL(); Media obj = new Media();
+        int intUnitID, intEnroll, intAccountID;
         DateTime dteStartDateTime, dteEndDateTime;
-
-
+        string dteDate, strParticulars, strInstrumentNo;
+        decimal monDebit, monCredit, monBalance;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,55 +33,88 @@ namespace UI.Accounts.Advice
                     hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                     intEnroll = int.Parse(hdnEnroll.Value);
                     dt = new DataTable();
-                    dt = bll.GetUnit(intEnroll);
+                    dt = obj.GetUnit(intEnroll);
                     ddlUnit.DataSource = dt;
                     ddlUnit.DataTextField = "strUnit";
                     ddlUnit.DataValueField = "intUnitID";
                     ddlUnit.DataBind();
 
-                    dt = new DataTable();
-                    dt = bll.GetProgramType();
-                    ddlProgramType.DataSource = dt;
-                    ddlProgramType.DataTextField = "strProgramType";
-                    ddlProgramType.DataValueField = "intID";
-                    ddlProgramType.DataBind();
-
-                    intProgramType = int.Parse(ddlProgramType.SelectedValue.ToString());
-                    dt = new DataTable();
-                    dt = bll.GetSupplier(intProgramType);
-                    ddlSupplier.DataSource = dt;
-                    ddlSupplier.DataTextField = "strProgramCustName";
-                    ddlSupplier.DataValueField = "intID";
-                    ddlSupplier.DataBind();
+                    LoadAccountNo();
+                    LoadLastCollectDate();
                 }
                 catch
                 { }
             }
         }
 
-        protected void ddlProgramType_SelectedIndexChanged(object sender, EventArgs e)
+        
+
+        private void LoadAccountNo()
         {
             try
             {
-                intProgramType = int.Parse(ddlProgramType.SelectedValue.ToString());
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+
                 dt = new DataTable();
-                dt = bll.GetSupplier(intProgramType);
-                ddlSupplier.DataSource = dt;
-                ddlSupplier.DataTextField = "strProgramCustName";
-                ddlSupplier.DataValueField = "intID";
-                ddlSupplier.DataBind();
+                dt = bll.GetAccountList(intUnitID);
+                ddlAccountNo.DataSource = dt;
+                ddlAccountNo.DataTextField = "strAccountNo";
+                ddlAccountNo.DataValueField = "intAccountID";
+                ddlAccountNo.DataBind();
+
+                txtAGAccount.Text = ddlAccountNo.SelectedValue.ToString();
             }
             catch { }
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                LoadAccountNo();
+                LoadLastCollectDate();
+            }
+            catch { }
+        }
+        protected void ddlAccountNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadLastCollectDate();
+            txtAGAccount.Text = ddlAccountNo.SelectedValue.ToString();
+        }
 
+        private void LoadLastCollectDate()
+        {
+            try
+            {
+                intAccountID = int.Parse(ddlAccountNo.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetLastCollectDate(intAccountID);
+                if (dt.Rows.Count > 0)
+                {
+                    txtLastCollect.Text = dt.Rows[0]["dteDate"].ToString();
+                }
+                else
+                {
+                    txtLastCollect.Text = "N/A";
+                }
+            }
+            catch { }
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            DeleteData();
             uploadfile();
+        }
+
+        private void DeleteData()
+        {
+            try
+            {
+                intEnroll = int.Parse(hdnEnroll.Value);
+                bll.DeleteStatement(intEnroll);
+            }
+            catch { }
         }
 
         private void uploadfile()
@@ -89,7 +123,7 @@ namespace UI.Accounts.Advice
 
             string strDocUploadPath = Path.GetFileName(FileUpload1.FileName);
             string ext = Path.GetExtension(FileUpload1.FileName).ToLower();
-            string path = Server.MapPath("~/MedialManagement/Data/" + FileUpload1.FileName);
+            string path = Server.MapPath("~/Accounts/Advice/Data/" + FileUpload1.FileName);
             if (FileUpload1.HasFile.ToString() != null)
             {
                 FileUpload1.SaveAs(path);
@@ -101,7 +135,7 @@ namespace UI.Accounts.Advice
                 {
                     ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
                 }
-                string query = "SELECT * FROM [Sheet1$]";
+                string query = "SELECT * FROM [StatementFomat$]";
                 OleDbConnection conn = new OleDbConnection(ConStr);
                 if (conn.State == ConnectionState.Closed)
                 {
@@ -118,30 +152,44 @@ namespace UI.Accounts.Advice
 
                 DataTable dtTable = new DataTable();
                 dtTable = (DataTable)ds.Tables[0];
-                intCustID = int.Parse(ddlSupplier.SelectedValue.ToString());
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                intEnroll = int.Parse(hdnEnroll.Value.ToString());
+                intAccountID = int.Parse(ddlAccountNo.SelectedValue.ToString());
 
                 #region ********* Excel Data Get *************
                 for (int i = 0; i < dtTable.Rows.Count; i++)
                 {
 
-                    intProgramID = int.Parse(dtTable.Rows[i][0].ToString());
-                    dteStartDateTime = DateTime.Parse(dtTable.Rows[i][1].ToString());
-                    dteEndDateTime = DateTime.Parse(dtTable.Rows[i][2].ToString());
-                    intDuration = int.Parse(dtTable.Rows[i][3].ToString());
-                    bll.InsertRyansReport(intCustID, intProgramID, dteStartDateTime, dteEndDateTime, intDuration, intUnitID);
+                    dteDate = dtTable.Rows[i][0].ToString();
+                    strParticulars = dtTable.Rows[i][1].ToString();
+                    strInstrumentNo = dtTable.Rows[i][2].ToString();
+                    monDebit = decimal.Parse(dtTable.Rows[i][3].ToString());
+                    monCredit = decimal.Parse(dtTable.Rows[i][4].ToString());
+                    monBalance = decimal.Parse(dtTable.Rows[i][5].ToString());
+
+                    bll.InsertTempData(intAccountID, dteDate, strParticulars, strInstrumentNo, monDebit, monCredit, monBalance, intEnroll);
                 }
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Report Inserted.');", true);
+                //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Report Inserted.');", true);
 
                 #endregion **************** End Excel data get **************
             }
             File.Delete(path);
         }
-        protected void ddlSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            try
+            {
+                intEnroll = int.Parse(hdnEnroll.Value);
+                intAccountID = int.Parse(ddlAccountNo.SelectedValue.ToString());
 
+                dt = new DataTable();
+                dt = bll.InsertStatement(intAccountID, intEnroll);
+                string strMsg = dt.Rows[0]["strMsg"].ToString();
+
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ strMsg +"');", true);
+            }
+            catch { }
         }
-
     }
 }
