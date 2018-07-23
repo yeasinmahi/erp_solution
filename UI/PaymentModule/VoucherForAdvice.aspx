@@ -126,7 +126,7 @@
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
-            <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intParty") %>' Width="50px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">

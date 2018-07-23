@@ -124,7 +124,7 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
-                <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intParty") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
@@ -165,7 +165,7 @@
 
                 <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
                 </ItemTemplate></asp:TemplateField>
-
+                
                 <%--<asp:TemplateField HeaderText="Show Details" ItemStyle-HorizontalAlign="Center" Visible="false" SortExpression="">
                 <ItemTemplate><asp:Button ID="btnShowDetails" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
                 Text="Show Details"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>
