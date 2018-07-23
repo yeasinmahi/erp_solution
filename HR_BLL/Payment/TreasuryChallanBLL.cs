@@ -33,6 +33,14 @@ namespace HR_BLL.Payment
             return adp.GetVatRegData(intTreasuryId);
         }
 
+        public DataTable updateVatReg(int IntTreasuryId)
+        {
+            sprUPDATEtblVATTreasuryDepositTableAdapter adp = new sprUPDATEtblVATTreasuryDepositTableAdapter();
+            return adp.UpdateVatTreasury(IntTreasuryId);
+        }
+
+
+
 
 
 
