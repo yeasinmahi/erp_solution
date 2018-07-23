@@ -20,7 +20,7 @@ namespace UI.SCM
             if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = obj.DataView(1, "", intWh, 0, DateTime.Now, enroll);
+                dt = obj.DataView(19, "", intWh, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataValueField = "Id";
