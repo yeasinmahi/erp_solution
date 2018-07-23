@@ -1021,6 +1021,7 @@
     <Content Include="SAD\AutoChallan\Stock.aspx" />
     <Content Include="SAD\AutoChallan\TradeofferBill.aspx" />
     <Content Include="SAD\AutoChallan\TransportSet.aspx" />
+    <Content Include="SAD\Consumer\StarConsumerEntry.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateDistributor.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateProduct.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLReconcile.aspx" />
@@ -4794,6 +4795,13 @@
     </Compile>
     <Compile Include="SAD\AutoChallan\TransportSet.aspx.designer.cs">
       <DependentUpon>TransportSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\StarConsumerEntry.aspx.cs">
+      <DependentUpon>StarConsumerEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\StarConsumerEntry.aspx.designer.cs">
+      <DependentUpon>StarConsumerEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Corporate_sales\AFBLCorporateDistributor.aspx.cs">
       <DependentUpon>AFBLCorporateDistributor.aspx</DependentUpon>

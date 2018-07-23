@@ -109,7 +109,7 @@
                                 <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged"></asp:DropDownList>
                             </td>
                         </tr>
-                        <tr class="tblroweven">
+                        <tr class="tblrowodd">
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Start-Time : "></asp:Label></td>
                             <td>
@@ -119,7 +119,7 @@
                             <td>
                                 <asp:TextBox ID="txtend" runat="server" CssClass="txtBox" onchange="GetTimeSpan()"></asp:TextBox><script>$('#txtend').timepicker();</script></td>
                         </tr>
-                        <tr class="tblrowodd">
+                        <tr class="tblroweven">
                             <td style="text-align: right">
                                 <asp:Label ID="lblTotalMovementDuraion" CssClass="lbl" runat="server" Text="Movement.D (Hour) "></asp:Label></td>
                             <td>
@@ -159,7 +159,7 @@
                             </td>
 
                         </tr>
-                        <tr class="tblroweven">
+                        <tr class="tblrowodd">
                             <td>
                                 <asp:Label ID="lblPurpouse" CssClass="lbl" runat="server" Text="Purpouse: "></asp:Label></td>
                             <td>
@@ -178,7 +178,7 @@
             <td ><asp:TextBox ID="txtUnitid" runat="server" Font-Bold="true" BackColor="#ffffcc"   CssClass="txtBox" ReadOnly="true"></asp:TextBox> </td><asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="HiddenField2" runat="server" />
             </tr>--%>
                         </tr>
-                        <tr class="tblrowOdd">
+                        <tr class="tblroweven">
 
                             <td>
                                 <asp:Button ID="btnAddBikeCarUser" runat="server" OnClick="btnAddBikeCarUser_Click" Text="Add" BackColor="#ffffcc" /></td>
@@ -194,7 +194,7 @@
 
                 <div class="leaveApplication_container">
                     <table>
-                        <tr class="tblroweven">
+                        <tr class="tblrowodd">
                             <td>
                                 <asp:GridView ID="grdvOvertimeEntry" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true" OnSelectedIndexChanged="grdvOvertimeEntry_SelectedIndexChanged" OnRowDeleting="grdvOvertimeEntry_RowDeleting">
                                     <Columns>
