@@ -3953,6 +3953,12 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrAccName;
             
+            private global::System.Data.DataColumn columnstrCluster;
+            
+            private global::System.Data.DataColumn columnstrComGroupName;
+            
+            private global::System.Data.DataColumn columnstrNewCategory;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItemForCOABridgeDataTable() {
@@ -4036,6 +4042,30 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strClusterColumn {
+                get {
+                    return this.columnstrCluster;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strComGroupNameColumn {
+                get {
+                    return this.columnstrComGroupName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strNewCategoryColumn {
+                get {
+                    return this.columnstrNewCategory;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4071,7 +4101,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItemForCOABridgeRow AddItemForCOABridgeRow(int intItemID, string strItem, string strReqItemCategory, string strSubCategory, int intCOAID, string strAccName) {
+            public ItemForCOABridgeRow AddItemForCOABridgeRow(int intItemID, string strItem, string strReqItemCategory, string strSubCategory, int intCOAID, string strAccName, string strCluster, string strComGroupName, string strNewCategory) {
                 ItemForCOABridgeRow rowItemForCOABridgeRow = ((ItemForCOABridgeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intItemID,
@@ -4079,7 +4109,10 @@ namespace SCM_DAL {
                         strReqItemCategory,
                         strSubCategory,
                         intCOAID,
-                        strAccName};
+                        strAccName,
+                        strCluster,
+                        strComGroupName,
+                        strNewCategory};
                 rowItemForCOABridgeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemForCOABridgeRow);
                 return rowItemForCOABridgeRow;
@@ -4108,6 +4141,9 @@ namespace SCM_DAL {
                 this.columnstrSubCategory = base.Columns["strSubCategory"];
                 this.columnintCOAID = base.Columns["intCOAID"];
                 this.columnstrAccName = base.Columns["strAccName"];
+                this.columnstrCluster = base.Columns["strCluster"];
+                this.columnstrComGroupName = base.Columns["strComGroupName"];
+                this.columnstrNewCategory = base.Columns["strNewCategory"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4125,6 +4161,12 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintCOAID);
                 this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrAccName);
+                this.columnstrCluster = new global::System.Data.DataColumn("strCluster", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCluster);
+                this.columnstrComGroupName = new global::System.Data.DataColumn("strComGroupName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrComGroupName);
+                this.columnstrNewCategory = new global::System.Data.DataColumn("strNewCategory", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrNewCategory);
                 this.columnintItemID.AllowDBNull = false;
                 this.columnstrItem.ReadOnly = true;
                 this.columnstrItem.MaxLength = 752;
@@ -4134,6 +4176,9 @@ namespace SCM_DAL {
                 this.columnintCOAID.ReadOnly = true;
                 this.columnstrAccName.ReadOnly = true;
                 this.columnstrAccName.MaxLength = 303;
+                this.columnstrCluster.MaxLength = 250;
+                this.columnstrComGroupName.MaxLength = 250;
+                this.columnstrNewCategory.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8657,6 +8702,54 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strCluster {
+                get {
+                    try {
+                        return ((string)(this[this.tableItemForCOABridge.strClusterColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strCluster\' in table \'ItemForCOABridge\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemForCOABridge.strClusterColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strComGroupName {
+                get {
+                    try {
+                        return ((string)(this[this.tableItemForCOABridge.strComGroupNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strComGroupName\' in table \'ItemForCOABridge\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemForCOABridge.strComGroupNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string strNewCategory {
+                get {
+                    try {
+                        return ((string)(this[this.tableItemForCOABridge.strNewCategoryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strNewCategory\' in table \'ItemForCOABridge\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemForCOABridge.strNewCategoryColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsstrItemNull() {
                 return this.IsNull(this.tableItemForCOABridge.strItemColumn);
             }
@@ -8713,6 +8806,42 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetstrAccNameNull() {
                 this[this.tableItemForCOABridge.strAccNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrClusterNull() {
+                return this.IsNull(this.tableItemForCOABridge.strClusterColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrClusterNull() {
+                this[this.tableItemForCOABridge.strClusterColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrComGroupNameNull() {
+                return this.IsNull(this.tableItemForCOABridge.strComGroupNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrComGroupNameNull() {
+                this[this.tableItemForCOABridge.strComGroupNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrNewCategoryNull() {
+                return this.IsNull(this.tableItemForCOABridge.strNewCategoryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrNewCategoryNull() {
+                this[this.tableItemForCOABridge.strNewCategoryColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13924,6 +14053,9 @@ Where s.intUnitID= @intUnitID AND s.ysnActive=1 AND s.strSupplierType IS NOT NUL
             tableMapping.ColumnMappings.Add("strSubCategory", "strSubCategory");
             tableMapping.ColumnMappings.Add("intCOAID", "intCOAID");
             tableMapping.ColumnMappings.Add("strAccName", "strAccName");
+            tableMapping.ColumnMappings.Add("strCluster", "strCluster");
+            tableMapping.ColumnMappings.Add("strComGroupName", "strComGroupName");
+            tableMapping.ColumnMappings.Add("strNewCategory", "strNewCategory");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13940,8 +14072,15 @@ Where s.intUnitID= @intUnitID AND s.ysnActive=1 AND s.strSupplierType IS NOT NUL
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select top 50 intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName
-From ERP_Inventory.dbo.qryItemList i Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
+            this._commandCollection[0].CommandText = @"Select top 50 intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, 
+c.strCluster, m.strComGroupName, ca.strCategory as strNewCategory,
+isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName
+From ERP_Inventory.dbo.qryItemList i 
+Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID 
+Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
+left join ERP_Inventory.dbo.tblItemMasterCluster c ON i.intMasterCluster=c.intCluster
+left Join ERP_Inventory.dbo.tblItemMasterCommodityGroup m ON i.intMasterComGroup=m.intComGroup
+left Join ERP_Inventory.dbo.tblItemMasterCategory ca ON i.intMasterCategory=ca.intCategory
 where i.intUnitID=@intUnitID And i.ysnActive=1 AND ISNULL(coa.intAccID,0)=0 Order By i.strItem";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

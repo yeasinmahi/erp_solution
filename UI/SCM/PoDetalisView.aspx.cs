@@ -113,6 +113,8 @@ namespace UI.SCM
                     lblPrepareBy.Text = "".ToString();
                     lblApprovedBy.Text = "".ToString();
                     lblGrandTotal.Text = "".ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not found');", true);
+
                 }
 
                 dt = DataTableLoad.GetPoViewItemWaiseDetalisDataTable(PoNo, enroll);

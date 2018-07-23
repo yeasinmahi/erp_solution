@@ -79,8 +79,15 @@
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 
                 <td style="text-align:right; "><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
-                <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnPreAllVoucher" runat="server" class="myButton" Text="Prepare All Voucher" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click" /></td>
-            </tr>            
+                <td style="text-align:right; padding: 10px 0px 5px 0px"></td>
+            </tr>  
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Pay Date :" Width="70px"></asp:Label></td>                
+                <td colspan="6"><asp:TextBox ID="txtAllPayDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="90px"></asp:TextBox>
+                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAllPayDate"></cc1:CalendarExtender>
+                <span style="padding-left:15px"><asp:Button ID="btnPreAllVoucher" runat="server" class="myButton" Text="Prepare All Voucher" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnPrepareAllVoucher_Click" /></span>
+                </td>               
+            </tr>
         </table>
 
         <table>
@@ -106,12 +113,18 @@
                 <ItemTemplate><asp:Label ID="lblPOID" runat="server" Text='<%# Bind("strReff") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Pay Date" SortExpression="dtePayDate">
+                <%--<asp:TemplateField HeaderText="Pay Date" SortExpression="dtePayDate">
                 <ItemTemplate><asp:Label ID="lblPayDate" runat="server" Text='<%#Eval("dtePayDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>--%>
+
+                <asp:TemplateField HeaderText="Pay Date" ItemStyle-HorizontalAlign="right">
+                <ItemTemplate><asp:TextBox ID="txtPayDate" runat="server" CssClass="txtBoxCenter" Width="80px" Text='<%#Eval("dtePayDate", "{0:yyyy-MM-dd}") %>'></asp:TextBox>
+                <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtPayDate">
+                </cc1:CalendarExtender> </ItemTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
-                <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="80px"></asp:Label>
+                <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intParty") %>' Width="80px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
@@ -152,7 +165,7 @@
 
                 <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
                 </ItemTemplate></asp:TemplateField>
-
+                
                 <%--<asp:TemplateField HeaderText="Show Details" ItemStyle-HorizontalAlign="Center" Visible="false" SortExpression="">
                 <ItemTemplate><asp:Button ID="btnShowDetails" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="SD"  
                 Text="Show Details"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>

@@ -124,7 +124,7 @@ namespace UI.SCM.Transfer
                     ddlLcation.DataTextField = "strLocation";
                     ddlLcation.DataValueField = "intLocation";
                     ddlLcation.DataBind();
-                    ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                   // ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
                     dt.Clear();
                 }
                 else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }

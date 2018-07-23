@@ -112,8 +112,8 @@
         <table>
              <tr><td></td></tr>
             <tr><td></td></tr>
-            <tr><td>Indent By:</td><td><asp:Label ID="lblIndentBY" Font-Bold="true"  runat="server"></asp:Label></td> </tr> 
-            <tr> <td>Approve By: </td><td><asp:Label ID="lblApproveBy" runat="server" Font-Bold="true"></asp:Label></td></tr>
+            <tr><td>e-Indent By:</td><td><asp:Label ID="lblIndentBY" Font-Bold="true"  runat="server"></asp:Label></td> </tr> 
+            <tr> <td>e-Approve By: </td><td><asp:Label ID="lblApproveBy" runat="server" Font-Bold="true"></asp:Label></td></tr>
         </table>
 
          

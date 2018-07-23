@@ -69,7 +69,7 @@ namespace UI.PaymentModule
                 dteFDate = DateTime.Parse(txtFrom.Text);
                 dteTDate = DateTime.Parse(txtTo.Text);
 
-                lblUnitName.Text = ddlUnit.SelectedItem.ToString() + ", " + ddlUnit.SelectedItem.ToString();
+                lblUnitName.Text = ddlUnit.SelectedItem.ToString();
                 lblReportName.Text = "Bill Register Report";
                 lblFromToDate.Text = "For The Month of " + Convert.ToDateTime(txtFrom.Text).ToString("yyyy-MM-dd") + " To " + Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
 

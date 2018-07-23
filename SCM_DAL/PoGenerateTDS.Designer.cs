@@ -2249,6 +2249,13 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblSupplierRow FindByintSupplierID(int intSupplierID) {
+                return ((TblSupplierRow)(this.Rows.Find(new object[] {
+                            intSupplierID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TblSupplierDataTable cln = ((TblSupplierDataTable)(base.Clone()));
                 cln.InitVars();
@@ -2275,12 +2282,15 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrSupplierName);
                 this.columnintSupplierID = new global::System.Data.DataColumn("intSupplierID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintSupplierID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintSupplierID}, true));
                 this.columnstrSupplierName.MaxLength = 250;
                 this.columnintSupplierID.AutoIncrement = true;
                 this.columnintSupplierID.AutoIncrementSeed = -1;
                 this.columnintSupplierID.AutoIncrementStep = -1;
                 this.columnintSupplierID.AllowDBNull = false;
                 this.columnintSupplierID.ReadOnly = true;
+                this.columnintSupplierID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5483,26 +5493,18 @@ SELECT strSupplierName, intSupplierID FROM tblSupplier WHERE (intSupplierID = @i
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "select strSupplierName, intSupplierID from ERP_Inventory.dbo.tblSupplier where ys" +
-                "nActive=1 and intUnitID= @unit  and strSupplierType=@strType  order by strSuppli" +
-                "erName";
+                "nActive=1 and intUnitID= @unit     order by strSupplierName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strType", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strSupplierType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PoGenerateTDS.TblSupplierDataTable GetSupplierData(int unit, string strType) {
+        public virtual PoGenerateTDS.TblSupplierDataTable GetSupplierData(int unit) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unit));
-            if ((strType == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strType));
-            }
             PoGenerateTDS.TblSupplierDataTable dataTable = new PoGenerateTDS.TblSupplierDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

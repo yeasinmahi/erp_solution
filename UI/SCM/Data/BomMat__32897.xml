@@ -1,4 +1,4 @@
-<?xml version="1.0" standalone="yes"?>
+<?xml version="1.0"?>
 <voucher>
-  <voucherEntry itemid="290254" item="Navy Blue HL 20" uom="" qty="1" wastage="10" bomname="1" strCode="21" />
+  <voucherEntry item="CIG-Sheikh-Full Flavour 10s" itemid="537424" qty="1" locationId="38207" locationName="38207" transType="Good Product" transTypeId="1" uom="Sticks" monValue="0" remarks="tet" vehicle="0" />
 </voucher>
