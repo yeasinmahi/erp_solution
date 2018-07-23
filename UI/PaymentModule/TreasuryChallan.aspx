@@ -241,7 +241,7 @@
                     <td colspan="3" style="text-align: center;">বাংলাদেশ ব্যাংক/ সোনালী ব্যাংক</td>
                 </tr>
             </table>
-            <table style="background-color:white;">
+            <table style="background-color:white; width:100%;">
                 <tr><td>নোট : ১। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</td></tr>
                 <tr><td style="padding-left:40px;">২। * যে সকল ক্ষেত্রে কর্মকর্তা কর্তৃক পৃষ্ঠাংকন প্রয়োজন, সে সকল ক্ষেত্রে প্রযোজ্য হইবে। </td></tr>
             </table>

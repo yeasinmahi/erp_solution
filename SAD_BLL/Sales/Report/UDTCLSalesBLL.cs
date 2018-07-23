@@ -24,10 +24,10 @@ namespace SAD_BLL.Sales.Report
             sprUDTCLSalesStausTableAdapter adp = new sprUDTCLSalesStausTableAdapter();
             return adp.GetUDTCLSalesData(fromDate, toDate, unitId, reportType, salesOffId, shippingId);
         }
-        public DataTable getSalesData(DateTime fromDate, DateTime toDate, int unitId, int reportType, int salesOffId, int shippingId)
+        public DataTable getSalesData(DateTime fromDate, DateTime toDate, int unitId, int reportType)
         {
             sprUDTCLSalesStausDetaillsTableAdapter adp = new sprUDTCLSalesStausDetaillsTableAdapter();
-            return adp.GetSalesData(fromDate, toDate, unitId, reportType, salesOffId, shippingId);
+            return adp.GetSalesData(fromDate, toDate, unitId, reportType);
         }
         //public string SVPrintView(int unit, string code, int Id)
         //{

@@ -64,7 +64,14 @@ namespace UI.PaymentModule
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int treasuryid = int.Parse(ddlChallan.SelectedItem.Value);
-            dT = objtreasuryChallan.updateVatReg(treasuryid);
+            string bankName = txtBankName.Text;
+            string branchName = txtBranch.Text;
+            string district = txtDistrict.Text;
+            string dteChallan = DateTime.Now.ToString("yyyy-MM-dd");
+            string challan = txtChallan.Text;
+            string instrument = txtCheque.Text;
+           
+            dT = objtreasuryChallan.updateVat(bankName,district,branchName, dteChallan,challan,instrument,treasuryid);
 
         }
 

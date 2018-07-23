@@ -18,7 +18,7 @@ namespace UI.SAD.Sales.Report
                 pnlUpperControl.DataBind();
             }
             GvSalesReport.Visible = false;
-            //GvSalesReportAnother.Visible = false;
+           
         }
 
        
@@ -43,11 +43,11 @@ namespace UI.SAD.Sales.Report
         protected void GvSalesReport_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             int reportType = int.Parse(DdlReport.SelectedItem.Value);
-            if (reportType==4)
-            {
-                e.Row.Cells[1].Visible = false;
-                e.Row.Cells[6].Visible = false;
-            }
+            //if (reportType==4)
+            //{
+            //    e.Row.Cells[1].Visible = false;
+            //    e.Row.Cells[6].Visible = false;
+            //}
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 totalquantity += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity"));

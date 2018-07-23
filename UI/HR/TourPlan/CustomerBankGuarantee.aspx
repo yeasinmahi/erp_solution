@@ -97,7 +97,7 @@
                         </tr>
                         <tr>
                             <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="Unit:"></asp:Label></td>
-                            <td><asp:DropDownList ID="ddlUnit" runat="server" DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID" AutoPostBack="true"></asp:DropDownList>
+                            <td><asp:DropDownList ID="ddlUnit" CssClass="dropdownList" runat="server" DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID" AutoPostBack="true"></asp:DropDownList>
 
                                     <asp:ObjectDataSource ID="odsUnit" runat="server" SelectMethod="GetData" TypeName="HR_DAL.Global.UnitTDSTableAdapters.SprGetUnitTableAdapter">
                                         <SelectParameters>

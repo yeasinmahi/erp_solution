@@ -32,7 +32,7 @@ namespace HR_DAL.Payment {
         
         private TblVatDataTable tableTblVat;
         
-        private sprUPDATEtblVATTreasuryDepositDataTable tablesprUPDATEtblVATTreasuryDeposit;
+        private tblVATTreasuryDepositDataTable tabletblVATTreasuryDeposit;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -74,8 +74,8 @@ namespace HR_DAL.Payment {
                 if ((ds.Tables["TblVat"] != null)) {
                     base.Tables.Add(new TblVatDataTable(ds.Tables["TblVat"]));
                 }
-                if ((ds.Tables["sprUPDATEtblVATTreasuryDeposit"] != null)) {
-                    base.Tables.Add(new sprUPDATEtblVATTreasuryDepositDataTable(ds.Tables["sprUPDATEtblVATTreasuryDeposit"]));
+                if ((ds.Tables["tblVATTreasuryDeposit"] != null)) {
+                    base.Tables.Add(new tblVATTreasuryDepositDataTable(ds.Tables["tblVATTreasuryDeposit"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -139,9 +139,9 @@ namespace HR_DAL.Payment {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public sprUPDATEtblVATTreasuryDepositDataTable sprUPDATEtblVATTreasuryDeposit {
+        public tblVATTreasuryDepositDataTable tblVATTreasuryDeposit {
             get {
-                return this.tablesprUPDATEtblVATTreasuryDeposit;
+                return this.tabletblVATTreasuryDeposit;
             }
         }
         
@@ -224,8 +224,8 @@ namespace HR_DAL.Payment {
                 if ((ds.Tables["TblVat"] != null)) {
                     base.Tables.Add(new TblVatDataTable(ds.Tables["TblVat"]));
                 }
-                if ((ds.Tables["sprUPDATEtblVATTreasuryDeposit"] != null)) {
-                    base.Tables.Add(new sprUPDATEtblVATTreasuryDepositDataTable(ds.Tables["sprUPDATEtblVATTreasuryDeposit"]));
+                if ((ds.Tables["tblVATTreasuryDeposit"] != null)) {
+                    base.Tables.Add(new tblVATTreasuryDepositDataTable(ds.Tables["tblVATTreasuryDeposit"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -284,10 +284,10 @@ namespace HR_DAL.Payment {
                     this.tableTblVat.InitVars();
                 }
             }
-            this.tablesprUPDATEtblVATTreasuryDeposit = ((sprUPDATEtblVATTreasuryDepositDataTable)(base.Tables["sprUPDATEtblVATTreasuryDeposit"]));
+            this.tabletblVATTreasuryDeposit = ((tblVATTreasuryDepositDataTable)(base.Tables["tblVATTreasuryDeposit"]));
             if ((initTable == true)) {
-                if ((this.tablesprUPDATEtblVATTreasuryDeposit != null)) {
-                    this.tablesprUPDATEtblVATTreasuryDeposit.InitVars();
+                if ((this.tabletblVATTreasuryDeposit != null)) {
+                    this.tabletblVATTreasuryDeposit.InitVars();
                 }
             }
         }
@@ -308,8 +308,8 @@ namespace HR_DAL.Payment {
             base.Tables.Add(this.tableTblDetails);
             this.tableTblVat = new TblVatDataTable();
             base.Tables.Add(this.tableTblVat);
-            this.tablesprUPDATEtblVATTreasuryDeposit = new sprUPDATEtblVATTreasuryDepositDataTable();
-            base.Tables.Add(this.tablesprUPDATEtblVATTreasuryDeposit);
+            this.tabletblVATTreasuryDeposit = new tblVATTreasuryDepositDataTable();
+            base.Tables.Add(this.tabletblVATTreasuryDeposit);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -338,7 +338,7 @@ namespace HR_DAL.Payment {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializesprUPDATEtblVATTreasuryDeposit() {
+        private bool ShouldSerializetblVATTreasuryDeposit() {
             return false;
         }
         
@@ -410,7 +410,7 @@ namespace HR_DAL.Payment {
         public delegate void TblVatRowChangeEventHandler(object sender, TblVatRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void sprUPDATEtblVATTreasuryDepositRowChangeEventHandler(object sender, sprUPDATEtblVATTreasuryDepositRowChangeEvent e);
+        public delegate void tblVATTreasuryDepositRowChangeEventHandler(object sender, tblVATTreasuryDepositRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1584,12 +1584,12 @@ namespace HR_DAL.Payment {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class sprUPDATEtblVATTreasuryDepositDataTable : global::System.Data.TypedTableBase<sprUPDATEtblVATTreasuryDepositRow> {
+        public partial class tblVATTreasuryDepositDataTable : global::System.Data.TypedTableBase<tblVATTreasuryDepositRow> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUPDATEtblVATTreasuryDepositDataTable() {
-                this.TableName = "sprUPDATEtblVATTreasuryDeposit";
+            public tblVATTreasuryDepositDataTable() {
+                this.TableName = "tblVATTreasuryDeposit";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1597,7 +1597,7 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal sprUPDATEtblVATTreasuryDepositDataTable(global::System.Data.DataTable table) {
+            internal tblVATTreasuryDepositDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1614,7 +1614,7 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected sprUPDATEtblVATTreasuryDepositDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected tblVATTreasuryDepositDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -1630,44 +1630,44 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUPDATEtblVATTreasuryDepositRow this[int index] {
+            public tblVATTreasuryDepositRow this[int index] {
                 get {
-                    return ((sprUPDATEtblVATTreasuryDepositRow)(this.Rows[index]));
+                    return ((tblVATTreasuryDepositRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprUPDATEtblVATTreasuryDepositRowChangeEventHandler sprUPDATEtblVATTreasuryDepositRowChanging;
+            public event tblVATTreasuryDepositRowChangeEventHandler tblVATTreasuryDepositRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprUPDATEtblVATTreasuryDepositRowChangeEventHandler sprUPDATEtblVATTreasuryDepositRowChanged;
+            public event tblVATTreasuryDepositRowChangeEventHandler tblVATTreasuryDepositRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprUPDATEtblVATTreasuryDepositRowChangeEventHandler sprUPDATEtblVATTreasuryDepositRowDeleting;
+            public event tblVATTreasuryDepositRowChangeEventHandler tblVATTreasuryDepositRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprUPDATEtblVATTreasuryDepositRowChangeEventHandler sprUPDATEtblVATTreasuryDepositRowDeleted;
+            public event tblVATTreasuryDepositRowChangeEventHandler tblVATTreasuryDepositRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddsprUPDATEtblVATTreasuryDepositRow(sprUPDATEtblVATTreasuryDepositRow row) {
+            public void AddtblVATTreasuryDepositRow(tblVATTreasuryDepositRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUPDATEtblVATTreasuryDepositRow AddsprUPDATEtblVATTreasuryDepositRow() {
-                sprUPDATEtblVATTreasuryDepositRow rowsprUPDATEtblVATTreasuryDepositRow = ((sprUPDATEtblVATTreasuryDepositRow)(this.NewRow()));
+            public tblVATTreasuryDepositRow AddtblVATTreasuryDepositRow() {
+                tblVATTreasuryDepositRow rowtblVATTreasuryDepositRow = ((tblVATTreasuryDepositRow)(this.NewRow()));
                 object[] columnValuesArray = new object[0];
-                rowsprUPDATEtblVATTreasuryDepositRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowsprUPDATEtblVATTreasuryDepositRow);
-                return rowsprUPDATEtblVATTreasuryDepositRow;
+                rowtblVATTreasuryDepositRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblVATTreasuryDepositRow);
+                return rowtblVATTreasuryDepositRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                sprUPDATEtblVATTreasuryDepositDataTable cln = ((sprUPDATEtblVATTreasuryDepositDataTable)(base.Clone()));
+                tblVATTreasuryDepositDataTable cln = ((tblVATTreasuryDepositDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1675,7 +1675,7 @@ namespace HR_DAL.Payment {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new sprUPDATEtblVATTreasuryDepositDataTable();
+                return new tblVATTreasuryDepositDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1690,28 +1690,28 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUPDATEtblVATTreasuryDepositRow NewsprUPDATEtblVATTreasuryDepositRow() {
-                return ((sprUPDATEtblVATTreasuryDepositRow)(this.NewRow()));
+            public tblVATTreasuryDepositRow NewtblVATTreasuryDepositRow() {
+                return ((tblVATTreasuryDepositRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new sprUPDATEtblVATTreasuryDepositRow(builder);
+                return new tblVATTreasuryDepositRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(sprUPDATEtblVATTreasuryDepositRow);
+                return typeof(tblVATTreasuryDepositRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.sprUPDATEtblVATTreasuryDepositRowChanged != null)) {
-                    this.sprUPDATEtblVATTreasuryDepositRowChanged(this, new sprUPDATEtblVATTreasuryDepositRowChangeEvent(((sprUPDATEtblVATTreasuryDepositRow)(e.Row)), e.Action));
+                if ((this.tblVATTreasuryDepositRowChanged != null)) {
+                    this.tblVATTreasuryDepositRowChanged(this, new tblVATTreasuryDepositRowChangeEvent(((tblVATTreasuryDepositRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1719,8 +1719,8 @@ namespace HR_DAL.Payment {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.sprUPDATEtblVATTreasuryDepositRowChanging != null)) {
-                    this.sprUPDATEtblVATTreasuryDepositRowChanging(this, new sprUPDATEtblVATTreasuryDepositRowChangeEvent(((sprUPDATEtblVATTreasuryDepositRow)(e.Row)), e.Action));
+                if ((this.tblVATTreasuryDepositRowChanging != null)) {
+                    this.tblVATTreasuryDepositRowChanging(this, new tblVATTreasuryDepositRowChangeEvent(((tblVATTreasuryDepositRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1728,8 +1728,8 @@ namespace HR_DAL.Payment {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.sprUPDATEtblVATTreasuryDepositRowDeleted != null)) {
-                    this.sprUPDATEtblVATTreasuryDepositRowDeleted(this, new sprUPDATEtblVATTreasuryDepositRowChangeEvent(((sprUPDATEtblVATTreasuryDepositRow)(e.Row)), e.Action));
+                if ((this.tblVATTreasuryDepositRowDeleted != null)) {
+                    this.tblVATTreasuryDepositRowDeleted(this, new tblVATTreasuryDepositRowChangeEvent(((tblVATTreasuryDepositRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1737,14 +1737,14 @@ namespace HR_DAL.Payment {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.sprUPDATEtblVATTreasuryDepositRowDeleting != null)) {
-                    this.sprUPDATEtblVATTreasuryDepositRowDeleting(this, new sprUPDATEtblVATTreasuryDepositRowChangeEvent(((sprUPDATEtblVATTreasuryDepositRow)(e.Row)), e.Action));
+                if ((this.tblVATTreasuryDepositRowDeleting != null)) {
+                    this.tblVATTreasuryDepositRowDeleting(this, new tblVATTreasuryDepositRowChangeEvent(((tblVATTreasuryDepositRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovesprUPDATEtblVATTreasuryDepositRow(sprUPDATEtblVATTreasuryDepositRow row) {
+            public void RemovetblVATTreasuryDepositRow(tblVATTreasuryDepositRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1771,7 +1771,7 @@ namespace HR_DAL.Payment {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "sprUPDATEtblVATTreasuryDepositDataTable";
+                attribute2.FixedValue = "tblVATTreasuryDepositDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2247,15 +2247,15 @@ namespace HR_DAL.Payment {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class sprUPDATEtblVATTreasuryDepositRow : global::System.Data.DataRow {
+        public partial class tblVATTreasuryDepositRow : global::System.Data.DataRow {
             
-            private sprUPDATEtblVATTreasuryDepositDataTable tablesprUPDATEtblVATTreasuryDeposit;
+            private tblVATTreasuryDepositDataTable tabletblVATTreasuryDeposit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal sprUPDATEtblVATTreasuryDepositRow(global::System.Data.DataRowBuilder rb) : 
+            internal tblVATTreasuryDepositRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablesprUPDATEtblVATTreasuryDeposit = ((sprUPDATEtblVATTreasuryDepositDataTable)(this.Table));
+                this.tabletblVATTreasuryDeposit = ((tblVATTreasuryDepositDataTable)(this.Table));
             }
         }
         
@@ -2399,22 +2399,22 @@ namespace HR_DAL.Payment {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class sprUPDATEtblVATTreasuryDepositRowChangeEvent : global::System.EventArgs {
+        public class tblVATTreasuryDepositRowChangeEvent : global::System.EventArgs {
             
-            private sprUPDATEtblVATTreasuryDepositRow eventRow;
+            private tblVATTreasuryDepositRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUPDATEtblVATTreasuryDepositRowChangeEvent(sprUPDATEtblVATTreasuryDepositRow row, global::System.Data.DataRowAction action) {
+            public tblVATTreasuryDepositRowChangeEvent(tblVATTreasuryDepositRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUPDATEtblVATTreasuryDepositRow Row {
+            public tblVATTreasuryDepositRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3094,7 +3094,7 @@ FROM ERP_VAT.dbo.tblVATTreasuryDeposit tr JOIN ERP_VAT.dbo.tblConfigTreasuryDepo
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class sprUPDATEtblVATTreasuryDepositTableAdapter : global::System.ComponentModel.Component {
+    public partial class tblVATTreasuryDepositTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -3108,7 +3108,7 @@ FROM ERP_VAT.dbo.tblVATTreasuryDeposit tr JOIN ERP_VAT.dbo.tblConfigTreasuryDepo
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public sprUPDATEtblVATTreasuryDepositTableAdapter() {
+        public tblVATTreasuryDepositTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -3218,25 +3218,64 @@ FROM ERP_VAT.dbo.tblVATTreasuryDeposit tr JOIN ERP_VAT.dbo.tblConfigTreasuryDepo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprUPDATEtblVATTreasuryDeposit";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IntTreasuryId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = @"UPDATE       tblVATTreasuryDeposit
+SET                strBankName = @strBankName, strDistrict = @strDistrict, strBranchName = @strBranch, ysnComplete = 1, dteCompleteDate = @dteChallan, strTrChallanNo = @strChallan, dteTrChallan = @dteChallan, 
+                         strInstumentNo = @strInstrument, dteInstrumentDate = @dteChallan
+WHERE        (intAutoID = @intTreasuryID)";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strBankName", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strBankName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDistrict", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strDistrict", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strBranch", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strBranchName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteChallan", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteCompleteDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strChallan", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strTrChallanNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strInstrument", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strInstumentNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intTreasuryID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TreasuryChallanTDS.sprUPDATEtblVATTreasuryDepositDataTable UpdateVatTreasury(global::System.Nullable<int> IntTreasuryId) {
+        public virtual TreasuryChallanTDS.tblVATTreasuryDepositDataTable UpdateData(string strBankName, string strDistrict, string strBranch, string dteChallan, string strChallan, string strInstrument, int intTreasuryID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((IntTreasuryId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IntTreasuryId.Value));
+            if ((strBankName == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(strBankName));
+            }
+            if ((strDistrict == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            TreasuryChallanTDS.sprUPDATEtblVATTreasuryDepositDataTable dataTable = new TreasuryChallanTDS.sprUPDATEtblVATTreasuryDepositDataTable();
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strDistrict));
+            }
+            if ((strBranch == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(strBranch));
+            }
+            if ((dteChallan == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(dteChallan));
+            }
+            if ((strChallan == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strChallan));
+            }
+            if ((strInstrument == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(strInstrument));
+            }
+            this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intTreasuryID));
+            TreasuryChallanTDS.tblVATTreasuryDepositDataTable dataTable = new TreasuryChallanTDS.tblVATTreasuryDepositDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

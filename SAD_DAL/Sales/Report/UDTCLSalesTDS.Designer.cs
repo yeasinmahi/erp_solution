@@ -1048,22 +1048,6 @@ namespace SAD_DAL.Sales.Report {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class sprUDTCLSalesStausDetaillsDataTable : global::System.Data.TypedTableBase<sprUDTCLSalesStausDetaillsRow> {
             
-            private global::System.Data.DataColumn columnstrcustname;
-            
-            private global::System.Data.DataColumn columndtechallandate;
-            
-            private global::System.Data.DataColumn columnstrProductname;
-            
-            private global::System.Data.DataColumn columnstruom;
-            
-            private global::System.Data.DataColumn columnpdqnt;
-            
-            private global::System.Data.DataColumn columnpdprice;
-            
-            private global::System.Data.DataColumn columnpdqnt1;
-            
-            private global::System.Data.DataColumn columnmontotalamout;
-            
             private global::System.Data.DataColumn columnCustomerName;
             
             private global::System.Data.DataColumn columnChDate;
@@ -1109,70 +1093,6 @@ namespace SAD_DAL.Sales.Report {
             protected sprUDTCLSalesStausDetaillsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strcustnameColumn {
-                get {
-                    return this.columnstrcustname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dtechallandateColumn {
-                get {
-                    return this.columndtechallandate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strProductnameColumn {
-                get {
-                    return this.columnstrProductname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn struomColumn {
-                get {
-                    return this.columnstruom;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pdqntColumn {
-                get {
-                    return this.columnpdqnt;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pdpriceColumn {
-                get {
-                    return this.columnpdprice;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pdqnt1Column {
-                get {
-                    return this.columnpdqnt1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn montotalamoutColumn {
-                get {
-                    return this.columnmontotalamout;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1268,17 +1188,9 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprUDTCLSalesStausDetaillsRow AddsprUDTCLSalesStausDetaillsRow(string strcustname, System.DateTime dtechallandate, string strProductname, string struom, decimal pdqnt, decimal pdprice, decimal pdqnt1, decimal montotalamout, string CustomerName, System.DateTime ChDate, string Productname, string UOM, decimal Quantity, decimal Rate, decimal Totalamout) {
+            public sprUDTCLSalesStausDetaillsRow AddsprUDTCLSalesStausDetaillsRow(string CustomerName, System.DateTime ChDate, string Productname, string UOM, decimal Quantity, decimal Rate, decimal Totalamout) {
                 sprUDTCLSalesStausDetaillsRow rowsprUDTCLSalesStausDetaillsRow = ((sprUDTCLSalesStausDetaillsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        strcustname,
-                        dtechallandate,
-                        strProductname,
-                        struom,
-                        pdqnt,
-                        pdprice,
-                        pdqnt1,
-                        montotalamout,
                         CustomerName,
                         ChDate,
                         Productname,
@@ -1308,14 +1220,6 @@ namespace SAD_DAL.Sales.Report {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnstrcustname = base.Columns["strcustname"];
-                this.columndtechallandate = base.Columns["dtechallandate"];
-                this.columnstrProductname = base.Columns["strProductname"];
-                this.columnstruom = base.Columns["struom"];
-                this.columnpdqnt = base.Columns["pdqnt"];
-                this.columnpdprice = base.Columns["pdprice"];
-                this.columnpdqnt1 = base.Columns["pdqnt1"];
-                this.columnmontotalamout = base.Columns["montotalamout"];
                 this.columnCustomerName = base.Columns["CustomerName"];
                 this.columnChDate = base.Columns["ChDate"];
                 this.columnProductname = base.Columns["Productname"];
@@ -1328,22 +1232,6 @@ namespace SAD_DAL.Sales.Report {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnstrcustname = new global::System.Data.DataColumn("strcustname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrcustname);
-                this.columndtechallandate = new global::System.Data.DataColumn("dtechallandate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndtechallandate);
-                this.columnstrProductname = new global::System.Data.DataColumn("strProductname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrProductname);
-                this.columnstruom = new global::System.Data.DataColumn("struom", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstruom);
-                this.columnpdqnt = new global::System.Data.DataColumn("pdqnt", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpdqnt);
-                this.columnpdprice = new global::System.Data.DataColumn("pdprice", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpdprice);
-                this.columnpdqnt1 = new global::System.Data.DataColumn("pdqnt1", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpdqnt1);
-                this.columnmontotalamout = new global::System.Data.DataColumn("montotalamout", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmontotalamout);
                 this.columnCustomerName = new global::System.Data.DataColumn("CustomerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomerName);
                 this.columnChDate = new global::System.Data.DataColumn("ChDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1358,9 +1246,6 @@ namespace SAD_DAL.Sales.Report {
                 base.Columns.Add(this.columnRate);
                 this.columnTotalamout = new global::System.Data.DataColumn("Totalamout", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalamout);
-                this.columnstrcustname.MaxLength = 500;
-                this.columnstrProductname.MaxLength = 500;
-                this.columnstruom.MaxLength = 500;
                 this.columnCustomerName.MaxLength = 500;
                 this.columnProductname.MaxLength = 500;
                 this.columnUOM.MaxLength = 25;
@@ -1923,138 +1808,6 @@ namespace SAD_DAL.Sales.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strcustname {
-                get {
-                    try {
-                        return ((string)(this[this.tablesprUDTCLSalesStausDetaills.strcustnameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strcustname\' in table \'sprUDTCLSalesStausDetaills\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.strcustnameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dtechallandate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tablesprUDTCLSalesStausDetaills.dtechallandateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'dtechallandate\' in table \'sprUDTCLSalesStausDetaills\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.dtechallandateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strProductname {
-                get {
-                    try {
-                        return ((string)(this[this.tablesprUDTCLSalesStausDetaills.strProductnameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strProductname\' in table \'sprUDTCLSalesStausDetaills\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.strProductnameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string struom {
-                get {
-                    try {
-                        return ((string)(this[this.tablesprUDTCLSalesStausDetaills.struomColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'struom\' in table \'sprUDTCLSalesStausDetaills\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.struomColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal pdqnt {
-                get {
-                    try {
-                        return ((decimal)(this[this.tablesprUDTCLSalesStausDetaills.pdqntColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'pdqnt\' in table \'sprUDTCLSalesStausDetaills\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.pdqntColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal pdprice {
-                get {
-                    try {
-                        return ((decimal)(this[this.tablesprUDTCLSalesStausDetaills.pdpriceColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'pdprice\' in table \'sprUDTCLSalesStausDetaills\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.pdpriceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal pdqnt1 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tablesprUDTCLSalesStausDetaills.pdqnt1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'pdqnt1\' in table \'sprUDTCLSalesStausDetaills\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.pdqnt1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal montotalamout {
-                get {
-                    try {
-                        return ((decimal)(this[this.tablesprUDTCLSalesStausDetaills.montotalamoutColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'montotalamout\' in table \'sprUDTCLSalesStausDetaills\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesprUDTCLSalesStausDetaills.montotalamoutColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string CustomerName {
                 get {
                     try {
@@ -2166,102 +1919,6 @@ namespace SAD_DAL.Sales.Report {
                 set {
                     this[this.tablesprUDTCLSalesStausDetaills.TotalamoutColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrcustnameNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.strcustnameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrcustnameNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.strcustnameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdtechallandateNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.dtechallandateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdtechallandateNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.dtechallandateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrProductnameNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.strProductnameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrProductnameNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.strProductnameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstruomNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.struomColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstruomNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.struomColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IspdqntNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.pdqntColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetpdqntNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.pdqntColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IspdpriceNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.pdpriceColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetpdpriceNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.pdpriceColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Ispdqnt1Null() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.pdqnt1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Setpdqnt1Null() {
-                this[this.tablesprUDTCLSalesStausDetaills.pdqnt1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmontotalamoutNull() {
-                return this.IsNull(this.tablesprUDTCLSalesStausDetaills.montotalamoutColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmontotalamoutNull() {
-                this[this.tablesprUDTCLSalesStausDetaills.montotalamoutColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2989,14 +2646,6 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "sprUDTCLSalesStausDetaills";
-            tableMapping.ColumnMappings.Add("strcustname", "strcustname");
-            tableMapping.ColumnMappings.Add("dtechallandate", "dtechallandate");
-            tableMapping.ColumnMappings.Add("strProductname", "strProductname");
-            tableMapping.ColumnMappings.Add("struom", "struom");
-            tableMapping.ColumnMappings.Add("pdqnt", "pdqnt");
-            tableMapping.ColumnMappings.Add("pdprice", "pdprice");
-            tableMapping.ColumnMappings.Add("pdqnt1", "pdqnt1");
-            tableMapping.ColumnMappings.Add("montotalamout", "montotalamout");
             tableMapping.ColumnMappings.Add("CustomerName", "CustomerName");
             tableMapping.ColumnMappings.Add("ChDate", "ChDate");
             tableMapping.ColumnMappings.Add("Productname", "Productname");
@@ -3027,15 +2676,13 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intunitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rpttype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intsalesoffid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intshippingpointid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UDTCLSalesTDS.sprUDTCLSalesStausDetaillsDataTable GetSalesData(global::System.Nullable<global::System.DateTime> fromdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intunitid, global::System.Nullable<int> rpttype, global::System.Nullable<int> intsalesoffid, global::System.Nullable<int> intshippingpointid) {
+        public virtual UDTCLSalesTDS.sprUDTCLSalesStausDetaillsDataTable GetSalesData(global::System.Nullable<global::System.DateTime> fromdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intunitid, global::System.Nullable<int> rpttype) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((fromdate.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fromdate.Value));
@@ -3060,18 +2707,6 @@ namespace SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((intsalesoffid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(intsalesoffid.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((intshippingpointid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intshippingpointid.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             UDTCLSalesTDS.sprUDTCLSalesStausDetaillsDataTable dataTable = new UDTCLSalesTDS.sprUDTCLSalesStausDetaillsDataTable();
             this.Adapter.Fill(dataTable);
