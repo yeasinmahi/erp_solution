@@ -277,13 +277,16 @@ namespace Purchase_BLL.Asset
 
         }
 
-        public static string[] AutoSearchLocationItem(string WHID, string prefix)
+        public   string[] AutoSearchLocationItem(string WHID, string prefix)
        {
            
-             Inatialize(int.Parse(WHID));
+             //Inatialize(int.Parse(WHID));
             //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
             //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
             //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+            tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
+            SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();

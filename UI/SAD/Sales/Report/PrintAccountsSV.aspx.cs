@@ -18,7 +18,7 @@ namespace UI.SAD.Sales.Report
         {
             if (!IsPostBack)
             {
-               string htmlString = obj.SVPrintView(105, "", 0);
+               //string htmlString = obj.SVPrintView(105, "", 0);
 
                 lblUnitName.Text = "Dhaka".ToUpper();
                 lblUnitAddress.Text = "Morkun tongi Gazipur";
@@ -32,7 +32,7 @@ namespace UI.SAD.Sales.Report
                 //Image2.ImageUrl = "../../Content/Images/img/" + unitID + ".png";
                 //Image2.Width = 180;
                 //Image2.Height = 50;
-                Label1.Text = htmlString;
+                //Label1.Text = htmlString;
             }
         }
     }

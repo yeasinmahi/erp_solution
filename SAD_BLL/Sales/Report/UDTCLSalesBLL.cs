@@ -25,34 +25,34 @@ namespace SAD_BLL.Sales.Report
             return adp.GetUDTCLSalesData(fromDate, toDate, unitId, reportType, salesOffId, shippingId);
         }
 
-        public string SVPrintView(int unit, string code, int Id)
-        {
-            string htmlString = "";
-            DateTime? vDate = null;
-            decimal totalAmountDr = 100, totalAmountCr = 100; 
+        //public string SVPrintView(int unit, string code, int Id)
+        //{
+        //    string htmlString = "";
+        //    DateTime? vDate = null;
+        //    decimal totalAmountDr = 100, totalAmountCr = 100; 
             
-            DataTable dt = new DataTable();
-            UDTCLSalesBLL obj = new UDTCLSalesBLL();
-            dt =getData(unit, code, Id);
-            string voucherDate, strForBarCode, voucherNumber, securityCode, totalAmountInWord;
+        //    DataTable dt = new DataTable();
+        //    UDTCLSalesBLL obj = new UDTCLSalesBLL();
+        //    dt =getData(unit, code, Id);
+        //    string voucherDate, strForBarCode, voucherNumber, securityCode, totalAmountInWord;
 
-          //  voucherDate = CommonClass.GetShortDateAtLocalDateFormat(vDate);
-          //  strForBarCode = voucherNumber + securityCode;
-            AmountFormat formatAmount = new AmountFormat();
-            totalAmountInWord = formatAmount.GetTakaInWords(totalAmountCr, "", "Only");
-            string[] addressLines = new string[1];
-            addressLines[0] = "UDTCL";
-            htmlString = PreparePrintableJournelVoucher("UDTCL", addressLines, "SV", code, "2018-07-07", (DataTable)dt, totalAmountInWord, "test", totalAmountDr, totalAmountCr);
-            return htmlString;
+        //  //  voucherDate = CommonClass.GetShortDateAtLocalDateFormat(vDate);
+        //  //  strForBarCode = voucherNumber + securityCode;
+        //    AmountFormat formatAmount = new AmountFormat();
+        //    totalAmountInWord = formatAmount.GetTakaInWords(totalAmountCr, "", "Only");
+        //    string[] addressLines = new string[1];
+        //    addressLines[0] = "UDTCL";
+        //    htmlString = PreparePrintableJournelVoucher("UDTCL", addressLines, "SV", code, "2018-07-07", (DataTable)dt, totalAmountInWord, "test", totalAmountDr, totalAmountCr);
+        //    return htmlString;
 
              
-        }
+        //}
 
-        private DataTable getData(int unit, string code, int id)
-        {
-            SprUDTCLSVAccountsViewTableAdapter adpTable = new SprUDTCLSVAccountsViewTableAdapter();
-            return adpTable.GetSVPrintData(unit, code, id);
-        }
+        //private DataTable getData(int unit, string code, int id)
+        //{
+        //    SprUDTCLSVAccountsViewTableAdapter adpTable = new SprUDTCLSVAccountsViewTableAdapter();
+        //    return adpTable.GetSVPrintData(unit, code, id);
+        //}
 
         private string PreparePrintableJournelVoucher(string unitName, string[] addressLines, string voucherTypeString, string voucherNumber, string date, DataTable tbl, string totalAmountInWords, string voucherNarration, decimal debitAmount, decimal crediAmount)
         {

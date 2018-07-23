@@ -90,7 +90,7 @@
     
        <div class="tabs_container" style="text-align:left">Bill by Supplier<hr /></div>
          
-       <table style="width:850px">
+       <table>
         <tr> 
         <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>                                                                                      
@@ -121,16 +121,15 @@
         <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton" OnClick="btnPoUserShow_Click"  />
         </td>  
         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Supplier"></asp:Label></td>
-        <td><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="200px"      ></asp:TextBox>
+        <td><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="200px"></asp:TextBox>
         <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
         ServiceMethod="GetMasterSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
         CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
         CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-        </cc1:AutoCompleteExtender>  
-
-        <%--<td style="text-align:left;"><asp:DropDownList ID="ddlSupplier" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
-          </asp:DropDownList>--%>
-        <asp:Button ID="btnPoSuppShow" runat="server" Text="Show" OnClick="btnPoSuppShow_Click"     />
+        </cc1:AutoCompleteExtender> 
+        <asp:Button ID="btnPoSuppShow" runat="server" Text="Show" OnClick="btnPoSuppShow_Click" />
+        
+         
         </td> 
       </tr> 
        </table>
