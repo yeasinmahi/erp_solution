@@ -59,32 +59,32 @@
                         </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
-                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Teritory"></asp:Label></td>
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Region"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlRegion" CssClass="ddList" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlRegion" CssClass="ddList" runat="server" EnableViewState="true" AutoPostBack="True" OnSelectedIndexChanged="ddlRegion_OnSelectedIndexChanged"></asp:DropDownList>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Program"></asp:Label></td>
+                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Area"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
                                 <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Teritory"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlTerritory" CssClass="ddList" runat="server"></asp:DropDownList>
-                            </td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Program"></asp:Label></td>
-                            <td>
-                                <asp:DropDownList ID="ddlDistributor" CssClass="ddList" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlTerritory" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTerritory_OnSelectedIndexChanged"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblroweven">
-                            <td style="text-align: right;" colspan="2">
-                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Program"></asp:Label></td>
-                            <td colspan="2">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Distributor"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlDistributor" CssClass="ddList" runat="server"></asp:DropDownList>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Acrd"></asp:Label></td>
+                            <td>
                                 <asp:DropDownList ID="ddlIhb" CssClass="ddList" runat="server"></asp:DropDownList>
                             </td>
                         </tr>
