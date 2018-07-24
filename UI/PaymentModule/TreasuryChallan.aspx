@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>.: Manual Attendance Insertion :.</title>
+    <title>.: Treasury Challan :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -191,9 +191,11 @@
                     <td class="tblborder" style="text-align: center; width: 20px;">1</td>
                     <td style="text-align: center;"></td>
                 </tr>
+                <tr><td colspan="18" style="height:30px;"></td></tr>
             </table>         
-            <br></br>
+            
             <table class="tblborder" style="width: 100%; background-color: white;">
+                
                 <tr style="text-align: center">
                     <td class="tblborder" colspan="4">জমা প্রদানকারী কর্তৃক পূরণ করিতে হইবে</td>
                     <td class="tblborder" colspan="2">টাকার অংক</td>
@@ -207,7 +209,7 @@
                     <td class="tblborder">টাকা</td>
                     <td class="tblborder">পয়সা</td>
                 </tr>
-                <tr style="text-align: center; color:black; height:300px;">
+                <tr style="text-align: center; color:black;">
                     <td class="tblborder"><asp:Label ID="lblDepositorName" runat="server" Visible="true"></asp:Label></td>
                     <td class="tblborder"><asp:Label ID="lblDepositorAdd" runat="server" Visible="true"></asp:Label></td>
                     <td class="tblborder"><asp:Label ID="lblvat" runat="server" Visible="true"></asp:Label></td>
