@@ -21,5 +21,19 @@ namespace SAD_BLL.Consumer
             sprACCLDoubleCashOfferTableAdapter adapter = new sprACCLDoubleCashOfferTableAdapter();
             return adapter.GetDoubleCashOffer(teritory, fromDate, toDate, fromDate, toDate);
         }
+
+        public string InsertStarConsumerBill(string xml, DateTime fromDate, DateTime toDate, int insertBy, int intProgramType, int unitId, int insertBy2)
+        {
+            string message = String.Empty;
+            sprStarConsumerBillTableAdapter adapter = new sprStarConsumerBillTableAdapter();
+            adapter.InsertConsumerBill(xml, fromDate, toDate, insertBy, intProgramType, unitId, insertBy2, ref message);
+            return message;
+        }
+        public DataTable GetStarConsumeReport(DateTime fromDate, DateTime toDate, string email)
+        {
+            DataTable2TableAdapter adapter = new DataTable2TableAdapter();
+            return adapter.GetStarConsumeReport(fromDate, toDate, email);
+        }
+        
     }
 }
