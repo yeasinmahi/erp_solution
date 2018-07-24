@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.SAD.IHB
 {
@@ -15,6 +10,11 @@ namespace UI.SAD.IHB
         }
 
         protected void add_OnClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void LoadRegion()
         {
             
         }

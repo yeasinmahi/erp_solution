@@ -3,7 +3,7 @@ using SAD_DAL.IHB.DistributorWithIhbTableAdapters;
 
 namespace SAD_BLL.IHB
 {
-    public class DistributorWithIhb
+    public class DistributorWithIhbBll
     {
         public DataTable GetRegion()
         {
