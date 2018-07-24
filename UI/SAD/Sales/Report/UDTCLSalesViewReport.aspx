@@ -18,9 +18,7 @@
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-
-
+    <script src="jquery-ui.min.js"></script> 
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -78,13 +76,13 @@
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="From Date:" ></asp:Label></td>
                             <td>
                                     <asp:TextBox ID="txtFormDate" CssClass="txtBox" runat="server"></asp:TextBox>
-                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFormDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
+                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFormDate" Format="yyyy/MM/dd" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                                     <img id="imgCal_1"  src="../../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                                 </td>
                             <td style="text-align:right;"><asp:Label ID="Label4" CssClass="lbl"  runat="server" Text="To Date:"></asp:Label></td>
                             <td>
                                     <asp:TextBox ID="txtToDate" CssClass="txtBox" runat="server"></asp:TextBox>
-                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtToDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
+                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtToDate" Format="yyyy/MM/dd" PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                                     <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                                 </td>
         </tr>
@@ -125,7 +123,7 @@
                         <%-- ===========================Sales Report View for Transfer Challan without topsheet ============================ --%>
                         <tr>
                             <td>
-                                <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="odsSalesReport" OnRowDataBound="GvSalesReport_RowDataBound" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
+                                <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True" AutoGenerateColumns="False"   BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL">
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
@@ -187,15 +185,6 @@
                                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                     <SortedDescendingHeaderStyle BackColor="#383838" />
                                 </asp:GridView>
-                                <asp:ObjectDataSource ID="odsSalesReport" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetSalesData" TypeName="SAD_DAL.Sales.Report.UDTCLSalesTDSTableAdapters.sprUDTCLSalesStausDetaillsTableAdapter">
-                                    <SelectParameters>
-                                        <asp:ControlParameter ControlID="txtFormDate" Name="fromdate" PropertyName="Text" Type="DateTime" />
-                                        <asp:ControlParameter ControlID="txtToDate" Name="todate" PropertyName="Text" Type="DateTime" />
-                                        <asp:ControlParameter ControlID="ddlUnit" Name="intunitid" PropertyName="SelectedValue" Type="Int32" />                                     
-                                        <asp:ControlParameter ControlID="DdlReport" Name="rpttype" PropertyName="SelectedValue" Type="Int32" />
-                                       
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
                             </td>
                         </tr>
 
