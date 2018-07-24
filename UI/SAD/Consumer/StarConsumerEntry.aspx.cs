@@ -81,18 +81,18 @@ namespace UI.SAD.Consumer
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
 
 
-            int shopId = Convert.ToInt32(((HiddenField) gvr.FindControl("dispId")).Value);
+            int shopId = Convert.ToInt32(gvr.Cells[1].Text);
             string territoryName = ((HiddenField)gvr.FindControl("strTerritory")).Value;
             //int customerId = Convert.ToInt32(((Label)gvr.FindControl("dispId")).Value);
-            int customerId = Convert.ToInt32(gvr.Cells[3].Text);
-            double decShopvsDelvQnt = Convert.ToDouble(gvr.Cells[7].Text);
+            int customerId = Convert.ToInt32(gvr.Cells[4].Text);
+            double decShopvsDelvQnt = Convert.ToDouble(gvr.Cells[8].Text);
             double editedTotalCost = Convert.ToDouble(((TextBox)gvr.FindControl("commisionAmount")).Text);
             int siteCardCode = Convert.ToInt32(((TextBox)gvr.FindControl("siteCode")).Text);
             double qntForSiteCard = Convert.ToDouble(((TextBox)gvr.FindControl("quantity")).Text);
             string starUserDetaills = ((TextBox)gvr.FindControl("userDetails")).Text;
             int intProgramType = 6;
-            int unitId = (int)HttpContext.Current.Session[SessionParams.UNIT_ID];
-            int insertBy = (int) HttpContext.Current.Session[SessionParams.USER_ID];
+            int unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
+            int insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
             string message;
             dynamic obj = new
             {
