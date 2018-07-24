@@ -80,9 +80,12 @@ namespace UI.PaymentModule
         {
 
             int intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
-            adviceTable = objtreasuryChallan.getDetails(intVatAcc);
-            string des = adviceTable.Rows[0]["strDescription"].ToString();
-            Response.Redirect("pageWhereYouWantToGo.aspx?parameter=" + intVatAcc + "");
+            //adviceTable = objtreasuryChallan.GetDetails(intVatAcc);
+            //string date = adviceTable.Rows[0]["strDescription"].ToString();
+            //string manager = adviceTable.Rows[2]["strDescription"].ToString();
+            //string manager1 = adviceTable.Rows[3]["strDescription"].ToString();
+            //string manager2 = adviceTable.Rows[4]["strDescription"].ToString();
+            Response.Redirect("ShowAdviceOfTreasuryChallan.aspx?id=" + intVatAcc + "");
 
         }
 

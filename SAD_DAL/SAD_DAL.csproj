@@ -253,6 +253,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="IHB\DistributorWithIhbDal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Item\CurrencyTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -784,6 +789,17 @@
     </None>
     <None Include="Global\ShipPointTDS.xss">
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorWithIhbDal.xsc">
+      <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorWithIhbDal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DistributorWithIhbDal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="IHB\DistributorWithIhbDal.xss">
+      <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>
     </None>
     <None Include="Item\CurrencyTDS.xsc">
       <DependentUpon>CurrencyTDS.xsd</DependentUpon>

@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StarConsumerEntry.aspx.cs" Inherits="UI.SAD.Consumer.StarConsumerEntry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DistributorWithIHB.aspx.cs" Inherits="UI.SAD.IHB.DistributorWithIHB" %>
+
 <%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <!DOCTYPE html>
@@ -20,7 +21,10 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg">
+                                <%# UI.ClassFiles.CommonClass.GetGlobalMessage() %>
+                            </span>
+                        </marquee>
                     </div>
                     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
@@ -32,7 +36,7 @@
 
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Star Consumer Bill Entry :
+                        Distributor With IHB :
                         <asp:HiddenField ID="hdUnitId" runat="server" />
                     </div>
                     <table border="0" style="width: Auto">
@@ -44,7 +48,7 @@
                                 <asp:TextBox ID="fromTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <script>$('#fromTextBox').datepicker();</script>
                             </td>
-                            
+
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date"></asp:Label>
                             </td>
@@ -55,22 +59,38 @@
                         </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
-                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Teritory"></asp:Label></td>
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Region"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlTeritory" CssClass="ddList" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlRegion" CssClass="ddList" runat="server" EnableViewState="true" AutoPostBack="True" OnSelectedIndexChanged="ddlRegion_OnSelectedIndexChanged"></asp:DropDownList>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Program"></asp:Label></td>
+                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Area"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlProgram" CssClass="ddList" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Teritory"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlTerritory" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTerritory_OnSelectedIndexChanged"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Distributor"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlDistributor" CssClass="ddList" runat="server"></asp:DropDownList>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Acrd"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlIhb" CssClass="ddList" runat="server"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblroweven">
                             <td>
-                                <asp:Button ID="showReport" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="showReport_OnClick" />
-                            </td>
-                            <td>
-                                <asp:Button ID="showFullReport" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Report" OnClick="showFullReport_OnClick" OnClientClick="aspnetForm.target ='_blank'" />
+                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="add_OnClick" />
                             </td>
                         </tr>
                     </table>
@@ -136,4 +156,3 @@
     </form>
 </body>
 </html>
-
