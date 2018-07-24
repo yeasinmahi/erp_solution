@@ -66,7 +66,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Program"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged"></asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblroweven">
