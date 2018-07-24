@@ -24,7 +24,7 @@ namespace UI.SAD.Consumer
                 LoadTeritoryDropDown();
                 LoadProgramDropDown();
             }
-            DeleteFile();
+            XmlParser.DeleteFile(_filePathForXml);
         }
         private void LoadTeritoryDropDown()
         {
@@ -118,14 +118,10 @@ namespace UI.SAD.Consumer
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
             }
-            DeleteFile();
+            XmlParser.DeleteFile(_filePathForXml);
         }
 
-        private void DeleteFile()
-        {
-            try { File.Delete(_filePathForXml); }
-            catch { }
-        }
+        
         protected void showFullReport_OnClick(object sender, EventArgs e)
         {
             string fromDate = fromTextBox.Text;
