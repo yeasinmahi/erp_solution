@@ -103,6 +103,8 @@ namespace UI.Accounts.Advice
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            gvExcelFile.DataSource = "";
+            gvExcelFile.DataBind();
             DeleteData();
             uploadfile();
         }
@@ -119,62 +121,66 @@ namespace UI.Accounts.Advice
 
         private void uploadfile()
         {
-            string ConStr = "";
-
-            string strDocUploadPath = Path.GetFileName(FileUpload1.FileName);
-            string ext = Path.GetExtension(FileUpload1.FileName).ToLower();
-            string path = Server.MapPath("~/Accounts/Advice/Data/" + FileUpload1.FileName);
-            if (FileUpload1.HasFile.ToString() != null)
+            try
             {
-                FileUpload1.SaveAs(path);
-                if (ext.Trim() == ".xls")
+                string ConStr = "";
+
+                string strDocUploadPath = Path.GetFileName(FileUpload1.FileName);
+                string ext = Path.GetExtension(FileUpload1.FileName).ToLower();
+                string path = Server.MapPath("~/Accounts/Advice/Data/" + FileUpload1.FileName);
+                if (FileUpload1.HasFile.ToString() != null)
                 {
-                    ConStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+                    FileUpload1.SaveAs(path);
+                    if (ext.Trim() == ".xls")
+                    {
+                        ConStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+                    }
+                    else if (ext.Trim() == ".xlsx")
+                    {
+                        ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
+                    }
+                    string query = "SELECT * FROM [StatementFomat$]";
+                    OleDbConnection conn = new OleDbConnection(ConStr);
+                    if (conn.State == ConnectionState.Closed)
+                    {
+                        conn.Open();
+                    }
+                    OleDbCommand cmd = new OleDbCommand(query, conn);
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    DataTable dt = new DataTable();
+                    gvExcelFile.DataSource = ds.Tables[0];
+                    gvExcelFile.DataBind();
+                    conn.Close();
+
+                    DataTable dtTable = new DataTable();
+                    dtTable = (DataTable)ds.Tables[0];
+                    intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+                    intEnroll = int.Parse(hdnEnroll.Value.ToString());
+                    intAccountID = int.Parse(ddlAccountNo.SelectedValue.ToString());
+
+                    #region ********* Excel Data Get *************
+                    for (int i = 0; i < dtTable.Rows.Count; i++)
+                    {
+
+                        dteDate = dtTable.Rows[i][0].ToString();
+                        strParticulars = dtTable.Rows[i][1].ToString();
+                        strInstrumentNo = dtTable.Rows[i][2].ToString();
+                        monDebit = decimal.Parse(dtTable.Rows[i][3].ToString());
+                        monCredit = decimal.Parse(dtTable.Rows[i][4].ToString());
+                        monBalance = decimal.Parse(dtTable.Rows[i][5].ToString());
+
+                        bll.InsertTempData(intAccountID, dteDate, strParticulars, strInstrumentNo, monDebit, monCredit, monBalance, intEnroll);
+                    }
+
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Report Inserted.');", true);
+
+                    #endregion **************** End Excel data get **************
                 }
-                else if (ext.Trim() == ".xlsx")
-                {
-                    ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
-                }
-                string query = "SELECT * FROM [StatementFomat$]";
-                OleDbConnection conn = new OleDbConnection(ConStr);
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-                OleDbCommand cmd = new OleDbCommand(query, conn);
-                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                DataTable dt = new DataTable();
-                gvExcelFile.DataSource = ds.Tables[0];
-                gvExcelFile.DataBind();
-                conn.Close();
-
-                DataTable dtTable = new DataTable();
-                dtTable = (DataTable)ds.Tables[0];
-                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                intEnroll = int.Parse(hdnEnroll.Value.ToString());
-                intAccountID = int.Parse(ddlAccountNo.SelectedValue.ToString());
-
-                #region ********* Excel Data Get *************
-                for (int i = 0; i < dtTable.Rows.Count; i++)
-                {
-
-                    dteDate = dtTable.Rows[i][0].ToString();
-                    strParticulars = dtTable.Rows[i][1].ToString();
-                    strInstrumentNo = dtTable.Rows[i][2].ToString();
-                    monDebit = decimal.Parse(dtTable.Rows[i][3].ToString());
-                    monCredit = decimal.Parse(dtTable.Rows[i][4].ToString());
-                    monBalance = decimal.Parse(dtTable.Rows[i][5].ToString());
-
-                    bll.InsertTempData(intAccountID, dteDate, strParticulars, strInstrumentNo, monDebit, monCredit, monBalance, intEnroll);
-                }
-
-                //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Report Inserted.');", true);
-
-                #endregion **************** End Excel data get **************
+                File.Delete(path);
             }
-            File.Delete(path);
+            catch { }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
