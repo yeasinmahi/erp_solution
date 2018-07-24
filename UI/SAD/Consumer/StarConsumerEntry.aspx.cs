@@ -11,13 +11,13 @@ using Utility;
 
 namespace UI.SAD.Consumer
 {
-    public partial class StarConsumerEntry : System.Web.UI.Page
+    public partial class StarConsumerEntry : Page
     {
         private readonly StarConsumerEntryBll _starConsumerEntryBll = new StarConsumerEntryBll();
-        string filePathForXML = String.Empty;
+        string _filePathForXml = String.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SAD/Consumer/Data/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "StarConsumerBill.xml");
+            _filePathForXml = Server.MapPath("~/SAD/Consumer/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "StarConsumerBill.xml");
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -25,26 +25,6 @@ namespace UI.SAD.Consumer
                 LoadProgramDropDown();
             }
             DeleteFile();
-        }
-
-        protected void btnAddBikeCarUser_OnClickAddBikeCarUser_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected void btnSubmitBikeCar_OnClickCar_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected void grdvOvertimeEntry_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected void grdvOvertimeEntry_OnRowDeletingmeEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            throw new NotImplementedException();
         }
         private void LoadTeritoryDropDown()
         {
@@ -113,7 +93,7 @@ namespace UI.SAD.Consumer
             int intProgramType = 6;
             int unitId = (int)HttpContext.Current.Session[SessionParams.UNIT_ID];
             int insertBy = (int) HttpContext.Current.Session[SessionParams.USER_ID];
-            string message = String.Empty;
+            string message;
             dynamic obj = new
             {
                 intShopId = shopId,
@@ -127,10 +107,10 @@ namespace UI.SAD.Consumer
 
             };
 
-            if (XmlParser.CreateXml("StarConsumer", obj, filePathForXML, out message))
+            if (XmlParser.CreateXml("StarConsumer", obj, _filePathForXml, out message))
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
+                doc.Load(_filePathForXml);
                 message = _starConsumerEntryBll.InsertStarConsumerBill(doc.OuterXml, fromDateTime, toDateTime, insertBy, intProgramType, unitId,insertBy);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             }
@@ -143,7 +123,7 @@ namespace UI.SAD.Consumer
 
         private void DeleteFile()
         {
-            try { File.Delete(filePathForXML); }
+            try { File.Delete(_filePathForXml); }
             catch { }
         }
         protected void showFullReport_OnClick(object sender, EventArgs e)
