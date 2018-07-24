@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using Purchase_DAL.Commercial;
 using SAD_BLL.Consumer;
 using UI.ClassFiles;
 using Utility;
