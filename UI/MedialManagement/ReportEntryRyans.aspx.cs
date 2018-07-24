@@ -101,7 +101,7 @@ namespace UI.MedialManagement
                 {
                     ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
                 }
-                string query = "SELECT * FROM [Sheet1$]";
+                string query = "SELECT * FROM [Process$]";
                 OleDbConnection conn = new OleDbConnection(ConStr);
                 if (conn.State == ConnectionState.Closed)
                 {
