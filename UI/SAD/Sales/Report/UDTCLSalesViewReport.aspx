@@ -123,7 +123,7 @@
                         <%-- ===========================Sales Report View for Transfer Challan without topsheet ============================ --%>
                         <tr>
                             <td>
-                                <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True" AutoGenerateColumns="False"   BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
+                                <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True" OnRowDataBound="GvSalesReport_RowDataBound" AutoGenerateColumns="False"   BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL">
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
