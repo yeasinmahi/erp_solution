@@ -110,8 +110,22 @@ namespace UI.WoodPurchase
             }
             catch { }
         }
+        protected void btnShowPOItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetPOWiseItem(intPOID);
+                dgvReceive.DataSource = dt;
+                dgvReceive.DataBind();
+            }
+            catch { }
+        }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            dgvReceive.DataSource = "";
+            dgvReceive.DataBind();
             uploadfile();
         }
         private void uploadfile()
