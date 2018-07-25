@@ -129,7 +129,7 @@
         }
 
         function Registration(url) {
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
             if (window.focus) { newwindow.focus() }
         }
     </script>

@@ -24,12 +24,23 @@ namespace SCM_BLL
             catch { return new DataTable(); }
         }
 
-        public string[] AutoSearchBomId(string unit, string prefix)
+        public string[] AutoSearchBomId(string unit, string prefix,int itemType)
         {
 
-           tableBomItem = new BomTDS.qryItemListDataTable[Convert.ToInt32(unit)];
-            qryItemListTableAdapter adpCOA = new qryItemListTableAdapter();
-            tableBomItem[e] = adpCOA.GetItemSearchData(Convert.ToInt32(unit));
+            if(itemType==1)
+            {
+                tableBomItem = new BomTDS.qryItemListDataTable[Convert.ToInt32(unit)];
+                qryItemListTableAdapter adpCOA = new qryItemListTableAdapter();
+                tableBomItem[e] = adpCOA.GetItemSearchData(Convert.ToInt32(unit));
+
+            }
+            else
+            {
+                tableBomItem = new BomTDS.qryItemListDataTable[Convert.ToInt32(unit)];
+                qryItemListTableAdapter adpCOA = new qryItemListTableAdapter();
+                tableBomItem[e] = adpCOA.GetBomItemBy(Convert.ToInt32(unit));
+            }
+            
 
 
             // prefix = prefix.Trim().ToLower();

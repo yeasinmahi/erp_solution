@@ -16,30 +16,24 @@ namespace UI.PaymentModule
         DataTable dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                pnlUpperControl.DataBind();
+            }
 
             int intVatAcc = int.Parse(Request.QueryString["id"]);
-            //dt = objtreasuryChallanBLL.GetDetails(intVatAcc);
-
-            //lblDescription.Text=dt.Rows[0]["strDescription"].ToString();
-            //Label1.Text= dt.Rows[2]["strDescription"].ToString();
-            //Label2.Text = dt.Rows[3]["strDescription"].ToString();
-            //Label3.Text = dt.Rows[4]["strDescription"].ToString();
-            //Label4.Text = dt.Rows[8]["strDescription"].ToString();
-            //Label5.Text = dt.Rows[10]["strDescription"].ToString();
-            //Label7.Text = dt.Rows[11]["strDescription"].ToString();
-            //Label8.Text = dt.Rows[13]["strDescription"].ToString();
-
+           
             int intType = 1;
 
             dt = objtreasuryChallanBLL.ShowAdvice(intVatAcc, intType);
-            lblDescription.Text = dt.Rows[0]["strDescription"].ToString();
-            Label1.Text = dt.Rows[2]["strDescription"].ToString();
-            Label2.Text = dt.Rows[3]["strDescription"].ToString();
-            Label3.Text = dt.Rows[4]["strDescription"].ToString();
-            Label4.Text = dt.Rows[8]["strDescription"].ToString();
-            Label5.Text = dt.Rows[10]["strDescription"].ToString();
-            Label7.Text = dt.Rows[11]["strDescription"].ToString();
-            Label8.Text = dt.Rows[13]["strDescription"].ToString();
+            lbldate.Text = dt.Rows[0]["strDescription"].ToString();
+            lblmanager.Text = dt.Rows[2]["strDescription"].ToString();
+            lblbank.Text = dt.Rows[3]["strDescription"].ToString();
+            lbladd.Text = dt.Rows[4]["strDescription"].ToString();
+            lblsub.Text = dt.Rows[8]["strDescription"].ToString();
+            lbldear.Text = dt.Rows[10]["strDescription"].ToString();
+            lblsalam.Text = dt.Rows[11]["strDescription"].ToString();
+            lblmsg.Text = dt.Rows[13]["strDescription"].ToString();
 
             DataTable dt1 = new DataTable();
             intType = 2;
@@ -54,8 +48,7 @@ namespace UI.PaymentModule
         }
         decimal totalamount = 0;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //int reportType = int.Parse(DdlReport.SelectedItem.Value);
+        {            
            
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -66,7 +59,7 @@ namespace UI.PaymentModule
             if (e.Row.RowType == DataControlRowType.Footer)
             {
 
-                Label amountLabel = e.Row.FindControl("lblTotal") as Label;
+                Label amountLabel = (Label)e.Row.FindControl("lblTotal");
 
                 if (amountLabel != null)
                 {
@@ -74,6 +67,8 @@ namespace UI.PaymentModule
                 }
 
             }
+           
+                
         }
 
 

@@ -35,14 +35,21 @@ namespace UI.SCM.BOM
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
-                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    try{Session["Unit"] = hdnUnit.Value; }  catch { } 
+                   
                     ddlWH.DataSource = dt;
                     ddlWH.DataTextField = "strName";
                     ddlWH.DataValueField = "Id";
                     ddlWH.DataBind();
                 }
-                
+                intwh = int.Parse(ddlWH.SelectedValue);
+                dt = objBom.GetBomData(15, xmlData, intwh, BomId, DateTime.Now, enroll);
+                if(dt.Rows.Count > 0)
+                {
+                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                  try { Session["Unit"] = hdnUnit.Value; } catch { }
+                }
+               
+
             }
         }
 
@@ -193,12 +200,14 @@ namespace UI.SCM.BOM
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
+            intwh = int.Parse(ddlWH.SelectedValue);
+            dt = objBom.GetBomData(15, xmlData, intwh, BomId, DateTime.Now, enroll);
             if (dt.Rows.Count > 0)
             {
                 hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                try { Session["Unit"] = hdnUnit.Value; } catch { } 
+                try { Session["Unit"] = hdnUnit.Value; } catch { }
             }
+
         }
 
         private void checkXmlItemData(string itemid)
@@ -319,7 +328,7 @@ namespace UI.SCM.BOM
         {
             Bom_BLL objBoms = new Bom_BLL();
            
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText);
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText,1);
 
         }
 
@@ -329,7 +338,7 @@ namespace UI.SCM.BOM
         {
             Bom_BLL objBoms = new Bom_BLL();
 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText);
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText,2);
 
         }
 

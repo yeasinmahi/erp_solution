@@ -20,7 +20,36 @@
     
     <script src="../Content/JS/BlueBird.min.js"></script>
    <script src="../Content/JS/html2canvas.min.js"></script>
- 
+    <script src="../Content/JS/jsPDF.min.js"></script>
+    <%--<script src="../Content/JS/html2pdf.js"></script>--%>
+
+    <script type="text/javascript">
+        
+        function pdf() {
+        
+             
+
+        html2canvas(document.getElementById('dvTable'), {
+            
+        onrendered: function(canvas) {
+
+            var img = canvas.toDataURL('image/JPEG',1.0)
+            var doc = new jsPDF('p', 'mm', 'A4');
+            // var doc = new jsPDF();
+            
+            
+            //doc.addImage(img, "JPEG", 0, 0,100,100);
+            var width = doc.internal.pageSize.width;    
+            var height = doc.internal.pageSize.height;
+            
+        
+            doc.addImage(img, 'JPG', 0, 0, width, height);
+            doc.save("test.pdf")
+        }
+    });
+        }
+    </script>
+    
 <script type="text/javascript">
     function ConvertToImage(btnExport) {
         document.getElementById("btnExport").style.visibility = "hidden";
@@ -40,10 +69,12 @@
         return false;
     }
 </script>
+     
     
 <script type="text/javascript">
     function ConvertToImageDownload(btnDownload) {
         document.getElementById("btnExport").style.visibility = "hidden";
+        document.getElementById("btnprint").style.visibility = "hidden";
         //document.getElementById("txtPoNumbers").style.visibility = "hidden";
        // document.getElementById("btnPoShowByView").style.visibility = "hidden";
         document.getElementById("btnDownload").style.visibility = "hidden";
@@ -56,6 +87,7 @@
          //   document.getElementById("txtPoNumbers").style.visibility = "visible";
           //  document.getElementById("btnPoShowByView").style.visibility = "visible";
             document.getElementById("btnDownload").style.visibility = "visible";
+             document.getElementById("btnprint").style.visibility = "visible";
         });
         return false;
     }
@@ -83,6 +115,17 @@
 
         }
     </script> 
+
+
+   
+    <style type="text/css">
+        .auto-style2 {
+            width: 69px;
+        }
+    </style>
+
+
+   
 </head> 
 <body>
 
@@ -120,7 +163,8 @@
                      <td></td>
                  </tr>
               </table>
-               <table>
+               
+               <table style="width:700px">
                    <tr>
                        <td></td>
                    </tr>
@@ -133,41 +177,43 @@
               
                  </tr> 
               </table>
-             <table style="border-color:black;  width:800px;border-radius:10px; border:1px solid blue;">
+        <table>
+               </table>
+             <table style="border-color:black;  width:700px;border-radius:10px; border:1px solid blue;">
                   <tr>
-                      <td style="text-align:left">Supplier</td>
+                      <td style="text-align:left; width:10px">Supplier</td>
                       <td style="text-align:left">Ship TO</td>
-                      <td style="text-align:left">Bill To</td>
+                      <td style="text-align:left; " class="auto-style2">Bill To</td>
                   </tr>
                   <tr>
                       <td style="text-align:left"><asp:Label ID="lblSuppliyers" runat="server"></asp:Label></td>                     
-                      <td style="text-align:left"><asp:Label ID="lblShipTo" Width="250px" runat="server"></asp:Label></td>
-                      <td style="text-align:left"><asp:Label ID="lblBillTo"  Width="250px" runat="server"></asp:Label></td>
+                      <td style="text-align:left"><asp:Label ID="lblShipTo" Width="200px" runat="server"></asp:Label></td>
+                      <td style="text-align:left" class="auto-style2"><asp:Label ID="lblBillTo"  Width="250px" runat="server"></asp:Label></td>
                       
                   </tr>
                    
                   <tr>
-                      <td style="text-align:left"><asp:Label ID="lblSupEmail" Width="250px" runat="server"></asp:Label></td> 
+                      <td style="text-align:left"><asp:Label ID="lblSupEmail" Width="200px" runat="server"></asp:Label></td> 
                       <td></td>
-                      <td><asp:Label ID="Label1"  Width="250px" Text="Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208" runat="server"></asp:Label></td>
+                      <td style="text-align:left;" ><asp:Label ID="Label1"  Width="200px" Text="Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208" runat="server"></asp:Label></td>
                   </tr>
                    
                   <tr>
-                      <td style="text-align:left"><asp:Label ID="lblAtten" Width="250px" runat="server"></asp:Label></td>
+                      <td style="text-align:left"><asp:Label ID="lblAtten" Width="200px" runat="server"></asp:Label></td>
                   </tr>
                    
                   <tr>
-                      <td style="text-align:left"><asp:Label ID="lblPhone" Width="250px" runat="server"></asp:Label></td>
+                      <td style="text-align:left"><asp:Label ID="lblPhone" Width="200px" runat="server"></asp:Label></td>
                   </tr>
                   
                   <tr>
                       <td style="text-align:left"><asp:Label ID="lblSuppAddress" Width="300px" runat="server"></asp:Label></td>
                   </tr> 
               </table>
-             <table style="width:800px">
+             <table style="width:750px">
              <tr><td></td></tr>
              <tr> 
-             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="800px" ShowFooter="true" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="750px" ShowFooter="true" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
              BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
              <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
@@ -214,7 +260,7 @@
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" /> 
             </asp:GridView></td> 
         </tr>  
-            <tr><td colspan="5"><asp:Label ID="lblInWard"  Font-Bold="true" runat="server"></asp:Label></td> </tr> 
+            <tr><td><asp:Label ID="lblInWard"  Font-Bold="true" runat="server"></asp:Label></td> </tr> 
             <tr> <td></td></tr>
              </table>
              <table>

@@ -54,6 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\TFSBackup\2018-5-10-1\TFS2018ERP\UI\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libray\MessagingToolkit.QRCode.dll</HintPath>
@@ -279,10 +282,13 @@
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
+    <Content Include="Content\JS\html2pdf.js" />
     <Content Include="Content\JS\jquery-3.3.1.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="Content\JS\jsPDF.js" />
+    <Content Include="Content\JS\jsPDF.min.js" />
     <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
@@ -1069,6 +1075,7 @@
     <Content Include="SAD\ExcelChallan\frmVehicleSetbyTransport.aspx" />
     <Content Include="SAD\ExcelChallan\frmExcelupload.aspx" />
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
+    <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
     <Content Include="SAD\Item\ItemManager.aspx" />
     <Content Include="SAD\Item\ItemManagerUOM.aspx" />
@@ -5135,6 +5142,13 @@
     <Compile Include="SAD\IHB\DistributorWithIHB.aspx.designer.cs">
       <DependentUpon>DistributorWithIHB.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\IHB\DistributorWithIhbReport.aspx.cs">
+      <DependentUpon>DistributorWithIhbReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorWithIhbReport.aspx.designer.cs">
+      <DependentUpon>DistributorWithIhbReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Item\frmItemPromotion.aspx.cs">
       <DependentUpon>frmItemPromotion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7890,6 +7904,7 @@
     <Folder Include="SAD\Consumer\Data\" />
     <Folder Include="SAD\Corporate_sales\Data\" />
     <Folder Include="SAD\ExcelChallan\Data\" />
+    <Folder Include="SAD\IHB\Data\" />
     <Folder Include="SAD\Order\Data\CH\" />
     <Folder Include="SAD\Order\Data\DO\" />
     <Folder Include="SAD\Order\Data\OR\" />

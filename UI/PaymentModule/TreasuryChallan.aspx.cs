@@ -79,12 +79,7 @@ namespace UI.PaymentModule
         protected void btnShowAdvice_Click(object sender, EventArgs e)
         {
 
-            int intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
-            //adviceTable = objtreasuryChallan.GetDetails(intVatAcc);
-            //string date = adviceTable.Rows[0]["strDescription"].ToString();
-            //string manager = adviceTable.Rows[2]["strDescription"].ToString();
-            //string manager1 = adviceTable.Rows[3]["strDescription"].ToString();
-            //string manager2 = adviceTable.Rows[4]["strDescription"].ToString();
+            int intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);          
             Response.Redirect("ShowAdviceOfTreasuryChallan.aspx?id=" + intVatAcc + "");
 
         }

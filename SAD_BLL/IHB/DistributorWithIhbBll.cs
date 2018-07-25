@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using SAD_DAL.IHB.DistributorWithIhbTableAdapters;
 
 namespace SAD_BLL.IHB
@@ -29,6 +30,26 @@ namespace SAD_BLL.IHB
         {
             tblCustomer1TableAdapter adapter = new tblCustomer1TableAdapter();
             return adapter.GetAcrd(territoryId);
+        }
+        
+        public string InsertEnterpriseCustomerNihbCustmBridge(string xml,DateTime fromDate,DateTime toDate, int enrol,int unitId, int insertby)
+        {
+            string message = String.Empty;
+            sprEnterprisecustomerNIHBCustmBridgeTableAdapter adapter = new sprEnterprisecustomerNIHBCustmBridgeTableAdapter();
+            adapter.InsertEnterpriseCustomerNihbCustmBridge(xml, fromDate, toDate, enrol, unitId, insertby,
+                ref message);
+            return message;
+        }
+        public DataTable GetCustomerInfo(int customerId)
+        {
+            DataTable1TableAdapter adapter = new DataTable1TableAdapter();
+            return adapter.GetCustomerInfo(customerId);
+        }
+
+        public DataTable GetDistributorWithIhbReport()
+        {
+            DataTable2TableAdapter adapter = new DataTable2TableAdapter();
+            return adapter.GetDistributorWithIhbReport();
         }
     }
 }

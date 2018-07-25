@@ -37,7 +37,7 @@
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
                         Distributor With IHB :
-                        <asp:HiddenField ID="hdUnitId" runat="server" />
+                        <asp:HiddenField ID="hdCustomerIdEnterprise" runat="server" />
                     </div>
                     <table border="0" style="width: Auto">
                         <tr class="tblroweven">
@@ -92,6 +92,9 @@
                             <td>
                                 <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="add_OnClick" />
                             </td>
+                            <td>
+                                <asp:Button ID="report" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Report" OnClick="report_OnClick" />
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -99,50 +102,20 @@
                     <table>
                         <tr class="tblroweven">
                             <td>
-                                <asp:GridView ID="grdvDoubleCashOffer" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true">
+                                <asp:GridView ID="grdvCustomerWithIhb" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
                                                 <%# Container.DataItemIndex + 1 %>
-                                                <asp:HiddenField ID="strTerritory" runat="server" Value='<%# Bind("strTerritory") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="intDispid" HeaderText="Shop Id" SortExpression="intDispid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strDispointName" HeaderText="Dispoint Name" SortExpression="strDispointName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <%--<asp:BoundField DataField="strPhone" HeaderText="Phone" SortExpression="strPhone" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strTerritory" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />--%>
-                                        <asp:BoundField DataField="strDistr" HeaderText="District" SortExpression="strDistr" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="intCustomerid" HeaderText="CustomerId" SortExpression="intCustomerid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strSalesOffice" HeaderText="Sales Office" SortExpression="strSalesOffice" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decQntFirstMonth" HeaderText="Quantity First Month" SortExpression="decQntFirstMonth" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decQntSecondMonth" HeaderText="Quantity Second Month" SortExpression="decQntSecondMonth" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="total" HeaderText="Total" SortExpression="total" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decTarget" HeaderText="Target" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:TemplateField HeaderText="Side Code">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="siteCode" runat="server"></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Quantity">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="quantity" runat="server"></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Commision Amount">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="commisionAmount" runat="server"></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="User Details">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="userDetails" runat="server"></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Action">
-                                            <ItemTemplate>
-                                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Add" OnClick="add_OnClick" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="CustIDEntpName" HeaderText="CustIDEntpName" SortExpression="CustIDEntpName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intCustIDEntp" HeaderText="intCustIDEntp" SortExpression="intCustIDEntp" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="CustIDIHBName" HeaderText="CustIDIHBName" SortExpression="CustIDIHBName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intCustIDIHB" HeaderText="intCustIDIHB" SortExpression="intCustIDIHB" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intSintSalesOfficeIHBACRDCustalesOffId" HeaderText="intSintSalesOfficeIHBACRDCustalesOffId" SortExpression="intSintSalesOfficeIHBACRDCustalesOffId" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strIHBModifyPhone" HeaderText="strIHBModifyPhone" SortExpression="strIHBModifyPhone" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        
                                         <%--<asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />--%>
                                     </Columns>
                                 </asp:GridView>
