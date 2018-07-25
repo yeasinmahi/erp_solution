@@ -110,8 +110,8 @@ join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID
               <DbSource ConnectionRef="BrandTradeMktConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetStarConsumeReport" GetMethodModifier="Public" GetMethodName="GetStarConsumeReport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetStarConsumeReport" UserSourceName="GetStarConsumeReport">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT disp.strName,intShopId,cust.strName ,pm.strText territoryName,pm1.strText area,pm2.strText region,pn.strProgramName,intSiteCardCode,isnull(sum(decQntForSiteCard),0) decQntForSiteCard,[strUserDetaills]  ,isnull(SUM(decShopvsDelvQnt),0) decShopvsDelvQnt,isnull(sum(monEditedTotalCost),0) monEditedTotalCost,cast([dteFormDate] as date) dteFormDate, cast([dteToDate] as date) dteToDate,cast(dcb.[dteInsertionDate]as date) dteInsertionDate FROM [BrandTradeMkt].[dbo].[tblACCLDoubleCashBackOffer] dcb join erp_sad.dbo.tblDisPoint disp on dcb.intShopId=disp.intDisPointId join erp_sad.dbo.tblItemPriceManager pm on pm.intID=disp.intPriceCatagory join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID  join erp_sad.dbo.tblItemPriceManager pm2 on pm2.intID=pm1.intParentID join BrandTradeMkt.dbo.tblBrandMktProgramName pn on pn.intProgramID=dcb.intProgramType join erp_sad.dbo.tblCustomer cust on cust.intCusID=dcb.intCustID
-where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@email and dcb.intProgramType=6 group by   disp.strName,intShopId,cust.strName ,pm.strText,pm1.strText,pm2.strText,pn.strProgramName,[strUserDetaills] ,cast([dteFormDate] as date),cast(dcb.[dteInsertionDate]as date) ,intSiteCardCode,[dteToDate]
+                    <CommandText>SELECT dcb.intID,disp.strName,intShopId,cust.strName ,pm.strText territoryName,pm1.strText area,pm2.strText region,pn.strProgramName,intSiteCardCode,isnull(sum(decQntForSiteCard),0) decQntForSiteCard,[strUserDetaills]  ,isnull(SUM(decShopvsDelvQnt),0) decShopvsDelvQnt,isnull(sum(monEditedTotalCost),0) monEditedTotalCost,cast([dteFormDate] as date) dteFormDate, cast([dteToDate] as date) dteToDate,cast(dcb.[dteInsertionDate]as date) dteInsertionDate FROM [BrandTradeMkt].[dbo].[tblACCLDoubleCashBackOffer] dcb join erp_sad.dbo.tblDisPoint disp on dcb.intShopId=disp.intDisPointId join erp_sad.dbo.tblItemPriceManager pm on pm.intID=disp.intPriceCatagory join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID  join erp_sad.dbo.tblItemPriceManager pm2 on pm2.intID=pm1.intParentID join BrandTradeMkt.dbo.tblBrandMktProgramName pn on pn.intProgramID=dcb.intProgramType join erp_sad.dbo.tblCustomer cust on cust.intCusID=dcb.intCustID
+where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@email and dcb.intProgramType=6 and dcb.ysnActive = 1 group by   dcb.intID,disp.strName,intShopId,cust.strName ,pm.strText,pm1.strText,pm2.strText,pn.strProgramName,[strUserDetaills] ,cast([dteFormDate] as date),cast(dcb.[dteInsertionDate]as date) ,intSiteCardCode,[dteToDate]
 
 </CommandText>
                     <Parameters>
@@ -139,7 +139,51 @@ where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@em
               <Mapping SourceColumn="territoryName" DataSetColumn="territoryName" />
               <Mapping SourceColumn="area" DataSetColumn="area" />
               <Mapping SourceColumn="region" DataSetColumn="region" />
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
             </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable3TableAdapter" GeneratorDataComponentClassName="DataTable3TableAdapter" Name="DataTable3" UserDataComponentName="DataTable3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="UpdateConsumerBill" GetMethodModifier="Public" GetMethodName="UpdateConsumerBill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="UpdateConsumerBill" UserSourceName="UpdateConsumerBill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>update BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer 
+set intSiteCardCode = @intSiteCardCode,
+decQntForSiteCard = @decQntForSiteCard ,
+decShopvsDelvQnt =@decShopvsDelvQnt,
+monEditedTotalCost = @monEditedTotalCost
+where intID=@intID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intSiteCardCode" ColumnName="intSiteCardCode" DataSourceName="BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intSiteCardCode" Precision="0" Scale="0" Size="4" SourceColumn="intSiteCardCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="decQntForSiteCard" ColumnName="decQntForSiteCard" DataSourceName="BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer" DataTypeServer="decimal(18, 0)" DbType="Decimal" Direction="Input" ParameterName="@decQntForSiteCard" Precision="18" Scale="0" Size="9" SourceColumn="decQntForSiteCard" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="decShopvsDelvQnt" ColumnName="decShopvsDelvQnt" DataSourceName="BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer" DataTypeServer="decimal(18, 0)" DbType="Decimal" Direction="Input" ParameterName="@decShopvsDelvQnt" Precision="18" Scale="0" Size="9" SourceColumn="decShopvsDelvQnt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monEditedTotalCost" ColumnName="monEditedTotalCost" DataSourceName="BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@monEditedTotalCost" Precision="0" Scale="0" Size="8" SourceColumn="monEditedTotalCost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="intID" ColumnName="intID" DataSourceName="BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intID" Precision="0" Scale="0" Size="4" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable4TableAdapter" GeneratorDataComponentClassName="DataTable4TableAdapter" Name="DataTable4" UserDataComponentName="DataTable4TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BrandTradeMktConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="DeactiveConsumerDoubleCashOffer" GetMethodModifier="Public" GetMethodName="DeactiveConsumerDoubleCashOffer" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="DeactiveConsumerDoubleCashOffer" UserSourceName="DeactiveConsumerDoubleCashOffer">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>update BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer 
+set ysnActive = 0
+where intID=@intID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intID" ColumnName="intID" DataSourceName="BrandTradeMkt.dbo.tblACCLDoubleCashBackOffer" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intID" Precision="0" Scale="0" Size="4" SourceColumn="intID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
             <Sources />
           </TableAdapter>
         </Tables>
@@ -150,7 +194,7 @@ where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@em
   <xs:element name="StarConsumeEntry" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StarConsumeEntry" msprop:Generator_UserDSName="StarConsumeEntry">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="tblItemPriceManager" msprop:Generator_TableClassName="tblItemPriceManagerDataTable" msprop:Generator_TableVarName="tabletblItemPriceManager" msprop:Generator_RowChangedName="tblItemPriceManagerRowChanged" msprop:Generator_TablePropName="tblItemPriceManager" msprop:Generator_RowDeletingName="tblItemPriceManagerRowDeleting" msprop:Generator_RowChangingName="tblItemPriceManagerRowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManagerRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManagerRowDeleted" msprop:Generator_RowClassName="tblItemPriceManagerRow" msprop:Generator_UserTableName="tblItemPriceManager" msprop:Generator_RowEvArgName="tblItemPriceManagerRowChangeEvent">
+        <xs:element name="tblItemPriceManager" msprop:Generator_TableClassName="tblItemPriceManagerDataTable" msprop:Generator_TableVarName="tabletblItemPriceManager" msprop:Generator_TablePropName="tblItemPriceManager" msprop:Generator_RowDeletingName="tblItemPriceManagerRowDeleting" msprop:Generator_RowChangingName="tblItemPriceManagerRowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManagerRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManagerRowDeleted" msprop:Generator_UserTableName="tblItemPriceManager" msprop:Generator_RowChangedName="tblItemPriceManagerRowChanged" msprop:Generator_RowEvArgName="tblItemPriceManagerRowChangeEvent" msprop:Generator_RowClassName="tblItemPriceManagerRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn" msprop:Generator_UserColumnName="strText">
@@ -164,7 +208,7 @@ where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@em
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strProgramName" msprop:Generator_ColumnVarNameInTable="columnstrProgramName" msprop:Generator_ColumnPropNameInRow="strProgramName" msprop:Generator_ColumnPropNameInTable="strProgramNameColumn" msprop:Generator_UserColumnName="strProgramName" minOccurs="0">
@@ -178,7 +222,7 @@ where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@em
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sprACCLDoubleCashOffer" msprop:Generator_TableClassName="sprACCLDoubleCashOfferDataTable" msprop:Generator_TableVarName="tablesprACCLDoubleCashOffer" msprop:Generator_RowChangedName="sprACCLDoubleCashOfferRowChanged" msprop:Generator_TablePropName="sprACCLDoubleCashOffer" msprop:Generator_RowDeletingName="sprACCLDoubleCashOfferRowDeleting" msprop:Generator_RowChangingName="sprACCLDoubleCashOfferRowChanging" msprop:Generator_RowEvHandlerName="sprACCLDoubleCashOfferRowChangeEventHandler" msprop:Generator_RowDeletedName="sprACCLDoubleCashOfferRowDeleted" msprop:Generator_RowClassName="sprACCLDoubleCashOfferRow" msprop:Generator_UserTableName="sprACCLDoubleCashOffer" msprop:Generator_RowEvArgName="sprACCLDoubleCashOfferRowChangeEvent">
+        <xs:element name="sprACCLDoubleCashOffer" msprop:Generator_TableClassName="sprACCLDoubleCashOfferDataTable" msprop:Generator_TableVarName="tablesprACCLDoubleCashOffer" msprop:Generator_TablePropName="sprACCLDoubleCashOffer" msprop:Generator_RowDeletingName="sprACCLDoubleCashOfferRowDeleting" msprop:Generator_RowChangingName="sprACCLDoubleCashOfferRowChanging" msprop:Generator_RowEvHandlerName="sprACCLDoubleCashOfferRowChangeEventHandler" msprop:Generator_RowDeletedName="sprACCLDoubleCashOfferRowDeleted" msprop:Generator_UserTableName="sprACCLDoubleCashOffer" msprop:Generator_RowChangedName="sprACCLDoubleCashOfferRowChanged" msprop:Generator_RowEvArgName="sprACCLDoubleCashOfferRowChangeEvent" msprop:Generator_RowClassName="sprACCLDoubleCashOfferRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intDispid" msprop:Generator_ColumnVarNameInTable="columnintDispid" msprop:Generator_ColumnPropNameInRow="intDispid" msprop:Generator_ColumnPropNameInTable="intDispidColumn" msprop:Generator_UserColumnName="intDispid" type="xs:int" minOccurs="0" />
@@ -225,11 +269,11 @@ where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@em
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sprStarConsumerBill" msprop:Generator_TableClassName="sprStarConsumerBillDataTable" msprop:Generator_TableVarName="tablesprStarConsumerBill" msprop:Generator_TablePropName="sprStarConsumerBill" msprop:Generator_RowDeletingName="sprStarConsumerBillRowDeleting" msprop:Generator_RowChangingName="sprStarConsumerBillRowChanging" msprop:Generator_RowEvHandlerName="sprStarConsumerBillRowChangeEventHandler" msprop:Generator_RowDeletedName="sprStarConsumerBillRowDeleted" msprop:Generator_UserTableName="sprStarConsumerBill" msprop:Generator_RowChangedName="sprStarConsumerBillRowChanged" msprop:Generator_RowEvArgName="sprStarConsumerBillRowChangeEvent" msprop:Generator_RowClassName="sprStarConsumerBillRow">
+        <xs:element name="sprStarConsumerBill" msprop:Generator_TableClassName="sprStarConsumerBillDataTable" msprop:Generator_TableVarName="tablesprStarConsumerBill" msprop:Generator_RowChangedName="sprStarConsumerBillRowChanged" msprop:Generator_TablePropName="sprStarConsumerBill" msprop:Generator_RowDeletingName="sprStarConsumerBillRowDeleting" msprop:Generator_RowChangingName="sprStarConsumerBillRowChanging" msprop:Generator_RowEvHandlerName="sprStarConsumerBillRowChangeEventHandler" msprop:Generator_RowDeletedName="sprStarConsumerBillRowDeleted" msprop:Generator_RowClassName="sprStarConsumerBillRow" msprop:Generator_UserTableName="sprStarConsumerBill" msprop:Generator_RowEvArgName="sprStarConsumerBillRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName">
@@ -289,10 +333,23 @@ where dcb.dteFormDate between @fromDate and  @toDate and pm1.strEmailAddress=@em
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
             </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent" msprop:Generator_RowClassName="DataTable3Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable4" msprop:Generator_TableClassName="DataTable4DataTable" msprop:Generator_TableVarName="tableDataTable4" msprop:Generator_TablePropName="DataTable4" msprop:Generator_RowDeletingName="DataTable4RowDeleting" msprop:Generator_RowChangingName="DataTable4RowChanging" msprop:Generator_RowEvHandlerName="DataTable4RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable4RowDeleted" msprop:Generator_UserTableName="DataTable4" msprop:Generator_RowChangedName="DataTable4RowChanged" msprop:Generator_RowEvArgName="DataTable4RowChangeEvent" msprop:Generator_RowClassName="DataTable4Row">
+          <xs:complexType>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable2" />
+      <xs:field xpath="mstns:intID" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

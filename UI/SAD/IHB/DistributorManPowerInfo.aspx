@@ -56,12 +56,12 @@
                         </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
-                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Teritory"></asp:Label></td>
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Customer"></asp:Label></td>
                             <td>
                                 <asp:DropDownList ID="ddlCustomer" CssClass="ddList" runat="server"></asp:DropDownList>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Program"></asp:Label></td>
+                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Manager"></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="managerTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
                             </td>

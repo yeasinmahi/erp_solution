@@ -34,6 +34,16 @@ namespace SAD_BLL.Consumer
             DataTable2TableAdapter adapter = new DataTable2TableAdapter();
             return adapter.GetStarConsumeReport(fromDate, toDate, email);
         }
-        
+        public DataTable UpdateConsumerBill(int intSiteCardCode, decimal decQntForSiteCard, decimal decShopvsDelvQnt, decimal monEditedTotalCost, int intId)
+        {
+            DataTable3TableAdapter adapter = new DataTable3TableAdapter();
+            return adapter.UpdateConsumerBill(intSiteCardCode, decQntForSiteCard, decShopvsDelvQnt, monEditedTotalCost,intId);
+        }
+        public DataTable DeactiveConsumerDoubleCashOffer(int intId)
+        {
+            DataTable4TableAdapter adapter = new DataTable4TableAdapter();
+            return adapter.DeactiveConsumerDoubleCashOffer(intId);
+        }
+
     }
 }

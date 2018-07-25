@@ -60,7 +60,7 @@ namespace UI.SAD.Consumer
             DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
             fromDateTime = fromDateTime.AddHours(6);
             DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
-            toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-1);
+            toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
             
             LoadDoubleCashOfferGridView(teritoryName, fromDateTime, toDateTime);
         }
@@ -73,7 +73,7 @@ namespace UI.SAD.Consumer
             DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
             fromDateTime = fromDateTime.AddHours(6);
             DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
-            toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-1);
+            toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
             //Get the button that raised the event
             Button btn = (Button)sender;
 
@@ -124,10 +124,7 @@ namespace UI.SAD.Consumer
         
         protected void showFullReport_OnClick(object sender, EventArgs e)
         {
-            string fromDate = fromTextBox.Text;
-            string toDate = toTextBox.Text;
-            string email = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
-            Response.Redirect("StarConsumeReport.aspx?email="+email+"&fromDate="+fromDate+"&toDate="+toDate);
+            Response.Redirect("StarConsumeReport.aspx");
         }
     }
 }
