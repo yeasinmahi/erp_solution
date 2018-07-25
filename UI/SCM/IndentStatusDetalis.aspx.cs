@@ -47,7 +47,13 @@ namespace UI.SCM
                               imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png".ToString();
                         }
                         else { imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); }
+                        if (lblApproveBy.Text.Length > 2) { imgApp.Visible = false; }
+                        else {
+                            imgApp.Visible = true;
+                            imgUnit.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
+                            imgApp.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
 
+                        }
                     }
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();

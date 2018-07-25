@@ -37,11 +37,32 @@ namespace UI.Asset
                 intType = int.Parse(ddlType.SelectedValue);
                 if(txtEnroll.Text.Length > 3)
                 {
-                 
-                    if (intType == 4) { assetCode = txtEnroll.Text.ToString(); } else { intResEnroll = int.Parse(txtEnroll.Text.ToString()); }
-                    dt = objCheck.AssetCheckInOutDataTable(8, stringXml, intType, intResEnroll, assetCode, intWHiD, strNaration, intActionBy);
-                    dgvAssetStatus.DataSource = dt;
-                    dgvAssetStatus.DataBind();
+
+                    try
+                    {
+                        assetCode = txtEnroll.Text.ToString();
+                        intResEnroll = int.Parse(txtEnroll.Text.ToString());
+                    }
+                    catch { }
+                    if(intType==1)
+                    {
+                        dt = objCheck.AssetCheckInOutDataTable(8, stringXml, intType, intResEnroll, assetCode, intWHiD, strNaration, intActionBy);
+                        dgvAssetStatus.DataSource = dt;
+                        dgvAssetStatus.DataBind();
+                    }
+                   else if (intType == 4)
+                    {
+                        dt = objCheck.AssetCheckInOutDataTable(7, stringXml, intType, intResEnroll, assetCode, intWHiD, strNaration, intActionBy);
+                        dgvAssetStatus.DataSource = dt;
+                        dgvAssetStatus.DataBind();
+                    }
+                    else if (intType == 5)
+                    {
+                        dt = objCheck.AssetCheckInOutDataTable(7, stringXml, intType, intResEnroll, assetCode, intWHiD, strNaration, intActionBy);
+                        dgvAssetStatus.DataSource = dt;
+                        dgvAssetStatus.DataBind();
+                    }
+
                 }
                 else
                 {
