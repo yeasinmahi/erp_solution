@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -90,5 +91,17 @@ namespace Utility
             return xmlString;
         }
 
+        public static bool DeleteFile(string filepath)
+        {
+            try
+            {
+                File.Delete(filepath);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
