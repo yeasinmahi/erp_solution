@@ -20,14 +20,26 @@
             document.getElementById("msg").style.display = "none";
             window.print(); self.close();
         }
-        function show() {
+        function ShowChallan() {
             document.getElementById("btnPrint").style.display = "block";
         }
         function Save() {
             var challanNo = document.getElementById("txtChallan").value;
             var chequeNo = document.getElementById("txtCheque").value;
-            
-            if (challanNo == null || challanNo=="")
+             var unit = document.getElementById("ddlUnit").value;
+            var challan = document.getElementById("ddlChallan").value;
+             if (unit == null || unit=="")
+            {
+                alert("Please Insert Unit");
+                return false;
+            }
+            else if (challan == null || challan== "")
+            {
+                alert("Please Insert Challan List");
+                return false;
+            }
+
+             else if (challanNo == null || challanNo == "")
             {
                 alert("Please Insert Challan No");
                 return false;
@@ -40,9 +52,23 @@
             return true;
         }
 
-        function ShowAdvice() { }
+        function ShowAdvice() {
+            var unit = document.getElementById("ddlUnit").value;
+            var challan = document.getElementById("ddlChallan").value;
+             if (unit == null || unit=="")
+            {
+                alert("Please Insert Unit");
+                return false;
+            }
+            else if (challan == null || challan== "")
+            {
+                alert("Please Insert Challan List");
+                return false;
+            }
+            return true;
+        }
 
-        function PrintAdvice() { }
+        
 
     </script>
     <style>
@@ -61,6 +87,9 @@
             /*height: 25px;*/
             text-align:center;
             width:85px;
+        }
+        .ddlwidth{
+            width:400px;
         }
     </style>
     </head>
@@ -83,18 +112,18 @@
         <div class="tabs_container" id="head"> Treasury challan Information :<hr /></div>
 
         <%-- =======Data Insert Table======= --%>
-        <table border="0"; style="width:Auto"; id="insertForm">
+            <div id="insertForm"> 
+        <table border="0"; style="width:Auto";>
         <tr class="tblrowodd">
         <td style="text-align:right;"><asp:Label ID="lblfullname" CssClass="lbl" runat="server" Text="Bank Name : "></asp:Label></td>
         <td><asp:TextBox ID="txtBankName" runat="server" CssClass="txtBox"></asp:TextBox></td>
         <td style="text-align:right;"><asp:Label ID="lbljobtype" CssClass="lbl" runat="server" Text="District : "></asp:Label></td>
         <td><asp:TextBox ID="txtDistrict" runat="server" CssClass="txtBox" Enabled="false"></asp:TextBox></td>
-            <td><asp:Button ID="btnShow" runat="server" class="nextclick" style="font-size:12px;" 
-        Text="Show Challan" OnClick="btnShow_Click" OnClientClick="show()"/></td>
+            <td><asp:Button ID="btnShow" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;"
+        Text="Show Challan" OnClientClick="ShowAdvice()" OnClick="btnShow_Click" /></td>
             <td><asp:Button ID="btnPrint" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;" 
         Text="Print Challan" OnClientClick="Print()" /></td>
-            <td><asp:Button ID="btnSave" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;" 
-        Text="Save Challan" OnClientClick="Save()" OnClick="btnSave_Click" /></td>
+            
         </tr>
         <tr class="tblroweven">
         <td style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Branch Name : "></asp:Label></td>
@@ -103,14 +132,11 @@
         <td><asp:TextBox ID="txtChallan" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
         <td><asp:Button ID="btnShowAdvice" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;" 
         Text="Show Advice" OnClientClick="ShowAdvice()" OnClick="btnShowAdvice_Click" /></td>
-        <td><asp:Button ID="btnPrintAdvice" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;" 
-        Text="Print Advice" OnClientClick="PrintAdvice()" /></td>
+        <td><asp:Button ID="btnSave" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;" 
+        Text="Save Challan" OnClientClick="Save()" OnClick="btnSave_Click" /></td>
         </tr>
-        <tr class="tblrowodd">
-        <td style="text-align:right;"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Cheque : "></asp:Label></td>
-        <td><asp:TextBox ID="txtCheque" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
-        </tr>
-        <tr class="tblroweven">   
+       
+        <tr class="tblrowodd">   
         <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Challan Date : "></asp:Label></td>
         <td><asp:TextBox ID="dtCha" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
         <script type="text/javascript"> new datepickr('dtCha', { 'dateFormat': 'Y-m-d' });</script></td>
@@ -119,8 +145,10 @@
         <script type="text/javascript"> new datepickr('dtVdate', { 'dateFormat': 'Y-m-d' });</script></td>
         </tr>
        
-        <tr>
-               <td style="text-align:right;"><asp:Label ID="lblUnit" CssClass="lbl" runat="server" Text="Unit-Name : "></asp:Label></td>
+           <tr class="tblroweven">
+        <td style="text-align:right;"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Cheque : "></asp:Label></td>
+        <td><asp:TextBox ID="txtCheque" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
+            <td style="text-align:right;"><asp:Label ID="lblUnit" CssClass="lbl" runat="server" Text="Unit-Name : "></asp:Label></td>
                <td><%--<asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="false" CssClass="dropdownList" 
                     DataSourceID="ODSUnit" DataTextField="strUnit" DataValueField="intUnitID" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
                     <asp:ObjectDataSource ID="ODSUnit" runat="server" SelectMethod="GetUnits" TypeName="HR_BLL.Global.Unit"
@@ -132,21 +160,26 @@
                                     <SelectParameters><asp:SessionParameter Name="intUser" SessionField="sesUserId" Type="Int32" /></SelectParameters>
                                 </asp:ObjectDataSource>
                 </td>
+        </tr>
+            
+        
+        </table>
+            <table>
+                 <tr class="tblrowodd">
+               
                 <td style="text-align:right;"><asp:Label ID="lbldayoff" CssClass="lbl" runat="server" Text="Challan List : "></asp:Label></td>
                 <td><%--<asp:DropDownList ID="ddlChallan" runat="server" AutoPostBack="false" CssClass="dropdownList"
                     DataSourceID="ODSDays" DataTextField="strDayName" DataValueField="intDayOffId"></asp:DropDownList>
                     <asp:ObjectDataSource ID="ODSDays" runat="server" SelectMethod="GetAllDays" TypeName="HR_BLL.Global.DaysOfWeek">
                     </asp:ObjectDataSource>--%>
-                     <asp:DropDownList ID="ddlChallan" runat="server" CssClass="dropdownList" AutoPostBack="True" DataSourceID="odsChallan" DataTextField="strTreasury" DataValueField="intAutoID"></asp:DropDownList>
+                     <asp:DropDownList ID="ddlChallan" runat="server" CssClass="dropdownList ddlwidth" AutoPostBack="True" DataSourceID="odsChallan" DataTextField="strTreasury" DataValueField="intAutoID"></asp:DropDownList>
                                 <asp:ObjectDataSource ID="odsChallan" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetChallanDataByVatAcountId" TypeName="HR_DAL.Payment.TreasuryChallanTDSTableAdapters.TblChallanListTableAdapter">
                                     <SelectParameters><asp:ControlParameter ControlID="ddlUnit" Name="intVatAccountID" PropertyName="SelectedValue" Type="Int32" /></SelectParameters>
                                 </asp:ObjectDataSource>
                 </td>
-                </tr>    
-            
-        
-        </table>
-
+                </tr> 
+            </table>
+            </div>
         <%--=========================== Form for print ========================--%>
 
             <table style="width: 100%; background-color: white;">
@@ -168,7 +201,7 @@
                 <tr>
                     <td colspan="6">বাংলাদেশ ব্যাংক/ সোনালী ব্যাংকের ....................ঢাকা..................জেলার.......................মহাখালী........................শাখায় টাকা জমা দেওয়ার চালান</td>
                 </tr>
-                <tr><td colspan="6" style="padding-bottom:10px;"></td></tr>
+                <tr><td colspan="6" style="height:10px;"></td></tr>
             </table>
             <table style="width: 100%; background-color:white;" >
                 <tr>
@@ -191,7 +224,7 @@
                     <td class="tblborder" style="text-align: center; width: 20px;">1</td>
                     <td style="text-align: center;"></td>
                 </tr>
-                <tr><td colspan="18" style="height:30px;"></td></tr>
+                <tr><td colspan="18" style="height:15px;"></td></tr>
             </table>         
             
             <table class="tblborder" style="width: 100%; background-color: white;">
