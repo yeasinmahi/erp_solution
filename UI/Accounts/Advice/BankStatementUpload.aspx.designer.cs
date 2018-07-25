@@ -175,6 +175,24 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.WebControls.TextBox txtLastCollect;
         
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// txtRunningBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRunningBalance;
+        
+        /// <summary>
         /// lblImport control.
         /// </summary>
         /// <remarks>

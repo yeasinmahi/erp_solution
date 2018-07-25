@@ -49,6 +49,12 @@
                 <td style="text-align:left"><asp:TextBox ID="txtLastCollect" runat="server" Enabled="false" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
             </tr>
             <tr>
+                <td style="text-align:right"></td>
+                <td style="text-align:left"></td>
+                <td style="text-align:right"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Running Balance :"></asp:Label></td>
+                <td style="text-align:left"><asp:TextBox ID="txtRunningBalance" runat="server" Enabled="false" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>
+            </tr>
+            <tr>
                 <td style="text-align:right"><asp:Label ID="lblImport" runat="server" CssClass="label" Text="Import Excel File:"></asp:Label></td>
                 <td style="text-align:left"><asp:FileUpload ID="FileUpload1" runat="server"></asp:FileUpload></td>
                 <td><asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Upload" style="height: 26px" /></td>

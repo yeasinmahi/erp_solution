@@ -97,10 +97,12 @@ namespace UI.Accounts.Advice
                 if (dt.Rows.Count > 0)
                 {
                     txtLastCollect.Text = dt.Rows[0]["dteDate"].ToString();
+                    txtRunningBalance.Text = dt.Rows[0]["monRunningBalance"].ToString();
                 }
                 else
                 {
                     txtLastCollect.Text = "N/A";
+                    txtRunningBalance.Text = "";
                 }
             }
             catch { }
