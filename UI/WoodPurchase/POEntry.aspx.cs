@@ -120,6 +120,29 @@ namespace UI.WoodPurchase
             catch { }
             
         }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string senderdata = ((Button)sender).CommandArgument.ToString();
+                string strSearchKey = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = Regex.Split(strSearchKey, ",");
+                string strdex = searchKey[1];
+                string strReffid = searchKey[0];
+                intPOID = int.Parse(strReffid.ToString());
 
+                int index = int.Parse(strdex.ToString());
+                ysnActive = ((CheckBox)dgvPOList.Rows[index].FindControl("chkActive")).Checked;
+
+                bll.DeletePO(intPOID);
+
+                intUnitID = int.Parse(hdnUnit.Value.ToString());
+                intWH = int.Parse(ddlWHList.SelectedValue.ToString());
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Deleted.');", true);
+                LoadGrid();
+            }
+            catch { }
+
+        }
     }
 }

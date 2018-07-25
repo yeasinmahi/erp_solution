@@ -35,6 +35,8 @@
     <asp:HiddenField ID="hdnSupplierID" runat="server" /> <asp:HiddenField ID="hdnJobStaion" runat="server" />
         <div class="divbody" style="padding-right:10px;">
         <table class="tbldecoration" style="width:auto; float:left;">
+         <tr><td>
+            <table class="tbldecoration" style="width:auto; float:left;">
             <tr><td style="text-align:right"><asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit :"></asp:Label></td>
             <td style="text-align:left"><asp:DropDownList ID="ddlUnit" runat="server" CssClass="ddList" Font-Bold="false" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged" ></asp:DropDownList></td>
             <td style="text-align:right"><asp:Label ID="lblAccountNo" runat="server" CssClass="lbl" Text="Account No :"></asp:Label></td>
@@ -52,6 +54,9 @@
                 <td><asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Upload" style="height: 26px" /></td>
                 <td style="text-align:right"><asp:Button ID="btnSubmit" runat="server" Text="Submit" style="height: 26px" OnClick="btnSubmit_Click" /></td>
             </tr>
+        </table>
+        </td></tr><tr><td>
+            <table>
             <tr>
                 <td colspan="4">
                     <asp:GridView ID="gvExcelFile" runat="server"  CellPadding="4" ForeColor="#333333" GridLines="None">   
@@ -68,6 +73,10 @@
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />   
                     </asp:GridView>
                 </td>
+            </tr>
+        </table>
+
+                      </td>
             </tr>
         </table>
     </div>
