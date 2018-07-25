@@ -1069,6 +1069,7 @@
     <Content Include="SAD\ExcelChallan\frmVehicleSetbyTransport.aspx" />
     <Content Include="SAD\ExcelChallan\frmExcelupload.aspx" />
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
+    <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
     <Content Include="SAD\Item\ItemManager.aspx" />
     <Content Include="SAD\Item\ItemManagerUOM.aspx" />
@@ -5134,6 +5135,13 @@
     </Compile>
     <Compile Include="SAD\IHB\DistributorWithIHB.aspx.designer.cs">
       <DependentUpon>DistributorWithIHB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorWithIhbReport.aspx.cs">
+      <DependentUpon>DistributorWithIhbReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorWithIhbReport.aspx.designer.cs">
+      <DependentUpon>DistributorWithIhbReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Item\frmItemPromotion.aspx.cs">
       <DependentUpon>frmItemPromotion.aspx</DependentUpon>

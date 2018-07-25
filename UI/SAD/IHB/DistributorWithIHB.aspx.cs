@@ -162,5 +162,9 @@ namespace UI.SAD.IHB
             ddlIhb.DataBind();
         }
 
+        protected void report_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("DistributorWithIhbReport.aspx");
+        }
     }
 }

@@ -45,5 +45,11 @@ namespace SAD_BLL.IHB
             DataTable1TableAdapter adapter = new DataTable1TableAdapter();
             return adapter.GetCustomerInfo(customerId);
         }
+
+        public DataTable GetDistributorWithIhbReport()
+        {
+            DataTable2TableAdapter adapter = new DataTable2TableAdapter();
+            return adapter.GetDistributorWithIhbReport();
+        }
     }
 }

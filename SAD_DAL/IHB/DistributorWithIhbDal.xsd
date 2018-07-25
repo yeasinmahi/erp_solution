@@ -229,6 +229,42 @@ ORDER BY SO.intId</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDistributorWithIhbReport" GetMethodModifier="Public" GetMethodName="GetDistributorWithIhbReport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDistributorWithIhbReport" UserSourceName="GetDistributorWithIhbReport">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT cusent.strName distributorName,so1.strName salesOffice,cus.strName customerName,so.strName cSalesOffice,pm.strText territory,pm1.strText area,pm2.strText region,[intCustIDEntp] entrpriseCustomerId,[intCustIDIHB] ihbCustomerId,[intInsertby] insertedBy,[dteInsertionDate] insertionDate 
+FROM [ERP_SAD].[dbo].[tblACCLEntpIHBBridge] br 
+join erp_sad.dbo.tblCustomer cus on br.intCustIDIHB=cus.intCusID 
+join erp_sad.dbo.tblCustomer cusent on br.[intCustIDEntp]=cusent.intCusID 
+join erp_sad.dbo.tblSalesOffice so on so.intId=cus.intSalesOffId 
+join erp_sad.dbo.tblSalesOffice so1 on so1.intId=cusent.intSalesOffId 
+join erp_sad.dbo.tblItemPriceManager pm on pm.intID=cus.intPriceCatagory 
+join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID 
+join erp_sad.dbo.tblItemPriceManager pm2 on pm2.intID=pm1.intParentID 
+where cus.intUnitID=4 
+order by pm2.strText,pm1.strText,pm.strText asc</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="distributorName" DataSetColumn="distributorName" />
+              <Mapping SourceColumn="salesOffice" DataSetColumn="salesOffice" />
+              <Mapping SourceColumn="customerName" DataSetColumn="customerName" />
+              <Mapping SourceColumn="territory" DataSetColumn="territory" />
+              <Mapping SourceColumn="area" DataSetColumn="area" />
+              <Mapping SourceColumn="region" DataSetColumn="region" />
+              <Mapping SourceColumn="entrpriseCustomerId" DataSetColumn="entrpriseCustomerId" />
+              <Mapping SourceColumn="ihbCustomerId" DataSetColumn="ihbCustomerId" />
+              <Mapping SourceColumn="insertedBy" DataSetColumn="insertedBy" />
+              <Mapping SourceColumn="insertionDate" DataSetColumn="insertionDate" />
+              <Mapping SourceColumn="cSalesOffice" DataSetColumn="cSalesOffice" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -237,7 +273,7 @@ ORDER BY SO.intId</CommandText>
   <xs:element name="DistributorWithIhb" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DistributorWithIhb" msprop:Generator_UserDSName="DistributorWithIhb">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="tblItemPriceManager" msprop:Generator_TableClassName="tblItemPriceManagerDataTable" msprop:Generator_TableVarName="tabletblItemPriceManager" msprop:Generator_TablePropName="tblItemPriceManager" msprop:Generator_RowDeletingName="tblItemPriceManagerRowDeleting" msprop:Generator_RowChangingName="tblItemPriceManagerRowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManagerRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManagerRowDeleted" msprop:Generator_UserTableName="tblItemPriceManager" msprop:Generator_RowChangedName="tblItemPriceManagerRowChanged" msprop:Generator_RowEvArgName="tblItemPriceManagerRowChangeEvent" msprop:Generator_RowClassName="tblItemPriceManagerRow">
+        <xs:element name="tblItemPriceManager" msprop:Generator_TableClassName="tblItemPriceManagerDataTable" msprop:Generator_TableVarName="tabletblItemPriceManager" msprop:Generator_RowChangedName="tblItemPriceManagerRowChanged" msprop:Generator_TablePropName="tblItemPriceManager" msprop:Generator_RowDeletingName="tblItemPriceManagerRowDeleting" msprop:Generator_RowChangingName="tblItemPriceManagerRowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManagerRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManagerRowDeleted" msprop:Generator_RowClassName="tblItemPriceManagerRow" msprop:Generator_UserTableName="tblItemPriceManager" msprop:Generator_RowEvArgName="tblItemPriceManagerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn" msprop:Generator_UserColumnName="strText">
@@ -251,7 +287,7 @@ ORDER BY SO.intId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblItemPriceManager1" msprop:Generator_TableClassName="tblItemPriceManager1DataTable" msprop:Generator_TableVarName="tabletblItemPriceManager1" msprop:Generator_TablePropName="tblItemPriceManager1" msprop:Generator_RowDeletingName="tblItemPriceManager1RowDeleting" msprop:Generator_RowChangingName="tblItemPriceManager1RowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManager1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManager1RowDeleted" msprop:Generator_UserTableName="tblItemPriceManager1" msprop:Generator_RowChangedName="tblItemPriceManager1RowChanged" msprop:Generator_RowEvArgName="tblItemPriceManager1RowChangeEvent" msprop:Generator_RowClassName="tblItemPriceManager1Row">
+        <xs:element name="tblItemPriceManager1" msprop:Generator_TableClassName="tblItemPriceManager1DataTable" msprop:Generator_TableVarName="tabletblItemPriceManager1" msprop:Generator_RowChangedName="tblItemPriceManager1RowChanged" msprop:Generator_TablePropName="tblItemPriceManager1" msprop:Generator_RowDeletingName="tblItemPriceManager1RowDeleting" msprop:Generator_RowChangingName="tblItemPriceManager1RowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManager1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManager1RowDeleted" msprop:Generator_RowClassName="tblItemPriceManager1Row" msprop:Generator_UserTableName="tblItemPriceManager1" msprop:Generator_RowEvArgName="tblItemPriceManager1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn" msprop:Generator_UserColumnName="strText">
@@ -265,7 +301,7 @@ ORDER BY SO.intId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblItemPriceManager2" msprop:Generator_TableClassName="tblItemPriceManager2DataTable" msprop:Generator_TableVarName="tabletblItemPriceManager2" msprop:Generator_TablePropName="tblItemPriceManager2" msprop:Generator_RowDeletingName="tblItemPriceManager2RowDeleting" msprop:Generator_RowChangingName="tblItemPriceManager2RowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManager2RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManager2RowDeleted" msprop:Generator_UserTableName="tblItemPriceManager2" msprop:Generator_RowChangedName="tblItemPriceManager2RowChanged" msprop:Generator_RowEvArgName="tblItemPriceManager2RowChangeEvent" msprop:Generator_RowClassName="tblItemPriceManager2Row">
+        <xs:element name="tblItemPriceManager2" msprop:Generator_TableClassName="tblItemPriceManager2DataTable" msprop:Generator_TableVarName="tabletblItemPriceManager2" msprop:Generator_RowChangedName="tblItemPriceManager2RowChanged" msprop:Generator_TablePropName="tblItemPriceManager2" msprop:Generator_RowDeletingName="tblItemPriceManager2RowDeleting" msprop:Generator_RowChangingName="tblItemPriceManager2RowChanging" msprop:Generator_RowEvHandlerName="tblItemPriceManager2RowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemPriceManager2RowDeleted" msprop:Generator_RowClassName="tblItemPriceManager2Row" msprop:Generator_UserTableName="tblItemPriceManager2" msprop:Generator_RowEvArgName="tblItemPriceManager2RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn" msprop:Generator_UserColumnName="strText">
@@ -279,7 +315,7 @@ ORDER BY SO.intId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblCustomer" msprop:Generator_TableClassName="tblCustomerDataTable" msprop:Generator_TableVarName="tabletblCustomer" msprop:Generator_TablePropName="tblCustomer" msprop:Generator_RowDeletingName="tblCustomerRowDeleting" msprop:Generator_RowChangingName="tblCustomerRowChanging" msprop:Generator_RowEvHandlerName="tblCustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="tblCustomerRowDeleted" msprop:Generator_UserTableName="tblCustomer" msprop:Generator_RowChangedName="tblCustomerRowChanged" msprop:Generator_RowEvArgName="tblCustomerRowChangeEvent" msprop:Generator_RowClassName="tblCustomerRow">
+        <xs:element name="tblCustomer" msprop:Generator_TableClassName="tblCustomerDataTable" msprop:Generator_TableVarName="tabletblCustomer" msprop:Generator_RowChangedName="tblCustomerRowChanged" msprop:Generator_TablePropName="tblCustomer" msprop:Generator_RowDeletingName="tblCustomerRowDeleting" msprop:Generator_RowChangingName="tblCustomerRowChanging" msprop:Generator_RowEvHandlerName="tblCustomerRowChangeEventHandler" msprop:Generator_RowDeletedName="tblCustomerRowDeleted" msprop:Generator_RowClassName="tblCustomerRow" msprop:Generator_UserTableName="tblCustomer" msprop:Generator_RowEvArgName="tblCustomerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
@@ -301,7 +337,7 @@ ORDER BY SO.intId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblCustomer1" msprop:Generator_TableClassName="tblCustomer1DataTable" msprop:Generator_TableVarName="tabletblCustomer1" msprop:Generator_TablePropName="tblCustomer1" msprop:Generator_RowDeletingName="tblCustomer1RowDeleting" msprop:Generator_RowChangingName="tblCustomer1RowChanging" msprop:Generator_RowEvHandlerName="tblCustomer1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblCustomer1RowDeleted" msprop:Generator_UserTableName="tblCustomer1" msprop:Generator_RowChangedName="tblCustomer1RowChanged" msprop:Generator_RowEvArgName="tblCustomer1RowChangeEvent" msprop:Generator_RowClassName="tblCustomer1Row">
+        <xs:element name="tblCustomer1" msprop:Generator_TableClassName="tblCustomer1DataTable" msprop:Generator_TableVarName="tabletblCustomer1" msprop:Generator_RowChangedName="tblCustomer1RowChanged" msprop:Generator_TablePropName="tblCustomer1" msprop:Generator_RowDeletingName="tblCustomer1RowDeleting" msprop:Generator_RowChangingName="tblCustomer1RowChanging" msprop:Generator_RowEvHandlerName="tblCustomer1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblCustomer1RowDeleted" msprop:Generator_RowClassName="tblCustomer1Row" msprop:Generator_UserTableName="tblCustomer1" msprop:Generator_RowEvArgName="tblCustomer1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
@@ -316,11 +352,11 @@ ORDER BY SO.intId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sprEnterprisecustomerNIHBCustmBridge" msprop:Generator_TableClassName="sprEnterprisecustomerNIHBCustmBridgeDataTable" msprop:Generator_TableVarName="tablesprEnterprisecustomerNIHBCustmBridge" msprop:Generator_TablePropName="sprEnterprisecustomerNIHBCustmBridge" msprop:Generator_RowDeletingName="sprEnterprisecustomerNIHBCustmBridgeRowDeleting" msprop:Generator_RowChangingName="sprEnterprisecustomerNIHBCustmBridgeRowChanging" msprop:Generator_RowEvHandlerName="sprEnterprisecustomerNIHBCustmBridgeRowChangeEventHandler" msprop:Generator_RowDeletedName="sprEnterprisecustomerNIHBCustmBridgeRowDeleted" msprop:Generator_UserTableName="sprEnterprisecustomerNIHBCustmBridge" msprop:Generator_RowChangedName="sprEnterprisecustomerNIHBCustmBridgeRowChanged" msprop:Generator_RowEvArgName="sprEnterprisecustomerNIHBCustmBridgeRowChangeEvent" msprop:Generator_RowClassName="sprEnterprisecustomerNIHBCustmBridgeRow">
+        <xs:element name="sprEnterprisecustomerNIHBCustmBridge" msprop:Generator_TableClassName="sprEnterprisecustomerNIHBCustmBridgeDataTable" msprop:Generator_TableVarName="tablesprEnterprisecustomerNIHBCustmBridge" msprop:Generator_RowChangedName="sprEnterprisecustomerNIHBCustmBridgeRowChanged" msprop:Generator_TablePropName="sprEnterprisecustomerNIHBCustmBridge" msprop:Generator_RowDeletingName="sprEnterprisecustomerNIHBCustmBridgeRowDeleting" msprop:Generator_RowChangingName="sprEnterprisecustomerNIHBCustmBridgeRowChanging" msprop:Generator_RowEvHandlerName="sprEnterprisecustomerNIHBCustmBridgeRowChangeEventHandler" msprop:Generator_RowDeletedName="sprEnterprisecustomerNIHBCustmBridgeRowDeleted" msprop:Generator_RowClassName="sprEnterprisecustomerNIHBCustmBridgeRow" msprop:Generator_UserTableName="sprEnterprisecustomerNIHBCustmBridge" msprop:Generator_RowEvArgName="sprEnterprisecustomerNIHBCustmBridgeRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
@@ -340,6 +376,65 @@ ORDER BY SO.intId</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="intSalesOffId" msprop:Generator_ColumnVarNameInTable="columnintSalesOffId" msprop:Generator_ColumnPropNameInRow="intSalesOffId" msprop:Generator_ColumnPropNameInTable="intSalesOffIdColumn" msprop:Generator_UserColumnName="intSalesOffId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="distributorName" msprop:Generator_ColumnVarNameInTable="columndistributorName" msprop:Generator_ColumnPropNameInRow="distributorName" msprop:Generator_ColumnPropNameInTable="distributorNameColumn" msprop:Generator_UserColumnName="distributorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="salesOffice" msprop:Generator_ColumnVarNameInTable="columnsalesOffice" msprop:Generator_ColumnPropNameInRow="salesOffice" msprop:Generator_ColumnPropNameInTable="salesOfficeColumn" msprop:Generator_UserColumnName="salesOffice">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="customerName" msprop:Generator_ColumnVarNameInTable="columncustomerName" msprop:Generator_ColumnPropNameInRow="customerName" msprop:Generator_ColumnPropNameInTable="customerNameColumn" msprop:Generator_UserColumnName="customerName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="territory" msprop:Generator_ColumnVarNameInTable="columnterritory" msprop:Generator_ColumnPropNameInRow="territory" msprop:Generator_ColumnPropNameInTable="territoryColumn" msprop:Generator_UserColumnName="territory">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="area" msprop:Generator_ColumnVarNameInTable="columnarea" msprop:Generator_ColumnPropNameInRow="area" msprop:Generator_ColumnPropNameInTable="areaColumn" msprop:Generator_UserColumnName="area">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="region" msprop:Generator_ColumnVarNameInTable="columnregion" msprop:Generator_ColumnPropNameInRow="region" msprop:Generator_ColumnPropNameInTable="regionColumn" msprop:Generator_UserColumnName="region">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="entrpriseCustomerId" msprop:Generator_ColumnVarNameInTable="columnentrpriseCustomerId" msprop:Generator_ColumnPropNameInRow="entrpriseCustomerId" msprop:Generator_ColumnPropNameInTable="entrpriseCustomerIdColumn" msprop:Generator_UserColumnName="entrpriseCustomerId" type="xs:int" minOccurs="0" />
+              <xs:element name="ihbCustomerId" msprop:Generator_ColumnVarNameInTable="columnihbCustomerId" msprop:Generator_ColumnPropNameInRow="ihbCustomerId" msprop:Generator_ColumnPropNameInTable="ihbCustomerIdColumn" msprop:Generator_UserColumnName="ihbCustomerId" type="xs:int" minOccurs="0" />
+              <xs:element name="insertedBy" msprop:Generator_ColumnVarNameInTable="columninsertedBy" msprop:Generator_ColumnPropNameInRow="insertedBy" msprop:Generator_ColumnPropNameInTable="insertedByColumn" msprop:Generator_UserColumnName="insertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="insertionDate" msprop:Generator_ColumnVarNameInTable="columninsertionDate" msprop:Generator_ColumnPropNameInRow="insertionDate" msprop:Generator_ColumnPropNameInTable="insertionDateColumn" msprop:Generator_UserColumnName="insertionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cSalesOffice" msprop:Generator_ColumnVarNameInTable="columncSalesOffice" msprop:Generator_ColumnPropNameInRow="cSalesOffice" msprop:Generator_ColumnPropNameInTable="cSalesOfficeColumn" msprop:Generator_UserColumnName="cSalesOffice">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
