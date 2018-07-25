@@ -87,7 +87,12 @@
             <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Update" >
             <ItemTemplate><asp:Button ID="btnUpdate" runat="server" Cssclass="myButtonGrey" style="cursor:pointer; font-size:11px;" 
             CommandArgument='<%# Eval("intPOID")+","+ Container.DataItemIndex %>' Text="Update" OnClick="btnUpdate_Click"/>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="120px" /></asp:TemplateField>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px" /></asp:TemplateField>
+
+            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Delete" >
+            <ItemTemplate><asp:Button ID="btnDelete" runat="server" Cssclass="myButtonGrey" style="cursor:pointer; font-size:11px;" 
+            CommandArgument='<%# Eval("intPOID")+","+ Container.DataItemIndex %>' Text="Delete" OnClick="btnDelete_Click"/>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px" /></asp:TemplateField>
                        
             </Columns>
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

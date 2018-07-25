@@ -100,9 +100,9 @@
                                 <asp:DropDownList ID="DdlReport" runat="server" CssClass="dropdownList" >
                                     <asp:ListItem Value="">---Select Report Type---</asp:ListItem>
                                     <asp:ListItem Value="1">Factory sales</asp:ListItem>
-                                    <asp:ListItem Value="2">Remote sales</asp:ListItem>
-                                    <asp:ListItem Value="3">Both sales</asp:ListItem>                                
-                                    <asp:ListItem Value="4">Transfer sales</asp:ListItem>
+                                    <asp:ListItem Value="2">Remote Own sales</asp:ListItem>
+                                    <asp:ListItem Value="3">Remote sales (D/D)</asp:ListItem>                                
+                                    <asp:ListItem Value="4">All sales</asp:ListItem>
                                 </asp:DropDownList></td>
        
         </tr>

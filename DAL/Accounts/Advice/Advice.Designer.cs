@@ -4023,6 +4023,8 @@ namespace DAL.Accounts.Advice {
             
             private global::System.Data.DataColumn columndteDate;
             
+            private global::System.Data.DataColumn columnmonRunningBalance;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblBankAccountStatementDataTable() {
@@ -4066,6 +4068,14 @@ namespace DAL.Accounts.Advice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monRunningBalanceColumn {
+                get {
+                    return this.columnmonRunningBalance;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4101,10 +4111,11 @@ namespace DAL.Accounts.Advice {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblBankAccountStatementRow AddTblBankAccountStatementRow(System.DateTime dteDate) {
+            public TblBankAccountStatementRow AddTblBankAccountStatementRow(System.DateTime dteDate, decimal monRunningBalance) {
                 TblBankAccountStatementRow rowTblBankAccountStatementRow = ((TblBankAccountStatementRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        dteDate};
+                        dteDate,
+                        monRunningBalance};
                 rowTblBankAccountStatementRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblBankAccountStatementRow);
                 return rowTblBankAccountStatementRow;
@@ -4128,6 +4139,7 @@ namespace DAL.Accounts.Advice {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columndteDate = base.Columns["dteDate"];
+                this.columnmonRunningBalance = base.Columns["monRunningBalance"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4135,6 +4147,8 @@ namespace DAL.Accounts.Advice {
             private void InitClass() {
                 this.columndteDate = new global::System.Data.DataColumn("dteDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndteDate);
+                this.columnmonRunningBalance = new global::System.Data.DataColumn("monRunningBalance", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonRunningBalance);
                 this.columndteDate.AllowDBNull = false;
             }
             
@@ -7375,6 +7389,35 @@ namespace DAL.Accounts.Advice {
                     this[this.tableTblBankAccountStatement.dteDateColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monRunningBalance {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblBankAccountStatement.monRunningBalanceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monRunningBalance\' in table \'TblBankAccountStatement\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblBankAccountStatement.monRunningBalanceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonRunningBalanceNull() {
+                return this.IsNull(this.tableTblBankAccountStatement.monRunningBalanceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonRunningBalanceNull() {
+                this[this.tableTblBankAccountStatement.monRunningBalanceColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -9757,6 +9800,7 @@ namespace DAL.Accounts.Advice.AdviceTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "TblBankAccountStatement";
             tableMapping.ColumnMappings.Add("dteDate", "dteDate");
+            tableMapping.ColumnMappings.Add("monRunningBalance", "monRunningBalance");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -9773,8 +9817,8 @@ namespace DAL.Accounts.Advice.AdviceTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT top(1) dteDate FROM ERP_Accounts.dbo.tblBankAccountStatement\r\nWHERE intAcc" +
-                "ountID=@intAccountID ORDER BY intID DESC";
+            this._commandCollection[0].CommandText = "SELECT top(1) dteDate, monRunningBalance FROM ERP_Accounts.dbo.tblBankAccountStat" +
+                "ement\r\nWHERE intAccountID=@intAccountID ORDER BY intID DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAccountID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
