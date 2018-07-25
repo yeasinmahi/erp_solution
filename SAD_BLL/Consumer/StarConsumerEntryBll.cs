@@ -44,6 +44,26 @@ namespace SAD_BLL.Consumer
             DataTable4TableAdapter adapter = new DataTable4TableAdapter();
             return adapter.DeactiveConsumerDoubleCashOffer(intId);
         }
+        public DataTable GetDoTopSheet(DateTime fromDate, DateTime toDate)
+        {
+            DataTable5TableAdapter adapter = new DataTable5TableAdapter();
+            return adapter.GetDoTopSheet(fromDate, toDate);
+        }
+        public DataTable GetDoBySalesId(int salesOffId, DateTime fromDate, DateTime toDate)
+        {
+            DataTable6TableAdapter adapter = new DataTable6TableAdapter();
+            return adapter.GetDoBySalesId(salesOffId, fromDate, toDate);
+        }
+        public DataTable GetDoByDoNumber(string doNumber)
+        {
+            DataTable7TableAdapter adapter = new DataTable7TableAdapter();
+            return adapter.GetDoByDoNumber(doNumber);
+        }
+        public DataTable GetSalesOffice()
+        {
+            tblSalesOfficeTableAdapter adapter = new tblSalesOfficeTableAdapter();
+            return adapter.GetSalesOffice();
+        }
 
     }
 }

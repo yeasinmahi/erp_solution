@@ -12,7 +12,10 @@ namespace UI.SAD.Consumer
         private readonly StarConsumerEntryBll _starConsumerEntryBll = new StarConsumerEntryBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                pnlUpperControl.DataBind();
+            }
         }
 
         protected void entry_OnClick(object sender, EventArgs e)

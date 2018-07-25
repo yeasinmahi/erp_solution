@@ -1028,6 +1028,7 @@
     <Content Include="SAD\AutoChallan\Stock.aspx" />
     <Content Include="SAD\AutoChallan\TradeofferBill.aspx" />
     <Content Include="SAD\AutoChallan\TransportSet.aspx" />
+    <Content Include="SAD\Consumer\DoReport.aspx" />
     <Content Include="SAD\Consumer\StarConsumerEntry.aspx" />
     <Content Include="SAD\Consumer\StarConsumeReport.aspx" />
     <Content Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx" />
@@ -4814,6 +4815,13 @@
     </Compile>
     <Compile Include="SAD\AutoChallan\TransportSet.aspx.designer.cs">
       <DependentUpon>TransportSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\DoReport.aspx.cs">
+      <DependentUpon>DoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\DoReport.aspx.designer.cs">
+      <DependentUpon>DoReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Consumer\StarConsumerEntry.aspx.cs">
       <DependentUpon>StarConsumerEntry.aspx</DependentUpon>

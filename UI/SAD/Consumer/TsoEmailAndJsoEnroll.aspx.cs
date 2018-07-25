@@ -11,14 +11,14 @@ namespace UI.SAD.Consumer
 {
     public partial class TsoEmailAndJsoEnroll : System.Web.UI.Page
     {
-        private DistributorWithIhbBll _bll = new DistributorWithIhbBll();
-        private string _filePathForXml;
+        private readonly DistributorWithIhbBll _bll = new DistributorWithIhbBll();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _filePathForXml = Server.MapPath("~/SAD/IHB/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "DistributorWithIHB.xml");
+            
             if (!IsPostBack)
             {
+                pnlUpperControl.DataBind();
                 LoadRegion();
             }
         }

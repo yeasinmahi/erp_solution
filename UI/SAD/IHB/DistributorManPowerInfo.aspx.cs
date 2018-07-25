@@ -19,6 +19,7 @@ namespace UI.SAD.IHB
             _filePathForXml = Server.MapPath("~/SAD/IHB/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "AddCustomerIntoDistributorManpower.xml");
             if (!IsPostBack)
             {
+                pnlUpperControl.DataBind();
                 //LoadDistributorInfoGridView();
                 LoadCustomerDropdown();
             }
