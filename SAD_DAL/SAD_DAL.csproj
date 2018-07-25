@@ -253,6 +253,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="IHB\DistributorManpowerDal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistributorManpowerDal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="IHB\DistributorWithIhbDal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -789,6 +794,17 @@
     </None>
     <None Include="Global\ShipPointTDS.xss">
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorManpowerDal.xsc">
+      <DependentUpon>DistributorManpowerDal.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorManpowerDal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DistributorManpowerDal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="IHB\DistributorManpowerDal.xss">
+      <DependentUpon>DistributorManpowerDal.xsd</DependentUpon>
     </None>
     <None Include="IHB\DistributorWithIhbDal.xsc">
       <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>

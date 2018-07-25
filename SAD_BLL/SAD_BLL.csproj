@@ -124,6 +124,7 @@
     <Compile Include="Global\Operator.cs" />
     <Compile Include="Global\SalesOffice.cs" />
     <Compile Include="Global\ShipPoint.cs" />
+    <Compile Include="IHB\DistributorManpowerBll.cs" />
     <Compile Include="IHB\DistributorWithIhbBll.cs" />
     <Compile Include="Item\ItemStCommercial.cs" />
     <Compile Include="Item\XmlManagerCH.cs" />

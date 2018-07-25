@@ -1074,6 +1074,7 @@
     <Content Include="SAD\ExcelChallan\frmProductView.aspx" />
     <Content Include="SAD\ExcelChallan\frmVehicleSetbyTransport.aspx" />
     <Content Include="SAD\ExcelChallan\frmExcelupload.aspx" />
+    <Content Include="SAD\IHB\DistributorManPowerInfo.aspx" />
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
     <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
@@ -5134,6 +5135,13 @@
     </Compile>
     <Compile Include="SAD\ExcelChallan\frmExcelupload.aspx.designer.cs">
       <DependentUpon>frmExcelupload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorManPowerInfo.aspx.cs">
+      <DependentUpon>DistributorManPowerInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorManPowerInfo.aspx.designer.cs">
+      <DependentUpon>DistributorManPowerInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\IHB\DistributorWithIHB.aspx.cs">
       <DependentUpon>DistributorWithIHB.aspx</DependentUpon>
