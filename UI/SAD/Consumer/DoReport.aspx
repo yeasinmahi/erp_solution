@@ -57,7 +57,7 @@
                                 <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="D.O Number"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="doNumberTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="doNumberTextBox" AutoPostBack="True" runat="server" CssClass="txtBox" OnKeyDown =""></asp:TextBox>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Sales Office"></asp:Label>

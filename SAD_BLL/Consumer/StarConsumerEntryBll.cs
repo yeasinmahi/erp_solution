@@ -34,6 +34,7 @@ namespace SAD_BLL.Consumer
             DataTable2TableAdapter adapter = new DataTable2TableAdapter();
             return adapter.GetStarConsumeReport(fromDate, toDate, email);
         }
+
         public DataTable UpdateConsumerBill(int intSiteCardCode, decimal decQntForSiteCard, decimal decShopvsDelvQnt, decimal monEditedTotalCost, int intId)
         {
             DataTable3TableAdapter adapter = new DataTable3TableAdapter();
@@ -44,6 +45,7 @@ namespace SAD_BLL.Consumer
             DataTable4TableAdapter adapter = new DataTable4TableAdapter();
             return adapter.DeactiveConsumerDoubleCashOffer(intId);
         }
+
         public DataTable GetDoTopSheet(DateTime fromDate, DateTime toDate)
         {
             DataTable5TableAdapter adapter = new DataTable5TableAdapter();
@@ -64,6 +66,32 @@ namespace SAD_BLL.Consumer
             tblSalesOfficeTableAdapter adapter = new tblSalesOfficeTableAdapter();
             return adapter.GetSalesOffice();
         }
+
+
+        public DataTable GetFactorySubsidiary(DateTime dteFormDate, DateTime dteToDate, int strSalesoffice,decimal factoryRate, decimal ghatRate)
+        {
+            sprACCLFactorySubsidiaryTableAdapter adapter = new sprACCLFactorySubsidiaryTableAdapter();
+            return adapter.GetFactorySubsidiary(dteFormDate, dteToDate, strSalesoffice, factoryRate, ghatRate);
+        }
+        public DataTable GetTransportSubsidiary(DateTime dteFormDate, DateTime dteToDate, int strSalesoffice)
+        {
+            sprACCLSubsidiarytrnsportTableAdapter adapter = new sprACCLSubsidiarytrnsportTableAdapter();
+            return adapter.GetTransportSubsidiary(dteFormDate, dteToDate, strSalesoffice);
+        }
+
+        public string InsertGhat(string shippointname, int intenrol, string strAddress, string strContactperson, string strContactNo, int intunit)
+        {
+            string message = String.Empty;
+            sprNewShippingpointopenTableAdapter adapter = new sprNewShippingpointopenTableAdapter();
+            adapter.InsertGhat(shippointname, intenrol, strAddress, strContactperson, strContactNo, intunit, ref message);
+            return message;
+        }
+        public DataTable GetGhatInfo(int intId)
+        {
+            tblShippingPointTableAdapter adapter = new tblShippingPointTableAdapter();
+            return adapter.GetGhatInfo(intId);
+        }
+
 
     }
 }
