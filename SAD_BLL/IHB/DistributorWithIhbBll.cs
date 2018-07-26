@@ -51,5 +51,16 @@ namespace SAD_BLL.IHB
             DataTable2TableAdapter adapter = new DataTable2TableAdapter();
             return adapter.GetDistributorWithIhbReport();
         }
+        public DataTable GetEmailAndEnroll(int territoryId)
+        {
+            tblItemPriceManager3TableAdapter adapter = new tblItemPriceManager3TableAdapter();
+            return adapter.GetEmailAndEnroll(territoryId);
+        }
+        public DataTable UpdateEmailAndEnroll(int enrol, string email, long intID)
+        {
+            tblItemPriceManager4TableAdapter adapter = new tblItemPriceManager4TableAdapter();
+            return adapter.UpdateEmailAndEnroll(enrol, email, intID);
+        }
+
     }
 }

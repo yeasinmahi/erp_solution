@@ -10,7 +10,7 @@
 namespace UI.SAD.Consumer {
     
     
-    public partial class StarConsumeReport {
+    public partial class DoReport {
         
         /// <summary>
         /// Head1 control.
@@ -94,15 +94,6 @@ namespace UI.SAD.Consumer {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdUnitId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdUnitId;
-        
-        /// <summary>
         /// lbl1 control.
         /// </summary>
         /// <remarks>
@@ -139,30 +130,66 @@ namespace UI.SAD.Consumer {
         protected global::System.Web.UI.WebControls.TextBox toTextBox;
         
         /// <summary>
-        /// showReport control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showReport;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// entry control.
+        /// doNumberTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button entry;
+        protected global::System.Web.UI.WebControls.TextBox doNumberTextBox;
         
         /// <summary>
-        /// grdvDoubleCashOfferReport control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvDoubleCashOfferReport;
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// ddlsalesOffice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlsalesOffice;
+        
+        /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+        
+        /// <summary>
+        /// ddlReportType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlReportType;
+        
+        /// <summary>
+        /// grdvDo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvDo;
     }
 }

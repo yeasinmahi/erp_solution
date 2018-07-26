@@ -10,7 +10,7 @@
 namespace UI.SAD.Consumer {
     
     
-    public partial class StarConsumeReport {
+    public partial class TsoEmailAndJsoEnroll {
         
         /// <summary>
         /// Head1 control.
@@ -94,75 +94,84 @@ namespace UI.SAD.Consumer {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdUnitId control.
+        /// hdCustomerIdEnterprise control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdUnitId;
+        protected global::System.Web.UI.WebControls.HiddenField hdCustomerIdEnterprise;
         
         /// <summary>
-        /// lbl1 control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl1;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// fromTextBox control.
+        /// ddlRegion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fromTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
         
         /// <summary>
-        /// Label1 control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// toTextBox control.
+        /// ddlArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox toTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList ddlArea;
         
         /// <summary>
-        /// showReport control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showReport;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// entry control.
+        /// ddlTerritory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button entry;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTerritory;
         
         /// <summary>
-        /// grdvDoubleCashOfferReport control.
+        /// show control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvDoubleCashOfferReport;
+        protected global::System.Web.UI.WebControls.Button show;
+        
+        /// <summary>
+        /// grdvCustomerWithIhb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvCustomerWithIhb;
     }
 }

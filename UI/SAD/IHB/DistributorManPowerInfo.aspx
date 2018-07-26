@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StarConsumeReport.aspx.cs" Inherits="UI.SAD.Consumer.StarConsumeReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DistributorManPowerInfo.aspx.cs" Inherits="UI.SAD.IHB.DistributorManPowerInfo" %>
 <%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <!DOCTYPE html>
@@ -10,6 +10,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -19,7 +20,8 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                         </marquee>
                     </div>
                     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
@@ -28,9 +30,10 @@
                 </cc1:AlwaysVisibleControlExtender>
 
                 <%--=========================================Start My Code From Here===============================================--%>
+
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Star Consumer Report :
+                        Distributor Manpower Setup
                         <asp:HiddenField ID="hdUnitId" runat="server" />
                     </div>
                     <table border="0" style="width: Auto">
@@ -52,11 +55,35 @@
                             </td>
                         </tr>
                         <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Customer"></asp:Label></td>
                             <td>
-                                <asp:Button ID="showReport" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="showReport_OnClick" />
+                                <asp:DropDownList ID="ddlCustomer" CssClass="ddList" runat="server"></asp:DropDownList>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Manager"></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="managerTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label CssClass="lbl" runat="server" Text="Sales Representative 1"></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="salesRepresentative1TextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label CssClass="lbl" runat="server" Text="Sales Representative 2"></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="salesRepresentative2TextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td>
+                                <asp:Button ID="addCustomer" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Add Customer" OnClick="addCustomer_OnClick"/>
                             </td>
                             <td>
-                                <asp:Button ID="entry" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Go to Entry" OnClick="entry_OnClick" OnClientClick="aspnetForm.target ='_blank'" />
+                                <asp:Button ID="getInfo" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Get Info" OnClick="getInfo_OnClick"/>
                             </td>
                         </tr>
                     </table>
@@ -65,51 +92,39 @@
                     <table>
                         <tr class="tblroweven">
                             <td>
-                                <asp:GridView ID="grdvDoubleCashOfferReport" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true">
+                                <asp:GridView ID="grdvDistributorManpower" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
                                                 <%# Container.DataItemIndex + 1 %>
-                                                <asp:HiddenField ID="intID" runat="server" Value='<%# Bind("intID") %>' />
+                                                <%--<asp:HiddenField ID="strTerritory" runat="server" Value='<%# Bind("strTerritory") %>' />--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="strName" HeaderText="Shop Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="intShopId" HeaderText="Shop Id" SortExpression="intShopId" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strName" HeaderText="Customer Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="territoryName" HeaderText="Territory" SortExpression="territoryName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="area" HeaderText="Area " SortExpression="area" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="distributorName" HeaderText="Distributor Name" SortExpression="distributorName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intCusID" HeaderText="Cus ID" SortExpression="intCusID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strEmailAddress" HeaderText="Email Address" SortExpression="strEmailAddress" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="territory" HeaderText="Territory" SortExpression="territory" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="area" HeaderText="Area" SortExpression="area" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="region" HeaderText="Region" SortExpression="region" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <%--<asp:BoundField DataField="intSiteCardCode" HeaderText="Site Card Code" SortExpression="intSiteCardCode" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decQntForSiteCard" HeaderText="Quantity via Side Code" SortExpression="decQntForSiteCard" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decShopvsDelvQnt" HeaderText="Quantity shop vs Deviv" SortExpression="decShopvsDelvQnt" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="monEditedTotalCost" HeaderText="Edited Total Cost" SortExpression="monEditedTotalCost" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        --%><asp:BoundField DataField="dteFormDate" HeaderText="From Date" SortExpression="dteFormDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="dteToDate" HeaderText="To Date" SortExpression="dteToDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="dteInsertionDate" HeaderText="Insertion Date" SortExpression="dteInsertionDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:TemplateField HeaderText="Side Code">
+                                        
+                                        <asp:TemplateField HeaderText="Distributor Manager">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="intSiteCardCode" Text='<%# Bind("intSiteCardCode") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="strDistrManagerN" Text='<%# Bind("strDistrManagerN") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Quantity For Site Card">
+                                        <asp:TemplateField HeaderText="Sales Representative 1">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="decQntForSiteCard" Text='<%# Bind("decQntForSiteCard") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="strSalesRepresentative1" Text='<%# Bind("strSalesRepresentative1") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Shop vs Delv Qnt">
+                                        <asp:TemplateField HeaderText="Sales Representative 2">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="decShopvsDelvQnt" Text='<%# Bind("decShopvsDelvQnt") %>' runat="server"></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Edited Total Cost">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="monEditedTotalCost" Text='<%# Bind("monEditedTotalCost") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="strSalesRepresentative2" Text='<%# Bind("strSalesRepresentative2") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
                                                 <asp:Button ID="update" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Update" OnClick="update_OnClick" />
-                                                <asp:Button ID="delete" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Delete" OnClick="delete_OnClick" OnClientClick="return confirm('Are you sure you want to delete?');"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <%--<asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />--%>
@@ -125,5 +140,4 @@
     </form>
 </body>
 </html>
-
 

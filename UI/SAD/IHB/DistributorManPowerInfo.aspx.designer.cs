@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.SAD.Consumer {
+namespace UI.SAD.IHB {
     
     
-    public partial class StarConsumeReport {
+    public partial class DistributorManPowerInfo {
         
         /// <summary>
         /// Head1 control.
@@ -139,30 +139,84 @@ namespace UI.SAD.Consumer {
         protected global::System.Web.UI.WebControls.TextBox toTextBox;
         
         /// <summary>
-        /// showReport control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showReport;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// entry control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button entry;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
         
         /// <summary>
-        /// grdvDoubleCashOfferReport control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdvDoubleCashOfferReport;
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// managerTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox managerTextBox;
+        
+        /// <summary>
+        /// salesRepresentative1TextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox salesRepresentative1TextBox;
+        
+        /// <summary>
+        /// salesRepresentative2TextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox salesRepresentative2TextBox;
+        
+        /// <summary>
+        /// addCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button addCustomer;
+        
+        /// <summary>
+        /// getInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button getInfo;
+        
+        /// <summary>
+        /// grdvDistributorManpower control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvDistributorManpower;
     }
 }
