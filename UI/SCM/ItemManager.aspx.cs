@@ -23,7 +23,8 @@ namespace UI.SCM
             if(!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetWH();
+                dt= objIssue.GetViewData(1, "", wh, 0, DateTime.Now, enroll);
+               // dt = objIssue.GetWH();
                 ddlWh.DataSource = dt;
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
@@ -73,8 +74,13 @@ namespace UI.SCM
                 wh = int.Parse(ddlWh.SelectedValue);           
                 string xmlData = "<voucher><voucherentry masteritem=" + '"' + masteritem + '"' +   "/></voucher>".ToString();
                 int location = int.Parse(ddlLocation.SelectedValue);
-                string msg = objIssue.StoreIssue(13, xmlData, wh, location, DateTime.Now, enroll);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ msg + "');", true);
+                if (location > 0)
+                {
+                    string msg = objIssue.StoreIssue(13, xmlData, wh, location, DateTime.Now, enroll);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Sselect your location');", true); }
+               
             }
 
             catch { }

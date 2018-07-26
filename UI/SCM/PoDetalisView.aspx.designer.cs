@@ -175,13 +175,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnPoShowByView;
         
         /// <summary>
-        /// btnExport control.
+        /// btnEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExport;
+        protected global::System.Web.UI.WebControls.Button btnEmail;
         
         /// <summary>
         /// btnDownload control.
@@ -191,6 +191,15 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDownload;
+        
+        /// <summary>
+        /// btnPDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPDF;
         
         /// <summary>
         /// lblSuppliyers control.

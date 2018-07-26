@@ -227,53 +227,57 @@ namespace UI.SCM
         {
             try
             {
-               // enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                //PoNo = int.Parse(Session["pono"].ToString());
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                PoNo = int.Parse(Session["pono"].ToString());
                 //
-                //string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-                //byte[] bytes = Convert.FromBase64String(base64);
+                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                byte[] bytes = Convert.FromBase64String(base64);
                 //System.Drawing.Image x = (Bitmap)((new ImageConverter()).ConvertFrom(bytes));
-                //Response.Clear();
+                Response.Clear();
                 //
-               // Response.ContentType = "image/jpeg";
-                // Response.ContentType = "image/jpeg";
-               // Response.AddHeader("Content-Disposition", "attachment; filename=PO.jpg");
-                //Response.Buffer = true;
+                Response.ContentType = "image/jpeg";
+                Response.ContentType = "image/jpeg";
+                Response.AddHeader("Content-Disposition", "attachment; filename=PO.jpg");
+                Response.Buffer = true;
                 //  string filename = "d.jpeg".ToString();
                 //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
                 //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
                 // string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString(); 
-                try
-                {
-                    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-                    byte[] imagebytes = Convert.FromBase64String(base64);
-                    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagebytes);
-                    using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
-                    {
-                         
-                        Document document = new Document(PageSize.A3, 0f, 0f, 0f, 0f);
-                        PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
-                        document.Open();
-                         
-                        document.Add(image);
-                        document.Close();
-                        byte[] bytes = memoryStream.ToArray();
-                        memoryStream.Close();
+                //try
+                //{
+                //    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                //    byte[] imagebytes = Convert.FromBase64String(base64);
+                //    //string dd = "data:image/jpeg;base64," + Convert.ToBase64String(imagebytes); 
+                //    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagebytes); 
 
-                        Response.Clear();
-                        Response.AddHeader("Content-Disposition", "attachment; filename=" + PoNo.ToString()+ ".pdf");
-                        Response.ContentType = "application/pdf";
-                        Response.Buffer = true;
-                        Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                        Response.BinaryWrite(bytes);
-                        Response.End();
-                    }
-                }
-                catch { }
-                //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                //Response.BinaryWrite(bytes);
+                //    using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
+                //    {
 
-                //Response.End();
+                //        Document document = new Document(PageSize.A3, 0f, 0f, 0f, 0f);
+                //        PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+
+                //        image.SetDpi(1920, 1920);
+                //        document.Open();
+
+                //        document.Add(image);
+                //        document.Close();
+                //        byte[] bytes = memoryStream.ToArray();
+                //        memoryStream.Close();
+
+                //        Response.Clear();
+                //        Response.AddHeader("Content-Disposition", "attachment; filename=" + PoNo.ToString()+ ".pdf");
+                //        Response.ContentType = "application/pdf";
+                //        Response.Buffer = true;
+                //        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                //        Response.BinaryWrite(bytes);
+                //        Response.End();
+                //    }
+                //}
+                //catch { }
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.BinaryWrite(bytes);
+
+                Response.End();
             }
             catch { }
         }

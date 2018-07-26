@@ -15,44 +15,51 @@
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" /> 
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
+     
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
     
     <script src="../Content/JS/BlueBird.min.js"></script>
    <script src="../Content/JS/html2canvas.min.js"></script>
-    <script src="../Content/JS/jsPDF.min.js"></script>
+<%--    <script src="../Content/JS/jsPDF.min.js"></script>--%>
     <%--<script src="../Content/JS/html2pdf.js"></script>--%>
 
-    <script type="text/javascript">
+   <%-- <script type="text/javascript">
         
-        function pdf() {
-        
-             
+        function pdf() { 
+        //document.getElementById("btnEmail").style.visibility = "hidden";
+        //document.getElementById("txtPoNumbers").style.visibility = "hidden";
+        //document.getElementById("btnPoShowByView").style.visibility = "hidden";
+        //document.getElementById("btnDownload").style.visibility = "hidden"; 
+        //document.getElementById("btnPDF").style.visibility = "hidden";
 
-        html2canvas(document.getElementById('dvTable'), {
-            
+        html2canvas(document.getElementById('dvTable'), { 
         onrendered: function(canvas) {
 
-            var img = canvas.toDataURL('image/JPEG',1.0)
-            var doc = new jsPDF('p', 'mm', 'A4');
+            var img = canvas.toDataURL('image/png',1.0)
+            var doc = new jsPDF('p', 'pt', 'A4');
             // var doc = new jsPDF();
             
-            
             //doc.addImage(img, "JPEG", 0, 0,100,100);
-            var width = doc.internal.pageSize.width;    
-            var height = doc.internal.pageSize.height;
+            
             
         
-            doc.addImage(img, 'JPG', 0, 0, width, height);
-            doc.save("test.pdf")
+            doc.addImage(img, 'JPEG', 0, 0);
+            doc.save("PurchaseOrder.pdf")
+
+        
+            }
+
+            });
+            
         }
-    });
-        }
-    </script>
+    </script>--%>
     
 <script type="text/javascript">
-    function ConvertToImage(btnExport) {
-        document.getElementById("btnExport").style.visibility = "hidden";
+    function ConvertToImage(btnEmail) {
+        document.getElementById("btnEmail").style.visibility = "hidden";
         document.getElementById("txtPoNumbers").style.visibility = "hidden";
         document.getElementById("btnPoShowByView").style.visibility = "hidden";
         document.getElementById("btnDownload").style.visibility = "hidden"; 
@@ -60,8 +67,8 @@
         html2canvas($("#dvTable")[0]).then(function (canvas) {
             var base64 = canvas.toDataURL();
             $("[id*=hfImageData]").val(base64);
-            __doPostBack(btnExport.name, "");
-            document.getElementById("btnExport").style.visibility = "visible";
+            __doPostBack(btnEmail.name, "");
+            document.getElementById("btnEmail").style.visibility = "visible";
             document.getElementById("txtPoNumbers").style.visibility = "visible";
             document.getElementById("btnPoShowByView").style.visibility = "visible";
             document.getElementById("btnDownload").style.visibility = "visible";
@@ -71,9 +78,9 @@
 </script>
      
     
-<script type="text/javascript">
+  <script type="text/javascript">
     function ConvertToImageDownload(btnDownload) {
-        document.getElementById("btnExport").style.visibility = "hidden";
+        document.getElementById("btnEmail").style.visibility = "hidden";
         document.getElementById("btnprint").style.visibility = "hidden";
         //document.getElementById("txtPoNumbers").style.visibility = "hidden";
        // document.getElementById("btnPoShowByView").style.visibility = "hidden";
@@ -83,7 +90,7 @@
             var base64 = canvas.toDataURL();
             $("[id*=hfImageData]").val(base64);
             __doPostBack(btnDownload.name, "");
-            document.getElementById("btnExport").style.visibility = "visible";
+            document.getElementById("btnEmail").style.visibility = "visible";
          //   document.getElementById("txtPoNumbers").style.visibility = "visible";
           //  document.getElementById("btnPoShowByView").style.visibility = "visible";
             document.getElementById("btnDownload").style.visibility = "visible";
@@ -104,13 +111,11 @@
 </script>   
     <script>
         function Print() {
-            document.getElementById("btnExport").style.visibility = "hidden";
-            
-            document.getElementById("btnDownload").style.visibility = "hidden"; 
+            document.getElementById("btnEmail").style.visibility = "hidden";            
+            document.getElementById("btnDownload").style.visibility = "hidden";              
 
             document.getElementById("btnprint").style.display = "none"; window.print();  
-            document.getElementById("btnExport").style.visibility = "visible";
-           
+            document.getElementById("btnEmail").style.visibility = "visible";            
             document.getElementById("btnDownload").style.visibility = "visible";
 
         }
@@ -171,10 +176,10 @@
                  <tr> 
                      <td><asp:Label ID="lblPurchaseOrderNo" runat="server" Text="Purchase Order No:"></asp:Label><asp:Label ID="lblpoNo" Font-Bold="true" Font-Size="Small" runat="server"></asp:Label><asp:Label ID="lblspace" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="true"   runat="server"></asp:Label></td>
                      <td><asp:TextBox ID="txtPoNumbers" runat="server" CssClass="txtBox" Visible="false" PlaceHolder="PO" Width="50px" /></td><td><asp:Button ID="btnPoShowByView" Visible="false" CssClass="btnButton"    runat="server" Text="Show" OnClick="btnPoShowByView_Click" /></td>
-                     <td><asp:Button ID="btnExport" Text="E-mail" runat="server" UseSubmitBehavior="false"  OnClick="ExportToImage" OnClientClick="return ConvertToImage(this)" /></td>
+                     <td><asp:Button ID="btnEmail" Text="E-mail" runat="server" UseSubmitBehavior="false"  OnClick="ExportToImage" OnClientClick="return ConvertToImage(this)" /></td>
                      <td><asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false"  OnClick="btnDownload_Click" OnClientClick="return ConvertToImageDownload(this)" /></td>
-                    
-              
+                     <td><asp:Button ID="btnPDF" Text="HD PDF" runat="server"  Visible="false" /></td>
+                                  
                  </tr> 
               </table>
         <table>
@@ -213,8 +218,8 @@
              <table style="width:750px">
              <tr><td></td></tr>
              <tr> 
-             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="750px" ShowFooter="true" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
+             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="750px" ShowFooter="true"   BorderColor="#adad85"    
+             BorderWidth="1px" CssClass="Grid"  CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#adad85" FooterStyle-HorizontalAlign="Right"  > 
              <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
@@ -224,7 +229,7 @@
                 <ItemStyle HorizontalAlign="Left" Width="220px"/></asp:TemplateField>
                 
                 <asp:TemplateField HeaderText="Description" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strSpecification" >
-                <ItemTemplate><asp:Label ID="lblDescription" runat="server"  Text='<%# Bind("strSpecification") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblDescription" BorderColor="Black" runat="server"  Text='<%# Bind("strSpecification") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="110px"/>  </asp:TemplateField>  
 
                 <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
@@ -256,8 +261,8 @@
                 <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>  
 
             </Columns>
-            <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" /> 
+            <FooterStyle BackColor="#adad85" Font-Bold="True" HorizontalAlign="Right" />
+            <HeaderStyle BackColor="#adad85" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" /> 
             </asp:GridView></td> 
         </tr>  
             <tr><td><asp:Label ID="lblInWard"  Font-Bold="true" runat="server"></asp:Label></td> </tr> 
