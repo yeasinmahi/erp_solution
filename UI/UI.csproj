@@ -1291,6 +1291,7 @@
     <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
+    <Content Include="SCM\MaterialApprovalStatus.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -6645,6 +6646,13 @@
     </Compile>
     <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
       <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MaterialApprovalStatus.aspx.cs">
+      <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MaterialApprovalStatus.aspx.designer.cs">
+      <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
