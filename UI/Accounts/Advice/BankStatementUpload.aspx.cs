@@ -73,6 +73,8 @@ namespace UI.Accounts.Advice
             {
                 LoadAccountNo();
                 LoadLastCollectDate();
+                gvExcelFile.DataSource = "";
+                gvExcelFile.DataBind();
             }
             catch { }
         }
@@ -80,6 +82,9 @@ namespace UI.Accounts.Advice
         {
             LoadLastCollectDate();
             txtAGAccount.Text = ddlAccountNo.SelectedValue.ToString();
+
+            gvExcelFile.DataSource = "";
+            gvExcelFile.DataBind();
         }
 
         private void LoadLastCollectDate()
@@ -92,10 +97,12 @@ namespace UI.Accounts.Advice
                 if (dt.Rows.Count > 0)
                 {
                     txtLastCollect.Text = dt.Rows[0]["dteDate"].ToString();
+                    txtRunningBalance.Text = dt.Rows[0]["monRunningBalance"].ToString();
                 }
                 else
                 {
                     txtLastCollect.Text = "N/A";
+                    txtRunningBalance.Text = "";
                 }
             }
             catch { }
@@ -107,6 +114,9 @@ namespace UI.Accounts.Advice
             gvExcelFile.DataBind();
             DeleteData();
             uploadfile();
+
+            //gvExcelFile.DataSource = "";
+            //gvExcelFile.DataBind();
         }
 
         private void DeleteData()
@@ -121,7 +131,7 @@ namespace UI.Accounts.Advice
 
         private void uploadfile()
         {
-            try
+            //try
             {
                 string ConStr = "";
 
@@ -167,9 +177,9 @@ namespace UI.Accounts.Advice
                         dteDate = dtTable.Rows[i][0].ToString();
                         strParticulars = dtTable.Rows[i][1].ToString();
                         strInstrumentNo = dtTable.Rows[i][2].ToString();
-                        monDebit = decimal.Parse(dtTable.Rows[i][3].ToString());
-                        monCredit = decimal.Parse(dtTable.Rows[i][4].ToString());
-                        monBalance = decimal.Parse(dtTable.Rows[i][5].ToString());
+                        try { monDebit = decimal.Parse(dtTable.Rows[i][3].ToString()); } catch { monDebit = 0; }
+                        try { monCredit = decimal.Parse(dtTable.Rows[i][4].ToString()); } catch { monCredit = 0; }
+                        try { monBalance = decimal.Parse(dtTable.Rows[i][5].ToString()); } catch { monBalance = 0; }
 
                         bll.InsertTempData(intAccountID, dteDate, strParticulars, strInstrumentNo, monDebit, monCredit, monBalance, intEnroll);
                     }
@@ -180,7 +190,7 @@ namespace UI.Accounts.Advice
                 }
                 File.Delete(path);
             }
-            catch { }
+            //catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Error in statement.');", true); }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -194,6 +204,8 @@ namespace UI.Accounts.Advice
                 string strMsg = dt.Rows[0]["strMsg"].ToString();
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ strMsg +"');", true);
+                gvExcelFile.DataSource = "";
+                gvExcelFile.DataBind();
             }
             catch { }
         }

@@ -21,6 +21,7 @@ namespace UI.SAD.IHB
             XmlParser.DeleteFile(_filePathForXml);
             if (!IsPostBack)
             {
+                pnlUpperControl.DataBind();
                 LoadRegion();
             }
 
@@ -162,5 +163,9 @@ namespace UI.SAD.IHB
             ddlIhb.DataBind();
         }
 
+        protected void report_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("DistributorWithIhbReport.aspx");
+        }
     }
 }

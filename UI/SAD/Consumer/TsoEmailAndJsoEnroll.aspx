@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DistributorWithIHB.aspx.cs" Inherits="UI.SAD.IHB.DistributorWithIHB" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TsoEmailAndJsoEnroll.aspx.cs" Inherits="UI.SAD.Consumer.TsoEmailAndJsoEnroll" %>
 <%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <!DOCTYPE html>
@@ -36,27 +35,10 @@
 
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Distributor With IHB :
+                        Tso Email & JSO Enrol Update :
                         <asp:HiddenField ID="hdCustomerIdEnterprise" runat="server" />
                     </div>
                     <table border="0" style="width: Auto">
-                        <tr class="tblroweven">
-                            <td style="text-align: right;">
-                                <asp:Label ID="lbl1" CssClass="lbl" runat="server" Text="From Date"></asp:Label>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="fromTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
-                                <script>$('#fromTextBox').datepicker();</script>
-                            </td>
-
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date"></asp:Label>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="toTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
-                                <script>$('#toTextBox').datepicker();</script>
-                            </td>
-                        </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Region"></asp:Label></td>
@@ -77,23 +59,8 @@
                             </td>
                         </tr>
                         <tr class="tblroweven">
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Distributor"></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="ddlDistributor" CssClass="ddList" runat="server"></asp:DropDownList>
-                            </td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Acrd"></asp:Label></td>
-                            <td>
-                                <asp:DropDownList ID="ddlIhb" CssClass="ddList" runat="server"></asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr class="tblroweven">
-                            <td>
-                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="add_OnClick" />
-                            </td>
-                            <td>
-                                <asp:Button ID="report" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Report" OnClick="report_OnClick" />
+                                <asp:Button ID="show" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="show_OnClick" />
                             </td>
                         </tr>
                     </table>
@@ -107,15 +74,27 @@
                                         <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
                                                 <%# Container.DataItemIndex + 1 %>
+                                                <asp:HiddenField ID="intID" runat="server" Value='<%# Bind("intID") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="CustIDEntpName" HeaderText="CustIDEntpName" SortExpression="CustIDEntpName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="intCustIDEntp" HeaderText="intCustIDEntp" SortExpression="intCustIDEntp" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="CustIDIHBName" HeaderText="CustIDIHBName" SortExpression="CustIDIHBName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="intCustIDIHB" HeaderText="intCustIDIHB" SortExpression="intCustIDIHB" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="intSintSalesOfficeIHBACRDCustalesOffId" HeaderText="intSintSalesOfficeIHBACRDCustalesOffId" SortExpression="intSintSalesOfficeIHBACRDCustalesOffId" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strIHBModifyPhone" HeaderText="strIHBModifyPhone" SortExpression="strIHBModifyPhone" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        
+                                        <asp:BoundField DataField="strText" HeaderText="Territory Name" SortExpression="strText" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strEmailAddress" HeaderText="Previous TSO Email" SortExpression="strEmailAddress" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intJSOid" HeaderText="Previous JSO Enroll" SortExpression="intJSOid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:TemplateField HeaderText="New Territory Sales Office Email">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="strEmailAddressNew" runat="server"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="New JSO Enroll">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="intJSOidNew" runat="server"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:Button ID="update" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Update" OnClick="update_OnClick" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <%--<asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />--%>
                                     </Columns>
                                 </asp:GridView>
@@ -129,3 +108,4 @@
     </form>
 </body>
 </html>
+
