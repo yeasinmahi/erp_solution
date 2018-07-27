@@ -98,7 +98,7 @@ namespace UI.SCM.BOM
         {
             Bom_BLL objBoms = new Bom_BLL();
 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText);
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText,1);
 
         }
 

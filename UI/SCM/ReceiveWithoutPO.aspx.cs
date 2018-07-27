@@ -69,7 +69,9 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            AutoSearch_BLL ast = new AutoSearch_BLL();
+            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
 
         }
 

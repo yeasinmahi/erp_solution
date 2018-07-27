@@ -12,7 +12,6 @@
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
      <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <%--<link href="../../Content/CSS/MyStyle.css" rel="stylesheet" />--%>
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
@@ -21,32 +20,37 @@
     <script>
        
         function ConfirmforShow() {
-            //alert('ok');
+            var fromdate = document.getElementById("txtFormDate").value;
+            var todate = document.getElementById("txtToDate").value;
+            var bgno = document.getElementById("TxtBGNo").value;
+            var amount = document.getElementById("TxtAmount").value;
+
+            if (fromdate == null || fromdate == "") {
+                alert("Insert Issue Date");
+                return false;
+            }
+            else if (todate == null || todate == "") {
+                alert("Insert Expire Date");
+                return false;
+            }
+            else if (bgno == null || bgno == "") {
+                alert("Insert BG No");
+                return false;
+            }
+            else if (amount == null || amount == "") {
+                alert("Insert Amount");
+                return false;
+            }
+            return true;
         }
 
-        function Confirmforadd() {
-            //document.getElementById("hdnconfirm").value = "0";
-            //var txt1 = document.forms["frmaccountsrealize"]["txtdagcs"].value;
-            //var txt2 = document.forms["frmaccountsrealize"]["txtdagsa"].value;
-            //var txt3 = document.forms["frmaccountsrealize"]["txtdagrs"].value;
-            //var txt4 = document.forms["frmaccountsrealize"]["txtdagbrs"].value;
-
-            //var confirm_value = document.createElement("INPUT");
-            //confirm_value.type = "hidden";
-            //confirm_value.name = "confirm_value";
-            //if (confirm("Do you want to proceed?")) {
-            //    confirm_value.value = "Yes";
-            //    document.getElementById("hdnconfirm").value = "1";
-            //} else {
-            //    confirm_value.value = "No";
-            //    document.getElementById("hdnconfirm").value = "0";
-            //}
+        function Confirmforadd() { 
 
         }
     </script>
     <style>
         .divHeader{
-            background-color: #45546d;
+            background-color: #9bb4dd;
              border: 0px solid #000;
             text-align: center;
             color: #fff;
@@ -93,7 +97,7 @@
                         </tr>
                         <tr>
                             <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="Unit:"></asp:Label></td>
-                            <td><asp:DropDownList ID="ddlUnit" runat="server" DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID"></asp:DropDownList>
+                            <td><asp:DropDownList ID="ddlUnit" CssClass="dropdownList" runat="server" DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID" AutoPostBack="true"></asp:DropDownList>
 
                                     <asp:ObjectDataSource ID="odsUnit" runat="server" SelectMethod="GetData" TypeName="HR_DAL.Global.UnitTDSTableAdapters.SprGetUnitTableAdapter">
                                         <SelectParameters>
@@ -102,7 +106,7 @@
                                     </asp:ObjectDataSource>
                             </td>
                             <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Sales Office:"></asp:Label></td>
-                            <td><asp:DropDownList ID="DdlSalesOffice" runat="server" autoPostback="True"  CssClass="dropdownList" DataSourceID="odsSalesOffice" DataTextField="strName" DataValueField="intId"></asp:DropDownList>
+                            <td><asp:DropDownList ID="DdlSalesOffice" runat="server" AutoPostback="True"  CssClass="dropdownList" DataSourceID="odsSalesOffice" DataTextField="strName" DataValueField="intId"></asp:DropDownList>
                                 <asp:ObjectDataSource ID="odsSalesOffice" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetSalesOfficeByUnitId" TypeName="HR_DAL.TourPlan.CustomerBankGauranteeTableAdapters.TblSalesOfficeTableAdapter">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="ddlUnit" Name="intUnitId" PropertyName="SelectedValue" Type="Int32" />

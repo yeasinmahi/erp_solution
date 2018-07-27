@@ -110,8 +110,22 @@ namespace UI.WoodPurchase
             }
             catch { }
         }
+        protected void btnShowPOItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetPOWiseItem(intPOID);
+                dgvReceive.DataSource = dt;
+                dgvReceive.DataBind();
+            }
+            catch { }
+        }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            dgvReceive.DataSource = "";
+            dgvReceive.DataBind();
             uploadfile();
         }
         private void uploadfile()
@@ -132,7 +146,7 @@ namespace UI.WoodPurchase
                 {
                     ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
                 }
-                string query = "SELECT * FROM [Sheet1$]";
+                string query = "SELECT * FROM [Process$]";
                 OleDbConnection conn = new OleDbConnection(ConStr);
                 if (conn.State == ConnectionState.Closed)
                 {

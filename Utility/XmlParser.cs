@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace Utility
@@ -11,7 +8,8 @@ namespace Utility
     public class XmlParser
     {
         public static string filePathForXML = "";
-        public static bool CreateXml(string rootName, object obj, string filePathForXML, out string message)
+
+        public static bool CreateXml(string rootName, string itemName, object obj, string filePathForXML, out string message)
         {
             XmlDocument doc = new XmlDocument();
             XmlNode rootNode;
@@ -38,7 +36,7 @@ namespace Utility
 
             try
             {
-                XmlNode addItem = CreateItemNodes(doc, obj);
+                XmlNode addItem = CreateItemNodes(itemName,doc, obj);
                 rootNode.AppendChild(addItem);
             }
             catch
@@ -66,22 +64,46 @@ namespace Utility
                 message = "Xml Saving Problem";
                 return false;
             }
-            
         }
 
-        private static XmlNode CreateItemNodes(XmlDocument doc, object obj)
+        public static bool CreateXml(string rootName, object obj, string filePathForXML, out string message)
         {
+            return CreateXml(rootName, null, obj, filePathForXML, out message);
+        }
+
+        private static XmlNode CreateItemNodes(string itemName,XmlDocument doc, object obj)
+        {
+            XmlNode node = doc.CreateElement(String.IsNullOrWhiteSpace(itemName) ? "voucharEntry" : itemName);
             PropertyInfo[] propertyInfos = Common.GetProperties(obj);
-            XmlNode node = doc.CreateElement("voucharEntry");
+           
             foreach (PropertyInfo p in propertyInfos)
             {
                 XmlAttribute xmlAttribute = doc.CreateAttribute(p.Name);
                 xmlAttribute.Value = p.GetValue(obj, null).ToString();
-                node.Attributes.Append(xmlAttribute);
+                node.Attributes?.Append(xmlAttribute);
             }
             return node;
         }
 
+        public static string ConvertXmlToString(XmlDocument doc)
+        {
+            XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
+            string xmlString = dSftTm.InnerXml;
+            xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
+            return xmlString;
+        }
 
+        public static bool DeleteFile(string filepath)
+        {
+            try
+            {
+                File.Delete(filepath);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

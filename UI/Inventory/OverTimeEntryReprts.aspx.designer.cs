@@ -283,22 +283,13 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lblUnit;
         
         /// <summary>
-        /// drdlUnitName control.
+        /// ddlUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlUnitName;
-        
-        /// <summary>
-        /// odsUnitNameByEnrol control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsUnitNameByEnrol;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
         
         /// <summary>
         /// lblArea control.
@@ -310,22 +301,13 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lblArea;
         
         /// <summary>
-        /// drdlArea control.
+        /// ddlJobStation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlArea;
-        
-        /// <summary>
-        /// odsJobstationName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsJobstationName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobStation;
         
         /// <summary>
         /// btnShowReport control.

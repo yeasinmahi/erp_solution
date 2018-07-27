@@ -134,9 +134,9 @@
                 <td><asp:TextBox ID="txtReOrder" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label26" runat="server" Text="Minimum Stock Level :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label26" runat="server" Text="Min Stock Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label27" runat="server" Text="Maximum Order Level :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label27" runat="server" Text="Max Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
@@ -185,7 +185,7 @@
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label19" runat="server" Text="Economic Order Qty. :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtEOQ" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Minimum Order Qty. :" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Min Order Qty. :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMOQ" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>                
             </tr>
             <tr>

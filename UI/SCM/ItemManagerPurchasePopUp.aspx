@@ -69,11 +69,30 @@
     }
     window.onbeforeunload = RefreshParent;
 </script>
+    <style>
+        ::placeholder {
+            color: red;
+            opacity: 1; /* Firefox */
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+           color: red;
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+           color: red;
+        }
+</style>
    <%-- <style type="text/css"> 
     .rounds { height: 200px; width: 150px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
     width:500%; height: 60%; margin-left:140px; margin-top: 150px; margin-right:00px; padding: 15px; overflow-y:scroll;}    
     </style>--%>
+    <style type="text/css">
+        .auto-style1 {
+            height: 26px;
+        }
+    </style>
 </head>
 <body>
     <form id="frmLoanApplication" runat="server">        
@@ -130,10 +149,10 @@
                 <td><asp:TextBox ID="txtReOrder" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Minimum Stock Level :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
-                <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Maximum Order Level :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;" class="auto-style1"><asp:Label ID="Label13" runat="server" Text="Min Stock Level :" CssClass="lbl"></asp:Label></td>
+                <td class="auto-style1"><asp:TextBox ID="txtMinimum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <td style="text-align:right;" class="auto-style1"><asp:Label ID="Label15" runat="server" Text="Max Order Level :" CssClass="lbl"></asp:Label></td>
+                <td class="auto-style1"><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label28" runat="server" Text="Max Daily Consump :" CssClass="lbl"></asp:Label></td>
@@ -168,9 +187,9 @@
         <tr><td colspan="4"><hr /></td></tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Procure Type " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text=" Select Procure Type"></asp:ListItem>
+            <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White" AutoPostBack="true" OnSelectedIndexChanged="ddlProcurementType_SelectedIndexChanged"><asp:ListItem Selected="True" Value="0" Text=" Select Procure Type"></asp:ListItem>
             <asp:ListItem Value="1" Text="Local"></asp:ListItem><asp:ListItem Value="2" Text="Import"></asp:ListItem><asp:ListItem Value="3" Text="Fabrication"></asp:ListItem><asp:ListItem Value="4" Text="Common"></asp:ListItem></asp:DropDownList></td>
-            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="HS Code " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
             <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox></td>
         </tr>
         <tr>
@@ -186,7 +205,7 @@
             <td><asp:TextBox ID="txtEOQ" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>
         </tr>
         <tr>
-            <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Minimum Order Qty. :" CssClass="lbl"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="Label20" runat="server" Text="Min Order Qty. :" CssClass="lbl"></asp:Label></td>
             <td><asp:TextBox ID="txtMOQ" runat="server" CssClass="txtBox1" BackColor="White" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             <td style="text-align:right;"><asp:Label ID="Label21" runat="server" Text="SDE Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td><asp:DropDownList ID="ddlSDE" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text=" Select SDE Classification"></asp:ListItem>

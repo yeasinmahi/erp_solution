@@ -65,7 +65,7 @@
             <tr>
                 <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" Width="100px" OnClick="btnShow_Click"/></td>
             </tr>
-             <tr><td><hr /></td></tr>
+             <tr><td colspan="4"><hr /></td></tr>
         </table>
         </td></tr>
         <tr><td>

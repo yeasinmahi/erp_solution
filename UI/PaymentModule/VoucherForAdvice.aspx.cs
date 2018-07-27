@@ -116,7 +116,6 @@ namespace UI.PaymentModule
             }
             catch { }
         }
-
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -202,7 +201,7 @@ namespace UI.PaymentModule
         {
             if (hdnconfirm.Value == "1")
             {
-                intUnitID = int.Parse(hdnUnit.Value);
+                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
                 intUser = int.Parse(hdnEnroll.Value);
                 intBankID = int.Parse(ddlBank.SelectedValue.ToString());
                 intBankAcc = int.Parse(ddlAccount.SelectedValue.ToString());
@@ -231,14 +230,14 @@ namespace UI.PaymentModule
                             }
 
                             payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
-                            amount = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString();
+                            amount = decimal.Parse(((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString()).ToString();
                             drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
                             billcode = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblRegNo")).Text.ToString();
                             po = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPOID")).Text.ToString();
                             bill = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblID")).Text.ToString();
                             party = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPartyName")).Text.ToString();
 
-                            if (strPayTo != "" && drcoa != "" && bill != "")
+                            if (payto != "" && drcoa != "" && bill != "")
                             {
                                 CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party);
                             }
@@ -266,7 +265,9 @@ namespace UI.PaymentModule
                 {
                     string msg = dt.Rows[0]["strVoucherCode"].ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                }                  
+                }
+                File.Delete(filePathForXML);
+                LoadGrid();                
             }
         }
         private void CreateVoucherXml(string insdate, string payto, string amount, string drcoa, string billcode, string po, string bill, string party)

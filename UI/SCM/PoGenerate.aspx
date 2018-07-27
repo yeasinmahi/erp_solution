@@ -9,7 +9,9 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+   
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>  
     <script type="text/javascript">
@@ -38,8 +40,8 @@
 
         <%-- Normal Textbox Onkey  Text Change Gridview row data  Calculation with ground Total --%>
         function PoGenerateCheck() {
-            var e = document.getElementById("ddlSuppliyer");
-            var suppId = e.options[e.selectedIndex].value;
+            
+            var suppId =document.getElementById("txtSupplier").value;
             var e = document.getElementById("ddlWHPrepare");
             var whId = e.options[e.selectedIndex].value;
             var e = document.getElementById("ddlCurrency");
@@ -54,7 +56,7 @@
             var destDelivery = document.getElementById("txtDestinationDelivery").value;
             var lastShipmentDte = document.getElementById("txtLastShipmentDate").value;
       
-            if ($.trim(suppId) == 0 || $.trim(suppId) == "" || $.trim(suppId) == null || $.trim(suppId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Suppliyer'); }
+            if ($.trim(suppId).length < 3 || $.trim(suppId) == "" || $.trim(suppId) == null || $.trim(suppId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please Set Suppliyer'); }
             else if ($.trim(currencyId) == 0 || $.trim(currencyId) == "" || $.trim(currencyId) == null || $.trim(currencyId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Currency'); }
             else if ($.trim(paymentTremsId) == 0 || $.trim(paymentTremsId) == "" || $.trim(paymentTremsId) == null || $.trim(paymentTremsId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select PaymentTrems'); }
             else if ($.trim(noOfShipment) == 0 || $.trim(noOfShipment) == "" || $.trim(noOfShipment) == null || $.trim(noOfShipment) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Number of Shipment'); }
@@ -127,7 +129,7 @@
         }
 
         function Registration(url) {
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
             if (window.focus) { newwindow.focus() }
         }
     </script>
@@ -422,7 +424,7 @@
         OnClick="Tab3_Click"  BackColor="#FFCC99" />
         <asp:Button Text="View PO" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
         OnClick="Tab4_Click"  BackColor="#FFCC99" />
-       <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#FFCC99"  ></asp:Label>
+       <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#3FD131"  ></asp:Label>
         
 
         <asp:MultiView ID="MainView"  runat="server">
@@ -674,9 +676,8 @@
                <%--//Po Prepare TAB--%> 
             <asp:View ID="View3" runat="server">
               <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
-                  <table>
-                      
-                      <caption>
+                  <table  > 
+                      <caption> 
                           <asp:Label ID="lblSuppAddress" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
                       </caption>
                       
@@ -691,10 +692,16 @@
                           <td style="text-align:right;">
                               <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier"></asp:Label>
                           </td>
-                          <td style="text-align:left;">
+                        <td style="text-align:left;"><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
+                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
+                        ServiceMethod="GetSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                        </cc1:AutoCompleteExtender></td>
+                          <%--<td style="text-align:left;">
                               <asp:DropDownList ID="ddlSuppliyer" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlSuppliyer_SelectedIndexChanged">
                               </asp:DropDownList>
-                          </td>
+                          </td>--%>
                           <td style="text-align:right;">
                               <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Transport"></asp:Label>
                           </td>
@@ -745,7 +752,10 @@
                         </td>
                       </tr>
 
-                      <tr>
+                      
+                  </table>
+                 <table>
+                     <tr>
                           <td colspan="6">
                               <asp:GridView ID="dgvIndentPrepare" runat="server" ShowFooter="true"  OnRowDeleting="dgvIndentPrepare_RowDeleting"  AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
                                   <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -820,7 +830,7 @@
                               </asp:GridView> 
                           </td>
                       </tr>
-                  </table>
+                 </table>
                   <Table>
                       <tr>
                           <td><asp:Label ID="lblPartialShip" Text="Partial Shipment" runat="server" /></td>

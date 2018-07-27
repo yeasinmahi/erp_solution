@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExcelDataTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Consumer\StarConsumeEntry.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StarConsumeEntry.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Corporate_sales\Corporate.cs">
       <DependentUpon>Corporate.xsd</DependentUpon>
     </Compile>
@@ -248,6 +253,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="IHB\DistributorManpowerDal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistributorManpowerDal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="IHB\DistributorWithIhbDal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Item\CurrencyTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -344,6 +359,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.cs">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Report\UDTCLSalesTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Sales\SalesConfigTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -551,6 +574,17 @@
     </None>
     <None Include="AutoChallan\ExcelDataTDS.xss">
       <DependentUpon>ExcelDataTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Consumer\StarConsumeEntry.xsc">
+      <DependentUpon>StarConsumeEntry.xsd</DependentUpon>
+    </None>
+    <None Include="Consumer\StarConsumeEntry.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StarConsumeEntry.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Consumer\StarConsumeEntry.xss">
+      <DependentUpon>StarConsumeEntry.xsd</DependentUpon>
     </None>
     <None Include="Corporate_sales\Corporate.xsc">
       <DependentUpon>Corporate.xsd</DependentUpon>
@@ -761,6 +795,28 @@
     <None Include="Global\ShipPointTDS.xss">
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
     </None>
+    <None Include="IHB\DistributorManpowerDal.xsc">
+      <DependentUpon>DistributorManpowerDal.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorManpowerDal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DistributorManpowerDal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="IHB\DistributorManpowerDal.xss">
+      <DependentUpon>DistributorManpowerDal.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorWithIhbDal.xsc">
+      <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>
+    </None>
+    <None Include="IHB\DistributorWithIhbDal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DistributorWithIhbDal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="IHB\DistributorWithIhbDal.xss">
+      <DependentUpon>DistributorWithIhbDal.xsd</DependentUpon>
+    </None>
     <None Include="Item\CurrencyTDS.xsc">
       <DependentUpon>CurrencyTDS.xsd</DependentUpon>
     </None>
@@ -951,6 +1007,17 @@
     </None>
     <None Include="Sales\Report\SalesByCusProTDS.xss">
       <DependentUpon>SalesByCusProTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xsc">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UDTCLSalesTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Sales\Report\UDTCLSalesTDS.xss">
+      <DependentUpon>UDTCLSalesTDS.xsd</DependentUpon>
     </None>
     <None Include="Sales\SalesConfigTDS.xsc">
       <DependentUpon>SalesConfigTDS.xsd</DependentUpon>
