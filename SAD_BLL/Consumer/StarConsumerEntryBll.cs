@@ -92,6 +92,38 @@ namespace SAD_BLL.Consumer
             return adapter.GetGhatInfo(intId);
         }
 
+        public DataTable GetTrading(DateTime dteFormDate, DateTime dteTodate, decimal monFamilySaving,decimal monTradepromo)
+        {
+            sprACCLAllTradingHouseTableAdapter adapter = new sprACCLAllTradingHouseTableAdapter();
+            return adapter.GetTrading(dteFormDate, dteTodate, monFamilySaving, monTradepromo);
+        }
+        public DataTable GetDistributorYearlyAch(DateTime dteFormDate, DateTime dteTodate, decimal monCommisionRate, string reportType)
+        {
+            sprACCLDistributorYearlyachTableAdapter adapter = new sprACCLDistributorYearlyachTableAdapter();
+            return adapter.GetDistributorYearlyAch(dteFormDate, dteTodate, monCommisionRate, reportType);
+        }
+        public DataTable GetExclusiveRetailer(DateTime dteFormDate, DateTime dteTodate, decimal monCommisionRate, string reportType)
+        {
+            sprACCLDistributorYearlyachTableAdapter adapter = new sprACCLDistributorYearlyachTableAdapter();
+            return adapter.GetDistributorYearlyAch(dteFormDate, dteTodate, monCommisionRate, reportType);
+        }
+        public DataTable GetExlusiveRetailer(DateTime dteFormDate, DateTime dteTodate, decimal monCommisionRate, string reportType)
+        {
+            sprACCLExclusiveRetaillComTableAdapter adapter = new sprACCLExclusiveRetaillComTableAdapter();
+            return adapter.GetExlusiveRetailer(dteFormDate, dteTodate, monCommisionRate, reportType);
+        }
+        public DataTable GetExclusiveDistributor(DateTime dteFormDate, DateTime dteTodate, decimal monCommisionRate)
+        {
+            sprACCLExclusiveDistributroCommTableAdapter adapter = new sprACCLExclusiveDistributroCommTableAdapter();
+            return adapter.GetExclusiveDistributor(dteFormDate, dteTodate, monCommisionRate);
+        }
+        public DataTable GetDitributorCoverage(DateTime dteFormDate, DateTime dteTodate, int minimumCoverg, double commissionrate, string reportname)
+        {
+            sprACCLDistributorCoverageCommissionTableAdapter adapter = new sprACCLDistributorCoverageCommissionTableAdapter();
+            return adapter.GetDitributorCoverage(dteFormDate, dteTodate, minimumCoverg,commissionrate,reportname);
+        }
+        
+
 
     }
 }

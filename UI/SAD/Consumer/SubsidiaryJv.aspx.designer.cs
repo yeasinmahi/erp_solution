@@ -139,6 +139,33 @@ namespace UI.SAD.Consumer {
         protected global::System.Web.UI.WebControls.TextBox toTextBox;
         
         /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
+        /// ddlJvType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJvType;
+        
+        /// <summary>
+        /// subsidaryDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow subsidaryDropDown;
+        
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -175,13 +202,13 @@ namespace UI.SAD.Consumer {
         protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
-        /// Label4 control.
+        /// factoryRateLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label factoryRateLbl;
         
         /// <summary>
         /// factoryRateTextBox control.
@@ -193,13 +220,13 @@ namespace UI.SAD.Consumer {
         protected global::System.Web.UI.WebControls.TextBox factoryRateTextBox;
         
         /// <summary>
-        /// Label5 control.
+        /// ghatRateLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label ghatRateLbl;
         
         /// <summary>
         /// ghatRateTextBox control.
@@ -254,5 +281,14 @@ namespace UI.SAD.Consumer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdv;
+        
+        /// <summary>
+        /// dyGv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell dyGv;
     }
 }
