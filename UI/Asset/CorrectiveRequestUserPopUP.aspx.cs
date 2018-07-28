@@ -19,8 +19,9 @@ namespace UI.Asset
         {
             if (!IsPostBack)
             {
-                int Mnumber = int.Parse(Request.QueryString["ID"].ToString()); 
-                dt = objUserRequest.CorrectiveUserRequestDetalisView(51, Mnumber, 0, 0, 0);
+                int Mnumber = int.Parse(Request.QueryString["ID"].ToString());
+                //int Mnumber = 159933;
+                dt = objUserRequest.CorrectiveUserRequestDetalisView(63, Mnumber, 0, 0, 0);//51 was before
                 dgvView.DataSource = dt;
                 dgvView.DataBind();
                 dt.Clear();

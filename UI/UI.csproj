@@ -258,6 +258,7 @@
     <Content Include="Asset\jquery-1.8.3.min.js" />
     <Content Include="Asset\Maintenance.aspx" />
     <Content Include="Asset\MaintenanceReport.aspx" />
+    <Content Include="Asset\MaintenancePendingRequest.aspx" />
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
@@ -2281,6 +2282,13 @@
     </Compile>
     <Compile Include="Asset\MaintenanceReport.aspx.designer.cs">
       <DependentUpon>MaintenanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\MaintenancePendingRequest.aspx.cs">
+      <DependentUpon>MaintenancePendingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\MaintenancePendingRequest.aspx.designer.cs">
+      <DependentUpon>MaintenancePendingRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\MaintenanceWorkOrderPopUp.aspx.cs">
       <DependentUpon>MaintenanceWorkOrderPopUp.aspx</DependentUpon>
