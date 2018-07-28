@@ -35,7 +35,7 @@ namespace UI.SAD.Consumer
 
             int enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             int intmainheadcoaid = 33855;
-            int unitId = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            int unitId = 4;
 
             foreach (GridViewRow gvr in grdv.Rows)
             {
