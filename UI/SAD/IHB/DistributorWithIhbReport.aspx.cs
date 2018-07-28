@@ -13,6 +13,7 @@ namespace UI.SAD.IHB
         private DistributorWithIhbBll _bll = new DistributorWithIhbBll();
         protected void Page_Load(object sender, EventArgs e)
         {
+            pnlUpperControl.DataBind();
             LoadGreadView();
         }
 

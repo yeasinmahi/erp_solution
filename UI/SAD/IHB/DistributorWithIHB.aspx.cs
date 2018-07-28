@@ -21,6 +21,7 @@ namespace UI.SAD.IHB
             XmlParser.DeleteFile(_filePathForXml);
             if (!IsPostBack)
             {
+                pnlUpperControl.DataBind();
                 LoadRegion();
             }
 

@@ -1029,8 +1029,12 @@
     <Content Include="SAD\AutoChallan\Stock.aspx" />
     <Content Include="SAD\AutoChallan\TradeofferBill.aspx" />
     <Content Include="SAD\AutoChallan\TransportSet.aspx" />
+    <Content Include="SAD\Consumer\DoReport.aspx" />
+    <Content Include="SAD\Consumer\GhatEntry.aspx" />
     <Content Include="SAD\Consumer\StarConsumerEntry.aspx" />
     <Content Include="SAD\Consumer\StarConsumeReport.aspx" />
+    <Content Include="SAD\Consumer\SubsidiaryJv.aspx" />
+    <Content Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateDistributor.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateProduct.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLReconcile.aspx" />
@@ -1075,6 +1079,7 @@
     <Content Include="SAD\ExcelChallan\frmProductView.aspx" />
     <Content Include="SAD\ExcelChallan\frmVehicleSetbyTransport.aspx" />
     <Content Include="SAD\ExcelChallan\frmExcelupload.aspx" />
+    <Content Include="SAD\IHB\DistributorManPowerInfo.aspx" />
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
     <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
@@ -1287,6 +1292,7 @@
     <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
+    <Content Include="SCM\MaterialApprovalStatus.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -4821,6 +4827,20 @@
     <Compile Include="SAD\AutoChallan\TransportSet.aspx.designer.cs">
       <DependentUpon>TransportSet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Consumer\DoReport.aspx.cs">
+      <DependentUpon>DoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\DoReport.aspx.designer.cs">
+      <DependentUpon>DoReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\GhatEntry.aspx.cs">
+      <DependentUpon>GhatEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\GhatEntry.aspx.designer.cs">
+      <DependentUpon>GhatEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Consumer\StarConsumerEntry.aspx.cs">
       <DependentUpon>StarConsumerEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4834,6 +4854,20 @@
     </Compile>
     <Compile Include="SAD\Consumer\StarConsumeReport.aspx.designer.cs">
       <DependentUpon>StarConsumeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\SubsidiaryJv.aspx.cs">
+      <DependentUpon>SubsidiaryJv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\SubsidiaryJv.aspx.designer.cs">
+      <DependentUpon>SubsidiaryJv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx.cs">
+      <DependentUpon>TsoEmailAndJsoEnroll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx.designer.cs">
+      <DependentUpon>TsoEmailAndJsoEnroll.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Corporate_sales\AFBLCorporateDistributor.aspx.cs">
       <DependentUpon>AFBLCorporateDistributor.aspx</DependentUpon>
@@ -5142,6 +5176,13 @@
     </Compile>
     <Compile Include="SAD\ExcelChallan\frmExcelupload.aspx.designer.cs">
       <DependentUpon>frmExcelupload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorManPowerInfo.aspx.cs">
+      <DependentUpon>DistributorManPowerInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\IHB\DistributorManPowerInfo.aspx.designer.cs">
+      <DependentUpon>DistributorManPowerInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\IHB\DistributorWithIHB.aspx.cs">
       <DependentUpon>DistributorWithIHB.aspx</DependentUpon>
@@ -6613,6 +6654,13 @@
     </Compile>
     <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
       <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MaterialApprovalStatus.aspx.cs">
+      <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MaterialApprovalStatus.aspx.designer.cs">
+      <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
