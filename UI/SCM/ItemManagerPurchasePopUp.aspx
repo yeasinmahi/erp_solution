@@ -184,11 +184,12 @@
             <td style="text-align:right;"><asp:Label ID="Label8" runat="server" Text="Plant :" CssClass="lbl"></asp:Label></td>
             <td><asp:TextBox ID="txtPlant" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false" ></asp:TextBox></td>                
         </tr>
+        <tr>
+            <td style="text-align:right;"><asp:Label ID="Label30" runat="server" Text="Procurement Type :" CssClass="lbl"></asp:Label></td>
+            <td><asp:TextBox ID="txtProcumentType" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false" ></asp:TextBox></td>                
+        </tr>
         <tr><td colspan="4"><hr /></td></tr>
         <tr>
-            <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Procure Type " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White" AutoPostBack="true" OnSelectedIndexChanged="ddlProcurementType_SelectedIndexChanged"><asp:ListItem Selected="True" Value="0" Text=" Select Procure Type"></asp:ListItem>
-            <asp:ListItem Value="1" Text="Local"></asp:ListItem><asp:ListItem Value="2" Text="Import"></asp:ListItem><asp:ListItem Value="3" Text="Fabrication"></asp:ListItem><asp:ListItem Value="4" Text="Common"></asp:ListItem></asp:DropDownList></td>
             <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="HS Code :" CssClass="lbl"></asp:Label></td>
             <td><asp:TextBox ID="txtHSCode" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox></td>
         </tr>
