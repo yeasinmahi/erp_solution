@@ -53,21 +53,21 @@
        <input type="button" value="Print"  onclick="javascript: printDiv('printablediv'), Print()" />
        <div id="print"><div id="printablediv" style="width: 100%; height: 582px">
       <table  class="tbldecoration">
-        <tr class="tblrowodd"><td>Distributor Name :</td> <td colspan="3"><asp:Label ID="lblDist" runat="server"></asp:Label></td></tr>
-        <tr class="tblrowodd"><td>Vehcile No :</td>
+        <tr class="tblrowodd"><td>Distributor Name&nbsp; :</td> <td colspan="3"><asp:Label ID="lblDist" runat="server"></asp:Label></td></tr>
+        <tr class="tblrowodd"><td>Vehcile No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
         <td><asp:TextBox ID="txtVehicleno" runat="server"></asp:TextBox></td>
         <td>Driver Name :</td>
         <td><asp:TextBox ID="txtDriverName" runat="server"></asp:TextBox></td>
         </tr>
         <tr class="tblrowodd">
-        <td>Mobile No:</td><td><asp:TextBox ID="txtMobile" runat="server"></asp:TextBox></td>
-        <td>Slip No:</td><td><asp:TextBox ID="txtSlipno" runat="server"></asp:TextBox></td>                
+        <td>Mobile No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td><td><asp:TextBox ID="txtMobile" runat="server"></asp:TextBox></td>
+        <td>Slip No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td><td><asp:TextBox ID="txtSlipno" runat="server"></asp:TextBox></td>                
         </tr>
         <tr class="tblrowodd"> 
-          <td>Supplier Name:</td>
+          <td>Supplier Name&nbsp;&nbsp;&nbsp;&nbsp; :</td>
           <td><asp:Label ID="lblSupplierName" runat="server"></asp:Label></td>
-            <td>Batch No :</td>
-          <td  style="text-align:right"><asp:TextBox ID="txtBatchno" runat="server"></asp:TextBox><asp:Button ID="btnSave" Font-Bold="true" runat="server"  Text="Challan Save" CssClass="btnbutton" OnClick="btnSave_Click" /></td>
+          <td>Batch No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
+          <td style="text-align:right"><asp:TextBox ID="txtBatchno" runat="server"></asp:TextBox><asp:Button ID="btnSave" Font-Bold="true" runat="server"  Text="Challan Save" CssClass="btnbutton" OnClick="btnSave_Click" /></td>
         </tr>
         <tr class="tblrowodd"> <td colspan="4"></td> </tr>
         <tr class="tblrowodd"><td colspan="4">        
