@@ -95,8 +95,8 @@ namespace UI.SAD.IHB
             string strSalesRepresentive1 = salesRepresentative1TextBox.Text;
             string strSalesRepresentive2 = salesRepresentative1TextBox.Text;
             string message = String.Empty;
-            int insertBy = 369116;
-            int unitId = 4;
+            int insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+            int unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
             dynamic obj = new
             {
                 intCustIDEntp = intCustIDEntp,

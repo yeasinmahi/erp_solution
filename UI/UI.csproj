@@ -258,6 +258,7 @@
     <Content Include="Asset\jquery-1.8.3.min.js" />
     <Content Include="Asset\Maintenance.aspx" />
     <Content Include="Asset\MaintenanceReport.aspx" />
+    <Content Include="Asset\MaintenancePendingRequest.aspx" />
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
@@ -1029,8 +1030,10 @@
     <Content Include="SAD\AutoChallan\TradeofferBill.aspx" />
     <Content Include="SAD\AutoChallan\TransportSet.aspx" />
     <Content Include="SAD\Consumer\DoReport.aspx" />
+    <Content Include="SAD\Consumer\GhatEntry.aspx" />
     <Content Include="SAD\Consumer\StarConsumerEntry.aspx" />
     <Content Include="SAD\Consumer\StarConsumeReport.aspx" />
+    <Content Include="SAD\Consumer\SubsidiaryJv.aspx" />
     <Content Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateDistributor.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateProduct.aspx" />
@@ -2279,6 +2282,13 @@
     </Compile>
     <Compile Include="Asset\MaintenanceReport.aspx.designer.cs">
       <DependentUpon>MaintenanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\MaintenancePendingRequest.aspx.cs">
+      <DependentUpon>MaintenancePendingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\MaintenancePendingRequest.aspx.designer.cs">
+      <DependentUpon>MaintenancePendingRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\MaintenanceWorkOrderPopUp.aspx.cs">
       <DependentUpon>MaintenanceWorkOrderPopUp.aspx</DependentUpon>
@@ -4824,6 +4834,13 @@
     <Compile Include="SAD\Consumer\DoReport.aspx.designer.cs">
       <DependentUpon>DoReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Consumer\GhatEntry.aspx.cs">
+      <DependentUpon>GhatEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\GhatEntry.aspx.designer.cs">
+      <DependentUpon>GhatEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Consumer\StarConsumerEntry.aspx.cs">
       <DependentUpon>StarConsumerEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4837,6 +4854,13 @@
     </Compile>
     <Compile Include="SAD\Consumer\StarConsumeReport.aspx.designer.cs">
       <DependentUpon>StarConsumeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\SubsidiaryJv.aspx.cs">
+      <DependentUpon>SubsidiaryJv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\SubsidiaryJv.aspx.designer.cs">
+      <DependentUpon>SubsidiaryJv.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx.cs">
       <DependentUpon>TsoEmailAndJsoEnroll.aspx</DependentUpon>
