@@ -42,14 +42,25 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnDataView_Click(object sender, EventArgs e)
         {
+            getReport();
+        }
+
+        private void getReport()
+        {
             dt = objExcel.UploadDataOrder(int.Parse(ddlshippoint.SelectedValue));
             dgvExcelOrder.DataSource = dt;
             dgvExcelOrder.DataBind();
             dgvExcelOrder.Visible = true;
             dgvSlip.Visible = false;
         }
+
         protected double Pendingtotal = 0; protected double TotalQtytotal = 0;
         protected void btnLoadingSlip_Click(object sender, EventArgs e)
+        {
+            LoadingSlip();
+        }
+
+        private void LoadingSlip()
         {
             dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
             dgvSlip.DataSource = dt;
@@ -57,6 +68,7 @@ namespace UI.SAD.ExcelChallan
             dgvSlip.Visible = true;
             dgvExcelOrder.Visible = false;
         }
+
         protected void dgvExcelOrder_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -111,7 +123,7 @@ namespace UI.SAD.ExcelChallan
                 Custid = int.Parse(searchKey[0].ToString());
                 objExcel.getOrderdelete(Custid,int.Parse(ddlshippoint.SelectedValue));
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
-                
+                getReport();
             }
             catch { }
         }
@@ -126,7 +138,7 @@ namespace UI.SAD.ExcelChallan
                 Custid = int.Parse(searchKey[0].ToString());
                 objExcel.getOrderSlipdelete(Custid, int.Parse(ddlshippoint.SelectedValue));
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
-
+                LoadingSlip();
             }
             catch { }
         }

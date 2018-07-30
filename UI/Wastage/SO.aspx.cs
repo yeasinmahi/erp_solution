@@ -43,7 +43,8 @@ namespace UI.Wastage
                     File.Delete(filePathForXML);
 
                     dt = new DataTable();
-                    dt = obj.GetUnitList(int.Parse(hdnEnroll.Value));
+                    //dt = obj.GetUnitList(int.Parse(hdnEnroll.Value));
+                    dt = obj.GetUnit();
                     ddlUnitName.DataTextField = "strUnit";
                     ddlUnitName.DataValueField = "intUnitID";
                     ddlUnitName.DataSource = dt;
@@ -71,7 +72,7 @@ namespace UI.Wastage
 
         private void WHlist()
         {
-            dt = obj.getWHbyUnit(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            dt = obj.getWHbyUnitList(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlWHName.DataTextField = "strWastageWareHouseName";
             ddlWHName.DataValueField = "intWastageWareHouseID";
             ddlWHName.DataSource = dt;
@@ -126,7 +127,7 @@ namespace UI.Wastage
 
         protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            WHlist();
         }
         private void CreateAddXml(string itemid, string itemname, string uom, string qty, string rate, string value, string remarks)
         {

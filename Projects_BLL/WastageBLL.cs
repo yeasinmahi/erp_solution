@@ -40,6 +40,17 @@ namespace Projects_BLL
             catch { }
         }
 
+        public DataTable GetUnit()
+        {
+            
+            try
+            {
+                tblUnitTableAdapter adpunit = new tblUnitTableAdapter();
+                return adpunit.GetUnitList();
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getInvintoryWH(int unitid)
         {
             try
@@ -74,6 +85,28 @@ namespace Projects_BLL
                 }
                
             } 
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getWHbyEnroll(int enroll)
+        {
+            
+             try
+            {
+                tblWHListTableAdapter adpunitbywh = new tblWHListTableAdapter();
+                return adpunitbywh.GetWH(enroll);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getWHbyUnitList(int unit)
+        {
+            
+             try
+            {
+                tblWastageWareHouseTableAdapter adpunitbywh = new tblWastageWareHouseTableAdapter();
+                return adpunitbywh.GetData(unit);
+            }
             catch { return new DataTable(); }
         }
 
@@ -120,6 +153,7 @@ namespace Projects_BLL
         public DataTable getWHbyUnit(int Unitid)
         {
             try {
+
                 tblWHByUnitTableAdapter adpwhbyunit = new tblWHByUnitTableAdapter();
                 return adpwhbyunit.GetWHListByunit(Unitid);
             } catch { return new DataTable(); }
