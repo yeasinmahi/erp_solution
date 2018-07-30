@@ -74,12 +74,6 @@
             margin-top: 0px;
         }
         .ddList {}
-        .auto-style1 {
-            height: 24px;
-        }
-        .auto-style2 {
-            height: 139px;
-        }
         .txtBox {}
         </style>
     </head>
@@ -108,7 +102,7 @@
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />         
     <div class="tabs_container" align="Center" >Maintenance Service Request Detalis</div>
    
-       <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
+      <%-- <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
                          <Columns>
                              <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
                              <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
@@ -124,7 +118,32 @@
                              <asp:BoundField DataField="strItemName" HeaderText="Parts" SortExpression="strItemName" />
                              <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                          </Columns>
-                     </asp:GridView>
+                     </asp:GridView>--%>
+          <asp:GridView ID="dgvView" runat="server" AutoGenerateColumns="False">
+              <Columns>
+                  <asp:TemplateField HeaderText="SL">
+                      <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                  </asp:TemplateField>
+                  <asp:BoundField DataField="intID" HeaderText="ID" SortExpression="intID" Visible="False" />
+                  <asp:BoundField DataField="strNameOfAsset" HeaderText="Name of Asset" SortExpression="strNameOfAsset" />
+
+                  <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
+                  <asp:BoundField DataField="strJobStationName" HeaderText="Job Station" SortExpression="strJobStationName" />
+                  <asp:BoundField DataField="strAssetNumber" HeaderText="Asset Code" SortExpression="strAssetNumber" />
+                  <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
+                  <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" />
+                  <asp:BoundField DataField="ReqDate" HeaderText="Req Date" SortExpression="ReqDate" />
+                  <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" />
+                  <asp:BoundField DataField="strLocation" HeaderText="Location" SortExpression="strLocation" />
+
+                  <asp:BoundField DataField="SPartsName" HeaderText="Require S.Parts Name" SortExpression="SPartsName" />
+                  <asp:BoundField DataField="SPartsStatus" HeaderText="S.Parts Status" SortExpression="SPartsStatus" />
+                  <asp:BoundField DataField="JobStatus" HeaderText="Job Status" SortExpression="JobStatus" />
+                  <asp:BoundField DataField="dteServiceEndDate" HeaderText="End Date" SortExpression="dteServiceEndDate" />
+                  <asp:BoundField DataField="VehicleCondition" HeaderText="Vehicle Condition" SortExpression="VehicleCondition" />
+
+              </Columns>
+          </asp:GridView>
              
         
          

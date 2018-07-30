@@ -7505,7 +7505,7 @@ select strLocationName,intStoreLocationID from ERP_Inventory.dbo.tblWearHouseSto
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAutoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @" SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, numReOrderQty, numReOrderLevel, numMinimumStock, numMaximumStock, numMaxDailyConsump, numMinDailyConsump, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName
+            this._commandCollection[2].CommandText = @" SELECT strItemName, strDescription, strPart, strModel, strSerial, strBrand, strSpecifiaction, strOrigin, numReOrderQty, numReOrderLevel, numMinimumStock, numMaximumStock, numMaxDailyConsump, numMinDailyConsump, numSafetyStock, intSelfTime, strUOM, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory, strPlantName, strPurchaseType
  FROM ERP_Inventory.dbo.tblTempItemList
  WHERE intAutoID = @intAutoID";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
