@@ -18,10 +18,6 @@
                 GridVwHeaderCheckbox.rows[i].cells[0].getElementsByTagName("INPUT")[0].checked = Checkbox.checked;
             }
         }
-        
-        $(document ).ready(function() {
-            $("#ctl07$ctl01$chkbxAll").onclick(CheckAll(this));
-        });
     </script>
 </head>
 <body>
@@ -77,6 +73,8 @@
                                     <asp:ListItem Text="Exclusive Retailer" Value="ExclusiveRetailer"></asp:ListItem>
                                     <asp:ListItem Text="Exclusive Distributor" Value="ExclusiveDistributor"></asp:ListItem>
                                     <asp:ListItem Text="Distributor Covarage" Value="DistributorCovarage"></asp:ListItem>
+                                    <asp:ListItem Text="Manpower Manager" Value="ManpowerManager"></asp:ListItem>
+                                    <asp:ListItem Text="Manpower Distributor" Value="ManpowerDistributor"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -99,7 +97,7 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
-                        <tr class="tblroweven">
+                        <tr class="tblroweven" runat="server" id="inputTextBox">
                             <td style="text-align: right;">
                                 <asp:Label ID="factoryRateLbl" CssClass="lbl" runat="server" Text="Factory/Family Rate"></asp:Label>
                             </td>

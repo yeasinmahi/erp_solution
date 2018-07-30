@@ -122,7 +122,23 @@ namespace SAD_BLL.Consumer
             sprACCLDistributorCoverageCommissionTableAdapter adapter = new sprACCLDistributorCoverageCommissionTableAdapter();
             return adapter.GetDitributorCoverage(dteFormDate, dteTodate, minimumCoverg,commissionrate,reportname);
         }
-        
+        public DataTable GetManpowerManager(DateTime dteFormDate, DateTime dteTodate)
+        {
+            sprACCCustmManpowerOnlyManagerTableAdapter adapter = new sprACCCustmManpowerOnlyManagerTableAdapter();
+            return adapter.GetManpowerManager(dteFormDate, dteTodate);
+        }
+        public DataTable GetDistributorManpowerCommission(DateTime dteFormDate, DateTime dteTodate, int reportType)
+        {
+            sprACCLDistributorManpowerCommissionTableAdapter adapter = new sprACCLDistributorManpowerCommissionTableAdapter();
+            return adapter.GetDistributorManpowerCommission(dteFormDate, dteTodate, reportType);
+        }
+
+        public DataTable GetDistributorAndIhbSales(DateTime dteFormDate, DateTime dteTodate)
+        {
+            sprACCLDistributorandIHBSalesTableAdapter adapter = new sprACCLDistributorandIHBSalesTableAdapter();
+            return adapter.GetDistributorAndIhbSales(dteFormDate, dteTodate);
+        }
+
 
 
     }

@@ -35,7 +35,7 @@ namespace UI.SAD.Consumer
             string strVcode = "voucherJV";
             string strPrefix = "JV";
             string glblnarration = "ACCL Cash D.O Commission from :" + fromTextBox.Text + "to " + toTextBox.Text;
-            decimal totalCommision = Convert.ToDecimal(totalAmount.Value);
+            decimal totalCommision = 0;
             //totalcom = Convert.ToDecimal(lbltotalcomamount.Text);
 
             int enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -93,6 +93,20 @@ namespace UI.SAD.Consumer
                         eachcustamount = gvr.Cells[11].Text;
                         customername = gvr.Cells[2].Text;
                     }
+                    else if (jvType.Equals("ManpowerManager"))
+                    {
+                        customercoaid = gvr.Cells[6].Text;
+                        eachcustnarration = gvr.Cells[18].Text;
+                        eachcustamount = gvr.Cells[17].Text;
+                        customername = gvr.Cells[2].Text;
+                    }
+                    else if (jvType.Equals("ManpowerDistributor"))
+                    {
+                        customercoaid = gvr.Cells[6].Text;
+                        eachcustnarration = gvr.Cells[18].Text;
+                        eachcustamount = gvr.Cells[17].Text;
+                        customername = gvr.Cells[2].Text;
+                    }
                     else
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
@@ -113,9 +127,10 @@ namespace UI.SAD.Consumer
                             "alert('XmlFile-- " + message + "');", true);
                         break;
                     }
-
+                    totalCommision  +=  Convert.ToDecimal(eachcustamount);
                 }
             }
+            
             XmlDocument doc = new XmlDocument();
             doc.Load(_filePathForXml);
             DataTable dt = statement.insertdataforsalescommissionjv(doc.OuterXml, unitId, strVcode, strPrefix, glblnarration, totalCommision, enroll, intmainheadcoaid);
@@ -182,6 +197,14 @@ namespace UI.SAD.Consumer
                     double ghatrate = Convert.ToDouble(ghatRateTextBox.Text);
                     source = _bll.GetDitributorCoverage(fromDateTime, toDateTime, familyRate, ghatrate, "Topsheet");
                 }
+                else if (jvType.Equals("ManpowerManager"))
+                {
+                    source = _bll.GetManpowerManager(fromDateTime, toDateTime);
+                }
+                else if (jvType.Equals("ManpowerDistributor"))
+                {
+                    source = _bll.GetDistributorManpowerCommission(fromDateTime, toDateTime, 2);
+                }
 
             }
             catch (Exception exception)
@@ -241,6 +264,14 @@ namespace UI.SAD.Consumer
             {
                 gridView = CreateDistributorCovarage(gridView);
             }
+            else if (jvType.Equals("ManpowerManager"))
+            {
+                gridView = CreateManpowerManager(gridView);
+            }
+            else if (jvType.Equals("ManpowerDistributor"))
+            {
+                gridView = CreateManpowerDistributor(gridView);
+            }
 
             totalAmount.Value = source.AsEnumerable()
                 .Sum(x => x.Field<decimal>("grand"))
@@ -249,8 +280,6 @@ namespace UI.SAD.Consumer
             gridView.DataBind();
             //dyGv.Controls.Add(gridView);
         }
-
-        
 
         private GridView CreateSubsidiaryGridColumn(GridView gridView)
         {
@@ -352,6 +381,49 @@ namespace UI.SAD.Consumer
             gridView.Columns.Add(GridViewUtil.CreateBoundField("narrations", "narrations"));
             return gridView;
         }
+        private GridView CreateManpowerManager(GridView gridView)
+        {
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("salesOffice", "salesOffice"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("totalSales", "totalSales"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("targets", "targets"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("acv", "acv"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("manager", "manager"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr1", "sr1"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr2", "sr2"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("managerCom", "managerCom"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr1Com", "sr1Com"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr2Com", "sr2Com"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("narrations", "narrations"));
+            return gridView;
+        }
+        private GridView CreateManpowerDistributor(GridView gridView)
+        {
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("salesOffice", "salesOffice"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("totalSales", "totalSales"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("targets", "targets"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("acv", "acv"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("manager", "manager"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr1", "sr1"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr2", "sr2"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("managerCom", "managerCom"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr1Com", "sr1Com"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("sr2Com", "sr2Com"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("narrations", "narrations"));
+            return gridView;
+        }
+        
         protected void ddlJvType_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             LoadNecessaryUi();
@@ -369,6 +441,7 @@ namespace UI.SAD.Consumer
                     ghatRateLbl.Text = @"Ghat Rate";
                     ghatRateLbl.Visible = true;
                     ghatRateTextBox.Visible = true;
+                    inputTextBox.Visible = true;
                     break;
                 case "TradingHouse":
                     subsidaryDropDown.Visible = false;
@@ -376,24 +449,28 @@ namespace UI.SAD.Consumer
                     ghatRateLbl.Text = @"Trade Rate";
                     ghatRateLbl.Visible = true;
                     ghatRateTextBox.Visible = true;
+                    inputTextBox.Visible = true;
                     break;
                 case "YearlyAch":
                     subsidaryDropDown.Visible = false;
                     factoryRateLbl.Text = @"Commistion Rate";
                     ghatRateLbl.Visible = false;
                     ghatRateTextBox.Visible = false;
+                    inputTextBox.Visible = true;
                     break;
                 case "ExclusiveRetailer":
                     subsidaryDropDown.Visible = false;
                     factoryRateLbl.Text = @"Commistion Rate";
                     ghatRateLbl.Visible = false;
                     ghatRateTextBox.Visible = false;
+                    inputTextBox.Visible = true;
                     break;
                 case "ExclusiveDistributor":
                     subsidaryDropDown.Visible = false;
                     factoryRateLbl.Text = @"Commistion Rate";
                     ghatRateLbl.Visible = false;
                     ghatRateTextBox.Visible = false;
+                    inputTextBox.Visible = true;
                     break;
                 case "DistributorCovarage":
                     subsidaryDropDown.Visible = false;
@@ -401,6 +478,19 @@ namespace UI.SAD.Consumer
                     factoryRateLbl.Text = @"Commision Rate/Bag";
                     ghatRateLbl.Visible = true;
                     ghatRateTextBox.Visible = true;
+                    inputTextBox.Visible = true;
+                    break;
+                case "ManpowerManager":
+                    subsidaryDropDown.Visible = false;
+                    ghatRateLbl.Visible = true;
+                    ghatRateTextBox.Visible = true;
+                    inputTextBox.Visible = false;
+                    break;
+                case "ManpowerDistributor":
+                    subsidaryDropDown.Visible = false;
+                    ghatRateLbl.Visible = true;
+                    ghatRateTextBox.Visible = true;
+                    inputTextBox.Visible = false;
                     break;
 
                 default:
