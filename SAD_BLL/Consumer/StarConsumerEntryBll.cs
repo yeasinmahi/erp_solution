@@ -138,6 +138,16 @@ namespace SAD_BLL.Consumer
             sprACCLDistributorandIHBSalesTableAdapter adapter = new sprACCLDistributorandIHBSalesTableAdapter();
             return adapter.GetDistributorAndIhbSales(dteFormDate, dteTodate);
         }
+        public DataTable GetBoostupCom(DateTime dteFormDate, DateTime dteTodate)
+        {
+            sprACCLBoostupCommissionReportTableAdapter adapter = new sprACCLBoostupCommissionReportTableAdapter();
+            return adapter.GetBoostupCom(dteFormDate, dteTodate);
+        }
+        public DataTable GetCashOrRetailCom(DateTime dteFormDate, DateTime dteTodate, int monCreditLimit)
+        {
+            sprACCLCashBoostupCommissionTableAdapter adapter = new sprACCLCashBoostupCommissionTableAdapter();
+            return adapter.GetCashOrRetail(dteFormDate, dteTodate,monCreditLimit);
+        }
 
 
 
