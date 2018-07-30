@@ -64,6 +64,22 @@
                         </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
+                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="JV Type"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlJvType" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJvType_OnSelectedIndexChanged">
+                                    <asp:ListItem Text="Subsidairy" Value="Subsidairy"></asp:ListItem>
+                                    <asp:ListItem Text="Trading House" Value="TradingHouse"></asp:ListItem>
+                                    <asp:ListItem Text="Yearly Achievment" Value="YearlyAch"></asp:ListItem>
+                                    <asp:ListItem Text="Exclusive Retailer" Value="ExclusiveRetailer"></asp:ListItem>
+                                    <asp:ListItem Text="Exclusive Distributor" Value="ExclusiveDistributor"></asp:ListItem>
+                                    <asp:ListItem Text="Distributor Covarage" Value="DistributorCovarage"></asp:ListItem>
+                                    <asp:ListItem Text="Manpower Manager" Value="ManpowerManager"></asp:ListItem>
+                                    <asp:ListItem Text="Manpower Distributor" Value="ManpowerDistributor"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven" id="subsidaryDropDown" runat="server">
+                            <td style="text-align: right;">
                                 <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Teritory"></asp:Label></td>
                             <td>
                                 <asp:DropDownList ID="ddlSalesOffice" CssClass="ddList" runat="server">
@@ -81,16 +97,16 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
-                        <tr class="tblroweven">
+                        <tr class="tblroweven" runat="server" id="inputTextBox">
                             <td style="text-align: right;">
-                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Factory Rate"></asp:Label>
+                                <asp:Label ID="factoryRateLbl" CssClass="lbl" runat="server" Text="Factory/Family Rate"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="factoryRateTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
                             </td>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Ghat Rate"></asp:Label>
+                                <asp:Label ID="ghatRateLbl" CssClass="lbl" runat="server" Text="Ghat/Trade Rate"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="ghatRateTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
@@ -107,7 +123,7 @@
                                 <asp:Label ID="Label6" CssClass="lbl" runat="server" Text="Created JV No"></asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="jvNumverLbl" CssClass="lbl" runat="server"  Font-Bold="True" ForeColor="#006600"></asp:Label>
+                                <asp:Label ID="jvNumverLbl" CssClass="lbl" runat="server" Font-Bold="True" ForeColor="#006600"></asp:Label>
                             </td>
                         </tr>
                     </table>
@@ -132,29 +148,14 @@
                                                 <%--<asp:HiddenField ID="strTerritory" runat="server" Value='<%# Bind("strTerritory") %>' />--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="customerName" HeaderText="Customer Name" SortExpression="customerName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="tarritory" HeaderText="Tarritory" SortExpression="tarritory" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <%--<asp:BoundField DataField="strPhone" HeaderText="Phone" SortExpression="strPhone" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strTerritory" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />--%>
-                                        <asp:BoundField DataField="area" HeaderText="Area" SortExpression="area" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="region" HeaderText="Region" SortExpression="intCustomerid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="coa" HeaderText="CoA" SortExpression="strSalesOffice" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="qntCustVhFactory" HeaderText="qntCustVhFactory" SortExpression="decQntFirstMonth" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="factoryRate" HeaderText="Factory Rate" SortExpression="decQntSecondMonth" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="factorySubsidiary" HeaderText="Factory Subsidiary" SortExpression="total" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="qntCustVhGhat" HeaderText="qntCustVhGhat" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="ghatRate" HeaderText="Ghat Rate" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="ghatSubsidiary" HeaderText="Ghat Subsidiary" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="totalCusVh" HeaderText="Total Cus Vh" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="qntCompanyCustomerVh" HeaderText="qnt Company Customer Vh" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="qntCompanyVh" HeaderText="qnt Company Vh" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="qntRentedVh" HeaderText="qnt Rented Vh" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="totalVh" HeaderText="total Vh" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="grandSubsidiary" HeaderText="Grand Subsidiary" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="narrations" HeaderText="Narrations" SortExpression="narrations" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
 
                                     </Columns>
                                 </asp:GridView>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td runat="server" id ="dyGv">
+                                
                             </td>
                         </tr>
                     </table>
