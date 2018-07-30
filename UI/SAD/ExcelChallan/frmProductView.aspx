@@ -45,11 +45,27 @@
           $("[id*=lblPending]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
 
       } ) ;
-   </script>   
+   </script> 
+    
+     <script> function CloseWindow() {
+     window.close();
+        }
+
+    </script>
+     <script>
+        function ShowPopUpCust(url) {            
+            url = url + '&shipid=' + document.getElementById("hdnshippoint").value + '&offid=' + document.getElementById("hdnOfficeName").value + '&Custid=' + document.getElementById("hdnCustid").value + '&slipno=' + document.getElementById("hdnSlipno").value + '&CustName=' + document.getElementById("hdnCustname").value + '&userEnroll=' + document.getElementById("hdnEnroll").value;
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=700,top=70,left=50');
+            if (window.focus) { newwindow.focus() }
+        }
+    </script>
+
 </head>
 <body> 
     <form id="frmProductView" runat="server">
-      <asp:HiddenField ID="hdnEnroll"  runat="server"/><asp:HiddenField ID="hdnVid"  runat="server"/>
+      <asp:HiddenField ID="hdnEnroll"  runat="server"/><asp:HiddenField ID="hdnCustid"  runat="server"/>
+        <asp:HiddenField ID="hdnCustname"  runat="server"/><asp:HiddenField ID="hdnSlipno"  runat="server"/>
+        <asp:HiddenField ID="hdnshippoint"  runat="server"/> <asp:HiddenField ID="hdnOfficeName"  runat="server"/><asp:HiddenField ID="hdnVid"  runat="server"/>
       <input type="button" value="Print"  onclick="javascript: printDiv('printablediv'), Print()" />
       <div id="print"><div id="printablediv" style="width: 100%; height: 582px">
       <table  class="tbldecoration">
@@ -62,10 +78,13 @@
         <tr class="tblrowodd">
         <td>Mobile No:</td><td><asp:TextBox ID="txtMobile" runat="server"></asp:TextBox></td>
         <td>Slip No:</td><td><asp:TextBox ID="txtSlipno" runat="server"></asp:TextBox>
-        <asp:Button ID="btnSave" runat="server" Text="Save" Font-Bold="true" CssClass="btnbutton" OnClick="btnSave_Click" />   </td>                
+        <asp:Button ID="btnSave" runat="server" Text="Save" Font-Bold="true" CssClass="btnbutton" OnClick="btnSave_Click" />  &nbsp
+            <asp:Button ID="btnChallanView" runat="server" Text="Go Challan Create" Font-Bold="true" CssClass="btnbutton" OnClick="btnChallanView_Click" />
+                         </td>                
         </tr>
         <tr class="tblrowodd"><td colspan="4">        
-        <asp:GridView ID="dgvPending"  runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True">
+        <asp:GridView ID="dgvPending"  runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True"
+        OnRowDataBound="dgvPending_RowDataBound">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
 
@@ -95,7 +114,7 @@
         <ItemStyle HorizontalAlign="Left" Width="80px"/></asp:TemplateField> 
 
         <asp:TemplateField HeaderText="Total Qty" SortExpression="Pending">
-        <ItemTemplate><asp:Label ID="lblTotalqty" runat="server" Text='<%# (""+Eval("TotalQty","{0:n0}")) %>'></asp:Label></ItemTemplate>
+        <ItemTemplate><asp:Label ID="lblTotalqty" runat="server" Text='<%# (""+Eval("TotalQty","{0:n2}")) %>'></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="120px"/><FooterTemplate><asp:Label ID="lblPending" runat="server" Text='<%# TotalQty %>' /></FooterTemplate>
         </asp:TemplateField>
 
