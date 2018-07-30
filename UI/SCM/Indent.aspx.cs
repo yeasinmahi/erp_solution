@@ -260,7 +260,7 @@ namespace UI.SCM
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
             AutoSearch_BLL ast = new AutoSearch_BLL();
-          return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+           return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
            // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             
         }
