@@ -49,6 +49,51 @@ namespace UI.SAD.ExcelChallan {
         protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
+        /// hdnCustid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCustid;
+        
+        /// <summary>
+        /// hdnCustname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCustname;
+        
+        /// <summary>
+        /// hdnSlipno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSlipno;
+        
+        /// <summary>
+        /// hdnshippoint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnshippoint;
+        
+        /// <summary>
+        /// hdnOfficeName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnOfficeName;
+        
+        /// <summary>
         /// hdnVid control.
         /// </summary>
         /// <remarks>
@@ -110,6 +155,15 @@ namespace UI.SAD.ExcelChallan {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// btnChallanView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChallanView;
         
         /// <summary>
         /// dgvPending control.

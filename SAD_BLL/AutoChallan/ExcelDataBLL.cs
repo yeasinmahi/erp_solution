@@ -285,8 +285,13 @@ namespace SAD_BLL.AutoChallan
         {
             try
             {
+                tblvehicledeleteTableAdapter adpd = new tblvehicledeleteTableAdapter();
+                adpd.VehicleDelete(custid, vid);
+
                 tblVehileProgramToFatoryTableAdapter adp = new tblVehileProgramToFatoryTableAdapter();
                 adp.InsertDataVehicle(custid, intshipid, vid, vno, empid, supplierName);
+
+               
             }
             catch { }
         }
