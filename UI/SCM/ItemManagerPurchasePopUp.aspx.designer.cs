@@ -544,22 +544,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtPlant;
         
         /// <summary>
-        /// Label10 control.
+        /// Label30 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label Label30;
         
         /// <summary>
-        /// ddlProcurementType control.
+        /// txtProcumentType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProcurementType;
+        protected global::System.Web.UI.WebControls.TextBox txtProcumentType;
         
         /// <summary>
         /// Label9 control.
