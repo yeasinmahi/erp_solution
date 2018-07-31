@@ -142,7 +142,7 @@
         <td><asp:TextBox ID="txtSD" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>  
     </tr>
     <tr>
-        <td>Vat:</td>
+        <td>Use Material:</td>
         <td><asp:TextBox ID="txtVAT" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
         <td> Remarks:</td>
         <td><asp:TextBox ID="txtRemarks" CssClass="txtBox" TextMode="MultiLine"  MaxLength="10" runat="server"></asp:TextBox></td>
