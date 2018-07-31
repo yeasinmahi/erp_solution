@@ -168,6 +168,15 @@ namespace Purchase_BLL.WoodPurchase
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetSupplierID(int intPOID)
+        {
+            TblPurchaseOrderMainTableAdapter adp = new TblPurchaseOrderMainTableAdapter();
+            try
+            {
+                return adp.GetSupplierID(intPOID);
+            }
+            catch { return new DataTable(); }
+        }
         public string InsertPreReceive(int intPart, int intSupplierID, int intZoneID, int intPOID, DateTime dteReceiveDate, int intTypeID, DateTime dteChallanDate, int intGateEntry, string strVehicleNo, int intInsertBy, string xml)
         {
             string msg = "";
