@@ -228,16 +228,13 @@
                    <Columns>
                     
                             
-                             <asp:TemplateField HeaderText="SL.N">
-                                 <HeaderTemplate>
-                                       
-                         <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvGridView')"></asp:TextBox>
-                               
-                                    
-                                    </HeaderTemplate>
-                           <ItemTemplate>
+                      <asp:TemplateField HeaderText="SL.N">
+                                 <HeaderTemplate>          
+                                 <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvGridView')"></asp:TextBox>
+                                </HeaderTemplate>
+                              <ItemTemplate>
                                              <%# Container.DataItemIndex + 1 %>
-                                         </ItemTemplate>
+                              </ItemTemplate>
                       </asp:TemplateField>
 
                         

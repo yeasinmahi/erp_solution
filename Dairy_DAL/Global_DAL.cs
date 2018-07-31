@@ -7,3 +7,10 @@
     }
 }
 
+
+namespace Dairy_DAL.Global_DALTableAdapters {
+    
+    
+    public partial class SupplierProfileTableAdapter {
+    }
+}

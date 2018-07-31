@@ -17,6 +17,7 @@ namespace UI.SAD.Consumer
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
+                LoadAreaDdl();
             }
         }
 
@@ -46,6 +47,20 @@ namespace UI.SAD.Consumer
                 else if (_reportType.Equals("RetailCom"))
                 {
                     source = _bll.GetCashOrRetailCom(fromDateTime, toDateTime, 6);
+                }
+                else if (_reportType.Equals("BankCom"))
+                {
+                    source = _bll.GetAllJvWithCostCenterId("99",fromDateTime, toDateTime, "0");
+                }
+                else if (_reportType.Equals("StarProgramCom"))
+                {
+                    string area = ddlArea.SelectedItem.Text;
+                    source = _bll.GetAllJvWithCostCenterId("Star Consumer program", fromDateTime, toDateTime, area);
+                }
+                else if (_reportType.Equals("BondhutterBondhon"))
+                {
+                    string area = ddlArea.SelectedItem.Text;
+                    source = _bll.GetAllJvWithCostCenterId("Bondhutter Bondhon", fromDateTime, toDateTime, area);
                 }
             }
             catch (Exception exception)
@@ -87,11 +102,26 @@ namespace UI.SAD.Consumer
             {
                 gridView = CreateRetailCom(gridView);
             }
+            else if (_reportType.Equals("BankCom"))
+            {
+                gridView = CreateBankCom(gridView);
+            }
+            else if (_reportType.Equals("StarProgramCom"))
+            {
+                gridView = CreateStarProgramCom(gridView);
+            }
+            else if (_reportType.Equals("BondhutterBondhon"))
+            {
+                gridView = CreateBondhutterBondhon(gridView);
+            }
 
             gridView.DataSource = source;
             gridView.DataBind();
             //dyGv.Controls.Add(gridView);
         }
+
+        
+
         private GridView CreateTargetAchievement(GridView gridView)
         {
             gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
@@ -146,6 +176,42 @@ namespace UI.SAD.Consumer
             gridView.Columns.Add(GridViewUtil.CreateBoundField("commissionCategory", "commissionCategory"));
             return gridView;
         }
+        private GridView CreateBankCom(GridView gridView)
+        {
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("totalDelv", "totalDelv"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("editedCost", "editedCost"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("amountOnProcess", "amountOnProcess"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
+            return gridView;
+        }
+        private GridView CreateStarProgramCom(GridView gridView)
+        {
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("programName", "programName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("totalDelv", "totalDelv"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
+            return gridView;
+        }
+        private GridView CreateBondhutterBondhon(GridView gridView)
+        {
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("programName", "programName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
+            return gridView;
+        }
         protected void ddlReportType_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             LoadNecessaryUi();
@@ -153,14 +219,42 @@ namespace UI.SAD.Consumer
         private void LoadNecessaryUi()
         {
             _reportType = ddlReportType.SelectedItem.Value;
-            //switch (_reportType)
-            //{
-            //    case "TargetAchievement":
-            //        break;
-            //    default:
-            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select report type properly');", true);
-            //        break;
-            //}
+            switch (_reportType)
+            {
+                case "TargetAchievement":
+                    areaDdlTr.Visible = false;
+                    break;
+                case "DistributorBoostup":
+                    areaDdlTr.Visible = false;
+                    break;
+                case "CashCom":
+                    areaDdlTr.Visible = false;
+                    break;
+                case "RetailCom":
+                    areaDdlTr.Visible = false;
+                    break;
+                case "BankCom":
+                    areaDdlTr.Visible = false;
+                    break;
+                case "StarProgramCom":
+                    areaDdlTr.Visible = true;
+                    break;
+                case "BondhutterBondhon":
+                    areaDdlTr.Visible = true;
+                    break;
+                default:
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select report type properly');", true);
+                    break;
+            }
+        }
+
+        private void LoadAreaDdl()
+        {
+            ddlArea.DataSource = _bll.GetArea();
+            ddlArea.DataTextField = "strText";
+            ddlArea.DataValueField = "intID";
+            ddlArea.DataBind();
+
         }
     }
 }

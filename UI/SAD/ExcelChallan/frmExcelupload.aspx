@@ -22,7 +22,28 @@
             if (window.focus) { newwindow.focus() }
         }
     </script>
-    
+    <script type="text/javascript">
+      function Search_dgvservice(strKey, strGV) {
+
+          var strData = strKey.value.toLowerCase().split(" ");
+          var tblData = document.getElementById(strGV);
+          var rowData;
+          for (var i = 1; i < tblData.rows.length; i++) {
+              rowData = tblData.rows[i].innerHTML;
+              var styleDisplay = 'none';
+              for (var j = 0; j < strData.length; j++) {
+                  if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                      styleDisplay = '';
+                  else {
+                      styleDisplay = 'none';
+                      break;
+                  }
+              }
+              tblData.rows[i].style.display = styleDisplay;
+          }
+
+      }
+        </script>
 </head>
 <body>
     <form id="frmAutoChallProcess" runat="server">
@@ -45,7 +66,7 @@
         <table class="tbldecoration" style="width:auto; float:left;">                                  
         <tr class="tblrowodd">           
             <td style="text-align:right;">Shippoint Name:</td>
-            <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint" runat="server" OnSelectedIndexChanged="ddlshippoint_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>  </td>
+            <td style="text-align:left;"> <asp:DropDownList ID="ddlshippoint" runat="server"  AutoPostBack="True"></asp:DropDownList>  </td>
             <td style='text-align: right; width:120px;'>Office Name: </td>
             <td style='text-align: center;'><asp:DropDownList ID="ddlOfficeName" runat="server"></asp:DropDownList></td> 
             <td style="text-align:right;"> 
@@ -56,13 +77,21 @@
         <tr><td colspan="5">Upload
             <a href="#" onclick="ShowPopUp('frmAutoChallan.aspx?')">           
             <img alt="" src="../../Content/images/icons/Add.ico" style="border: 0px;" title="Add Customer" /></a>
+            <asp:Button ID="btnCancel" Font-Bold="true" runat="server" Text="All Upload Cancel" OnClick="btnCancel_Click" />
             </td>
          </tr>                       
         <tr><td colspan="5"><hr />
             <asp:GridView ID="dgvExcelOrder" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small" OnRowDataBound="dgvExcelOrder_RowDataBound" ShowFooter="True">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>  
-          
+           <asp:TemplateField HeaderText="SL.N">
+            <HeaderTemplate>          
+            <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvExcelOrder')"></asp:TextBox>
+            </HeaderTemplate>
+            <ItemTemplate>
+                        <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Custid" SortExpression="Custid"><ItemTemplate><asp:Label ID="lblCustid" runat="server" Text='<%# Bind("intCustid") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="70px"/><FooterTemplate><div style="padding:0 0 5px 0"><asp:Label ID="lbl" Width="100px"  runat="server" Text="Grand-Total :" /></div>
             </FooterTemplate></asp:TemplateField>            

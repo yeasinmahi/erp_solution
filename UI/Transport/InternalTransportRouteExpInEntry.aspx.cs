@@ -861,8 +861,7 @@ namespace UI.Transport
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);                   
                 }
                 catch { }
-            }
-
+            }            
         }
         
         //** Gridview Document Upload Start ******************************************************
