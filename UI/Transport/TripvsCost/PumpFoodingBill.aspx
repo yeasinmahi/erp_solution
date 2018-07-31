@@ -40,7 +40,7 @@
                     $.ajax({
                         type: "POST",
                         contentType: "application/json;",
-                        url: "OvertimeEntry.aspx/GetAutoCompleteData",
+                        url: "PumpFoodingBill.aspx/GetAutoCompleteData",
                         data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
                         dataType: "json",
                         success: function (data) {
@@ -54,6 +54,32 @@
             });
         }
     </script>
+   <%-- <script>
+          $(document).ready(function () {
+            SearchText();
+        });
+        function Changed() { document.getElementById('hdfSearchBoxTextChange').value = 'true'; }
+        function SearchText() {
+            $("#txtEmployeeSearch").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;",
+                        url: "PubLeave.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtEmployeeSearch').value + "'}",
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            //alert("Error");
+                        }
+                    });
+                }
+            });
+        }
+    </script>--%>
+
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -136,6 +162,7 @@
                                 <asp:Label ID="lblfullname" CssClass="lbl" runat="server" Text="Employee Name: "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtFullName" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
+                               <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="HiddenField2" runat="server" />
                                 <span style="color: red">*</span> </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblEnrol" CssClass="lbl" runat="server" Text="Code: "></asp:Label>
@@ -163,14 +190,14 @@
                             <td>
                                 <asp:Label ID="lblPurpouse" CssClass="lbl" runat="server" Visible="false" Text="Purpouse: "></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="drdlPurpouse" CssClass="ddList" runat="server" AutoPostBack="True" Visible="false" DataSourceID="odsOvertimepurpouse" DataTextField="strPurpouse" DataValueField="intID"></asp:DropDownList>
+                                <asp:DropDownList ID="drdlPurpouse" CssClass="ddList" runat="server" Visible="false" AutoPostBack="True"  DataSourceID="odsOvertimepurpouse" DataTextField="strPurpouse" DataValueField="intID"></asp:DropDownList>
                                 <asp:ObjectDataSource ID="odsOvertimepurpouse" runat="server" SelectMethod="getOvertimePurpouse" TypeName="HR_BLL.TourPlan.TourPlanning"></asp:ObjectDataSource>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblRemarks" CssClass="lbl" runat="server" Visible="false" Text="Remarks: "></asp:Label>
+                                <asp:Label ID="lblRemarks" CssClass="lbl" runat="server"  Text="Remarks: "></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtRemarks" runat="server" Font-Bold="true" CssClass="txtBox" Visible="false" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtRemarks" runat="server" Font-Bold="true" CssClass="txtBox"  TextMode="MultiLine"></asp:TextBox>
                             </td>
                             
                         </tr>
@@ -229,8 +256,7 @@
 
                                         <asp:BoundField DataField="purpouseid" HeaderText="Purpouseid" SortExpression="purpouseid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="applicantenrol" HeaderText="Enrol" SortExpression="applicantenrol" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <%--<asp:BoundField DataField="unitid" HeaderText="Unitid" SortExpression="unitid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                <asp:BoundField DataField="jobstationid" HeaderText="Jobstationid" SortExpression="jobstationid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />--%>
+                                     
                                         <asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />
                                     </Columns>
                                 </asp:GridView>

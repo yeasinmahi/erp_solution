@@ -57,7 +57,10 @@ namespace UI.Transport.TripvsCost
             else
             {
                 LoadEmployeeInfo();
+
+
             }
+
         }
 
 
@@ -116,6 +119,17 @@ namespace UI.Transport.TripvsCost
             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
             return result;
         }
+
+        //[WebMethod]
+        //public static List<string> GetAutoserachingAssetName(string strSearchKey)
+        //{
+        //    RegistrationRenewals_BLL bll = new RegistrationRenewals_BLL();
+
+        //    List<string> result = new List<string>();
+        //    result = bll.AutoSearchAssetName(strSearchKey);
+        //    return result;
+        //}
+
 
 
         private void CreateVoucherXml(string BillDate, string starttime, string endtime, string MovDuration, string purpouse, string purpouseid, string slNo, string txtstrtwihtHMS, string tmendwithHMS, string tmdifferencewithHMS, string remarks, string applicantenrol)
@@ -329,8 +343,8 @@ namespace UI.Transport.TripvsCost
 
                             string tmDifferencehmswith = tmdur.ToString();
 
-                            string strpur = drdlPurpouse.SelectedItem.Text;
-                            string strpurid = drdlPurpouse.SelectedValue.ToString();
+                            string strpur = "Fooding Bill";
+                            string strpurid = "1";
                             string remk = txtRemarks.Text;
                             string aplenrol = txtAplicnEnrol.Text;
 
@@ -345,71 +359,71 @@ namespace UI.Transport.TripvsCost
 
 
 
-                        else
-                        {
+                        //else
+                        //{
 
-                            string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
+                        //    string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
 
-                            string strstarttime = (tmstart1.ToString());
-                            string strendtime = (tmend1.ToString());
-                            string strstar = starthours.ToString();
-                            string strendt = endhours.ToString();
-
-
-                            starttime1 = Convert.ToString(strstarttime.ToString());
-                            endtime1 = Convert.ToString(strendtime.ToString());
-                            DateTime dt11 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-                            DateTime dt12 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
+                        //    string strstarttime = (tmstart1.ToString());
+                        //    string strendtime = (tmend1.ToString());
+                        //    string strstar = starthours.ToString();
+                        //    string strendt = endhours.ToString();
 
 
-                            DateTime dts = Convert.ToDateTime(dt11);
-                            DateTime dte = Convert.ToDateTime(dt12);
-                            TimeSpan diff;
-                            TimeSpan difff;
-                            if (endhours > starthours)
-                            {
-
-                                diff = (Convert.ToDateTime(dte) - Convert.ToDateTime(dts));
-                                string df = Convert.ToString(diff.ToString());
+                        //    starttime1 = Convert.ToString(strstarttime.ToString());
+                        //    endtime1 = Convert.ToString(strendtime.ToString());
+                        //    DateTime dt11 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
+                        //    DateTime dt12 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
 
 
-                                string tmDifferencehms = txtMovDuration.Text;
-                                string tmDifferencehmswith = tmdur.ToString();
+                        //    DateTime dts = Convert.ToDateTime(dt11);
+                        //    DateTime dte = Convert.ToDateTime(dt12);
+                        //    TimeSpan diff;
+                        //    TimeSpan difff;
+                        //    if (endhours > starthours)
+                        //    {
 
-                                string strpur = drdlPurpouse.SelectedItem.Text;
-                                string strpurid = drdlPurpouse.SelectedValue.ToString();
-                                string remk = txtRemarks.Text;
-                                string aplenrol = txtAplicnEnrol.Text;
-
-
-                                Serial = "1";
-
-                                CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-
-                            }
-                            else
-                            {
-                                diff = Convert.ToDateTime(dts) - Convert.ToDateTime(dte);
-                                difff = interval - diff;
-                                string df = Convert.ToString(difff.ToString());
+                        //        diff = (Convert.ToDateTime(dte) - Convert.ToDateTime(dts));
+                        //        string df = Convert.ToString(diff.ToString());
 
 
-                                string tmDifferencehms = txtMovDuration.Text;
-                                string tmDifferencehmswith = tmdur.ToString();
+                        //        string tmDifferencehms = txtMovDuration.Text;
+                        //        string tmDifferencehmswith = tmdur.ToString();
 
-                                string strpur = drdlPurpouse.SelectedItem.Text;
-                                string strpurid = drdlPurpouse.SelectedValue.ToString();
-                                string remk = txtRemarks.Text;
-                                string aplenrol = txtAplicnEnrol.Text;
-
-
-                                Serial = "1";
-
-                                CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-                            }
+                        //        string strpur = drdlPurpouse.SelectedItem.Text;
+                        //        string strpurid = drdlPurpouse.SelectedValue.ToString();
+                        //        string remk = txtRemarks.Text;
+                        //        string aplenrol = txtAplicnEnrol.Text;
 
 
-                        }
+                        //        Serial = "1";
+
+                        //        CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
+
+                        //    }
+                        //    else
+                        //    {
+                        //        diff = Convert.ToDateTime(dts) - Convert.ToDateTime(dte);
+                        //        difff = interval - diff;
+                        //        string df = Convert.ToString(difff.ToString());
+
+
+                        //        string tmDifferencehms = txtMovDuration.Text;
+                        //        string tmDifferencehmswith = tmdur.ToString();
+
+                        //        string strpur = drdlPurpouse.SelectedItem.Text;
+                        //        string strpurid = drdlPurpouse.SelectedValue.ToString();
+                        //        string remk = txtRemarks.Text;
+                        //        string aplenrol = txtAplicnEnrol.Text;
+
+
+                        //        Serial = "1";
+
+                        //        CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
+                        //    }
+
+
+                        //}
 
                     }
 
