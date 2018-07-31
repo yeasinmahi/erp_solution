@@ -170,12 +170,12 @@
                         </tr>
                         <tr>
                         <td>Vat Amount</td>
-                        <td><asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                       
-                        
-                         <td style="text-align:right"  colspan="4"  ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+                        <td><asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>                       
+                        <td style="text-align:right" ><asp:Label ID="lblMupload" Text="Upload" runat="server"></asp:Label></td>
+                        <td ><asp:FileUpload ID="docUpload" Width="300px" runat="server" /></td>
 
-                       
+                         <td style="text-align:right"  colspan="2"  ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+
                         </tr>
                         <tr> 
                         <td colspan="4"><asp:Label ID="lblSuppliyer" runat="server"  ></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false" runat="server"  ></asp:Label><asp:Label ID="lblCurrency" runat="server"></asp:Label>

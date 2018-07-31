@@ -741,7 +741,7 @@
 
                        <tr>
                         <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="Po Date"></asp:Label> </td> 
-                        <td style="text-align:left;"><asp:TextBox ID="txtdtePo" runat="server"  CssClass="txtBox" Font-Bold="False"> 
+                        <td style="text-align:left;"><asp:TextBox ID="txtdtePo" Enabled="false" runat="server"  CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdtePo"></cc1:CalendarExtender> 
                         </td>
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
