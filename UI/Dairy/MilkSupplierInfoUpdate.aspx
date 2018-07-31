@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Milk_Supplier_Registration.aspx.cs" Inherits="UI.Dairy.Milk_Supplier_Registration" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MilkSupplierInfoUpdate.aspx.cs" Inherits="UI.Dairy.MilkSupplierInfoUpdate" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -47,27 +47,39 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" />
     <asp:HiddenField ID="hdnconfirm" runat="server" /> <asp:HiddenField ID="hdnJobStation" runat="server" />
     <asp:HiddenField ID="hdnUnit" runat="server" /> <asp:HiddenField ID="hdnFTP" runat="server" />
-    <asp:HiddenField ID="hdnCmComm" runat="server" />
+    <asp:HiddenField ID="hdnCmComm" runat="server" /><asp:HiddenField ID="hdnCCID" runat="server" />
+    <asp:HiddenField ID="hdnSuppID" runat="server" />
           
-        <div class="tabs_container"> SUPPLIER REGISTRATION FROM <hr /></div>
+        <div class="tabs_container"> SUPPLIER INFORMATION UPDATE FROM <hr /></div>
 
         <table class="tbldecoration" style="width:auto; float:left;">        
         
-        <tr>
+         <tr>            
             <td style="text-align:right;"><asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit:"></asp:Label></td>
             <td style="text-align:left;">
                 <asp:DropDownList ID="ddlUnit" BorderColor="DimGray"  CssClass="ddList" Font-Bold="False" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>                                                                                       
             </td>
-            
-            <td style="text-align:right;"><asp:Label ID="lblSuppCode" runat="server" CssClass="lbl" Text="Supplier Code:"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtSuppCode" runat="server"  BorderColor="DimGray"  CssClass="txtBox" Width="210px"></asp:TextBox></td>                                                   
-        </tr>  
-        <tr>  
+
             <td style="text-align:right;"><asp:Label ID="lblChillingCenter" runat="server" CssClass="lbl" Text="Chilling Center :"></asp:Label></td>
             <td style="text-align:left;">
                 <asp:DropDownList ID="ddlChillingCenter" BorderColor="DimGray"  CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>                                                                                       
-            </td>
+            </td>            
+        </tr>
+        <tr>
+            <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Search Code:"></asp:Label></td>
+            <td style="text-align:left;"><asp:TextBox ID="txtSearchCode" runat="server"  BorderColor="DimGray"  CssClass="txtBox" Width="210px"></asp:TextBox></td>
             
+            <td></td>
+
+            <td colspan="2"  style="text-align:left;"><asp:Button ID="btnShow" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick" Text="Show" OnClick="btnShow_Click" style="height: 25px"/></td>
+        </tr>
+
+        <tr><td colspan="6" style="font-weight:bold; font-size:11px; color:#3369ff;"><hr /></td></tr>
+        
+        <tr>  
+            <td style="text-align:right;"><asp:Label ID="lblSuppCode" runat="server" CssClass="lbl" Text="Supplier Code:"></asp:Label></td>
+            <td style="text-align:left;"><asp:TextBox ID="txtSuppCode" runat="server"  BorderColor="DimGray"  CssClass="txtBox" Width="210px"></asp:TextBox></td>
+
             <td style="text-align:right;"><asp:Label ID="lblSuppName" runat="server" CssClass="lbl" Text="Supplier Name:"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtSuppName" runat="server"  BorderColor="DimGray"  CssClass="txtBox" Width="210px"></asp:TextBox></td>                                                   
         </tr>  
@@ -101,8 +113,8 @@
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblAccountNo" runat="server" CssClass="lbl" Text="Account No.:"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtAccountNo" runat="server"  BorderColor="DimGray" onkeypress="return onlyNumbers();"  CssClass="txtBox" Width="210px"></asp:TextBox></td>                                                   
-
-            <td colspan="2"  style="text-align:left;"><asp:Button ID="btnSubmit" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick" Text="Submit"  OnClientClick="ConfirmAll()" OnClick="btnSubmit_Click"/></td>            
+            <td></td>
+            <td colspan="2"  style="text-align:left;"><asp:Button ID="btnSubmit" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick" Text="Update"  OnClientClick="ConfirmAll()" OnClick="btnSubmit_Click"/></td>            
         </tr>
 
 
