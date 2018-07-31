@@ -218,8 +218,8 @@ namespace UI.HR.Employee
 
                 alertMessage = empUpdate.UpdateEmployeeProfile(empCode, fullname, email, religionid,dayoffid,groupid,unitid,stationid,jobtypeid,
                 departmentid, designationid, dutycategoryid, contactperiod, bankname, branchname, accountno, totalsalary,basicsalary,
-                 contactno, permanentAdd, presentAdd, intActive, intHold, supervisor, "/EmployeeInformation/" + photofile,
-                 "/EmployeeInformation/" + documentfile, documenttype, loginUserID, bank, branch, dist, dob, strFloorAccess);
+                contactno, permanentAdd, presentAdd, intActive, intHold, supervisor, "/EmployeeInformation/" + photofile,
+                "/EmployeeInformation/" + documentfile, documenttype, loginUserID, bank, branch, dist, dob, strFloorAccess);
                 hdnAction.Value = "0";
 
                 if (alertMessage != "0")

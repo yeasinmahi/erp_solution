@@ -124,7 +124,7 @@ namespace UI.SAD.Consumer
 
         private GridView CreateTargetAchievement(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -141,7 +141,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateDistributorBoostup(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("totalDo", "totalDo"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("totalDelv", "totalDelv"));
@@ -152,7 +152,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateCashCom(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -165,7 +165,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateRetailCom(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -178,7 +178,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateBankCom(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -191,7 +191,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateStarProgramCom(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -203,7 +203,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateBondhutterBondhon(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
