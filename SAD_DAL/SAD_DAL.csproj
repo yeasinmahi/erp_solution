@@ -96,6 +96,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FPReport.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\FPSSalesEntryTDS.cs">
+      <DependentUpon>FPSSalesEntryTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\FPSSalesEntryTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

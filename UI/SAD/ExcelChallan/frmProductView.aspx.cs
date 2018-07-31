@@ -19,6 +19,7 @@ namespace UI.SAD.ExcelChallan
         int Shipid, Custid, part, Offid, enroll;
         string pid, qty, freeqty, price, xmlpath,vno,vid,driverenroll,dphone;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanupload_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -30,6 +31,13 @@ namespace UI.SAD.ExcelChallan
                 Offid = int.Parse(Request.QueryString["offid"].ToString());
                 Custid = int.Parse(Request.QueryString["Custid"].ToString());
                 lblDist.Text =Request.QueryString["CustName"].ToString();
+                hdnCustid.Value= (Request.QueryString["Custid"].ToString());
+                hdnCustname.Value = (Request.QueryString["CustName"].ToString());
+                hdnOfficeName.Value = (Request.QueryString["offid"].ToString());
+
+                hdnshippoint.Value = (Request.QueryString["Shipid"].ToString());
+
+
                 dt = objExcel.getProductview(Custid, Shipid, part);
                 dgvPending.DataSource = dt;
                 dgvPending.DataBind();
@@ -85,7 +93,9 @@ namespace UI.SAD.ExcelChallan
                 #endregion *********** End Database Entry *****************
                 dt = objExcel.getLodingSlipno(Custid);
                 if (dt.Rows.Count > 0)
-                { txtSlipno.Text = dt.Rows[0]["strSlipNo"].ToString(); }
+                { txtSlipno.Text = dt.Rows[0]["strSlipNo"].ToString();
+                  hdnSlipno.Value = dt.Rows[0]["strSlipNo"].ToString();
+                }
                 dt = objExcel.getProductview(Custid, int.Parse(Request.QueryString["Shipid"].ToString()), 4);
                 dgvPending.DataSource = dt;
                 dgvPending.DataBind();
@@ -154,16 +164,29 @@ namespace UI.SAD.ExcelChallan
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //if (((Label)e.Row.Cells[4].FindControl("lblTotalqty")).Text == "")
-                //{
-                //    TotalQty += 0;
-                //}
-                //else
-                //{
-                //    TotalQty += double.Parse(((Label)e.Row.Cells[4].FindControl("lblTotalqty")).Text);
-                //}
+                if (((Label)e.Row.Cells[5].FindControl("lblTotalqty")).Text == "")
+                {
+                    TotalQty += 0;
+                }
+                else
+                {
+                    TotalQty += double.Parse(((Label)e.Row.Cells[5].FindControl("lblTotalqty")).Text);
+                }
             }
 
+        }
+
+        protected void btnChallanView_Click(object sender, EventArgs e)
+        {
+            if (txtSlipno.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Save the Challan !');", true);
+             
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowPopUpCust('frmLoadingSlipChallan.aspx?');", true);
+            }
         }
     }
 }

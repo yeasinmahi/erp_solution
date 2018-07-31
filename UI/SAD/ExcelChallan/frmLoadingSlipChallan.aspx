@@ -118,7 +118,7 @@
         <ItemStyle HorizontalAlign="Left" Width="80px"/></asp:TemplateField> 
 
         <asp:TemplateField HeaderText="Total Qty" SortExpression="Pending">
-        <ItemTemplate><asp:Label ID="lblTotalqty" runat="server" Text='<%# (""+Eval("TotalQty","{0:n0}")) %>'></asp:Label></ItemTemplate>
+        <ItemTemplate><asp:Label ID="lblTotalqty" runat="server" Text='<%# (""+Eval("TotalQty","{0:n2}")) %>'></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Right" Width="120px"/><FooterTemplate><asp:Label ID="lblPending" runat="server" Text='<%# TotalQty %>' /></FooterTemplate>
         </asp:TemplateField>
 

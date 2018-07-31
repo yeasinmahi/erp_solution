@@ -10935,7 +10935,7 @@ namespace SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters {
             this._commandCollection[0].CommandText = @" SELECT o.[intCustid],strLine,c.strName,strRegion,strArea,strTerritory,strPoint,case when strVno is null then '' else strVno end vno ,sum([numQty]) qty
  FROM [ERP_Production].[dbo].[tblExcelDataUploadByChallan] o inner join erp_sad.dbo.tblcustomer  c on o.intcustid=c.intCusID 
  inner join ERP_Production.dbo.qryAFBLNewSetup setup on o.intCustid=setup.intCustID
- left join [ERP_Production].[dbo].[tblVehileProgramToFatory] p on o.intCustid=p.intCustid where o.ysnActive=1 and intshipid=@shipid
+ left join [ERP_Production].[dbo].[tblVehileProgramToFatory] p on o.intCustid=p.intCustid and p.ysnActive=1 where o.ysnActive=1 and intshipid=@shipid 
  group by  o.[intCustid],strLine,c.strName,strRegion,strArea,strTerritory,strPoint,intFGGroupID,strVno order by strTerritory,strArea,strRegion";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -11640,7 +11640,7 @@ namespace SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters {
       ,[intEmployeeenroll],stremployeename,strcontactno1,strname,straddress,intCusType,strSupplierName
     
   FROM [ERP_Production].[dbo].[tblVehileProgramToFatory] p inner join erp_hr.dbo.tblemployee e on p.[intEmployeeenroll]=e.intemployeeid inner join erp_sad.dbo.tblcustomer c
-  on p.intcustid=c.intcusid where intcustid=@Custid and p.ysnactive=1";
+  on p.intcustid=c.intcusid where intcustid=@Custid and p.ysnactive=1 order by p.intid desc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Custid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCustid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

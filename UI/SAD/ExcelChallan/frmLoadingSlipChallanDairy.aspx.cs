@@ -21,7 +21,7 @@ namespace UI.SAD.ExcelChallan
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         ExcelDataBLL objExcel = new ExcelDataBLL();
         DataTable dt; decimal balance, totalBalance, numLogisticCharge, monExtraAmount, numCharge, numIncentive, numConvRate;
-        int Shipid, Custid, intunitid, part, Offid, enroll, intVehicleVarId, intVehicleId, counts = 0, countsvat = 0, intsalestypeid, intVehicleTypeId, intDisPointId,
+        int Shipid, Custid, intunitid, part, Offid, enroll, intVehicleVarId, intVehicleId,  intsalestypeid, intVehicleTypeId, intDisPointId,
         intCurrencyId, intPriceVarId, CustType, intIncentiveId;
         string slip, strCustnameName, strDrivername, xmlStringvat, narrationvat, narratioinvat, strDriverContact,strCode= "", price, strExtraCause, narration = "", intentryid = "", strSupplier, strOther, strVehicleRegNo, strChallanNo, CustAddress, strSupplierCOACod, narratioin, filePathForXML, filePathForXMLVat, vno,vid,driverenroll, suppliercheck;
         challanandPending Report = new challanandPending();
@@ -58,6 +58,7 @@ namespace UI.SAD.ExcelChallan
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            int counts = 0, countsvat = 0;
             if (txtVehicle.Text != "")
             {
                 int vatCheck;
@@ -221,10 +222,10 @@ namespace UI.SAD.ExcelChallan
                                     }
                                    
                                 }
-                            }
-                            
-                            if (counts < 8)
-                            {
+                        }
+
+                        if ((counts > 0) && (counts < 8))
+                        {
                                 #region ------------ Insert into dataBase -----------
 
                                 narratioin = Convert.ToString(Session[narratioin]);
