@@ -150,7 +150,10 @@
                 <asp:ListItem Value="1">Vital</asp:ListItem><asp:ListItem Value="2">Essential</asp:ListItem><asp:ListItem Value="3">Desireable</asp:ListItem></asp:DropDownList></td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click" OnClientClick="ConfirmAll()"/></td>
+                <td style="text-align:right;"><asp:Label ID="Label26" runat="server" Text="Procure Type " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+                <td><asp:DropDownList ID="ddlProcurementType" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="WhiteSmoke"><asp:ListItem Selected="True" Value="0" Text=" Select Procure Type"></asp:ListItem>
+                    <asp:ListItem Value="1" Text="Local"></asp:ListItem><asp:ListItem Value="2" Text="Import"></asp:ListItem><asp:ListItem Value="3" Text="Fabrication"></asp:ListItem><asp:ListItem Value="4" Text="Common"></asp:ListItem></asp:DropDownList></td>
+                <td colspan="2" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClick="btnSubmit_Click" OnClientClick="ConfirmAll()"/></td>
                 <td colspan="4" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnReset" runat="server" class="myButtonGrey" Text="Reset" Width="100px" OnClick="btnReset_Click"/></td>
             </tr>            
         </table>

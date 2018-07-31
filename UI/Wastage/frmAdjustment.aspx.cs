@@ -42,7 +42,7 @@ namespace UI.Wastage
             if (!IsPostBack)
             {
                 try
-                {
+                { WHlist();
                     pnlUpperControl.DataBind();
                     File.Delete(filePathForXML);
                     hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -52,7 +52,7 @@ namespace UI.Wastage
                     ddlUnitName.DataValueField = "intUnitID";
                     ddlUnitName.DataSource = dt;
                     ddlUnitName.DataBind();                 
-                    WHlist();
+                   
                     Itemlist();
                 }
                 catch (Exception ex)
@@ -71,9 +71,9 @@ namespace UI.Wastage
         }
         private void WHlist()
         {
-            dt = obj.getWHbyUnit(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            dt = obj.getWHbyEnroll(int.Parse(Session[SessionParams.USER_ID].ToString()));
             ddlWHName.DataTextField = "strWastageWareHouseName";
-            ddlWHName.DataValueField = "intWastageWareHouseID";
+            ddlWHName.DataValueField = "intWastageWHID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
         }

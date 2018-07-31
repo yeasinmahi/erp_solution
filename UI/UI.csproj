@@ -1034,6 +1034,7 @@
     <Content Include="SAD\Consumer\StarConsumerEntry.aspx" />
     <Content Include="SAD\Consumer\StarConsumeReport.aspx" />
     <Content Include="SAD\Consumer\SubsidiaryJv.aspx" />
+    <Content Include="SAD\Consumer\TargetAcvReport.aspx" />
     <Content Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateDistributor.aspx" />
     <Content Include="SAD\Corporate_sales\AFBLCorporateProduct.aspx" />
@@ -4861,6 +4862,13 @@
     </Compile>
     <Compile Include="SAD\Consumer\SubsidiaryJv.aspx.designer.cs">
       <DependentUpon>SubsidiaryJv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Consumer\TargetAcvReport.aspx.cs">
+      <DependentUpon>TargetAcvReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Consumer\TargetAcvReport.aspx.designer.cs">
+      <DependentUpon>TargetAcvReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Consumer\TsoEmailAndJsoEnroll.aspx.cs">
       <DependentUpon>TsoEmailAndJsoEnroll.aspx</DependentUpon>

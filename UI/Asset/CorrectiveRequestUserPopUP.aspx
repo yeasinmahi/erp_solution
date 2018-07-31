@@ -53,16 +53,16 @@
     </script>
      <script>
          function Registration(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=700,top=150,left=350, close=no');
+             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=1000,top=150,left=350, close=no');
              if (window.focus) { newwindow.focus() }
          }
 
          function Registrationparts(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=1000,top=150,left=350, close=no');
+             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=1000,top=150,left=350, close=no');
              if (window.focus) { newwindow.focus() }
          }
          function RegistrationSchedule(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=700,top=150,left=350, close=no');
+             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=1000,top=150,left=350, close=no');
              if (window.focus) { newwindow.focus() }
          }
          </script> 
@@ -140,7 +140,7 @@
                   <asp:BoundField DataField="SPartsStatus" HeaderText="S.Parts Status" SortExpression="SPartsStatus" />
                   <asp:BoundField DataField="JobStatus" HeaderText="Job Status" SortExpression="JobStatus" />
                   <asp:BoundField DataField="dteServiceEndDate" HeaderText="End Date" SortExpression="dteServiceEndDate" />
-                  <asp:BoundField DataField="VehicleCondition" HeaderText="Vehicle Condition" SortExpression="VehicleCondition" />
+                  <asp:BoundField DataField="VehicleCondition" ItemStyle-HorizontalAlign="Center" HeaderText="Vehicle Condition" SortExpression="VehicleCondition" />
 
               </Columns>
           </asp:GridView>

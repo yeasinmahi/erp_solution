@@ -118,29 +118,18 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                         <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Code" SortExpression="intMaintenanceNo" />
-                                        <asp:BoundField DataField="strNameOfAsset" HeaderText="Name Of Asset" SortExpression="strNameOfAsset" />
-                                        
+                                        <asp:BoundField DataField="strNameOfAsset" HeaderText="Name Of Asset" ItemStyle-Width="100" SortExpression="strNameOfAsset" />
                                         <asp:BoundField DataField="strBilUnit" HeaderText="Unit" SortExpression="strBilUnit" />
                                         <asp:BoundField DataField="strJobStation" HeaderText="Job Station" SortExpression="strJobStation" />
-                                         <%--<asp:TemplateField HeaderText="Job Station" SortExpression="title">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl" runat="server" Text='<%# Eval("strJobStation") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Left" Width="70px" />
-                                        </asp:TemplateField>--%>
                                         <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
                                         <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
                                         <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" />
                                         <asp:BoundField DataField="ServiceLocation" HeaderText="Service Location" SortExpression="ServiceLocation" />
-                                      <%--  <asp:BoundField DataField="strRepairType" HeaderText="strRepairType" SortExpression="strRepairType" />--%>
-                                        <asp:BoundField DataField="dteStart" HeaderText="Request Date" SortExpression="dteStart" DataFormatString="{0:yyyy-MM-dd}"/>
-                                        <%--<asp:BoundField DataField="dteEnd" HeaderText="dteEnd" SortExpression="dteEnd" />--%>
-
-                                        <asp:BoundField DataField="monMaterial" HeaderText="Sprear Parts Cost" SortExpression="monMaterial" />
-                                        <asp:BoundField DataField="monService" HeaderText="Service Cost" SortExpression="monService" />
-                                        
-                                        <asp:BoundField DataField="TotalCost" HeaderText="Total Cost" SortExpression="TotalCost" />
-                                        <asp:BoundField DataField="VehicleCondition" HeaderText="Vehicle Condition" SortExpression="VehicleCondition" />
+                                        <asp:BoundField DataField="requestDate" ItemStyle-Width="75" HeaderText="Request Date" SortExpression="requestDate" DataFormatString="{0:yyyy-MM-dd}"/>
+                                        <asp:BoundField DataField="monMaterial" HeaderText="Sprear Parts Cost" ItemStyle-HorizontalAlign="Right" SortExpression="monMaterial" />
+                                        <asp:BoundField DataField="monService" HeaderText="Service Cost" ItemStyle-HorizontalAlign="Right" SortExpression="monService" />
+                                        <asp:BoundField DataField="TotalCost" HeaderText="Total Cost" ItemStyle-HorizontalAlign="Right" SortExpression="TotalCost" />
+                                        <asp:BoundField DataField="VehicleCondition" HeaderText="Vehicle Condition" ItemStyle-HorizontalAlign="center" SortExpression="VehicleCondition" />
                                     </Columns>
 
                                 </asp:GridView>
