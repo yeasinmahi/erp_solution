@@ -295,6 +295,7 @@
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
     <Content Include="CreativeSupportModule\ItemCreateAndPointSet.aspx" />
+    <Content Include="Dairy\MilkSupplierInfoUpdate.aspx" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
     <Content Include="Dairy\Milk_Audit_R_Details.aspx" />
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
@@ -2426,6 +2427,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.designer.cs">
       <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dairy\MilkSupplierInfoUpdate.aspx.cs">
+      <DependentUpon>MilkSupplierInfoUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dairy\MilkSupplierInfoUpdate.aspx.designer.cs">
+      <DependentUpon>MilkSupplierInfoUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dairy\Milk_Audit_Approve.aspx.cs">
       <DependentUpon>Milk_Audit_Approve.aspx</DependentUpon>
