@@ -76,6 +76,9 @@ namespace UI.WoodPurchase
             try
             {
                 intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetSupplierID(intPOID);
+                hdnSupplierID.Value = dt.Rows[0]["intSupplierID"].ToString();
             }
             catch { }
         }
@@ -94,6 +97,11 @@ namespace UI.WoodPurchase
                 ddlPOList.DataTextField = "strSupplierName";
                 ddlPOList.DataBind();
 
+                intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetSupplierID(intPOID);
+                hdnSupplierID.Value = dt.Rows[0]["intSupplierID"].ToString();
+
                 dt = new DataTable();
                 dt = bll.GetWoodType(intUnitID);
                 ddlWoodType.DataSource = dt;
@@ -110,8 +118,22 @@ namespace UI.WoodPurchase
             }
             catch { }
         }
+        protected void btnShowPOItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                intPOID = int.Parse(ddlPOList.SelectedValue.ToString());
+                dt = new DataTable();
+                dt = bll.GetPOWiseItem(intPOID);
+                dgvReceive.DataSource = dt;
+                dgvReceive.DataBind();
+            }
+            catch { }
+        }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            dgvReceive.DataSource = "";
+            dgvReceive.DataBind();
             uploadfile();
         }
         private void uploadfile()
@@ -132,7 +154,7 @@ namespace UI.WoodPurchase
                 {
                     ConStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
                 }
-                string query = "SELECT * FROM [Sheet1$]";
+                string query = "SELECT * FROM [Process$]";
                 OleDbConnection conn = new OleDbConnection(ConStr);
                 if (conn.State == ConnectionState.Closed)
                 {
@@ -161,8 +183,8 @@ namespace UI.WoodPurchase
                     cft = dtTable.Rows[i][3].ToString();
                     rate = dtTable.Rows[i][4].ToString();
                     itemid = dtTable.Rows[i][5].ToString();
-                    recdate = dtTable.Rows[i][5].ToString();
-                    chdate = dtTable.Rows[i][5].ToString();
+                    recdate = dtTable.Rows[i][6].ToString();
+                    chdate = dtTable.Rows[i][7].ToString();
 
                     { CreateVoucherXml(tagno, length, circum, cft, rate, itemid); }
                     //}
@@ -178,6 +200,17 @@ namespace UI.WoodPurchase
                 intEnroll = int.Parse(hdnEnroll.Value.ToString());
                 dteReceiveDate = DateTime.Parse(recdate.ToString());
                 dteChallanDate = DateTime.Parse(chdate.ToString());
+
+                try
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlpath);
+                    XmlNode dSftTm = doc.SelectSingleNode("PreReceive");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<PreReceive>" + xmlString + "</PreReceive>";
+                    xml = xmlString;
+                }
+                catch { }
 
                 message = bll.InsertPreReceive(intPart, intSupplierID, intZoneID, intPOID, dteReceiveDate, intWoodTypeID, dteChallanDate, intGateEntry, strVehicleNo, intEnroll, xml);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);

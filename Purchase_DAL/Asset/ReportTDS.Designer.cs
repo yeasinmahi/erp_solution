@@ -305,6 +305,16 @@ namespace Purchase_DAL.Asset {
             
             private global::System.Data.DataColumn columnmonService;
             
+            private global::System.Data.DataColumn columnVehicleCondition;
+            
+            private global::System.Data.DataColumn columnstrjobStatus;
+            
+            private global::System.Data.DataColumn columnrequestDate;
+            
+            private global::System.Data.DataColumn columnendDate;
+            
+            private global::System.Data.DataColumn columnstrSpareParts;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprAssetReportDataTable() {
@@ -444,6 +454,46 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn VehicleConditionColumn {
+                get {
+                    return this.columnVehicleCondition;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strjobStatusColumn {
+                get {
+                    return this.columnstrjobStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn requestDateColumn {
+                get {
+                    return this.columnrequestDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn endDateColumn {
+                get {
+                    return this.columnendDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSparePartsColumn {
+                get {
+                    return this.columnstrSpareParts;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -479,7 +529,25 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAssetReportRow AddSprAssetReportRow(int intMaintenanceNo, string strNameOfAsset, string strAssetCode, string strBilUnit, string strServiceName, string strRepairType, System.DateTime dteStart, System.DateTime dteEnd, string strPriority, string strProblem, string strStatus, decimal monMaterial, decimal monService) {
+            public SprAssetReportRow AddSprAssetReportRow(
+                        int intMaintenanceNo, 
+                        string strNameOfAsset, 
+                        string strAssetCode, 
+                        string strBilUnit, 
+                        string strServiceName, 
+                        string strRepairType, 
+                        System.DateTime dteStart, 
+                        System.DateTime dteEnd, 
+                        string strPriority, 
+                        string strProblem, 
+                        string strStatus, 
+                        decimal monMaterial, 
+                        decimal monService, 
+                        string VehicleCondition, 
+                        string strjobStatus, 
+                        System.DateTime requestDate, 
+                        System.DateTime endDate, 
+                        string strSpareParts) {
                 SprAssetReportRow rowSprAssetReportRow = ((SprAssetReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intMaintenanceNo,
@@ -494,7 +562,12 @@ namespace Purchase_DAL.Asset {
                         strProblem,
                         strStatus,
                         monMaterial,
-                        monService};
+                        monService,
+                        VehicleCondition,
+                        strjobStatus,
+                        requestDate,
+                        endDate,
+                        strSpareParts};
                 rowSprAssetReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprAssetReportRow);
                 return rowSprAssetReportRow;
@@ -530,6 +603,11 @@ namespace Purchase_DAL.Asset {
                 this.columnstrStatus = base.Columns["strStatus"];
                 this.columnmonMaterial = base.Columns["monMaterial"];
                 this.columnmonService = base.Columns["monService"];
+                this.columnVehicleCondition = base.Columns["VehicleCondition"];
+                this.columnstrjobStatus = base.Columns["strjobStatus"];
+                this.columnrequestDate = base.Columns["requestDate"];
+                this.columnendDate = base.Columns["endDate"];
+                this.columnstrSpareParts = base.Columns["strSpareParts"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -561,6 +639,16 @@ namespace Purchase_DAL.Asset {
                 base.Columns.Add(this.columnmonMaterial);
                 this.columnmonService = new global::System.Data.DataColumn("monService", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonService);
+                this.columnVehicleCondition = new global::System.Data.DataColumn("VehicleCondition", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVehicleCondition);
+                this.columnstrjobStatus = new global::System.Data.DataColumn("strjobStatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrjobStatus);
+                this.columnrequestDate = new global::System.Data.DataColumn("requestDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrequestDate);
+                this.columnendDate = new global::System.Data.DataColumn("endDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnendDate);
+                this.columnstrSpareParts = new global::System.Data.DataColumn("strSpareParts", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSpareParts);
                 this.columnstrNameOfAsset.MaxLength = 100;
                 this.columnstrAssetCode.MaxLength = 100;
                 this.columnstrBilUnit.MaxLength = 50;
@@ -569,6 +657,9 @@ namespace Purchase_DAL.Asset {
                 this.columnstrPriority.MaxLength = 100;
                 this.columnstrProblem.MaxLength = 100;
                 this.columnstrStatus.MaxLength = 100;
+                this.columnVehicleCondition.MaxLength = 100;
+                this.columnstrjobStatus.MaxLength = 100;
+                this.columnstrSpareParts.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -919,6 +1010,86 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string VehicleCondition {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprAssetReport.VehicleConditionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleCondition\' in table \'SprAssetReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAssetReport.VehicleConditionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strjobStatus {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprAssetReport.strjobStatusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strjobStatus\' in table \'SprAssetReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAssetReport.strjobStatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime requestDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprAssetReport.requestDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'requestDate\' in table \'SprAssetReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAssetReport.requestDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime endDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprAssetReport.endDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'endDate\' in table \'SprAssetReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAssetReport.endDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSpareParts {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprAssetReport.strSparePartsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSpareParts\' in table \'SprAssetReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAssetReport.strSparePartsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintMaintenanceNoNull() {
                 return this.IsNull(this.tableSprAssetReport.intMaintenanceNoColumn);
             }
@@ -1071,6 +1242,66 @@ namespace Purchase_DAL.Asset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonServiceNull() {
                 this[this.tableSprAssetReport.monServiceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsVehicleConditionNull() {
+                return this.IsNull(this.tableSprAssetReport.VehicleConditionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetVehicleConditionNull() {
+                this[this.tableSprAssetReport.VehicleConditionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrjobStatusNull() {
+                return this.IsNull(this.tableSprAssetReport.strjobStatusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrjobStatusNull() {
+                this[this.tableSprAssetReport.strjobStatusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsrequestDateNull() {
+                return this.IsNull(this.tableSprAssetReport.requestDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetrequestDateNull() {
+                this[this.tableSprAssetReport.requestDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsendDateNull() {
+                return this.IsNull(this.tableSprAssetReport.endDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetendDateNull() {
+                this[this.tableSprAssetReport.endDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrSparePartsNull() {
+                return this.IsNull(this.tableSprAssetReport.strSparePartsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrSparePartsNull() {
+                this[this.tableSprAssetReport.strSparePartsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1246,6 +1477,11 @@ namespace Purchase_DAL.Asset.ReportTDSTableAdapters {
             tableMapping.ColumnMappings.Add("strStatus", "strStatus");
             tableMapping.ColumnMappings.Add("monMaterial", "monMaterial");
             tableMapping.ColumnMappings.Add("monService", "monService");
+            tableMapping.ColumnMappings.Add("VehicleCondition", "VehicleCondition");
+            tableMapping.ColumnMappings.Add("strjobStatus", "strjobStatus");
+            tableMapping.ColumnMappings.Add("requestDate", "requestDate");
+            tableMapping.ColumnMappings.Add("endDate", "endDate");
+            tableMapping.ColumnMappings.Add("strSpareParts", "strSpareParts");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

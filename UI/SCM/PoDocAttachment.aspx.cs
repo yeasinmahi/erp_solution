@@ -98,6 +98,7 @@ namespace UI.SCM
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
             try {
+                
                 arrayKey = txtPoUser.Text.Split(delimiterChars);
                 string item = ""; string itemid = "";
                 if (arrayKey.Length > 0)
@@ -108,9 +109,14 @@ namespace UI.SCM
               
                 arrayKey = txtSupplier.Text.Split(delimiterChars);
                 string strSupp = ""; int supplierid = 0;
-                if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
-                strSupp = supplierid.ToString();
+
+                try
+                {
+                    if (arrayKey.Length > 0)
+                    { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                    strSupp = supplierid.ToString();
+                }
+                catch { }
 
 
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);

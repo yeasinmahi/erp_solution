@@ -17,6 +17,7 @@ namespace UI.PaymentModule
         DataTable dt = new DataTable();
         DataTable dtt = new DataTable();
         DataTable dT = new DataTable();
+        DataTable adviceTable = new DataTable();
         char[] delimeters = { '.' }; string[] arraykey;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -77,6 +78,9 @@ namespace UI.PaymentModule
 
         protected void btnShowAdvice_Click(object sender, EventArgs e)
         {
+
+            int intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);          
+            Response.Redirect("ShowAdviceOfTreasuryChallan.aspx?id=" + intVatAcc + "");
 
         }
 

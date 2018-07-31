@@ -69,6 +69,9 @@
                             <td>
                                 <asp:Button ID="showReport" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="showReport_OnClick" />
                             </td>
+                            <td>
+                                <asp:Button ID="showFullReport" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Report" OnClick="showFullReport_OnClick" OnClientClick="aspnetForm.target ='_blank'" />
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -76,13 +79,15 @@
                     <table>
                         <tr class="tblroweven">
                             <td>
-                                <asp:GridView ID="grdvDoubleCashOffer" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true" OnSelectedIndexChanged="grdvOvertimeEntry_SelectedIndexChanged" OnRowDeleting="grdvOvertimeEntry_OnRowDeletingmeEntry_RowDeleting">
+                                <asp:GridView ID="grdvDoubleCashOffer" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
-                                                <%# Container.DataItemIndex + 1 %><asp:HiddenField ID="dispId" runat="server" Value='<%# Bind("intDispid") %>' />
+                                                <%# Container.DataItemIndex + 1 %>
+                                                <asp:HiddenField ID="strTerritory" runat="server" Value='<%# Bind("strTerritory") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        <asp:BoundField DataField="intDispid" HeaderText="Shop Id" SortExpression="intDispid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="strDispointName" HeaderText="Dispoint Name" SortExpression="strDispointName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <%--<asp:BoundField DataField="strPhone" HeaderText="Phone" SortExpression="strPhone" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="strTerritory" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />--%>
@@ -95,12 +100,22 @@
                                         <asp:BoundField DataField="decTarget" HeaderText="Target" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:TemplateField HeaderText="Side Code">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="siteCode" runat="server" ></asp:TextBox>
+                                                <asp:TextBox ID="siteCode" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="quantity" runat="server" ></asp:TextBox>
+                                                <asp:TextBox ID="quantity" runat="server"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Commision Amount">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="commisionAmount" runat="server"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="User Details">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="userDetails" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">

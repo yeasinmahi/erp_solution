@@ -56,6 +56,15 @@ namespace Purchase_BLL.WoodPurchase
             }
             catch {}
         }
+        public void DeletePO(int intPOID)
+        {
+            DeletePOTableAdapter adp = new DeletePOTableAdapter();
+            try
+            {
+                adp.DeletePO(intPOID);
+            }
+            catch { }
+        }
         public DataTable GetPOList(int intWH)
         {
             GetDataTableAdapter adp = new GetDataTableAdapter();
@@ -147,6 +156,24 @@ namespace Purchase_BLL.WoodPurchase
             try
             {
                 return adp.GetItemID(intPOID, intType, intCirCum);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetPOWiseItem(int intPOID)
+        {
+            POWiseItemTableAdapter adp = new POWiseItemTableAdapter();
+            try
+            {
+                return adp.GetPOWiseItem(intPOID);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetSupplierID(int intPOID)
+        {
+            TblPurchaseOrderMainTableAdapter adp = new TblPurchaseOrderMainTableAdapter();
+            try
+            {
+                return adp.GetSupplierID(intPOID);
             }
             catch { return new DataTable(); }
         }

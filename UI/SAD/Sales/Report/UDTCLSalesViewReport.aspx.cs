@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAD_BLL.Sales.Report;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,32 +12,45 @@ namespace UI.SAD.Sales.Report
 {
     public partial class UDTCLSalesViewReport : BasePage
     {
+        DataTable dt = new DataTable();
+        UDTCLSalesBLL obj = new UDTCLSalesBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
                 pnlUpperControl.DataBind();
             }
-            GvSalesReport.Visible = false;
+             
            
         }
 
        
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            try
+            {
+                 
+                DateTime dteFrom = DateTime.Parse(txtFormDate.Text);
+                DateTime dteTo = DateTime.Parse(txtToDate.Text);
+                int unitId = int.Parse(ddlUnit.SelectedValue.ToString());
+                int intType = int.Parse(DdlReport.SelectedValue.ToString());
 
-            GvSalesReport.Visible = true;
-            //int count = GvSalesReport.Rows.Count;
-            //if (count == 0)
-            //{
-            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
-
-            //}
-            //else
-            //{
-            //    GvSalesReport.Visible = true;
-            //}
-
+                dt = obj.getSalesData(dteFrom, dteTo, unitId, intType);
+                if (dt.Rows.Count > 0)
+                {
+                    GvSalesReport.DataSource = dt;
+                    GvSalesReport.DataBind();
+                }
+                else
+                {
+                    GvSalesReport.DataSource = dt;
+                    GvSalesReport.DataBind();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                }
+            }
+            catch { }
+           
+            
         }
 
         decimal totalquantity = 0, totalamount = 0, totalprice = 0;

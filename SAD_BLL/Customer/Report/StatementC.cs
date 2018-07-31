@@ -1950,10 +1950,14 @@ namespace SAD_BLL.Customer.Report
             try
             {
                 SprVoucherCreateForSalesComissionTableAdapter bll = new SprVoucherCreateForSalesComissionTableAdapter();
-                return bll.GetDataVoucherCreateForSalesComission(xmlstring,unitid, gbcode, prefix, gbnarattion, totalcommission, enrol, headcoaid);
+                return bll.GetDataVoucherCreateForSalesComission(xmlstring, unitid, gbcode, prefix, gbnarattion,
+                    totalcommission, enrol, headcoaid);
 
             }
-            catch { return new DataTable(); }
+            catch(Exception exception)
+            {
+                return new DataTable();
+            }
         }
 
 

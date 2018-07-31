@@ -112,5 +112,12 @@ namespace SCM_BLL
             { return adp.GetUnitCheck(intMasterID, intUnitID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetMaterialStatus(int intWHID)
+        {
+            TblTempItemListTableAdapter adp = new TblTempItemListTableAdapter();
+            try
+            { return adp.GetMaterialStatus(intWHID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
     }
 }

@@ -129,7 +129,7 @@
         }
 
         function Registration(url) {
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
             if (window.focus) { newwindow.focus() }
         }
     </script>
@@ -741,7 +741,7 @@
 
                        <tr>
                         <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="Po Date"></asp:Label> </td> 
-                        <td style="text-align:left;"><asp:TextBox ID="txtdtePo" runat="server"  CssClass="txtBox" Font-Bold="False"> 
+                        <td style="text-align:left;"><asp:TextBox ID="txtdtePo" Enabled="false" runat="server"  CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdtePo"></cc1:CalendarExtender> 
                         </td>
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
