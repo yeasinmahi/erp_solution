@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -14,15 +13,16 @@ namespace UI.Inventory
 {
     public partial class OverTimeEntryReprts : BasePage
     {
-        char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+        readonly char[] _delimiterChars = { '[', ']' };
+        string[] _arrayKey;
 
-        DataTable dt = new DataTable();
-        TourPlanning bll = new TourPlanning();
-      
+        private DataTable _dt = new DataTable();
+        readonly TourPlanning _bll = new TourPlanning();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             pnlUpperControl.DataBind();
+            SetJobStationId();
             hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
             hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
 
@@ -31,7 +31,7 @@ namespace UI.Inventory
             if (!IsPostBack)
             {
                 LoadUnitDropDown(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
-                LoadJobStationDropDown(GetUnitID(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
+                LoadJobStationDropDown(GetUnitId(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
             }
             
         }
@@ -56,20 +56,20 @@ namespace UI.Inventory
                     DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                     DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
                     string strSearchKey = txtFullName.Text;
-                    arrayKey = strSearchKey.Split(delimiterChars);
-                    string code = arrayKey[1].ToString();
+                    _arrayKey = strSearchKey.Split(_delimiterChars);
+                    string code = _arrayKey[1].ToString();
                     string strCustname = strSearchKey;
                     int enrol = int.Parse(code);
-                    dt = bll.getRptOverTime(1, enrol, "", 0, dteFromDate, dteToDate, jobstationid, unitid);
+                    _dt = _bll.getRptOverTime(1, enrol, "", 0, dteFromDate, dteToDate, jobstationid, unitid);
                 }
 
                 catch { }
 
-                if (dt.Rows.Count > 0)
+                if (_dt.Rows.Count > 0)
                 {
                     gdvJstopsheet.DataSource = null;
                     gdvJstopsheet.DataBind();
-                    grdvOverTimeReports.DataSource = dt;
+                    grdvOverTimeReports.DataSource = _dt;
                     grdvOverTimeReports.DataBind();
 
                  }
@@ -90,16 +90,16 @@ namespace UI.Inventory
                 {
                     DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                     DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
-                    dt = bll.getRptOverTime(2, 0, "", 0, dteFromDate, dteToDate, jobstationid, unitid);
+                    _dt = _bll.getRptOverTime(2, 0, "", 0, dteFromDate, dteToDate, jobstationid, unitid);
                 }
 
                 catch { }
 
-                if (dt.Rows.Count > 0)
+                if (_dt.Rows.Count > 0)
                 {
                     grdvOverTimeReports.DataSource = null;
                     grdvOverTimeReports.DataBind();
-                    gdvJstopsheet.DataSource = dt;
+                    gdvJstopsheet.DataSource = _dt;
                     gdvJstopsheet.DataBind();
                 }
 
@@ -115,10 +115,15 @@ namespace UI.Inventory
         public static List<string> GetAutoCompleteDataForTADA(string strSearchKey)
         {
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            List<string> result = new List<string>();
-            result = objAutoSearch_BLL.AutoSearchEmployeesData(//1399, 12, strSearchKey);
-                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
-            return result;
+            int jobStationId = 0;
+            if (HttpContext.Current.Session["jobStationId"]!=null)
+            {
+                int.Parse(HttpContext.Current.Session["jobStationId"].ToString());
+                var result = objAutoSearch_BLL.AutoSearchEmployeesData(//1399, 12, strSearchKey);
+                    int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), jobStationId, strSearchKey);
+                return result;
+            }
+                return new List<string>();
         }
         protected void grdvOverTimeReports_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -147,20 +152,20 @@ namespace UI.Inventory
             Loadgrid();
         }
 
-        public int GetUnitID(int enrol)
+        public int GetUnitId(int enrol)
         {
-            return Int32.Parse(bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
+            return Int32.Parse(_bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
         }
         public void LoadJobStationDropDown(int unitId)
         {
-            ddlJobStation.DataSource = bll.GetJobStation(unitId);
+            ddlJobStation.DataSource = _bll.GetJobStation(unitId);
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
         }
         public void LoadUnitDropDown(int enrol)
         {
-            ddlUnit.DataSource = bll.GetUnitName(enrol);
+            ddlUnit.DataSource = _bll.GetUnitName(enrol);
             ddlUnit.DataValueField = "intUnitID";
             ddlUnit.DataTextField = "strUnit";
             ddlUnit.DataBind();
@@ -174,9 +179,17 @@ namespace UI.Inventory
 
         protected void ddlJobStation_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["jobStationId"] = (sender as DropDownList).SelectedValue;
+            SetJobStationId();
         }
 
+        private void SetJobStationId()
+        {
+            if (ddlJobStation.SelectedItem != null)
+            {
+                Session["jobStationId"] = ddlJobStation.SelectedItem.Value;
+            }
+            
+        }
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);

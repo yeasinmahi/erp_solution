@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TargetAcvReport.aspx.cs" Inherits="UI.SAD.Consumer.TargetAcvReport" %>
+
 <%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Star Consumer Bill Entry :
+                        Jv Report :
                         <asp:HiddenField ID="hdUnitId" runat="server" />
                     </div>
                     <table border="0" style="width: Auto">
@@ -44,13 +45,37 @@
                                 <asp:TextBox ID="fromTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <script>$('#fromTextBox').datepicker();</script>
                             </td>
-                            
+
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="toTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <script>$('#toTextBox').datepicker();</script>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="JV Type"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlReportType_OnSelectedIndexChanged">
+                                    <asp:ListItem Text="Target Achievement" Value="TargetAchievement"></asp:ListItem>
+                                    <asp:ListItem Text="Distributor Boostup" Value="DistributorBoostup"></asp:ListItem>
+                                    <asp:ListItem Text="Cash Commission" Value="CashCom"></asp:ListItem>
+                                    <asp:ListItem Text="Retail Commission" Value="RetailCom"></asp:ListItem>
+                                    <asp:ListItem Text="Bank Commission" Value="BankCom"></asp:ListItem>
+                                    <asp:ListItem Text="Star Program Commission" Value="StarProgramCom"></asp:ListItem>
+                                    <asp:ListItem Text="Bondhutter Bondhon" Value="BondhutterBondhon"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven" runat="server" id="areaDdlTr">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Area"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server" AutoPostBack="False">
+                                </asp:DropDownList>
                             </td>
                         </tr>
                         <tr class="tblroweven">
@@ -71,18 +96,6 @@
                                                 <%# Container.DataItemIndex + 1 %>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="intDispid" HeaderText="Shop Id" SortExpression="intDispid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strDispointName" HeaderText="Dispoint Name" SortExpression="strDispointName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <%--<asp:BoundField DataField="strPhone" HeaderText="Phone" SortExpression="strPhone" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strTerritory" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />--%>
-                                        <asp:BoundField DataField="strDistr" HeaderText="District" SortExpression="strDistr" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="intCustomerid" HeaderText="CustomerId" SortExpression="intCustomerid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="strSalesOffice" HeaderText="Sales Office" SortExpression="strSalesOffice" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decQntFirstMonth" HeaderText="Quantity First Month" SortExpression="decQntFirstMonth" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decQntSecondMonth" HeaderText="Quantity Second Month" SortExpression="decQntSecondMonth" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="total" HeaderText="Total" SortExpression="total" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="decTarget" HeaderText="Target" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        
                                     </Columns>
                                 </asp:GridView>
                             </td>
