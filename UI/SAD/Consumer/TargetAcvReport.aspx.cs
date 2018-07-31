@@ -57,6 +57,11 @@ namespace UI.SAD.Consumer
                     string area = ddlArea.SelectedItem.Text;
                     source = _bll.GetAllJvWithCostCenterId("Star Consumer program", fromDateTime, toDateTime, area);
                 }
+                else if (_reportType.Equals("BondhutterBondhon"))
+                {
+                    string area = ddlArea.SelectedItem.Text;
+                    source = _bll.GetAllJvWithCostCenterId("Bondhutter Bondhon", fromDateTime, toDateTime, area);
+                }
             }
             catch (Exception exception)
             {
@@ -105,11 +110,17 @@ namespace UI.SAD.Consumer
             {
                 gridView = CreateStarProgramCom(gridView);
             }
+            else if (_reportType.Equals("BondhutterBondhon"))
+            {
+                gridView = CreateBondhutterBondhon(gridView);
+            }
 
             gridView.DataSource = source;
             gridView.DataBind();
             //dyGv.Controls.Add(gridView);
         }
+
+        
 
         private GridView CreateTargetAchievement(GridView gridView)
         {
@@ -190,6 +201,17 @@ namespace UI.SAD.Consumer
             gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
             return gridView;
         }
+        private GridView CreateBondhutterBondhon(GridView gridView)
+        {
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("coa", "coa"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("programName", "programName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("grand", "grand"));
+            return gridView;
+        }
         protected void ddlReportType_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             LoadNecessaryUi();
@@ -215,6 +237,9 @@ namespace UI.SAD.Consumer
                     areaDdlTr.Visible = false;
                     break;
                 case "StarProgramCom":
+                    areaDdlTr.Visible = true;
+                    break;
+                case "BondhutterBondhon":
                     areaDdlTr.Visible = true;
                     break;
                 default:

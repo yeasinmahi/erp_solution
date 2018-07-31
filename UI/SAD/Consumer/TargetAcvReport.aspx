@@ -65,6 +65,7 @@
                                     <asp:ListItem Text="Retail Commission" Value="RetailCom"></asp:ListItem>
                                     <asp:ListItem Text="Bank Commission" Value="BankCom"></asp:ListItem>
                                     <asp:ListItem Text="Star Program Commission" Value="StarProgramCom"></asp:ListItem>
+                                    <asp:ListItem Text="Bondhutter Bondhon" Value="BondhutterBondhon"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
