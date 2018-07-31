@@ -107,10 +107,14 @@
         </tr> 
              </table>
         <table>
-             <tr><td></td></tr>
-            <tr><td></td></tr>
+              <tr><td><asp:Image ID="imgApp" runat="server"   /></td></tr>
+              <tr><td></td></tr>
+              <tr><td></td></tr> 
             <tr><td>Indent By:</td><td><asp:Label ID="lblIndentBY" Font-Bold="true"  runat="server"></asp:Label></td> </tr> 
-            <tr> <td>Approve By: </td><td><asp:Label ID="lblApproveBy" runat="server" Font-Bold="true"></asp:Label></td></tr>
+            <tr> <td>e-Approved By: </td><td><asp:Label ID="lblApproveBy" runat="server" Font-Bold="true"></asp:Label>
+             </td></tr>
+                                      
+          
         </table>
 
          

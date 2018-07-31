@@ -360,8 +360,10 @@ namespace UI.SCM
                 strVDE = ddlVDE.SelectedItem.ToString();
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
                 try { intSelfLife = int.Parse(txtSelfTime.Text.ToString()); } catch { }
+                intProcureType = int.Parse(ddlProcurementType.SelectedValue.ToString());
+                strProcureType = ddlProcurementType.SelectedItem.ToString();
 
-                if(strMaterialName == "")
+                if (strMaterialName == "")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Product Base Name must be filled.');", true);
                     return;
@@ -411,7 +413,11 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select VDE Classification.');", true);
                     return;
                 }
-
+                else if (intProcureType == 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Procure Type.');", true);
+                    return;
+                }
                 if (hdnconfirm.Value == "1")
                 {
                     dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
@@ -446,6 +452,7 @@ namespace UI.SCM
                         ddlABC.SelectedIndex = 0;
                         ddlFSN.SelectedIndex = 0;
                         ddlVDE.SelectedIndex = 0;
+                        ddlProcurementType.SelectedIndex = 0;
                         hdnconfirm.Value = "0";
                         ddlSubCategory.DataSource = "";
                         ddlSubCategory.DataBind();
@@ -493,6 +500,7 @@ namespace UI.SCM
             ddlABC.SelectedIndex = 0;
             ddlFSN.SelectedIndex = 0;
             ddlVDE.SelectedIndex = 0;
+            ddlProcurementType.SelectedIndex = 0;
 
             hdnMaterialId.Value = "0";
         }

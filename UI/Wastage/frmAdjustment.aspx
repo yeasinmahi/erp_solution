@@ -33,11 +33,11 @@
     <script>
        function Add() {
            var a, b, c;
-            var a = document.forms["frmSO"]["txtQty"].value;           
+            var a = document.forms["frmAdjustment"]["txtQty"].value;           
             if (isNaN(a) == true) { a = 0; }
-              var b = document.forms["frmSO"]["txtRate"].value;
+              var b = document.forms["frmAdjustment"]["txtRate"].value;
             if (isNaN(b) == true) { b = 0; }            
-            document.forms["frmSO"]["txtValue"].value = (a*b).toFixed(0);
+            document.forms["frmAdjustment"]["txtValue"].value = (a*b).toFixed(0);
         }
   </script>          
 </head>

@@ -56,8 +56,10 @@
                 <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Type Of Wood :" CssClass="lbl"></asp:Label></td>
                 <td><asp:DropDownList ID="ddlWoodType" runat="server" CssClass="ddList"  width="220px" height="23px" BackColor="White"></asp:DropDownList></td>
 
-                <td style="text-align:right;"><asp:Label ID="lblTag" runat="server" Text="Tag No :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtTag" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox></td>
+                <td colspan="2" style="text-align:right"><asp:Button ID="btnShowPOItem" runat="server" CssClass="myGreyButton" Text="Show PO Item" OnClick="btnShowPOItem_Click" />
+                </td>
+                <%--<td style="text-align:right;"><asp:Label ID="lblTag" runat="server" Text="Tag No :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtTag" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox></td>--%>
             </tr>
             
             </table>
@@ -85,6 +87,32 @@
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />   
                 </asp:GridView>   
             </div>  
+        </table>
+        <table>
+            <tr>
+                <td colspan="4">
+            <asp:GridView ID="dgvReceive" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+            CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="false" 
+            HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true">
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+
+            <Columns>
+            
+            
+            <asp:TemplateField HeaderText="Item ID" SortExpression="intItemID">
+            <ItemTemplate><asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="center"  /></asp:TemplateField>    
+                                
+            <asp:TemplateField HeaderText="PO Qty" SortExpression="POQty" >
+            <ItemTemplate><asp:Label ID="lblPOQty" runat="server" Text='<%# Bind("POQty") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="center" /></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="PO Amount" SortExpression="POAmount" >
+            <ItemTemplate><asp:Label ID="lblPOAmount" runat="server" Text='<%# Bind("POAmount") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" /></asp:TemplateField>
+
+            </Columns>
+            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView></td>
+            </tr>
         </table>
         </td></tr></table>
     </div>

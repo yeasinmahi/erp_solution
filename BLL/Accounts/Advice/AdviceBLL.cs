@@ -109,5 +109,50 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetLastCollectDate(int intAccountID)
+        {
+            try
+            {
+                TblBankAccountStatementTableAdapter adp = new TblBankAccountStatementTableAdapter();
+                return adp.GetLastCollectDate(intAccountID);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetAccountList(int intUnitID)
+        {
+            try
+            {
+                TblBankAccountListTableAdapter adp = new TblBankAccountListTableAdapter();
+                return adp.GetAccountList(intUnitID);
+            }
+            catch { return new DataTable(); }
+        }
+        public void InsertTempData(int intAccountID, string dteDate, string strParticulars, string strInstrumentNo, decimal monDebit, decimal monCredit, decimal monBalance, int intInsertBy)
+        {
+            try
+            {
+                TblTempBankAccountStatementTableAdapter adp = new TblTempBankAccountStatementTableAdapter();
+                adp.InsertTempData(intAccountID, dteDate, strParticulars, strInstrumentNo, monDebit, monCredit, monBalance, intInsertBy);
+            }
+            catch { }
+        }
+        public void DeleteStatement(int intEnroll)
+        {
+            try
+            {
+                DeleteStatementTableAdapter adp = new DeleteStatementTableAdapter();
+                adp.DeleteData(intEnroll);
+            }
+            catch { }
+        }
+        public DataTable InsertStatement(int intAccountID, int intInsertBy)
+        {
+            try
+            {
+                SprBankAccountStatementEntryFromERPTableAdapter adp = new SprBankAccountStatementEntryFromERPTableAdapter();
+                return adp.InsertBankStatement(intAccountID, intInsertBy);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

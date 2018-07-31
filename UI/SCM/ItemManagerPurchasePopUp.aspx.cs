@@ -63,16 +63,11 @@ namespace UI.SCM
                 txtSubCategory.Text = dt.Rows[0]["strSubCategoryName"].ToString();
                 txtMinorCategory.Text = dt.Rows[0]["strMinorCategory"].ToString();
                 txtPlant.Text = dt.Rows[0]["strPlantName"].ToString();
-            }
-            catch { }
-        }
-        protected void ddlProcurementType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ddlProcurementType.SelectedValue.ToString() == "2")
+                txtProcumentType.Text = dt.Rows[0]["strPurchaseType"].ToString();
+
+                if (dt.Rows[0]["strPurchaseType"].ToString() == "Import")
                 {
-                    txtHSCode.Attributes.Add("placeholder","HS Code is mandatory for Import Items.");
+                    txtHSCode.Attributes.Add("placeholder", "HS Code is mandatory for Import Items.");
                 }
                 else
                 {
@@ -89,8 +84,6 @@ namespace UI.SCM
                 intPart = 9;
                 intAutoID = int.Parse(hdnItemID.Value.ToString());
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
-                intProcureType = int.Parse(ddlProcurementType.SelectedValue.ToString());
-                strProcureType = ddlProcurementType.SelectedItem.ToString();
                 strHSCode = txtHSCode.Text;
                 try { numMaxLeadTime = int.Parse(txtMaxLeadTime.Text); } catch { numMaxLeadTime = 0; }
                 try { numMinLeadTime = int.Parse(txtMinLeadTime.Text); } catch { numMinLeadTime = 0; }
@@ -103,6 +96,11 @@ namespace UI.SCM
                 if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtMaxLeadTime.Text == "" || txtMinLeadTime.Text == "")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
+                    return;
+                }
+                if (txtProcumentType.Text == "Import")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Must be fill HS Code for Import Items.....');", true);
                     return;
                 }
 

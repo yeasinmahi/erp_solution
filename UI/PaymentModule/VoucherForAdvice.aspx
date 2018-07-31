@@ -106,11 +106,7 @@
             <asp:TemplateField HeaderText="ID" SortExpression="intBill">
             <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
-
-            <asp:TemplateField HeaderText="Registration Code" SortExpression="strBill">
-            <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="150px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
-
+                
             <asp:TemplateField HeaderText="PO ID" SortExpression="strReff">
             <ItemTemplate><asp:Label ID="lblPOID" runat="server" Text='<%# Bind("strReff") %>' Width="50px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
@@ -126,7 +122,7 @@
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
-            <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+            <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intParty") %>' Width="50px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
@@ -148,6 +144,10 @@
             <asp:TemplateField HeaderText="Ledger Balance" SortExpression="Leadgerbal">
             <ItemTemplate><asp:Label ID="lblLBalance" runat="server" Text='<%# Bind("Leadgerbal", "{0:n2}") %>' Width="100px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="100px"/></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Registration Code" SortExpression="strBill">
+            <ItemTemplate><asp:Label ID="lblRegNo" runat="server" Text='<%# Bind("strBill") %>' Width="150px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="150px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Bill Amount" SortExpression="BillAmount">
             <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("BillAmount", "{0:n2}") %>' Width="100px"></asp:Label>

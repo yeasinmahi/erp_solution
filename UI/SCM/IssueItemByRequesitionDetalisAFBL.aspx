@@ -117,11 +117,8 @@
                 <td   style="text-align:right"><asp:Button ID="btnIssue" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Store Issue" OnClientClick="funConfirmAll()" OnClick="btnIssue_Click"  /> </td> 
                 </tr>
 
-                <tr><td>
-                   
-                    
-                    
-                    &nbsp;</td></tr>
+                <tr><td style="text-align:right"><asp:Label ID="lblStock" runat="server"></asp:Label>
+                </td></tr>
               </table>
               <table style="width:900px; ">
                   <tr>
@@ -198,9 +195,9 @@
                 <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="150px" /> </asp:TemplateField>
                  
-                <asp:TemplateField HeaderText="Dist Name Evening" SortExpression="strMntCategory">
+                <asp:TemplateField HeaderText="MRR NO" SortExpression="strMntCategory">
                 <ItemTemplate> 
-                <asp:DropDownList ID="DropDownList10" Width="120px" runat="server" DataSourceID="ObjectDataSource2" DataTextField="intMRRID" DataValueField="intMRRID"></asp:DropDownList>
+                <asp:DropDownList ID="DropDownList10" Width="120px" runat="server" DataSourceID="ObjectDataSource2" DataTextField="intMRRID" DataValueField="intMRRID" OnSelectedIndexChanged="DropDownList10_SelectedIndexChanged"></asp:DropDownList>
                 <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="SCM_DAL.IndentTDSTableAdapters.tblFactoryReceiveMRRItemDetailTableAdapter">
                <DeleteParameters>
                             <asp:Parameter Name="Original_intMRRID" Type="Int32" />

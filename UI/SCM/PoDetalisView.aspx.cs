@@ -1,7 +1,10 @@
 ﻿using GLOBAL_BLL;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,6 +15,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+ 
 
 namespace UI.SCM
 {
@@ -113,6 +117,8 @@ namespace UI.SCM
                     lblPrepareBy.Text = "".ToString();
                     lblApprovedBy.Text = "".ToString();
                     lblGrandTotal.Text = "".ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not found');", true);
+
                 }
 
                 dt = DataTableLoad.GetPoViewItemWaiseDetalisDataTable(PoNo, enroll);
@@ -221,19 +227,53 @@ namespace UI.SCM
         {
             try
             {
-               // enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                //PoNo = int.Parse(Session["pono"].ToString()); 
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                PoNo = int.Parse(Session["pono"].ToString());
+                //
                 string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
                 byte[] bytes = Convert.FromBase64String(base64);
+                //System.Drawing.Image x = (Bitmap)((new ImageConverter()).ConvertFrom(bytes));
                 Response.Clear();
+                //
                 Response.ContentType = "image/jpeg";
-                Response.AddHeader("Content-Disposition", "attachment; filename=PO.jpeg");
+                Response.ContentType = "image/jpeg";
+                Response.AddHeader("Content-Disposition", "attachment; filename=PO.jpg");
                 Response.Buffer = true;
-              //  string filename = "d.jpeg".ToString();
-              //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
-              //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
-               // string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString(); 
+                //  string filename = "d.jpeg".ToString();
+                //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
+                //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
+                // string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString(); 
+                //try
+                //{
+                //    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                //    byte[] imagebytes = Convert.FromBase64String(base64);
+                //    //string dd = "data:image/jpeg;base64," + Convert.ToBase64String(imagebytes); 
+                //    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagebytes); 
 
+                //    using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
+                //    {
+
+                //        Document document = new Document(PageSize.A3, 0f, 0f, 0f, 0f);
+                //        PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+
+                //        image.SetDpi(1920, 1920);
+                //        document.Open();
+
+                //        document.Add(image);
+                //        document.Close();
+                //        byte[] bytes = memoryStream.ToArray();
+                //        memoryStream.Close();
+
+                //        Response.Clear();
+                //        Response.AddHeader("Content-Disposition", "attachment; filename=" + PoNo.ToString()+ ".pdf");
+                //        Response.ContentType = "application/pdf";
+                //        Response.Buffer = true;
+                //        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                //        Response.BinaryWrite(bytes);
+                //        Response.End();
+                //    }
+                //}
+                //catch { }
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.BinaryWrite(bytes);
 

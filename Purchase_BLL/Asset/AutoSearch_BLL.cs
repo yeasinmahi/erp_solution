@@ -277,14 +277,18 @@ namespace Purchase_BLL.Asset
 
         }
 
-        public static string[] AutoSearchLocationItem(string WHID, string prefix)
-       {
-
-           Inatialize(int.Parse(WHID));
+        public  string[] AutoSearchLocationItem(string WHID, string prefix)
+        {
+           
+             //Inatialize(int.Parse(WHID));
             //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
             //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
-            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID)); 
-             prefix = prefix.Trim().ToLower();
+            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+            tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
+            SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+
+            prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
@@ -307,6 +311,72 @@ namespace Purchase_BLL.Asset
                                    orderby tmp.strItem
                                    select tmp;
  
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                        //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    //retStr[i] = tbl.Rows[i]["strItem"] + "[" + "Stock" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" + "[" + tbl.Rows[i]["intItem"]+"]";
+                    retStr[i] = tbl.Rows[i]["strItem"] + "[" + tbl.Rows[i]["intItem"] + "]" + "[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
+        public string[] AutoSearchForIndenttem(string WHID, string prefix)
+        {
+
+            //Inatialize(int.Parse(WHID));
+            //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
+            //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+            tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
+            SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]
+                               orderby tmp.strItem
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strItem.ToLower().Contains(prefix) || tmp.ItemNumber.ToLower().Contains(prefix)
+                                   orderby tmp.strItem
+                                   select tmp;
+
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();

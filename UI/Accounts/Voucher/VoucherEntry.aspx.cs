@@ -139,6 +139,10 @@ namespace UI.Accounts.Voucher
                     hdnisexpenses.Value = dtbl.Rows[0]["IsExpenses"].ToString();
                     if (dtbl.Rows[0]["IsExpenses"].ToString() == "1") { ddlCCntr.Enabled = true; }
                     else { ddlCCntr.Enabled = false; }
+                    if (int.Parse(ddlUnit.SelectedValue.ToString()) == 105)
+                    {
+                        ddlCCntr.Enabled = true;
+                    }
                 }
 
 

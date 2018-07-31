@@ -6561,8 +6561,8 @@ SELECT strChallanNo, intID FROM tblVATPurchase WHERE (intID = @intID)";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT strChallanNo, intID FROM tblVATPurchase WHERE (intMaterialID = @mid) AND (" +
-                "intUnitID = @unitid) AND (intVATAccountID = @Accid) AND (DATEADD(day, 90, dteCha" +
-                "llanDate) >= GETDATE())";
+                "intUnitID = @unitid) AND (intVATAccountID = @Accid) AND (DATEADD(day, 1100, dteC" +
+                "hallanDate) >= GETDATE())";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMaterialID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

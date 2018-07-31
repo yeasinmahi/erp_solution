@@ -170,12 +170,12 @@
                         </tr>
                         <tr>
                         <td>Vat Amount</td>
-                        <td><asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                       
-                        
-                         <td style="text-align:right"  colspan="4"  ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+                        <td><asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>                       
+                        <td style="text-align:right" ><asp:Label ID="lblMupload" Text="Upload" runat="server"></asp:Label></td>
+                        <td ><asp:FileUpload ID="docUpload" Width="300px" runat="server" /></td>
 
-                       
+                         <td style="text-align:right"  colspan="2"  ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+
                         </tr>
                         <tr> 
                         <td colspan="4"><asp:Label ID="lblSuppliyer" runat="server"  ></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false" runat="server"  ></asp:Label><asp:Label ID="lblCurrency" runat="server"></asp:Label>
@@ -201,7 +201,7 @@
                <table>
                         <tr> 
                         <td> 
-                        <asp:GridView ID="dgvMrr" runat="server" AutoGenerateColumns="False"  Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  OnRowDataBound="Mrr_RowDataBound" 
+                        <asp:GridView ID="dgvMrr" runat="server" AutoGenerateColumns="False"  Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" Width="1000px"  OnRowDataBound="Mrr_RowDataBound" 
                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" > 
                         <AlternatingRowStyle BackColor="#CCCCCC" /> 
                         <Columns> 
@@ -211,9 +211,13 @@
                         <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItem") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField> 
 
+                       <asp:TemplateField HeaderText="ItemId" Visible="false" SortExpression="intPoId"><ItemTemplate> 
+                        <asp:Label ID="lblPoId" runat="server" Text='<%# Bind("intPoId") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField> 
+
                         <asp:TemplateField HeaderText="ItemName" ItemStyle-HorizontalAlign="right" SortExpression="strItem" > 
-                        <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="left" Width="350px" /> </asp:TemplateField>  
+                        <ItemTemplate><asp:Label ID="lblItemName" Width="300px" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="left" Width="450px" /> </asp:TemplateField>  
 
                          <asp:TemplateField HeaderText="Description" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strDes" > 
                         <ItemTemplate><asp:Label ID="lblDescription" runat="server"  Text='<%# Bind("strDes") %>'  ></asp:Label></ItemTemplate> 
@@ -288,7 +292,7 @@
                         <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right" SortExpression="strLocationName" > 
-                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
+                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" Width="60px"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
                             <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />

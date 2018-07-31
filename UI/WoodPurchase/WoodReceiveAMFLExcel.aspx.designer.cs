@@ -229,22 +229,13 @@ namespace UI.WoodPurchase {
         protected global::System.Web.UI.WebControls.DropDownList ddlWoodType;
         
         /// <summary>
-        /// lblTag control.
+        /// btnShowPOItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTag;
-        
-        /// <summary>
-        /// txtTag control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTag;
+        protected global::System.Web.UI.WebControls.Button btnShowPOItem;
         
         /// <summary>
         /// FileUpload1 control.
@@ -281,5 +272,14 @@ namespace UI.WoodPurchase {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvExcelFile;
+        
+        /// <summary>
+        /// dgvReceive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvReceive;
     }
 }

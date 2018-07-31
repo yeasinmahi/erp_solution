@@ -50,7 +50,9 @@ namespace UI.SCM.Transfer
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            AutoSearch_BLL ast = new AutoSearch_BLL();
+            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+           // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
 
         }
 
@@ -144,8 +146,8 @@ namespace UI.SCM.Transfer
                 else { }
                 dt = objTransfer.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlLocation.DataSource = dt;
-                ddlLocation.DataTextField = "Id";
-                ddlLocation.DataValueField = "strName";
+                ddlLocation.DataTextField = "strName";
+                ddlLocation.DataValueField = "Id";
                 ddlLocation.DataBind();
                 ddlLocation.Items.Insert(0, new ListItem("Select", "0"));
                 dt.Clear();

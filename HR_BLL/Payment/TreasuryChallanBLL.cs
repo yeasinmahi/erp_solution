@@ -33,11 +33,26 @@ namespace HR_BLL.Payment
             return adp.GetVatRegData(intTreasuryId);
         }
 
-
-
-
-
-
-
+        public DataTable updateVat(string BankName, string strDistrict, string strBranch, string dteChallan, string strChallan, string strInstrument,int intTreasuryID)
+        {
+            tblVATTreasuryDepositTableAdapter adp = new tblVATTreasuryDepositTableAdapter();
+            return adp.UpdateData(BankName,strDistrict,strBranch,dteChallan,strChallan,strInstrument,intTreasuryID);
         }
+
+        public DataTable ShowAdvice(int intVatAcc,int intType)
+        {
+            sprAccountsAdviceForTreasuryDepositWebTableAdapter adp = new sprAccountsAdviceForTreasuryDepositWebTableAdapter();
+            return adp.GetData(intVatAcc, intType);
+        }
+
+
+
+
+
+
+
+
+
+
+    }
 }

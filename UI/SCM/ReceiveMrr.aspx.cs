@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
@@ -89,13 +90,14 @@ namespace UI.SCM
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             try
-            {  try { File.Delete(filePathForXML);  } catch { }
+            {
+                try { File.Delete(filePathForXML);  } catch { }
               
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString()=="1")
                 {
                     intWh = int.Parse(ddlWH.SelectedValue.ToString());
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    try { intPOID = int.Parse(ddlPo.SelectedValue); } catch { }
+                  //  try { intPOID = int.Parse(ddlPo.SelectedValue); } catch { }
                     try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
                     try { intShipment = int.Parse(hdnShipment.Value); } catch { }
                     try { dteChallan = DateTime.Parse(txtdteChallan.Text.ToString()); } catch { }
@@ -110,6 +112,7 @@ namespace UI.SCM
                     
                     for (int index = 0; index < dgvMrr.Rows.Count; index++)
                     { 
+                        intPOID =int.Parse(((Label)dgvMrr.Rows[index].FindControl("lblPoId")).Text.ToString()); 
                         string intItemID = ((Label)dgvMrr.Rows[index].FindControl("lblItemId")).Text.ToString();
                         string numPOQty = ((Label)dgvMrr.Rows[index].FindControl("lblPoQty")).Text.ToString();
                         string numPreRcvQty = ((Label)dgvMrr.Rows[index].FindControl("lblPreviousReceive")).Text.ToString();
@@ -162,8 +165,33 @@ namespace UI.SCM
                     
                     string[] searchKey = Regex.Split(msg, ":");
                     lblMrrNo.Text = searchKey[1].ToString();
+
+                    #region====================Mrr Document Attachment===========================
+                    try
+                    {
+                        string FileExtension = Path.GetExtension(docUpload.PostedFile.FileName).Substring(1);
+                        string xmlData = "<voucher><voucherentry strFileName=" + '"' + "MRR Challan" + '"' + " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
+
+                        if (FileExtension.Length > 1)
+                        {
+                            msg = obj.MrrReceive(15, xmlData, intWh, int.Parse(lblMrrNo.Text.ToString()), DateTime.Now, enroll);
+
+                            string[] searchKeyAt = Regex.Split(msg, ":");
+                            string fileId = searchKeyAt[1].ToString();
+
+                            string dfile = fileId.ToString() + "." + FileExtension;
+                            docUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                            FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
+                            File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+
+                        }
+                    }
+                    catch { } 
+
+                    #endregion===================Close============================================ 
+
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    PoView();
+                    PoView(intPOID);
                 }
             }
             catch { try { File.Delete(filePathForXML); } catch { } }
@@ -321,69 +349,77 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-      
+            
             dgvMrr.DataSource = dt;
             dgvMrr.DataBind();
-            PoView();
-        }
+           
+            intWh = int.Parse(ddlWH.SelectedValue);
+            if (txtPO.Text.Length > 3)
+            {
 
-        private void PoView()
-        {
-             
-                intWh = int.Parse(ddlWH.SelectedValue); 
-                if (txtPO.Text.Length > 3)
+                intPo = int.Parse(txtPO.Text);
+                dt = obj.GetWHByPO(intPo, intWh);
+                if (dt.Rows.Count > 0)
                 {
 
-                    intPo = int.Parse(txtPO.Text);
-                    dt = obj.GetWHByPO(intPo, intWh);
-                    if (dt.Rows.Count > 0)
+                    if (dt.Rows[0]["strPoFor"].ToString() == "Local")
                     {
 
-                        if (dt.Rows[0]["strPoFor"].ToString() == "Local")
-                        {
-                            
-                            ddlPoType.SelectedValue = "1";
-                            ddlInvoice.Enabled = false;
-                            ddlInvoice.DataSource = "";
-                            ddlInvoice.DataBind();
+                        ddlPoType.SelectedValue = "1";
+                        ddlInvoice.Enabled = false;
+                        ddlInvoice.DataSource = "";
+                        ddlInvoice.DataBind();
                     }
-                        else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
-                        {
-                           
-                            ddlPoType.SelectedValue = "2";
-                            ddlInvoice.Enabled = true;
-                            dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
-                            ddlInvoice.DataSource = dt;
-                            ddlInvoice.DataTextField = "strName";
-                            ddlInvoice.DataValueField = "Id";
-                            ddlInvoice.DataBind();
-                    }
-                        else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
-                        {
-                           
-                            ddlPoType.SelectedValue = "3";
-                        }
+                    else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
+                    {
 
-                        string poType = ddlPoType.SelectedItem.ToString();
-                        intWh = int.Parse(ddlWH.SelectedValue.ToString());
-                        xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
-                        dt = obj.DataView(3, xmlString, intWh, 0, DateTime.Now, enroll);
-                        ddlPo.DataSource = dt;
-                        ddlPo.DataTextField = "strName";
-                        ddlPo.DataValueField = "Id";
-                        ddlPo.DataBind();
-
-                        ddlPo.SelectedValue = intPo.ToString();
+                        ddlPoType.SelectedValue = "2";
+                        ddlInvoice.Enabled = true;
+                        dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
+                        ddlInvoice.DataSource = dt;
+                        ddlInvoice.DataTextField = "strName";
+                        ddlInvoice.DataValueField = "Id";
+                        ddlInvoice.DataBind();
                     }
-                    else { ddlPo.DataSource = "";ddlPo.DataBind();ddlInvoice.DataSource = "";ddlInvoice.DataBind(); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO is not Found');", true); } 
+                    else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
+                    {
+
+                        ddlPoType.SelectedValue = "3";
+                    }
+
+                    string poType = ddlPoType.SelectedItem.ToString();
+                    intWh = int.Parse(ddlWH.SelectedValue.ToString());
+                    xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
+                    dt = obj.DataView(3, xmlString, intWh, 0, DateTime.Now, enroll);
+                    ddlPo.DataSource = dt;
+                    ddlPo.DataTextField = "strName";
+                    ddlPo.DataValueField = "Id";
+                    ddlPo.DataBind();
+
+                    ddlPo.SelectedValue = intPo.ToString();
                 }
                 else
                 {
-                intPo = int.Parse(ddlPo.SelectedValue);
+                    ddlPo.DataSource = ""; ddlPo.DataBind(); ddlInvoice.DataSource = ""; ddlInvoice.DataBind();
+                    intPo = 0;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not Found');", true);
                 }
+            }
+            else
+            {
+                intPo = int.Parse(ddlPo.SelectedValue);
+            }
+
+            PoView(intPo);
+        }
+
+        private void PoView(int intPo)
+        {  
 
                 try
-                { 
+                {
+                       intWh = int.Parse(ddlWH.SelectedValue);
+
                         try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
                         xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
                         if (ddlInvoice.Enabled == true)
@@ -490,6 +526,34 @@ namespace UI.SCM
 
             }
             catch { }
+        }
+
+        private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
+        {
+            FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
+            requestFTPUploader.Credentials = new NetworkCredential(user, pass);
+            requestFTPUploader.Method = WebRequestMethods.Ftp.UploadFile;
+
+            FileInfo fileInfo = new FileInfo(localPath + fileName);
+            FileStream fileStream = fileInfo.OpenRead();
+
+            int bufferLength = 2048;
+            byte[] buffer = new byte[bufferLength];
+
+            Stream uploadStream = requestFTPUploader.GetRequestStream();
+            int contentLength = fileStream.Read(buffer, 0, bufferLength);
+
+            while (contentLength != 0)
+            {
+                uploadStream.Write(buffer, 0, contentLength);
+                contentLength = fileStream.Read(buffer, 0, bufferLength);
+            }
+
+            uploadStream.Close();
+            fileStream.Close();
+
+            requestFTPUploader = null;
+
         }
     }
 }

@@ -116,8 +116,6 @@ namespace UI.SCM
         {
             try
             {
-
-
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 MrrId = int.Parse(Request.QueryString["MrrId"].ToString());
                 string FileExtension = Path.GetExtension(docUpload.PostedFile.FileName).Substring(1);

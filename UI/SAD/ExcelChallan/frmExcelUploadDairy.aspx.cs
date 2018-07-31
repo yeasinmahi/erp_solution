@@ -42,11 +42,18 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnDataView_Click(object sender, EventArgs e)
         {
-            dt = objExcel.UploadDataOrderDairy(int.Parse(ddlshippoint.SelectedValue),DateTime.Parse(txtFrom.Text));
-            dgvExcelOrder.DataSource = dt;
-            dgvExcelOrder.DataBind();
-            dgvExcelOrder.Visible = true;
-            dgvSlip.Visible = false;
+            if (txtFrom.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Date Select ');", true);
+
+            }
+            else { 
+                dt = objExcel.UploadDataOrderDairy(int.Parse(ddlshippoint.SelectedValue), DateTime.Parse(txtFrom.Text));
+                dgvExcelOrder.DataSource = dt;
+                dgvExcelOrder.DataBind();
+                dgvExcelOrder.Visible = true;
+                dgvSlip.Visible = false;
+            }
         }
         protected double Pendingtotal = 0; protected double TotalQtytotal = 0;
         protected void btnLoadingSlip_Click(object sender, EventArgs e)

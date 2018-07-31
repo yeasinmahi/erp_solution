@@ -44,7 +44,7 @@
      <script>
          
          function Viewdetails(id) {
-             window.open('CorrectiveRequestUserPopUP.aspx?ID=' + id , '', "height=600, width=800, scrollbars=yes, left=150, top=50, resizable=yes, title=Preview");
+             window.open('CorrectiveRequestUserPopUP.aspx?ID=' + id , '', "height=600, width=1100, scrollbars=yes, left=150, top=50, resizable=yes, title=Preview");
          }
              </script> 
    

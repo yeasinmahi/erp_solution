@@ -79,7 +79,7 @@ namespace UI.SCM.BOM
         public static string[] GetItemSerach(string prefixText, int count)
         {
             Bom_BLL objBoms = new Bom_BLL(); 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText);
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText,1);
 
         }
         #endregion====================Close====================================== 

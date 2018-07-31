@@ -73,7 +73,6 @@ namespace UI.Dairy
                 }
                 catch { }
             }
-
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
