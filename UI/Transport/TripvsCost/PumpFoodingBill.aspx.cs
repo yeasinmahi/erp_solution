@@ -123,22 +123,17 @@ namespace UI.Transport.TripvsCost
                 TimeSpan outTimeSpan = TimeSpan.Parse(outTime);
                 TimeSpan diffTimeSpan = outTimeSpan.Subtract(inTimeSpan);
 
-                string date = txtFromDate.Text;
-                DateTime actionDateTime = DateTimeConverter.StringToDateTime(date, "yyyy-MM-dd");
+                string billDate = txtFromDate.Text;
+                DateTime actionDateTime = DateTimeConverter.StringToDateTime(billDate, "yyyy-MM-dd");
                 DateTime inDateTime = actionDateTime.Add(inTimeSpan);
                 DateTime outDateTime = actionDateTime.Add(outTimeSpan);
 
-                
-                string billDate = txtFromDate.Text;
 
-
-                if (billDate == string.Empty || billDate == "")
+                if (String.IsNullOrWhiteSpace(billDate))
                 {
 
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
                 }
-
-
                 else
                 {
                     string cureentdate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -155,47 +150,52 @@ namespace UI.Transport.TripvsCost
                         {
                             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
                         }
-                        int enroll = Convert.ToInt32(txtAplicnEnrol.Text);
-                        string tripNo = txttrip.Text;
-                        string name = txtFullName.Text;
-                        string address = lblSiteadr.Text;
-                        string designation = txtDesignation.Text;
-                        string totalBill = txtTotalBill.Text;
-
-                        string message;
-                        dynamic obj = new
+                        try
                         {
-                            intEnroll = enroll,
-                            TripNo = tripNo,
-                            strName = name,
-                            strAddress = address,
-                            strDesignation = designation,
-                            monTotalBill = totalBill,
-                            dteOutDate = outDateTime,
-                            dteInDate = inDateTime,
-                            dteStartTime = inTime,
-                            dteEndTime = outTime,
-                            dteTotalTime = diffTimeSpan
+                            int enroll = Convert.ToInt32(txtAplicnEnrol.Text);
+                            string tripNo = txttrip.Text;
+                            string name = txtFullName.Text;
+                            string address = lblSiteadr.Text;
+                            string designation = txtDesignation.Text;
+                            string totalBill = txtTotalBill.Text;
 
-                        };
+                            string message;
+                            dynamic obj = new
+                            {
+                                intEnroll = enroll,
+                                TripNo = tripNo,
+                                strName = name,
+                                strAddress = address,
+                                strDesignation = designation,
+                                monTotalBill = totalBill,
+                                dteOutDate = outDateTime,
+                                dteInDate = inDateTime,
+                                dteStartTime = inTime,
+                                dteEndTime = outTime,
+                                dteTotalTime = diffTimeSpan
 
-                        if (XmlParser.CreateXml("RemoteProgramBill", "items", obj, _filePathForXml, out message))
-                        {
-                            //nothing
+                            };
+
+                            if (XmlParser.CreateXml("RemoteProgramBill", "items", obj, _filePathForXml, out message))
+                            {
+                                //nothing
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
+                            }
                         }
-                        else
+                        catch (Exception exception)
                         {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('insert all input properly. "+exception.Message+"');", true);
                         }
+                        
                         LoadGridwithXml();
                         
                         //CreateVoucherXml(aplenrol,tripNo, name,address,designation,totalBill, strBillDate, strstar, strendt, tmDifferencehms);
-
-
+                        
                     }
-
                 }
-
             }
             else
             {
