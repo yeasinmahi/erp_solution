@@ -20,10 +20,10 @@ namespace UI.Transport.TripvsCost
 {
     public partial class PumpFoodingBill : Page
     {
-        readonly TourPlanning _bll = new TourPlanning();
-        readonly SalesOrder _blso = new SalesOrder();
-        readonly StarConsumerEntryBll _consumerEntryBll = new StarConsumerEntryBll();
-        string _filePathForXml;
+        private readonly TourPlanning _bll = new TourPlanning();
+        private readonly SalesOrder _blso = new SalesOrder();
+        private readonly StarConsumerEntryBll _consumerEntryBll = new StarConsumerEntryBll();
+        private string _filePathForXml;
         protected decimal Grndothercost = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
