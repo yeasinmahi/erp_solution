@@ -56,7 +56,7 @@
                                 <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Report Type"></asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server" AutoPostBack="False">
+                                <asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlReportType_OnSelectedIndexChanged">
                                     <asp:ListItem Text="Top Sheet" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="Details" Value="2"></asp:ListItem>
                                 </asp:DropDownList>

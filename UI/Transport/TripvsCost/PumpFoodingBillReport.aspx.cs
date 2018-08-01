@@ -94,5 +94,9 @@ namespace UI.Transport.TripvsCost
             }
         }
 
+        protected void ddlReportType_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadUi();
+        }
     }
 }
