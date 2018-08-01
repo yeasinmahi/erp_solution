@@ -100,19 +100,6 @@
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
                         Pump Fooding Bill :
-                        <asp:HiddenField ID="hdUnitId" runat="server" />
-                        <asp:HiddenField ID="hdnApplicantEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnstation" runat="server" />
-                        <asp:HiddenField ID="hdnsearch" runat="server" />
-                        <asp:HiddenField ID="HiddenField1" runat="server" />
-                        <asp:HiddenField ID="HiddenField3" runat="server" />
-                        <asp:HiddenField ID="ApproverEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnAreamanagerEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnAction" runat="server" />
-                        <asp:HiddenField ID="HiddenUnit" runat="server" />
-                        <asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
-                        <asp:HiddenField ID="hdnmiute" runat="server" />
-                        <hr />
                     </div>
                     <table border="0" style="width: Auto">
                         <tr class="tblroweven">

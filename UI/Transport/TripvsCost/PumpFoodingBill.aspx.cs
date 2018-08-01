@@ -31,12 +31,8 @@ namespace UI.Transport.TripvsCost
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
-                hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
-
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
-                hdnAction.Value = "0";
-
+                
                 //SetUnitName(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
                 LoadUnitDropDown(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
                 LoadJobStationDropDown(GetUnitId(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
@@ -71,7 +67,6 @@ namespace UI.Transport.TripvsCost
                 {
                     return;
                 }
-                hdfSearchBoxTextChange.Value = "false";
 
             }
             else
@@ -242,10 +237,6 @@ namespace UI.Transport.TripvsCost
             if (grdvOvertimeEntry.Rows.Count > 0)
             {
                 #region ------------ Insert into dataBase -----------
-                hdnApplicantEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                Int32 enroll = Convert.ToInt32(hdnApplicantEnrol.Value);
-                HiddenUnit.Value = HttpContext.Current.Session[SessionParams.UNIT_ID].ToString();
-                hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
                 int insertBy = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 int unitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
                 string billDate = txtFromDate.Text;
@@ -254,7 +245,7 @@ namespace UI.Transport.TripvsCost
                 {
                     XmlDocument doc = new XmlDocument();
                     doc.Load(_filePathForXml);
-                    _consumerEntryBll.FoodBiilingInfo(0, enroll, doc.OuterXml, billDateTime, billDateTime, unitId, insertBy);
+                    _consumerEntryBll.FoodBiilingInfo(0, insertBy, doc.OuterXml, billDateTime, billDateTime, unitId, insertBy);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Insert Successful');", true);
                 }
                 catch(Exception ex)

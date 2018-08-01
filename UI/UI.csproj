@@ -1372,6 +1372,7 @@
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
+    <Content Include="Transport\TripvsCost\PumpFoodingBillReport.aspx" />
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
@@ -7248,6 +7249,13 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\PumpFoodingBill.aspx.designer.cs">
       <DependentUpon>PumpFoodingBill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\PumpFoodingBillReport.aspx.cs">
+      <DependentUpon>PumpFoodingBillReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\PumpFoodingBillReport.aspx.designer.cs">
+      <DependentUpon>PumpFoodingBillReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\ThanaRateChecking.aspx.cs">
       <DependentUpon>ThanaRateChecking.aspx</DependentUpon>
