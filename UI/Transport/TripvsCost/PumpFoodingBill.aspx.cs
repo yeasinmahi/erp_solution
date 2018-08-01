@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using SAD_BLL.Consumer;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.Transport.TripvsCost
 {
@@ -26,7 +26,8 @@ namespace UI.Transport.TripvsCost
 
         TourPlanning bll = new TourPlanning();
         SalesOrder blso = new SalesOrder();
-        string filePathForXML;
+        readonly StarConsumerEntryBll _consumerEntryBll = new StarConsumerEntryBll();
+        string _filePathForXml;
         string xmlString = "";
         int intCOAid; int RowIndex;
         protected decimal grandtotal = 0; protected decimal Grndothercost = 0;
@@ -34,7 +35,7 @@ namespace UI.Transport.TripvsCost
         int enr;
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SAD/Order/Data/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "overtimeEntry.xml");
+            _filePathForXml = Server.MapPath("~/SAD/Order/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "pumpFoodEntry.xml");
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -49,7 +50,7 @@ namespace UI.Transport.TripvsCost
                 LoadJobStationDropDown(GetUnitID(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
 
                 ////---------xml----------
-                try { File.Delete(filePathForXML); }
+                try { File.Delete(_filePathForXml); }
                 catch { }
                 ////-----**----------//
             }
@@ -57,8 +58,6 @@ namespace UI.Transport.TripvsCost
             else
             {
                 LoadEmployeeInfo();
-
-
             }
 
         }
@@ -119,161 +118,27 @@ namespace UI.Transport.TripvsCost
             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
             return result;
         }
-
-        //[WebMethod]
-        //public static List<string> GetAutoserachingAssetName(string strSearchKey)
-        //{
-        //    RegistrationRenewals_BLL bll = new RegistrationRenewals_BLL();
-
-        //    List<string> result = new List<string>();
-        //    result = bll.AutoSearchAssetName(strSearchKey);
-        //    return result;
-        //}
-
-
-
-        private void CreateVoucherXml(string BillDate, string starttime, string endtime, string MovDuration, string purpouse, string purpouseid, string slNo, string txtstrtwihtHMS, string tmendwithHMS, string tmdifferencewithHMS, string remarks, string applicantenrol)
-        {
-            XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
-            {
-                doc.Load(filePathForXML);
-                XmlNode rootNode = doc.SelectSingleNode("OvertimeEntry");
-                XmlNode addItem = CreateItemNode(doc, BillDate, starttime, endtime, MovDuration, purpouse, purpouseid, slNo, txtstrtwihtHMS, tmendwithHMS, tmdifferencewithHMS, remarks, applicantenrol);
-                rootNode.AppendChild(addItem);
-            }
-            else
-            {
-                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
-                doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("OvertimeEntry");
-                XmlNode addItem = CreateItemNode(doc, BillDate, starttime, endtime, MovDuration, purpouse, purpouseid, slNo, txtstrtwihtHMS, tmendwithHMS, tmdifferencewithHMS, remarks, applicantenrol);
-                rootNode.AppendChild(addItem);
-                doc.AppendChild(rootNode);
-            }
-            doc.Save(filePathForXML);
-            LoadGridwithXml();
-            Clear();
-        }
-        private XmlNode CreateItemNode(XmlDocument doc, string BillDate, string starttime, string endtime, string MovDuration, string purpouse, string purpouseid, string slNo, string txtstrtwihtHMS, string tmendwithHMS, string tmdifferencewithHMS, string remarks, string applicantenrol)
-        {
-            XmlNode node = doc.CreateElement("items");
-
-            XmlAttribute STRBILLDATE = doc.CreateAttribute("BillDate");
-            STRBILLDATE.Value = BillDate;
-
-            XmlAttribute STARTTIME = doc.CreateAttribute("starttime");
-            STARTTIME.Value = starttime;
-            XmlAttribute ENDTIME = doc.CreateAttribute("endtime");
-            ENDTIME.Value = endtime;
-            XmlAttribute MOVDURATION = doc.CreateAttribute("MovDuration");
-            MOVDURATION.Value = MovDuration;
-
-            XmlAttribute SLNO = doc.CreateAttribute("slNo");
-            SLNO.Value = slNo;
-            XmlAttribute PURPOUSE = doc.CreateAttribute("purpouse");
-            PURPOUSE.Value = purpouse;
-
-            XmlAttribute PURPOUSEID = doc.CreateAttribute("purpouseid");
-            PURPOUSEID.Value = purpouseid;
-
-            XmlAttribute txtstrtWITHHMS = doc.CreateAttribute("txtstrtwihtHMS");
-            txtstrtWITHHMS.Value = txtstrtwihtHMS;
-
-            XmlAttribute TMENDWITHHMS = doc.CreateAttribute("tmendwithHMS");
-            TMENDWITHHMS.Value = tmendwithHMS;
-            XmlAttribute TMDIFFERENCEWITHHMS = doc.CreateAttribute("tmdifferencewithHMS");
-            TMDIFFERENCEWITHHMS.Value = tmdifferencewithHMS;
-
-            XmlAttribute REMARKS = doc.CreateAttribute("remarks");
-            REMARKS.Value = remarks;
-            XmlAttribute APPLICANTENROL = doc.CreateAttribute("applicantenrol");
-            APPLICANTENROL.Value = applicantenrol;
-
-
-
-            node.Attributes.Append(STRBILLDATE);
-            node.Attributes.Append(STARTTIME);
-            node.Attributes.Append(ENDTIME);
-            node.Attributes.Append(MOVDURATION);
-
-            node.Attributes.Append(SLNO);
-            node.Attributes.Append(PURPOUSE);
-            node.Attributes.Append(PURPOUSEID);
-            node.Attributes.Append(txtstrtWITHHMS);
-            node.Attributes.Append(TMENDWITHHMS);
-            node.Attributes.Append(TMDIFFERENCEWITHHMS);
-            node.Attributes.Append(REMARKS);
-
-            node.Attributes.Append(APPLICANTENROL);
-
-            return node;
-        }
-
-        private void Clear()
-        {
-
-
-            txtMovDuration.Text = "";
-
-        }
-        private void LoadGridwithXml()
-        {
-            try
-            {
-                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-                doc.Load(filePathForXML);
-                System.Xml.XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0)
-                { grdvOvertimeEntry.DataSource = ds; }
-                else { grdvOvertimeEntry.DataSource = ""; }
-                grdvOvertimeEntry.DataBind();
-            }
-            catch { }
-
-        }
-
-
-
         protected void btnAddBikeCarUser_Click(object sender, EventArgs e)
         {
             if (grdvOvertimeEntry.Rows.Count < 1)
             {
-                string durt = txtMovDuration.Text;
-                string start = txtstrt.Text;
-                string endt = txtend.Text;
+                string inTime = txtstrt.Text;
+                string outTime = txtend.Text;
 
-                double twentyfourhours = 24;
-                TimeSpan interval = TimeSpan.FromHours(twentyfourhours);
+                TimeSpan inTimeSpan = TimeSpan.Parse(inTime);
+                TimeSpan outTimeSpan = TimeSpan.Parse(outTime);
+                TimeSpan diffTimeSpan = outTimeSpan.Subtract(inTimeSpan);
 
-                TimeSpan tmstart1 = TimeSpan.Parse(start.ToString());
-                TimeSpan tmend1 = TimeSpan.Parse(endt.ToString());
-                TimeSpan tmdur = TimeSpan.Parse(durt.ToString());
+                string date = txtFromDate.Text;
+                DateTime actionDateTime = DateTimeConverter.StringToDateTime(date, "yyyy-MM-dd");
+                DateTime inDateTime = actionDateTime.Add(inTimeSpan);
+                DateTime outDateTime = actionDateTime.Add(outTimeSpan);
 
-
-
-                int starthours = tmstart1.Hours;
-                int endhours = tmend1.Hours;
-                string starttime = starthours.ToString();
-                string endtime = endhours.ToString();
-                string starttime1 = Convert.ToString(tmstart1.ToString());
-                string endtime1 = Convert.ToString(tmend1.ToString());
-                DateTime dt1 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-                DateTime dt2 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
+                
+                string billDate = txtFromDate.Text;
 
 
-
-                string MovDuration = txtMovDuration.Text;
-                string Serial;
-                string BillDate = txtFromDate.Text;
-
-
-                if (BillDate == string.Empty || BillDate == "")
+                if (billDate == string.Empty || billDate == "")
                 {
 
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
@@ -283,147 +148,59 @@ namespace UI.Transport.TripvsCost
                 else
                 {
                     string cureentdate = DateTime.Now.ToString("yyyy-MM-dd");
-                    var now = DateTime.Now;
-                    var startOfMonth = new DateTime(now.Year, now.Month, 1);
-                    var DaysInMonth = DateTime.DaysInMonth(now.Year, now.Month);
-                    var lastDay = new DateTime(now.Year, now.Month, DaysInMonth).AddDays(6);
-                    string lastd = lastDay.ToString("yyyy-MM-dd");
-                    DateTime today = Convert.ToDateTime(BillDate);
+                    DateTime today = Convert.ToDateTime(billDate);
                     DateTime endOfMonth = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)).AddDays(6);
                     DateTime dt3 = Convert.ToDateTime(endOfMonth);
                     DateTime dt4 = Convert.ToDateTime(cureentdate);
-                    int diffbEOMTODATE = (dt3 - dt4).Days;
+                    int diffbEomtodate = (dt3 - dt4).Days;
 
-                    if (diffbEOMTODATE > 0)
+                    if (diffbEomtodate > 0)
                     {
 
-                        if (BillDate == string.Empty || BillDate == "")
+                        if (billDate == string.Empty || billDate == "")
                         {
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
                         }
-                        else if (true/*selectvalue == 0*/)
+                        
+                        string strpur = "Fooding Bill";
+                        string strpurid = "1";
+                        
+                        int enroll = Convert.ToInt32(txtAplicnEnrol.Text);
+                        string tripNo = txttrip.Text;
+                        string name = txtFullName.Text;
+                        string address = lblSiteadr.Text;
+                        string designation = txtDesignation.Text;
+                        string totalBill = txtTotalBill.Text;
+
+                        string message;
+                        dynamic obj = new
                         {
-                            string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
+                            intEnroll = enroll,
+                            TripNo = tripNo,
+                            strName = name,
+                            strAddress = address,
+                            strDesignation = designation,
+                            monTotalBill = totalBill,
+                            dteOutDate = outDateTime,
+                            dteInDate = inDateTime,
+                            dteStartTime = inTime,
+                            dteEndTime = outTime,
+                            dteTotalTime = diffTimeSpan
 
-                            string strstarttime = (tmstart1.ToString());
-                            string strendtime = (tmend1.ToString());
-                            string strstar = starthours.ToString();
-                            string strendt = endhours.ToString();
+                        };
 
-
-                            starttime1 = Convert.ToString(strstarttime.ToString());
-                            endtime1 = Convert.ToString(strendtime.ToString());
-                            DateTime dt11 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-                            DateTime dt12 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-
-
-                            DateTime dts = Convert.ToDateTime(dt11);
-                            DateTime dte = Convert.ToDateTime(dt12);
-                            TimeSpan diff;
-                            TimeSpan difff;
-                            string df;
-                            if (endhours < starthours)
-                            {
-                                diff = Convert.ToDateTime(dts) - Convert.ToDateTime(dte);
-                                difff = interval - diff;
-                                df = Convert.ToString(difff.ToString());
-                            }
-                            else
-                            {
-                                diff = (Convert.ToDateTime(dte) - Convert.ToDateTime(dts));
-                                df = Convert.ToString(diff.ToString());
-                            }
-
-
-                            string tmDifferencehms = tmdur.ToString();
-                            tmDifferencehms = "0";
-
-
-
-
-                            string tmDifferencehmswith = tmdur.ToString();
-
-                            string strpur = "Fooding Bill";
-                            string strpurid = "1";
-                            string remk = txtRemarks.Text;
-                            string aplenrol = txtAplicnEnrol.Text;
-
-
-                            Serial = "1";
-
-                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-
-
-
+                        if (XmlParser.CreateXml("RemoteProgramBill", "items", obj, _filePathForXml, out message))
+                        {
+                            //nothing
                         }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
+                        }
+                        LoadGridwithXml();
+                        
+                        //CreateVoucherXml(aplenrol,tripNo, name,address,designation,totalBill, strBillDate, strstar, strendt, tmDifferencehms);
 
-
-
-                        //else
-                        //{
-
-                        //    string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
-
-                        //    string strstarttime = (tmstart1.ToString());
-                        //    string strendtime = (tmend1.ToString());
-                        //    string strstar = starthours.ToString();
-                        //    string strendt = endhours.ToString();
-
-
-                        //    starttime1 = Convert.ToString(strstarttime.ToString());
-                        //    endtime1 = Convert.ToString(strendtime.ToString());
-                        //    DateTime dt11 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-                        //    DateTime dt12 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-
-
-                        //    DateTime dts = Convert.ToDateTime(dt11);
-                        //    DateTime dte = Convert.ToDateTime(dt12);
-                        //    TimeSpan diff;
-                        //    TimeSpan difff;
-                        //    if (endhours > starthours)
-                        //    {
-
-                        //        diff = (Convert.ToDateTime(dte) - Convert.ToDateTime(dts));
-                        //        string df = Convert.ToString(diff.ToString());
-
-
-                        //        string tmDifferencehms = txtMovDuration.Text;
-                        //        string tmDifferencehmswith = tmdur.ToString();
-
-                        //        string strpur = drdlPurpouse.SelectedItem.Text;
-                        //        string strpurid = drdlPurpouse.SelectedValue.ToString();
-                        //        string remk = txtRemarks.Text;
-                        //        string aplenrol = txtAplicnEnrol.Text;
-
-
-                        //        Serial = "1";
-
-                        //        CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-
-                        //    }
-                        //    else
-                        //    {
-                        //        diff = Convert.ToDateTime(dts) - Convert.ToDateTime(dte);
-                        //        difff = interval - diff;
-                        //        string df = Convert.ToString(difff.ToString());
-
-
-                        //        string tmDifferencehms = txtMovDuration.Text;
-                        //        string tmDifferencehmswith = tmdur.ToString();
-
-                        //        string strpur = drdlPurpouse.SelectedItem.Text;
-                        //        string strpurid = drdlPurpouse.SelectedValue.ToString();
-                        //        string remk = txtRemarks.Text;
-                        //        string aplenrol = txtAplicnEnrol.Text;
-
-
-                        //        Serial = "1";
-
-                        //        CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-                        //    }
-
-
-                        //}
 
                     }
 
@@ -437,11 +214,37 @@ namespace UI.Transport.TripvsCost
 
 
         }
+        private void LoadGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(_filePathForXml);
+                StringReader sr = new StringReader(doc.OuterXml);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    grdvOvertimeEntry.DataSource = ds;
+                }
+                else
+                {
+                    grdvOvertimeEntry.DataSource = "";
+                }
+                grdvOvertimeEntry.DataBind();
+            }
+            catch { }
 
+        }
+        private void TotalBillCalculate()
+        {
+            string type = "Helper";
 
-       
-
-       
+            if (type.Equals("helper"))
+            {
+                
+            }
+        }
         protected void btnSubmitBikeCar_Click(object sender, EventArgs e)
         {
             if (grdvOvertimeEntry.Rows.Count > 0)
@@ -449,7 +252,7 @@ namespace UI.Transport.TripvsCost
                 #region ------------ Insert into dataBase -----------
                 string host = Dns.GetHostName();
                 IPHostEntry ip = Dns.GetHostEntry(host);
-                string ipaddress = (ip.AddressList[1].ToString());
+                string ipaddress = ip.AddressList[1].ToString();
 
                 DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                 hdnApplicantEnrol.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.USER_ID].ToString();
@@ -459,22 +262,22 @@ namespace UI.Transport.TripvsCost
                 int unit = Convert.ToInt32(HiddenUnit.Value);
                 hdnstation.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.JOBSTATION_ID].ToString();
                 int jobstation = Convert.ToInt32(hdnstation.Value);
-                XmlDocument doc = new XmlDocument();
-
+                int insertBy = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                int unitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+                string billDate = txtFromDate.Text;
+                DateTime billDateTime = Convert.ToDateTime(billDate);
                 try
                 {
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
-                    string xmlString = dSftTm.InnerXml;
-                    xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
-                    string message = bll.overtimeInsertion(xmlString, dteFromDate, enroll, ipaddress);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(_filePathForXml);
+                    _consumerEntryBll.FoodBiilingInfo(0, enroll, doc.OuterXml, billDateTime, billDateTime, unitId, insertBy);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Insert Successful');", true);
                 }
 
-                catch
+                catch(Exception ex)
                 {
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- wrong format data. plz check');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Error. "+ex.Message+"');", true);
                 }
 
 
@@ -484,7 +287,7 @@ namespace UI.Transport.TripvsCost
                 //////////
             }
             grdvOvertimeEntry.DataBind();
-            File.Delete(filePathForXML);
+            File.Delete(_filePathForXml);
             grdvOvertimeEntry.DataSource = "";
             grdvOvertimeEntry.DataBind();
         }
@@ -501,10 +304,10 @@ namespace UI.Transport.TripvsCost
                 LoadGridwithXml();
                 DataSet dsGrid = (DataSet)grdvOvertimeEntry.DataSource;
                 dsGrid.Tables[0].Rows[grdvOvertimeEntry.Rows[e.RowIndex].DataItemIndex].Delete();
-                dsGrid.WriteXml(filePathForXML);
+                dsGrid.WriteXml(_filePathForXml);
                 DataSet dsGridAfterDelete = (DataSet)grdvOvertimeEntry.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); grdvOvertimeEntry.DataSource = ""; grdvOvertimeEntry.DataBind(); }
+                { File.Delete(_filePathForXml); grdvOvertimeEntry.DataSource = ""; grdvOvertimeEntry.DataBind(); }
                 else { LoadGridwithXml(); }
             }
             catch { }
@@ -559,7 +362,7 @@ namespace UI.Transport.TripvsCost
         //
         protected void txttrip_TextChanged(object sender, EventArgs e)
         {
-            string tripcode = txttrip.Text.ToString();
+            string tripcode = txttrip.Text;
             DataTable dt = new DataTable();
             dt = blso.getTripInfo(tripcode);
             lblSiteadr.Text = dt.Rows[0]["strAddress"].ToString();

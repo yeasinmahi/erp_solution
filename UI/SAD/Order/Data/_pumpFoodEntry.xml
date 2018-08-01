@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<RemoteProgramBill>
+  <items intEnroll="369116" TripNo="0718492" strName="Md. Yeasin Arafat(Software Developer),R1880" strAddress="01 no Sat Mosjid Road, Beribadh, Mohammadpur, Dhaka-1207" strDesignation="Software Developer" monTotalBill="20" dteOutDate="7/1/2018 6:05:00 AM" dteInDate="7/1/2018 4:00:00 AM" dteStartTime="04:00" dteEndTime="06:05" dteTotalTime="02:05:00" />
+</RemoteProgramBill>

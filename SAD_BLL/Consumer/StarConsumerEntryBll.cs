@@ -192,5 +192,10 @@ namespace SAD_BLL.Consumer
             DataTable8TableAdapter adapter = new DataTable8TableAdapter();
             return adapter.GetArea();
         }
+        public DataTable FoodBiilingInfo(int type,int actionby,string xml,DateTime fromDate,DateTime toDate,int unitId,int insertBy)
+        {
+            sprFoodingBillDetTableAdapter adapter = new sprFoodingBillDetTableAdapter();
+            return adapter.FoodBiilingInfo(type, actionby, xml, fromDate, toDate, unitId, insertBy);
+        }
     }
 }
