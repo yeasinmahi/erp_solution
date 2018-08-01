@@ -186,41 +186,29 @@
 
                         </tr>
                         <tr class="tblroweven">
-                            <td>
-                                <asp:Label ID="lblPurpouse" CssClass="lbl" runat="server" Visible="false" Text="Purpouse: "></asp:Label></td>
-                            <td>
-                                <asp:DropDownList ID="drdlPurpouse" CssClass="ddList" runat="server" Visible="false" AutoPostBack="True" DataSourceID="odsOvertimepurpouse" DataTextField="strPurpouse" DataValueField="intID"></asp:DropDownList>
-                                <asp:ObjectDataSource ID="odsOvertimepurpouse" runat="server" SelectMethod="getOvertimePurpouse" TypeName="HR_BLL.TourPlan.TourPlanning"></asp:ObjectDataSource>
-                            </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblRemarks" CssClass="lbl" runat="server" Text="Remarks: "></asp:Label>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtRemarks" runat="server" Font-Bold="true" CssClass="txtBox" TextMode="MultiLine"></asp:TextBox>
-                            </td>
-
-                        </tr>
-
-                        <tr class="tblroweven">
-                            <td>
                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Trip No: "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txttrip" runat="server" OnTextChanged="txttrip_TextChanged"></asp:TextBox>
                             </td>
-                            <td>
-                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Trip No: "></asp:Label></td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Total Bill: "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtTotalBill" runat="server"></asp:TextBox>
                             </td>
 
                         </tr>
                         <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label6" CssClass="lbl" runat="server" Text="QNT:"></asp:Label>
+                                </td>
                             <td>
-                                <asp:Label ID="lbl" CssClass="lbl" runat="server" Text="QNT:"></asp:Label>
                                 <asp:Label ID="lblquntity" CssClass="lbl" runat="server"></asp:Label>
                             </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Site:"></asp:Label>
+                            </td>
                             <td>
-                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Site:"></asp:Label>
                                 <asp:Label ID="lblSiteadr" CssClass="lbl" runat="server"></asp:Label>
                             </td>
                         </tr>
@@ -240,7 +228,7 @@
                     <table>
                         <tr class="tblroweven">
                             <td>
-                                <asp:GridView ID="grdvOvertimeEntry" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true" OnSelectedIndexChanged="grdvOvertimeEntry_SelectedIndexChanged" OnRowDeleting="grdvOvertimeEntry_RowDeleting">
+                                <asp:GridView ID="grdvOvertimeEntry" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true" OnRowDeleting="grdvOvertimeEntry_RowDeleting">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
