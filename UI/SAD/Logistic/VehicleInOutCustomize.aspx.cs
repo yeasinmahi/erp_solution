@@ -484,6 +484,9 @@ namespace UI.SAD.Logistic
             SalesOrder so = new SalesOrder();
             imgChk.Visible = true;
             string customer = "", cusId = "";
+            
+
+
 
             long? doNo = so.ExistsDO(txtDO.Text, ddlShip.SelectedValue, ddlUnit.SelectedValue, ref customer, ref cusId);
             if (doNo != null)

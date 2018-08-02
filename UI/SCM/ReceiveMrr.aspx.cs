@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
@@ -39,7 +40,6 @@ namespace UI.SCM
         {
             try
             {
-
                 string poType = ddlPoType.SelectedItem.ToString();
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
@@ -89,7 +89,8 @@ namespace UI.SCM
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             try
-            {  try { File.Delete(filePathForXML);  } catch { }
+            {
+                try { File.Delete(filePathForXML);  } catch { }
               
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString()=="1")
                 {
@@ -163,6 +164,31 @@ namespace UI.SCM
                     
                     string[] searchKey = Regex.Split(msg, ":");
                     lblMrrNo.Text = searchKey[1].ToString();
+
+                    #region====================Mrr Document Attachment===========================
+                    try
+                    {
+                        string FileExtension = Path.GetExtension(docUpload.PostedFile.FileName).Substring(1);
+                        string xmlData = "<voucher><voucherentry strFileName=" + '"' + "MRR Challan" + '"' + " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
+
+                        if (FileExtension.Length > 1)
+                        {
+                            msg = obj.MrrReceive(15, xmlData, intWh, int.Parse(lblMrrNo.Text.ToString()), DateTime.Now, enroll);
+
+                            string[] searchKeyAt = Regex.Split(msg, ":");
+                            string fileId = searchKeyAt[1].ToString();
+
+                            string dfile = fileId.ToString() + "." + FileExtension;
+                            docUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                            FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
+                            File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+
+                        }
+                    }
+                    catch { } 
+
+                    #endregion===================Close============================================ 
+
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     PoView(intPOID);
                 }
@@ -368,7 +394,6 @@ namespace UI.SCM
                     ddlPo.DataTextField = "strName";
                     ddlPo.DataValueField = "Id";
                     ddlPo.DataBind();
-
                     ddlPo.SelectedValue = intPo.ToString();
                 }
                 else
@@ -499,6 +524,34 @@ namespace UI.SCM
 
             }
             catch { }
+        }
+
+        private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
+        {
+            FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
+            requestFTPUploader.Credentials = new NetworkCredential(user, pass);
+            requestFTPUploader.Method = WebRequestMethods.Ftp.UploadFile;
+
+            FileInfo fileInfo = new FileInfo(localPath + fileName);
+            FileStream fileStream = fileInfo.OpenRead();
+
+            int bufferLength = 2048;
+            byte[] buffer = new byte[bufferLength];
+
+            Stream uploadStream = requestFTPUploader.GetRequestStream();
+            int contentLength = fileStream.Read(buffer, 0, bufferLength);
+
+            while (contentLength != 0)
+            {
+                uploadStream.Write(buffer, 0, contentLength);
+                contentLength = fileStream.Read(buffer, 0, bufferLength);
+            }
+
+            uploadStream.Close();
+            fileStream.Close();
+
+            requestFTPUploader = null;
+
         }
     }
 }

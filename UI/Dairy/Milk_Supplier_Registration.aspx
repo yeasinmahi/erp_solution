@@ -18,7 +18,6 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/Lstyle.css" rel="stylesheet" />
    
-
     <script language="javascript" type="text/javascript">
         function onlyNumbers(evt) {
             var e = event || evt; // for trans-browser compatibility

@@ -13,17 +13,15 @@
 
     <script src="../../Content/JS/datepickr.min.js"></script>
      <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <%--<link href="../../Content/CSS/MyStyle.css" rel="stylesheet" />--%>
+    
+
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script> 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-           
-        });
+       
          function ConfirmforShow() {           
             //debugger;
             var fromdate = document.getElementById("txtFormDate").value;
@@ -36,15 +34,15 @@
             }
             else if (todate == null || todate=="") {
                 alert('Insert To Date');
-                return false;
+               // return false;
             }
            
              else if (report == null || report=="") {
                 alert('Insert Report Type');
-                return false;
+               // return false;
             }
             
-            return true;
+            //return true;
         }
 
     </script>
@@ -53,7 +51,7 @@
 <body>
     <form id="frmaclmanatt" runat="server">
    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+    <%--<asp:UpdatePanel ID="UpdatePanel0" runat="server">--%>
     <ContentTemplate>
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -108,13 +106,13 @@
         </tr>
      
        
-        <tr class="tblrowodd">
-              
+        <tr class="tblrowodd">             
                 
-            <td colspan="4" style="text-align:right;">
-                                <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "ConfirmforShow()" Text="Show Report" CssClass="button" />
-                                </td>
-                </tr>    
+        <td colspan="4" style="text-align:right;">
+        <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "ConfirmforShow()" Text="Show Report" CssClass="button" />
+        </td>
+        <td><asp:Button ID="btnDownloads" runat="server" Text="Export" OnClick="btnDownloads_Click" /></td>
+        </tr>    
             
         
         </table>
@@ -123,14 +121,14 @@
                         <%-- ===========================Sales Report View for Transfer Challan without topsheet ============================ --%>
                         <tr>
                             <td>
-                                <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True" OnRowDataBound="GvSalesReport_RowDataBound" AutoGenerateColumns="False"   BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
+                                <asp:GridView ID="GvSalesReport" runat="server" ShowFooter="True"  OnRowDataBound="GvSalesReport_RowDataBound"  AutoGenerateColumns="False"   BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL">
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" ItemStyle-HorizontalAlign="left" >
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="ChDate" DataFormatString="{0:yyyy/MM/dd}" HeaderText="Challan Date" SortExpression="ChDate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="80px" ItemStyle-Width="80px">
+                                        <asp:BoundField DataField="ChDate" DataFormatString="{0:yyyy/MM/dd}" Visible="false" HeaderText="Challan Date" SortExpression="ChDate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="80px" ItemStyle-Width="80px">
                                         </asp:BoundField>
                                         <asp:BoundField DataField="Productname" HeaderText="Product Name" SortExpression="Productname" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="200px" ItemStyle-Width="200px">
                                         </asp:BoundField>                                      
@@ -141,7 +139,7 @@
                                         <asp:TemplateField HeaderText="Pieces" SortExpression="Quantity">
                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Quantity", "{0:N3}") %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Quantity", "{0:N2}") %>'></asp:Label>
                                             </ItemTemplate>
                                              <FooterTemplate>
                                                  <div style="text-align:right;"><asp:Label ID="lblquantity" runat="server" ForeColor="Red"></asp:Label></div>
@@ -153,7 +151,7 @@
                                         <asp:TemplateField HeaderText="Price" SortExpression="Rate">
                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Rate", "{0:N3}") %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Rate", "{0:N2}") %>'></asp:Label>
                                             </ItemTemplate>
                                              <FooterTemplate>
                                                  <div style="text-align:right;"><asp:Label ID="lblprice" runat="server" ForeColor="Red"></asp:Label></div>
@@ -195,7 +193,7 @@
         </div>
    <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
-    </asp:UpdatePanel>
+   <%-- </asp:UpdatePanel>--%>
     </form>
 </body>
 </html>

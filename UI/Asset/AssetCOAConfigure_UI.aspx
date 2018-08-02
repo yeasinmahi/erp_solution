@@ -192,7 +192,7 @@
                      <SelectParameters> <asp:ControlParameter ControlID="DdlBillUnit" DefaultValue="ID" Name="unit" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters> </asp:ObjectDataSource></ItemTemplate> </asp:TemplateField>  
                             
-                             <asp:TemplateField HeaderText="GL.Code">
+                    <asp:TemplateField HeaderText="GL.Code">
                                  <ItemTemplate>
                                    <asp:DropDownList ID="ddlCOA" runat="server" DataSourceID="OdsGlobalCOA" DataTextField="strCOAName" DataValueField="intGlobalCOA" SelectedValue='<%#Bind("intGlobalCOA") %>'></asp:DropDownList>
                                      <asp:ObjectDataSource ID="OdsGlobalCOA" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="DepreciationConfigGetData" TypeName="Purchase_DAL.Asset.AssetMaintenanceTDSTableAdapters.SprDepreciationConfigTableAdapter">

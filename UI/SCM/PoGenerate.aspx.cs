@@ -33,6 +33,10 @@ namespace UI.SCM
                 try { File.Delete(filePathForXML); } catch { }
                 try { File.Delete(filePathForXMLPrepare); } catch { }
                 try { File.Delete(filePathForXMLPo); } catch { }
+                DateTime dte = DateTime.Now;
+                txtdtePo.Text = dte.ToString("yyyy-MM-dd");
+                dte = DateTime.Parse(txtdtePo.Text);
+
                 DefaltPageLoad();
             }
             else

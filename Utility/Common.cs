@@ -1,8 +1,11 @@
 ﻿
 
 using System;
+using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Utility
 {
@@ -48,6 +51,18 @@ namespace Utility
         {
             return path + fileName.ToString("F") + ".txt";
         }
+
+        public static string ConvertUpperCamelCaseToTitle(string value)
+        {
+            var s= Regex.Replace(value, "([A-Z])", " $1").Trim();
+            return ConvertToTitleCase(s);
+        }
+        public static string ConvertToTitleCase(string value)
+        {
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            return textInfo.ToTitleCase(value.ToLower());
+        }
+
         //public static bool CreateFile(string fileName)
         //{
         //    if (!File.Exists(path))

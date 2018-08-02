@@ -124,6 +124,7 @@ namespace UI.Accounts.Advice
 
                 divExport.Visible = true;
                 divExportIBBL.Visible = false;
+                btnExport.Visible = true;
             }
         }
 

@@ -302,6 +302,7 @@
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
     <Content Include="CreativeSupportModule\ItemCreateAndPointSet.aspx" />
+    <Content Include="Dairy\MilkSupplierInfoUpdate.aspx" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
     <Content Include="Dairy\Milk_Audit_R_Details.aspx" />
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
@@ -339,6 +340,7 @@
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
+    <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
@@ -1181,6 +1183,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\FactoryAndGhatDelv.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\MoneyReceiptStatus.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ProductBaseCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ProductTransferJV.aspx" />
@@ -1194,9 +1197,11 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\RetaillerYearlySales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RmtTADACreditStationBill.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RmtTADARptNoEmailEmployee.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\RptACRDIHBSalesStatus.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RptLastTransactionDateAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\RptSalesOrderSummery.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\SalesAnalysis.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionAdjustment.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionwithJVCreation.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ShopidvsSales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ShopList.aspx" />
@@ -1368,6 +1373,7 @@
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
+    <Content Include="Transport\TripvsCost\PumpFoodingBillReport.aspx" />
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
@@ -2453,6 +2459,13 @@
     <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.designer.cs">
       <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dairy\MilkSupplierInfoUpdate.aspx.cs">
+      <DependentUpon>MilkSupplierInfoUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dairy\MilkSupplierInfoUpdate.aspx.designer.cs">
+      <DependentUpon>MilkSupplierInfoUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dairy\Milk_Audit_Approve.aspx.cs">
       <DependentUpon>Milk_Audit_Approve.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2711,6 +2724,13 @@
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuarantee.aspx.designer.cs">
       <DependentUpon>CustomerBankGuarantee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\TourPlan\ProgramBillInfo.aspx.cs">
+      <DependentUpon>ProgramBillInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\TourPlan\ProgramBillInfo.aspx.designer.cs">
+      <DependentUpon>ProgramBillInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemChallanComplete.aspx.cs">
       <DependentUpon>BrandItemChallanComplete.aspx</DependentUpon>
@@ -5894,6 +5914,13 @@
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx.designer.cs">
       <DependentUpon>DONumberSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\FactoryAndGhatDelv.aspx.cs">
+      <DependentUpon>FactoryAndGhatDelv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\FactoryAndGhatDelv.aspx.designer.cs">
+      <DependentUpon>FactoryAndGhatDelv.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\MoneyReceiptStatus.aspx.cs">
       <DependentUpon>MoneyReceiptStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5985,6 +6012,13 @@
     <Compile Include="SAD\Sales\Report\RptRemoteSales\RmtTADARptNoEmailEmployee.aspx.designer.cs">
       <DependentUpon>RmtTADARptNoEmailEmployee.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\RptACRDIHBSalesStatus.aspx.cs">
+      <DependentUpon>RptACRDIHBSalesStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\RptACRDIHBSalesStatus.aspx.designer.cs">
+      <DependentUpon>RptACRDIHBSalesStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\RptLastTransactionDateAndDelv.aspx.cs">
       <DependentUpon>RptLastTransactionDateAndDelv.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6005,6 +6039,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesAnalysis.aspx.designer.cs">
       <DependentUpon>SalesAnalysis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionAdjustment.aspx.cs">
+      <DependentUpon>SalesCommissionAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionAdjustment.aspx.designer.cs">
+      <DependentUpon>SalesCommissionAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\SalesCommissionwithJVCreation.aspx.cs">
       <DependentUpon>SalesCommissionwithJVCreation.aspx</DependentUpon>
@@ -7216,6 +7257,13 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\PumpFoodingBill.aspx.designer.cs">
       <DependentUpon>PumpFoodingBill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\PumpFoodingBillReport.aspx.cs">
+      <DependentUpon>PumpFoodingBillReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\PumpFoodingBillReport.aspx.designer.cs">
+      <DependentUpon>PumpFoodingBillReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\ThanaRateChecking.aspx.cs">
       <DependentUpon>ThanaRateChecking.aspx</DependentUpon>

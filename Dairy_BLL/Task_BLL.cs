@@ -270,7 +270,23 @@ namespace Dairy_BLL
              adp.InsertEmpSalaryStop(intPart, intEnroll, intInsertBy, intUnitID, intJobStationID, dteDate, xml, ref msg);
              return msg;
          }
-        
+
+        public DataTable GetMilkSupplierInfoForUpdate(int intCCID, string strCode)
+        {
+            SuppUpdateTableAdapter adp = new SuppUpdateTableAdapter();
+            try
+            { return adp.GetMilkSupplierInfoForUpdate(intCCID, strCode); }
+            catch { return new DataTable(); }
+        }
+        public string UpdateSuppInfo(string strBankName, string strBankBranchName, string strBankAccountNo, string strOrgAddress, string strReprContactNo, string strNationalIDNo, int intBankID, int intDistrictID, int intBranchID, int intLastActionBy, int intCCID, int intSupplierID)
+        {
+            string msg = "";
+            SprSupplierInfoUpdateForMilkTableAdapter adp = new SprSupplierInfoUpdateForMilkTableAdapter();
+            adp.UpdateSuppInfo(strBankName, strBankBranchName, strBankAccountNo, strOrgAddress, strReprContactNo, strNationalIDNo, intBankID, intDistrictID, intBranchID, intLastActionBy, intCCID, intSupplierID, ref msg);
+            return msg;
+        }
+
+
 
 
 

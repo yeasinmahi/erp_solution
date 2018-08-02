@@ -101,7 +101,7 @@ namespace UI.VAT_Management
             }
             else 
                 {
-                    txtVAT.Text = (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(hdnperVat.Value)).ToString();
+                    txtVAT.Text = (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(txtCreditqty.Text)).ToString();
                 }
             
         }
@@ -161,7 +161,7 @@ namespace UI.VAT_Management
             string values = "0";
             string qty = txtCreditqty.Text;
             string sdnew = "0";
-            string vatnew =(decimal.Parse(lblMaterialUserStandard.Text)*decimal.Parse(hdnperVat.Value)).ToString();
+            string vatnew =(decimal.Parse(txtCreditqty.Text)*decimal.Parse(hdnperVat.Value)).ToString();
             
 
             CreateVoucherXml(intitemid.ToString(), MaterialName,qty, values,sdnew,vatnew);

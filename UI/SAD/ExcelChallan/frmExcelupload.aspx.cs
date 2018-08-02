@@ -143,9 +143,12 @@ namespace UI.SAD.ExcelChallan
             catch { }
         }
 
-        protected void ddlshippoint_SelectedIndexChanged(object sender, EventArgs e)
+       
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
 
+            objExcel.getOrderdelete();
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
         }
     }
 }
