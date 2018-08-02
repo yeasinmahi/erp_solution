@@ -28,14 +28,14 @@
             var bankAcc = document.getElementById("ddlAccount").value;
 
             if (bank == null || bank == "") {
-                alert("insert bank");
+                alert("Insert Bank Name");
                 return false;
             }
             else if (bankAcc == null || bankAcc == "") {
-                alert("insert bank account");
+                alert("Insert Bank Account No");
                 return false;
             }
-           // return true;
+            else {return true;}
 
         }
     </script>
@@ -209,7 +209,7 @@
 
                                             <asp:TemplateField ShowHeader="False">
                                                 <ItemTemplate>                                                   
-                                                <asp:Button ID="btnDeposite" runat="server" CausesValidation="false" OnClientClick="ShowDepositeVouchar()" CommandName="DepositV" Text="Treasury Deposit Vouchar" CommandArgument="<%# Container.DataItemIndex %>" />
+                                                <asp:Button ID="btnDeposite" runat="server" CausesValidation="false" OnClientClick="return ShowDepositeVouchar()" CommandName="DepositV" Text="Treasury Deposit Vouchar" CommandArgument="<%# Container.DataItemIndex %>" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -218,10 +218,7 @@
                                         </Columns>
                                     </asp:GridView>
                                 </td>
-                               <%-- <td>
-                                    <asp:Button ID="btnDepositVouchar" runat="server" class="nextclick" style="font-size:12px; cursor: pointer;"
-                                 Text="Treasury Deposit Vouchar" OnClientClick="ShowDepositeVouchar()" OnClick="btnDepositVouchar_Click" />
-                                </td>--%>
+                              
                             </tr>
                         </table>
                     </div>
