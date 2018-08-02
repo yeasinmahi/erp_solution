@@ -20,34 +20,11 @@
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script> 
-
-    <script type="text/javascript">
-       
-         function ConfirmforShow() {           
-            //debugger;
-            var fromdate = document.getElementById("txtFormDate").value;
-            var todate = document.getElementById("txtToDate").value;
-            var report = document.getElementById("DdlReport").value;
-            
-            if (fromdate == null || fromdate=="") {
-                alert('Insert From Date');
-                return false;
-            }
-            else if (todate == null || todate=="") {
-                alert('Insert To Date');
-               // return false;
-            }
-           
-             else if (report == null || report=="") {
-                alert('Insert Report Type');
-               // return false;
-            }
-            
-            //return true;
-        }
-
+     <script>
+         function Viewdetails(intId, intunit) {
+             window.open('PrintAccountsSV.aspx?intId=' + intId + '&intunit=' + intunit, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+         }
     </script>
-   
     </head>
 <body>
     <form id="frmaclmanatt" runat="server">
@@ -87,7 +64,7 @@
 
         <tr class="tblroweven">
         <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl"  runat="server" Text="Unit:"></asp:Label></td>
-        <td><asp:DropDownList ID="ddlUnit" CssClass="dropdownList" runat="server" DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID" AutoPostBack="true"></asp:DropDownList>
+        <td><asp:DropDownList ID="ddlUnit" CssClass="dropdownList" runat="server" DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
         <asp:ObjectDataSource ID="odsUnit" runat="server" SelectMethod="GetData" TypeName="HR_DAL.Global.UnitTDSTableAdapters.SprGetUnitTableAdapter">
         <SelectParameters>
         <asp:SessionParameter Name="intUserID" SessionField="sesUserID" Type="Int32" />
@@ -95,15 +72,11 @@
         </asp:ObjectDataSource>
         </td> 
         <td colspan="3" style="text-align:right;">
-        <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "ConfirmforShow()" Text="Show Report" CssClass="button" />
-        <asp:Button ID="btnDownloads" runat="server" CssClass="button" Font-Size="12px"  Text="Export" OnClick="btnDownloads_Click" />
+        <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99"   Text="Show Report" CssClass="button" />
+        <asp:Button ID="btnDownloads" runat="server" CssClass="button" Font-Size="12px"  Text="Export"   />
         </td>
         </tr> 
 
-        <tr class="tblrowodd">   
-        
-        
-        </tr>   
         </table>
          <table>                      
                 <tr>
@@ -113,38 +86,44 @@
                                 <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" ItemStyle-HorizontalAlign="left" >
+                                <asp:TemplateField HeaderText="Id" Visible="false" SortExpression="intId">                                           
+                                <ItemTemplate>
+                                <asp:Label ID="lblId" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
+                                </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="strName" HeaderText="Customer Name" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
                                 </asp:BoundField>
-                                <asp:BoundField DataField="ChDate" DataFormatString="{0:yyyy/MM/dd}"   HeaderText="Challan Date" SortExpression="ChDate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="80px" ItemStyle-Width="80px">
+                                <asp:BoundField DataField="dteDate" DataFormatString="{0:yyyy/MM/dd}"   HeaderText="Challan Date" SortExpression="dteDate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="80px" ItemStyle-Width="80px">
                                 </asp:BoundField>
-                                <asp:BoundField DataField="Productname" HeaderText="Code" SortExpression="Code" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="200px" ItemStyle-Width="200px">
+                                <asp:BoundField DataField="strCode" HeaderText="Code" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="200px" ItemStyle-Width="200px">
                                 </asp:BoundField>                                   
                                        
-                                <asp:BoundField DataField="UOM" HeaderText="Narration" SortExpression="Narration" ItemStyle-HorizontalAlign="Center" FooterText="Total:">
+                                <asp:BoundField DataField="strNarration"  HeaderText="Narration" SortExpression="strNarration" ItemStyle-HorizontalAlign="Center" FooterText="Total:">
                                 </asp:BoundField>
                                       
                                 <asp:TemplateField HeaderText="Pieces" SortExpression="numPieces">                                           
                                 <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("numPieces", "{0:N2}") %>'></asp:Label>
+                                <asp:Label ID="LabelPicess" runat="server" Text='<%# Bind("numPieces", "{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
                                 <div style="text-align:right;"><asp:Label ID="lblquantity" runat="server" ForeColor="Red"></asp:Label></div>
                                                 
                                 </FooterTemplate>
-                                <ItemStyle HorizontalAlign="right" Width="90px"/>
-                                </asp:TemplateField>
-                                      
-                                                                      
-                                       
+                                <ItemStyle HorizontalAlign="left" Width="90px"/>
+                                </asp:TemplateField> 
                                 <asp:TemplateField HeaderText="Amount" SortExpression="monTotalAmount">                                           
                                 <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("monTotalAmount", "{0:N3}") %>'></asp:Label>
+                                <asp:Label ID="Labeltotal" runat="server" Text='<%# Bind("monTotalAmount", "{0:N3}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                <div style="text-align:right;"><asp:Label ID="lblamount" runat="server" ForeColor="Red"></asp:Label></div>
-                                                
+                                <div style="text-align:right;"><asp:Label ID="lblamount" runat="server" ForeColor="Red"></asp:Label></div> 
                                 </FooterTemplate>
-                                <ItemStyle HorizontalAlign="right" Width="90px"/>
+                                <ItemStyle HorizontalAlign="left" Width="90px"/>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Detalis">
+                                <ItemTemplate>
+                                <asp:Button ID="btnDetalis" runat="server" Text='Detalis' OnClick="btnDetalis_Click"></asp:Button>
+                                </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle BackColor="#CCCCCC" />
