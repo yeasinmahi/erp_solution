@@ -101,6 +101,10 @@
                                     <asp:ListItem Value="2">Remote Own sales</asp:ListItem>
                                     <asp:ListItem Value="3">Remote sales (D/D)</asp:ListItem>                                
                                     <asp:ListItem Value="4">All sales</asp:ListItem>
+                                    <asp:ListItem Value="5">Factory(Gross) sales</asp:ListItem>
+                                    <asp:ListItem Value="6">Remote(Gross) Own sales</asp:ListItem>
+                                    <asp:ListItem Value="7">Remote(Gross) sales (D/D)</asp:ListItem>
+                                    <asp:ListItem Value="8">All(Gross) sales</asp:ListItem>
                                 </asp:DropDownList></td>
        
         </tr>
