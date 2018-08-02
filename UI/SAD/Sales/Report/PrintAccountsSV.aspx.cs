@@ -18,7 +18,7 @@ namespace UI.SAD.Sales.Report
         {
             if (!IsPostBack)
             {
-               string htmlString = obj.SVPrintView(105, "", 5438867);
+               string htmlString = obj.SVPrintView(1,105, "", 5438867);
 
                 lblUnitName.Text = "United Dhaka Tobacco Company Ltd.".ToUpper();
                 lblUnitAddress.Text = "Akij House,198,Bir Uttam Mir Shawkat Sarak,Tejgaon,Dhaka-1208";

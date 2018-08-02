@@ -31,7 +31,7 @@ namespace SAD_BLL.Sales.Report
             sprUDTCLSalesStausDetaillsTableAdapter adp = new sprUDTCLSalesStausDetaillsTableAdapter();
             return adp.GetSalesData(fromDate, toDate, unitId, reportType);
         }
-        public string SVPrintView(int unit, string code, int Id)
+        public string SVPrintView(int Part,int unit, string code, int Id)
         {
             string htmlString = "";
             DateTime? vDate = null;
@@ -40,7 +40,7 @@ namespace SAD_BLL.Sales.Report
             DataTable dt = new DataTable();
             DataTable dtDetalis = new DataTable();
             UDTCLSalesBLL obj = new UDTCLSalesBLL(); 
-            dt = getData(unit, code, Id);
+            dt = getData(Part,unit, code, Id);
 
             dtDetalis = getSvDetalisData(Id, unit);
             if (dtDetalis.Rows.Count > 0)
@@ -72,10 +72,10 @@ namespace SAD_BLL.Sales.Report
            
         }
 
-        private DataTable getData(int unit, string code, int id)
+        private DataTable getData(int Part,int unit, string code, int id)
         {
             SprUDTCLSVAccountsViewTableAdapter adpTable = new SprUDTCLSVAccountsViewTableAdapter();
-            return adpTable.GetSVData(unit, code, id);
+            return adpTable.GetSVData(Part,unit, code, id);
         }
 
         private string PreparePrintableJournelVoucher(string unitName, string[] addressLines, string voucherTypeString, string voucherNumber, string date, DataTable tbl, string totalAmountInWords, string voucherNarration, decimal debitAmount, decimal crediAmount)
