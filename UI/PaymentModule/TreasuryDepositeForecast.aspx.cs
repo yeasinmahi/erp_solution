@@ -19,14 +19,7 @@ namespace UI.PaymentModule
         DataTable dtacc = new DataTable();
         DataTable dtChartOfAcc = new DataTable();
         int intUnit,intBank, intVatAcc, intBankAcc,intTreasuryId,intPart=0;
-        int intCOA; string strAccName="", strPayTo="", strNarration="", strInstrument = "", strCheckNo = "";
-
-       
-
-        protected void btnDeposite_Click(object sender, EventArgs e)
-        {
-            //string ID = GvDetails.Rows[GvDetails.SelectedIndex].Cells[11].Text;
-        }
+        int intCOA; string strAccName="", strPayTo="", strNarration="";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -95,14 +88,8 @@ namespace UI.PaymentModule
             ddlAccount.DataBind();
         }
         #endregion==========end===============
-        protected void btnDepositVouchar_Click(object sender, EventArgs e)
-        {
-            //Button btn = (Button)sender;
-            //GridViewRow gvr = (GridViewRow)btn.NamingContainer;
-            //var d = gvr.Cells[11].Text;
-        }
 
-
+        #region ======== GridView RowCommand =============
         protected void GvDetails_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int intType=1;
@@ -116,8 +103,7 @@ namespace UI.PaymentModule
             if (intVatAcc == 3){intUnit = 4;}
             else{ intUnit = 105;}
             
-            DateTime dteVdate = DateTime.Parse(txtVDate.Text);
-            //string monDramount = row.Cells[13].Text;
+            DateTime dteVdate = DateTime.Parse(txtVDate.Text);           
             decimal monDramount = decimal.Parse((row.FindControl("lblColumn1") as Label).Text); 
             decimal monCrAmount = monDramount*(-1);
             intBank = int.Parse(ddlBank.SelectedItem.Value);
@@ -131,14 +117,12 @@ namespace UI.PaymentModule
             
             if(monDramount == 0)
             { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Voucher cannot be inserted with zero amount.');", true); }
-            
-            //else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Voucher cannot be inserted with zero amount.');", true); }
+                       
             if(btnRadioAdvice.Checked==false && btnRadioCheque.Checked==false)
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Cheque or Advise as instrument.');", true);                
             }
-            //if (e.CommandName != "DepositV") return;
-            //int intType = Convert.ToInt32(e.CommandArgument);
+            
             if(intType==1)
             {
                 intTreasuryId = 1;
@@ -216,7 +200,9 @@ namespace UI.PaymentModule
             #endregion
 
         }
-        
+        #endregion
+
+        #region========Header Row Created In Gridview======================
         protected void GvDetails_RowCreated(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
@@ -274,9 +260,9 @@ namespace UI.PaymentModule
             }
 
         }
+        #endregion
 
-
-        #region============Gridview RowBound================
+        #region============ Gridview RowBound for calculate total value ================
 
         decimal totalDay_0 = 0, totalDay_1 = 0, totalDay_2 = 0, totalDay_3 = 0, totalDay_4 = 0, totalDay_5 = 0, totalDay_6 = 0, totalDay_7 = 0, totalNetPay = 0, totalCurrentBalance = 0;
         protected void GVDetails_RowDataBound(object sender, GridViewRowEventArgs e)
