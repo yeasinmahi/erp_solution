@@ -26,6 +26,18 @@ namespace SAD_BLL.Sales.Report
             sprUDTCLSalesStausTableAdapter adp = new sprUDTCLSalesStausTableAdapter();
             return adp.GetUDTCLSalesData(fromDate, toDate, unitId, reportType, salesOffId, shippingId);
         }
+
+        public DataTable SalesInvtoryReport(DateTime dteFroms, DateTime dteTo, int unit)
+        {
+            try
+            {
+                TblSalesReportTableAdapter adp = new TblSalesReportTableAdapter();
+                return adp.GetSalesInventoryData(dteFroms, dteTo, unit);
+            }
+            catch { return new DataTable(); }
+          
+        }
+
         public DataTable getSalesData(DateTime fromDate, DateTime toDate, int unitId, int reportType)
         {
             sprUDTCLSalesStausDetaillsTableAdapter adp = new sprUDTCLSalesStausDetaillsTableAdapter();

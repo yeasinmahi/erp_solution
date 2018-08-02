@@ -14,17 +14,22 @@ namespace UI.SAD.Sales.Report
     {
         DataTable dt = new DataTable();
         UDTCLSalesBLL obj = new UDTCLSalesBLL();
+        int unitId, salesId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-               string htmlString = obj.SVPrintView(1,105, "", 5438867);
-
+              
+                int  salesId = int.Parse(Request.QueryString["intId"].ToString());
+                int unitId = int.Parse(Request.QueryString["intunit"].ToString());
+                string htmlString = obj.SVPrintView(1, unitId, "", salesId);
                 lblUnitName.Text = "United Dhaka Tobacco Company Ltd.".ToUpper();
                 lblUnitAddress.Text = "Akij House,198,Bir Uttam Mir Shawkat Sarak,Tejgaon,Dhaka-1208";
                 lblVoucherType.Text = "<br><br>" + "Sales Voucher";
+
                 //strCodeForbarCode = strCodeForbarCode.Replace("-", "");
                 //Image1.ImageUrl = "BarCodeHandler.ashx?info=" + strCodeForbarCode;
+
                 Image1.Width = 180;
                 Image1.Height = 50;
 

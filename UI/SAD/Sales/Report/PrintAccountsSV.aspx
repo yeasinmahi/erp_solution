@@ -38,7 +38,7 @@
         </td>
          <td style="text-align: center"  valign="top" width="60%">
         <%--<span class="">--%>
-            <asp:Label ID="lblUnitName" CssClass="HeaderStyle" runat="server" Text="Label" 
+            <asp:Label ID="lblUnitName" CssClass="HeaderStyle1" runat="server" Text="Label" 
                  ></asp:Label>
         <%--</span>--%><br />
         <%--<span class="HeaderStyle2">--%>
