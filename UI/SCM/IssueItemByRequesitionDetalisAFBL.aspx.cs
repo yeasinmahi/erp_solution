@@ -158,6 +158,11 @@ namespace UI.SCM
             doc.Save(filePathForXML);
         }
 
+        protected void DropDownList10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
         private XmlNode CreateItemNode(XmlDocument doc, string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy,string mrrid)
         {
             XmlNode node = doc.CreateElement("issueEntry");

@@ -701,5 +701,26 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
+
+
+        public DataTable ACRDIHBSalesStatus(string officeemail, int repttype, DateTime FromDate, DateTime ToDate, int unitid, int salesoffice, int shipping)
+        {
+            try
+            {
+                SprACRDSalesStatusTableAdapter objacrd = new SprACRDSalesStatusTableAdapter();
+                return objacrd.GetDataACRDSalesStatus(officeemail, repttype, FromDate, ToDate, unitid, salesoffice, shipping);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable ManapowerAchivement(string officeemail, int repttype, DateTime FromDate, DateTime ToDate, int unitid, int salesoffice, int shipping)
+        {
+            try
+            {
+                SprManpowerAchievementTableAdapter objacrd = new SprManpowerAchievementTableAdapter();
+                return objacrd.GetDataManpowerAchievement(officeemail, repttype, FromDate, ToDate, unitid, salesoffice, shipping);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

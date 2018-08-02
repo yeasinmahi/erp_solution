@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -20,12 +17,37 @@ namespace Utility
             return field;
 
         }
+        public static BoundField CreateBoundField(string value)
+        {
+            BoundField field = new BoundField
+            {
+                HeaderText = Common.ConvertUpperCamelCaseToTitle(value),
+                DataField = value
+            };
+            return field;
+
+        }
         public static GridView RemoveGridColumn(GridView gridView)
         {
             for (int i = 2; i < gridView.Columns.Count;)
             {
                 gridView.Columns.RemoveAt(i);
             }
+            return gridView;
+        }
+
+        public static GridView CreateGridView(DataTable dataTable)
+        {
+            GridView gridView = new GridView();
+            string[] columnNames = dataTable.Columns.Cast<DataColumn>()
+                .Select(x => x.ColumnName)
+                .ToArray();
+            foreach (string columnName in columnNames)
+            {
+                gridView.Columns.Add(CreateBoundField(columnName));
+            }
+            gridView.DataSource = dataTable;
+            gridView.DataBind();
             return gridView;
         }
 
