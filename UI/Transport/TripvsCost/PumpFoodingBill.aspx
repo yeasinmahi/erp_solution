@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PumpFoodingBill.aspx.cs" Inherits="UI.Transport.TripvsCost.PumpFoodingBill" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="MKB" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
@@ -40,7 +39,7 @@
                     $.ajax({
                         type: "POST",
                         contentType: "application/json;",
-                        url: "OvertimeEntry.aspx/GetAutoCompleteData",
+                        url: "PumpFoodingBill.aspx/GetAutoCompleteData",
                         data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
                         dataType: "json",
                         success: function (data) {
@@ -54,6 +53,31 @@
             });
         }
     </script>
+    <%-- <script>
+          $(document).ready(function () {
+            SearchText();
+        });
+        function Changed() { document.getElementById('hdfSearchBoxTextChange').value = 'true'; }
+        function SearchText() {
+            $("#txtEmployeeSearch").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;",
+                        url: "PubLeave.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtEmployeeSearch').value + "'}",
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            //alert("Error");
+                        }
+                    });
+                }
+            });
+        }
+    </script>--%>
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -75,20 +99,7 @@
 
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Overtime entry (Driver & Office Assistants) :
-                        <asp:HiddenField ID="hdUnitId" runat="server" />
-                        <asp:HiddenField ID="hdnApplicantEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnstation" runat="server" />
-                        <asp:HiddenField ID="hdnsearch" runat="server" />
-                        <asp:HiddenField ID="HiddenField1" runat="server" />
-                        <asp:HiddenField ID="HiddenField3" runat="server" />
-                        <asp:HiddenField ID="ApproverEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnAreamanagerEnrol" runat="server" />
-                        <asp:HiddenField ID="hdnAction" runat="server" />
-                        <asp:HiddenField ID="HiddenUnit" runat="server" />
-                        <asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
-                        <asp:HiddenField ID="hdnmiute" runat="server" />
-                        <hr />
+                        Pump Fooding Bill :
                     </div>
                     <table border="0" style="width: Auto">
                         <tr class="tblroweven">
@@ -101,7 +112,7 @@
                             <td>
                                 <asp:DropDownList ID="ddlUnit" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
                             </td>
-                            
+
                             <td style="text-align: right">
                                 <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Text="Job Station Name"></asp:Label>
                             </td>
@@ -136,6 +147,8 @@
                                 <asp:Label ID="lblfullname" CssClass="lbl" runat="server" Text="Employee Name: "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtFullName" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
+                                <asp:HiddenField ID="hdfEmpCode" runat="server" />
+                                <asp:HiddenField ID="HiddenField2" runat="server" />
                                 <span style="color: red">*</span> </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblEnrol" CssClass="lbl" runat="server" Text="Code: "></asp:Label>
@@ -160,39 +173,32 @@
 
                         </tr>
                         <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Trip No: "></asp:Label></td>
                             <td>
-                                <asp:Label ID="lblPurpouse" CssClass="lbl" runat="server" Visible="false" Text="Purpouse: "></asp:Label></td>
-                            <td>
-                                <asp:DropDownList ID="drdlPurpouse" CssClass="ddList" runat="server" AutoPostBack="True" Visible="false" DataSourceID="odsOvertimepurpouse" DataTextField="strPurpouse" DataValueField="intID"></asp:DropDownList>
-                                <asp:ObjectDataSource ID="odsOvertimepurpouse" runat="server" SelectMethod="getOvertimePurpouse" TypeName="HR_BLL.TourPlan.TourPlanning"></asp:ObjectDataSource>
+                                <asp:TextBox ID="txttrip" runat="server" OnTextChanged="txttrip_TextChanged"></asp:TextBox>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblRemarks" CssClass="lbl" runat="server" Visible="false" Text="Remarks: "></asp:Label>
-                            </td>
+                                <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Total Bill: "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtRemarks" runat="server" Font-Bold="true" CssClass="txtBox" Visible="false" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtTotalBill" runat="server"></asp:TextBox>
                             </td>
-                            
-                        </tr>
 
+                        </tr>
                         <tr class="tblroweven">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label6" CssClass="lbl" runat="server" Text="QNT:"></asp:Label>
+                                </td>
                             <td>
-                                <asp:Label ID="Label1" CssClass="lbl" runat="server"  Text="Trip No: "></asp:Label></td>
-                            <td>
-                               <asp:TextBox ID="txttrip" runat="server" OnTextChanged="txttrip_TextChanged"></asp:TextBox>
-                            </td>
-                            
-                            <td>
-                               <asp:Label ID="lbl" CssClass="lbl" runat="server"  Text="QNT:"></asp:Label>
                                 <asp:Label ID="lblquntity" CssClass="lbl" runat="server"></asp:Label>
                             </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Site:"></asp:Label>
+                            </td>
                             <td>
-                               <asp:Label ID="Label4" CssClass="lbl" runat="server"  Text="Site:"></asp:Label>
                                 <asp:Label ID="lblSiteadr" CssClass="lbl" runat="server"></asp:Label>
                             </td>
                         </tr>
-
-
                         <tr class="tblrowOdd">
 
                             <td>
@@ -209,32 +215,31 @@
                     <table>
                         <tr class="tblroweven">
                             <td>
-                                <asp:GridView ID="grdvOvertimeEntry" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true" OnSelectedIndexChanged="grdvOvertimeEntry_SelectedIndexChanged" OnRowDeleting="grdvOvertimeEntry_RowDeleting">
+                                <asp:GridView ID="grdvOvertimeEntry" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true" OnRowDeleting="grdvOvertimeEntry_RowDeleting">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
-                                                <%# Container.DataItemIndex + 1 %><asp:HiddenField ID="hdnSL" runat="server" Value='<%# Bind("BillDate") %>' />
+                                                <%--<%# Container.DataItemIndex + 1 %><asp:HiddenField ID="hdnSL" runat="server" Value='<%# Bind("BillDate") %>' />--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="BillDate" HeaderText="Bill Date" SortExpression="dteBillDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="txtstrtwihtHMS" HeaderText="StartTime" SortExpression="tmstartwihtHMS" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="tmendwithHMS" HeaderText="EndtTime" SortExpression="tmendwithHMS" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="tmdifferencewithHMS" HeaderText="Diffrence" SortExpression="tmdifferencewithHMS" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intEnroll" HeaderText="Enrol" SortExpression="intEnroll" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="TripNo" HeaderText="Trip No" SortExpression="TripNo" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strName" HeaderText="Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strAddress" HeaderText="Address" SortExpression="strAddress" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strDesignation" HeaderText="Designation" SortExpression="strDesignation" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteOutDate" HeaderText="Bill Date" SortExpression="dteOutDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteStartTime" HeaderText="StartTime" SortExpression="dteStartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteEndTime" HeaderText="EndtTime" SortExpression="dteEndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteTotalTime" HeaderText="Diffrence" SortExpression="dteTotalTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="monTotalBill" HeaderText="Total Bill" SortExpression="monTotalBill" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
 
-                                        <asp:BoundField DataField="starttime" HeaderText="Start" SortExpression="starttime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="endtime" HeaderText="End" SortExpression="endtime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="MovDuration" HeaderText="Hour" SortExpression="decDur" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="purpouse" HeaderText="Reason" SortExpression="purpouse" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="remarks" HeaderText="Remarks" SortExpression="remarks" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-
-                                        <asp:BoundField DataField="purpouseid" HeaderText="Purpouseid" SortExpression="purpouseid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="applicantenrol" HeaderText="Enrol" SortExpression="applicantenrol" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <%--<asp:BoundField DataField="unitid" HeaderText="Unitid" SortExpression="unitid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                <asp:BoundField DataField="jobstationid" HeaderText="Jobstationid" SortExpression="jobstationid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />--%>
-                                        <asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />
+                                        <asp:CommandField ControlStyle-BackColor="#ff9900" HeaderText="Action" ShowDeleteButton="True" />
                                     </Columns>
                                 </asp:GridView>
                             </td>
+                        </tr>
+                        <tr class="tblroweven">
+                            <td runat="server" id="dyGrdv"></td>
                         </tr>
                     </table>
                 </div>

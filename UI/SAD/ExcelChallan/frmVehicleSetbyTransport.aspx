@@ -9,6 +9,28 @@
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />  
+      <script type="text/javascript">
+            function Search_dgvservice(strKey, strGV) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById(strGV);
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+            rowData = tblData.rows[i].innerHTML;
+            var styleDisplay = 'none';
+            for (var j = 0; j < strData.length; j++) {
+            if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                styleDisplay = '';
+            else {
+                styleDisplay = 'none';
+                break;
+            }
+            }
+            tblData.rows[i].style.display = styleDisplay;
+            }
+
+            }
+            </script>
 </head>
 <body>
     <form id="frmselfresign" runat="server">
@@ -68,6 +90,15 @@
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns> 
                  
+          
+            <asp:TemplateField HeaderText="SL.N">
+            <HeaderTemplate>          
+            <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvExcelOrder')"></asp:TextBox>
+            </HeaderTemplate>
+            <ItemTemplate>
+                        <%# Container.DataItemIndex + 1 %>
+            </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" />
             </HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" /></ItemTemplate>
             </asp:TemplateField>

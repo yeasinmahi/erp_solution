@@ -13,12 +13,12 @@ using Utility;
 
 namespace UI.SAD.Consumer
 {
-    public partial class SubsidiaryJv : System.Web.UI.Page
+    public partial class SubsidiaryJv : Page
     {
-        StarConsumerEntryBll _bll = new StarConsumerEntryBll();
-        StatementC statement = new StatementC();
+        readonly StarConsumerEntryBll _bll = new StarConsumerEntryBll();
+        readonly StatementC _statement = new StatementC();
         private string _filePathForXml;
-        private string jvType;
+        private string _jvType;
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SAD/Consumer/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "subsidairyJv.xml");
@@ -31,81 +31,81 @@ namespace UI.SAD.Consumer
 
         protected void createSubsidiary_OnClick(object sender, EventArgs e)
         {
-            string message = string.Empty;
             string strVcode = "voucherJV";
             string strPrefix = "JV";
-            string glblnarration = "ACCL Cash D.O Commission from :" + fromTextBox.Text + "to " + toTextBox.Text;
+            string reportType = ddlJvType.SelectedItem.Text;
+            string glblnarration = "ACCL "+ reportType + " Commission from :" + fromTextBox.Text + "to " + toTextBox.Text;
             decimal totalCommision = 0;
             //totalcom = Convert.ToDecimal(lbltotalcomamount.Text);
 
             int enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            int intmainheadcoaid = 33855;
-            int unitId = 4;
+            const int intmainheadcoaid = 33855;
+            const int unitId = 4;
 
             foreach (GridViewRow gvr in grdv.Rows)
             {
                 if (((CheckBox)gvr.FindControl("checkBox")).Checked)
                 {
-                    string customercoaid = String.Empty;
-                    string eachcustnarration = String.Empty;
-                    string eachcustamount = String.Empty;
-                    string customername = String.Empty;
-                    if (jvType.Equals("Subsidairy"))
+                    string customerCoaId;
+                    string eachcCustNarration;
+                    string eachCustAmount;
+                    string customerName;
+                    if (_jvType.Equals("Subsidairy"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[19].Text;
-                        eachcustamount = gvr.Cells[18].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[19].Text;
+                        eachCustAmount = gvr.Cells[18].Text;
+                        customerName = gvr.Cells[2].Text;
                         
                     }
-                    else if (jvType.Equals("TradingHouse"))
+                    else if (_jvType.Equals("TradingHouse"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[12].Text;
-                        eachcustamount = gvr.Cells[11].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[12].Text;
+                        eachCustAmount = gvr.Cells[11].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
-                    else if (jvType.Equals("YearlyAch"))
+                    else if (_jvType.Equals("YearlyAch"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[13].Text;
-                        eachcustamount = gvr.Cells[12].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[13].Text;
+                        eachCustAmount = gvr.Cells[12].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
-                    else if (jvType.Equals("ExclusiveRetailer"))
+                    else if (_jvType.Equals("ExclusiveRetailer"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[12].Text;
-                        eachcustamount = gvr.Cells[11].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[12].Text;
+                        eachCustAmount = gvr.Cells[11].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
-                    else if (jvType.Equals("ExclusiveDistributor"))
+                    else if (_jvType.Equals("ExclusiveDistributor"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[12].Text;
-                        eachcustamount = gvr.Cells[11].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[12].Text;
+                        eachCustAmount = gvr.Cells[11].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
-                    else if (jvType.Equals("DistributorCovarage"))
+                    else if (_jvType.Equals("DistributorCovarage"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[12].Text;
-                        eachcustamount = gvr.Cells[11].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[12].Text;
+                        eachCustAmount = gvr.Cells[11].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
-                    else if (jvType.Equals("ManpowerManager"))
+                    else if (_jvType.Equals("ManpowerManager"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[18].Text;
-                        eachcustamount = gvr.Cells[17].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[18].Text;
+                        eachCustAmount = gvr.Cells[17].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
-                    else if (jvType.Equals("ManpowerDistributor"))
+                    else if (_jvType.Equals("ManpowerDistributor"))
                     {
-                        customercoaid = gvr.Cells[6].Text;
-                        eachcustnarration = gvr.Cells[18].Text;
-                        eachcustamount = gvr.Cells[17].Text;
-                        customername = gvr.Cells[2].Text;
+                        customerCoaId = gvr.Cells[6].Text;
+                        eachcCustNarration = gvr.Cells[18].Text;
+                        eachCustAmount = gvr.Cells[17].Text;
+                        customerName = gvr.Cells[2].Text;
                     }
                     else
                     {
@@ -115,25 +115,26 @@ namespace UI.SAD.Consumer
                     }
                     dynamic obj = new
                     {
-                        customercoaid = customercoaid,
-                        eachcustnarration = eachcustnarration,
-                        eachcustamount = eachcustamount,
-                        customername = customername
+                        customercoaid = customerCoaId,
+                        eachcustnarration = eachcCustNarration,
+                        eachcustamount = eachCustAmount,
+                        customername = customerName
 
                     };
+                    string message;
                     if (!XmlParser.CreateXml("RemoteCommission", "req", obj, _filePathForXml, out message))
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                             "alert('XmlFile-- " + message + "');", true);
                         break;
                     }
-                    totalCommision  +=  Convert.ToDecimal(eachcustamount);
+                    totalCommision  +=  Convert.ToDecimal(eachCustAmount);
                 }
             }
             
             XmlDocument doc = new XmlDocument();
             doc.Load(_filePathForXml);
-            DataTable dt = statement.insertdataforsalescommissionjv(doc.OuterXml, unitId, strVcode, strPrefix, glblnarration, totalCommision, enroll, intmainheadcoaid);
+            DataTable dt = _statement.insertdataforsalescommissionjv(doc.OuterXml, unitId, strVcode, strPrefix, glblnarration, totalCommision, enroll, intmainheadcoaid);
             jvNumverLbl.Text = dt.Rows[0][2].ToString();
             XmlParser.DeleteFile(_filePathForXml);
         }
@@ -149,7 +150,7 @@ namespace UI.SAD.Consumer
                 fromDateTime = fromDateTime.AddHours(6);
                 DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
                 toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
-                if (jvType.Equals("Subsidairy"))
+                if (_jvType.Equals("Subsidairy"))
                 {
                     int salseOffice = Convert.ToInt32(ddlSalesOffice.SelectedItem.Value);
                     int type = Convert.ToInt32(ddlType.SelectedItem.Value);
@@ -170,38 +171,38 @@ namespace UI.SAD.Consumer
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Type Properly');", true);
                     }
                 }
-                else if (jvType.Equals("TradingHouse"))
+                else if (_jvType.Equals("TradingHouse"))
                 {
                     decimal familyRate = Convert.ToDecimal(factoryRateTextBox.Text);
                     decimal tradingRate = Convert.ToDecimal(ghatRateTextBox.Text);
                     source = _bll.GetTrading(fromDateTime, toDateTime, familyRate, tradingRate);
                 }
-                else if (jvType.Equals("YearlyAch"))
+                else if (_jvType.Equals("YearlyAch"))
                 {
                     decimal familyRate = Convert.ToDecimal(factoryRateTextBox.Text);
                     source = _bll.GetDistributorYearlyAch(fromDateTime, toDateTime, familyRate, "Top Sheet");
                 }
-                else if (jvType.Equals("ExclusiveRetailer"))
+                else if (_jvType.Equals("ExclusiveRetailer"))
                 {
                     decimal familyRate = Convert.ToDecimal(factoryRateTextBox.Text);
                     source = _bll.GetExlusiveRetailer(fromDateTime, toDateTime, familyRate, "Topsheet");
                 }
-                else if (jvType.Equals("ExclusiveDistributor"))
+                else if (_jvType.Equals("ExclusiveDistributor"))
                 {
                     decimal familyRate = Convert.ToDecimal(factoryRateTextBox.Text);
                     source = _bll.GetExclusiveDistributor(fromDateTime, toDateTime, familyRate);
                 }
-                else if (jvType.Equals("DistributorCovarage"))
+                else if (_jvType.Equals("DistributorCovarage"))
                 {
                     int familyRate = Convert.ToInt32(factoryRateTextBox.Text);
                     double ghatrate = Convert.ToDouble(ghatRateTextBox.Text);
                     source = _bll.GetDitributorCoverage(fromDateTime, toDateTime, familyRate, ghatrate, "Topsheet");
                 }
-                else if (jvType.Equals("ManpowerManager"))
+                else if (_jvType.Equals("ManpowerManager"))
                 {
                     source = _bll.GetManpowerManager(fromDateTime, toDateTime);
                 }
-                else if (jvType.Equals("ManpowerDistributor"))
+                else if (_jvType.Equals("ManpowerDistributor"))
                 {
                     source = _bll.GetDistributorManpowerCommission(fromDateTime, toDateTime, 2);
                 }
@@ -240,35 +241,35 @@ namespace UI.SAD.Consumer
             //tfObject.ItemTemplate = new CreateItemTemplate(ListItemType.Item,CreateItemTemplate.ControlType.CheckBox);
             //gridView.Columns.Add(tfObject);
 
-            if (jvType.Equals("Subsidairy"))
+            if (_jvType.Equals("Subsidairy"))
             {
                 gridView = CreateSubsidiaryGridColumn(gridView);
             }
-            else if (jvType.Equals("TradingHouse"))
+            else if (_jvType.Equals("TradingHouse"))
             {
                 gridView = CreateTradingGridColumn(gridView);
             }
-            else if (jvType.Equals("YearlyAch"))
+            else if (_jvType.Equals("YearlyAch"))
             {
                 gridView = CreateYearlyAcv(gridView);
             }
-            else if (jvType.Equals("ExclusiveRetailer"))
+            else if (_jvType.Equals("ExclusiveRetailer"))
             {
                 gridView = CreateExclusiveRetailer(gridView);
             }
-            else if (jvType.Equals("ExclusiveDistributor"))
+            else if (_jvType.Equals("ExclusiveDistributor"))
             {
                 gridView = CreateExclusiveDistributor(gridView);
             }
-            else if (jvType.Equals("DistributorCovarage"))
+            else if (_jvType.Equals("DistributorCovarage"))
             {
                 gridView = CreateDistributorCovarage(gridView);
             }
-            else if (jvType.Equals("ManpowerManager"))
+            else if (_jvType.Equals("ManpowerManager"))
             {
                 gridView = CreateManpowerManager(gridView);
             }
-            else if (jvType.Equals("ManpowerDistributor"))
+            else if (_jvType.Equals("ManpowerDistributor"))
             {
                 gridView = CreateManpowerDistributor(gridView);
             }
@@ -283,7 +284,7 @@ namespace UI.SAD.Consumer
 
         private GridView CreateSubsidiaryGridColumn(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -306,7 +307,7 @@ namespace UI.SAD.Consumer
         
         private GridView CreateTradingGridColumn(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -322,7 +323,7 @@ namespace UI.SAD.Consumer
 
         private GridView CreateYearlyAcv(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -338,7 +339,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateExclusiveRetailer(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -353,7 +354,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateExclusiveDistributor(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -368,7 +369,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateDistributorCovarage(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -383,7 +384,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateManpowerManager(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -404,7 +405,7 @@ namespace UI.SAD.Consumer
         }
         private GridView CreateManpowerDistributor(GridView gridView)
         {
-            gridView.Columns.Add(GridViewUtil.CreateBoundField("Customer Name", "customerName"));
+            gridView.Columns.Add(GridViewUtil.CreateBoundField("customerName", "customerName"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("tarritory", "tarritory"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("area", "area"));
             gridView.Columns.Add(GridViewUtil.CreateBoundField("region", "region"));
@@ -432,8 +433,8 @@ namespace UI.SAD.Consumer
         private void LoadNecessaryUi()
         {
             
-            jvType = ddlJvType.SelectedItem.Value;
-            switch (jvType)
+            _jvType = ddlJvType.SelectedItem.Value;
+            switch (_jvType)
             {
                 case "Subsidairy":
                     subsidaryDropDown.Visible = true;

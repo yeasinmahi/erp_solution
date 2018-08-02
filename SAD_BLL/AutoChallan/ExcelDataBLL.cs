@@ -224,6 +224,16 @@ namespace SAD_BLL.AutoChallan
             }
         }
 
+        public void getOrderdelete()
+        {
+            try
+            {
+                tblUploadOrderDeleteTableAdapter adp = new tblUploadOrderDeleteTableAdapter();
+                adp.GetData();
+            }
+            catch { }
+        }
+
         public void getOrderSlipdelete(int custid, int Shipid)
         {
             try

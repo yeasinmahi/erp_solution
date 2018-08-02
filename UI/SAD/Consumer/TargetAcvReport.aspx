@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TargetAcvReport.aspx.cs" Inherits="UI.SAD.Consumer.TargetAcvReport" %>
+
 <%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@
                                 <asp:TextBox ID="fromTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <script>$('#fromTextBox').datepicker();</script>
                             </td>
-                            
+
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date"></asp:Label>
                             </td>
@@ -62,6 +63,18 @@
                                     <asp:ListItem Text="Distributor Boostup" Value="DistributorBoostup"></asp:ListItem>
                                     <asp:ListItem Text="Cash Commission" Value="CashCom"></asp:ListItem>
                                     <asp:ListItem Text="Retail Commission" Value="RetailCom"></asp:ListItem>
+                                    <asp:ListItem Text="Bank Commission" Value="BankCom"></asp:ListItem>
+                                    <asp:ListItem Text="Star Program Commission" Value="StarProgramCom"></asp:ListItem>
+                                    <asp:ListItem Text="Bondhutter Bondhon" Value="BondhutterBondhon"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven" runat="server" id="areaDdlTr">
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Area"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlArea" CssClass="ddList" runat="server" AutoPostBack="False">
                                 </asp:DropDownList>
                             </td>
                         </tr>

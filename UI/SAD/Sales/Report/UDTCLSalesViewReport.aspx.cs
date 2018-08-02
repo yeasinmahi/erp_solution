@@ -2,11 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+ 
+ 
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+
+ 
 
 namespace UI.SAD.Sales.Report
 {
@@ -18,7 +22,7 @@ namespace UI.SAD.Sales.Report
         {
             if(!IsPostBack)
             {
-                pnlUpperControl.DataBind();
+                //pnlUpperControl.DataBind();
             }
              
            
@@ -54,6 +58,22 @@ namespace UI.SAD.Sales.Report
         }
 
         decimal totalquantity = 0, totalamount = 0, totalprice = 0;
+
+        protected void btnDownloads_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                GvSalesReport.AllowPaging = false;
+                SAD_BLL.Customer.Report.ExportClass.Export("UDTCL_Sales.xls", GvSalesReport);
+            }
+            catch { }
+           
+           
+        }
+       
+         
+
         protected void GvSalesReport_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             int reportType = int.Parse(DdlReport.SelectedItem.Value);
