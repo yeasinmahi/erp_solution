@@ -141,7 +141,7 @@
                                         <asp:TemplateField HeaderText="Pieces" SortExpression="Quantity">
                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Quantity", "{0:N1}") %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Quantity", "{0:N3}") %>'></asp:Label>
                                             </ItemTemplate>
                                              <FooterTemplate>
                                                  <div style="text-align:right;"><asp:Label ID="lblquantity" runat="server" ForeColor="Red"></asp:Label></div>
@@ -153,7 +153,7 @@
                                         <asp:TemplateField HeaderText="Price" SortExpression="Rate">
                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Rate", "{0:N2}") %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Rate", "{0:N3}") %>'></asp:Label>
                                             </ItemTemplate>
                                              <FooterTemplate>
                                                  <div style="text-align:right;"><asp:Label ID="lblprice" runat="server" ForeColor="Red"></asp:Label></div>
