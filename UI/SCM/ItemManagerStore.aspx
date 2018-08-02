@@ -102,7 +102,7 @@
                 <td style="text-align:right;"><asp:Label ID="Label13" runat="server" Text="Max Order Level :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtMaximum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Safety Stock :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtSafety" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtSafety" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();" Enabled="false"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label24" runat="server" Text="Max Daily Consum. :" CssClass="lbl"></asp:Label></td>
