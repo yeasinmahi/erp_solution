@@ -128,8 +128,8 @@
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" ItemStyle-HorizontalAlign="left" >
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="ChDate" DataFormatString="{0:yyyy/MM/dd}" Visible="false" HeaderText="Challan Date" SortExpression="ChDate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="80px" ItemStyle-Width="80px">
-                                        </asp:BoundField>
+                                        <%--<asp:BoundField DataField="ChDate" DataFormatString="{0:yyyy/MM/dd}" Visible="false" HeaderText="Challan Date" SortExpression="ChDate" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="80px" ItemStyle-Width="80px">
+                                        </asp:BoundField>--%>
                                         <asp:BoundField DataField="Productname" HeaderText="Product Name" SortExpression="Productname" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="200px" ItemStyle-Width="200px">
                                         </asp:BoundField>                                      
                                        
