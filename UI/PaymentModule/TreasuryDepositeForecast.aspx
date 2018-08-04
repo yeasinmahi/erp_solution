@@ -71,7 +71,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><asp:RadioButton ID="btnRadioAdvice" runat="server" Text="Advice" GroupName="radioBtn" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged"/></td>
+                                <td><asp:RadioButton ID="btnRadioAdvice" runat="server" Text="Advise" GroupName="radioBtn" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged"/></td>
                                 <td><asp:RadioButton ID="btnRadioCheque" runat="server" Text="Cheque" GroupName="radioBtn" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged"/></td>
                             </tr>
                             <tr class="tblrowodd">

@@ -28,21 +28,24 @@
             var todate = document.getElementById("txtToDate").value;
             var report = document.getElementById("DdlReport").value;
             
-            if (fromdate == null || fromdate=="") {
-                alert('Insert From Date');
-                return false;
-            }
-            else if (todate == null || todate=="") {
-                alert('Insert To Date');
-               // return false;
-            }
-           
-             else if (report == null || report=="") {
-                alert('Insert Report Type');
-               // return false;
-            }
+             if (fromdate == null || fromdate == "") {
+                 alert('Insert From Date');
+                 return false;
+             }
+             else if (todate == null || todate == "") {
+                 alert('Insert To Date');
+                  return false;
+             }
+
+             else if (report == null || report == "") {
+                 alert('Insert Report Type');
+                  return false;
+             }
+             else {
+                 return true;
+             }
             
-            //return true;
+            
         }
 
     </script>
@@ -113,7 +116,7 @@
         <tr class="tblrowodd">             
                 
         <td colspan="4" style="text-align:right;">
-        <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "ConfirmforShow()" Text="Show Report" CssClass="button" />
+        <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "return ConfirmforShow()" Text="Show Report" CssClass="button" />
         </td>
         <td><asp:Button ID="btnDownloads" runat="server" Text="Export" OnClick="btnDownloads_Click" /></td>
         </tr>    
