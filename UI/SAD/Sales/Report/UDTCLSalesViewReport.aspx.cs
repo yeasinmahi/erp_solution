@@ -53,7 +53,7 @@ namespace UI.SAD.Sales.Report
                 }
             }
             catch(Exception ex) {
-                throw ex;
+                //throw ex;
             }
            
             
@@ -81,8 +81,8 @@ namespace UI.SAD.Sales.Report
             int reportType = int.Parse(DdlReport.SelectedItem.Value);
             if (reportType == 5 || reportType == 6 || reportType == 7|| reportType == 8)
             {
-                e.Row.Cells[1].Visible = false;
-                e.Row.Cells[5].Visible = false;
+                //e.Row.Cells[1].Visible = false;
+                //e.Row.Cells[5].Visible = false;
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
