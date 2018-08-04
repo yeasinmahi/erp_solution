@@ -67,7 +67,7 @@ namespace SAD_BLL.Sales.Report
             totalAmountInWord = formatAmount.GetTakaInWords(totalAmountCr, "", "Only");
             string[] addressLines = new string[1];
             addressLines[0] = "UDTCL";
-            htmlString = PreparePrintableJournelVoucher("UDTCL", addressLines, "SV", voucherNumber, voucherDate, (DataTable)dt, totalAmountInWord, voucherNarration, totalAmountDr, totalAmountCr);
+            htmlString = PreparePrintableSvVoucher("UDTCL", addressLines, "SV", voucherNumber, voucherDate, (DataTable)dt, totalAmountInWord, voucherNarration, totalAmountDr, totalAmountCr);
             return htmlString;
 
 
@@ -90,7 +90,7 @@ namespace SAD_BLL.Sales.Report
             return adpTable.GetSVData(Part,unit, code, id);
         }
 
-        private string PreparePrintableJournelVoucher(string unitName, string[] addressLines, string voucherTypeString, string voucherNumber, string date, DataTable tbl, string totalAmountInWords, string voucherNarration, decimal debitAmount, decimal crediAmount)
+        private string PreparePrintableSvVoucher(string unitName, string[] addressLines, string voucherTypeString, string voucherNumber, string date, DataTable tbl, string totalAmountInWords, string voucherNarration, decimal debitAmount, decimal crediAmount)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("<table style=\"width: 100%;\">");
