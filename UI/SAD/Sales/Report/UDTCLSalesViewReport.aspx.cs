@@ -16,7 +16,7 @@ namespace UI.SAD.Sales.Report
 {
     public partial class UDTCLSalesViewReport : BasePage
     {
-        DataTable dt = new DataTable();
+        DataTable dt = new DataTable(); decimal qnty = 0; decimal rt = 0; decimal ttl = 0;
         UDTCLSalesBLL obj = new UDTCLSalesBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,7 +52,9 @@ namespace UI.SAD.Sales.Report
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
                 }
             }
-            catch { }
+            catch(Exception ex) {
+                throw ex;
+            }
            
             
         }
@@ -84,9 +86,18 @@ namespace UI.SAD.Sales.Report
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                totalquantity += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity"));
-                totalamount += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Totalamout"));
-                totalprice += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Rate"));
+
+
+                if (DataBinder.Eval(e.Row.DataItem, "Quantity").ToString() == string.Empty) { qnty = 0; }
+                else { qnty = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity")); }
+                if (DataBinder.Eval(e.Row.DataItem, "Totalamout").ToString() == string.Empty) { ttl = 0; }
+                else { ttl = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Totalamout")); }
+                if (DataBinder.Eval(e.Row.DataItem, "Rate").ToString() == string.Empty) { rt = 0; }
+                else { rt = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Rate")); }
+
+                totalquantity += qnty;
+                totalamount += ttl;
+                totalprice += rt;
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
