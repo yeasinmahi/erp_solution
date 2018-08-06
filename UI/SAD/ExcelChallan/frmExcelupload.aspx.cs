@@ -94,6 +94,7 @@ namespace UI.SAD.ExcelChallan
                 string[] searchKey = temp.Split(delimiterChars);
                 hdnCustid.Value = searchKey[0].ToString();
                 hdnCustname.Value = searchKey[1].ToString();
+
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowPopUpCust('frmProductView.aspx?');", true);
             }
             catch { }
