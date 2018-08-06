@@ -48,7 +48,7 @@ namespace UI.Transport.TripvsCost
             int unitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
             int reportType = Convert.ToInt32(ddlReportType.SelectedItem.Value);
             int enroll = 0;
-            if (!String.IsNullOrWhiteSpace(enrollTxt.Text))
+            if (!string.IsNullOrWhiteSpace(enrollTxt.Text))
             {
                 enroll = Convert.ToInt32(enrollTxt.Text);
             }
