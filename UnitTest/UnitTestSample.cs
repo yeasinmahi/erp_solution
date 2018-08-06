@@ -6,9 +6,9 @@ namespace UnitTest
     public class UnitTestSample
     {
         [Test]
-        public void TestMethod1()
+        public void TestMethod()
         {
-            Assert.That(true);
+            Assert.AreEqual(5,5);
         }
     }
 }
