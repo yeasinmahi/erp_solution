@@ -972,5 +972,27 @@ namespace HR_BLL.TourPlan
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable getProgramName()
+        {
+            TblProgramNameTableAdapter adp = new TblProgramNameTableAdapter();
+            try { return adp.GetDataProgramName(); }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getManpowerType()
+        {
+            TblProgramAttendanceTypeTableAdapter adp = new TblProgramAttendanceTypeTableAdapter();
+            try { return adp.GetDataAttendanceType(); }
+            catch { return new DataTable(); }
+        }
+
+
+        public DataTable CreateProgramCostBillinfo(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate, int unitid, int territoriid)
+        {
+            SprProgramBillInfoDetaillsTableAdapter adp = new SprProgramBillInfoDetaillsTableAdapter();
+            try { return adp.GetDataProgramBillInfoDetaills(type, actionby, xml, id, fdate, tdate, unitid, territoriid); }
+            catch { return new DataTable(); }
+        }
     }
 }

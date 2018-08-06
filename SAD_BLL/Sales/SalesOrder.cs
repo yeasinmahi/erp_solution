@@ -357,5 +357,47 @@ namespace SAD_BLL.Sales
             try { return adp.GetDataTripChallaninfo(tripcode); }
             catch { return new DataTable(); }
         }
+
+        public DataTable GetFactoryAndGhatDelv(DateTime fdateMonth, DateTime tdateMonth)
+        {
+            SprACCLGHATAndFactDelvTableAdapter adp = new SprACCLGHATAndFactDelvTableAdapter();
+            try { return adp.GetDataACCLGHATAndFactDelv( fdateMonth, tdateMonth); }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetdataSalesINMT(DateTime fdateMonth)
+        {
+            SprACCLSalesComparisonBagCementTableAdapter adp = new SprACCLSalesComparisonBagCementTableAdapter();
+            try { return adp.GetData(fdateMonth); }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable SalesComtType(int unitid)
+        {
+            TblSalescomTypeTableAdapter adp = new TblSalescomTypeTableAdapter();
+            try { return adp.GetDataCommissiontype(unitid); }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getdataCustomerCommission(DateTime dtfromdate, DateTime dttodate, int salesofice, string reptname, int unitid)
+        {
+            try
+            {
+                SprACRDCommissionTableAdapter bll = new SprACRDCommissionTableAdapter();
+                return bll.GetDataACRDCommission(dtfromdate, dttodate, salesofice, reptname, unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        //@type int, @actionby int, @xml xml, @id int, @from date, @to date,@intunitid int,@territoryid int
+        public DataTable getdataProgrambillcostinfo(int typeid, int actionby,string xml, int id, DateTime dtfromdate, DateTime dttodate, int unitid, int territoryid)
+        {
+            try
+            {
+                SprProgramBillInfoDetaillsTableAdapter bll = new SprProgramBillInfoDetaillsTableAdapter();
+                return bll.GetDataProgramBillInfoDetaills(typeid,  actionby,  xml,  id,  dtfromdate,  dttodate,  unitid,  territoryid);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }

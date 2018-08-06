@@ -14,25 +14,30 @@ namespace UI.SAD.Sales.Report
     {
         DataTable dt = new DataTable();
         UDTCLSalesBLL obj = new UDTCLSalesBLL();
+        int unitId, salesId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-               //string htmlString = obj.SVPrintView(105, "", 0);
+              
+                int  salesId = int.Parse(Request.QueryString["intId"].ToString());
+                int unitId = int.Parse(Request.QueryString["intunit"].ToString());
+                string htmlString = obj.SVPrintView(1, unitId, "", salesId);
+                lblUnitName.Text = "United Dhaka Tobacco Company Ltd.".ToUpper();
+                lblUnitAddress.Text = "Akij House,198,Bir Uttam Mir Shawkat Sarak,Tejgaon,Dhaka-1208";
+                lblVoucherType.Text = "<br><br>" + "Sales Voucher";
 
-                lblUnitName.Text = "Dhaka".ToUpper();
-                lblUnitAddress.Text = "Morkun tongi Gazipur";
-                lblVoucherType.Text = "<br><br>" + "SV";
                 //strCodeForbarCode = strCodeForbarCode.Replace("-", "");
                 //Image1.ImageUrl = "BarCodeHandler.ashx?info=" + strCodeForbarCode;
+
                 Image1.Width = 180;
                 Image1.Height = 50;
 
-                //logo image
-                //Image2.ImageUrl = "../../Content/Images/img/" + unitID + ".png";
+              // logo image
+                Image2.ImageUrl = "../../Content/Images/img/" + 16 + ".png";
                 //Image2.Width = 180;
                 //Image2.Height = 50;
-                //Label1.Text = htmlString;
+                Label1.Text = htmlString;
             }
         }
     }
