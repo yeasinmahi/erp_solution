@@ -10,7 +10,7 @@
 namespace UI.SAD.Sales.Report {
     
     
-    public partial class UDTCLSalesViewReport {
+    public partial class UDTCLSalesInventory {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -166,24 +166,6 @@ namespace UI.SAD.Sales.Report {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsUnit;
         
         /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// DdlReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlReport;
-        
-        /// <summary>
         /// btnShow control.
         /// </summary>
         /// <remarks>
@@ -202,12 +184,12 @@ namespace UI.SAD.Sales.Report {
         protected global::System.Web.UI.WebControls.Button btnDownloads;
         
         /// <summary>
-        /// GvSalesReport control.
+        /// dgvSales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GvSalesReport;
+        protected global::System.Web.UI.WebControls.GridView dgvSales;
     }
 }

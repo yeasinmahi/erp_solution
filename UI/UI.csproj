@@ -399,6 +399,7 @@
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
+    <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
     <Content Include="Revenue\rptExpiaryDate.aspx" />
@@ -1210,6 +1211,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
+    <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
     <Content Include="SAD\Sales\Return\CorporateSalesReturn.aspx" />
@@ -3006,6 +3008,13 @@
     </Compile>
     <Compile Include="PaymentModule\TreasuryChallan.aspx.designer.cs">
       <DependentUpon>TreasuryChallan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\TreasuryDepositeForecast.aspx.cs">
+      <DependentUpon>TreasuryDepositeForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\TreasuryDepositeForecast.aspx.designer.cs">
+      <DependentUpon>TreasuryDepositeForecast.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -6102,6 +6111,13 @@
     <Compile Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx.designer.cs">
       <DependentUpon>ShippingPointBaseCollectionAndDelv.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\UDTCLSalesInventory.aspx.cs">
+      <DependentUpon>UDTCLSalesInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\UDTCLSalesInventory.aspx.designer.cs">
+      <DependentUpon>UDTCLSalesInventory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8151,7 +8167,9 @@
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpSalaryMonthlyStatement.rdlc" />
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpSalaryStatementReport.rdlc" />
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\JobStationwiseCurrentShiftInfo.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\MonthwiseSalaryInfo.rdlc" />
+    <EmbeddedResource Include="HR\Reports\ReportsTemplate\MonthwiseSalaryInfo.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\SalaryAdviceToBank.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\CreditBalance.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\Statement.rdlc" />

@@ -76,37 +76,25 @@
    
  
 
- <style type="text/css">
-    .leaveApplication_container {
-    margin-top: 0px;
-    }
-    .ddList {}
-    .auto-style1 {
-    height: 24px;
-    }
-    .auto-style2 {
-    height: 139px;
-    }
-  </style>
+ 
   </head>
 <body>
-    <form id="frmaccountsrealizes" runat="server">
-   <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
-    <ContentTemplate>
-    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
-    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
-    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
-    <div style="height: 100px;"></div>
-    <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender> 
+    <form id="frmselfresign" runat="server"> 
+    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager> 
+    <asp:UpdatePanel ID="UpdatePanel0" runat="server"> 
+    <ContentTemplate> 
+    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%"> 
+    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;"> 
+    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%"> 
+    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div> 
+    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel> 
+    <div style="height: 100px;"></div> 
+    <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"> 
+    </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-<div class="leaveApplication_container">
-   
-  <div class="tabs_container" align="left">Maintenance Service Report 
-  </div>
+<div class="leaveApplication_container">   
+  <div class="tabs_container" align="left">Maintenance Service Report </div> 
+ 
  
   <table style="width:700px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #996633;" class="tblrowodd">
     <tr class="tblrowodd">

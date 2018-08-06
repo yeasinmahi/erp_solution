@@ -2,23 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+ 
+ 
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
+ 
+
 namespace UI.SAD.Sales.Report
 {
     public partial class UDTCLSalesViewReport : BasePage
     {
-        DataTable dt = new DataTable();
+        DataTable dt = new DataTable(); decimal qnty = 0; decimal rt = 0; decimal ttl = 0;
         UDTCLSalesBLL obj = new UDTCLSalesBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                pnlUpperControl.DataBind();
+                //pnlUpperControl.DataBind();
             }
              
            
@@ -48,25 +52,52 @@ namespace UI.SAD.Sales.Report
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
                 }
             }
-            catch { }
+            catch(Exception ex) {
+                //throw ex;
+            }
            
             
         }
 
         decimal totalquantity = 0, totalamount = 0, totalprice = 0;
+
+        protected void btnDownloads_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                GvSalesReport.AllowPaging = false;
+                SAD_BLL.Customer.Report.ExportClass.Export("UDTCL_Sales.xls", GvSalesReport);
+            }
+            catch { }
+           
+           
+        }
+       
+         
+
         protected void GvSalesReport_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             int reportType = int.Parse(DdlReport.SelectedItem.Value);
-            //if (reportType==4)
-            //{
-            //    e.Row.Cells[1].Visible = false;
-            //    e.Row.Cells[6].Visible = false;
-            //}
+            if (reportType == 5 || reportType == 6 || reportType == 7|| reportType == 8)
+            {
+                //e.Row.Cells[1].Visible = false;
+                //e.Row.Cells[5].Visible = false;
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                totalquantity += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity"));
-                totalamount += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Totalamout"));
-                totalprice += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Rate"));
+
+
+                if (DataBinder.Eval(e.Row.DataItem, "Quantity").ToString() == string.Empty) { qnty = 0; }
+                else { qnty = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Quantity")); }
+                if (DataBinder.Eval(e.Row.DataItem, "Totalamout").ToString() == string.Empty) { ttl = 0; }
+                else { ttl = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Totalamout")); }
+                if (DataBinder.Eval(e.Row.DataItem, "Rate").ToString() == string.Empty) { rt = 0; }
+                else { rt = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Rate")); }
+
+                totalquantity += qnty;
+                totalamount += ttl;
+                totalprice += rt;
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
