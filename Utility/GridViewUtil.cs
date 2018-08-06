@@ -73,9 +73,9 @@ namespace Utility
         }
 
         //Parameterrised constructor
-        public CreateItemTemplate(ListItemType Item, ControlType type)
+        public CreateItemTemplate(ListItemType item, ControlType type)
         {
-            myListItemType = Item;
+            myListItemType = item;
             controlType = type;
         }
 
