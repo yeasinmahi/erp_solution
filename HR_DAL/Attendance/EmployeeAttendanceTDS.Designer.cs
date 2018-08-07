@@ -6214,8 +6214,8 @@ SELECT intMonthId, strMonthName FROM tblMonth WHERE (intMonthId = @intMonthId)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [tblemployeeattendance] ([dteAttendanceDate], [dteAttendanceTime]) VA" +
-                "LUES (@dteAttendanceDate, @dteAttendanceTime)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [erp_hr].[dbo].[tblemployeeattendance] ([dteAttendanceDate], [dteAtte" +
+                "ndanceTime]) VALUES (@dteAttendanceDate, @dteAttendanceTime)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteAttendanceDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteAttendanceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteAttendanceTime", global::System.Data.SqlDbType.Time, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteAttendanceTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6234,9 +6234,12 @@ SELECT intMonthId, strMonthName FROM tblMonth WHERE (intMonthId = @intMonthId)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select dteAttendanceDate, dteAttendanceTime, Case When strRemark='AI' then 'InPunch' Else 'OutPunch' End as strRemark from tblemployeeattendance
-Where dteAttendanceDate = @dte and Year(dteAttendanceDate)=Year(@dte) and intemployeeid=@enroll
-Order By dteAttendanceDate, dteAttendanceTime";
+            this._commandCollection[0].CommandText = @"Select dteAttendanceDate, dteAttendanceTime, Case When strRemark='AI' then 'InPunch' when strRemark='AO' then 'OutPunch' 
+Else strRemark End as strRemark 
+from erp_hr.dbo.tblemployeeattendance
+Where dteAttendanceDate = @dte and Year(dteAttendanceDate)=Year(@dte) and intemployeeid=@enroll 
+Order By dteAttendanceDate, dteAttendanceTime 
+";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dte", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteAttendanceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6254,8 +6257,9 @@ Where emp.intEmployeeID = @enroll";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"Select dteAttendanceDate, dteAttendanceTime, Case When strRemark='AI' then 'InPunch' Else 'OutPunch' End as strRemark from tblemployeeattendance
-Where Month(dteAttendanceDate) = Month(@dte) and Year(dteAttendanceDate)=Year(@dte) and intemployeeid=@enroll Order By dteAttendanceDate, dteAttendanceTime";
+            this._commandCollection[2].CommandText = "SELECT dteAttendanceDate, dteAttendanceTime FROM tblEmployeeAttendance WHERE (MON" +
+                "TH(dteAttendanceDate) = MONTH(@dte)) AND (YEAR(dteAttendanceDate) = YEAR(@dte)) " +
+                "AND (intEmployeeID = @enroll) ORDER BY dteAttendanceDate, dteAttendanceTime";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dte", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
