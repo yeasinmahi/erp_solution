@@ -1,4 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="UI.HR.Reports.EmployeeProfile" Codebehind="EmployeeProfile.aspx.cs" %>
+﻿
+
+
+
+
+
+
+
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="UI.HR.Reports.EmployeeProfile" Codebehind="EmployeeProfile.aspx.cs" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
