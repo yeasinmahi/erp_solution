@@ -27,9 +27,10 @@
 
 
      <script type="text/javascript">
-         function PoGenerateCheck() {
-             var e = document.getElementById("ddlSuppliyer");
+         function PoGenerateCheck () {
+             var e = document.getElementById("ddlSupplier");
              var suppId = e.options[e.selectedIndex].value;
+            
              var e = document.getElementById("ddlWHPrepare");
              var whId = e.options[e.selectedIndex].value;
              var e = document.getElementById("ddlCurrency");
@@ -41,7 +42,7 @@
 
              var noOfShipment = document.getElementById("txtNoOfShipment").value;
              var afterMrrDay = document.getElementById("txtAfterMrrDay").value;
-             var destDelivery = document.getElementById("txtDestinationDelivery").value;
+              
              var lastShipmentDte = document.getElementById("txtLastShipmentDate").value;
 
              if ($.trim(suppId) == 0 || $.trim(suppId) == "" || $.trim(suppId) == null || $.trim(suppId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Suppliyer'); }
@@ -49,7 +50,7 @@
              else if ($.trim(paymentTremsId) == 0 || $.trim(paymentTremsId) == "" || $.trim(paymentTremsId) == null || $.trim(paymentTremsId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select PaymentTrems'); }
              else if ($.trim(noOfShipment) == 0 || $.trim(noOfShipment) == "" || $.trim(noOfShipment) == null || $.trim(noOfShipment) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Number of Shipment'); }
              else if ($.trim(afterMrrDay) == 0 || $.trim(afterMrrDay) == "" || $.trim(afterMrrDay) == null || $.trim(afterMrrDay) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please set After MRR Day'); }
-             else if ($.trim(destDelivery).length < 1 || $.trim(destDelivery) == "" || $.trim(destDelivery) == null || $.trim(destDelivery) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Destination Delivery'); }
+            
              else if ($.trim(lastShipmentDte).length < 3 || $.trim(lastShipmentDte) == "" || $.trim(lastShipmentDte) == null || $.trim(lastShipmentDte) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Last Shipment Date'); }
              else {
                  var confirm_value = document.createElement("INPUT");
@@ -286,22 +287,8 @@
          //*** txtAIT Selection Change End ****************************************************************************
 </script>
 
-    <script type="text/javascript"> 
-        function funConfirmAll() { 
-            var confirm_value = document.createElement("INPUT"); 
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; 
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; } 
-            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-        }
-
-</script> 
-    <script language="javascript">        
-
-        function Registration(url) {
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=230, close=no');
-            if (window.focus) { newwindow.focus() }
-        }
-    </script>
+    
+    
   
     <style type="text/css"> 
         .rounds {
@@ -363,9 +350,7 @@
                       </tr>
                       <tr><td colspan="6"><hr /></td></tr> 
 
-                      <%--<caption>
-                          <asp:Label ID="lblSuppAddress" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
-                      </caption>--%>
+                      
                       <tr>
                           <td colspan="6" style="text-align:center;">
                               <asp:Label ID="lblSuppAddress" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label>
@@ -437,7 +422,7 @@
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
                         <td  style="text-align:left;"><asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox></td><td></td>                        
-                        <td   style="text-align:right;"><asp:Button ID="btnGeneratePO" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" AutoPostBack="false" /></td>
+                        <td   style="text-align:right;"><asp:Button ID="btnGeneratePO" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" /></td>
                       </tr>
                       </table>
                      <table style="border-color:cornflowerblue; border-radius:10px; border:1px solid blue;">

@@ -1,9 +1,6 @@
-﻿
-
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -11,7 +8,6 @@ namespace Utility
 {
     public class Common
     {
-
         public static bool CopyFile(string source, string destionation)
         {
             try
