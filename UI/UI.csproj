@@ -324,6 +324,7 @@
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
+    <Content Include="Inventory\RequisitionView.aspx" />
     <Content Include="Inventory\SalesDamageEntry.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
@@ -2785,6 +2786,13 @@
     </Compile>
     <Compile Include="Inventory\RAWMaterialTransfer.aspx.designer.cs">
       <DependentUpon>RAWMaterialTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\RequisitionView.aspx.cs">
+      <DependentUpon>RequisitionView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\RequisitionView.aspx.designer.cs">
+      <DependentUpon>RequisitionView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\SalesDamageEntry.aspx.cs">
       <DependentUpon>SalesDamageEntry.aspx</DependentUpon>

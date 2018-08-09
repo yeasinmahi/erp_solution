@@ -38,6 +38,7 @@
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
         <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1500px; border:0px solid red;"></iframe>
+        <%--sandbox="allow-same-origin allow-scripts allow-popups allow-forms"--%>
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>

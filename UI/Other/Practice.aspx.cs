@@ -16,7 +16,7 @@ namespace UI.Other
         {
             if (!IsPostBack) { //pnlUpperControl.DataBind(); 
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Ruhul/Binti/UDTCLSalesReport?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Ruhul/Binti/Untitled1?rs:Embed=true');", true);
 
         }
     }

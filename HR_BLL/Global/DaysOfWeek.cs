@@ -98,6 +98,12 @@ namespace HR_BLL.Global
             catch { }
             return message;
         }
+
+        public DataTable GetRequisitionById(int intwhid,DateTime from ,DateTime to)
+        {
+            TblRequisitionTableAdapter adp = new TblRequisitionTableAdapter();
+            return adp.GetRequisitionData(intwhid,from,to);
+        }
         #endregion
 
         #region ------------ PO List ------------
