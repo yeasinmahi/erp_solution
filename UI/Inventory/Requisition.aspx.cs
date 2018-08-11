@@ -320,6 +320,9 @@ namespace UI.Inventory
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
         }
+
+
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         { 
            // hdnwh.Value = ddlWH.SelectedValue.ToString();

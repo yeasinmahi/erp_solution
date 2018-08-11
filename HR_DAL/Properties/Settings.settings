@@ -5,90 +5,98 @@
     <Setting Name="ERP_HRConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="ERP_GlobalConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="ERP_InventoryConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="AFBLSMSServerConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=AFBLSMSServer;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=AFBLSMSServer;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=AFBLSMSServer;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=AFBLSMSServer;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="ERP_SADConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=ERP_SAD;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=ERP_SAD;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=ERP_SAD;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=ERP_SAD;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="BrandTradeMktConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=BrandTradeMkt;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=BrandTradeMkt;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=BrandTradeMkt;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=BrandTradeMkt;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="ERP_AccountsConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="AG_GlobalConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=esql;Initial Catalog=AG_Global;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devesql;Initial Catalog=AG_Global;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=esql;Initial Catalog=AG_Global;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devesql;Initial Catalog=AG_Global;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="Archive_HRConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=esql;Initial Catalog=Archive_HR;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devesql;Initial Catalog=Archive_HR;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=esql;Initial Catalog=Archive_HR;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devesql;Initial Catalog=Archive_HR;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="ERP_VATConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=sqlrw;Password=RWsql@123</Value>
     </Setting>
     <Setting Name="ERP_PaymentConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=esql;Initial Catalog=ERP_Payment;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=devesql;Initial Catalog=ERP_Payment;User ID=sqlrw;Password=RWsql@123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=esql;Initial Catalog=ERP_Payment;User ID=sqlrw;Password=RWsql@123</Value>
+      <Value Profile="(Default)">Data Source=devesql;Initial Catalog=ERP_Payment;User ID=sqlrw;Password=RWsql@123</Value>
+    </Setting>
+    <Setting Name="ERP_InventoryConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=devesql;Initial Catalog=ERP_Inventory;User ID=devesqlrw;Password=sql@123&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=devesql;Initial Catalog=ERP_Inventory;User ID=devesqlrw;Password=sql@123</Value>
     </Setting>
   </Settings>
 </SettingsFile>

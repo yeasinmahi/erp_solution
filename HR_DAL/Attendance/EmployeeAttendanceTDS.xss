@@ -14,7 +14,7 @@
     <Shape ID="DesignTable:SprCalenderViewAttendanceByEmployee" ZOrder="4" X="-13" Y="200" Height="54" Width="300" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="45" OldDataTableHeight="178" SplitterPosition="24" />
     <Shape ID="DesignTable:SprEmployeeAttendanceDetails" ZOrder="2" X="-13" Y="258" Height="75" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="24" OldDataTableHeight="197" SplitterPosition="24" />
     <Shape ID="DesignTable:TblMonth" ZOrder="3" X="-13" Y="319" Height="54" Width="301" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="45" OldDataTableHeight="64" SplitterPosition="24" />
-    <Shape ID="DesignTable:TblEmployeeAttendance" ZOrder="1" X="-10" Y="376" Height="112" Width="286" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="24" OldDataTableHeight="83" SplitterPosition="24" />
+    <Shape ID="DesignTable:TblEmployeeAttendance" ZOrder="1" X="-10" Y="376" Height="172" Width="286" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="83" SplitterPosition="83" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
