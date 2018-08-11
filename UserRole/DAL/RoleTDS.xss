@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:TblRoleForDDL" ZOrder="3" X="524" Y="213" Height="115" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:SprRoleGetRolesForUserByFunction" ZOrder="2" X="195" Y="83" Height="96" Width="629" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignTable:SprRoleGetRolesForUser" ZOrder="1" X="196" Y="215" Height="191" Width="285" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
+    <Shape ID="DesignTable:SprRoleGetRolesForUser" ZOrder="1" X="196" Y="215" Height="75" Width="286" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="159" SplitterPosition="24" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
