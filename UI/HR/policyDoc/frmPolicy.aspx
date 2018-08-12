@@ -104,13 +104,13 @@
         BorderWidth="0px" CellPadding="1" OnRowDataBound="dgvRpt_RowDataBound" ForeColor="Black" GridLines="Vertical" ><AlternatingRowStyle BackColor="#CCCCCC" Font-Bold="true" />
         <Columns>
         <asp:TemplateField HeaderText="SL."><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField> 
-        <asp:BoundField DataField="strDocumentName" HeaderStyle-Width="240px"  HeaderText="Document Title" ItemStyle-HorizontalAlign="Center" SortExpression="Effected">
-        <ItemStyle HorizontalAlign="Left" Width="240px" /></asp:BoundField>
+        <asp:BoundField DataField="strDocumentName" HeaderStyle-Width="350px"  HeaderText="Document Title" ItemStyle-HorizontalAlign="Center" SortExpression="Effected">
+        <ItemStyle HorizontalAlign="Left" Width="350px" /></asp:BoundField>
         <asp:BoundField DataField="strDepartment" HeaderText="Department" ItemStyle-HorizontalAlign="Center" SortExpression="strAccountHolder">
         <ItemStyle HorizontalAlign="Left" Width="70px" /></asp:BoundField>
     
         <asp:TemplateField HeaderText="Document  Link">
-        <ItemTemplate> <asp:HyperLink ID="strDocLink" HeaderText="Document  Link" runat="server" Target="_blank" Text='<%# Eval("strDocLink") %>'
+        <ItemTemplate> <asp:HyperLink ID="strDocLink" HeaderText="Document  Link" runat="server" Target="_blank" Text='<%# Eval("strDocumentName") %>'
         NavigateUrl='<%# Eval("strDocLink") %>'></asp:HyperLink><ItemStyle HorizontalAlign="Right" Width="220px"/>
         </ItemTemplate> </asp:TemplateField>
 

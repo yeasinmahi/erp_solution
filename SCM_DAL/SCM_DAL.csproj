@@ -109,6 +109,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Payment_All_Voucher_TDS.cs">
+      <DependentUpon>Payment_All_Voucher_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Payment_All_Voucher_TDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
