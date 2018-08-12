@@ -35,27 +35,7 @@
 
     </script>
     <script type="text/javascript">
-        <%--function PrintPanel() {
-            var panel = document.getElementById("<%#printPanel.ClientID %>");
-            var unit = document.getElementById("<%#ddlUnit.ClientID %>").options[document.getElementById("<%#ddlUnit.ClientID%>").selectedIndex].text;
-            $('<%# ddlUnit.ClientID %>').change(function () {
-                $('<%# lblunit.ClientID %>').text($(this).val());
-            });
-            var printWindow = window.open('', '', 'height=800,width=1200,left=100,top=100,tollbar=0,scrollbars=1,status=0,resizable=1');
-            printWindow.document.write('<html><head>');
-            printWindow.document.write('</head><body >');          
-            printWindow.document.write(panel.innerHTML);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            //setTimeout(function () {
-            //    printWindow.print();
-            //}, 500);
-            //return false;
-            printWindow.focus();
-            printWindow.print();
-            //printWindow.close();
-            
-        }--%>
+        
         function PrintPanel() {
 
         var gridData = document.getElementById('<%#printPanel.ClientID %>');
@@ -213,7 +193,7 @@
 
                             </td>
                             <td>
-                                <asp:Button ID="btnPrint" runat="server" Text="Print" Width="70" OnClick="btnPrint_Click" OnClientClick="return PrintPanel();" /></td>
+                                <asp:Button ID="btnPrint" runat="server" Text="Print" Width="70" OnClientClick="return PrintPanel();" /></td>
                         </tr>
                     </table>
                     <asp:Panel ID="printPanel" runat="server">

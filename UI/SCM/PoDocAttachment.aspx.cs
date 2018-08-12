@@ -29,9 +29,6 @@ namespace UI.SCM
             else { }
           
         }
-
-       
-
         private void DefaltPageLoad()
         {
             try
@@ -131,7 +128,7 @@ namespace UI.SCM
                 dgvPO.DataBind();
 
                 lblunit.Text ="Unit Name: "+ ddlUnit.SelectedItem.Text;
-                lblDate.Text ="From"+ txtdteFrom.Text + " to " + txtdteTo.Text;
+                lblDate.Text ="Date: "+ txtdteFrom.Text + " to " + txtdteTo.Text;
             }
             catch { }
 
@@ -205,11 +202,6 @@ namespace UI.SCM
                 return strType;
             }
             catch { return strType; }
-        }
-       
-        protected void btnPrint_Click(object sender, EventArgs e)
-        {
-            //lblunit.Text = ddlUnit.SelectedItem.Text;
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
