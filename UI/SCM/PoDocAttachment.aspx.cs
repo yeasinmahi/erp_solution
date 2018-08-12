@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -22,9 +24,10 @@ namespace UI.SCM
 
             if(!IsPostBack)
             {
-                DefaltPageLoad();
+                DefaltPageLoad(); Page.Header.DataBind();
             }
             else { }
+          
         }
 
        
@@ -126,6 +129,9 @@ namespace UI.SCM
                 dt = objPo.GetPoData(34, xmlData, unitID, 0, dteFrom, enroll);
                 dgvPO.DataSource = dt;
                 dgvPO.DataBind();
+
+                lblunit.Text ="Unit Name: "+ ddlUnit.SelectedItem.Text;
+                lblDate.Text ="From"+ txtdteFrom.Text + " to " + txtdteTo.Text;
             }
             catch { }
 
@@ -151,6 +157,7 @@ namespace UI.SCM
                 dt = objPo.GetPoData(26, xmlData, unitID, 0, dteFrom, enroll);
                 dgvPO.DataSource = dt;
                 dgvPO.DataBind();
+               
             }
             catch { }
         }
@@ -198,6 +205,11 @@ namespace UI.SCM
                 return strType;
             }
             catch { return strType; }
+        }
+       
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+            //lblunit.Text = ddlUnit.SelectedItem.Text;
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
