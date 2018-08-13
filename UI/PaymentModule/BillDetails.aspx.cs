@@ -153,8 +153,7 @@ namespace UI.PaymentModule
                 {
                     dgvVoucherList.DataSource = dt;
                     dgvVoucherList.DataBind();
-                }
-                
+                }                
             }
         }
 

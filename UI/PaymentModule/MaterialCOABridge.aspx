@@ -73,7 +73,7 @@
                 <td style="text-align:left;">
                 <asp:DropDownList ID="ddlCategory" CssClass="ddList" Font-Bold="False" runat="server" width="130px" height="23px" AutoPostBack="false"></asp:DropDownList>
                 <span style="padding-left:30px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show All Item" Height="30px" OnClick="btnShow_Click"/></span>
-                <span style="padding-left:30px"><asp:Button ID="btnCOABankItem" runat="server" class="myButton" Text="COA Bank Item" Height="30px" OnClick="btnCOABankItem_Click"/></span>
+                <span style="padding-left:30px"><asp:Button ID="btnCOABankItem" runat="server" class="myButton" Text="COA Blank Item" Height="30px" OnClick="btnCOABankItem_Click"/></span>
                 <span style="padding-left:30px"><asp:Button ID="btnUpdateBridge" runat="server" class="myButton" Text="Update Bridge" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateBridge_Click"/></span>
                 </td>
             </tr>

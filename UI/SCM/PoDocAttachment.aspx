@@ -199,8 +199,9 @@
                     <asp:Panel ID="printPanel" runat="server">
                     
                     <table>
-                        <tr><td><asp:Label ID="lblunit" runat="server" Font-Bold="True" ForeColor="Black"></asp:Label></td></tr>
-                        <tr><td><asp:Label ID="lblDate" runat="server" Font-Bold="True"></asp:Label></td></tr>
+                        <tr><td style='text-align: center;'><asp:Label ID="lblunit" runat="server" Font-Bold="True" ForeColor="Black" Font-Size="20px"></asp:Label></td></tr>
+                        <tr><td style='text-align: center;'><asp:Label ID="lblAddress" runat="server" Font-Size="15px"></asp:Label></td></tr>
+                        <tr><td style='text-align: center;'><asp:Label ID="lblDate" runat="server" Font-Bold="True" Font-Size="15px"></asp:Label></td></tr>
                         <tr><td style="height:15px;"></td></tr>
                         <tr>
                             
