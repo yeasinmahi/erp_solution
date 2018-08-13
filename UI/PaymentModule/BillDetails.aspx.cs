@@ -131,7 +131,7 @@ namespace UI.PaymentModule
 
                 //Item Details List =========================================
                 dt = new DataTable();
-                dt = objBillApp.GetItemDetailsByPO(intPOID, true, intBillID);
+                dt = objBillApp.GetItemDetailsByPO(int.Parse(hdnPOID.Value), true, intBillID);
                 if (dt.Rows.Count > 0)
                 {
                     dgvBillReport.DataSource = dt;
@@ -140,7 +140,7 @@ namespace UI.PaymentModule
 
                 //Indent List =========================================
                 dt = new DataTable();
-                dt = objBillApp.GetIndentList(intPOID);
+                dt = objBillApp.GetIndentList(int.Parse(hdnPOID.Value));
                 if (dt.Rows.Count > 0)
                 {
                     dgvIndentList.DataSource = dt;
@@ -153,8 +153,7 @@ namespace UI.PaymentModule
                 {
                     dgvVoucherList.DataSource = dt;
                     dgvVoucherList.DataBind();
-                }
-                
+                }                
             }
         }
 
