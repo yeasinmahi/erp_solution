@@ -233,7 +233,7 @@ namespace SCM_BLL
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                    retStr[i] = tbl.Rows[i]["strSuppMasterName"] + " " + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strSuppMasterName"] + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
                 }
 
                 return retStr;
