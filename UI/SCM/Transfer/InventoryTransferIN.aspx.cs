@@ -212,6 +212,7 @@ namespace UI.SCM.Transfer
             catch { }
         }
 
+
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
