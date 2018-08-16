@@ -705,7 +705,6 @@
     <None Include="Customer\Report\StatementTDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>StatementTDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="Customer\Report\StatementTDS.xss">
       <DependentUpon>StatementTDS.xsd</DependentUpon>

@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -15,20 +17,18 @@ namespace UI.SCM
     public partial class PoDocAttachment : BasePage
     {
         DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
+        PoGenerate_BLL objPo = new PoGenerate_BLL(); Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
         int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if(!IsPostBack)
             {
-                DefaltPageLoad();
+                DefaltPageLoad(); Page.Header.DataBind();
             }
             else { }
+          
         }
-
-       
-
         private void DefaltPageLoad()
         {
             try
@@ -126,8 +126,22 @@ namespace UI.SCM
                 dt = objPo.GetPoData(34, xmlData, unitID, 0, dteFrom, enroll);
                 dgvPO.DataSource = dt;
                 dgvPO.DataBind();
+
+                
+                lblAddress.Text = "Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
+                lblDate.Text = "For The Month of " + txtdteFrom.Text + " To " + txtdteTo.Text;
+                lblunit.Text = "";
+                DataTable dts = new DataTable();
+                dts = obj.GetUnitAddress(unitID);
+                if (dts.Rows.Count > 0)
+                {
+                    Label lbluni = FindControl("lblunit") as Label;
+                    lbluni.Text= dts.Rows[0]["strDescription"].ToString();
+                    
+                }
+
             }
-            catch { }
+            catch(Exception ex) { ex.ToString(); }
 
         }
 
@@ -151,6 +165,7 @@ namespace UI.SCM
                 dt = objPo.GetPoData(26, xmlData, unitID, 0, dteFrom, enroll);
                 dgvPO.DataSource = dt;
                 dgvPO.DataBind();
+               
             }
             catch { }
         }

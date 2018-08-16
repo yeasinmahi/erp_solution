@@ -467,6 +467,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PiceRateCalculation.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PolicyDoc\PolicyTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PolicyTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1347,6 +1352,17 @@
     </None>
     <None Include="PiceRateCalculation\PiceRateCalculation.xss">
       <DependentUpon>PiceRateCalculation.xsd</DependentUpon>
+    </None>
+    <None Include="PolicyDoc\PolicyTDS.xsc">
+      <DependentUpon>PolicyTDS.xsd</DependentUpon>
+    </None>
+    <None Include="PolicyDoc\PolicyTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PolicyTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PolicyDoc\PolicyTDS.xss">
+      <DependentUpon>PolicyTDS.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -50,13 +50,6 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\TFS2017\UI\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TFSBackup\2018-5-10-1\TFS2018ERP\UI\bin\Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
-    </Reference>
     <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libray\MessagingToolkit.QRCode.dll</HintPath>
@@ -71,37 +64,17 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common">
-      <HintPath>F:\bin\Microsoft.ReportViewer.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization">
-      <HintPath>F:\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design">
-      <HintPath>F:\bin\Microsoft.ReportViewer.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel">
-      <HintPath>F:\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebDesign">
-      <HintPath>F:\bin\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TFSBackup\2018-5-10\TFS2018ERP\UI\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TFSBackup\2018-5-10\TFS2018ERP\UI\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -113,8 +86,6 @@
     </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Web.DataVisualization" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -337,6 +308,7 @@
     <Content Include="HR\Loan\LoanStatusSummary.aspx" />
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
+    <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
@@ -344,6 +316,7 @@
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
+    <Content Include="Inventory\BrandItemChallanRollback.aspx" />
     <Content Include="Inventory\BrandItemReport.aspx" />
     <Content Include="Inventory\DeliveryRequestAccess.aspx" />
     <Content Include="Inventory\DocApproval.aspx" />
@@ -352,6 +325,7 @@
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
+    <Content Include="Inventory\RequisitionView.aspx" />
     <Content Include="Inventory\SalesDamageEntry.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
@@ -378,6 +352,7 @@
     <Content Include="MedialManagement\ReportEntryOthers.aspx" />
     <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
+    <Content Include="Other\Practice.aspx" />
     <Content Include="PaymentModule\AllApprovedBillReport.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
     <Content Include="PaymentModule\BankPay.aspx" />
@@ -397,8 +372,10 @@
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
+    <Content Include="PaymentModule\Supplier.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
+    <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
     <Content Include="Revenue\rptExpiaryDate.aspx" />
@@ -1210,6 +1187,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
+    <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
     <Content Include="SAD\Sales\Return\CorporateSalesReturn.aspx" />
@@ -1346,10 +1324,6 @@
     <Content Include="SessionExpired.aspx" />
     <Content Include="Shop\OrderEntry.aspx" />
     <Content Include="Slide.aspx" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll" />
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll" />
-    <Content Include="SqlServerTypes\x86\msvcr120.dll" />
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll" />
     <Content Include="Support\CertificateReceive.aspx" />
     <Content Include="Support\CertificateReceiveDeliveryReport.aspx" />
     <Content Include="Support\POSupport.aspx" />
@@ -2703,6 +2677,13 @@
     <Compile Include="HR\Loan\Reward.aspx.designer.cs">
       <DependentUpon>Reward.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
+      <DependentUpon>frmPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\policyDoc\frmPolicy.aspx.designer.cs">
+      <DependentUpon>frmPolicy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2751,6 +2732,13 @@
     </Compile>
     <Compile Include="Inventory\BrandItemChallanPrint.aspx.designer.cs">
       <DependentUpon>BrandItemChallanPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\BrandItemChallanRollback.aspx.cs">
+      <DependentUpon>BrandItemChallanRollback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\BrandItemChallanRollback.aspx.designer.cs">
+      <DependentUpon>BrandItemChallanRollback.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemReport.aspx.cs">
       <DependentUpon>BrandItemReport.aspx</DependentUpon>
@@ -2808,6 +2796,13 @@
     <Compile Include="Inventory\RAWMaterialTransfer.aspx.designer.cs">
       <DependentUpon>RAWMaterialTransfer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\RequisitionView.aspx.cs">
+      <DependentUpon>RequisitionView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\RequisitionView.aspx.designer.cs">
+      <DependentUpon>RequisitionView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\SalesDamageEntry.aspx.cs">
       <DependentUpon>SalesDamageEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2860,6 +2855,10 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Other\Practice.aspx.cs">
+      <DependentUpon>Practice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="PaymentModule\AllApprovedBillReport.aspx.cs">
       <DependentUpon>AllApprovedBillReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2993,6 +2992,13 @@
     <Compile Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx.designer.cs">
       <DependentUpon>ShowAdviceOfTreasuryChallan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\Supplier.aspx.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Supplier.aspx.designer.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\SupplierCOA.aspx.cs">
       <DependentUpon>SupplierCOA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3006,6 +3012,13 @@
     </Compile>
     <Compile Include="PaymentModule\TreasuryChallan.aspx.designer.cs">
       <DependentUpon>TreasuryChallan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\TreasuryDepositeForecast.aspx.cs">
+      <DependentUpon>TreasuryDepositeForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\TreasuryDepositeForecast.aspx.designer.cs">
+      <DependentUpon>TreasuryDepositeForecast.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -6102,6 +6115,13 @@
     <Compile Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx.designer.cs">
       <DependentUpon>ShippingPointBaseCollectionAndDelv.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\UDTCLSalesInventory.aspx.cs">
+      <DependentUpon>UDTCLSalesInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\UDTCLSalesInventory.aspx.designer.cs">
+      <DependentUpon>UDTCLSalesInventory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8047,10 +8067,6 @@
       <Project>{0ac1b655-b9e7-4ef5-a0f4-6bb849ce6793}</Project>
       <Name>Budget_BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
       <Name>Utility</Name>
@@ -8090,10 +8106,6 @@
     <ProjectReference Include="..\Purchase_BLL\Purchase_BLL.csproj">
       <Project>{1a345a22-3d99-4572-95ee-3c152af20c74}</Project>
       <Name>Purchase_BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Purchase_DAL\Purchase_DAL.csproj">
-      <Project>{c7825ec3-dcd0-4694-9a1b-5ba6dfcd00c0}</Project>
-      <Name>Purchase_DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SAD_BLL\SAD_BLL.csproj">
       <Project>{69c216b4-e2aa-47ed-9738-7bcf10be7758}</Project>
@@ -8151,7 +8163,9 @@
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpSalaryMonthlyStatement.rdlc" />
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpSalaryStatementReport.rdlc" />
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\JobStationwiseCurrentShiftInfo.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\MonthwiseSalaryInfo.rdlc" />
+    <EmbeddedResource Include="HR\Reports\ReportsTemplate\MonthwiseSalaryInfo.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="HR\Reports\ReportsTemplate\SalaryAdviceToBank.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\CreditBalance.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\Statement.rdlc" />

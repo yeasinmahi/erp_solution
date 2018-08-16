@@ -72,7 +72,7 @@ SELECT intRoleID, strRoleName FROM tblRole WHERE (intRoleID = @intRoleID)</Comma
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprRoleGetRolesForUserTableAdapter" GeneratorDataComponentClassName="SprRoleGetRolesForUserTableAdapter" Name="SprRoleGetRolesForUser" UserDataComponentName="SprRoleGetRolesForUserTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_RoleConnectionString (Settings)" DbObjectName="DB_Role.dbo.sprRoleGetRolesForUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_RoleConnectionString (Settings)" DbObjectName="DB_Role.dbo.sprRoleGetRolesForUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprRoleGetRolesForUser</CommandText>
@@ -91,6 +91,7 @@ SELECT intRoleID, strRoleName FROM tblRole WHERE (intRoleID = @intRoleID)</Comma
               <Mapping SourceColumn="strFuncParent" DataSetColumn="strFuncParent" />
               <Mapping SourceColumn="strRelativeURL" DataSetColumn="strRelativeURL" />
               <Mapping SourceColumn="strImage" DataSetColumn="strImage" />
+              <Mapping SourceColumn="intOrder" DataSetColumn="intOrder" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -123,9 +124,9 @@ SELECT intRoleID, strRoleName FROM tblRole WHERE (intRoleID = @intRoleID)</Comma
         <xs:element name="SprRoleGetRolesForUser" msprop:Generator_UserTableName="SprRoleGetRolesForUser" msprop:Generator_RowEvArgName="SprRoleGetRolesForUserRowChangeEvent" msprop:Generator_TableVarName="tableSprRoleGetRolesForUser" msprop:Generator_TablePropName="SprRoleGetRolesForUser" msprop:Generator_RowDeletingName="SprRoleGetRolesForUserRowDeleting" msprop:Generator_RowChangingName="SprRoleGetRolesForUserRowChanging" msprop:Generator_RowDeletedName="SprRoleGetRolesForUserRowDeleted" msprop:Generator_RowEvHandlerName="SprRoleGetRolesForUserRowChangeEventHandler" msprop:Generator_TableClassName="SprRoleGetRolesForUserDataTable" msprop:Generator_RowChangedName="SprRoleGetRolesForUserRowChanged" msprop:Generator_RowClassName="SprRoleGetRolesForUserRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intParentId" msprop:Generator_ColumnVarNameInTable="columnintParentId" msprop:Generator_ColumnPropNameInRow="intParentId" msprop:Generator_ColumnPropNameInTable="intParentIdColumn" msprop:Generator_UserColumnName="intParentId" type="xs:int" />
-              <xs:element name="intFuncID" msprop:Generator_ColumnVarNameInTable="columnintFuncID" msprop:Generator_ColumnPropNameInRow="intFuncID" msprop:Generator_ColumnPropNameInTable="intFuncIDColumn" msprop:Generator_UserColumnName="intFuncID" type="xs:int" />
-              <xs:element name="strFunc" msprop:Generator_ColumnVarNameInTable="columnstrFunc" msprop:Generator_ColumnPropNameInRow="strFunc" msprop:Generator_ColumnPropNameInTable="strFuncColumn" msprop:Generator_UserColumnName="strFunc">
+              <xs:element name="intParentId" msprop:Generator_ColumnVarNameInTable="columnintParentId" msprop:Generator_ColumnPropNameInRow="intParentId" msprop:Generator_ColumnPropNameInTable="intParentIdColumn" msprop:Generator_UserColumnName="intParentId" type="xs:int" minOccurs="0" />
+              <xs:element name="intFuncID" msprop:Generator_ColumnVarNameInTable="columnintFuncID" msprop:Generator_ColumnPropNameInRow="intFuncID" msprop:Generator_ColumnPropNameInTable="intFuncIDColumn" msprop:Generator_UserColumnName="intFuncID" type="xs:int" minOccurs="0" />
+              <xs:element name="strFunc" msprop:Generator_ColumnVarNameInTable="columnstrFunc" msprop:Generator_ColumnPropNameInRow="strFunc" msprop:Generator_ColumnPropNameInTable="strFuncColumn" msprop:Generator_UserColumnName="strFunc" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -153,6 +154,7 @@ SELECT intRoleID, strRoleName FROM tblRole WHERE (intRoleID = @intRoleID)</Comma
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="intOrder" msprop:Generator_ColumnVarNameInTable="columnintOrder" msprop:Generator_ColumnPropNameInRow="intOrder" msprop:Generator_ColumnPropNameInTable="intOrderColumn" msprop:Generator_UserColumnName="intOrder" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
