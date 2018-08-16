@@ -38,11 +38,11 @@
         </td>
          <td style="text-align: center"  valign="top" width="60%">
         <%--<span class="">--%>
-            <asp:Label ID="lblUnitName" CssClass="HeaderStyle" runat="server" Text="Label" 
+            <asp:Label ID="lblUnitName" CssClass="HeaderStyle1" runat="server" Text="Label" 
                  ></asp:Label>
         <%--</span>--%><br />
         <%--<span class="HeaderStyle2">--%>
-        <asp:Label ID="lblUnitAddress" CssClass="HeaderStyle2" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblUnitAddress" CssClass="HeaderStyle3" runat="server" Text="Label"></asp:Label>
         <%--for (int i = 0; i < addressLines.Length; i++)
         {
             headerRow.Append(addressLines[i]);

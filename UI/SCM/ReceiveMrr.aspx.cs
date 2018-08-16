@@ -40,7 +40,6 @@ namespace UI.SCM
         {
             try
             {
-
                 string poType = ddlPoType.SelectedItem.ToString();
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
@@ -395,7 +394,6 @@ namespace UI.SCM
                     ddlPo.DataTextField = "strName";
                     ddlPo.DataValueField = "Id";
                     ddlPo.DataBind();
-
                     ddlPo.SelectedValue = intPo.ToString();
                 }
                 else

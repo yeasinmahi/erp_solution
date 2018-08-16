@@ -81,10 +81,7 @@
             <ItemTemplate><asp:Label ID="lblBillRegNo" runat="server" Text='<%# Bind("strBillCode") %>' Width="150px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
-            <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="250px"></asp:Label>
-            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
-
+            
             <asp:TemplateField HeaderText="Reff" SortExpression="strReff">
             <ItemTemplate><asp:Label ID="lblReff" runat="server" Text='<%# Bind("strReff") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="80px"/></asp:TemplateField>
@@ -105,9 +102,16 @@
             <ItemTemplate><asp:Label ID="lblBillAmount" runat="server" Text='<%# Bind("monBillAmount", "{0:n2}") %>' Width="100px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
 
+           
+
             <asp:TemplateField HeaderText="Remarks" SortExpression="strRemarks">
             <ItemTemplate><asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strRemarks") %>' Width="150px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="150px" /></asp:TemplateField>
+
+           <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
+            <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="250px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
+
 
             <asp:TemplateField HeaderText="Audit Status" SortExpression="strAuditStatus">
             <ItemTemplate><asp:Label ID="lblAuditStatus" runat="server" Text='<%# Bind("strAuditStatus") %>' Width="100px"></asp:Label>

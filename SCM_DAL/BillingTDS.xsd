@@ -9,7 +9,7 @@
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_InventoryConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_FTPConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_FTPConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_FTPConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AccountsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AccountsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_AccountsConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AG_GlobalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AG_GlobalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.AG_GlobalConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AG_GlobalConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="AG_GlobalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.AG_GlobalConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblUnitTableAdapter" GeneratorDataComponentClassName="TblUnitTableAdapter" Name="TblUnit" UserDataComponentName="TblUnitTableAdapter">
@@ -295,7 +295,7 @@ WHERE po.intPOID=@intPOID</CommandText>
               <Mapping SourceColumn="monApproveL2" DataSetColumn="monApproveL2" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetBillInfoByBillReg" GetMethodModifier="Public" GetMethodName="GetBillInfoByBillReg" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBillInfoByBillReg" UserSourceName="GetBillInfoByBillReg">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetBillInfoByBillReg" GetMethodModifier="Public" GetMethodName="GetBillInfoByBillReg" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBillInfoByBillReg" UserSourceName="GetBillInfoByBillReg">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intBillID as intBill, strBillRegCode as strBill, strPartyName as strParty, '' as strItem, '' as monLastPtice, CASE intReffType WHEN 1 THEN 'PO: ' WHEN 2 THEN 'OT: ' ELSE '' END + strReffNo as strReff, 
@@ -1070,6 +1070,55 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprBillPartywiseBillallUnitTableAdapter" GeneratorDataComponentClassName="sprBillPartywiseBillallUnitTableAdapter" Name="sprBillPartywiseBillallUnit" UserDataComponentName="sprBillPartywiseBillallUnitTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.sprBillPartywiseBillallUnit" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPartyWiseBill" GetMethodModifier="Public" GetMethodName="GetPartyWiseBill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetPartyWiseBill" UserSourceName="GetPartyWiseBill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprBillPartywiseBillallUnit</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@fDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@tDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strParty" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intPodId" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intBill" DataSetColumn="intBill" />
+              <Mapping SourceColumn="strBillCode" DataSetColumn="strBillCode" />
+              <Mapping SourceColumn="strUnit" DataSetColumn="strUnit" />
+              <Mapping SourceColumn="strParty" DataSetColumn="strParty" />
+              <Mapping SourceColumn="strBill" DataSetColumn="strBill" />
+              <Mapping SourceColumn="dtrBillDate" DataSetColumn="dtrBillDate" />
+              <Mapping SourceColumn="dteRcvDate" DataSetColumn="dteRcvDate" />
+              <Mapping SourceColumn="monBillAmount" DataSetColumn="monBillAmount" />
+              <Mapping SourceColumn="strAuditStatus" DataSetColumn="strAuditStatus" />
+              <Mapping SourceColumn="dteAuditDate" DataSetColumn="dteAuditDate" />
+              <Mapping SourceColumn="monApproveAmount" DataSetColumn="monApproveAmount" />
+              <Mapping SourceColumn="dtePayDate" DataSetColumn="dtePayDate" />
+              <Mapping SourceColumn="intPO" DataSetColumn="intPO" />
+              <Mapping SourceColumn="strVoucher" DataSetColumn="strVoucher" />
+              <Mapping SourceColumn="intBillID" DataSetColumn="intBillID" />
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+              <Mapping SourceColumn="strBillRegCode" DataSetColumn="strBillRegCode" />
+              <Mapping SourceColumn="strPartyName" DataSetColumn="strPartyName" />
+              <Mapping SourceColumn="strBillReffNo" DataSetColumn="strBillReffNo" />
+              <Mapping SourceColumn="dteBillDate" DataSetColumn="dteBillDate" />
+              <Mapping SourceColumn="dteBillRcvDate" DataSetColumn="dteBillRcvDate" />
+              <Mapping SourceColumn="Column2" DataSetColumn="Column2" />
+              <Mapping SourceColumn="Column3" DataSetColumn="Column3" />
+              <Mapping SourceColumn="Column4" DataSetColumn="Column4" />
+              <Mapping SourceColumn="monApporveAmount" DataSetColumn="monApporveAmount" />
+              <Mapping SourceColumn="Column5" DataSetColumn="Column5" />
+              <Mapping SourceColumn="strVoucherCode" DataSetColumn="strVoucherCode" />
+              <Mapping SourceColumn="intVoucherID" DataSetColumn="intVoucherID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1677,10 +1726,114 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="sprBillPartywiseBillallUnit" msprop:Generator_TableClassName="sprBillPartywiseBillallUnitDataTable" msprop:Generator_TableVarName="tablesprBillPartywiseBillallUnit" msprop:Generator_RowChangedName="sprBillPartywiseBillallUnitRowChanged" msprop:Generator_TablePropName="sprBillPartywiseBillallUnit" msprop:Generator_RowDeletingName="sprBillPartywiseBillallUnitRowDeleting" msprop:Generator_RowChangingName="sprBillPartywiseBillallUnitRowChanging" msprop:Generator_RowEvHandlerName="sprBillPartywiseBillallUnitRowChangeEventHandler" msprop:Generator_RowDeletedName="sprBillPartywiseBillallUnitRowDeleted" msprop:Generator_RowClassName="sprBillPartywiseBillallUnitRow" msprop:Generator_UserTableName="sprBillPartywiseBillallUnit" msprop:Generator_RowEvArgName="sprBillPartywiseBillallUnitRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intBill" msprop:Generator_ColumnVarNameInTable="columnintBill" msprop:Generator_ColumnPropNameInRow="intBill" msprop:Generator_ColumnPropNameInTable="intBillColumn" msprop:Generator_UserColumnName="intBill" type="xs:int" minOccurs="0" />
+              <xs:element name="strBillCode" msprop:Generator_ColumnVarNameInTable="columnstrBillCode" msprop:Generator_ColumnPropNameInRow="strBillCode" msprop:Generator_ColumnPropNameInTable="strBillCodeColumn" msprop:Generator_UserColumnName="strBillCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strUnit" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" msprop:Generator_UserColumnName="strUnit">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strParty" msprop:Generator_ColumnVarNameInTable="columnstrParty" msprop:Generator_ColumnPropNameInRow="strParty" msprop:Generator_ColumnPropNameInTable="strPartyColumn" msprop:Generator_UserColumnName="strParty" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBill" msprop:Generator_ColumnVarNameInTable="columnstrBill" msprop:Generator_ColumnPropNameInRow="strBill" msprop:Generator_ColumnPropNameInTable="strBillColumn" msprop:Generator_UserColumnName="strBill" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtrBillDate" msprop:Generator_ColumnVarNameInTable="columndtrBillDate" msprop:Generator_ColumnPropNameInRow="dtrBillDate" msprop:Generator_ColumnPropNameInTable="dtrBillDateColumn" msprop:Generator_UserColumnName="dtrBillDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteRcvDate" msprop:Generator_ColumnVarNameInTable="columndteRcvDate" msprop:Generator_ColumnPropNameInRow="dteRcvDate" msprop:Generator_ColumnPropNameInTable="dteRcvDateColumn" msprop:Generator_UserColumnName="dteRcvDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="monBillAmount" msprop:Generator_ColumnVarNameInTable="columnmonBillAmount" msprop:Generator_ColumnPropNameInRow="monBillAmount" msprop:Generator_ColumnPropNameInTable="monBillAmountColumn" msprop:Generator_UserColumnName="monBillAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strAuditStatus" msprop:Generator_ColumnVarNameInTable="columnstrAuditStatus" msprop:Generator_ColumnPropNameInRow="strAuditStatus" msprop:Generator_ColumnPropNameInTable="strAuditStatusColumn" msprop:Generator_UserColumnName="strAuditStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteAuditDate" msprop:Generator_ColumnVarNameInTable="columndteAuditDate" msprop:Generator_ColumnPropNameInRow="dteAuditDate" msprop:Generator_ColumnPropNameInTable="dteAuditDateColumn" msprop:Generator_UserColumnName="dteAuditDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="monApproveAmount" msprop:Generator_ColumnVarNameInTable="columnmonApproveAmount" msprop:Generator_ColumnPropNameInRow="monApproveAmount" msprop:Generator_ColumnPropNameInTable="monApproveAmountColumn" msprop:Generator_UserColumnName="monApproveAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dtePayDate" msprop:Generator_ColumnVarNameInTable="columndtePayDate" msprop:Generator_ColumnPropNameInRow="dtePayDate" msprop:Generator_ColumnPropNameInTable="dtePayDateColumn" msprop:Generator_UserColumnName="dtePayDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intPO" msprop:Generator_ColumnVarNameInTable="columnintPO" msprop:Generator_ColumnPropNameInRow="intPO" msprop:Generator_ColumnPropNameInTable="intPOColumn" msprop:Generator_UserColumnName="intPO" type="xs:int" minOccurs="0" />
+              <xs:element name="strVoucher" msprop:Generator_ColumnVarNameInTable="columnstrVoucher" msprop:Generator_ColumnPropNameInRow="strVoucher" msprop:Generator_ColumnPropNameInTable="strVoucherColumn" msprop:Generator_UserColumnName="strVoucher" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intBillID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintBillID" msprop:Generator_ColumnPropNameInRow="intBillID" msprop:Generator_ColumnPropNameInTable="intBillIDColumn" msprop:Generator_UserColumnName="intBillID" type="xs:int" />
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" type="xs:int" minOccurs="0" />
+              <xs:element name="strBillRegCode" msprop:Generator_ColumnVarNameInTable="columnstrBillRegCode" msprop:Generator_ColumnPropNameInRow="strBillRegCode" msprop:Generator_ColumnPropNameInTable="strBillRegCodeColumn" msprop:Generator_UserColumnName="strBillRegCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strPartyName" msprop:Generator_ColumnVarNameInTable="columnstrPartyName" msprop:Generator_ColumnPropNameInRow="strPartyName" msprop:Generator_ColumnPropNameInTable="strPartyNameColumn" msprop:Generator_UserColumnName="strPartyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBillReffNo" msprop:Generator_ColumnVarNameInTable="columnstrBillReffNo" msprop:Generator_ColumnPropNameInRow="strBillReffNo" msprop:Generator_ColumnPropNameInTable="strBillReffNoColumn" msprop:Generator_UserColumnName="strBillReffNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteBillDate" msprop:Generator_ColumnVarNameInTable="columndteBillDate" msprop:Generator_ColumnPropNameInRow="dteBillDate" msprop:Generator_ColumnPropNameInTable="dteBillDateColumn" msprop:Generator_UserColumnName="dteBillDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteBillRcvDate" msprop:Generator_ColumnVarNameInTable="columndteBillRcvDate" msprop:Generator_ColumnPropNameInRow="dteBillRcvDate" msprop:Generator_ColumnPropNameInTable="dteBillRcvDateColumn" msprop:Generator_UserColumnName="dteBillRcvDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Column2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn2" msprop:Generator_ColumnPropNameInRow="Column2" msprop:Generator_ColumnPropNameInTable="Column2Column" msprop:Generator_UserColumnName="Column2" type="xs:int" minOccurs="0" />
+              <xs:element name="Column3" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn3" msprop:Generator_ColumnPropNameInRow="Column3" msprop:Generator_ColumnPropNameInTable="Column3Column" msprop:Generator_UserColumnName="Column3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="59" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Column4" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn4" msprop:Generator_ColumnPropNameInRow="Column4" msprop:Generator_ColumnPropNameInTable="Column4Column" msprop:Generator_UserColumnName="Column4" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="monApporveAmount" msprop:Generator_ColumnVarNameInTable="columnmonApporveAmount" msprop:Generator_ColumnPropNameInRow="monApporveAmount" msprop:Generator_ColumnPropNameInTable="monApporveAmountColumn" msprop:Generator_UserColumnName="monApporveAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Column5" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn5" msprop:Generator_ColumnPropNameInRow="Column5" msprop:Generator_ColumnPropNameInTable="Column5Column" msprop:Generator_UserColumnName="Column5" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strVoucherCode" msprop:Generator_ColumnVarNameInTable="columnstrVoucherCode" msprop:Generator_ColumnPropNameInRow="strVoucherCode" msprop:Generator_ColumnPropNameInTable="strVoucherCodeColumn" msprop:Generator_UserColumnName="strVoucherCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intVoucherID" msprop:Generator_ColumnVarNameInTable="columnintVoucherID" msprop:Generator_ColumnPropNameInRow="intVoucherID" msprop:Generator_ColumnPropNameInTable="intVoucherIDColumn" msprop:Generator_UserColumnName="intVoucherID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:SprAccountsApprovedPaymentForCheque" />
+      <xs:field xpath="mstns:intBillID" />
+    </xs:unique>
+    <xs:unique name="sprBillPartywiseBillallUnit_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:sprBillPartywiseBillallUnit" />
       <xs:field xpath="mstns:intBillID" />
     </xs:unique>
   </xs:element>
