@@ -344,14 +344,14 @@ namespace UI.Transport.TripvsCost
                             string tmDifferencehmswith = tmdur.ToString();
 
                             string strpur = "Fooding Bill";
-                            string strpurid = "1";
+                            string totalamount = txttotal.Text.ToString();
                             string remk = txtRemarks.Text;
                             string aplenrol = txtAplicnEnrol.Text;
 
 
                             Serial = "1";
 
-                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
+                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, "0", Serial, strstarttime, strendtime, df, remk, aplenrol);
 
 
 

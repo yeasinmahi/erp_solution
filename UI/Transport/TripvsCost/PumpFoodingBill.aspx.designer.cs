@@ -418,22 +418,13 @@ namespace UI.Transport.TripvsCost {
         protected global::System.Web.UI.WebControls.Label lblPurpouse;
         
         /// <summary>
-        /// drdlPurpouse control.
+        /// txttotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlPurpouse;
-        
-        /// <summary>
-        /// odsOvertimepurpouse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsOvertimepurpouse;
+        protected global::System.Web.UI.WebControls.TextBox txttotal;
         
         /// <summary>
         /// lblRemarks control.

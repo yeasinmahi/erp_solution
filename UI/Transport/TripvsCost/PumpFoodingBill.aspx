@@ -188,10 +188,9 @@
                         </tr>
                         <tr class="tblroweven">
                             <td>
-                                <asp:Label ID="lblPurpouse" CssClass="lbl" runat="server" Visible="false" Text="Purpouse: "></asp:Label></td>
+                                <asp:Label ID="lblPurpouse" CssClass="lbl" runat="server"  Text="Total Amount: "></asp:Label></td>
                             <td>
-                                <asp:DropDownList ID="drdlPurpouse" CssClass="ddList" runat="server" Visible="false" AutoPostBack="True"  DataSourceID="odsOvertimepurpouse" DataTextField="strPurpouse" DataValueField="intID"></asp:DropDownList>
-                                <asp:ObjectDataSource ID="odsOvertimepurpouse" runat="server" SelectMethod="getOvertimePurpouse" TypeName="HR_BLL.TourPlan.TourPlanning"></asp:ObjectDataSource>
+                                 <asp:TextBox ID="txttotal" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblRemarks" CssClass="lbl" runat="server"  Text="Remarks: "></asp:Label>
