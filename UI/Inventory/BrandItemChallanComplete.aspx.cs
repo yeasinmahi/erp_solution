@@ -64,7 +64,7 @@ namespace UI.Inventory
             switch (completed.ToString().ToLower())
             {
                 case "false":
-                    str = "<a href=\"#\" onclick=\"ShowPopUpE('DOEntry.aspx?id=" + voucherID + "&unit=" + ddlUnit.SelectedValue + "')\"class=\"link\">Edit</a>";
+                    str = "<a href=\"#\" onclick=\"ShowPopUpE('BrandItemChallanIssue.aspx?id=" + voucherID + "&unit=" + ddlUnit.SelectedValue + "')\"class=\"link\">Edit</a>";
                     //str = "";
                     break;
                 case "true":
