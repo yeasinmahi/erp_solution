@@ -187,7 +187,7 @@
              <table style="border-color:black;  width:700px;border-radius:10px; border:1px solid blue;">
                   <tr>
                       <td style="text-align:left; width:10px">Supplier</td>
-                      <td style="text-align:left">Ship TO</td>
+                      <td style="text-align:left">Ship To</td>
                       <td style="text-align:left; " class="auto-style2">Bill To</td>
                   </tr>
                   <tr>
@@ -316,6 +316,7 @@
                       <td style="text-align:left;border: 1px solid black">Warrenty after delivery (months)</td>
                       <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
                   </tr>
+                  
                  </table> 
                <table> 
                  <tr>
