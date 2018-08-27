@@ -26,7 +26,7 @@ namespace UI.SCM.Transfer
         int CheckItem = 1; decimal values;
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/FGTrans__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
 
             if (!IsPostBack)
             {
@@ -34,13 +34,16 @@ namespace UI.SCM.Transfer
                 catch { }
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 int UnitId= int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+
                 dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlWh.DataSource = dt;
                 ddlWh.DataTextField = "strName";
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
+
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
+
                 dt = objWH.GetWHByUnit(UnitId);
                 ddlToWh.DataSource = dt;
                 ddlToWh.DataTextField = "strName";
