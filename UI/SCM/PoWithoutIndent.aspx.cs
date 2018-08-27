@@ -72,7 +72,7 @@ namespace UI.SCM
                     othersTrems = txtOthersTerms.Text.ToString();
                     warrentyperiod = txtWarrenty.Text.ToString();
                     string strPoFor = ddlDepts.SelectedItem.ToString();
-
+                     
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     for (int index = 0; index < dgvIndentPrepare.Rows.Count; index++)
                     {
