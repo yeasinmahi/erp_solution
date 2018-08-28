@@ -1,4 +1,5 @@
-﻿using Purchase_BLL.Asset;
+﻿using Flogging.Core;
+using Purchase_BLL.Asset;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,7 +32,14 @@ namespace UI.Asset
 
         protected void btnAssetStatus_Click(object sender, EventArgs e)
         {
-            try
+			var fd = GetFlogDetail("starting Asset\\AssetCheckInOutReport Show", null);
+
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Performance on Asset\\AssetCheckInOutReport Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+			try
             {
               
                 intType = int.Parse(ddlType.SelectedValue);
@@ -73,9 +81,21 @@ namespace UI.Asset
                 }
                
             }
-            catch { }
-        }
-        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+            catch (Exception ex)
+			{
+				var efd = GetFlogDetail("", ex);
+				Flogger.WriteError(efd);
+			}
+
+			fd = GetFlogDetail("stopping  Asset\\AssetCheckInOutReport Show", null);
+			Flogger.WriteDiagnostic(fd);
+			// ends
+			tracker.Stop();
+
+			int a = 30;
+
+		}
+		protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -85,5 +105,19 @@ namespace UI.Asset
             catch { }
 
         }
-    }
+
+		private FlogDetail GetFlogDetail(string message, Exception ex)
+		{
+			return new FlogDetail
+			{
+				Product = "ERP",
+				Location = "Asset",
+				Layer = "AssetCheckInOutReport\\Show",
+				UserName = Environment.UserName,
+				Hostname = Environment.MachineName,
+				Message = message,
+				Exception = ex
+			};
+		}
+	}
 }
