@@ -109,15 +109,16 @@
      <div class="tabs_container" style="text-align:left">Indent Approval  From<hr /></div>
          
        <table>
-            <tr> <td colspan="3" style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+            <tr> <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"   ></asp:DropDownList></td>                                                                                      
+             <td style="text-align:left;"><asp:Label ID="lblAPproval" runat="server" CssClass="lbl" Text="Approval"></asp:Label></td>
+            <td style="text-align:left;"><asp:DropDownList ID="ddlApproval" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlApproval_SelectedIndexChanged">
+            <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList></td>  
+     
             </tr>
 
             <tr> 
-            <td style="text-align:left;"><asp:Label ID="lblAPproval" runat="server" CssClass="lbl" Text="Approval"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlApproval" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlApproval_SelectedIndexChanged">
-            <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList></td>  
-                         
+                               
             <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>            
             <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom"  runat="server"    CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtenderFrom" runat="server"  Format="yyyy-MM-dd" TargetControlID="txtDteFrom">

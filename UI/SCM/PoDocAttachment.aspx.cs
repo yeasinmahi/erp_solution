@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,8 @@ namespace UI.SCM
     public partial class PoDocAttachment : BasePage
     {
         DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL(); Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
+        PoGenerate_BLL objPo = new PoGenerate_BLL();
+        Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
         int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -97,7 +99,15 @@ namespace UI.SCM
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
-            try {
+			var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
+
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Performance on SCM\\PoDocAttachment Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+
+			try {
                 
                 arrayKey = txtPoUser.Text.Split(delimiterChars);
                 string item = ""; string itemid = "";
@@ -141,9 +151,21 @@ namespace UI.SCM
                 }
 
             }
-            catch(Exception ex) { ex.ToString(); }
+            catch (Exception ex)
+			{
+				var efd = GetFlogDetail("", ex);
+				Flogger.WriteError(efd);
+			}
 
-        }
+			fd = GetFlogDetail("stopping SCM\\PoDocAttachment Show", null);
+			Flogger.WriteDiagnostic(fd);
+			// ends
+			tracker.Stop();
+
+			int a = 30;
+
+
+		}
 
         protected void btnPoSuppShow_Click(object sender, EventArgs e)
         {
@@ -154,8 +176,13 @@ namespace UI.SCM
 
                 arrayKey = txtSupplier.Text.Split(delimiterChars);
                 string strSupp = ""; int supplierid = 0;
+
                 if (arrayKey.Length > 0)
-                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                {
+                    strSupp = arrayKey[0].ToString();
+                    supplierid = int.Parse(arrayKey[1].ToString());
+                }
+
                 strSupp = supplierid.ToString();
                 enroll = supplierid;
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
@@ -207,9 +234,18 @@ namespace UI.SCM
             try
             {
 
-                if (strDept == "Local") { strType = "Local Purchase"; }
-                else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
-                else if (strDept == "Import") { strType = "Foreign Purchase"; }
+                if (strDept == "Local")
+                {
+                    strType = "Local Purchase";
+                }
+                else if (strDept == "Fabrication")
+                {
+                    strType = "Local Fabrication";
+                }
+                else if (strDept == "Import")
+                {
+                    strType = "Foreign Purchase";
+                }
                 return strType;
             }
             catch { return strType; }
@@ -237,5 +273,19 @@ namespace UI.SCM
             catch { }
 
         }
-    }
+
+		private FlogDetail GetFlogDetail(string message, Exception ex)
+		{
+			return new FlogDetail
+			{
+				Product = "ERP",
+				Location = "SCM",
+				Layer = "BillForwardToBillingReport\\Show",
+				UserName = Environment.UserName,
+				Hostname = Environment.MachineName,
+				Message = message,
+				Exception = ex
+			};
+		}
+	}
 }

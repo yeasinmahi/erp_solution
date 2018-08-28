@@ -47,6 +47,15 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetWHByUnit(int intUnit)
+        {
+            try
+            {
+                TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
+                return adpCOA.GetWHDataByUnit(intUnit);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable GetWhByLocation(int Wh)
         {
             try
