@@ -16,28 +16,28 @@ namespace Flogging.Core
 		private static readonly ILogger _errorLogger;
 		private static readonly ILogger _diagnosticLogger;
 
-		private static string seqIp = "http://172.17.17.144:5341";
+		private static string seqIp = "http://172.17.17.230:5341";
 
 
 		static Flogger()
 		{
 			_perfLogger = new LoggerConfiguration()
-				.WriteTo.File(path: @"c:\LogFiles\perf.txt")
+				//.WriteTo.File(path: @"c:\LogFiles\perf.txt")
 				.WriteTo.Seq(seqIp)
 				.CreateLogger();
 
 			_usageLogger = new LoggerConfiguration()
-				.WriteTo.File(path: @"c:\LogFiles\usage.txt")
+				//.WriteTo.File(path: @"c:\LogFiles\usage.txt")
 				.WriteTo.Seq(seqIp)
 				.CreateLogger();
 
 			_errorLogger = new LoggerConfiguration()
-				.WriteTo.File(path: @"c:\LogFiles\error.txt")
+				//.WriteTo.File(path: @"c:\LogFiles\error.txt")
 				.WriteTo.Seq(seqIp)
 				.CreateLogger();
 
 			_diagnosticLogger = new LoggerConfiguration()
-				.WriteTo.File(path: @"c:\LogFiles\diagnostic.txt")
+				//.WriteTo.File(path: @"c:\LogFiles\diagnostic.txt")
 				.WriteTo.Seq(seqIp)
 				.CreateLogger();
 		}
