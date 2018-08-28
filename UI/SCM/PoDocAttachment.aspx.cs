@@ -18,8 +18,7 @@ namespace UI.SCM
     public partial class PoDocAttachment : BasePage
     {
         DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
+        PoGenerate_BLL objPo = new PoGenerate_BLL(); Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
         int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -151,19 +150,7 @@ namespace UI.SCM
                 }
 
             }
-            catch (Exception ex)
-			{
-				var efd = GetFlogDetail("", ex);
-				Flogger.WriteError(efd);
-			}
-
-			fd = GetFlogDetail("stopping SCM\\PoDocAttachment Show", null);
-			Flogger.WriteDiagnostic(fd);
-			// ends
-			tracker.Stop();
-
-			int a = 30;
-
+            catch { }
 
 		}
 
@@ -176,13 +163,8 @@ namespace UI.SCM
 
                 arrayKey = txtSupplier.Text.Split(delimiterChars);
                 string strSupp = ""; int supplierid = 0;
-
                 if (arrayKey.Length > 0)
-                {
-                    strSupp = arrayKey[0].ToString();
-                    supplierid = int.Parse(arrayKey[1].ToString());
-                }
-
+                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
                 strSupp = supplierid.ToString();
                 enroll = supplierid;
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
@@ -234,18 +216,9 @@ namespace UI.SCM
             try
             {
 
-                if (strDept == "Local")
-                {
-                    strType = "Local Purchase";
-                }
-                else if (strDept == "Fabrication")
-                {
-                    strType = "Local Fabrication";
-                }
-                else if (strDept == "Import")
-                {
-                    strType = "Foreign Purchase";
-                }
+                if (strDept == "Local") { strType = "Local Purchase"; }
+                else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
+                else if (strDept == "Import") { strType = "Foreign Purchase"; }
                 return strType;
             }
             catch { return strType; }
