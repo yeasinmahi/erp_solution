@@ -30,13 +30,14 @@ namespace UI.HR.Cafeteria
                 //pnlUpperControl.DataBind();
                 txtFDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtTDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                
+
                 //dt = objunit.GetUnitListForTransport(int.Parse(hdnEnroll.Value));
                 //ddlUnit.DataTextField = "strUnit";
                 //ddlUnit.DataValueField = "intUnitID";
                 //ddlUnit.DataSource = dt;
                 //ddlUnit.DataBind();
                 //ddlUnit.Items.Insert(0, new ListItem("All Unit", 0.ToString()));
+                
             }
         }
 

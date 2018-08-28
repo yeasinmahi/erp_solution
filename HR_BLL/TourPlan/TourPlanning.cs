@@ -994,5 +994,20 @@ namespace HR_BLL.TourPlan
             try { return adp.GetDataProgramBillInfoDetaills(type, actionby, xml, id, fdate, tdate, unitid, territoriid); }
             catch { return new DataTable(); }
         }
+
+        public bool BrandChallanRollback(string code, string pkid, string userID, string unitId,  string remark)
+        {
+            bool? b = false;
+            SprBrandItemChallanRollbackTableAdapter ta = new SprBrandItemChallanRollbackTableAdapter();
+            ta.GetDataBrandItemChallanRollback(code, int.Parse(pkid), int.Parse(userID), int.Parse(unitId),  remark, ref b);
+            return b.Value;
+        }
+
+        public DataTable Getdatabarndchallanrollback(int type, int actionby, string xml, int id, int unitid, string challan)
+        {
+            SprBrandItemChallanRollbackDetTableAdapter adp = new SprBrandItemChallanRollbackDetTableAdapter();
+            try { return adp.GetDataBrandItemChallanRollbackDet(type, actionby, xml, id, unitid, challan); }
+            catch { return new DataTable(); }
+        }
     }
 }

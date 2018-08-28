@@ -394,6 +394,12 @@ namespace SCM_BLL
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
+        public DataTable GetPartyWiseBillList(DateTime fDate, DateTime tDate,string strParty,int poId)
+        {
+            sprBillPartywiseBillallUnitTableAdapter adp = new sprBillPartywiseBillallUnitTableAdapter();
+            return adp.GetPartyWiseBill(fDate,tDate,strParty, poId);
+        }
+
 
         
 

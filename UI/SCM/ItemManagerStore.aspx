@@ -111,7 +111,7 @@
                 <td><asp:TextBox ID="txtMinConsum" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
             </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="Self Time in Days:" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="Self Life in Days:" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtSelfTime" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" onkeypress="return onlyNumbers();"></asp:TextBox></td>
                 <td style="text-align:right;"><asp:Label ID="Label21" runat="server" Text="Origin :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox></td>

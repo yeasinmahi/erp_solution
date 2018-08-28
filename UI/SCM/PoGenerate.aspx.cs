@@ -559,6 +559,8 @@ namespace UI.SCM
                     ddlWHPrepare.Items.AddRange(items.ToArray());
                     intWh = int.Parse(ddlWHPrepare.SelectedValue);
                     dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
+                    try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
+                        
                     ddlCurrency.DataSource = dt;
                     ddlCurrency.DataTextField = "strName";
                     ddlCurrency.DataValueField = "Id";

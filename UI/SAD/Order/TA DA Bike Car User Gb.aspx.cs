@@ -521,9 +521,7 @@ namespace UI.SAD.Order
                     DateTime dt3 = Convert.ToDateTime(endOfMonth);
                     DateTime dt4 = Convert.ToDateTime(cureentdate);
                     int diffbEOMTODATE = (dt3 - dt4).Days;
-
-
-
+                    
 
                     if (diffbEOMTODATE > 0)
                     {

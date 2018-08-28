@@ -128,7 +128,7 @@
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
            <td style='text-align: left;'>Location</td>
-            <td style='text-align: left;'><asp:DropDownList ID="ddlLcation" runat="server" CssClass="ddList"   ></asp:DropDownList></td>  
+            <td style='text-align: left;'><asp:DropDownList ID="ddlLcation" runat="server" CssClass="ddList" OnSelectedIndexChanged="ddlLcation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>  
             <td style='text-align: left;'>Transfer To</td>
             <td style='text-align: left;'><asp:DropDownList ID="ddlToWh" runat="server" CssClass="ddList"  AutoPostBack="True" ></asp:DropDownList></td>  
 
