@@ -175,8 +175,13 @@ namespace UI.SCM
 
                 arrayKey = txtSupplier.Text.Split(delimiterChars);
                 string strSupp = ""; int supplierid = 0;
+
                 if (arrayKey.Length > 0)
-                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                {
+                    strSupp = arrayKey[0].ToString();
+                    supplierid = int.Parse(arrayKey[1].ToString());
+                }
+
                 strSupp = supplierid.ToString();
                 enroll = supplierid;
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
@@ -228,9 +233,18 @@ namespace UI.SCM
             try
             {
 
-                if (strDept == "Local") { strType = "Local Purchase"; }
-                else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
-                else if (strDept == "Import") { strType = "Foreign Purchase"; }
+                if (strDept == "Local")
+                {
+                    strType = "Local Purchase";
+                }
+                else if (strDept == "Fabrication")
+                {
+                    strType = "Local Fabrication";
+                }
+                else if (strDept == "Import")
+                {
+                    strType = "Foreign Purchase";
+                }
                 return strType;
             }
             catch { return strType; }
