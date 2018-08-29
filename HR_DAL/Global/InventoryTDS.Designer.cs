@@ -70,6 +70,8 @@ namespace HR_DAL.Global {
         
         private TblRequisitionDataTable tableTblRequisition;
         
+        private ItemPolisyDataTableDataTable tableItemPolisyDataTable;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -166,6 +168,9 @@ namespace HR_DAL.Global {
                 }
                 if ((ds.Tables["TblRequisition"] != null)) {
                     base.Tables.Add(new TblRequisitionDataTable(ds.Tables["TblRequisition"]));
+                }
+                if ((ds.Tables["ItemPolisyDataTable"] != null)) {
+                    base.Tables.Add(new ItemPolisyDataTableDataTable(ds.Tables["ItemPolisyDataTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -417,6 +422,16 @@ namespace HR_DAL.Global {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ItemPolisyDataTableDataTable ItemPolisyDataTable {
+            get {
+                return this.tableItemPolisyDataTable;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -550,6 +565,9 @@ namespace HR_DAL.Global {
                 }
                 if ((ds.Tables["TblRequisition"] != null)) {
                     base.Tables.Add(new TblRequisitionDataTable(ds.Tables["TblRequisition"]));
+                }
+                if ((ds.Tables["ItemPolisyDataTable"] != null)) {
+                    base.Tables.Add(new ItemPolisyDataTableDataTable(ds.Tables["ItemPolisyDataTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -722,6 +740,12 @@ namespace HR_DAL.Global {
                     this.tableTblRequisition.InitVars();
                 }
             }
+            this.tableItemPolisyDataTable = ((ItemPolisyDataTableDataTable)(base.Tables["ItemPolisyDataTable"]));
+            if ((initTable == true)) {
+                if ((this.tableItemPolisyDataTable != null)) {
+                    this.tableItemPolisyDataTable.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -778,6 +802,8 @@ namespace HR_DAL.Global {
             base.Tables.Add(this.tableEmpList);
             this.tableTblRequisition = new TblRequisitionDataTable();
             base.Tables.Add(this.tableTblRequisition);
+            this.tableItemPolisyDataTable = new ItemPolisyDataTableDataTable();
+            base.Tables.Add(this.tableItemPolisyDataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -920,6 +946,12 @@ namespace HR_DAL.Global {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeItemPolisyDataTable() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1041,6 +1073,9 @@ namespace HR_DAL.Global {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblRequisitionRowChangeEventHandler(object sender, TblRequisitionRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void ItemPolisyDataTableRowChangeEventHandler(object sender, ItemPolisyDataTableRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -7887,6 +7922,696 @@ namespace HR_DAL.Global {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ItemPolisyDataTableDataTable : global::System.Data.TypedTableBase<ItemPolisyDataTableRow> {
+            
+            private global::System.Data.DataColumn columnintReqID;
+            
+            private global::System.Data.DataColumn columnintDeptID;
+            
+            private global::System.Data.DataColumn columnintSectionID;
+            
+            private global::System.Data.DataColumn columnintReqBy;
+            
+            private global::System.Data.DataColumn columndteReqDate;
+            
+            private global::System.Data.DataColumn columnintUnitID;
+            
+            private global::System.Data.DataColumn columnintWHID;
+            
+            private global::System.Data.DataColumn columnysnActive;
+            
+            private global::System.Data.DataColumn columnstrCode;
+            
+            private global::System.Data.DataColumn columnstrSection;
+            
+            private global::System.Data.DataColumn columnintMaintenanceID;
+            
+            private global::System.Data.DataColumn columnintProdOrderID;
+            
+            private global::System.Data.DataColumn columnintCCenterID;
+            
+            private global::System.Data.DataColumn columnintIndentId;
+            
+            private global::System.Data.DataColumn columnintInsertBy;
+            
+            private global::System.Data.DataColumn columndteInsertDateTime;
+            
+            private global::System.Data.DataColumn columnintReqID1;
+            
+            private global::System.Data.DataColumn columnintItemID;
+            
+            private global::System.Data.DataColumn columndteDueDate;
+            
+            private global::System.Data.DataColumn columnstrRemarks;
+            
+            private global::System.Data.DataColumn columnnumReqQty;
+            
+            private global::System.Data.DataColumn columnintApproveBy;
+            
+            private global::System.Data.DataColumn columndteApproveDate;
+            
+            private global::System.Data.DataColumn columnnumApproveQty;
+            
+            private global::System.Data.DataColumn columnnumIssueQty;
+            
+            private global::System.Data.DataColumn columnysnEdited;
+            
+            private global::System.Data.DataColumn columnintAutoID;
+            
+            private global::System.Data.DataColumn columnnumActualProduction;
+            
+            private global::System.Data.DataColumn columnnumIndentQty;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableDataTable() {
+                this.TableName = "ItemPolisyDataTable";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal ItemPolisyDataTableDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected ItemPolisyDataTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intReqIDColumn {
+                get {
+                    return this.columnintReqID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intDeptIDColumn {
+                get {
+                    return this.columnintDeptID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intSectionIDColumn {
+                get {
+                    return this.columnintSectionID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intReqByColumn {
+                get {
+                    return this.columnintReqBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteReqDateColumn {
+                get {
+                    return this.columndteReqDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIDColumn {
+                get {
+                    return this.columnintUnitID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intWHIDColumn {
+                get {
+                    return this.columnintWHID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnActiveColumn {
+                get {
+                    return this.columnysnActive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strCodeColumn {
+                get {
+                    return this.columnstrCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSectionColumn {
+                get {
+                    return this.columnstrSection;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMaintenanceIDColumn {
+                get {
+                    return this.columnintMaintenanceID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intProdOrderIDColumn {
+                get {
+                    return this.columnintProdOrderID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCCenterIDColumn {
+                get {
+                    return this.columnintCCenterID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intIndentIdColumn {
+                get {
+                    return this.columnintIndentId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intInsertByColumn {
+                get {
+                    return this.columnintInsertBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteInsertDateTimeColumn {
+                get {
+                    return this.columndteInsertDateTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intReqID1Column {
+                get {
+                    return this.columnintReqID1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intItemIDColumn {
+                get {
+                    return this.columnintItemID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteDueDateColumn {
+                get {
+                    return this.columndteDueDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strRemarksColumn {
+                get {
+                    return this.columnstrRemarks;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numReqQtyColumn {
+                get {
+                    return this.columnnumReqQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intApproveByColumn {
+                get {
+                    return this.columnintApproveBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteApproveDateColumn {
+                get {
+                    return this.columndteApproveDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numApproveQtyColumn {
+                get {
+                    return this.columnnumApproveQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numIssueQtyColumn {
+                get {
+                    return this.columnnumIssueQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnEditedColumn {
+                get {
+                    return this.columnysnEdited;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intAutoIDColumn {
+                get {
+                    return this.columnintAutoID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numActualProductionColumn {
+                get {
+                    return this.columnnumActualProduction;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numIndentQtyColumn {
+                get {
+                    return this.columnnumIndentQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableRow this[int index] {
+                get {
+                    return ((ItemPolisyDataTableRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event ItemPolisyDataTableRowChangeEventHandler ItemPolisyDataTableRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event ItemPolisyDataTableRowChangeEventHandler ItemPolisyDataTableRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event ItemPolisyDataTableRowChangeEventHandler ItemPolisyDataTableRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event ItemPolisyDataTableRowChangeEventHandler ItemPolisyDataTableRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddItemPolisyDataTableRow(ItemPolisyDataTableRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableRow AddItemPolisyDataTableRow(
+                        int intDeptID, 
+                        int intSectionID, 
+                        int intReqBy, 
+                        System.DateTime dteReqDate, 
+                        int intUnitID, 
+                        int intWHID, 
+                        bool ysnActive, 
+                        string strCode, 
+                        string strSection, 
+                        int intMaintenanceID, 
+                        int intProdOrderID, 
+                        int intCCenterID, 
+                        int intIndentId, 
+                        int intInsertBy, 
+                        System.DateTime dteInsertDateTime, 
+                        int intReqID1, 
+                        int intItemID, 
+                        System.DateTime dteDueDate, 
+                        string strRemarks, 
+                        decimal numReqQty, 
+                        int intApproveBy, 
+                        System.DateTime dteApproveDate, 
+                        decimal numApproveQty, 
+                        decimal numIssueQty, 
+                        bool ysnEdited, 
+                        decimal numActualProduction, 
+                        decimal numIndentQty) {
+                ItemPolisyDataTableRow rowItemPolisyDataTableRow = ((ItemPolisyDataTableRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        intDeptID,
+                        intSectionID,
+                        intReqBy,
+                        dteReqDate,
+                        intUnitID,
+                        intWHID,
+                        ysnActive,
+                        strCode,
+                        strSection,
+                        intMaintenanceID,
+                        intProdOrderID,
+                        intCCenterID,
+                        intIndentId,
+                        intInsertBy,
+                        dteInsertDateTime,
+                        intReqID1,
+                        intItemID,
+                        dteDueDate,
+                        strRemarks,
+                        numReqQty,
+                        intApproveBy,
+                        dteApproveDate,
+                        numApproveQty,
+                        numIssueQty,
+                        ysnEdited,
+                        null,
+                        numActualProduction,
+                        numIndentQty};
+                rowItemPolisyDataTableRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowItemPolisyDataTableRow);
+                return rowItemPolisyDataTableRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableRow FindByintReqIDintAutoID(int intReqID, int intAutoID) {
+                return ((ItemPolisyDataTableRow)(this.Rows.Find(new object[] {
+                            intReqID,
+                            intAutoID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                ItemPolisyDataTableDataTable cln = ((ItemPolisyDataTableDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ItemPolisyDataTableDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintReqID = base.Columns["intReqID"];
+                this.columnintDeptID = base.Columns["intDeptID"];
+                this.columnintSectionID = base.Columns["intSectionID"];
+                this.columnintReqBy = base.Columns["intReqBy"];
+                this.columndteReqDate = base.Columns["dteReqDate"];
+                this.columnintUnitID = base.Columns["intUnitID"];
+                this.columnintWHID = base.Columns["intWHID"];
+                this.columnysnActive = base.Columns["ysnActive"];
+                this.columnstrCode = base.Columns["strCode"];
+                this.columnstrSection = base.Columns["strSection"];
+                this.columnintMaintenanceID = base.Columns["intMaintenanceID"];
+                this.columnintProdOrderID = base.Columns["intProdOrderID"];
+                this.columnintCCenterID = base.Columns["intCCenterID"];
+                this.columnintIndentId = base.Columns["intIndentId"];
+                this.columnintInsertBy = base.Columns["intInsertBy"];
+                this.columndteInsertDateTime = base.Columns["dteInsertDateTime"];
+                this.columnintReqID1 = base.Columns["intReqID1"];
+                this.columnintItemID = base.Columns["intItemID"];
+                this.columndteDueDate = base.Columns["dteDueDate"];
+                this.columnstrRemarks = base.Columns["strRemarks"];
+                this.columnnumReqQty = base.Columns["numReqQty"];
+                this.columnintApproveBy = base.Columns["intApproveBy"];
+                this.columndteApproveDate = base.Columns["dteApproveDate"];
+                this.columnnumApproveQty = base.Columns["numApproveQty"];
+                this.columnnumIssueQty = base.Columns["numIssueQty"];
+                this.columnysnEdited = base.Columns["ysnEdited"];
+                this.columnintAutoID = base.Columns["intAutoID"];
+                this.columnnumActualProduction = base.Columns["numActualProduction"];
+                this.columnnumIndentQty = base.Columns["numIndentQty"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintReqID = new global::System.Data.DataColumn("intReqID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintReqID);
+                this.columnintDeptID = new global::System.Data.DataColumn("intDeptID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintDeptID);
+                this.columnintSectionID = new global::System.Data.DataColumn("intSectionID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintSectionID);
+                this.columnintReqBy = new global::System.Data.DataColumn("intReqBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintReqBy);
+                this.columndteReqDate = new global::System.Data.DataColumn("dteReqDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteReqDate);
+                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitID);
+                this.columnintWHID = new global::System.Data.DataColumn("intWHID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintWHID);
+                this.columnysnActive = new global::System.Data.DataColumn("ysnActive", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnActive);
+                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCode);
+                this.columnstrSection = new global::System.Data.DataColumn("strSection", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSection);
+                this.columnintMaintenanceID = new global::System.Data.DataColumn("intMaintenanceID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMaintenanceID);
+                this.columnintProdOrderID = new global::System.Data.DataColumn("intProdOrderID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintProdOrderID);
+                this.columnintCCenterID = new global::System.Data.DataColumn("intCCenterID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCCenterID);
+                this.columnintIndentId = new global::System.Data.DataColumn("intIndentId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintIndentId);
+                this.columnintInsertBy = new global::System.Data.DataColumn("intInsertBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintInsertBy);
+                this.columndteInsertDateTime = new global::System.Data.DataColumn("dteInsertDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteInsertDateTime);
+                this.columnintReqID1 = new global::System.Data.DataColumn("intReqID1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintReqID1);
+                this.columnintItemID = new global::System.Data.DataColumn("intItemID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintItemID);
+                this.columndteDueDate = new global::System.Data.DataColumn("dteDueDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteDueDate);
+                this.columnstrRemarks = new global::System.Data.DataColumn("strRemarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrRemarks);
+                this.columnnumReqQty = new global::System.Data.DataColumn("numReqQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumReqQty);
+                this.columnintApproveBy = new global::System.Data.DataColumn("intApproveBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintApproveBy);
+                this.columndteApproveDate = new global::System.Data.DataColumn("dteApproveDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteApproveDate);
+                this.columnnumApproveQty = new global::System.Data.DataColumn("numApproveQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumApproveQty);
+                this.columnnumIssueQty = new global::System.Data.DataColumn("numIssueQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumIssueQty);
+                this.columnysnEdited = new global::System.Data.DataColumn("ysnEdited", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnEdited);
+                this.columnintAutoID = new global::System.Data.DataColumn("intAutoID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintAutoID);
+                this.columnnumActualProduction = new global::System.Data.DataColumn("numActualProduction", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumActualProduction);
+                this.columnnumIndentQty = new global::System.Data.DataColumn("numIndentQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumIndentQty);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintReqID,
+                                this.columnintAutoID}, true));
+                this.columnintReqID.AutoIncrement = true;
+                this.columnintReqID.AutoIncrementSeed = -1;
+                this.columnintReqID.AutoIncrementStep = -1;
+                this.columnintReqID.AllowDBNull = false;
+                this.columnintReqID.ReadOnly = true;
+                this.columnstrCode.MaxLength = 50;
+                this.columnstrSection.MaxLength = 250;
+                this.columnstrRemarks.MaxLength = 1000;
+                this.columnintAutoID.AutoIncrement = true;
+                this.columnintAutoID.AutoIncrementSeed = -1;
+                this.columnintAutoID.AutoIncrementStep = -1;
+                this.columnintAutoID.AllowDBNull = false;
+                this.columnintAutoID.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableRow NewItemPolisyDataTableRow() {
+                return ((ItemPolisyDataTableRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ItemPolisyDataTableRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(ItemPolisyDataTableRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ItemPolisyDataTableRowChanged != null)) {
+                    this.ItemPolisyDataTableRowChanged(this, new ItemPolisyDataTableRowChangeEvent(((ItemPolisyDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ItemPolisyDataTableRowChanging != null)) {
+                    this.ItemPolisyDataTableRowChanging(this, new ItemPolisyDataTableRowChangeEvent(((ItemPolisyDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ItemPolisyDataTableRowDeleted != null)) {
+                    this.ItemPolisyDataTableRowDeleted(this, new ItemPolisyDataTableRowChangeEvent(((ItemPolisyDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ItemPolisyDataTableRowDeleting != null)) {
+                    this.ItemPolisyDataTableRowDeleting(this, new ItemPolisyDataTableRowChangeEvent(((ItemPolisyDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveItemPolisyDataTableRow(ItemPolisyDataTableRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                InventoryTDS ds = new InventoryTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ItemPolisyDataTableDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class ItemListRow : global::System.Data.DataRow {
@@ -10793,6 +11518,802 @@ namespace HR_DAL.Global {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class ItemPolisyDataTableRow : global::System.Data.DataRow {
+            
+            private ItemPolisyDataTableDataTable tableItemPolisyDataTable;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal ItemPolisyDataTableRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableItemPolisyDataTable = ((ItemPolisyDataTableDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intReqID {
+                get {
+                    return ((int)(this[this.tableItemPolisyDataTable.intReqIDColumn]));
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intReqIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intDeptID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intDeptIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intDeptID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intDeptIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intSectionID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intSectionIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intSectionID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intSectionIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intReqBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intReqByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intReqBy\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intReqByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteReqDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableItemPolisyDataTable.dteReqDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteReqDate\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.dteReqDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intUnitID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intUnitIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intUnitIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intWHID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intWHIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intWHID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intWHIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnActive {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItemPolisyDataTable.ysnActiveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnActive\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.ysnActiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableItemPolisyDataTable.strCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strCode\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.strCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSection {
+                get {
+                    try {
+                        return ((string)(this[this.tableItemPolisyDataTable.strSectionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSection\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.strSectionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intMaintenanceID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intMaintenanceIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intMaintenanceID\' in table \'ItemPolisyDataTable\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intMaintenanceIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intProdOrderID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intProdOrderIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intProdOrderID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intProdOrderIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCCenterID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intCCenterIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intCCenterID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intCCenterIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intIndentId {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intIndentIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intIndentId\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intIndentIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intInsertBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intInsertByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intInsertBy\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intInsertByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteInsertDateTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableItemPolisyDataTable.dteInsertDateTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertDateTime\' in table \'ItemPolisyDataTable\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.dteInsertDateTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intReqID1 {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intReqID1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intReqID1\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intReqID1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intItemID {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intItemIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intItemID\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intItemIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteDueDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableItemPolisyDataTable.dteDueDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteDueDate\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.dteDueDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strRemarks {
+                get {
+                    try {
+                        return ((string)(this[this.tableItemPolisyDataTable.strRemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRemarks\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.strRemarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numReqQty {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItemPolisyDataTable.numReqQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numReqQty\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.numReqQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intApproveBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableItemPolisyDataTable.intApproveByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intApproveBy\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intApproveByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteApproveDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableItemPolisyDataTable.dteApproveDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteApproveDate\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.dteApproveDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numApproveQty {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItemPolisyDataTable.numApproveQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numApproveQty\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.numApproveQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numIssueQty {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItemPolisyDataTable.numIssueQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numIssueQty\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.numIssueQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnEdited {
+                get {
+                    try {
+                        return ((bool)(this[this.tableItemPolisyDataTable.ysnEditedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnEdited\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.ysnEditedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intAutoID {
+                get {
+                    return ((int)(this[this.tableItemPolisyDataTable.intAutoIDColumn]));
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.intAutoIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numActualProduction {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItemPolisyDataTable.numActualProductionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numActualProduction\' in table \'ItemPolisyDataTable\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.numActualProductionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numIndentQty {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItemPolisyDataTable.numIndentQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numIndentQty\' in table \'ItemPolisyDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItemPolisyDataTable.numIndentQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintDeptIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intDeptIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintDeptIDNull() {
+                this[this.tableItemPolisyDataTable.intDeptIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintSectionIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intSectionIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintSectionIDNull() {
+                this[this.tableItemPolisyDataTable.intSectionIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintReqByNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intReqByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintReqByNull() {
+                this[this.tableItemPolisyDataTable.intReqByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteReqDateNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.dteReqDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteReqDateNull() {
+                this[this.tableItemPolisyDataTable.dteReqDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintUnitIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intUnitIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintUnitIDNull() {
+                this[this.tableItemPolisyDataTable.intUnitIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintWHIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intWHIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintWHIDNull() {
+                this[this.tableItemPolisyDataTable.intWHIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnActiveNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.ysnActiveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnActiveNull() {
+                this[this.tableItemPolisyDataTable.ysnActiveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrCodeNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.strCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrCodeNull() {
+                this[this.tableItemPolisyDataTable.strCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrSectionNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.strSectionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrSectionNull() {
+                this[this.tableItemPolisyDataTable.strSectionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintMaintenanceIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intMaintenanceIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintMaintenanceIDNull() {
+                this[this.tableItemPolisyDataTable.intMaintenanceIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintProdOrderIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intProdOrderIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintProdOrderIDNull() {
+                this[this.tableItemPolisyDataTable.intProdOrderIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintCCenterIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intCCenterIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintCCenterIDNull() {
+                this[this.tableItemPolisyDataTable.intCCenterIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintIndentIdNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intIndentIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintIndentIdNull() {
+                this[this.tableItemPolisyDataTable.intIndentIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintInsertByNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intInsertByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintInsertByNull() {
+                this[this.tableItemPolisyDataTable.intInsertByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteInsertDateTimeNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.dteInsertDateTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteInsertDateTimeNull() {
+                this[this.tableItemPolisyDataTable.dteInsertDateTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintReqID1Null() {
+                return this.IsNull(this.tableItemPolisyDataTable.intReqID1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintReqID1Null() {
+                this[this.tableItemPolisyDataTable.intReqID1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintItemIDNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intItemIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintItemIDNull() {
+                this[this.tableItemPolisyDataTable.intItemIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteDueDateNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.dteDueDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteDueDateNull() {
+                this[this.tableItemPolisyDataTable.dteDueDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrRemarksNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.strRemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrRemarksNull() {
+                this[this.tableItemPolisyDataTable.strRemarksColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumReqQtyNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.numReqQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumReqQtyNull() {
+                this[this.tableItemPolisyDataTable.numReqQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintApproveByNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.intApproveByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintApproveByNull() {
+                this[this.tableItemPolisyDataTable.intApproveByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteApproveDateNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.dteApproveDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteApproveDateNull() {
+                this[this.tableItemPolisyDataTable.dteApproveDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumApproveQtyNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.numApproveQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumApproveQtyNull() {
+                this[this.tableItemPolisyDataTable.numApproveQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumIssueQtyNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.numIssueQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumIssueQtyNull() {
+                this[this.tableItemPolisyDataTable.numIssueQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnEditedNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.ysnEditedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnEditedNull() {
+                this[this.tableItemPolisyDataTable.ysnEditedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumActualProductionNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.numActualProductionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumActualProductionNull() {
+                this[this.tableItemPolisyDataTable.numActualProductionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumIndentQtyNull() {
+                return this.IsNull(this.tableItemPolisyDataTable.numIndentQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumIndentQtyNull() {
+                this[this.tableItemPolisyDataTable.numIndentQtyColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -11560,6 +13081,40 @@ namespace HR_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblRequisitionRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class ItemPolisyDataTableRowChangeEvent : global::System.EventArgs {
+            
+            private ItemPolisyDataTableRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableRowChangeEvent(ItemPolisyDataTableRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ItemPolisyDataTableRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -15637,6 +17192,205 @@ inner join erp_hr.dbo.QryEmployeeProfileAll pro2 on det.intApproveBy=pro2.intEmp
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             InventoryTDS.TblRequisitionDataTable dataTable = new InventoryTDS.TblRequisitionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ItemPolisyDataTableTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public ItemPolisyDataTableTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "ItemPolisyDataTable";
+            tableMapping.ColumnMappings.Add("intReqID", "intReqID");
+            tableMapping.ColumnMappings.Add("intDeptID", "intDeptID");
+            tableMapping.ColumnMappings.Add("intSectionID", "intSectionID");
+            tableMapping.ColumnMappings.Add("intReqBy", "intReqBy");
+            tableMapping.ColumnMappings.Add("dteReqDate", "dteReqDate");
+            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
+            tableMapping.ColumnMappings.Add("intWHID", "intWHID");
+            tableMapping.ColumnMappings.Add("ysnActive", "ysnActive");
+            tableMapping.ColumnMappings.Add("strCode", "strCode");
+            tableMapping.ColumnMappings.Add("strSection", "strSection");
+            tableMapping.ColumnMappings.Add("intMaintenanceID", "intMaintenanceID");
+            tableMapping.ColumnMappings.Add("intProdOrderID", "intProdOrderID");
+            tableMapping.ColumnMappings.Add("intCCenterID", "intCCenterID");
+            tableMapping.ColumnMappings.Add("intIndentId", "intIndentId");
+            tableMapping.ColumnMappings.Add("intInsertBy", "intInsertBy");
+            tableMapping.ColumnMappings.Add("dteInsertDateTime", "dteInsertDateTime");
+            tableMapping.ColumnMappings.Add("intReqID1", "intReqID1");
+            tableMapping.ColumnMappings.Add("intItemID", "intItemID");
+            tableMapping.ColumnMappings.Add("dteDueDate", "dteDueDate");
+            tableMapping.ColumnMappings.Add("strRemarks", "strRemarks");
+            tableMapping.ColumnMappings.Add("numReqQty", "numReqQty");
+            tableMapping.ColumnMappings.Add("intApproveBy", "intApproveBy");
+            tableMapping.ColumnMappings.Add("dteApproveDate", "dteApproveDate");
+            tableMapping.ColumnMappings.Add("numApproveQty", "numApproveQty");
+            tableMapping.ColumnMappings.Add("numIssueQty", "numIssueQty");
+            tableMapping.ColumnMappings.Add("ysnEdited", "ysnEdited");
+            tableMapping.ColumnMappings.Add("intAutoID", "intAutoID");
+            tableMapping.ColumnMappings.Add("numActualProduction", "numActualProduction");
+            tableMapping.ColumnMappings.Add("numIndentQty", "numIndentQty");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "select top(1) * from  ERP_Inventory.dbo.tblRequisition req inner join   ERP_Inven" +
+                "tory.dbo.tblRequisitionDetail det on req.intReqID=det.intReqID \r\nwhere req.intRe" +
+                "qBy=@intEnroll and det.intItemID=@itmId and month(req.dteReqDate)=month(getdate(" +
+                "))";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intReqBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itmId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual InventoryTDS.ItemPolisyDataTableDataTable GetReqItemData(global::System.Nullable<int> intEnroll, global::System.Nullable<int> itmId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intEnroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intEnroll.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((itmId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(itmId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            InventoryTDS.ItemPolisyDataTableDataTable dataTable = new InventoryTDS.ItemPolisyDataTableDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

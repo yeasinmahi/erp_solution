@@ -45,6 +45,7 @@ namespace SAD_BLL.Sales
             if (type == "act") { isCompleted = false; isEnable = true; }
             else if (type == "inc") { isCompleted = false; isEnable = false; }
             else if (type == "com") { isCompleted = true; isEnable = true; }
+           // else if (type == "trn") { isCompleted = false; isEnable = true; }
             #endregion ------------------------------------------------
 
             if (isEnable.Value && !isCompleted.Value)

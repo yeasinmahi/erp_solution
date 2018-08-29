@@ -30,7 +30,11 @@ function isDecimal(value) {
 
 function Viewdetails(id) {
     window.open('RequisitionDetails.aspx?ID=' + id, '', "height=375, width=730, scrollbars=yes, left=250, top=200, resizable=no, title=Preview");
-}
+    }
+
+   function ViewPolicy(id, filepath)
+   { window.open('ReqPolicyView.aspx?ID=' + id + '&FP=' + filepath, 'sub', "height=550, width=850, scrollbars=yes, left=300, top=250, resizable=yes, title=Preview"); }
+
 </script>
 
 
@@ -51,6 +55,7 @@ function Viewdetails(id) {
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"><table border="0"; style="width:Auto"; >
     <tr><td colspan="2" class="tblheader">Store Requisition Entry :<asp:HiddenField ID="hdnsearch" runat="server"/><asp:HiddenField ID="hdnpoint" runat="server" /><asp:HiddenField ID="hdnunit" runat="server" /></td><asp:HiddenField ID="hdnEnroll" runat="server"/>        
+     <td><asp:LinkButton ID="linkGoSomewhere"  Text="Policy" runat="server"  OnClick="linkGoSomewhere_Click" /></td>
     </tr>
     <tr class="tblrowodd"> 
     <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Ware House : "></asp:Label><asp:HiddenField ID="hdntype" runat="server"/></td>
