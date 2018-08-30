@@ -1157,6 +1157,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DeliveryCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\FactoryAndGhatDelv.aspx" />
@@ -5904,6 +5905,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx.designer.cs">
       <DependentUpon>DiscountAdustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx.cs">
+      <DependentUpon>DOBaseCustomerTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx.designer.cs">
+      <DependentUpon>DOBaseCustomerTransaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx.cs">
       <DependentUpon>DODetails.aspx</DependentUpon>
