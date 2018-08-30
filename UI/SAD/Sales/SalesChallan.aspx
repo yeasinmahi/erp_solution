@@ -191,6 +191,7 @@
                                     <asp:ListItem Selected="True" Value="act">New Post</asp:ListItem>
                                     <asp:ListItem Value="com">Delivered</asp:ListItem>
                                     <asp:ListItem Value="inc">Cancelled</asp:ListItem>
+                                     <asp:ListItem Value="trn">Transfer</asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
                             <td>                                
