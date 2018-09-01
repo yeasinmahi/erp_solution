@@ -1246,6 +1246,7 @@
     <Content Include="SAD\Vat\rptSalesSummary.aspx" />
     <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\BillRegistrationNew.aspx" />
     <Content Include="SCM\BOM\BillOfMaterial.aspx" />
     <Content Include="SCM\BOM\EditRequisition.aspx" />
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
@@ -6532,6 +6533,13 @@
     </Compile>
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BillRegistrationNew.aspx.cs">
+      <DependentUpon>BillRegistrationNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BillRegistrationNew.aspx.designer.cs">
+      <DependentUpon>BillRegistrationNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\BillOfMaterial.aspx.cs">
       <DependentUpon>BillOfMaterial.aspx</DependentUpon>
