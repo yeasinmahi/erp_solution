@@ -1,4 +1,6 @@
 ﻿using BLL.Accounts.Advice;
+using Flogging.Core;
+using GLOBAL_BLL;
 using Purchase_BLL;
 using System;
 using System.Collections.Generic;
@@ -16,11 +18,18 @@ namespace UI.Accounts.Advice
 {
     public partial class BankReceive : BasePage
     {
-        DataTable dt; AdviceBLL bll = new AdviceBLL(); Media obj = new Media();
+        DataTable dt;
+        AdviceBLL bll = new AdviceBLL();
+        Media obj = new Media();
+        SeriLog log = new SeriLog();
         int intID, intUnitID, intEnroll, intAccountID, intCustomerID;
         DateTime dteStartDateTime, dteEndDateTime;
         string strUnitID, strNarration, strChequeNo, strCustomer, strRemarks, strDate;
         decimal monAmount, monCredit, monBalance;
+
+        string location = "Accounts";
+        string start = "starting Accounts\\Advice\\BankReceive";
+        string stop = "stopping Accounts\\Advice\\BankReceive";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -96,6 +105,12 @@ namespace UI.Accounts.Advice
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\BankReceive Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 strUnitID = ddlUnit.SelectedValue.ToString();
@@ -104,7 +119,18 @@ namespace UI.Accounts.Advice
                 dgvItem.DataSource = dt;
                 dgvItem.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+             
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }
