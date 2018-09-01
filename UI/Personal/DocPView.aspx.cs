@@ -17,6 +17,7 @@ namespace UI.Personal
                 string strPathurl = Request.QueryString["FP"]; 
                 try
                 {
+                 
                     strPathurl = Uri.EscapeUriString(strPathurl);
                     string imageUrl = "ftp://erp:erp123@ftp.akij.net/Policy/" + strPathurl;
                     myPanel.Controls.Add(new LiteralControl("<iframe class='frame' src='" + imageUrl + "'></iframe>"));

@@ -18,7 +18,7 @@ namespace UI.Inventory
     {
         string xmlpath; string xmlString = "", xml = ""; DaysOfWeek bll = new DaysOfWeek(); string[] arrayKey; char[] delimiterChars = { '[', ']' };
         string secid = "0"; DataTable dtbl = new DataTable(); DataTable dt = new DataTable(); int intEnroll, intInsertBy = 0;
-        int type, actionby, id;
+        int type, actionby, id;bool active;
         DateTime fdate, tdate;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -121,7 +121,13 @@ namespace UI.Inventory
             }
             catch { }
         }
+        public void linkGoSomewhere_Click(object sender, EventArgs e)
+        {
 
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPolicy('" + 0 + "','" + "Monthlyindent.jpg".ToString() + "');", true);
+
+            
+        }
         private void Clearcontrols()
         { txtQuantity.Text = "0.00"; txtItem.Text = ""; hdfEmpCode.Value = ""; txtRemarks.Text = "";
         txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); }
@@ -174,12 +180,21 @@ namespace UI.Inventory
                     int cnt = dgv.Rows.Count;
                     string cos =DdlCostCenter.SelectedValue.ToString();
                     dt = new DataTable();
-                    dt = bll.CheckCurrentStock(Convert.ToInt32(wh), Convert.ToInt32(itemid));
-                    decimal stocks = Decimal.Parse(dt.Rows[0]["stock"].ToString());
-
-                    //if (stocks > 0)
+                    // dt = bll.CheckCurrentStock(Convert.ToInt32(wh), Convert.ToInt32(itemid));
+                    int enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    dt = bll.CheckItemPolisy(enroll, Convert.ToInt32(itemid));
+                    if (dt.Rows.Count > 0)
                     {
-                      if (cnt == 0)
+                        active = true;
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('(Policy Violation) " +
+                            "In the running month you have already given rquisition of same Item.');", true);
+
+                    }
+                    else { active = false; }
+                    // decimal stocks = Decimal.Parse(dt.Rows[0]["stock"].ToString());
+                    //ItemPolisyDataTableTableAdapter
+                     
+                        if (cnt == 0)
                         {
                             CreateXml(itemid, item, secid, unit, wh, sec, dptid, dudt, quantity, remarks, cos);
                             Clearcontrols();
@@ -202,15 +217,17 @@ namespace UI.Inventory
                                 Clearcontrols();
                             }
                         }
-                    }
+                    
                     //else
                     //{
-                    //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your Product Stock is not Avaiable.');", true);
+                    //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('In the running month you have already given rquisition of same Item.');", true);
                     //}
                 }
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
         }
+
+
         private void CreateXml(string itemid, string item, string secid, string unit, string wh, string sec, string dptid, string dudt, string quantity, string remarks, string cos)
         {
             XmlDocument doc = new XmlDocument();

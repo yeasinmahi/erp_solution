@@ -28,5 +28,11 @@ namespace HR_BLL.TourPlan
             CustomerBankGauranteeListTableAdapter adp = new CustomerBankGauranteeListTableAdapter();
             return adp.GetCustomerBankGauranteeList(dteFromDate, dteToDate);
         }
+
+        public DataTable GetCustomerBGauranteeList(int type, int actionby, string xml, DateTime dteFromDate, DateTime dteToDate, int intunitid, int id)
+        {
+            SprBankGuranteeBillDetTableAdapter adp = new SprBankGuranteeBillDetTableAdapter();
+            return adp.GetData(type, actionby, xml, dteFromDate, dteToDate, intunitid, id);
+        }
     }
 }

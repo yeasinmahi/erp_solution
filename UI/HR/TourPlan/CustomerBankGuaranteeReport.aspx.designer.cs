@@ -94,13 +94,13 @@ namespace UI.HR.TourPlan {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtFormDate control.
+        /// txtFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFormDate;
+        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
         
         /// <summary>
         /// CalendarExtender1 control.
@@ -139,6 +139,24 @@ namespace UI.HR.TourPlan {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
         
         /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+        
+        /// <summary>
+        /// DdlReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DdlReport;
+        
+        /// <summary>
         /// btnShow control.
         /// </summary>
         /// <remarks>
@@ -166,12 +184,21 @@ namespace UI.HR.TourPlan {
         protected global::System.Web.UI.WebControls.GridView GVList;
         
         /// <summary>
-        /// odsGVList control.
+        /// GVUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsGVList;
+        protected global::System.Web.UI.WebControls.GridView GVUpdate;
+        
+        /// <summary>
+        /// GVDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVDelete;
     }
 }

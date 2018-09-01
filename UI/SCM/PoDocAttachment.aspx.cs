@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -97,7 +98,15 @@ namespace UI.SCM
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
-            try {
+			var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
+
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Performance on SCM\\PoDocAttachment Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+
+			try {
                 
                 arrayKey = txtPoUser.Text.Split(delimiterChars);
                 string item = ""; string itemid = "";
@@ -141,9 +150,9 @@ namespace UI.SCM
                 }
 
             }
-            catch(Exception ex) { ex.ToString(); }
+            catch { }
 
-        }
+		}
 
         protected void btnPoSuppShow_Click(object sender, EventArgs e)
         {
@@ -237,5 +246,19 @@ namespace UI.SCM
             catch { }
 
         }
-    }
+
+		private FlogDetail GetFlogDetail(string message, Exception ex)
+		{
+			return new FlogDetail
+			{
+				Product = "ERP",
+				Location = "SCM",
+				Layer = "BillForwardToBillingReport\\Show",
+				UserName = Environment.UserName,
+				Hostname = Environment.MachineName,
+				Message = message,
+				Exception = ex
+			};
+		}
+	}
 }
