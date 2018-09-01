@@ -29,19 +29,22 @@ namespace UI.HR.TourPlan
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            int count = GVCustDetails.Rows.Count;
-            if(count>0)
+            int custid = int.Parse(DdlCustomerName.SelectedItem.Value);
+            dt = objbankGauranteeBLL.GetCustInfo(custid);
+            if (dt.Rows.Count > 0)
             {
+                GVCustDetails.DataSource = dt;
+                GVCustDetails.DataBind();
                 GVCustDetails.Visible = true;
                 btnAdd.Visible = true;
-                //btnSubmit.Visible = false;
             }
             else
             {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data not found');", true);
                 GVCustDetails.Visible = false;
                 btnAdd.Visible = false;
             }
-           
+
             if (GVCustList.Visible==true)
             {
                 btnSubmit.Visible = true;

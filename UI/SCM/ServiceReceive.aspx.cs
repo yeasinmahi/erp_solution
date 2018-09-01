@@ -23,7 +23,7 @@ namespace UI.SCM
         DateTime dteChallan;
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Mr__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/Mrs__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {
                 try { File.Delete(filePathForXML); } catch { }
@@ -287,7 +287,11 @@ namespace UI.SCM
                 intWh = int.Parse(ddlWH.SelectedValue);
                 intPo = int.Parse(txtPoNo.Text.ToString());
                 hdnPO.Value = intPo.ToString();
-                try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
+                try { intShipment = int.Parse(ddlInvoice.SelectedValue);
+                    hdnShipment.Value = intShipment.ToString();
+                }
+                catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
+
                 xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
                 if (ddlInvoice.Enabled == true)
                 {

@@ -122,8 +122,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
+    <Content Include="Accounts\Advice\SalesCollectonReport.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
     <Content Include="Accounts\Approval\IndentApproval_UI.aspx" />
     <Content Include="Accounts\Banking\BankChequeConfirm.aspx" />
@@ -325,6 +327,7 @@
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
+    <Content Include="Inventory\ReqPolicyView.aspx" />
     <Content Include="Inventory\RequisitionView.aspx" />
     <Content Include="Inventory\SalesDamageEntry.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
@@ -1158,6 +1161,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DeliveryCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\FactoryAndGhatDelv.aspx" />
@@ -1186,6 +1190,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\TaDaNoBike.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\Vehicle List.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
@@ -1242,6 +1247,7 @@
     <Content Include="SAD\Vat\rptSalesSummary.aspx" />
     <Content Include="SCM\BillFowardToBillingRpt.aspx" />
     <Content Include="SCM\BillRegistration.aspx" />
+    <Content Include="SCM\BillRegistrationNew.aspx" />
     <Content Include="SCM\BOM\BillOfMaterial.aspx" />
     <Content Include="SCM\BOM\EditRequisition.aspx" />
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
@@ -1418,6 +1424,13 @@
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Advice\BankReceive.aspx.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\BankReceive.aspx.designer.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\BankStatementUpload.aspx.cs">
       <DependentUpon>BankStatementUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1431,6 +1444,13 @@
     </Compile>
     <Compile Include="Accounts\Advice\PaymentAdvice.aspx.designer.cs">
       <DependentUpon>PaymentAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.designer.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Advice\VoucherPrint.aspx.cs">
       <DependentUpon>VoucherPrint.aspx</DependentUpon>
@@ -2796,6 +2816,13 @@
     </Compile>
     <Compile Include="Inventory\RAWMaterialTransfer.aspx.designer.cs">
       <DependentUpon>RAWMaterialTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\ReqPolicyView.aspx.cs">
+      <DependentUpon>ReqPolicyView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\ReqPolicyView.aspx.designer.cs">
+      <DependentUpon>ReqPolicyView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\RequisitionView.aspx.cs">
       <DependentUpon>RequisitionView.aspx</DependentUpon>
@@ -5913,6 +5940,13 @@
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx.designer.cs">
       <DependentUpon>DiscountAdustment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx.cs">
+      <DependentUpon>DOBaseCustomerTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx.designer.cs">
+      <DependentUpon>DOBaseCustomerTransaction.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx.cs">
       <DependentUpon>DODetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6108,6 +6142,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx.designer.cs">
       <DependentUpon>VehicleLogisticCharge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx.cs">
+      <DependentUpon>ZStandVehicleTADA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx.designer.cs">
+      <DependentUpon>ZStandVehicleTADA.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Sales.aspx.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
@@ -6500,6 +6541,13 @@
     </Compile>
     <Compile Include="SCM\BillRegistration.aspx.designer.cs">
       <DependentUpon>BillRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BillRegistrationNew.aspx.cs">
+      <DependentUpon>BillRegistrationNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BillRegistrationNew.aspx.designer.cs">
+      <DependentUpon>BillRegistrationNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\BillOfMaterial.aspx.cs">
       <DependentUpon>BillOfMaterial.aspx</DependentUpon>
