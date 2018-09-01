@@ -154,5 +154,34 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+        #region ================== Bank Receive ===========================
+        public DataTable GetBankData (string intUnitID)
+        {
+            try
+            {
+                BankDataTableAdapter adp = new BankDataTableAdapter();
+                return adp.GetBankData(intUnitID);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetCustomerList(int intUnitID)
+        {
+            try
+            {
+                TblCustomerTableAdapter adp = new TblCustomerTableAdapter();
+                return adp.GetCustomerList(intUnitID);
+            }
+            catch { return new DataTable(); }
+        }
+        public void InserBankReceive (int intUnit, int intEnroll, int intCustID, int intBSId, string strNarration)
+        {
+            try
+            {
+                SprBankReciveBRMakingTableAdapter adp = new SprBankReciveBRMakingTableAdapter();
+                adp.InsertBankReceive(intUnit, intEnroll, intCustID, intBSId, strNarration);
+            }
+            catch { }
+        }
+        #endregion =========================================================
     }
 }

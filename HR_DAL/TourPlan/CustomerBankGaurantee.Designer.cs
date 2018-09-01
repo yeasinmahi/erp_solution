@@ -40,6 +40,8 @@ namespace HR_DAL.TourPlan {
         
         private CustomerBankGauranteeListDataTable tableCustomerBankGauranteeList;
         
+        private SprBankGuranteeBillDetDataTable tableSprBankGuranteeBillDet;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -91,6 +93,9 @@ namespace HR_DAL.TourPlan {
                 }
                 if ((ds.Tables["CustomerBankGauranteeList"] != null)) {
                     base.Tables.Add(new CustomerBankGauranteeListDataTable(ds.Tables["CustomerBankGauranteeList"]));
+                }
+                if ((ds.Tables["SprBankGuranteeBillDet"] != null)) {
+                    base.Tables.Add(new SprBankGuranteeBillDetDataTable(ds.Tables["SprBankGuranteeBillDet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -192,6 +197,16 @@ namespace HR_DAL.TourPlan {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprBankGuranteeBillDetDataTable SprBankGuranteeBillDet {
+            get {
+                return this.tableSprBankGuranteeBillDet;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -281,6 +296,9 @@ namespace HR_DAL.TourPlan {
                 if ((ds.Tables["CustomerBankGauranteeList"] != null)) {
                     base.Tables.Add(new CustomerBankGauranteeListDataTable(ds.Tables["CustomerBankGauranteeList"]));
                 }
+                if ((ds.Tables["SprBankGuranteeBillDet"] != null)) {
+                    base.Tables.Add(new SprBankGuranteeBillDetDataTable(ds.Tables["SprBankGuranteeBillDet"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -362,6 +380,12 @@ namespace HR_DAL.TourPlan {
                     this.tableCustomerBankGauranteeList.InitVars();
                 }
             }
+            this.tableSprBankGuranteeBillDet = ((SprBankGuranteeBillDetDataTable)(base.Tables["SprBankGuranteeBillDet"]));
+            if ((initTable == true)) {
+                if ((this.tableSprBankGuranteeBillDet != null)) {
+                    this.tableSprBankGuranteeBillDet.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -388,6 +412,8 @@ namespace HR_DAL.TourPlan {
             base.Tables.Add(this.tableinsertCustomerBankGauranteeXmlData);
             this.tableCustomerBankGauranteeList = new CustomerBankGauranteeListDataTable();
             base.Tables.Add(this.tableCustomerBankGauranteeList);
+            this.tableSprBankGuranteeBillDet = new SprBankGuranteeBillDetDataTable();
+            base.Tables.Add(this.tableSprBankGuranteeBillDet);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +461,12 @@ namespace HR_DAL.TourPlan {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeCustomerBankGauranteeList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprBankGuranteeBillDet() {
             return false;
         }
         
@@ -516,6 +548,9 @@ namespace HR_DAL.TourPlan {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void CustomerBankGauranteeListRowChangeEventHandler(object sender, CustomerBankGauranteeListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprBankGuranteeBillDetRowChangeEventHandler(object sender, SprBankGuranteeBillDetRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2922,6 +2957,491 @@ namespace HR_DAL.TourPlan {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprBankGuranteeBillDetDataTable : global::System.Data.TypedTableBase<SprBankGuranteeBillDetRow> {
+            
+            private global::System.Data.DataColumn columnintpkid;
+            
+            private global::System.Data.DataColumn columnstrcustname;
+            
+            private global::System.Data.DataColumn columnterritory;
+            
+            private global::System.Data.DataColumn columnarea;
+            
+            private global::System.Data.DataColumn columnregion;
+            
+            private global::System.Data.DataColumn columnsalesoff;
+            
+            private global::System.Data.DataColumn columnbankname;
+            
+            private global::System.Data.DataColumn columnbranchname;
+            
+            private global::System.Data.DataColumn columnlienno;
+            
+            private global::System.Data.DataColumn columnbgamount;
+            
+            private global::System.Data.DataColumn columnbgstartdate;
+            
+            private global::System.Data.DataColumn columnbgenddate;
+            
+            private global::System.Data.DataColumn columndurationyr;
+            
+            private global::System.Data.DataColumn columnstrinsertby;
+            
+            private global::System.Data.DataColumn columninsertdate;
+            
+            private global::System.Data.DataColumn columnMessages;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprBankGuranteeBillDetDataTable() {
+                this.TableName = "SprBankGuranteeBillDet";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprBankGuranteeBillDetDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprBankGuranteeBillDetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intpkidColumn {
+                get {
+                    return this.columnintpkid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strcustnameColumn {
+                get {
+                    return this.columnstrcustname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn territoryColumn {
+                get {
+                    return this.columnterritory;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn areaColumn {
+                get {
+                    return this.columnarea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn regionColumn {
+                get {
+                    return this.columnregion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn salesoffColumn {
+                get {
+                    return this.columnsalesoff;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn banknameColumn {
+                get {
+                    return this.columnbankname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn branchnameColumn {
+                get {
+                    return this.columnbranchname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn liennoColumn {
+                get {
+                    return this.columnlienno;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn bgamountColumn {
+                get {
+                    return this.columnbgamount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn bgstartdateColumn {
+                get {
+                    return this.columnbgstartdate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn bgenddateColumn {
+                get {
+                    return this.columnbgenddate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn durationyrColumn {
+                get {
+                    return this.columndurationyr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strinsertbyColumn {
+                get {
+                    return this.columnstrinsertby;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn insertdateColumn {
+                get {
+                    return this.columninsertdate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MessagesColumn {
+                get {
+                    return this.columnMessages;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprBankGuranteeBillDetRow this[int index] {
+                get {
+                    return ((SprBankGuranteeBillDetRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprBankGuranteeBillDetRowChangeEventHandler SprBankGuranteeBillDetRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprBankGuranteeBillDetRowChangeEventHandler SprBankGuranteeBillDetRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprBankGuranteeBillDetRowChangeEventHandler SprBankGuranteeBillDetRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprBankGuranteeBillDetRowChangeEventHandler SprBankGuranteeBillDetRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprBankGuranteeBillDetRow(SprBankGuranteeBillDetRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprBankGuranteeBillDetRow AddSprBankGuranteeBillDetRow(
+                        int intpkid, 
+                        string strcustname, 
+                        string territory, 
+                        string area, 
+                        string region, 
+                        string salesoff, 
+                        string bankname, 
+                        string branchname, 
+                        string lienno, 
+                        string bgamount, 
+                        System.DateTime bgstartdate, 
+                        System.DateTime bgenddate, 
+                        decimal durationyr, 
+                        string strinsertby, 
+                        System.DateTime insertdate, 
+                        string Messages) {
+                SprBankGuranteeBillDetRow rowSprBankGuranteeBillDetRow = ((SprBankGuranteeBillDetRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intpkid,
+                        strcustname,
+                        territory,
+                        area,
+                        region,
+                        salesoff,
+                        bankname,
+                        branchname,
+                        lienno,
+                        bgamount,
+                        bgstartdate,
+                        bgenddate,
+                        durationyr,
+                        strinsertby,
+                        insertdate,
+                        Messages};
+                rowSprBankGuranteeBillDetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprBankGuranteeBillDetRow);
+                return rowSprBankGuranteeBillDetRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprBankGuranteeBillDetDataTable cln = ((SprBankGuranteeBillDetDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprBankGuranteeBillDetDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintpkid = base.Columns["intpkid"];
+                this.columnstrcustname = base.Columns["strcustname"];
+                this.columnterritory = base.Columns["territory"];
+                this.columnarea = base.Columns["area"];
+                this.columnregion = base.Columns["region"];
+                this.columnsalesoff = base.Columns["salesoff"];
+                this.columnbankname = base.Columns["bankname"];
+                this.columnbranchname = base.Columns["branchname"];
+                this.columnlienno = base.Columns["lienno"];
+                this.columnbgamount = base.Columns["bgamount"];
+                this.columnbgstartdate = base.Columns["bgstartdate"];
+                this.columnbgenddate = base.Columns["bgenddate"];
+                this.columndurationyr = base.Columns["durationyr"];
+                this.columnstrinsertby = base.Columns["strinsertby"];
+                this.columninsertdate = base.Columns["insertdate"];
+                this.columnMessages = base.Columns["Messages"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintpkid = new global::System.Data.DataColumn("intpkid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintpkid);
+                this.columnstrcustname = new global::System.Data.DataColumn("strcustname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrcustname);
+                this.columnterritory = new global::System.Data.DataColumn("territory", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnterritory);
+                this.columnarea = new global::System.Data.DataColumn("area", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnarea);
+                this.columnregion = new global::System.Data.DataColumn("region", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnregion);
+                this.columnsalesoff = new global::System.Data.DataColumn("salesoff", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsalesoff);
+                this.columnbankname = new global::System.Data.DataColumn("bankname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbankname);
+                this.columnbranchname = new global::System.Data.DataColumn("branchname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbranchname);
+                this.columnlienno = new global::System.Data.DataColumn("lienno", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlienno);
+                this.columnbgamount = new global::System.Data.DataColumn("bgamount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbgamount);
+                this.columnbgstartdate = new global::System.Data.DataColumn("bgstartdate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbgstartdate);
+                this.columnbgenddate = new global::System.Data.DataColumn("bgenddate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbgenddate);
+                this.columndurationyr = new global::System.Data.DataColumn("durationyr", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndurationyr);
+                this.columnstrinsertby = new global::System.Data.DataColumn("strinsertby", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrinsertby);
+                this.columninsertdate = new global::System.Data.DataColumn("insertdate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columninsertdate);
+                this.columnMessages = new global::System.Data.DataColumn("Messages", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMessages);
+                this.columnstrcustname.MaxLength = 500;
+                this.columnterritory.MaxLength = 500;
+                this.columnarea.MaxLength = 500;
+                this.columnregion.MaxLength = 500;
+                this.columnsalesoff.MaxLength = 500;
+                this.columnbankname.MaxLength = 500;
+                this.columnbranchname.MaxLength = 500;
+                this.columnlienno.MaxLength = 500;
+                this.columnbgamount.MaxLength = 500;
+                this.columnstrinsertby.MaxLength = 500;
+                this.columnMessages.ReadOnly = true;
+                this.columnMessages.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprBankGuranteeBillDetRow NewSprBankGuranteeBillDetRow() {
+                return ((SprBankGuranteeBillDetRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprBankGuranteeBillDetRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprBankGuranteeBillDetRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprBankGuranteeBillDetRowChanged != null)) {
+                    this.SprBankGuranteeBillDetRowChanged(this, new SprBankGuranteeBillDetRowChangeEvent(((SprBankGuranteeBillDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprBankGuranteeBillDetRowChanging != null)) {
+                    this.SprBankGuranteeBillDetRowChanging(this, new SprBankGuranteeBillDetRowChangeEvent(((SprBankGuranteeBillDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprBankGuranteeBillDetRowDeleted != null)) {
+                    this.SprBankGuranteeBillDetRowDeleted(this, new SprBankGuranteeBillDetRowChangeEvent(((SprBankGuranteeBillDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprBankGuranteeBillDetRowDeleting != null)) {
+                    this.SprBankGuranteeBillDetRowDeleting(this, new SprBankGuranteeBillDetRowChangeEvent(((SprBankGuranteeBillDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprBankGuranteeBillDetRow(SprBankGuranteeBillDetRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                CustomerBankGaurantee ds = new CustomerBankGaurantee();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprBankGuranteeBillDetDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class TblBankNameRow : global::System.Data.DataRow {
@@ -3698,6 +4218,469 @@ namespace HR_DAL.TourPlan {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprBankGuranteeBillDetRow : global::System.Data.DataRow {
+            
+            private SprBankGuranteeBillDetDataTable tableSprBankGuranteeBillDet;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprBankGuranteeBillDetRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprBankGuranteeBillDet = ((SprBankGuranteeBillDetDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intpkid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprBankGuranteeBillDet.intpkidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intpkid\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.intpkidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strcustname {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.strcustnameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strcustname\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.strcustnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string territory {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.territoryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'territory\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.territoryColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string area {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.areaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'area\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.areaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string region {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.regionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'region\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.regionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string salesoff {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.salesoffColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'salesoff\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.salesoffColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string bankname {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.banknameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'bankname\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.banknameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string branchname {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.branchnameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'branchname\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.branchnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string lienno {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.liennoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'lienno\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.liennoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string bgamount {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.bgamountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'bgamount\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.bgamountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime bgstartdate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprBankGuranteeBillDet.bgstartdateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'bgstartdate\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.bgstartdateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime bgenddate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprBankGuranteeBillDet.bgenddateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'bgenddate\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.bgenddateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal durationyr {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprBankGuranteeBillDet.durationyrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'durationyr\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.durationyrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strinsertby {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.strinsertbyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strinsertby\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.strinsertbyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime insertdate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprBankGuranteeBillDet.insertdateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'insertdate\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.insertdateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Messages {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBankGuranteeBillDet.MessagesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Messages\' in table \'SprBankGuranteeBillDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBankGuranteeBillDet.MessagesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintpkidNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.intpkidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintpkidNull() {
+                this[this.tableSprBankGuranteeBillDet.intpkidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrcustnameNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.strcustnameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrcustnameNull() {
+                this[this.tableSprBankGuranteeBillDet.strcustnameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsterritoryNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.territoryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetterritoryNull() {
+                this[this.tableSprBankGuranteeBillDet.territoryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsareaNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.areaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetareaNull() {
+                this[this.tableSprBankGuranteeBillDet.areaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsregionNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.regionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetregionNull() {
+                this[this.tableSprBankGuranteeBillDet.regionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IssalesoffNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.salesoffColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetsalesoffNull() {
+                this[this.tableSprBankGuranteeBillDet.salesoffColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsbanknameNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.banknameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetbanknameNull() {
+                this[this.tableSprBankGuranteeBillDet.banknameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsbranchnameNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.branchnameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetbranchnameNull() {
+                this[this.tableSprBankGuranteeBillDet.branchnameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsliennoNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.liennoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetliennoNull() {
+                this[this.tableSprBankGuranteeBillDet.liennoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsbgamountNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.bgamountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetbgamountNull() {
+                this[this.tableSprBankGuranteeBillDet.bgamountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsbgstartdateNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.bgstartdateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetbgstartdateNull() {
+                this[this.tableSprBankGuranteeBillDet.bgstartdateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsbgenddateNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.bgenddateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetbgenddateNull() {
+                this[this.tableSprBankGuranteeBillDet.bgenddateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdurationyrNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.durationyrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdurationyrNull() {
+                this[this.tableSprBankGuranteeBillDet.durationyrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrinsertbyNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.strinsertbyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrinsertbyNull() {
+                this[this.tableSprBankGuranteeBillDet.strinsertbyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsinsertdateNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.insertdateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetinsertdateNull() {
+                this[this.tableSprBankGuranteeBillDet.insertdateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsMessagesNull() {
+                return this.IsNull(this.tableSprBankGuranteeBillDet.MessagesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetMessagesNull() {
+                this[this.tableSprBankGuranteeBillDet.MessagesColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3955,6 +4938,40 @@ namespace HR_DAL.TourPlan {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CustomerBankGauranteeListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprBankGuranteeBillDetRowChangeEvent : global::System.EventArgs {
+            
+            private SprBankGuranteeBillDetRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprBankGuranteeBillDetRowChangeEvent(SprBankGuranteeBillDetRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprBankGuranteeBillDetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5278,6 +6295,225 @@ FROM [BrandTradeMkt].[dbo].[tblBankGuranteeInfo] binfo
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             CustomerBankGaurantee.CustomerBankGauranteeListDataTable dataTable = new CustomerBankGaurantee.CustomerBankGauranteeListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprBankGuranteeBillDetTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprBankGuranteeBillDetTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprBankGuranteeBillDet";
+            tableMapping.ColumnMappings.Add("intpkid", "intpkid");
+            tableMapping.ColumnMappings.Add("strcustname", "strcustname");
+            tableMapping.ColumnMappings.Add("territory", "territory");
+            tableMapping.ColumnMappings.Add("area", "area");
+            tableMapping.ColumnMappings.Add("region", "region");
+            tableMapping.ColumnMappings.Add("salesoff", "salesoff");
+            tableMapping.ColumnMappings.Add("bankname", "bankname");
+            tableMapping.ColumnMappings.Add("branchname", "branchname");
+            tableMapping.ColumnMappings.Add("lienno", "lienno");
+            tableMapping.ColumnMappings.Add("bgamount", "bgamount");
+            tableMapping.ColumnMappings.Add("bgstartdate", "bgstartdate");
+            tableMapping.ColumnMappings.Add("bgenddate", "bgenddate");
+            tableMapping.ColumnMappings.Add("durationyr", "durationyr");
+            tableMapping.ColumnMappings.Add("strinsertby", "strinsertby");
+            tableMapping.ColumnMappings.Add("insertdate", "insertdate");
+            tableMapping.ColumnMappings.Add("Messages", "Messages");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.BrandTradeMktConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprBankGuranteeBillDet";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionby", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xml", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@from", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intunitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual CustomerBankGaurantee.SprBankGuranteeBillDetDataTable GetData(global::System.Nullable<int> type, global::System.Nullable<int> actionby, object xml, global::System.Nullable<global::System.DateTime> from, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intunitid, global::System.Nullable<int> id) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((type.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(type.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((actionby.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(actionby.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((xml == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((object)(xml));
+            }
+            if ((from.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(from.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((todate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(todate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((intunitid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intunitid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            CustomerBankGaurantee.SprBankGuranteeBillDetDataTable dataTable = new CustomerBankGaurantee.SprBankGuranteeBillDetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
