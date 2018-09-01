@@ -1082,6 +1082,7 @@
     <Content Include="SAD\Logistic\VehicleWeightCustomize.aspx" />
     <Content Include="SAD\Order\AttachmentCheckingBySupervisor.aspx" />
     <Content Include="SAD\Order\AuditAttahmentChecking.aspx" />
+    <Content Include="SAD\Order\BillSubmitPendingToCustomer.aspx" />
     <Content Include="SAD\Order\Challan.aspx" />
     <Content Include="SAD\Order\ChallanCancel.aspx" />
     <Content Include="SAD\Order\ChallanList.aspx" />
@@ -5378,6 +5379,13 @@
     </Compile>
     <Compile Include="SAD\Order\AuditAttahmentChecking.aspx.designer.cs">
       <DependentUpon>AuditAttahmentChecking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.cs">
+      <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.designer.cs">
+      <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\Challan.aspx.cs">
       <DependentUpon>Challan.aspx</DependentUpon>

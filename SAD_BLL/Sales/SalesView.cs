@@ -722,5 +722,17 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
+
+        //@intReportType int,@intUnitid int, @dteFromdate date, @dteTodate date,@Salesofficeid int,@intcustomerid int,@xml xml, @id int
+        public DataTable GetdataforBillSubmission (int reporttype ,int unitid,DateTime dtf,DateTime dtto, int sof,int custid, string xml,int id)
+        {
+            try
+            {
+                SprBillCopySubmissiontoCustomerTableAdapter objacrd = new SprBillCopySubmissiontoCustomerTableAdapter();
+                return objacrd.GetDataBillCopySubmissiontoCustomer(reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id);
+            }
+            catch { return new DataTable(); }
+
+        }
     }
 }
