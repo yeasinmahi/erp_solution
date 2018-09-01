@@ -125,6 +125,7 @@
     <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
+    <Content Include="Accounts\Advice\SalesCollectonReport.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
     <Content Include="Accounts\Approval\IndentApproval_UI.aspx" />
     <Content Include="Accounts\Banking\BankChequeConfirm.aspx" />
@@ -1441,6 +1442,13 @@
     </Compile>
     <Compile Include="Accounts\Advice\PaymentAdvice.aspx.designer.cs">
       <DependentUpon>PaymentAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.designer.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Advice\VoucherPrint.aspx.cs">
       <DependentUpon>VoucherPrint.aspx</DependentUpon>
