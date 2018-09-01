@@ -1187,6 +1187,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\TaDaNoBike.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\Vehicle List.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
@@ -6116,6 +6117,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx.designer.cs">
       <DependentUpon>VehicleLogisticCharge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx.cs">
+      <DependentUpon>ZStandVehicleTADA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx.designer.cs">
+      <DependentUpon>ZStandVehicleTADA.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Sales.aspx.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
