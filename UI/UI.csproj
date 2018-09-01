@@ -122,6 +122,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
@@ -1421,6 +1422,13 @@
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Advice\BankReceive.aspx.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\BankReceive.aspx.designer.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\BankStatementUpload.aspx.cs">
       <DependentUpon>BankStatementUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

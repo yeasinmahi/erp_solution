@@ -1,4 +1,5 @@
 ﻿using Flogging.Core;
+using GLOBAL_BLL;
 using Purchase_BLL.Asset;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,16 @@ namespace UI.Asset
 {
     public partial class AssetCheckInOutReport : BasePage
     {
-        AssetInOut objCheck = new AssetInOut();
+        AssetInOut objCheck = new AssetInOut();       
         DataTable dt = new DataTable();
-        int intResEnroll, intWHiD, intType, intActionBy; string assetCode, strNaration, stringXml;
+        SeriLog log = new SeriLog();
 
-        
+        int intResEnroll, intWHiD, intType, intActionBy; string assetCode, strNaration, stringXml; 
 
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        string location = "Asset";
+        string start = "starting Asset\\AssetCheckInOutReport";
+        string stop = "stopping Asset\\AssetCheckInOutReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -32,8 +36,7 @@ namespace UI.Asset
 
         protected void btnAssetStatus_Click(object sender, EventArgs e)
         {
-			var fd = GetFlogDetail("starting Asset\\AssetCheckInOutReport Show", null);
-
+			var fd = log.GetFlogDetail(start, location, "Show", null);
 			Flogger.WriteDiagnostic(fd);
 
 			// starting performance tracker
@@ -83,16 +86,16 @@ namespace UI.Asset
             }
             catch (Exception ex)
 			{
-				var efd = GetFlogDetail("", ex);
-				Flogger.WriteError(efd);
+				var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 			}
 
-			fd = GetFlogDetail("stopping  Asset\\AssetCheckInOutReport Show", null);
-			Flogger.WriteDiagnostic(fd);
+			fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 			// ends
 			tracker.Stop();
 
-			int a = 30;
+		 
 
 		}
 		protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,20 +107,10 @@ namespace UI.Asset
             }
             catch { }
 
+
+
         }
 
-		private FlogDetail GetFlogDetail(string message, Exception ex)
-		{
-			return new FlogDetail
-			{
-				Product = "ERP",
-				Location = "Asset",
-				Layer = "AssetCheckInOutReport\\Show",
-				UserName = Environment.UserName,
-				Hostname = Environment.MachineName,
-				Message = message,
-				Exception = ex
-			};
-		}
+		
 	}
 }

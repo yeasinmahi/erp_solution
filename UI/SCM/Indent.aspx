@@ -97,8 +97,10 @@
 
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" /> 
        <asp:HiddenField ID="hdnDA" runat="server" />  
-       <div class="tabs_container">Indent Entry  From<hr/></div> 
-
+       <div class="tabs_container">Indent Entry  From :  Policy (Please create Indents between 1st to 3rd day of every month in case of Regular Items and for irregular Items  only on Saturday.)<hr/></div>
+        <table>
+            <td><asp:HyperLink runat="server" ForeColor="Red" ID="lblDet" Text="Policy (Please create Indents between 1st to 3rd day of every month in case of Regular Items and for irregular Items  only on Saturday.)"></asp:HyperLink></td>
+        </table>
        <table>
             <tr> 
             <td style="text-align:left;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
