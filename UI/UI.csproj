@@ -1152,6 +1152,7 @@
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
@@ -1392,6 +1393,7 @@
     <Content Include="VAT_Management\ProductionEntry.aspx" />
     <Content Include="VAT_Management\PurchaseEntry.aspx" />
     <Content Include="VAT_Management\TreasuryEntry.aspx" />
+    <Content Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\frmCustomerBridge.aspx" />
     <Content Include="Wastage\frmIssue.aspx" />
@@ -5875,6 +5877,13 @@
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.cs">
+      <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.designer.cs">
+      <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7806,6 +7815,13 @@
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransportYearlyCostDetaills.aspx.designer.cs">
       <DependentUpon>TransportYearlyCostDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx.cs">
+      <DependentUpon>VehicleRegistrationRenewalReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx.designer.cs">
+      <DependentUpon>VehicleRegistrationRenewalReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wastage\frmAdjustment.aspx.cs">
       <DependentUpon>frmAdjustment.aspx</DependentUpon>
