@@ -125,6 +125,7 @@
     <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
+    <Content Include="Accounts\Advice\SalesCollectonReport.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
     <Content Include="Accounts\Approval\IndentApproval_UI.aspx" />
     <Content Include="Accounts\Banking\BankChequeConfirm.aspx" />
@@ -1084,6 +1085,7 @@
     <Content Include="SAD\Logistic\VehicleWeightCustomize.aspx" />
     <Content Include="SAD\Order\AttachmentCheckingBySupervisor.aspx" />
     <Content Include="SAD\Order\AuditAttahmentChecking.aspx" />
+    <Content Include="SAD\Order\BillSubmitPendingToCustomer.aspx" />
     <Content Include="SAD\Order\Challan.aspx" />
     <Content Include="SAD\Order\ChallanCancel.aspx" />
     <Content Include="SAD\Order\ChallanList.aspx" />
@@ -1444,6 +1446,13 @@
     </Compile>
     <Compile Include="Accounts\Advice\PaymentAdvice.aspx.designer.cs">
       <DependentUpon>PaymentAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.designer.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Advice\VoucherPrint.aspx.cs">
       <DependentUpon>VoucherPrint.aspx</DependentUpon>
@@ -5399,6 +5408,13 @@
     </Compile>
     <Compile Include="SAD\Order\AuditAttahmentChecking.aspx.designer.cs">
       <DependentUpon>AuditAttahmentChecking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.cs">
+      <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.designer.cs">
+      <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\Challan.aspx.cs">
       <DependentUpon>Challan.aspx</DependentUpon>
