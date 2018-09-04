@@ -14,7 +14,8 @@ namespace UI.SCM
     {
         PoGenerate_BLL objPo = new PoGenerate_BLL();
         DataTable dt = new DataTable();
-        int intWH, type, enroll; int ? intID, intNewType;
+        int intWH, type, enroll;
+        int ? intID, intNewType;
         DateTime fDate, tDate;
 
        
@@ -55,9 +56,12 @@ namespace UI.SCM
 
                 if(type==4 || type==5)
                 {
-                    dt = objPo.PoRegisterViewData(fDate, tDate, dept, intWH, 1, null, intNewType);
+                    dt = objPo.PoRegisterDataList(fDate, tDate, dept, intWH, 1, null, intNewType);
                 }
-                else { dt = objPo.PoRegisterViewData(fDate, tDate, dept, intWH, type, null, null); }
+                else
+                {
+                    dt = objPo.PoRegisterDataList(fDate, tDate, dept, intWH, type, null, null);
+                }
               
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();

@@ -60,115 +60,104 @@
         </table>
             <table>
                  <tr>
-                    <asp:GridView ID="GVList" runat="server" AutoGenerateColumns="false" DataKeyNames="intSupplierID" OnRowEditing="GVList_RowEditing" OnRowUpdating="GVList_RowUpdating" OnRowCancelingEdit="GVList_RowCancelingEdit">
+                    <asp:GridView ID="GVList" runat="server" AutoGenerateColumns="False"  Font-Size="11px" DataKeyNames="intSupplierID" OnRowEditing="GVList_RowEditing" OnRowUpdating="GVList_RowUpdating" OnRowCancelingEdit="GVList_RowCancelingEdit" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
                             <asp:TemplateField HeaderText="SL" SortExpression="SL">
                                 <ItemTemplate>
                                     <asp:Label ID="lblsl" runat="server" Text='<%# Bind("SL") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Unit" SortExpression="strUnit">
                                 <ItemTemplate>
                                     <asp:Label ID="lblunit" runat="server" Text='<%# Bind("strUnit") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Supplier ID" SortExpression="intSupplierID">
                                 <ItemTemplate>
                                     <asp:Label ID="lblintSupplierID" runat="server" Text='<%# Bind("intSupplierID") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrSupplierName" runat="server" Text='<%# Bind("strSupplierName") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>
-                           <%-- <asp:TemplateField HeaderText="Item ID" SortExpression="intItemID">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblintItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Supplier ID1" SortExpression="intSupplierID1">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblintSupplierID1" runat="server" Text='<%# Bind("intSupplierID1") %>'></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>--%>
+                                <ItemStyle HorizontalAlign="left" />
+                            </asp:TemplateField>                          
                             <asp:TemplateField HeaderText="Org Address" SortExpression="strOrgAddress">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrOrgAddress" runat="server" Text='<%# Bind("strOrgAddress") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Org Mail" SortExpression="strOrgMail">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrOrgMail" runat="server" Text='<%# Bind("strOrgMail") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left"/>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Org. Contact No" SortExpression="strOrgContactNo">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrOrgContactNo" runat="server" Text='<%# Bind("strOrgContactNo") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Org FAX No" SortExpression="strOrgFAXNo">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrOrgFAXNo" runat="server" Text='<%# Bind("strOrgFAXNo") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Bank Account No" SortExpression="strBankAccountNo">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrBankAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Business Type" SortExpression="strBusinessType">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrBusinessType" runat="server" Text='<%# Bind("strBusinessType") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Service Type" SortExpression="strServiceType">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrServiceType" runat="server" Text='<%# Bind("strServiceType") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Supplier Type" SortExpression="strSupplierType">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrSupplierType" runat="server" Text='<%# Bind("strSupplierType") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="BIN" SortExpression="strBIN">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrBIN" runat="server" Text='<%# Bind("strBIN") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="TIN" SortExpression="strTIN">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrTIN" runat="server" Text='<%# Bind("strTIN") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="VAT Reg No" SortExpression="strVATRegNo">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrVATRegNo" runat="server" Text='<%# Bind("strVATRegNo") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Trade Lisence No" SortExpression="strTradeLisenceNo">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrTradeLisenceNo" runat="server" Text='<%# Bind("strTradeLisenceNo") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Contact Name" SortExpression="strReprName">
                                 <EditItemTemplate>
@@ -177,7 +166,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrReprName" runat="server" Text='<%# Bind("strReprName") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Contact No" SortExpression="strReprContactNo">
                                 <EditItemTemplate>
@@ -186,16 +175,27 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrReprContactNo" runat="server" Text='<%# Bind("strReprContactNo") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Pay To Name" SortExpression="strPayToName">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrPayToName" runat="server" Text='<%# Bind("strPayToName") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
-                            <asp:CommandField ShowEditButton="true" />
+                            <asp:CommandField ShowEditButton="true" >
+                            <ControlStyle ForeColor="#0033CC" />
+                            <ItemStyle ForeColor="#0033CC" />
+                            </asp:CommandField>
                         </Columns>
+                        <FooterStyle BackColor="#CCCCCC" />
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#808080" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
                 </tr>
             </table>
