@@ -1310,6 +1310,7 @@
     <Content Include="SCM\SupplierBlackListEntry.aspx" />
     <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
+    <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
@@ -6970,6 +6971,13 @@
     </Compile>
     <Compile Include="SCM\SupplierManeger.aspx.designer.cs">
       <DependentUpon>SupplierManeger.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierListUpdate.aspx.cs">
+      <DependentUpon>SupplierListUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierListUpdate.aspx.designer.cs">
+      <DependentUpon>SupplierListUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SupplierStatementReport.aspx.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>

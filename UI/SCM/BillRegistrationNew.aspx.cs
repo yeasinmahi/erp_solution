@@ -30,11 +30,11 @@ namespace UI.SCM
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-                ///filePathForXML = Server.MapPath("~/SCM/Data/MilkMRR_" + hdnEnroll.Value + ".xml");
+               
 
                 if (!IsPostBack)
                 {
-                    //File.Delete(filePathForXML);
+                  
                     GetDDLList();
                     TrueFasle();
 
@@ -56,10 +56,7 @@ namespace UI.SCM
                 ddlBillingUnit.DataBind();
 
                 dt = objBillReg.GetAllUnit();
-                //ddlEmployeeUnit.DataTextField = "strUnit";
-                //ddlEmployeeUnit.DataValueField = "intUnitID";
-                //ddlEmployeeUnit.DataSource = dt;
-                //ddlEmployeeUnit.DataBind();
+               
             }
             catch { }
         }
@@ -117,25 +114,19 @@ namespace UI.SCM
             {
                 intUnitid = int.Parse(ddlBillingUnit.SelectedValue.ToString());
                 HttpContext.Current.Session["Unitid"] = ddlBillingUnit.SelectedValue.ToString();
-               // txtCOALedger.Text = "";
             }
             catch { }
         }
 
         protected void ddlPartyType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Md. Al-Amin
+           
 
             try
             {
                 intUnitid = int.Parse(ddlBillingUnit.SelectedValue.ToString());
                 strPType = ddlPartyType.SelectedItem.ToString();
 
-                //lblEmployeeUnit.Enabled = false;
-                //ddlEmployeeUnit.Enabled = false;
-                //lblSearch.Enabled = false;
-                //txtSearch.Enabled = false;
-                //btnSearch.Enabled = false;
                 txtPOAmount.Enabled = false;
                 txtPartyName.Text = "";
                 txtEmplyeeName.Text = "";
@@ -156,12 +147,7 @@ namespace UI.SCM
                     txtOtherPartyName.Visible = false;
                     txtCommonText.Visible = false;
                     txtPOAmount.Enabled = false;
-                    //lblEmployeeUnit.Enabled = true;
-                    //ddlEmployeeUnit.Enabled = true;
-                    //lblSearch.Enabled = true;
-                    //txtSearch.Enabled = true;
-                    //btnSearch.Enabled = true;
-                    txtLBalance.Text = "";
+                   
                 }
                 else if (strPType == "Others")
                 {
@@ -182,17 +168,6 @@ namespace UI.SCM
             catch { }
         }
 
-        protected void ckbAdvance_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ckbAdvance.Checked == true) {
-                txtBillNo.Text = "Advance";
-               // txtAdjAmount.Text = "0";
-                txtBillDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); }
-            else
-            {
-                txtBillNo.Text = "";
-            }
-        }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -203,7 +178,7 @@ namespace UI.SCM
                 if (dt.Rows.Count > 0)
                 {
                     txtEmplyeeName.Text = dt.Rows[0]["EmpName"].ToString();
-                   // ddlEmployeeUnit.SelectedValue = dt.Rows[0]["intUnitID"].ToString();
+                  
                 }
                 else
                 {
@@ -213,39 +188,7 @@ namespace UI.SCM
             catch { }
         }
 
-        protected void ddlEmployeeUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ddlPartyType.SelectedItem.ToString() == "Employee")
-                {
-                    //dtAllEmpList = obj.GetAllEmpListUnitWise(intUnitid);
-                    //cmbPartyName.DataSource = dtAllEmpList;
-                    //cmbPartyName.DisplayMember = "strEmployeeName";
-                    //cmbPartyName.ValueMember = "intEmployeeID";
-                }
-                else if (ddlPartyType.SelectedItem.ToString() == "Supplier")
-                {
-                    //cmbPartyName.DataSource = null;
-                    //dt = obj.GetSupplierList(intUnitid);
-                    //cmbPartyName.DataSource = dt;
-                    //cmbPartyName.DisplayMember = "strSupplierName";
-                    //cmbPartyName.ValueMember = "intSupplierID";
-                    //cmbEmployeeUnit.DataSource = null;
-                }
-                else if (ddlPartyType.SelectedItem.ToString() == "Other")
-                {
-                    //cmbPartyName.DataSource = null;
-                    //dt = obj.GetOtherParty();
-                    //cmbPartyName.DataSource = dt;
-                    //cmbPartyName.DisplayMember = "strOtherParty";
-                    //cmbPartyName.ValueMember = "intID";
-                    //cmbEmployeeUnit.DataSource = null;
-                }
-               // txtSearch.Text = "";
-            }
-            catch { }
-        }
+       
         private void TrueFasle()
         {
             string strRefName = ddlRefference.SelectedItem.ToString();
@@ -256,16 +199,11 @@ namespace UI.SCM
                 ddlPartyType.Enabled = false;
                 txtPartyName.Enabled = false;
                 btnGo.Enabled = true;
-                ckbAdvance.Enabled = false;
                 txtPOAmount.Enabled = false;
-                txtLBalance.Enabled = false;
                 txtAdvance.Enabled = false;
                 lblPOAmount.Enabled = false;
-                lblLBalance.Enabled = false;
                 lblAdvance.Enabled = false;
                 txtPOAmount.Enabled = false;
-                //txtCOALedger.Enabled = false;
-                //lblCOALedger.Enabled = false;
             }
             else
             {
@@ -273,27 +211,16 @@ namespace UI.SCM
                 ddlPartyType.Enabled = true;
                 txtPartyName.Enabled = true;
                 btnGo.Enabled = false;
-                ckbAdvance.Enabled = false;
                 txtPOAmount.Enabled = false;
-                txtLBalance.Enabled = false;
                 txtAdvance.Enabled = false;
                 lblPOAmount.Enabled = false;
-                lblLBalance.Enabled = false;
                 lblAdvance.Enabled = false;
-                //txtCOALedger.Enabled = true;
-                //lblCOALedger.Enabled = true;
             }
 
-            ckbAdvance.Checked = false;
+          
             txtPreAdvance.Enabled = false;
-           // ddlEmployeeUnit.Enabled = false;
-           // txtRemarks.Text = "";
             txtPOAmount.Text = "";
-           // txtAdjAmount.Text = "";
             txtAdvance.Text = "";
-            txtAmount.Text = "";
-            txtBillNo.Text = "";
-            txtLBalance.Text = "";
             txtReffNo.Text = "";
         }
 
@@ -353,42 +280,23 @@ namespace UI.SCM
                     intCOAID = int.Parse(dt.Rows[0]["intCOAID"].ToString());
                 }
 
-                if (intCOAID != 0)
-                {
-                    dt = new DataTable();
-                    dt = objBillReg.GetLadgerBalance(intCOAID);
-                    if (dt.Rows.Count > 0)
-                    {
-                        txtLBalance.Text = dt.Rows[0]["monLedgerBalance"].ToString();
-                    }
-                }
-                else { txtLBalance.Text = "0"; }
+                //if (intCOAID != 0)
+                //{
+                //    dt = new DataTable();
+                //    dt = objBillReg.GetLadgerBalance(intCOAID);
+                //    if (dt.Rows.Count > 0)
+                //    {
+                //        //txtLBalance.Text = dt.Rows[0]["monLedgerBalance"].ToString();
+                //    }
+                //}
+                //else { //txtLBalance.Text = "0"; 
+                //}
 
                 dt = objBillReg.GetChallanByPOID(intPOID);
                 dgvChallan.DataSource = dt;
                 dgvChallan.DataBind();
 
-                //////decimal sumTotalAmount = 0;
-
-                //////for (int i = 0; i < dgvChallanInfoByPO.Rows.Count; ++i)
-                //////{
-                //////    sumTotalAmount += Convert.ToDecimal(dgvChallanInfoByPO.Rows[i].Cells[2].Value);
-                //////}
-
-                //////txtAmount.Text = decimal.Round(sumTotalAmount, 2).ToString();
-                //////if (sumTotalAmount == 0)
-                //////{
-                //////    txtAmount.Text = "";
-                //////}
-
-                //if (ddlRefference.SelectedItem.ToString() == "PO")
-                //{
-                //    txtCOALedger.Enabled = false;
-                //}
-                //else
-                //{
-                //    txtCOALedger.Enabled = true;
-                //}
+             
             }
             catch { }
 
@@ -449,21 +357,9 @@ namespace UI.SCM
         #region ===== Item Add & Load Grid Action ===========================================================
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            //itemid = ddlItem.SelectedValue.ToString();
-            //itemname = ddlItem.SelectedItem.ToString();
-            //uom = txtUOM.Text;
-            //qty = txtQty.Text;
-            //rate = txtRate.Text;
-            //value = txtValue.Text;
-            //remarks = txtRemarks.Text;
-
+          
             CreateAddXml(challan, mrrid, amount);
 
-            //txtUOM.Text = "";
-            //txtQty.Text = "";
-            //txtRate.Text = "";
-            //txtValue.Text = "";
-            //txtRemarks.Text = "";
         }
         private void CreateAddXml(string challan, string mrrid, string amount)
         {
@@ -497,7 +393,11 @@ namespace UI.SCM
                 xmlString = "<SOItem>" + xmlString + "</SOItem>";
                 StringReader sr = new StringReader(xmlString);
                 DataSet ds = new DataSet(); ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0) { dgvChallan.DataSource = ds; } else { dgvChallan.DataSource = ""; }
+                if (ds.Tables[0].Rows.Count > 0) {
+                    dgvChallan.DataSource = ds;
+                } else {
+                    dgvChallan.DataSource = "";
+                }
                 dgvChallan.DataBind();
             }
             catch { dgvChallan.DataSource = ""; dgvChallan.DataBind(); }
