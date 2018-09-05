@@ -1150,10 +1150,12 @@
     <Content Include="SAD\Sales\Data\PrintSVforAccounts.aspx" />
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
+    <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
@@ -5866,6 +5868,13 @@
     <Compile Include="SAD\Sales\DOEntry2.aspx.designer.cs">
       <DependentUpon>DOEntry2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.cs">
+      <DependentUpon>BrandStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
+      <DependentUpon>BrandStockReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\DO2Print.aspx.cs">
       <DependentUpon>DO2Print.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5893,6 +5902,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
+      <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.designer.cs">
+      <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.cs">
       <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
