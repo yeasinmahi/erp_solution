@@ -165,6 +165,7 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
     <Content Include="Accounts\Voucher\ContraVoucher.aspx" />
@@ -1796,6 +1797,13 @@
     </Compile>
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\SubledgerDetalis.aspx.cs">
+      <DependentUpon>SubledgerDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\SubledgerDetalis.aspx.designer.cs">
+      <DependentUpon>SubledgerDetalis.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\TrialBalance.aspx.cs">
       <DependentUpon>TrialBalance.aspx</DependentUpon>

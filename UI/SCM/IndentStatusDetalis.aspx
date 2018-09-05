@@ -24,10 +24,7 @@
  <script>
      function Print() {
               document.getElementById("btnDownload").hidden = true;
-         document.getElementById("btnprint").style.display = "none"; window.print(); self.close();
-    
-
-
+         document.getElementById("btnprint").style.display = "none"; window.print(); self.close();    
      }
     </script> 
     
@@ -103,9 +100,7 @@
                 <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strPurpose" >
                 <ItemTemplate><asp:Label ID="lblRemarks" runat="server"   Text='<%# Bind("strPurpose") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
-
-                
-
+                 
             </Columns>
             <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />  
