@@ -23,7 +23,11 @@
    <script src="../Content/JS/html2canvas.min.js"></script>
  <script>
      function Print() {
+              document.getElementById("btnDownload").hidden = true;
          document.getElementById("btnprint").style.display = "none"; window.print(); self.close();
+    
+
+
      }
     </script> 
     
@@ -62,6 +66,8 @@
                      <td><asp:Label ID="Label4" runat="server" Text="Indent Type:"></asp:Label><asp:Label ID="lblType" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
                      <td><asp:Label ID="Label6" runat="server" Text="Indent Date:"></asp:Label><asp:Label ID="lbldteIndent" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
                      <td><asp:Label ID="Label2" runat="server" Text="Due Date:"></asp:Label><asp:Label ID="lbldteDue" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
+                   <td><asp:Button ID="btnDownload" runat="server" Text="Excel"  OnClick="btnDownload_Click"/> </td>
+        
                  </tr> 
               </table>
            

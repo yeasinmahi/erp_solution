@@ -191,8 +191,8 @@
                       <td style="text-align:left; " class="auto-style2">Bill To</td>
                   </tr>
                   <tr>
-                      <td style="text-align:left"><asp:Label ID="lblSuppliyers" runat="server"></asp:Label></td>                     
-                      <td style="text-align:left"><asp:Label ID="lblShipTo" Width="200px" runat="server"></asp:Label></td>
+                      <td style="text-align:left; font: bold"><asp:Label ID="lblSuppliyers"  runat="server"></asp:Label></td>                     
+                      <td style="text-align:left; font: bold"><asp:Label ID="lblShipTo" Width="200px" runat="server"></asp:Label></td>
                       <td style="text-align:left" class="auto-style2"><asp:Label ID="lblBillTo"  Width="250px" runat="server"></asp:Label></td>
                       
                   </tr>
@@ -301,8 +301,8 @@
                       <td style="text-align:left;border: 1px solid black">Payment days after MRR (days)</td>
                       <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
                       <td></td><td></td>
-                      <td style="text-align:right;border: 1px solid black">Grand Total:</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblGrandTotal" runat="server" Width="100px"></asp:Label></td>
+                      <td style="text-align:right;border: 1px solid black; font: bold">Grand Total:</td>
+                      <td style="text-align:left;border: 1px solid black; font: bold"><asp:Label ID="lblGrandTotal" runat="server" Width="100px"></asp:Label></td>
                   </tr>
                   <tr>
                       <td style="text-align:left;border: 1px solid black">No of Installment</td>
@@ -337,6 +337,9 @@
                  </tr>
                  <tr>
                       <td><asp:Label ID="lblApprovedBy" Font-Bold="true" runat="server"></asp:Label></td> 
+                 </tr>
+                    <tr>
+                      <td><asp:Label ID="Label2" Font-Bold="true" Text="For your any query please call our Toll Free Number : 08000016609  " runat="server"></asp:Label></td> 
                  </tr>
               </table> 
     </div> 
