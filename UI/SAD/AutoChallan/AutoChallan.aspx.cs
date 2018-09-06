@@ -22,17 +22,23 @@ using Microsoft.Reporting.WebForms;
 using UI.ClassFiles;
 using SAD_BLL.AutoChallanBll;
 using System.Text.RegularExpressions;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.AutoChallan
 {
     public partial class AutoChallan : BasePage
     {
+        SeriLog log = new SeriLog();
         DataTable dtShipingPoint = new DataTable();
         challanandPending Report = new challanandPending();
         DataTable dtSalesOfficeid = new DataTable();
         DataTable dtPendingReport = new DataTable();
         DataTable dtSlipReport = new DataTable();
+        string location = "SAD";
+        string start = "starting SAD\\AutoChallan\\AutoChallan";
+        string stop = "stopping SAD\\AutoChallan\\AutoChallan";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -147,38 +153,58 @@ namespace UI.SAD.AutoChallan
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-         
-            if (txtFrom.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select date !');", true);
-            }
-            else
-            {
 
-                int shippointid = int.Parse(ddlShip.SelectedValue.ToString());
-                int salesofficeid = int.Parse(ddlSo.SelectedValue.ToString());
-                string depotname = Convert.ToString(Session["depotnames"].ToString());
-                int Reportnumber = int.Parse(hdnReport.Value);
-                if (Reportnumber == 1)
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\AutoChallan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (txtFrom.Text == "")
                 {
-
-                    dtPendingReport = Report.getPendingReport(depotname, shippointid);
-                    GridView1.DataSource = dtPendingReport;
-                    GridView1.DataBind();
-                    GridView1.Visible = true;
-                    GridView2.Visible = false;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select date !');", true);
                 }
                 else
                 {
-                    dtSlipReport = Report.getSlipReport(shippointid);
-                    GridView2.DataSource = dtSlipReport;
-                    GridView2.DataBind();
-                    GridView2.Visible = true;
-                    GridView1.Visible = false;
+
+                    int shippointid = int.Parse(ddlShip.SelectedValue.ToString());
+                    int salesofficeid = int.Parse(ddlSo.SelectedValue.ToString());
+                    string depotname = Convert.ToString(Session["depotnames"].ToString());
+                    int Reportnumber = int.Parse(hdnReport.Value);
+                    if (Reportnumber == 1)
+                    {
+
+                        dtPendingReport = Report.getPendingReport(depotname, shippointid);
+                        GridView1.DataSource = dtPendingReport;
+                        GridView1.DataBind();
+                        GridView1.Visible = true;
+                        GridView2.Visible = false;
+                    }
+                    else
+                    {
+                        dtSlipReport = Report.getSlipReport(shippointid);
+                        GridView2.DataSource = dtSlipReport;
+                        GridView2.DataBind();
+                        GridView2.Visible = true;
+                        GridView1.Visible = false;
 
 
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
         protected double Pendingtotal = 0; protected double TotalQtytotal = 0;

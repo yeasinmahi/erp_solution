@@ -103,7 +103,11 @@ namespace UI.VAT_Management
                 {
                     txtVAT.Text = (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(txtCreditqty.Text)).ToString();
                 }
-            
+            if(lblVat.Text.ToString()=="0")
+            {
+
+            }
+            txtNewVat.Text = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
         }
 
         private void getChallaninfo()
@@ -112,15 +116,12 @@ namespace UI.VAT_Management
             lblQty.Text= dt.Rows[0]["numQuantity"].ToString();
             lblVat.Text = dt.Rows[0]["monVAT"].ToString();
             lblSD.Text = dt.Rows[0]["monSD"].ToString();
-            decimal vat = decimal.Parse(dt.Rows[0]["numQuantity"].ToString());
+            decimal vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
             if(vat>1)
             {
-                vat = decimal.Parse(dt.Rows[0]["numQuantity"].ToString());
+                vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
             }
-            else
-            {
-                vat = 1;
-            }
+            
             decimal qty = decimal.Parse(dt.Rows[0]["numQuantity"].ToString());
             if (qty != 0)
             {
@@ -130,8 +131,14 @@ namespace UI.VAT_Management
             {
                 qty = 1;
             }
-
-            hdnperVat.Value=(vat / qty).ToString();
+            if (vat == 0)
+            {
+                hdnperVat.Value = 0.ToString();
+            }
+            else
+            {
+                hdnperVat.Value = (vat / decimal.Parse(lblQty.Text)).ToString();
+            }
 
         }
 
@@ -158,13 +165,14 @@ namespace UI.VAT_Management
             MaterialName = (ddlMaterialList.SelectedItem.ToString());
             strChallanNo = ddlChallanNo.SelectedValue.ToString();
             Pname= ddlChallanNo.SelectedItem.ToString();
+            txtNewVat.Text= (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
             string values = "0";
             string qty = txtCreditqty.Text;
             string sdnew = "0";
             string vatnew =(decimal.Parse(txtCreditqty.Text)*decimal.Parse(hdnperVat.Value)).ToString();
             
 
-            CreateVoucherXml(intitemid.ToString(), MaterialName,qty, values,sdnew,vatnew);
+            CreateVoucherXml(intitemid.ToString(), MaterialName,qty, values,sdnew, txtNewVat.Text);
             txtCreditqty.Text = "";
             txtSD.Text = "";
             txtVAT.Text = "";
