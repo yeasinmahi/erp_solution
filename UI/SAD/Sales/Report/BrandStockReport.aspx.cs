@@ -16,7 +16,7 @@ namespace UI.SAD.Sales.Report
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Ruhul/Binti/Binti/Brand%20Stock%20Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Ruhul/Binti/Brand%20Stock%20Report?rs:Embed=true');", true);
         }
     }
 }
