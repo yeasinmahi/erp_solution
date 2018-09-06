@@ -400,6 +400,17 @@ namespace SCM_BLL
             return adp.GetPartyWiseBill(fDate,tDate,strParty, poId);
         }
 
+        public DataTable GetUnitList()
+        {
+            TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+            return adp.UnitList();
+        }
+        public DataTable GetSupplierData(int intType,int intUnitId, string strSupType,string PersonName, string ContactNo,int SupplierId)
+        {
+            sprSupplierReportTableAdapter adp = new sprSupplierReportTableAdapter();
+            return adp.GetSupplierDataList(intType,intUnitId, strSupType,PersonName,ContactNo,SupplierId);
+        }
+
 
         
 

@@ -123,5 +123,26 @@ namespace UI.SCM
             catch { }
            
         }
+
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(dgvIndent.Rows.Count>0)
+                {
+                    dgvIndent.AllowPaging = false;
+                    SAD_BLL.Customer.Report.ExportClass.Export("Indent.xls", dgvIndent);
+                }
+                else if(dgvStatement.Rows.Count > 0)
+                {
+                    dgvStatement.AllowPaging = false;
+                    SAD_BLL.Customer.Report.ExportClass.Export("Indent.xls", dgvStatement);
+                }
+               
+            }
+            catch { } 
+
+        }
     }
 }

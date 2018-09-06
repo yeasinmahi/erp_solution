@@ -67,5 +67,20 @@ namespace UI.SCM
             else
             { }
         }
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 
+                
+                    dgvIndentsDetalis.AllowPaging = false;
+                    SAD_BLL.Customer.Report.ExportClass.Export("indents.xls", dgvIndentsDetalis);
+                 
+
+            }
+            catch { }
+
+        }
     }
 }
