@@ -112,5 +112,31 @@ namespace SCM_BLL
             }
 
         }
+
+
+        public DataTable GetWearHouse()
+        {
+            TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+            return adp.GetWHList();
+        }
+
+        public DataTable GetFGList(int intunitid)
+        {
+            TblItemTableAdapter adp = new TblItemTableAdapter();
+            return adp.GetFGData(intunitid);
+        }
+        public DataTable GetSadUOMList(int intunit)
+        {
+            TblUOMTableAdapter adp = new TblUOMTableAdapter();
+            return adp.GetSadUOMData(intunit);
+        }
+
+
+
+
+
+
+
+
     }
 }

@@ -31,6 +31,24 @@
         function Print() {
             document.getElementById("btnprint").style.display = "none"; window.print(); self.close();
         }
+        function Validation() {          
+            var intitemid = document.getElementById("txtItemId").value;
+            var intitemname = document.getElementById("txtItem").value;
+            if (intitemname == null || intitemname == "") {
+                if (intitemid==null||intitemid == "") {
+                alert("Plz insert item id");
+                return false;
+            }
+            else {
+                return true;
+            }
+            }
+            else {
+                return true;
+                
+            }
+            
+        }
     </script>
 
     <style type="text/css">
@@ -42,6 +60,10 @@
             font-family: verdana;
             color: #000;
             padding: 5px 5px 5px 5px;
+        }
+       
+        .auto-style1 {
+            height: 22px;
         }
        
     </style>
@@ -65,10 +87,58 @@
     
     <tr><td colspan="4" style="text-align:center;"><asp:Label ID="lblUnitName" runat="server" Text="PREVIOUS RATES" CssClass="lbl" Font-Size="18px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>    
     <tr>
-        <td colspan="2" style="text-align:left;"><asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
+        <td colspan="2" style="text-align:left;" class="auto-style1"><asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
         <asp:Label ID="lblItemName" runat="server" Text="CHALLAN NO" CssClass="lbl" ForeColor="Blue"></asp:Label>
         </td>
+       <%-- <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>            
+            <td style="text-align:left;"  ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="200px"   ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
+            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender></td>
+        <td style="text-align:right;"><asp:Label ID="Label2" runat="server" Text="Item ID : "></asp:Label></td>
+        <td style="text-align:left;">
+            <asp:TextBox ID="txtItemId" runat="server"></asp:TextBox>
+            <asp:Button ID="btnShowItem" runat="server" Text="Show" OnClick="btnShowItem_Click" />
+        </td>--%>
+       <%--<td colspan="2" class="auto-style1"></td>
+        <td style="text-align:right;" class="auto-style1">
+            <asp:Label ID="Label1" runat="server" Text="WH : "></asp:Label></td>
+        <td style="text-align:left;" class="auto-style1"  >
+            <asp:DropDownList ID="ddlwh" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlwh_SelectedIndexChanged"></asp:DropDownList>
+            
+        </td>
+         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" Text="Item ID"></asp:Label></td>
+        <td style="text-align:left;">
+            <asp:TextBox ID="txtItemId" runat="server" CssClass="txtBox"></asp:TextBox></td>--%>
     </tr>
+        <tr>
+          
+        <td style="text-align:right;" >
+            <asp:Label ID="Label1" runat="server" Text="WH : "></asp:Label></td>
+        <td style="text-align:left;">
+            <asp:DropDownList ID="ddlwh" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlwh_SelectedIndexChanged"></asp:DropDownList>
+        </td>
+            <td style="text-align:right;" >
+            <asp:Label ID="Label2" runat="server" Text="Item ID : "></asp:Label></td>
+            <td style="text-align:left;">
+            <asp:TextBox ID="txtItemId" runat="server" CssClass="txtBox"></asp:TextBox></td>
+        </tr>
+        <tr>
+             <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List "></asp:Label></td>            
+            <td style="text-align:left;"  ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" AutoPostBack="true"  Width="300px" CssClass="txtBox"></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
+            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender></td>
+        
+        <td style="text-align:right;" colspan="2">
+            <%--<asp:TextBox ID="txtItemId" runat="server"></asp:TextBox>--%>
+            <asp:Button ID="btnShowItem" runat="server" Text="Show" OnClick="btnShowItem_Click" OnClientClick="return Validation();" />
+        </td>
+        </tr>
     
     <tr><td colspan="4" ><hr /></td></tr>
     <tr>
@@ -98,6 +168,47 @@
         <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
         <ItemTemplate><asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
+        </Columns>
+        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+        </asp:GridView>
+        </td>
+
+        <%-- shows when wh dropdown selected--%>
+        <td colspan="4" style="vertical-align:top">   
+        <asp:GridView ID="gvItemList" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+        CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
+        ShowFooter="false"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" >
+        <AlternatingRowStyle BackColor="#CCCCCC" />    
+        <Columns>
+        <asp:TemplateField HeaderText="PO ID" SortExpression="intPOID">
+        <ItemTemplate><asp:Label ID="lblPOID" runat="server" Text='<%# Bind("intPOID") %>' Width="80px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+        
+        
+
+        <asp:TemplateField HeaderText="PO Date" SortExpression="dtePODate">
+        <ItemTemplate><asp:Label ID="lblPODate" runat="server" Text='<%#Eval("dtePODate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Supplier ID" SortExpression="intSupplierID">
+        <ItemTemplate><asp:Label ID="lblsupID" runat="server" Text='<%# Bind("intSupplierID") %>' Width="80px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
+        <ItemTemplate><asp:Label ID="lblSupplier" runat="server" Text='<%# Bind("strSupplierName") %>' Width="250px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Rate" SortExpression="rate">
+        <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
+        <ItemTemplate><asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+          
 
         </Columns>
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
