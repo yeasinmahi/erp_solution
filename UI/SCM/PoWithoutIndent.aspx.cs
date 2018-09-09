@@ -38,6 +38,17 @@ namespace UI.SCM
             else
             { }
         }
+        #region=======================Auto Search=========================
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetSupplierSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untid"].ToString());
+        }
+
+
+        #endregion====================Close===============================
         #region==============PO Generate TAB-3 =============================
         protected void btnGeneratePO_Click(object sender, EventArgs e)
         {
@@ -49,7 +60,18 @@ namespace UI.SCM
                     try { File.Delete(filePathForXML); } catch { }
                     try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { }
                     try { unitid = int.Parse(hdnUnit.Value); } catch { }
-                    try { supplierId = int.Parse(ddlSupplier.SelectedValue); } catch { supplierId = 0; }
+                    try
+                    {
+                        arrayKey = txtSupplier.Text.Split(delimiterChars);
+                        string strSupp = ""; supplierId = 0;
+                        if (arrayKey.Length > 0)
+                        {
+                         strSupp = arrayKey[0].ToString();
+                         supplierId = int.Parse(arrayKey[1].ToString());
+                        }
+                    }
+                    catch { supplierId = 0; }
+                  
                     try { currencyId = int.Parse(ddlCurrency.SelectedValue); } catch { currencyId = 0; }
                     try { costId = int.Parse(ddlCostCenter.SelectedValue); } catch { }
                     try { payDate = ddlDtePay.SelectedValue.ToString(); } catch { payDate = "0"; }
@@ -72,7 +94,7 @@ namespace UI.SCM
                     othersTrems = txtOthersTerms.Text.ToString();
                     warrentyperiod = txtWarrenty.Text.ToString();
                     string strPoFor = ddlDepts.SelectedItem.ToString();
-
+                     
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     for (int index = 0; index < dgvIndentPrepare.Rows.Count; index++)
                     {
@@ -89,7 +111,7 @@ namespace UI.SCM
                         string monAIT = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtAIT")).Text.ToString();
                         string monTotal = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblTotalVal")).Text.ToString();
                         
-                        if (decimal.Parse(monRate) > 0)
+                        if (decimal.Parse(monRate) > 0 && supplierId>0)
                         {
 
                             CreateXmlPO( itemId, strItem, strUom, strDesc, numPoQty, monRate, monVat, monAIT, monTotal,
@@ -278,10 +300,10 @@ namespace UI.SCM
 
         protected void btnViewPO_Click(object sender, EventArgs e)
         {
-            if (txtPONo.Text != "")
+            if (txtPONo.Text.Length>2)
             {
-                Session["pono"] = txtPONo.Text;
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('../SCM/PoDetalisView.aspx');", true);
+                Session["pono"] = txtPONo.Text.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
             }
             else
             {
@@ -303,29 +325,34 @@ namespace UI.SCM
                 }
                 Session["untid"] = hdnUnit.Value.ToString();
 
-                dt = objPo.GetPoData(6, "", intWh, 0, DateTime.Now, enroll); // get Suppliyer Data
-                ddlSupplier.DataSource = dt;
-                ddlSupplier.DataTextField = "strName";
-                ddlSupplier.DataValueField = "Id";
-                ddlSupplier.DataBind();
+                
+
+                dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name                 
+                try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
+                
             }
             catch { }
         }
-
-        protected void ddlSuppliyer_SelectedIndexChanged(object sender, EventArgs e)
+        protected void txtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                int suppid = int.Parse(ddlSupplier.SelectedValue);
+                arrayKey = txtSupplier.Text.Split(delimiterChars);
+                string strSupp = ""; int supplierid = 0;
+                if (arrayKey.Length > 0)
+                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
 
-                dt = objPo.GetPoData(22, "", 0, suppid, DateTime.Now, enroll);
+                dt = objPo.GetPoData(22, "", 0, supplierid, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
                     lblSuppAddress.Text = dt.Rows[0]["strName"].ToString();
                 }
+
             }
             catch { }
+
         }
+        
         [WebMethod]
         [ScriptMethod]
         public static string[] GetPoItemSerach(string prefixText, int count)
@@ -520,12 +547,9 @@ namespace UI.SCM
                 ddlCurrency.DataTextField = "strName";
                 ddlCurrency.DataValueField = "Id";
                 ddlCurrency.DataBind();
+                try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
 
-                dt = objPo.GetPoData(6, "", intWh, 0, DateTime.Now, enroll); // get Suppliyer Data
-                ddlSupplier.DataSource = dt;
-                ddlSupplier.DataTextField = "strName";
-                ddlSupplier.DataValueField = "Id";
-                ddlSupplier.DataBind();
+               
 
                 dt = objPo.GetPoData(7, "", intWh, 0, DateTime.Now, enroll);// Pay Date
                 ddlDtePay.DataSource = dt;

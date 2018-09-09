@@ -144,11 +144,12 @@
     <tr>
         <td>Use Material:</td>
         <td><asp:TextBox ID="txtVAT" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
+        <td>Vat</td>
+        <td><asp:TextBox ID="txtNewVat" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
         <td> Remarks:</td>
-        <td><asp:TextBox ID="txtRemarks" CssClass="txtBox" TextMode="MultiLine"  MaxLength="10" runat="server"></asp:TextBox></td>
-        <td>&nbsp;</td>
-        <td><asp:Button ID="btnAdd" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnAdd_Click" Text="Add" /></td>  
+        <td><asp:TextBox ID="txtRemarks" CssClass="txtBox" TextMode="MultiLine"  MaxLength="10" runat="server"></asp:TextBox></td>  
     </tr>
+    <tr><td><asp:Button ID="btnAdd" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnAdd_Click" Text="Add" /></td></tr>
     </table>
     </td></tr>
     <tr><td>

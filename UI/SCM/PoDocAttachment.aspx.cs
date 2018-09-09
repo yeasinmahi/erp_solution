@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace UI.SCM
     public partial class PoDocAttachment : BasePage
     {
         DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
+        PoGenerate_BLL objPo = new PoGenerate_BLL(); Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
         int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -97,7 +98,15 @@ namespace UI.SCM
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
-            try {
+			var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
+
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Performance on SCM\\PoDocAttachment Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+
+			try {
                 
                 arrayKey = txtPoUser.Text.Split(delimiterChars);
                 string item = ""; string itemid = "";
@@ -127,12 +136,23 @@ namespace UI.SCM
                 dgvPO.DataSource = dt;
                 dgvPO.DataBind();
 
-                lblunit.Text ="Unit Name: "+ ddlUnit.SelectedItem.Text;
-                lblDate.Text ="Date: "+ txtdteFrom.Text + " to " + txtdteTo.Text;
+                
+                lblAddress.Text = "Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
+                lblDate.Text = "For The Month of " + txtdteFrom.Text + " To " + txtdteTo.Text;
+                lblunit.Text = "";
+                DataTable dts = new DataTable();
+                dts = obj.GetUnitAddress(unitID);
+                if (dts.Rows.Count > 0)
+                {
+                    Label lbluni = FindControl("lblunit") as Label;
+                    lbluni.Text= dts.Rows[0]["strDescription"].ToString();
+                    
+                }
+
             }
             catch { }
 
-        }
+		}
 
         protected void btnPoSuppShow_Click(object sender, EventArgs e)
         {
@@ -226,5 +246,19 @@ namespace UI.SCM
             catch { }
 
         }
-    }
+
+		private FlogDetail GetFlogDetail(string message, Exception ex)
+		{
+			return new FlogDetail
+			{
+				Product = "ERP",
+				Location = "SCM",
+				Layer = "BillForwardToBillingReport\\Show",
+				UserName = Environment.UserName,
+				Hostname = Environment.MachineName,
+				Message = message,
+				Exception = ex
+			};
+		}
+	}
 }

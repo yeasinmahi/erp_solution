@@ -45,7 +45,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
         {
 
             officeemail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
-            officeemail = "moshiur.accl@akij.net";
+            //officeemail = "moshiur.accl@akij.net";
             rptTypeid = int.Parse(ddlReportType.SelectedValue.ToString());
             deptid = int.Parse(hdnDepartment.Value);
             jobstation = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
@@ -71,6 +71,12 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
             {
                if (dt.Rows.Count > 0)
                 {
+                    grdvRetaillerCommission.DataSource = null;
+                    grdvRetaillerCommission.DataBind();
+                    grdvShopList.DataSource = null;
+                    grdvShopList.DataBind();
+                    grdvManpowerAchv.DataSource = null;
+                    grdvManpowerAchv.DataBind();
                     grdvACRDSales.DataSource = dt;
                     grdvACRDSales.DataBind();
 
@@ -107,8 +113,12 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
 
                 if (dt.Rows.Count > 0)
                 {
-                    grdvACRDSales.DataSource = null;
-                    grdvACRDSales.DataBind();
+                    grdvRetaillerCommission.DataSource = null;
+                    grdvRetaillerCommission.DataBind();
+                    grdvShopList.DataSource = null;
+                    grdvShopList.DataBind();
+                    grdvManpowerAchv.DataSource = null;
+                    grdvManpowerAchv.DataBind();
                     grdvShopList.DataSource = dt;
                     grdvShopList.DataBind();
 
@@ -131,6 +141,8 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                     grdvACRDSales.DataBind();
                     grdvShopList.DataSource = null;
                     grdvShopList.DataBind();
+                    grdvManpowerAchv.DataSource = null;
+                    grdvManpowerAchv.DataBind();
                     grdvRetaillerCommission.DataSource = dt;
                     grdvRetaillerCommission.DataBind();
 

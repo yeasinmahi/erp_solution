@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -42,7 +43,15 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            try
+			var fd = GetFlogDetail("starting SCM\\BillForwardToBillingRpt Show", null);
+
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Performance on SCM\\BillForwardToBillingRpt Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+
+			try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intWh = int.Parse(ddlWH.SelectedValue);
@@ -60,7 +69,33 @@ namespace UI.SCM
                 }
                
             }
-            catch { }
-        }
-    }
+            catch (Exception ex)
+			{
+				var efd = GetFlogDetail("", ex);
+				Flogger.WriteError(efd);
+			}
+
+			fd = GetFlogDetail("stopping SCM\\BillForwardToBillingRpt Show", null);
+			Flogger.WriteDiagnostic(fd);
+			// ends
+			tracker.Stop();
+
+			int a = 30;
+		}
+
+		private FlogDetail GetFlogDetail(string message, Exception ex)
+		{
+			return new FlogDetail
+			{
+				Product = "ERP",
+				Location = "SCM",
+				Layer = "BillForwardToBillingReport\\Show",
+				UserName = Environment.UserName,
+				Hostname = Environment.MachineName,
+				Message = message,
+				Exception = ex
+			};
+		}
+
+	}
 }

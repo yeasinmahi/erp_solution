@@ -18,24 +18,32 @@
     <script src="jquery-ui.min.js"></script>
    
     <script type="text/javascript">
-        function ConfirmforShow() {
-            var fdate = document.getElementById("txtFormDate").value;
-            var tdate = document.getElementById("txtToDate").value;
-            if (fdate == "" || fdate == null) {
-                alert("Insert From Date");
+//        function ConfirmforShow() {
+//            var fdate = document.getElementById("txtFormDate").value;
+//            var tdate = document.getElementById("txtToDate").value;
+//            if (fdate == "" || fdate == null) {
+//                alert("Insert From Date");
+//                return false;
+//            }
+//            else if (tdate == null || tdate == "") {
+//                alert("Insert To Date");
+//                return false;
+//            }
+//            else {
+//                return true;
+//            }
+//        }
+//        function Viewdetails(id) {
+//    window.open('RequisitionDetails.aspx?ID=' + id, '', "height=375, width=730, scrollbars=yes, left=250, top=200, resizable=no, title=Preview");
+//}
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
                 return false;
             }
-            else if (tdate == null || tdate == "") {
-                alert("Insert To Date");
-                return false;
-            }
-            else {
-                return true;
-            }
+            return true;
         }
-        function Viewdetails(id) {
-    window.open('RequisitionDetails.aspx?ID=' + id, '', "height=375, width=730, scrollbars=yes, left=250, top=200, resizable=no, title=Preview");
-}
     </script>
 </head>
 <body>
@@ -53,7 +61,8 @@
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-                <div class="tabs_container">Requisition Summary :<hr /></div>
+            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1500px; border:0px solid red;"></iframe>
+                <%--<div class="tabs_container">Requisition Summary :<hr /></div>
                 <table border="0"; style="width:Auto"; id="insertForm">
                     <tr><td><asp:HiddenField ID="hdnsearch" runat="server"/><asp:HiddenField ID="hdnpoint" runat="server" /><asp:HiddenField ID="hdnunit" runat="server" /></td><asp:HiddenField ID="hdnEnroll" runat="server"/>        
     </tr>
@@ -112,7 +121,7 @@
                             </asp:GridView>
                         </td>
                     </tr>
-                </table>
+                </table>--%>
 
 <%--=========================================End My Code From Here=================================================--%>
                

@@ -41,7 +41,10 @@
                 alert("Insert Amount");
                 return false;
             }
-            return true;
+            else {
+                 return true;
+            }
+           
         }
 
         function Confirmforadd() { 
@@ -85,13 +88,13 @@
                                 <asp:Label ID="Label1" runat="server" Text="Issue Date:" CssClass="lbl"></asp:Label></td>
                             <td>
                                     <asp:TextBox ID="txtFormDate" runat="server"></asp:TextBox>
-                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFormDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
+                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFormDate" Format="yyyy/MM/dd" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                                     <img id="imgCal_1" src="../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                                 </td>
                             <td style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Expire Date:"></asp:Label></td>
                             <td>
                                     <asp:TextBox ID="txtToDate" runat="server"></asp:TextBox>
-                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtToDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
+                                    <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtToDate" Format="yyyy/MM/dd" PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                                     <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                                 </td>
                         </tr>
@@ -156,7 +159,7 @@
                         </tr>
                         <tr>
                             <td colspan="6" style="text-align:right;">
-                                <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "ConfirmforShow()" Text="Show" CssClass="button" />
+                                <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" BackColor="#ffff99" OnClientClick = "return ConfirmforShow()" Text="Show" CssClass="button" />
                                 </td>
                         </tr>
                        
@@ -164,7 +167,7 @@
                     <table>
                          <tr>
                             <td>
-                                <asp:GridView ID="GVCustDetails" runat="server" AutoGenerateColumns="False" DataKeyNames="intCusID" DataSourceID="odsgv">
+                                <asp:GridView ID="GVCustDetails" runat="server" AutoGenerateColumns="False" DataKeyNames="intCusID">
                                     <Columns>
                                         <asp:BoundField DataField="strname" HeaderText="Customer Name" SortExpression="strname" />
                                         <asp:BoundField DataField="intCusID" HeaderText="Customer Id" InsertVisible="False" ReadOnly="True" SortExpression="intCusID" />
@@ -175,11 +178,11 @@
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                 </asp:GridView>
-                                <asp:ObjectDataSource ID="odsgv" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetCustomerInfo" TypeName="HR_DAL.TourPlan.CustomerBankGauranteeTableAdapters.TblCustomerInfoTableAdapter">
+                               <%-- <asp:ObjectDataSource ID="odsgv" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetCustomerInfo" TypeName="HR_DAL.TourPlan.CustomerBankGauranteeTableAdapters.TblCustomerInfoTableAdapter">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="DdlCustomerName" Name="intCustId" PropertyName="SelectedValue" Type="Int32" />
                                     </SelectParameters>
-                                </asp:ObjectDataSource>
+                                </asp:ObjectDataSource>--%>
                             </td>
 
                              <td>

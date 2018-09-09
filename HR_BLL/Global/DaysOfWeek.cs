@@ -172,6 +172,15 @@ namespace HR_BLL.Global
            
         }
 
-       
+        public DataTable CheckItemPolisy(int enroll, int item)
+        {
+            try
+            {
+                ItemPolisyDataTableTableAdapter adp = new ItemPolisyDataTableTableAdapter();
+                return adp.GetReqItemData(enroll, item); 
+
+            }
+            catch { return new DataTable(); }
+        }
     }    
 }

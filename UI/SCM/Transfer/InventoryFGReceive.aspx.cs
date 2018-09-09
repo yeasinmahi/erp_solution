@@ -31,7 +31,7 @@ namespace UI.SCM.Transfer
                 intWh = int.Parse(ddlWh.SelectedValue);
                 dt = objTransfer.GetTtransferDatas(9, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlProductId.DataSource = dt;
-                ddlProductId.DataTextField = "Id";
+                ddlProductId.DataTextField = "strName";
                 ddlProductId.DataValueField = "Id";
                 ddlProductId.DataBind();
                 ddlProductId.Items.Insert(0, new ListItem("Select", "0"));
@@ -155,7 +155,7 @@ namespace UI.SCM.Transfer
                 intWh = int.Parse(ddlWh.SelectedValue);
                 dt = objTransfer.GetTtransferDatas(9, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlProductId.DataSource = dt;
-                ddlProductId.DataTextField = "Id";
+                ddlProductId.DataTextField = "strName";
                 ddlProductId.DataValueField = "Id";
                 ddlProductId.DataBind();
                 ddlProductId.Items.Insert(0, new ListItem("Select", "0"));

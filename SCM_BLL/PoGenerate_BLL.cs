@@ -233,7 +233,7 @@ namespace SCM_BLL
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                    retStr[i] = tbl.Rows[i]["strSuppMasterName"] + " " + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strSuppMasterName"] + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
                 }
 
                 return retStr;
@@ -304,15 +304,26 @@ namespace SCM_BLL
             }
         }
 
-        public DataTable PoRegisterViewData(DateTime fDate  , DateTime tDate  ,string dept,int intWH  , int type  , int? intID  , int? intNewType)
+        //public DataTable PoRegisterViewData(DateTime fDate  , DateTime tDate  ,string dept,int intWH  , int type  , int? intID  , int? intNewType)
+        //{
+        //    try
+        //    {
+        //        SprPORegisterTableAdapter adpView = new SprPORegisterTableAdapter();
+        //        return adpView.GetPoRegisterData(fDate, tDate, dept, intWH, type, intID, intNewType);
+        //    }
+        //    catch { return new DataTable(); }
+           
+        //}
+
+        public DataTable PoRegisterDataList(DateTime fDate, DateTime tDate, string dept, int intWH, int type, int? intID, int? intNewType)
         {
             try
             {
-                SprPORegisterTableAdapter adpView = new SprPORegisterTableAdapter();
-                return adpView.GetPoRegisterData(fDate, tDate, dept, intWH, type, intID, intNewType);
+                sprPORegisterTableAdapter adpView = new sprPORegisterTableAdapter();
+                return adpView.GetPoRegDataList(fDate, tDate, dept, intWH, type, intID, intNewType);
             }
             catch { return new DataTable(); }
-           
+
         }
     }
 }

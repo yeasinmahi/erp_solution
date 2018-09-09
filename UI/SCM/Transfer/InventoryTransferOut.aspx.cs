@@ -84,32 +84,32 @@ namespace UI.SCM.Transfer
                 { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
-               
-                dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
+                
+                dt = objTransfer.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
 
-                    string strItems = dt.Rows[0]["strItem"].ToString();
-                    string intItem = dt.Rows[0]["intItem"].ToString();
-                    string strUom = dt.Rows[0]["strUom"].ToString();
-                    string intLocation = dt.Rows[0]["intLocation"].ToString();
-                    string strLocation = dt.Rows[0]["strLocation"].ToString();
-                    string monStock = dt.Rows[0]["monStock"].ToString();
-                    string monValues = dt.Rows[0]["monValue"].ToString();
-                    hdnStockQty.Value= dt.Rows[0]["monStock"].ToString();
-                    hdnUom.Value= dt.Rows[0]["strUom"].ToString();
-                    hdnValue.Value = dt.Rows[0]["monValue"].ToString();
-                    string detaliss = "  Stock: " + monStock + " " +strUom + " Id: " + intItem;
-                    lblDetalis.Text = detaliss;
-                    lblValue.Text = "Value: " + monValues.ToString();
+                    //string strItems = dt.Rows[0]["strItem"].ToString();
+                    //string intItem = dt.Rows[0]["intItem"].ToString();
+                    //string strUom = dt.Rows[0]["strUom"].ToString();
+                    //string intLocation = dt.Rows[0]["intLocation"].ToString();
+                    //string strLocation = dt.Rows[0]["strLocation"].ToString();
+                    //string monStock = dt.Rows[0]["monStock"].ToString();
+                    //string monValues = dt.Rows[0]["monValue"].ToString();
+                    //hdnStockQty.Value= dt.Rows[0]["monStock"].ToString();
+                    //hdnUom.Value= dt.Rows[0]["strUom"].ToString();
+                    //hdnValue.Value = dt.Rows[0]["monValue"].ToString();
+                    //string detaliss = "  Stock: " + monStock + " " +strUom + " Id: " + intItem;
+                    //lblDetalis.Text = detaliss;
+                    //lblValue.Text = "Value: " + monValues.ToString();
                     ddlLcation.DataSource = dt;
-                    ddlLcation.DataTextField = "strLocation";
-                    ddlLcation.DataValueField = "intLocation";
+                    ddlLcation.DataTextField = "strName";
+                    ddlLcation.DataValueField = "Id";
                     ddlLcation.DataBind();
                     ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
                     dt.Clear();
                 }
-                else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
+                //else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
             }
             catch { }
         }
@@ -282,6 +282,41 @@ namespace UI.SCM.Transfer
             catch { }
 
         }
+
+        protected void ddlLcation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
+                Id = int.Parse(itemid.ToString());
+                intWh = int.Parse(ddlWh.SelectedValue);
+                enroll = int.Parse(ddlLcation.SelectedValue);
+                dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    string strItems = dt.Rows[0]["strItem"].ToString();
+                    string intItem = dt.Rows[0]["intItem"].ToString();
+                    string strUom = dt.Rows[0]["strUom"].ToString();
+                    string intLocation = dt.Rows[0]["intLocation"].ToString();
+                    string strLocation = dt.Rows[0]["strLocation"].ToString();
+                    string monStock = dt.Rows[0]["monStock"].ToString();
+                    string monValues = dt.Rows[0]["monValue"].ToString();
+                    hdnStockQty.Value = dt.Rows[0]["monStock"].ToString();
+                    hdnUom.Value = dt.Rows[0]["strUom"].ToString();
+                    hdnValue.Value = dt.Rows[0]["monValue"].ToString();
+                    string detaliss = "  Stock: " + monStock + " " + strUom + " Id: " + intItem;
+                    lblDetalis.Text = detaliss;
+                    lblValue.Text = "Value: " + monValues.ToString();
+                    dt.Clear();
+                }
+                else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
+            }
+            catch { }
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
           

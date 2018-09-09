@@ -22,7 +22,7 @@ namespace UI.PaymentModule
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
 
-        int intUnitID, intCheck;
+        int intUnitID;
         DateTime dteFDate, dteTDate;
         string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
 
@@ -37,15 +37,33 @@ namespace UI.PaymentModule
                 hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                 if (!IsPostBack)
                 {
-                    dt = new DataTable();
-                    dt = objVoucher.GetUnitList(int.Parse(hdnEnroll.Value));
-                    if (dt.Rows.Count > 0)
+                    
+                    dt = new DataTable();                   
+                    dt = objVoucher.GetCount(int.Parse(hdnEnroll.Value));
+                    int count = int.Parse(dt.Rows[0]["intCount"].ToString());
+                    if (count == 1)
                     {
-                        ddlUnit.DataTextField = "strUnit";
-                        ddlUnit.DataValueField = "intUnitID";
-                        ddlUnit.DataSource = dt;
-                        ddlUnit.DataBind();
-                        ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
+                        dt = objVoucher.GetUnitListForAll();
+                        if (dt.Rows.Count > 0)
+                        {
+                            ddlUnit.DataTextField = "strUnit";
+                            ddlUnit.DataValueField = "intUnitID";
+                            ddlUnit.DataSource = dt;
+                            ddlUnit.DataBind();
+                            ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
+                        }
+                    }
+                    else if (count == 0)
+                    {
+                        dt = objVoucher.GetUnitList(int.Parse(hdnEnroll.Value));
+                        if (dt.Rows.Count > 0)
+                        {
+                            ddlUnit.DataTextField = "strUnit";
+                            ddlUnit.DataValueField = "intUnitID";
+                            ddlUnit.DataSource = dt;
+                            ddlUnit.DataBind();
+                            ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
+                        }
                     }
                 }
 
@@ -117,7 +135,20 @@ namespace UI.PaymentModule
             }
             catch { }
         }
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

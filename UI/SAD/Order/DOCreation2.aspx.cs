@@ -514,7 +514,7 @@ namespace UI.SAD.Order
             decimal tmonsuplv = 0; decimal tmoncusv = 0; decimal tmoncomp = 0;
 
             double totalprdctprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value))); double distaka = 0.00;
-            double discnttaka = Convert.ToDouble(distaka);
+            double discnttaka = Convert.ToDouble(discntamnt)* Convert.ToDouble(txtQun.Text);
 
             double calculteddiscount;
 
@@ -674,8 +674,9 @@ namespace UI.SAD.Order
             double ttmoncomp = Convert.ToDouble(tmoncomp);
             double ttmonsuplv = Convert.ToDouble(tmonsuplv);
             double ttmoncusv = Convert.ToDouble(tmoncusv);
+            double ttcalculteddiscount = Convert.ToDouble(calculteddiscount);
             actualprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value)));
-            actualprice = actualprice - (ttdamageamount + ttspecialamnt + ttsubsidyamnt + ttmoncusv + ttmonsuplv - ttmoncomp);
+            actualprice = actualprice - (ttdamageamount + ttspecialamnt + ttsubsidyamnt + ttmoncusv + ttmonsuplv+ ttcalculteddiscount - ttmoncomp);
             deccompareprice = actualprice;
             string actotal = actualprice.ToString();
             hdndiscount.Value = Convert.ToString(Convert.ToDouble(hdndiscount.Value));
@@ -686,7 +687,7 @@ namespace UI.SAD.Order
             {
 
                 actualprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value)));
-                actualprice = actualprice - calculteddiscount;
+                actualprice = actualprice - ttcalculteddiscount;
                 deccompareprice = actualprice;
             }
 

@@ -7,6 +7,7 @@ using System.Web.UI;
 using Purchase_BLL.Asset;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -16,8 +17,16 @@ namespace UI.Asset
         DataTable dt = new DataTable();int intEnroll;
         protected void Page_Load(object sender, EventArgs e)
         {
+			var fd = GetFlogDetail("starting Asset\\MaintenanceReport Page_Load", null);
 
-            if (!IsPostBack)
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Asset\\MaintenanceReport Page_Load", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+			//
+
+			if (!IsPostBack)
             {
                 intEnroll= int.Parse(Session[SessionParams.USER_ID].ToString());
                 dt = objReport.GetData(4, "", 0, 0, DateTime.Now, DateTime.Now, 0, intEnroll);
@@ -26,11 +35,26 @@ namespace UI.Asset
                 ddlJobStation.DataValueField = "Id";
                 ddlJobStation.DataBind();
             }
-        }
+
+			fd = GetFlogDetail("stopping Asset\\MaintenanceReport Page_Load", null);
+			Flogger.WriteDiagnostic(fd);
+			// ends
+			tracker.Stop();
+
+			int a = 30;
+		}
 
         protected void BtnShow_Click(object sender, EventArgs e)
         {
-            try
+			var fd = GetFlogDetail("starting SCM\\BillForwardToBillingRpt Show", null);
+
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Asset\\MaintenanceReport Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+
+			try
             {
                 DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
                 DateTime todate = DateTime.Parse(TxtdteTo.Text);
@@ -68,8 +92,20 @@ namespace UI.Asset
                 }
                
             }
-            catch { }
-        }
+			catch (Exception ex)
+			{
+				var efd = GetFlogDetail("", ex);
+				Flogger.WriteError(efd);
+			}
+
+			fd = GetFlogDetail("stopping Asset\\MaintenanceReport Show", null);
+			Flogger.WriteDiagnostic(fd);
+			// ends
+			tracker.Stop();
+
+			int a = 30;
+
+		}
         protected void BtnMDetalis_Click(object sender, EventArgs e)
         {
             try
@@ -82,8 +118,12 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ReportDetalis('AssetReportDetalis_UI.aspx');", true);
 
             }
-            catch { }
-        }
+			catch (Exception ex)
+			{
+				var efd = GetFlogDetail("", ex);
+				Flogger.WriteError(efd);
+			}
+		}
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -96,7 +136,25 @@ namespace UI.Asset
                 dgvServiceCost.DataSource = "";
                 dgvServiceCost.DataBind();
             }
-            catch { }
+            catch(Exception ex)
+			{
+				var efd = GetFlogDetail("", ex);
+				Flogger.WriteError(efd);
+			}
         }
-    }
+
+		private FlogDetail GetFlogDetail(string message, Exception ex)
+		{
+			return new FlogDetail
+			{
+				Product = "ERP",
+				Location = "Asset",
+				Layer = "MaintainenanceReport\\Show",
+				UserName = Environment.UserName,
+				Hostname = Environment.MachineName,
+				Message = message,
+				Exception = ex
+			};
+		}
+	}
 }

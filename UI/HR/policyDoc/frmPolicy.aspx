@@ -104,8 +104,7 @@
         BorderWidth="0px" CellPadding="1" OnRowDataBound="dgvRpt_RowDataBound" ForeColor="Black" GridLines="Vertical" ><AlternatingRowStyle BackColor="#CCCCCC" Font-Bold="true" />
         <Columns>
         <asp:TemplateField HeaderText="SL."><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField> 
-        <asp:BoundField DataField="strDocumentName" HeaderStyle-Width="350px"  HeaderText="Document Title" ItemStyle-HorizontalAlign="Center" SortExpression="Effected">
-        <ItemStyle HorizontalAlign="Left" Width="350px" /></asp:BoundField>
+      
         <asp:BoundField DataField="strDepartment" HeaderText="Department" ItemStyle-HorizontalAlign="Center" SortExpression="strAccountHolder">
         <ItemStyle HorizontalAlign="Left" Width="70px" /></asp:BoundField>
     

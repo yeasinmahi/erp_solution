@@ -46,7 +46,7 @@
 
     <form id="frmselfresign" runat="server"> 
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager> 
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server"> 
+    <%--<asp:UpdatePanel ID="UpdatePanel0" runat="server"> --%>
     <ContentTemplate> 
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%"> 
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;"> 
@@ -88,13 +88,14 @@
            <tr>
                <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Indent No: "></asp:Label></td>     
                <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
-                <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Status" OnClick="btnShow_Click" /></td><td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click"/> </td>
-           </tr>
+                <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
+               <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click"/> </td>
+                </tr>
 
         </table>
         <table>
            <tr><td> 
-            <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+            <asp:GridView ID="dgvIndent" ShowFooter="True"  runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
@@ -155,7 +156,7 @@
 
          <table>
            <tr><td> 
-            <asp:GridView ID="dgvStatement" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+            <asp:GridView ID="dgvStatement" ShowFooter="True"  runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
@@ -217,7 +218,7 @@
 <%--=========================================End My Code From Here=================================================--%>
 
     </ContentTemplate>
-    </asp:UpdatePanel>
+   <%-- </asp:UpdatePanel>--%>
     </form>
 </body>
 </html>

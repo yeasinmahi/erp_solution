@@ -65,14 +65,14 @@ namespace UI.SCM
                 txtPlant.Text = dt.Rows[0]["strPlantName"].ToString();
                 txtProcumentType.Text = dt.Rows[0]["strPurchaseType"].ToString();
 
-                if (dt.Rows[0]["strPurchaseType"].ToString() == "Import")
-                {
-                    txtHSCode.Attributes.Add("placeholder", "HS Code is mandatory for Import Items.");
-                }
-                else
-                {
-                    txtHSCode.Attributes.Add("placeholder", "");
-                }
+                //if (dt.Rows[0]["strPurchaseType"].ToString() == "Import")
+                //{
+                //    txtHSCode.Attributes.Add("placeholder", "HS Code is mandatory for Import Items.");
+                //}
+                //else
+                //{
+                //    txtHSCode.Attributes.Add("placeholder", "");
+                //}
             }
             catch { }
         }
@@ -98,11 +98,11 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
                     return;
                 }
-                if (txtProcumentType.Text == "Import")
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Must be fill HS Code for Import Items.....');", true);
-                    return;
-                }
+                //if (txtProcumentType.Text == "Import")
+                //{
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Must be fill HS Code for Import Items.....');", true);
+                //    return;
+                //}
 
                 dt = new DataTable();
                 dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,

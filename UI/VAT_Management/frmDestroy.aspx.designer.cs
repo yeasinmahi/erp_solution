@@ -328,6 +328,15 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.TextBox txtVAT;
         
         /// <summary>
+        /// txtNewVat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNewVat;
+        
+        /// <summary>
         /// txtRemarks control.
         /// </summary>
         /// <remarks>

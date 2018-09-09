@@ -221,7 +221,17 @@ namespace SCM_BLL
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        
+        public DataTable GetCount(int intEnroll)
+        {
+            SprGetUnitListForBillRegReportTableAdapter adp = new SprGetUnitListForBillRegReportTableAdapter();
+            return adp.GetCountData(intEnroll);
+        }
+        public DataTable GetUnitListForAll()
+        {
+            TblUnitTableAdapter adp = new TblUnitTableAdapter();
+            return adp.GetUnitForAll();
+        }
+
 
 
 

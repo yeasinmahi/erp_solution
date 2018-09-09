@@ -1,4 +1,6 @@
-﻿using Purchase_BLL.Asset;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using Purchase_BLL.Asset;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,13 +14,16 @@ namespace UI.Asset
 {
     public partial class AssetCheckInOutReport : BasePage
     {
-        AssetInOut objCheck = new AssetInOut();
+        AssetInOut objCheck = new AssetInOut();       
         DataTable dt = new DataTable();
-        int intResEnroll, intWHiD, intType, intActionBy; string assetCode, strNaration, stringXml;
+        SeriLog log = new SeriLog();
 
-        
+        int intResEnroll, intWHiD, intType, intActionBy; string assetCode, strNaration, stringXml; 
 
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        string location = "Asset";
+        string start = "starting Asset\\AssetCheckInOutReport";
+        string stop = "stopping Asset\\AssetCheckInOutReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -31,7 +36,13 @@ namespace UI.Asset
 
         protected void btnAssetStatus_Click(object sender, EventArgs e)
         {
-            try
+			var fd = log.GetFlogDetail(start, location, "Show", null);
+			Flogger.WriteDiagnostic(fd);
+
+			// starting performance tracker
+			var tracker = new PerfTracker("Performance on Asset\\AssetCheckInOutReport Show", "", fd.UserName, fd.Location,
+				fd.Product, fd.Layer);
+			try
             {
               
                 intType = int.Parse(ddlType.SelectedValue);
@@ -73,9 +84,21 @@ namespace UI.Asset
                 }
                
             }
-            catch { }
-        }
-        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+            catch (Exception ex)
+			{
+				var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+			}
+
+			fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+			// ends
+			tracker.Stop();
+
+		 
+
+		}
+		protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -84,6 +107,10 @@ namespace UI.Asset
             }
             catch { }
 
+
+
         }
-    }
+
+		
+	}
 }
