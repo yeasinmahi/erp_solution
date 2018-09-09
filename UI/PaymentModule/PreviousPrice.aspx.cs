@@ -47,7 +47,7 @@ namespace UI.PaymentModule
                 intItemID = int.Parse(Request.QueryString["Id"]);
                 hdnItemID.Value = intItemID.ToString();
                 ////Session["mrrid"] = intBillID.ToString();
-                if(Session["itemname"].ToString()=="")
+                if (Session["itemname"].ToString() == "")
                 {
                     lblItemName.Text = "";
                 }
@@ -55,7 +55,7 @@ namespace UI.PaymentModule
                 {
                     lblItemName.Text = Session["itemname"].ToString();
                 }
-                
+
 
                 dt = new DataTable();
                 dt = objBillApp.GetPriceListByItemID(intItemID);
