@@ -112,7 +112,7 @@ namespace UI.SCM
             int intSadStandardUOM = Convert.ToInt32(ddlSadUOM.SelectedItem.Value);
             int intInvUoM = Convert.ToInt32(ddlInvUOM.SelectedItem.Value);
             // objinventoryTransfer.CreateItemMasterList(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, strUoM, intEnroll);
-            CreateXml(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, strUoM, intEnroll);
+            CreateXml(strName, strDescription, strPartNo, strBrand, intClusterID.ToString(), intComGroupID.ToString(), intCategoryID.ToString(), strUoM, intEnroll.ToString());
              ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Items Added Successfully.');", true);
         }
 
@@ -167,7 +167,7 @@ namespace UI.SCM
 
            
         }
-        private void CreateXml(string strName, string strDescription, string strPartNo, string strBrand, int intClusterID, int intComGroupID, int intCategoryID, string strUoM, int intEnroll)
+        private void CreateXml(string strName, string strDescription, string strPartNo, string strBrand, string intClusterID, string intComGroupID, string intCategoryID, string strUoM, string intEnroll)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))

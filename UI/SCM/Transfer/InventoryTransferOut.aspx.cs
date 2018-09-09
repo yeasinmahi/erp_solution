@@ -85,7 +85,7 @@ namespace UI.SCM.Transfer
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
                 
-                dt = objTransfer.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, enroll);
+                dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
 
