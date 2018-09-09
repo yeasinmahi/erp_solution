@@ -184,13 +184,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnAddFg;
         
         /// <summary>
-        /// btnAddMasterItem control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMasterItem;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
         /// tbllist control.
