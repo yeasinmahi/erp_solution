@@ -22,7 +22,7 @@ namespace UI.PaymentModule
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
 
-        int intUnitID;
+        int intUnitID, intCheck;
         DateTime dteFDate, dteTDate;
         string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
 
@@ -37,7 +37,6 @@ namespace UI.PaymentModule
                 hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                 if (!IsPostBack)
                 {
-                    
                     dt = new DataTable();
                     dt = objVoucher.GetUnitList(int.Parse(hdnEnroll.Value));
                     if (dt.Rows.Count > 0)
@@ -118,20 +117,7 @@ namespace UI.PaymentModule
             }
             catch { }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 

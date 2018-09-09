@@ -29,22 +29,14 @@
         }
 
         function Print() {
-            document.getElementById("btnprint").style.display = "none"; window.print(); self.close();
+            document.getElementById("btnprint").style.display = "none";
+            var div = document.getElementById('dgvPriceList');
+            div.className = "GridWithPrint .pgr table header";
+            window.print(); self.close();
         }
     </script>
 
-    <style type="text/css">
-        .dynamicDivbn {
-            margin: 5px 5px 5px 5px;    width: Auto; 
-    	    height: auto;
-            background-color:#FFFFFF;
-            font-size: 11px;
-            font-family: verdana;
-            color: #000;
-            padding: 5px 5px 5px 5px;
-        }
-       
-    </style>
+    
 
 
 </head>
@@ -74,7 +66,7 @@
     <tr>
         <td colspan="4" style="vertical-align:top">   
         <asp:GridView ID="dgvPriceList" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
-        CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
+        CssClass="GridWithPrint" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
         ShowFooter="false"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
         FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" >
         <AlternatingRowStyle BackColor="#CCCCCC" />    
@@ -100,7 +92,7 @@
         </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
 
         </Columns>
-        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle CssClass="style3" />
         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
         </asp:GridView>
         </td>
