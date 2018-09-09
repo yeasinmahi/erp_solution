@@ -18,10 +18,12 @@
     <link href="../Content/CSS/Application.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
+
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
+    <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/CSS/morris.css" rel="stylesheet" />
     <script src="../Content/JS/raphael.min.js"></script>
     <script src="../Content/JS/morris.min.js"></script>
@@ -285,7 +287,7 @@
                 counter++;
             });
             counter = 0;
-            var area = new Morris.Area({
+            var line = new Morris.Line({
                 element: 'revenue-chart',
                 resize: true,
                 data: chartData,
@@ -293,15 +295,10 @@
                 ykeys: ['rate'],
                 labels: ['Rate'],
                 lineColors: ['#a0d0e0'],
-                hideHover: 'auto'
+                hideHover: false,
+                smooth : false  
             });
         });
-
-
-
-
-
-
     </script>
 </body>
 </html>
