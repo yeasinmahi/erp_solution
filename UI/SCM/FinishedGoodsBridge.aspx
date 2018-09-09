@@ -19,9 +19,17 @@
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <style>
+        .tblcls{
+            border:1px solid black;
+        }
+        
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <br />
+        <br />
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
@@ -49,52 +57,61 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="FG : "></asp:Label></td>
                             <td style="text-align: left;" colspan="3">
-                                <asp:DropDownList ID="ddlFG" CssClass="ddList" Width="400px" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlFG" CssClass="ddList" Width="400px" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlFG_SelectedIndexChanged"></asp:DropDownList></td>
                             <tr class="tblroweven">
                             <td style="text-align: right;">
                                 <asp:Label ID="lblSadUOM" runat="server" CssClass="lbl" Text="SadUOM : "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlSadUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlSadUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSadUOM_SelectedIndexChanged"></asp:DropDownList></td>
                             <td></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblInvUOM" runat="server" CssClass="lbl" Text="Inv.UOM : "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlInvUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
-                        <td>
+                                <asp:DropDownList ID="ddlInvUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlInvUOM_SelectedIndexChanged"></asp:DropDownList></td>
+                           <td>
+                               <asp:TextBox ID="txtCount" runat="server" Width="30px"></asp:TextBox>
+                               
+                           </td>
+                            <td>
+                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"/>
                                 <asp:Button ID="btnAddFg" runat="server" Text="Add FG" CssClass="btnButton" OnClick="btnAddFg_Click" /></td>
                              <td>
-                                 <asp:Button ID="btnAddMasterItem" runat="server" Text="Add Master Item" CssClass="btnButton" OnClick="btnAddMasterItem_Click" />
-                            </td>
+                                 <asp:Button ID="btnAddMasterItem" runat="server" Text="Add Master Item" CssClass="btnButton" OnClick="btnAddMasterItem_Click" /></td>
                              </tr>
-                            <%--<td style="text-align: right;">
-                                <asp:Label ID="lblSadUOM" runat="server" CssClass="lbl" Text="SadUOM : "></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlSadUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
-                            <td></td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblInvUOM" runat="server" CssClass="lbl" Text="Inv.UOM : "></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlInvUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
-                        --%></tr>                       
+                           </tr>                       
                     </table>
-                   <%-- <table>
-                         <tr class="tblroweven">
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblSadUOM" runat="server" CssClass="lbl" Text="SadUOM : "></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlSadUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
-                            <td></td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblInvUOM" runat="server" CssClass="lbl" Text="Inv.UOM : "></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlInvUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
-                        <td>
-                                <asp:Button ID="btnAddFg" runat="server" Text="Add FG" CssClass="btnButton" OnClick="btnAddFg_Click" /></td>
-                             <td colspan="2">
-                                 <asp:Button ID="btnAddMasterItem" runat="server" Text="Add Master Item" CssClass="btnButton" OnClick="btnAddMasterItem_Click" />
-                            </td>
-                             </tr>
-                    </table>--%>
+                    <div style="height:20px;"></div>
+                    <%--<asp:Panel ID="Panel1" runat="server">--%>
+                  <table ID="tbllist" style="border-collapse: collapse; table-layout: auto; border-spacing: 3px;" class="tblcls" runat="server">
+                      <tr>
+                          <th class="tblcls"><asp:Label ID="Label1" runat="server" Text="Item Base Name"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label3" runat="server" Text="Item Description" ></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label4" runat="server" Text="PART/MODEL/SERIAL"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label5" runat="server" Text="Brand"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label6" runat="server" Text="UOM"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label7" runat="server" Text="Cluster"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label8" runat="server" Text="Commodity"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label9" runat="server" Text="Category"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label10" runat="server" Text="Clus"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label11" runat="server" Text="Group"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label12" runat="server" Text="Cat"></asp:Label></th>
+                      </tr>
+                      <tr>
+                         <td class="tblcls"><asp:Label ID="lblitemBaseName" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblitemDescription" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblpart" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblbrand" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lbluom" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblcluster" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblcommodity" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblcategory" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblclus" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblgroup" runat="server" ></asp:Label></td>
+                          <td class="tblcls"><asp:Label ID="lblcat" runat="server" ></asp:Label></td>
+                          
+                      </tr>
+                  </table>
+                    <%--</asp:Panel>--%>
                 </div>
                  <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
