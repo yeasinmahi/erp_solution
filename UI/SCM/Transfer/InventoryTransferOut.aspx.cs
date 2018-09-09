@@ -293,11 +293,10 @@ namespace UI.SCM.Transfer
                 { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
-                enroll = int.Parse(ddlLcation.SelectedItem.Value);
+                enroll = int.Parse(ddlLcation.SelectedValue);
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
-
                     string strItems = dt.Rows[0]["strItem"].ToString();
                     string intItem = dt.Rows[0]["intItem"].ToString();
                     string strUom = dt.Rows[0]["strUom"].ToString();
