@@ -85,21 +85,47 @@ namespace UI.PaymentModule
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + hdnBillID.Value + "');", true);
         }
 
+        protected void txtItemId_TextChanged(object sender, EventArgs e)
+        {
+            txtItem.Text = "";
+        }
+
+        protected void txtItem_TextChanged(object sender, EventArgs e)
+        {
+            txtItemId.Text = "";
+        }
+
         protected void btnShowItem_Click(object sender, EventArgs e)
         {
 
-            DataTable dtt = new DataTable();           
-            if(txtItem.Text != "" && txtItemId.Text != "")
-            {                
-                itemid = Convert.ToInt32(txtItemId.Text);
-                dtt = objBillApp.GetPurchaseList(itemid);
-            }
-            else if(txtItemId.Text!="" && txtItem.Text == "")
-            {
-                itemid = Convert.ToInt32(txtItemId.Text);
-                dtt = objBillApp.GetPurchaseList(itemid);
-            }
-            else if(txtItem.Text != "" && txtItemId.Text == "")
+            DataTable dtt = new DataTable();
+            //if(txtItem.Text != "" && txtItemId.Text != "")
+            //{                
+            //    itemid = Convert.ToInt32(txtItemId.Text);
+            //    dtt = objBillApp.GetPurchaseList(itemid);
+            //}
+            //else if(txtItemId.Text!="" && txtItem.Text == "")
+            //{
+            //    itemid = Convert.ToInt32(txtItemId.Text);
+            //    dtt = objBillApp.GetPurchaseList(itemid);
+            //}
+            //else if(txtItem.Text != "" && txtItemId.Text == "")
+            //{
+            //    arrayKey = txtItem.Text.Split(delimiterChars);
+            //    if (arrayKey.Length > 0)
+            //    {
+            //        itemName = arrayKey[0].ToString();
+            //        itemid = Convert.ToInt32(arrayKey[1].ToString());
+            //        lblItemName.Text = itemName;
+            //    }
+            //    dtt = objBillApp.GetPurchaseList(itemid);
+            //}
+            //else
+            //{
+            //    itemid = Convert.ToInt32(txtItemId.Text);
+            //    dtt = objBillApp.GetPurchaseList(itemid);
+            //}
+            if (txtItem.Text != "" && txtItemId.Text == "")
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 if (arrayKey.Length > 0)
@@ -115,7 +141,7 @@ namespace UI.PaymentModule
                 itemid = Convert.ToInt32(txtItemId.Text);
                 dtt = objBillApp.GetPurchaseList(itemid);
             }
-            
+
             if (dtt.Rows.Count > 0)
             {
                 dgvPriceList.DataSource = dtt;
