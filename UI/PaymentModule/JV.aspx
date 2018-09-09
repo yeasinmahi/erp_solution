@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CashPay.aspx.cs" Inherits="UI.PaymentModule.CashPay" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="JV.aspx.cs" Inherits="UI.PaymentModule.JV" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>::. Cash Pay </title>
+    <title>::. Journal Voucher </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -28,7 +28,7 @@
 
     </head>
 <body>
-    <form id="frmCashPay" runat="server">        
+    <form id="frmJournalVoucher" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
@@ -40,7 +40,7 @@
     <asp:HiddenField ID="hdnInstrument" runat="server" /><asp:HiddenField ID="hdnBillType" runat="server" />
 
     <div class="divbody" style="padding-right:10px;">
-        <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="CASH PAY" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
+        <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="JOURNAL VOUCHER" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
         <table class="tbldecoration" style="width:auto; float:left;">            
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblRegNo" runat="server" Text="ENTRY CODE" CssClass="lbl"></asp:Label></td>
@@ -64,11 +64,15 @@
                 <td><asp:TextBox ID="txtPreAdvance" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>                
             </tr> 
             <tr><td colspan="5"><hr /></td></tr>
-            
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="DEBIT A/C"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+                <td></td>
+                <td><asp:RadioButton ID="rdoDr" runat="server" Checked="true" Text=" Dr    " OnCheckedChanged="rdoDr_CheckedChanged" AutoPostBack="true" />
+                <asp:RadioButton ID="rdoCr" runat="server" Text=" Cr" OnCheckedChanged="rdoCr_CheckedChanged"  AutoPostBack="true"  /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="A/C Head"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlDebitAc" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
+                <asp:DropDownList ID="ddlAccHeadJournal" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label10" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label8" runat="server" Text="Tk" CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td><asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1"></asp:TextBox></td>    
@@ -78,16 +82,15 @@
                 <td colspan="4"><asp:TextBox ID="txtNarration" runat="server" CssClass="txtBox1" Width="590px" Height="50px" TextMode="MultiLine"></asp:TextBox></td>
             </tr>
             <tr>
-                <td colspan="6" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnAdd" runat="server" class="myButton" Text="ADD" Height="30px" OnClick="btnAdd_Click"/></td>        
+                <td colspan="5" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnAdd" runat="server" class="myButton" Text="ADD" Height="30px" OnClick="btnAdd_Click"/></td>        
             </tr>
 
             <tr><td colspan="5"><hr /></td></tr>
-            <tr><td colspan="6">   
+            <tr><td colspan="5">   
                 <asp:GridView ID="dgvReportForPaymentV" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
                 CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
                 ShowFooter="true"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" 
-                FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvReportForPaymentV_RowDataBound" OnRowDeleting="dgvReportForPaymentV_RowDeleting">
+                FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvReportForPaymentV_RowDataBound" OnRowDeleting="dgvReportForPaymentV_RowDeleting">
                 <AlternatingRowStyle BackColor="#CCCCCC" />    
                 <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
@@ -127,10 +130,12 @@
                 </td>
             </tr> 
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label13" runat="server" CssClass="lbl" Text="PAY TO"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:TextBox ID="txtPayTo" runat="server" CssClass="txtBox1"></asp:TextBox></td>
+                <td style="text-align:right;"><asp:Label ID="lblFromDate" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>                
+                <td><asp:TextBox ID="txtVoucherDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+                <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtVoucherDate"></cc1:CalendarExtender></td> 
+            
                 <td style="text-align:right; "><asp:Label ID="Label14" runat="server" Text=""></asp:Label></td>
-                <td colspan="2" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnSaveCP" runat="server" class="myButton" OnClientClick = "ConfirmAll()" Height="30px" Text="SAVE CP" OnClick="btnSaveCP_Click"/></td>        
+                <td colspan="2" style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnSaveJV" runat="server" class="myButton" OnClientClick = "ConfirmAll()" Height="30px" Text="SAVE JV" OnClick="btnSaveJV_Click"/></td>        
             </tr>
 
         </table>

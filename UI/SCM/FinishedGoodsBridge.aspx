@@ -75,13 +75,12 @@
                             <td>
                                 <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"/>
                                 <asp:Button ID="btnAddFg" runat="server" Text="Add FG" CssClass="btnButton" OnClick="btnAddFg_Click" /></td>
-                             <td>
-                                 <asp:Button ID="btnAddMasterItem" runat="server" Text="Add Master Item" CssClass="btnButton" OnClick="btnAddMasterItem_Click" /></td>
+                            
                              </tr>
                            </tr>                       
                     </table>
                     <div style="height:20px;"></div>
-                    <%--<asp:Panel ID="Panel1" runat="server">--%>
+                    <asp:Panel ID="Panel1" runat="server">
                   <table ID="tbllist" style="border-collapse: collapse; table-layout: auto; border-spacing: 3px;" class="tblcls" runat="server">
                       <tr>
                           <th class="tblcls"><asp:Label ID="Label1" runat="server" Text="Item Base Name"></asp:Label></th>
@@ -110,8 +109,9 @@
                           <td class="tblcls"><asp:Label ID="lblcat" runat="server" ></asp:Label></td>
                           
                       </tr>
+                     
                   </table>
-                    <%--</asp:Panel>--%>
+                    </asp:Panel>
                 </div>
                  <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>

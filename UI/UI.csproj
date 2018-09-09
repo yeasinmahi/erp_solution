@@ -367,6 +367,7 @@
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
@@ -2970,6 +2971,13 @@
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\JV.aspx.cs">
+      <DependentUpon>JV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\JV.aspx.designer.cs">
+      <DependentUpon>JV.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MaterialCOABridge.aspx.cs">
       <DependentUpon>MaterialCOABridge.aspx</DependentUpon>

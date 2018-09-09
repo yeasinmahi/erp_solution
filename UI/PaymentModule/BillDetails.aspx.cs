@@ -36,16 +36,21 @@ namespace UI.PaymentModule
             {
                 hdnLevel.Value = "0";
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-                dt = new DataTable();
-                dt = objBillApp.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
-                if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
+
+                try
                 {
-                    hdnLevel.Value = "2";
+                    dt = new DataTable();
+                    dt = objBillApp.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
+                    if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
+                    {
+                        hdnLevel.Value = "2";
+                    }
+                    else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
+                    {
+                        hdnLevel.Value = "1";
+                    }
                 }
-                else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
-                {
-                    hdnLevel.Value = "1";
-                }
+                catch { }
                 
                 try
                 {
