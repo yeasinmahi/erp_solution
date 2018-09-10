@@ -1330,9 +1330,9 @@ namespace UI.ClassFiles
             signatureTable.Append("<td class=\"SignStyle2\" valign=\"bottom\">");
             signatureTable.Append("______________");
             signatureTable.Append("</td>");
-            signatureTable.Append("<td class=\"SignStyle2\" valign=\"bottom\">");
-            signatureTable.Append("____________________");
-            signatureTable.Append("</td>");
+            //signatureTable.Append("<td class=\"SignStyle2\" valign=\"bottom\">");
+            //signatureTable.Append("____________________");
+            //signatureTable.Append("</td>");
             signatureTable.Append("<td class=\"SignStyle\" valign=\"bottom\">");
             signatureTable.Append("_____________");
             //signatureTable.Append("&nbsp;");
@@ -1353,10 +1353,10 @@ namespace UI.ClassFiles
             signatureTable.Append("Authorised Signatory<br />");
             signatureTable.Append("Akij Group");
             signatureTable.Append("</td>");
-            signatureTable.Append("<td class=\"SignStyle2\" valign=\"top\">");
-            signatureTable.Append("Authorised Signatory<br>");
-            signatureTable.Append(" Akij Group");
-            signatureTable.Append("</td>");
+            //signatureTable.Append("<td class=\"SignStyle2\" valign=\"top\">");
+            //signatureTable.Append("Authorised Signatory<br>");
+            //signatureTable.Append(" Akij Group");
+            //signatureTable.Append("</td>");
             signatureTable.Append("<td class=\"SignStyle\" valign=\"top\">");
             signatureTable.Append("Payee");
             signatureTable.Append("</td>");

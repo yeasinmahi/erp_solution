@@ -14,12 +14,43 @@ namespace UI.SCM
     {
         PoGenerate_BLL objPo = new PoGenerate_BLL();
         DataTable dt = new DataTable();
-        int intWH, type, enroll; int ? intID, intNewType;
+        int intWH, type, enroll;
+        int intID=0;
+        int intNewType;
         DateTime fDate, tDate;
-
-       
-
+        string PoNo, MRRNo, BillNo;
         string dept;
+        //int indent = 0, po = 0, mrr = 0;
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            
+            intWH = int.Parse(ddlWH.SelectedValue);
+            fDate = DateTime.Parse(txtDteFrom.Text.ToString());
+            tDate = DateTime.Parse(txtdteTo.Text.ToString());
+            type = int.Parse(ddlType.SelectedValue);
+            dept = ddlDept.SelectedItem.ToString();
+            
+            if (txtIndent.Text != "")
+            {
+                intNewType = 1;
+                intID = Convert.ToInt32(txtIndent.Text);
+            }
+            else if(txtPO.Text != "")
+            {
+                intNewType = 2;
+                intID = int.Parse(txtPO.Text);
+            }
+            else if(txtMrr.Text != "")
+            {
+                intNewType = 3;
+                intID = int.Parse(txtMrr.Text);
+            }
+            dt = objPo.PoRegisterDataList(fDate, tDate, dept, 0, intNewType, intID, 1);
+            dgvStatement.DataSource = dt;
+            dgvStatement.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -55,9 +86,12 @@ namespace UI.SCM
 
                 if(type==4 || type==5)
                 {
-                    dt = objPo.PoRegisterViewData(fDate, tDate, dept, intWH, 1, null, intNewType);
+                    dt = objPo.PoRegisterDataList(fDate, tDate, dept, intWH, 1, null, intNewType);
                 }
-                else { dt = objPo.PoRegisterViewData(fDate, tDate, dept, intWH, type, null, null); }
+                else
+                {
+                    dt = objPo.PoRegisterDataList(fDate, tDate, dept, intWH, type, null, null);
+                }
               
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
@@ -65,5 +99,43 @@ namespace UI.SCM
             }
             catch { }
         }
+
+        protected void dgvStatement_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = dgvStatement.Rows[rowIndex];
+
+                PoNo = (row.FindControl("lblPoNos") as Label).Text;
+                MRRNo = (row.FindControl("lblMrrNo") as Label).Text;
+                BillNo = (row.FindControl("lblBillNo") as Label).Text;
+                if (e.CommandName == "ViewPo")
+                {
+                    //Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
+                    //Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + PoNo + "');", true);
+                }
+                else if (e.CommandName == "ViewMRR")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + MRRNo + "');", true);
+                }
+                else if (e.CommandName == "ViewBill")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + BillNo + "');", true);
+                }
+            }
+            catch { }
+        }
+
+
+
+
+
+
+
+
+
     }
 }

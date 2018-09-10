@@ -125,6 +125,7 @@
     <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
+    <Content Include="Accounts\Advice\SalesCollectonReport.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
     <Content Include="Accounts\Approval\IndentApproval_UI.aspx" />
     <Content Include="Accounts\Banking\BankChequeConfirm.aspx" />
@@ -164,6 +165,7 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
     <Content Include="Accounts\Voucher\ContraVoucher.aspx" />
@@ -248,6 +250,7 @@
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
+    <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
     <Content Include="Content\images\img\15.png" />
@@ -262,6 +265,8 @@
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="Content\JS\jsPDF.js" />
     <Content Include="Content\JS\jsPDF.min.js" />
+    <Content Include="Content\JS\morris.min.js" />
+    <Content Include="Content\JS\raphael.min.js" />
     <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
@@ -365,12 +370,14 @@
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
+    <Content Include="PaymentModule\PreviousPriceView.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
@@ -1084,6 +1091,7 @@
     <Content Include="SAD\Logistic\VehicleWeightCustomize.aspx" />
     <Content Include="SAD\Order\AttachmentCheckingBySupervisor.aspx" />
     <Content Include="SAD\Order\AuditAttahmentChecking.aspx" />
+    <Content Include="SAD\Order\BillSubmitPendingToCustomer.aspx" />
     <Content Include="SAD\Order\Challan.aspx" />
     <Content Include="SAD\Order\ChallanCancel.aspx" />
     <Content Include="SAD\Order\ChallanList.aspx" />
@@ -1148,10 +1156,13 @@
     <Content Include="SAD\Sales\Data\PrintSVforAccounts.aspx" />
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
+    <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
@@ -1258,6 +1269,7 @@
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
+    <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -1307,6 +1319,7 @@
     <Content Include="SCM\SupplierBlackListEntry.aspx" />
     <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
+    <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
@@ -1392,6 +1405,7 @@
     <Content Include="VAT_Management\ProductionEntry.aspx" />
     <Content Include="VAT_Management\PurchaseEntry.aspx" />
     <Content Include="VAT_Management\TreasuryEntry.aspx" />
+    <Content Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\frmCustomerBridge.aspx" />
     <Content Include="Wastage\frmIssue.aspx" />
@@ -1442,6 +1456,13 @@
     </Compile>
     <Compile Include="Accounts\Advice\PaymentAdvice.aspx.designer.cs">
       <DependentUpon>PaymentAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\SalesCollectonReport.aspx.designer.cs">
+      <DependentUpon>SalesCollectonReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Advice\VoucherPrint.aspx.cs">
       <DependentUpon>VoucherPrint.aspx</DependentUpon>
@@ -1782,6 +1803,13 @@
     </Compile>
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\SubledgerDetalis.aspx.cs">
+      <DependentUpon>SubledgerDetalis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\SubledgerDetalis.aspx.designer.cs">
+      <DependentUpon>SubledgerDetalis.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\TrialBalance.aspx.cs">
       <DependentUpon>TrialBalance.aspx</DependentUpon>
@@ -2948,6 +2976,13 @@
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\JV.aspx.cs">
+      <DependentUpon>JV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\JV.aspx.designer.cs">
+      <DependentUpon>JV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\MaterialCOABridge.aspx.cs">
       <DependentUpon>MaterialCOABridge.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2989,6 +3024,13 @@
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.designer.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PreviousPriceView.aspx.cs">
+      <DependentUpon>PreviousPriceView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PreviousPriceView.aspx.designer.cs">
+      <DependentUpon>PreviousPriceView.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.cs">
       <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
@@ -5398,6 +5440,13 @@
     <Compile Include="SAD\Order\AuditAttahmentChecking.aspx.designer.cs">
       <DependentUpon>AuditAttahmentChecking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.cs">
+      <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.designer.cs">
+      <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\Challan.aspx.cs">
       <DependentUpon>Challan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5847,6 +5896,13 @@
     <Compile Include="SAD\Sales\DOEntry2.aspx.designer.cs">
       <DependentUpon>DOEntry2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.cs">
+      <DependentUpon>BrandStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
+      <DependentUpon>BrandStockReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\DO2Print.aspx.cs">
       <DependentUpon>DO2Print.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5874,6 +5930,20 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
+      <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.designer.cs">
+      <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.cs">
+      <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.designer.cs">
+      <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>
@@ -6617,6 +6687,13 @@
     <Compile Include="SCM\DeliveryReturn.aspx.designer.cs">
       <DependentUpon>DeliveryReturn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\FinishedGoodsBridge.aspx.cs">
+      <DependentUpon>FinishedGoodsBridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\FinishedGoodsBridge.aspx.designer.cs">
+      <DependentUpon>FinishedGoodsBridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6945,6 +7022,13 @@
     </Compile>
     <Compile Include="SCM\SupplierManeger.aspx.designer.cs">
       <DependentUpon>SupplierManeger.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierListUpdate.aspx.cs">
+      <DependentUpon>SupplierListUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierListUpdate.aspx.designer.cs">
+      <DependentUpon>SupplierListUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SupplierStatementReport.aspx.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
@@ -7807,6 +7891,13 @@
     <Compile Include="Vehicle_Registration_Renewal\TransportYearlyCostDetaills.aspx.designer.cs">
       <DependentUpon>TransportYearlyCostDetaills.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx.cs">
+      <DependentUpon>VehicleRegistrationRenewalReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx.designer.cs">
+      <DependentUpon>VehicleRegistrationRenewalReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Wastage\frmAdjustment.aspx.cs">
       <DependentUpon>frmAdjustment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7993,6 +8084,7 @@
     <Content Include="Asset\Barcode.ashx" />
     <Content Include="packages.config" />
     <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\pubiis8.pubxml" />
     <Content Include="Vehicle_Registration_Renewal\BRTAProfile_Update_UI.aspx" />

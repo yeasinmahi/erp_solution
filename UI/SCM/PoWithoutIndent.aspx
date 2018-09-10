@@ -28,8 +28,8 @@
 
      <script type="text/javascript">
          function PoGenerateCheck () {
-             var e = document.getElementById("ddlSupplier");
-             var suppId = e.options[e.selectedIndex].value;
+
+             var suppId = document.getElementById('txtSupplier')
             
              var e = document.getElementById("ddlWHPrepare");
              var whId = e.options[e.selectedIndex].value;
@@ -286,6 +286,13 @@
          });
          //*** txtAIT Selection Change End ****************************************************************************
 </script>
+    <script>
+        function Registration(url) {
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
+            if (window.focus) { newwindow.focus() }
+        }
+    </script>
+    </script>
 
     
     
@@ -344,7 +351,7 @@
                       
                       <tr>
                           <td style="text-align:right;"> <asp:Label ID="Label27" runat="server" CssClass="lbl" Text="PO No.:"></asp:Label> </td>                          
-                          <td style="text-align:left;"> <asp:TextBox ID="txtPONo" runat="server" Text="" AutoPostBack="false"  CssClass="txtBox" Font-Bold="False"> </asp:TextBox> </td>
+                          <td style="text-align:left;"> <asp:TextBox ID="txtPONo" runat="server"  AutoPostBack="false"  CssClass="txtBox" Font-Bold="False"> </asp:TextBox> </td>
 
                           <td><asp:Button ID="btnViewPO" BackColor="#0099ff" style=" background-color:#FFCC99; border-radius:1px; "  runat="server" Text="View PO" OnClick="btnViewPO_Click"  /></td>
                       </tr>
@@ -370,13 +377,22 @@
                               <asp:DropDownList ID="ddlWHPrepare" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlWHPrepare_SelectedIndexChanged">
                               </asp:DropDownList>
                           </td>
-                          <td style="text-align:right;">
+                         <%-- <td style="text-align:right;">
                               <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier"></asp:Label>
                           </td>
                           <td style="text-align:left;">
                               <asp:DropDownList ID="ddlSupplier" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlSuppliyer_SelectedIndexChanged">
                               </asp:DropDownList>
+                          </td>--%>
+                           <td style="text-align:right;">
+                              <asp:Label ID="Label28" runat="server" CssClass="lbl" Text="Supplier"></asp:Label>
                           </td>
+                          <td style="text-align:left;"><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search" CssClass="txtBox" AutoPostBack="true" Width="200px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
+                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
+                        ServiceMethod="GetSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                        </cc1:AutoCompleteExtender></td>
                           <td style="text-align:right;">
                               <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Transport"></asp:Label>
                           </td>

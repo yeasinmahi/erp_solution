@@ -35,6 +35,27 @@
         .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
         width:100%; height: 100%;    margin-left: 70px;  margin-top:00px; margin-right:00px; padding: 15px; overflow-y:scroll; }
         </style>
+    <script>
+        function ViewBillDetailsPopup(Id) {
+             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+         }
+
+        function Confirm() {
+            var fromdate = document.getElementById("txtDteFrom").value;
+            var todate = document.getElementById("txtdteTo").value;
+            if (fromdate == null || fromdate == "") {
+                alert("Insert From Date");
+                return false;
+            }
+            else if (todate == null || todate == "") {
+                alert("Insert To Date");
+                return false;
+            }
+             else {
+                 return true;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -68,14 +89,14 @@
             </asp:DropDownList></td>                                                                                      
 
             <td style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Indent: "></asp:Label></td>     
-            <td><asp:TextBox ID="txtIndent" runat="server" idth="100px"   CssClass="txtBox" ></asp:TextBox></td> 
+            <td><asp:TextBox ID="txtIndent" runat="server"  CssClass="txtBox" ></asp:TextBox></td> 
             
             <td style="text-align:right;"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="PO: "></asp:Label></td>     
-            <td><asp:TextBox ID="txtPO" runat="server" idth="100px"   CssClass="txtBox"></asp:TextBox></td> 
+            <td><asp:TextBox ID="txtPO" runat="server"    CssClass="txtBox"></asp:TextBox></td> 
            
-            <td style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Mrr: "></asp:Label></td>     
-            <td><asp:TextBox ID="txtMrr" runat="server" idth="100px"   CssClass="txtBox"></asp:TextBox></td> 
-            <td style="text-align:right"> <td style="text-align:left"><asp:Button ID="btnSearch" runat="server" Text="Search"  /> </td>
+            <td style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl" runat="server" Text="MRR: "></asp:Label></td>     
+            <td><asp:TextBox ID="txtMrr" runat="server"   CssClass="txtBox"></asp:TextBox></td> 
+            <td style="text-align:right"> <td style="text-align:left"><asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" OnClientClick="return Confirm()"  /> </td>
 
            </tr>
 
@@ -96,20 +117,117 @@
            
             <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>            
             <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom" runat="server" Width="100px"   CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
+            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
             </cc1:CalendarExtender> </td>
 
             <td style="text-align:right;"><asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>            
             <td style="text-align:left;"  ><asp:TextBox ID="txtdteTo" runat="server" Width="100px"   CssClass="txtBox"></asp:TextBox>
-            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
+            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
             </cc1:CalendarExtender> </td> 
             <td style="text-align:right"> <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"   /> </td>
             </tr>
            </table>
            
-        
-
          <table>
+           <tr><td> 
+            <asp:GridView ID="dgvStatement" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnRowCommand="dgvStatement_RowCommand"  > 
+            <AlternatingRowStyle BackColor="#CCCCCC" /> 
+            <Columns>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+ 
+            <asp:TemplateField HeaderText="UNIT" SortExpression="unit"><ItemTemplate>
+            <asp:Label ID="lblUnit" runat="server" Width="60px" Text='<%# Bind("unit") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" /></asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Location"   ItemStyle-HorizontalAlign="right" SortExpression="dwhteSrDate" >
+            <ItemTemplate><asp:Label ID="lblLocation" Width="85px" runat="server"  Text='<%# Bind("wh") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
+                
+            <asp:TemplateField HeaderText="IndentNo"   ItemStyle-HorizontalAlign="right" SortExpression="indent" >
+            <ItemTemplate><asp:Label ID="lblIndentNo" runat="server"  Text='<%# Bind("indent") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+            
+            <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="indDate" >
+            <ItemTemplate><asp:Label ID="lblIndentDate" runat="server" Width="60px"  Text='<%# Bind("indDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+
+            <asp:TemplateField HeaderText="Approve Date" ItemStyle-HorizontalAlign="right" SortExpression="appDate" >
+            <ItemTemplate><asp:Label ID="lblInApproveDate" runat="server" Width="60px"   Text='<%# Bind("appDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="Due date" ItemStyle-HorizontalAlign="right" SortExpression="dueDate" >
+            <ItemTemplate><asp:Label ID="lblDueDate" runat="server" Width="60px" Text='<%# Bind("dueDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+           
+            <asp:TemplateField HeaderText="PO NO"  ItemStyle-HorizontalAlign="right" SortExpression="po" >
+            <ItemTemplate><asp:Label ID="lblPoNos" runat="server"  Text='<%# Bind("po") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="PO Date"   ItemStyle-HorizontalAlign="right" SortExpression="poDate" >
+            <ItemTemplate><asp:Label ID="lblPoDate" runat="server" Width="60px"  Text='<%# Bind("poDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="PO Value"   ItemStyle-HorizontalAlign="right" SortExpression="POValue" >
+            <ItemTemplate><asp:Label ID="lblPoValue" runat="server" Width="60px"  Text='<%# Bind("POValue") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="MRR NO"   ItemStyle-HorizontalAlign="right" SortExpression="mrr" >
+            <ItemTemplate><asp:Label ID="lblMrrNo" runat="server" Width="52px"  Text='<%# Bind("mrr") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+
+            <asp:TemplateField HeaderText="MRR Date" ItemStyle-HorizontalAlign="right" SortExpression="mrrDate" >
+            <ItemTemplate><asp:Label ID="lblMrrDate" runat="server" Width="60px"  Text='<%# Bind("mrrDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="JV" ItemStyle-HorizontalAlign="right" SortExpression="Jv" >
+            <ItemTemplate><asp:Label ID="lblJV" runat="server" Width="100px" DataFormatString="{0:0.00}" Text='<%# Bind("Jv") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+           
+            <asp:TemplateField HeaderText="Supplier" ItemStyle-HorizontalAlign="right" SortExpression="sup" >
+            <ItemTemplate><asp:Label ID="lblSupplier" runat="server" Width="100px" Text='<%# Bind("sup") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="PO Prepare By" ItemStyle-HorizontalAlign="right" SortExpression="emp" HeaderStyle-width="80px">
+            <ItemTemplate><asp:Label ID="lblPoPrepareBy" runat="server" Width="120px" Text='<%# Bind("emp") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="Registration No"   ItemStyle-HorizontalAlign="right" SortExpression="RegNo" >
+            <ItemTemplate><asp:Label ID="lblRegNo" runat="server"  Text='<%# Bind("RegNo") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Bill No"   ItemStyle-HorizontalAlign="right" SortExpression="billno" >
+            <ItemTemplate><asp:Label ID="lblBillNo" runat="server"  Text='<%# Bind("billno") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Pay Date" ItemStyle-HorizontalAlign="right" SortExpression="paydate" >
+            <ItemTemplate><asp:Label ID="lblPayDate" runat="server" Width="60px"  Text='<%# Bind("paydate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Pay Amount"   ItemStyle-HorizontalAlign="right" SortExpression="PayAmount" >
+            <ItemTemplate><asp:Label ID="lblPayAmount" runat="server"  Text='<%# Bind("PayAmount") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <%--<asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowPoNo" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="ViewPo"  
+            Text="Po No"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowMRRNo" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="ViewMRR"  
+            Text="MRR No"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowBillNo" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="ViewBill"  
+            Text="Bill No"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>
+            </Columns>
+                <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+
+            </asp:GridView></td> 
+        </tr> 
+           
+        </table>
+
+        <%-- <table>
            <tr><td> 
             <asp:GridView ID="dgvStatement" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
@@ -175,7 +293,7 @@
             </asp:GridView></td> 
         </tr> 
            
-        </table>
+        </table>--%>
         </div> 
         </div> 
 <%--=========================================End My Code From Here=================================================--%>

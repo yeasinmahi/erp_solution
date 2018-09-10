@@ -24,8 +24,10 @@ namespace UI.PaymentModule
 
         int intDept, intType;
         string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
+        decimal monTotalAdvance;
+        int intCountPVoucher;
         #endregion ====================================================================================
-                
+
         protected void Page_Load(object sender, EventArgs e)
         {   
             try
@@ -167,7 +169,32 @@ namespace UI.PaymentModule
                 else if (e.CommandName == "CP")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucherCP('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
+                }
+                else if (e.CommandName == "JV")
+                {
+                    /*
+                    Billing_BLL objBillApp = new Billing_BLL();
+                    DataTable dtt = new DataTable();
+                    dtt = objBillApp.GetBillInfoForBPVoucher(int.Parse(billid));
+                    if (dtt.Rows.Count > 0)
+                    {                        
+                        monTotalAdvance = Math.Round(decimal.Parse(dtt.Rows[0]["monAdvanceTotal"].ToString()), 2);
+                        intCountPVoucher = int.Parse(dtt.Rows[0]["intCountPVoucher"].ToString());                        
+                    }
 
+                    if (intCountPVoucher == 0)
+                    {
+                        if (monTotalAdvance == 0)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('JV Not Possible.');", true); return;
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('JV Not Possible.');", true); return;
+                    }
+                    */
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucherJV('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
                 }
                 else if (e.CommandName == "View")
                 {
