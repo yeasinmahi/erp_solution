@@ -1,18 +1,11 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
-using System.IO;
-using System.Xml;
 using Purchase_BLL.Asset;
 
 namespace UI.PaymentModule
@@ -46,7 +39,7 @@ namespace UI.PaymentModule
                 intItemID = int.Parse(Request.QueryString["Id"]);
                 //hdnItemID.Value = intItemID.ToString();
                 ////Session["mrrid"] = intBillID.ToString();
-                if(Session["itemname"].ToString()=="")
+                if (Session["itemname"].ToString() == "")
                 {
                     lblItemName.Text = "";
                 }
@@ -54,7 +47,7 @@ namespace UI.PaymentModule
                 {
                     lblItemName.Text = Session["itemname"].ToString();
                 }
-                
+
 
                 dt = new DataTable();
                 dt = objBillApp.GetPriceListByItemID(intItemID);
