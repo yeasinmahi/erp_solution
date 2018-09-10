@@ -1,5 +1,6 @@
 ﻿
 
+using Flogging.Core;
 using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
@@ -83,6 +84,8 @@ namespace UI.SCM
         #region========================Action==================================
         protected void btnReq_Click(object sender, EventArgs e)
         {
+            
+
             try
             {
 
@@ -118,6 +121,21 @@ namespace UI.SCM
 
 
         }
+
+        private FlogDetail GetFlogDetail(string message, Exception ex, string layer)
+        {
+            return new FlogDetail
+            {
+                Product = "ERP",
+                Location = "SCM",
+                Layer = layer,
+                UserName = Environment.UserName,
+                Hostname = Environment.MachineName,
+                Message = message,
+                Exception = ex
+            };
+        }
+
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -363,6 +381,16 @@ namespace UI.SCM
         #region========================Data Submit Action=====================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = GetFlogDetail("Starting SCM\\Indent", null, "Submit");
+
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Starting SCM\\Indent Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+
+
+
             try
             {
               if(  int.Parse(ddlType.SelectedValue) > 0)
@@ -393,10 +421,29 @@ namespace UI.SCM
                 }
                 
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch(Exception ex)
+            {
+                var efd = GetFlogDetail("", ex, "Submit");
+                Flogger.WriteError(efd);
+
+
+                try { File.Delete(filePathForXML); }
+                catch { }
+            }
+
+            fd = GetFlogDetail("Stopping SCM\\Indent", null, "Submit");
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
 
+        
+
         #endregion======================Close=================================
     }
+
+    
+
 }
