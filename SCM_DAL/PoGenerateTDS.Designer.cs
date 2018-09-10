@@ -2988,6 +2988,8 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnPayAmount;
             
+            private global::System.Data.DataColumn columnPOValue;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprPORegisterDataTable() {
@@ -3159,6 +3161,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn POValueColumn {
+                get {
+                    return this.columnPOValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3211,7 +3221,8 @@ namespace SCM_DAL {
                         string RegNo, 
                         string billno, 
                         System.DateTime paydate, 
-                        decimal PayAmount) {
+                        decimal PayAmount, 
+                        decimal POValue) {
                 sprPORegisterRow rowsprPORegisterRow = ((sprPORegisterRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         unit,
@@ -3230,7 +3241,8 @@ namespace SCM_DAL {
                         RegNo,
                         billno,
                         paydate,
-                        PayAmount};
+                        PayAmount,
+                        POValue};
                 rowsprPORegisterRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsprPORegisterRow);
                 return rowsprPORegisterRow;
@@ -3270,6 +3282,7 @@ namespace SCM_DAL {
                 this.columnbillno = base.Columns["billno"];
                 this.columnpaydate = base.Columns["paydate"];
                 this.columnPayAmount = base.Columns["PayAmount"];
+                this.columnPOValue = base.Columns["POValue"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3309,6 +3322,8 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnpaydate);
                 this.columnPayAmount = new global::System.Data.DataColumn("PayAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPayAmount);
+                this.columnPOValue = new global::System.Data.DataColumn("POValue", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPOValue);
                 this.columnunit.MaxLength = 20;
                 this.columnwh.MaxLength = 50;
                 this.columnJv.MaxLength = 100;
@@ -4673,6 +4688,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal POValue {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablesprPORegister.POValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'POValue\' in table \'sprPORegister\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprPORegister.POValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsunitNull() {
                 return this.IsNull(this.tablesprPORegister.unitColumn);
             }
@@ -4873,6 +4904,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetPayAmountNull() {
                 this[this.tablesprPORegister.PayAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPOValueNull() {
+                return this.IsNull(this.tablesprPORegister.POValueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPOValueNull() {
+                this[this.tablesprPORegister.POValueColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6953,6 +6996,7 @@ SELECT strSupplierName, intSupplierID FROM tblSupplier WHERE (intSupplierID = @i
             tableMapping.ColumnMappings.Add("billno", "billno");
             tableMapping.ColumnMappings.Add("paydate", "paydate");
             tableMapping.ColumnMappings.Add("PayAmount", "PayAmount");
+            tableMapping.ColumnMappings.Add("POValue", "POValue");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

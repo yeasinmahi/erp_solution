@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PreviousPrice.aspx.cs" Inherits="UI.PaymentModule.PreviousPrice" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PreviousPriceView.aspx.cs" Inherits="UI.PaymentModule.PreviousPriceView" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -160,61 +160,11 @@
         </asp:GridView>
         </td>
 
-        <%-- shows when wh dropdown selected--%>
-        <td colspan="4" style="vertical-align:top">   
-        <asp:GridView ID="gvItemList" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
-        CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-        ShowFooter="false"  HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-        FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" >
-        <AlternatingRowStyle BackColor="#CCCCCC" />    
-        <Columns>
-        <asp:TemplateField HeaderText="PO ID" SortExpression="intPOID">
-        <ItemTemplate><asp:Label ID="lblPOID" runat="server" Text='<%# Bind("intPOID") %>' Width="80px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+       
         
-        
-
-        <asp:TemplateField HeaderText="PO Date" SortExpression="dtePODate">
-        <ItemTemplate><asp:Label ID="lblPODate" runat="server" Text='<%#Eval("dtePODate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Supplier ID" SortExpression="intSupplierID">
-        <ItemTemplate><asp:Label ID="lblsupID" runat="server" Text='<%# Bind("intSupplierID") %>' Width="80px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
-        <ItemTemplate><asp:Label ID="lblSupplier" runat="server" Text='<%# Bind("strSupplierName") %>' Width="250px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Rate" SortExpression="rate">
-        <ItemTemplate><asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
-        <ItemTemplate><asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
-          
-
-        </Columns>
-        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-        </asp:GridView>
-        </td>
     </tr>
 
-    <%--<tr>
-        <td colspan="4">
-            <asp:Chart ID="Chart1" runat="server" EorderlineWidth="0" Width="900px">
-            <Series>
-                <asp:Series Name="Amount" XValueMember="strSupplierName" YValueMembers="rate" ChartType="Line"></asp:Series>
-            </Series>            
-            <Titles>
-                <asp:Title Docking="Top" Text="PRICE CHART" />
-            </Titles>
-            <ChartAreas><asp:ChartArea Name="ChartArea1"></asp:ChartArea></ChartAreas>
-            </asp:Chart>
-        </td>
-    </tr>--%>
+   
     
     </table>
 
