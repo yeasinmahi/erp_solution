@@ -18,6 +18,8 @@ namespace UI.SCM
         int intID=0;
         int intNewType;
         DateTime fDate, tDate;
+        string PoNo, MRRNo, BillNo;
+        string dept;
         //int indent = 0, po = 0, mrr = 0;
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -49,9 +51,6 @@ namespace UI.SCM
             dgvStatement.DataBind();
         }
 
-       
-
-        string dept;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -100,5 +99,43 @@ namespace UI.SCM
             }
             catch { }
         }
+
+        protected void dgvStatement_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = dgvStatement.Rows[rowIndex];
+
+                PoNo = (row.FindControl("lblPoNos") as Label).Text;
+                MRRNo = (row.FindControl("lblMrrNo") as Label).Text;
+                BillNo = (row.FindControl("lblBillNo") as Label).Text;
+                if (e.CommandName == "ViewPo")
+                {
+                    //Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
+                    //Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + PoNo + "');", true);
+                }
+                else if (e.CommandName == "ViewMRR")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + MRRNo + "');", true);
+                }
+                else if (e.CommandName == "ViewBill")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + BillNo + "');", true);
+                }
+            }
+            catch { }
+        }
+
+
+
+
+
+
+
+
+
     }
 }

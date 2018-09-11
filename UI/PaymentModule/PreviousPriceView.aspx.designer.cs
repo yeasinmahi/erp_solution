@@ -10,7 +10,7 @@
 namespace UI.PaymentModule {
     
     
-    public partial class PreviousPrice {
+    public partial class PreviousPriceView {
         
         /// <summary>
         /// PlaceHolder1 control.

@@ -36,6 +36,10 @@
         width:100%; height: 100%;    margin-left: 70px;  margin-top:00px; margin-right:00px; padding: 15px; overflow-y:scroll; }
         </style>
     <script>
+        function ViewBillDetailsPopup(Id) {
+             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+         }
+
         function Confirm() {
             var fromdate = document.getElementById("txtDteFrom").value;
             var todate = document.getElementById("txtdteTo").value;
@@ -127,7 +131,7 @@
          <table>
            <tr><td> 
             <asp:GridView ID="dgvStatement" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
-            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnRowCommand="dgvStatement_RowCommand"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
@@ -162,7 +166,11 @@
             
             <asp:TemplateField HeaderText="PO Date"   ItemStyle-HorizontalAlign="right" SortExpression="poDate" >
             <ItemTemplate><asp:Label ID="lblPoDate" runat="server" Width="60px"  Text='<%# Bind("poDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>    
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="PO Value"   ItemStyle-HorizontalAlign="right" SortExpression="POValue" >
+            <ItemTemplate><asp:Label ID="lblPoValue" runat="server" Width="60px"  Text='<%# Bind("POValue") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="MRR NO"   ItemStyle-HorizontalAlign="right" SortExpression="mrr" >
             <ItemTemplate><asp:Label ID="lblMrrNo" runat="server" Width="52px"  Text='<%# Bind("mrr") %>'></asp:Label></ItemTemplate>
@@ -199,9 +207,20 @@
             <asp:TemplateField HeaderText="Pay Amount"   ItemStyle-HorizontalAlign="right" SortExpression="PayAmount" >
             <ItemTemplate><asp:Label ID="lblPayAmount" runat="server"  Text='<%# Bind("PayAmount") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+
+            <%--<asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowPoNo" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="ViewPo"  
+            Text="Po No"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowMRRNo" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="ViewMRR"  
+            Text="MRR No"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
+                <asp:TemplateField HeaderText="Show Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
+            <ItemTemplate><asp:Button ID="btnShowBillNo" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="ViewBill"  
+            Text="Bill No"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>--%>
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
 
             </asp:GridView></td> 
         </tr> 
