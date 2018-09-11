@@ -39,7 +39,14 @@
             window.open(url, '', "scrollbars=yes,toolbar=0,height=550,width=500,top=200,left=300, resizable=yes, title=Preview");
         }
       </script>
-    
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-125570863-1');
+</script> 
 </head>
 <body >
     <form id="form1" runat="server">

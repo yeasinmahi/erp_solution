@@ -1,16 +1,18 @@
-﻿using SCM_BLL;
+﻿using Purchase_BLL.Asset;
+using SCM_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.Services;
 using System.Web.Script.Services;
-using UI.ClassFiles;
-using Purchase_BLL.Asset;
+using System.Web.Services;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace UI.PaymentModule
 {
-    public partial class PreviousPrice : BasePage
+    public partial class PreviousPriceView : System.Web.UI.Page
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL();
@@ -21,8 +23,8 @@ namespace UI.PaymentModule
 
         char[] delimiterChars = { '[', ']' };
         string[] arrayKey;
-        int intSeparationID,itemid;
-        string Id,itemName;
+        int intSeparationID, itemid;
+        string Id, itemName;
         string strDate;
         string strTodate;
         string UNITS;
@@ -35,27 +37,27 @@ namespace UI.PaymentModule
         {
             if (!IsPostBack)
             {
-                hdnBillID.Value = Session["billid"].ToString();
-                intItemID = int.Parse(Request.QueryString["Id"]);
-                //hdnItemID.Value = intItemID.ToString();
-                ////Session["mrrid"] = intBillID.ToString();
-                if (Session["itemname"].ToString() == "")
-                {
-                    lblItemName.Text = "";
-                }
-                else
-                {
-                    lblItemName.Text = Session["itemname"].ToString();
-                }
+                //hdnBillID.Value = Session["billid"].ToString();
+                //intItemID = int.Parse(Request.QueryString["Id"]);
+                ////hdnItemID.Value = intItemID.ToString();
+                //////Session["mrrid"] = intBillID.ToString();
+                //if (Session["itemname"].ToString() == "")
+                //{
+                //    lblItemName.Text = "";
+                //}
+                //else
+                //{
+                //    lblItemName.Text = Session["itemname"].ToString();
+                //}
 
 
                 dt = new DataTable();
-                dt = objBillApp.GetPriceListByItemID(intItemID);
-                if (dt.Rows.Count > 0)
-                {
-                    dgvPriceList.DataSource = dt;
-                    dgvPriceList.DataBind();
-                }
+                //dt = objBillApp.GetPriceListByItemID(intItemID);
+                //if (dt.Rows.Count > 0)
+                //{
+                //    dgvPriceList.DataSource = dt;
+                //    dgvPriceList.DataBind();
+                //}
 
                 //dt = new DataTable();
                 //dt = objBillApp.GetChartOfPrice(int.Parse(hdnItemID.Value));
@@ -67,7 +69,7 @@ namespace UI.PaymentModule
                 ddlwh.DataTextField = "strWareHoseName";
                 ddlwh.DataValueField = "intWHID";
                 ddlwh.DataBind();
-               
+
             }
         }
 
@@ -91,7 +93,7 @@ namespace UI.PaymentModule
         {
 
             DataTable dtt = new DataTable();
-           
+
             if (txtItem.Text != "" && txtItemId.Text == "")
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
@@ -139,7 +141,7 @@ namespace UI.PaymentModule
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            
+
             AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
@@ -147,28 +149,5 @@ namespace UI.PaymentModule
         }
 
         #endregion====================Close====================================== 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

@@ -17,12 +17,19 @@ using SAD_BLL.Customer;
 using SAD_DAL.Customer;
 using SAD_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales
 {
+   
     public partial class SalesChallan : BasePage
     {
         int inttypeid;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\SalesChallan";
+        string stop = "stopping SAD\\Sales\\SalesChallan";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -50,6 +57,14 @@ namespace UI.SAD.Sales
         }
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesChallan Challan Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
             char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
             string id = str[0];
@@ -70,20 +85,47 @@ namespace UI.SAD.Sales
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesChallan Cancel", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+               
                 SalesView sv = new SalesView();
                 sv.ChallanCancel(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());               
                 GridView1.DataBind();
                 ///======= Edited By Alamin For Internal Transport=======
                 sv.TripCancel(((Button)sender).CommandArgument);
-               
+
                 ///======== End Edited ========================
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected string GetEditLink(object voucherID, object completed)
         {

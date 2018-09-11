@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Sales;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +17,11 @@ namespace UI.SAD.Sales.Return
     public partial class SalesReturn : BasePage
     {
         DataTable dt = new DataTable(); SalesEntry se = new SalesEntry(); string msg = ""; string xmlpath="";
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\SalesReturn";
+        string stop = "stopping SAD\\Sales\\Report\\SalesReturn";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/Sales/Data/Rtn_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -27,8 +34,15 @@ namespace UI.SAD.Sales.Return
         protected void btnShow_Click(object sender, EventArgs e) { LoadGrid(); }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\SalesReturn Sales Return", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 if (txtSearch.Text.Length > 0)
                 {
                     string code = txtSearch.Text; txtCustomer.Text = ""; txtChallan.Text = ""; lblcdt.Text = "";
@@ -44,13 +58,30 @@ namespace UI.SAD.Sales.Return
                     dgvrtn.DataBind(); txtChallan.Text = "";
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
+    
         protected void btvSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\SalesReturn Sales Return Entry", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                if(hdnconfirm.Value == "1" && dt.Rows.Count > 0)
+
+                if (hdnconfirm.Value == "1" && dt.Rows.Count > 0)
                 {
                     string subtotal = "0.00"; string slsid = ""; string cust = ""; string itmid = ""; string uomid = "";
                     string rate = ""; string quantity = "0";
@@ -79,7 +110,18 @@ namespace UI.SAD.Sales.Return
                 LoadGrid();
                 #endregion ------------ Insertion End ----------------
             }
-            catch { File.Delete(xmlpath); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input validate data.');", true); }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+                File.Delete(xmlpath); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input validate data.');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+            
         }
         private void CreateReturnXml(string slsid, string cust, string itmid, string uomid, string rate, string quantity, string subtotal)
         {

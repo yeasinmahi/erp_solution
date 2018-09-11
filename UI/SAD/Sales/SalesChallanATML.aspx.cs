@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Sales;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Sales;
 using SAD_DAL.Sales;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,10 @@ namespace UI.SAD.Sales
 {
     public partial class SalesChallanATML : BasePage
     {
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\SalesChallanATML";
+        string stop = "stopping SAD\\Sales\\SalesChallanATML";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,6 +45,14 @@ namespace UI.SAD.Sales
         }
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesChallanATML Challan Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
             char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
             string id = str[0];
@@ -60,9 +73,25 @@ namespace UI.SAD.Sales
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesChallanATML Challan Cancel", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
             try
             {
                 SalesView sv = new SalesView();
@@ -72,7 +101,16 @@ namespace UI.SAD.Sales
                 sv.TripCancel(((Button)sender).CommandArgument);
                 ///======== End Edited ========================
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected string GetEditLink(object voucherID, object completed)

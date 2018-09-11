@@ -1,5 +1,7 @@
 ﻿using BLL.Accounts.ChartOfAccount;
 using DAL.Accounts.ChartOfAccount;
+using Flogging.Core;
+using GLOBAL_BLL;
 using LOGIS_BLL;
 using LOGIS_DAL;
 using SAD_BLL.Customer;
@@ -25,8 +27,14 @@ using UI.ClassFiles;
 
 namespace UI.SAD.Sales
 {
-    public partial class SalesPosting : System.Web.UI.Page
+    public partial class SalesPosting : BasePage
     {
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\SalesPosting";
+        string stop = "stopping SAD\\Sales\\SalesPosting";
+
         XmlManager xm = new XmlManager(); ItemPrice objbll = new ItemPrice(); bool ysnvisible;
         SalesEntryTDS.QrySalesEntryCustomerDataTable table;
 
@@ -428,7 +436,16 @@ namespace UI.SAD.Sales
         #region Button
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.Budget bdg = new BLL.Accounts.Voucher.Budget(); DataTable strtdt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesPosting Challan Product Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BLL.Accounts.Voucher.Budget bdg = new BLL.Accounts.Voucher.Budget(); DataTable strtdt = new DataTable();
             DateTime gdt = CommonClass.GetDateAtSQLDateFormat(txtDate.Text);
             strtdt = bdg.GetAccountsStartDate(int.Parse(ddlUnit.SelectedValue.ToString()));
             DateTime pdt = DateTime.Parse(strtdt.Rows[0]["StartDate"].ToString());
@@ -523,6 +540,19 @@ namespace UI.SAD.Sales
                     }
                 }
             }
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -530,6 +560,12 @@ namespace UI.SAD.Sales
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesPosting Save Challan", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 CustomerInfo ci = new CustomerInfo();
@@ -614,7 +650,16 @@ namespace UI.SAD.Sales
                     GetChallanNo();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion
 

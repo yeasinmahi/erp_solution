@@ -7,6 +7,14 @@
     <title>Welcome to Akij Group</title>  
      
      <link href="Content/CSS/Banner.css" rel="stylesheet" type="text/css" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-125570863-1');
+</script> 
 </head>
 <body class="body">
     <form id="form2" runat="server">       

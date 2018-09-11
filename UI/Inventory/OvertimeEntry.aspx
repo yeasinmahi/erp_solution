@@ -8,6 +8,11 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    
+    <link href="../Content/CSS/morris.css" rel="stylesheet" />
+    <script src="../Content/JS/raphael.min.js"></script>
+    <script src="../Content/JS/morris.min.js"></script>
+
     <script>
         function GetTimeSpan() {
             var defaultDate = "1/1/1970 ";
@@ -52,7 +57,10 @@
                 }
             });
         }
+
     </script>
+    
+    
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -224,9 +232,13 @@
                         </tr>
                     </table>
                 </div>
+                
+                
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
+        
     </form>
+
 </body>
 </html>

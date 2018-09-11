@@ -15,12 +15,19 @@ using SAD_BLL.Customer;
 using SAD_DAL.Customer;
 using SAD_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales
 {
     public partial class SalesAccounts : BasePage
     {
         //protected decimal totAmount = 0, totPieces = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\SalesAccounts";
+        string stop = "stopping SAD\\Sales\\SalesAccounts";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,12 +58,39 @@ namespace UI.SAD.Sales
         }
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            SalesView sv = new SalesView();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesAccounts Challan Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                SalesView sv = new SalesView();
             sv.SubLedgerEntry(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CommonClass.GetDateAtSQLDateFormat(txtCompleteDate.Text + " 09:00 AM"));
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesAccounts Cancel", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 SalesView sv = new SalesView();
@@ -66,7 +100,17 @@ namespace UI.SAD.Sales
                 sv.TripCancel(((Button)sender).CommandArgument);
                 ///======== End Edited ========================
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected string GetEditLink(object voucherID, object completed)
         {
@@ -211,7 +255,15 @@ namespace UI.SAD.Sales
         }
         protected void btnCompleteAll_Click(object sender, EventArgs e)
         {
-            string idList = "";
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\SalesAccounts Challan Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string idList = "";
 
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
@@ -233,6 +285,17 @@ namespace UI.SAD.Sales
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {

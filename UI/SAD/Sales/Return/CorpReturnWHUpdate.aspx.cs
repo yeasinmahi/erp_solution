@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
+
 namespace UI.SAD.Sales.Return
 {
     public partial class CorpReturnWHUpdate : Page
@@ -12,9 +15,20 @@ namespace UI.SAD.Sales.Return
         DataTable dt = new DataTable(); Bridge obj = new Bridge();
         int custid,  fk, productid; string challanno;
         decimal productqtysubmit;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\CorpReturnAccAdjust";
+        string stop = "stopping SAD\\Sales\\Return\\CorpReturnAccAdjust";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
+            if (!IsPostBack)
+            {
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\CorpReturnWHUpdate Return Warehouse wise", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     custid = int.Parse(HttpContext.Current.Session["CustId"].ToString());
@@ -25,14 +39,32 @@ namespace UI.SAD.Sales.Return
                     dgv.DataSource = dt;
                     dgv.DataBind();
                 }
-                catch { dgv.DataSource = ""; dgv.DataBind(); }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+            
             }
 
         }
 
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
-            if((hdnconfirm.Value =="1") &&(dgv.Rows.Count > 0))
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\CorpReturnWHUpdate Corporate Sales Return Warehouse Recieve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if ((hdnconfirm.Value =="1") &&(dgv.Rows.Count > 0))
             {
                 for (int i = 0; i < dgv.Rows.Count; i++)
                 {
@@ -48,6 +80,17 @@ namespace UI.SAD.Sales.Return
             }
 
             else { }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

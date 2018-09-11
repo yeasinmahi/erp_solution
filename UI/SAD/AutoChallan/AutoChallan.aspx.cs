@@ -61,52 +61,13 @@ namespace UI.SAD.AutoChallan
             }
         }
 
-        protected void btn_ImportCSV_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         protected void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         
-
-        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlCusType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlCusType_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtFrom_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtTo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtCode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void rdoComplete_SelectedIndexChanged(object sender, EventArgs e)
         {
