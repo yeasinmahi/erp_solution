@@ -39,7 +39,7 @@
             window.open(url, '', "scrollbars=yes,toolbar=0,height=550,width=500,top=200,left=300, resizable=yes, title=Preview");
         }
       </script>
-     <!-- Global site tag (gtag.js) - Google Analytics -->
+ <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
