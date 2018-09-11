@@ -13,6 +13,8 @@ using SAD_BLL.Item;
 using SAD_BLL.Customer;
 using SAD_BLL.Corporate_sales;
 using SAD_BLL.Corporate_Sales;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales.Return
 {
@@ -21,7 +23,10 @@ namespace UI.SAD.Sales.Return
         DataTable dt = new DataTable(); Bridge obj = new Bridge(); OrderInput_BLL objOrder = new OrderInput_BLL();
         string xmlpath = "", xmlString, strcustid, strrtnqty, strwhrqty, strprodid, strprodname, strchallanno;
 
-       
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\CorpSalesReturn";
+        string stop = "stopping SAD\\Sales\\Return\\CorpSalesReturn";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -107,6 +112,12 @@ namespace UI.SAD.Sales.Return
 
         protected void btnadd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\CorpSalesReturn Corp Sales Return Entry", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (hdnprodid.Value != "") { strprodid = hdnprodid.Value; } else { }
@@ -128,11 +139,22 @@ namespace UI.SAD.Sales.Return
                 }
                 else { txtSearch.Text = ""; }
                 txtprod.Text = ""; txtqty.Text = ""; txtwhqty.Text = ""; strchallanno = "";
-            }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Customer Name or Product Name is not valid');", true); }
            
-        
-    }
+
+             }
+            catch (Exception ex)
+            {
+
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+               Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Customer Name or Product Name is not valid');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+           }
 
         private void CreateReturnXml(string strprodid, string strprodname, string strrtnqty, string strwhrqty, string strcost)
         {
@@ -232,6 +254,12 @@ namespace UI.SAD.Sales.Return
 
         protected void btvSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\CorpSalesReturn Corp Sales Return Entry", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (hdncustid.Value != "") { strcustid = hdncustid.Value; } else { }
@@ -255,48 +283,23 @@ namespace UI.SAD.Sales.Return
                 }
 
             }
-            catch { File.Delete(xmlpath); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Add Return Items.');", true); }
+            catch (Exception ex)
+            {
+
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+                File.Delete(xmlpath); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Add Return Items.');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+           
         }
 
         //===========================================================================================
        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

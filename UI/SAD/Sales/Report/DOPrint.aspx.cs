@@ -14,6 +14,9 @@ using SAD_BLL.Sales.Report;
 using SAD_DAL.Sales.Report;
 using System.Text;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
+
 namespace UI.SAD.Sales.Report
 {
     public partial class DOPrint : BasePage
@@ -22,12 +25,25 @@ namespace UI.SAD.Sales.Report
         protected StringBuilder sbP = new StringBuilder();
         protected StringBuilder sbGT = new StringBuilder();
         protected StringBuilder sbT = new StringBuilder();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\DOPrint";
+        string stop = "stopping SAD\\Sales\\Report\\DOPrint";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string promItem = "";
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\DOPrint Challan Print", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    string promItem = "";
                 decimal count = 0, promCount = 0, total = 0, gross = 0;
                 decimal? extAmount = 0;
                 DateTime date = new DateTime();
@@ -186,6 +202,18 @@ namespace UI.SAD.Sales.Report
                     Panel1.DataBind();
                     Panel11.DataBind();
                 }
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
     }

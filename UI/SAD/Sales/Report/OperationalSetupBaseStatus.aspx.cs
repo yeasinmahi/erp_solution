@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Sales;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,10 +19,13 @@ namespace UI.SAD.Sales.Report
         decimal gtotaldoqnt, gtotaldoamount, gtotalchlqnt, gtotalchamount,gpendingqnt,gpendingamount,debitamount,creditamount;
         DateTime fromdate ,  todate;
 
-       
-
         SalesView bll = new SalesView();
         DataTable dt = new DataTable();
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\OperationalSetupBaseStatus";
+        string stop = "stopping SAD\\Sales\\Report\\OperationalSetupBaseStatus";
         #endregion
 
 
@@ -48,6 +53,12 @@ namespace UI.SAD.Sales.Report
 
         private void Loadgrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\OperationalSetupBaseStatus Operational SetupBase Status Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 fromdate = DateTime.Parse(txtFDate.Text);
@@ -161,7 +172,15 @@ namespace UI.SAD.Sales.Report
 
             }
             catch (Exception ex)
-            { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
       

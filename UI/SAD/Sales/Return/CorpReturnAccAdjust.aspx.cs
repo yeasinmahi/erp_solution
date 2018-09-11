@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Corporate_sales;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Corporate_sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,11 +18,24 @@ namespace UI.SAD.Sales.Return
         string msg, message, custid, challanno, ttlamount, custname;
 
         int intcustid, intEnroll, rollid; Decimal decttlamount; DateTime dtedate; Boolean ysn;
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\CorpReturnAccAdjust";
+        string stop = "stopping SAD\\Sales\\Return\\CorpReturnAccAdjust";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                hdnenroll.Value = Session[SessionParams.USER_ID].ToString();
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\CorpReturnAccAdjust Return Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    hdnenroll.Value = Session[SessionParams.USER_ID].ToString();
                 intEnroll = int.Parse(hdnenroll.Value);
                 try
                 {
@@ -53,6 +68,17 @@ namespace UI.SAD.Sales.Return
                 {
                     dgvcorrtnaccapp.Columns[5].Visible = false;
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
             }
         }

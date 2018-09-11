@@ -158,6 +158,8 @@ namespace UI.SAD.AutoChallan
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
+
+
             Int32 intVehicleId;
             Int32 custid; int ShipPointid;
             DataTable dtChallancount = new DataTable();
@@ -435,6 +437,7 @@ namespace UI.SAD.AutoChallan
             }
             else
             { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Free Qty Case !');", true); }
+
 
 
         }

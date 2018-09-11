@@ -73,7 +73,7 @@
         </td> 
         <td colspan="3" style="text-align:right;">
         <asp:Button ID="btnShow" runat="server" Font-Size="12px" OnClick="btnShow_Click" BackColor="#ffff99"   Text="Show Report" CssClass="button" />
-        <asp:Button ID="btnDownloads" runat="server" CssClass="button" Font-Size="12px"  Text="Export"   />
+        <asp:Button ID="btnDownloads" runat="server" CssClass="button" Font-Size="12px"  Text="Export" OnClick="btnDownloads_Click"   />
         </td>
         </tr> 
 

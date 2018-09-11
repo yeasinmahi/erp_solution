@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Sales.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Sales.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +13,11 @@ namespace UI.SAD.Sales.Report
 {
     public partial class UDTCLSalesInventory : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\UDTCLSalesInventory";
+        string stop = "stopping SAD\\Sales\\Report\\UDTCLSalesInventory";
+
         DataTable dt = new DataTable();
         UDTCLSalesBLL obj = new UDTCLSalesBLL();
         decimal totalquantity, totalamount, totalprice;
@@ -24,6 +31,12 @@ namespace UI.SAD.Sales.Report
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\UDTCLSalesInventory UDTCL Sales Inventory", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 DateTime dteFroms = DateTime.Parse(txtFormDate.Text);
@@ -33,7 +46,16 @@ namespace UI.SAD.Sales.Report
                 dgvSales.DataSource = dt;
                 dgvSales.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,6 +66,11 @@ namespace UI.SAD.Sales.Report
                 dgvSales.DataBind();
             }
             catch { }
+        }
+
+        protected void btnDownloads_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void btnDetalis_Click (object sender, EventArgs e)
