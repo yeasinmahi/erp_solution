@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,11 @@ namespace UI.SAD.Sales.Return
 {
     public partial class ReturnSalesDOView : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\ReturnSalesDOView";
+        string stop = "stopping SAD\\Sales\\Return\\ReturnSalesDOView";
+
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +58,17 @@ namespace UI.SAD.Sales.Return
 
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\ReturnSalesDOView Do View", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
             string id = str[0];
             DateTime dt = DateTime.Parse(str[1]);
@@ -60,12 +77,48 @@ namespace UI.SAD.Sales.Return
             sv.CompleteSalesReturnDO(id, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue);
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Customer Name or Product Name is not valid');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            SAD_BLL.Sales.DelivaryView sv = new SAD_BLL.Sales.DelivaryView();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\ReturnSalesDOView Do View", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                SAD_BLL.Sales.DelivaryView sv = new SAD_BLL.Sales.DelivaryView();
             sv.CancelSalesReturnDO(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Customer Name or Product Name is not valid');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected string GetEditLink(object voucherID, object completed)
         {

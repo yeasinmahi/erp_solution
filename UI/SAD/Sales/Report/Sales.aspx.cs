@@ -19,13 +19,18 @@ using SAD_BLL.Sales.Report;
 using System.Collections.Generic;
 using Microsoft.Reporting.WebForms;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales.Report
 {
     public partial class Sales : BasePage
     {
 
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\Sales";
+        string stop = "stopping SAD\\Sales\\Report\\Sales";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -98,6 +103,14 @@ namespace UI.SAD.Sales.Report
             //Created    : Konock/ Apr-25-2012
             //Modified   :   
             //Parameters :   intEmployeeID,intMonthID,intYearId
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\Sales Delivery Report Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
 
             DataTable oDTReportData = new DataTable();
             string path = "", unitName = "", unitAddress = "", cus = "", pro = "", frm = "", to = "", dateVal = "", dataSource = "";
@@ -195,6 +208,17 @@ namespace UI.SAD.Sales.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         /*

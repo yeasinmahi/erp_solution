@@ -14,17 +14,33 @@ using SAD_BLL.Sales.Report;
 using SAD_DAL.Sales.Report;
 using System.Text;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Sales.Report
 {
     public partial class DO2Print : BasePage
     {
         protected StringBuilder sb = new StringBuilder();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\DO2Print";
+        string stop = "stopping SAD\\Sales\\Report\\DO2Print";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                decimal count = 0;
+
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\DO2Print Challan Print", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    decimal count = 0;
                 decimal? extAmount = 0;
 
                 DateTime date = new DateTime();
@@ -186,6 +202,17 @@ namespace UI.SAD.Sales.Report
 
                     Panel1.DataBind();
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
     }

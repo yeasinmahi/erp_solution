@@ -1,4 +1,5 @@
-﻿using LOGIS_BLL;
+﻿using GLOBAL_BLL;
+using LOGIS_BLL;
 using LOGIS_DAL;
 using SAD_BLL.Customer;
 using SAD_BLL.Global;
@@ -44,6 +45,10 @@ namespace UI.SAD.Sales.Return
         TableCell tdLblV = new TableCell();
         TableCell tdConV = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevelV;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\ReturnSalesDOCreation";
+        string stop = "stopping SAD\\Sales\\Return\\ReturnSalesDOCreation";
 
         protected override void OnPreInit(EventArgs e)
         {
@@ -642,6 +647,9 @@ namespace UI.SAD.Sales.Return
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+
+
             string id = "", code = "";
             char[] ch = { '[', ']' };
 
@@ -692,6 +700,9 @@ namespace UI.SAD.Sales.Return
             {
                 Response.Redirect("../../Accounts/Voucher/Exit.aspx");
             }
+
+
+
 
         }
         #endregion

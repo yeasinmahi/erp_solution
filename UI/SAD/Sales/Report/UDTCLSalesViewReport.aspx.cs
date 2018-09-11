@@ -1,16 +1,17 @@
-﻿using SAD_BLL.Sales.Report;
+﻿using GLOBAL_BLL;
+using SAD_BLL.Sales.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
- 
- 
+
+
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
- 
+
 
 namespace UI.SAD.Sales.Report
 {
@@ -18,6 +19,12 @@ namespace UI.SAD.Sales.Report
     {
         //DataTable dt = new DataTable(); decimal qnty = 0; decimal rt = 0; decimal ttl = 0;
         //UDTCLSalesBLL obj = new UDTCLSalesBLL();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\UDTCLSalesViewReport";
+        string stop = "stopping SAD\\Sales\\Report\\UDTCLSalesViewReport";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
