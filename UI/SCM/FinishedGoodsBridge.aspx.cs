@@ -128,7 +128,9 @@ namespace UI.SCM
             Panel1.Visible = true;
             Label lblBaseName = (Label)FindControl("lblitemBaseName");
             lblBaseName.Text = ddlFG.SelectedItem.Text;
-            Label lbluom = (Label)FindControl("lblitemDescription");
+            //Label lbldes = (Label)FindControl("lblitemDescription");
+            //lbldes.Text = ddlInvUOM.SelectedItem.Text;
+            Label lbluom = (Label)FindControl("lbluom");
             lbluom.Text = ddlInvUOM.SelectedItem.Text;
             Label lblcluster = (Label)FindControl("lblcluster");
             lblcluster.Text = "Material";

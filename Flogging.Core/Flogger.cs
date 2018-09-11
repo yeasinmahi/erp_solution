@@ -59,12 +59,13 @@ namespace Flogging.Core
 
 		public static void WriteDiagnostic(FlogDetail infoToLog)
 		{
-			var writeDiagnostics = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableDiagnostics"]);
-
+			//var writeDiagnostics = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableDiagnostics"]);
+            /*
 			if (!writeDiagnostics)
 			{
 				return;
 			}
+            */
 
 			_diagnosticLogger.Write(LogEventLevel.Information, "{@FlogDetail}", infoToLog);
 		}

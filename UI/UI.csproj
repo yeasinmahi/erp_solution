@@ -250,6 +250,7 @@
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
+    <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
     <Content Include="Content\images\img\15.png" />
@@ -264,6 +265,8 @@
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
     <Content Include="Content\JS\jsPDF.js" />
     <Content Include="Content\JS\jsPDF.min.js" />
+    <Content Include="Content\JS\morris.min.js" />
+    <Content Include="Content\JS\raphael.min.js" />
     <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
@@ -374,6 +377,7 @@
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
+    <Content Include="PaymentModule\PreviousPriceView.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
@@ -3020,6 +3024,13 @@
     </Compile>
     <Compile Include="PaymentModule\PreviousPrice.aspx.designer.cs">
       <DependentUpon>PreviousPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\PreviousPriceView.aspx.cs">
+      <DependentUpon>PreviousPriceView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\PreviousPriceView.aspx.designer.cs">
+      <DependentUpon>PreviousPriceView.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.cs">
       <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
