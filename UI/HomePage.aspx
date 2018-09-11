@@ -18,7 +18,15 @@
         //alert(curUrl); 
         //top.window.moveTo(0,0);
         //top.window.resizeTo(screen.availWidth,screen.availHeight);        
-    </script>        
+    </script> 
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-125570863-1');
+</script> 
 </head>    
 
 <frameset border="0" frameborder="no" framespacing="0" name="Akij" rows="50,*,15">
