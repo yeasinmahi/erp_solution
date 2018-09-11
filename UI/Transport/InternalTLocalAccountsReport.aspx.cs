@@ -12,10 +12,19 @@ using UI.ClassFiles;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Text;
+using GLOBAL_BLL;
+using Flogging.Core;
+
+
 namespace UI.Transport
 {
     public partial class InternalTLocalAccountsReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Transport";
+        string start = "starting Transport/InternalTLocalAccountsReport.aspx";
+        string stop = "stopping Transport/InternalTLocalAccountsReport.aspx";
+
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
 
@@ -31,6 +40,13 @@ namespace UI.Transport
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTLocalAccountsReport.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 try
@@ -80,9 +96,17 @@ namespace UI.Transport
                     rdo6PM.Visible = false;
                     lblReportType.Visible = false;
                 }
-                catch
-                { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         //protected void rdoPending_CheckedChanged(object sender, EventArgs e)

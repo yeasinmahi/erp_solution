@@ -11,11 +11,19 @@ using System.Xml;
 using UI.ClassFiles;
 using System.Net;
 using System.Text;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.Transport
 {
     public partial class InternalTTripReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Transport";
+        string start = "starting Transport/InternalTTripReport.aspx";
+        string stop = "stopping Transport/InternalTTripReport.aspx";
+
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
 
@@ -25,6 +33,13 @@ namespace UI.Transport
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 try
@@ -69,14 +84,22 @@ namespace UI.Transport
                     lblVehicleSupplier.Visible = false;
                     ddlVehicleSupplier.Visible = false;
                 }
-                catch
-                { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
             }
             //else
             //{
             //    if (hdnconfirm.Value == "4") { DocCheck(); }
             //}
-            
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
@@ -84,9 +107,15 @@ namespace UI.Transport
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
-
                 dteFromDate = DateTime.Parse(txtFromDate.Text);
                 dteToDate = DateTime.Parse(txtToDate.Text);
                 intShipPoint = int.Parse(ddlShipPoint.SelectedValue.ToString());
@@ -537,7 +566,16 @@ namespace UI.Transport
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1014,6 +1052,13 @@ namespace UI.Transport
         }
         protected void btnBillSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 dteFromDate = DateTime.Parse(txtFromDate.Text);
@@ -1085,10 +1130,26 @@ namespace UI.Transport
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnSearchV_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 dteFromDate = DateTime.Parse(txtFromDate.Text);
@@ -1462,7 +1523,16 @@ namespace UI.Transport
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void rdoAll_CheckedChanged(object sender, EventArgs e)
         {
@@ -1636,7 +1706,14 @@ namespace UI.Transport
 
         }
         protected void TripDetails_Click(object sender, EventArgs e)
-        {   
+        {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = ((Button)sender).CommandArgument.ToString();            
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "TripDetails('" + senderdata + "');", true);
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "hideGridAllForDetails();", true);
@@ -1652,7 +1729,12 @@ namespace UI.Transport
             //{
             //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "hideGrid1();", true);
             //}
-                        
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnDocVew_Click(object sender, EventArgs e)
         {
@@ -1692,6 +1774,12 @@ namespace UI.Transport
         }
         protected void btnDslVew_Click(object sender, CommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
 
             if (e.CommandName.Equals("cng") || e.CommandName.Equals("diesel"))
             {
@@ -1739,6 +1827,12 @@ namespace UI.Transport
             //    //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "hideGrid1();", true);
             //    //}
             //}
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void ddlVehicleSupplier_SelectedIndexChanged(object sender, EventArgs e)
