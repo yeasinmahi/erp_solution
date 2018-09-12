@@ -10,11 +10,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Transport
 {
     public partial class InternalTransportRouteExpInEntry : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Transport";
+        string start = "starting Transport/InternalTransportRouteExpInEntry.aspx";
+        string stop = "stopping Transport/InternalTransportRouteExpInEntry.aspx";
+
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
 
@@ -38,6 +45,13 @@ namespace UI.Transport
              
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpInEntry.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
 
@@ -117,6 +131,11 @@ namespace UI.Transport
             //        //lbldoc.Text = message;
             //    }
             //}
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void GetTripFareAndToll()
         {
@@ -724,6 +743,13 @@ namespace UI.Transport
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpInEntry.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -860,13 +886,30 @@ namespace UI.Transport
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);                   
                 }
-                catch { }
-            }            
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         
         //** Gridview Document Upload Start ******************************************************
         protected void FTPUpload()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpInEntry.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+
             if (hdnconfirm.Value == "2")
             {
                 if (txtDocUpload.FileName.ToString() != "")
@@ -957,6 +1000,11 @@ namespace UI.Transport
                 ///Response.Redirect(Request.Url.AbsoluteUri);
                 #endregion                
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXmlDocUpload(string strFileName, string doctypeid)
         {
@@ -1079,6 +1127,13 @@ namespace UI.Transport
 
         protected void FinalUpload()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpInEntry.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "3")
             {
                 try
@@ -1216,13 +1271,22 @@ namespace UI.Transport
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
 
                 }
-                catch (Exception ex) { throw ex; }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
-     
 
-     
+
+
         //protected void FinalUpload()
         //{
         //    if (hdnconfirm.Value == "3")
@@ -1245,9 +1309,9 @@ namespace UI.Transport
         //    hdnconfirm.Value = "0";
         //}
 
-        
-        
-       
+
+
+
 
 
 

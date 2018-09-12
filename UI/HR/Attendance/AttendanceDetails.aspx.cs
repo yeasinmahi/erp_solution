@@ -10,15 +10,29 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Attendance
 {
     public partial class AttendanceDetails : BasePage
     {
         string strdate = "";
+        
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Attendance/AttendanceDetails.aspx";
+        string stop = "stopping HR/Attendance/AttendanceDetails.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (!IsPostBack)
@@ -44,6 +58,8 @@ namespace UI.HR.Attendance
                 }
             }
             catch { }
+
+            
         }
 
         [WebMethod]

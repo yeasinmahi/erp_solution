@@ -28,13 +28,14 @@ using Flogging.Core;
 namespace UI.SAD.AutoChallan
 {
     public partial class AutoChallan : BasePage
-    {
-        SeriLog log = new SeriLog();
+    {        
         DataTable dtShipingPoint = new DataTable();
         challanandPending Report = new challanandPending();
         DataTable dtSalesOfficeid = new DataTable();
         DataTable dtPendingReport = new DataTable();
         DataTable dtSlipReport = new DataTable();
+
+        SeriLog log = new SeriLog();
         string location = "SAD";
         string start = "starting SAD\\AutoChallan\\AutoChallan";
         string stop = "stopping SAD\\AutoChallan\\AutoChallan";
@@ -107,11 +108,7 @@ namespace UI.SAD.AutoChallan
             return result;
 
         }
-
-
-
-    
-
+        
         protected void Button1_Click1(object sender, EventArgs e)
         {
 

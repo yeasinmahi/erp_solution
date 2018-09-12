@@ -1,4 +1,5 @@
 ﻿using Flogging.Core;
+using GLOBAL_BLL;
 using SCM_BLL;
 using System;
 using System.Collections.Generic;
@@ -16,18 +17,40 @@ namespace UI.SCM
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
         int enroll, intWh;
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\BillFowardToBillingRpt";
+        string stop = "stopping SCM\\BillFowardToBillingRpt";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-               
-                dt = objPo.GetPoData(40, "", intWh, 0, DateTime.Now, enroll);
-                ddlWH.DataSource = dt;
-                ddlWH.DataTextField = "strName";
-                ddlWH.DataValueField = "Id";
-                ddlWH.DataBind();
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SCM\\BillFowardToBillingRpt Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    dt = objPo.GetPoData(40, "", intWh, 0, DateTime.Now, enroll);
+                    ddlWH.DataSource = dt;
+                    ddlWH.DataTextField = "strName";
+                    ddlWH.DataValueField = "Id";
+                    ddlWH.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
             }
         }
 
@@ -80,7 +103,7 @@ namespace UI.SCM
 			// ends
 			tracker.Stop();
 
-			int a = 30;
+			 
 		}
 
 		private FlogDetail GetFlogDetail(string message, Exception ex)
