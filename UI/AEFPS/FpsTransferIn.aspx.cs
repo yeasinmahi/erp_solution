@@ -11,6 +11,8 @@ using System.IO;
 using System.Data;
 using System.Xml;
 using SAD_BLL.AEFPS;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.AEFPS
 {
@@ -30,7 +32,10 @@ namespace UI.AEFPS
         string strEmpCode; string strKey;
         char[] delimiterChars = { '[', ']', ';', '-', '_', '.', ',' };
         string[] arrayKey;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting AEFPS\\FpsTransferIn";
+        string stop = "stopping AEFPS\\FpsTransferIn";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,6 +73,12 @@ namespace UI.AEFPS
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\FpsTransferIn Transfer in", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intPart = 3;
@@ -78,7 +89,16 @@ namespace UI.AEFPS
                 dgvProductDTR.DataSource = dt;
                 dgvProductDTR.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
             /*try
@@ -212,7 +232,16 @@ namespace UI.AEFPS
 
         protected void dgvProductDTR_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Y")
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\FpsTransferIn Voucher Create AEFPS", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (e.CommandName == "Y")
             {
                 //Determine the RowIndex of the Row whose Button was clicked.
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -234,6 +263,17 @@ namespace UI.AEFPS
                 hdnconfirm.Value = "0";
                 LoadGrid();                
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         
