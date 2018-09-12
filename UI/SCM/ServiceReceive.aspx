@@ -30,7 +30,7 @@
                     var poqty = parseFloat($("[id*=lblPoQty]", row).html());
                     var monValue = parseFloat($("[id*=lblValue]", row).html());
                     var preReceQty = parseFloat($("[id*=lblPreviousReceive]", row).html());
-                    var receQty = parseFloat($(this).val()).toFixed(4);
+                    var receQty = parseFloat($(this).val());
                     var rtotal = parseFloat(monValue / poqty * receQty);
                     var remain = parseFloat(poqty - preReceQty)
                     if (remain >= receQty) {
@@ -50,8 +50,7 @@
 
         });
          
-        function MrrGenerateCheck() {
-            
+        function MrrGenerateCheck() { 
             var e = document.getElementById("ddlPo");
             var Po = e.options[e.selectedIndex].value; 
             var challan = document.getElementById("txtChallan").value;
@@ -71,12 +70,25 @@
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-
-            
                  
-            }
-         
+            } 
+        }
 
+
+        function PoViewCheck() { 
+              
+            var e = document.getElementById("ddlWH");
+            var wh = e.options[e.selectedIndex].value; 
+             var pt = document.getElementById("ddlPoType");
+            var poType = pt.options[e.selectedIndex].value;
+            
+
+            if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select WH'); }
+            else if ($.trim(poType) == 0 || $.trim(poType) == "" || $.trim(poType) == null || $.trim(poType) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type'); }
+                 
+            else {
+                document.getElementById("hdnConfirm").value = "1";  
+            } 
         }
     </script> 
 

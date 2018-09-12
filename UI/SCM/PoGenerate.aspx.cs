@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,6 +25,14 @@ namespace UI.SCM
         string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; string xmlString = "";
         int indentNo,whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule; DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
         string[] arrayKey; string strType; char[] delimiterChars = { '[', ']' };
+
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoGenerate";
+        string stop = "stopping SCM\\PoGenerate";
+        string perform = "Performance on SCM\\PoGenerate";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/In__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -120,6 +130,10 @@ namespace UI.SCM
 
         private void DefaltPageLoad()
         {
+            var fd = log.GetFlogDetail(start, location, "DefaltPageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "DefaltPageLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -139,8 +153,17 @@ namespace UI.SCM
                 ddlDepts.DataBind();
                 dt.Clear();
             }
-            catch { }
-             
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "DefaltPageLoad", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "DefaltPageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         } 
 
         #region=============Indent Sumery Tab-1 ==============================
@@ -414,6 +437,10 @@ namespace UI.SCM
         }
         protected void btnIndentDetShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnIndentDetShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnIndentDetShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int IndentNo = int.Parse(txtIndentNoDet.Text);
@@ -427,7 +454,16 @@ namespace UI.SCM
                 dt.Clear();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnIndentDetShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnIndentDetShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
@@ -524,6 +560,10 @@ namespace UI.SCM
         }
         protected void btnPrepare_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnPrepare_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnPrepare_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 try { File.Delete(filePathForXMLPrepare); } catch { }
@@ -566,11 +606,7 @@ namespace UI.SCM
                     ddlCurrency.DataValueField = "Id";
                     ddlCurrency.DataBind();
 
-                    //dt = objPo.GetPoData(6, "", intWh,int.Parse(hdnUnitId.Value), DateTime.Now, enroll); // get Suppliyer Data
-                    //ddlSuppliyer.DataSource = dt;
-                    //ddlSuppliyer.DataTextField = "strName";
-                    //ddlSuppliyer.DataValueField = "Id";
-                    //ddlSuppliyer.DataBind();
+                    
 
                     dt = objPo.GetPoData(7, "", intWh, int.Parse(hdnUnitId.Value), DateTime.Now, enroll);// Pay Date
                     ddlDtePay.DataSource = dt;
@@ -600,7 +636,16 @@ namespace UI.SCM
             }
 
 
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPrepare_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnPrepare_Click", null);
+            Flogger.WriteDiagnostic(fd);
+             
+            tracker.Stop();
         }
 
         private void CreateXmlPrepare(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)

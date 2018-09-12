@@ -1,4 +1,5 @@
-﻿using GLOBAL_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +22,12 @@ namespace UI.SCM
     {
         int PoNo, enroll,intunit;
         DataTable dt = new DataTable(); string filePathForXML;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoDetalisView";
+        string stop = "stopping SCM\\PoDetalisView";
+        string perform = "Performance on SCM\\PoDetalisView";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -37,6 +44,10 @@ namespace UI.SCM
 
         private void PoViewDataBind(int PoNo)
         {
+            var fd = log.GetFlogDetail(start, location, "PoViewDataBind", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "PoViewDataBind", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -142,7 +153,16 @@ namespace UI.SCM
 
                 dt.Clear();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "PoViewDataBind", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "PoViewDataBind", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ExportToImage(object sender, EventArgs e)
@@ -223,6 +243,11 @@ namespace UI.SCM
 
         protected void btnDownload_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDownload_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnDownload_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -277,7 +302,16 @@ namespace UI.SCM
 
                 Response.End();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnDownload_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnDownload_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)

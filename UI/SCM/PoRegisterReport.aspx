@@ -38,6 +38,10 @@
     <script>
         function ViewBillDetailsPopup(Id) {
              window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
+
+         function ViewIndentDetailsPopup(Id) {
+             window.open('/PaymentModule/IndentViewDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
          }
 
         function Confirm() {

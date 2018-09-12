@@ -8,6 +8,7 @@ using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
 using System.IO;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -17,6 +18,12 @@ namespace UI.Asset
         DataTable dt = new DataTable(); 
         int intItem;
         int Mnumber;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting Asset\\AssertReport";
+        string stop = "stopping Asset\\AssertReport";
+        string perform = "Performance on Asset\\AssertReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)

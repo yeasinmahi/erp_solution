@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,59 +23,92 @@ namespace UI.SCM
         string PoNo, MRRNo, BillNo;
         string dept;
 
-        protected void lblIndentNo_Click(object sender, EventArgs e)
-        {
-            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-
-            LinkButton lblIndent = row.FindControl("lblIndentNo") as LinkButton;
-
-            int indentId = int.Parse(lblIndent.Text.ToString());
-        }
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoRegisterReport";
+        string stop = "stopping SCM\\PoRegisterReport";
 
         //int indent = 0, po = 0, mrr = 0;
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            
-            intWH = int.Parse(ddlWH.SelectedValue);
-            fDate = DateTime.Parse(txtDteFrom.Text.ToString());
-            tDate = DateTime.Parse(txtdteTo.Text.ToString());
-            type = int.Parse(ddlType.SelectedValue);
-            dept = ddlDept.SelectedItem.ToString();
-            
-            if (txtIndent.Text != "")
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                intNewType = 1;
-                intID = Convert.ToInt32(txtIndent.Text);
+                intWH = int.Parse(ddlWH.SelectedValue);
+                fDate = DateTime.Parse(txtDteFrom.Text.ToString());
+                tDate = DateTime.Parse(txtdteTo.Text.ToString());
+                type = int.Parse(ddlType.SelectedValue);
+                dept = ddlDept.SelectedItem.ToString();
+
+                if (txtIndent.Text != "")
+                {
+                    intNewType = 1;
+                    intID = Convert.ToInt32(txtIndent.Text);
+                }
+                else if (txtPO.Text != "")
+                {
+                    intNewType = 2;
+                    intID = int.Parse(txtPO.Text);
+                }
+                else if (txtMrr.Text != "")
+                {
+                    intNewType = 3;
+                    intID = int.Parse(txtMrr.Text);
+                }
+                dt = objPo.PoRegisterDataList(fDate, tDate, dept, 0, intNewType, intID, 1);
+                dgvStatement.DataSource = dt;
+                dgvStatement.DataBind();
             }
-            else if(txtPO.Text != "")
+            catch (Exception ex)
             {
-                intNewType = 2;
-                intID = int.Parse(txtPO.Text);
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
             }
-            else if(txtMrr.Text != "")
-            {
-                intNewType = 3;
-                intID = int.Parse(txtMrr.Text);
-            }
-            dt = objPo.PoRegisterDataList(fDate, tDate, dept, 0, intNewType, intID, 1);
-            dgvStatement.DataSource = dt;
-            dgvStatement.DataBind();
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+
+            try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objPo.GetPoData(1, "", 0, 0, DateTime.Now, enroll);
-                ddlWH.DataSource = dt;
-                ddlWH.DataTextField = "strName";
-                ddlWH.DataValueField = "Id";
-                ddlWH.DataBind();
+                if (!IsPostBack)
+                {
+                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    dt = objPo.GetPoData(1, "", 0, 0, DateTime.Now, enroll);
+                    ddlWH.DataSource = dt;
+                    ddlWH.DataTextField = "strName";
+                    ddlWH.DataValueField = "Id";
+                    ddlWH.DataBind();
+                }
+                else { }
             }
-            else { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,6 +122,11 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWH = int.Parse(ddlWH.SelectedValue);
@@ -108,9 +148,32 @@ namespace UI.SCM
                 dgvStatement.DataBind();
 
             }
-            catch { }
-        }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
+        protected void lblIndentNo_Click(object sender, EventArgs e)
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer; 
+            LinkButton lblIndent = row.FindControl("lblIndentNo") as LinkButton;
+            LinkButton lblIndentDate = row.FindControl("lblIndentNo") as LinkButton;
+            string dteDue = lblIndentDate.Text.ToString(); 
+            int indentId = int.Parse(lblIndent.Text.ToString());
+
+            string dept = ddlDept.SelectedItem.ToString();
+            string whname = ddlWH.SelectedItem.ToString();
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteDue + "','" + dteDue.ToString() + "','" + indentId + "','" + dept + "','" + whname + "');", true);
+
+        }
         protected void dgvStatement_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try

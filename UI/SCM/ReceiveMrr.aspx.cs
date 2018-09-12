@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +23,13 @@ namespace UI.SCM
         string xmlString = "",filePathForXML,strMssingCost, challanNo, strVatChallan,poIssueBy, expireDate, manufactureDate;
         int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
         decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate; 
-        DateTime dteChallan; 
+        DateTime dteChallan;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\ReceiveMrr";
+        string stop = "stopping SCM\\ReceiveMrr";
+        string perform = "Performance on SCM\\ReceiveMrr";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Mr__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -88,6 +96,10 @@ namespace UI.SCM
         }
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSaveMrr_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnSaveMrr_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 try { File.Delete(filePathForXML);  } catch { }
@@ -193,7 +205,18 @@ namespace UI.SCM
                     PoView(intPOID);
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+                try { File.Delete(filePathForXML); } catch { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+   
         }
 
         private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks,string monRate,string poIssueBy, string batchNo,string expireDate,string manufactureDate)

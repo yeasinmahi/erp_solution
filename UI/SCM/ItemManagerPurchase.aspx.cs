@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +20,13 @@ namespace UI.SCM
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
         decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
         bool ysnVATApplicable;
+
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\ItemMangerPurchase";
+        string stop = "stopping SCM\\ItemMangerPurchase";
+        string perform = "Performance on SCM\\ItemMangerPurchase";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -44,9 +53,26 @@ namespace UI.SCM
         }
         private void LoadGrid()
         {
-            dt = new DataTable();
-            dt = bll.GetItemListForPurchase(intWHID);
-            dgvItem.DataSource = dt; dgvItem.DataBind();
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "LoadGrid", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
+                dt = bll.GetItemListForPurchase(intWHID);
+                dgvItem.DataSource = dt; dgvItem.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "LoadGrid", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
         {
