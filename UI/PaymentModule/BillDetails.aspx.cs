@@ -55,7 +55,7 @@ namespace UI.PaymentModule
                 try
                 {
                     intBillID = int.Parse(Request.QueryString["Id"]);
-                    Session["billid"] = intBillID.ToString();
+                    try { Session["billid"] = intBillID.ToString(); } catch { }
                     txtBillAmount.Text = Session["billamount"].ToString();
                     txtParty.Text = Session["party"].ToString();
                 }

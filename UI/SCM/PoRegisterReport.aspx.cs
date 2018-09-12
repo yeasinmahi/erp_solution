@@ -77,6 +77,52 @@ namespace UI.SCM
 
         }
 
+        protected void lblMrrNo_Click(object sender, EventArgs e)
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            LinkButton lblMrrNo = row.FindControl("lblMrrNo") as LinkButton;
+
+            int Id = int.Parse(lblMrrNo.Text.ToString());
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewdetailsMrr('" + Id + "');", true);
+
+        }
+
+        protected void lblPoNos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                LinkButton lblPoNos = row.FindControl("lblPoNos") as LinkButton;
+
+                int Id = int.Parse(lblPoNos.Text.ToString());
+                if (Id > 0)
+                {
+                    Session["pono"] = Id.ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
+
+                }
+            }
+            catch { }
+            
+
+
+        }
+
+        protected void lblBillNo_Click(object sender, EventArgs e)
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            LinkButton lblBillNo = row.FindControl("lblBillNo") as LinkButton;
+
+            int Id = int.Parse(lblBillNo.Text.ToString());
+          
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + Id + "');", true);
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -164,14 +210,10 @@ namespace UI.SCM
             enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer; 
             LinkButton lblIndent = row.FindControl("lblIndentNo") as LinkButton;
-            LinkButton lblIndentDate = row.FindControl("lblIndentNo") as LinkButton;
-            string dteDue = lblIndentDate.Text.ToString(); 
-            int indentId = int.Parse(lblIndent.Text.ToString());
+            
+            int Id = int.Parse(lblIndent.Text.ToString()); 
 
-            string dept = ddlDept.SelectedItem.ToString();
-            string whname = ddlWH.SelectedItem.ToString();
-
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteDue + "','" + dteDue.ToString() + "','" + indentId + "','" + dept + "','" + whname + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Id + "');", true);
 
         }
         protected void dgvStatement_RowCommand(object sender, GridViewCommandEventArgs e)
