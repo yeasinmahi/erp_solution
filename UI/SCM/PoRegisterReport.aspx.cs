@@ -20,6 +20,17 @@ namespace UI.SCM
         DateTime fDate, tDate;
         string PoNo, MRRNo, BillNo;
         string dept;
+
+        protected void lblIndentNo_Click(object sender, EventArgs e)
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            LinkButton lblIndent = row.FindControl("lblIndentNo") as LinkButton;
+
+            int indentId = int.Parse(lblIndent.Text.ToString());
+        }
+
         //int indent = 0, po = 0, mrr = 0;
 
         protected void btnSearch_Click(object sender, EventArgs e)

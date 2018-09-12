@@ -276,14 +276,14 @@
                         <ItemTemplate><asp:Label ID="lblPLocation"   Width="50px" runat="server"  Text='<%# Bind("strLocationName") %>' ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right" SortExpression="strLocationName" > 
+                        <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right"  > 
                         <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
                             <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />
                                     <asp:Parameter DefaultValue="" Name="xmlData" Type="Object" />
                                     <asp:ControlParameter ControlID="ddlWH" Name="intWh" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:ControlParameter ControlID="ddlPo" Name="intPOId" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:Parameter DefaultValue="0" Name="intPOId" Type="Int32" />
                                     <asp:Parameter DefaultValue="2018-01-01" Name="dteDate" Type="DateTime" />
                                     <asp:Parameter DefaultValue="0" Name="intEnroll" Type="Int32" />
                                     <asp:Parameter DefaultValue="" Direction="InputOutput" Name="msg" Type="String" />
@@ -294,7 +294,7 @@
                         <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right"   > 
-                        <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px" DataFormatString="{0:0.00}"  ></asp:TextBox></ItemTemplate> 
+                        <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px"  ></asp:TextBox></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Wrap="true" />  </asp:TemplateField> 
                            
                         </Columns> 

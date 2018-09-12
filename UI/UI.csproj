@@ -256,6 +256,7 @@
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
+    <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
     <Content Include="Content\JS\html2pdf.js" />

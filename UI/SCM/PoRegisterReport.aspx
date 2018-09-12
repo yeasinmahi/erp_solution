@@ -145,7 +145,7 @@
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>   
                 
             <asp:TemplateField HeaderText="IndentNo"   ItemStyle-HorizontalAlign="right" SortExpression="indent" >
-            <ItemTemplate><asp:Label ID="lblIndentNo" runat="server"  Text='<%# Bind("indent") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:LinkButton ID="lblIndentNo" runat="server" OnClick="lblIndentNo_Click"  Text='<%# Bind("indent") %>'></asp:LinkButton></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
             
             <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="indDate" >
