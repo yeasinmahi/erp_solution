@@ -12,11 +12,17 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.Drawing.Printing;
 using System.Drawing;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.AEFPS
 {
     public partial class fpsDueReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting AEFPS\\fpsDueReport";
+        string stop = "stopping AEFPS\\fpsDueReport";
         int intWID, intInsertby;
         DataTable dt;
         FPSSalesEntryBLL objAEFPS = new FPSSalesEntryBLL();
@@ -41,7 +47,15 @@ namespace UI.AEFPS
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if ((txtfdate.Text != "") )
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\fpsDueReport Due Report Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if ((txtfdate.Text != "") )
             {
                 dtefdate = DateTime.Parse(txtfdate.Text.ToString());
                 lblWHName.Text = ddlWH.SelectedItem.ToString();
@@ -63,6 +77,19 @@ namespace UI.AEFPS
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Date !');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
         protected decimal  TotalAmounts = 0;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
