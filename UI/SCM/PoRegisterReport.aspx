@@ -49,6 +49,10 @@
          function ViewdetailsMrr(Id) {
              window.open('../PaymentModule/MRRDetailsView.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
+       function Registration(url) {
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
+            if (window.focus) { newwindow.focus() }
+        }
 
 
         function Confirm() {
