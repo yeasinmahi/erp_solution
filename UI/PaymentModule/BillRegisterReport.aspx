@@ -23,7 +23,12 @@
     <script>
          function ViewBillDetailsPopup(Id) {
              window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
-         }
+        }
+
+         function Registration(url) {
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
+            if (window.focus) { newwindow.focus() }
+        }
     </script>
 
 
@@ -74,7 +79,7 @@
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
             
             <asp:TemplateField HeaderText="Bill ID" SortExpression="intBill">
-            <ItemTemplate><asp:Label ID="lblBillID" runat="server" Text='<%# Bind("intBill") %>' Width="50px"></asp:Label>
+            <ItemTemplate><asp:LinkButton ID="lblBillID" runat="server" Text='<%# Bind("intBill") %>' OnClick="lblBillID_Click" Width="50px"></asp:LinkButton>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="50px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Bill Reg Code" SortExpression="strBillCode">
@@ -83,7 +88,7 @@
 
             
             <asp:TemplateField HeaderText="Reff" SortExpression="strReff">
-            <ItemTemplate><asp:Label ID="lblReff" runat="server" Text='<%# Bind("strReff") %>' Width="80px"></asp:Label>
+            <ItemTemplate><asp:LinkButton ID="lblReff" runat="server" Text='<%# Bind("strReff") %>' OnClick="lblReff_Click" Width="80px"></asp:LinkButton>
             </ItemTemplate><ItemStyle HorizontalAlign="left" Width="80px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Bill No" SortExpression="strBillNo">

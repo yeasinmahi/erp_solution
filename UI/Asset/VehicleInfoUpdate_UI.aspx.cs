@@ -10,7 +10,8 @@ using Purchase_BLL.Asset;
 using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.Data;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -19,38 +20,59 @@ namespace UI.Asset
         Assetregister_BLL objregisterUpdate = new Assetregister_BLL();
         DataTable dt = new DataTable();
         int intItem ;
+
+
+        SeriLog log = new SeriLog();
+        string location = "ASSET";
+        string start = "starting ASSET\\VehicleInfoUpdate_UI";
+        string stop = "stopping ASSET\\VehicleInfoUpdate_UI";
+        string perform = "Performance on ASSET\\VehicleInfoUpdate_UI";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                 Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                if (!IsPostBack)
+                {
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-            string assetcode = "0".ToString();
-            Int32 Mnumber = Int32.Parse("1".ToString());
+                    string assetcode = "0".ToString();
+                    int Mnumber = int.Parse("1".ToString()); 
+                    dt = new DataTable();
 
-               
-                dt = new DataTable();
-               
-                dt = objregisterUpdate.VehicleBillingUnitName();
-                DdlBillUnit.DataSource = dt;
-                DdlBillUnit.DataTextField = "strUnit";
-                DdlBillUnit.DataValueField = "intUnitID";
-                DdlBillUnit.DataBind();
-                pnlUpperControl.DataBind();
+                    dt = objregisterUpdate.VehicleBillingUnitName();
+                    DdlBillUnit.DataSource = dt;
+                    DdlBillUnit.DataTextField = "strUnit";
+                    DdlBillUnit.DataValueField = "intUnitID";
+                    DdlBillUnit.DataBind();
+                    pnlUpperControl.DataBind();
 
-                dt = new DataTable();
-                Int32 unitid = Int32.Parse(DdlBillUnit.SelectedValue.ToString());
-                dt = objregisterUpdate.VehicleBillingJobstation(unitid);
-                DdlJobstation.DataSource = dt;
-                DdlJobstation.DataTextField = "strJobStationName";
-                DdlJobstation.DataValueField = "intEmployeeJobStationId";
-                DdlJobstation.DataBind();
+                    dt = new DataTable();
+                    int unitid = int.Parse(DdlBillUnit.SelectedValue.ToString());
+                    dt = objregisterUpdate.VehicleBillingJobstation(unitid);
+                    DdlJobstation.DataSource = dt;
+                    DdlJobstation.DataTextField = "strJobStationName";
+                    DdlJobstation.DataValueField = "intEmployeeJobStationId";
+                    DdlJobstation.DataBind();
 
+                }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);           
+            tracker.Stop();
         }
 
         [WebMethod]
@@ -66,92 +88,136 @@ namespace UI.Asset
 
         protected void TxtAssetID_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(TxtAssetID.Text))
+            var fd = log.GetFlogDetail(start, location, "TxtAssetID_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "TxtAssetID_TextChanged", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                string strSearchKey = TxtAssetID.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ";");
-                hdfEmpCode.Value = searchKey[1];
-
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-               
-
-
-                Int32 Mnumber = Int32.Parse("1".ToString());
-                string assetcode = hdfEmpCode.Value.ToString();
-
-                intItem = 7;
-               dt = objregisterUpdate.AssetVehicleView(intItem, Mnumber, intenroll, intjobid, intdept, assetcode);
-                if (dt.Rows.Count > 0)
+                if (!String.IsNullOrEmpty(TxtAssetID.Text))
                 {
-                    TxtxtName.Text = dt.Rows[0]["strNameOfAsset"].ToString();
-                    TxtxtDriverMobaile.Text = dt.Rows[0]["strVDriverMobaile"].ToString();
-                    TxtDriverName.Text = dt.Rows[0]["strVDriverName"].ToString();
-                    TxtUserName.Text = dt.Rows[0]["strVUserName"].ToString();
-                    TxtEnroll.Text = dt.Rows[0]["IntVUserEnroll"].ToString();
-                    TxtLocation.Text = dt.Rows[0]["strInstallationLocation"].ToString();
-                    try { DdlBillUnit.SelectedItem.Text = dt.Rows[0]["unitname"].ToString(); }
-                    catch { };
+                    string strSearchKey = TxtAssetID.Text;
+                    string[] searchKey = Regex.Split(strSearchKey, ";");
+                    hdfEmpCode.Value = searchKey[1];
 
-                    try { DdlBillUnit.SelectedValue = dt.Rows[0]["unitid"].ToString(); }
-                    catch { };
-                    try { DdlJobstation.SelectedItem.Text = dt.Rows[0]["strJobStationName"].ToString(); }
-                    catch { };
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString()); 
 
-                    try { DdlJobstation.SelectedValue = dt.Rows[0]["intEmployeeJobStationId"].ToString(); }
-                    catch { };
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                    int Mnumber = int.Parse("1".ToString());
+                    string assetcode = hdfEmpCode.Value.ToString();
 
+                    intItem = 7;
+                    dt = objregisterUpdate.AssetVehicleView(intItem, Mnumber, intenroll, intjobid, intdept, assetcode);
+                    if (dt.Rows.Count > 0)
+                    {
+                        TxtxtName.Text = dt.Rows[0]["strNameOfAsset"].ToString();
+                        TxtxtDriverMobaile.Text = dt.Rows[0]["strVDriverMobaile"].ToString();
+                        TxtDriverName.Text = dt.Rows[0]["strVDriverName"].ToString();
+                        TxtUserName.Text = dt.Rows[0]["strVUserName"].ToString();
+                        TxtEnroll.Text = dt.Rows[0]["IntVUserEnroll"].ToString();
+                        TxtLocation.Text = dt.Rows[0]["strInstallationLocation"].ToString();
+                        try { DdlBillUnit.SelectedItem.Text = dt.Rows[0]["unitname"].ToString(); }
+                        catch { };
+
+                        try { DdlBillUnit.SelectedValue = dt.Rows[0]["unitid"].ToString(); }
+                        catch { };
+                        try { DdlJobstation.SelectedItem.Text = dt.Rows[0]["strJobStationName"].ToString(); }
+                        catch { };
+
+                        try { DdlJobstation.SelectedValue = dt.Rows[0]["intEmployeeJobStationId"].ToString(); }
+                        catch { };
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "TxtAssetID_TextChanged", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "TxtAssetID_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            Int32 userenroll;
-             if (!String.IsNullOrEmpty(TxtAssetID.Text))
+            var fd = log.GetFlogDetail(start, location, "BtnUpdate_Click", null);
+                Flogger.WriteDiagnostic(fd);
+                // starting performance tracker
+                var tracker = new PerfTracker(perform + " " + "BtnUpdate_Click", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+            try
             {
-                string strSearchKey = TxtAssetID.Text;
-                string[] searchKey = Regex.Split(strSearchKey, ";");
-                hdfEmpCode.Value = searchKey[1];
-                 string asetcode=hdfEmpCode.Value.ToString();
-                 Int32 billjobnid = Int32.Parse(DdlJobstation.SelectedValue.ToString());
+                int userenroll;
+                if (!String.IsNullOrEmpty(TxtAssetID.Text))
+                {
+                    string strSearchKey = TxtAssetID.Text;
+                    string[] searchKey = Regex.Split(strSearchKey, ";");
+                    hdfEmpCode.Value = searchKey[1];
+                    string asetcode = hdfEmpCode.Value.ToString();
+                    int billjobnid = int.Parse(DdlJobstation.SelectedValue.ToString());
 
-            Int32 unitid = Int32.Parse(DdlBillUnit.SelectedValue.ToString());
-            string driverName = TxtDriverName.Text.ToString();
-            string driverMobaile = TxtxtDriverMobaile.Text.ToString();
-            string locations = TxtLocation.Text.ToString();
-            string username = TxtUserName.Text.ToString();
-            try { userenroll = Int32.Parse(TxtEnroll.Text.ToString()); }
-            catch {  userenroll = Int32.Parse(TxtEnroll.Text.ToString()); }
-             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int unitid = int.Parse(DdlBillUnit.SelectedValue.ToString());
+                    string driverName = TxtDriverName.Text.ToString();
+                    string driverMobaile = TxtxtDriverMobaile.Text.ToString();
+                    string locations = TxtLocation.Text.ToString();
+                    string username = TxtUserName.Text.ToString();
+                    try { userenroll = int.Parse(TxtEnroll.Text.ToString()); }
+                    catch { userenroll = int.Parse(TxtEnroll.Text.ToString()); }
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-             objregisterUpdate.VehicleRegisInformationUpdate(unitid,billjobnid, driverName, driverMobaile, locations, username, userenroll, intenroll, asetcode);
-             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('SucessFully Update');", true);
-             TxtxtName.Text = "";
-             TxtxtDriverMobaile.Text = "";
-             TxtDriverName.Text = "";
-             TxtUserName.Text = "";
-             TxtEnroll.Text = "";
-             TxtLocation.Text = ""; TxtAssetID.Text = "";
-
-
-           }
+                    objregisterUpdate.VehicleRegisInformationUpdate(unitid, billjobnid, driverName, driverMobaile, locations, username, userenroll, intenroll, asetcode);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('SucessFully Update');", true);
+                    TxtxtName.Text = "";
+                    TxtxtDriverMobaile.Text = "";
+                    TxtDriverName.Text = "";
+                    TxtUserName.Text = "";
+                    TxtEnroll.Text = "";
+                    TxtLocation.Text = ""; TxtAssetID.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnUpdate_Click", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "BtnUpdate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         protected void DdlBillUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dt = new DataTable();
-            Int32 unitid = Int32.Parse(DdlBillUnit.SelectedValue.ToString());
-            dt = objregisterUpdate.VehicleBillingJobstation(unitid);
-            DdlJobstation.DataSource = dt;
-            DdlJobstation.DataTextField = "strJobStationName";
-            DdlJobstation.DataValueField = "intEmployeeJobStationId";
-            DdlJobstation.DataBind();
+            var fd = log.GetFlogDetail(start, location, "DdlBillUnit_SelectedIndexChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "DdlBillUnit_SelectedIndexChanged", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
+                int unitid = int.Parse(DdlBillUnit.SelectedValue.ToString());
+                dt = objregisterUpdate.VehicleBillingJobstation(unitid);
+                DdlJobstation.DataSource = dt;
+                DdlJobstation.DataTextField = "strJobStationName";
+                DdlJobstation.DataValueField = "intEmployeeJobStationId";
+                DdlJobstation.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "DdlBillUnit_SelectedIndexChanged", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "DdlBillUnit_SelectedIndexChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
     }
 }

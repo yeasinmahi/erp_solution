@@ -12,7 +12,8 @@ using System.IO;
 using System.Net;
 using UI.ClassFiles;
 using System.Web.Script.Services;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -37,119 +38,162 @@ namespace UI.Asset
         int intPart;
         int intItem;
 
-
+        SeriLog log = new SeriLog();
+        string location = "ASSET";
+        string start = "starting ASSET\\ServiceConfigurePopUp";
+        string stop = "stopping ASSET\\ServiceConfigurePopUp";
+        string perform = "Performance on ASSET\\ServiceConfigurePopUp";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                hdnField.Value = "0";
-
-               
-                TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextemp();");
-                SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();");
-               
-                TxtTCost.Visible = false;
-                TxtTCost.Visible = false;
-                TxtLabor.Visible = false;
-                pnlUpperControl.DataBind();
-                 Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-                 Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                 if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
-                 {
-                     hdntp.Value = "1";
-                     //Int32 type = int.Parse("1".ToString());
-                     //warehouse = objWorkorderParts.warehousename(enroll, type);
-                     //DdlWareHouse.DataSource = warehouse;
-                     //DdlWareHouse.DataTextField = "WH";
-                     //DdlWareHouse.DataValueField = "intWHID";
-                     //DdlWareHouse.DataBind();
-                 }
-                 else
-                 {
-                     hdntp.Value = "0";
-                     //Int32 type = int.Parse("0".ToString());
-                     //warehouse = objWorkorderParts.warehousename(enroll, type);
-                     //DdlWareHouse.DataSource = warehouse;
-                     //DdlWareHouse.DataTextField = "WH";
-                     //DdlWareHouse.DataValueField = "intWHID";
-                     //DdlWareHouse.DataBind();
-                 }  
-            }
-            else
-            {
-                if (hdnField.Value != "0")
+                if (!IsPostBack)
                 {
-                    btndocSave_Click();
-                    //lbldoc.Text = message;
-                }
-            }
+                    hdnField.Value = "0";
 
-            showdata();
+
+                    TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextemp();");
+                    SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();");
+
+                    TxtTCost.Visible = false;
+                    TxtTCost.Visible = false;
+                    TxtLabor.Visible = false;
+                    pnlUpperControl.DataBind();
+                    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+
+                    Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
+                    {
+                        hdntp.Value = "1";
+
+                    }
+                    else
+                    {
+                        hdntp.Value = "0";
+
+                    }
+                }
+                else
+                {
+                    if (hdnField.Value != "0")
+                    {
+                        btndocSave_Click();
+                        //lbldoc.Text = message;
+                    }
+                }
+
+                showdata();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
+
+
         }
 
         private void showdata()
         {
-            Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "showdata", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "showdata", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int Mnumber = Convert.ToInt32(Session["intID"].ToString());
+                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
 
-            intItem = 15;
-            if (intItem == 15)
-            {
-                spareparts = objPMSpareParts.PMSsparePartsView(intItem, Mnumber, intenroll, intjobid, intdept);
-                GridViewParts.DataSource = spareparts;
-                GridViewParts.DataBind();
-            }
+                intItem = 15;
+                if (intItem == 15)
+                {
+                    spareparts = objPMSpareParts.PMSsparePartsView(intItem, Mnumber, intenroll, intjobid, intdept);
+                    GridViewParts.DataSource = spareparts;
+                    GridViewParts.DataBind();
+                }
 
-            intItem = 16;
-            if (intItem == 16)
-            {
-                labor = objPMSpareParts.PMSLaborcostShow(intItem, Mnumber, intenroll, intjobid, intdept);
-                GridViewLabor.DataSource = labor;
-                GridViewLabor.DataBind();
-            }
-            intItem = 17;
-            if (intItem == 17)
-            {
-                docview = objPMSpareParts.PMSdocview(intItem, Mnumber, intenroll, intjobid, intdept);
-                GridViewDoc.DataSource = docview;
-                GridViewDoc.DataBind();
-            }
-            intItem = 49;
-            if (intItem == 49)
-            {
-                PMTools = objPMSpareParts.PMToolsView(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvPMTools.DataSource = PMTools;
-                dgvPMTools.DataBind();
+                intItem = 16;
+                if (intItem == 16)
+                {
+                    labor = objPMSpareParts.PMSLaborcostShow(intItem, Mnumber, intenroll, intjobid, intdept);
+                    GridViewLabor.DataSource = labor;
+                    GridViewLabor.DataBind();
+                }
+                intItem = 17;
+                if (intItem == 17)
+                {
+                    docview = objPMSpareParts.PMSdocview(intItem, Mnumber, intenroll, intjobid, intdept);
+                    GridViewDoc.DataSource = docview;
+                    GridViewDoc.DataBind();
+                }
+                intItem = 49;
+                if (intItem == 49)
+                {
+                    PMTools = objPMSpareParts.PMToolsView(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvPMTools.DataSource = PMTools;
+                    dgvPMTools.DataBind();
 
+                }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "showdata", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "showdata", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         private void btndocSave_Click()
         {
-            Int32 Reffno = Convert.ToInt32(Session["intID"].ToString());
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "btndocSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btndocSave_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int Reffno =int.Parse(Session["intID"].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-            string docdesc = TxtDocDescription.Text.ToString();
-            //******** Document Uplaod**********************//
-            string dfile = Reffno + "_" + Path.GetFileName(DUpload.PostedFile.FileName);
-            decimal length = dfile.Length;
-            string path = "/test/" + dfile;
+                string docdesc = TxtDocDescription.Text.ToString();
+                //******** Document Uplaod**********************//
+                string dfile = Reffno + "_" + Path.GetFileName(DUpload.PostedFile.FileName);
+                decimal length = dfile.Length;
+                string path = "/test/" + dfile;
 
 
-            DUpload.PostedFile.SaveAs(Server.MapPath("~/Asset/Uploads/") + dfile);
-            FileUploadFTP(Server.MapPath("~/Asset/Uploads/"), dfile, "ftp://ftp.akij.net/test/", "erp@akij.net", "erp123");
-            File.Delete(Server.MapPath("~/Asset/Uploads/") + dfile);
-            objPMSpareParts.PMSDocUpload(Reffno, path, docdesc, intenroll, intjobid, intdept);
-            GridViewDoc.DataBind();
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Document Upload');", true);
-
+                DUpload.PostedFile.SaveAs(Server.MapPath("~/Asset/Uploads/") + dfile);
+                FileUploadFTP(Server.MapPath("~/Asset/Uploads/"), dfile, "ftp://ftp.akij.net/test/", "erp@akij.net", "erp123");
+                File.Delete(Server.MapPath("~/Asset/Uploads/") + dfile);
+                objPMSpareParts.PMSDocUpload(Reffno, path, docdesc, intenroll, intjobid, intdept);
+                GridViewDoc.DataBind();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Document Upload');", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btndocSave_Click", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "btndocSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
@@ -236,44 +280,55 @@ namespace UI.Asset
 
         protected void BtnParts_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "BtnParts_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "BtnParts_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
-            {
-
-
+            { 
                 if (!String.IsNullOrEmpty(txtPartsSearch.Text))
                 {
                     string strSearchKey = txtPartsSearch.Text;
                     string[] searchKey = Regex.Split(strSearchKey, ";");
                     hdfEmpCode.Value = searchKey[1];
-                    Int32 parts = Int32.Parse(hdfEmpCode.Value.ToString());
+                    int parts = int.Parse(hdfEmpCode.Value.ToString());
 
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-                    Int32 Reffno = Convert.ToInt32(Session["intID"].ToString());
-                    Int32 intwh = Int32.Parse(DdlWareHouse.SelectedValue.ToString());
+                    int Reffno = Convert.ToInt32(Session["intID"].ToString());
+                    int intwh = int.Parse(DdlWareHouse.SelectedValue.ToString());
                     string remarks = TxtRemarks.Text.ToString();
                     Decimal pqty = Decimal.Parse(TxtPqty.Text.ToString());
-                   
-
 
                     objPMSpareParts.PMSpareParts(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
                     GridViewParts.DataBind();
-
                    
                     showdata();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnParts_Click", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "BtnParts_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         protected void BtnLabor_Click(object sender, EventArgs e)
         {
-            {
-                try
+            var fd = log.GetFlogDetail(start, location, "BtnLabor_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "BtnLabor_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+
+            try
                 {
                     if (!String.IsNullOrEmpty(TxtTechnichinSearch.Text))
                 {
@@ -296,8 +351,15 @@ namespace UI.Asset
 
                     showdata();
                 }}
-                catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnLabor_Click", ex);
+                Flogger.WriteError(efd);
             }
+            fd = log.GetFlogDetail(stop, location, "BtnLabor_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
+
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
@@ -329,6 +391,11 @@ namespace UI.Asset
 
         protected void BtnTools_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "BtnTools_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "BtnTools_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (!String.IsNullOrEmpty(SearchToolsBox.Text))
@@ -354,7 +421,14 @@ namespace UI.Asset
                     showdata();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnTools_Click", ex);
+                Flogger.WriteError(efd);
+            }
+            fd = log.GetFlogDetail(stop, location, "BtnTools_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         protected void dgvPMTools_RowDeleting(object sender, GridViewDeleteEventArgs e)
