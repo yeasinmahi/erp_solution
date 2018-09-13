@@ -14,6 +14,7 @@ using SAD_BLL.Customer;
 using BLL.Accounts.ChartOfAccount;
 using GLOBAL_BLL;
 using UI.ClassFiles;
+using Flogging.Core;
 
 namespace UI.SAD.Customer
 {
@@ -21,6 +22,10 @@ namespace UI.SAD.Customer
     {
         private string nextParentID = "";
         CheckDigit cg = new CheckDigit();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\CustomerGEO";
+        string stop = "stopping SAD\\Customer\\CustomerGEO";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,11 +43,15 @@ namespace UI.SAD.Customer
 
         private HtmlAnchor BuildAnchor(string text, string attrMethod)
         {
-            HtmlAnchor htA = new HtmlAnchor();
+            
+
+                HtmlAnchor htA = new HtmlAnchor();
             htA.InnerText = text;
             htA.HRef = "#";
             htA.Attributes.Add("onclick", attrMethod);
             return htA;
+           
+
         }
 
         protected void ddlUnit_DataBound(object sender, EventArgs e)

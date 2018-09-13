@@ -16,6 +16,8 @@ using SAD_BLL.AutoChallan;
 using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.AEFPS;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -26,7 +28,10 @@ namespace UI.SAD.ExcelChallan
         DataTable dt;
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         ExcelDataBLL objExcel = new ExcelDataBLL();
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\ExcelChallan\\frmVehicleSetbyTransport";
+        string stop = "stopping SAD\\ExcelChallan\\frmVehicleSetbyTransport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -49,13 +54,32 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmVehicleSetbyTransport Transport order Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
             dt = objExcel.UploadData(int.Parse(ddlshippoint.SelectedValue));
             dgvExcelOrder.DataSource = dt;
             dgvExcelOrder.DataBind();
             dgvExcelOrder.Visible = true;
             dgvVehicle.Visible = false;
             dgvVehicle.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected double Pendingtotal = 0;
         protected void txtEmployee_TextChanged(object sender, EventArgs e)
@@ -81,12 +105,32 @@ namespace UI.SAD.ExcelChallan
         }
         private void getVhileFinalReport()
         {
-            dt = objExcel.getVehilceReport(int.Parse(ddlshippoint.SelectedValue));
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmVehicleSetbyTransport Transport Program Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                dt = objExcel.getVehilceReport(int.Parse(ddlshippoint.SelectedValue));
             dgvVehicle.DataSource = dt;
             dgvVehicle.DataBind();
             dgvVehicle.Visible = true;
             dgvExcelOrder.Visible = false;
             dgvExcelOrder.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #region ******************* Total ***********
         protected double TotalQtytotal = 0;
@@ -109,6 +153,12 @@ namespace UI.SAD.ExcelChallan
         #endregion *********** end ***************88
         protected void btnDelete(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmVehicleSetbyTransport Transport Program Delete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -121,7 +171,16 @@ namespace UI.SAD.ExcelChallan
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
                 getVhileFinalReport();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCompany_CheckedChanged(object sender, EventArgs e)
         {
@@ -133,6 +192,15 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmVehicleSetbyTransport Transport Program Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
             char[] delimiterCharss = { '[', ']' };
             arrayKeyItem = txtEmployee.Text.Split(delimiterCharss);
             empid = int.Parse(arrayKeyItem[1].ToString());
@@ -158,6 +226,18 @@ namespace UI.SAD.ExcelChallan
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
                 dgvExcelOrder.DataBind();
             }
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #region ******* search **********
         [WebMethod]

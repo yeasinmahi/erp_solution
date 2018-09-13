@@ -14,6 +14,8 @@ using System.Drawing.Printing;
 using System.Drawing;
 using System.Data.SqlClient;
 using System.Configuration;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.AEFPS
 {
@@ -23,6 +25,10 @@ namespace UI.AEFPS
         DataTable dt;      
         FPSSalesEntryBLL objAEFPS = new FPSSalesEntryBLL();
         DateTime dtefdate, dtetdate;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\frmCashBook";
+        string stop = "stopping AEFPS\\frmCashBook";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,9 +46,15 @@ namespace UI.AEFPS
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\frmCashBook Cash Book Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                
+
                 if ((txtfdate.Text != "") || (txttdate.Text != ""))
                 {
                     if (ddlReporttype.SelectedValue == "1")
@@ -102,8 +114,17 @@ namespace UI.AEFPS
                 else
                 { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Date');", true); }
             }
-            catch { }
-          }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
         protected decimal Totaldebit = 0, Totalcredit=0;
         protected void dgvRptTemp_RowDataBound(object sender, GridViewRowEventArgs e)
         {

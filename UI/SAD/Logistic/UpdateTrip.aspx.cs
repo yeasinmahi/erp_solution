@@ -10,11 +10,18 @@ using LOGIS_BLL;
 using SAD_BLL.Sales;
 using LOGIS_BLL.Trip;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Logistic
 {
     public partial class UpdateTrip : BasePage
     {
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Logistic\\UpdateTrip";
+        string stop = "stopping SAD\\Logistic\\UpdateTrip";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -96,17 +103,45 @@ namespace UI.SAD.Logistic
 
         protected void btnDo_Click(object sender, EventArgs e)
         {
-            if (hdnVehicle.Value != "" && hdnDo.Value != "")
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\UpdateTrip Do Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (hdnVehicle.Value != "" && hdnDo.Value != "")
             {
                 Trip tr = new Trip();
                 tr.UpdateTripDO(hdnVehicle.Value, hdnDo.Value, txtDo.Text.Trim(), Session[SessionParams.USER_ID].ToString());
 
                 Reset();
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnReg_Click(object sender, EventArgs e)
         {
-            if (hdnVehicle.Value != "" && txtReg.Text.Trim() != "")
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\UpdateTrip Registration", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (hdnVehicle.Value != "" && txtReg.Text.Trim() != "")
             {
                 Vehicle vhl = new Vehicle();
                 vhl.ModifyVhlRegNo(hdnVehicle.Value, txtReg.Text.Trim(), Session[SessionParams.USER_ID].ToString());
@@ -115,6 +150,17 @@ namespace UI.SAD.Logistic
 
                 Reset();
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void Reset()

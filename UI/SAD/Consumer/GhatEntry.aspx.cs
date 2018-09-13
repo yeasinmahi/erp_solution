@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Consumer;
 using UI.ClassFiles;
 
@@ -9,6 +11,10 @@ namespace UI.SAD.Consumer
     public partial class GhatEntry : System.Web.UI.Page
     {
         readonly StarConsumerEntryBll _bll = new StarConsumerEntryBll();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\GhatEntry";
+        string stop = "stopping SAD\\Consumer\\GhatEntry";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -20,7 +26,15 @@ namespace UI.SAD.Consumer
 
         protected void submit_OnClick(object sender, EventArgs e)
         {
-            string message = String.Empty;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\GhatEntry Get Entry Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string message = String.Empty;
             string ghatName = ghatNameTextBox.Text;
             string address = addressTextBox.Text;
             string contactPerson = contactPersonTextBox.Text;
@@ -37,6 +51,17 @@ namespace UI.SAD.Consumer
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Input all data properly');", true);
             }
             LoadGridView();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

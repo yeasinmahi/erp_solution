@@ -11,6 +11,8 @@ using UI.ClassFiles;
 using System.Data;
 using System.Xml;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -18,15 +20,40 @@ namespace UI.SAD.Corporate_sales
     {
         DataTable dtReportdetails = new DataTable();
         OrderInput_BLL ReportOrder = new OrderInput_BLL();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\ApprovedDetailsFinal";
+        string stop = "stopping SAD\\Corporate_sales\\ApprovedDetailsFinal";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                int ordernumber = int.Parse(Session["order"].ToString());
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\ApprovedDetailsFinal approve Final", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    int ordernumber = int.Parse(Session["order"].ToString());
                 dtReportdetails = ReportOrder.getDetailsReport(ordernumber);
 
                 dgvOrder.DataSource = dtReportdetails;
                 dgvOrder.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
             }
            
@@ -57,7 +84,15 @@ namespace UI.SAD.Corporate_sales
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            DateTime dtedate = DateTime.Now;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\ApprovedDetailsFinal Submit Approve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime dtedate = DateTime.Now;
             int unitid = int.Parse("2");
             int enroll = int.Parse("13");
 
@@ -104,7 +139,17 @@ namespace UI.SAD.Corporate_sales
                 }
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.IHB;
 using UI.ClassFiles;
 
@@ -12,6 +14,10 @@ namespace UI.SAD.Consumer
     public partial class TsoEmailAndJsoEnroll : System.Web.UI.Page
     {
         private readonly DistributorWithIhbBll _bll = new DistributorWithIhbBll();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\TsoEmailAndJsoEnroll";
+        string stop = "stopping SAD\\Consumer\\TsoEmailAndJsoEnroll";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +36,16 @@ namespace UI.SAD.Consumer
 
         protected void update_OnClick(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\TsoEmailAndJsoEnroll Update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
 
             int intID = Convert.ToInt32(((HiddenField)gvr.FindControl("intID")).Value);
@@ -45,6 +60,18 @@ namespace UI.SAD.Consumer
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Failed');", true);
             }
+         
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
             LoadGridView();
         }
         
@@ -67,9 +94,29 @@ namespace UI.SAD.Consumer
 
         public void LoadGridView()
         {
-            int territoryId = Convert.ToInt32(ddlTerritory.SelectedItem.Value);
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\TsoEmailAndJsoEnroll Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int territoryId = Convert.ToInt32(ddlTerritory.SelectedItem.Value);
             grdvCustomerWithIhb.DataSource = _bll.GetEmailAndEnroll(territoryId);
             grdvCustomerWithIhb.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+            LoadGridView();
         }
 
         public void LoadRegion()

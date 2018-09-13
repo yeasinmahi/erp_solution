@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer;
 using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,10 @@ namespace UI.SAD.Order
     {
 
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\DeliveryViewForPendingOrder";
+        string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,7 +45,15 @@ namespace UI.SAD.Order
 
         private void loadgrid()
         {
-            DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DeliveryViewForPendingOrder Challan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
             DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
             hdnFrom.Value = fromDate.ToString();
             hdnTo.Value = toDate.ToString();
@@ -58,6 +72,18 @@ namespace UI.SAD.Order
             dgvCustomerVSPendingQnt.FooterRow.Cells[5].Text = pednqnt.ToString("N2");
             decimal pendvalue = dt.AsEnumerable().Sum(row => row.Field<decimal>("pendingqntpricevalue"));
             dgvCustomerVSPendingQnt.FooterRow.Cells[6].Text = pendvalue.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

@@ -18,12 +18,18 @@ using SAD_BLL.Customer.Report;
 using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Customer.Report
 {
     public partial class CreditBalance : BasePage
     {
         //ReportDocument rd = new ReportDocument();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\Report\\CreditBalance";
+        string stop = "stopping SAD\\Customer\\Report\\CreditBalance";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -91,6 +97,14 @@ namespace UI.SAD.Customer.Report
             //Created    : Konock/ Apr-24-2012
             //Modified   :   
             //Parameters :   intEmployeeID,intMonthID,intYearId
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Customer\\Report\\CreditBalance  Credit Balance", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
 
             string path = HttpContext.Current.Server.MapPath("~/SAD/Customer/Report/ReportTemplete/CreditBalance.rdlc");
             DataTable oDTReportData = new DataTable();
@@ -147,6 +161,17 @@ namespace UI.SAD.Customer.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         /*

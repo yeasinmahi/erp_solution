@@ -1,4 +1,6 @@
-﻿ 
+﻿
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.AEFPS;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,10 @@ namespace UI.AEFPS
     {
         int intWHID, intEnroll, intType, intUnit; DataTable dt = new DataTable(); FPReportBLL bll = new FPReportBLL(); Receive_BLL objRec = new Receive_BLL();
         string strName;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\CreateLocation";
+        string stop = "stopping AEFPS\\CreateLocation";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -71,6 +77,12 @@ namespace UI.AEFPS
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\CreateLocation Create Loaction ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 strName = txtLocation.Text;
@@ -102,7 +114,16 @@ namespace UI.AEFPS
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

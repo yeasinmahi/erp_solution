@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.IHB;
 using UI.ClassFiles;
 using Utility;
@@ -13,6 +15,10 @@ namespace UI.SAD.IHB
     {
         readonly DistributorManpowerBll _bll = new DistributorManpowerBll();
         private string _filePathForXml;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\IHB\\DistributorManPowerInfo";
+        string stop = "stopping SAD\\IHB\\DistributorManPowerInfo";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,6 +38,16 @@ namespace UI.SAD.IHB
 
         protected void update_OnClick(object sender, EventArgs e)
         {
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on   SAD\\IHB\\DistributorManPowerInfo Update Manpawer", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
             Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             
@@ -43,6 +59,19 @@ namespace UI.SAD.IHB
             DateTime updateDate = DateTime.Now;
 
             UpdateCustomerInfo(strDistrManagerN, strSalesRepresentative1, strSalesRepresentative2,updateBy,updateDate,customerId);
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void getInfo_OnClick(object sender, EventArgs e)
@@ -52,13 +81,32 @@ namespace UI.SAD.IHB
 
         private void LoadDistributorInfoGridView()
         {
-            string fromDate = fromTextBox.Text;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on   SAD\\IHB\\DistributorManPowerInfo Show Manpower", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
             DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
             DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
             toDateTime = toDateTime.AddDays(1);
             grdvDistributorManpower.DataSource = _bll.GetDistributorManpowerInfo(fromDateTime, toDateTime);
             grdvDistributorManpower.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void UpdateCustomerInfo(string distributorManager, string salesRepresentative1, string salesRepresentative2, int updateBy, DateTime updateDate, int customerId)

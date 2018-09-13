@@ -23,7 +23,8 @@ using UI.ClassFiles;
 using SAD_BLL.AutoChallanBll;
 using System.Text.RegularExpressions;
 using SAD_BLL.Corporate_sales;
-
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -35,6 +36,10 @@ namespace UI.SAD.Corporate_sales
         DataTable dtPendingReport = new DataTable();
         orderInputClass CorOrderClass = new orderInputClass();
         DataTable dtSlipReport = new DataTable();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\Corp_AutoChallan";
+        string stop = "stopping SAD\\Corporate_sales\\Corp_AutoChallan";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -149,13 +154,14 @@ namespace UI.SAD.Corporate_sales
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-         
-            //if (txtFrom.Text == "")
-            //{
-            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select date !');", true);
-            //}
-            //else
-            //{
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\Corp_AutoChallan Corp Auto Challan Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
 
                 int shippointid = int.Parse(ddlShip.SelectedValue.ToString());
                 int salesofficeid = int.Parse(ddlSo.SelectedValue.ToString());
@@ -181,7 +187,18 @@ namespace UI.SAD.Corporate_sales
 
 
                 }
-            //}
+             
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected double Pendingtotal = 0; protected double TotalQtytotal = 0;
@@ -205,6 +222,12 @@ namespace UI.SAD.Corporate_sales
         }
         protected void Update(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\Corp_AutoChallan Corp Auto Challan Update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -217,12 +240,26 @@ namespace UI.SAD.Corporate_sales
 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void Updates(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\Corp_AutoChallan Corp Auto Challan Update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -233,12 +270,26 @@ namespace UI.SAD.Corporate_sales
                 Session["slipno"] = slipno;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('CorpLoadingSlip.aspx');", true);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void Updates1(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\Corp_AutoChallan Corp Auto Challan Update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -255,9 +306,18 @@ namespace UI.SAD.Corporate_sales
                 GridView2.DataBind();
                 GridView2.Visible = true;
                 GridView1.Visible = false;
-              
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
         }

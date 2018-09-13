@@ -17,6 +17,9 @@ using SAD_BLL.Sales;
 using SAD_DAL.Sales;
 using LOGIS_BLL.Trip;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.SAD.Order
 {
     public partial class ChallanOneGP : BasePage
@@ -32,12 +35,27 @@ namespace UI.SAD.Order
             , unitName = "", unitAddress = "";
         char separator = '-';
         DateTime date = new DateTime();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\ChallanOneGP";
+        string stop = "stopping SAD\\Order\\ChallanOneGP";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string tripId = Request.QueryString["id"];
+
+
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\ChallanOneGP Challan Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    string tripId = Request.QueryString["id"];
                 OrderByTrip ot = new OrderByTrip();
                 OrderByTripTDS.TblSalesOrderTripDataTable table = ot.GetDataByTrip(tripId);
 
@@ -134,7 +152,18 @@ namespace UI.SAD.Order
                     pnlGate.DataBind();
                 }
 
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
 
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }

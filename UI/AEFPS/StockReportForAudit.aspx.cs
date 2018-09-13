@@ -1,4 +1,6 @@
-﻿using SAD_BLL.AEFPS;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.AEFPS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +23,11 @@ namespace UI.AEFPS
         string  xmlString, xml, whid, itemid, oldstock, auditstock, remarks;
          
         string xmlpath;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\StockReportForAudit";
+        string stop = "stopping AEFPS\\StockReportForAudit";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -49,24 +56,47 @@ namespace UI.AEFPS
          
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\StockReportForAudit Stock Report For Audit Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
-           {
+            {
                 intWHID = int.Parse(ddlWH.SelectedValue.ToString());
                 DataTable et = new DataTable();
                 et = bll.GetReportForAudit(intWHID);
                 dgvAuditStock.DataSource = et;
                 dgvAuditStock.DataBind();
 
-               // dt = objRec.DataView(1, "", 0, 0, DateTime.Now, 32897);
+                // dt = objRec.DataView(1, "", 0, 0, DateTime.Now, 32897);
                 //dgvReceive.DataSource = et;
-               // dgvReceive.DataBind();
+                // dgvReceive.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            xmlpath = Server.MapPath("~/AEFPS/Data/AppAudit_" + Session[SessionParams.USER_ID].ToString() + ".xml");
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\StockReportForAudit Audit Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                xmlpath = Server.MapPath("~/AEFPS/Data/AppAudit_" + Session[SessionParams.USER_ID].ToString() + ".xml");
 
             if (dgvAuditStock.Rows.Count > 0)
             {
@@ -119,6 +149,17 @@ namespace UI.AEFPS
                 }
                 #endregion
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateXml(string itemid, string oldstock, string auditstock, string remarks)

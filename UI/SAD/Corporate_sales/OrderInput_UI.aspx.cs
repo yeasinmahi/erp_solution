@@ -12,7 +12,8 @@ using UI.ClassFiles;
 using System.Data;
 using System.Xml;
 using System.IO;
-
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -23,6 +24,10 @@ namespace UI.SAD.Corporate_sales
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         string[] arrayKeyProduct; string xmlpath; string xmlString = "";
         decimal checktotal = 0; string data;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\OrderInput_UI";
+        string stop = "stopping SAD\\Corporate_sales\\OrderInput_UI";
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/Corporate_sales/Data/Order_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -70,6 +75,12 @@ namespace UI.SAD.Corporate_sales
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\OrderInput_UI Order Input Distributor", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 decimal total; decimal qtytotal = 0;
@@ -118,7 +129,16 @@ namespace UI.SAD.Corporate_sales
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateXml(string itemCust, string itemCustID, string itemProduct, string itemProductID, string qty, string price, string spoint, string spointID, string totalprice)
@@ -268,7 +288,16 @@ namespace UI.SAD.Corporate_sales
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (dgv.Rows.Count > 0)
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\OrderInput_UI Order Entry", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (dgv.Rows.Count > 0)
             {
                 try
                 {
@@ -292,6 +321,17 @@ namespace UI.SAD.Corporate_sales
                 }
                 catch { }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnDetails_Click(object sender, EventArgs e)

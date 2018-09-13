@@ -1,4 +1,6 @@
-﻿using SAD_BLL.AEFPS;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.AEFPS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +19,10 @@ namespace UI.AEFPS
     {
         int intWHID, intEnroll, intType, intComplete; DataTable dt = new DataTable(); FPReportBLL bll = new FPReportBLL(); Receive_BLL objRec = new Receive_BLL();
         DateTime dteFromDate, dteToDate; bool ysnComplete;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\TransferReport";
+        string stop = "stopping AEFPS\\TransferReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,6 +44,12 @@ namespace UI.AEFPS
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferReport  Transfer Report Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intType = int.Parse(ddlType.SelectedValue.ToString());
@@ -67,7 +79,16 @@ namespace UI.AEFPS
                     dgvTransfer.DataBind();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected decimal totalvalue = 0;
         protected void dgvReceive_RowDataBound(object sender, GridViewRowEventArgs e)

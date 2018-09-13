@@ -20,7 +20,7 @@ namespace UI.AEFPS
     public partial class fpsDueReport : BasePage
     {
         SeriLog log = new SeriLog();
-        string location = "SAD";
+        string location = "AEFPS";
         string start = "starting AEFPS\\fpsDueReport";
         string stop = "stopping AEFPS\\fpsDueReport";
         int intWID, intInsertby;

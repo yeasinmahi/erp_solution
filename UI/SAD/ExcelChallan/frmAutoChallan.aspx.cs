@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
 using SAD_BLL.AutoChallan;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -18,6 +20,10 @@ namespace UI.SAD.ExcelChallan
         string xmlpath;
         int ShipId, Offid, enroll;
         ExcelDataBLL objExcel = new ExcelDataBLL();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\ExcelChallan\\frmAutoChallan";
+        string stop = "stopping SAD\\ExcelChallan\\frmAutoChallan";
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanupload_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -39,7 +45,16 @@ namespace UI.SAD.ExcelChallan
 
         private void uploadfile()
         {
-            string ConStr = "";
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmAutoChallan  Excel Data Upload", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string ConStr = "";
 
             string strDocUploadPath = Path.GetFileName(FileUpload1.FileName);
             string ext = Path.GetExtension(FileUpload1.FileName).ToLower();
@@ -105,6 +120,19 @@ namespace UI.SAD.ExcelChallan
                 #endregion **************** End Excel data get **************
             }
             File.Delete(path);
+
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXml(string cid, string id, string qty)
         {

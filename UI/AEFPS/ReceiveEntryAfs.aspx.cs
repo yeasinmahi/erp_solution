@@ -1,4 +1,6 @@
-﻿using MessagingToolkit.QRCode.Codec;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using MessagingToolkit.QRCode.Codec;
 using QRCoder;
 using SAD_BLL.AEFPS;
 using System;
@@ -22,6 +24,10 @@ namespace UI.AEFPS
         DataTable dt = new DataTable();
         int enroll, mrrId, intWh,rack=1,godown=2,rackType;string ImagePath = "", rackId="0", receiveQty;
         string filePathForXML; string xmlString = "";
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\ReceiveEntryAfs";
+        string stop = "stopping AEFPS\\ReceiveEntryAfs";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/AEFPS/Data/Reca__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -44,6 +50,12 @@ namespace UI.AEFPS
 
         protected void btnReceive_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\ReceiveEntryAfs MRR Recieve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 try { File.Delete(filePathForXML);}
@@ -99,10 +111,19 @@ namespace UI.AEFPS
                     string mrtg = objRec.MrrReceiveInsert(4, xmlString, intWh, mrrId, DateTime.Now, enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
                 }
-               
-                 
+
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -273,6 +294,12 @@ namespace UI.AEFPS
         
         protected void btnPrint_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\ReceiveEntryAfs Print", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 rackId = ddlRack.SelectedValue.ToString();
@@ -353,7 +380,16 @@ namespace UI.AEFPS
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
