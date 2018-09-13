@@ -42,7 +42,12 @@
             window.open('VoucherPrint.aspx?ID=' + Id, 'sub', "height=500, width=900, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
      </script>
+
+ 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    
+    
     <style type="text/css"> 
     .rounds { height: 200px; width: 150px; -moz-border-colors:25px; border-radius:25px;} 
     .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;

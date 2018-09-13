@@ -26,11 +26,11 @@ namespace UI.HR.Attendance
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "Show", null);
+            var fd = log.GetFlogDetail(start, location, "Loan Event", null);
             Flogger.WriteDiagnostic(fd);
 
             // starting performance tracker
-            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx Show", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx Load Event", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
 
             try
@@ -57,9 +57,17 @@ namespace UI.HR.Attendance
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Load Event", ex);
+                Flogger.WriteError(efd);
+            }
 
-            
+            fd = log.GetFlogDetail(stop, location, "Load Event", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         [WebMethod]
@@ -76,6 +84,13 @@ namespace UI.HR.Attendance
         
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Loan Event", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -92,13 +107,28 @@ namespace UI.HR.Attendance
                         btnMonthly.Enabled = true;
                     }
                 }
-                catch
-                {}
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnMonthly_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Loan Event", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx btnMonthly_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (ddlMonth.SelectedValue.ToString().Length > 1)
             {
                 strdate = (DateTime.Now.Year).ToString() + "-" + ddlMonth.SelectedValue.ToString() + "-" + "01";
@@ -108,6 +138,11 @@ namespace UI.HR.Attendance
                 strdate = (DateTime.Now.Year).ToString() + "-0" + ddlMonth.SelectedValue.ToString() + "-" + "01";
             }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "h", "ViewPunchDetails('" + hdnempid.Value + "','" + strdate.ToString() + "','');", true);
+
+            fd = log.GetFlogDetail(stop, location, "btnMonthly_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

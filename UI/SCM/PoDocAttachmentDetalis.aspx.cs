@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +18,13 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll; string dfile, xmlData; 
+        int enroll; string dfile, xmlData;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoDocAttachmentDetalis";
+        string stop = "stopping SCM\\PoDocAttachmentDetalis";
+        string perform = "Performance on SCM\\PoDocAttachmentDetalis";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -53,7 +61,11 @@ namespace UI.SCM
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        { 
+        {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnSubmit_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 try { File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString()); } catch { }
@@ -86,11 +98,27 @@ namespace UI.SCM
                
 
             }
-            catch { File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString()); }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click Uplaod", ex);
+                Flogger.WriteError(efd);
+                File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click Uplaod", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+
+            tracker.Stop();
+            
         }
 
         protected void btnDocView_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDocView_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnDocView_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -107,13 +135,7 @@ namespace UI.SCM
                 new DataColumn("ZoomImageUrl")
                 });
                 dt.Rows.Add(image, image);
-               
-                //string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/Small/"));
-                //foreach (string filePath in filePaths)
-                //{
-                //string fileName = Path.GetFileName(filePath);
-                //dt.Rows.Add(fileName, "~/Images/Small/" + fileName, "~/Images/Large/" + fileName);
-                //}
+             
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
               
@@ -121,7 +143,18 @@ namespace UI.SCM
 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnDocView_Click", ex);
+                Flogger.WriteError(efd);
+                
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnDocView_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+
+            tracker.Stop();
         }
 
         protected void btnDownload_Click(object sender, EventArgs e)

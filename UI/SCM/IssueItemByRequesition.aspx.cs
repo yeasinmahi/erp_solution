@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,10 +18,21 @@ namespace UI.SCM
         Location_BLL objOperation = new Location_BLL();
         DataTable dt = new DataTable();
         int enroll,intwh;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IssueItemByRequesition";
+        string stop = "stopping SCM\\IssueItemByRequesition";
+        string perform = "Performance on SCM\\IssueItemByRequesition";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                 
+                var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -30,7 +43,16 @@ namespace UI.SCM
                     ddlWH.DataBind();
 
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
             else
             { }
@@ -38,6 +60,11 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -49,7 +76,16 @@ namespace UI.SCM
                 dgvReq.DataSource = dt;
                 dgvReq.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void GridView_RowDataBound(Object sender, GridViewRowEventArgs e)
@@ -74,6 +110,11 @@ namespace UI.SCM
 
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -96,18 +137,22 @@ namespace UI.SCM
                 string DeptID = datas[6].ToString();
                 string SectionID = datas[7].ToString();
                 string SectionName = datas[8].ToString();
-                ////if (int.Parse(Session[SessionParams.UNIT_ID].ToString()) == 2)
-                ////{
-                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewdetailsAFBL('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
-                ////}
-                ////else
-                ////{
+                
                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
 
 
-                //}
+                
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnDetalis_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public string GetJSFunctionString(object ReqId, object ReqCode, object dteReqDate, object strDepartmentName, object strReqBy, object strApproveBy,object intDeptID, object intSectionID,object SectionName)

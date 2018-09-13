@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SCM
 {
@@ -20,17 +22,28 @@ namespace UI.SCM
     {
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillReg = new Billing_BLL();
-        DataTable dt;
 
+        DataTable dt;
+        
         string filePathForXML, xmlString, xml, challan, mrrid, amount;
         int intUnitid, intPOID, intSuppid, intCOAID, intEnroll;
         string strPType, strReffNo;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\BillRegistration";
+        string stop = "stopping SCM\\BillRegistration";
 
         #endregion ====================================================================================
 
         #region===== Page Load Event ==================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd); 
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\BillRegistration Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -47,10 +60,24 @@ namespace UI.SCM
                     txtCommonText.Visible = false;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void GetDDLList()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\BillRegistration Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 dt = objBillReg.GetAllUnit();
@@ -65,7 +92,16 @@ namespace UI.SCM
                 ddlEmployeeUnit.DataSource = dt;
                 ddlEmployeeUnit.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #endregion=====================================================================================
@@ -300,6 +336,11 @@ namespace UI.SCM
         #region ===== btnGo Button Action ==============================================================  
         protected void btnGo_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\BillRegistration Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intPOID = int.Parse(txtReffNo.Text);
@@ -388,7 +429,16 @@ namespace UI.SCM
                     txtCOALedger.Enabled = true;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

@@ -1,4 +1,6 @@
-﻿using HR_BLL.Global;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.Global;
 using SCM_BLL;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,12 @@ namespace UI.SCM
         DataTable dt = new DataTable();
         string xmlunit = ""; int enroll, CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         string filePathForXML; string xmlString = "", indentQty;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IndentsApproval";
+        string stop = "stopping SCM\\IndentsApproval";
+        string perform = "Performance on SCM\\IndentsApproval";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/InAp__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -43,6 +51,11 @@ namespace UI.SCM
 
         private void DefaltDataBind()
         {
+            var fd = log.GetFlogDetail(start, location, "DefaltDataBind", null);
+            Flogger.WriteDiagnostic(fd);
+           
+            var tracker = new PerfTracker(perform + " " + "DefaltDataBind", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -53,12 +66,25 @@ namespace UI.SCM
                 ddlWH.DataBind();
                 dt.Clear();
             }
-            catch { }
-            
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "DefaltDataBind", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "DefaltDataBind", null);
+            Flogger.WriteDiagnostic(fd);           
+            tracker.Stop();
+
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -84,7 +110,15 @@ namespace UI.SCM
                 dgvDetalis.DataBind();
                 dt.Clear();
             }
-            catch { }
+           catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnDetalis_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);           
+            tracker.Stop();
            
         }
 
@@ -183,6 +217,11 @@ namespace UI.SCM
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnApprove_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnApprove_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 try { File.Delete(filePathForXML); } catch { }
@@ -223,7 +262,15 @@ namespace UI.SCM
             }
 
 
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnApprove_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnApprove_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,6 +286,11 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string dteFrom = txtDteFrom.Text.ToString();
@@ -263,7 +315,15 @@ namespace UI.SCM
                 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         protected void ddlApproval_SelectedIndexChanged(object sender, EventArgs e)

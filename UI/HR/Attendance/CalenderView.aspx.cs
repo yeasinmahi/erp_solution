@@ -10,11 +10,18 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Attendance
 {
     public partial class CalenderView : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Attendance/CalenderView.aspx";
+        string stop = "stopping HR/Attendance/CalenderView.aspx";
+
         HR_BLL.Attendance.EmployeeAttendance calenderview = new HR_BLL.Attendance.EmployeeAttendance();
         protected System.Web.UI.WebControls.Calendar Calendar1; public string strinformation = "";
         protected System.Web.UI.WebControls.Label lbl;
@@ -22,6 +29,14 @@ namespace UI.HR.Attendance
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/CalenderView.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+
             try
             {
                 if (!IsPostBack)
@@ -70,7 +85,16 @@ namespace UI.HR.Attendance
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         
         [WebMethod]
@@ -94,6 +118,13 @@ namespace UI.HR.Attendance
         }
         private void Calendar1_DayRender(Object source, DayRenderEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Calendar1_DayRender", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/CalenderView.aspx Calendar1_DayRender", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!String.IsNullOrEmpty(hdfEmpCode.Value))
             {
                 DataTable objDT = new DataTable();
@@ -175,9 +206,14 @@ namespace UI.HR.Attendance
                 }
                 hdfSearchBoxTextChange.Value = "false";
             }
-            
+
+            fd = log.GetFlogDetail(stop, location, "Calendar1_DayRender", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
-        
+
 
 
 

@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,10 +17,23 @@ namespace UI.SCM
         Indents_BLL objIndent = new Indents_BLL();
         DataTable dt = new DataTable();
         int enroll, intwh, indentId;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IndentStatusDetalis";
+        string stop = "stopping SCM\\IndentStatusDetalis";
+        string perform = "Performance on SCM\\IndentStatusDetalis";
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if(!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+                Flogger.WriteDiagnostic(fd);
+                // starting performance tracker
+                var tracker = new PerfTracker(perform + " " + "Page_Load", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+
                 try
                 {
                     string dteIndent = Request.QueryString["dteIndent"].ToString();
@@ -58,9 +73,17 @@ namespace UI.SCM
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();
                 }
-                catch { }
-               
-               
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
 
 
             }

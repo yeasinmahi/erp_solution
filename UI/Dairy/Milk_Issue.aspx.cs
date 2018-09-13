@@ -12,12 +12,19 @@ using System.Xml;
 using UI.ClassFiles;
 using System.Net;
 using System.Text;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 
 namespace UI.Dairy
 {
     public partial class Milk_Issue : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_Issue.aspx";
+        string stop = "stopping Dairy/Milk_Issue.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL();
         DataTable dt;
@@ -37,6 +44,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Issue.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnJobStation.Value = Session[SessionParams.JOBSTATION_ID].ToString();
@@ -77,6 +91,11 @@ namespace UI.Dairy
                 catch
                 { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnShowReport_Click(object sender, EventArgs e)
@@ -86,6 +105,14 @@ namespace UI.Dairy
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Issue.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+
             try
             {  
                 File.Delete(filePathForXML); dgvIssue.DataSource = ""; dgvIssue.DataBind();
@@ -148,6 +175,11 @@ namespace UI.Dairy
                 //**************************************************************
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateXml(string rdate, string supplname, string recqty, string preissuqty, string balanceqty, string issuqty, string rate, string issuvalu, string fatper, string billamount, string suppid, string avftp) 
         {
@@ -221,6 +253,13 @@ namespace UI.Dairy
         
         protected void btnIssue_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Issue.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -285,6 +324,11 @@ namespace UI.Dairy
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);                
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateXmlIssue(string decqty, string decrate, string decvalue, string dterdate, string intsuppid, string decrqty, string decpreqty, string ysnissuecom)
