@@ -13,11 +13,18 @@ using UI.ClassFiles;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Dairy
 {
     public partial class Milk_MRReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_MRReport.aspx";
+        string stop = "stopping Dairy/Milk_MRReport.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL();
         DataTable dt;
@@ -29,6 +36,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRReport.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnJobStation.Value = Session[SessionParams.JOBSTATION_ID].ToString();
@@ -56,6 +70,11 @@ namespace UI.Dairy
                 catch
                 { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnShowReport_Click(object sender, EventArgs e)
@@ -65,6 +84,13 @@ namespace UI.Dairy
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRReport.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 lblUnitName.Text = ddlUnit.SelectedItem.ToString();
@@ -99,7 +125,16 @@ namespace UI.Dairy
                     lblFromToDate.Visible = false;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected decimal tmrqty = 0;
@@ -160,6 +195,13 @@ namespace UI.Dairy
 
         protected void btnDetails_Click(object sender, EventArgs e) 
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRReport.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //try
             //{
             string senderdata = ((Button)sender).CommandArgument.ToString();
@@ -200,6 +242,11 @@ namespace UI.Dairy
             //    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ContractItemDetails('" + senderdata + "');", true); }
             //}
             //catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }    
 
 

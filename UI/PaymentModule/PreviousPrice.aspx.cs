@@ -37,6 +37,7 @@ namespace UI.PaymentModule
             {
                 hdnBillID.Value = Session["billid"].ToString();
                 intItemID = int.Parse(Request.QueryString["Id"]);
+                lblitemid.Text = Request.QueryString["Id"];
                 //hdnItemID.Value = intItemID.ToString();
                 ////Session["mrrid"] = intBillID.ToString();
                 if (Session["itemname"].ToString() == "")
@@ -89,7 +90,6 @@ namespace UI.PaymentModule
 
         protected void btnShowItem_Click(object sender, EventArgs e)
         {
-
             DataTable dtt = new DataTable();
            
             if (txtItem.Text != "" && txtItemId.Text == "")

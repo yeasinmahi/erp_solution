@@ -15,12 +15,19 @@ using UI.ClassFiles;
 using Projects_BLL;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Dairy
 {
     public partial class Milk_MRR_By_Factory : BasePage
     {
         #region ===== Variable Decliaration ===================================================================
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_MRR_By_Factory.aspx";
+        string stop = "stopping Dairy/Milk_MRR_By_Factory.aspx";
+
         Project_Class objDairy = new Project_Class();
         DataTable dt;
 
@@ -33,6 +40,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRR_By_Factory.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             filePathForXML = Server.MapPath("~/Dairy/Data/MilkMRR_" + hdnEnroll.Value + ".xml");
 
@@ -56,7 +70,12 @@ namespace UI.Dairy
                 {
                     ex.ToString();
                 }
-            }            
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }   
 
         #region ===== Grid Load Action ========================================================================
@@ -66,6 +85,13 @@ namespace UI.Dairy
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRR_By_Factory.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 try
@@ -82,6 +108,11 @@ namespace UI.Dairy
                 dgvMRR.DataBind();
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected decimal totalissueqty = 0;
@@ -145,6 +176,13 @@ namespace UI.Dairy
         #region ===== Bill Complete Action ====================================================================
         protected void btnMRRSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRR_By_Factory.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -209,8 +247,18 @@ namespace UI.Dairy
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
         private void CreateXml(string suppid, string mrrqty, string mrrrate, string dqtyamount, string dfatamount, string mrrvalue, string challanno, string challanqty, string challanfat, string challanamount, string issueid)

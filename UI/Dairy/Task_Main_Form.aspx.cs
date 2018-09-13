@@ -16,11 +16,18 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Dairy
 {
     public partial class Task_Main_Form : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Task_Main_Form.aspx";
+        string stop = "stopping Dairy/Task_Main_Form.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL(); Task_BLL objtask = new Task_BLL();
         DataTable dt;
@@ -30,6 +37,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Main_Form.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnJobStation.Value = Session[SessionParams.JOBSTATION_ID].ToString();
@@ -104,7 +118,12 @@ namespace UI.Dairy
                 catch { }
 
             }
-            ////else { if (hdnConfirmAppMarks.Value == "10") { Approved(); } }            
+            ////else { if (hdnConfirmAppMarks.Value == "10") { Approved(); } }   
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         //private void Approved()
@@ -136,6 +155,13 @@ namespace UI.Dairy
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Main_Form.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //char[] chr = { '[', ']' };
             //string[] temp1 = txtAssignBy.Text.Split(chr, StringSplitOptions.RemoveEmptyEntries);
             //try { intAssignBy = int.Parse(temp1[1].ToString()); }
@@ -145,7 +171,7 @@ namespace UI.Dairy
             //string[] temp = txtSearchAssignedTo.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
             //try { intAssignTo = int.Parse(temp[1].ToString()); }
             //catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Assign To.');", true); return; }
-              
+
             try
             {   
                 lblReportName.Text = "Task Assignment Report";
@@ -583,18 +609,46 @@ namespace UI.Dairy
                     //***************************************************************************************************************
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnNewTask_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Main_Form.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = "0";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "NewTask('" + senderdata + "');", true);
             lblReportName.Visible = false;
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnOpen_Click(object sender, EventArgs e) 
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Main_Form.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //try
             //{
             string senderdata = ((Button)sender).CommandArgument.ToString();
@@ -617,11 +671,22 @@ namespace UI.Dairy
 
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "Clearcontrol", "ViewDocList('" + strDate + "','" + strTodate + "','" + hdUnit + "','" + enrol + "');", true);
             ////////ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "MRDetailsReport('" + intccid + "','" + intmrrno + "','" + dtemrrdate + "');", true);
-           
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnDetails_Click(object sender, EventArgs e) 
-        {             
+        {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Main_Form.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = ((Button)sender).CommandArgument.ToString();
 
             intID = int.Parse(senderdata.ToString());
@@ -637,6 +702,10 @@ namespace UI.Dairy
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "TaskDetails('" + senderdata + "');", true);
             //}
             //else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('There are no update in this task.');", true); return; }
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void rdoAssignedBy_CheckedChanged(object sender, EventArgs e) 
@@ -916,9 +985,16 @@ namespace UI.Dairy
 
         protected void btnComplete_Click(object sender, EventArgs e) 
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Main_Form.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //if (hdnconfirm.Value == "1")
             //{
-                try
+            try
                 {
                     string senderdata = ((Button)sender).CommandArgument.ToString();
                     intID = int.Parse(senderdata.ToString());
@@ -930,8 +1006,16 @@ namespace UI.Dairy
                     ////ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     ////LoadGrid();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
             //}
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnDchangeReq_Click(object sender, EventArgs e) 

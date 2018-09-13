@@ -15,11 +15,18 @@ using System.Text;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Text.RegularExpressions;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Dairy
 {
     public partial class Task_Details_Report : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Task_Details_Report.aspx";
+        string stop = "stopping Dairy/Task_Details_Report.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL(); Task_BLL objtask = new Task_BLL();
         DataTable dt;
@@ -29,6 +36,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Details_Report.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnJobStation.Value = Session[SessionParams.JOBSTATION_ID].ToString();
@@ -58,9 +72,20 @@ namespace UI.Dairy
                 }
                 catch { }
             }
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Details_Report.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intID = int.Parse(HttpContext.Current.Session["intID"].ToString());
@@ -81,13 +106,28 @@ namespace UI.Dairy
                 }
                 catch { }
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     
         protected void btnDocVew_Click(object sender, EventArgs e)
-        {   
+        {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Task_Details_Report.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = ((Button)sender).CommandArgument.ToString();
 
             intID = int.Parse(senderdata.ToString());
@@ -105,6 +145,11 @@ namespace UI.Dairy
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DocListView('" + senderdata + "');", true);
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('There are no document attach in this task.');", true); return; }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvReport_RowDataBound(object sender, GridViewRowEventArgs e)

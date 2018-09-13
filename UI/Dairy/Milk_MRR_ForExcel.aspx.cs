@@ -12,11 +12,18 @@ using System.Xml;
 using UI.ClassFiles;
 using System.Net;
 using System.Text;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Dairy
 {
     public partial class Milk_MRR_ForExcel : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_MRR_ForExcel.aspx";
+        string stop = "stopping Dairy/Milk_MRR_ForExcel.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL();
         DataTable dt;
@@ -25,6 +32,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRR_ForExcel.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnJobStation.Value = Session[SessionParams.JOBSTATION_ID].ToString();
@@ -47,6 +61,11 @@ namespace UI.Dairy
                 catch
                 { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnShowReport_Click(object sender, EventArgs e)
@@ -55,6 +74,13 @@ namespace UI.Dairy
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MRR_ForExcel.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -67,7 +93,16 @@ namespace UI.Dairy
                 dgvMRReport.DataBind();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
