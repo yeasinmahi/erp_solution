@@ -22,6 +22,12 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     
+    
+    <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/CSS/morris.css" rel="stylesheet" />
+    <script src="../Content/JS/raphael.min.js"></script>
+    <script src="../Content/JS/morris.min.js"></script>
+
     <script language="javascript">      
 
         function ViewBillDetailsPopup(Id) {
@@ -167,9 +173,44 @@
    
     
     </table>
-
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="chart" id="revenue-chart" style="position: relative; height: 300px;"></div>
+            </div>
+        </div>
 
     <%--=========================================End My Code From Here=================================================--%>       
     </form>
+<script>
+    $(document).ready(function () {
+        var chartData = [];
+        var counter = 0;
+        $('#dgvPriceList tr').each(function () {
+            if (counter >= 1) {
+                var dates = $(this).find("td span:eq(1)").html();
+                var rates = $(this).find("td span:eq(3)").html();
+                rates = rates.replace(/[^\d\.\-eE+]/g, "");
+                var item = {}
+                item["date"] = dates;
+                item["rate"] = rates;
+
+                chartData.push(item);
+            }
+            counter++;
+        });
+        counter = 0;
+        var line = new Morris.Line({
+            element: 'revenue-chart',
+            resize: true,
+            data: chartData,
+            xkey: 'date',
+            ykeys: ['rate'],
+            labels: ['Rate'],
+            lineColors: ['#a0d0e0'],
+            hideHover: false,
+            smooth : false  
+        });
+    });
+</script>
 </body>
 </html>

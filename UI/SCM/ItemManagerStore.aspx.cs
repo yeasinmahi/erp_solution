@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using SCM_BLL;
+using GLOBAL_BLL;
 
 namespace UI.SCM
 {
@@ -20,6 +21,13 @@ namespace UI.SCM
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
         decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
         bool ysnVATApplicable;
+
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\ItemManagerNew";
+        string stop = "stopping SCM\\ItemManagerNew";
+        string perform = "Performance on SCM\\ItemManagerNew";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();

@@ -34,9 +34,9 @@ namespace UI.PaymentModule
         {
             if (!IsPostBack)
             {
-                hdnBillID.Value = Session["billid"].ToString();
-                intMRRID = int.Parse(Request.QueryString["Id"]);
-                Session["mrrid"] = intBillID.ToString();
+                try { hdnBillID.Value = Session["billid"].ToString(); } catch { }
+                try { intMRRID = int.Parse(Request.QueryString["Id"]); } catch { }
+                try { Session["mrrid"] = intBillID.ToString(); } catch { }
                 //intBillID = 410924;
                 dt = new DataTable();
                 dt = objBillApp.GetMRRInfo(intMRRID);

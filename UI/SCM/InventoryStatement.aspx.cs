@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using SCM_BLL;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SCM
 {
@@ -17,11 +19,20 @@ namespace UI.SCM
         int intSearchBy, intPart, intWHID, intInsertBy, intGroupID, intCategoryID, intCatNew, intReportType, intItemID;
         string strItem, strID;
         DateTime dteFDate, dteTDate;
-
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\InventoryStatement";
+        string stop = "stopping SCM\\InventoryStatement";
+        string perform = "Performance on SCM\\InventoryStatement";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                // starting performance tracker
+                var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -64,7 +75,16 @@ namespace UI.SCM
                     txtFTime.Text = "00:00";
                     txtTTime.Text = "23:59";
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
@@ -377,7 +397,12 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            //try
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+           
+            var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
                 intWHID = int.Parse(ddlWH.SelectedValue.ToString());
                 intSearchBy = int.Parse(ddlSearchBy.SelectedValue.ToString());
@@ -448,7 +473,16 @@ namespace UI.SCM
                 dgvInvnetory.DataSource = dt;
                 dgvInvnetory.DataBind();
             }
-            //catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

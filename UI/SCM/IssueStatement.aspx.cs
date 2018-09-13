@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +19,11 @@ namespace UI.SCM
         DataTable dt = new DataTable();
         int enroll, intwh, intIssue; string[] arrayKey; char[] delimiterChars = { '[', ']' };string  strIssue;
 
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IssueStatement";
+        string stop = "stopping SCM\\IssueStatement";
+        string perform = "Performance on SCM\\IssueStatement";
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -43,6 +50,11 @@ namespace UI.SCM
 
         protected void btnStatement_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnStatement_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btnStatement_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -57,7 +69,16 @@ namespace UI.SCM
                 dgvStatement.DataBind();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnStatement_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnStatement_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
     }

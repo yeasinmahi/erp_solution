@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +23,12 @@ namespace UI.SCM
         int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
         decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate;
         DateTime dteChallan;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\ServiceReceive";
+        string stop = "stopping SCM\\ServiceReceive";
+        string perform = "Performance on SCM\\ServiceReceive";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Mrs__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -72,6 +80,11 @@ namespace UI.SCM
         }
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btnSaveMrr_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 try { File.Delete(filePathForXML); } catch { }
@@ -151,7 +164,18 @@ namespace UI.SCM
                     PoView();
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch (Exception ex)
+            {
+                try { File.Delete(filePathForXML); } catch { }
+                var efd = log.GetFlogDetail(stop, location, "btnSaveMrr_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnSaveMrr_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+          
         }
 
         private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate)
@@ -282,6 +306,11 @@ namespace UI.SCM
 
         private void PoView()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWh = int.Parse(ddlWH.SelectedValue);
@@ -354,7 +383,16 @@ namespace UI.SCM
 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void DefaltBind()

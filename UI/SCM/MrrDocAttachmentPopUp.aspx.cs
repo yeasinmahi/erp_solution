@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,11 +20,21 @@ namespace UI.SCM
         MrrReceive_BLL obj = new MrrReceive_BLL();
         DataTable dt = new DataTable();
         int enroll, intWh, MrrId; string dfile, xmlData;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\MrrDocAttachmentPopUp";
+        string stop = "stopping SCM\\MrrDocAttachmentPopUp";
+        string perform = "Performance on SCM\\MrrDocAttachmentPopUp";
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -45,7 +57,16 @@ namespace UI.SCM
 
                     getDocView();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
             else { } 
         }
@@ -97,23 +118,38 @@ namespace UI.SCM
 
         protected void btnView_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnView_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnView_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
                 string[] searchKey = temp.Split(delimiterChars);
-                string filePath = searchKey[0]; 
-                
+                string filePath = searchKey[0];                 
                 string image = "ftp://erp:erp123@ftp.akij.net/" + filePath;
                 imageView.ImageUrl = image;
                 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnView_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnView_Click", null);
+            Flogger.WriteDiagnostic(fd);           
+            tracker.Stop();
         }
 
         protected void btnMrr_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnMrr_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnMrr_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -141,13 +177,27 @@ namespace UI.SCM
 
 
             }
-            catch { File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString()); }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnMrr_Click", ex);
+                Flogger.WriteError(efd);
+                File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnMrr_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
+           
 
 
         }
 
         private void getDocView()
         {
+            var fd = log.GetFlogDetail(start, location, "getDocView", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "getDocView", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -157,7 +207,16 @@ namespace UI.SCM
                 dgvDocument.DataBind();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "getDocView", ex);
+                Flogger.WriteError(efd);
+                
+            }
+
+            fd = log.GetFlogDetail(stop, location, "getDocView", null);
+            Flogger.WriteDiagnostic(fd);
+            tracker.Stop();
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)

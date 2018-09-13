@@ -22,7 +22,7 @@ namespace UI.PaymentModule
             {
                 try
                 {
-                    hdnBillID.Value = Session["billid"].ToString();
+                    try { hdnBillID.Value = Session["billid"].ToString(); } catch { }
                     int indentID = int.Parse(Request.QueryString["Id"].ToString());                    
                     dt = new DataTable();
                     dt = objBillApp.GetIndentViewDetails(indentID);

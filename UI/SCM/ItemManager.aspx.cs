@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +19,11 @@ namespace UI.SCM
         StoreIssue_BLL objIssue = new StoreIssue_BLL();
         DataTable dt = new DataTable();
         int enroll,wh;
-
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IndentStatus";
+        string stop = "stopping SCM\\IndentStatus";
+        string perform = "Performance on SCM\\IndentStatus";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -68,6 +74,11 @@ namespace UI.SCM
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnAdd_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string masteritem = ListDatas.SelectedValue.ToString();
@@ -83,11 +94,25 @@ namespace UI.SCM
                
             }
 
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnAdd_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnAdd_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+     
+            var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string strSearchKey = txtItem.Text.ToString();
@@ -98,7 +123,16 @@ namespace UI.SCM
                 ListDatas.DataBind();
                 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }
