@@ -15,12 +15,18 @@ using BLL.Accounts.SubLedger;
 using UI.ClassFiles;
 using System.Net;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Accounts.Voucher
 {
     public partial class CashVoucher : BasePage
     {
         protected double totAmount = 0;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\CashVoucher";
+        string stop = "stopping Accounts\\Voucher\\CashVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -85,13 +91,44 @@ namespace UI.Accounts.Voucher
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.CashVoucher cv = new BLL.Accounts.Voucher.CashVoucher();
+            var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\CashVoucher   Cancel ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BLL.Accounts.Voucher.CashVoucher cv = new BLL.Accounts.Voucher.CashVoucher();
             cv.CancelVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.CashVoucher cv = new BLL.Accounts.Voucher.CashVoucher();
+            var fd = log.GetFlogDetail(start, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\CashVoucher   Completed ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BLL.Accounts.Voucher.CashVoucher cv = new BLL.Accounts.Voucher.CashVoucher();
             int ret = cv.FinishedVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
 
             //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
@@ -109,6 +146,19 @@ namespace UI.Accounts.Voucher
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Completed", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void GridView1_DataBound(object sender, EventArgs e)
         {
@@ -246,7 +296,17 @@ namespace UI.Accounts.Voucher
         }
         protected void btnCompleteAll_Click(object sender, EventArgs e)
         {
-            int gridRowCount;
+
+            var fd = log.GetFlogDetail(start, location, "CompleteAll", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\CashVoucher   CompleteAll ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int gridRowCount;
             string cvID;
             BLL.Accounts.Voucher.CashVoucher cv = new BLL.Accounts.Voucher.CashVoucher();
             int ret;
@@ -276,6 +336,19 @@ namespace UI.Accounts.Voucher
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "CompleteAll", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "CompleteAll", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public string GetPayToReceiveFromString(string payTo, string receiveFrom)

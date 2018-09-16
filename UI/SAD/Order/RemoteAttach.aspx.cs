@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +19,10 @@ namespace UI.SAD.Order
     {
         string message; string path;
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteAttach";
+        string stop = "stopping SAD\\Order\\RemoteAttach";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -37,13 +43,18 @@ namespace UI.SAD.Order
 
         private void btnSave_Click()
         {
-           
 
 
 
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteAttach Remote Attendance ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-               
+
                 Int32 unit = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
                
                 Int32 enrol = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -68,15 +79,21 @@ namespace UI.SAD.Order
                 Int32 intPart = 1;
                 bll.getTADAAttachinsertion(dfile, length, path, enrol, unit, dteFromDate, AttachemtTypeid, jobstation, intPart);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Uploaded Bill docuement');", true);
-               
-                        
+
 
 
             }
-            catch
+            catch (Exception ex)
             {
-               
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
             }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)

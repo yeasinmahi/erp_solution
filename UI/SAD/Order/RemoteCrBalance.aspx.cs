@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,6 +14,11 @@ namespace UI.SAD.Order
 {
     public partial class RemoteCrBalance : BasePage
     {
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteCrBalance";
+        string stop = "stopping SAD\\Order\\RemoteCrBalance";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -65,7 +72,16 @@ namespace UI.SAD.Order
         }
         private void ShowReportDetails()
         {
-            DataTable oDTReportData = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteCrBalance Cr balance Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DataTable oDTReportData = new DataTable();
             StatementC st = new StatementC(); 
             oDTReportData = st.GetStatementByCustomerCreditBalanceRemote(txtTo.Text + " " + ddlTHour.SelectedValue,
             Session[SessionParams.EMAIL].ToString(), ddlUnit.SelectedValue, "", ddlSo.SelectedValue, ddlCusType.SelectedValue);
@@ -81,6 +97,20 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

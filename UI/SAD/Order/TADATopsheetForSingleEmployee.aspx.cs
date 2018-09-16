@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,9 +17,18 @@ namespace UI.SAD.Order
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         string strDate; string strTodate; string UNITS; string enrol1; string ReportType;
 
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TADATopsheetForSingleEmployee";
+        string stop = "stopping SAD\\Order\\TADATopsheetForSingleEmployee";
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TADATopsheetForSingleEmployee Page Load Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 strDate = Session["Date"].ToString();
@@ -58,12 +69,19 @@ namespace UI.SAD.Order
                     txtBillday.Text = dtBasicinfo.Rows[0][15].ToString();
                 }
 
-            
-            }
-            catch
-            {
 
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
             if (dt.Rows.Count > 0)
             {

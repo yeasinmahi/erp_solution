@@ -15,6 +15,7 @@ namespace UI.Accounts.PartyPayment
     {
         BankVoucher bv = new BankVoucher(); string spacerForAmountInWords = ""; AmountFormat amountformate = new AmountFormat();
         string payType = ""; string sessionUserId = ""; string selectedVoucherId = ""; string InWord1; string InWord2;
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             selectedVoucherId = Request.QueryString["selectedvouchers"].ToString();

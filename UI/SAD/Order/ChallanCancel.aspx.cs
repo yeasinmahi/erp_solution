@@ -41,6 +41,7 @@ namespace UI.SAD.Order
                     fd.Product, fd.Layer);
                 try
                 {
+
                     #region
                     if (Request.QueryString["delid"] != null && Request.QueryString["delid"] != "")
                 {
@@ -63,6 +64,9 @@ namespace UI.SAD.Order
                     }
                 }
                     #endregion
+
+
+
                 }
                 catch (Exception ex)
                 {

@@ -15,6 +15,7 @@ using DAL.Accounts.Voucher;
 using BLL;
 using UI.ClassFiles;
 using GLOBAL_BLL;
+using Flogging.Core;
 
 /// <summary>
 /// Developped By Akramul Haider
@@ -24,10 +25,21 @@ namespace UI.Accounts.Print
 {
     public partial class PrintMR : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Print\\PrintMR";
+        string stop = "stopping Accounts\\Print\\PrintMR";
         protected void Page_Load(object sender, EventArgs e)
-        {
-            //Session["sesUserID"] = "1";
-            string barcode = "";
+        { var fd = log.GetFlogDetail(start, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Print\\PrintMR   Page load ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                //Session["sesUserID"] = "1";
+                string barcode = "";
             if (Request.QueryString.Count > 0)
             {
 
@@ -160,6 +172,19 @@ namespace UI.Accounts.Print
             lblReceiveFrom1.Text = lblReceiveFrom.Text;
             lblNarr1.Text = lblNarr.Text;
             lblYY1.Text = lblYY.Text;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Pageload", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

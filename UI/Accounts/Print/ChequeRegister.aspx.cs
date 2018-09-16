@@ -16,15 +16,29 @@ using BLL;
 using BLL.Accounts.Banking;
 using UI.ClassFiles;
 using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Print
 {
     public partial class ChequeRegister : BasePage
     {
         protected StringBuilder sb = new StringBuilder();
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Print\\ChequeRegister";
+        string stop = "stopping Accounts\\Print\\ChequeRegister";
         protected void Page_Load(object sender, EventArgs e)
         {
-            int count = 1;
+            var fd = log.GetFlogDetail(start, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Print\\ChequeRegister   Page load ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int count = 1;
             int? previousCount = 0;
             string unitName = "", bank = "", accNo = "";
             VoucherForChqPrint bv = new VoucherForChqPrint();
@@ -117,6 +131,19 @@ namespace UI.Accounts.Print
             }
 
             Panel1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Pageload", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

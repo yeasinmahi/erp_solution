@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -26,8 +28,13 @@ namespace UI.SAD.Order
         protected decimal ownda = 0; protected decimal otherda = 0; protected decimal hotel = 0; protected decimal othercost = 0;
         protected decimal rowTotal = 0; protected decimal movDuration = 0;
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
-        
-        
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADATourAdvance";
+        string stop = "stopping SAD\\Order\\RemoteTADATourAdvance";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadaAdvanceAmount.xml");
@@ -148,7 +155,16 @@ namespace UI.SAD.Order
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            string BillDateFrom = txtFromDate.Text;
+            var fd = log.GetFlogDetail(start, location, "Subit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvance TATA Tour advane Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string BillDateFrom = txtFromDate.Text;
             string BillDateTo = txtToDate.Text;
 
             string fromAddress = txtFromAddr.Text;
@@ -211,11 +227,31 @@ namespace UI.SAD.Order
 
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Subit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            if (GridView1.Rows.Count > 0)
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvance TATA Tour advane Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (GridView1.Rows.Count > 0)
             {
                 #region ------------ Insert into dataBase -----------
                 DateTime dteFromDate = DateTime.Parse(DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd"));
@@ -275,7 +311,18 @@ namespace UI.SAD.Order
 
 
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "submit", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
 

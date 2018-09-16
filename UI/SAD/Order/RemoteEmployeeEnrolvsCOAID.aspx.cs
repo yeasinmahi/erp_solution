@@ -1,4 +1,6 @@
-﻿using HR_BLL.Employee;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.Employee;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,7 +21,10 @@ namespace UI.SAD.Order
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         string filePathForXML;
         int intEnrol,  intEmployeeCoAId, intInsertBy;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteEmployeeEnrolvsCOAID";
+        string stop = "stopping SAD\\Order\\RemoteEmployeeEnrolvsCOAID";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/Order/Data/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadanobikeEntryForAnotherUser.xml");
@@ -100,9 +105,15 @@ namespace UI.SAD.Order
 
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
-              try
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteEmployeeEnrolvsCOAID save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-            string strAplName = txtFullName.Text;
+                string strAplName = txtFullName.Text;
             string strSearchKey = txtFullName.Text;
             arrayKey = strSearchKey.Split(delimiterChars);
             string enrol = arrayKey[1].ToString();
@@ -117,11 +128,18 @@ namespace UI.SAD.Order
             bll.getRmtEmplEnrolvsCOAID(enr, coaid, unit, intInsertBy, intPart);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully inserted Employee Enrol with COA ID');", true);
             }
-              catch
-              {
-                  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failed .........');", true);
-              }
-        
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failed .........');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+             
 
 
 

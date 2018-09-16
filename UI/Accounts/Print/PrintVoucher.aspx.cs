@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections;
 using System.Configuration;
 using System.Data;
@@ -20,10 +22,21 @@ namespace UI.Accounts.Print
     {
         UI.ClassFiles.Print printVoucher = new UI.ClassFiles.Print();
         string htmlString = "";
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Print\\PrintVoucher";
+        string stop = "stopping Accounts\\Print\\PrintVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session["sesUserID"] = "1";
-            string userID = "" + Session[SessionParams.USER_ID];
+            var fd = log.GetFlogDetail(start, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Print\\PrintVoucher   Page load ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            { //Session["sesUserID"] = "1";
+                string userID = "" + Session[SessionParams.USER_ID];
 
             if (Request.QueryString.Count > 0)
             {
@@ -102,6 +115,19 @@ namespace UI.Accounts.Print
                 Label1.Text = htmlString;
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Pageload", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

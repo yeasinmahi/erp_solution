@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLOBAL_BLL;
+using System;
 using System.Collections;
 using System.Configuration;
 using System.Data;
@@ -15,6 +16,7 @@ namespace UI.Accounts.MDSlip
 {
     public partial class MDSlipRequest : BasePage
     {
+       
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);

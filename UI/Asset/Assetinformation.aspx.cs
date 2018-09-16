@@ -1,4 +1,6 @@
-﻿using HR_BLL.TourPlan;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.TourPlan;
 using Purchase_BLL.VehicleRegRenewal_BLL;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,10 @@ namespace UI.Asset
         RegistrationRenewals_BLL bllaset = new RegistrationRenewals_BLL();
         string filePathForXML; string serial;
         string xmlString = "";
-        
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\Assetinformation";
+        string stop = "stopping Asset\\Assetinformation";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/Asset/Data/Assetinformation_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -120,8 +125,15 @@ namespace UI.Asset
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
 
-            if (hdnconfirm.Value == "1")
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCheckReceive Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (hdnconfirm.Value == "1")
             {
 
             string strdagcs = txtdagcs.Text;
@@ -143,6 +155,17 @@ namespace UI.Asset
              CreateVoucherXml(strdagcs, strdagsa, strdagrs, strdagbrs, strkhatiancs, strkhatiansa, strkhatianrs, strkhatianbrs);
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
         }
@@ -182,7 +205,16 @@ namespace UI.Asset
         {
             if (hdnconfirm.Value == "1")
             {
-                if (grdvassetinfo.Rows.Count > 0)
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Asset\\Assetinformation Submit", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    if (grdvassetinfo.Rows.Count > 0)
                 {
                     #region ------------ Insert into dataBase -----------
 
@@ -223,6 +255,20 @@ namespace UI.Asset
                 File.Delete(filePathForXML);
                 grdvassetinfo.DataSource = "";
                 grdvassetinfo.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
+
             }
         }
     }
