@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -15,7 +17,10 @@ namespace UI.SAD.Order
     {
 
         char[] delimiterChars = { '[', ']' }; string strDate; string UNITS; string enrol1;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\AttachmentCheckingBySupervisor";
+        string stop = "stopping SAD\\Order\\AttachmentCheckingBySupervisor";
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -25,6 +30,12 @@ namespace UI.SAD.Order
             {
                 //pnlUpperControl.DataBind();
                 ////---------xml----------
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\AttachmentCheckingBySupervisor Attachment Check in Suppervisor", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
 
@@ -50,17 +61,25 @@ namespace UI.SAD.Order
                         else
                         {
                         }
-                    }
-
-                    catch
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no attachement against your query.');", true);
-
-                    }
-
+                   
 
                 }
                 catch { }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no attachement against your query.');", true);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
+
+
                 ////-----**----------//
             }
         }

@@ -30,6 +30,8 @@ using DAL.Accounts.ChartOfAccount;
 using SAD_DAL.Global;
 using SAD_BLL.Transfer;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Transfer
 {
@@ -37,14 +39,24 @@ namespace UI.SAD.Transfer
     {
         XmlManagerSO xm = new XmlManagerSO();
         SalesOrderTDS.QrySalesOrderCustomerDataTable table;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Transfer\\FGTransfer";
+        string stop = "stopping SAD\\Transfer\\FGTransfer";
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
             {
                 //Session["sesUserID"] = "53";
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-                if (Request.QueryString["id"] != null)
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Transfer\\FGTransfer Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    if (Request.QueryString["id"] != null)
                 {
                     SalesOrder se = new SalesOrder();
                     table = se.GetSalesOrder(Request.QueryString["id"]);
@@ -102,7 +114,20 @@ namespace UI.SAD.Transfer
                     txtDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
                     txtDelDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(1));
                 }
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
+
 
         }
         protected override void OnLoadComplete(EventArgs e)
@@ -227,7 +252,16 @@ namespace UI.SAD.Transfer
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Transfer\\FGTransfer Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
             {
                 string coaId = "", coaName = "";
                 SAD_BLL.Item.Item it = new SAD_BLL.Item.Item();
@@ -262,6 +296,17 @@ namespace UI.SAD.Transfer
                     txtProduct.Focus();
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

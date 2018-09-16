@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,11 @@ namespace UI.SAD.Order
 {
     public partial class VehicleSelectViewCustomize : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\VehicleSelectViewCustomize";
+        string stop = "stopping SAD\\Order\\VehicleSelectViewCustomize";
+
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +38,18 @@ namespace UI.SAD.Order
 
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
+            
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectViewCustomize Challan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
             DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
 
             hdnFrom.Value = fromDate.ToString();
@@ -47,13 +65,46 @@ namespace UI.SAD.Order
             {
                 rdoComplete.Enabled = true;
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            SAD_BLL.Sales.DelivaryView sv = new SAD_BLL.Sales.DelivaryView();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectViewCustomize Challan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                SAD_BLL.Sales.DelivaryView sv = new SAD_BLL.Sales.DelivaryView();
             sv.CancelDO(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected string GetEditLink(object voucherID, object completed)
         {

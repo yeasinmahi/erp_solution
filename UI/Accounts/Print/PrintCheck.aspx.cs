@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using BLL;
 using BLL.Accounts.Voucher;
 using DAL.Accounts.Voucher;
+using Flogging.Core;
 using GLOBAL_BLL;
 using UI.ClassFiles;
 /// <summary>
@@ -22,11 +23,22 @@ namespace UI.Accounts.Print
 {
     public partial class PrintCheck : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Print\\PrintCheck";
+        string stop = "stopping Accounts\\Print\\PrintCheck";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
+            var fd = log.GetFlogDetail(start, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
 
-            if (Request.QueryString.Count > 0)
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Print\\PrintCheck   Page load ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (Request.QueryString.Count > 0)
             {
 
                 BankVoucher bv = new BankVoucher();
@@ -83,6 +95,19 @@ namespace UI.Accounts.Print
                     imgTokCode.ImageUrl = "BarCodeHandler.ashx?info=" + table[0].strCode.Replace("-", "");
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Pageload", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

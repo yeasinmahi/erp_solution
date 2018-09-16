@@ -13,6 +13,8 @@ using System.Xml;
 using UI.ClassFiles;
 using SAD_BLL;
 using SAD_BLL.AutoChallan;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -20,6 +22,11 @@ namespace UI.SAD.ExcelChallan
     {     
         DataTable dt; int Custid;
         ExcelDataBLL objExcel = new ExcelDataBLL();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\ExcelChallan\\frmExcelupload";
+        string stop = "stopping SAD\\ExcelChallan\\frmExcelupload";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -47,11 +54,31 @@ namespace UI.SAD.ExcelChallan
 
         private void getReport()
         {
-            dt = objExcel.UploadDataOrder(int.Parse(ddlshippoint.SelectedValue));
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelupload  Order Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                dt = objExcel.UploadDataOrder(int.Parse(ddlshippoint.SelectedValue));
             dgvExcelOrder.DataSource = dt;
             dgvExcelOrder.DataBind();
             dgvExcelOrder.Visible = true;
             dgvSlip.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected double Pendingtotal = 0; protected double TotalQtytotal = 0;
@@ -62,11 +89,30 @@ namespace UI.SAD.ExcelChallan
 
         private void LoadingSlip()
         {
-            dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelupload  Loding Slip Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
             dgvSlip.DataSource = dt;
             dgvSlip.DataBind();
             dgvSlip.Visible = true;
             dgvExcelOrder.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvExcelOrder_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -115,6 +161,12 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnDelete(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelupload  Loding Slip Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -130,6 +182,12 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnOrderDelete(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelupload  Order Delete ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -141,7 +199,16 @@ namespace UI.SAD.ExcelChallan
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
                 LoadingSlip();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
        

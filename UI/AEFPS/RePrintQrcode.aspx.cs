@@ -1,4 +1,6 @@
-﻿using MessagingToolkit.QRCode.Codec;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using MessagingToolkit.QRCode.Codec;
 using QRCoder;
 using SAD_BLL.AEFPS;
 using System;
@@ -21,7 +23,10 @@ namespace UI.AEFPS
         DataTable dt = new DataTable();
         int enroll, mrrId, intWh; string ImagePath = "";
 
-        
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\RePrintQrcode";
+        string stop = "stopping AEFPS\\RePrintQrcode";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,6 +51,12 @@ namespace UI.AEFPS
         }
         private void DefaltLoad()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\RePrintQrcode QR code Print", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -64,7 +75,16 @@ namespace UI.AEFPS
                 dgvPrintView.DataBind();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

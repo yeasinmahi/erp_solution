@@ -28,6 +28,40 @@ namespace UI.PaymentModule
 
         #endregion ====================================================================================
 
+        protected void lblReff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                LinkButton lblPoNos = row.FindControl("lblReff") as LinkButton;
+
+                int Id = int.Parse(lblPoNos.Text.ToString());
+                if (Id > 0)
+                {
+                    Session["pono"] = Id.ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('..SCM/PoDetalisView.aspx');", true);
+
+                }
+            }
+            catch { }
+        }
+
+        protected void lblBillID_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                LinkButton lblBillNo = row.FindControl("lblBillID") as LinkButton;                
+                Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
+                Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
+                int Id =int.Parse(lblBillNo.Text.ToString());
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
+            }
+            catch { }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try

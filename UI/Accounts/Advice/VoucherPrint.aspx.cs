@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections;
 using System.Configuration;
 using System.Data;
@@ -18,6 +20,10 @@ namespace UI.Accounts.Advice
     {
         UI.ClassFiles.Print printVoucher = new UI.ClassFiles.Print();
         string htmlString = "";
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Advice\\VoucherPrint";
+        string stop = "stopping Accounts\\Advice\\VoucherPrint";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -25,7 +31,15 @@ namespace UI.Accounts.Advice
 
             if (Request.QueryString.Count > 0)
             {
-                string id = Request.QueryString["id"];
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\Advice\\VoucherPrint  Voucher Print", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    string id = Request.QueryString["id"];
                 string type = Request.QueryString["type"];//Bank > bn ,Cash > ch, Journal > jr
                 string unitName = "";
                 string unitAddress = "";
@@ -98,7 +112,19 @@ namespace UI.Accounts.Advice
                 //Image2.Width = 180;
                 //Image2.Height = 50;
                 Label1.Text = htmlString;
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
 
+
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 

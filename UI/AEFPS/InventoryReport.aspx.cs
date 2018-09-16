@@ -1,4 +1,6 @@
-﻿using SAD_BLL.AEFPS;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.AEFPS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +21,10 @@ namespace UI.AEFPS
         DateTime dteFrom, dteTo;
         
         Receive_BLL objRec = new Receive_BLL();
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\InventoryReport";
+        string stop = "stopping AEFPS\\InventoryReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,6 +47,12 @@ namespace UI.AEFPS
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\InventoryReport inventory Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWHID = int.Parse(ddlWH.SelectedValue.ToString());
@@ -55,11 +67,24 @@ namespace UI.AEFPS
                     dgvInventory.DataBind();
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Data.');", true); dgvInventory.DataSource = ""; dgvInventory.DataBind(); }
+                   }
+            catch (Exception ex)
+            {
+
+            var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+            Flogger.WriteError(efd);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something went wrong.');", true);
             }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something went wrong.');", true); }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
 
-        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {

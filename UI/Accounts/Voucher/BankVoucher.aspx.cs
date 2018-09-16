@@ -15,12 +15,18 @@ using BLL.Accounts.SubLedger;
 using UI.ClassFiles;
 using System.Net;
 using System.IO;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Voucher
 {
     public partial class BankVoucher : BasePage
     {
         protected double totAmount = 0;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\BankVoucher";
+        string stop = "stopping Accounts\\Voucher\\BankVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -86,19 +92,68 @@ namespace UI.Accounts.Voucher
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
+            var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\BankVoucher   Cancel ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
             bv.VoucherCancel(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnChange_Click(object sender, EventArgs e)
-        {
-            BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
+        { var fd = log.GetFlogDetail(start, location, "Change", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\BankVoucher   Change ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
             bv.ChangeChequeNo(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Change", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Change", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCompleted_Click(object sender, EventArgs e)
-        {
-            BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
+        { var fd = log.GetFlogDetail(start, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\BankVoucher   Complete ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
             int ret = bv.VoucherFinished(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
 
 
@@ -118,6 +173,19 @@ namespace UI.Accounts.Voucher
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Complete", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void GridView1_DataBound(object sender, EventArgs e)
         {

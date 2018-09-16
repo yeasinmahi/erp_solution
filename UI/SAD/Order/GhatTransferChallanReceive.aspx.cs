@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,6 +13,10 @@ namespace UI.SAD.Order
 {
     public partial class GhatTransferChallanReceive : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\GhatTransferChallanReceive";
+        string stop = "stopping SAD\\Order\\GhatTransferChallanReceive";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,7 +32,17 @@ namespace UI.SAD.Order
 
         protected void btnShowDelvRepot_Click(object sender, EventArgs e)
         {
-            DataTable oDTReportData = new DataTable();
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\GhatTransferChallanReceive Challan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DataTable oDTReportData = new DataTable();
             SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
           try
             {
@@ -57,6 +73,18 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -69,9 +97,15 @@ namespace UI.SAD.Order
 
         public void btnRecieve_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\GhatTransferChallanReceive Challan Receive", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                 hdnunitid.Value = HttpContext.Current.Session[SessionParams.UNIT_ID].ToString();
+                hdnunitid.Value = HttpContext.Current.Session[SessionParams.UNIT_ID].ToString();
             int unit = Convert.ToInt32(hdnunitid.Value);
                 char[] delimiterChars = { ',' };
                 string temp = ((Button)sender).CommandArgument.ToString();
@@ -92,14 +126,21 @@ namespace UI.SAD.Order
 
               ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully receive');", true);
 
-               
-            }
-            catch {
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail to...');", true);
-
-              
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail to...');", true);
+            tracker.Stop();
+          
+
         }
 
         

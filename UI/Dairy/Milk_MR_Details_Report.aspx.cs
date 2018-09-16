@@ -12,11 +12,19 @@ using System.Xml;
 using UI.ClassFiles;
 using System.Net;
 using System.Text;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.Dairy
 {
     public partial class Milk_MR_Details_Report : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_MR_Details_Report.aspx";
+        string stop = "stopping Dairy/Milk_MR_Details_Report.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL();
         DataTable dt;
@@ -26,6 +34,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MR_Details_Report.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 //intID = int.Parse(Request.QueryString["intID"].ToString());
@@ -40,10 +55,22 @@ namespace UI.Dairy
 
                 LoadGrid(); 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_MR_Details_Report.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             lblUnitName.Text = unitname.ToString();
             lblCCName.Text = CCName.ToString();
             lblFromToDate.Text = "MR No.:- " + strMRNo + " & MR Date:- " + Convert.ToDateTime(strMRDate.ToString()).ToString("yyyy-MM-dd");
@@ -62,6 +89,11 @@ namespace UI.Dairy
             dt = obj.GetMilkMRReport(intWork, dteFrom, dteTo, intCCID, intSuppID, intMRNo, intPart);
             dgvMRReport.DataSource = dt;
             dgvMRReport.DataBind();
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected decimal tmrqty = 0;

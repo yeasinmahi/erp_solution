@@ -16,18 +16,34 @@ using System.Text;
 using SAD_BLL.Sales;
 using SAD_DAL.Sales;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Order
 {
     public partial class ChallanCancel : BasePage
     {
         protected StringBuilder mainD = new StringBuilder();
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\ChallanCancel";
+        string stop = "stopping SAD\\Order\\ChallanCancel";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["delid"] != null && Request.QueryString["delid"] != "")
+
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\ChallanCancel Challan Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    #region
+                    if (Request.QueryString["delid"] != null && Request.QueryString["delid"] != "")
                 {
                     SAD_BLL.Sales.Report.Challan ch = new SAD_BLL.Sales.Report.Challan();
                     ch.Remove(Request.QueryString["delid"], Session[SessionParams.USER_ID].ToString());
@@ -47,6 +63,22 @@ namespace UI.SAD.Order
                         pnlChallan.DataBind();
                     }
                 }
+                    #endregion
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 
@@ -179,4 +211,5 @@ namespace UI.SAD.Order
             mainD.Append(tempD.ToString());
         }
     }
+
 }

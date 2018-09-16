@@ -11,6 +11,8 @@ using Purchase_BLL.Asset;
 using System.Xml;
 using UI.ClassFiles;
 using System.Drawing;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -24,6 +26,10 @@ namespace UI.Asset
         string xmlStringAssetAccoA = "";
         AssetMaintenance rpt = new AssetMaintenance();
         int type;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetCOAConfigure_UI";
+        string stop = "stopping Asset\\AssetCOAConfigure_UI";
         protected void Page_Load(object sender, EventArgs e)
         {
            filePathForXMLAssetAccoA = Server.MapPath("~/Asset/Data/depc_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -93,6 +99,8 @@ namespace UI.Asset
 
         protected void DdlBillUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
             int unit = int.Parse(DdlBillUnit.SelectedValue.ToString());
             dt = new DataTable();
             try
@@ -120,7 +128,15 @@ namespace UI.Asset
 
         private void BindGrid()
         {
-            dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCOAConfigure_UI Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             DateTime sdate = DateTime.Parse("2016-01-01".ToString());
             DateTime edate = DateTime.Parse("2016-01-01".ToString());
             int jobid = int.Parse(DdlJobstation.SelectedValue.ToString());
@@ -130,6 +146,18 @@ namespace UI.Asset
             dt = configure.AssetViewforGlobalCOA(4, xmlunit, sdate, edate, jobid, assetid);
             dgvGridView.DataSource = dt;
             dgvGridView.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -142,7 +170,17 @@ namespace UI.Asset
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            int coaCodeID = int.Parse(0.ToString());
+
+            var fd = log.GetFlogDetail(start, location, "update", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCOAConfigure_UI update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int coaCodeID = int.Parse(0.ToString());
             int unit = int.Parse(DdlBillUnit.SelectedValue.ToString());
             int costcenter = int.Parse(0.ToString());
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -190,7 +228,17 @@ namespace UI.Asset
 
             }
             this.BindGrid();
-           
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "update", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "update", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateVoucherXml(string assetid, string costid, string gcoaid, string dteacisition, string acusutionValue, string acumulatedDep, string totalAcumulatedcost,string deprate)

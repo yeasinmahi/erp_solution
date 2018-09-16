@@ -1,4 +1,6 @@
-﻿using LOGIS_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using LOGIS_BLL;
 using LOGIS_BLL.Trip;
 using LOGIS_DAL.Trip;
 using SAD_BLL.Customer.Report;
@@ -24,14 +26,26 @@ namespace UI.SAD.Order
     {
         XmlManagerCH xm = new XmlManagerCH();
         decimal prdouctvalue, outstandingv;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\VehicleSelectCustomize";
+        string stop = "stopping SAD\\Order\\VehicleSelectCustomize";
+
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
             {
                 //Session["sesUserID"] = "87";
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectCustomize Vehicle Select Customize Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
 
-                if (Request.QueryString["id"] != null)
+                    if (Request.QueryString["id"] != null)
                 {
                     Session[SessionParams.CURRENT_UNIT] = Request.QueryString["unit"];
                     Session[SessionParams.CURRENT_SHIP] = Request.QueryString["ship"];
@@ -127,6 +141,18 @@ namespace UI.SAD.Order
 
                     }
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }
@@ -466,9 +492,18 @@ namespace UI.SAD.Order
        
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            if (hdnconfirm.Value == "1")
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectCustomize Vehicle Select Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+
+                if (hdnconfirm.Value == "1")
             {
                 StatementC bll = new StatementC();
 
@@ -604,6 +639,18 @@ namespace UI.SAD.Order
                     lblmsg.BackColor = System.Drawing.Color.FromArgb(255, 50, 50); // this should be pink-ish;
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

@@ -1,4 +1,6 @@
-﻿using LOGIS_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using LOGIS_BLL;
 using LOGIS_BLL.Supplier;
 using LOGIS_BLL.Trip;
 using LOGIS_DAL;
@@ -20,6 +22,10 @@ namespace UI.SAD.Logistic
     public partial class VehicleInOutCustomize : System.Web.UI.Page
     {
         int unitid;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Logistic\\VehicleInOutCustomize";
+        string stop = "stopping SAD\\Logistic\\VehicleInOutCustomize";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -226,7 +232,16 @@ namespace UI.SAD.Logistic
 
         protected void btnIn_Click(object sender, EventArgs e)
         {
-            Trip tp = new Trip();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\VehicleInOutCustomize Vehcile In out Customize", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Trip tp = new Trip();
             string code = "", error = "";
             if (txtDO.Text != "" && hdnDo.Value == "")
             {
@@ -274,11 +289,31 @@ namespace UI.SAD.Logistic
             btnIn.Visible = false;
             ResetIn();
             VehicleSt.ReloadVehicle(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnOut_Click(object sender, EventArgs e)
         {
-            Trip t = new Trip();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\VehicleInOutCustomize Vehcile out Customize", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Trip t = new Trip();
             DataTable dt = new DataTable();
             string error = "";
             string brandissuenumber = txtBrandIssue.Text.ToString();
@@ -308,6 +343,17 @@ namespace UI.SAD.Logistic
             }
 
             ResetOut();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -353,7 +399,16 @@ namespace UI.SAD.Logistic
         }
         private void SetValueOut()
         {
-            Trip t = new Trip();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\VehicleInOutCustomize SetValueOut", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Trip t = new Trip();
 
             string id = "";
             if (txtVehicleOut.Text.Trim() != "")
@@ -447,6 +502,17 @@ namespace UI.SAD.Logistic
                     lblError.Text = "Trip not found";
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ResetIn()

@@ -25,6 +25,9 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Xml;
 using SAD_BLL.Corporate_sales;
+using Flogging.Core;
+using GLOBAL_BLL;
+
 namespace UI.SAD.Corporate_sales
 {
     public partial class CorpPendingView : System.Web.UI.Page
@@ -33,10 +36,15 @@ namespace UI.SAD.Corporate_sales
         challanandPending Report = new challanandPending();
         orderInputClass CorpReport = new orderInputClass();
         string filePathForXML; int driverenroll; string drivermobile;
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\CorpPendingView";
+        string stop = "stopping SAD\\Corporate_sales\\CorpPendingView";
         protected void Page_Load(object sender, EventArgs e)
         {
-           // string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
-            string strEnroll = Convert.ToString("1355".ToString());
+            string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
+           // string strEnroll = Convert.ToString("1355".ToString());
             filePathForXML = Server.MapPath("Pendinginputform" + strEnroll + ".xml");
 
             // filePathForXML = Server.MapPath("orderinputform.xml");
@@ -224,7 +232,18 @@ namespace UI.SAD.Corporate_sales
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            DataTable dtDriverMobile = new DataTable();
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\CorpPendingView  Corp Pending View", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                DataTable dtDriverMobile = new DataTable();
             string drivername = txtdrivername.Text.ToString();
             string mobileno = Convert.ToString(txtmobileno.Text.ToString());
             int intshipid=int.Parse(Session["Shippointid"].ToString());
@@ -364,7 +383,19 @@ namespace UI.SAD.Corporate_sales
                 }
 
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);     
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvPending_SelectedIndexChanged(object sender, EventArgs e)

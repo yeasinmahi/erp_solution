@@ -13,6 +13,7 @@ namespace UI.Accounts.PartyPayment
     {
         BLL.Accounts.PartyPayment.PartyBill objPartyBill = new BLL.Accounts.PartyPayment.PartyBill();
         DataTable dtble = new DataTable();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

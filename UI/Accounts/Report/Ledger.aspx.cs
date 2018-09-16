@@ -19,12 +19,17 @@ using BLL.Accounts.SubLedger;
 using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Report
 {
     public partial class Ledger : BasePage
     {
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Report\\Ledger";
+        string stop = "stopping Accounts\\Report\\Ledger";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -177,7 +182,16 @@ namespace UI.Accounts.Report
         }
         private void SetReportLegSub()
         {
-            DataTable oDTReportData = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Report\\Ledger  Ledger Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DataTable oDTReportData = new DataTable();
             string accountName = "", accountCode = "", unitName = "", unitAddress = "";
             bool? isAssetOrLiabilities = false;
 
@@ -257,11 +271,32 @@ namespace UI.Accounts.Report
             {
                 ReportViewer1.Reset();//CrystalReportViewer1.ReportSource = null;
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void SetReportDrCr()
-        {
-            if (txtCOA.Text.Trim() != "")
+        { var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Report\\Ledger  Ledger Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (txtCOA.Text.Trim() != "")
             {
                 //######### Calling Report LedgerDrCr #########//
                 string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/LedgerDrCr.rdlc");
@@ -330,6 +365,19 @@ namespace UI.Accounts.Report
             {
                 ReportViewer1.Reset(); // CrystalReportViewer1.ReportSource = null;
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void SetReport()
         {

@@ -1,4 +1,5 @@
-﻿using GLOBAL_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
 using QRCoder;
 using SAD_BLL.Sales;
 using System;
@@ -21,14 +22,27 @@ namespace UI.SAD.Order
         int custmid, unitid;
         SalesView bll = new SalesView();
         DataTable dt = new DataTable();
-        
-        #endregion 
 
+        #endregion
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\DeliveryOrderPendingAmountPrint";
+        string stop = "stopping SAD\\Order\\DeliveryOrderPendingAmountPrint";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                customerid = Session["intcustmid"].ToString();
+
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\DeliveryOrderPendingAmountPrint Challan Prit Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    customerid = Session["intcustmid"].ToString();
                 unitids= Session["unitid"].ToString();
                 DateTime fromDate = DateTime.Now.Date;
                 DateTime toDate = DateTime.Now.Date;
@@ -95,6 +109,18 @@ namespace UI.SAD.Order
                 CheckDigit chk = new CheckDigit();
                 string xcd = chk.Encode(dtinfo.Rows[0][8].ToString());
                 lblCustid.Text = xcd;
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
             

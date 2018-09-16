@@ -10,6 +10,8 @@ using System.Data;
 using System.Web.UI.HtmlControls;
 using SAD_BLL.DisPoint;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.DisPoint
 {
@@ -22,6 +24,10 @@ namespace UI.SAD.DisPoint
         TableCell tdLblV = new TableCell();
         TableCell tdConV = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevelV;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\DisPoint\\SetLogisVar";
+        string stop = "stopping SAD\\DisPoint\\SetLogisVar";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +51,17 @@ namespace UI.SAD.DisPoint
 
         private void GetItemInfoP(string parentID)
         {
-            int level;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\DisPoint\\SetLogisVar set Logis var", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+             int level;
             tdV = new TableCell();
             tdLblV = new TableCell();
             tdConV = new TableCell();
@@ -121,6 +137,17 @@ namespace UI.SAD.DisPoint
                     hdnPriceIdV.Value = "";
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private HtmlAnchor BuildAnchor(string text, string attrMethod)
         {

@@ -17,12 +17,19 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
     public partial class SalesQutView : BasePage
     {
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\SalesQutView";
+        string stop = "stopping SAD\\Order\\SalesQutView";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,7 +67,16 @@ namespace UI.SAD.Order
 
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\salesQutView   Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
             string id = str[0];
             DateTime dt = DateTime.Parse(str[1]);
@@ -69,12 +85,44 @@ namespace UI.SAD.Order
             sv.CompleteSO(id, Session[SessionParams.USER_ID].ToString());
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            SalesOrderView sv = new SalesOrderView();
+        { var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\salesQutView   Cancel", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                SalesOrderView sv = new SalesOrderView();
             sv.CancelSO(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected string GetEditLink(object voucherID, object completed)
         {

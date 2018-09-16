@@ -13,6 +13,8 @@ using System.Xml;
 using UI.ClassFiles;
 using SAD_BLL;
 using SAD_BLL.AutoChallan;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -20,6 +22,10 @@ namespace UI.SAD.ExcelChallan
     {     
         DataTable dt; int Custid;
         ExcelDataBLL objExcel = new ExcelDataBLL();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\ExcelChallan\\frmExcelUploadDairy";
+        string stop = "stopping SAD\\ExcelChallan\\frmExcelUploadDairy";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -42,7 +48,16 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnDataView_Click(object sender, EventArgs e)
         {
-            if (txtFrom.Text == "")
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelUploadDairy Report for Delivery Order", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (txtFrom.Text == "")
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Date Select ');", true);
 
@@ -54,15 +69,46 @@ namespace UI.SAD.ExcelChallan
                 dgvExcelOrder.Visible = true;
                 dgvSlip.Visible = false;
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected double Pendingtotal = 0; protected double TotalQtytotal = 0;
         protected void btnLoadingSlip_Click(object sender, EventArgs e)
         {
-            dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelUploadDairy Loading Slip", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
             dgvSlip.DataSource = dt;
             dgvSlip.DataBind();
             dgvSlip.Visible = true;
             dgvExcelOrder.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void dgvExcelOrder_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -110,6 +156,12 @@ namespace UI.SAD.ExcelChallan
         }
         protected void btnDelete(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelUploadDairy Order Delete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -119,9 +171,18 @@ namespace UI.SAD.ExcelChallan
                 Custid = int.Parse(searchKey[0].ToString());
                 objExcel.getOrderdelete(Custid,int.Parse(ddlshippoint.SelectedValue));
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
-                
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnOrderDelete(object sender, EventArgs e)
         {

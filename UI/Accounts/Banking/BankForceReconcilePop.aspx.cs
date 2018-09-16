@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.Banking;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 
@@ -18,6 +19,10 @@ namespace UI.Accounts.Banking
 {
     public partial class BankForceReconcilePop : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\BankForceReconcilePop";
+        string stop = "stopping Accounts\\Banking\\BankForceReconcilePop";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

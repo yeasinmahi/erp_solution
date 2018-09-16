@@ -2,6 +2,8 @@
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Consumer;
 using Utility;
 
@@ -11,6 +13,10 @@ namespace UI.SAD.Consumer
     {
         private readonly StarConsumerEntryBll _bll = new StarConsumerEntryBll();
         private string _reportType;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\TargetAcvReport";
+        string stop = "stopping SAD\\Consumer\\TargetAcvReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadNecessaryUi();
@@ -24,6 +30,12 @@ namespace UI.SAD.Consumer
         protected void showReport_OnClick(object sender, EventArgs e)
         {
             DataTable source = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\TargetAcvReport Achievement Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string fromDate = fromTextBox.Text;
@@ -63,10 +75,18 @@ namespace UI.SAD.Consumer
                     source = _bll.GetAllJvWithCostCenterId("Bondhutter Bondhon", fromDateTime, toDateTime, area);
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select All input Properly. " + exception.Message + "');", true);
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select All input Properly. " + ex.Message + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+           
 
             //LoadGridView(source);
             CreateGridView(source);

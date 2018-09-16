@@ -14,7 +14,8 @@ using SAD_DAL.Item;
 using SAD_BLL.Item;
 using BLL.Accounts.ChartOfAccount;
 using UI.ClassFiles;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Item
 {
@@ -27,7 +28,10 @@ namespace UI.SAD.Item
         TableCell tdLbl = new TableCell();
         TableCell tdCon = new TableCell();
         ItemPriceManagerTDS.SprItemPriceManagerGetAllUpperLevelDataTable tblUpperLevel;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Item\\PriceManager";
+        string stop = "stopping SAD\\Item\\PriceManager";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -46,7 +50,18 @@ namespace UI.SAD.Item
 
         protected void btnPopSubmit_Click(object sender, EventArgs e)
         {
-            ItemPriceManager im = new ItemPriceManager();
+
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\PriceManager  Price change", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                ItemPriceManager im = new ItemPriceManager();
 
             if (hdnMode.Value == "new")
             {
@@ -66,7 +81,17 @@ namespace UI.SAD.Item
             pnlMain.Controls.Add(tbl);
 
             ChartOfAccStaticDataProvider.ReloadCOA(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void BuildTree()
@@ -83,7 +108,17 @@ namespace UI.SAD.Item
 
         private void GetItemInfo(string parentID)
         {
-            int level;
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\PriceManager  Item Price Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -159,6 +194,17 @@ namespace UI.SAD.Item
                     hdnGeoId.Value = "";
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private HtmlAnchor BuildAnchor(string text, string attrMethod)

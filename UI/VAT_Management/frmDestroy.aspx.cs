@@ -116,6 +116,7 @@ namespace UI.VAT_Management
             lblQty.Text= dt.Rows[0]["numQuantity"].ToString();
             lblVat.Text = dt.Rows[0]["monVAT"].ToString();
             lblSD.Text = dt.Rows[0]["monSD"].ToString();
+            hdndtechallandate.Value= dt.Rows[0]["dtechallandate"].ToString();
             decimal vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
             if(vat>1)
             {
@@ -161,6 +162,7 @@ namespace UI.VAT_Management
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+
             intitemid =int.Parse(ddlMaterialList.SelectedValue.ToString());
             MaterialName = (ddlMaterialList.SelectedItem.ToString());
             strChallanNo = ddlChallanNo.SelectedValue.ToString();
@@ -177,6 +179,10 @@ namespace UI.VAT_Management
             txtSD.Text = "";
             txtVAT.Text = "";
             txtSDCharableValue.Text = "";
+            txtCreditqty.Text = "";
+
+
+
         }
         private void CreateVoucherXml(string mid, string MaterialName, string qty, string values, string sdnew, string vatnew)
         {

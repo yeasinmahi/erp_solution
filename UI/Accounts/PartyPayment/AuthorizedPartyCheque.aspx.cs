@@ -1,4 +1,6 @@
 ﻿using BLL.Accounts.Voucher;
+using Flogging.Core;
+using GLOBAL_BLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,10 @@ namespace UI.Accounts.PartyPayment
     {
         BLL.Accounts.PartyPayment.PartyBill objPartyBill = new BLL.Accounts.PartyPayment.PartyBill();
         string alertmsg = ""; StringBuilder selectedvoucherAdd = new StringBuilder(); int selectedvoucherid;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\PartyPayment\\AuthorizedPartyCheque";
+        string stop = "stopping Accounts\\PartyPayment\\AuthorizedPartyCheque";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -114,6 +120,12 @@ namespace UI.Accounts.PartyPayment
             string confirmValue = Request.Form["confirm_value"];
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Print", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\AuthorizedPartyCheque   Print ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     int usrid = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -123,15 +135,33 @@ namespace UI.Accounts.PartyPayment
                     objPartyBill.UpdatePrintStatusAndComplteAuthorization(selectedvoucherid, unitid, usrid );
                     dgvAuthorizedPartyCheque.DataBind();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Print", ex);
+                    Flogger.WriteError(efd);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "Print", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }
         protected void btnPrintAll_Click(object sender, EventArgs e)
         {
+
             string confirmValue = Request.Form["confirm_value"];
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Print", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\AuthorizedPartyCheque   Print All ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     int rowCount = dgvAuthorizedPartyCheque.Rows.Count; bool ysnChecked;
@@ -151,8 +181,20 @@ namespace UI.Accounts.PartyPayment
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowMultipleChequePrint('" + selectedvouchers + "','" + hdnaccountpay.Value + "');", true);
                     dgvAuthorizedPartyCheque.DataBind();
                 }
-                catch
-                { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertmsg + "');", true); }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Print", ex);
+                    Flogger.WriteError(efd);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertmsg + "');", true);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "Print", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+              
             }
         }
 

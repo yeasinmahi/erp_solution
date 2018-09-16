@@ -15,8 +15,9 @@
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" /> 
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
-     
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+     
+    
 
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
@@ -62,8 +63,8 @@
         document.getElementById("btnEmail").style.visibility = "hidden";
         document.getElementById("txtPoNumbers").style.visibility = "hidden";
         document.getElementById("btnPoShowByView").style.visibility = "hidden";
-        document.getElementById("btnDownload").style.visibility = "hidden"; 
-        
+        document.getElementById("btnDownload").style.visibility = "hidden";
+
         html2canvas($("#dvTable")[0]).then(function (canvas) {
             var base64 = canvas.toDataURL();
             $("[id*=hfImageData]").val(base64);
@@ -79,55 +80,49 @@
      
     
   <script type="text/javascript">
-    function ConvertToImageDownload(btnDownload) {
-        document.getElementById("btnEmail").style.visibility = "hidden";
-        document.getElementById("btnprint").style.visibility = "hidden";
-        //document.getElementById("txtPoNumbers").style.visibility = "hidden";
-       // document.getElementById("btnPoShowByView").style.visibility = "hidden";
-        document.getElementById("btnDownload").style.visibility = "hidden";
+      function ConvertToImageDownload(btnDownload) {
+          document.getElementById("btnEmail").style.visibility = "hidden";
+          document.getElementById("btnprint").style.visibility = "hidden";
+          //document.getElementById("txtPoNumbers").style.visibility = "hidden";
+          // document.getElementById("btnPoShowByView").style.visibility = "hidden";
+          document.getElementById("btnDownload").style.visibility = "hidden";
 
-        html2canvas($("#dvTable")[0]).then(function (canvas) {
-            var base64 = canvas.toDataURL();
-            $("[id*=hfImageData]").val(base64);
-            __doPostBack(btnDownload.name, "");
-            document.getElementById("btnEmail").style.visibility = "visible";
-         //   document.getElementById("txtPoNumbers").style.visibility = "visible";
-          //  document.getElementById("btnPoShowByView").style.visibility = "visible";
-            document.getElementById("btnDownload").style.visibility = "visible";
-             document.getElementById("btnprint").style.visibility = "visible";
-        });
-        return false;
-    }
+          html2canvas($("#dvTable")[0]).then(function (canvas) {
+              var base64 = canvas.toDataURL();
+              $("[id*=hfImageData]").val(base64);
+              __doPostBack(btnDownload.name, "");
+              document.getElementById("btnEmail").style.visibility = "visible";
+              //   document.getElementById("txtPoNumbers").style.visibility = "visible";
+              //  document.getElementById("btnPoShowByView").style.visibility = "visible";
+              document.getElementById("btnDownload").style.visibility = "visible";
+              document.getElementById("btnprint").style.visibility = "visible";
+          });
+          return false;
+      }
 </script>
     
     <script type="text/javascript"> 
-        function funConfirmAll() { 
-            var confirm_value = document.createElement("INPUT"); 
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value"; 
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; } 
-            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
+        function funConfirmAll() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
+            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
         }
 
 </script>   
     <script>
         function Print() {
-            document.getElementById("btnEmail").style.visibility = "hidden";            
-            document.getElementById("btnDownload").style.visibility = "hidden";              
+            document.getElementById("btnEmail").style.visibility = "hidden";
+            document.getElementById("btnDownload").style.visibility = "hidden";
 
-            document.getElementById("btnprint").style.display = "none"; window.print();  
-            document.getElementById("btnEmail").style.visibility = "visible";            
+            document.getElementById("btnprint").style.display = "none"; window.print();
+            document.getElementById("btnEmail").style.visibility = "visible";
             document.getElementById("btnDownload").style.visibility = "visible";
 
+
         }
+
     </script> 
-
-
-   
-    <style type="text/css">
-        .auto-style2 {
-            width: 69px;
-        }
-    </style>
 
 
    
@@ -187,14 +182,13 @@
              <table style="border-color:black;  width:700px;border-radius:10px; border:1px solid blue;">
                   <tr>
                       <td style="text-align:left; width:10px">Supplier</td>
-                      <td style="text-align:left">Ship To</td>
-                      <td style="text-align:left; " class="auto-style2">Bill To</td>
+                      <td style="text-align:left">Ship TO</td>
+                      <td style="text-align:left; ">Bill To</td>
                   </tr>
                   <tr>
-                      <td style="text-align:left; font: bold"><asp:Label ID="lblSuppliyers"  runat="server"></asp:Label></td>                     
-                      <td style="text-align:left; font: bold"><asp:Label ID="lblShipTo" Width="200px" runat="server"></asp:Label></td>
-                      <td style="text-align:left" class="auto-style2"><asp:Label ID="lblBillTo"  Width="250px" runat="server"></asp:Label></td>
-                      
+                      <td style="text-align:left"><asp:Label ID="lblSuppliyers" runat="server" Font-Bold="true"></asp:Label></td>                     
+                      <td style="text-align:left"><asp:Label ID="lblShipTo" Width="200px" runat="server" Font-Bold="true"></asp:Label></td>
+                      <td style="text-align:left"><asp:Label ID="lblBillTo"  Width="250px" runat="server"></asp:Label></td>                      
                   </tr>
                    
                   <tr>
@@ -218,9 +212,10 @@
              <table style="width:750px">
              <tr><td></td></tr>
              <tr> 
-             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="750px" ShowFooter="true"   BorderColor="#adad85"    
-             BorderWidth="1px" CssClass="Grid"  CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#adad85" FooterStyle-HorizontalAlign="Right"  > 
+             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="11px" Width="750px" ShowFooter="true"   
+             BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical" FooterStyle-HorizontalAlign="Right" > 
              <AlternatingRowStyle BackColor="#CCCCCC" /> 
+
             <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
   
@@ -261,8 +256,8 @@
                 <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>  
 
             </Columns>
-            <FooterStyle BackColor="#adad85" Font-Bold="True" HorizontalAlign="Right" />
-            <HeaderStyle BackColor="#adad85" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" /> 
+            <FooterStyle BackColor="Gray" Font-Bold="True" HorizontalAlign="Right" ForeColor="Black" />
+            <HeaderStyle BackColor="Black" Font-Bold="True" /><PagerStyle BackColor="Gray" ForeColor="Red" HorizontalAlign="Center" /> 
             </asp:GridView></td> 
         </tr>  
             <tr><td><asp:Label ID="lblInWard"  Font-Bold="true" runat="server"></asp:Label></td> </tr> 
@@ -270,53 +265,52 @@
              </table>
              <table>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black;">Partial Shipment</td>
-                      <td style="text-align:left;border: 1px solid black;"><asp:Label ID="lblPartialShip" Width="100px" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray;">Partial Shipment</td>
+                      <td style="text-align:left;border: 1px solid gray;"><asp:Label ID="lblPartialShip" Width="100px" runat="server"></asp:Label></td>
                       <td></td><td></td>
-                      <td style="text-align:right;border: 1px solid black">Trnsport Charge:</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblTransportCharge" Width="100px" runat="server"></asp:Label></td>
+                      <td style="text-align:right;border: 1px solid gray">Trnsport Charge:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblTransportCharge" Width="100px" runat="server"></asp:Label></td>
                   </tr>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">No of Shipment</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblNoShipment" Width="100px" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">No of Shipment</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblNoShipment" Width="100px" runat="server"></asp:Label></td>
                       <td></td><td></td>
-                      <td style="text-align:right;border: 1px solid black">Others Charge:</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblOthersCharge" runat="server" Width="100px"></asp:Label></td>
+                      <td style="text-align:right;border: 1px solid gray">Others Charge:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblOthersCharge" runat="server" Width="100px"></asp:Label></td>
                   </tr>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">Last Shipment Date</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lbllastShipmentDate" Width="100px" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">Last Shipment Date</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lbllastShipmentDate" Width="100px" runat="server"></asp:Label></td>
                       <td></td><td></td>
-                      <td style="text-align:right;border: 1px solid black">Gross Disscount:</td>
-                      <td style="text-align:left;border: 1px  inset black"><asp:Label ID="lblGrossDis" runat="server" Width="100px"></asp:Label></td>
+                      <td style="text-align:right;border: 1px solid gray">Gross Disscount:</td>
+                      <td style="text-align:left;border: 1px  inset gray"><asp:Label ID="lblGrossDis" runat="server" Width="100px"></asp:Label></td>
                   </tr>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">Payment terms</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblPaymentTrems" runat="server"  ></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">Payment terms</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblPaymentTrems" runat="server"  ></asp:Label></td>
                       <td></td><td></td>
-                      <td style="text-align:right;border: 1px solid black">Comission:</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
+                      <td style="text-align:right;border: 1px solid gray">Comission:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
                   </tr>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">Payment days after MRR (days)</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">Payment days after MRR (days)</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
                       <td></td><td></td>
-                      <td style="text-align:right;border: 1px solid black; font: bold">Grand Total:</td>
-                      <td style="text-align:left;border: 1px solid black; font: bold"><asp:Label ID="lblGrandTotal" runat="server" Width="100px"></asp:Label></td>
+                      <td style="text-align:right;border: 1px solid gray">Grand Total:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblGrandTotal" runat="server" Width="100px" Font-Bold="true"></asp:Label></td>
                   </tr>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">No of Installment</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">No of Installment</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
                   </tr> 
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">Installment Interval (Days)</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblIntervelDay" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">Installment Interval (Days)</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblIntervelDay" runat="server"></asp:Label></td>
                   </tr>
                   <tr>
-                      <td style="text-align:left;border: 1px solid black">Warrenty after delivery (months)</td>
-                      <td style="text-align:left;border: 1px solid black"><asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
+                      <td style="text-align:left;border: 1px solid gray">Warrenty after delivery (months)</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
                   </tr>
-                  
                  </table> 
                <table> 
                  <tr>

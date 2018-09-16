@@ -15,6 +15,8 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Customer;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Item
 {
@@ -36,7 +38,10 @@ namespace UI.SAD.Item
         TableCell tdConP = new TableCell();
         ItemPriceManagerTDS.SprItemPriceManagerGetAllUpperLevelDataTable tblUpperLevelP;
         string loction = "";
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Item\\PriceChange";
+        string stop = "stopping SAD\\Item\\PriceChange";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -78,7 +83,16 @@ namespace UI.SAD.Item
         private void GetItemInfo(string parentID, int subLevel)
         {
 
-            int level;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\PriceChange  Item Price Change", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -168,6 +182,17 @@ namespace UI.SAD.Item
                     tbl.Rows.Add(tr);
                 }*/
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void GetItemInfo(string parentID)

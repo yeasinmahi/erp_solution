@@ -97,8 +97,12 @@
         <td colspan="2" style="text-align:left;" class="auto-style1"><asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
         <asp:Label ID="lblItemName" runat="server" Text="CHALLAN NO" CssClass="lbl" ForeColor="Blue"></asp:Label>
         </td>
-
-            </tr>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:left;" class="auto-style1"><asp:Label ID="Label3" runat="server" Text="ITEM ID :" CssClass="lbl"></asp:Label>
+        <asp:Label ID="lblitemid" runat="server" CssClass="lbl" ForeColor="Blue"></asp:Label>
+        </td>
+    </tr>
             <tr>
 
                 <td style="text-align: right;">

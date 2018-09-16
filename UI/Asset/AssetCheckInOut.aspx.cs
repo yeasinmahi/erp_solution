@@ -10,6 +10,8 @@ using System.Data;
 using UI.ClassFiles;
 using System.Web.Services;
 using System.Web.Script.Services;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -20,6 +22,10 @@ namespace UI.Asset
         DataTable dt = new DataTable();
         int intResEnroll, intWHiD, intType,intActionBy;string assetCode, strNaration,stringXml;
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetCheckInOut";
+        string stop = "stopping Asset\\AssetCheckInOut";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -128,6 +134,12 @@ namespace UI.Asset
 
         protected void btnInUseAction_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCheckInOut   btnInUseAction_Click ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 arrayKey = txtResponsibleInUse.Text.Split(delimiterChars);
@@ -145,13 +157,31 @@ namespace UI.Asset
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnInUseDiv();", true);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
 
-           
+
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
+
         }
 
         protected void btnInStore_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCheckInOut   Save ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWHiD = int.Parse(ddlWHidSt.SelectedValue);
@@ -164,7 +194,19 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + messages + "');", true);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnInStoreDiv();", true);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnExpire_Click(object sender, EventArgs e)
@@ -196,6 +238,12 @@ namespace UI.Asset
 
         private void LoadData()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCheckInOut   Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 DataTable dt = new DataTable();
@@ -224,9 +272,21 @@ namespace UI.Asset
                 ddlResposiblePersonEx.DataBind();
 
             }
-            catch { }
-           
-            
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
+
 
         }
     }

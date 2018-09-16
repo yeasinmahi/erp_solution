@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -32,11 +34,20 @@ namespace UI.SAD.Order
         string filePathForXML;
 
         string xmlString = "";
-  
 
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TADAAprvSingleEmployeeByImsSuperv";
+        string stop = "stopping SAD\\Order\\TADAAprvSingleEmployeeByImsSuperv";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TADAAprvSingleEmployeeByImsSuperv Page Load Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 strDate = Session["Date"].ToString();
@@ -89,14 +100,21 @@ namespace UI.SAD.Order
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
                 }
-               
-            }
-            catch
-            {
-                File.Delete(filePathForXML);
 
             }
-            
+            catch (Exception ex)
+            {
+                File.Delete(filePathForXML);
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+          
 
             
 
@@ -105,6 +123,12 @@ namespace UI.SAD.Order
 
         private void loadgrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TADAAprvSingleEmployeeByImsSuperv Drid Load Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 strDate = Session["Date"].ToString();
@@ -124,11 +148,18 @@ namespace UI.SAD.Order
                 }
 
             }
-
-            catch
+            catch (Exception ex)
             {
+                File.Delete(filePathForXML);
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
             }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

@@ -11,12 +11,19 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.Banking;
+using Flogging.Core;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 namespace UI.Accounts.Banking
 {
+    
     public partial class BankForceReconcile : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\BankForceReconcile";
+        string stop = "stopping Accounts\\Banking\\BankForceReconcile";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -49,7 +56,16 @@ namespace UI.Accounts.Banking
 
         protected void btnChange_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Change", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\BankForceReconcile Bank Force Reconcile ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
 
             Reconcile rc = new Reconcile();
@@ -83,6 +99,19 @@ namespace UI.Accounts.Banking
 
             GridView1.DataBind();
             GridView2.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Change", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Change", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void GridView1_DataBound(object sender, EventArgs e)

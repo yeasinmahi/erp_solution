@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Flogging.Core;
+using GLOBAL_BLL;
 using Purchase_BLL.Asset;
 using UI.ClassFiles;
 namespace UI.Asset
@@ -19,7 +20,10 @@ namespace UI.Asset
 
         int intItem; int intpart;
         //DateTime dtelc, dtepo, WarrintyPreoid, dteacusition, DteTaxToken, dtefitness, dteInsurance, RootPermit;
-
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetRegisterUpdate";
+        string stop = "stopping Asset\\AssetRegisterUpdate";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,7 +44,16 @@ namespace UI.Asset
 
         private void loadTab3LandReg()
         {
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate loadTab3LandReg", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -84,12 +97,29 @@ namespace UI.Asset
             DDlThana.DataTextField = "strDistrictBanglaName";
             DDlThana.DataValueField = "intDistrictIDs";
             DDlThana.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void loadTab4BuildingReg()
-        {
-            dt = new DataTable();
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate loadTab4BuildingReg", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -130,12 +160,29 @@ namespace UI.Asset
             DdlBAssetCategory.DataValueField = "intCategoryID";
             DdlBAssetCategory.DataBind();
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void loadTab2VehicleReg()
-        {
-            dt = new DataTable();
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate loadTab2VehicleReg", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -180,15 +227,33 @@ namespace UI.Asset
             Ddljob.DataTextField = "strJobStationName";
             Ddljob.DataValueField = "intEmployeeJobStationId";
             Ddljob.DataBind();
-          
-           
 
-           
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
 
         private void loadTab1FactoryReg()
         {
-            dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate loadTab1FactoryReg", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -246,14 +311,31 @@ namespace UI.Asset
             //DdlPlantF.DataValueField = "Id";
             //DdlPlantF.DataBind();
 
+                 }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
         protected void Tab1_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            dt = new DataTable();
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate Tab1_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -282,12 +364,29 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have no Permission');", true);
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void Tab2_Click(object sender, EventArgs e)
-        {
-            dt = new DataTable();
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate Tab2_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -315,12 +414,29 @@ namespace UI.Asset
             }
 
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void Tab3_Click(object sender, EventArgs e)
-        {
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate Tab3_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
@@ -345,10 +461,28 @@ namespace UI.Asset
 
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void Tab4_Click(object sender, EventArgs e)
-        {
-            dt = new DataTable();
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -373,7 +507,17 @@ namespace UI.Asset
 
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void Button1_Click(object sender, EventArgs e)
@@ -525,8 +669,15 @@ namespace UI.Asset
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
-        {
-            DateTime dtelc; DateTime dtepo; DateTime dteacusition;
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime dtelc; DateTime dtepo; DateTime dteacusition;
             DateTime WarrintyPreoid;
             int Costcenterid; int Plantname; int category, department;
 
@@ -604,14 +755,33 @@ namespace UI.Asset
                 TxtAssetName.Text = ""; TxtHSCode.Text = ""; TxtAssetDescription.Text = ""; TxtManufacturer.Text = "";
                 TxtContryOrigin.Text = ""; TxtCountryManufacture.Text = ""; TxtSuppName.Text = ""; TxtLCNo.Text = "";
                 TxtDteLC.Text = ""; TxtAssetCode.Text = "";
-            
-            
-            
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void BtnBuilding_Click(object sender, EventArgs e)
         {
-            decimal totalAccumulatedCost;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate BtnBuilding_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                decimal totalAccumulatedCost;
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -655,12 +825,31 @@ namespace UI.Asset
             objregisterUpdate.BuildingUpdate(intpart, unit, jobstation, assettype, assetname, BDescription, supplyby, category, BPoNO, PoDate, Blocation, Estimatedlife, Bremarks, Requestby, RequestApproved, porjectstardtDate, deliverydate, Length, Breadth, height, totalarea, estimaticost, estmateconstriuction, actualconstruction, year, Dept, funndingsouece, consultant, contractorname, renovationwork, approximiatly, renomateralis, intenroll, intjobid, projectnumber, totalAccumulatedCost);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sucessfully ');", true);
             TxtALandBuildCode.Text = "";
-        
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void BtnLand_Click(object sender, EventArgs e)
         {
-            Int32 intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate BtnLand_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Int32 intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -732,13 +921,23 @@ namespace UI.Asset
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sucessfully ');", true);
             TxtALandCode.Text = "";
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
         protected void BtnVechileSave_Click(object sender, EventArgs e)
         {
-            DateTime dtelc; DateTime dtepo; DateTime dteacusition; DateTime DteTaxToken;
+                DateTime dtelc; DateTime dtepo; DateTime dteacusition; DateTime DteTaxToken;
             DateTime dtefitness; DateTime dteInsurance; DateTime WarrintyPreoid;
             DateTime RootPermit;
 
@@ -746,6 +945,12 @@ namespace UI.Asset
             int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate BtnVechileSave_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
 
@@ -864,7 +1069,16 @@ namespace UI.Asset
                 TxtVehicleCode.Text = "";
                 loadTab2VehicleReg();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void DlJobStation_SelectedIndexChanged(object sender, EventArgs e)
@@ -1109,7 +1323,6 @@ namespace UI.Asset
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-
             Int32 Mnumber = Int32.Parse("1".ToString());
             string assetcode = TxtALandBuildCode.Text.ToString();
            
@@ -1162,9 +1375,7 @@ namespace UI.Asset
             }
             MainView.ActiveViewIndex = 3;
         }
-
-       
-
+      
         protected void DdlBuildUnit_SelectedIndexChanged1(object sender, EventArgs e)
         {
             dt = new DataTable();

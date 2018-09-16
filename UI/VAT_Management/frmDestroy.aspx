@@ -83,6 +83,7 @@
 <body>
     <form id="frmPurchase" runat="server">
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+    <asp:HiddenField ID="hdndtechallandate" runat="server" />
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
