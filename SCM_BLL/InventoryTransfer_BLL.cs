@@ -149,6 +149,12 @@ namespace SCM_BLL
             return adp.GetItemMasterListCreate(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, strUoM,intEnroll);
         }
 
+        public DataTable GetUnitListByEnrollData(int intEnroll)
+        {
+            TblUnitTableAdapter adp = new TblUnitTableAdapter();
+            return adp.GetUnitListByEnroll(intEnroll);
+        }
+
 
 
 

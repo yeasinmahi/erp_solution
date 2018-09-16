@@ -42,10 +42,11 @@ namespace UI.SCM
             var tracker = new PerfTracker(perform, "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try {
-                dt = objinventoryTransfer.GetWearHouse();
+                int intEnroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+                dt = objinventoryTransfer.GetUnitListByEnrollData(intEnroll);
                 ddlUnit.DataSource = dt;
-                ddlUnit.DataTextField = "strWareHoseName";
-                ddlUnit.DataValueField = "intUnitID";
+                ddlUnit.DataTextField = "strUnit";
+                ddlUnit.DataValueField = "intUnitId";
                 ddlUnit.DataBind();
             }
             catch (Exception ex)
