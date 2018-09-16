@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -15,6 +17,11 @@ namespace UI.Asset
         AssetInOut objCheck = new AssetInOut();
         DataTable dt = new DataTable();
         int intResEnroll, intWHiD, intType, intActionBy; string assetCode, strNaration, stringXml;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetCheckReceive";
+        string stop = "stopping Asset\\AssetCheckReceive";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,6 +38,12 @@ namespace UI.Asset
 
         private void LoadData()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCheckReceive Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intResEnroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -43,14 +56,30 @@ namespace UI.Asset
                 dgvStatus.DataSource = dt;//asset Summery
                 dgvStatus.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
-         
+
 
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetCheckReceive Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -65,8 +94,16 @@ namespace UI.Asset
                 LoadData();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

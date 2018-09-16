@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,8 +18,11 @@ namespace UI.SAD.Order
         string strMassage; int intUser;
         DataTable dt = new DataTable();
         SAD_BLL.Customer.Report.StatementC bll = new StatementC();
-        
 
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADAAdvPerpareVoucher";
+        string stop = "stopping SAD\\Order\\RemoteTADAAdvPerpareVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,7 +45,15 @@ namespace UI.SAD.Order
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-           int intReportType = int.Parse(ddlAccountReportType.SelectedValue.ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAdvPerpareVoucher TaDa Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intReportType = int.Parse(ddlAccountReportType.SelectedValue.ToString());
             DateTime dteFromDate = DateTime.Parse(txtFromDate.Text);
             DateTime dteToDate = DateTime.Parse(txtToDate.Text);
             int intUnitID = int.Parse(drdlUnit.SelectedValue.ToString());
@@ -63,13 +76,31 @@ namespace UI.SAD.Order
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('There is no data aganist your Querry');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void loadgrid()
         {
-            
-             DateTime   dteFromDate = DateTime.Parse(txtFromDate.Text);
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAdvPerpareVoucher TaDa Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime   dteFromDate = DateTime.Parse(txtFromDate.Text);
              DateTime dteToDate = DateTime.Parse(txtToDate.Text);
              int intUnitID = int.Parse(drdlUnit.SelectedValue.ToString());
             int  intBankID = int.Parse(ddlPaymentFor.SelectedValue.ToString());
@@ -79,7 +110,18 @@ namespace UI.SAD.Order
             dvgReport.DataSource = dt;
             dvgReport.DataBind();
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -119,7 +161,16 @@ namespace UI.SAD.Order
         {
             if (hdnconfirm.Value == "1")
             {
-                char[] delimiterChars = { '^' };
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAdvPerpareVoucher TaDa Voucher Prepare", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    char[] delimiterChars = { '^' };
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
                 string[] searchKey = temp.Split(delimiterChars);
@@ -135,6 +186,18 @@ namespace UI.SAD.Order
                 strMassage = bll.InsertTADAAdvanceVoucher(intApplicationID, strPayTo, ModeofPayment, monAmount, intUser, dteInstrumentDate, dteTourstart, insertby, strDetaills);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + strMassage + "');", true);
                 loadgrid();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
             else
             {

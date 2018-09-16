@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -13,13 +15,26 @@ namespace UI.SAD.Order
     {
         //string strDate; string strTodate;
         DataTable dt = new DataTable(); string id;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADATourAdvanceApproveDetaills";
+        string stop = "stopping SAD\\Order\\RemoteTADATourAdvanceApproveDetaills";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                //pnlUpperControl.DataBind();
-                id = Session["id"].ToString();
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvanceApproveDetaills TADA Tour advane  details", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    //pnlUpperControl.DataBind();
+                    id = Session["id"].ToString();
                 int autoid = int.Parse(id);
                 SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
                 dt = bll.getTADAAdvanceSingleIDBase(autoid);
@@ -35,6 +50,18 @@ namespace UI.SAD.Order
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
 
@@ -53,11 +80,18 @@ namespace UI.SAD.Order
      
 
 
-
-
         protected void btnApprove_Click(object sender, EventArgs e)
         {
-            int index = 0;
+            var fd = log.GetFlogDetail(start, location, "approve", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvanceApproveDetaills TADA Tour advane  approve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int index = 0;
 
             TextBox txtintidAprv = (TextBox)grdvIDBasisPendingTADAShow.Rows[0].Cells[0].FindControl("txtintidDet");
             TextBox txtintEnrolAprv = (TextBox)grdvIDBasisPendingTADAShow.Rows[0].Cells[2].FindControl("txtintEnrolDet");
@@ -83,11 +117,34 @@ namespace UI.SAD.Order
             SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
             bll.TADAAdvanceApprovebySupervisor(intid, enr, dtf, dtT, aprvAmount, insertby, strApproveStatus);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully Insert');", true);
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "approve", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "approve", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
         {
-            int index = 0;
+            var fd = log.GetFlogDetail(start, location, "Reject", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvanceApproveDetaills TADA Tour advane  Reject", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                int index = 0;
 
             TextBox txtintidAprv = (TextBox)grdvIDBasisPendingTADAShow.Rows[0].Cells[0].FindControl("txtintidDet");
             TextBox txtintEnrolAprv = (TextBox)grdvIDBasisPendingTADAShow.Rows[0].Cells[2].FindControl("txtintEnrolDet");
@@ -114,7 +171,18 @@ namespace UI.SAD.Order
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully Rejected');", true);
 
             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "Showalert();", true);
-        
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Reject", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Reject", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

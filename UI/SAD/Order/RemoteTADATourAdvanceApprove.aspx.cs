@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,6 +14,10 @@ namespace UI.SAD.Order
     public partial class RemoteTADATourAdvanceApprove : BasePage
     {
         //int rowIndex;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADATourAdvanceApprove";
+        string stop = "stopping SAD\\Order\\RemoteTADATourAdvanceApprove";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
@@ -21,7 +27,15 @@ namespace UI.SAD.Order
             
             if (!IsPostBack)
             {
-                pnlUpperControl.DataBind();
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvanceApprove TADA Tour Advance Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    pnlUpperControl.DataBind();
                 SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
                 dt = bll.getTADAPendingAdvanceStatus(enrol);
 
@@ -36,6 +50,18 @@ namespace UI.SAD.Order
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
             }
         }
@@ -52,9 +78,16 @@ namespace UI.SAD.Order
 
         protected void Complete_Click(object sender, EventArgs e)
         {
-           
 
-            char[] delimiterChars = { ',' };
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADATourAdvanceApprove TADA Tour Advance approve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
             string intID = searchKey[0].ToString();
@@ -63,7 +96,18 @@ namespace UI.SAD.Order
             Session["id"] = id;
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('RemoteTADATourAdvanceApproveDetaills.aspx');", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
        

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -18,6 +20,10 @@ namespace UI.SAD.Order
 
         string xmlString = "";
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADANoBike";
+        string stop = "stopping SAD\\Order\\RemoteTADANoBike";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -43,7 +49,15 @@ namespace UI.SAD.Order
         }
         private void FirstGridViewRow()
         {
-            DataTable dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADANoBike TADA No Bike car Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DataTable dt = new DataTable();
             DataRow dr = null;
             dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
             dt.Columns.Add(new DataColumn("Col1", typeof(string)));
@@ -81,12 +95,34 @@ namespace UI.SAD.Order
 
             grvStudentDetails.DataSource = dt;
             grvStudentDetails.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
         protected void ButtonAdd_Click(object sender, EventArgs e)
         {
-            int rowIndex = 0;
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADANoBike TADA No Bike car Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int rowIndex = 0;
 
             if (ViewState["CurrentTable"] != null)
             {
@@ -205,10 +241,21 @@ namespace UI.SAD.Order
 
             SetPreviousData();
 
-            
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
-            
         }
 
         private void SetPreviousData()
@@ -312,7 +359,17 @@ namespace UI.SAD.Order
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            if (grvStudentDetails.Rows.Count > 0)
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADANoBike TADA No Bike car Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (grvStudentDetails.Rows.Count > 0)
             {
 
                 for (int rowIndex = 0; rowIndex < grvStudentDetails.Rows.Count; rowIndex++)
@@ -387,7 +444,18 @@ namespace UI.SAD.Order
 
             grvStudentDetails.DataBind();
             File.Delete(filePathForXML);
-          
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
          
 

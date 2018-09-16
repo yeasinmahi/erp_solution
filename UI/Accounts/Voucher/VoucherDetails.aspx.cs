@@ -18,7 +18,7 @@ using BLL;
 using System.Drawing;
 using UI.ClassFiles;
 using GLOBAL_BLL;
-
+using Flogging.Core;
 
 namespace UI.Accounts.Voucher
 {
@@ -28,10 +28,23 @@ namespace UI.Accounts.Voucher
         string id = "";
         string rdoBtn = "rdo";
         string xmlFilePath = "";
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\VoucherDetails";
+        string stop = "stopping Accounts\\Voucher\\VoucherDetails";
 
         protected override void OnPreInit(EventArgs e)
         {
-            base.OnPreInit(e);
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherDetails   show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                base.OnPreInit(e);
 
             //Session["sesUserID"] = "1";
 
@@ -193,6 +206,19 @@ namespace UI.Accounts.Voucher
                     xmlDoc.Save(GetXMLFilePath());
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void Page_Load(object sender, EventArgs e)
         {

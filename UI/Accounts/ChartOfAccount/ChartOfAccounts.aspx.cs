@@ -11,11 +11,14 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.ChartOfAccount;
+using Flogging.Core;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 namespace UI.Accounts.ChartOfAccount
 {
     //public partial class Accounts_ChartOfAccount_ChartOfAccounts : System.Web.UI.Page
+   
     public partial class ChartOfAccounts : BasePage
     {
         string userID = "";
@@ -26,6 +29,10 @@ namespace UI.Accounts.ChartOfAccount
              base.OnPreInit(e);
              Session["sesUserID"] = "1";
          }*/
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\ChartOfAccount\\ChartOfAccounts";
+        string stop = "stopping Accounts\\ChartOfAccount\\ChartOfAccounts";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -42,11 +49,32 @@ namespace UI.Accounts.ChartOfAccount
 
         private void BuildTree(int paretnt)
         {
+            var fd = log.GetFlogDetail(start, location, "BuildTree", null);
+            Flogger.WriteDiagnostic(fd);
 
-            unitID = ddlUnit.SelectedValue;//"1";
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\ChartOfAccounts   BuildTree ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                unitID = ddlUnit.SelectedValue;//"1";
             ChartOfAcc coa = new ChartOfAcc();
             TreeNode totalTree = coa.GetCOANodes(0, int.Parse(unitID));
             treeViewCOA.Nodes.Add(totalTree);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BuildTree", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "BuildTree", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void treeViewCOA_SelectedNodeChanged(object sender, EventArgs e)
@@ -99,7 +127,16 @@ namespace UI.Accounts.ChartOfAccount
         // Add New Child / Edit A Node
         protected void btnPopSubmit_Click(object sender, EventArgs e)
         {
-            string addEdit = hdnAddOrEdit.Value;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\ChartOfAccounts   btnPopSubmit_Click ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string addEdit = hdnAddOrEdit.Value;
             int? moduleID = null;
 
             string unitID = ddlUnit.SelectedValue;
@@ -197,13 +234,33 @@ namespace UI.Accounts.ChartOfAccount
             }
 
             ChartOfAccStaticDataProvider.ReloadCOA(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         // Active Inactive 
         protected void btnAct_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAct_Click", null);
+            Flogger.WriteDiagnostic(fd);
 
-            unitID = ddlUnit.SelectedValue;
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\ChartOfAccounts   btnAct_Click ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                unitID = ddlUnit.SelectedValue;
             bool ysnSuccess = false;
             string text = "", value = "";
             ChartOfAcc coa = new ChartOfAcc();
@@ -268,6 +325,19 @@ namespace UI.Accounts.ChartOfAccount
             }
 
             ChartOfAccStaticDataProvider.ReloadCOA(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnAct_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "btnAct_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

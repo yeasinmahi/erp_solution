@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +20,10 @@ namespace UI.SAD.Order
         char[] delimiterChars = { '[', ']' }; string[] arrayKey; string message; string path;
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         DataTable objDT = new DataTable();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RmtAttchForNoEmialEmployee";
+        string stop = "stopping SAD\\Order\\RmtAttchForNoEmialEmployee";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,7 +43,15 @@ namespace UI.SAD.Order
 
         private void btnSave_Click()
         {
-            string  strUnit = drdlUnit.SelectedValue.ToString();
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RmtAttchForNoEmialEmployee No Email Employee Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string  strUnit = drdlUnit.SelectedValue.ToString();
             int unit = Convert.ToInt32(strUnit);
             string strSearckey = txtFullName.Text;
             arrayKey = strSearckey.Split(delimiterChars);
@@ -75,7 +89,19 @@ namespace UI.SAD.Order
 
                 //return message;
             }
-  }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
@@ -107,6 +133,16 @@ namespace UI.SAD.Order
 
         protected void DownloadFile(object sender, EventArgs e)
         {
+
+            var fd = log.GetFlogDetail(start, location, "Download", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RmtAttchForNoEmialEmployee Download ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
             string fileName = (sender as LinkButton).CommandArgument;
 
             //FTP Server URL.
@@ -142,12 +178,35 @@ namespace UI.SAD.Order
             }
             //catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse).StatusDescription); }
             catch { }
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
 
         protected void btnShowAttachment_Click(object sender, EventArgs e)
         {
-            DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RmtAttchForNoEmialEmployee Attachment Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
             string strDate = dteFromDate.ToString();
             Session["Date"] = strDate;
             DateTime dteTodate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
@@ -166,6 +225,19 @@ namespace UI.SAD.Order
             Session["ATTAHCTYPEID"] = attachid;
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "Clearcontrol", "ViewDocList();", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('RmtTADAAttachDocPathlist.aspx');", true);
-       }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+        }
     }
 }

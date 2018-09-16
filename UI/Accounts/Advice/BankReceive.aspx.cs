@@ -61,8 +61,16 @@ namespace UI.Accounts.Advice
         }
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\BankReceive  Bank Receive", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+
             try
             {
+
                 if (e.CommandName == "Y")
                 {
                     int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -83,7 +91,20 @@ namespace UI.Accounts.Advice
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Received Successfully.');", true);
                 }
             }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Somthing went wrong.');", true); }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Somthing went wrong.');", true);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+          
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {

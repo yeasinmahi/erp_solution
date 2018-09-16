@@ -14,11 +14,17 @@ using BLL.Accounts.Voucher;
 using BLL.Accounts.SubLedger;
 using BLL.Accounts.Banking;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Banking
 {
     public partial class BankChequePrint : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\BankChequePrint";
+        string stop = "stopping Accounts\\Banking\\BankChequePrint";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -59,8 +65,15 @@ namespace UI.Accounts.Banking
              GridView1.DataBind();
          }*/
         protected void btnCompleted_Click(object sender, EventArgs e)
-        {
-            string str = ((Button)sender).CommandArgument;
+        { var fd = log.GetFlogDetail(start, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\BankChequePrint   Bank Cheque Print Completed ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string str = ((Button)sender).CommandArgument;
             string id = str.Substring(0, str.IndexOf('#'));
             string code = str.Substring(str.IndexOf('#') + 1);
 
@@ -70,6 +83,19 @@ namespace UI.Accounts.Banking
             GridView1.DataBind();
 
             BankContraChqBearerST.ReloadCustomer(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Completed", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void rdoByDate_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,10 +121,30 @@ namespace UI.Accounts.Banking
             return str;
         }
         protected void btnChange_Click(object sender, EventArgs e)
-        {
-            VoucherRollback vr = new VoucherRollback();
+        { var fd = log.GetFlogDetail(start, location, "Chnage", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\BankChequePrint   Bank Cheque Chnage ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                VoucherRollback vr = new VoucherRollback();
             lblStatus.Text = vr.ChequeNoInterchange(ddlUnit.SelectedValue, txtCode1.Text, txtCode2.Text, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Chnage", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Chnage", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

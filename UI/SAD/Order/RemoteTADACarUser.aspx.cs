@@ -9,7 +9,8 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Configuration;
 using UI.ClassFiles;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
@@ -20,7 +21,10 @@ namespace UI.SAD.Order
          string xmlString = "";
             SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
 
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\ChallanCancel";
+        string stop = "stopping SAD\\Order\\ChallanCancel";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath(HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadaInputBikeCarUser.xml");
@@ -44,9 +48,16 @@ namespace UI.SAD.Order
         }
         private void FirstGridViewRow()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADACarUser TADS Car User Report Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
 
-            DataTable dt = new DataTable();
+                DataTable dt = new DataTable();
             DataRow dr = null;
             dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
             dt.Columns.Add(new DataColumn("Col1", typeof(string)));
@@ -130,22 +141,19 @@ namespace UI.SAD.Order
 
             DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
             DataRow drCurrentRow = null;
-            //if (dtCurrentTable.Rows.Count > 0)
-            //{
+               
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
-            //    for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
-            //    {
-            //        TextBox TextBoxBillDate = (TextBox)grvTADACarBikeUser.Rows[rowIndex].Cells[1].FindControl("txtDate");
-            //        DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
-            //        TextBoxBillDate.Text = dteFromDate.ToString();
+            }
 
-            //        drCurrentRow = dtCurrentTable.NewRow();
-            //        drCurrentRow["RowNumber"] = i + 1;
-
-            //        dtCurrentTable.Rows[i - 1]["Col1"] = TextBoxBillDate.Text;
-            //    }
-            //    rowIndex++;
-            //}
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -197,8 +205,18 @@ namespace UI.SAD.Order
 
         protected void ButtonAdd_Click(object sender, EventArgs e)
         {
-            
-            int rowIndex = 0;
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADACarUser Car user Approve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                int rowIndex = 0;
             DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
             if (ViewState["CurrentTable"] != null)
             {
@@ -473,7 +491,19 @@ namespace UI.SAD.Order
             }
 
             SetPreviousData();
-  }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
 
 
         private void SetPreviousData()
@@ -583,7 +613,18 @@ namespace UI.SAD.Order
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (grvTADACarBikeUser.Rows.Count > 0)
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADACarUser Car user Approve Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                if (grvTADACarBikeUser.Rows.Count > 0)
             {
 
                 for (int rowIndex = 0; rowIndex < grvTADACarBikeUser.Rows.Count; rowIndex++)
@@ -839,7 +880,18 @@ namespace UI.SAD.Order
                 grvTADACarBikeUser.DataBind();
                 //lblGrandTotal.Text = "0";
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
      private void   CreateTADAForBikeCarUserXml(string strBilldate,string decStartTime,string strFromAddress,string strMovementsspots,string decEndtime,string strToaddress,string decMovduration,string strNightStay,string decStartMilage,string decEndmilage,string decConsumedKM,string strFueltype,string decFuelQnt,string decFuelCost,string strTransportMode,string decFare,string strSupporting,string decPhotocopy,string decCourier,string strMntCatg,string decMntCost,string decFerrytoll,string decOwnDA,string decDriverDA,string decOwnhotel,string decDriverHotel,string decOtherAmnt,string decTotalAmnt)

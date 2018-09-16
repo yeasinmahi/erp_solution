@@ -19,6 +19,8 @@ using LOGIS_DAL.Trip;
 using UI.ClassFiles;
 using SAD_BLL.Customer.Report;
 using SAD_DAL.Customer.Report;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
@@ -27,14 +29,25 @@ namespace UI.SAD.Order
     {
         XmlManagerCH xm = new XmlManagerCH();
         decimal prdouctvalue, outstandingv;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\VehicleSelect";
+        string stop = "stopping SAD\\Order\\VehicleSelect";
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
             {
                 //Session["sesUserID"] = "87";
 
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-                if (Request.QueryString["id"] != null)
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelect  Vehcile Report Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    if (Request.QueryString["id"] != null)
                 {
                     Session[SessionParams.CURRENT_UNIT] = Request.QueryString["unit"];
                     Session[SessionParams.CURRENT_SHIP] = Request.QueryString["ship"];
@@ -129,6 +142,19 @@ namespace UI.SAD.Order
 
                     }
                 }
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }
@@ -497,9 +523,19 @@ namespace UI.SAD.Order
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-         
 
-            StatementC bll = new StatementC();
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelect  Vehcile Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                StatementC bll = new StatementC();
            
             StatementTDS.SprUnDelvQntBaseOutstandingAmountDataTable tabUndlvpv = bll.GetCustomerOutstandingbasedonUndelvQnt(hdnCustomer.Value);
             StatementTDS.SprUndelvQntRateDataTable tabUndlvproductRate = bll.GetCustomerProductRate(hdnSOid.Value);
@@ -600,6 +636,18 @@ namespace UI.SAD.Order
             }
 
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

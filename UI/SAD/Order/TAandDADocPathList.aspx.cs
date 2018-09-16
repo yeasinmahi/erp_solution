@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using UI.ClassFiles;
 using SAD_BLL.Customer.Report;
-
-
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Order
 {
@@ -22,16 +22,24 @@ namespace UI.SAD.Order
         StatementC bll = new SAD_BLL.Customer.Report.StatementC();
 
         int intSeparationID; string Id; string strDate; string strTodate; string UNITS; string ENROLS;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TAandDADocPathList";
+        string stop = "stopping SAD\\Order\\TAandDADocPathList";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 //pnlUpperControl.DataBind();
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TAandDADocPathList Challan Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
-                   
                     strDate = Session["Date"].ToString();
                     strTodate = Session["DateTodate"].ToString();
                     UNITS = Session["UNIT"].ToString();
@@ -49,14 +57,34 @@ namespace UI.SAD.Order
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                 }
-                catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('List Empty.');", true); }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('List Empty.');", true);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+               
 
             }
         }
 
         protected void btnDocDownload_Click(object sender, EventArgs e)
         {
-            char[] delimiterChars = { '^' };
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TAandDADocPathList Doc Download Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] delimiterChars = { '^' };
             string temp1 = ((Button)sender).CommandArgument.ToString();
             string temp = temp1.Replace("'", " ");
             string[] searchKey = temp.Split(delimiterChars);
@@ -95,7 +123,19 @@ namespace UI.SAD.Order
                 }
             }
             catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse).StatusDescription); }
-            //catch { };
+                //catch { };
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('List Empty.');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

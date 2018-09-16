@@ -14,11 +14,16 @@ using System.Text;
 using BLL.Accounts.Voucher;
 using BLL.Accounts.Banking;
 using UI.ClassFiles;
+using GLOBAL_BLL;
 
 namespace UI.Accounts.Banking
 {
     public partial class ChequeRegister : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\ChequeRegister";
+        string stop = "stopping Accounts\\Banking\\ChequeRegister";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

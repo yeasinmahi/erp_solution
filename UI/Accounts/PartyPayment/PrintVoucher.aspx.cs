@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,13 +16,27 @@ namespace UI.Accounts.PartyPayment
         UI.ClassFiles.Print printVoucher = new UI.ClassFiles.Print();
         BLL.Accounts.PartyPayment.PartyBill objPartyBill = new BLL.Accounts.PartyPayment.PartyBill();
         string htmlString = "";
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\PartyPayment\\PrintVoucher";
+        string stop = "stopping Accounts\\PartyPayment\\PrintVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session["sesUserID"] = "1";
-            string userID = "" + Session[SessionParams.USER_ID];
+            var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\PrintVoucher   Page Load Report ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                //Session["sesUserID"] = "1";
+                string userID = "" + Session[SessionParams.USER_ID];
             imgprepared.Visible = false; imgchecked.Visible = false; imgapproved.Visible = false; imgfinalapproved.Visible = false;
             if (Request.QueryString.Count > 0)
             {
+
+
                 string id = Request.QueryString["id"];
                 string type = Request.QueryString["type"];//Bank > bn ,Cash > ch, Journal > jr
                 string unitName = "";
@@ -178,6 +194,19 @@ namespace UI.Accounts.PartyPayment
                 Label1.Text = htmlString;
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

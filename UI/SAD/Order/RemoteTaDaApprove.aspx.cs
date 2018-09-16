@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -19,7 +21,10 @@ namespace UI.SAD.Order
         decimal ownda = 0; decimal otherda = 0; decimal hotel = 0; decimal othercost = 0; decimal rowTotal = 0; decimal movDuration = 0;
         string filePathForXML;
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTaDaApprove";
+        string stop = "stopping SAD\\Order\\RemoteTaDaApprove";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,7 +57,16 @@ namespace UI.SAD.Order
 
         private void showTSOTopsheet()
         {
-            int rptTypeid = int.Parse(ddlReportType.SelectedValue.ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTaDaApprove Challan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int rptTypeid = int.Parse(ddlReportType.SelectedValue.ToString());
             int userTypeid = int.Parse(drdlEmlployeetype.SelectedValue.ToString());
             int unitid = int.Parse(drdlUnitList.SelectedValue.ToString());
             DataTable dt = new DataTable();
@@ -138,13 +152,32 @@ namespace UI.SAD.Order
 
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
-            int rptTypeid = int.Parse(ddlReportType.SelectedValue.ToString());
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTaDaApprove Approve Tada ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int rptTypeid = int.Parse(ddlReportType.SelectedValue.ToString());
 
             if (rptTypeid == 1)
             {
@@ -364,7 +397,18 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry(:  Please Select Detaills option then click Approve');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateSalesXml(string strBillDate, string strBillPerson, string strBillPersonDesignation, string strFromAdress, string strToAddress, string strMoveArea, string strMovDuration, string strBusFareTaka, string strRickFare, string strCNGFare, string strTrainFare, string strBoatFare, string strOtherVhFare, string strRemarks, string strOwnDA, string strOtherDA, string strHotel, string strOtherCost, string strRowTotal, string strContactPerson, string strPhone, string strVisitedorg)
