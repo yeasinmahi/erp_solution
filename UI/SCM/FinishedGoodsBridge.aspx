@@ -69,11 +69,11 @@
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlInvUOM" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlInvUOM_SelectedIndexChanged"></asp:DropDownList></td>
                            <td>
-                               <asp:TextBox ID="txtCount" runat="server" Width="30px"></asp:TextBox>
+                               <asp:TextBox ID="txtCount" runat="server" Enabled="false" Width="30px"></asp:TextBox>
                                
                            </td>
                             <td>
-                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"/>
+                                <%--<asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"/>--%>
                                 <asp:Button ID="btnAddFg" runat="server" Text="Add FG" CssClass="btnButton" OnClick="btnAddFg_Click" /></td>
                             
                              </tr>
@@ -82,20 +82,20 @@
                     <div style="height:20px;"></div>
                     <asp:Panel ID="Panel1" runat="server">
                   <table ID="tbllist" style="border-collapse: collapse; table-layout: auto; border-spacing: 3px;" class="tblcls" runat="server">
-                      <tr>
+                      <tr class="tblcls" style="">
                           <th class="tblcls"><asp:Label ID="Label1" runat="server" Text="Item Base Name"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label3" runat="server" Text="Item Description" ></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label4" runat="server" Text="PART/MODEL/SERIAL"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label3" runat="server" Text="Item Description" Width="150px" ></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label4" runat="server" Text="PART/MODEL/SERIAL" Width="200px"></asp:Label></th>
                           <th class="tblcls"><asp:Label ID="Label5" runat="server" Text="Brand"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label6" runat="server" Text="UOM"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label7" runat="server" Text="Cluster"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label8" runat="server" Text="Commodity"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label9" runat="server" Text="Category"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label10" runat="server" Text="Clus"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label11" runat="server" Text="Group"></asp:Label></th>
-                          <th class="tblcls"><asp:Label ID="Label12" runat="server" Text="Cat"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label6" runat="server" Text="UOM" Width="80px"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label7" runat="server" Text="Cluster" Width="80px"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label8" runat="server" Text="Commodity" Width="100px"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label9" runat="server" Text="Category" Width="90px"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label10" runat="server" Text="Clus" Width="60px"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label11" runat="server" Text="Group" Width="60px"></asp:Label></th>
+                          <th class="tblcls"><asp:Label ID="Label12" runat="server" Text="Cat" Width="60px"></asp:Label></th>
                       </tr>
-                      <tr>
+                      <tr style="text-align:center;">
                          <td class="tblcls"><asp:Label ID="lblitemBaseName" runat="server" ></asp:Label></td>
                           <td class="tblcls"><asp:Label ID="lblitemDescription" runat="server" ></asp:Label></td>
                           <td class="tblcls"><asp:Label ID="lblpart" runat="server" ></asp:Label></td>
@@ -109,6 +109,7 @@
                           <td class="tblcls"><asp:Label ID="lblcat" runat="server" ></asp:Label></td>
                           
                       </tr>
+                     
                      
                   </table>
                     </asp:Panel>
