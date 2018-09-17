@@ -1,26 +1,28 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Mail;
-using System.Net.Mime;
-using System.Text;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.text.html.simpleparser;
 using UI.ClassFiles;
- 
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using iTextSharp.tool.xml;
+using Microsoft.Office.Interop.Outlook;
+using Document = iTextSharp.text.Document;
+using Exception = System.Exception;
 
 namespace UI.SCM
 {
-    public partial class PoDetalisView : System.Web.UI.Page
+    public partial class PoDetalisView : Page
     {
-        int PoNo, enroll,intunit;
+        int PoNo, enroll, intunit;
         DataTable dt = new DataTable(); string filePathForXML;
 
         SeriLog log = new SeriLog();
@@ -30,10 +32,10 @@ namespace UI.SCM
         string perform = "Performance on SCM\\PoDetalisView";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            { 
-                PoNo =int.Parse(Session["pono"].ToString());
-               
+            if (!IsPostBack)
+            {
+                PoNo = int.Parse(Session["pono"].ToString());
+
                 PoViewDataBind(PoNo);
             }
             else
@@ -51,20 +53,20 @@ namespace UI.SCM
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-             
+
                 dt = DataTableLoad.GetPoViewDetalisDataTable(PoNo, enroll);
                 if (dt.Rows.Count > 0)
                 {
                     lblpoNo.Text = PoNo.ToString();
-                    DateTime dtePo = DateTime.Parse(dt.Rows[0]["dtePODate"].ToString()); 
-                    lblPoDate.Text="  Date:"+ dtePo.ToString("dd-MM-yyyy"); 
-                    intunit =int.Parse(dt.Rows[0]["intUnitID"].ToString());
-                    lblUnitName.Text= dt.Rows[0]["strDescription"].ToString(); 
+                    DateTime dtePo = DateTime.Parse(dt.Rows[0]["dtePODate"].ToString());
+                    lblPoDate.Text = "  Date:" + dtePo.ToString("dd-MM-yyyy");
+                    intunit = int.Parse(dt.Rows[0]["intUnitID"].ToString());
+                    lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                     lblSuppliyers.Text = dt.Rows[0]["strSupplierName"].ToString();
-                    lblAtten.Text ="Attn: "+dt.Rows[0]["strReprName"].ToString();
-                    lblPhone.Text = "Phone: "+dt.Rows[0]["strOrgContactNo"].ToString();
-                    lblSupEmail.Text ="Email:"+ dt.Rows[0]["strOrgMail"].ToString();
-                    lblSuppAddress.Text ="Address:"+dt.Rows[0]["strOrgAddress"].ToString();
+                    lblAtten.Text = "Attn: " + dt.Rows[0]["strReprName"].ToString();
+                    lblPhone.Text = "Phone: " + dt.Rows[0]["strOrgContactNo"].ToString();
+                    lblSupEmail.Text = "Email:" + dt.Rows[0]["strOrgMail"].ToString();
+                    lblSuppAddress.Text = "Address:" + dt.Rows[0]["strOrgAddress"].ToString();
                     lblBillTo.Text = dt.Rows[0]["strDescription"].ToString();
                     lblShipTo.Text = dt.Rows[0]["strDeliveryAddress"].ToString();
 
@@ -91,11 +93,11 @@ namespace UI.SCM
                     // decimal.Parse(dt.Rows[0]["monCommission"].ToString());
 
                     lblGrandTotal.Text = dt.Rows[0]["monTotal"].ToString();//string.Format("{0:F4}", grandtotal);
-                    lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString(); 
+                    lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString();
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
-                   imgUnit.ImageUrl= "/Content/images/img/" + intunit.ToString() + ".png".ToString();
+                    imgUnit.ImageUrl = "/Content/images/img/" + intunit.ToString() + ".png".ToString();
 
-                    
+
                 }
                 else
                 {
@@ -111,7 +113,7 @@ namespace UI.SCM
 
                     lblPartialShip.Text = "".ToString();
                     lblNoShipment.Text = "".ToString();
-                  
+
                     lbllastShipmentDate.Text = "".ToString();
                     lblPaymentTrems.Text = "".ToString();
                     lblPaymentDaysMrr.Text = "".ToString();
@@ -170,7 +172,7 @@ namespace UI.SCM
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                if(lblSupEmail.Text.Length>6)
+                if (lblSupEmail.Text.Length > 6)
                 {
                     PoNo = int.Parse(Session["pono"].ToString());
 
@@ -181,11 +183,11 @@ namespace UI.SCM
                     // Response.AddHeader("Content-Disposition", "attachment; filename=PO.png");
                     // Response.Buffer = true;
                     string filename = "d.jpeg".ToString();
-                  //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
-                  //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
-                //    string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString();
-                  //  string msg = DataTableLoad.POApproval(20, stringXml, PoNo, enroll);
-                  //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ msg + "');", true);
+                    //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
+                    //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
+                    //    string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString();
+                    //  string msg = DataTableLoad.POApproval(20, stringXml, PoNo, enroll);
+                    //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ msg + "');", true);
 
                     //using (MailMessage mm = new MailMessage("erpreply@akij.net", "bappisarker9@gmail.com"))
                     //{
@@ -227,9 +229,9 @@ namespace UI.SCM
 
             }
             catch { }
-            
 
-            
+
+
         }
 
         protected void btnPoShowByView_Click(object sender, EventArgs e)
@@ -238,7 +240,7 @@ namespace UI.SCM
             {
                 PoViewDataBind(int.Parse(txtPoNumbers.Text.ToString()));
             }
-            catch { } 
+            catch { }
         }
 
         protected void btnDownload_Click(object sender, EventArgs e)
@@ -346,6 +348,71 @@ namespace UI.SCM
             requestFTPUploader = null;
 
 
+        }
+        [WebMethod]
+        public static Byte[] DownloadPdf()
+        {
+            string html = "i am yeasin ";
+            Byte[] res = null;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var pdf = TheArtOfDev.HtmlRenderer.PdfSharp.PdfGenerator.GeneratePdf(html, PdfSharp.PageSize.A4);
+                pdf.Save(ms);
+                res = ms.ToArray();
+            }
+            //return File(pdf, "application/pdf");
+            File.WriteAllBytes("F:/hello.pdf", res);
+            return res;
+
+        }
+
+        protected void btnPDF_OnClick(object sender, EventArgs e)
+        {
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=PurchaseVouchar.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Document pdfDoc = CreatePdf();
+            
+            Response.Write(pdfDoc);
+            Response.Flush();
+            Response.End();
+        }
+
+        private Document CreatePdf()
+        {
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            Page.RenderControl(hw);
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            htmlparser.Parse(sr);
+            pdfDoc.Close();
+            return pdfDoc;
+        }
+        protected void btnEmail_OnClick(object sender, EventArgs e)
+        {
+            Application mApp = new Application();
+            //Document pdfDoc = CreatePdf();
+            MailItem mEmail = null;
+            mEmail = (MailItem)mApp.CreateItem(OlItemType.olMailItem);
+            string email = lblSupEmail.Text;
+            mEmail.To = "";
+            if (!String.IsNullOrWhiteSpace(email))
+            {
+                email = email.Substring(6);
+                if (!String.IsNullOrWhiteSpace(email))
+                {
+                    mEmail.To = email;
+                }
+            }
+            mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
+            mEmail.Body = "Dear " + lblSuppliyers.Text + ",\n This email contain your purchase order which number is " + lblpoNo.Text + ". ";
+            //mEmail.Attachments.Add("F:/hello.pdf", OlAttachmentType.olByValue, Type.Missing, Type.Missing);
+            mEmail.Display();
         }
     }
 }
