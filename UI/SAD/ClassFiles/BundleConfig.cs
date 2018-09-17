@@ -33,7 +33,8 @@ namespace UI.ClassFiles
                                                                                 "~/Content/JS/XP.js",
                                                                                 "~/Content/JS/scroll_controls.js",
                                                                                 "~/Content/JS/dw_event.js",
-                                                                                "~/Content/JS/dw_scroll.js"
+                                                                                "~/Content/JS/dw_scroll.js",
+                                                                                "~/Content/JS/analytics.js"
                                                                             ));
 
 

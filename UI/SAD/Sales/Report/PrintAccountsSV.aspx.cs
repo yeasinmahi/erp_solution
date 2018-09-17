@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Sales.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Sales.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,12 +17,24 @@ namespace UI.SAD.Sales.Report
         DataTable dt = new DataTable();
         UDTCLSalesBLL obj = new UDTCLSalesBLL();
         int unitId, salesId;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\PrintAccountsSV";
+        string stop = "stopping SAD\\Sales\\Report\\PrintAccountsSV";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-              
-                int  salesId = int.Parse(Request.QueryString["intId"].ToString());
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\PrintAccountsSV SV Print From Accounts", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    int  salesId = int.Parse(Request.QueryString["intId"].ToString());
                 int unitId = int.Parse(Request.QueryString["intunit"].ToString());
                 string htmlString = obj.SVPrintView(1, unitId, "", salesId);
                 lblUnitName.Text = "United Dhaka Tobacco Company Ltd.".ToUpper();
@@ -38,6 +52,17 @@ namespace UI.SAD.Sales.Report
                 //Image2.Width = 180;
                 //Image2.Height = 50;
                 Label1.Text = htmlString;
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
     }

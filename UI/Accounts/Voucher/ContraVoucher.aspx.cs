@@ -13,12 +13,18 @@ using System.Xml.Linq;
 using BLL.Accounts.Voucher;
 using BLL.Accounts.SubLedger;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Voucher
 {
     public partial class ContraVoucher : BasePage
     {
         protected double totAmount = 0;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\ContraVoucher";
+        string stop = "stopping Accounts\\Voucher\\ContraVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -82,14 +88,42 @@ namespace UI.Accounts.Voucher
             }
         }
         protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            BLL.Accounts.Voucher.ContraVoucher cv = new BLL.Accounts.Voucher.ContraVoucher();
+        { var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\ContraVoucher   Cancel ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Voucher.ContraVoucher cv = new BLL.Accounts.Voucher.ContraVoucher();
             cv.CancelContra(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
             GridView1.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCompleted_Click(object sender, EventArgs e)
-        {
-            BLL.Accounts.Voucher.ContraVoucher cv = new BLL.Accounts.Voucher.ContraVoucher();
+        { var fd = log.GetFlogDetail(start, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\ContraVoucher   Completed ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Voucher.ContraVoucher cv = new BLL.Accounts.Voucher.ContraVoucher();
             //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             string CompleteDate = txtCompleteDate.Text;
             int ret = cv.CompleteContra(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
@@ -99,6 +133,19 @@ namespace UI.Accounts.Voucher
                 cv.Save(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
             }
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Completed", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ColumnShowHide(bool show)
@@ -209,8 +256,15 @@ namespace UI.Accounts.Voucher
             }
         }
         protected void btnCompleteAll_Click(object sender, EventArgs e)
-        {
-            int gridRowCount;
+        { var fd = log.GetFlogDetail(start, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\ContraVoucher   Completed All ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int gridRowCount;
             string cvID;
             BLL.Accounts.Voucher.ContraVoucher cv = new BLL.Accounts.Voucher.ContraVoucher();
             //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
@@ -231,6 +285,19 @@ namespace UI.Accounts.Voucher
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Completed", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public string GetCompleteDate(object date)

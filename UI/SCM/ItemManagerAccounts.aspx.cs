@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +20,12 @@ namespace UI.SCM
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
         decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
         bool ysnVATApplicable;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\ItemManagerAccounts";
+        string stop = "stopping SCM\\ItemManagerAccounts";
+        string perform = "Performance on SCM\\ItemManagerAccounts";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -101,12 +109,26 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker(perform + " " + "btnAdd_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWHID = int.Parse(ddlWH.SelectedValue.ToString());
                 LoadGrid();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

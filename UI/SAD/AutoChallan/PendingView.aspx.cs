@@ -26,15 +26,23 @@ using System.IO;
 using System.Xml;
 using SAD_BLL.AutoChallan;
 using SAD_BLL.AEFPS;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.AutoChallan
 {
     public partial class PendingView : BasePage
     {
+        SeriLog log = new SeriLog();
         DataTable dtProductPending = new DataTable();
         challanandPending Report = new challanandPending();
         string filePathForXML; int driverenroll; string drivermobile;
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
+        string location = "SAD";
+        string start = "starting SAD\\AutoChallan\\PendingView";
+        string stop = "stopping SAD\\AutoChallan\\PendingView";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
@@ -179,7 +187,6 @@ namespace UI.SAD.AutoChallan
             challanandPending objAutoSearch_BLL = new challanandPending();
 
             List<string> result = new List<string>();
-            //Int32 intjobid = Int32.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             result = objAutoSearch_BLL.AutoSearchItemData(strSearchKeyemp);
             return result;
 
@@ -197,7 +204,15 @@ namespace UI.SAD.AutoChallan
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            DataTable dtDriverMobile = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\PendingView Loding Slip Create", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DataTable dtDriverMobile = new DataTable();
             string drivername = txtdrivername.Text.ToString();
             string mobileno = Convert.ToString(txtmobileno.Text.ToString());
             int intshipid=int.Parse(Session["Shippointid"].ToString());
@@ -241,9 +256,6 @@ namespace UI.SAD.AutoChallan
                 arrayKeyItem = txtVehicleno.Text.Split(delimiterCharss);
                 hdnvehicle.Value = (arrayKeyItem[1].ToString());
 
-                //string strSearchKey = txtVehicleno.Text;
-                //string[] searchKey = Regex.Split(strSearchKey, ",");
-                //hdnvehicle.Value = searchKey[1];
                 Int32 technichin = Int32.Parse(hdnvehicle.Value.ToString());
                 Vehicleidss = Convert.ToInt32(technichin.ToString());
 
@@ -341,7 +353,20 @@ namespace UI.SAD.AutoChallan
                 }
 
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);     
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void dgvPending_SelectedIndexChanged(object sender, EventArgs e)
@@ -480,17 +505,11 @@ namespace UI.SAD.AutoChallan
 
                     ((Label)dgvPending.Rows[index].FindControl("lblFreeQty")).Text = FreeQty;
 
-
-
-
                 }
             }
         }
 
-        protected void txtVehicle1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         protected void Company_CheckedChanged(object sender, EventArgs e)
         {

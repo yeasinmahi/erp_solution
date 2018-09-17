@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.Voucher;
+using Flogging.Core;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 
@@ -20,6 +22,10 @@ namespace UI.Accounts.Banking.Report
     public partial class ChqBudget : BasePage
     {
         //ReportDocument rd = new ReportDocument();
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\Report\\ChqBudget";
+        string stop = "stopping Accounts\\Banking\\Report\\ChqBudget";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -53,7 +59,16 @@ namespace UI.Accounts.Banking.Report
 
         private void GetReport()
         {
-             DataTable dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\Report\\ChqBudget   Account Checque Budget  Report ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DataTable dt = new DataTable();
 
             DataTable table = null;
              string unitName = "", unitAddress = "";
@@ -62,38 +77,51 @@ namespace UI.Accounts.Banking.Report
              table = bd.GetBudget(Session["sesUserID"].ToString(), ddlUnit.SelectedValue, ddlBank.SelectedValue, ddlBranch.SelectedValue, ddlAccount.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtFrom.Text), bool.Parse(ddlDrCr.SelectedValue), ref unitName, ref unitAddress);
              GridView1.DataSource = table;
              GridView1.DataBind();
-             /*if (table.Rows.Count > 0)
-             {
-            
-                 rd.Load(Server.MapPath("ChqBudget.rpt"));
-                 rd.SetDataSource(table);
+                /*if (table.Rows.Count > 0)
+                {
 
-                 ParameterDiscreteValue pv = new ParameterDiscreteValue();
+                    rd.Load(Server.MapPath("ChqBudget.rpt"));
+                    rd.SetDataSource(table);
 
-                 pv.Value = unitName.ToUpper();
-                 rd.SetParameterValue("UnitName", pv);
+                    ParameterDiscreteValue pv = new ParameterDiscreteValue();
 
-                 pv.Value = unitAddress;
-                 rd.SetParameterValue("UnitAddress", pv);
+                    pv.Value = unitName.ToUpper();
+                    rd.SetParameterValue("UnitName", pv);
 
-                 pv.Value = ddlDrCr.SelectedItem.Text;
-                 rd.SetParameterValue("Title", pv);
+                    pv.Value = unitAddress;
+                    rd.SetParameterValue("UnitAddress", pv);
 
-                 pv.Value = "Date: " + txtFrom.Text;
-                 rd.SetParameterValue("Date", pv);
+                    pv.Value = ddlDrCr.SelectedItem.Text;
+                    rd.SetParameterValue("Title", pv);
 
-                 pv.Value = "Total";
-                 rd.SetParameterValue("Total", pv);
+                    pv.Value = "Date: " + txtFrom.Text;
+                    rd.SetParameterValue("Date", pv);
 
-                 pv.Value = "Grand Total";
-                 rd.SetParameterValue("Grand", pv);
+                    pv.Value = "Total";
+                    rd.SetParameterValue("Total", pv);
 
-                 CrystalReportViewer1.ReportSource = rd;
-             }
-             else
-             {
-                 CrystalReportViewer1.ReportSource = null;
-             }*/
+                    pv.Value = "Grand Total";
+                    rd.SetParameterValue("Grand", pv);
+
+                    CrystalReportViewer1.ReportSource = rd;
+                }
+                else
+                {
+                    CrystalReportViewer1.ReportSource = null;
+                }*/
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         /*protected void CrystalReportViewer1_Unload(object sender, EventArgs e)
         {

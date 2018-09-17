@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Customer.Report;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,11 +20,22 @@ namespace UI.SAD.Order
         StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         //string strdate; string strTodate; string UNITS; string ENROLS;
         int intSeparationID; string Id; string strDate; string strTodate; string UNITS; string ENROLS; string attchid;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RmtTADAAttachDocPathlist";
+        string stop = "stopping SAD\\Order\\RmtTADAAttachDocPathlist";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
-                strDate = Session["Date"].ToString();
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\RmtTADAAttachDocPathlist TADA Doc Path List Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    strDate = Session["Date"].ToString();
                 strTodate = Session["DateTodate"].ToString();
                 UNITS = Session["UNIT"].ToString();
                 int unit = int.Parse(UNITS);
@@ -35,7 +48,18 @@ namespace UI.SAD.Order
                 dt = bll.getAttachment(unit, strDate, strTodate, enrol1);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
 
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
 
@@ -44,7 +68,17 @@ namespace UI.SAD.Order
 
         protected void btnDocDownload_Click(object sender, EventArgs e)
         {
-             char[] delimiterChars = { '^' };
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RmtTADAAttachDocPathlist TADA Doc  Dounload Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] delimiterChars = { '^' };
             string temp1 = ((Button)sender).CommandArgument.ToString();
             string temp = temp1.Replace("'", " ");
             string[] searchKey = temp.Split(delimiterChars);
@@ -83,7 +117,18 @@ namespace UI.SAD.Order
                 }
             }
             catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse).StatusDescription); }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         }
     }

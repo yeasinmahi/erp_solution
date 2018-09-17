@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.Script.Services;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.ChartOfAccount
 {
@@ -27,6 +29,10 @@ namespace UI.Accounts.ChartOfAccount
         ChartOfAcc acc = new ChartOfAcc();
         ArrayList arr;
         public string jsString = "";
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\ChartOfAccount\\ChartOfAccountsNew";
+        string stop = "stopping Accounts\\ChartOfAccount\\ChartOfAccountsNew";
         protected void Page_Load(object sender, EventArgs e)
         {
             string h = "";
@@ -35,7 +41,16 @@ namespace UI.Accounts.ChartOfAccount
             // ddlUnit.DataBind();
             if (!IsPostBack)
             {
-                string pID = "" + Request.QueryString["COAID"];
+                var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\ChartOfAccountsNew   Page Load ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    string pID = "" + Request.QueryString["COAID"];
                 string gridNum = "" + Request.QueryString["dataGrid"];
                 string accountName = "" + Request.QueryString["accName"];
                 string ysnEnable = "" + Request.QueryString["enable"];
@@ -72,6 +87,19 @@ namespace UI.Accounts.ChartOfAccount
 
 
                 lblSiteMap.Text = h;
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                    Flogger.WriteError(efd);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
             }
             //else
@@ -191,7 +219,15 @@ namespace UI.Accounts.ChartOfAccount
 
         protected void btnPopSubmit_Click(object sender, EventArgs e)
         {
-            string addEdit = hdnAddOrEdit.Value;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\ChartOfAccountsNew   Submit ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string addEdit = hdnAddOrEdit.Value;
             int? moduleID = null;
             string accID = "";
             unitID = int.Parse(ddlUnit.SelectedValue);
@@ -308,7 +344,20 @@ namespace UI.Accounts.ChartOfAccount
 
 
             }
-            //GridView1.DataBind();
+                //GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -317,8 +366,16 @@ namespace UI.Accounts.ChartOfAccount
 
         protected void btnAct_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAct_Click", null);
+            Flogger.WriteDiagnostic(fd);
 
-            unitID = int.Parse("" + ddlUnit.SelectedValue);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\ChartOfAccountsNew   btnAct_Click ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                unitID = int.Parse("" + ddlUnit.SelectedValue);
             bool ysnSuccess = false;
             string text = "", value = "";
 
@@ -340,6 +397,19 @@ namespace UI.Accounts.ChartOfAccount
 
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnAct_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "btnAct_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
         }

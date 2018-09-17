@@ -13,12 +13,20 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.PaymentModule
 {
     public partial class BillDetails : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/BillDetails.aspx";
+        string stop = "stopping PaymentModule/BillDetails.aspx";
+
         Billing_BLL objBillApp = new Billing_BLL();
         DataTable dt;
         
@@ -32,129 +40,155 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillDetails.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
-                hdnLevel.Value = "0";
-                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-                dt = new DataTable();
-                dt = objBillApp.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
-                if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
-                {
-                    hdnLevel.Value = "2";
-                }
-                else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
-                {
-                    hdnLevel.Value = "1";
-                }
-                
                 try
                 {
-                    intBillID = int.Parse(Request.QueryString["Id"]);
-                    Session["billid"] = intBillID.ToString();
-                    txtBillAmount.Text = Session["billamount"].ToString();
-                    txtParty.Text = Session["party"].ToString();
-                }
-                catch {
-                    intBillID = int.Parse(Session["billid"].ToString());
-                }
+                    hdnLevel.Value = "0";
+                    hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
 
-                if (hdnLevel.Value == "1")
-                {
+                    try
+                    {
+                        dt = new DataTable();
+                        dt = objBillApp.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
+                        if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
+                        {
+                            hdnLevel.Value = "2";
+                        }
+                        else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
+                        {
+                            hdnLevel.Value = "1";
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        intBillID = int.Parse(Request.QueryString["Id"]);
+                        try { Session["billid"] = intBillID.ToString(); } catch { }
+                        txtBillAmount.Text = Session["billamount"].ToString();
+                        txtParty.Text = Session["party"].ToString();
+                    }
+                    catch
+                    {
+                        intBillID = int.Parse(Session["billid"].ToString());
+                    }
+
+                    if (hdnLevel.Value == "1")
+                    {
+                        dt = new DataTable();
+                        dt = objBillApp.GetNetPayForLevel1(intBillID);
+                        if (dt.Rows.Count > 0)
+                        {
+                            txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2).ToString();
+                        }
+                    }
+
+                    if (hdnLevel.Value == "2")
+                    {
+                        dt = new DataTable();
+                        dt = objBillApp.GetNetPayForLevel2(intBillID);
+                        if (dt.Rows.Count > 0)
+                        {
+                            txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString()), 2).ToString();
+                        }
+                    }
+
+                    try
+                    {
+                        dt = new DataTable();
+                        dt = objBillApp.GetPOIDByBillID(intBillID);
+                        if (dt.Rows.Count > 0)
+                        {
+                            hdnPOID.Value = dt.Rows[0]["strReffNo"].ToString();
+                        }
+                        if (hdnPOID.Value == "")
+                        {
+                            hdnPOID.Value = "0";
+                        }
+                    }
+                    catch { hdnPOID.Value = "0"; }
+
+                    txtPONo.Text = hdnPOID.Value;
+                    txtBillID.Text = intBillID.ToString();
                     dt = new DataTable();
-                    dt = objBillApp.GetNetPayForLevel1(intBillID);
+                    dt = objBillApp.GetPODate(int.Parse(hdnPOID.Value));
                     if (dt.Rows.Count > 0)
                     {
-                        txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()),2).ToString();
+                        txtPODate.Text = dt.Rows[0]["dtePODate"].ToString();
                     }
-                }
 
-                if (hdnLevel.Value == "2")
-                {
                     dt = new DataTable();
-                    dt = objBillApp.GetNetPayForLevel2(intBillID);
+                    dt = objBillApp.GetUnitInfoByBillID(intBillID);
                     if (dt.Rows.Count > 0)
                     {
-                        txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString()),2).ToString();
+                        txtRegNo.Text = dt.Rows[0]["strBillRegCode"].ToString();
+                        hdnEntryType.Value = dt.Rows[0]["intEntryType"].ToString();
+                        txtNetPay.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2).ToString();
+                        hdnUnitID.Value = dt.Rows[0]["intUnitID"].ToString();
                     }
-                }
 
-                try
-                {
+                    //Document List =========================================
                     dt = new DataTable();
-                    dt = objBillApp.GetPOIDByBillID(intBillID);
+                    dt = objBillApp.GetDocumentList(intBillID, int.Parse(hdnEntryType.Value));
                     if (dt.Rows.Count > 0)
                     {
-                        hdnPOID.Value = dt.Rows[0]["strReffNo"].ToString();
+                        dgvDocList.DataSource = dt;
+                        dgvDocList.DataBind();
                     }
-                    if (hdnPOID.Value == "")
+                    //Challan List =========================================
+                    dt = new DataTable();
+                    dt = objBillApp.GetChallanList(intBillID);
+                    if (dt.Rows.Count > 0)
                     {
-                        hdnPOID.Value = "0";
+                        dgvChallanList.DataSource = dt;
+                        dgvChallanList.DataBind();
+                    }
+
+                    //Item Details List =========================================
+                    dt = new DataTable();
+                    dt = objBillApp.GetItemDetailsByPO(int.Parse(hdnPOID.Value), true, intBillID);
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvBillReport.DataSource = dt;
+                        dgvBillReport.DataBind();
+                    }
+
+                    //Indent List =========================================
+                    dt = new DataTable();
+                    dt = objBillApp.GetIndentList(int.Parse(hdnPOID.Value));
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvIndentList.DataSource = dt;
+                        dgvIndentList.DataBind();
+                    }
+
+                    dt = new DataTable();
+                    dt = objBillApp.GetVoucherListByBillID(intBillID);
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvVoucherList.DataSource = dt;
+                        dgvVoucherList.DataBind();
                     }
                 }
-                catch { hdnPOID.Value = "0"; }
-
-                txtPONo.Text = hdnPOID.Value;
-                txtBillID.Text = intBillID.ToString();
-                dt = new DataTable();
-                dt = objBillApp.GetPODate(int.Parse(hdnPOID.Value));
-                if (dt.Rows.Count > 0)
-                {                    
-                    txtPODate.Text = dt.Rows[0]["dtePODate"].ToString();
-                }
-                
-                dt = new DataTable();
-                dt = objBillApp.GetUnitInfoByBillID(intBillID);
-                if (dt.Rows.Count > 0)
+                catch (Exception ex)
                 {
-                    txtRegNo.Text = dt.Rows[0]["strBillRegCode"].ToString();
-                    hdnEntryType.Value = dt.Rows[0]["intEntryType"].ToString();
-                    txtNetPay.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()),2).ToString();
-                    hdnUnitID.Value = dt.Rows[0]["intUnitID"].ToString();
+                    var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                    Flogger.WriteError(efd);
                 }
-
-                //Document List =========================================
-                dt = new DataTable();
-                dt = objBillApp.GetDocumentList(intBillID, int.Parse(hdnEntryType.Value));
-                if (dt.Rows.Count > 0)
-                {
-                    dgvDocList.DataSource = dt;
-                    dgvDocList.DataBind();
-                }
-                //Challan List =========================================
-                dt = new DataTable();
-                dt = objBillApp.GetChallanList(intBillID);
-                if (dt.Rows.Count > 0)
-                {
-                    dgvChallanList.DataSource = dt;
-                    dgvChallanList.DataBind();
-                }
-
-                //Item Details List =========================================
-                dt = new DataTable();
-                dt = objBillApp.GetItemDetailsByPO(int.Parse(hdnPOID.Value), true, intBillID);
-                if (dt.Rows.Count > 0)
-                {
-                    dgvBillReport.DataSource = dt;
-                    dgvBillReport.DataBind();
-                }
-
-                //Indent List =========================================
-                dt = new DataTable();
-                dt = objBillApp.GetIndentList(int.Parse(hdnPOID.Value));
-                if (dt.Rows.Count > 0)
-                {
-                    dgvIndentList.DataSource = dt;
-                    dgvIndentList.DataBind();
-                }
-
-                dt = new DataTable();
-                dt = objBillApp.GetVoucherListByBillID(intBillID);
-                if (dt.Rows.Count > 0)
-                {
-                    dgvVoucherList.DataSource = dt;
-                    dgvVoucherList.DataBind();
-                }                
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region===== Grid View Load For Report =========================================================
@@ -218,6 +252,13 @@ namespace UI.PaymentModule
         #region===== Grid View Row Command Action ======================================================
         protected void dgvBillReport_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvBillReport_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillDetails.aspx dgvBillReport_RowCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName == "PrePrice")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -231,10 +272,22 @@ namespace UI.PaymentModule
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }
+
+            fd = log.GetFlogDetail(stop, location, "dgvBillReport_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvDocList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvDocList_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillDetails.aspx dgvDocList_RowCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName == "DocS")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -247,10 +300,23 @@ namespace UI.PaymentModule
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }
+
+            fd = log.GetFlogDetail(stop, location, "dgvDocList_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void dgvChallanList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvChallanList_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillDetails.aspx dgvChallanList_RowCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName == "ChallanS")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -263,10 +329,22 @@ namespace UI.PaymentModule
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }
+
+            fd = log.GetFlogDetail(stop, location, "dgvChallanList_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvIndentList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvIndentList_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillDetails.aspx dgvIndentList_RowCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName == "IndentS")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -279,6 +357,11 @@ namespace UI.PaymentModule
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
             }
+
+            fd = log.GetFlogDetail(stop, location, "dgvIndentList_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         /*

@@ -89,6 +89,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InventoryTransferTDS.cs">
+      <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InventoryTransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

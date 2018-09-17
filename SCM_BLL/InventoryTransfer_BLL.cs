@@ -131,8 +131,29 @@ namespace SCM_BLL
             return adp.GetSadUOMData(intunit);
         }
 
+        public DataTable InsertItemList(string strName, string strDescription, string strPartNo, string strBrand,int intClusterID, int intComGroupID, int intCategoryID,int intEnroll, DateTime dteLastActionTime,string strUoM)
+        {
+            tblItemMasterListTableAdapter adp = new tblItemMasterListTableAdapter();
+            return adp.InsertItemData(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID,intEnroll, dteLastActionTime, strUoM);
+        }
 
+        public DataTable GetItemMasterList(string strName, string strDescription, string strPartNo, string strBrand,int intClusterID, int intComGroupID, int intCategoryID, string strUoM, int intEnroll, int intUnit,int SADItemID,decimal numConversion, int intSadStandardUOM, int intInvUoM)
+        {
+            sprItemMasterListCreateFGTableAdapter adp = new sprItemMasterListCreateFGTableAdapter();
+            return adp.GetItemMasterData(strName,strDescription,strPartNo,strBrand,intClusterID,intComGroupID,intCategoryID,strUoM,intEnroll,intUnit,SADItemID,numConversion,intSadStandardUOM,intInvUoM);
+        }
 
+        public DataTable CreateItemMasterList(string strName, string strDescription, string strPartNo, string strBrand, int intClusterID, int intComGroupID, int intCategoryID,string strUoM,int intEnroll)
+        {
+            sprItemMasterListCreateTableAdapter adp = new sprItemMasterListCreateTableAdapter();
+            return adp.GetItemMasterListCreate(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, strUoM,intEnroll);
+        }
+
+        public DataTable GetUnitListByEnrollData(int intEnroll)
+        {
+            TblUnitTableAdapter adp = new TblUnitTableAdapter();
+            return adp.GetUnitListByEnroll(intEnroll);
+        }
 
 
 

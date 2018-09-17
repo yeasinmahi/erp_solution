@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLOBAL_BLL;
+using System;
 using System.Collections;
 using System.Configuration;
 using System.Data;
@@ -16,6 +17,10 @@ namespace UI.Accounts.Banking
 {
     public partial class BankReconsile : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\BankReconsile";
+        string stop = "stopping Accounts\\Banking\\BankReconsile";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";

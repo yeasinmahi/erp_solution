@@ -14,6 +14,9 @@ using System.Text.RegularExpressions;
 using System.Net;
 using UI.ClassFiles;
 using System.Web.Script.Services;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.Asset
 {
     public partial class WorkOrderPartsPopUp :BasePage
@@ -21,137 +24,167 @@ namespace UI.Asset
         AssetMaintenance objWorkorderParts = new AssetMaintenance();
         DataTable wt = new DataTable();
 
-        int intItem; Int32 ysnTecnichin; int intjobid;
-        
+        int intItem; int ysnTecnichin; int intjobid;
 
+        SeriLog log = new SeriLog();
+        string location = "ASSET";
+        string start = "starting ASSET\\WorkOrderPartsPopUp";
+        string stop = "stopping ASSET\\WorkOrderPartsPopUp";
+        string perform = "Performance on ASSET\\WorkOrderPartsPopUp";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                hdnField.Value = "0"; 
-                TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextVendor();");
-                SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();"); 
-                wt = new DataTable(); 
-                TxtTCost.Visible = false;
-                TxtTCost.Visible = false;
-                TxtLabor.Visible = false;
-                pnlUpperControl.DataBind();
-                Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
 
-                if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
+            try
+            {
+                if (!IsPostBack)
                 {
-                    hdntp.Value = "1";
-                   
+                    hdnField.Value = "0";
+                    TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextVendor();");
+                    SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();");
+                    wt = new DataTable();
+                    TxtTCost.Visible = false;
+                    TxtTCost.Visible = false;
+                    TxtLabor.Visible = false;
+                    pnlUpperControl.DataBind();
+                    Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
+                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+
+                    if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
+                    {
+                        hdntp.Value = "1";
+
+                    }
+                    else
+                    {
+                        hdntp.Value = "0";
+
+                    } 
+                    showdata(); 
                 }
                 else
                 {
-                    hdntp.Value = "0";
-                   
+                    if (hdnField.Value != "0")
+                    {
+                        btndocSave_Click();
+                        
+                    }
                 }
 
-                
-
-                showdata();
-
-               
-
             }
-            else
+            catch (Exception ex)
             {
-                if (hdnField.Value != "0")
-                {
-                    btndocSave_Click();
-                    //lbldoc.Text = message;
-                }
-
-
-
-               
+                var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                Flogger.WriteError(efd);
             }
-              
+
+            fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void showdata()
         {
-          
+            var fd = log.GetFlogDetail(start, location, "showdata", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "showdata", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int Mnumber =int.Parse(Session["intID"].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-            Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                wt = new DataTable();
 
-            wt = new DataTable();
-            
-            intItem = 2;
-            if (intItem == 2)
-            {
-                wt = objWorkorderParts.WOsparePartsView(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvParts.DataSource = wt;
-                dgvParts.DataBind();
+                intItem = 2;
+                if (intItem == 2)
+                {
+                    wt = objWorkorderParts.WOsparePartsView(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvParts.DataSource = wt;
+                    dgvParts.DataBind();
 
 
+                }
+                intItem = 3;
+                if (intItem == 3)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.WOLaborcostShow(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvLabor.DataSource = wt;
+                    dgvLabor.DataBind();
+                }
+                intItem = 5;
+                if (intItem == 5)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.WOdocview(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvDoc.DataSource = wt;
+                    dgvDoc.DataBind();
+                }
+                intItem = 18;
+                if (intItem == 18)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.Sareparts(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvwoParts.DataSource = wt;
+                    dgvwoParts.DataBind();
+                }
+                intItem = 19;
+                if (intItem == 19)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.labor(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvWolabor.DataSource = wt;
+                    dgvWolabor.DataBind();
+                }
+                intItem = 20;
+                if (intItem == 20)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.documnetview(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvWodoc.DataSource = wt;
+                    dgvWodoc.DataBind();
+                }
+                intItem = 48;
+                if (intItem == 48)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.MaintenanceToolsView(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvWOTools.DataSource = wt;
+                    dgvWOTools.DataBind();
+
+                }
+                intItem = 50;
+                if (intItem == 50)
+                {
+                    wt = new DataTable();
+                    wt = objWorkorderParts.PMToolsWOView(intItem, Mnumber, intenroll, intjobid, intdept);
+                    dgvPMTools.DataSource = wt;
+                    dgvPMTools.DataBind();
+                }
             }
-            intItem = 3;
-            if (intItem == 3)
+            catch (Exception ex)
             {
-                wt = new DataTable();
-                wt = objWorkorderParts.WOLaborcostShow(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvLabor.DataSource = wt;
-                dgvLabor.DataBind();
+                var efd = log.GetFlogDetail(stop, location, "ShowData", ex);
+                Flogger.WriteError(efd);
             }
-            intItem = 5;
-            if (intItem == 5)
-            {
-                wt = new DataTable();
-                wt = objWorkorderParts.WOdocview(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvDoc.DataSource = wt;
-                dgvDoc.DataBind();
-            }
-            intItem = 18;
-            if (intItem == 18)
-            {
-                wt = new DataTable();
-                wt = objWorkorderParts.Sareparts(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvwoParts.DataSource = wt;
-                dgvwoParts.DataBind();
-            }
-            intItem = 19;
-            if (intItem == 19)
-            {
-                wt = new DataTable();
-                wt = objWorkorderParts.labor(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvWolabor.DataSource = wt;
-                dgvWolabor.DataBind();
-            }
-            intItem = 20;
-            if (intItem == 20)
-            {
-                wt = new DataTable();
-                wt = objWorkorderParts.documnetview(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvWodoc.DataSource = wt;
-                dgvWodoc.DataBind();
-            }
-            intItem = 48;
-            if (intItem == 48)
-            {
-                wt = new DataTable();
-                wt=objWorkorderParts.MaintenanceToolsView(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvWOTools.DataSource = wt;
-                dgvWOTools.DataBind();
-                
-            }
-            intItem = 50;
-            if (intItem == 50)
-            {
-                wt = new DataTable();
-                wt=objWorkorderParts.PMToolsWOView(intItem, Mnumber, intenroll, intjobid, intdept);
-                dgvPMTools.DataSource = wt;
-                dgvPMTools.DataBind();
-            }                
+
+            fd = log.GetFlogDetail(stop, location, "ShowData", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }       
 
         [WebMethod]
@@ -246,12 +279,17 @@ namespace UI.Asset
 
         private void btndocSave_Click()
         {
+            var fd = log.GetFlogDetail(start, location, "btndocSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btndocSave_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                Int32 Reffno = Convert.ToInt32(Session["intID"].ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int Reffno =int.Parse(Session["intID"].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
                 string docdesc = TxtDocDescription.Text.ToString();
                 //******** Document Uplaod**********************//
@@ -268,7 +306,16 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Document Upload');", true);
                 showdata();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btndocSave_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btndocSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
@@ -299,20 +346,38 @@ namespace UI.Asset
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-             Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-            intItem=26;
-            if (intItem==26)
+            var fd = log.GetFlogDetail(start, location, "BtnSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "BtnSave_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                objWorkorderParts.WPMSDataInsert(intItem, Mnumber, intenroll, intjobid, intdept);
+                int Mnumber = int.Parse(Session["intID"].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                intItem = 26;
+                if (intItem == 26)
+                {
+                    objWorkorderParts.WPMSDataInsert(intItem, Mnumber, intenroll, intjobid, intdept);
 
+                }
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+
+                showdata();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btndocSave_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btndocSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
             
-            showdata();
-            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true); 
+            tracker.Stop();
+             
         }
 
         protected void BtnLabor_Click(object sender, EventArgs e)
@@ -357,64 +422,99 @@ namespace UI.Asset
 
         protected void BtnParts_Click(object sender, EventArgs e)
         {
-           
+            var fd = log.GetFlogDetail(start, location, "BtnParts_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "BtnParts_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
                 if (!String.IsNullOrEmpty(txtPartsSearch.Text))
                 {
                     string strSearchKey = txtPartsSearch.Text;
                     string[] searchKey = Regex.Split(strSearchKey, ";");
                     hdfEmpCode.Value = searchKey[1];
                     Int32 parts = Int32.Parse(hdfEmpCode.Value.ToString());
-               
-          
-
-                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-               
-                Int32 intwh = Int32.Parse(DdlWareHouse.SelectedValue.ToString());
-                Int32 Reffno = Convert.ToInt32(Session["intID"].ToString());
-
-             
-                Decimal pqty = Decimal.Parse(TxtPqty.Text.ToString());
-                string remarks = TxtRemarks.Text.ToString();
-                Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
-                wt = new DataTable();
-                 intjobid = Int32.Parse(hdfEmpCode.Value.ToString());
-
-                 intItem =55;
-                 wt = objWorkorderParts.CheckPartsItemNumber(intItem, Mnumber, intenroll, intjobid, intdept);
-                if(wt.Rows.Count>0)
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Item allready inserted please store requesition or delete then try again and set actual quantity');", true);
-                }
-                else
-                {
-                    intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                    objWorkorderParts.WOSpareParts(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks);
-
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
-                    
-                }
 
 
-               
-                showdata();
 
-                
+                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+
+                    Int32 intwh = Int32.Parse(DdlWareHouse.SelectedValue.ToString());
+                    Int32 Reffno = Convert.ToInt32(Session["intID"].ToString());
+
+
+                    Decimal pqty = Decimal.Parse(TxtPqty.Text.ToString());
+                    string remarks = TxtRemarks.Text.ToString();
+                    Int32 Mnumber = Convert.ToInt32(Session["intID"].ToString());
+                    wt = new DataTable();
+                    intjobid = Int32.Parse(hdfEmpCode.Value.ToString());
+
+                    intItem = 55;
+                    wt = objWorkorderParts.CheckPartsItemNumber(intItem, Mnumber, intenroll, intjobid, intdept);
+                    if (wt.Rows.Count > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Item allready inserted please store requesition or delete then try again and set actual quantity');", true);
+                    }
+                    else
+                    {
+                        intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                        objWorkorderParts.WOSpareParts(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks);
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+
+                    }
+
+
+
+                    showdata();
+
+
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnParts_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "BtnParts_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            tracker.Stop();
+
+
+        }
 
         protected void dgvwoParts_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvwoParts_RowDeleting", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "dgvwoParts_RowDeleting", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intIdParts =int.Parse(((Label)dgvwoParts.Rows[e.RowIndex].FindControl("Label21")).Text.ToString());
 
-            Int32 intIdParts = Convert.ToInt32(((Label)dgvwoParts.Rows[e.RowIndex].FindControl("Label21")).Text.ToString());
+                objWorkorderParts.dgvPartsdelete(intIdParts, intjobid, intdept);
+                showdata();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "dgvwoParts_RowDeleting", ex);
+                Flogger.WriteError(efd);
+            }
 
-            objWorkorderParts.dgvPartsdelete(intIdParts, intjobid, intdept);
-            showdata();
+            fd = log.GetFlogDetail(stop, location, "dgvwoParts_RowDeleting", null);
+            Flogger.WriteDiagnostic(fd);
 
+            tracker.Stop();
         }
 
         protected void dgvWolabor_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -453,6 +553,11 @@ namespace UI.Asset
 
         protected void BtnTools_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "BtnTools_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "BtnTools_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (!String.IsNullOrEmpty(SearchToolsBox.Text))
@@ -463,34 +568,58 @@ namespace UI.Asset
                     string ToolsID = HiddenToolsCode.Value.ToString();
 
 
-                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                    Int32 Reffno = Convert.ToInt32(Session["intID"].ToString());
-                    // string technichin = TxtTechnichinSearch.Text.ToString();
-                    string description = TxtTollsDescription.Text.ToString();
-                    // Decimal laborrate = Decimal.Parse(TxtLabor.Text.ToString());
-                    Decimal hour =Decimal.Parse(txtToolsHour.Text.ToString());
-                    // Decimal Tcost = Decimal.Parse(TxtTCost.Text.ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    int Reffno =int.Parse(Session["intID"].ToString()); 
+                    string description = TxtTollsDescription.Text.ToString(); 
+                    Decimal hour =Decimal.Parse(txtToolsHour.Text.ToString()); 
                     objWorkorderParts.WOTollsCost(Reffno, ToolsID, description, hour, intenroll, intjobid, intdept);
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
                     showdata();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnTools_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "BtnTools_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            tracker.Stop();
         }
 
         protected void dgvWOTools_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "dgvWOTools_RowDeleting", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "dgvWOTools_RowDeleting", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-            Int32 intIdParts = Convert.ToInt32(((Label)dgvWOTools.Rows[e.RowIndex].FindControl("Label22")).Text.ToString());
+                int intIdParts =int.Parse(((Label)dgvWOTools.Rows[e.RowIndex].FindControl("Label22")).Text.ToString());
 
-            objWorkorderParts.dgvToolsdelete(intIdParts, intjobid, intdept);
-            showdata();
+                objWorkorderParts.dgvToolsdelete(intIdParts, intjobid, intdept);
+                showdata();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "dgvWOTools_RowDeleting", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "dgvWOTools_RowDeleting", null);
+            Flogger.WriteDiagnostic(fd);
+
+            tracker.Stop();
         }
 
         protected void BtnClose_Click(object sender, EventArgs e)

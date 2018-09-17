@@ -12,6 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.Bank;
 using BLL.Accounts.ChartOfAccount;
+using Flogging.Core;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 
@@ -26,6 +28,10 @@ namespace UI.Accounts.Bank
         public string jsString;
         private string result;
         string userID;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Bank\\BankInfo";
+        string stop = "stopping Accounts\\Bank\\BankInfo";
         protected void Page_Load(object sender, EventArgs e)
         {
             pnlScript.Visible = false;
@@ -39,7 +45,16 @@ namespace UI.Accounts.Bank
         protected void btnBankAdd_Click(object sender, EventArgs e)
         {
 
-            BLL.Accounts.Bank.BankInfo addBank = new BLL.Accounts.Bank.BankInfo();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Bank\\BankInfo   BankInfo", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BLL.Accounts.Bank.BankInfo addBank = new BLL.Accounts.Bank.BankInfo();
             result = addBank.BankInsertion(txtBName.Text, txtBDescription.Text, txtBankCode.Text, int.Parse(userID));
             txtBName.Text = "";
             txtBDescription.Text = "";
@@ -50,7 +65,19 @@ namespace UI.Accounts.Bank
             jsString = "ShowDiv('newBankDiv','bank')";
             pnlScript.DataBind();
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void ddlBankName_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,7 +111,16 @@ namespace UI.Accounts.Bank
         }
         protected void btnAccountAdd_Click(object sender, EventArgs e)
         {
-            BankAccount account = new BankAccount();
+            var fd = log.GetFlogDetail(start, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Bank\\BankInfo   BankInfo Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BankAccount account = new BankAccount();
             decimal? loanAmount = null, loanRate = null;
             DateTime? loanDate = null;
 
@@ -179,11 +215,33 @@ namespace UI.Accounts.Bank
             pnlScript.DataBind();
 
             ChartOfAccStaticDataProvider.ReloadCOA(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "add", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnAcctypeAdd_Click(object sender, EventArgs e)
         {
-            BankAccountType acctype = new BankAccountType();
+            var fd = log.GetFlogDetail(start, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Bank\\BankInfo   BankInfo accounts Type Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                BankAccountType acctype = new BankAccountType();
 
 
             try
@@ -204,6 +262,19 @@ namespace UI.Accounts.Bank
             pnlScript.Visible = true;
             jsString = "ShowDiv('newAccTypeDiv','accType')";
             pnlScript.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void Button1_Click(object sender, EventArgs e)
         {

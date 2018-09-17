@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.Drawing.Printing;
 using System.Drawing;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.AEFPS
 {
@@ -21,10 +23,14 @@ namespace UI.AEFPS
         decimal qty,SalesQty, monCredit, SalesAmount,ReceiveAmt, price,Salary,CreditPurchesAmount,AvailableBalance, monCashReceive, monCashReturn;
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         string msg,svno, strWHName, qrcode, uom, ItemName;
-
+        SeriLog log = new SeriLog();
         DataTable dt, dtr;
         FPSSalesEntryBLL objAEFPS = new FPSSalesEntryBLL();
         DateTime dtedate;
+
+        string location = "AEFPS";
+        string start = "starting AEFPS\\FpsSalesEntry";
+        string stop = "stopping AEFPS\\FpsSalesEntry";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -156,7 +162,16 @@ namespace UI.AEFPS
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\FpsSalesEntry Submit AEFPS Challan", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
                 if ((txtEmployee.Text != "") || (txtEnroll.Text != "") || (txtEnroll.Text != "") || (txtReturn.Text != ""))
                 {
                     if ((txtCashReceiveAmount.Text == "") && (ddlpaymenttype.SelectedValue == "1"))
@@ -234,8 +249,18 @@ namespace UI.AEFPS
                 }
                 else
                 { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Employee Inforation!');", true); }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
-            
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
 

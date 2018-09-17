@@ -12,6 +12,8 @@ using SAD_BLL.Item;
 using SAD_DAL.Item;
 using System.Text;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Item
 {
@@ -25,7 +27,10 @@ namespace UI.SAD.Item
         TableCell tdCon = new TableCell();
 
         ItemManagerTDS.SprItemManagerGetAllUpperLevelDataTable tblUpperLevel;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Item\\PriceApprovalTwo";
+        string stop = "stopping SAD\\Item\\PriceApprovalTwo";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -53,7 +58,15 @@ namespace UI.SAD.Item
         private void GetItemInfo(string parentID, int subLevel)
         {
 
-            int level;
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\PriceApprovalTwo Price approve Two", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -144,8 +157,20 @@ namespace UI.SAD.Item
                 }*/
             }
         }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+        Flogger.WriteError(efd);
+            }
 
-        private HtmlAnchor BuildAnchor(string text, string attrMethod)
+          fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+        }
+
+            private HtmlAnchor BuildAnchor(string text, string attrMethod)
         {
             HtmlAnchor htA = new HtmlAnchor();
             htA.InnerText = text;

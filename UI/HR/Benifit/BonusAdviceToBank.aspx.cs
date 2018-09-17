@@ -7,13 +7,27 @@ using System.Web.UI.WebControls;
 using HR_BLL.Benifit;
 using System.Data;
 using Microsoft.Reporting.WebForms;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Benifit
 {
     public partial class BonusAdviceToBank : Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Benifit/BonusAdviceToBank.aspx";
+        string stop = "stopping HR/Benifit/BonusAdviceToBank.aspx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/BonusAdviceToBank.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
 
@@ -21,10 +35,22 @@ namespace UI.HR.Benifit
                 string intBonusId = Request.QueryString["intBonusId"];
                 ShowReportDetails(intUnitID, intBonusId);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ShowReportDetails(string intUnitID, string intBonusId)
         {
+            var fd = log.GetFlogDetail(start, location, "ShowReportDetails", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/BonusAdviceToBank.aspx ShowReportDetails", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 string path = HttpContext.Current.Server.MapPath("~/HR/Reports/ReportsTemplate/BonusAdviceToBank.rdlc");
@@ -72,6 +98,11 @@ namespace UI.HR.Benifit
             {
 
             }
+
+            fd = log.GetFlogDetail(stop, location, "ShowReportDetails", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
     }

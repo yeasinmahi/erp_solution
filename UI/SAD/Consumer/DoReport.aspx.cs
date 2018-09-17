@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Web.UI;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Consumer;
 using Utility;
 
@@ -9,6 +11,10 @@ namespace UI.SAD.Consumer
     public partial class DoReport : System.Web.UI.Page
     {
         readonly StarConsumerEntryBll _bll = new StarConsumerEntryBll();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\DoReport";
+        string stop = "stopping SAD\\Consumer\\DoReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -61,10 +67,29 @@ namespace UI.SAD.Consumer
 
         protected void LoadSalesOffice()
         {
-            ddlsalesOffice.DataSource = _bll.GetSalesOffice();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\DoReport Office Load", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                ddlsalesOffice.DataSource = _bll.GetSalesOffice();
             ddlsalesOffice.DataValueField = "intId";
             ddlsalesOffice.DataTextField = "strName";
             ddlsalesOffice.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

@@ -28,13 +28,14 @@ using Flogging.Core;
 namespace UI.SAD.AutoChallan
 {
     public partial class AutoChallan : BasePage
-    {
-        SeriLog log = new SeriLog();
+    {        
         DataTable dtShipingPoint = new DataTable();
         challanandPending Report = new challanandPending();
         DataTable dtSalesOfficeid = new DataTable();
         DataTable dtPendingReport = new DataTable();
         DataTable dtSlipReport = new DataTable();
+
+        SeriLog log = new SeriLog();
         string location = "SAD";
         string start = "starting SAD\\AutoChallan\\AutoChallan";
         string stop = "stopping SAD\\AutoChallan\\AutoChallan";
@@ -60,52 +61,13 @@ namespace UI.SAD.AutoChallan
             }
         }
 
-        protected void btn_ImportCSV_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         protected void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         
-
-        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlCusType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlCusType_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtFrom_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtTo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtCode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void rdoComplete_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -146,11 +108,7 @@ namespace UI.SAD.AutoChallan
             return result;
 
         }
-
-
-
-    
-
+        
         protected void Button1_Click1(object sender, EventArgs e)
         {
 
@@ -158,7 +116,7 @@ namespace UI.SAD.AutoChallan
             Flogger.WriteDiagnostic(fd);
 
             // starting performance tracker
-            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\AutoChallan Show", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\AutoChallan Show Test", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {

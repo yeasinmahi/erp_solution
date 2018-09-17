@@ -9,6 +9,8 @@ using SAD_BLL.Item;
 using UI.ClassFiles;
 using System.Web.Services;
 using System.Web.Script.Services;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Item
 {
@@ -18,7 +20,10 @@ namespace UI.SAD.Item
         ItemPromotion objPromotion = new ItemPromotion();
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };  string ItemName,batchno, PromotionName, msg;
         DateTime dteFdate, dteTdate; decimal SalesQty, PromotionQty;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Item\\frmItemPromotion";
+        string stop = "stopping SAD\\Item\\frmItemPromotion";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -85,7 +90,16 @@ namespace UI.SAD.Item
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtPromotionName.Text != "")
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\frmItemPromotion  Item Promotion Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (txtPromotionName.Text != "")
             {
                 char[] delimiterCharss = { '[', ']' };
                 if (txtCustomer.Text != "")
@@ -129,9 +143,28 @@ namespace UI.SAD.Item
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Promotion Name');", true); }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            char[] delimiterCharss = { '[', ']' };
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\frmItemPromotion  Item Promotion Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] delimiterCharss = { '[', ']' };
             if (int.Parse(ddlReportBy.SelectedValue) == 1)
             {
                 if (txtSalesItem.Text != "")
@@ -160,10 +193,31 @@ namespace UI.SAD.Item
             }
             dgvPromotionReport.DataSource = dt;
             dgvPromotionReport.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            if (txtPromotionName.Text != "")
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\frmItemPromotion  Item Promotion Cancel", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (txtPromotionName.Text != "")
             {
                 char[] delimiterCharss = { '[', ']' };
                 if (txtCustomer.Text != "")
@@ -182,7 +236,17 @@ namespace UI.SAD.Item
 
             objPromotion.getNationalPINactiveEnd(dteTdate, ItemidSales, batchno, Custid, part);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully');", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

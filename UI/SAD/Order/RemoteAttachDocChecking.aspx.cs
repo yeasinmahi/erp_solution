@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +16,10 @@ namespace UI.SAD.Order
     {
 
         char[] delimiterChars = { '[',']' }; string[] arrayKey;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteAttachDocChecking";
+        string stop = "stopping SAD\\Order\\RemoteAttachDocChecking";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
@@ -35,7 +40,17 @@ namespace UI.SAD.Order
 
         protected void btnShowAttachment_Click(object sender, EventArgs e)
         {
-            DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\ChallanCancel Show Attendance", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
             string strSearchKey = txtFullName.Text;
             arrayKey = strSearchKey.Split(delimiterChars);
             string code = arrayKey[1].ToString();
@@ -56,6 +71,18 @@ namespace UI.SAD.Order
 
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "Clearcontrol", "ViewDocList();", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('RemoteTADADocChkPathlist.aspx');", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void lnkDownload_Click(object sender, EventArgs e)

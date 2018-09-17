@@ -1,4 +1,6 @@
-﻿ using SAD_BLL.Customer;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Customer;
 using SAD_BLL.Customer.Report;
 using SAD_BLL.Sales;
 using System;
@@ -27,6 +29,10 @@ namespace UI.SAD.Sales.Report
         int rpttype; int custid;
         DateTime dtFromDate, dtToDate;
 
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\DOQntVsChallaQnt";
+        string stop = "stopping SAD\\Sales\\Report\\DOQntVsChallaQnt";
 
         #endregion
 
@@ -88,7 +94,16 @@ namespace UI.SAD.Sales.Report
         protected void btnShowDelvRepot_Click(object sender, EventArgs e)
         {
 
-             rpttype = int.Parse(drdlreporttype.SelectedValue.ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\DOQntVsChallaQnt Challan Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                rpttype = int.Parse(drdlreporttype.SelectedValue.ToString());
             string[] temp = txtCus.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
             try
             {
@@ -214,6 +229,18 @@ namespace UI.SAD.Sales.Report
 
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
 
@@ -294,6 +321,8 @@ namespace UI.SAD.Sales.Report
                 }
                 catch { }
             }
+
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Flogging.Core;
+using GLOBAL_BLL;
 using SCM_BLL;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace UI.SCM
         DataTable dt = new DataTable();
         PoGenerate_BLL objPo = new PoGenerate_BLL(); Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
         int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
+
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoDocAttachment";
+        string stop = "stopping SCM\\PoDocAttachment";
+        string perform = "Performance on SCM\\PoDocAttachment";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,6 +40,10 @@ namespace UI.SCM
         }
         private void DefaltPageLoad()
         {
+            var fd = log.GetFlogDetail(start, location, "DefaltPageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "DefaltPageLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -48,21 +60,14 @@ namespace UI.SCM
                 ddlDept.DataValueField = "Id";
                 ddlDept.DataBind();
                 dt.Clear();
-                //dt = objPo.GetPoData(14, "", 0, 0, DateTime.Now, enroll);
-                //ddlPoUser.DataSource = dt;
-                //ddlPoUser.DataTextField = "strName";
-                //ddlPoUser.DataValueField = "Id";
-                //ddlPoUser.DataBind();
+                
                 string dept = ddlDept.SelectedItem.ToString();
                 if (dept == "Local") { dept = "Local Purchase"; }
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"'  + "/></voucher>".ToString();
                 dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
-                //ddlSupplier.DataSource = dt;
-                //ddlSupplier.DataTextField = "strName";
-                //ddlSupplier.DataValueField = "Id";
-                //ddlSupplier.DataBind();
+               
 
                 string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = dept;
@@ -71,7 +76,15 @@ namespace UI.SCM
 
                 dt.Clear();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "DefaltPageLoad", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "DefaltPageLoad", null);
+            Flogger.WriteDiagnostic(fd);          
+            tracker.Stop();
 
         }
 
@@ -99,7 +112,6 @@ namespace UI.SCM
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
 			var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
-
 			Flogger.WriteDiagnostic(fd);
 
 			// starting performance tracker
@@ -150,12 +162,25 @@ namespace UI.SCM
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPoUserShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
 
-		}
+            fd = log.GetFlogDetail(stop, location, "btnPoUserShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+        }
 
         protected void btnPoSuppShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnPoSuppShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnPoSuppShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int unitID = int.Parse(ddlUnit.SelectedValue);
@@ -176,11 +201,24 @@ namespace UI.SCM
                 dgvPO.DataBind();
                
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPoSuppShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnPoSuppShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "ddlUnit_SelectedIndexChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "ddlUnit_SelectedIndexChanged", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string dept = ddlDept.SelectedItem.ToString();
@@ -189,10 +227,7 @@ namespace UI.SCM
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
-                //ddlSupplier.DataSource = dt;
-                //ddlSupplier.DataTextField = "strName";
-                //ddlSupplier.DataValueField = "Id";
-                //ddlSupplier.DataBind();
+                
 
                 string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = dept;
@@ -200,7 +235,16 @@ namespace UI.SCM
                 Session["unitId"] = unitId;
                 dt.Clear();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "ddlUnit_SelectedIndexChanged", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "ddlUnit_SelectedIndexChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
@@ -226,6 +270,10 @@ namespace UI.SCM
 
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string unit = ddlUnit.SelectedItem.ToString();
@@ -253,7 +301,7 @@ namespace UI.SCM
 			{
 				Product = "ERP",
 				Location = "SCM",
-				Layer = "BillForwardToBillingReport\\Show",
+				Layer = "PoDocAttachment\\Show",
 				UserName = Environment.UserName,
 				Hostname = Environment.MachineName,
 				Message = message,

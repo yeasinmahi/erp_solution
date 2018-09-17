@@ -13,12 +13,19 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class VoucherForAdvice : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/VoucherForAdvice.aspx";
+        string stop = "stopping PaymentModule/VoucherForAdvice.aspx";
+
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
 
@@ -31,6 +38,13 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/VoucherForAdvice.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -114,10 +128,26 @@ namespace UI.PaymentModule
                     catch { }                    
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "ddlUnit_SelectedIndexChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/VoucherForAdvice.aspx ddlUnit_SelectedIndexChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
 
             dt = new DataTable();
@@ -157,6 +187,11 @@ namespace UI.PaymentModule
             }
             catch { }
             File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
+
+            fd = log.GetFlogDetail(stop, location, "ddlUnit_SelectedIndexChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -182,6 +217,13 @@ namespace UI.PaymentModule
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/VoucherForAdvice.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -194,11 +236,27 @@ namespace UI.PaymentModule
                     dgvReportForPaymentV.DataBind();
                 }            
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnPrepareAllVoucher_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnPrepareAllVoucher_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/VoucherForAdvice.aspx btnPrepareAllVoucher_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -269,6 +327,11 @@ namespace UI.PaymentModule
                 File.Delete(filePathForXML);
                 LoadGrid();                
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnPrepareAllVoucher_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXml(string insdate, string payto, string amount, string drcoa, string billcode, string po, string bill, string party)
         {

@@ -15,12 +15,18 @@ using BLL.Accounts.SubLedger;
 using UI.ClassFiles;
 using System.Net;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Accounts.Voucher
 {
     public partial class JournalVoucher : BasePage
     {
         protected double totAmountDr = 0, totAmountCr = 0;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\JournalVoucher";
+        string stop = "stopping Accounts\\Voucher\\JournalVoucher";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -83,14 +89,43 @@ namespace UI.Accounts.Voucher
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.JournalVoucher jv = new BLL.Accounts.Voucher.JournalVoucher();
+            var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\JournalVoucher   Cancel ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Voucher.JournalVoucher jv = new BLL.Accounts.Voucher.JournalVoucher();
             jv.CancelVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.JournalVoucher jv = new BLL.Accounts.Voucher.JournalVoucher();
+            var fd = log.GetFlogDetail(start, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\JournalVoucher   Completed ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Voucher.JournalVoucher jv = new BLL.Accounts.Voucher.JournalVoucher();
             int ret = jv.CompleteVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
             //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             string CompleteDate = txtCompleteDate.Text;
@@ -100,6 +135,19 @@ namespace UI.Accounts.Voucher
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Completed", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ColumnShowHide(bool show)
@@ -179,7 +227,16 @@ namespace UI.Accounts.Voucher
         }
         protected void btnCompleteAll_Click(object sender, EventArgs e)
         {
-            int gridRowCount;
+            var fd = log.GetFlogDetail(start, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\JournalVoucher   Completed All ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int gridRowCount;
             string jvID;
             BLL.Accounts.Voucher.JournalVoucher jv = new BLL.Accounts.Voucher.JournalVoucher();
             //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
@@ -201,6 +258,19 @@ namespace UI.Accounts.Voucher
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Completed", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Completed", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +23,13 @@ namespace UI.SCM
         DataTable dt = new DataTable();
         int enroll, intwh;
         string filePathForXML,  xmlString = "";
+
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IssueItemByRequesitionDetalisAFBL";
+        string stop = "stopping SCM\\IssueItemByRequesitionDetalisAFBL";
+        string perform = "Performance on SCM\\IssueItemByRequesitionDetalisAFBL";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/sIn__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -63,27 +72,17 @@ namespace UI.SCM
             }
             else { }
 
-            //string message;
-            //for (int i=0;i<3;i++)
-            //{
-            //    dynamic obj = new
-            //    {
-            //        itemId = "117919",
-            //        itemName = "Angular Ball Bearing  01.22.0007.4(0339838)",
-            //        qty = "1",
-            //        locationid = "14942",
-            //        location = "DTI, Fk5-13",
-            //        rate = "33",
-            //        remarks = "test"
-            //    };
-                
-            //    XmlParser.CreateXml("Vouchar", obj, filePathForXML,out message);
-            //}
+            
             
         }
 
         protected void btnIssue_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnIssue_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            
+            var tracker = new PerfTracker(perform + " " + "btnIssue_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
@@ -133,7 +132,16 @@ namespace UI.SCM
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnIssue_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnIssue_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy,string mrrid)

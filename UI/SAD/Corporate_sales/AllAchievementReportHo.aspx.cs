@@ -25,6 +25,8 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Xml;
 using SAD_BLL.Corporate_sales;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Dairy_HO
 {
@@ -35,7 +37,10 @@ namespace UI.Dairy_HO
         Int32 permissionnumber; Int32 strlines;
         orderInputClass newreport = new orderInputClass();
         orderInputClass Report = new orderInputClass();
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\AllAchievementReportHo";
+        string stop = "stopping SAD\\Corporate_sales\\AllAchievementReportHo";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -229,7 +234,17 @@ namespace UI.Dairy_HO
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            DataTable dtdetails = new DataTable();
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\AllAchievementReportHo Achivement Report HO", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DataTable dtdetails = new DataTable();
             int permissionnumber = int.Parse(Session["Permission"].ToString());
             int enroll = int.Parse(Session["enroll"].ToString());
             if (TextBox2.Text == "")
@@ -327,7 +342,17 @@ namespace UI.Dairy_HO
 
                
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

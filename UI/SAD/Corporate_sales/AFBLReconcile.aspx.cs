@@ -13,6 +13,8 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using SAD_BLL.Corporate_sales;
 using System.Web.Script.Services;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -32,6 +34,11 @@ namespace UI.SAD.Corporate_sales
         Bridge insertinfo = new Bridge();
       
         int enroll = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\AFBLReconcile";
+        string stop = "stopping SAD\\Corporate_sales\\AFBLReconcile";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,15 +52,43 @@ namespace UI.SAD.Corporate_sales
          
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+          
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\AFBLReconcile Reconcile", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
             dairydt = newreport.getdairyreconsulationreport();
             dgvtrgt.DataSource = dairydt;
             dgvtrgt.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void Complete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\AFBLReconcile Reconcile Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 char[] delimiterChars = { '^' };
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
@@ -62,7 +97,16 @@ namespace UI.SAD.Corporate_sales
                 Session["accountid"] = accountid;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('UnfoundView.aspx');", true);
             }
-            catch { }     
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

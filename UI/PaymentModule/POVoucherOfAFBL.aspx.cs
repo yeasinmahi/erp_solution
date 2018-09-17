@@ -13,12 +13,19 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class POVoucherOfAFBL : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/POVoucherOfAFBL.aspx";
+        string stop = "stopping PaymentModule/POVoucherOfAFBL.aspx";
+
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
 
@@ -31,6 +38,13 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/POVoucherOfAFBL.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -116,7 +130,16 @@ namespace UI.PaymentModule
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,6 +207,13 @@ namespace UI.PaymentModule
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/POVoucherOfAFBL.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
             
             if (intUnitID == 2 || intUnitID == 46 || intUnitID == 54 || intUnitID == 67 || intUnitID == 95)
@@ -201,87 +231,112 @@ namespace UI.PaymentModule
                 }
                 catch { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnPrepareAllVoucher_Click(object sender, EventArgs e)
         {
-            if(intUnitID == 2 || intUnitID == 46 || intUnitID == 54 || intUnitID == 67 || intUnitID == 95)
+            var fd = log.GetFlogDetail(start, location, "btnPrepareAllVoucher_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/POVoucherOfAFBL.aspx btnPrepareAllVoucher_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+            try
             {
-                if (hdnconfirm.Value == "1")
+                if (intUnitID == 2 || intUnitID == 46 || intUnitID == 54 || intUnitID == 67 || intUnitID == 95)
                 {
-                    intUnitID = int.Parse(hdnUnit.Value);
-                    intUser = int.Parse(hdnEnroll.Value);
-                    intBankID = int.Parse(ddlBank.SelectedValue.ToString());
-                    intBankAcc = int.Parse(ddlAccount.SelectedValue.ToString());
-
-                    if (dgvReportForPaymentV.Rows.Count > 0)
+                    if (hdnconfirm.Value == "1")
                     {
-                        for (int index = 0; index < dgvReportForPaymentV.Rows.Count; index++)
+                        intUnitID = int.Parse(hdnUnit.Value);
+                        intUser = int.Parse(hdnEnroll.Value);
+                        intBankID = int.Parse(ddlBank.SelectedValue.ToString());
+                        intBankAcc = int.Parse(ddlAccount.SelectedValue.ToString());
+
+                        if (dgvReportForPaymentV.Rows.Count > 0)
                         {
-                            if (((CheckBox)dgvReportForPaymentV.Rows[index].FindControl("chkRow")).Checked == true)
+                            for (int index = 0; index < dgvReportForPaymentV.Rows.Count; index++)
                             {
-                                if (txtAllPayDate.Text == "")
+                                if (((CheckBox)dgvReportForPaymentV.Rows[index].FindControl("chkRow")).Checked == true)
                                 {
-                                    insdate = ((TextBox)dgvReportForPaymentV.Rows[index].FindControl("txtPayDate")).Text.ToString();
-                                }
-                                else
-                                {
-                                    try
+                                    if (txtAllPayDate.Text == "")
                                     {
-                                        insdate = DateTime.Parse(txtAllPayDate.Text).ToString();
+                                        insdate = ((TextBox)dgvReportForPaymentV.Rows[index].FindControl("txtPayDate")).Text.ToString();
                                     }
-                                    catch
+                                    else
                                     {
-                                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date is incorrect. Date Format (YYYY-MM-DD)');", true);
-                                        return;
+                                        try
+                                        {
+                                            insdate = DateTime.Parse(txtAllPayDate.Text).ToString();
+                                        }
+                                        catch
+                                        {
+                                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date is incorrect. Date Format (YYYY-MM-DD)');", true);
+                                            return;
+                                        }
                                     }
+
+                                    //insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
+                                    payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
+                                    amount = decimal.Parse(((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString()).ToString();
+                                    drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
+                                    billcode = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblRegNo")).Text.ToString();
+                                    po = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPOID")).Text.ToString();
+                                    bill = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblID")).Text.ToString();
+                                    party = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPartyName")).Text.ToString();
+                                    tds = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblTDS")).Text.ToString();
+
+                                    if (strPayTo != "" || drcoa != "" || bill != "")
+                                    {
+                                        CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party, tds);
+                                    }
+
+                                    File.Delete(filePathForXML);
+                                    LoadGrid();
                                 }
-
-                                //insdate = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPayDate")).Text.ToString();
-                                payto = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblBankAccount")).Text.ToString();
-                                amount = decimal.Parse(((Label)dgvReportForPaymentV.Rows[index].FindControl("lblApproveAmount")).Text.ToString()).ToString();
-                                drcoa = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblCOA")).Text.ToString();
-                                billcode = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblRegNo")).Text.ToString();
-                                po = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPOID")).Text.ToString();
-                                bill = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblID")).Text.ToString();
-                                party = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblPartyName")).Text.ToString();
-                                tds = ((Label)dgvReportForPaymentV.Rows[index].FindControl("lblTDS")).Text.ToString();
-
-                                if (strPayTo != "" || drcoa != "" || bill != "")
-                                {
-                                    CreateVoucherXml(insdate, payto, amount, drcoa, billcode, po, bill, party, tds);
-                                }
-
-                                File.Delete(filePathForXML);
-                                LoadGrid();
                             }
                         }
-                    }
 
-                    if (dgvReportForPaymentV.Rows.Count > 0)
-                    {
-                        try
+                        if (dgvReportForPaymentV.Rows.Count > 0)
                         {
-                            XmlDocument doc = new XmlDocument();
-                            doc.Load(filePathForXML);
-                            XmlNode dSftTm = doc.SelectSingleNode("VoucherA");
-                            string xmlString = dSftTm.InnerXml;
-                            xmlString = "<VoucherA>" + xmlString + "</VoucherA>";
-                            xml = xmlString;
+                            try
+                            {
+                                XmlDocument doc = new XmlDocument();
+                                doc.Load(filePathForXML);
+                                XmlNode dSftTm = doc.SelectSingleNode("VoucherA");
+                                string xmlString = dSftTm.InnerXml;
+                                xmlString = "<VoucherA>" + xmlString + "</VoucherA>";
+                                xml = xmlString;
+                            }
+                            catch { }
+                            if (xml == "") { return; }
                         }
-                        catch { }
-                        if (xml == "") { return; }
-                    }
-                    
-                    dt = new DataTable();
-                    dt = objVoucher.InsertPOVoucherForAFBL(intUnitID, intUser, intBankID, intBankAcc, xml);
-                    if (dt.Rows.Count > 0)
-                    {
-                        string msg = dt.Rows[0]["strVoucherCode"].ToString();
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+                        dt = new DataTable();
+                        dt = objVoucher.InsertPOVoucherForAFBL(intUnitID, intUser, intBankID, intBankAcc, xml);
+                        if (dt.Rows.Count > 0)
+                        {
+                            string msg = dt.Rows[0]["strVoucherCode"].ToString();
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPrepareAllVoucher_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnPrepareAllVoucher_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXml(string insdate, string payto, string amount, string drcoa, string billcode, string po, string bill, string party, string tds)
         {

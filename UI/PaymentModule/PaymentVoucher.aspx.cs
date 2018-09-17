@@ -13,21 +13,38 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.PaymentModule
 {
     public partial class PaymentVoucher : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/PaymentVoucher.aspx";
+        string stop = "stopping PaymentModule/PaymentVoucher.aspx";
+
         Billing_BLL objBillReg = new Billing_BLL();
         DataTable dt;
 
         int intDept, intType;
         string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
+        decimal monTotalAdvance;
+        int intCountPVoucher;
         #endregion ====================================================================================
-                
+
         protected void Page_Load(object sender, EventArgs e)
-        {   
+        {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/PaymentVoucher.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -128,11 +145,28 @@ namespace UI.PaymentModule
                     catch { }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void dgvReportForPaymentV_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvReportForPaymentV_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/PaymentVoucher.aspx dgvReportForPaymentV_RowCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -167,7 +201,32 @@ namespace UI.PaymentModule
                 else if (e.CommandName == "CP")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucherCP('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
+                }
+                else if (e.CommandName == "JV")
+                {
+                    /*
+                    Billing_BLL objBillApp = new Billing_BLL();
+                    DataTable dtt = new DataTable();
+                    dtt = objBillApp.GetBillInfoForBPVoucher(int.Parse(billid));
+                    if (dtt.Rows.Count > 0)
+                    {                        
+                        monTotalAdvance = Math.Round(decimal.Parse(dtt.Rows[0]["monAdvanceTotal"].ToString()), 2);
+                        intCountPVoucher = int.Parse(dtt.Rows[0]["intCountPVoucher"].ToString());                        
+                    }
 
+                    if (intCountPVoucher == 0)
+                    {
+                        if (monTotalAdvance == 0)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('JV Not Possible.');", true); return;
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('JV Not Possible.');", true); return;
+                    }
+                    */
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPrepareVoucherJV('" + unitid + "','" + billid + "','" + entrycode + "','" + party + "','" + bank + "','" + bankacc + "','" + instrument + "', '" + billtypeid + "');", true);
                 }
                 else if (e.CommandName == "View")
                 {
@@ -177,7 +236,17 @@ namespace UI.PaymentModule
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "dgvReportForPaymentV_RowCommand", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "dgvReportForPaymentV_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -215,6 +284,13 @@ namespace UI.PaymentModule
         
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/PaymentVoucher.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intType = int.Parse(ddlType.SelectedValue.ToString());
@@ -238,7 +314,16 @@ namespace UI.PaymentModule
                 dgvReportForPaymentV.DataSource = dt;
                 dgvReportForPaymentV.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +20,12 @@ namespace UI.SCM
     {
         DataTable dt = new DataTable();
         int enroll; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoApproval";
+        string stop = "stopping SCM\\PoApproval";
+        string perform = "Performance on SCM\\PoApproval";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -65,6 +73,10 @@ namespace UI.SCM
 
         protected void btnPoNoShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnPoNoShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnPoNoShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -74,10 +86,23 @@ namespace UI.SCM
                 dgvPoApp.DataBind();
                 dt.Clear();
             }
-            catch { } 
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPoNoShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnPoNoShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         } 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnPoUserShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnPoUserShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 arrayKey = txtPoUser.Text.Split(delimiterChars);
@@ -94,12 +119,25 @@ namespace UI.SCM
                 dgvPoApp.DataBind();
                 dt.Clear();
             }
-            catch { }
-           
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPoUserShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnPoUserShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
@@ -149,11 +187,24 @@ namespace UI.SCM
                 catch { }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnDetalis_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnApproval_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnApproval_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnApproval_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                if(hdnConfirm.Value=="1")
@@ -189,7 +240,16 @@ namespace UI.SCM
                 } 
                 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnApproval_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnApproval_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)

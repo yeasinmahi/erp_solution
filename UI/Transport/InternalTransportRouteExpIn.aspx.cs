@@ -7,11 +7,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Transport
 {
     public partial class InternalTransportRouteExpIn : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Transport";
+        string start = "starting Transport/InternalTransportRouteExpIn.aspx";
+        string stop = "stopping Transport/InternalTransportRouteExpIn.aspx";
+
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
 
@@ -20,6 +27,13 @@ namespace UI.Transport
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 try { LoadGrid();
@@ -131,6 +145,11 @@ namespace UI.Transport
                 HttpContext.Current.Session["intShipPointID"] = intShipPointID.ToString();
                 HttpContext.Current.Session["intCheck"] = intCheck.ToString();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -169,6 +188,13 @@ namespace UI.Transport
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             intUnitID = int.Parse(HttpContext.Current.Session["intUnitID"].ToString());
             intShipPointID = int.Parse(HttpContext.Current.Session["intShipPointID"].ToString());
             
@@ -223,6 +249,11 @@ namespace UI.Transport
                 }
                 else { dgvReport.Columns[11].Visible = false; dgvReport.Columns[13].Visible = true; }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void Action_Click(object sender, EventArgs e)
         {
@@ -242,12 +273,31 @@ namespace UI.Transport
         }     
         protected void TripDetails_Click(object sender, EventArgs e) 
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = ((Button)sender).CommandArgument.ToString();
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "TripDetails('" + senderdata + "');", true);
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }    
         protected void btnActionFuelC_Click(object sender, EventArgs e) 
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = ((Button)sender).CommandArgument.ToString();
 
             dt = obj.GetCheckExpEntry(int.Parse(senderdata.ToString()));
@@ -261,6 +311,11 @@ namespace UI.Transport
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('ALREADY ESTIMATED EXPENSE SUBMITED.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlShipPoint_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -287,6 +342,13 @@ namespace UI.Transport
         }
         protected void btnSearchTripWise_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             intUnitID = int.Parse(HttpContext.Current.Session["intUnitID"].ToString());
             intShipPointID = int.Parse(HttpContext.Current.Session["intShipPointID"].ToString());
 
@@ -303,6 +365,11 @@ namespace UI.Transport
             dt = obj.GetTripInfoReport(intWork, intUnitID, intShipPointID, strTripSLNo, ysnWonVehicle);
             dgvReport.DataSource = dt;
             dgvReport.DataBind();
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
         {            
@@ -329,6 +396,13 @@ namespace UI.Transport
         }
         protected void btnVendorV_Click(object sender, EventArgs e) 
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 string senderdata = ((Button)sender).CommandArgument.ToString();
@@ -345,19 +419,43 @@ namespace UI.Transport
 
                 LoadGrid();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnVTripComplete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string senderdata = ((Button)sender).CommandArgument.ToString();
 
             if (rdoWon.Checked == true) { intVT = 1; } else { intVT = 2; }
             HttpContext.Current.Session["intVT"] = intVT.ToString();
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "TripComplete('" + senderdata + "');", true);           
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "TripComplete('" + senderdata + "');", true);
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCustBridge_Click(object sender, EventArgs e)  
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpIn.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 string senderdata = ((Button)sender).CommandArgument.ToString();
@@ -369,6 +467,11 @@ namespace UI.Transport
                 string message = obj.InsertAndUpdateCustInfoBridge(intWork, intReffID, intInsertBy, xml);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         
         

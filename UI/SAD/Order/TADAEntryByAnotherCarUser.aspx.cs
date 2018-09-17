@@ -1,4 +1,6 @@
-﻿using HR_BLL.Employee;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.Employee;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +21,13 @@ namespace UI.SAD.Order
         string xmlString = ""; string serial;
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TADAEntryByAnotherCarUser";
+        string stop = "stopping SAD\\Order\\TADAEntryByAnotherCarUser";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadaBikeCarUserEntryByAnother.xml");
@@ -433,8 +442,16 @@ namespace UI.SAD.Order
         {
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-                string tst = rdbFuelStationList.SelectedValue.ToString();
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TADAEntryByAnotherCarUser Add", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    string tst = rdbFuelStationList.SelectedValue.ToString();
                 string Serial;
                 if (tst == "")
                 {
@@ -988,6 +1005,18 @@ namespace UI.SAD.Order
                     }
 
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 
@@ -995,7 +1024,16 @@ namespace UI.SAD.Order
         {
             if (hdnconfirm.Value == "1")
             {
-                if (GridviewBikeCarUserInputInfoEntryByAnother.Rows.Count > 0)
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TAdaentrybyanothercaruser Save", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    if (GridviewBikeCarUserInputInfoEntryByAnother.Rows.Count > 0)
                 {
                     #region ------------ Insert into dataBase -----------
 
@@ -1044,6 +1082,20 @@ namespace UI.SAD.Order
                 File.Delete(filePathForXML);
                 GridviewBikeCarUserInputInfoEntryByAnother.DataSource = null;
                 GridviewBikeCarUserInputInfoEntryByAnother.DataBind();
+                }
+
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
             }
         }
         private void LoadFieldValue(int enrol)

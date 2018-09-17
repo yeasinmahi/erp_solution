@@ -28,6 +28,8 @@ using SAD_DAL.Customer;
 using BLL.Accounts.ChartOfAccount;
 using DAL.Accounts.ChartOfAccount;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
@@ -52,14 +54,25 @@ namespace UI.SAD.Order
         TableCell tdLblV = new TableCell();
         TableCell tdConV = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevelV;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\Delivary";
+        string stop = "stopping SAD\\Order\\Delivary";
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
             {
                 // Session["sesUserID"] = "53";
 
-                if (Request.QueryString["id"] != null)
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary Delivery Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    if (Request.QueryString["id"] != null)
                 {
                     SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
                     table = se.GetSalesOrder(Request.QueryString["id"]);
@@ -118,6 +131,18 @@ namespace UI.SAD.Order
                     txtDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
                     txtDelDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(1));
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }
@@ -440,7 +465,17 @@ namespace UI.SAD.Order
         #region Button
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary add product", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
             {
                 lblError.Text = "";
                 string coaId = "", coaName = "";
@@ -520,6 +555,18 @@ namespace UI.SAD.Order
                     txtProduct.Focus();
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -527,7 +574,15 @@ namespace UI.SAD.Order
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string id = "", code = "";
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary Save product", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string id = "", code = "";
             char[] ch = { '[', ']' };
 
             XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
@@ -577,7 +632,18 @@ namespace UI.SAD.Order
             {
                 Response.Redirect("../../Accounts/Voucher/Exit.aspx");
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion
 

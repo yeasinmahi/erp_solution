@@ -13,12 +13,19 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class BillRegisterReport : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/BillRegisterReport.aspx";
+        string stop = "stopping PaymentModule/BillRegisterReport.aspx";
+
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
 
@@ -28,8 +35,49 @@ namespace UI.PaymentModule
 
         #endregion ====================================================================================
 
+        protected void lblReff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                LinkButton lblPoNos = row.FindControl("lblReff") as LinkButton;
+
+                int Id = int.Parse(lblPoNos.Text.ToString());
+                if (Id > 0)
+                {
+                    Session["pono"] = Id.ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('..SCM/PoDetalisView.aspx');", true);
+
+                }
+            }
+            catch { }
+        }
+
+        protected void lblBillID_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                LinkButton lblBillNo = row.FindControl("lblBillID") as LinkButton;                
+                Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
+                Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
+                int Id =int.Parse(lblBillNo.Text.ToString());
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
+            }
+            catch { }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillRegisterReport.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -71,7 +119,16 @@ namespace UI.PaymentModule
                 lblReportName.Visible = false;
                 lblFromToDate.Visible = false;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -80,6 +137,13 @@ namespace UI.PaymentModule
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillRegisterReport.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -101,7 +165,16 @@ namespace UI.PaymentModule
                     dgvReport.DataBind();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)

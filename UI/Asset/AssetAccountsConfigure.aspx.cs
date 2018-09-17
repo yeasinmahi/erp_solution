@@ -15,6 +15,8 @@ using System.Xml;
 using System.IO;
 using System.Drawing;
 using Purchase_BLL.VehicleRegRenewal_BLL;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -27,7 +29,10 @@ namespace UI.Asset
        
         string xmlStringAssetAccoA = "",  code;
         AssetMaintenance rpt = new AssetMaintenance();
-        
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetAccountsConfigure";
+        string stop = "stopping Asset\\AssetAccountsConfigure";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -80,8 +85,16 @@ namespace UI.Asset
         
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Update", null);
+            Flogger.WriteDiagnostic(fd);
 
-            //Int64 coaCodeID = Int64.Parse(DdlUseJob.SelectedValue.ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\AssetAccountsConfigure   Update ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                //Int64 coaCodeID = Int64.Parse(DdlUseJob.SelectedValue.ToString());
                 string sk = txtUseJobstationName.Text;
                 arrayKey = sk.Split(delimiterChars);
                 string usecode = arrayKey[1].ToString();
@@ -138,6 +151,19 @@ namespace UI.Asset
             dt = configure.ViewVehicleUnitwaise(job);
             dgvGridView.DataSource = dt;
             dgvGridView.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Update", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Update", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
        
         private void CreateVoucherXml(string assetid, string owner)
@@ -183,7 +209,15 @@ namespace UI.Asset
 
         protected void BtnView_Click(object sender, EventArgs e)
         {
-            string jobsname= txtJobstationName.Text;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\AssetAccountsConfigure   Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string jobsname= txtJobstationName.Text;
             if (jobsname.Length > 0)
             {
                 string searchKey = txtJobstationName.Text;
@@ -212,6 +246,20 @@ namespace UI.Asset
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void DdlBillUnit_SelectedIndexChanged(object sender, EventArgs e)

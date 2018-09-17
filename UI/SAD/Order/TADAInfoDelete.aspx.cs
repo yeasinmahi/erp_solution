@@ -1,4 +1,6 @@
-﻿using HR_BLL.Global;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.Global;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,7 +20,10 @@ namespace UI.SAD.Order
         char[] delimiterChars = { '[', ']' }; string[] arrayKey; int intTSOEnroll;
         DataTable dt = new DataTable();
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TADAInfoDelete";
+        string stop = "stopping SAD\\Order\\TADAInfoDelete";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -55,8 +60,14 @@ namespace UI.SAD.Order
 
         private void showdataforDelete()
         {
-            
 
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TADAInfoDelete TADAinfo Delete Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtEffectiveDate.Text).Value;
@@ -91,7 +102,17 @@ namespace UI.SAD.Order
 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void rdbUserOption_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -105,8 +126,15 @@ namespace UI.SAD.Order
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtEffectiveDate.Text).Value;
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TADAInfoDelete TADAinfo Delete ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtEffectiveDate.Text).Value;
             //string strSearchKey = txtEmployeeSearch.Text;
             //arrayKey = strSearchKey.Split(delimiterChars);
             //string code = arrayKey[1].ToString();
@@ -137,8 +165,20 @@ namespace UI.SAD.Order
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
 
             }
-          
 
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
     }

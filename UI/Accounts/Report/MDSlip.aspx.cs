@@ -16,12 +16,18 @@ using BLL.Accounts.MDSlip;
 using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Report
 {
     public partial class MDSlip : BasePage
     {
         //ReportDocument rpt=new ReportDocument();
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Report\\MDSlip";
+        string stop = "stopping Accounts\\Report\\MDSlip";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -48,8 +54,15 @@ namespace UI.Accounts.Report
             //Modified   :   
             //Parameters :   intEmployeeID,intMonthID,intYearId
 
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/MdSlip.rdlc");
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Report\\MDSlip   Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/MdSlip.rdlc");
             DataTable oDTReportData = new DataTable();
             string unitName = "", unitAddress = "", userName = ""; ;
             decimal? limlitWC = 0, limitPL = 0, usedWC = 0, usedPL = 0, cashinHand = 0, cashAtBank = 0;
@@ -109,6 +122,19 @@ namespace UI.Accounts.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         //private void GetReport()

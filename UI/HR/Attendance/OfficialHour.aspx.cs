@@ -8,18 +8,37 @@ using System.Web.Services;
 using HR_BLL.Global;
 using HR_BLL.Attendance;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Attendance
 {
     public partial class OfficialHour : BasePage//System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Attendance/OfficialHour.aspx";
+        string stop = "stopping HR/Attendance/OfficialHour.aspx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/OfficialHour.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
                 txtSearchEmp.Attributes.Add("onkeyUp", "SearchText();");
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         [WebMethod]
@@ -39,6 +58,13 @@ namespace UI.HR.Attendance
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/OfficialHour.aspx btnAdd_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 EmployeeAttendance changeOfficeHour = new EmployeeAttendance();
@@ -56,6 +82,10 @@ namespace UI.HR.Attendance
             }
             catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set all field.');", true); }
 
+            fd = log.GetFlogDetail(stop, location, "btnAdd_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

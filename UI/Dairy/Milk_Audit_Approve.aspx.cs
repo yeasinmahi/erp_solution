@@ -15,11 +15,19 @@ using UI.ClassFiles;
 using Projects_BLL;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.Dairy
 {
     public partial class Milk_Audit_Approve : BasePage
     {
         #region ===== Variable Decliaration ===================================================================
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_Audit_Approve.aspx";
+        string stop = "stopping Dairy/Milk_Audit_Approve.aspx";
+
         Project_Class obj = new Project_Class();
         DataTable dt;
 
@@ -29,6 +37,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Audit_Approve.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -47,7 +62,16 @@ namespace UI.Dairy
                     ddlChillingCenter.DataBind();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region ===== Show Grid Load ==========================================================================
@@ -57,6 +81,13 @@ namespace UI.Dairy
         }        
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Audit_Approve.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 dteFromDate = txtFrom.Text;
@@ -69,8 +100,14 @@ namespace UI.Dairy
             }
             catch (Exception ex)
             {
-                ex.ToString();
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected decimal totalqty = 0;
         protected decimal totalmrramou = 0;
@@ -95,6 +132,13 @@ namespace UI.Dairy
         #region ===== Details Report ==========================================================================
         protected void dgvAuditApprove_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Audit_Approve.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName == "D")
             {
                 //Determine the RowIndex of the Row whose Button was clicked.
@@ -107,12 +151,24 @@ namespace UI.Dairy
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DocListView('" + ID + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion ============================================================================================
 
         #region ===== Bill Complete Action ====================================================================
         protected void btnApprove_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Audit_Approve.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -153,6 +209,11 @@ namespace UI.Dairy
                 }
                 catch { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateXml(string mrrno)
         {

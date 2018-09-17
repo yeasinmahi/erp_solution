@@ -11,6 +11,8 @@ using System.IO;
 using System.Data;
 using System.Xml;
 using SAD_BLL.AEFPS;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.AEFPS
 {
@@ -30,6 +32,11 @@ namespace UI.AEFPS
         string strEmpCode; string strKey;
         char[] delimiterChars = { '[', ']', ';', '-', '_', '.', ',' };
         string[] arrayKey;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\TransferIn";
+        string stop = "stopping AEFPS\\TransferIn";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -79,6 +86,12 @@ namespace UI.AEFPS
         }
         private void Voucher()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferIn Voucher Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
@@ -88,7 +101,16 @@ namespace UI.AEFPS
                 ddlVoucher.DataSource = dt;
                 ddlVoucher.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlToWHName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,6 +130,12 @@ namespace UI.AEFPS
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferIn Transfer in", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
@@ -117,7 +145,16 @@ namespace UI.AEFPS
                 dgvTransferItem.DataSource = dt;
                 dgvTransferItem.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
             //LoadGrid();
         }
@@ -146,55 +183,57 @@ namespace UI.AEFPS
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (hdnconfirm.Value == "1")
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferIn Submit Transfer in", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                intPart = 2;
-                intWHID = int.Parse(ddlFromWH.SelectedValue.ToString());
-                intToWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
-                intEnroll = int.Parse(hdnEnroll.Value);
-                strVoucher = ddlVoucher.SelectedItem.ToString();
-                intInsertBy = int.Parse(hdnEnroll.Value);
-                xml = "";
 
-
-                //Final In Insert                        
-                message = obj.InsertUpdateST(intPart, intWHID, intToWHID, intEnroll, strVoucher, intInsertBy, xml);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                hdnconfirm.Value = "0";
-                dgvTransferItem.DataSource = ""; dgvTransferItem.DataBind();
-
-                try
+                if (hdnconfirm.Value == "1")
                 {
-                    intWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
-                    dt = obj.GetVoucherForTransferIn(intWHID);
-                    ddlVoucher.DataTextField = "strVoucher";
-                    ddlVoucher.DataSource = dt;
-                    ddlVoucher.DataBind();
+                    intPart = 2;
+                    intWHID = int.Parse(ddlFromWH.SelectedValue.ToString());
+                    intToWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
+                    intEnroll = int.Parse(hdnEnroll.Value);
+                    strVoucher = ddlVoucher.SelectedItem.ToString();
+                    intInsertBy = int.Parse(hdnEnroll.Value);
+                    xml = "";
+
+
+                    //Final In Insert                        
+                    message = obj.InsertUpdateST(intPart, intWHID, intToWHID, intEnroll, strVoucher, intInsertBy, xml);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    hdnconfirm.Value = "0";
+                    dgvTransferItem.DataSource = ""; dgvTransferItem.DataBind();
+
+                    try
+                    {
+                        intWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
+                        dt = obj.GetVoucherForTransferIn(intWHID);
+                        ddlVoucher.DataTextField = "strVoucher";
+                        ddlVoucher.DataSource = dt;
+                        ddlVoucher.DataBind();
+                    }
+                    catch { }
                 }
-                catch { }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

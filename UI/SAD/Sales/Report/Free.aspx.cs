@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using Microsoft.Reporting.WebForms;
 using UI.ClassFiles;
 using SAD_BLL.Sales;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales.Report
 {
@@ -30,7 +32,10 @@ namespace UI.SAD.Sales.Report
         DataTable dtfree = new DataTable();
         SalesByCusPro objfree = new SalesByCusPro();
         Int32 number;
-        
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Report\\Free";
+        string stop = "stopping SAD\\Sales\\Report\\Free";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -68,7 +73,16 @@ namespace UI.SAD.Sales.Report
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Int32 intreportid;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\Free Free/Promotion Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+           Int32 intreportid;
            Int32 number=Convert.ToInt32(Session["number"]);
            Int32 unitid =int.Parse(Session[SessionParams.UNIT_ID].ToString());
           string  frm = txtFrom.Text + " " + ddlFHour.SelectedValue;
@@ -98,6 +112,17 @@ namespace UI.SAD.Sales.Report
                 GridView1.Visible = false;
                 dgvReport.Visible = true;
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

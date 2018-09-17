@@ -12,6 +12,8 @@ using UI.ClassFiles;
 using System.Data;
 using System.Xml;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -20,6 +22,10 @@ namespace UI.SAD.Corporate_sales
         DataTable dtReport = new DataTable();
         OrderInput_BLL ReportOrder = new OrderInput_BLL();
         DataTable dt = new DataTable();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\Approved";
+        string stop = "stopping SAD\\Corporate_sales\\Approved";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,6 +35,12 @@ namespace UI.SAD.Corporate_sales
         }
         protected void btnDetails_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\Approved Approved ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -52,7 +64,16 @@ namespace UI.SAD.Corporate_sales
       
              }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void rdbutton_CheckedChanged(object sender, EventArgs e)

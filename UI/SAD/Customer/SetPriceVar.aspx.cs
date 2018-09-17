@@ -9,6 +9,8 @@ using System.Web.UI.HtmlControls;
 using SAD_BLL.Item;
 using System.Data;
 using SAD_BLL.Customer;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Customer
 {
@@ -21,7 +23,10 @@ namespace UI.SAD.Customer
         TableCell tdLbl = new TableCell();
         TableCell tdCon = new TableCell();
         ItemPriceManagerTDS.SprItemPriceManagerGetAllUpperLevelDataTable tblUpperLevel;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\SetPriceVar";
+        string stop = "stopping SAD\\Customer\\SetPriceVar";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,7 +49,16 @@ namespace UI.SAD.Customer
         }
         private void GetItemInfo(string parentID)
         {
-            int level;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Customer\\SetPriceVar  set Price var", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -110,16 +124,27 @@ namespace UI.SAD.Customer
 
                 GetItemInfo(ddl.SelectedValue);
             }
-            /*else
-            {
-                if (nextParentID == "")
+                /*else
                 {
-                    td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
-                    tr.Cells.Add(td);
-                    tbl.Rows.Add(tr);
-                    hdnPriceId.Value = "";
-                }
-            }*/
+                    if (nextParentID == "")
+                    {
+                        td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
+                        tr.Cells.Add(td);
+                        tbl.Rows.Add(tr);
+                        hdnPriceId.Value = "";
+                    }
+                }*/
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private HtmlAnchor BuildAnchor(string text, string attrMethod)
         {
@@ -131,6 +156,7 @@ namespace UI.SAD.Customer
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
+
             SAD_BLL.Customer.CustomerInfo ci = new SAD_BLL.Customer.CustomerInfo();
             ci.UpdatePriceCatagory(Request.QueryString["id"], hdnPriceId.Value);
             Response.Redirect("~/Exit.aspx");

@@ -10,6 +10,8 @@ using SAD_BLL.Item;
 using System.Data;
 using SAD_BLL.DisPoint;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.DisPoint
 {
@@ -22,6 +24,11 @@ namespace UI.SAD.DisPoint
         TableCell tdLbl = new TableCell();
         TableCell tdCon = new TableCell();
         ItemPriceManagerTDS.SprItemPriceManagerGetAllUpperLevelDataTable tblUpperLevel;
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\DisPoint\\SetPriceVar";
+        string stop = "stopping SAD\\DisPoint\\SetPriceVar";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,7 +51,16 @@ namespace UI.SAD.DisPoint
         }
         private void GetItemInfo(string parentID)
         {
-            int level;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\DisPoint\\SetPriceVar  Set Price var", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -110,16 +126,18 @@ namespace UI.SAD.DisPoint
 
                 GetItemInfo(ddl.SelectedValue);
             }
-            /*else
+               
+            }
+            catch (Exception ex)
             {
-                if (nextParentID == "")
-                {
-                    td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
-                    tr.Cells.Add(td);
-                    tbl.Rows.Add(tr);
-                    hdnPriceId.Value = "";
-                }
-            }*/
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private HtmlAnchor BuildAnchor(string text, string attrMethod)
         {

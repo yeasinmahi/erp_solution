@@ -1,4 +1,6 @@
 ﻿using BLL.Accounts.Advice;
+using Flogging.Core;
+using GLOBAL_BLL;
 using Purchase_BLL;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
 
+
 namespace UI.Accounts.Advice
 {
     public partial class BankStatementUpload : BasePage
@@ -21,7 +24,10 @@ namespace UI.Accounts.Advice
         DateTime dteStartDateTime, dteEndDateTime;
         string dteDate, strParticulars, strInstrumentNo;
         decimal monDebit, monCredit, monBalance;
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Advice\\BankStatementUpload";
+        string stop = "stopping Accounts\\Advice\\BankStatementUpload";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -89,6 +95,12 @@ namespace UI.Accounts.Advice
 
         private void LoadLastCollectDate()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\BankStatementUpload  Bank Statement Upload", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intAccountID = int.Parse(ddlAccountNo.SelectedValue.ToString());
@@ -105,7 +117,18 @@ namespace UI.Accounts.Advice
                     txtRunningBalance.Text = "";
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -121,12 +144,29 @@ namespace UI.Accounts.Advice
 
         private void DeleteData()
         {
+            var fd = log.GetFlogDetail(start, location, "Delete", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\BankStatementUpload  Bank Statement Delete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intEnroll = int.Parse(hdnEnroll.Value);
                 bll.DeleteStatement(intEnroll);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Delete", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Delete", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void uploadfile()
@@ -194,6 +234,12 @@ namespace UI.Accounts.Advice
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\BankStatementUpload  Bank Statement Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intEnroll = int.Parse(hdnEnroll.Value);
@@ -207,7 +253,18 @@ namespace UI.Accounts.Advice
                 gvExcelFile.DataSource = "";
                 gvExcelFile.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

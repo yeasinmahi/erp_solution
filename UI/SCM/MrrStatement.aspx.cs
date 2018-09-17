@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +17,12 @@ namespace UI.SCM
         MrrReceive_BLL obj = new MrrReceive_BLL();
         DataTable dt = new DataTable();
         int enroll, intWh, Mrrid;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\MrrStatement";
+        string stop = "stopping SCM\\MrrStatement";
+        string perform = "Performance on SCM\\MrrStatement";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,6 +46,10 @@ namespace UI.SCM
 
         protected void btnAttachment_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAttachment_Click Upload", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnAttachment_Click Upload", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -50,15 +62,26 @@ namespace UI.SCM
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DocViewdetails('" + MrrId + "');", true); 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnAttachment_Click Upload", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnAttachment_Click Uplaod", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
         protected void btnStatement_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnStatement_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnStatement_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
-            {
-                try
                 {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     intWh = int.Parse(ddlWH.SelectedValue);
@@ -72,14 +95,26 @@ namespace UI.SCM
                     dgvIndent.DataSource = dt;
                     dgvIndent.DataBind();
                 }
-                catch { }
+               
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnStatement_Click", ex);
+                Flogger.WriteError(efd);
             }
-            catch { }
+
+            fd = log.GetFlogDetail(stop, location, "btnStatement_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
-
+            var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -96,7 +131,16 @@ namespace UI.SCM
 
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnDetalis_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnDetalis_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

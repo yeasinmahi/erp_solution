@@ -28,7 +28,7 @@
         }
 
         function ViewBillDetailsPopup(Id) {
-            window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+            window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1300, scrollbars=yes, left=25, top=25, resizable=no, title=Preview");
         }
 
         function ViewApproveActionPopup(Id) {

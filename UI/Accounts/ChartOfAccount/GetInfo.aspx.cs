@@ -12,6 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.ChartOfAccount;
 using DAL.Accounts.ChartOfAccount;
+using Flogging.Core;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 namespace UI.Accounts.ChartOfAccount
@@ -19,13 +21,30 @@ namespace UI.Accounts.ChartOfAccount
     public partial class Accounts_ChartOfAccount_GetInfo : BasePage
     //public partial class Accounts_ChartOfAccount_GetInfo : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\ChartOfAccount\\ChartOfAccounts";
+        string stop = "stopping Accounts\\ChartOfAccount\\ChartOfAccounts";
         protected void Page_Load(object sender, EventArgs e)
         {
-            string k = "";
+
+
+            var fd = log.GetFlogDetail(start, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\Accounts_ChartOfAccount_GetInfo   PageLoad ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string k = "";
 
             string page = Request.QueryString["page"];
             if (page == "coaTemplete")
             {
+
+
                 string parentID = Request.QueryString["parentID"];
                 BLL.Accounts.ChartOfAccount.Template tmp = new BLL.Accounts.ChartOfAccount.Template();
                 TemplateTDS.TblAccountsChartOfAccTemplateDataTable tbl = tmp.GetCOATempleteByAccount(int.Parse(parentID));
@@ -65,6 +84,19 @@ namespace UI.Accounts.ChartOfAccount
                 k = k + "</script>";
             }
             Response.Write(k);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "PageLoad", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "PageLoad", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

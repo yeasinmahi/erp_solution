@@ -11,6 +11,8 @@ using UI.ClassFiles;
 using Purchase_BLL.Asset;
 using System.Web.Services;
 using System.Web.Script.Services;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -24,7 +26,10 @@ namespace UI.Asset
         string xmlString = ""; string[] arrayKey; char[] delimiterChars = { '[', ']' };
         string debit, credit, accCOAid=null, accCOAName=null,drcrType; int intunit;
         string assetcoa, assetcoaName;
-       
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetDebitCreditSetup";
+        string stop = "stopping Asset\\AssetDebitCreditSetup";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXMLAssetAccoA = Server.MapPath("~/Asset/Data/CC_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -85,9 +90,16 @@ namespace UI.Asset
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetDebitCreditSetup Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                
+
+
                 int unit = int.Parse(ddlUnit.SelectedValue.ToString());
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePathForXMLAssetAccoA);
@@ -100,8 +112,17 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
                 dgvGridView.DataSource = ""; dgvGridView.DataBind();
 
-                }
-            catch { }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -181,6 +202,12 @@ namespace UI.Asset
 
         private void GridViewLoad()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetDebitCreditSetup Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string assetTypeid = ddlAssetType.SelectedValue.ToString();
@@ -205,13 +232,28 @@ namespace UI.Asset
                 }
                 dgvGridView.DataBind();
 
-                
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void BtnAdd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetDebitCreditSetup Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (radCredit.Checked == true || radDebit.Checked == true)
@@ -252,8 +294,18 @@ namespace UI.Asset
 
                     CreateVoucherXml(unit, unitName, assetcoa, assetcoaName, typeid, typeName, accCOAid, accCOAName, debit, credit, drcrType, enroll, autoID.ToString(), accountstypeID, accountstypeName, assetypeID, assetypeName);
                 }
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void LoadGridwithXml()
         {

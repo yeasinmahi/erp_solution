@@ -1,4 +1,6 @@
-﻿using Purchase_BLL.Asset;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
 using System.Collections.Generic;
@@ -24,44 +26,73 @@ namespace UI.SCM.Transfer
         int enroll,intvehicleId, intWh; string[] arrayKey, arrayKeyV; char[] delimiterChars = { '[', ']' };
         int CheckItem = 1;decimal values;
 
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\Transfer\\InventoryTransferOut";
+        string stop = "stopping SCM\\Transfer\\InventoryTransferOut";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            if (!IsPostBack)
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
-                catch { }
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                if (!IsPostBack)
+                {
+                    try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
+                    catch { }
+                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
-                dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
-                ddlWh.DataSource = dt;
-                ddlWh.DataTextField = "strName";
-                ddlWh.DataValueField = "Id";
-                ddlWh.DataBind();
-                ddlWh.Items.Insert(0, new ListItem("Select", "0"));
-                Session["WareID"] = ddlWh.SelectedValue.ToString();
-                dt = objWH.GetWH();
-                ddlToWh.DataSource = dt;
-                ddlToWh.DataTextField = "strName";
-                ddlToWh.DataValueField = "Id";
-                ddlToWh.DataBind();
-                ddlToWh.Items.Insert(0, new ListItem("Select", "0"));
-                dt.Clear();
+                    dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
+                    ddlWh.DataSource = dt;
+                    ddlWh.DataTextField = "strName";
+                    ddlWh.DataValueField = "Id";
+                    ddlWh.DataBind();
+                    ddlWh.Items.Insert(0, new ListItem("Select", "0"));
+                    Session["WareID"] = ddlWh.SelectedValue.ToString();
+                    dt = objWH.GetWH();
+                    ddlToWh.DataSource = dt;
+                    ddlToWh.DataTextField = "strName";
+                    ddlToWh.DataValueField = "Id";
+                    ddlToWh.DataBind();
+                    ddlToWh.Items.Insert(0, new ListItem("Select", "0"));
+                    dt.Clear();
 
-                dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
-                ddlTransType.DataSource = dt;
-                ddlTransType.DataTextField = "strName";
-                ddlTransType.DataValueField = "Id";
-                ddlTransType.DataBind();
-                ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
-                ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                    dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
+                    ddlTransType.DataSource = dt;
+                    ddlTransType.DataTextField = "strName";
+                    ddlTransType.DataValueField = "Id";
+                    ddlTransType.DataBind();
+                    ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
+                    ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
 
+                }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd); 
+             
+            var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
@@ -71,11 +102,25 @@ namespace UI.SCM.Transfer
                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
                 hdnStockQty.Value = "0";
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void txtItem_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
@@ -85,23 +130,9 @@ namespace UI.SCM.Transfer
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
                 
-                dt = objTransfer.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, enroll);
+                dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
-                {
-
-                    //string strItems = dt.Rows[0]["strItem"].ToString();
-                    //string intItem = dt.Rows[0]["intItem"].ToString();
-                    //string strUom = dt.Rows[0]["strUom"].ToString();
-                    //string intLocation = dt.Rows[0]["intLocation"].ToString();
-                    //string strLocation = dt.Rows[0]["strLocation"].ToString();
-                    //string monStock = dt.Rows[0]["monStock"].ToString();
-                    //string monValues = dt.Rows[0]["monValue"].ToString();
-                    //hdnStockQty.Value= dt.Rows[0]["monStock"].ToString();
-                    //hdnUom.Value= dt.Rows[0]["strUom"].ToString();
-                    //hdnValue.Value = dt.Rows[0]["monValue"].ToString();
-                    //string detaliss = "  Stock: " + monStock + " " +strUom + " Id: " + intItem;
-                    //lblDetalis.Text = detaliss;
-                    //lblValue.Text = "Value: " + monValues.ToString();
+                { 
                     ddlLcation.DataSource = dt;
                     ddlLcation.DataTextField = "strName";
                     ddlLcation.DataValueField = "Id";
@@ -111,7 +142,16 @@ namespace UI.SCM.Transfer
                 }
                 //else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -285,6 +325,11 @@ namespace UI.SCM.Transfer
 
         protected void ddlLcation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
@@ -293,11 +338,10 @@ namespace UI.SCM.Transfer
                 { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
-                enroll = int.Parse(ddlLcation.SelectedItem.Value);
+                enroll = int.Parse(ddlLcation.SelectedValue);
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
-
                     string strItems = dt.Rows[0]["strItem"].ToString();
                     string intItem = dt.Rows[0]["intItem"].ToString();
                     string strUom = dt.Rows[0]["strUom"].ToString();
@@ -315,12 +359,25 @@ namespace UI.SCM.Transfer
                 }
                 else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-          
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
 
             try
             {
@@ -357,7 +414,18 @@ namespace UI.SCM.Transfer
                 }
 
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            
+
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                try { File.Delete(filePathForXML); } catch { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);            
+            tracker.Stop();
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,9 +14,21 @@ namespace UI.Accounts.PartyPayment
 {
     public partial class Previewall : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\PartyPayment\\Previewall";
+        string stop = "stopping Accounts\\PartyPayment\\Previewall";
         protected void Page_Load(object sender, EventArgs e)
         {
-            string innerTableHtml = ""; 
+            var fd = log.GetFlogDetail(start, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\Previewall   Pageload Report Previewall ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string innerTableHtml = ""; 
             BLL.Accounts.PartyPayment.PartyBill objPartyBill = new BLL.Accounts.PartyPayment.PartyBill();
             string billid = Request.QueryString["BILLID"];
             string poid = Request.QueryString["POID"];
@@ -232,7 +246,20 @@ namespace UI.Accounts.PartyPayment
             createDiv.InnerHtml = innerTableHtml;
             createDiv.Attributes.Add("class", "dynamicDivbn");
             this.Controls.Add(createDiv);
-            #endregion
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Pageload", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private string GetSubstringValue(string gvnstring)

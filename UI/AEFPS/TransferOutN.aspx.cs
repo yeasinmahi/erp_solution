@@ -11,6 +11,8 @@ using System.IO;
 using System.Data;
 using System.Xml;
 using SAD_BLL.AEFPS;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.AEFPS
 {
@@ -25,8 +27,12 @@ namespace UI.AEFPS
         string itemid, itemcode, itemname, uom, qty, filePathForXML, xmlString = "", xml, strVoucher;
         char[] delimiterChars = { '[', ']', ';', '-', '_', '.', ',' };
         string[] arrayKey;
-        
+
         #endregion ================================================================================
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\TransferOutN";
+        string stop = "stopping AEFPS\\TransferOutN";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -256,7 +262,16 @@ namespace UI.AEFPS
         {
             if (hdnconfirm.Value == "1")
             {
-                File.Delete(filePathForXML);
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on AEFPS\\TransferOutN Transfer Out Save", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    File.Delete(filePathForXML);
                 if (dgvProduct.Rows.Count > 0)
                 {
                     for (int index = 0; index < dgvProduct.Rows.Count; index++)
@@ -301,7 +316,18 @@ namespace UI.AEFPS
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 hdnconfirm.Value = "0";
                 File.Delete(filePathForXML); dgvProduct.DataSource = ""; dgvProduct.DataBind();
-                txtQRCode.Text = ""; txtItem.Text = ""; txtQty.Text = "";               
+                txtQRCode.Text = ""; txtItem.Text = ""; txtQty.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
         private void CreateVoucherXmlSubmit(string itemid, string itemcode, string itemname, string uom, string qty)

@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +16,11 @@ namespace UI.SCM
     {
         StoreIssue_BLL objIssue = new StoreIssue_BLL();
         DataTable dt = new DataTable();int enroll, intwh, intSearchBy, intItem; string  strItem, strTypeId;
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\InventoryReport";
+        string stop = "stopping SCM\\InventoryReport";
+        string perform = "Performance on SCM\\InventoryReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -24,7 +31,12 @@ namespace UI.SCM
 
         private void DefaultDataBind()
         {
-           try
+            var fd = log.GetFlogDetail(start, location, "DefaultDataBind", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "DefaultDataBind", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
@@ -35,7 +47,16 @@ namespace UI.SCM
 
                 Session["WareID"] = ddlWH.SelectedValue.ToString();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "DefaultDataBind", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "DefaultDataBind", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,6 +87,11 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string strType = ddlSearchBy.SelectedItem.ToString();
@@ -156,11 +182,25 @@ namespace UI.SCM
                 dgvInvnetory.DataBind();
                 #endregion================Close========================
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "ddlSearchBy", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "ddlSearchBy", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intwh = int.Parse(ddlWH.SelectedValue);
@@ -177,7 +217,16 @@ namespace UI.SCM
                 lblCategory.Text = strType;
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "ddlSearchBy", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "ddlSearchBy", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

@@ -11,6 +11,8 @@ using System.IO;
 using System.Data;
 using System.Xml;
 using SAD_BLL.AEFPS;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.AEFPS
 {
@@ -30,7 +32,10 @@ namespace UI.AEFPS
         string strEmpCode; string strKey;
         char[] delimiterChars = { '[', ']', ';', '-', '_', '.', ',' };
         string[] arrayKey;
-
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\FpsTransfer";
+        string stop = "stopping AEFPS\\FpsTransfer";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -66,6 +71,12 @@ namespace UI.AEFPS
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\FpsTransfer AEFPS Product Transfer", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intPart = 2;
@@ -76,7 +87,16 @@ namespace UI.AEFPS
                 dgvProductDT.DataSource = dt;
                 dgvProductDT.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected decimal totalamount = 0;
         protected void dgvProductDT_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -257,6 +277,15 @@ namespace UI.AEFPS
         {
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on AEFPS\\FpsTransfer AEFPS Product Transfer", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
                 intPart = 1;
                 intWHID = int.Parse(ddlFromWH.SelectedValue.ToString());
                 intToWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
@@ -288,6 +317,17 @@ namespace UI.AEFPS
                 dgvProductDT.DataSource = "";
                 dgvProductDT.DataBind();
                 txtQRCode.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 

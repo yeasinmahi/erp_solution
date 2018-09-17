@@ -10,6 +10,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Purchase_BLL.Asset;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.SCM
 {
     public partial class IssueReturn : System.Web.UI.Page
@@ -18,6 +21,12 @@ namespace UI.SCM
         Location_BLL objOperation = new Location_BLL();
         DataTable dt = new DataTable();
         int enroll, intwh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IssueReturn";
+        string stop = "stopping SCM\\IssueReturn";
+        string perform = "Performance on SCM\\IssueReturn";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -90,6 +99,11 @@ namespace UI.SCM
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnReturn_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btnReturn_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (hdnConfirm.Value == "1")
@@ -119,7 +133,15 @@ namespace UI.SCM
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnReturn_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnReturn_Click", null);
+            Flogger.WriteDiagnostic(fd);        
+            tracker.Stop();
         }
     }
 }

@@ -12,6 +12,8 @@ using SAD_BLL.Item;
 using SAD_DAL.Item;
 using System.Text;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Item
 {
@@ -25,7 +27,10 @@ namespace UI.SAD.Item
         TableCell tdCon = new TableCell();
 
         ItemManagerTDS.SprItemManagerGetAllUpperLevelDataTable tblUpperLevel;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Item\\ItemSearch";
+        string stop = "stopping SAD\\Item\\ItemSearch";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -37,25 +42,26 @@ namespace UI.SAD.Item
 
         protected void btnPopSubmit_Click(object sender, EventArgs e)
         {
-            /*ItemManager im = new ItemManager();
+            
+                /*ItemManager im = new ItemManager();
 
-            if (hdnMode.Value == "new")
-            {
-                im.AddItem(hdnParent.Value, hdnLevel.Value, hdnSubLevel.Value, txtPopText.Text, ddlUnit.SelectedValue, ddlType.SelectedValue, txtCode.Text);
-            }
-            else if (hdnMode.Value == "sub")
-            {
-                im.AddSubItem(hdnParent.Value, hdnLevel.Value, hdnSubLevel.Value, txtPopText.Text, txtPopLabel.Text, ddlUnit.SelectedValue, ddlType.SelectedValue, txtCode.Text);
-            }
-            else if (hdnMode.Value == "mod")
-            {
-                im.UpdateLabel(txtPopLabel.Text, hdnSubLevel.Value, hdnLevel.Value, ddlUnit.SelectedValue);
-            }
+                if (hdnMode.Value == "new")
+                {
+                    im.AddItem(hdnParent.Value, hdnLevel.Value, hdnSubLevel.Value, txtPopText.Text, ddlUnit.SelectedValue, ddlType.SelectedValue, txtCode.Text);
+                }
+                else if (hdnMode.Value == "sub")
+                {
+                    im.AddSubItem(hdnParent.Value, hdnLevel.Value, hdnSubLevel.Value, txtPopText.Text, txtPopLabel.Text, ddlUnit.SelectedValue, ddlType.SelectedValue, txtCode.Text);
+                }
+                else if (hdnMode.Value == "mod")
+                {
+                    im.UpdateLabel(txtPopLabel.Text, hdnSubLevel.Value, hdnLevel.Value, ddlUnit.SelectedValue);
+                }
 
-            tbl.Controls.Clear();
-            GetItemInfo("", 1);
-            pnlMain.Controls.Add(tbl);*/
-        }
+                tbl.Controls.Clear();
+                GetItemInfo("", 1);
+                pnlMain.Controls.Add(tbl);*/
+            }
 
         private void BuildTree()
         {
@@ -156,7 +162,20 @@ namespace UI.SAD.Item
                 }
             }*/
 
-            int level;
+
+
+
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\ItemSearch  Item Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -246,6 +265,20 @@ namespace UI.SAD.Item
                     tbl.Rows.Add(tr);
                 }*/
             }
+
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private HtmlAnchor BuildAnchor(string text, string attrMethod)
@@ -258,7 +291,16 @@ namespace UI.SAD.Item
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            StringBuilder allID = new StringBuilder();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Item\\ItemSearch  Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                StringBuilder allID = new StringBuilder();
             StringBuilder level = new StringBuilder();
             for (int i = 0; i < tbl.Controls.Count; i++)
             {
@@ -289,6 +331,18 @@ namespace UI.SAD.Item
             hdnSub.Value = subLevel.ToString();
 
             GridView1.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void ddlUnit_DataBound(object sender, EventArgs e)

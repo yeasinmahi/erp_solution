@@ -6,10 +6,16 @@
     <title>Welcome to Akij Group</title>
       <asp:PlaceHolder ID="PlaceHolder1" runat="server">     
           <%: Scripts.Render("~/Content/Bundle/frmJS") %>
+           <%: Scripts.Render("~/Content/Bundle/menuJS") %>
     </asp:PlaceHolder>   
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/frmCSS" />
 
     <script type="text/javascript">
+         window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+        gtag('config', 'UA-125570863-1');
+
         //window.open("Banner.aspx", "mainWin","toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=1,width=1011,height=710");    
         //window.location('address_goes_here');
         //alert('ol');
@@ -18,7 +24,17 @@
         //alert(curUrl); 
         //top.window.moveTo(0,0);
         //top.window.resizeTo(screen.availWidth,screen.availHeight);        
-    </script>        
+    </script> 
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+<%--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+    gtag('config', 'UA-125570863-1');
+
+
+</script> --%>
 </head>    
 
 <frameset border="0" frameborder="no" framespacing="0" name="Akij" rows="50,*,15">

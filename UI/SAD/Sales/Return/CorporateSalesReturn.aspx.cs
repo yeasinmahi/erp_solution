@@ -11,6 +11,8 @@ using System.Data;
 using System.Xml;
 using System.IO;
 using SAD_BLL.Item;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales.Return
 {
@@ -19,7 +21,10 @@ namespace UI.SAD.Sales.Return
         DataTable dt = new DataTable(); Bridge obj = new Bridge(); OrderInput_BLL objOrder = new OrderInput_BLL();
         string xmlpath = "", xmlString, strcustid, strrtnqty, strwhrqty, strprodid, strprodname, strchallanno;
 
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\CorporateSalesReturn";
+        string stop = "stopping SAD\\Sales\\Return\\CorporateSalesReturn";
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/Sales/Data/CorpRtn_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -91,8 +96,14 @@ namespace UI.SAD.Sales.Return
 
         protected void btnadd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\CorporateSalesReturn  Sales Return for Corporate", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
-            {                
+            {
                 if (hdnprodid.Value != "") { strprodid = hdnprodid.Value; } else {  }
                 strprodname = txtprod.Text;
                 strrtnqty = txtqty.Text; strwhrqty = txtwhqty.Text;
@@ -113,7 +124,16 @@ namespace UI.SAD.Sales.Return
                 else { txtSearch.Text = ""; }
                 txtprod.Text = ""; txtqty.Text = ""; txtwhqty.Text = ""; strchallanno = "";
             }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Customer Name or Product Name is not valid');", true); }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateReturnXml(string strprodid, string strprodname, string strrtnqty, string strwhrqty, string strcost)
         {

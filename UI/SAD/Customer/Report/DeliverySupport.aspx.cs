@@ -12,6 +12,8 @@ using SAD_DAL.Sales;
 using SAD_BLL.Sales.Report;
 using SAD_DAL.Sales.Report;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Customer.Report
 {
@@ -21,7 +23,10 @@ namespace UI.SAD.Customer.Report
         protected StringBuilder mainD = new StringBuilder();
 
         SAD_BLL.Customer.Report.DeliverySupport ds = new SAD_BLL.Customer.Report.DeliverySupport();
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\Report\\CreditBalance";
+        string stop = "stopping SAD\\Customer\\Report\\CreditBalance";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,7 +38,16 @@ namespace UI.SAD.Customer.Report
         }
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            long? intID = null;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Customer\\Report\\CreditBalance Delivery Support", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                long? intID = null;
             DateTime? dteDate = null; DateTime? dteDateReq = null;
             string strInsertedBy = ""; DateTime? dteInsertionTime = null;
             string strModifieddBy = ""; DateTime? dteModificationTime = null;
@@ -242,6 +256,20 @@ namespace UI.SAD.Customer.Report
 
             pnlDO.DataBind();
             pnlCH.DataBind();
+
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
 

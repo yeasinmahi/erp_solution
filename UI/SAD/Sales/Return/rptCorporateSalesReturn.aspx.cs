@@ -10,6 +10,8 @@ using SAD_BLL.Item;
 using SAD_BLL.Customer;
 using SAD_BLL.Corporate_sales;
 using SAD_BLL.Corporate_Sales;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Sales.Return
 {
@@ -17,6 +19,10 @@ namespace UI.SAD.Sales.Return
     {
         DataTable dt = new DataTable(); Bridge obj = new Bridge(); OrderInput_BLL objOrder = new OrderInput_BLL();
         string  strcustomername, strprodname; DateTime dtefrom, dteto; int intcustid, intprodid;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Sales\\Return\\rptCorporateSalesReturn";
+        string stop = "stopping SAD\\Sales\\Return\\rptCorporateSalesReturn";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -109,9 +115,15 @@ namespace UI.SAD.Sales.Return
 
         protected void btnshow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Sales\\Return\\rptCorporateSalesReturn Corporate Sales Return Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-               
+
                 lblfromdate.Text = txtfrmdte.Text; lbltodate.Text = txttodte.Text;
                 strcustomername = txtSearch.Text; if (strcustomername == "") { lblcustname2.Text = "All"; } else { lblcustname2.Text = strcustomername; }
                 strprodname = txtprod.Text; if (strprodname == "") { lblprodname2.Text = "All"; } else { lblprodname2.Text = strprodname; }
@@ -131,9 +143,22 @@ namespace UI.SAD.Sales.Return
                     dgvrpt1.DataSource = "";
                     dgvrpt1.DataBind();
                 }
-                
+
+
             }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Error');", true); }
+            catch (Exception ex)
+            {
+
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Error');", true);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+            
         }
 
         protected void btnExport_Click(object sender, EventArgs e)

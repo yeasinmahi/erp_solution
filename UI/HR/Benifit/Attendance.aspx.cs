@@ -10,14 +10,28 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Benifit
 {
     public partial class Attendance : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Benifit/Attendance.aspx";
+        string stop = "stopping HR/Benifit/Attendance.aspx";
+
         HR_BLL.Benifit.Bonus_BLL bnft = new HR_BLL.Benifit.Bonus_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/Attendance.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind(); txtEmployeeSearch.Attributes.Add("onkeyUp", "SearchText();");
@@ -43,6 +57,11 @@ namespace UI.HR.Benifit
                 }
             }
 
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         [WebMethod]
         public static List<string> GetAutoCompleteData(string strSearchKey)
@@ -55,6 +74,13 @@ namespace UI.HR.Benifit
         }
         protected void Action_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Action_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/Attendance.aspx Action_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (hdndelete.Value == "1")
@@ -67,9 +93,21 @@ namespace UI.HR.Benifit
                 }
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+
+            fd = log.GetFlogDetail(stop, location, "Action_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/Attendance.aspx btnSave_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (hdnconfirm.Value == "1")
@@ -85,7 +123,14 @@ namespace UI.HR.Benifit
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
             txtEmployeeSearch.Text = ""; txtJobtype.Text = ""; txtDesignation.Text = ""; txtAmount.Text = "0.00"; ddlBType.DataBind();
+
+            fd = log.GetFlogDetail(stop, location, "btnSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
+
 
     }
 }

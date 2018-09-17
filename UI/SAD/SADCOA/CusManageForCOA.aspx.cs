@@ -10,6 +10,8 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Customer;
 using UI.ClassFiles;
 
@@ -18,6 +20,10 @@ namespace UI.SAD.SADCOA
     public partial class CusManageForCOA : BasePage
     {
         string userID;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\SADCOA\\CusManageForCOA";
+        string stop = "stopping SAD\\SADCOA\\CusManageForCOA";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -93,7 +99,16 @@ namespace UI.SAD.SADCOA
 
         protected void add_Click(object sender, EventArgs e)
         {
-            int cusType = int.Parse(ddlCusType.SelectedValue);
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\SADCOA\\CusManageForCOA Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int cusType = int.Parse(ddlCusType.SelectedValue);
             int unit = int.Parse(ddlUnit.SelectedValue);
 
             int pID;
@@ -111,7 +126,17 @@ namespace UI.SAD.SADCOA
 
             bool ysnAdd = cusToCoa.CustomerManagementForCOAInsert(cusType, pID, unit, txtName.Text, userID);
             GridSub.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

@@ -30,7 +30,7 @@
                     var poqty = parseFloat($("[id*=lblPoQty]", row).html());
                     var monValue = parseFloat($("[id*=lblValue]", row).html());
                     var preReceQty = parseFloat($("[id*=lblPreviousReceive]", row).html());
-                    var receQty = parseFloat($(this).val()).toFixed(4);
+                    var receQty = parseFloat($(this).val());
                     var rtotal = parseFloat(monValue / poqty * receQty);
                     var remain = parseFloat(poqty - preReceQty)
                     if (remain >= receQty) {
@@ -50,8 +50,7 @@
 
         });
          
-        function MrrGenerateCheck() {
-            
+        function MrrGenerateCheck() { 
             var e = document.getElementById("ddlPo");
             var Po = e.options[e.selectedIndex].value; 
             var challan = document.getElementById("txtChallan").value;
@@ -71,12 +70,25 @@
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; } 
-
-            
                  
-            }
-         
+            } 
+        }
 
+
+        function PoViewCheck() { 
+              
+            var e = document.getElementById("ddlWH");
+            var wh = e.options[e.selectedIndex].value; 
+             var pt = document.getElementById("ddlPoType");
+            var poType = pt.options[e.selectedIndex].value;
+            
+
+            if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select WH'); }
+            else if ($.trim(poType) == 0 || $.trim(poType) == "" || $.trim(poType) == null || $.trim(poType) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type'); }
+                 
+            else {
+                document.getElementById("hdnConfirm").value = "1";  
+            } 
         }
     </script> 
 
@@ -276,14 +288,14 @@
                         <ItemTemplate><asp:Label ID="lblPLocation"   Width="50px" runat="server"  Text='<%# Bind("strLocationName") %>' ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right" SortExpression="strLocationName" > 
+                        <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right"  > 
                         <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
                             <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />
                                     <asp:Parameter DefaultValue="" Name="xmlData" Type="Object" />
                                     <asp:ControlParameter ControlID="ddlWH" Name="intWh" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:ControlParameter ControlID="ddlPo" Name="intPOId" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:Parameter DefaultValue="0" Name="intPOId" Type="Int32" />
                                     <asp:Parameter DefaultValue="2018-01-01" Name="dteDate" Type="DateTime" />
                                     <asp:Parameter DefaultValue="0" Name="intEnroll" Type="Int32" />
                                     <asp:Parameter DefaultValue="" Direction="InputOutput" Name="msg" Type="String" />
@@ -294,7 +306,7 @@
                         <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right"   > 
-                        <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px" DataFormatString="{0:0.00}"  ></asp:TextBox></ItemTemplate> 
+                        <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px"  ></asp:TextBox></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Wrap="true" />  </asp:TemplateField> 
                            
                         </Columns> 

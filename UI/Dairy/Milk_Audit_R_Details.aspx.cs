@@ -15,11 +15,18 @@ using UI.ClassFiles;
 using Projects_BLL;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Dairy
 {
     public partial class Milk_Audit_R_Details : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Milk_Audit_R_Details.aspx";
+        string stop = "stopping Dairy/Milk_Audit_R_Details.aspx";
+
         Project_Class obj = new Project_Class();
         DataTable dt;
 
@@ -27,15 +34,36 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Audit_R_Details.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+
             if (!IsPostBack)
             {
                 intMRRID = int.Parse(Request.QueryString["intID"]);
                 LoadGrid();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Milk_Audit_R_Details.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {                
                 dt = new DataTable();
@@ -47,6 +75,11 @@ namespace UI.Dairy
             {
                 ex.ToString();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected decimal totalmrrqty = 0;

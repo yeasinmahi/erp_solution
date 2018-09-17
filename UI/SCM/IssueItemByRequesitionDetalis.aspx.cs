@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Data;
 using System.IO;
@@ -21,13 +23,15 @@ namespace UI.SCM
         int enroll, intwh;
         string filePathForXML,  xmlString = "";
         private string filePathForText;
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\IssueItemByRequesitionDetalis";
+        string stop = "stopping SCM\\IssueItemByRequesitionDetalis";
+        string perform = "Performance on SCM\\IssueItemByRequesitionDetalis";
         protected void Page_Load(object sender, EventArgs e)
         {
-            // using Utility;
-            //using Model;
-            //ProjectConfig.Instance.MudulaLocalFileBasePath = Server.MapPath("~/SCM/Data/");
-            //ProjectConfig.Instance.MudulaRemoteFileBasePath = @"\\fs\RS1ESQLBackup\DEVESQL\TEST\";
-
+           
             filePathForText = Server.MapPath("~/SCM/Data/");
             filePathForXML = Server.MapPath("~/SCM/Data/sIn__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
@@ -63,27 +67,17 @@ namespace UI.SCM
             }
             else { }
 
-            //string message;
-            //for (int i=0;i<3;i++)
-            //{
-            //    dynamic obj = new
-            //    {
-            //        itemId = "117919",
-            //        itemName = "Angular Ball Bearing  01.22.0007.4(0339838)",
-            //        qty = "1",
-            //        locationid = "14942",
-            //        location = "DTI, Fk5-13",
-            //        rate = "33",
-            //        remarks = "test"
-            //    };
-                
-            //    XmlParser.CreateXml("Vouchar", obj, filePathForXML,out message);
-            //}
+           
             
         }
 
         protected void btnIssue_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnIssue_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker(perform + " " + "btnIssue_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
@@ -118,28 +112,9 @@ namespace UI.SCM
                            CreateXmlIssue( itemId,issueQty,stockVlaue,locationId,stockQty,reqId,reqCode,deptId,strSection,reqBy,receiveBy);
                         }
 
-                        ////modularItem
-                        //ModularItem modularItem = GetModularItem(itemId, itemName, itemUnit);
-                        //string message = String.Empty;
-                        //TextParser.CreateText(modularItem, Common.GetModulaFullPath(ProjectConfig.Instance.MudulaLocalFileBasePath, Common.ModulaFileName.Item), out message);
-                        ////modularOrder
-                        //ModularOrder modularOrder = GetModularOrder(reqCode, reqCode, "p");
-                        //message = String.Empty;
-                        //TextParser.CreateText(modularOrder, Common.GetModulaFullPath(ProjectConfig.Instance.MudulaLocalFileBasePath, Common.ModulaFileName.Order), out message);
-                        ////modularOrder
-                        //ModularOrderLine modularOrderLine = GetModularOrderLine(reqCode, itemId, issueQty);
-                        //message = String.Empty;
-                        //TextParser.CreateText(modularOrderLine, Common.GetModulaFullPath(ProjectConfig.Instance.MudulaLocalFileBasePath, Common.ModulaFileName.OrderLine), out message);
-                        ////modularStockUpdate
-                        //ModularStockUpdate modularStockUpdate = GetModularStockUpdate(itemId, issueQty);
-                        //message = String.Empty;
-                        //TextParser.CreateText(modularStockUpdate, Common.GetModulaFullPath(ProjectConfig.Instance.MudulaLocalFileBasePath, Common.ModulaFileName.StrockUpdate), out message);
-
+                       
                     }
-                    //bool isCopy = CopyTextFile(Common.ModulaFileName.Item);
-                    //isCopy = CopyTextFile(Common.ModulaFileName.Order);
-                    //isCopy = CopyTextFile(Common.ModulaFileName.OrderLine);
-                    //isCopy = CopyTextFile(Common.ModulaFileName.StrockUpdate);
+                    
 
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXML);
@@ -154,7 +129,16 @@ namespace UI.SCM
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+        
+            tracker.Stop();
         }
 
         //private bool CopyTextFile(Common.ModulaFileName fileName)

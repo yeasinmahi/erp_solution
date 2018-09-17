@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Corporate_sales;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Corporate_sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,6 +29,10 @@ namespace UI.SAD.Corporate_sales
         Bridge br = new Bridge();
         Bridge insertinfo = new Bridge();
         Int32 permissionnumber; string strnaration; Int32 intaccountid; string dtedatenew; string cheque; decimal amount; int enroll = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\UnfoundView";
+        string stop = "stopping SAD\\Corporate_sales\\UnfoundView";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -79,6 +85,17 @@ namespace UI.SAD.Corporate_sales
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
+
+             var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\UnfoundView Unfound", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
             Int32 id = int.Parse(Session["intaccountid"].ToString());
             accountno = newreport.getbankaccountno(id);
             string bankaccountid = accountno.Rows[0]["strAccountNo"].ToString();
@@ -165,6 +182,17 @@ namespace UI.SAD.Corporate_sales
 
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

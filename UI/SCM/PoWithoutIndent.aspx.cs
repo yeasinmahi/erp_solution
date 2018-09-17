@@ -1,4 +1,6 @@
-﻿using SCM_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,18 +27,46 @@ namespace UI.SCM
         
         DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
         decimal poQty, numPoRate;
+
+
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\PoWithoutIndent";
+        string stop = "stopping SCM\\PoWithoutIndent";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/In__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             filePathForXMLPo = Server.MapPath("~/SCM/Data/Po__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
-            if (!IsPostBack)
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
-                try {File.Delete(filePathForXML); }catch { }
-                try { File.Delete(filePathForXMLPo); } catch { } 
-                DefaltDataBound();
+                if (!IsPostBack)
+                {
+                    try { File.Delete(filePathForXML); } catch { }
+                    try { File.Delete(filePathForXMLPo); } catch { }
+                    DefaltDataBound();
+                }
+                else
+                { }
             }
-            else
-            { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+           
         }
         #region=======================Auto Search=========================
 

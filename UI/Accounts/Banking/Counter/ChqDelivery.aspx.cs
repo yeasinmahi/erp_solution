@@ -20,14 +20,18 @@ using BLL.Accounts.Banking.Counter;
 using DAL.Accounts.Banking.Counter;
 using AkijFTPConnector;
 using UI.ClassFiles;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Banking.Counter
 {
     public partial class ChqReceive : BasePage
     {
         protected double totAmount = 0;
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\Counter\\ChqReceive";
+        string stop = "stopping Accounts\\Banking\\Counter\\ChqReceive";
         [WebMethod]
         [ScriptMethod]
         public static string[] GetCOAList(string prefixText, int count)
@@ -90,7 +94,16 @@ namespace UI.Accounts.Banking.Counter
 
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\Counter\\ChqReceive   Chq Complete ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] ch = { '#' };
             string[] temp = ((Button)sender).CommandArgument.Split(ch, StringSplitOptions.RemoveEmptyEntries);
             string err = "";
 
@@ -160,10 +173,32 @@ namespace UI.Accounts.Banking.Counter
             }
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Complete", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnTakeSign_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Takesign", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\Counter\\ChqReceive   Takesign ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] ch = { '#' };
             string[] temp = ((Button)sender).CommandArgument.Split(ch, StringSplitOptions.RemoveEmptyEntries);
 
             ChqDelivery cd = new ChqDelivery();
@@ -183,10 +218,32 @@ namespace UI.Accounts.Banking.Counter
             }
             ChqReceiveST.ReloadBoothsDataForSIgnature(ddlBooth.SelectedValue);
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Takesign", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Takesign", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnCancelSign_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Cancelsign", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\Counter\\ChqReceive   Cancelsign ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] ch = { '#' };
             string[] temp = ((Button)sender).CommandArgument.Split(ch, StringSplitOptions.RemoveEmptyEntries);
 
             if (hdnSid.Value != "")
@@ -198,6 +255,19 @@ namespace UI.Accounts.Banking.Counter
                 lblMsg.Text = "";
             }
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancelsign", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Cancelsign", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnit_DataBound(object sender, EventArgs e)

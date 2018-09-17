@@ -1,4 +1,6 @@
 ﻿using BLL.Accounts.Approval;
+using Flogging.Core;
+using GLOBAL_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,11 +20,21 @@ namespace UI.Accounts.Approval
         int unit, wh, enroll, costcenter, jobstation, intCOA, intCOS, intyear, intmonth; DateTime fdate, todate;
         decimal totalbudget, totalamount, remain;
 
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Approval\\IndentApproval_UI";
+        string stop = "stopping Accounts\\Approval\\IndentApproval_UI";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\Approval\\IndentApproval_UI  Indent Approval _UI", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -60,7 +72,18 @@ namespace UI.Accounts.Approval
 
                     pnlUpperControl.DataBind();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
 
             }
@@ -168,6 +191,12 @@ namespace UI.Accounts.Approval
         #endregion
         protected void btnApproved_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Approval\\IndentApproval_UI  btnApproved_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -206,12 +235,32 @@ namespace UI.Accounts.Approval
                     
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void btnDivClose_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+            var fd = log.GetFlogDetail(start, location, "close", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Approval\\IndentApproval_UI Div Cloe", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
             fdate = DateTime.Parse(txtFdate.Text);
             todate = DateTime.Parse(txtTodate.Text);
             wh = int.Parse(ddlwh.SelectedValue);
@@ -235,6 +284,19 @@ namespace UI.Accounts.Approval
 
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "close", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "close", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -246,6 +308,12 @@ namespace UI.Accounts.Approval
         }
         protected void btnIndentDetalis_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "close", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Approval\\IndentApproval_UI Div Cloe", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
 
@@ -287,9 +355,19 @@ namespace UI.Accounts.Approval
                 TotalbudgetwithRemaining();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "close", ex);
+                Flogger.WriteError(efd);
+            }
 
-            
+
+
+            fd = log.GetFlogDetail(stop, location, "close", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
 
         }

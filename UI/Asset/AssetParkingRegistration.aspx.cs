@@ -1,4 +1,6 @@
-﻿using Purchase_BLL.Asset;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using Purchase_BLL.Asset;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +27,10 @@ namespace UI.Asset
         DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
          
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
-
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetManualRegistration";
+        string stop = "stopping Asset\\AssetManualRegistration";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,6 +48,12 @@ namespace UI.Asset
 
         protected void btnMrrView_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration btnMrrView_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -65,15 +76,31 @@ namespace UI.Asset
                     dgvGridView.DataBind();
                     dt.Clear();
                 }
-               
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void LoadView()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration LoadView", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -126,6 +153,17 @@ namespace UI.Asset
             ddlCostCenter.DataTextField = "Name";
             ddlCostCenter.DataValueField = "Id";
             ddlCostCenter.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -160,10 +198,16 @@ namespace UI.Asset
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
-        {
-            
+        { 
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
-           
+
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration btnSave_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
@@ -239,10 +283,19 @@ namespace UI.Asset
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-            }
-            catch { }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                    Flogger.WriteError(efd);
+                }
 
-        } 
+                fd = log.GetFlogDetail(stop, location, "Save", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
+            } 
         private void CreateParkingXML(string intItemid, string intMrrId,string intPoID, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost,string accusitioncost, string remarks, string assetname, string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode, string depRate, string dteDepRunDate,string totalaccdep)
         {
             XmlDocument doc = new XmlDocument();
@@ -477,8 +530,15 @@ namespace UI.Asset
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration btnSubmit_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 LoadView();
 
                 char[] delimiterChars = { ',' };
@@ -558,9 +618,18 @@ namespace UI.Asset
                     txtAcisitionCost.ReadOnly = true;
                     lblAccdep.Visible = false;
                     txtAccDep.Visible = false;
-                
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

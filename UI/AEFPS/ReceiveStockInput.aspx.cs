@@ -1,4 +1,6 @@
-﻿using MessagingToolkit.QRCode.Codec;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using MessagingToolkit.QRCode.Codec;
 using QRCoder;
 using SAD_BLL.AEFPS;
 using System;
@@ -26,6 +28,10 @@ namespace UI.AEFPS
         int enroll, mrrId, intWh, rack = 1, godown = 2, rackType; string ImagePath = "", rackId;
         string item = ""; string itemid = "", uom;
         string filePathForXML; string xmlString = "",naration,transferId;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\ReceiveStockInput";
+        string stop = "stopping AEFPS\\ReceiveStockInput";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/AEFPS/Data/Stok__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -258,6 +264,12 @@ namespace UI.AEFPS
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\ReceiveStockInput Stock Submit ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (int.Parse(hdnConfirm.Value) > 0)
@@ -281,7 +293,16 @@ namespace UI.AEFPS
                 else
                 { }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
