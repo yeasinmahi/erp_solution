@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAD_BLL.Consumer;
+using UI.ClassFiles;
 using Utility;
 
 namespace UI.SAD.Consumer
@@ -30,10 +32,8 @@ namespace UI.SAD.Consumer
 
         private void LoadGridView()
         {
-            //string email = Request.QueryString["email"];
-            //string fromDate = Request.QueryString["fromDate"];
-            //string toDate = Request.QueryString["toDate"];
-            string email = "ahmed.accl@akij.net";
+            
+            string email = (HttpContext.Current.Session[SessionParams.EMAIL].ToString());
             string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
 
@@ -41,10 +41,30 @@ namespace UI.SAD.Consumer
             fromDateTime = fromDateTime.AddHours(6);
             DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
             toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
+            int rpttype = int.Parse(drdlRptchtype.SelectedValue.ToString());
+            if (rpttype == 1)
+            {
+                DataTable dataTable = _starConsumerEntryBll.GetStarConsumeReport(fromDateTime, toDateTime, email);
+                grdvDoubleCashOfferReport.DataSource = null;
+                grdvDoubleCashOfferReport.DataBind();
+                grdvupdateorDelete.DataSource = dataTable;
+                grdvupdateorDelete.DataBind();
+                
+            }
 
-            DataTable dataTable = _starConsumerEntryBll.GetStarConsumeReport(fromDateTime, toDateTime, email);
-            grdvDoubleCashOfferReport.DataSource = dataTable;
-            grdvDoubleCashOfferReport.DataBind();
+            else if (rpttype == 2  || rpttype == 3)
+            {
+                DataTable dataTable = _starConsumerEntryBll.GetStarConsumeReport(fromDateTime, toDateTime, email);
+                grdvupdateorDelete.DataSource = null;
+                grdvupdateorDelete.DataBind();
+                grdvDoubleCashOfferReport.DataSource = dataTable;
+                grdvDoubleCashOfferReport.DataBind();
+                
+               
+            }
+            else { }
+
+           
         }
 
         protected void update_OnClick(object sender, EventArgs e)
@@ -56,16 +76,24 @@ namespace UI.SAD.Consumer
             decimal decQntForSiteCard = Convert.ToDecimal(((TextBox)gvr.FindControl("decQntForSiteCard")).Text);
             decimal decShopvsDelvQnt = Convert.ToDecimal(((TextBox)gvr.FindControl("decShopvsDelvQnt")).Text);
             decimal monEditedTotalCost = Convert.ToDecimal(((TextBox)gvr.FindControl("monEditedTotalCost")).Text);
-            try
+            
+            DateTime dtins=Convert.ToDateTime(((HiddenField)gvr.FindControl("dteInsertionDate")).Value);
+            DateTime allowdate = dtins.AddDays(3);
+            DateTime chkdate = DateTime.Now;
+            if (chkdate < allowdate)
             {
-                _starConsumerEntryBll.UpdateConsumerBill(intSiteCardCode, decQntForSiteCard, decShopvsDelvQnt, monEditedTotalCost, intID);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Successful');", true);
+                try
+                {
+                    _starConsumerEntryBll.UpdateConsumerBill(intSiteCardCode, decQntForSiteCard, decShopvsDelvQnt, monEditedTotalCost, intID);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Successful');", true);
+                }
+                catch (Exception exception)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update failed '" + exception.Message + ");", true);
+                }
+                LoadGridView();
             }
-            catch (Exception exception)
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update failed '"+ exception.Message + ");", true);
-            }
-            LoadGridView();
+            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date exceed for correction. You are allow for modification only for 72 hours form bill submit');", true); }
 
         }
 
@@ -74,9 +102,16 @@ namespace UI.SAD.Consumer
             Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             int intID = Convert.ToInt32(((HiddenField)gvr.FindControl("intID")).Value);
+            DateTime dtins = Convert.ToDateTime(((HiddenField)gvr.FindControl("dteInsertionDate")).Value);
+            DateTime allowdate = dtins.AddDays(3);
+            DateTime chkdate = DateTime.Now;
+            if (chkdate < allowdate)
+            {
+                _starConsumerEntryBll.DeactiveConsumerDoubleCashOffer(intID);
+                LoadGridView();
+            }
+            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Date exceed for correction. You are allow for modification only for 72 hours form bill submit time');", true); }
 
-            _starConsumerEntryBll.DeactiveConsumerDoubleCashOffer(intID);
-            LoadGridView();
         }
     }
 }

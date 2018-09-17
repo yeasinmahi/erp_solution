@@ -21,27 +21,29 @@ namespace UI.SAD.Order
         int unitid, teritoryid, areaid, regionid, shippoint, salesoffice, rpttypes, intsertby;
         decimal gtotaldoqnt, gtotaldoamount, gtotalchlqnt, gtotalchamount, gpendingqnt, gpendingamount;
         DateTime fromdate, todate;
-
-     
-
         SalesView bll = new SalesView();
         DataTable dt = new DataTable();
         string xmlpath, email, strSearchKey, code, strCustname;
-
-
-
         #endregion
 
-    
-
-      
+     
 
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "customerreturnqnt.xml");
             if (!IsPostBack)
             {
+                try
+                {
+                    try { File.Delete(xmlpath); } catch { }
+                    txtFromDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(-1));
+                    txtToDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
+                    //pnlUpperControl.DataBind();
+                    hdnenroll.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
+                    hdnemail.Value = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
 
+                }
+                catch { }
             }
         }
 
@@ -67,21 +69,77 @@ namespace UI.SAD.Order
                     dt = bll.GetdataforBillSubmission(rpttypes, unitid, fromdate, todate, salesoffice, 0, "", 0);
                     if (dt.Rows.Count > 0)
                     {
-
+                        grdvBillpendingtopsheet.DataSource = null;
+                        grdvBillpendingtopsheet.DataBind();
+                        grdvCustomerlistforbill.DataSource = null;
+                        grdvCustomerlistforbill.DataBind();
                         dgvCustomervsReturnqnt.DataSource = dt;
                         dgvCustomervsReturnqnt.DataBind();
 
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
                 }
+                if (rpttypes == 3)
+                {
+                    //reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id
+                    dt = bll.GetdataforBillSubmission(3, unitid, fromdate, todate, salesoffice, 0, "", 0);
+                    if (dt.Rows.Count > 0)
+                    {
 
+                        dgvCustomervsReturnqnt.DataSource = null;
+                        dgvCustomervsReturnqnt.DataBind();
+                        grdvCustomerlistforbill.DataSource = null;
+                        grdvCustomerlistforbill.DataBind();
+                        grdvBillpendingtopsheet.DataSource = dt;
+                        grdvBillpendingtopsheet.DataBind();
 
+                    }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
+                }
+                if (rpttypes == 4)
+                {
+                    //reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id
+                    dt = bll.GetdataforBillSubmission(4, unitid, fromdate, todate, salesoffice, 0, "", 0);
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        dgvCustomervsReturnqnt.DataSource = null;
+                        dgvCustomervsReturnqnt.DataBind();
+                        grdvBillpendingtopsheet.DataSource = null;
+                        grdvBillpendingtopsheet.DataBind();
+                        grdvCustomerlistforbill.DataSource = dt;
+                        grdvCustomerlistforbill.DataBind();
+
+                    }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry there is no data.');", true); }
+                }
 
             }
             catch (Exception ex)
             { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
         }
+        protected void Complete_Click(object sender, EventArgs e)
+        {
+            char[] delimiterChars = { ',' };
+            string temp1 = ((Button)sender).CommandArgument.ToString();
+            string temp = temp1.Replace("'", " ");
+            string[] searchKey = temp.Split(delimiterChars);
+            string custid = searchKey[0].ToString();
+            Session["intcustid"] = custid;
+            DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+            DateTime dtTodate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
+            int salesoffid = int.Parse(ddlSo.SelectedValue.ToString());
+            string dtfromdate = dteFromDate.ToString();
 
+            Session["dtfromdate"] = dtfromdate;
+            string dtetodate = dtTodate.ToString();
+            Session["dtetodate"] = dtetodate;
+            string intsalesoffice = salesoffid.ToString();
+            Session["intsalesoffice"] = intsalesoffice;
+
+            
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('BillSubmitPendingToCustomerDet.aspx');", true);
+        }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
@@ -200,9 +258,25 @@ namespace UI.SAD.Order
         {
 
         }
-  
+      
 
         protected void dgvCustomervsReturnqnt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+        protected void grdvBillpendingtopsheet_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+        }
+        protected void drdlrpttype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+        protected void grdvBillpendingtopsheet_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            
+        }
+        protected void grdvCustomerlistforbill_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
         }

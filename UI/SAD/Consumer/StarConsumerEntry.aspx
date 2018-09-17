@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StarConsumerEntry.aspx.cs" Inherits="UI.SAD.Consumer.StarConsumerEntry" %>
-<%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
 
@@ -10,6 +10,20 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+
+        <script>
+        // WRITE THE VALIDATION SCRIPT IN THE HEAD TAG.
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+
+            return true;
+            }
+
+          
+    </script>
+
 
 </head>
 <body>
@@ -34,6 +48,7 @@
                     <div class="tabs_container">
                         Star Consumer Bill Entry :
                         <asp:HiddenField ID="hdUnitId" runat="server" />
+                        <asp:HiddenField ID="hdnconfirm" runat="server" />
                     </div>
                     <table border="0" style="width: Auto">
                         <tr class="tblroweven">
@@ -100,17 +115,17 @@
                                         <asp:BoundField DataField="decTarget" HeaderText="Target" SortExpression="decTarget" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:TemplateField HeaderText="Side Code">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="siteCode" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="siteCode" runat="server" onkeypress="javascript:return isNumber (event)" ></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="quantity" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="quantity" runat="server" Width="50px" onkeypress="javascript:return isNumber (event)" ></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Commision Amount">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="commisionAmount" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="commisionAmount" runat="server" Width="70px" onkeypress="javascript:return isNumber (event)" ></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="User Details">
@@ -120,7 +135,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Add" OnClick="add_OnClick" />
+                                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Submit" OnClick="add_OnClick"  />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <%--<asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />--%>

@@ -28,7 +28,7 @@ namespace UI.SAD.Consumer
         }
         private void LoadTeritoryDropDown()
         {
-            DataTable dataTable =  _starConsumerEntryBll.GetTeritory("ahmed.accl@akij.net");
+            DataTable dataTable =  _starConsumerEntryBll.GetTeritory(HttpContext.Current.Session[SessionParams.EMAIL].ToString());
             ddlTeritory.DataSource = dataTable;
             ddlTeritory.DataValueField = "intID";
             ddlTeritory.DataTextField = "strText";
@@ -68,58 +68,74 @@ namespace UI.SAD.Consumer
 
         protected void add_OnClick(object sender, EventArgs e)
         {
-            string fromDate = fromTextBox.Text;
-            string toDate = toTextBox.Text;
-            DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
-            fromDateTime = fromDateTime.AddHours(6);
-            DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
-            toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
-            //Get the button that raised the event
-            Button btn = (Button)sender;
+           
+                string fromDate = fromTextBox.Text;
+                string toDate = toTextBox.Text;
+                DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
+                fromDateTime = fromDateTime.AddHours(6);
+                DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+                toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
+                //Get the button that raised the event
+                Button btn = (Button)sender;
 
-            //Get the row that contains this button
-            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+                //Get the row that contains this button
+                GridViewRow gvr = (GridViewRow)btn.NamingContainer;
 
 
-            int shopId = Convert.ToInt32(gvr.Cells[1].Text);
-            string territoryName = ((HiddenField)gvr.FindControl("strTerritory")).Value;
-            //int customerId = Convert.ToInt32(((Label)gvr.FindControl("dispId")).Value);
-            int customerId = Convert.ToInt32(gvr.Cells[4].Text);
-            double decShopvsDelvQnt = Convert.ToDouble(gvr.Cells[8].Text);
-            double editedTotalCost = Convert.ToDouble(((TextBox)gvr.FindControl("commisionAmount")).Text);
-            int siteCardCode = Convert.ToInt32(((TextBox)gvr.FindControl("siteCode")).Text);
-            double qntForSiteCard = Convert.ToDouble(((TextBox)gvr.FindControl("quantity")).Text);
+            string edtcost = ((TextBox)gvr.FindControl("commisionAmount")).Text;
+            string sitcod = ((TextBox)gvr.FindControl("commisionAmount")).Text;
             string starUserDetaills = ((TextBox)gvr.FindControl("userDetails")).Text;
-            int intProgramType = 6;
-            int unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
-            int insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
-            string message;
-            dynamic obj = new
-            {
-                intShopId = shopId,
-                strTerritory = territoryName,
-                intCustID = customerId,
-                decShopvsDelvQnt = decShopvsDelvQnt,
-                monEditedTotalCost = editedTotalCost,
-                intSiteCardCode = siteCardCode,
-                decQntForSiteCard = qntForSiteCard,
-                strUserDetaills = starUserDetaills
+            string edtqnt= ((TextBox)gvr.FindControl("quantity")).Text;
 
-            };
-
-            if (XmlParser.CreateXml("StarConsumer", obj, _filePathForXml, out message))
+            if (edtcost == "" || sitcod == "" || starUserDetaills == "" || edtqnt=="")
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(_filePathForXml);
-                message = _starConsumerEntryBll.InsertStarConsumerBill(doc.OuterXml, fromDateTime, toDateTime, insertBy, intProgramType, unitId,insertBy);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('INPUT ARE NOT PROPERLY');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
+                int shopId = Convert.ToInt32(gvr.Cells[1].Text);
+                string territoryName = ((HiddenField)gvr.FindControl("strTerritory")).Value;
+                //int customerId = Convert.ToInt32(((Label)gvr.FindControl("dispId")).Value);
+                int customerId = Convert.ToInt32(gvr.Cells[4].Text);
+                double decShopvsDelvQnt = Convert.ToDouble(gvr.Cells[8].Text);
+                
+
+                double editedTotalCost = Convert.ToDouble(((TextBox)gvr.FindControl("commisionAmount")).Text);
+                int siteCardCode = Convert.ToInt32(((TextBox)gvr.FindControl("siteCode")).Text);
+                double qntForSiteCard = Convert.ToDouble(((TextBox)gvr.FindControl("quantity")).Text);
+
+                int intProgramType = 6;
+                int unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
+                int insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+                string message;
+                dynamic obj = new
+                {
+                    intShopId = shopId,
+                    strTerritory = territoryName,
+                    intCustID = customerId,
+                    decShopvsDelvQnt = decShopvsDelvQnt,
+                    monEditedTotalCost = editedTotalCost,
+                    intSiteCardCode = siteCardCode,
+                    decQntForSiteCard = qntForSiteCard,
+                    strUserDetaills = starUserDetaills
+
+                };
+
+                if (XmlParser.CreateXml("StarConsumer", obj, _filePathForXml, out message))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(_filePathForXml);
+                    message = _starConsumerEntryBll.InsertStarConsumerBill(doc.OuterXml, fromDateTime, toDateTime, insertBy, intProgramType, unitId, insertBy);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
+                }
+                XmlParser.DeleteFile(_filePathForXml);
             }
-            XmlParser.DeleteFile(_filePathForXml);
-        }
+            }
+        
 
         
         protected void showFullReport_OnClick(object sender, EventArgs e)

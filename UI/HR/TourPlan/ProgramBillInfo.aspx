@@ -88,7 +88,7 @@
 <%--=========================================Start My Code From Here===============================================--%>
 
         <div class="leaveApplication_container"> 
-    <div class="tabs_container"> Add a new Hotel  :<asp:HiddenField ID="hdnApplicantEnrol" runat="server"/>
+    <div class="tabs_container"> Program Bill Input  :<asp:HiddenField ID="hdnApplicantEnrol" runat="server"/>
         <asp:HiddenField ID="hdnstation" runat="server"/><asp:HiddenField ID="hdnsearch" runat="server"/>
         <asp:HiddenField ID="hdnofficeEmail" runat="server"/>
       
