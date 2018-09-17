@@ -14,6 +14,8 @@ using System.Text;
 using BLL.Accounts.ChartOfAccount;
 using DAL.Accounts.ChartOfAccount;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 /// <summary>
 /// Developped By Akramul Haider
@@ -29,7 +31,10 @@ namespace UI.Accounts.ChartOfAccount
 
         BLL.Accounts.ChartOfAccount.Template tm = new BLL.Accounts.ChartOfAccount.Template();
         TemplateTDS.TblAccountsChartOfAccTemplateDataTable table;
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\ChartOfAccount\\Template";
+        string stop = "stopping Accounts\\ChartOfAccount\\Template";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -74,7 +79,16 @@ namespace UI.Accounts.ChartOfAccount
 
         private void GetChild(int templateID, string spacer, bool bold)
         {
-            string moduleID;
+            var fd = log.GetFlogDetail(start, location, "Child", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\Template   Child ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string moduleID;
             bool ysnButtonEnable;
             DataRow[] rows = table.Select("intAccTemplateID = " + templateID);
             if (rows.Length > 0)
@@ -102,14 +116,34 @@ namespace UI.Accounts.ChartOfAccount
                 sb.Append("</div></td>");
                 sb.Append("</tr></table>");
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Child", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Child", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         // Add Node to a parent Node
         // developed by Himadri das
         protected void btnPopSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            string addOrEdit = hdnAddOrEdit.Value;
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\ChartOfAccount\\Template   Pop Submit ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string addOrEdit = hdnAddOrEdit.Value;
             string accName = "";
             try
             {
@@ -158,6 +192,19 @@ namespace UI.Accounts.ChartOfAccount
             {
                 BuildTree();
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         // Inactive an account as well as its Child Account

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,10 @@ namespace UI.Accounts.PartyPayment
     {
         BLL.Accounts.PartyPayment.PartyBill objPartyBill = new BLL.Accounts.PartyPayment.PartyBill();
         string alertmsg = "";
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\PartyPayment\\FirstAuthorizationView";
+        string stop = "stopping Accounts\\PartyPayment\\FirstAuthorizationView";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,6 +110,12 @@ namespace UI.Accounts.PartyPayment
             string confirmValue = Request.Form["confirm_value"];
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "AllAuthorize", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\FirstAuthorizationView   btnAllAuthorize_Click ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     int rowCount = dgvViewVoucher.Rows.Count; bool ysnChecked;
@@ -120,8 +132,20 @@ namespace UI.Accounts.PartyPayment
                     }
                     dgvViewVoucher.DataBind();
                 }
-                catch
-                {alertmsg = "Sorry to submit !!!."; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertmsg + "');", true); }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "AllAuthorize", ex);
+                    Flogger.WriteError(efd);
+                    alertmsg = "Sorry to submit !!!."; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertmsg + "');", true);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "AllAuthorize", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+               
             }
         }
 
@@ -130,6 +154,12 @@ namespace UI.Accounts.PartyPayment
             string confirmValue = Request.Form["confirm_value"];
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Authorize", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\FirstAuthorizationView   Sign_Click ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     int usrid = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -142,7 +172,19 @@ namespace UI.Accounts.PartyPayment
                     //{ ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertmsg + "');", true); }
                     dgvViewVoucher.DataBind();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Authorize", ex);
+                    Flogger.WriteError(efd);
+                  
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "Authorize", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }

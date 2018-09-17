@@ -18,6 +18,8 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Item;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Logistic
 {
@@ -32,6 +34,10 @@ namespace UI.SAD.Logistic
         TableCell tdCon = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevel;
         string goeLevel = "";
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Logistic\\VehiclePriceVarChange";
+        string stop = "stopping SAD\\Logistic\\VehiclePriceVarChange";
 
         protected override void OnLoadComplete(EventArgs e)
         {
@@ -64,9 +70,29 @@ namespace UI.SAD.Logistic
 
         protected void btnPopSubmit_Click(object sender, EventArgs e)
         {
-            VehicleVarLogisGainGroup vg = new VehicleVarLogisGainGroup();
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\VehiclePriceVarChange  Vehicle Price Change", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                VehicleVarLogisGainGroup vg = new VehicleVarLogisGainGroup();
             vg.AddGroupByUnit(ddlUnit.SelectedValue, txtPopText.Text.Trim());
             ddlGroup.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void BuildTree()
@@ -83,7 +109,16 @@ namespace UI.SAD.Logistic
 
         private void GetItemInfo(string parentID)
         {
-            int level;
+
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\VehiclePriceVarChange Item Info", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -150,16 +185,27 @@ namespace UI.SAD.Logistic
 
                 GetItemInfo(ddl.SelectedValue);
             }
-            /*else
-            {
-                if (nextParentID == "")
+                /*else
                 {
-                    td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
-                    tr.Cells.Add(td);
-                    tbl.Rows.Add(tr);
-                    hdnGeoId.Value = "";
-                }
-            }*/
+                    if (nextParentID == "")
+                    {
+                        td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
+                        tr.Cells.Add(td);
+                        tbl.Rows.Add(tr);
+                        hdnGeoId.Value = "";
+                    }
+                }*/
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private HtmlAnchor BuildAnchor(string text, string attrMethod)

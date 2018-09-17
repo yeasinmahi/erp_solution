@@ -11,6 +11,8 @@ using System.IO;
 using System.Data;
 using System.Xml;
 using SAD_BLL.AEFPS;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.AEFPS
 {
@@ -28,6 +30,10 @@ namespace UI.AEFPS
 
         #endregion ================================================================================
 
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\TransferInN";
+        string stop = "stopping AEFPS\\TransferInN";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -91,6 +97,12 @@ namespace UI.AEFPS
         #region===== Grid View Load For Report =========================================================
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferInN Transfer Item Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intPart = 1;
@@ -111,7 +123,17 @@ namespace UI.AEFPS
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "hideGrid();", true);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected decimal totalqty = 0;
@@ -132,10 +154,18 @@ namespace UI.AEFPS
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+
             if (hdnconfirm.Value == "1")
             {
-                
-                intPart = 2;
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on AEFPS\\TransferInN Transfer Item", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    intPart = 2;
                 intWHID = int.Parse(ddlFromWH.SelectedValue.ToString());
                 intToWHID = int.Parse(ddlToWHName.SelectedValue.ToString());
                 intEnroll = int.Parse(hdnEnroll.Value);
@@ -149,11 +179,28 @@ namespace UI.AEFPS
                 hdnconfirm.Value = "0";
                 LoadGrid();
                 VoucherDDL();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 
         private void VoucherDDL()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferInN Voucher Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 intWHID = int.Parse(ddlFromWH.SelectedValue.ToString());
@@ -164,7 +211,16 @@ namespace UI.AEFPS
                 ddlVoucherCode.DataSource = dt;
                 ddlVoucherCode.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

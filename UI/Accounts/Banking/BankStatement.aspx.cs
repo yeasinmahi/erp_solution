@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BLL.Accounts.Banking;
+using Flogging.Core;
+using GLOBAL_BLL;
 using UI.ClassFiles;
 
 
@@ -19,6 +21,10 @@ namespace UI.Accounts.Banking
     public partial class BankStatement : BasePage
     {
         //ReportDocument rd = new ReportDocument();
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\BankStatement";
+        string stop = "stopping Accounts\\Banking\\BankStatement";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "7";
@@ -43,10 +49,30 @@ namespace UI.Accounts.Banking
 
         }
         protected void btnRemove_Click(object sender, EventArgs e)
-        {
-            BLL.Accounts.Banking.BankStatement bs = new BLL.Accounts.Banking.BankStatement();
+        { var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\BankStatement Bank Statement Remove ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                BLL.Accounts.Banking.BankStatement bs = new BLL.Accounts.Banking.BankStatement();
             bs.CancelAutoReconcile(((Button)sender).CommandArgument);
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
         {

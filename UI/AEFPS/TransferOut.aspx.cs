@@ -11,6 +11,8 @@ using System.IO;
 using System.Data;
 using System.Xml;
 using SAD_BLL.AEFPS;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.AEFPS
 {
@@ -30,6 +32,10 @@ namespace UI.AEFPS
         string strEmpCode; string strKey;
         char[] delimiterChars = { '[', ']', ';', '-', '_', '.', ',' };
         string[] arrayKey;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\TransferOut";
+        string stop = "stopping AEFPS\\TransferOut";
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -118,6 +124,12 @@ namespace UI.AEFPS
             //char[] ch = { '[', ']' };
             //string[] temp = txtItem.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
             //strItemID = temp[1].ToString();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferOut Transfer Out Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 strBarcode = txtQRCode.Text;
@@ -144,7 +156,16 @@ namespace UI.AEFPS
                     }
                 }
             }
-            catch { }           
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -301,7 +322,15 @@ namespace UI.AEFPS
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (hdnconfirm.Value == "1")
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\TransferOut Transfer Out Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (hdnconfirm.Value == "1")
             {
                 intPart = 1;
                 intWHID = int.Parse(ddlFromWH.SelectedValue.ToString());
@@ -332,7 +361,19 @@ namespace UI.AEFPS
                 hdnconfirm.Value = "0";
                 File.Delete(filePathForXML); dgvTransferItem.DataSource = ""; dgvTransferItem.DataBind();                
                 txtQRCode.Text = "";
+
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

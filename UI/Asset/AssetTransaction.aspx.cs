@@ -12,6 +12,8 @@ using UI.ClassFiles;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -26,6 +28,10 @@ namespace UI.Asset
         string XMLVehicle, XMLBuilding, XMLLand; int enroll; decimal recieveqty;
         string xmlStringG = ""; string[] arrayKey; char[] delimiterChars = { '[', ']' };
        string accCOAid = null,accCOAName = null;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetTransaction";
+        string stop = "stopping Asset\\AssetTransaction";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXMlAssetParking = Server.MapPath("~/Asset/Data/p_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -46,7 +52,16 @@ namespace UI.Asset
         #region===============================Asset Sales Process=================================
         private void SalePageLoad()
         {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -147,6 +162,17 @@ namespace UI.Asset
                 try { txtSaCapitalLoss.Text = (decimal.Parse(txtSaTotalDep.Text) - decimal.Parse(txtSaTotalCost.Text)).ToString(); }
                 catch { txtSaCapitalLoss.Text = "0".ToString(); }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void SalePageXml()
@@ -299,7 +325,18 @@ namespace UI.Asset
         }
         protected void btnSales_Click(object sender, EventArgs e)
         {
-            SalePageXml();
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                SalePageXml();
 
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXMlAssetParking);
@@ -315,7 +352,17 @@ namespace UI.Asset
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
             divClose();
-          
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void txtSalesProcess_TextChanged(object sender, EventArgs e)
         {
@@ -589,7 +636,17 @@ namespace UI.Asset
         #region============================Asset Revalution===========================================
         private void RevaluationPageLoad()
         {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -684,6 +741,17 @@ namespace UI.Asset
                 catch { }
                 txtRevAssetname.Text = rt.Rows[0]["strNameOfAsset"].ToString();
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void RevaluationXml()
         {
@@ -811,7 +879,17 @@ namespace UI.Asset
         }
         protected void btnReValution_Click(object sender, EventArgs e)
         {
-            RevaluationXml();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                RevaluationXml();
 
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXMlAssetParking);
@@ -827,6 +905,17 @@ namespace UI.Asset
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
             divClose();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #endregion==============================Close==================================================

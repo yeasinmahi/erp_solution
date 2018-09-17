@@ -17,13 +17,17 @@ using System.Globalization;
 using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.ClassFiles;
-
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Accounts.Report
 {
     public partial class CashBook : BasePage
     {
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Report\\CashBook";
+        string stop = "stopping Accounts\\Report\\BankBook";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -105,9 +109,16 @@ namespace UI.Accounts.Report
             //Created    :   Md. Yeasir Arafat / Apr-16-2012
             //Modified   :   
             //Parameters :   intEmployeeID,intMonthID,intYearId
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Report\\CashBook   Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
 
-            string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/Cashbook.rdlc");
+                string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/Cashbook.rdlc");
             DataTable oDTReportData = new DataTable();
             string unitName = "", unitAddress = "";
             int userID = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -162,6 +173,19 @@ namespace UI.Accounts.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         //void Page_Unload(Object sender, EventArgs e)

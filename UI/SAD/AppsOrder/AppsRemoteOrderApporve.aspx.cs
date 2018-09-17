@@ -1,4 +1,6 @@
-﻿using SAD_BLL.Sales;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +16,11 @@ namespace UI.SAD.AppsOrder
     {
         DataTable dt = new DataTable();
         AppsSalesOrder_BLL objOrder = new AppsSalesOrder_BLL();
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\AppsOrder\\AppsRemoteOrderApporve";
+        string stop = "stopping SAD\\AppsOrder\\AppsRemoteOrderApporve";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -35,9 +42,15 @@ namespace UI.SAD.AppsOrder
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\AppsOrder\\AppsRemoteOrderApporve Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                
+
                 int enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 int unitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
 
@@ -47,7 +60,16 @@ namespace UI.SAD.AppsOrder
                 TextBox txtAdjust = row.FindControl("txtAdjValue") as TextBox;
 
             }
-            catch { }
-       }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
     }
 }

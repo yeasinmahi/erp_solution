@@ -1,4 +1,6 @@
-﻿using HR_BLL.Global;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.Global;
 using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
@@ -35,9 +37,12 @@ namespace UI.SAD.Order
             , MntCost, FerryTol, OwnDA, OtherDA, OwnHotel, DriverHotel, Photocopy, Courier, OtherCost, RowTotal;
         int paymentType; int updatecngCreditsupplier1ID; decimal cngCredit1Amount; string cngCredit1Name; int updatecngCredits2id; decimal cngCredit2Amount; string cngCredit2Name; int updateoilCreditsupplier3ID; decimal OilCreditAmount;
         string oilCreditStationName; decimal PersonalMilaqnt, PersonalRate, PersonMlgTotal; int updateby;
-      
-  
-       
+
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADAInformationUpdate";
+        string stop = "stopping SAD\\Order\\RemoteTADAInformationUpdate";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -80,9 +85,15 @@ namespace UI.SAD.Order
 
         private void showDataForUpdate()
         {
-             try
-                {
-                    DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAInformationUpdate TADA Information Update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                     DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                     int deptid=  int.Parse( HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
                     if (rdbUserOption.SelectedItem.Text == "Own")
@@ -137,17 +148,22 @@ namespace UI.SAD.Order
                     }
                         else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! You are not permitted');", true); }
                     }
-                }
-
-
-                catch
-                {
-
-                }
-
-
-                
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
+
+        }
         
 
 
@@ -705,7 +721,16 @@ namespace UI.SAD.Order
         protected void btnUpdateinf_Click1(object sender, EventArgs e)
         {
 
-            char[] delimiterChars = { ',' };
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAInformationUpdate TADA Information Update", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
             string intRowSl = searchKey[0].ToString();
@@ -857,8 +882,21 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('For Bill Update You must seleck one check box at left side of the row. ');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
-      }
+    }
 
    }
 

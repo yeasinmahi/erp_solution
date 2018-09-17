@@ -8,6 +8,8 @@ using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
 using System.IO;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -16,12 +18,23 @@ namespace UI.Asset
         AssetMaintenance objDetalis = new AssetMaintenance();
         DataTable dt = new DataTable();
         Report_BLL objReport = new Report_BLL();
-       
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\AssetReportDetalis_UI";
+        string stop = "stopping Asset\\AssetReportDetalis_UI";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
-            {
-                int Mnumber = int.Parse(Session["intMaintenanceNo"].ToString());
+            { var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Asset\\AssetReportDetalis_UI Show Page Load", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    int Mnumber = int.Parse(Session["intMaintenanceNo"].ToString());
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -50,7 +63,17 @@ namespace UI.Asset
                 dt = objReport.GetData(5, "", 0, 0, DateTime.Now, DateTime.Now, Mnumber, intenroll);
                 dgvService.DataSource = dt;
                 dgvService.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
 
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }

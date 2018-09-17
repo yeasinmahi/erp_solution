@@ -18,13 +18,18 @@ using BLL.Accounts.Books;
 using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Report
 {
 
     public partial class BankBook : BasePage
     {
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Report\\BankBook";
+        string stop = "stopping Accounts\\Report\\BankBook";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -67,8 +72,15 @@ namespace UI.Accounts.Report
             //Modified   :   
             //Parameters :   intEmployeeID,intMonthID,intYearId
 
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/Bankbook.rdlc");
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Report\\BankBook   Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/Bankbook.rdlc");
             DataTable oDTReportData = new DataTable();
 
 
@@ -130,6 +142,19 @@ namespace UI.Accounts.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

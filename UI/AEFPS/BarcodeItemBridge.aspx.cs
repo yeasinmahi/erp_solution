@@ -1,4 +1,6 @@
-﻿ 
+﻿
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.AEFPS;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,10 @@ namespace UI.AEFPS
         int enroll, mrrId, intWh; string ImagePath = "";
         string item = ""; string itemid = "", uom;
         string filePathForXML; string xmlString = "";
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\BarcodeItemBridge";
+        string stop = "stopping AEFPS\\BarcodeItemBridge";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/AEFPS/Data/Br__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -55,22 +61,46 @@ namespace UI.AEFPS
         }
         protected void btnView_Click(object sender, EventArgs e)
         {
+           
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\BarcodeItemBridge Barcode Item Bridge Save ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 
                 dt = objRec.DataView(9, "", 0, 0, DateTime.Now, enroll);
                 dgvBridge.DataSource = dt;
                 dgvBridge.DataBind();
             }
-            catch { }
-           
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\BarcodeItemBridge Barcode Item Save ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (dgvBridge.Rows.Count > 0 && int.Parse(hdnConfirm.Value) == 1)
@@ -110,9 +140,16 @@ namespace UI.AEFPS
                 dgvBridge.DataSource = dt;
                 dgvBridge.DataBind();
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
-
-            catch { }
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateVoucherXml(string itemid, string itemName,string  itemCode, string barcode)

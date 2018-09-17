@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -18,6 +20,11 @@ namespace UI.SAD.Order
         string totaltadabill; int bankid; int bankidinsteadofEmployeeid; int travelconveyid; int travelconveyididinsteadofemplid;
 
         string filepathforJVandBP; int reporttype; int rpttypeidinsteadofemplid;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADABPVoucher";
+        string stop = "stopping SAD\\Order\\RemoteTADABPVoucher";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filepathforJVandBP = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "createJVandBPForTADA.xml");
@@ -36,7 +43,15 @@ namespace UI.SAD.Order
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADABPVoucher Tada Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
                 string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                  int intDeptid=int.Parse( HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
                  bankid = int.Parse(ddlPaymentFor.SelectedValue.ToString());
@@ -76,15 +91,21 @@ namespace UI.SAD.Order
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
                     }
-                }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
-                //else
-                //{
-                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-                //}
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
 
-            //}
+               
 
         private void CreatexmlforJVAndBP( string strRowTotal, string strApplicantEnrolid)
 
@@ -127,15 +148,20 @@ namespace UI.SAD.Order
 
 
 
-
-
-
         protected void btnVoucherCreateallEmployee_Click(object sender, EventArgs e)
         {
             //string totalb = Convert.ToString(Session["ht"].ToString());
 
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            decimal montotalbill = decimal.Parse(hdntotalAudit.Value)/2;
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADABPVoucher Voucher Create ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                decimal montotalbill = decimal.Parse(hdntotalAudit.Value)/2;
             decimal monBPAmount = decimal.Parse(hdntotalBP.Value)/2;
             string b = "1";
             bool ysnChecked; int rptTypeid;
@@ -177,6 +203,18 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry(:  Please Select Detaills option then click Approve');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

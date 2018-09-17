@@ -23,6 +23,7 @@ using UI.ClassFiles;
 using GLOBAL_BLL;
 using System.Net;
 using System;
+using Flogging.Core;
 
 namespace UI.Accounts.Voucher
 {
@@ -30,6 +31,10 @@ namespace UI.Accounts.Voucher
     {
         XmlManager xm = new XmlManager(); string advice = "Advice", adjustment = "Adjustment";
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\VoucherEntryEdit";
+        string stop = "stopping Accounts\\Voucher\\VoucherEntryEdit";
         protected override void OnPreInit(EventArgs e)
         {
             //Session["sesUserID"] = "5";
@@ -107,7 +112,16 @@ namespace UI.Accounts.Voucher
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntryedit   show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
                 //For Update
@@ -134,6 +148,19 @@ namespace UI.Accounts.Voucher
                     else { ddlCCntr.Enabled = false; }
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region Web Method
@@ -171,6 +198,12 @@ namespace UI.Accounts.Voucher
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntryedit   add ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 Budget bdg = new Budget(); DataTable strtdt = new DataTable();
@@ -299,11 +332,28 @@ namespace UI.Accounts.Voucher
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry voucher is backdated.');", true); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "add", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntryedit   save ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string code = "", voucherID = hdnVoucherID.Value;
@@ -571,7 +621,18 @@ namespace UI.Accounts.Voucher
 
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "save", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

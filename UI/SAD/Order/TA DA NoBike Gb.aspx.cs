@@ -1,4 +1,5 @@
-﻿using GLOBAL_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,7 +29,10 @@ namespace UI.SAD.Order
         protected decimal rowTotal = 0; protected decimal movDuration = 0;
 
 
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TA_DA_NoBike_Gb";
+        string stop = "stopping SAD\\Order\\TA_DA_NoBike_Gb";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -197,7 +201,17 @@ namespace UI.SAD.Order
             if (hdnconfirm.Value == "1")
             {
 
-                string Rickfai = "0", busfair = "0", cngfair = "0", trainfair = "0", boatfair = "0", othervhfair = "0", ownda = "0", otherpersonda = "0", hotelfair = "0", OtherCost = "0";
+                var fd = log.GetFlogDetail(start, location, "Add", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_NoBike_Gb Add ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+
+                    string Rickfai = "0", busfair = "0", cngfair = "0", trainfair = "0", boatfair = "0", othervhfair = "0", ownda = "0", otherpersonda = "0", hotelfair = "0", OtherCost = "0";
                 string BillDate = txtFromDate.Text;
 
 
@@ -552,6 +566,18 @@ namespace UI.SAD.Order
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You try to back date entry.Plase contact to HR Dept. for detaills. All r request to submit bill within current month.After 5th date of next month. you are not allow for submit Previous month bill')", true);
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Add", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -564,9 +590,16 @@ namespace UI.SAD.Order
         protected void btnSubmit_Click1(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
-            {
+            { var fd = log.GetFlogDetail(start, location, "Save", null);
+                Flogger.WriteDiagnostic(fd);
 
-                if (GridView1.Rows.Count > 0)
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_NoBike_Gb Save ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    if (GridView1.Rows.Count > 0)
                 {
                     #region ------------ Insert into dataBase -----------
 
@@ -615,7 +648,18 @@ namespace UI.SAD.Order
                 File.Delete(filePathForXML);
                 GridView1.DataSource = "";
                 GridView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                    Flogger.WriteError(efd);
 
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Save", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
       

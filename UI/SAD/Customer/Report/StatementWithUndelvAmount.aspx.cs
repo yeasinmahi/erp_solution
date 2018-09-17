@@ -1,4 +1,6 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using Microsoft.Reporting.WebForms;
 using SAD_BLL.Customer;
 using SAD_BLL.Customer.Report;
 using System;
@@ -16,6 +18,11 @@ namespace UI.SAD.Customer.Report
 {
     public partial class StatementWithUndelvAmount : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\Report\\StatementWithUndelvAmount";
+        string stop = "stopping SAD\\Customer\\Report\\StatementWithUndelvAmount";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -84,8 +91,15 @@ namespace UI.SAD.Customer.Report
             //Created    : Konock/ Apr-24-2012
             //Modified   :   
             //Parameters :   intEmployeeID,intMonthID,intYearId
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            string path = "";
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Customer\\Report\\StatementWithUndelvAmount Statement with undelivery Amount", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string path = "";
             if (rdoType.SelectedIndex == 0)
             {
                 path = HttpContext.Current.Server.MapPath("~/SAD/Customer/Report/ReportTemplete/Statement.rdlc");
@@ -178,6 +192,17 @@ namespace UI.SAD.Customer.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

@@ -1,4 +1,6 @@
-﻿using HR_BLL.TourPlan;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.TourPlan;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +27,11 @@ namespace UI.SAD.Order
         string filePathForXMLHRBIKECAR;
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         DataTable dt = new DataTable();
-       protected void Page_Load(object sender, EventArgs e)
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADAAprvByHR";
+        string stop = "stopping SAD\\Order\\RemoteTADAAprvByHR";
+        protected void Page_Load(object sender, EventArgs e)
         {
             hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
             hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
@@ -59,7 +65,16 @@ namespace UI.SAD.Order
 
         private void showNoneBikeHRLebTopsheet()
         {
-            int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAprvByHR TaDa approve Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
             int userTypeid = int.Parse(ddlUserType.SelectedValue.ToString());
             int Areaid = int.Parse(drdlArea.SelectedValue.ToString());
             
@@ -182,11 +197,30 @@ namespace UI.SAD.Order
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true); }
 
            }
-   }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
         protected void btnApprove_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAprvByHR TaDa approve HR", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
             int intBillApplicantTypeid = int.Parse(ddlUserType.SelectedValue.ToString());
           
                 if (rptTypeid == 1 && intBillApplicantTypeid > 1)
@@ -468,8 +502,19 @@ namespace UI.SAD.Order
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry(:  Please Select Detaills option then click Approve');", true);
                 }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
         
 
         protected void grdvTopShNoneBike_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -1549,8 +1594,18 @@ namespace UI.SAD.Order
         private void tadaTopsheetUnitBasisforBothTypeuser()
         {
 
-           
-            SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAapprbyHR TADA Top Sheet Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
             DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
             DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
             int rptType = int.Parse(drdlReportType.SelectedValue.ToString());
@@ -1926,6 +1981,23 @@ namespace UI.SAD.Order
                  }
 
              }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
 
 
 

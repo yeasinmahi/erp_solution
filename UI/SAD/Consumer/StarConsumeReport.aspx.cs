@@ -2,6 +2,8 @@
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Consumer;
 using Utility;
 
@@ -10,6 +12,10 @@ namespace UI.SAD.Consumer
     public partial class StarConsumeReport : System.Web.UI.Page
     {
         private readonly StarConsumerEntryBll _starConsumerEntryBll = new StarConsumerEntryBll();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\StarConsumeReport";
+        string stop = "stopping SAD\\Consumer\\StarConsumeReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -49,7 +55,16 @@ namespace UI.SAD.Consumer
 
         protected void update_OnClick(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\StarConsumeReport  Consumer Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             int intID = Convert.ToInt32(((HiddenField)gvr.FindControl("intID")).Value);
             int intSiteCardCode = Convert.ToInt32(((TextBox)gvr.FindControl("intSiteCardCode")).Text);
@@ -66,6 +81,18 @@ namespace UI.SAD.Consumer
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update failed '"+ exception.Message + ");", true);
             }
             LoadGridView();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
 

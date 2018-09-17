@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,7 +17,12 @@ namespace UI.SAD.Order
         int lvel, insertby, unit,shippointid;
         DataTable dt = new DataTable();
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
-       
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TransferDelvOrderInactive";
+        string stop = "stopping SAD\\Order\\TransferDelvOrderInactive";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,6 +40,12 @@ namespace UI.SAD.Order
         }
         private void Loadgrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TransferDelvOrderInactive Grid Load Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 unit = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -50,13 +63,27 @@ namespace UI.SAD.Order
                     grdvDelvOrderInactive.DataBind();
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
-            catch
-            { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         private void Loadgridaftersubmit()
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TransferDelvOrderInactive  Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 unit = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -73,9 +100,17 @@ namespace UI.SAD.Order
                     grdvDelvOrderInactive.DataBind();
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
-            catch
-            { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -112,7 +147,16 @@ namespace UI.SAD.Order
 
         protected void btnInactiveDO_Click(object sender, EventArgs e)
         {
-            char[] delimiterChars = { ',' };
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TransferDelvOrderInactive  Submit Do", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
             strDO = searchKey[0].ToString();
@@ -123,6 +167,18 @@ namespace UI.SAD.Order
             dt = bll.getdataDeliverayOrderInactiveforRemaningQnt(unit, strDO, lvel, insertby, shippointid);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Messages"].ToString() + "');", true);
             Loadgridaftersubmit();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

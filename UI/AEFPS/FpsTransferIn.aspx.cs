@@ -33,7 +33,7 @@ namespace UI.AEFPS
         char[] delimiterChars = { '[', ']', ';', '-', '_', '.', ',' };
         string[] arrayKey;
         SeriLog log = new SeriLog();
-        string location = "SAD";
+        string location = "AEFPS";
         string start = "starting AEFPS\\FpsTransferIn";
         string stop = "stopping AEFPS\\FpsTransferIn";
 

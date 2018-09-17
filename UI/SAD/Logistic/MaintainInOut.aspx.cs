@@ -13,11 +13,17 @@ using LOGIS_DAL;
 using LOGIS_BLL.Trip;
 using SAD_BLL.Customer;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Logistic
 {
     public partial class MaintainInOut : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Logistic\\LogisGainGroupByCust";
+        string stop = "stopping SAD\\Logistic\\LogisGainGroupByCust";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -146,7 +152,16 @@ namespace UI.SAD.Logistic
 
         protected void btnInOut_Click(object sender, EventArgs e)
         {
-            Vehicle v = new Vehicle();
+
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\MaintainInOut Vehicle ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                Vehicle v = new Vehicle();
             if (hdnIn.Value == "true")
             {
                 v.MaintainanceOut(hdnVehicle.Value, Session[SessionParams.USER_ID].ToString());
@@ -163,6 +178,17 @@ namespace UI.SAD.Logistic
             btnInOut.Visible = false;
 
             VehicleSt.ReloadVehicle(ddlUnit.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

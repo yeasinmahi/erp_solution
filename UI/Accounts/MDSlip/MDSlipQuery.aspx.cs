@@ -13,11 +13,17 @@ using System.Xml.Linq;
 using DAL.Accounts.MDSlip;
 using BLL.Accounts.MDSlip;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Accounts.MDSlip
 {
     public partial class MDSlipQuery : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\MDSlip\\MDSlipQuery";
+        string stop = "stopping Accounts\\MDSlip\\MDSlipQuery";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = 1;
@@ -29,15 +35,34 @@ namespace UI.Accounts.MDSlip
 
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            DateTime date = CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\MDSlip\\MDSlipQuery   Submit ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime date = CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
             MDSlipC slip = new MDSlipC();
             MDSlipTDS.SprAccountsMDSlipQueryDataDataTable tbl = slip.GetDataForMDAlipQuery(date, int.Parse(ddlUnit.SelectedValue), rbReceivePayment.SelectedValue);
 
 
             GridView1.DataSource = tbl;
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {

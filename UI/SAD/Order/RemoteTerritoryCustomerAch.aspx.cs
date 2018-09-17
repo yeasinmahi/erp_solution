@@ -1,4 +1,5 @@
-﻿using GLOBAL_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ namespace UI.SAD.Order
 {
     public partial class RemoteTerritoryCustomerAch : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTerritoryCustomerAch";
+        string stop = "stopping SAD\\Order\\RemoteTerritoryCustomerAch";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,6 +29,12 @@ namespace UI.SAD.Order
         }
         public void LoadData()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTerritoryCustomerAch Territory Customer Accievement Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 DataTable oDTReportData = new DataTable();
@@ -36,7 +47,17 @@ namespace UI.SAD.Order
                 GridView1.DataBind();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {

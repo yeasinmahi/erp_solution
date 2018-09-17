@@ -17,11 +17,17 @@ using UserSecurity;
 using SAD_BLL.Sales;
 using SAD_DAL.Sales;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Voucher
 {
     public partial class VoucherReturn : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\VoucherReturn";
+        string stop = "stopping Accounts\\Voucher\\VoucherReturn";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +38,15 @@ namespace UI.Accounts.Voucher
         }
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            if (txtCode.Text.StartsWith("bp", true, System.Globalization.CultureInfo.CurrentCulture) || txtCode.Text.StartsWith("br", true, System.Globalization.CultureInfo.CurrentCulture))
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherReturn   show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                if (txtCode.Text.StartsWith("bp", true, System.Globalization.CultureInfo.CurrentCulture) || txtCode.Text.StartsWith("br", true, System.Globalization.CultureInfo.CurrentCulture))
             {
                 BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
                 BankVoucherTDS.QryAccountsVoucherBankDataTable tbl = bv.GetBankVoucherByCode(txtCode.Text, ddlUnit.SelectedValue);
@@ -105,6 +119,19 @@ namespace UI.Accounts.Voucher
                     SetInfo("", false);
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void btnAction_Click(object sender, EventArgs e)

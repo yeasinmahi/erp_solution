@@ -117,8 +117,9 @@ namespace UI.SCM
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             LinkButton lblBillNo = row.FindControl("lblBillNo") as LinkButton;
 
-            int Id = int.Parse(lblBillNo.Text.ToString());
-          
+            int Id =int.Parse(lblBillNo.Text.ToString());
+
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + Id + "');", true);
 
         }
@@ -130,7 +131,7 @@ namespace UI.SCM
             // starting performance tracker
             var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
-
+           
             try
             {
                 if (!IsPostBack)

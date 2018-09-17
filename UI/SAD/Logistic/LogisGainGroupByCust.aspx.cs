@@ -15,11 +15,18 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using LOGIS_BLL;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.SAD.Logistic
 {
     public partial class LogisGainGroupByCust : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Logistic\\LogisGainGroupByCust";
+        string stop = "stopping SAD\\Logistic\\LogisGainGroupByCust";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -69,9 +76,32 @@ namespace UI.SAD.Logistic
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            VehicleVarLogisGainGroup vl = new VehicleVarLogisGainGroup();
+
+
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\LogisGainGroupByCust Group by Customer", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                VehicleVarLogisGainGroup vl = new VehicleVarLogisGainGroup();
             vl.GetCustomerByGroup(hdnCustomer.Value, ddlUnit.SelectedValue, ddlSo.SelectedValue, ddlCusType.SelectedValue, ddlGroup.SelectedValue, true, false);
             GridView1.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void txtCus_TextChanged(object sender, EventArgs e)
         {
@@ -88,9 +118,28 @@ namespace UI.SAD.Logistic
         }
         protected void btnRemove_Click(object sender, EventArgs e)
         {
-            VehicleVarLogisGainGroup vl = new VehicleVarLogisGainGroup();
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\LogisGainGroupByCust Remove Customer", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                VehicleVarLogisGainGroup vl = new VehicleVarLogisGainGroup();
             vl.GetCustomerByGroup(hdnCustomer.Value, ddlUnit.SelectedValue, ddlSo.SelectedValue, ddlCusType.SelectedValue, ddlGroup.SelectedValue, false, true);
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

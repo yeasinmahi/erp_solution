@@ -10,11 +10,17 @@ using SAD_BLL.Customer;
 using System.Web.Script.Services;
 using System.Web.Services;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.DisPoint
 {
     public partial class DisPointEdit : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\DisPoint\\DisPointEdit";
+        string stop = "stopping SAD\\DisPoint\\DisPointEdit";
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
@@ -32,7 +38,17 @@ namespace UI.SAD.DisPoint
             {
                 //Session["sesUserID"] = "1";            
 
-                if (Request.QueryString["id"] != null)
+
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\DisPoint\\DisPointEdit  Point Eidt Report", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    if (Request.QueryString["id"] != null)
                 {
                     DisPointInfo di = new DisPointInfo();
                     DisPointTDS.QryDisPointDetailsDataTable table = di.GetDataById(Request.QueryString["unt"], Request.QueryString["id"]);
@@ -47,6 +63,17 @@ namespace UI.SAD.DisPoint
                         chkActive.Checked = table[0].IsysnEnableNull() ? false : table[0].ysnEnable;
                     }
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 
@@ -59,7 +86,16 @@ namespace UI.SAD.DisPoint
 
         protected void btnCusSave_Click(object sender, EventArgs e)
         {
-            string cust = "";
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\DisPoint\\DisPointEdit  Point Eidt Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string cust = "";
             if (txtCus.Text.Trim() != "")
             {
                 char[] ch = { '[', ']' };
@@ -87,6 +123,17 @@ namespace UI.SAD.DisPoint
             }
 
             Response.Redirect("~/Exit.aspx");
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }
