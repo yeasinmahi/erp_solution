@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -19,6 +21,10 @@ namespace UI.SAD.Order
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TA_DA_Bike_Car_User_Gb";
+        string stop = "stopping SAD\\Order\\TA_DA_Bike_Car_User_Gb";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -364,8 +370,17 @@ namespace UI.SAD.Order
 
             if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Add", null);
+                Flogger.WriteDiagnostic(fd);
 
-                string tst = rdbFuelStationList.SelectedValue.ToString();
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_Bike_Car_User_Gb add Bikercar", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+
+                    string tst = rdbFuelStationList.SelectedValue.ToString();
                 string Serial;
                 if (tst == "")
                 {
@@ -917,7 +932,18 @@ namespace UI.SAD.Order
                     }
 
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "add", ex);
+                    Flogger.WriteError(efd);
 
+                }
+
+                fd = log.GetFlogDetail(stop, location, "add", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }
@@ -929,47 +955,79 @@ namespace UI.SAD.Order
             if (hdnconfirm.Value == "1")
             {
 
-                if (GridviewBikeCarUserInputInfo.Rows.Count > 0)
+                var fd = log.GetFlogDetail(start, location, "Save", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_Bike_Car_User_Gb Save Bikercar ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
                 {
-                    #region ------------ Insert into dataBase -----------
 
-                    DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
-                    hdnApplicantEnrol.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.USER_ID].ToString();
-                    Int32 enroll = Convert.ToInt32(hdnApplicantEnrol.Value);
-                    int BikeCarUserTypeid = 1;
-                    HiddenUnit.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString();
-                    int unit = Convert.ToInt32(HiddenUnit.Value);
-                    hdnstation.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.JOBSTATION_ID].ToString();
-                    int jobstation = Convert.ToInt32(hdnstation.Value);
-                    XmlDocument doc = new XmlDocument();
 
-                    try
+                    string tst = rdbFuelStationList.SelectedValue.ToString();
+                    string Serial;
+                    if (tst == "")
                     {
-                        doc.Load(filePathForXML);
-                        XmlNode dSftTm = doc.SelectSingleNode("RemotetadaBikeCarUser");
-                        string xmlString = dSftTm.InnerXml;
-                        xmlString = "<RemotetadaBikeCarUser>" + xmlString + "</RemotetadaBikeCarUser>";
-                        string message = bll.tadaInsertByApplicantBikeAndCarUser(xmlString, dteFromDate, enroll, BikeCarUserTypeid, unit, jobstation);
-                        File.Delete(filePathForXML); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "ScriptMessages", "alert('Please select Fuel station Payment Mode !')", true);
                     }
-
-                    catch
+                    else
                     {
 
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- wrong format data. plz check');", true);
+
+                        if (GridviewBikeCarUserInputInfo.Rows.Count > 0)
+                        {
+                            #region ------------ Insert into dataBase -----------
+
+                            DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+                            hdnApplicantEnrol.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.USER_ID].ToString();
+                            Int32 enroll = Convert.ToInt32(hdnApplicantEnrol.Value);
+                            int BikeCarUserTypeid = 1;
+                            HiddenUnit.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString();
+                            int unit = Convert.ToInt32(HiddenUnit.Value);
+                            hdnstation.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.JOBSTATION_ID].ToString();
+                            int jobstation = Convert.ToInt32(hdnstation.Value);
+                            XmlDocument doc = new XmlDocument();
+
+                            try
+                            {
+                                doc.Load(filePathForXML);
+                                XmlNode dSftTm = doc.SelectSingleNode("RemotetadaBikeCarUser");
+                                string xmlString = dSftTm.InnerXml;
+                                xmlString = "<RemotetadaBikeCarUser>" + xmlString + "</RemotetadaBikeCarUser>";
+                                string message = bll.tadaInsertByApplicantBikeAndCarUser(xmlString, dteFromDate, enroll, BikeCarUserTypeid, unit, jobstation);
+                                File.Delete(filePathForXML); ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                            }
+
+                            catch
+                            {
+
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- wrong format data. plz check');", true);
+                            }
+
+
+
+                            #endregion ------------ Insertion End ----------------
+
+
+                        }
+                        GridviewBikeCarUserInputInfo.DataBind();
+
+                        GridviewBikeCarUserInputInfo.DataSource = "";
+                        GridviewBikeCarUserInputInfo.DataBind();
                     }
-
-
-
-                    #endregion ------------ Insertion End ----------------
-
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                    Flogger.WriteError(efd);
 
                 }
-                GridviewBikeCarUserInputInfo.DataBind();
-                
-                GridviewBikeCarUserInputInfo.DataSource = "";
-                GridviewBikeCarUserInputInfo.DataBind();
 
+                fd = log.GetFlogDetail(stop, location, "Save", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
         protected void GridviewBikeCarUserInputInfo_SelectedIndexChanged(object sender, EventArgs e)

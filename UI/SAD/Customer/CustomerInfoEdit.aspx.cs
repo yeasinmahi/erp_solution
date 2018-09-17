@@ -14,12 +14,17 @@ using SAD_BLL.Customer;
 using BLL.Accounts.ChartOfAccount;
 using SAD_BLL.Item;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Customer
 {
     public partial class CustomerInfoEdit : BasePage
     {
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\CustomerInfoEdit";
+        string stop = "stopping SAD\\Customer\\CustomerInfoEdit";
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
@@ -35,9 +40,18 @@ namespace UI.SAD.Customer
             }
             else
             {
-                //Session["sesUserID"] = "1";            
+                //Session["sesUserID"] = "1";  
 
-                if (Request.QueryString["id"] != null)
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Customer\\CustomerInfoEdit  Customer info Edit", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    if (Request.QueryString["id"] != null)
                 {
                     bool isPeriod;
 
@@ -71,6 +85,17 @@ namespace UI.SAD.Customer
                         txtVATRegstration.Text = table[0].IsstrVatRegNoNull() ? "" : table[0].strVatRegNo;
                     }
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
 

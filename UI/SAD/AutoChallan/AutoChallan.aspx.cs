@@ -116,7 +116,7 @@ namespace UI.SAD.AutoChallan
             Flogger.WriteDiagnostic(fd);
 
             // starting performance tracker
-            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\AutoChallan Show", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\AutoChallan Show Test", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {

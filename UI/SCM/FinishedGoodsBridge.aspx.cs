@@ -42,10 +42,11 @@ namespace UI.SCM
             var tracker = new PerfTracker(perform, "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try {
-                dt = objinventoryTransfer.GetWearHouse();
+                int intEnroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+                dt = objinventoryTransfer.GetUnitListByEnrollData(intEnroll);
                 ddlUnit.DataSource = dt;
-                ddlUnit.DataTextField = "strWareHoseName";
-                ddlUnit.DataValueField = "intUnitID";
+                ddlUnit.DataTextField = "strUnit";
+                ddlUnit.DataValueField = "intUnitId";
                 ddlUnit.DataBind();
             }
             catch (Exception ex)
@@ -141,36 +142,7 @@ namespace UI.SCM
        
         protected void ddlFG_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-        }
-
-        protected void ddlInvUOM_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlSadUOM.SelectedItem.Text == ddlInvUOM.SelectedItem.Text)
-            {
-                txtCount.Text = 1.ToString();
-            }
-            else
-            {
-                txtCount.Text = 0.ToString();
-            }
-        }
-
-        protected void ddlSadUOM_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlSadUOM.SelectedItem.Text == ddlInvUOM.SelectedItem.Text)
-            {
-                txtCount.Text = 1.ToString();
-            }
-            else
-            {
-                txtCount.Text = 0.ToString();
-            }
-        }
-
-        protected void btnShow_Click(object sender, EventArgs e)
-        {
-            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            var fd = log.GetFlogDetail(start, location, "ddlFG_SelectedIndexChanged", null);
             Flogger.WriteDiagnostic(fd);
             // starting performance tracker
             var tracker = new PerfTracker(perform, "", fd.UserName, fd.Location,
@@ -197,19 +169,82 @@ namespace UI.SCM
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                var efd = log.GetFlogDetail(stop, location, "ddlFG_SelectedIndexChanged", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            fd = log.GetFlogDetail(stop, location, "ddlFG_SelectedIndexChanged", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
-
-
-
         }
+
+        protected void ddlInvUOM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSadUOM.SelectedItem.Text == ddlInvUOM.SelectedItem.Text)
+            {
+                txtCount.Text = 1.ToString();
+            }
+            else
+            {
+                txtCount.Text = 0.ToString();
+            }
+        }
+
+        protected void ddlSadUOM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSadUOM.SelectedItem.Text == ddlInvUOM.SelectedItem.Text)
+            {
+                txtCount.Text = 1.ToString();
+            }
+            else
+            {
+                txtCount.Text = 0.ToString();
+            }
+        }
+
+        //protected void btnShow_Click(object sender, EventArgs e)
+        //{
+        //    //var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+        //    //Flogger.WriteDiagnostic(fd);
+        //    //// starting performance tracker
+        //    //var tracker = new PerfTracker(perform, "", fd.UserName, fd.Location,
+        //    //    fd.Product, fd.Layer);
+        //    //try
+        //    //{
+        //    //    Panel1.Visible = true;
+        //    //    Label lblBaseName = (Label)FindControl("lblitemBaseName");
+        //    //    lblBaseName.Text = ddlFG.SelectedItem.Text;
+        //    //    //Label lbldes = (Label)FindControl("lblitemDescription");
+        //    //    //lbldes.Text = ddlInvUOM.SelectedItem.Text;
+        //    //    Label lbluom = (Label)FindControl("lbluom");
+        //    //    lbluom.Text = ddlInvUOM.SelectedItem.Text;
+        //    //    Label lblcluster = (Label)FindControl("lblcluster");
+        //    //    lblcluster.Text = "Material";
+        //    //    Label lblcommodity = (Label)FindControl("lblcommodity");
+        //    //    lblcommodity.Text = "Finished Goods";
+        //    //    Label lblclus = (Label)FindControl("lblclus");
+        //    //    lblclus.Text = 2.ToString();
+        //    //    Label lblgroup = (Label)FindControl("lblgroup");
+        //    //    lblgroup.Text = 37.ToString();
+        //    //    Label lblcat = (Label)FindControl("lblcat");
+        //    //    lblcat.Text = 45.ToString();
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+        //    //    Flogger.WriteError(efd);
+        //    //}
+
+        //    //fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+        //    //Flogger.WriteDiagnostic(fd);
+        //    //// ends
+        //    //tracker.Stop();
+
+
+
+
+        //}
        
        
 

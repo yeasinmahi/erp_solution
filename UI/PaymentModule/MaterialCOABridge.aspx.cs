@@ -13,11 +13,18 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class MaterialCOABridge : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/MaterialCOABridge.aspx";
+        string stop = "stopping PaymentModule/MaterialCOABridge.aspx";
+
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL(); Billing_BLL objBillReg = new Billing_BLL();
         DataTable dt;
     
@@ -26,6 +33,13 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/MaterialCOABridge.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -60,7 +74,16 @@ namespace UI.PaymentModule
                     //LoadGrid();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
@@ -68,6 +91,13 @@ namespace UI.PaymentModule
         }       
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/MaterialCOABridge.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -86,7 +116,16 @@ namespace UI.PaymentModule
                 dgvItemList.DataSource = dt;
                 dgvItemList.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void dgvItemList_DataBound(object sender, EventArgs e)
         {
@@ -112,6 +151,13 @@ namespace UI.PaymentModule
         }        
         private void LoadGridBankItem()
         {
+            var fd = log.GetFlogDetail(start, location, "btnCOABankItem_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/MaterialCOABridge.aspx btnCOABankItem_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -131,10 +177,26 @@ namespace UI.PaymentModule
                 dgvItemList.DataSource = dt;
                 dgvItemList.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnCOABankItem_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnCOABankItem_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnUpdateBridge_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnUpdateBridge_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/MaterialCOABridge.aspx btnUpdateBridge_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 if (dgvItemList.Rows.Count > 0)
@@ -172,6 +234,11 @@ namespace UI.PaymentModule
                 string message = objVoucher.InsertAndUpdateSupplierCOA(intPart, intSupplierID, intUnitID, strSupplier, int.Parse(hdnEnroll.Value), intCOAID);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnUpdateBridge_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXml(string itemid, string coaid)
         {

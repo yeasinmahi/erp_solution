@@ -12,6 +12,8 @@ using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -19,7 +21,11 @@ namespace UI.Asset
     {
         AssetMaintenance configure = new AssetMaintenance();
         DataTable dt = new DataTable();
-        static int i = 0; 
+        static int i = 0;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Asset\\AssetBarcodeGenearator";
+        string stop = "stopping Asset\\AssetBarcodeGenearator";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -97,7 +103,16 @@ namespace UI.Asset
 
         private void BindGrid()
         {
-            dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\AssetBarcodeGenearator   show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                dt = new DataTable();
             DateTime sdate = DateTime.Parse("2016-01-01".ToString());
             DateTime edate = DateTime.Parse("2016-01-01".ToString());
             int jobid = int.Parse(DdlJobstation.SelectedValue.ToString());
@@ -107,6 +122,19 @@ namespace UI.Asset
             dt = configure.AssetViewforGlobalCOA(4, xmlunit, sdate, edate, jobid, assetid);
             dgvGridView.DataSource = dt;
             dgvGridView.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
        
         protected void DdlBillUnit_SelectedIndexChanged(object sender, EventArgs e)

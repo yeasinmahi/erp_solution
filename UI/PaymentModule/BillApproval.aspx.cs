@@ -13,12 +13,19 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class BillApproval : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/BillApproval.aspx";
+        string stop = "stopping PaymentModule/BillApproval.aspx";
+
         Billing_BLL objBillReg = new Billing_BLL();
         DataTable dt;
 
@@ -30,6 +37,13 @@ namespace UI.PaymentModule
         #endregion ====================================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -70,48 +84,77 @@ namespace UI.PaymentModule
                     ddlUnit.DataBind();                    
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region===== Button Action============ ===================================================
         protected void btnApproveAll_Click(object sender, EventArgs e)
         {
-            if (hdnconfirm.Value == "1")
-            {
-                if (dgvBillReport.Rows.Count > 0)
-                {
-                    for (int index = 0; index < dgvBillReport.Rows.Count; index++)
-                    {   
-                        billid = ((Label)dgvBillReport.Rows[index].FindControl("lblID")).Text.ToString();
-                        actionid = ((DropDownList)dgvBillReport.Rows[index].FindControl("ddlActionStatus")).SelectedValue.ToString();
+            var fd = log.GetFlogDetail(start, location, "btnApproveAll_Click", null);
+            Flogger.WriteDiagnostic(fd);
 
-                        if (billid != "" && actionid != "" && actionid != "1")
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx btnApproveAll_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+            try
+            {
+                if (hdnconfirm.Value == "1")
+                {
+                    if (dgvBillReport.Rows.Count > 0)
+                    {
+                        for (int index = 0; index < dgvBillReport.Rows.Count; index++)
                         {
-                            CreateVoucherXml(billid, actionid);
+                            billid = ((Label)dgvBillReport.Rows[index].FindControl("lblID")).Text.ToString();
+                            actionid = ((DropDownList)dgvBillReport.Rows[index].FindControl("ddlActionStatus")).SelectedValue.ToString();
+
+                            if (billid != "" && actionid != "" && actionid != "1")
+                            {
+                                CreateVoucherXml(billid, actionid);
+                            }
                         }
                     }
-                }
 
-                if (dgvBillReport.Rows.Count > 0)
-                {
-                    try
+                    if (dgvBillReport.Rows.Count > 0)
                     {
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(filePathForXML);
-                        XmlNode dSftTm = doc.SelectSingleNode("BillApp");
-                        string xmlString = dSftTm.InnerXml;
-                        xmlString = "<BillApp>" + xmlString + "</BillApp>";
-                        xml = xmlString;
+                        try
+                        {
+                            XmlDocument doc = new XmlDocument();
+                            doc.Load(filePathForXML);
+                            XmlNode dSftTm = doc.SelectSingleNode("BillApp");
+                            string xmlString = dSftTm.InnerXml;
+                            xmlString = "<BillApp>" + xmlString + "</BillApp>";
+                            xml = xmlString;
+                        }
+                        catch { }
                     }
-                    catch { }                    
-                }
-                if (xml == "") { return; }
+                    if (xml == "") { return; }
 
-                //*** Final Insert
-                string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);                
-                LoadGrid();
+                    //*** Final Insert
+                    string message = objBillReg.InsertAllBillApproval(int.Parse(hdnLevel.Value), int.Parse(hdnEnroll.Value), xml);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    LoadGrid();
+                }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnApproveAll_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnApproveAll_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateVoucherXml(string billid, string actionid)
@@ -156,6 +199,13 @@ namespace UI.PaymentModule
         }
         private void LoadGridSingle()
         {
+            var fd = log.GetFlogDetail(start, location, "btnGo_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx btnGo_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 strReffNo = txtBillRegNo.Text;
@@ -164,10 +214,26 @@ namespace UI.PaymentModule
                 dgvBillReport.DataSource = dt;
                 dgvBillReport.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnGo_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnGo_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             intUnitid = int.Parse(ddlUnit.SelectedValue.ToString());
             dteFDate = DateTime.Parse(txtFromDate.Text);
             dteTDate = DateTime.Parse(txtToDate.Text);
@@ -202,6 +268,11 @@ namespace UI.PaymentModule
                 dgvBillReport.Columns[8].Visible = false;
                 dgvBillReport.Columns[11].Visible = true;
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion=====================================================================================
 

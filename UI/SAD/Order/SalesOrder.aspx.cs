@@ -22,12 +22,18 @@ using SAD_DAL.Sales;
 using SAD_BLL.Global;
 using System.IO;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
     public partial class SalesOrder : BasePage
     {
         XmlManagerSO xm = new XmlManagerSO();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\SalesOrder";
+        string stop = "stopping SAD\\Order\\SalesOrder";
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
@@ -408,7 +414,16 @@ namespace UI.SAD.Order
         }
         private void SetPrice()
         {
-            if (hdnProduct.Value != "")
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\SalesOrder set Price", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (hdnProduct.Value != "")
             {
                 ItemPrice it = new ItemPrice();
                 decimal commission = 0;
@@ -478,6 +493,18 @@ namespace UI.SAD.Order
             }
 
             EnabeDisable(false, false, false, false, true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void EnabeDisable(bool dis, bool other, bool ddl, bool dte, bool add)
         {
@@ -553,7 +580,19 @@ namespace UI.SAD.Order
         }
         private void CustomerChange()
         {
-            DistributionPoint dp = new DistributionPoint();
+
+
+
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\SalesOrder Customer Change ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DistributionPoint dp = new DistributionPoint();
 
             if (txtCus.Text.Trim() != "")
             {
@@ -584,6 +623,19 @@ namespace UI.SAD.Order
                     }
                 }
             }
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private bool CheckLimitBalance(decimal currentAmount)
         {

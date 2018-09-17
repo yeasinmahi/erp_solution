@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,6 +17,10 @@ namespace UI.SAD.Order
     {
         string[] arrayKey; int RowIndex = 0; int reportType; int enrol; int supvenrol; char[] delimiter = { '[', ']' };
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADASupervisorChange";
+        string stop = "stopping SAD\\Order\\RemoteTADASupervisorChange";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -55,8 +61,14 @@ namespace UI.SAD.Order
 
         private void Loadgrid()
         {
-           
 
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADASupervisorChange TADASupervisor Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 DataTable dt = new DataTable();
@@ -191,10 +203,18 @@ namespace UI.SAD.Order
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Already set supervisor for this employee');", true);
                     }
                 }
-          }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
-            catch
-            { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -202,8 +222,15 @@ namespace UI.SAD.Order
 
         protected void btnSupervisorUpdate_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            char[] delimiterChars = { ',' };
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADASupervisorChange TADASupervisor approve", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
             string intIDtbl = searchKey[0].ToString();
@@ -243,7 +270,19 @@ namespace UI.SAD.Order
                  }
 
                 else { }
-                }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
             
 
           
@@ -334,8 +373,17 @@ namespace UI.SAD.Order
 
        protected void btnsupervisorInsert_Click(object sender, EventArgs e)
        {
-           
-            char[] delimiterChars = { ',' };
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADASupervisorChange TADASupervisor approve Insert", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
             string intEmplEnrol = searchKey[0].ToString();
@@ -349,8 +397,19 @@ namespace UI.SAD.Order
             int updatesupvenrolins = int.Parse(supervcode);
             bll.UpdateTADASupervisor(emplenrol, updatesupvenrolins, jobstationid, insertby, 0, 2);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully insert Supervisor information');", true);
-           
-         }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
 
              
             

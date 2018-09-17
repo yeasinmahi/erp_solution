@@ -1,4 +1,6 @@
-﻿using SAD_BLL.AEFPS;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.AEFPS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +19,10 @@ namespace UI.AEFPS
     {
         int intWHID, intEnroll, intPart; DataTable dt = new DataTable(); FPReportBLL bll = new FPReportBLL(); Receive_BLL objRec = new Receive_BLL();
         DateTime dteFrom, dteTo; string strRepotDate; bool ysnEnable;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\ReturnAndDamageReport";
+        string stop = "stopping AEFPS\\ReturnAndDamageReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,6 +42,13 @@ namespace UI.AEFPS
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\ReturnAndDamageReport Return And Damage Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 dgvSalesReturn.DataSource = "";
@@ -70,7 +83,16 @@ namespace UI.AEFPS
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {

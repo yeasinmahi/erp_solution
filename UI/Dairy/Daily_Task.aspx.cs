@@ -15,12 +15,19 @@ using System.Text;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Text.RegularExpressions;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 
 namespace UI.Dairy
 {
     public partial class Daily_Task : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "Dairy";
+        string start = "starting Dairy/Daily_Task.aspx";
+        string stop = "stopping Dairy/Daily_Task.aspx";
+
         InternalTransportBLL objt = new InternalTransportBLL();
         Global_BLL obj = new Global_BLL(); Task_BLL objtask = new Task_BLL();
         DataTable dt;
@@ -47,6 +54,13 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Daily_Task.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             //filePathForXML = Server.MapPath("~/Dairy/Data/AssignTo_" + hdnEnroll.Value + ".xml");
@@ -82,6 +96,11 @@ namespace UI.Dairy
             else if (hdnconfirm.Value == "2") { FTPUpload(); }
             else if (hdnconfirm.Value == "3") { FinalUpload(); }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
 
@@ -96,6 +115,13 @@ namespace UI.Dairy
 
         protected void FinalUpload()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Daily_Task.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "3")
             {
                 try
@@ -193,6 +219,11 @@ namespace UI.Dairy
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void txtSearchAssignedTo_TextChanged(object sender, EventArgs e)
         {
@@ -220,6 +251,13 @@ namespace UI.Dairy
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Dairy/Daily_Task.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (cbMyTeam.Checked == false)
@@ -250,7 +288,11 @@ namespace UI.Dairy
                 }
             }
             catch { }
-        
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         
         //** Gridview Document Upload Start ******************************************************

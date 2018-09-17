@@ -21,6 +21,10 @@ namespace UI.SAD.Customer
     {
         //private string nextParentID = "";    
         CheckDigit cg = new CheckDigit();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Customer\\CustomerGEO";
+        string stop = "stopping SAD\\Customer\\CustomerGEO";
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,4 +1,6 @@
-﻿using LOGIS_BLL.Trip;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using LOGIS_BLL.Trip;
 using SAD_BLL.Sales;
 using SAD_DAL.Sales;
 using SAD_DAL.Sales.Report;
@@ -32,11 +34,23 @@ namespace UI.SAD.Order
         SalesView bllsv = new SalesView();
         OrderByTrip ot = new OrderByTrip();
         DataTable dt = new DataTable(); string tripId;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\ChallanOneGPCustomize1";
+        string stop = "stopping SAD\\Order\\ChallanOneGPCustomize1";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                  tripId = Request.QueryString["id"];
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\ChallanOneGPCustomize1 Challan Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    tripId = Request.QueryString["id"];
                
                 SalesView bll = new SalesView();
           
@@ -150,7 +164,18 @@ namespace UI.SAD.Order
                     pnlGate.DataBind();
                 }
 
-              
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }

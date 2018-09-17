@@ -24,7 +24,8 @@ using SAD_BLL.AutoChallanBll;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Xml;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -33,16 +34,17 @@ namespace UI.SAD.Corporate_sales
         DataTable dtSlipdetailsReport = new DataTable();
         DataTable dtSlipdetailsReportinfo = new DataTable();
         challanandPending Report = new challanandPending();
-        string filePathForXML; int enroll; 
+        string filePathForXML; int enroll;
 
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\CorpLoadingSlip";
+        string stop = "stopping SAD\\Corporate_sales\\CorpLoadingSlip";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            enroll = int.Parse("1355".ToString());
-            
-           // string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
-            string strEnroll = Convert.ToString("1355".ToString());
+            enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            string strEnroll = Convert.ToString(Session[SessionParams.USER_ID].ToString());
+          
             filePathForXML = Server.MapPath("Autochallan" + strEnroll + ".xml");
           //  hdnstation.Value = Session[SessionParams.UnitID].ToString();
             if (!IsPostBack)
@@ -85,8 +87,8 @@ namespace UI.SAD.Corporate_sales
                 decimal totalBalance = ((decimal.Parse(MonBalance.ToString()) * -1) + decimal.Parse(monCredite.ToString()));
 
                 DataTable dtBalance = new DataTable();
-              int custid = Convert.ToInt32(Session["custid"].ToString());
-              string slip = Session["slipno"].ToString();
+                int custid = Convert.ToInt32(Session["custid"].ToString());
+                string slip = Session["slipno"].ToString();
                 dtBalance = Report.getBalanceCheck(slip, custid);
 
                 decimal OrderAmount = decimal.Parse(dtBalance.Rows[0]["Amount"].ToString());
@@ -173,7 +175,16 @@ namespace UI.SAD.Corporate_sales
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            Int32 intVehicleId;
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\CorpLoadingSlip Loading Slip Distributor", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                Int32 intVehicleId;
             Int32 custid; int ShipPointid;
             DataTable dtChallancount = new DataTable();
             intVehicleId = Convert.ToInt32(Session["Vehilceid"].ToString());
@@ -454,7 +465,17 @@ namespace UI.SAD.Corporate_sales
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your Existing Challan Vat Complete !');", true);
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         private void CreateSalesXml(string Pid, string paname, string qty, string pr, string AccId, string AccName,

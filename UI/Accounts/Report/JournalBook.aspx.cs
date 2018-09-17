@@ -17,12 +17,17 @@ using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.Accounts.Report;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Accounts.Report
 {
     public partial class JournalBook : BasePage
     {
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Report\\JournalBook";
+        string stop = "stopping Accounts\\Report\\JournalBook";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -49,9 +54,16 @@ namespace UI.Accounts.Report
             //Created    :   Mir Mezbah Uddin / Apr-24-2012
             //Modified   :   
             //Parameters :   UnitName,UnitAddress,Date
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Report\\JournalBook   Show ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
 
-            string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/JournalBook.rdlc");
+                string path = HttpContext.Current.Server.MapPath("~/Accounts/Report/ReportTemplates/JournalBook.rdlc");
             DataTable oDTReportData = new DataTable();
             string unitName = "", unitAddress = "";
             int userID = int.Parse(Session["sesUserID"].ToString());
@@ -107,6 +119,19 @@ namespace UI.Accounts.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         /*public void SetReport()

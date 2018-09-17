@@ -1,4 +1,6 @@
-﻿using LOGIS_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using LOGIS_BLL;
 using LOGIS_DAL;
 using SAD_BLL.Customer;
 using SAD_BLL.Global;
@@ -44,15 +46,27 @@ namespace UI.SAD.Order
         TableCell tdLblV = new TableCell();
         TableCell tdConV = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevelV;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\DOCreation";
+        string stop = "stopping SAD\\Order\\DOCreation";
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
             {
                 // Session["sesUserID"] = "53";
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-                if (Request.QueryString["id"] != null)
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\DOCreation DO Creation", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
                 {
+                    if (Request.QueryString["id"] != null)
+                {
+
+
                     SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
                     table = se.GetSalesOrder(Request.QueryString["id"]);
 
@@ -109,7 +123,19 @@ namespace UI.SAD.Order
                 {
                     txtDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
                     txtDelDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(1));
+                    }
                 }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }
@@ -455,7 +481,19 @@ namespace UI.SAD.Order
         #region Button
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            SAD_BLL.Item.Item it = new SAD_BLL.Item.Item();
+
+
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DOCreation btnAdd_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                SAD_BLL.Item.Item it = new SAD_BLL.Item.Item();
             double deccompareprice=0.00,actualprice=0.00;
             string coaId = "", coaName = "";
             string discntamnt = "";
@@ -631,9 +669,22 @@ namespace UI.SAD.Order
                 }
             }
 
-            //string actotal =actualprice.ToString();
-            //hdndiscount.Value += decimal.Parse(actotal.ToString());
-           
+                //string actotal =actualprice.ToString();
+                //hdndiscount.Value += decimal.Parse(actotal.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
 
         }
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -642,7 +693,18 @@ namespace UI.SAD.Order
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string id = "", code = "";
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DOCreation Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                string id = "", code = "";
             char[] ch = { '[', ']' };
 
             XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
@@ -692,7 +754,18 @@ namespace UI.SAD.Order
             {
                 Response.Redirect("../../Accounts/Voucher/Exit.aspx");
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion
 
@@ -1358,7 +1431,15 @@ namespace UI.SAD.Order
         }
         private void GetItemInfo(string parentID)
         {
-            int level;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DOCreation Item Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int level;
             td = new TableCell();
             tdLbl = new TableCell();
             tdCon = new TableCell();
@@ -1424,20 +1505,40 @@ namespace UI.SAD.Order
 
                 GetItemInfo(ddl.SelectedValue);
             }
-            /*else
-            {
-                if (nextParentID == "")
+                /*else
                 {
-                    td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
-                    tr.Cells.Add(td);
-                    tbl.Rows.Add(tr);
-                    hdnPriceId.Value = "";
-                }
-            }*/
+                    if (nextParentID == "")
+                    {
+                        td.Controls.Add(BuildAnchor("Add", "ShowDiv(1,1);"));
+                        tr.Cells.Add(td);
+                        tbl.Rows.Add(tr);
+                        hdnPriceId.Value = "";
+                    }
+                }*/
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void GetItemInfoP(string parentID)
         {
-            int level;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DOCreation Item Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int level;
             tdV = new TableCell();
             tdLblV = new TableCell();
             tdConV = new TableCell();
@@ -1513,6 +1614,19 @@ namespace UI.SAD.Order
                     hdnPriceIdV.Value = "";
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         private HtmlAnchor BuildAnchor(string text, string attrMethod)
         {

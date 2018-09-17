@@ -1,4 +1,5 @@
 ﻿using BLL.Accounts.Advice;
+using Flogging.Core;
 using GLOBAL_BLL;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,10 @@ namespace UI.Accounts.Advice
         DataTable dt; AdviceBLL bll = new AdviceBLL();
         int intID, intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy, intChillingID;
         string strAccountMandatory, strBankName, xmlpath; DateTime dteDate;
-
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Advice\\PaymentAdvice";
+        string stop = "stopping Accounts\\Advice\\PaymentAdvice";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -196,8 +200,15 @@ namespace UI.Accounts.Advice
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\PaymentAdvice  Payment Advice Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
                 intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
                 intActionBy = int.Parse(hdnEnroll.Value.ToString());
@@ -237,7 +248,18 @@ namespace UI.Accounts.Advice
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void LoadGridExport()
         {
@@ -457,8 +479,15 @@ namespace UI.Accounts.Advice
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Delete", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Advice\\PaymentAdvice  Delete ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 char[] delimiterChars = { '^' };
                 string senderdata = ((Button)sender).CommandArgument.ToString();
                 //string[] data = senderdata.Split(delimiterChars);
@@ -468,7 +497,18 @@ namespace UI.Accounts.Advice
                 LoadGridExport();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Delete", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Delete", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         //protected void btnPrint_Click(object sender, EventArgs e)
         //{

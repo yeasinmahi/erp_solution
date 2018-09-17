@@ -28,7 +28,7 @@ namespace UI.AEFPS
         int empid;
         string narration, purpose, msg;
         SeriLog log = new SeriLog();
-        string location = "SAD";
+        string location = "AEFPS";
         string start = "starting AEFPS\\fpsVoucherEntry";
         string stop = "stopping AEFPS\\fpsVoucherEntry";
         protected void Page_Load(object sender, EventArgs e)

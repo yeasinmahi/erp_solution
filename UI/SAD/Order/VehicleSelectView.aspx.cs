@@ -17,12 +17,18 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
     public partial class VehicleSelectView : BasePage
     {
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\VehicleSelectView";
+        string stop = "stopping SAD\\Order\\VehicleSelectView";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -42,6 +48,7 @@ namespace UI.SAD.Order
 
         protected void btnGo_Click(object sender, EventArgs e)
         {
+
             DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
             DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
 
@@ -62,9 +69,29 @@ namespace UI.SAD.Order
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            SAD_BLL.Sales.DelivaryView sv = new SAD_BLL.Sales.DelivaryView();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectView Vehicle Select View Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                SAD_BLL.Sales.DelivaryView sv = new SAD_BLL.Sales.DelivaryView();
             sv.CancelDO(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected string GetEditLink(object voucherID, object completed)
         {

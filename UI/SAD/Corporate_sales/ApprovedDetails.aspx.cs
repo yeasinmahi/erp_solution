@@ -11,6 +11,8 @@ using UI.ClassFiles;
 using System.Data;
 using System.Xml;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -18,15 +20,40 @@ namespace UI.SAD.Corporate_sales
     {
         DataTable dtReportdetails = new DataTable();
         OrderInput_BLL ReportOrder = new OrderInput_BLL();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\ApprovedDetails";
+        string stop = "stopping SAD\\Corporate_sales\\ApprovedDetails";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\ApprovedDetails approved Details", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
                 int ordernumber = int.Parse(Session["order"].ToString());
                 dtReportdetails = ReportOrder.getDetailsReport(ordernumber);
 
                 dgvOrder.DataSource = dtReportdetails;
                 dgvOrder.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
             }
            
@@ -57,52 +84,74 @@ namespace UI.SAD.Corporate_sales
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            DateTime dtedate = DateTime.Now;
-            int unitid = int.Parse("2");
-            int enroll = int.Parse("13");
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-
-            if (dgvOrder.Rows.Count > 0)
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\ApprovedDetails approved Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
             {
 
-                for (int index = 0; index < dgvOrder.Rows.Count; index++)
+                DateTime dtedate = DateTime.Now;
+                int unitid = int.Parse("2");
+                int enroll = int.Parse("13");
+
+
+                if (dgvOrder.Rows.Count > 0)
                 {
-                
+
+                    for (int index = 0; index < dgvOrder.Rows.Count; index++)
+                    {
 
 
-                    Int32 totalcount = dgvOrder.Rows.Count;
 
-                    string IntOrderNumber = "0";
-                    Session["IntOrderNumber"] = IntOrderNumber;
-                    string intproductid = ((Label)dgvOrder.Rows[index].FindControl("lblintProductid")).Text.ToString();
-                    string qty = ((TextBox)dgvOrder.Rows[index].FindControl("Quantity1")).Text.ToString();
-                    string OrderNo = ((Label)dgvOrder.Rows[index].FindControl("lblintOrderNo")).Text.ToString();
-                    string intShipPointId = ((Label)dgvOrder.Rows[index].FindControl("lblintShipPointIdsss")).Text.ToString();
-                    string intCustid = ((Label)dgvOrder.Rows[index].FindControl("lblintCusID")).Text.ToString();
-                    string rate = ((HiddenField)dgvOrder.Rows[index].FindControl("rate")).Value.ToString();
+                        Int32 totalcount = dgvOrder.Rows.Count;
 
-                    string pid = ((Label)dgvOrder.Rows[index].FindControl("lblintProductid")).Text.ToString();
-                  //  string paname = ((Label)dgvOrder.Rows[index].FindControl("lblstrProductName")).Text.ToString();
-                    
-                  //   string promUomtext = ((HiddenField)dgvOrder.Rows[index].FindControl("FreeUomTxt")).Value.ToString();
-                  //  string promitemCOA = ((HiddenField)dgvOrder.Rows[index].FindControl("freeintCOAID")).Value.ToString();
-                    string prompr = ((HiddenField)dgvOrder.Rows[index].FindControl("rate")).Value.ToString();
-               
+                        string IntOrderNumber = "0";
+                        Session["IntOrderNumber"] = IntOrderNumber;
+                        string intproductid = ((Label)dgvOrder.Rows[index].FindControl("lblintProductid")).Text.ToString();
+                        string qty = ((TextBox)dgvOrder.Rows[index].FindControl("Quantity1")).Text.ToString();
+                        string OrderNo = ((Label)dgvOrder.Rows[index].FindControl("lblintOrderNo")).Text.ToString();
+                        string intShipPointId = ((Label)dgvOrder.Rows[index].FindControl("lblintShipPointIdsss")).Text.ToString();
+                        string intCustid = ((Label)dgvOrder.Rows[index].FindControl("lblintCusID")).Text.ToString();
+                        string rate = ((HiddenField)dgvOrder.Rows[index].FindControl("rate")).Value.ToString();
 
-                  //  string intCustid = Session["Custid"].ToString();
-                   
-                    string pr = ((HiddenField)dgvOrder.Rows[index].FindControl("rate")).Value.ToString();
-                    Decimal totalAmount = (((Convert.ToDecimal(qty.ToString()) * decimal.Parse(rate.ToString())) * decimal.Parse(qty.ToString()))) ;
-                    // Freeqty = Math.Round(Freeqty);
+                        string pid = ((Label)dgvOrder.Rows[index].FindControl("lblintProductid")).Text.ToString();
+                        //  string paname = ((Label)dgvOrder.Rows[index].FindControl("lblstrProductName")).Text.ToString();
 
-                    ReportOrder.getinsertorderApp(unitid,intShipPointId,IntOrderNumber,intCustid,intproductid,qty,rate,totalAmount,dtedate,enroll);
+                        //   string promUomtext = ((HiddenField)dgvOrder.Rows[index].FindControl("FreeUomTxt")).Value.ToString();
+                        //  string promitemCOA = ((HiddenField)dgvOrder.Rows[index].FindControl("freeintCOAID")).Value.ToString();
+                        string prompr = ((HiddenField)dgvOrder.Rows[index].FindControl("rate")).Value.ToString();
 
-                    ReportOrder.getorderupadate(IntOrderNumber);
-                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('sucessfully Approved.');", true);
-        
 
+                        //  string intCustid = Session["Custid"].ToString();
+
+                        string pr = ((HiddenField)dgvOrder.Rows[index].FindControl("rate")).Value.ToString();
+                        Decimal totalAmount = (((Convert.ToDecimal(qty.ToString()) * decimal.Parse(rate.ToString())) * decimal.Parse(qty.ToString())));
+                        // Freeqty = Math.Round(Freeqty);
+
+                        ReportOrder.getinsertorderApp(unitid, intShipPointId, IntOrderNumber, intCustid, intproductid, qty, rate, totalAmount, dtedate, enroll);
+
+                        ReportOrder.getorderupadate(IntOrderNumber);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('sucessfully Approved.');", true);
+
+
+                    }
                 }
             }
+
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        
 
 
         }

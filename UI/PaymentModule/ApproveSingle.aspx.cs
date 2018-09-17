@@ -13,12 +13,19 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class ApproveSingle : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/ApproveSingle.aspx";
+        string stop = "stopping PaymentModule/ApproveSingle.aspx";
+
         Billing_BLL objBillApp = new Billing_BLL();
         DataTable dt;
         
@@ -29,6 +36,13 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/ApproveSingle.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnLevel.Value = "0";
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             dt = new DataTable();
@@ -139,11 +153,23 @@ namespace UI.PaymentModule
                     }
                 }
                 lblArrovedLevel.Text = monApproveAmount.ToString();                
-            }                
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnSaveAction_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSaveAction_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/ApproveSingle.aspx btnSaveAction_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -170,8 +196,17 @@ namespace UI.PaymentModule
                         dgvPreviousStatus.DataBind();
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "btnSaveAction_Click", ex);
+                    Flogger.WriteError(efd);
+                }
+
             }
+            fd = log.GetFlogDetail(stop, location, "btnSaveAction_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

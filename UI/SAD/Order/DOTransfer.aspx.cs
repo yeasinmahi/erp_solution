@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Sales;
 using UI.ClassFiles;
 
@@ -11,6 +13,10 @@ namespace UI.SAD.Order
 {
     public partial class DOTransfer : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\DOTransfer";
+        string stop = "stopping SAD\\Order\\DOTransfer";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,7 +39,17 @@ namespace UI.SAD.Order
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            SAD_BLL.Sales.SalesOrder so = new SAD_BLL.Sales.SalesOrder();
+
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DOTransfer Do Transer Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                SAD_BLL.Sales.SalesOrder so = new SAD_BLL.Sales.SalesOrder();
             if (so.ExistsDO(ddlUnit.SelectedValue, ddlShip.SelectedValue, txtDo.Text))
             {
                 so.SetDOToAnotherShipPoint(ddlUnit.SelectedValue, ddlShip.SelectedValue, txtDo.Text, ddlShipOther.SelectedValue, Session[SessionParams.USER_ID].ToString());
@@ -43,6 +59,19 @@ namespace UI.SAD.Order
             {
                 lblStatus.Text = "DO not exists";
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,7 +17,10 @@ namespace UI.SAD.Order
         int lvel, insertby, unit;
         DataTable dt = new DataTable();
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
-       
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\DelivaryOrderInactive";
+        string stop = "stopping SAD\\Order\\DelivaryOrderInactive";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,6 +38,12 @@ namespace UI.SAD.Order
         }
         private void Loadgrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DelivaryOrderInactive Order Incentive", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 unit = int.Parse(drdlUnitName.SelectedValue.ToString());
@@ -47,13 +58,27 @@ namespace UI.SAD.Order
                     grdvDelvOrderInactive.DataBind();
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
-            catch
-            { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         private void Loadgridaftersubmit()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DelivaryOrderInactive Order Incentive", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 unit = int.Parse(drdlUnitName.SelectedValue.ToString());
@@ -68,9 +93,17 @@ namespace UI.SAD.Order
                     grdvDelvOrderInactive.DataBind();
                 }
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
 
-            catch
-            { }
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -100,15 +133,36 @@ namespace UI.SAD.Order
 
         protected void btnInactiveDO_Click(object sender, EventArgs e)
         {
-        char[] delimiterChars = { ',' };
-        string temp = ((Button)sender).CommandArgument.ToString();
-        string[] searchKey = temp.Split(delimiterChars);
-        strDO = searchKey[0].ToString();
-        insertby = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-        lvel = 2;
-        dt = bll.getdataDeliverayOrderInactiveforRemaningQnt(unit, strDO, lvel, insertby,0);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Messages"].ToString() + "');", true);
-            Loadgridaftersubmit();
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DelivaryOrderInactive Order Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                strDO = searchKey[0].ToString();
+                insertby = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                lvel = 2;
+                dt = bll.getdataDeliverayOrderInactiveforRemaningQnt(unit, strDO, lvel, insertby,0);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Messages"].ToString() + "');", true);
+                Loadgridaftersubmit();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+            Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

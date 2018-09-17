@@ -15,6 +15,8 @@ using UI.ClassFiles;
 using HR_BLL;
 using HR_BLL.BulkSMS;
 using SAD_BLL.AutoChallanBll;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.AutoChallan
 {
@@ -22,6 +24,10 @@ namespace UI.SAD.AutoChallan
     {
         DataTable dtReports = new DataTable();
         challanandPending Report = new challanandPending();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\AutoChallan\\ApproveDetailsReport";
+        string stop = "stopping SAD\\AutoChallan\\ApproveDetailsReport";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,8 +36,15 @@ namespace UI.SAD.AutoChallan
                // int enroll = int.Parse("1040");
                 string promotionname = Session["slipno"].ToString();
 
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-                if (enroll != 1040)
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\ApproveDetailsReport Incentive Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    if (enroll != 1040)
                 {
                   DataTable  dtReportss = new DataTable();
                     dtReportss = Report.getDiractorsirApprovedetails(promotionname);
@@ -45,8 +58,19 @@ namespace UI.SAD.AutoChallan
                     dgvtrgt.DataSource = dtReports;
                     dgvtrgt.DataBind();
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
 
-                
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
+
 
                 dtReports = new DataTable();
                 dtReports = Report.getTotalAmount(promotionname);
@@ -75,9 +99,16 @@ namespace UI.SAD.AutoChallan
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-           
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            decimal TotalAmount = decimal.Parse(Session["TotalAmount"].ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\AutoChallan\\ApproveDetailsReport Incentive Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                decimal TotalAmount = decimal.Parse(Session["TotalAmount"].ToString());
             DateTime fromdate = DateTime.Parse(Session["fromdate"].ToString());
             DateTime todate = DateTime.Parse(Session["todate"].ToString());
             string narrations = "Being Trade Offer Bill Amount :" + TotalAmount + " Duration from " + fromdate + " To " + todate;
@@ -109,7 +140,17 @@ namespace UI.SAD.AutoChallan
 
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
     }

@@ -1,4 +1,6 @@
-﻿using LOGIS_BLL;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using LOGIS_BLL;
 using LOGIS_BLL.Trip;
 using SAD_BLL.Sales;
 using System;
@@ -15,6 +17,10 @@ namespace UI.SAD.Logistic
 {
     public partial class VehicleWeightCustomize : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Logistic\\VehicleWeightCustomize";
+        string stop = "stopping SAD\\Logistic\\VehicleWeightCustomize";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -72,7 +78,16 @@ namespace UI.SAD.Logistic
 
         private void SetValue()
         {
-            Trip t = new Trip();
+            var fd = log.GetFlogDetail(start, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Logistic\\VehicleWeightCustomize Vehicle Weight Customize", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Trip t = new Trip();
             //txtWeight.Enabled = false;
             string id = "";
             if (txtVehicleOut.Text.Trim() != "")
@@ -178,6 +193,17 @@ namespace UI.SAD.Logistic
                     }
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)

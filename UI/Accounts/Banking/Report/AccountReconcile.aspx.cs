@@ -15,12 +15,18 @@ using BLL.Accounts.Banking;
 using Microsoft.Reporting.WebForms;
 using System.Collections.Generic;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Banking.Report
 {
     public partial class AccountReconcile : BasePage
     {
         // ReportDocument rd = new ReportDocument();
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Banking\\Report\\AccountReconcile";
+        string stop = "stopping Accounts\\Banking\\Report\\AccountReconcile";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";
@@ -56,7 +62,17 @@ namespace UI.Accounts.Banking.Report
         private void GetReport()
         {
 
-            string path = HttpContext.Current.Server.MapPath("~/Accounts/Banking/Report/ReportTemplates/AccountReconcile.rdlc");
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Banking\\Report\\AccountReconcile   Account Reconcile Report ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                string path = HttpContext.Current.Server.MapPath("~/Accounts/Banking/Report/ReportTemplates/AccountReconcile.rdlc");
             DataTable oDTReportData = new DataTable();
 
             string unitName = "", unitAddress = "", bankName = "", branchName = "";
@@ -111,7 +127,19 @@ namespace UI.Accounts.Banking.Report
                 ReportViewer1.Reset(); // CrystalReportViewer1.ReportSource = null;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

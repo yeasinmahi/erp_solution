@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLOBAL_BLL;
+using System;
 using System.Collections;
 using System.Configuration;
 using System.Data;
@@ -18,6 +19,10 @@ namespace UI.Accounts.Bank
     public partial class BankInfoEdit : BasePage
     {
         public string userID;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Bank\\BankInfoEdit";
+        string stop = "stopping Accounts\\Bank\\BankInfoEdit";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session["sesUserID"] = "1";

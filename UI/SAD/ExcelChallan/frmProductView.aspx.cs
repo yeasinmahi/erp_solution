@@ -9,6 +9,8 @@ using System.Data;
 using System.Xml;
 using UI.ClassFiles;
 using System.IO;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -18,7 +20,10 @@ namespace UI.SAD.ExcelChallan
         DataTable dt;
         int Shipid, Custid, part, Offid, enroll;
         string pid, qty, freeqty, price, xmlpath,vno,vid,driverenroll,dphone;
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\ExcelChallan\\frmProductView";
+        string stop = "stopping SAD\\ExcelChallan\\frmProductView";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,8 +60,17 @@ namespace UI.SAD.ExcelChallan
            
         }
         protected void btnSave_Click(object sender, EventArgs e)
-        {          
-            Custid = int.Parse(Request.QueryString["Custid"].ToString());
+        {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmProductView  Product Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Custid = int.Parse(Request.QueryString["Custid"].ToString());
             vid = hdnVid.Value;
             vno = txtVehicleno.Text;
             driverenroll = hdnEnroll.Value;
@@ -101,6 +115,18 @@ namespace UI.SAD.ExcelChallan
                 dgvPending.DataBind();
 
             }
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXml(string Custid, string pid, string qty, string freeqty, string price, string vid, string vno, string driverenroll, string dphone)
         {

@@ -17,6 +17,8 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Transfer
 {
@@ -24,6 +26,10 @@ namespace UI.SAD.Transfer
     {
         protected decimal //totAmount = 0, totPieces = 0, 
             aprPieces = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Transfer\\FGTransferView";
+        string stop = "stopping SAD\\Transfer\\FGTransferView";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +51,15 @@ namespace UI.SAD.Transfer
 
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Transfer\\FGTransfer Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
             DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
             hdnFrom.Value = fromDate.ToString();
             hdnTo.Value = toDate.ToString();
@@ -59,11 +73,29 @@ namespace UI.SAD.Transfer
             {
                 rdoComplete.Enabled = true;
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCompleted_Click(object sender, EventArgs e)
-        {
-            char[] ch = { '#' };
+        { var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Transfer\\FGTransfer Complete", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
             string id = str[0];
             DateTime dt = DateTime.Parse(str[1]);
@@ -72,12 +104,43 @@ namespace UI.SAD.Transfer
             sv.CompleteSO(id, Session[SessionParams.USER_ID].ToString());
 
             GridView1.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            SalesOrderView sv = new SalesOrderView();
+        { var fd = log.GetFlogDetail(start, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Transfer\\FGTransfer Cancel", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                SalesOrderView sv = new SalesOrderView();
             sv.CancelSO(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Cancel", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected string GetEditLink(object voucherID, object completed)
         {

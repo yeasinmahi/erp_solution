@@ -318,10 +318,6 @@ namespace UI.SCM
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
-
-
-
-
             FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
             requestFTPUploader.Credentials = new NetworkCredential(user, pass);
             requestFTPUploader.Method = WebRequestMethods.Ftp.UploadFile;

@@ -13,6 +13,8 @@ using SAD_BLL.AutoChallanBll;
 using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.AEFPS;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -25,6 +27,11 @@ namespace UI.SAD.ExcelChallan
         intCurrencyId, intPriceVarId, CustType, intIncentiveId;
         string slip, strCustnameName, strDrivername, xmlStringvat, narrationvat, narratioinvat, strDriverContact,strCode= "", price, strExtraCause, narration = "", intentryid = "", strSupplier, strOther, strVehicleRegNo, strChallanNo, CustAddress, strSupplierCOACod, narratioin, filePathForXML, filePathForXMLVat, vno,vid,driverenroll, suppliercheck;
         challanandPending Report = new challanandPending();
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\ExcelChallan\\frmLoadingSlipChallanDairy";
+        string stop = "stopping SAD\\ExcelChallan\\frmLoadingSlipChallanDairy";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanupload_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -58,7 +65,15 @@ namespace UI.SAD.ExcelChallan
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int counts = 0, countsvat = 0;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmLoadingSlipChallanDairy Challan Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int counts = 0, countsvat = 0;
             if (txtVehicle.Text != "")
             {
                 int vatCheck;
@@ -253,6 +268,18 @@ namespace UI.SAD.ExcelChallan
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your Existing Challan Vat Complete !');", true); }
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Vehicle No Set !');", true); }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         private void CreateSalesXml(string Pid, string paname, string qty, string pr, string AccId, string AccName,
          string Extid, string ExtName, string Extpr, string itemUom, string Cur, string Narr, string stype, string logisid,

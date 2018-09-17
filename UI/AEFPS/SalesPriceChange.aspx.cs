@@ -1,4 +1,6 @@
-﻿ 
+﻿
+using Flogging.Core;
+using GLOBAL_BLL;
 using QRCoder;
 using SAD_BLL.AEFPS;
 using System;
@@ -21,8 +23,11 @@ namespace UI.AEFPS
         Receive_BLL objRec = new Receive_BLL();
         DataTable dt = new DataTable();
         int enroll, mrrId, intWh; string  receiveQty;
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\SalesPriceChange";
+        string stop = "stopping AEFPS\\SalesPriceChange";
 
-      
 
         string filePathForXML; string xmlString = "";
         protected void Page_Load(object sender, EventArgs e)
@@ -43,6 +48,12 @@ namespace UI.AEFPS
 
         private void DefaltLoad()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\SalesPriceChange Sales Price change Item Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
 
@@ -67,7 +78,16 @@ namespace UI.AEFPS
                 dgvReceive.DataBind();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -108,8 +128,14 @@ namespace UI.AEFPS
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\SalesPriceChange Sales Price change Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
-            { 
+            {
                 if (int.Parse(hdnConfirm.Value) > 0)
                 {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -153,9 +179,18 @@ namespace UI.AEFPS
                     dgvReceive.DataBind();
 
                 }
-                
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

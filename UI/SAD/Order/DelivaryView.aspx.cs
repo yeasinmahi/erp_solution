@@ -17,12 +17,18 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
     public partial class DelivaryView : BasePage
     {
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\DelivaryView";
+        string stop = "stopping SAD\\Order\\DelivaryView";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,7 +66,16 @@ namespace UI.SAD.Order
 
         protected void btnCompleted_Click(object sender, EventArgs e)
         {
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\DelivaryView  DelivaryView Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] ch = { '#' };
             string[] str = ((Button)sender).CommandArgument.Split(ch);
             string id = str[0];
             DateTime dt = DateTime.Parse(str[1]);
@@ -69,6 +84,18 @@ namespace UI.SAD.Order
             sv.CompleteDO(id, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue);
 
             GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {

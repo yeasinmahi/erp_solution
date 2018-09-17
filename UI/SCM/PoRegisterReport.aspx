@@ -37,12 +37,23 @@
         </style>
     <script>
         function ViewBillDetailsPopup(Id) {
-             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+             window.open('../PaymentModule/BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
 
-         function ViewIndentDetailsPopup(Id) {
-             window.open('/PaymentModule/IndentViewDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
-         }
+         function Viewdetails(Id) {
+             window.open('../PaymentModule/IndentViewDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
+
+         
+
+         function ViewdetailsMrr(Id) {
+             window.open('../PaymentModule/MRRDetailsView.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
+       function Registration(url) {
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
+            if (window.focus) { newwindow.focus() }
+        }
+
 
         function Confirm() {
             var fromdate = document.getElementById("txtDteFrom").value;
@@ -165,7 +176,7 @@
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
            
             <asp:TemplateField HeaderText="PO NO"  ItemStyle-HorizontalAlign="right" SortExpression="po" >
-            <ItemTemplate><asp:Label ID="lblPoNos" runat="server"  Text='<%# Bind("po") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:LinkButton ID="lblPoNos" runat="server" OnClick="lblPoNos_Click"  Text='<%# Bind("po") %>'></asp:LinkButton></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             
             <asp:TemplateField HeaderText="PO Date"   ItemStyle-HorizontalAlign="right" SortExpression="poDate" >
@@ -177,7 +188,7 @@
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="MRR NO"   ItemStyle-HorizontalAlign="right" SortExpression="mrr" >
-            <ItemTemplate><asp:Label ID="lblMrrNo" runat="server" Width="52px"  Text='<%# Bind("mrr") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:LinkButton ID="lblMrrNo" runat="server" Width="52px" OnClick="lblMrrNo_Click"  Text='<%# Bind("mrr") %>'></asp:LinkButton></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="MRR Date" ItemStyle-HorizontalAlign="right" SortExpression="mrrDate" >
@@ -201,7 +212,7 @@
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Bill No"   ItemStyle-HorizontalAlign="right" SortExpression="billno" >
-            <ItemTemplate><asp:Label ID="lblBillNo" runat="server"  Text='<%# Bind("billno") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:LinkButton ID="lblBillNo" runat="server" OnClick="lblBillNo_Click"  Text='<%# Bind("billno") %>'></asp:LinkButton></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Pay Date" ItemStyle-HorizontalAlign="right" SortExpression="paydate" >

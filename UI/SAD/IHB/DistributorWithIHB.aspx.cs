@@ -1,4 +1,6 @@
-﻿using SAD_BLL.IHB;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using SAD_BLL.IHB;
 using System;
 using System.Data;
 using System.Web;
@@ -14,6 +16,10 @@ namespace UI.SAD.IHB
     {
         private DistributorWithIhbBll _bll = new DistributorWithIhbBll();
         private string _filePathForXml;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\IHB\\DistributorWithIHB";
+        string stop = "stopping SAD\\IHB\\DistributorWithIHB";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +35,15 @@ namespace UI.SAD.IHB
 
         protected void add_OnClick(object sender, EventArgs e)
         {
-            string fromDate = fromTextBox.Text;
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on   SAD\\IHB\\DistributorWithIHB Add ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
             DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
             DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
@@ -70,7 +84,17 @@ namespace UI.SAD.IHB
                 }
                 XmlParser.DeleteFile(_filePathForXml);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private DataTable InitDatatable()

@@ -28,7 +28,7 @@ namespace UI.AEFPS
         FPSSalesEntryBLL objAEFPS = new FPSSalesEntryBLL();
         DateTime dtedate;
 
-        string location = "SAD";
+        string location = "AEFPS";
         string start = "starting AEFPS\\FpsSalesEntry";
         string stop = "stopping AEFPS\\FpsSalesEntry";
         protected void Page_Load(object sender, EventArgs e)

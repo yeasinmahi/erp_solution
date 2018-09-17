@@ -16,6 +16,8 @@ using System.Text;
 using SAD_BLL.Sales;
 using SAD_DAL.Sales;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.SAD.Order
 {
@@ -24,6 +26,11 @@ namespace UI.SAD.Order
 
         protected StringBuilder mainD = new StringBuilder();
         protected StringBuilder mainG = new StringBuilder();
+
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\Challan";
+        string stop = "stopping SAD\\Order\\Challan";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,7 +56,18 @@ namespace UI.SAD.Order
         private void GetChallan(string id, int rowCount)
         {
 
-            StringBuilder tempD = new StringBuilder();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\Challan Challan get", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                #region
+
+                StringBuilder tempD = new StringBuilder();
             StringBuilder tempG = new StringBuilder();
 
             tempD.Append(@"<table style=""width:700px; text-align:left;"" align=""center"">");
@@ -208,6 +226,22 @@ namespace UI.SAD.Order
 
             mainD.Append(tempD.ToString());
             mainG.Append(tempG.ToString());
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+               
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
+
         }
 
         private StringBuilder Banner(string heading, string challanNo, string unitName, string unitAddr

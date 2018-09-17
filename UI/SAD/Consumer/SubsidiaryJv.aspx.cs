@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Consumer;
 using SAD_BLL.Customer.Report;
 using UI.ClassFiles;
@@ -19,6 +21,10 @@ namespace UI.SAD.Consumer
         readonly StatementC _statement = new StatementC();
         private string _filePathForXml;
         private string _jvType;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\SubsidiaryJv";
+        string stop = "stopping SAD\\Consumer\\SubsidiaryJv";
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SAD/Consumer/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "subsidairyJv.xml");
@@ -31,7 +37,16 @@ namespace UI.SAD.Consumer
 
         protected void createSubsidiary_OnClick(object sender, EventArgs e)
         {
-            string strVcode = "voucherJV";
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\SubsidiaryJv Subsidiary entry", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string strVcode = "voucherJV";
             string strPrefix = "JV";
             string reportType = ddlJvType.SelectedItem.Text;
             string glblnarration = "ACCL "+ reportType + " Commission from :" + fromTextBox.Text + "to " + toTextBox.Text;
@@ -137,11 +152,29 @@ namespace UI.SAD.Consumer
             DataTable dt = _statement.insertdataforsalescommissionjv(doc.OuterXml, unitId, strVcode, strPrefix, glblnarration, totalCommision, enroll, intmainheadcoaid);
             jvNumverLbl.Text = dt.Rows[0][2].ToString();
             XmlParser.DeleteFile(_filePathForXml);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void showReport_OnClick(object sender, EventArgs e)
         {
             DataTable source = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\DoReport Office Load", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string fromDate = fromTextBox.Text;
@@ -208,10 +241,19 @@ namespace UI.SAD.Consumer
                 }
 
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select All input Properly. " + exception.Message + "');", true);
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select All input Properly. " + ex.Message + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
 
             //LoadGridView(source);
             CreateGridView(source);

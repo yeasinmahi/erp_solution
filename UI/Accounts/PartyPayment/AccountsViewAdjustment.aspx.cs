@@ -1,4 +1,6 @@
 ﻿using BLL.Accounts.Bank;
+using Flogging.Core;
+using GLOBAL_BLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,10 @@ namespace UI.Accounts.PartyPayment
         BLL.Accounts.PartyPayment.PartyBill objPartyBill = new BLL.Accounts.PartyPayment.PartyBill(); protected double grdTotal = 0;
         bool isCheque; string chequeno; bool isAdvice; bool isOnline; string statusmsg = ""; string[] vouchercode; protected double grdAdvance = 0;
         protected double grdThisbill = 0;
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\PartyPayment\\AccountsViewAdjustment";
+        string stop = "stopping Accounts\\PartyPayment\\AccountsViewAdjustment";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -126,6 +132,13 @@ namespace UI.Accounts.PartyPayment
         {
             if (hdnconfirm.Value=="1")
             {
+
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\PartyPayment\\AccountsViewAdjustment   Submit ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
                 try
                 {
                     int rowCount = dgvViewBill.Rows.Count; bool ysnChecked;
@@ -190,7 +203,18 @@ namespace UI.Accounts.PartyPayment
                     dgvViewBill.DataBind();
                     SetChequeNumber(); dteCheque.Text = ""; dteActualPay.Text = "";
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
 
         }

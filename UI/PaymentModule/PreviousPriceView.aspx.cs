@@ -9,12 +9,19 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class PreviousPriceView : System.Web.UI.Page
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/PreviousPriceView.aspx";
+        string stop = "stopping PaymentModule/PreviousPriceView.aspx";
+
         Billing_BLL objBillApp = new Billing_BLL();
         DataTable dt;
 
@@ -35,6 +42,13 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/PreviousPriceView.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 //hdnBillID.Value = Session["billid"].ToString();
@@ -71,6 +85,11 @@ namespace UI.PaymentModule
                 ddlwh.DataBind();
 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -91,6 +110,12 @@ namespace UI.PaymentModule
 
         protected void btnShowItem_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShowItem_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/PreviousPriceView.aspx btnShowItem_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
 
             DataTable dtt = new DataTable();
 
@@ -125,6 +150,11 @@ namespace UI.PaymentModule
                 dgvPriceList.DataBind();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShowItem_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlwh_SelectedIndexChanged(object sender, EventArgs e)

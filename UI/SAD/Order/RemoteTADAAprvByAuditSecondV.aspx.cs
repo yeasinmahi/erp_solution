@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -17,6 +19,10 @@ namespace UI.SAD.Order
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
         char[] delimiterChars = { '[', ']' }; string[] arrayKey; string serial;
         int enr;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\RemoteTADAAprvByAuditSecondV";
+        string stop = "stopping SAD\\Order\\RemoteTADAAprvByAuditSecondV";
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -38,7 +44,16 @@ namespace UI.SAD.Order
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAprvByAuditSecondV TADA Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                DataTable dt = new DataTable();
             SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
             DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
             DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
@@ -75,6 +90,18 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void ddlUserType_SelectedIndexChanged(object sender, EventArgs e)
@@ -658,8 +685,15 @@ namespace UI.SAD.Order
         protected void btnApprove_Click(object sender, EventArgs e)
         {
 
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\RemoteTADAAprvByAuditSecondV TaDa Approve ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int rptTypeid = int.Parse(drdlReportType.SelectedValue.ToString());
             int intBillApplicantTypeid = int.Parse(ddlUserType.SelectedValue.ToString());
             int areaid = int.Parse(drdlArea.SelectedValue.ToString());
             int deptid =int.Parse ( HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
@@ -795,8 +829,19 @@ namespace UI.SAD.Order
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry(:  You are not permitted for Approve');", true);
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
         
 
         private void CreateSalesXmlAuditTopSheetApprove( string strName,  string lmAudit, string idealMilage, string strConsumedKM, 

@@ -15,15 +15,27 @@ using DAL.Accounts.Voucher;
 using BLL;
 using UI.ClassFiles;
 using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Accounts.Print
 {
     public partial class MR_PrePrinted : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Print\\MR_PrePrinted";
+        string stop = "stopping Accounts\\Print\\MR_PrePrinted";
         protected void Page_Load(object sender, EventArgs e)
-        {
-            //Session["sesUserID"] = "1";
-            string barcode = "";
+        { var fd = log.GetFlogDetail(start, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Print\\MR_PrePrinted   Page load ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                //Session["sesUserID"] = "1";
+                string barcode = "";
             if (Request.QueryString.Count > 0)
             {
 
@@ -103,7 +115,19 @@ namespace UI.Accounts.Print
             }
 
             Image1.ImageUrl = "BarCodeHandler.ashx?info=" + barcode;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Pageload", ex);
+                Flogger.WriteError(efd);
+            }
 
+
+
+            fd = log.GetFlogDetail(stop, location, "Pageload", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
     }

@@ -1,4 +1,6 @@
-﻿ 
+﻿
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.AEFPS;
 using System;
  
@@ -19,7 +21,10 @@ namespace UI.AEFPS
         DataTable dt = new DataTable();
         int enroll, mrrId, intWh;
         string filePathForXML; string xmlString = "";
-
+        SeriLog log = new SeriLog();
+        string location = "AEFPS";
+        string start = "starting AEFPS\\OrderSales";
+        string stop = "stopping AEFPS\\OrderSales";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/AEFPS/Data/Br__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -55,6 +60,12 @@ namespace UI.AEFPS
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\OrderSales Order Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (dgvDetalis.Rows.Count > 0 && int.Parse(hdnConfirm.Value) == 1)
@@ -93,8 +104,16 @@ namespace UI.AEFPS
                 dgvOrder.DataBind();
 
             }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
 
-            catch { }
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -152,10 +171,16 @@ namespace UI.AEFPS
         }
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on AEFPS\\OrderSales Order Show Details", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                
-                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblOrderID = row.FindControl("lblOrderId") as Label;
                 int OrderId = int.Parse(lblOrderID.Text.ToString());
 
@@ -163,9 +188,18 @@ namespace UI.AEFPS
                 dgvDetalis.DataSource = dt;
                 dgvDetalis.DataBind();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-                 
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnClose_Click(object sender, EventArgs e)

@@ -25,6 +25,7 @@ using System.Web.Script.Services;
 using UI.ClassFiles;
 using GLOBAL_BLL;
 using System.Net;
+using Flogging.Core;
 
 namespace UI.Accounts.Voucher
 {
@@ -32,13 +33,26 @@ namespace UI.Accounts.Voucher
     {
         XmlManager xm = new XmlManager(); string advice = "Advice", adjustment = "Adjustment", VoucherFile, docfile;
         string[] arrayKey; char[] delimiterChars = { '[',']' };
+        SeriLog log = new SeriLog();
+        string location = "Accounts";
+        string start = "starting Accounts\\Voucher\\VoucherEntry";
+        string stop = "stopping Accounts\\Voucher\\VoucherEntry";
         protected override void OnPreInit(EventArgs e)
         {
             //Session["sesUserID"] = "5";
             base.OnPreInit(e);
             if (!IsPostBack)
             {
-                string rdoBtn = "rdo";
+                var fd = log.GetFlogDetail(start, location, "show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntry   show ", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    string rdoBtn = "rdo";
                 bool isDR = false;
                 //For Update
                 if (Request.QueryString.Count > 0)
@@ -105,6 +119,19 @@ namespace UI.Accounts.Voucher
                         SetContraVoucherInfo();
                     }
                 }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+
+
+                fd = log.GetFlogDetail(stop, location, "show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -186,7 +213,13 @@ namespace UI.Accounts.Voucher
         #region Event Handler Button
 
         protected void btnAdd_Click(object sender, EventArgs e)
-        {            
+        {
+            var fd = log.GetFlogDetail(start, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntry   add ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 Budget bdg = new Budget(); DataTable strtdt = new DataTable();
@@ -315,16 +348,35 @@ namespace UI.Accounts.Voucher
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry voucher is backdated.');", true); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Cancel", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
 
 
      
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntry   save ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-               
+
                 try
                 {
                     txtChqDateR.Enabled = true;
@@ -625,13 +677,24 @@ namespace UI.Accounts.Voucher
                     catch { File.Delete(Server.MapPath("~/Accounts/Voucher/Uploads/") + VoucherFile); }
                     //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Document Attachment');", true);
                 }
-                
 
 
 
-                }
-            catch (Exception ex) { }
-        
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "show", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
@@ -688,7 +751,17 @@ namespace UI.Accounts.Voucher
         protected void btnCComplete_Click(object sender, EventArgs e)
         {
             //completed at only cash voucher
-            char[] ch = { '#' };
+            var fd = log.GetFlogDetail(start, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Accounts\\Voucher\\VoucherEntry   Complete ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                char[] ch = { '#' };
             string[] str = btnCComplete.CommandArgument.Split(ch);
 
             if (str[1] == "bn")
@@ -744,6 +817,19 @@ namespace UI.Accounts.Voucher
 
 
             pnlAfterSave.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Complete", ex);
+                Flogger.WriteError(efd);
+            }
+
+
+
+            fd = log.GetFlogDetail(stop, location, "Complete", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #endregion

@@ -10,11 +10,18 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Cafeteria
 {
     public partial class CafeteriaService : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Cafeteria/CafeteriaService.aspx";
+        string stop = "stopping HR/Cafeteria/CafeteriaService.aspx";
+
         GlobalBLL obj = new GlobalBLL(); DataTable dt;
 
         int intPart, intEnroll, intType, intMealOption, intMealFor, intCountMeal, isOwnGuest, isPayable, intActionBy, intMenuid;
@@ -23,6 +30,13 @@ namespace UI.HR.Cafeteria
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaService.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind(); 
@@ -47,6 +61,11 @@ namespace UI.HR.Cafeteria
                 intEnroll = int.Parse(hdnEnroll.Value.ToString());
                 LoadMealStatus();               
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void LoadMealStatus()
@@ -78,6 +97,13 @@ namespace UI.HR.Cafeteria
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaService.aspx LoadGrid", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intEnroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -100,7 +126,16 @@ namespace UI.HR.Cafeteria
                 dgvMenuList.DataBind();
                 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "LoadGrid", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         
 
@@ -115,6 +150,13 @@ namespace UI.HR.Cafeteria
         #region =============== Insert & Update Action ============================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaService.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -158,11 +200,28 @@ namespace UI.HR.Cafeteria
 
                     LoadMealStatus();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnAction_OnCommand(object sender, CommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaService.aspx btnAction_OnCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+
             try
             {
                 char[] delimiterChars = { '^' };
@@ -209,7 +268,16 @@ namespace UI.HR.Cafeteria
                     }
                 }                
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnAction_OnCommand", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #endregion ================================================================

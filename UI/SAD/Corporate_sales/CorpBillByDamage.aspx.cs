@@ -13,6 +13,8 @@ using System.Data;
 using System.Xml;
 using System.IO;
 using SAD_BLL.Corporate_Sales;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.SAD.Corporate_sales
 {
@@ -21,12 +23,13 @@ namespace UI.SAD.Corporate_sales
         OrderInput_BLL objOrder = new OrderInput_BLL();
         DataTable dt = new DataTable();
 
-       
-
-
 
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
-      
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Corporate_sales\\CorpBillByDamage";
+        string stop = "stopping SAD\\Corporate_sales\\CorpBillByDamage";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -68,8 +71,15 @@ namespace UI.SAD.Corporate_sales
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            string challano = txtChallanno.Text;
+        { var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Corporate_sales\\CorpBillByDamage Save ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string challano = txtChallanno.Text;
             string pono = txtPONo.Text;
             string grnno = txtGRNno.Text;
             int Custid = int.Parse(Session["itemCustID"].ToString());
@@ -86,6 +96,17 @@ namespace UI.SAD.Corporate_sales
             txtPONo.Text = "";
            
             txtGRNno.Text = "";
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void Button1_Click1(object sender, EventArgs e)

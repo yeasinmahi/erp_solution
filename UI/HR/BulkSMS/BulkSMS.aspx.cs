@@ -14,11 +14,19 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using HR_BLL;
 using HR_BLL.BulkSMS;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.HR.BulkSMS
 {
     public partial class BulkSMS : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/BulkSMS/BulkSMS.aspx";
+        string stop = "stopping HR/BulkSMS/BulkSMS.aspx";
+
         DataTable dtReport = new DataTable();
         BulkSMSBLL insertSMS = new BulkSMSBLL();
         string filePathForXML;
@@ -48,6 +56,13 @@ namespace UI.HR.BulkSMS
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Button1_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/BulkSMS/BulkSMS.aspx Button1_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string smstxt = txtSMS.Text.ToString();
             string strUserName = Convert.ToString("Akijadmin".ToString());
             string strPassword = Convert.ToString("AkijFood@786".ToString());
@@ -65,11 +80,21 @@ namespace UI.HR.BulkSMS
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully !')", true);
             }
 
-
+            fd = log.GetFlogDetail(stop, location, "Button1_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btn_ImportCSV_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btn_ImportCSV_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/BulkSMS/BulkSMS.aspx btn_ImportCSV_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+            
             string fileName;
             string filePath = string.Empty;
             fileName = Path.GetFileName(fu_ImportCSV.PostedFile.FileName);
@@ -91,6 +116,11 @@ namespace UI.HR.BulkSMS
                 lbl_ErrorMsg.Text = "Please check the selected file type";
                 lbl_ErrorMsg.Visible = true;
             }
+
+            fd = log.GetFlogDetail(stop, location, "btn_ImportCSV_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
        

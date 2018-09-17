@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using Flogging.Core;
+using GLOBAL_BLL;
 using SAD_BLL.Consumer;
 using UI.ClassFiles;
 using Utility;
@@ -15,6 +17,10 @@ namespace UI.SAD.Consumer
     {
         private readonly StarConsumerEntryBll _starConsumerEntryBll = new StarConsumerEntryBll();
         string _filePathForXml = String.Empty;
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Consumer\\StarConsumerEntry";
+        string stop = "stopping SAD\\Consumer\\StarConsumerEntry";
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SAD/Consumer/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "StarConsumerBill.xml");
@@ -51,7 +57,15 @@ namespace UI.SAD.Consumer
         }
         protected void showReport_OnClick(object sender, EventArgs e)
         {
-            string teritoryName = ddlTeritory.SelectedItem.Text;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\StarConsumerEntry Show Report", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string teritoryName = ddlTeritory.SelectedItem.Text;
             string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
             //string teritoryName = "Faridpur";
@@ -63,12 +77,32 @@ namespace UI.SAD.Consumer
             toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
             
             LoadDoubleCashOfferGridView(teritoryName, fromDateTime, toDateTime);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
         protected void add_OnClick(object sender, EventArgs e)
         {
-            string fromDate = fromTextBox.Text;
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SAD\\Consumer\\StarConsumerEntry Consumer Entry ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
             DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
             fromDateTime = fromDateTime.AddHours(6);
@@ -119,6 +153,17 @@ namespace UI.SAD.Consumer
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
             }
             XmlParser.DeleteFile(_filePathForXml);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         

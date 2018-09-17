@@ -1,4 +1,6 @@
-﻿using HR_BLL.Employee;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using HR_BLL.Employee;
 using LOGIS_BLL.Supplier;
 using System;
 using System.Collections.Generic;
@@ -34,13 +36,25 @@ namespace UI.SAD.Order
         string startmilage = "0", endmilage = "0", consumed = "0", totoilltr = "0",
             OilCashAmount = "0", OilcreditAmount = "0", CNGCashAmount = "0", CNGCreditAmount = "0", TotalGas = "0",
             mntCost = "0", ownda = "0", ownhotelfair = "0", personalusedMilageQnt = "0", personalusemilageTotcost = "0", OtherCost = "", totalcost = "0";
-
+        SeriLog log = new SeriLog();
+        string location = "SAD";
+        string start = "starting SAD\\Order\\TA_DA_Station_Vhc";
+        string stop = "stopping SAD\\Order\\TA_DA_Station_Vhc";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/Order/Data/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadaForStandbyVheicle.xml");
             if (!IsPostBack)
             {
-                hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_Station_Vhc TADA Station Page load Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+
+                    hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                 Int32 enroll = Convert.ToInt32(hdnAreamanagerEnrol.Value);
                 hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
@@ -61,6 +75,18 @@ namespace UI.SAD.Order
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
                 catch { }
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
                 ////-----**----------//
             }
 
@@ -362,7 +388,17 @@ namespace UI.SAD.Order
 
         protected void btnAddBikeCarUser_Click(object sender, EventArgs e)
         {
-            string tst = rdbOilstationpay.SelectedValue.ToString();
+
+            var fd = log.GetFlogDetail(start, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_Station_Vhc TADA Station  Add", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                string tst = rdbOilstationpay.SelectedValue.ToString();
             string tstCNGGas = rdbCNGSupplierpay.SelectedValue.ToString();
             string oilltr = txtOilLtr.Text;
             if (tst == "")
@@ -618,7 +654,18 @@ namespace UI.SAD.Order
 
 
             }
-           
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Add", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Add", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -840,9 +887,16 @@ namespace UI.SAD.Order
 
         protected void btnSubmitBikeCar_Click(object sender, EventArgs e)
         {
-  
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
 
-            if (grdvForStandByVehicle.Rows.Count > 0)
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\Order\\TA_DA_Station_Vhc TADA Station   Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                if (grdvForStandByVehicle.Rows.Count > 0)
             {
                 #region ------------ Insert into dataBase -----------
 
@@ -881,7 +935,18 @@ namespace UI.SAD.Order
             grdvForStandByVehicle.DataSource = null;
             grdvForStandByVehicle.DataBind();
             File.Delete(filePathForXML);
-           
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
 
         }
