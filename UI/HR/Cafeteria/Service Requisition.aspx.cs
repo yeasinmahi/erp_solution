@@ -10,17 +10,31 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Cafeteria
 {
     public partial class Service_Requisition : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Cafeteria/Service Requisition.aspx";
+        string stop = "stopping HR/Cafeteria/Service Requisition.aspx";
+
         GlobalBLL obj = new GlobalBLL(); DataTable dt;
 
         int intEnroll;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/Service Requisition.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -33,6 +47,11 @@ namespace UI.HR.Cafeteria
                 txtJobType.Text = Session[SessionParams.JOBTYPE_NAME].ToString();
                 txtJobStation.Text = Session[SessionParams.JOBSTATION_NAME].ToString();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         [WebMethod]
         [ScriptMethod]
@@ -45,6 +64,13 @@ namespace UI.HR.Cafeteria
 
         protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtSearchEmp_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/Service Requisition.aspx txtSearchEmp_TextChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 char[] ch1 = { '[', ']' };
@@ -67,6 +93,11 @@ namespace UI.HR.Cafeteria
                 }
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "txtSearchEmp_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void PR_CheckedChanged(object sender, EventArgs e)
         {

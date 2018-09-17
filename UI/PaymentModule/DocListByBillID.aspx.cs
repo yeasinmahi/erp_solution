@@ -14,12 +14,20 @@ using UI.ClassFiles;
 using System.IO;
 using System.Xml;
 using System.Net;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.PaymentModule
 {
     public partial class DocListByBillID : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/DocListByBillID.aspx";
+        string stop = "stopping PaymentModule/DocListByBillID.aspx";
+
         Billing_BLL objBillApp = new Billing_BLL();
         DataTable dt;
 
@@ -33,6 +41,13 @@ namespace UI.PaymentModule
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/DocListByBillID.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
 
             if (!IsPostBack)
@@ -76,11 +91,22 @@ namespace UI.PaymentModule
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no attachement against your query.');", true);
                 }
             }
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
         protected void btnDocDownload_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDocDownload_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/DocListByBillID.aspx btnDocDownload_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             char[] delimiterChars = { '^' };
             string temp1 = ((Button)sender).CommandArgument.ToString();
             string temp = temp1.Replace("'", " ");
@@ -120,11 +146,28 @@ namespace UI.PaymentModule
                 }
             }
             catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse).StatusDescription); }
+
+            fd = log.GetFlogDetail(stop, location, "btnDocDownload_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnBillDetails_Click(object sender, EventArgs e)
-        {            
+        {
+            var fd = log.GetFlogDetail(start, location, "btnBillDetails_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/DocListByBillID.aspx btnBillDetails_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + hdnBillID.Value + "');", true);
+
+            fd = log.GetFlogDetail(stop, location, "btnBillDetails_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

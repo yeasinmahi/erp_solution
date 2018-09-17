@@ -8,11 +8,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class TreasuryDepositeForecast : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/TreasuryDepositeForecast.aspx";
+        string stop = "stopping PaymentModule/TreasuryDepositeForecast.aspx";
+
         TreasuryChallanBLL objtreasuryChallan = new TreasuryChallanBLL();
         DataTable dt = new DataTable();
         DataTable dtbank = new DataTable();
@@ -23,14 +30,33 @@ namespace UI.PaymentModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/TreasuryDepositeForecast.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer); 
+
+            if (!IsPostBack)
             {
                 pnlUpperControl.DataBind(); txtVDate.Text = DateTime.Now.ToString();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/TreasuryDepositeForecast.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+             
             intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
             dt = objtreasuryChallan.GetForecastDetails(intVatAcc);
             GvDetails.DataSource = dt;
@@ -51,6 +77,11 @@ namespace UI.PaymentModule
             ddlBank.DataTextField = "strBankName";
             ddlBank.DataValueField = "intBankID";
             ddlBank.DataBind();
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region===========Radio Button==============

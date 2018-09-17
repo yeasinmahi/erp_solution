@@ -11,11 +11,18 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Cafeteria
 {
     public partial class CafeteriaReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Cafeteria/CafeteriaReport.aspx";
+        string stop = "stopping HR/Cafeteria/CafeteriaReport.aspx";
+
         GlobalBLL obj = new GlobalBLL(); DataTable dt;
         InternalTransportBLL objunit = new InternalTransportBLL();
 
@@ -24,6 +31,13 @@ namespace UI.HR.Cafeteria
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaReport.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -39,6 +53,12 @@ namespace UI.HR.Cafeteria
                 //ddlUnit.Items.Insert(0, new ListItem("All Unit", 0.ToString()));
                 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnExport_Click(object sender, EventArgs e)
@@ -58,9 +78,21 @@ namespace UI.HR.Cafeteria
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaReport.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             dgvReport.DataSource = ""; dgvReport.DataBind();
             System.Threading.Thread.Sleep(1500);
             LoadGrid();
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected decimal tqtyown = 0;

@@ -6,12 +6,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HR_BLL.Attendance;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 
 namespace UI.HR.Attendance
 {
     public partial class ShiftSchedule : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Attendance/ShiftSchedule.aspx";
+        string stop = "stopping HR/Attendance/ShiftSchedule.aspx";
+
         string msg = ""; int onOff;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,6 +29,13 @@ namespace UI.HR.Attendance
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/ShiftSchedule.aspx btnSave_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             EmployeesJobStation sftStatus = new EmployeesJobStation();
 
             int unitId = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -38,6 +52,11 @@ namespace UI.HR.Attendance
             ClearControls();
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+            fd = log.GetFlogDetail(stop, location, "btnSave_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ClearControls()

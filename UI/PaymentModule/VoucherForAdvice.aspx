@@ -121,6 +121,10 @@
             </cc1:CalendarExtender> </ItemTemplate>
             </asp:TemplateField>
 
+            <asp:TemplateField HeaderText="Audit Date" SortExpression="AuditApproveDate">
+            <ItemTemplate><asp:Label ID="lblAuditDate" runat="server" Text='<%# Bind("AuditApproveDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
+
             <asp:TemplateField HeaderText="Party ID" SortExpression="intParty">
             <ItemTemplate><asp:Label ID="lblPartyID" runat="server" Text='<%# Bind("intParty") %>' Width="50px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="50px"/></asp:TemplateField>
