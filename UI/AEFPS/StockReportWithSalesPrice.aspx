@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReceiveReport.aspx.cs" Inherits="UI.AEFPS.ReceiveReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockReportWithSalesPrice.aspx.cs" Inherits="UI.AEFPS.StockReportWithSalesPrice" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
