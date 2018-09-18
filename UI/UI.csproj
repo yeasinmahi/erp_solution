@@ -220,12 +220,14 @@
     <Content Include="AEFPS\ReceiveStockInput.aspx" />
     <Content Include="AEFPS\RePrintQrcode.aspx" />
     <Content Include="AEFPS\ReturnAndDamageReport.aspx" />
+    <Content Include="AEFPS\SalaryDeductionReport.aspx" />
     <Content Include="AEFPS\SalesPriceChange.aspx" />
     <Content Include="AEFPS\SalesReport.aspx" />
     <Content Include="AEFPS\SalesReturnN.aspx" />
     <Content Include="AEFPS\ShortDatedItemsReport.aspx" />
-    <Content Include="AEFPS\StockReport.aspx" />
+    <Content Include="AEFPS\StockReportWithBuyPrice.aspx" />
     <Content Include="AEFPS\StockReportForAudit.aspx" />
+    <Content Include="AEFPS\StockReportWithSalesPrice.aspx" />
     <Content Include="AEFPS\TransferIn.aspx" />
     <Content Include="AEFPS\TransferInN.aspx" />
     <Content Include="AEFPS\TransferOut.aspx" />
@@ -2078,6 +2080,13 @@
     <Compile Include="AEFPS\ReturnAndDamageReport.aspx.designer.cs">
       <DependentUpon>ReturnAndDamageReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\SalaryDeductionReport.aspx.cs">
+      <DependentUpon>SalaryDeductionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\SalaryDeductionReport.aspx.designer.cs">
+      <DependentUpon>SalaryDeductionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\SalesPriceChange.aspx.cs">
       <DependentUpon>SalesPriceChange.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2106,12 +2115,12 @@
     <Compile Include="AEFPS\ShortDatedItemsReport.aspx.designer.cs">
       <DependentUpon>ShortDatedItemsReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AEFPS\StockReport.aspx.cs">
-      <DependentUpon>StockReport.aspx</DependentUpon>
+    <Compile Include="AEFPS\StockReportWithBuyPrice.aspx.cs">
+      <DependentUpon>StockReportWithBuyPrice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AEFPS\StockReport.aspx.designer.cs">
-      <DependentUpon>StockReport.aspx</DependentUpon>
+    <Compile Include="AEFPS\StockReportWithBuyPrice.aspx.designer.cs">
+      <DependentUpon>StockReportWithBuyPrice.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\StockReportForAudit.aspx.cs">
       <DependentUpon>StockReportForAudit.aspx</DependentUpon>
@@ -2119,6 +2128,13 @@
     </Compile>
     <Compile Include="AEFPS\StockReportForAudit.aspx.designer.cs">
       <DependentUpon>StockReportForAudit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\StockReportWithSalesPrice.aspx.cs">
+      <DependentUpon>StockReportWithSalesPrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\StockReportWithSalesPrice.aspx.designer.cs">
+      <DependentUpon>StockReportWithSalesPrice.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\TransferIn.aspx.cs">
       <DependentUpon>TransferIn.aspx</DependentUpon>

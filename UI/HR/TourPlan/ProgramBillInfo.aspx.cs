@@ -130,8 +130,7 @@ namespace UI.HR.TourPlan
         {
             try
             {
-                if (hdnconfirm.Value == "1")
-                {
+              
 
                     bool proceed = false;
                     //progdate,programName,  programno,  adr,  participantcatgid,  participantcatgname,  participantnumber,  foodperh,  mojoperh, otherperh, totalcostperh
@@ -181,7 +180,7 @@ namespace UI.HR.TourPlan
                             Clearcontrols();
                         }
                     }
-                }
+                
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
         }

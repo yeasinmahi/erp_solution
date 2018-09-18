@@ -552,8 +552,9 @@ namespace UI.SAD.Order
             {
                 subsidyamnt = monsubsidiary.ToString();
                 if (ddlSo.SelectedValue == "453")
-                { //tsubsidyamnt = decimal.Parse(txtQun.Text) * decimal.Parse(subsidyamnt);
-                    tsubsidyamnt = 0;
+                {
+                    tsubsidyamnt = decimal.Parse(txtQun.Text) * decimal.Parse(subsidyamnt);
+                    //tsubsidyamnt = 0;
                 }
 
                 else { tsubsidyamnt = 0; }

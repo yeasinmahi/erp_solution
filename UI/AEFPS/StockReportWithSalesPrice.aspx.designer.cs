@@ -10,7 +10,7 @@
 namespace UI.AEFPS {
     
     
-    public partial class CreditReport {
+    public partial class StockReportWithSalesPrice {
         
         /// <summary>
         /// PlaceHolder0 control.
