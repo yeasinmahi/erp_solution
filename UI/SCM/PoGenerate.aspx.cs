@@ -175,6 +175,8 @@ namespace UI.SCM
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
                 Tab4.CssClass = "Initial";
+                Tab5.CssClass = "Initial";
+
                 MainView.ActiveViewIndex = 0;
             }
             catch { } 
@@ -429,6 +431,7 @@ namespace UI.SCM
                 Tab2.CssClass = "Clicked";
                 Tab3.CssClass = "Initial";
                 Tab4.CssClass = "Initial";
+                Tab5.CssClass = "Initial";
 
                 MainView.ActiveViewIndex = 1;
             }
@@ -794,7 +797,7 @@ namespace UI.SCM
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Clicked";
                 Tab4.CssClass = "Initial";
-
+                Tab5.CssClass = "Initial";
 
                 MainView.ActiveViewIndex = 2;
             }
@@ -1082,8 +1085,11 @@ namespace UI.SCM
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
                 Tab4.CssClass = "Clicked";  
+                Tab5.CssClass = "Initial";  
 
                 MainView.ActiveViewIndex = 3;
+                
+
             }
             catch { }
            
@@ -1091,5 +1097,14 @@ namespace UI.SCM
 
         #endregion================Close===================================
 
+        protected void Tab5_OnClick(object sender, EventArgs e)
+        {
+            Tab1.CssClass = "Initial";
+            Tab2.CssClass = "Initial";
+            Tab3.CssClass = "Initial";
+            Tab4.CssClass = "Initial";
+            Tab5.CssClass = "Clicked";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('../Inventory/PoReport.aspx');", true);
+        }
     }
 }

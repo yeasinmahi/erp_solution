@@ -406,7 +406,7 @@ namespace UI.SCM
                 }
             }
             mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
-            mEmail.Body = "Dear " + lblSuppliyers.Text + ",\n This email contain your purchase order which number is " + lblpoNo.Text + ". ";
+            mEmail.Body = "Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + ". ";
             //mEmail.Attachments.Add("F:/hello.pdf", OlAttachmentType.olByValue, Type.Missing, Type.Missing);
             mEmail.Display();
         }

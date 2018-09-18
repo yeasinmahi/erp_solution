@@ -155,16 +155,6 @@
         }
     </script>
 
-
-
-    <style type="text/css">
-        .auto-style2 {
-            width: 69px;
-        }
-    </style>
-
-
-
 </head>
 <body>
     <form id="frmselfresign" runat="server">
@@ -225,26 +215,22 @@
                             <td>
                                 <asp:Button ID="btnEmail" Text="E-mail" runat="server"  OnClick ="btnEmail_OnClick" /></td>
                             <td>
-                                <asp:Button ID="btnDownload" Text="Download" runat="server"  OnClick="btnDownload_Click" OnClientClick="return ConvertToImageDownload(this)" /></td>
+                                <asp:Button ID="btnDownload" Text="Download" runat="server" OnClientClick="return ConvertToImageDownload(this)" /></td>
                             <td>
-                                <asp:Button ID="btnPDF" Text="HD PDF" Visible="True" runat="server" OnClick="btnPDF_OnClick"  /></td>
+                                <asp:Button ID="btnPDF" Text="HD PDF" Visible="False" runat="server" OnClick="btnPDF_OnClick"  /></td>
 
                         </tr>
                     </table>
                     <table style="border-color: black; width: 700px; border-radius: 10px; border: 1px solid blue;">
                         <tr>
-                            <td style="text-align: left; width: 10px">Supplier</td>
-                            <td style="text-align: left">Ship To</td>
-                            <td style="text-align: left;" class="auto-style2">Bill To</td>
+                            <td style="text-align:left; width:10px">Supplier</td>
+                            <td style="text-align:left">Ship TO</td>
+                            <td style="text-align:left; ">Bill To</td>
                         </tr>
                         <tr>
-                            <td style="text-align: left;">
-                                <asp:Label ID="lblSuppliyers" runat="server"></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:Label ID="lblShipTo" Width="200px" runat="server"></asp:Label></td>
-                            <td style="text-align: left" class="auto-style2">
-                                <asp:Label ID="lblBillTo" Width="250px" runat="server"></asp:Label></td>
-
+                            <td style="text-align:left"><asp:Label ID="lblSuppliyers" runat="server" Font-Bold="true"></asp:Label></td>                     
+                            <td style="text-align:left"><asp:Label ID="lblShipTo" Width="200px" runat="server" Font-Bold="true"></asp:Label></td>
+                            <td style="text-align:left"><asp:Label ID="lblBillTo"  Width="250px" runat="server"></asp:Label></td>                      
                         </tr>
 
                         <tr>
@@ -271,14 +257,11 @@
                         </tr>
                     </table>
                     <table style="width: 750px">
+                        
                         <tr>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="750px" ShowFooter="true" BorderColor="#adad85"
-                                    BorderWidth="1px" CssClass="Grid" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#adad85" FooterStyle-HorizontalAlign="Right">
-                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                            <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="11px" Width="750px" ShowFooter="true"   
+                                              BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical" FooterStyle-HorizontalAlign="Right" > 
+                                    <AlternatingRowStyle BackColor="#CCCCCC" /> 
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
                                             <ItemStyle HorizontalAlign="center" Width="60px" />
@@ -341,9 +324,9 @@
                                         </asp:TemplateField>
 
                                     </Columns>
-                                    <FooterStyle BackColor="#adad85" Font-Bold="True" HorizontalAlign="Right" />
-                                    <HeaderStyle BackColor="#adad85" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <FooterStyle BackColor="Gray" Font-Bold="True" HorizontalAlign="Right" ForeColor="Black" />
+                                    <HeaderStyle BackColor="Black" Font-Bold="True" /><PagerStyle BackColor="Gray" ForeColor="Red" HorizontalAlign="Center" /> 
+            
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -357,70 +340,52 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; border: 1px solid black;">Partial Shipment</td>
-                            <td style="text-align: left; border: 1px solid black;">
-                                <asp:Label ID="lblPartialShip" Width="100px" runat="server"></asp:Label></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: right; border: 1px solid black">Trnsport Charge:</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblTransportCharge" Width="100px" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">No of Shipment</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblNoShipment" Width="100px" runat="server"></asp:Label></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: right; border: 1px solid black">Others Charge:</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblOthersCharge" runat="server" Width="100px"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">Last Shipment Date</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lbllastShipmentDate" Width="100px" runat="server"></asp:Label></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: right; border: 1px solid black">Gross Disscount:</td>
-                            <td style="text-align: left; border: 1px  inset black">
-                                <asp:Label ID="lblGrossDis" runat="server" Width="100px"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">Payment terms</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblPaymentTrems" runat="server"></asp:Label></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: right; border: 1px solid black">Comission:</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">Payment days after MRR (days)</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: right; border: 1px solid black;">Grand Total:</td>
-                            <td style="text-align: left; border: 1px solid black;">
-                                <asp:Label ID="lblGrandTotal" runat="server" Width="100px"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">No of Installment</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">Installment Interval (Days)</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblIntervelDay" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; border: 1px solid black">Warrenty after delivery (months)</td>
-                            <td style="text-align: left; border: 1px solid black">
-                                <asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
-                        </tr>
+                      <td style="text-align:left;border: 1px solid gray;">Partial Shipment</td>
+                      <td style="text-align:left;border: 1px solid gray;"><asp:Label ID="lblPartialShip" Width="100px" runat="server"></asp:Label></td>
+                      <td></td><td></td>
+                      <td style="text-align:right;border: 1px solid gray">Trnsport Charge:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblTransportCharge" Width="100px" runat="server"></asp:Label></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">No of Shipment</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblNoShipment" Width="100px" runat="server"></asp:Label></td>
+                      <td></td><td></td>
+                      <td style="text-align:right;border: 1px solid gray">Others Charge:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblOthersCharge" runat="server" Width="100px"></asp:Label></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">Last Shipment Date</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lbllastShipmentDate" Width="100px" runat="server"></asp:Label></td>
+                      <td></td><td></td>
+                      <td style="text-align:right;border: 1px solid gray">Gross Disscount:</td>
+                      <td style="text-align:left;border: 1px  inset gray"><asp:Label ID="lblGrossDis" runat="server" Width="100px"></asp:Label></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">Payment terms</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblPaymentTrems" runat="server"  ></asp:Label></td>
+                      <td></td><td></td>
+                      <td style="text-align:right;border: 1px solid gray">Comission:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">Payment days after MRR (days)</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
+                      <td></td><td></td>
+                      <td style="text-align:right;border: 1px solid gray">Grand Total:</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblGrandTotal" runat="server" Width="100px" Font-Bold="true"></asp:Label></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">No of Installment</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
+                  </tr> 
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">Installment Interval (Days)</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblIntervelDay" runat="server"></asp:Label></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align:left;border: 1px solid gray">Warrenty after delivery (months)</td>
+                      <td style="text-align:left;border: 1px solid gray"><asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
+                  </tr>
 
                     </table>
                     <table>

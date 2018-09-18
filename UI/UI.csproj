@@ -8169,6 +8169,7 @@
     <Content Include="Asset\Barcode.ashx" />
     <Content Include="packages.config" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\pubiis8.pubxml" />
