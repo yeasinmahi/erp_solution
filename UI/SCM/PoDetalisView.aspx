@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  EnableEventValidation="false" CodeBehind="PoDetalisView.aspx.cs" Inherits="UI.SCM.PoDetalisView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="PoDetalisView.aspx.cs" Inherits="UI.SCM.PoDetalisView" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -215,7 +215,7 @@
                             <td>
                                 <asp:Button ID="btnEmail" Text="E-mail" runat="server"  OnClick ="btnEmail_OnClick" /></td>
                             <td>
-                                <asp:Button ID="btnDownload" Text="Download" runat="server" OnClientClick="return ConvertToImageDownload(this)" /></td>
+                                <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" OnClick="btnDownload_Click" OnClientClick="return ConvertToImageDownload(this)" /></td>
                             <td>
                                 <asp:Button ID="btnPDF" Text="HD PDF" Visible="False" runat="server" OnClick="btnPDF_OnClick"  /></td>
 

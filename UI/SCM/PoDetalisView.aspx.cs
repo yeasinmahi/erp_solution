@@ -32,6 +32,8 @@ namespace UI.SCM
         string perform = "Performance on SCM\\PoDetalisView";
         protected void Page_Load(object sender, EventArgs e)
         {
+            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            scriptManager?.RegisterPostBackControl(btnDownload);
             if (!IsPostBack)
             {
                 PoNo = int.Parse(Session["pono"].ToString());
