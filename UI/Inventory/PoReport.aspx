@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReceiveReport.aspx.cs" Inherits="UI.AEFPS.ReceiveReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PoReport.aspx.cs" Inherits="UI.Inventory.PoReport" %>
+
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -42,3 +44,4 @@
     </form>
 </body>
 </html>
+

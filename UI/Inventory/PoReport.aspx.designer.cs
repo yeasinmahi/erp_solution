@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.AEFPS {
+namespace UI.Inventory {
     
     
-    public partial class CreditReport {
+    public partial class PoReport {
         
         /// <summary>
         /// PlaceHolder0 control.

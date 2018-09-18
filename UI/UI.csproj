@@ -79,6 +79,11 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Libray\Microsoft.Office.Interop.Outlook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
     </Reference>
@@ -215,12 +220,14 @@
     <Content Include="AEFPS\ReceiveStockInput.aspx" />
     <Content Include="AEFPS\RePrintQrcode.aspx" />
     <Content Include="AEFPS\ReturnAndDamageReport.aspx" />
+    <Content Include="AEFPS\SalaryDeductionReport.aspx" />
     <Content Include="AEFPS\SalesPriceChange.aspx" />
     <Content Include="AEFPS\SalesReport.aspx" />
     <Content Include="AEFPS\SalesReturnN.aspx" />
     <Content Include="AEFPS\ShortDatedItemsReport.aspx" />
-    <Content Include="AEFPS\StockReport.aspx" />
+    <Content Include="AEFPS\StockReportWithBuyPrice.aspx" />
     <Content Include="AEFPS\StockReportForAudit.aspx" />
+    <Content Include="AEFPS\StockReportWithSalesPrice.aspx" />
     <Content Include="AEFPS\TransferIn.aspx" />
     <Content Include="AEFPS\TransferInN.aspx" />
     <Content Include="AEFPS\TransferOut.aspx" />
@@ -354,6 +361,8 @@
     <Content Include="Inventory\FinishGoodsStock.aspx" />
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
+    <Content Include="Inventory\PdfViewer.aspx" />
+    <Content Include="Inventory\PoReport.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
     <Content Include="Inventory\ReqPolicyView.aspx" />
     <Content Include="Inventory\RequisitionView.aspx" />
@@ -1344,6 +1353,7 @@
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierAccountInfoChange.aspx" />
     <Content Include="SCM\SupplierBlackListEntry.aspx" />
     <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
@@ -2070,6 +2080,13 @@
     <Compile Include="AEFPS\ReturnAndDamageReport.aspx.designer.cs">
       <DependentUpon>ReturnAndDamageReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\SalaryDeductionReport.aspx.cs">
+      <DependentUpon>SalaryDeductionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\SalaryDeductionReport.aspx.designer.cs">
+      <DependentUpon>SalaryDeductionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\SalesPriceChange.aspx.cs">
       <DependentUpon>SalesPriceChange.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2098,12 +2115,12 @@
     <Compile Include="AEFPS\ShortDatedItemsReport.aspx.designer.cs">
       <DependentUpon>ShortDatedItemsReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AEFPS\StockReport.aspx.cs">
-      <DependentUpon>StockReport.aspx</DependentUpon>
+    <Compile Include="AEFPS\StockReportWithBuyPrice.aspx.cs">
+      <DependentUpon>StockReportWithBuyPrice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AEFPS\StockReport.aspx.designer.cs">
-      <DependentUpon>StockReport.aspx</DependentUpon>
+    <Compile Include="AEFPS\StockReportWithBuyPrice.aspx.designer.cs">
+      <DependentUpon>StockReportWithBuyPrice.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\StockReportForAudit.aspx.cs">
       <DependentUpon>StockReportForAudit.aspx</DependentUpon>
@@ -2111,6 +2128,13 @@
     </Compile>
     <Compile Include="AEFPS\StockReportForAudit.aspx.designer.cs">
       <DependentUpon>StockReportForAudit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\StockReportWithSalesPrice.aspx.cs">
+      <DependentUpon>StockReportWithSalesPrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\StockReportWithSalesPrice.aspx.designer.cs">
+      <DependentUpon>StockReportWithSalesPrice.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\TransferIn.aspx.cs">
       <DependentUpon>TransferIn.aspx</DependentUpon>
@@ -2856,6 +2880,20 @@
     </Compile>
     <Compile Include="Inventory\OverTimeIndivisualReprts.aspx.designer.cs">
       <DependentUpon>OverTimeIndivisualReprts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PdfViewer.aspx.cs">
+      <DependentUpon>PdfViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\PdfViewer.aspx.designer.cs">
+      <DependentUpon>PdfViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PoReport.aspx.cs">
+      <DependentUpon>PoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\PoReport.aspx.designer.cs">
+      <DependentUpon>PoReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\RAWMaterialTransfer.aspx.cs">
       <DependentUpon>RAWMaterialTransfer.aspx</DependentUpon>
@@ -7058,6 +7096,13 @@
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\SupplierAccountInfoChange.aspx.cs">
+      <DependentUpon>SupplierAccountInfoChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierAccountInfoChange.aspx.designer.cs">
+      <DependentUpon>SupplierAccountInfoChange.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\SupplierBlackListEntry.aspx.cs">
       <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8375,15 +8420,6 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Outlook">
-      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>9</VersionMajor>
-      <VersionMinor>6</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
