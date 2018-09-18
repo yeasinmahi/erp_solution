@@ -51,6 +51,18 @@
                                 <script>$('#toTextBox').datepicker();</script>
                             </td>
                         </tr>
+                            <tr class="tblroweven">
+                                <td>
+                                    <asp:Label ID="lblrpt" Text="Type" runat="server"></asp:Label>
+                                  </td>
+                                <td>
+                                    <asp:DropDownList ID="drdlRptchtype" runat="server">
+                                        <asp:ListItem Text="Report check" Value="1"></asp:ListItem>
+                                         <asp:ListItem Text="Bill Update" Value="2"></asp:ListItem>
+                                         <asp:ListItem Text="Bill Delete" Value="3"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+
                         <tr class="tblroweven">
                             <td>
                                 <asp:Button ID="showReport" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="showReport_OnClick" />
@@ -71,6 +83,7 @@
                                             <ItemTemplate>
                                                 <%# Container.DataItemIndex + 1 %>
                                                 <asp:HiddenField ID="intID" runat="server" Value='<%# Bind("intID") %>' />
+                                                <asp:HiddenField ID="dteInsertionDate" runat="server" Value='<%# Bind("dteInsertionDate") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="strName" HeaderText="Shop Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
@@ -88,17 +101,17 @@
                                         <asp:BoundField DataField="dteInsertionDate" HeaderText="Insertion Date" SortExpression="dteInsertionDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:TemplateField HeaderText="Side Code">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="intSiteCardCode" Text='<%# Bind("intSiteCardCode") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="intSiteCardCode" Text='<%# Bind("intSiteCardCode") %>' runat="server" Width="50px"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity For Site Card">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="decQntForSiteCard" Text='<%# Bind("decQntForSiteCard") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="decQntForSiteCard" Text='<%# Bind("decQntForSiteCard") %>' runat="server" Width="50px"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Shop vs Delv Qnt">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="decShopvsDelvQnt" Text='<%# Bind("decShopvsDelvQnt") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="decShopvsDelvQnt" Text='<%# Bind("decShopvsDelvQnt") %>' runat="server" Width="50px"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Edited Total Cost">
@@ -119,6 +132,43 @@
                         </tr>
                     </table>
                 </div>
+
+                <div class="leaveApplication_container">
+                    <table>
+                        <tr class="tblroweven">
+                            <td>
+                                <asp:GridView ID="grdvupdateorDelete" runat="server" AutoGenerateColumns="false" RowStyle-Wrap="true" HeaderStyle-Wrap="true">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="SL.">
+                                            <ItemTemplate>
+                                                <%# Container.DataItemIndex + 1 %>
+                                                <asp:HiddenField ID="intID" runat="server" Value='<%# Bind("intID") %>' />
+                                                <asp:HiddenField ID="dteInsertionDate" runat="server" Value='<%# Bind("dteInsertionDate") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="strName" HeaderText="Shop Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intShopId" HeaderText="Shop Id" SortExpression="intShopId" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="strName" HeaderText="Customer Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="territoryName" HeaderText="Territory" SortExpression="territoryName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="area" HeaderText="Area " SortExpression="area" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="region" HeaderText="Region" SortExpression="region" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="intSiteCardCode" HeaderText="Site Card Code" SortExpression="intSiteCardCode" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="decQntForSiteCard" HeaderText="Quantity via Side Code" SortExpression="decQntForSiteCard" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="decShopvsDelvQnt" HeaderText="Quantity shop vs Deviv" SortExpression="decShopvsDelvQnt" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="monEditedTotalCost" HeaderText="Edited Total Cost" SortExpression="monEditedTotalCost" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteFormDate" HeaderText="From Date" SortExpression="dteFormDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteToDate" HeaderText="To Date" SortExpression="dteToDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="dteInsertionDate" HeaderText="Insertion Date" SortExpression="dteInsertionDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                       
+                                        <%--<asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />--%>
+                                    </Columns>
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>

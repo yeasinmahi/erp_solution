@@ -529,7 +529,7 @@ namespace UI.SAD.Order
                     var now = DateTime.Now;
                     var startOfMonth = new DateTime(now.Year, now.Month, 1);
                     var DaysInMonth = DateTime.DaysInMonth(now.Year, now.Month);
-                    var lastDay = new DateTime(now.Year, now.Month, DaysInMonth).AddDays(10);
+                    var lastDay = new DateTime(now.Year, now.Month, DaysInMonth).AddDays(06);
                     string lastd = lastDay.ToString("yyyy-MM-dd");
                     DateTime today = Convert.ToDateTime(BillDate);
                     DateTime endOfMonth = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)).AddDays(06);

@@ -50,6 +50,21 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\TFS2017\UI\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.5\lib\net45\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.0.6\lib\net45\HtmlRenderer.PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.pdfa.5.5.13\lib\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libray\MessagingToolkit.QRCode.dll</HintPath>
@@ -75,6 +90,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -259,6 +280,8 @@
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
+    <Content Include="Content\JS\html2canvas.js" />
+    <Content Include="Content\JS\html2canvas.min.js" />
     <Content Include="Content\JS\html2pdf.js" />
     <Content Include="Content\JS\jquery-3.3.1.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
@@ -387,6 +410,8 @@
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
     <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
+    <Content Include="ReceiveChallanUpload.aspx" />
+    <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
     <Content Include="Revenue\rptExpiaryDate.aspx" />
     <Content Include="Revenue\frmRevenueBudgetEntry.aspx" />
@@ -1093,6 +1118,7 @@
     <Content Include="SAD\Order\AttachmentCheckingBySupervisor.aspx" />
     <Content Include="SAD\Order\AuditAttahmentChecking.aspx" />
     <Content Include="SAD\Order\BillSubmitPendingToCustomer.aspx" />
+    <Content Include="SAD\Order\BillSubmitPendingToCustomerDet.aspx" />
     <Content Include="SAD\Order\Challan.aspx" />
     <Content Include="SAD\Order\ChallanCancel.aspx" />
     <Content Include="SAD\Order\ChallanList.aspx" />
@@ -1134,6 +1160,7 @@
     <Content Include="SAD\Order\RemoteTADATourAdvanceApproveDetaills.aspx" />
     <Content Include="SAD\Order\RemoteTerritoryCustomerAch.aspx" />
     <Content Include="SAD\Order\RemoteTourAdvanceAprvByAccount.aspx" />
+    <Content Include="SAD\Order\RmtAttachDelete.aspx" />
     <Content Include="SAD\Order\RmtAttchForNoEmialEmployee.aspx" />
     <Content Include="SAD\Order\RmtTADAAttachDocPathlist.aspx" />
     <Content Include="SAD\Order\SalesOrder.aspx" />
@@ -3089,6 +3116,20 @@
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.designer.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiveChallanUpload.aspx.cs">
+      <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReceiveChallanUpload.aspx.designer.cs">
+      <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiveChallanUploadDetaills.aspx.cs">
+      <DependentUpon>ReceiveChallanUploadDetaills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReceiveChallanUploadDetaills.aspx.designer.cs">
+      <DependentUpon>ReceiveChallanUploadDetaills.aspx</DependentUpon>
     </Compile>
     <Compile Include="Revenue\frmBudEntry.aspx.cs">
       <DependentUpon>frmBudEntry.aspx</DependentUpon>
@@ -5449,6 +5490,13 @@
     <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.designer.cs">
       <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomerDet.aspx.cs">
+      <DependentUpon>BillSubmitPendingToCustomerDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomerDet.aspx.designer.cs">
+      <DependentUpon>BillSubmitPendingToCustomerDet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\Challan.aspx.cs">
       <DependentUpon>Challan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5736,6 +5784,13 @@
     </Compile>
     <Compile Include="SAD\Order\RemoteTourAdvanceAprvByAccount.aspx.designer.cs">
       <DependentUpon>RemoteTourAdvanceAprvByAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\RmtAttachDelete.aspx.cs">
+      <DependentUpon>RmtAttachDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\RmtAttachDelete.aspx.designer.cs">
+      <DependentUpon>RmtAttachDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\RmtAttchForNoEmialEmployee.aspx.cs">
       <DependentUpon>RmtAttchForNoEmialEmployee.aspx</DependentUpon>
@@ -8322,6 +8377,35 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
