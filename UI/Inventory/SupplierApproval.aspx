@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupplierApproval.aspx.cs" Inherits="UI.Inventory.SupplierApproval" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2013.2.717.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 <!DOCTYPE html>
 
 <html>
@@ -76,7 +77,10 @@
      <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
     <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnUnitIDByddl" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
          <asp:HiddenField ID="hdnconfirm" runat="server" />
-                
+         <div>
+             <%--<radPdf:PdfWebControl id="PdfWebControl1" runat="server" height="600px" width="100%" />--%>
+             
+         </div>
            <table>
                 <%--<tr><td colspan="4" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="ClosehdnDivision('1')" title="Close" style="cursor:pointer;text-align:initial; color:red; font:bold 10px verdana;">X</a></td></tr>--%>           
                <tr>
@@ -180,6 +184,11 @@
                     <ItemTemplate>
                     <asp:Button ID="brnEdits" runat="server" Text="Edit" CommandName="complete" ForeColor="Blue" OnClick="Edit_Click" CommandArgument='<%# Eval("intSuppMasterID") %>' /></ItemTemplate>
                     </asp:TemplateField> 
+                      
+                      <asp:TemplateField HeaderText="View">
+                          <ItemTemplate>
+                              <asp:Button ID="btnView" runat="server" Text="View" CommandName="View" ForeColor="Blue" OnClick="btnView_OnClick" CommandArgument='<%# Eval("intSuppMasterID") %>' /></ItemTemplate>
+                      </asp:TemplateField> 
 
                     <asp:TemplateField HeaderText="Approve">
                     <ItemTemplate>
