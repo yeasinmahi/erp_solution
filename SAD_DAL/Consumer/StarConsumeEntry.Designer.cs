@@ -20060,7 +20060,7 @@ namespace SAD_DAL.Consumer.StarConsumeEntryTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [strProgramName], [intProgramID] FROM [BrandTradeMkt].[dbo].[tblBrandMktPr" +
-                "ogramName] where intUnit=4";
+                "ogramName] where intUnit=4 and intProgramID=6";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

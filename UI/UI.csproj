@@ -417,6 +417,8 @@
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
     <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
+    <Content Include="ReceiveChallanUpload.aspx" />
+    <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
     <Content Include="Revenue\rptExpiaryDate.aspx" />
     <Content Include="Revenue\frmRevenueBudgetEntry.aspx" />
@@ -1123,6 +1125,7 @@
     <Content Include="SAD\Order\AttachmentCheckingBySupervisor.aspx" />
     <Content Include="SAD\Order\AuditAttahmentChecking.aspx" />
     <Content Include="SAD\Order\BillSubmitPendingToCustomer.aspx" />
+    <Content Include="SAD\Order\BillSubmitPendingToCustomerDet.aspx" />
     <Content Include="SAD\Order\Challan.aspx" />
     <Content Include="SAD\Order\ChallanCancel.aspx" />
     <Content Include="SAD\Order\ChallanList.aspx" />
@@ -1164,6 +1167,7 @@
     <Content Include="SAD\Order\RemoteTADATourAdvanceApproveDetaills.aspx" />
     <Content Include="SAD\Order\RemoteTerritoryCustomerAch.aspx" />
     <Content Include="SAD\Order\RemoteTourAdvanceAprvByAccount.aspx" />
+    <Content Include="SAD\Order\RmtAttachDelete.aspx" />
     <Content Include="SAD\Order\RmtAttchForNoEmialEmployee.aspx" />
     <Content Include="SAD\Order\RmtTADAAttachDocPathlist.aspx" />
     <Content Include="SAD\Order\SalesOrder.aspx" />
@@ -1347,6 +1351,7 @@
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierAccountInfoChange.aspx" />
     <Content Include="SCM\SupplierBlackListEntry.aspx" />
     <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
@@ -3132,6 +3137,20 @@
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.designer.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiveChallanUpload.aspx.cs">
+      <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReceiveChallanUpload.aspx.designer.cs">
+      <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiveChallanUploadDetaills.aspx.cs">
+      <DependentUpon>ReceiveChallanUploadDetaills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReceiveChallanUploadDetaills.aspx.designer.cs">
+      <DependentUpon>ReceiveChallanUploadDetaills.aspx</DependentUpon>
     </Compile>
     <Compile Include="Revenue\frmBudEntry.aspx.cs">
       <DependentUpon>frmBudEntry.aspx</DependentUpon>
@@ -5492,6 +5511,13 @@
     <Compile Include="SAD\Order\BillSubmitPendingToCustomer.aspx.designer.cs">
       <DependentUpon>BillSubmitPendingToCustomer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomerDet.aspx.cs">
+      <DependentUpon>BillSubmitPendingToCustomerDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\BillSubmitPendingToCustomerDet.aspx.designer.cs">
+      <DependentUpon>BillSubmitPendingToCustomerDet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\Challan.aspx.cs">
       <DependentUpon>Challan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5779,6 +5805,13 @@
     </Compile>
     <Compile Include="SAD\Order\RemoteTourAdvanceAprvByAccount.aspx.designer.cs">
       <DependentUpon>RemoteTourAdvanceAprvByAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\RmtAttachDelete.aspx.cs">
+      <DependentUpon>RmtAttachDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\RmtAttachDelete.aspx.designer.cs">
+      <DependentUpon>RmtAttachDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\RmtAttchForNoEmialEmployee.aspx.cs">
       <DependentUpon>RmtAttchForNoEmialEmployee.aspx</DependentUpon>
@@ -7046,6 +7079,13 @@
     </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierAccountInfoChange.aspx.cs">
+      <DependentUpon>SupplierAccountInfoChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierAccountInfoChange.aspx.designer.cs">
+      <DependentUpon>SupplierAccountInfoChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SupplierBlackListEntry.aspx.cs">
       <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
