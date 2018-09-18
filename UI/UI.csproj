@@ -1317,6 +1317,7 @@
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
+    <Content Include="SCM\SupplierAccountInfoChange.aspx" />
     <Content Include="SCM\SupplierBlackListEntry.aspx" />
     <Content Include="SCM\SupplierBlackListReport.aspx" />
     <Content Include="SCM\SupplierManeger.aspx" />
@@ -7002,6 +7003,13 @@
     </Compile>
     <Compile Include="SCM\ServiceReceive.aspx.designer.cs">
       <DependentUpon>ServiceReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\SupplierAccountInfoChange.aspx.cs">
+      <DependentUpon>SupplierAccountInfoChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\SupplierAccountInfoChange.aspx.designer.cs">
+      <DependentUpon>SupplierAccountInfoChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\SupplierBlackListEntry.aspx.cs">
       <DependentUpon>SupplierBlackListEntry.aspx</DependentUpon>
