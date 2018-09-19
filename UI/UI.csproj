@@ -363,7 +363,6 @@
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\PdfViewer.aspx" />
-    <Content Include="Inventory\PoReport.aspx" />
     <Content Include="Inventory\RAWMaterialTransfer.aspx" />
     <Content Include="Inventory\ReqPolicyView.aspx" />
     <Content Include="Inventory\RequisitionView.aspx" />
@@ -1345,6 +1344,7 @@
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
     <Content Include="SCM\PoRegisterReport.aspx" />
+    <Content Include="SCM\PoReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
     <Content Include="SCM\ProductReport.aspx" />
@@ -2895,13 +2895,6 @@
     </Compile>
     <Compile Include="Inventory\PdfViewer.aspx.designer.cs">
       <DependentUpon>PdfViewer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\PoReport.aspx.cs">
-      <DependentUpon>PoReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inventory\PoReport.aspx.designer.cs">
-      <DependentUpon>PoReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\RAWMaterialTransfer.aspx.cs">
       <DependentUpon>RAWMaterialTransfer.aspx</DependentUpon>
@@ -7040,6 +7033,13 @@
     </Compile>
     <Compile Include="SCM\PoRegisterReport.aspx.designer.cs">
       <DependentUpon>PoRegisterReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PoReport.aspx.cs">
+      <DependentUpon>PoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PoReport.aspx.designer.cs">
+      <DependentUpon>PoReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoWithoutIndent.aspx.cs">
       <DependentUpon>PoWithoutIndent.aspx</DependentUpon>
