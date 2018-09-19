@@ -1104,7 +1104,7 @@ namespace UI.SCM
             Tab3.CssClass = "Initial";
             Tab4.CssClass = "Initial";
             Tab5.CssClass = "Clicked";
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('../Inventory/PoReport.aspx');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoReport.aspx');", true);
         }
     }
 }
