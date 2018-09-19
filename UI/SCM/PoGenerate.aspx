@@ -23,9 +23,7 @@
                     var row = $(this).closest("tr");
                     var IssueQty = parseFloat($(this).val())
                     var StockQty = parseFloat($("[id*=lblRemaining]", row).html());
-                    if (StockQty >= IssueQty) { 
-                    }
-                    else {
+                    if (StockQty < IssueQty) { 
                         $("[id*=TxtNewPO]", row).val('0');
                         alert("Please Check Po Quantity");
                     }

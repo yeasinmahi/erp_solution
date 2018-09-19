@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -15,6 +17,10 @@ namespace UI.Asset
         AssetMaintenance objPMSchedule = new AssetMaintenance();
         DataTable dt = new DataTable();
         int intItem;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\PMSchedule";
+        string stop = "stopping Asset\\PMSchedule";
         protected void Page_Load(object sender, EventArgs e)
         {
             string schedule = TxtScheduleName.Text.ToString();
@@ -37,7 +43,16 @@ namespace UI.Asset
 
         protected void BtnIssue_Click(object sender, EventArgs e)
         {
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule BtnIssue_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                
@@ -54,7 +69,17 @@ namespace UI.Asset
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
             }
-            
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 

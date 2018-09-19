@@ -14,6 +14,8 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
 using System.Drawing;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -22,6 +24,10 @@ namespace UI.Asset
         AssetMaintenance objdep = new AssetMaintenance();
         DataTable dt = new DataTable();
         int intType;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\Depreciation_UI";
+        string stop = "stopping Asset\\Depreciation_UI";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -59,6 +65,12 @@ namespace UI.Asset
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Depreciation_UI Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string assetcode, xmlString;
@@ -78,9 +90,16 @@ namespace UI.Asset
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
             }
-            catch { }
-          
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -93,6 +112,12 @@ namespace UI.Asset
 
         protected void btnDepSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Depreciation_UI btnDepSubmit_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 string assetcode, xmlString;
@@ -118,8 +143,17 @@ namespace UI.Asset
                 dgvGridView.DataBind();
 
             }
-            catch { }
-           
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
     }
 }

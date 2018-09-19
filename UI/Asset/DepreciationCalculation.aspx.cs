@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Data;
 using System;
 using System.IO;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -17,8 +19,11 @@ namespace UI.Asset
         AssetMaintenance objDepCal = new AssetMaintenance();
         AssetMaintenance rpt = new AssetMaintenance();
         DataTable dt = new DataTable();
-      
-       
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\DepreciationCalculation";
+        string stop = "stopping Asset\\DepreciationCalculation";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -37,6 +42,12 @@ namespace UI.Asset
 
         protected void BtnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\DepreciationCalculation Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 DateTime dtestart = DateTime.Parse(TxtDteStart.Text);
@@ -57,7 +68,16 @@ namespace UI.Asset
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region=============RowData Bound ===========================

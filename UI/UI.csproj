@@ -367,6 +367,7 @@
     <Content Include="Inventory\ReqPolicyView.aspx" />
     <Content Include="Inventory\RequisitionView.aspx" />
     <Content Include="Inventory\SalesDamageEntry.aspx" />
+    <Content Include="Inventory\SupplierDocView.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
@@ -2924,6 +2925,13 @@
     </Compile>
     <Compile Include="Inventory\SalesDamageEntry.aspx.designer.cs">
       <DependentUpon>SalesDamageEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\SupplierDocView.aspx.cs">
+      <DependentUpon>SupplierDocView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\SupplierDocView.aspx.designer.cs">
+      <DependentUpon>SupplierDocView.aspx</DependentUpon>
     </Compile>
     <Compile Include="MedialManagement\EntryForm.aspx.cs">
       <DependentUpon>EntryForm.aspx</DependentUpon>

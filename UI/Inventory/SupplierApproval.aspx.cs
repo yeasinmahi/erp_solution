@@ -1242,7 +1242,9 @@ namespace UI.Inventory
             Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
 
-            string intSuppMasterID = gvr.Cells[0].Text;
+            string intSuppMasterId = gvr.Cells[0].Text;
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('SupplierDocView.aspx?poId="+intSuppMasterId+"');", true);
 
 
             //pdfViwer.Src = "ftp://erp:erp123@ftp.akij.net/SupplierDoc/1_Cheque-Statement_1250__MICRChequecopy.pdf";

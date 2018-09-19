@@ -9,6 +9,8 @@ using System.Data;
 using System.IO;
 using System.Xml;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -29,7 +31,10 @@ namespace UI.Asset
 
         DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
-
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\CWIPAssetAccountsPart";
+        string stop = "stopping Asset\\CWIPAssetAccountsPart";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXMlAssetParking = Server.MapPath("~/Asset/Data/cw_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -40,8 +45,15 @@ namespace UI.Asset
 
             if (!IsPostBack)
             {
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
 
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Asset\\CWIPAssetAccountsPart Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -50,7 +62,17 @@ namespace UI.Asset
                 dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
 
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
             }
             else
             {

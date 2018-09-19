@@ -19,42 +19,66 @@
 
 
     <script type="text/javascript">
-         function OpenHdnDiv() {
-             $("#hdnDivision").fadeIn("slow");
-             document.getElementById('hdnDivision').style.visibility = 'visible';
-         }
+        function OpenHdnDiv() {
+            $("#hdnDivision").fadeIn("slow");
+            document.getElementById('hdnDivision').style.visibility = 'visible';
+        }
 
-         function ClosehdnDivision() {
+        function ClosehdnDivision() {
 
-             $("#hdnDivision").fadeOut("slow");
-         }
+            $("#hdnDivision").fadeOut("slow");
+        }
     </script>
       <script type="text/javascript">
-    
-       function Confirm() {
-           document.getElementById("hdnconfirm").value = "0";
-           var confirm_value = document.createElement("INPUT");
-               confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-               if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
-               else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
-           }
-       
+
+          function Confirm() {
+              document.getElementById("hdnconfirm").value = "0";
+              var confirm_value = document.createElement("INPUT");
+              confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+              if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+              else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+          }
+          function Registration(url) {
+              newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=600,width=900,top=50,left=220, close=no');
+              if (window.focus) { newwindow.focus() }
+          }
+
 </script>
 
 
-        <style type="text/css"> 
-        .rounds {
-        height: 80px;
-        width: 30px;
-           
-        -moz-border-colors:25px;
-        border-radius:25px;
-        } 
+        <style type="text/css">
+            .rounds {
+                height: 80px;
+                width: 30px;
+                -moz-border-colors: 25px;
+                border-radius: 25px;
+            }
 
-        .HyperLinkButtonStyle { float:right; text-align:left; border: none; background: none; 
-        color: blue; text-decoration: underline; font: normal 10px verdana;} 
-        .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-        width:100%; height: 100%;    margin-left:100px;  margin-top:100px; margin-right:400px; padding: 15px; overflow-y:scroll; }
+            .HyperLinkButtonStyle {
+                float: right;
+                text-align: left;
+                border: none;
+                background: none;
+                color: blue;
+                text-decoration: underline;
+                font: normal 10px verdana;
+            }
+
+            .hdnDivision {
+                background-color: #EFEFEF;
+                position: absolute;
+                z-index: 1;
+                visibility: hidden;
+                border: 10px double black;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                margin-left: 100px;
+                margin-top: 100px;
+                margin-right: 400px;
+                padding: 15px;
+                overflow-y: scroll;
+            }
         </style>
      
 
