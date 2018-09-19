@@ -12,12 +12,19 @@ using System.Text.RegularExpressions;
 using HR_BLL.Global;
 using System.Web.Services;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 
 namespace UI.HR.Benifit.Report
 {
     public partial class PfEmployeesBalance : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Benifit/Report/PfEmployeesBalance.aspx";
+        string stop = "stopping HR/Benifit/Report/PfEmployeesBalance.aspx";
+
         static int intLoginUerId;
         static int intjobStationID;
         EmployeeBasicInfo objEmployeeBasicInfo = new EmployeeBasicInfo();
@@ -57,6 +64,13 @@ namespace UI.HR.Benifit.Report
             //Modified   :   
             //Parameters :
 
+            var fd = log.GetFlogDetail(start, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/Report/PfEmployeesBalance.aspx btnShowReport_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!String.IsNullOrEmpty(txtSearchEmployee.Text))
             {
                 string strSearchKey = txtSearchEmployee.Text;
@@ -65,6 +79,11 @@ namespace UI.HR.Benifit.Report
 
                 ShowReportDetails(hdfEmpCode.Value);
             }
+            fd = log.GetFlogDetail(stop, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void ShowReportDetails(string strEmpCode)
@@ -73,6 +92,13 @@ namespace UI.HR.Benifit.Report
             //Created    :   Md. Yeasir Arafat / September-17-2012
             //Modified   :   
             //Parameters :   strEmpCode
+
+            var fd = log.GetFlogDetail(start, location, "ShowReportDetails", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Benifit/Report/PfEmployeesBalance.aspx ShowReportDetails", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
 
             #region Load Employee's Basic Information
             DataTable oDT_EmpInfo = new DataTable();
@@ -127,6 +153,11 @@ namespace UI.HR.Benifit.Report
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "ShowReportDetails", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

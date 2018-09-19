@@ -6,12 +6,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HR_BLL.Attendance;
 using UI.ClassFiles;
-
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Attendance
 {
     public partial class OfficialHourChange : BasePage  //System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Attendance/OfficialHourChange.aspx";
+        string stop = "stopping HR/Attendance/OfficialHourChange.aspx";
+
         /*================Information==================
         Author:	  <Md. Golam Kibria Konock>
         Create date: <10-01-2013>
@@ -65,6 +71,13 @@ namespace UI.HR.Attendance
         
         private void Submit_Click()
         {
+            var fd = log.GetFlogDetail(start, location, "Submit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/OfficialHourChange.aspx Submit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 int stationid = int.Parse(ddlJobStation.SelectedValue);
@@ -91,16 +104,33 @@ namespace UI.HR.Attendance
             }
             catch (Exception ex) { throw ex; }
 
+            fd = log.GetFlogDetail(stop, location, "Submit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnCancel_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Attendance/OfficialHourChange.aspx btnCancel_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 ClearControls();
             }
             catch (Exception ex)
             { throw ex; }
+
+            fd = log.GetFlogDetail(stop, location, "btnCancel_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public void ClearControls()

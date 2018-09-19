@@ -7,16 +7,30 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using HR_BLL.Payment;
 using System.Data;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class ShowAdviceOfTreasuryChallan : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/ShowAdviceOfTreasuryChallan.aspx";
+        string stop = "stopping PaymentModule/ShowAdviceOfTreasuryChallan.aspx";
+
         TreasuryChallanBLL objtreasuryChallanBLL = new TreasuryChallanBLL();
         DataTable dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/ShowAdviceOfTreasuryChallan.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+            if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
             }
@@ -45,6 +59,11 @@ namespace UI.PaymentModule
             intType = 3;
             dt2 = objtreasuryChallanBLL.ShowAdvice(intVatAcc, intType);
             Label9.Text = dt2.Rows[0]["strMoney"].ToString();
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         decimal totalamount = 0;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

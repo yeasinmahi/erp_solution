@@ -139,6 +139,24 @@ namespace UI.SAD.Consumer {
         protected global::System.Web.UI.WebControls.TextBox toTextBox;
         
         /// <summary>
+        /// lblrpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblrpt;
+        
+        /// <summary>
+        /// drdlRptchtype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drdlRptchtype;
+        
+        /// <summary>
         /// showReport control.
         /// </summary>
         /// <remarks>
@@ -164,5 +182,14 @@ namespace UI.SAD.Consumer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdvDoubleCashOfferReport;
+        
+        /// <summary>
+        /// grdvupdateorDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvupdateorDelete;
     }
 }

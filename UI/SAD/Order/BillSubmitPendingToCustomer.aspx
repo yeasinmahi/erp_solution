@@ -43,7 +43,11 @@
            }
        
 </script>
-
+         <script type="text/javascript">
+         function Registration(url) {
+             window.open('BillSubmitPendingToCustomerDet.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
+                  }
+</script>
     
 </head>
 <body>
@@ -152,18 +156,19 @@
                          <asp:Label id="lblrptytpe" runat="server" Text="Report Type"></asp:Label>
                      </td>
                      <td>
-                         <asp:DropDownList ID="drdlrpttype" runat="server" CssClass="ddList">
+                         <asp:DropDownList ID="drdlrpttype" runat="server" CssClass="ddList" OnSelectedIndexChanged="drdlrpttype_SelectedIndexChanged">
                              <asp:ListItem Selected="True" Text="Customer Return Qnt Entry" Value="1"></asp:ListItem>
                                 <asp:ListItem  Text="Customer Return Qnt Submit" Value="2"></asp:ListItem>
                               <asp:ListItem  Text="Customer Return Qnt Report" Value="3"></asp:ListItem>
-                              
+                                <asp:ListItem  Text="Customer Bill Copy Topsheet" Value="4"></asp:ListItem>
 
 
 
                          </asp:DropDownList>
                      </td>
                     <td>
-                      <asp:Label ID="lblSalesoffice" runat="server" Text="SalesOffice"></asp:Label>
+                      <asp:Label ID="lblSalesoffice" runat="server" Text="SalesOffice"></asp:Label> </td>
+                             
                       <td>
                                 <asp:DropDownList ID="ddlSo" runat="server" AutoPostBack="True" DataSourceID="ods2"
                                     DataTextField="strName" DataValueField="intSalesOffId" 
@@ -184,6 +189,10 @@
              
             <td> <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" OnClientClick="Confirm()" /></td>
         </tr>
+            </table>
+                   </div>
+        <div>
+            <table>
              <tr class="tblrowodd">
              <td colspan="4">
                  <asp:GridView ID="dgvCustomervsReturnqnt" runat="server"  AllowPaging="false" PageSize="11125" OnPageIndexChanging="dgvCustomervsReturnqnt_PageIndexChanging"  AutoGenerateColumns="false" CellPadding="5" ShowFooter="true">
@@ -233,8 +242,82 @@
 
 
                  </tr>
+                </table>
+            </div>
+        <div>
+            <table>
+               <tr class="tblrowodd">
+             <td colspan="4">
+                 <asp:GridView ID="grdvBillpendingtopsheet" runat="server" PageSize="11125" OnPageIndexChanging="grdvBillpendingtopsheet_PageIndexChanging" OnRowDataBound="grdvBillpendingtopsheet_RowDataBound"  AutoGenerateColumns="False" CellPadding="4" ShowFooter="True" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellSpacing="2" ForeColor="Black">
+                          
+                    <Columns>
+               
+                       <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %>
+                            <asp:HiddenField ID="hdndonum" value='<%# Bind("strDONumber") %>' runat="server"  />
+                            <asp:HiddenField ID="hdnchallan" value='<%# Bind("strchalallanumber") %>' runat="server" />
+                            <asp:HiddenField ID="hdnprimarychallanq" Value='<%# Bind("challanqntprimary") %>' runat="server" />
+                             <asp:HiddenField ID="hdnCustomerID" value='<%# Bind("intcustid") %>' runat="server"  />
+                         </ItemTemplate></asp:TemplateField>
+            
+                       
+                        <asp:BoundField DataField="intcustid" HeaderText="CustomerId" SortExpression="intCustomerId" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="strcustname" HeaderText="CustName" SortExpression="strCustName" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="strDONumber" HeaderText="D.O Number" SortExpression="strDONumber" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="strchalallanumber" HeaderText="Challan Number" SortExpression="strchalallanumber" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="strItmname" HeaderText="Item Name" SortExpression="strItmname" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="rate" HeaderText="Rate" SortExpression="rate" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="challanqntprimary" HeaderText="PrimaryChallanQnt" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="challanamoutnprim" HeaderText="ChallanAmountPrimary" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="decrtnqnt" HeaderText="Returnqnt" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="billqnt" HeaderText="BillqntNet" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="billamount" HeaderText="BillamountNet" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        
 
-           
+
+                       <asp:TemplateField HeaderText="Det.">
+                              <ItemTemplate>                                                                                                          
+             <asp:Button ID="Complete" runat="server" Text="Deaills" class="button" CommandName="complete" OnClick="Complete_Click"   CommandArgument='<%# Eval("intcustid")+","+Eval("dtfromdate")+","+Eval("dtetodate")+","+Eval("intsalesoffice")%>' /></ItemTemplate>
+             </asp:TemplateField> 
+                        
+                         <%--@intReportType int,@intUnitid int, @dteFromdate date,@dteTodate date,@Salesofficeid int,@intcustomerid int,@xml xml,@id int--%>
+                          
+                    </Columns>
+                     <FooterStyle BackColor="#CCCCCC" />
+                  <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                  <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
+                     <RowStyle BackColor="White" />
+                  <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                  <SortedAscendingHeaderStyle BackColor="#808080" />
+                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                  <SortedDescendingHeaderStyle BackColor="#383838" />
+
+                    </asp:GridView>
+
+
+                 </tr>
 
 
                 </table>
@@ -242,6 +325,77 @@
 
 
     </div>
+
+        <div>
+            <table>
+               <tr class="tblrowodd">
+             <td colspan="4">
+                 <asp:GridView ID="grdvCustomerlistforbill" runat="server" PageSize="11125" OnPageIndexChanging="grdvCustomerlistforbill_PageIndexChanging"   AutoGenerateColumns="False" CellPadding="3" ShowFooter="True" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellSpacing="1" GridLines="None">
+                          
+                    <Columns>
+               
+                       <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %>
+                            <asp:HiddenField ID="hdndonum" value='<%# Bind("strDONumber") %>' runat="server"  />
+                            <asp:HiddenField ID="hdnchallan" value='<%# Bind("strchalallanumber") %>' runat="server" />
+                            <asp:HiddenField ID="hdnprimarychallanq" Value='<%# Bind("challanqntprimary") %>' runat="server" />
+                             <asp:HiddenField ID="hdnCustomerID" value='<%# Bind("intcustid") %>' runat="server"  />
+                         </ItemTemplate></asp:TemplateField>
+            
+                       
+                        <asp:BoundField DataField="intcustid" HeaderText="CustomerId" SortExpression="intCustomerId" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="strcustname" HeaderText="CustName" SortExpression="strCustName" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        
+                        <asp:BoundField DataField="challanqntprimary" HeaderText="PrimaryChallanQnt" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="challanamoutnprim" HeaderText="ChallanAmountPrimary" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="decrtnqnt" HeaderText="Returnqnt" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="billqnt" HeaderText="BillqntNet" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                       
+                        
+
+
+                       <asp:TemplateField HeaderText="Det.">
+                              <ItemTemplate>                                                                                                          
+             <asp:Button ID="Complete" runat="server" Text="Deaills" class="button" CommandName="complete" OnClick="Complete_Click"   CommandArgument='<%# Eval("intcustid")%>' /></ItemTemplate>
+             </asp:TemplateField> 
+                        
+                         <%--@intReportType int,@intUnitid int, @dteFromdate date,@dteTodate date,@Salesofficeid int,@intcustomerid int,@xml xml,@id int--%>
+                          
+                    </Columns>
+                     <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                  <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                  <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                     <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                  <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                  <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                  <SortedDescendingHeaderStyle BackColor="#33276A" />
+
+                    </asp:GridView>
+
+
+                 </tr>
+
+
+                </table>
+
+
+
+    </div>
+
+
 
 <%--=========================================End My Code From Here=================================================--%>
   <%-- </ContentTemplate>

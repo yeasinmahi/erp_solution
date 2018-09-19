@@ -7,17 +7,32 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.PaymentModule
 {
     public partial class IndentViewDetails : BasePage
     {
+
+        SeriLog log = new SeriLog();
+        string location = "PaymentModule";
+        string start = "starting PaymentModule/IndentViewDetails.aspx";
+        string stop = "stopping PaymentModule/IndentViewDetails.aspx";
+        
         Indents_BLL objIndent = new Indents_BLL(); Billing_BLL objBillApp = new Billing_BLL();
         DataTable dt = new DataTable();
         int enroll, intwh, indentId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/IndentViewDetails.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 try
@@ -48,15 +63,34 @@ namespace UI.PaymentModule
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                    Flogger.WriteError(efd);
+                }
             }
-            else
-            { }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnBillDetails_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnBillDetails_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/IndentViewDetails.aspx btnBillDetails_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + hdnBillID.Value + "');", true);
+
+            fd = log.GetFlogDetail(stop, location, "btnBillDetails_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

@@ -23,9 +23,7 @@
                     var row = $(this).closest("tr");
                     var IssueQty = parseFloat($(this).val())
                     var StockQty = parseFloat($("[id*=lblRemaining]", row).html());
-                    if (StockQty >= IssueQty) { 
-                    }
-                    else {
+                    if (StockQty < IssueQty) { 
                         $("[id*=TxtNewPO]", row).val('0');
                         alert("Please Check Po Quantity");
                     }
@@ -422,8 +420,10 @@
         BackColor="#FFCC99" OnClick="Tab2_Click"/>
         <asp:Button Text="PO Prepare" BorderStyle="Solid" ID="Tab3" CssClass="Initial" runat="server"
         OnClick="Tab3_Click"  BackColor="#FFCC99" />
-        <asp:Button Text="View PO" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
+        <asp:Button Text="View PO" BorderStyle="Solid" ID="Tab4"  CssClass="Initial" runat="server"
         OnClick="Tab4_Click"  BackColor="#FFCC99" />
+        <asp:Button Text="PO Report" BorderStyle="Solid" ID="Tab5"  CssClass="Initial" runat="server"
+                    OnClick="Tab5_OnClick"  BackColor="#FFCC99" />
        <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#3FD131"  ></asp:Label>
         
 
@@ -756,7 +756,7 @@
                   </table>
                  <table>
                      <tr>
-                          <td colspan="6">
+                          <td>
                               <asp:GridView ID="dgvIndentPrepare" runat="server" ShowFooter="true"  OnRowDeleting="dgvIndentPrepare_RowDeleting"  AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
                                   <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>

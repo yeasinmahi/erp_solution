@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Net;
 using Purchase_BLL.Commercial;
 using UI.ClassFiles;
 using Purchase_BLL.SupplyChain;
@@ -1233,6 +1234,38 @@ namespace UI.Inventory
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnView_OnClick(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+
+            string intSuppMasterId = gvr.Cells[0].Text;
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('SupplierDocView.aspx?poId="+intSuppMasterId+"');", true);
+
+
+            //pdfViwer.Src = "ftp://erp:erp123@ftp.akij.net/SupplierDoc/1_Cheque-Statement_1250__MICRChequecopy.pdf";
+
+            //string FilePath = "f:/hello.pdf";
+
+            //WebClient User = new WebClient();
+
+            //Byte[] FileBuffer = User.DownloadData(FilePath);
+
+            //if (FileBuffer != null)
+
+            //{
+
+            //    Response.ContentType = "application/pdf";
+
+            //    Response.AddHeader("content-length", FileBuffer.Length.ToString());
+
+            //    Response.BinaryWrite(FileBuffer);
+
+            //}
 
         }
     }

@@ -166,15 +166,6 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtCount;
         
         /// <summary>
-        /// btnShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShow;
-        
-        /// <summary>
         /// btnAddFg control.
         /// </summary>
         /// <remarks>

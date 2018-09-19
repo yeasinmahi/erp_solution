@@ -17,76 +17,16 @@ namespace UI.AEFPS
 {
     public partial class ReceiveReport : BasePage
     {
-        int intWHID, intEnroll; DataTable dt; FPReportBLL bll = new FPReportBLL(); Receive_BLL objRec = new Receive_BLL();
-        string strFrom, strTo;
-        SeriLog log = new SeriLog();
-        string location = "AEFPS";
-        string start = "starting AEFPS\\ReceiveReport";
-        string stop = "stopping AEFPS\\ReceiveReport";
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                try
-                {
-                    intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-
-                    dt = objRec.DataView(1, "", 0, 0, DateTime.Now, intEnroll);
-                    ddlWH.DataSource = dt;
-                    ddlWH.DataTextField = "strName";
-                    ddlWH.DataValueField = "Id";
-                    ddlWH.DataBind();
-
-                }
-                catch { }
+                pnlUpperControl.DataBind();
             }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/AEFPS/Receive%20Report?rs:Embed=true');", true);
         }
 
-        protected void btnShow_Click(object sender, EventArgs e)
-        {
-   
-
-            var fd = log.GetFlogDetail(start, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on AEFPS\\ReceiveReport Receive Report Show", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
-            {
-                intWHID = int.Parse(ddlWH.SelectedValue.ToString());
-                strFrom = txtFrom.Text.ToString();
-                strTo = txtTo.Text.ToString();
-
-                dt = new DataTable();
-                dt = bll.GetReceiveReport(intWHID, strFrom, strTo);
-                dgvReceive.DataSource = dt;
-                dgvReceive.DataBind();
-            }
-            catch (Exception ex)
-            {
-                var efd = log.GetFlogDetail(stop, location, "Show", ex);
-                Flogger.WriteError(efd);
-            }
-
-            fd = log.GetFlogDetail(stop, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
-        protected decimal mrrtvalue = 0;
-        protected decimal salesvalue = 0;
-        protected void dgvReceive_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    mrrtvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblMRRValue")).Text);
-                    salesvalue += decimal.Parse(((Label)e.Row.Cells[9].FindControl("lblSalesValue")).Text);
-                }
-            }
-            catch { }
-        }
+       
     }
 }
