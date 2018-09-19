@@ -2952,6 +2952,8 @@ namespace SCM_DAL {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TblImportDutyBreakupDataTable : global::System.Data.TypedTableBase<TblImportDutyBreakupRow> {
             
+            private global::System.Data.DataColumn columnstrmsg;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblImportDutyBreakupDataTable() {
@@ -2983,6 +2985,14 @@ namespace SCM_DAL {
             protected TblImportDutyBreakupDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strmsgColumn {
+                get {
+                    return this.columnstrmsg;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3022,9 +3032,10 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblImportDutyBreakupRow AddTblImportDutyBreakupRow() {
+            public TblImportDutyBreakupRow AddTblImportDutyBreakupRow(string strmsg) {
                 TblImportDutyBreakupRow rowTblImportDutyBreakupRow = ((TblImportDutyBreakupRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
+                object[] columnValuesArray = new object[] {
+                        strmsg};
                 rowTblImportDutyBreakupRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblImportDutyBreakupRow);
                 return rowTblImportDutyBreakupRow;
@@ -3047,11 +3058,16 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnstrmsg = base.Columns["strmsg"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnstrmsg = new global::System.Data.DataColumn("strmsg", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrmsg);
+                this.columnstrmsg.ReadOnly = true;
+                this.columnstrmsg.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3598,6 +3614,34 @@ namespace SCM_DAL {
             internal TblImportDutyBreakupRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableTblImportDutyBreakup = ((TblImportDutyBreakupDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strmsg {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblImportDutyBreakup.strmsgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strmsg\' in table \'TblImportDutyBreakup\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblImportDutyBreakup.strmsgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrmsgNull() {
+                return this.IsNull(this.tableTblImportDutyBreakup.strmsgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrmsgNull() {
+                this[this.tableTblImportDutyBreakup.strmsgColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6104,6 +6148,11 @@ WHERE        (emp.intEmployeeID = @intEnroll)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TblImportDutyBreakup";
+            tableMapping.ColumnMappings.Add("strmsg", "strmsg");
+            this._adapter.TableMappings.Add(tableMapping);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6119,66 +6168,100 @@ WHERE        (emp.intEmployeeID = @intEnroll)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "INSERT INTO [ERP_Inventory].[dbo].[tblImportDutyBreakup] (strHSCode,strDescriptio" +
-                "n,CD,RD,SD,VAT,AIT,ATV,PSI,strUnit,TTI,EXD) VALUES (@strHSCode,@strDescription,@" +
-                "CD,@RD,@SD,@VAT,@AIT,@ATV,@PSI,@strUnit,@TTI,@EXD)\r\n";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHSCode", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strHSCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDescription", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "CD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "RD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "SD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VAT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "VAT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AIT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "AIT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ATV", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "ATV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PSI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "PSI", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUnit", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TTI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "TTI", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EXD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "EXD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = "dbo.sprAddHSCode";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHSCode", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDescription", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VAT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AIT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ATV", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PSI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUnit", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TTI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EXD", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.TblImportDutyBreakupDataTable InsertHSCode(string strHSCode, string strDescription, decimal CD, decimal RD, decimal SD, decimal VAT, decimal AIT, decimal ATV, decimal PSI, string strUnit, global::System.Nullable<decimal> TTI, global::System.Nullable<decimal> EXD) {
+        public virtual InventoryTransferTDS.TblImportDutyBreakupDataTable InsertHSCode(string strHSCode, string strDescription, global::System.Nullable<decimal> CD, global::System.Nullable<decimal> RD, global::System.Nullable<decimal> SD, global::System.Nullable<decimal> VAT, global::System.Nullable<decimal> AIT, global::System.Nullable<decimal> ATV, global::System.Nullable<decimal> PSI, string strUnit, global::System.Nullable<decimal> TTI, global::System.Nullable<decimal> EXD) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((strHSCode == null)) {
-                throw new global::System.ArgumentNullException("strHSCode");
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(strHSCode));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strHSCode));
             }
             if ((strDescription == null)) {
-                throw new global::System.ArgumentNullException("strDescription");
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strDescription));
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(strDescription));
             }
-            this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(CD));
-            this.Adapter.SelectCommand.Parameters[3].Value = ((decimal)(RD));
-            this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(SD));
-            this.Adapter.SelectCommand.Parameters[5].Value = ((decimal)(VAT));
-            this.Adapter.SelectCommand.Parameters[6].Value = ((decimal)(AIT));
-            this.Adapter.SelectCommand.Parameters[7].Value = ((decimal)(ATV));
-            this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(PSI));
-            if ((strUnit == null)) {
+            if ((CD.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((decimal)(CD.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((RD.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(RD.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((SD.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((decimal)(SD.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((VAT.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((decimal)(VAT.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((AIT.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((decimal)(AIT.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((ATV.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(ATV.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((PSI.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((decimal)(PSI.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(strUnit));
-            }
-            if ((TTI.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((decimal)(TTI.Value));
-            }
-            else {
+            if ((strUnit == null)) {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((EXD.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((decimal)(EXD.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strUnit));
+            }
+            if ((TTI.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((decimal)(TTI.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((EXD.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((decimal)(EXD.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             InventoryTransferTDS.TblImportDutyBreakupDataTable dataTable = new InventoryTransferTDS.TblImportDutyBreakupDataTable();
             this.Adapter.Fill(dataTable);
