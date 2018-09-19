@@ -1195,6 +1195,7 @@
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
+    <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
@@ -1207,7 +1208,6 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DeliveryCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
-    <Content Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DONumberSearch.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\FactoryAndGhatDelv.aspx" />
@@ -1239,6 +1239,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
+    <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
@@ -6005,6 +6006,13 @@
     <Compile Include="SAD\Sales\Report\DO2Print.aspx.designer.cs">
       <DependentUpon>DO2Print.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\DOBaseCustomerReport.aspx.cs">
+      <DependentUpon>DOBaseCustomerReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DOBaseCustomerReport.aspx.designer.cs">
+      <DependentUpon>DOBaseCustomerReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\DOPrint.aspx.cs">
       <DependentUpon>DOPrint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6088,13 +6096,6 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx.designer.cs">
       <DependentUpon>DiscountAdustment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx.cs">
-      <DependentUpon>DOBaseCustomerTransaction.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Sales\Report\RptRemoteSales\DOBaseCustomerTransaction.aspx.designer.cs">
-      <DependentUpon>DOBaseCustomerTransaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\DODetails.aspx.cs">
       <DependentUpon>DODetails.aspx</DependentUpon>
@@ -6312,6 +6313,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx.designer.cs">
       <DependentUpon>ShippingPointBaseCollectionAndDelv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx.cs">
+      <DependentUpon>UDTCLSalesAndTransferReportSKUBase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx.designer.cs">
+      <DependentUpon>UDTCLSalesAndTransferReportSKUBase.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesInventory.aspx.cs">
       <DependentUpon>UDTCLSalesInventory.aspx</DependentUpon>

@@ -157,10 +157,23 @@ namespace SCM_BLL
 
         public DataTable InsertHSCodeData(string strHSCode, string strDescription,decimal CD, decimal RD, decimal SD, decimal VAT, decimal AIT, decimal ATV, decimal PSI, string strUnit, decimal TTI, decimal EXD)
         {
-            
-                TblImportDutyBreakupTableAdapter adp = new TblImportDutyBreakupTableAdapter();
-                return adp.InsertHSCode(strHSCode, strDescription, CD, RD, SD, VAT, AIT, ATV, PSI, strUnit, TTI, EXD);
 
+            SprAddHSCodeTableAdapter adp = new SprAddHSCodeTableAdapter();
+            return adp.InsertHSCode(strHSCode, strDescription, CD, RD, SD, VAT, AIT, ATV, PSI, strUnit, TTI, EXD);
+
+        }
+
+        public String InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress,int AccountNo, string RoutingNo,int RequestBy,int SuperviseBy,DateTime dteRequestBy,DateTime dteSuperviseBy)
+        {
+            TblSupplierAccountsInfoUpdateTableAdapter adp = new TblSupplierAccountsInfoUpdateTableAdapter();
+            string msg = "";
+            try
+            {
+               adp.InsertSupplierAccountsInfo(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy);
+               msg = "Data Inserted Successfully.";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+            return msg;
         }
 
 
