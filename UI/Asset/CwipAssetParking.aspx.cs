@@ -1,4 +1,6 @@
-﻿using Purchase_BLL.Asset;
+﻿using Flogging.Core;
+using GLOBAL_BLL;
+using Purchase_BLL.Asset;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,7 +32,10 @@ namespace UI.Asset
         DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
 
-        
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\CwipAssetParking";
+        string stop = "stopping Asset\\CwipAssetParking";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,10 +48,17 @@ namespace UI.Asset
             if (!IsPostBack)
             {
 
+                var fd = log.GetFlogDetail(start, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+
+                // starting performance tracker
+                var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking Show", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
+                {
 
 
-
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -56,7 +68,17 @@ namespace UI.Asset
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
 
+                }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
 
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
 
             }
             else
@@ -69,8 +91,16 @@ namespace UI.Asset
 
         #region ==============================Vehicle Asset==========================
         private void VehicleAssetInfoLoad()
-        {
-            dt = new DataTable();
+        { var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking VehicleAssetInfoLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                dt = new DataTable();
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -255,11 +285,30 @@ namespace UI.Asset
 
             }
             catch { };
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnitV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+        { var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking ddlUnitV_SelectedIndexChanged", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -279,6 +328,18 @@ namespace UI.Asset
             ddlCostCenterV.DataValueField = "Id";
             ddlCostCenterV.DataBind();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivVehicle();", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void VehicleAssetRegistration()
@@ -621,7 +682,15 @@ namespace UI.Asset
 
         protected void btnSaveVehicle_Click(object sender, EventArgs e)
         {
+
+
              VehicleAssetRegistration();
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking btnSaveVehicle_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 //int unit = int.Parse(DdlBillUnit.SelectedValue.ToString());
@@ -637,15 +706,31 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion ===========================Close===================================
 
 
         #region ==============================Land Asset============================
         private void LandAssetInfoLoad()
-        {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+        { var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking LandAssetInfoLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -828,6 +913,17 @@ namespace UI.Asset
 
             }
             catch { };
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlUnitLand_SelectedIndexChanged(object sender, EventArgs e)
@@ -858,7 +954,16 @@ namespace UI.Asset
         }
         protected void ddlDistrictL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking LandAssetInfoLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                dt = new DataTable();
             int districtss = int.Parse(ddlDistrictL.SelectedValue.ToString());
             dt = objregister.Thanadrodownview(districtss);
             ddlThanaL.DataSource = dt;
@@ -866,7 +971,17 @@ namespace UI.Asset
             ddlThanaL.DataValueField = "intDistrictIDs";
             ddlThanaL.DataBind();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnLandDiv();", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void dgvLand_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -1295,8 +1410,17 @@ namespace UI.Asset
         protected void btnSaveLand_Click(object sender, EventArgs e)
         {
             LandAssetRegistration();
+
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking LandAssetInfoLoad Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
+              
                 //int unit = int.Parse(DdlBillUnit.SelectedValue.ToString());
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePathForXMlAssetParking);
@@ -1319,8 +1443,18 @@ namespace UI.Asset
                 dgvLand.DataSource = "";dgvLand.DataBind();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
+           
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #endregion ==============================Close================================
@@ -1329,7 +1463,18 @@ namespace UI.Asset
         #region ==============================Building Asset==========================
         private void BuildingAssetInfoLoad()
         {
-            dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking BuildingAssetInfoLoad", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+
+                dt = new DataTable();
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -1502,6 +1647,17 @@ namespace UI.Asset
 
             }
             catch { };
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void ddlBuildUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -1825,7 +1981,13 @@ namespace UI.Asset
 
         protected void btnSaveBuild_Click(object sender, EventArgs e)
         {
-           
+
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking btnSaveBuild_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 BuildingAssetTegistration();
@@ -1843,7 +2005,16 @@ namespace UI.Asset
                 divClose();
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         #endregion ===========================Building Asset==========================
@@ -1943,6 +2114,12 @@ namespace UI.Asset
         {
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
@@ -2020,13 +2197,21 @@ namespace UI.Asset
                 string message = parking.InsertParkingData(4, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
 
-              
-              
 
-                
+
+
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateParkingXML(string reffid,string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost, string accusitioncost, string remarks, string assetname, string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode, string depRate, string dteDepRunDate)
@@ -2224,7 +2409,13 @@ namespace UI.Asset
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-           
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CwipAssetPrking Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 LoadView();
@@ -2372,7 +2563,17 @@ namespace UI.Asset
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnClose_Click(object sender, EventArgs e)

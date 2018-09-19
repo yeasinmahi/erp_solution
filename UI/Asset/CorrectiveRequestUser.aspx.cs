@@ -10,6 +10,8 @@ using Purchase_BLL.Asset;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Text.RegularExpressions;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -19,6 +21,11 @@ namespace UI.Asset
         DataTable dt = new DataTable();
         DataTable asset = new DataTable();
         int intItem, intjobid, intenroll, intdept, intAssetAutoId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\CorrectiveRequestUser";
+        string stop = "stopping Asset\\CorrectiveRequestUser";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -100,6 +107,12 @@ namespace UI.Asset
 
         protected void BtnRequest_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CorrectiveRequestUser BtnRequest_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 arrayKey = TxtAsset.Text.Split(delimiterChars);
@@ -133,11 +146,20 @@ namespace UI.Asset
                    
                 }
                 else { }
-                
-                
+
+
             }
-            catch { }
-      
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void ClearandBind(int enroll)
