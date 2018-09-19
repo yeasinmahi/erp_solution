@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.Asset
 {
     public partial class PMScheduleServicePopUp :BasePage
@@ -14,6 +17,10 @@ namespace UI.Asset
         AssetMaintenance objPMService= new AssetMaintenance();
         DataTable dt = new DataTable();
         int intItem;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\PMSchedule";
+        string stop = "stopping Asset\\PMSchedule";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Int32 data = Convert.ToInt32(Session["intID"].ToString());
@@ -29,6 +36,12 @@ namespace UI.Asset
 
         private void showdata()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -61,10 +74,20 @@ namespace UI.Asset
 
                 }
             }
-            catch { }
-           
-         
-                 
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
+
+
         }
         protected void Tab1_Click(object sender, EventArgs e)
         {
@@ -82,6 +105,12 @@ namespace UI.Asset
            }
         protected void BtnIssue_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule BtnIssue_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -100,8 +129,17 @@ namespace UI.Asset
                 showdata();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Service Add');", true);
             }
-            catch { }
-            
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true); 
         }
 
@@ -126,7 +164,15 @@ namespace UI.Asset
 
         protected void BtnUpdateService_Click(object sender, EventArgs e)
         {
-            decimal cost;
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule BtnUpdateService_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                decimal cost;
             int serviceID = int.Parse(DdlServiceName.SelectedValue.ToString());
             string serviceName = TxtServiceU.Text.ToString();
             
@@ -139,10 +185,20 @@ namespace UI.Asset
 
             objPMService.UpdatePMServiceName(serviceName, cost, serviceID);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Successfully');", true);
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
 
-               
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
-            
+
+
         }
     }
 }

@@ -13,6 +13,8 @@ using Purchase_BLL.Asset;
 using System.Xml;
  
 using Purchase_BLL.VehicleRegRenewal_BLL;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -36,6 +38,11 @@ namespace UI.Asset
 
         decimal accudepreciation, wdownvalue, salvage, landedC, TAccumulatedC, RateDepriciation, AccumulatedDepriciation, ValueAfterDep, writedownv, invoicevalue, erectioncost; int department;
         DateTime dtelc, dtepo, dteacusition, dteinstalation, WarrintyPreoid;
+
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\FormAssetRegisterUI";
+        string stop = "stopping Asset\\FormAssetRegisterUI";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/Asset/Data/Assetinformation_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -346,9 +353,16 @@ namespace UI.Asset
 
         protected void Tab1_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-            
-            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\fromassetRegisterUi Tab1_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
@@ -373,7 +387,17 @@ namespace UI.Asset
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have no Permission');", true);
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void Tab2_Click(object sender, EventArgs e)
@@ -437,7 +461,17 @@ namespace UI.Asset
         }
         protected void Tab4_Click(object sender, EventArgs e)
         {
-            dt = new DataTable();
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\FormAssetRegisterUI Tab4_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+
+                dt = new DataTable();
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -463,7 +497,17 @@ namespace UI.Asset
             }
 
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -1204,8 +1248,15 @@ namespace UI.Asset
         }
 
         protected void BtnBuilding_Click(object sender, EventArgs e)
-        {
-            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+        { var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CommonRepaisListPopUp BtnBuilding_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
             DateTime PoDate, porjectstardtDate, deliverydate; decimal estimaticost, estmateconstriuction, actualconstruction, totalAccumulatedCost;
            
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -1319,7 +1370,17 @@ namespace UI.Asset
                 PlaceHolder4.Controls.Add(imgBarCode);
             }
 
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void DdlBuildUnit_SelectedIndexChanged(object sender, EventArgs e)

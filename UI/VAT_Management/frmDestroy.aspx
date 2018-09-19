@@ -98,7 +98,7 @@
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnperVat" runat="server" /><asp:HiddenField ID="hdnconfirm" runat="server" />
     <asp:HiddenField ID="hdnVatAccount" runat="server" /><asp:HiddenField ID="hdnVatRegNo" runat="server" />
-    <asp:HiddenField ID="hdnAccno" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
+    <asp:HiddenField ID="hdnAccno" runat="server" /><asp:HiddenField ID="hdnuom" runat="server" /> <asp:HiddenField ID="hdnysnFactory" runat="server" />
     <asp:HiddenField ID="hdnEnroll" runat="server" /> <asp:HiddenField ID="hdnitemid" runat="server" /> <asp:HiddenField ID="hdnCustAddress" runat="server" />
     <div class="tabs_container"> <asp:Label ID="lblVatacc" runat="server" CssClass="lbl" Text="VAT Account :"></asp:Label>
     <asp:DropDownList ID="ddlVatAccount" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlVatAccount_SelectedIndexChanged"></asp:DropDownList>                                                                                       
@@ -144,7 +144,7 @@
     </tr>
     <tr>
         <td>Use Material:</td>
-        <td><asp:TextBox ID="txtVAT" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
+        <td><asp:TextBox ID="txtNuse" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
         <td>Vat</td>
         <td><asp:TextBox ID="txtNewVat" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
         <td> Remarks:</td>
@@ -176,20 +176,62 @@
         <ItemTemplate><asp:Label ID="lblstrVatProductName" runat="server" Text='<%# Bind("MaterialName") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
+        <asp:TemplateField HeaderText="UOM" SortExpression="itemname">
+        <ItemTemplate><asp:Label ID="lblUoms" runat="server" Text='<%# Bind("uom") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+
         <asp:TemplateField HeaderText="Quantity" SortExpression="itemname">
-        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("qty") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("qty","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
        
         <asp:TemplateField HeaderText="SD" SortExpression="sd">
-        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew") %>' Width="50px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew","{0:0.0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
       
-         <asp:TemplateField HeaderText="VAT" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblVAT" runat="server" Text='<%# Bind("vatnew") %>' Width="50px"></asp:Label>
+        <asp:TemplateField HeaderText="Total Use" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lbltotaluse" runat="server" Text='<%# Bind("totaluse","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
+        <asp:TemplateField HeaderText="Challan No" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblChallanno" runat="server" Text='<%# Bind("Challanno") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Per use" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblUseper" runat="server" Text='<%# Bind("Usepar","{0:n0}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Purchase Qty" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblpqty" runat="server" Text='<%# Bind("pqty","{0:n0}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+       
+      
+            
+        <asp:TemplateField HeaderText="SD Chargeable Value" SortExpression="rate">
+        <ItemTemplate><asp:Label ID="lblsdv" runat="server"   Text='<%# Bind("sdv","{0:n0}") %>' Width="120px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="120px" />
+        <FooterTemplate><asp:Label ID="lblsdvss" runat="server" DataFormatString="{0:0.0}" Text="<%# totalsdv %>" /></FooterTemplate>
+        </asp:TemplateField>
+
+
+         <asp:TemplateField HeaderText="Total Vat" SortExpression="rate">
+        <ItemTemplate><asp:Label ID="lblTvat" runat="server"   Text='<%# Bind("totalvat","{0:n0}") %>' Width="120px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="120px" />
+        <FooterTemplate><asp:Label ID="lblllblTvats" runat="server" DataFormatString="{0:n0}" Text="<%# totalvat %>" /></FooterTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Per Vat" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblpervat" runat="server" Text='<%# Bind("pervat","{0:n0}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+
+        <asp:TemplateField HeaderText="Total Rebit" SortExpression="rate">
+        <ItemTemplate><asp:Label ID="lblpervat" runat="server"   Text='<%# Bind("rbit","{0:n0}") %>' Width="80px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+        <FooterTemplate><asp:Label ID="lbllblpervats" runat="server" DataFormatString="{0:n0}" Text="<%# totalrbit %>" /></FooterTemplate>
+        </asp:TemplateField>
 
        <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
 
