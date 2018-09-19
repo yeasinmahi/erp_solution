@@ -155,6 +155,22 @@ namespace SCM_BLL
             return adp.GetUnitListByEnroll(intEnroll);
         }
 
+        public string InsertHSCodeData(string strHSCode, string strDescription,decimal CD, decimal RD, decimal SD, decimal VAT, decimal AIT, decimal ATV, decimal PSI, string strUnit, decimal TTI, decimal EXD)
+        {
+            string msg = "";
+            try
+            {
+                TblImportDutyBreakupTableAdapter adp = new TblImportDutyBreakupTableAdapter();
+                adp.InsertHSCode(strHSCode, strDescription, CD, RD, SD, VAT, AIT, ATV, PSI, strUnit, TTI, EXD);
+                msg = "Successfully Inserted";
+
+            }
+            catch (Exception e) { msg = e.ToString(); }
+            return msg;
+
+
+        }
+
 
 
 
