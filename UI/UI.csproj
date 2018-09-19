@@ -371,6 +371,7 @@
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+    <Content Include="Libray\Microsoft.Office.Interop.Outlook.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.Common.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.DataVisualization.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.Design.dll" />
