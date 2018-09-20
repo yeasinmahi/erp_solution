@@ -2187,6 +2187,8 @@ namespace SAD_DAL.Vat {
             
             private global::System.Data.DataColumn columnmonValue;
             
+            private global::System.Data.DataColumn columnstruom;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tblConfigItemBOMUseDataTable() {
@@ -2262,6 +2264,14 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn struomColumn {
+                get {
+                    return this.columnstruom;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2297,14 +2307,15 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblConfigItemBOMUseRow AddtblConfigItemBOMUseRow(int intVATItemID, int intVATMaterialID, decimal numQty, decimal numWastage, decimal monValue) {
+            public tblConfigItemBOMUseRow AddtblConfigItemBOMUseRow(int intVATItemID, int intVATMaterialID, decimal numQty, decimal numWastage, decimal monValue, string struom) {
                 tblConfigItemBOMUseRow rowtblConfigItemBOMUseRow = ((tblConfigItemBOMUseRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intVATItemID,
                         intVATMaterialID,
                         numQty,
                         numWastage,
-                        monValue};
+                        monValue,
+                        struom};
                 rowtblConfigItemBOMUseRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblConfigItemBOMUseRow);
                 return rowtblConfigItemBOMUseRow;
@@ -2332,6 +2343,7 @@ namespace SAD_DAL.Vat {
                 this.columnnumQty = base.Columns["numQty"];
                 this.columnnumWastage = base.Columns["numWastage"];
                 this.columnmonValue = base.Columns["monValue"];
+                this.columnstruom = base.Columns["struom"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2347,6 +2359,9 @@ namespace SAD_DAL.Vat {
                 base.Columns.Add(this.columnnumWastage);
                 this.columnmonValue = new global::System.Data.DataColumn("monValue", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonValue);
+                this.columnstruom = new global::System.Data.DataColumn("struom", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstruom);
+                this.columnstruom.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4376,6 +4391,22 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string struom {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblConfigItemBOMUse.struomColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'struom\' in table \'tblConfigItemBOMUse\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblConfigItemBOMUse.struomColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintVATItemIDNull() {
                 return this.IsNull(this.tabletblConfigItemBOMUse.intVATItemIDColumn);
             }
@@ -4432,6 +4463,18 @@ namespace SAD_DAL.Vat {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonValueNull() {
                 this[this.tabletblConfigItemBOMUse.monValueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstruomNull() {
+                return this.IsNull(this.tabletblConfigItemBOMUse.struomColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstruomNull() {
+                this[this.tabletblConfigItemBOMUse.struomColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6251,18 +6294,8 @@ FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i
             tableMapping.ColumnMappings.Add("numQty", "numQty");
             tableMapping.ColumnMappings.Add("numWastage", "numWastage");
             tableMapping.ColumnMappings.Add("monValue", "monValue");
+            tableMapping.ColumnMappings.Add("struom", "struom");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_VAT].[dbo].[tblConfigItemBOM] ([intVATItemID], [intVATMaterialID" +
-                "], [numQty], [numWastage], [monValue]) VALUES (@intVATItemID, @intVATMaterialID," +
-                " @numQty, @numWastage, @monValue)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intVATItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intVATItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intVATMaterialID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intVATMaterialID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numQty", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 6, "numQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numWastage", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 6, "numWastage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monValue", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monValue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6278,18 +6311,18 @@ FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT  [intVATItemID]
+            this._commandCollection[0].CommandText = @" SELECT  [intVATItemID]
       ,[intVATMaterialID]
       ,[numQty]
       ,[numWastage]
-      ,[monValue]
+      ,[monValue],struom
     
-  FROM [ERP_VAT].[dbo].[tblConfigItemBOM] WHERE  intVATMaterialID=@mid
+  FROM [ERP_VAT].[dbo].[tblConfigItemBOM] cfb inner join  [ERP_VAT].[dbo].[tblConfigMaterialVAT] mi on cfb.intVATMaterialID=mi.intMaterialID WHERE  intVATMaterialID=@mid
   AND intBOMID IN (Select top(1)  intBOMID from ERP_VAT.dbo.tblVATItemDeclaredPrice decpric where decpric.intVATItemID=@vid 
 	AND Cast(getdate() as date)>= decpric.dteValidFromDate AND intMusokTypeID=1 Order by decpric.dteValidFromDate desc, intBOMID desc)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVATMaterialID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@vid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVATItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@vid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6313,86 +6346,6 @@ FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i
             CreditNoteTDS.tblConfigItemBOMUseDataTable dataTable = new CreditNoteTDS.tblConfigItemBOMUseDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CreditNoteTDS.tblConfigItemBOMUseDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CreditNoteTDS dataSet) {
-            return this.Adapter.Update(dataSet, "tblConfigItemBOMUse");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> intVATItemID, global::System.Nullable<int> intVATMaterialID, global::System.Nullable<decimal> numQty, global::System.Nullable<decimal> numWastage, global::System.Nullable<decimal> monValue) {
-            if ((intVATItemID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(intVATItemID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((intVATMaterialID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(intVATMaterialID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((numQty.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(numQty.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((numWastage.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(numWastage.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((monValue.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(monValue.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -7751,8 +7704,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
         
         private tblConfigMaterialVATTableAdapter _tblConfigMaterialVATTableAdapter;
         
-        private tblConfigItemBOMUseTableAdapter _tblConfigItemBOMUseTableAdapter;
-        
         private tblVATPurchaseTableAdapter _tblVATPurchaseTableAdapter;
         
         private tblVATPurchaseChallanInfoPurTableAdapter _tblVATPurchaseChallanInfoPurTableAdapter;
@@ -7785,20 +7736,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
             }
             set {
                 this._tblConfigMaterialVATTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblConfigItemBOMUseTableAdapter tblConfigItemBOMUseTableAdapter {
-            get {
-                return this._tblConfigItemBOMUseTableAdapter;
-            }
-            set {
-                this._tblConfigItemBOMUseTableAdapter = value;
             }
         }
         
@@ -7867,10 +7804,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                             && (this._tblConfigMaterialVATTableAdapter.Connection != null))) {
                     return this._tblConfigMaterialVATTableAdapter.Connection;
                 }
-                if (((this._tblConfigItemBOMUseTableAdapter != null) 
-                            && (this._tblConfigItemBOMUseTableAdapter.Connection != null))) {
-                    return this._tblConfigItemBOMUseTableAdapter.Connection;
-                }
                 if (((this._tblVATPurchaseTableAdapter != null) 
                             && (this._tblVATPurchaseTableAdapter.Connection != null))) {
                     return this._tblVATPurchaseTableAdapter.Connection;
@@ -7899,9 +7832,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                 if ((this._tblConfigMaterialVATTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._tblConfigItemBOMUseTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._tblVATPurchaseTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -7928,15 +7858,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblConfigMaterialVATTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tblConfigItemBOMUseTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblConfigItemBOMUse.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblConfigItemBOMUseTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7982,14 +7903,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblConfigMaterialVATTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tblConfigItemBOMUseTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblConfigItemBOMUse.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblConfigItemBOMUseTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -8051,14 +7964,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tblConfigItemBOMUseTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblConfigItemBOMUse.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblConfigItemBOMUseTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tblConfigMaterialVATTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tblConfigMaterialVAT.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -8108,11 +8013,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
             }
             if (((this._tblConfigMaterialVATTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblConfigMaterialVATTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._tblConfigItemBOMUseTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblConfigItemBOMUseTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -8170,15 +8070,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                     if (this._tblConfigMaterialVATTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblConfigMaterialVATTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblConfigMaterialVATTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tblConfigItemBOMUseTableAdapter != null)) {
-                    revertConnections.Add(this._tblConfigItemBOMUseTableAdapter, this._tblConfigItemBOMUseTableAdapter.Connection);
-                    this._tblConfigItemBOMUseTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblConfigItemBOMUseTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblConfigItemBOMUseTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblConfigItemBOMUseTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblConfigItemBOMUseTableAdapter.Adapter);
                     }
                 }
                 if ((this._tblVATPurchaseTableAdapter != null)) {
@@ -8269,10 +8160,6 @@ SELECT intPurchaseID, strChallanNo, dteChallanDate, intMaterialID, intSupplierID
                 if ((this._tblConfigMaterialVATTableAdapter != null)) {
                     this._tblConfigMaterialVATTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblConfigMaterialVATTableAdapter]));
                     this._tblConfigMaterialVATTableAdapter.Transaction = null;
-                }
-                if ((this._tblConfigItemBOMUseTableAdapter != null)) {
-                    this._tblConfigItemBOMUseTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblConfigItemBOMUseTableAdapter]));
-                    this._tblConfigItemBOMUseTableAdapter.Transaction = null;
                 }
                 if ((this._tblVATPurchaseTableAdapter != null)) {
                     this._tblVATPurchaseTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblVATPurchaseTableAdapter]));

@@ -11,6 +11,8 @@ using System.Web.Services;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.Asset
 {
@@ -28,6 +30,10 @@ namespace UI.Asset
         string filePathForXML; string xmlString = "";
         int intItem; int IntUnitID; string hdn; int intjobid;
         string vehicleNumber;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\MaintenanceWorkOrderPopUp";
+        string stop = "stopping Asset\\MaintenanceWorkOrderPopUp";
         protected void Page_Load(object sender, EventArgs e)
         {
           
@@ -96,6 +102,14 @@ namespace UI.Asset
 
         private void showdata()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp showdata", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
                 int Mnumber =int.Parse(Session["intMaintenanceNo"].ToString()); 
            
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -144,6 +158,17 @@ namespace UI.Asset
                 dgvSrviceIndentView.DataBind(); 
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -209,24 +234,33 @@ namespace UI.Asset
         }
         protected void BtnMTask_Click(object sender, EventArgs e)
         {
-           
-                    //if (RadioPreventive.Checked == true)
-                    //{
 
-                    //    Int32 service = Int32.Parse(DdlService.SelectedValue.ToString());
-                    //    string type = DdlType.SelectedItem.ToString();
-                    //    Decimal cost = Decimal.Parse(TxtCost.Text.ToString());
-                    //    Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+            //if (RadioPreventive.Checked == true)
+            //{
+
+            //    Int32 service = Int32.Parse(DdlService.SelectedValue.ToString());
+            //    string type = DdlType.SelectedItem.ToString();
+            //    Decimal cost = Decimal.Parse(TxtCost.Text.ToString());
+            //    Int32 Mnumber = Int32.Parse(TxtOrder.Text.ToString());
 
 
-                    //    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    //    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    //    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            //    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            //    Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            //    Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-                    //    objMaintenance.MaitenanceTask(Mnumber, service, type, cost, intenroll, intjobid, intdept);
+            //    objMaintenance.MaitenanceTask(Mnumber, service, type, cost, intenroll, intjobid, intdept);
 
-                    //}
-                  decimal cost;
+            //}
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp BtnMTask_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                decimal cost;
                     int service = int.Parse(DdlService.SelectedValue.ToString());
                     string serviceName = DdlService.SelectedItem.ToString();
                     string type = DdlType.SelectedItem.ToString();
@@ -244,12 +278,28 @@ namespace UI.Asset
                     
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
                     showdata();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
-               
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (!String.IsNullOrEmpty(TxtAssign.Text))
@@ -292,15 +342,32 @@ namespace UI.Asset
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                    //     
                     //Response.Redirect("Maintenance.aspx", true);
-                  }    
-                 }
-                catch{}
-            
+                  }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void RadioPreventive_CheckedChanged(object sender, EventArgs e)
         {
-            int Mnumber = int.Parse(TxtOrder.Text.ToString());
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int Mnumber = int.Parse(TxtOrder.Text.ToString());
 
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -311,7 +378,18 @@ namespace UI.Asset
                     DdlService.DataTextField = "strServiceName";
                     DdlService.DataValueField = "intID";
                     DdlService.DataBind();
-                    RadioRepair.Checked = false; 
+                    RadioRepair.Checked = false;
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void RadioRepair_CheckedChanged(object sender, EventArgs e)
@@ -527,8 +605,15 @@ namespace UI.Asset
 
         protected void BtnSubmitIn_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
 
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp BtnSubmitIn_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int dept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -551,6 +636,17 @@ namespace UI.Asset
                 showdata();
 
             }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -568,9 +664,15 @@ namespace UI.Asset
 
         protected void btnServiceCharge_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp btnServiceCharge_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
-                if(hdnConfirm.Value=="1")
+                if (hdnConfirm.Value=="1")
                 {
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     TextBox txtServiceCost = row.FindControl("txtServiceCharge") as TextBox;
@@ -582,11 +684,20 @@ namespace UI.Asset
                     objMaintenance.ServiceChargeUpdate(serviceId, serviceCost, serviceDesc);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Service Charge Updated');", true);
                 }
-                
-               
+
+
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

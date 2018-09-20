@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.Asset
 {
     public partial class CommonRepaisListPopUp :BasePage
@@ -16,6 +19,10 @@ namespace UI.Asset
         DataTable asset = new DataTable();
         DataTable commonrep = new DataTable();
         int intItem;
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\CommonRepaisListPopUp";
+        string stop = "stopping Asset\\CommonRepaisListPopUp";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,6 +35,12 @@ namespace UI.Asset
 
         private void LoadViewData()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CommonRepaisListPopUp Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -55,10 +68,18 @@ namespace UI.Asset
                     TxtCommonReCharge.Text = dt.Rows[0]["monServiceCharge"].ToString();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
 
-            
- 
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
 
         protected void Tab1_Click(object sender, EventArgs e)
@@ -78,7 +99,16 @@ namespace UI.Asset
 
         protected void BtnIssue_Click(object sender, EventArgs e)
         {
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CommonRepaisListPopUp BtnIssue_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             Int32 intdept= int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -95,11 +125,28 @@ namespace UI.Asset
            dgvcommonrepairs.DataSource = commonrep;
            dgvcommonrepairs.DataBind();
 
-      
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void DdlServiceName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CommonRepaisListPopUp DdlServiceName_SelectedIndexChanged", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int repairsID = Int32.Parse(DdlServiceName.SelectedValue.ToString());
@@ -111,12 +158,27 @@ namespace UI.Asset
                     TxtCommonReCharge.Text = dt.Rows[0]["monServiceCharge"].ToString();
                 }
             }
-            catch { }
-          
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CommonRepaisListPopUp BtnUpdate_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 int repairsID = Int32.Parse(DdlServiceName.SelectedValue.ToString());
@@ -126,8 +188,17 @@ namespace UI.Asset
                 objCommonRepairs.UpdateCommonRepairsItem(repairsName, repairsCost, repairsID);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Successfully');", true);
             }
-            catch { }
-           
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
     }
 }
