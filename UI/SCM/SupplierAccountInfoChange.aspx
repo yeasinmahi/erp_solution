@@ -114,19 +114,53 @@
                 </td>
             </tr>
             <tr>
+                 <td style='text-align: left;'>Document Upload : </td>
+            </tr>
+            <tr>
+                 <td style='text-align: left;'>
+                <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true"/> 
+                 </td>
+            <td style="text-align:center;"> 
+            <%--<a class="nextclick" onclick="FTPUpload" style="font-size:14px; background-color:deepskyblue; color:white;font-weight:bold; padding:5px;">Add</a>--%>
+                <asp:Button ID="btnUpload" runat="server" style="font-size:14px; background-color:deepskyblue; color:white;font-weight:bold; padding:5px;" Text="Add" OnClick="btnUpload_Click" />
+            </td>
+            </tr>
+            <tr>
                 
                 <td style="text-align:right; padding: 5px 0px 5px 0px" colspan="3">
                     <asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Height="30px" OnClick="btnSubmit_Click"/>
                     <asp:Button ID="btnPrint" runat="server" class="myButton" Text="Print" Height="30px"/>
                 </td>
             </tr>
-        </table>
-                     <asp:Panel ID="Panel1" runat="server">
-                         <table>
+             <tr><td colspan="4"> 
+            <asp:GridView ID="dgvDocUp" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+            BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvDocUp_RowDeleting1">
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+            <Columns>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="15px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+                    
+            <asp:TemplateField HeaderText="File Name" SortExpression="strFileName"><ItemTemplate>            
+            <asp:Label ID="lblFileName" runat="server" Text='<%# Bind("strFileName") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" Width="530px"/></asp:TemplateField>
 
+            <asp:TemplateField HeaderText="doctypeid" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="doctypeid" >
+            <ItemTemplate><asp:Label ID="lbldoctypeid" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("doctypeid")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                                           
+            <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
+
+            </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            </asp:GridView></td>
+        </tr>    
+
+        </table>             
+    </div>
+                <asp:Panel ID="Panel1" runat="server">
+                         <table>
+                             <tr>
+                                 <td style="text-align:center;"><asp:Label ID="Label20" runat="server" Text="Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208"></asp:Label></td>
+                             </tr>
                          </table>
                      </asp:Panel>
-    </div>
                  <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
