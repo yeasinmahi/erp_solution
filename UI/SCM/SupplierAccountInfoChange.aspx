@@ -21,6 +21,14 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <script>
+        function Print() {
+         var div = document.getElementById("divbody");
+         div.style.display = "none";
+         window.print();
+         self.close();
+    }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -42,7 +50,7 @@
             </Scripts>
         </CompositeScript>
         </asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+       <%-- <asp:UpdatePanel ID="UpdatePanel0" runat="server">--%>
             <ContentTemplate>
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -50,7 +58,7 @@
                         <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
                     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
-                </asp:Panel>
+                </asp:Panel> 
                 <div style="height: 100px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
@@ -75,7 +83,15 @@
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label6" runat="server" Text="Supplier Address "></asp:Label></td>
             </tr>
             <tr>
-                <td><asp:TextBox ID="txtSupplierName" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox></td>
+                <%--<td><asp:TextBox ID="txtSupplierName" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox></td>--%>
+                <td>
+                    <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox1" AutoPostBack="true" Width="300px"></asp:TextBox>
+                               <%-- <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
+                                    ServiceMethod="GetMasterSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>--%>
+                </td>
                 <td style="text-align:right; "><asp:Label ID="Label7" runat="server" Text=""></asp:Label></td>
                 <td><asp:TextBox ID="txtSupplierAddress" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox></td>
             </tr>
@@ -118,21 +134,21 @@
             </tr>
             <tr>
                  <td style='text-align: left;'>
-                <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true"/> 
+                <asp:FileUpload ID="txtDocUpload" runat="server" /> 
                  </td>
             <td style="text-align:center;"> 
             <%--<a class="nextclick" onclick="FTPUpload" style="font-size:14px; background-color:deepskyblue; color:white;font-weight:bold; padding:5px;">Add</a>--%>
-                <asp:Button ID="btnUpload" runat="server" style="font-size:14px; background-color:deepskyblue; color:white;font-weight:bold; padding:5px;" Text="Add" OnClick="btnUpload_Click" />
+                <asp:Button ID="btnUpload" runat="server" style="font-size:12px; background-color:deepskyblue; color:white;font-weight:bold; padding:2px;" Text="Add" OnClick="btnUpload_Click" />
             </td>
             </tr>
             <tr>
                 
                 <td style="text-align:right; padding: 5px 0px 5px 0px" colspan="3">
                     <asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Height="30px" OnClick="btnSubmit_Click"/>
-                    <asp:Button ID="btnPrint" runat="server" class="myButton" Text="Print" Height="30px"/>
+                    <asp:Button ID="btnPrint" runat="server" class="myButton" Text="Print" Height="30px" OnClientClick="Print()"/>
                 </td>
             </tr>
-             <tr><td colspan="4"> 
+             <tr><td colspan="3"> 
             <asp:GridView ID="dgvDocUp" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvDocUp_RowDeleting1">
             <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -155,15 +171,45 @@
         </table>             
     </div>
                 <asp:Panel ID="Panel1" runat="server">
+                <div>
+                    <div style="text-align:center;">Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208</div>
                          <table>
                              <tr>
-                                 <td style="text-align:center;"><asp:Label ID="Label20" runat="server" Text="Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208"></asp:Label></td>
+                                 <td><asp:Label ID="Label21" runat="server" Text="Account No: "></asp:Label></td>
+                                 <td><asp:Label ID="lblAccNo" runat="server" ></asp:Label></td>
+                                 <td><asp:Label ID="Label23" runat="server" Text="Request Date: "></asp:Label></td>
+                                 <td><asp:Label ID="lblReqDate" runat="server" ></asp:Label></td>
                              </tr>
+                             <tr>
+                                 <td><asp:Label ID="Label25" runat="server" Text="Requester"></asp:Label></td>
+                             </tr>
+                              <tr>
+                                 <td><asp:Label ID="lblReqBy" runat="server" ></asp:Label></td>
+                             </tr>
+                              <tr>
+                                 <td><asp:Label ID="Label27" runat="server" Text="Email:"></asp:Label></td>
+                                  <td><asp:Label ID="Label28" runat="server"></asp:Label></td>
+                             </tr>
+                              <tr>
+                                 <td><asp:Label ID="Label29" runat="server" Text="Approve By:"></asp:Label></td>
+                                  <td><asp:Label ID="lblAppBy" runat="server"></asp:Label></td>
+                             </tr>
+                             <tr>
+                                 <td><asp:Label ID="Label31" runat="server" Text="Approve Date:"></asp:Label></td>
+                                  <td><asp:Label ID="lblAppDate" runat="server"></asp:Label></td>
+                             </tr>
+                            
                          </table>
-                     </asp:Panel>
+                    <div>
+                         
+                      <asp:Image ID="Image1" runat="server" Height="150px" Width="400px" />
+                    
+                    </div>
+                     </div>
+                    </asp:Panel>
                  <%--=========================================End My Code From Here=================================================--%>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+           </ContentTemplate>
+        <%--</asp:UpdatePanel>--%>
     </form>
 </body>
 </html>
