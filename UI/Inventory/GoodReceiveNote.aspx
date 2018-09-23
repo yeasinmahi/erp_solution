@@ -22,7 +22,7 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
-
+    <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -60,11 +60,39 @@
                 <%--=========================================Start My Code From Here===============================================--%>
                  <div class="divbody" style="padding-right:10px;">
         <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Supplier Account Info Change" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
-        <table class="tbldecoration" style="width:auto; float:left;">
+        
+                     <div class="row"> 
+                         <div class="col-sm-4">
+                              <asp:Label ID="Label20" runat="server" Text="Po Number "></asp:Label>
+                              <span style="color:red; font-size:14px; text-align:left">*</span>
+                             <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox>
+                         </div>
+                          <div class="col-sm-4">
+                              <asp:Label ID="Label22" runat="server" Text="Po Number "></asp:Label>
+                              <span style="color:red; font-size:14px; text-align:left">*</span>
+                             <asp:TextBox ID="TextBox2" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox>
+                          </div>
+                          <div class="col-sm-4">
+                              <asp:Label ID="Label24" runat="server" Text="Po Number "></asp:Label>
+                              <span style="color:red; font-size:14px; text-align:left">*</span>
+                             <asp:TextBox ID="TextBox3" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox>
+                          </div>
+                     </div>
+                     
+                     <table class="tbldecoration" style="width:auto; float:left;">
             <tr>
-                <td style="text-align:Left; width:300px;"><asp:Label ID="lblUnit" runat="server" Text="Requester Name "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
-                <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>  
-                <td style="text-align:Left; width:300px;"><asp:Label ID="Label1" runat="server" Text="Requester Designation "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
+                <td style="text-align:Left; width:300px;">
+                    <asp:Label ID="lblUnit" runat="server" Text="Po Number "></asp:Label>
+                    <span style="color:red; font-size:14px; text-align:left">*</span>
+
+                </td>
+                <td style="text-align:right; ">
+                    <asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>  
+                <td style="text-align:Left; width:300px;">
+                    <asp:Label ID="Label1" runat="server" Text="Requester Designation "></asp:Label>
+                    <span style="color:red; font-size:14px; text-align:left">*</span>
+
+                </td>
             </tr>
             <tr>
                 <td><asp:TextBox ID="txtRequesterName" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox></td>
