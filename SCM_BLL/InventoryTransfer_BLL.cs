@@ -163,19 +163,31 @@ namespace SCM_BLL
 
         }
 
-        public String InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress,int AccountNo, string RoutingNo,int RequestBy,int SuperviseBy,DateTime dteRequestBy,DateTime dteSuperviseBy)
+        //public String InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress,int AccountNo, int RoutingNo,int RequestBy,int SuperviseBy,DateTime dteRequestBy,DateTime dteSuperviseBy,string xml)
+        //{
+        //    SprSupplierAccountsInfoUpdateTableAdapter adp = new SprSupplierAccountsInfoUpdateTableAdapter();
+        //    string msg = "";
+        //    try
+        //    {
+        //       adp.InsertSupplierData(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+        //       msg = "SUPPLIER UPDATED SUCCESSFULLY..";
+        //    }
+        //    catch (Exception e) { msg = e.ToString(); }
+        //    return msg;
+        //}
+
+        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
         {
-            TblSupplierAccountsInfoUpdateTableAdapter adp = new TblSupplierAccountsInfoUpdateTableAdapter();
+            SprSupplierAccountsInfoUpdateTableAdapter adp = new SprSupplierAccountsInfoUpdateTableAdapter();
             string msg = "";
             try
             {
-               adp.InsertSupplierAccountsInfo(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy);
-               msg = "Data Inserted Successfully.";
+                return adp.InsertSupplierData(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+                //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
-            catch (Exception e) { msg = e.ToString(); }
-            return msg;
+            catch (Exception e) { return new DataTable(); }
+            
         }
-
 
 
 

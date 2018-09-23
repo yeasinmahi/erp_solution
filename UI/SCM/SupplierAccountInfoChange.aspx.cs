@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -14,43 +17,69 @@ namespace UI.SCM
 {
     public partial class SupplierAccountInfoChange : BasePage
     {
-        string filePathForXMLDocUpload, xmlStringDocUpload, fileName;
+        string filePathForXMLDocUpload, xmlStringDocUpload, fileName, xml,strDocType;
         InventoryTransfer_BLL objBll = new InventoryTransfer_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                pnlUpperControl.DataBind();
-                filePathForXMLDocUpload = Server.MapPath("~/Inventory/Data/DocUpload_" + Session[SessionParams.UNIT_ID].ToString() + ".xml");
-            }
+            Panel1.Visible = false;
+        // Page.Form.Attributes.Add("enctype", "multipart/form-data");
+        filePathForXMLDocUpload = Server.MapPath("~/Inventory/Data/DocUpload_" + Session[SessionParams.USER_ID].ToString() + ".xml");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string RequesterName, RequesterDesignation, SupplierName, SupplierAddress, RoutingNo, msg;
-            int AccountNo, RequestBy, SuperviseBy;
+            string RequesterName, RequesterDesignation, SupplierName, SupplierAddress, msg;
+            int AccountNo, RequestBy, SuperviseBy, RoutingNo;
             DateTime dteRequestBy, dteSuperviseBy;
 
             RequesterName = txtRequesterName.Text;
             RequesterDesignation = txtRequesterDesignation.Text;
-            SupplierName = txtSupplierName.Text;
+            SupplierName = txtSupplier.Text;
             SupplierAddress = txtSupplierAddress.Text;
-            RoutingNo = txtRoutingNo.Text;
+            RoutingNo = Convert.ToInt32(txtRoutingNo.Text);
             AccountNo = Convert.ToInt32(txtAccountNo.Text);
             RequestBy = Convert.ToInt32(txtRequestBy.Text);
             SuperviseBy = Convert.ToInt32(txtSuperviseBy.Text);
             dteRequestBy = DateTime.Parse(txtRequestDate.Text);
             dteSuperviseBy = DateTime.Parse(txtApproveDate.Text);
-            msg = objBll.InsertSupplierAccountsInfoList(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXMLDocUpload);
+                XmlNode dSftTm = doc.SelectSingleNode("DocUpload");
+                xmlStringDocUpload = dSftTm.InnerXml;
+                xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
+                xml = xmlStringDocUpload;
+            }
+            catch { }
+            if (dgvDocUp.Rows.Count > 0)
+            {
+                for (int index = 0; index < dgvDocUp.Rows.Count; index++)
+                {
+                    fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();
+                    FileUploadFTP(Server.MapPath("~/Inventory/Data/"), fileName, "ftp://ftp.akij.net/SupplierDoc/", "erp@akij.net", "erp123");
+
+                }
+            }
+            DataTable dt = new DataTable();
+            dt = objBll.InsertSupplierAccountsInfoList(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+            if (filePathForXMLDocUpload != null)
+            {
+                File.Delete(filePathForXMLDocUpload);
+            }
+            dgvDocUp.DataSource = "";
+            dgvDocUp.DataBind();
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             ClearControl();
+            Image1.ImageUrl = dt.Rows[0]["strFilePath"].ToString();
+            
         }
 
         private void ClearControl()
         {
             txtRequesterName.Text = "";
             txtRequesterDesignation.Text = "";
-            txtSupplierName.Text = "";
+            txtSupplier.Text = "";
             txtSupplierAddress.Text = "";
             txtRoutingNo.Text = "";
             txtAccountNo.Text = "";
@@ -60,16 +89,41 @@ namespace UI.SCM
             txtApproveDate.Text = "";
         }
 
-        #region============stas file upload=============
-        protected void FTPUpload()
+        protected void btnUpload_Click(object sender, EventArgs e)
         {
-            
+            string strDocUploadPath, fileName, strFileName;
 
-            //hdnconfirm.Value = "0";
+            string FileExtensions = Path.GetExtension(txtDocUpload.PostedFile.FileName).Substring(1);
 
-            #endregion
+            if (txtDocUpload.FileName.ToString() != "")
+            {
 
+                int intCount = 0;
+                strDocType = "Cheque-Statement";
+                if (txtDocUpload.HasFiles)
+                {
+                    foreach (HttpPostedFile uploadedFile in txtDocUpload.PostedFiles)
+                    {
+                        strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
+
+                        strDocUploadPath = strDocType + "_" +txtRequestBy.Text + "_" +strDocUploadPath;
+                        fileName = strDocUploadPath.Replace(" ", "");
+                        strFileName = fileName.Trim();
+                        intCount = intCount + 1;
+                        fileName = intCount.ToString() + "_" + fileName.Trim();
+
+                        string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                        uploadedFile.SaveAs(Server.MapPath("~/Inventory/Data/") + fileName.Trim());
+                       
+                        strFileName = fileName;
+                        CreateVoucherXmlDocUpload("1", strDocType, strFileName);
+                    }
+                }
+
+            }
         }
+
+        #region===========xml code=================
         private void CreateVoucherXmlDocUpload(string doctypeid, string strDocName, string strFileName)
         {
             XmlDocument doc = new XmlDocument();
@@ -103,61 +157,16 @@ namespace UI.SCM
             StringReader sr = new StringReader(xmlStringDocUpload);
             DataSet ds = new DataSet();
             ds.ReadXml(sr);
-            if (ds.Tables[0].Rows.Count > 0) { dgvDocUp.DataSource = ds; }
-            else { dgvDocUp.DataSource = ""; }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgvDocUp.DataSource = ds;
+            }
+            else
+            {
+                dgvDocUp.DataSource = "";
+            }
             dgvDocUp.DataBind();
         }
-
-        protected void btnUpload_Click(object sender, EventArgs e)
-        {
-            string strDocUploadPath, fileName, strFileName;
-            //if (hdnconfirm.Value == "2")
-            //{
-            ////string strDat = DateTime.Now.ToString("yyyy-MM-dd");
-
-            if (txtDocUpload.FileName.ToString() != "")
-            {
-                //intDocType = int.Parse(ddlDocType.SelectedValue.ToString());
-                //strDocName = ddlDocType.SelectedItem.ToString();
-                //intID = int.Parse(hdnEnroll.Value);
-                try
-                {
-                    //dteSubmitDate = DateTime.Parse(txtStartDate.Text);
-                    //////strSubmitDate = txtStartDate.Text;
-                }
-                catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Submit Date Properly Input.');", true); return; }
-
-                int intCount = 0;
-                if (txtDocUpload.HasFiles)
-                {
-                    foreach (HttpPostedFile uploadedFile in txtDocUpload.PostedFiles)
-                    {
-                        strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
-
-                        strDocUploadPath = txtRequestBy.Text + "_" + txtRequestDate.Text + "_" + strDocUploadPath;
-                        //doctypeid = intDocType.ToString();
-
-                        #region ------------- Way One For Upload In FTP  ---------(WOW It's A Best way)------------
-                        fileName = strDocUploadPath.Replace(" ", "");
-                        strFileName = fileName.Trim();
-                        intCount = intCount + 1;
-                        fileName = intCount.ToString() + "_" + fileName.Trim();
-
-                        string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
-                        uploadedFile.SaveAs(Server.MapPath("~/Inventory/Data/") + fileName.Trim());
-                        //if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
-                        //{
-                        //    uploadedFile.SaveAs(Server.MapPath("~/Dairy/Uploads/") + fileName.Trim());
-                        //}
-                        //else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This picture format not allow, Allow picture format is jpeg, jpg, png');", true); return; }
-
-                        strFileName = fileName;
-                        CreateVoucherXmlDocUpload("5", "Bank Information", strFileName);
-                    }
-                }
-            }
-        }
-
         private XmlNode CreateItemNodeDocUpload(XmlDocument doc, string doctypeid, string strDocName, string strFileName)
         {
             XmlNode node = doc.CreateElement("DocUpload");
@@ -195,18 +204,94 @@ namespace UI.SCM
                 DataSet dsGridAfterDelete = (DataSet)dgvDocUp.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 {
-                    File.Delete(filePathForXMLDocUpload); dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
+                    File.Delete(filePathForXMLDocUpload);
+                    dgvDocUp.DataSource = "";
+                    dgvDocUp.DataBind();
                 }
                 else { LoadGridwithXmlDocUpload(); }
             }
             catch { }
 
         }
+        #endregion=========end xml====================
+
+        private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
+        {
+           
+            try
+            {
+                FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
+                requestFTPUploader.Credentials = new NetworkCredential(user, pass);
+                requestFTPUploader.Method = WebRequestMethods.Ftp.UploadFile;
+
+                FileInfo fileInfo = new FileInfo(localPath + fileName);
+                FileStream fileStream = fileInfo.OpenRead();
+
+                int bufferLength = 2048;
+                byte[] buffer = new byte[bufferLength];
+
+                Stream uploadStream = requestFTPUploader.GetRequestStream();
+                int contentLength = fileStream.Read(buffer, 0, bufferLength);
+
+                while (contentLength != 0)
+                {
+                    uploadStream.Write(buffer, 0, contentLength);
+                    contentLength = fileStream.Read(buffer, 0, bufferLength);
+                }
+
+                uploadStream.Close();
+                fileStream.Close();
+
+                requestFTPUploader = null;
+                File.Delete(Server.MapPath("~/Inventory/Data/") + fileName);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        //protected void FinalUpload()
+        //{
+        //    string accNo = txtAccountNo.Text;
+        //    if(accNo.Length>=13)
+        //    {
+        //        if (dgvDocUp.Rows.Count > 0)
+        //        {
+        //            for (int index = 0; index < dgvDocUp.Rows.Count; index++)
+        //            {
+        //                fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();
+        //                FileUploadFTP(Server.MapPath("~/Inventory/Data/"), fileName, "ftp://ftp.akij.net/SupplierDoc/", "erp@akij.net", "erp123");
+
+        //            }
+        //        }
+        //    }
+         
+        //}
+
+        #region=======================Supplier Auto Search=========================
+
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static string[] GetMasterSupplierSearch(string prefixText)
+        //{
+        //    return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(), HttpContext.Current.Session["unitId"].ToString());
+        //}
+
+
+        #endregion====================Close===============================
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
-
-    #endregion===========end upload code===========
-
 
 }
