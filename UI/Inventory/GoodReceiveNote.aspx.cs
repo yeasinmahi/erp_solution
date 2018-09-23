@@ -13,5 +13,10 @@ namespace UI.Inventory
         {
 
         }
+
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
