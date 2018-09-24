@@ -189,6 +189,34 @@ namespace SCM_BLL
             
         }
 
+        public DataTable GetAssetData(int whid,DateTime FromDate, DateTime toDate,int intSearchBy,string strID)
+        {
+            SprInventoryStatementTableAdapter adp = new SprInventoryStatementTableAdapter();
+            return adp.GetAssetData(whid,FromDate,toDate,intSearchBy,strID);
+        }
+
+        public DataTable InsertCurrentAssetAudit(string xml)
+        {
+           
+            sprCurrentAssetAuditTableAdapter adp = new sprCurrentAssetAuditTableAdapter();
+            try
+            {
+                 return adp.InsertCurrentAssetData(xml);
+                
+            }
+            catch
+            {
+                return new DataTable();
+            }
+           
+         }
+
+        public DataTable GetWHList()
+        {
+            tblWearHouseTableAdapter adp = new tblWearHouseTableAdapter();
+            return adp.GetWHData();
+        }
+
 
 
 
