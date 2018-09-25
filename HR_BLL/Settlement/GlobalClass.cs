@@ -127,10 +127,22 @@ namespace HR_BLL.Settlement
         }
 
 
-        
+        public DataTable GetInsuranceInfoUpdate(int pkid, string medicaltype, int rptytpe,int unitid, int jobstationid ,int modifyby)
+        {
+            SprInsuranceInforUpdateTableAdapter adp = new SprInsuranceInforUpdateTableAdapter();
+            try
+            { return adp.GetDataInsuranceInforUpdate(pkid,  medicaltype,  rptytpe, unitid,  jobstationid,  modifyby); }
+            catch { return new DataTable(); }
+        }
 
 
-
+        public DataTable GetInsuranceInTYPE()
+        {
+            TblInsuranceTypeTableAdapter adp = new TblInsuranceTypeTableAdapter();
+            try
+            { return adp.GetData(); }
+            catch { return new DataTable(); }
+        }
 
 
 

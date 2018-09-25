@@ -7,9 +7,12 @@
     }
 }
 
-namespace HR_DAL.Settlement.GlobalTDSTableAdapters {
-    
-    
+namespace HR_DAL.Settlement.GlobalTDSTableAdapters
+{
+    partial class TblInsuranceTypeTableAdapter
+    {
+    }
+
     public partial class SprEmployeeInsurancePermissionTableAdapter {
     }
 }
