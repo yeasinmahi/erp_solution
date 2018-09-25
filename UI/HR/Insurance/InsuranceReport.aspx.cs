@@ -30,11 +30,7 @@ namespace UI.HR.Insurance
                     else { chkValidity.Enabled = false; }
                     chkValidity.Enabled = true;
 
-
-
-                    //if (userenrol == 1056 || userenrol == 1272 || userenrol == 1059 || userenrol == 1447 || userenrol == 118506 || userenrol == 316310 || userenrol == 1050 || userenrol == 1052 || userenrol == 1053 || userenrol == 1054)
-                    //{ chkValidity.Enabled = true; }
-                    //else { chkValidity.Enabled = false; }
+                  
                 }
                 catch
                 { }
@@ -74,13 +70,6 @@ namespace UI.HR.Insurance
                 obj.GetInsurancePermissionstatus(userenrol, ref permis);
                 if (permis == "Yes" && chk == true) { ysnAll = true; }
                 else { ysnAll = false; }
-
-                //if (userenrol == 1056 && chk==true || userenrol == 1272 && chk == true || userenrol == 1059 && chk == true || userenrol == 1447 && chk == true || userenrol == 118506 && chk == true 
-                //    || userenrol == 316310 && chk == true || userenrol == 1050 && chk == true || userenrol == 1052 && chk == true || userenrol == 1053 && chk == true || userenrol == 1054 && chk == true)
-
-                //{ ysnAll = true; }
-                //else { ysnAll = false;}
-
 
                 dt = obj.GetInsuranceRData(intUnit, intJobSatation, ysnAll);
                 dgvDependant.DataSource = dt;

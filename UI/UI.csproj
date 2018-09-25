@@ -335,6 +335,7 @@
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
+    <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
     <Content Include="HR\Loan\ApproveLoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanApplicationN.aspx" />
@@ -2698,6 +2699,13 @@
     </Compile>
     <Compile Include="HR\Insurance\InsuranceDateRangeReport.aspx.designer.cs">
       <DependentUpon>InsuranceDateRangeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Insurance\InsuranceInformationUpdate.aspx.cs">
+      <DependentUpon>InsuranceInformationUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Insurance\InsuranceInformationUpdate.aspx.designer.cs">
+      <DependentUpon>InsuranceInformationUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Insurance\InsuranceReport.aspx.cs">
       <DependentUpon>InsuranceReport.aspx</DependentUpon>

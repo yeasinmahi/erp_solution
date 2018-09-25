@@ -37,7 +37,7 @@ namespace UI.Vehicle_Registration_Renewal
                     catch { };
                     try { TxtLateFine.Text = dt.Rows[0]["monTaxTokenLatefinein3month10Percentage"].ToString(); }
                     catch { };
-                  
+                    lbprsntus.Text = dt.Rows[0]["strUnit1"].ToString();
 
 
 
@@ -86,9 +86,18 @@ namespace UI.Vehicle_Registration_Renewal
                 intItem = 2;
                dt=objRenewal.InsertVehicleTaxTokenInsert(intItem, assetid, strtype, intType, unit, dtereg, expairdate, nextExpairdate, expDay, registrationTaka, nameplate, drc,
                     ownership, addresschange, bodyvat, certificate, certificatedNo, duplicatedcopy, miscellounes);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true); 
+            if (dt.Rows.Count > 0)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
+              
+            }
 
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('already exists');", true);
+              
+            }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
         }
 
         
