@@ -14,8 +14,17 @@ namespace BLL.Accounts.Voucher
         {
             try
             {
-                TblCostCenterTableAdapter adp = new TblCostCenterTableAdapter();
-                return adp.GetCCntrListData(unit);
+                if (unit == 2)
+                {
+                    TblCostCenterTableAdapter adp = new TblCostCenterTableAdapter();
+                    return adp.GetAFBLDataCostcenter(unit);
+                }
+                else
+                {
+                    TblCostCenterTableAdapter adp = new TblCostCenterTableAdapter();                   
+                    return adp.GetCCntrListData(unit);
+                }
+               
             }
             catch { return new DataTable(); }
         }
