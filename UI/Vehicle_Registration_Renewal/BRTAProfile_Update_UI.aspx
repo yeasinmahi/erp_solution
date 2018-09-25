@@ -113,7 +113,13 @@
                     
                 <td style="text-align:right;"><asp:Label ID="LblInvoice" runat="server" CssClass="lbl" Text="TAX Token late fine In 6 Month Above (30%) : "></asp:Label> </td>
                     
-                <td><asp:TextBox ID="TxtTaxTokenLate6_30" runat="server" CssClass="txtBox"></asp:TextBox></td> </tr>
+                <td><asp:TextBox ID="TxtTaxTokenLate6_30" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+
+                     <td style="text-align:right;"><asp:Label ID="lblTaxtokenMiscelleounes" runat="server" CssClass="lbl" Text="Tax Token Miscellaneous: "></asp:Label> </td>
+                    
+                <td><asp:TextBox ID="txtTAXTokenMiscellaneous" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+
+                </tr>
                 <tr><td style="text-align:right;"><asp:Label ID="LblInsLocation" runat="server" CssClass="lbl" Text="Fitness Fee "></asp:Label></td>
                 <td> <asp:TextBox ID="TxtFitnessFee" runat="server" CssClass="txtBox"></asp:TextBox></td>
                      

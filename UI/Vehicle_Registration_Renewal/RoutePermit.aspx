@@ -126,7 +126,9 @@
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtNextExapDate">
                          </cc1:CalendarExtender>                                                                                                             
                                                                                                         
-   <td></td><td>
+   <td> <asp:Label ID="lblnowusedunit" runat="server" Text="Used by   :"></asp:Label>
+                 <asp:Label ID="lbprsntus" runat="server" BackColor="#ffff66"></asp:Label> 
+                      </td><td>
                 <asp:Button ID="Brootpermit" runat="server" Text="Save" OnClick="Brootpermit_Click"  /></td>
 
             </tr>

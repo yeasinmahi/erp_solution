@@ -131,11 +131,11 @@ namespace Purchase_BLL.VehicleRegRenewal_BLL
        
 
 
-        public void UpdateBRTAProfile(decimal refistrationfee, decimal nameplate, decimal ownership, decimal addresschange, decimal certificatecopy, decimal duplicatecertifite, decimal registrationMisc, decimal taxtokenfee, decimal taxtokenLatefine3_1, decimal taxtokenLatefine6_2, decimal taxtokenLatefine6_3, decimal fitenssfee, decimal fitnessLate, decimal fitnessMisc, decimal AIT, decimal insurancefee, decimal routepermit, decimal routelatefine, decimal routepermitMisc, decimal bodyvat, decimal DRC, int enroll, int itemid)
+        public void UpdateBRTAProfile(decimal refistrationfee, decimal nameplate, decimal ownership, decimal addresschange, decimal certificatecopy, decimal duplicatecertifite, decimal registrationMisc, decimal taxtokenfee, decimal taxtokenLatefine3_1, decimal taxtokenLatefine6_2, decimal taxtokenLatefine6_3, decimal taxtokenmisscellenous, decimal fitenssfee, decimal fitnessLate, decimal fitnessMisc, decimal AIT, decimal insurancefee, decimal routepermit, decimal routelatefine, decimal routepermitMisc, decimal bodyvat, decimal DRC, int enroll, int itemid)
         {
             TblBRTAProfileUpdateTableAdapter updateBrta = new TblBRTAProfileUpdateTableAdapter();
             updateBrta.BRTAProfileUpdateGetData(refistrationfee, nameplate, ownership, addresschange, certificatecopy, duplicatecertifite, registrationMisc, taxtokenfee,
-            taxtokenLatefine3_1, taxtokenLatefine6_2, taxtokenLatefine6_3, fitenssfee, fitnessLate, fitnessMisc, AIT, insurancefee,
+            taxtokenLatefine3_1, taxtokenLatefine6_2, taxtokenLatefine6_3, taxtokenmisscellenous, fitenssfee, fitnessLate, fitnessMisc, AIT, insurancefee,
             routepermit, routelatefine, routepermitMisc, bodyvat, DRC, enroll, itemid);
         }
 
