@@ -357,6 +357,7 @@
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
     <Content Include="Inventory\BrandItemChallanRollback.aspx" />
     <Content Include="Inventory\BrandItemReport.aspx" />
+    <Content Include="Inventory\BudgetManagementReport.aspx" />
     <Content Include="Inventory\DeliveryRequestAccess.aspx" />
     <Content Include="Inventory\DocApproval.aspx" />
     <Content Include="Inventory\DocHistory.aspx" />
@@ -1314,6 +1315,7 @@
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
+    <Content Include="SCM\FixedAssetAudit.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -2860,6 +2862,13 @@
     </Compile>
     <Compile Include="Inventory\BrandItemReport.aspx.designer.cs">
       <DependentUpon>BrandItemReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\BudgetManagementReport.aspx.cs">
+      <DependentUpon>BudgetManagementReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\BudgetManagementReport.aspx.designer.cs">
+      <DependentUpon>BudgetManagementReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\DeliveryRequestAccess.aspx.cs">
       <DependentUpon>DeliveryRequestAccess.aspx</DependentUpon>
@@ -6838,6 +6847,13 @@
     <Compile Include="SCM\FinishedGoodsBridge.aspx.designer.cs">
       <DependentUpon>FinishedGoodsBridge.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\FixedAssetAudit.aspx.cs">
+      <DependentUpon>FixedAssetAudit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\FixedAssetAudit.aspx.designer.cs">
+      <DependentUpon>FixedAssetAudit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8338,7 +8354,6 @@
     <Folder Include="SCM\Uploads\" />
     <Folder Include="Shop\Data\" />
     <Folder Include="Support\Data\" />
-    <Folder Include="TFS\" />
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\Uploads\" />
     <Folder Include="VAT_Management\Data\" />
