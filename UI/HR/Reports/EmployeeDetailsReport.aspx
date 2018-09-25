@@ -207,7 +207,7 @@
 
                         <td>
                             <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
+                            <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDate" Format="yyyy-MM-dd" PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                             <img id="imgCal_1" src="../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                         </td>
                         <td>

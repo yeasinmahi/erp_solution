@@ -4,5 +4,8 @@
 
     public partial class InventoryTransferTDS
     {
+        partial class SprCurrentAssetAuditDataTable
+        {
+        }
     }
 }

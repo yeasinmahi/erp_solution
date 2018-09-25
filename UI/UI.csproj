@@ -360,6 +360,7 @@
     <Content Include="Inventory\DocApproval.aspx" />
     <Content Include="Inventory\DocHistory.aspx" />
     <Content Include="Inventory\FinishGoodsStock.aspx" />
+    <Content Include="Inventory\GoodReceiveNote.aspx" />
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\PdfViewer.aspx" />
@@ -1309,6 +1310,7 @@
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
+    <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\Indent.aspx">
@@ -2878,6 +2880,13 @@
     </Compile>
     <Compile Include="Inventory\FinishGoodsStock.aspx.designer.cs">
       <DependentUpon>FinishGoodsStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\GoodReceiveNote.aspx.cs">
+      <DependentUpon>GoodReceiveNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\GoodReceiveNote.aspx.designer.cs">
+      <DependentUpon>GoodReceiveNote.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
@@ -6799,6 +6808,13 @@
     </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.designer.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\CurrentAssetAudit.aspx.cs">
+      <DependentUpon>CurrentAssetAudit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\CurrentAssetAudit.aspx.designer.cs">
+      <DependentUpon>CurrentAssetAudit.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\DeliveryReturn.aspx.cs">
       <DependentUpon>DeliveryReturn.aspx</DependentUpon>
