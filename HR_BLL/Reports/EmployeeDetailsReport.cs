@@ -32,24 +32,42 @@ namespace HR_BLL.Reports
             return adp.GetDesignationData(intJobStationId);
         }
 
-        public DataTable getEmployeeAttendance(DateTime date,int unitid,int jobstationid,int dept, int designation,int intPart)
+        public DataTable getEmployeeAttendance(DateTime date,int unitid,int jobstationid,int dept, int designation,int intPart,string xml)
         {
             QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
-            return adp.GetEmployeeAttendance(date,unitid,jobstationid,dept,designation,intPart);
+            return adp.GetEmployeeAttendance(date,unitid,jobstationid,dept,designation,intPart,xml);
         }
 
-        public DataTable InsertXml(string xml)
+        //public string InsertXml(string xml)
+        //{
+        //    string msg = "";
+        //    sprReport_tblAttendanceDeleteLogTableAdapter adp = new sprReport_tblAttendanceDeleteLogTableAdapter();
+        //    try
+        //    {
+        //          adp.InsertAttendanceData(xml);
+        //          msg = "Deleted Successfully";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ex.ToString();
+        //    }
+        //    return msg;
+        //}
+        public string InsertXml(string xml)
         {
+            string msg = "";
             sprReport_tblAttendanceDeleteLogTableAdapter adp = new sprReport_tblAttendanceDeleteLogTableAdapter();
             try
             {
-                 return adp.InsertAttendanceData(xml);               
+                  adp.InsertAttendanceData(xml);
+                msg = "Deleted Successfully";
             }
             catch (Exception ex)
             {
-                return new DataTable();
+                return ex.ToString();
+                //return new DataTable();
             }
-
+            return msg;
         }
     }
 }

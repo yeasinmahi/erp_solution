@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using Purchase_BLL.Asset;
 using System.Data;
 using UI.ClassFiles;
+using Flogging.Core;
+using GLOBAL_BLL;
+
 namespace UI.Asset
 {
     public partial class Maintenance :BasePage
@@ -24,7 +27,10 @@ namespace UI.Asset
         DataTable dt = new DataTable();
         int intItem;
         string Corporate;
-
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\Maintenance";
+        string stop = "stopping Asset\\Maintenance";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -36,8 +42,15 @@ namespace UI.Asset
         }
 
         private void showdata()
-        {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+        { var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\CommonRepaisListPopUp Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -99,9 +112,20 @@ namespace UI.Asset
                    DgvPoWorkorders.DataBind();
                
             }
-         
 
-            
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -159,9 +183,15 @@ namespace UI.Asset
         }
         protected void BtnDetalis_Click(object sender, EventArgs e)
         {
-            
-                try
-                {
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Maintenance Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -183,16 +213,21 @@ namespace UI.Asset
                     }
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('MaintenanceWorkOrderPopUp.aspx');", true);
-                    
-                }
-                catch { }
-            
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
-        
-
-     
 
         protected void BtnWorkorder_Click(object sender, EventArgs e)
         {
@@ -242,12 +277,20 @@ namespace UI.Asset
         protected void BtnRepWorkorder_Click(object sender, EventArgs e)
         {
 
+            
+
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                try
-                {
-                    char[] delimiterChars = { '^' };
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Maintenance Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                char[] delimiterChars = { '^' };
                     string temp1 = ((Button)sender).CommandArgument.ToString();
                     string temp = temp1.Replace("'", " ");
                     string[] searchKey = temp.Split(delimiterChars);
@@ -280,15 +323,30 @@ namespace UI.Asset
                         showdata();
                     }
                 }
-                catch { }
-            
-        }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Show", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
+            }
 
         protected void BtnUserRequestWO_Click(object sender, EventArgs e)
         {
             Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Maintenance Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 char[] delimiterChars = { '^' };
@@ -324,12 +382,30 @@ namespace UI.Asset
                     showdata();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void BtnRequesition_Click(object sender, EventArgs e)
         {
-            Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Maintenance BtnRequesition_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
             Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             Int32 intUnitID = int.Parse(Session[SessionParams.UNIT_ID].ToString());
@@ -362,16 +438,32 @@ namespace UI.Asset
                }
 
            }
-          
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
         protected void BtnPODetalis_Click(object sender, EventArgs e)
         {
-            
-                try
-                {
-                    Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Maintenance BtnRequesition_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                Int32 intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -393,9 +485,17 @@ namespace UI.Asset
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('MaintenanceWorkOrderPopUp.aspx');", true);
 
-                }
-                catch { }
-            
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         

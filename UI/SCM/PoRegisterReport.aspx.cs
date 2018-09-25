@@ -40,8 +40,8 @@ namespace UI.SCM
             try
             {
                 intWH = int.Parse(ddlWH.SelectedValue);
-                fDate = DateTime.Parse(txtDteFrom.Text.ToString());
-                tDate = DateTime.Parse(txtdteTo.Text.ToString());
+                //fDate = DateTime.Parse(txtDteFrom.Text.ToString());
+                //tDate = DateTime.Parse(txtdteTo.Text.ToString());
                 type = int.Parse(ddlType.SelectedValue);
                 dept = ddlDept.SelectedItem.ToString();
 
@@ -60,7 +60,7 @@ namespace UI.SCM
                     intNewType = 3;
                     intID = int.Parse(txtMrr.Text);
                 }
-                dt = objPo.PoRegisterDataList(fDate, tDate, dept, 0, intNewType, intID, 1);
+                dt = objPo.PoRegisterDataList(DateTime.Now, DateTime.Now, dept, 0, intNewType, intID, 1);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
             }
