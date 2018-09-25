@@ -8346,7 +8346,6 @@
     <Folder Include="SCM\Uploads\" />
     <Folder Include="Shop\Data\" />
     <Folder Include="Support\Data\" />
-    <Folder Include="TFS\" />
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\Uploads\" />
     <Folder Include="VAT_Management\Data\" />
