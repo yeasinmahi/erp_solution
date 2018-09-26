@@ -9,7 +9,17 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <script src="../../../../Content/JS/datepickr.min.js"></script>
+    
+    <script src="../../Content/JS/gridviewscroll.min.js"></script>
+    <script src="../../Content/JS/JQUERY/jquery-ui.min.js"></script>
+    <script src="../../Content/JS/JQUERY/jquery.min.js"></script>
+    <script src="../../Content/JS/datepickr.min.js"></script>
+    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../../Content/JS/JSSettlement.js"></script>
+    <link href="../../Content/CSS/jquery-ui.css" rel="stylesheet" />
+    
+
+
 
     <script>
         function Registration() {
@@ -62,13 +72,87 @@
         }
     }
        </script>
+    <script  type="text/javascript">
+   
 
+    function onlyNumbers(evt) {
+        var e = event || evt; // for trans-browser compatibility
+        var charCode = e.which || e.keyCode;
+
+        if ((charCode > 57))
+            return false;
+        return true;
+    }  
+</script>
+        <script type="text/javascript">
+       
+        function gridviewScroll() {
+            $('#<%=grdvForAuditBillChecking.ClientID%>').gridviewScroll({
+                 width:1100,
+                 height: 360,
+                 
+                 freezesize: 6
+             });
+        } 
+        function PostBack() {
+             
+            __doPostBack();
+        }
+    </script>
+
+
+    <style type="text/css">
+    .GridviewScrollHeader TH, .GridviewScrollHeader TD 
+    { 
+    padding: 5px; 
+    font-weight: bold; 
+    white-space: nowrap; 
+    border-right: 1px solid #AAAAAA; 
+    border-bottom: 1px solid #AAAAAA; 
+    background-color: #EFEFEF; 
+    text-align: left; 
+    vertical-align: bottom; 
+    } 
+    .GridviewScrollItem TD 
+    { 
+    padding: 5px; 
+    white-space: nowrap; 
+    border-right: 1px solid #AAAAAA; 
+    border-bottom: 1px solid #AAAAAA; 
+    background-color: #FFFFFF; 
+    } 
+    .GridviewScrollPager  
+    { 
+    border-top: 1px solid #AAAAAA; 
+    background-color: #FFFFFF; 
+    } 
+    .GridviewScrollPager TD 
+    { 
+    padding-top: 3px; 
+    font-size: 14px; 
+    padding-left: 5px; 
+    padding-right: 5px; 
+    } 
+    .GridviewScrollPager A 
+    { 
+    color: #666666; 
+    }
+    .GridviewScrollPager SPAN
+
+    {
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    }
+    </style>  
 
 </head>
 <body>
     <form id="frmpdv" runat="server">
-   <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <%--<asp:UpdatePanel ID="UpdatePanel0" runat="server">
+    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -77,7 +161,7 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
     <div style="height: 100px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-    </cc1:AlwaysVisibleControlExtender>--%>
+    </cc1:AlwaysVisibleControlExtender>
 
 <%--=========================================Start My Code From Here===============================================--%>
         
@@ -203,7 +287,7 @@
 </div>
         <div class="leaveApplication_container">
               <table>        
-          <tr class="tblroweven"><td colspan="4">
+          <tr class="tblroweven"><td>
               </td>
          </tr>          
                    <tr class="tblrowodd">
@@ -254,13 +338,13 @@
                             <asp:TemplateField HeaderText="CM Appl." SortExpression="CMAppli">
                             <ItemTemplate>
                             <asp:HiddenField  ID="hdCMApplir" runat="server"  Value='<%# Bind("CMAppli", "{0:0.0}") %>'></asp:HiddenField>
-                            <asp:TextBox ID="txtCMAppli" CssClass="txtBox" runat="server" Width="35" TextMode="Number" Text='<%# Bind("CMAppli") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                            <asp:TextBox ID="txtCMAppli" CssClass="txtBox" runat="server"  TextMode="Number" Text='<%# Bind("CMAppli") %>' DataFormatString="{0:0.00}" Width="60px" onkeypress="return onlyNumbers();" AutoPostBack="true"></asp:TextBox></ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" Width="35" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Grand Total" SortExpression="CMHR">
                             <ItemTemplate>
                             <asp:HiddenField  ID="hdCMHR" runat="server"  Value='<%# Bind("CMHR", "{0:0.0}") %>'></asp:HiddenField>
-                            <asp:TextBox ID="txtCMHR" CssClass="txtBox" OnTextChanged="txtCMHR_TextChanged" runat="server" Width="35" TextMode="Number" Text='<%# Bind("CMHR") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                            <asp:TextBox ID="txtCMHR" CssClass="txtBox" OnTextChanged="txtCMHR_TextChanged" runat="server"  TextMode="Number" Text='<%# Bind("CMHR") %>' DataFormatString="{0:0.00}" Width="60px" onkeypress="return onlyNumbers();" AutoPostBack="true"></asp:TextBox></ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" Width="35" />
                             </asp:TemplateField>
                            <asp:TemplateField HeaderText="Stand Mlg" SortExpression="idealm">
@@ -454,6 +538,7 @@
                             <SortedAscendingHeaderStyle BackColor="#DAC09E" />
                             <SortedDescendingCellStyle BackColor="#E1DB9C" />
                             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+                         <HeaderStyle CssClass="GridviewScrollHeader" /><PagerStyle CssClass="GridviewScrollPager" />
                             </asp:GridView>
 
 
@@ -477,8 +562,8 @@
 
 
         <%--=========================================End My Code From Here=================================================--%>
-   <%--</ContentTemplate>
-    </asp:UpdatePanel>--%>
+   </ContentTemplate>
+    </asp:UpdatePanel>
     </form>
 </body>
 </html>  
