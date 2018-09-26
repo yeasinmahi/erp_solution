@@ -291,6 +291,7 @@
     <Content Include="Content\JS\html2canvas.min.js" />
     <Content Include="Content\JS\html2pdf.js" />
     <Content Include="Content\JS\jquery-3.3.1.js" />
+    <Content Include="Content\JS\JQUERY\jquery.min.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
