@@ -85,8 +85,14 @@ namespace UI.Inventory
                             string prePoQnt = ((Label)row.FindControl("lblPreRcvQnt")).Text;
                             string remainingQnt = ((Label)row.FindControl("lblRemainingQnt")).Text;
                             string remarks = ((TextBox)row.FindControl("receiveRemarks")).Text;
-                            _bll.InsertFactoryGoodsReceiveDetail((int) gnid, itemId,poNumber ,poQnt, receiveQuantity, remarks,ref grnDetailsId);
-                            if (grnDetailsId != null) ids.Add((int) grnDetailsId);
+                            string message = "";
+                            _bll.InsertFactoryGoodsReceiveDetail((int) gnid, itemId,poNumber ,poQnt, receiveQuantity, remarks,ref grnDetailsId,ref message);
+                            if (grnDetailsId != null && grnDetailsId == 0)
+                            {
+                                _bll.UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter((int)gnid);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+itemName+" exiding the quantity limit.');", true);
+                                return;
+                            }
                             counter++;
                         }
                         else
@@ -101,10 +107,6 @@ namespace UI.Inventory
                         return;
                     }
                 }
-            }
-            if (ids.Contains(0))
-            {
-                _bll.UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter((int)gnid);
             }
             if (counter>0)
             {

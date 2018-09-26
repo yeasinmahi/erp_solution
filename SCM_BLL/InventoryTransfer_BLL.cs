@@ -273,13 +273,13 @@ namespace SCM_BLL
 
             return intGNId;
         }
-        public int? InsertFactoryGoodsReceiveDetail(int gnId, int itemId, int poId, decimal poQnt, decimal receiveQnt, string remarks,ref int? intId)
+        public int? InsertFactoryGoodsReceiveDetail(int gnId, int itemId, int poId, decimal poQnt, decimal receiveQnt, string remarks,ref int? intId, ref string message)
         {
             sprInsertFactoryGoodsReceiveDetailTableAdapter adp = new sprInsertFactoryGoodsReceiveDetailTableAdapter();
 
             try
             {
-                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poId,poQnt, receiveQnt,remarks,ref intId);
+                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poId,poQnt, receiveQnt,remarks,ref intId,ref message);
             }
             catch (Exception ex)
             {
