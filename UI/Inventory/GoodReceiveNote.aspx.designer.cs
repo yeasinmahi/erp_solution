@@ -112,6 +112,15 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.HiddenField hdnshipmentSn;
         
         /// <summary>
+        /// lblGrn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGrn;
+        
+        /// <summary>
         /// Label20 control.
         /// </summary>
         /// <remarks>
@@ -202,13 +211,13 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// txdChallanDate control.
+        /// txtChallanDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txdChallanDate;
+        protected global::System.Web.UI.WebControls.TextBox txtChallanDate;
         
         /// <summary>
         /// Label9 control.

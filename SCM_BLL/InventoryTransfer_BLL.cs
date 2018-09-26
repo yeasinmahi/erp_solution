@@ -258,14 +258,13 @@ namespace SCM_BLL
 
         //    return message;
         //}
-        public int? InsertFactoryGoodReceive(int poId,int supplierId,string challanNo,string driverName,string driverContact,string vechicleNo,string meterialDescription,int unitId,int WHId,int shipmentSl,int actionBy, ref int? intGNId)
+        public int? InsertFactoryGoodReceive(int poId,int supplierId,string challanNo, DateTime challanDate, string driverName,string driverContact,string vechicleNo,string meterialDescription,int unitId,int WHId,string shipmentSl,int actionBy, ref int? intGNId)
         {
             sprInsertFactoryGoodReceiveTableAdapter adp = new sprInsertFactoryGoodReceiveTableAdapter();
             
             try
             {
-                adp.InsertFactoryGoodReceive(poId,supplierId,challanNo,driverName,driverContact,vechicleNo,meterialDescription,unitId,WHId,shipmentSl,actionBy, ref intGNId);
-                //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
+                adp.InsertFactoryGoodReceive(poId,supplierId,challanNo,challanDate,driverName,driverContact,vechicleNo,meterialDescription,unitId,WHId,shipmentSl,actionBy, ref intGNId);
             }
             catch (Exception ex)
             {
@@ -274,21 +273,34 @@ namespace SCM_BLL
 
             return intGNId;
         }
-        public string InsertFactoryGoodsReceiveDetail(int gnId, int itemId, decimal poQnt, decimal receiveQnt, ref string message)
+        public int? InsertFactoryGoodsReceiveDetail(int gnId, int itemId, int poId, decimal poQnt, decimal receiveQnt, string remarks,ref int? intId)
         {
             sprInsertFactoryGoodsReceiveDetailTableAdapter adp = new sprInsertFactoryGoodsReceiveDetailTableAdapter();
 
             try
             {
-                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poQnt, receiveQnt, ref message);
-                //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
+                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poId,poQnt, receiveQnt,remarks,ref intId);
             }
             catch (Exception ex)
             {
-                message = ex.Message;
+                intId = 0;
             }
 
-            return message;
+            return intId;
+        }
+        public bool UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter(int gnId)
+        {
+            sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter adp = new sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter();
+
+            try
+            {
+                adp.UpdateFactoryGoodReceiveInActiveByGrnId(gnId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
