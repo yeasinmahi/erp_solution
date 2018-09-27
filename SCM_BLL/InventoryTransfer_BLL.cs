@@ -178,11 +178,11 @@ namespace SCM_BLL
 
         public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName,int suppMasterID, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
         {
-            SprSupplierAccountsInfoUpdateTableAdapter adp = new SprSupplierAccountsInfoUpdateTableAdapter();
+            sprSupplierAccountsInfoUpdateTableAdapter adp = new sprSupplierAccountsInfoUpdateTableAdapter();
             string msg = "";
             try
             {
-                return adp.InsertSupplierData(RequesterName, RequesterDesignation, SupplierName, suppMasterID, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+                return adp.GetSupplierData(RequesterName, RequesterDesignation, SupplierName, suppMasterID, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
                 //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
             catch (Exception e) { return new DataTable(); }
@@ -306,7 +306,7 @@ namespace SCM_BLL
         public DataTable GetEmpByEmpID(int intEmployeeID)
         {
             QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
-            return adp.GetEmpDetailsByEmpID(intEmployeeID);
+            return adp.GetEmpData(intEmployeeID);
         }
 
         public DataTable GetSupplierAddress(int supplierMasterID)
