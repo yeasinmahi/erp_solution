@@ -77,6 +77,7 @@ namespace UI.SCM
                         TextBox sremarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         sremarks.Text="";
                         auditqty.Text = "";
+                        auditqty.Enabled = true;
                         check.Checked = false;
 
                     }
@@ -106,6 +107,7 @@ namespace UI.SCM
                             CreateXml(intItemID, strItemName, intWHID, dteInsertDate, dteAuditedDate, monClosingQuantity, audit, intAuditedBy, strRemarks);
                             remarks.Text = "";
                             auditqty.Text = "";
+                            auditqty.Enabled = true;
                         }
                     }
 

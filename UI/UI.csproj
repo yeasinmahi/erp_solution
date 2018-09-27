@@ -1240,6 +1240,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\ShopList.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\TADAEntryByAnotherRpt.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\TaDaNoBike.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\TADA_Approve_Checking.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\Vehicle List.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
@@ -6315,6 +6316,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\TaDaNoBike.aspx.designer.cs">
       <DependentUpon>TaDaNoBike.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\TADA_Approve_Checking.aspx.cs">
+      <DependentUpon>TADA_Approve_Checking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\TADA_Approve_Checking.aspx.designer.cs">
+      <DependentUpon>TADA_Approve_Checking.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\Vehicle List.aspx.cs">
       <DependentUpon>Vehicle List.aspx</DependentUpon>
