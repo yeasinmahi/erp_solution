@@ -141,7 +141,12 @@
             <tr>
                     <td style="text-align:right;"><asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Miscellcuneces" ></asp:Label></td>                  
             <td style="text-align:left;"><asp:TextBox ID="TxtMiscellcuneces" runat="server" ReadOnly="true" CssClass="txtBox"  BorderColor="Green" Width="190px"></asp:TextBox></td>                                                                                                              
-        <td></td><td>
+       
+                 <td> <asp:Label ID="lblnowusedunit" runat="server" Text="Used by   :"></asp:Label>
+                 <asp:Label ID="lbprsntus" runat="server" BackColor="#ffff66"></asp:Label> 
+                      </td>
+                <td>
+           
                 <asp:Button ID="BtnRegistration" runat="server" Text="Save" OnClick="BtnRegistration_Click" /></td>
 
             </tr>

@@ -62,9 +62,7 @@ namespace SCM_DAL {
         
         private sprInsertFactoryGoodsReceiveDetailDataTable tablesprInsertFactoryGoodsReceiveDetail;
         
-        private QRYEMPLOYEEPROFILEALLDataTable tableQRYEMPLOYEEPROFILEALL;
-        
-        private tblSupplierMasterDataTable tabletblSupplierMaster;
+        private sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable tablesprUpdateFactoryGoodReceiveInActiveByGrnId;
         
         private tblEmployeeJobStationDataTable tabletblEmployeeJobStation;
         
@@ -155,11 +153,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["sprInsertFactoryGoodsReceiveDetail"] != null)) {
                     base.Tables.Add(new sprInsertFactoryGoodsReceiveDetailDataTable(ds.Tables["sprInsertFactoryGoodsReceiveDetail"]));
                 }
-                if ((ds.Tables["QRYEMPLOYEEPROFILEALL"] != null)) {
-                    base.Tables.Add(new QRYEMPLOYEEPROFILEALLDataTable(ds.Tables["QRYEMPLOYEEPROFILEALL"]));
-                }
-                if ((ds.Tables["tblSupplierMaster"] != null)) {
-                    base.Tables.Add(new tblSupplierMasterDataTable(ds.Tables["tblSupplierMaster"]));
+                if ((ds.Tables["sprUpdateFactoryGoodReceiveInActiveByGrnId"] != null)) {
+                    base.Tables.Add(new sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable(ds.Tables["sprUpdateFactoryGoodReceiveInActiveByGrnId"]));
                 }
                 if ((ds.Tables["tblEmployeeJobStation"] != null)) {
                     base.Tables.Add(new tblEmployeeJobStationDataTable(ds.Tables["tblEmployeeJobStation"]));
@@ -379,19 +374,9 @@ namespace SCM_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public QRYEMPLOYEEPROFILEALLDataTable QRYEMPLOYEEPROFILEALL {
+        public sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable sprUpdateFactoryGoodReceiveInActiveByGrnId {
             get {
-                return this.tableQRYEMPLOYEEPROFILEALL;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblSupplierMasterDataTable tblSupplierMaster {
-            get {
-                return this.tabletblSupplierMaster;
+                return this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId;
             }
         }
         
@@ -539,11 +524,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["sprInsertFactoryGoodsReceiveDetail"] != null)) {
                     base.Tables.Add(new sprInsertFactoryGoodsReceiveDetailDataTable(ds.Tables["sprInsertFactoryGoodsReceiveDetail"]));
                 }
-                if ((ds.Tables["QRYEMPLOYEEPROFILEALL"] != null)) {
-                    base.Tables.Add(new QRYEMPLOYEEPROFILEALLDataTable(ds.Tables["QRYEMPLOYEEPROFILEALL"]));
-                }
-                if ((ds.Tables["tblSupplierMaster"] != null)) {
-                    base.Tables.Add(new tblSupplierMasterDataTable(ds.Tables["tblSupplierMaster"]));
+                if ((ds.Tables["sprUpdateFactoryGoodReceiveInActiveByGrnId"] != null)) {
+                    base.Tables.Add(new sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable(ds.Tables["sprUpdateFactoryGoodReceiveInActiveByGrnId"]));
                 }
                 if ((ds.Tables["tblEmployeeJobStation"] != null)) {
                     base.Tables.Add(new tblEmployeeJobStationDataTable(ds.Tables["tblEmployeeJobStation"]));
@@ -698,16 +680,10 @@ namespace SCM_DAL {
                     this.tablesprInsertFactoryGoodsReceiveDetail.InitVars();
                 }
             }
-            this.tableQRYEMPLOYEEPROFILEALL = ((QRYEMPLOYEEPROFILEALLDataTable)(base.Tables["QRYEMPLOYEEPROFILEALL"]));
+            this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId = ((sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable)(base.Tables["sprUpdateFactoryGoodReceiveInActiveByGrnId"]));
             if ((initTable == true)) {
-                if ((this.tableQRYEMPLOYEEPROFILEALL != null)) {
-                    this.tableQRYEMPLOYEEPROFILEALL.InitVars();
-                }
-            }
-            this.tabletblSupplierMaster = ((tblSupplierMasterDataTable)(base.Tables["tblSupplierMaster"]));
-            if ((initTable == true)) {
-                if ((this.tabletblSupplierMaster != null)) {
-                    this.tabletblSupplierMaster.InitVars();
+                if ((this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId != null)) {
+                    this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId.InitVars();
                 }
             }
             this.tabletblEmployeeJobStation = ((tblEmployeeJobStationDataTable)(base.Tables["tblEmployeeJobStation"]));
@@ -770,10 +746,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tablesprInsertFactoryGoodReceive);
             this.tablesprInsertFactoryGoodsReceiveDetail = new sprInsertFactoryGoodsReceiveDetailDataTable();
             base.Tables.Add(this.tablesprInsertFactoryGoodsReceiveDetail);
-            this.tableQRYEMPLOYEEPROFILEALL = new QRYEMPLOYEEPROFILEALLDataTable();
-            base.Tables.Add(this.tableQRYEMPLOYEEPROFILEALL);
-            this.tabletblSupplierMaster = new tblSupplierMasterDataTable();
-            base.Tables.Add(this.tabletblSupplierMaster);
+            this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId = new sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable();
+            base.Tables.Add(this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId);
             this.tabletblEmployeeJobStation = new tblEmployeeJobStationDataTable();
             base.Tables.Add(this.tabletblEmployeeJobStation);
             this.tableSprFixedAudit = new SprFixedAuditDataTable();
@@ -896,13 +870,7 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeQRYEMPLOYEEPROFILEALL() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializetblSupplierMaster() {
+        private bool ShouldSerializesprUpdateFactoryGoodReceiveInActiveByGrnId() {
             return false;
         }
         
@@ -1031,10 +999,7 @@ namespace SCM_DAL {
         public delegate void sprInsertFactoryGoodsReceiveDetailRowChangeEventHandler(object sender, sprInsertFactoryGoodsReceiveDetailRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void QRYEMPLOYEEPROFILEALLRowChangeEventHandler(object sender, QRYEMPLOYEEPROFILEALLRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void tblSupplierMasterRowChangeEventHandler(object sender, tblSupplierMasterRowChangeEvent e);
+        public delegate void sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEventHandler(object sender, sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void tblEmployeeJobStationRowChangeEventHandler(object sender, tblEmployeeJobStationRowChangeEvent e);
@@ -3656,27 +3621,27 @@ namespace SCM_DAL {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SprSupplierAccountsInfoUpdateDataTable : global::System.Data.TypedTableBase<SprSupplierAccountsInfoUpdateRow> {
             
+            private global::System.Data.DataColumn columnRequesterName;
+            
+            private global::System.Data.DataColumn columnRequesterDesignation;
+            
+            private global::System.Data.DataColumn columnSupplierName;
+            
+            private global::System.Data.DataColumn columnSupplierAddress;
+            
+            private global::System.Data.DataColumn columnAccountNo;
+            
+            private global::System.Data.DataColumn columnRoutingNo;
+            
+            private global::System.Data.DataColumn columnRequestBy;
+            
+            private global::System.Data.DataColumn columnSuperviseBy;
+            
             private global::System.Data.DataColumn columndteRequestBy;
             
             private global::System.Data.DataColumn columndteSuperviseBy;
             
             private global::System.Data.DataColumn columnstrFilePath;
-            
-            private global::System.Data.DataColumn columnstrRequesterName;
-            
-            private global::System.Data.DataColumn columnstrRequesterDesignation;
-            
-            private global::System.Data.DataColumn columnstrSupplierName;
-            
-            private global::System.Data.DataColumn columnstrSupplierAddress;
-            
-            private global::System.Data.DataColumn columnintAccountNo;
-            
-            private global::System.Data.DataColumn columnintRoutingNo;
-            
-            private global::System.Data.DataColumn columnintRequestBy;
-            
-            private global::System.Data.DataColumn columnintSuperviseBy;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3713,6 +3678,70 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RequesterNameColumn {
+                get {
+                    return this.columnRequesterName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RequesterDesignationColumn {
+                get {
+                    return this.columnRequesterDesignation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SupplierNameColumn {
+                get {
+                    return this.columnSupplierName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SupplierAddressColumn {
+                get {
+                    return this.columnSupplierAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AccountNoColumn {
+                get {
+                    return this.columnAccountNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RoutingNoColumn {
+                get {
+                    return this.columnRoutingNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RequestByColumn {
+                get {
+                    return this.columnRequestBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SuperviseByColumn {
+                get {
+                    return this.columnSuperviseBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn dteRequestByColumn {
                 get {
                     return this.columndteRequestBy;
@@ -3732,70 +3761,6 @@ namespace SCM_DAL {
             public global::System.Data.DataColumn strFilePathColumn {
                 get {
                     return this.columnstrFilePath;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strRequesterNameColumn {
-                get {
-                    return this.columnstrRequesterName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strRequesterDesignationColumn {
-                get {
-                    return this.columnstrRequesterDesignation;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strSupplierNameColumn {
-                get {
-                    return this.columnstrSupplierName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strSupplierAddressColumn {
-                get {
-                    return this.columnstrSupplierAddress;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intAccountNoColumn {
-                get {
-                    return this.columnintAccountNo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intRoutingNoColumn {
-                get {
-                    return this.columnintRoutingNo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intRequestByColumn {
-                get {
-                    return this.columnintRequestBy;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSuperviseByColumn {
-                get {
-                    return this.columnintSuperviseBy;
                 }
             }
             
@@ -3836,20 +3801,20 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSupplierAccountsInfoUpdateRow AddSprSupplierAccountsInfoUpdateRow(System.DateTime dteRequestBy, System.DateTime dteSuperviseBy, string strFilePath, string strRequesterName, string strRequesterDesignation, string strSupplierName, string strSupplierAddress, int intAccountNo, int intRoutingNo, int intRequestBy, int intSuperviseBy) {
+            public SprSupplierAccountsInfoUpdateRow AddSprSupplierAccountsInfoUpdateRow(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, System.DateTime dteRequestBy, System.DateTime dteSuperviseBy, string strFilePath) {
                 SprSupplierAccountsInfoUpdateRow rowSprSupplierAccountsInfoUpdateRow = ((SprSupplierAccountsInfoUpdateRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        RequesterName,
+                        RequesterDesignation,
+                        SupplierName,
+                        SupplierAddress,
+                        AccountNo,
+                        RoutingNo,
+                        RequestBy,
+                        SuperviseBy,
                         dteRequestBy,
                         dteSuperviseBy,
-                        strFilePath,
-                        strRequesterName,
-                        strRequesterDesignation,
-                        strSupplierName,
-                        strSupplierAddress,
-                        intAccountNo,
-                        intRoutingNo,
-                        intRequestBy,
-                        intSuperviseBy};
+                        strFilePath};
                 rowSprSupplierAccountsInfoUpdateRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprSupplierAccountsInfoUpdateRow);
                 return rowSprSupplierAccountsInfoUpdateRow;
@@ -3872,49 +3837,49 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnRequesterName = base.Columns["RequesterName"];
+                this.columnRequesterDesignation = base.Columns["RequesterDesignation"];
+                this.columnSupplierName = base.Columns["SupplierName"];
+                this.columnSupplierAddress = base.Columns["SupplierAddress"];
+                this.columnAccountNo = base.Columns["AccountNo"];
+                this.columnRoutingNo = base.Columns["RoutingNo"];
+                this.columnRequestBy = base.Columns["RequestBy"];
+                this.columnSuperviseBy = base.Columns["SuperviseBy"];
                 this.columndteRequestBy = base.Columns["dteRequestBy"];
                 this.columndteSuperviseBy = base.Columns["dteSuperviseBy"];
                 this.columnstrFilePath = base.Columns["strFilePath"];
-                this.columnstrRequesterName = base.Columns["strRequesterName"];
-                this.columnstrRequesterDesignation = base.Columns["strRequesterDesignation"];
-                this.columnstrSupplierName = base.Columns["strSupplierName"];
-                this.columnstrSupplierAddress = base.Columns["strSupplierAddress"];
-                this.columnintAccountNo = base.Columns["intAccountNo"];
-                this.columnintRoutingNo = base.Columns["intRoutingNo"];
-                this.columnintRequestBy = base.Columns["intRequestBy"];
-                this.columnintSuperviseBy = base.Columns["intSuperviseBy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnRequesterName = new global::System.Data.DataColumn("RequesterName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRequesterName);
+                this.columnRequesterDesignation = new global::System.Data.DataColumn("RequesterDesignation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRequesterDesignation);
+                this.columnSupplierName = new global::System.Data.DataColumn("SupplierName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSupplierName);
+                this.columnSupplierAddress = new global::System.Data.DataColumn("SupplierAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSupplierAddress);
+                this.columnAccountNo = new global::System.Data.DataColumn("AccountNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAccountNo);
+                this.columnRoutingNo = new global::System.Data.DataColumn("RoutingNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoutingNo);
+                this.columnRequestBy = new global::System.Data.DataColumn("RequestBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRequestBy);
+                this.columnSuperviseBy = new global::System.Data.DataColumn("SuperviseBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperviseBy);
                 this.columndteRequestBy = new global::System.Data.DataColumn("dteRequestBy", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndteRequestBy);
                 this.columndteSuperviseBy = new global::System.Data.DataColumn("dteSuperviseBy", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndteSuperviseBy);
                 this.columnstrFilePath = new global::System.Data.DataColumn("strFilePath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrFilePath);
-                this.columnstrRequesterName = new global::System.Data.DataColumn("strRequesterName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrRequesterName);
-                this.columnstrRequesterDesignation = new global::System.Data.DataColumn("strRequesterDesignation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrRequesterDesignation);
-                this.columnstrSupplierName = new global::System.Data.DataColumn("strSupplierName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrSupplierName);
-                this.columnstrSupplierAddress = new global::System.Data.DataColumn("strSupplierAddress", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrSupplierAddress);
-                this.columnintAccountNo = new global::System.Data.DataColumn("intAccountNo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintAccountNo);
-                this.columnintRoutingNo = new global::System.Data.DataColumn("intRoutingNo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintRoutingNo);
-                this.columnintRequestBy = new global::System.Data.DataColumn("intRequestBy", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintRequestBy);
-                this.columnintSuperviseBy = new global::System.Data.DataColumn("intSuperviseBy", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSuperviseBy);
+                this.columnRequesterName.MaxLength = 100;
+                this.columnRequesterDesignation.MaxLength = 100;
+                this.columnSupplierName.MaxLength = 200;
+                this.columnSupplierAddress.MaxLength = 200;
                 this.columnstrFilePath.MaxLength = 500;
-                this.columnstrRequesterName.MaxLength = 100;
-                this.columnstrRequesterDesignation.MaxLength = 100;
-                this.columnstrSupplierName.MaxLength = 200;
-                this.columnstrSupplierAddress.MaxLength = 200;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6575,18 +6540,12 @@ namespace SCM_DAL {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class QRYEMPLOYEEPROFILEALLDataTable : global::System.Data.TypedTableBase<QRYEMPLOYEEPROFILEALLRow> {
-            
-            private global::System.Data.DataColumn columnstrEmployeeName;
-            
-            private global::System.Data.DataColumn columnstrDesignation;
-            
-            private global::System.Data.DataColumn columnintSuperviserId;
+        public partial class sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable : global::System.Data.TypedTableBase<sprUpdateFactoryGoodReceiveInActiveByGrnIdRow> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QRYEMPLOYEEPROFILEALLDataTable() {
-                this.TableName = "QRYEMPLOYEEPROFILEALL";
+            public sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable() {
+                this.TableName = "sprUpdateFactoryGoodReceiveInActiveByGrnId";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -6594,7 +6553,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal QRYEMPLOYEEPROFILEALLDataTable(global::System.Data.DataTable table) {
+            internal sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -6611,33 +6570,9 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected QRYEMPLOYEEPROFILEALLDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strEmployeeNameColumn {
-                get {
-                    return this.columnstrEmployeeName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strDesignationColumn {
-                get {
-                    return this.columnstrDesignation;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSuperviserIdColumn {
-                get {
-                    return this.columnintSuperviserId;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6651,47 +6586,44 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QRYEMPLOYEEPROFILEALLRow this[int index] {
+            public sprUpdateFactoryGoodReceiveInActiveByGrnIdRow this[int index] {
                 get {
-                    return ((QRYEMPLOYEEPROFILEALLRow)(this.Rows[index]));
+                    return ((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowChanging;
+            public event sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEventHandler sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowChanged;
+            public event sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEventHandler sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowDeleting;
+            public event sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEventHandler sprUpdateFactoryGoodReceiveInActiveByGrnIdRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowDeleted;
+            public event sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEventHandler sprUpdateFactoryGoodReceiveInActiveByGrnIdRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddQRYEMPLOYEEPROFILEALLRow(QRYEMPLOYEEPROFILEALLRow row) {
+            public void AddsprUpdateFactoryGoodReceiveInActiveByGrnIdRow(sprUpdateFactoryGoodReceiveInActiveByGrnIdRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QRYEMPLOYEEPROFILEALLRow AddQRYEMPLOYEEPROFILEALLRow(string strEmployeeName, string strDesignation, int intSuperviserId) {
-                QRYEMPLOYEEPROFILEALLRow rowQRYEMPLOYEEPROFILEALLRow = ((QRYEMPLOYEEPROFILEALLRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        strEmployeeName,
-                        strDesignation,
-                        intSuperviserId};
-                rowQRYEMPLOYEEPROFILEALLRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowQRYEMPLOYEEPROFILEALLRow);
-                return rowQRYEMPLOYEEPROFILEALLRow;
+            public sprUpdateFactoryGoodReceiveInActiveByGrnIdRow AddsprUpdateFactoryGoodReceiveInActiveByGrnIdRow() {
+                sprUpdateFactoryGoodReceiveInActiveByGrnIdRow rowsprUpdateFactoryGoodReceiveInActiveByGrnIdRow = ((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowsprUpdateFactoryGoodReceiveInActiveByGrnIdRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprUpdateFactoryGoodReceiveInActiveByGrnIdRow);
+                return rowsprUpdateFactoryGoodReceiveInActiveByGrnIdRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                QRYEMPLOYEEPROFILEALLDataTable cln = ((QRYEMPLOYEEPROFILEALLDataTable)(base.Clone()));
+                sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable cln = ((sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -6699,54 +6631,43 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new QRYEMPLOYEEPROFILEALLDataTable();
+                return new sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnstrEmployeeName = base.Columns["strEmployeeName"];
-                this.columnstrDesignation = base.Columns["strDesignation"];
-                this.columnintSuperviserId = base.Columns["intSuperviserId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnstrEmployeeName = new global::System.Data.DataColumn("strEmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrEmployeeName);
-                this.columnstrDesignation = new global::System.Data.DataColumn("strDesignation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrDesignation);
-                this.columnintSuperviserId = new global::System.Data.DataColumn("intSuperviserId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSuperviserId);
-                this.columnstrEmployeeName.MaxLength = 1000;
-                this.columnstrDesignation.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QRYEMPLOYEEPROFILEALLRow NewQRYEMPLOYEEPROFILEALLRow() {
-                return ((QRYEMPLOYEEPROFILEALLRow)(this.NewRow()));
+            public sprUpdateFactoryGoodReceiveInActiveByGrnIdRow NewsprUpdateFactoryGoodReceiveInActiveByGrnIdRow() {
+                return ((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new QRYEMPLOYEEPROFILEALLRow(builder);
+                return new sprUpdateFactoryGoodReceiveInActiveByGrnIdRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(QRYEMPLOYEEPROFILEALLRow);
+                return typeof(sprUpdateFactoryGoodReceiveInActiveByGrnIdRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.QRYEMPLOYEEPROFILEALLRowChanged != null)) {
-                    this.QRYEMPLOYEEPROFILEALLRowChanged(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
+                if ((this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChanged != null)) {
+                    this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChanged(this, new sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent(((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6754,8 +6675,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.QRYEMPLOYEEPROFILEALLRowChanging != null)) {
-                    this.QRYEMPLOYEEPROFILEALLRowChanging(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
+                if ((this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChanging != null)) {
+                    this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChanging(this, new sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent(((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6763,8 +6684,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.QRYEMPLOYEEPROFILEALLRowDeleted != null)) {
-                    this.QRYEMPLOYEEPROFILEALLRowDeleted(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
+                if ((this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowDeleted != null)) {
+                    this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowDeleted(this, new sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent(((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6772,14 +6693,14 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.QRYEMPLOYEEPROFILEALLRowDeleting != null)) {
-                    this.QRYEMPLOYEEPROFILEALLRowDeleting(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
+                if ((this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowDeleting != null)) {
+                    this.sprUpdateFactoryGoodReceiveInActiveByGrnIdRowDeleting(this, new sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent(((sprUpdateFactoryGoodReceiveInActiveByGrnIdRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveQRYEMPLOYEEPROFILEALLRow(QRYEMPLOYEEPROFILEALLRow row) {
+            public void RemovesprUpdateFactoryGoodReceiveInActiveByGrnIdRow(sprUpdateFactoryGoodReceiveInActiveByGrnIdRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -6806,284 +6727,7 @@ namespace SCM_DAL {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "QRYEMPLOYEEPROFILEALLDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblSupplierMasterDataTable : global::System.Data.TypedTableBase<tblSupplierMasterRow> {
-            
-            private global::System.Data.DataColumn columnstrOrgAddress;
-            
-            private global::System.Data.DataColumn columnintSuppMasterID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterDataTable() {
-                this.TableName = "tblSupplierMaster";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal tblSupplierMasterDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected tblSupplierMasterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strOrgAddressColumn {
-                get {
-                    return this.columnstrOrgAddress;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSuppMasterIDColumn {
-                get {
-                    return this.columnintSuppMasterID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterRow this[int index] {
-                get {
-                    return ((tblSupplierMasterRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSupplierMasterRowChangeEventHandler tblSupplierMasterRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSupplierMasterRowChangeEventHandler tblSupplierMasterRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSupplierMasterRowChangeEventHandler tblSupplierMasterRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSupplierMasterRowChangeEventHandler tblSupplierMasterRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddtblSupplierMasterRow(tblSupplierMasterRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterRow AddtblSupplierMasterRow(string strOrgAddress) {
-                tblSupplierMasterRow rowtblSupplierMasterRow = ((tblSupplierMasterRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        strOrgAddress,
-                        null};
-                rowtblSupplierMasterRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblSupplierMasterRow);
-                return rowtblSupplierMasterRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterRow FindByintSuppMasterID(int intSuppMasterID) {
-                return ((tblSupplierMasterRow)(this.Rows.Find(new object[] {
-                            intSuppMasterID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                tblSupplierMasterDataTable cln = ((tblSupplierMasterDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new tblSupplierMasterDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnstrOrgAddress = base.Columns["strOrgAddress"];
-                this.columnintSuppMasterID = base.Columns["intSuppMasterID"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnstrOrgAddress = new global::System.Data.DataColumn("strOrgAddress", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrOrgAddress);
-                this.columnintSuppMasterID = new global::System.Data.DataColumn("intSuppMasterID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSuppMasterID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintSuppMasterID}, true));
-                this.columnstrOrgAddress.MaxLength = 1000;
-                this.columnintSuppMasterID.AutoIncrement = true;
-                this.columnintSuppMasterID.AutoIncrementSeed = -1;
-                this.columnintSuppMasterID.AutoIncrementStep = -1;
-                this.columnintSuppMasterID.AllowDBNull = false;
-                this.columnintSuppMasterID.ReadOnly = true;
-                this.columnintSuppMasterID.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterRow NewtblSupplierMasterRow() {
-                return ((tblSupplierMasterRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblSupplierMasterRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(tblSupplierMasterRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.tblSupplierMasterRowChanged != null)) {
-                    this.tblSupplierMasterRowChanged(this, new tblSupplierMasterRowChangeEvent(((tblSupplierMasterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.tblSupplierMasterRowChanging != null)) {
-                    this.tblSupplierMasterRowChanging(this, new tblSupplierMasterRowChangeEvent(((tblSupplierMasterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.tblSupplierMasterRowDeleted != null)) {
-                    this.tblSupplierMasterRowDeleted(this, new tblSupplierMasterRowChangeEvent(((tblSupplierMasterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.tblSupplierMasterRowDeleting != null)) {
-                    this.tblSupplierMasterRowDeleting(this, new tblSupplierMasterRowChangeEvent(((tblSupplierMasterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovetblSupplierMasterRow(tblSupplierMasterRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                InventoryTransferTDS ds = new InventoryTransferTDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblSupplierMasterDataTable";
+                attribute2.FixedValue = "sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -8295,6 +7939,142 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RequesterName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.RequesterNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RequesterName\' in table \'SprSupplierAccountsInfoUpdate\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.RequesterNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RequesterDesignation {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.RequesterDesignationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RequesterDesignation\' in table \'SprSupplierAccountsInfoUpda" +
+                                "te\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.RequesterDesignationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SupplierName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.SupplierNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SupplierName\' in table \'SprSupplierAccountsInfoUpdate\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.SupplierNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SupplierAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.SupplierAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SupplierAddress\' in table \'SprSupplierAccountsInfoUpdate\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.SupplierAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int AccountNo {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.AccountNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AccountNo\' in table \'SprSupplierAccountsInfoUpdate\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.AccountNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RoutingNo {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.RoutingNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RoutingNo\' in table \'SprSupplierAccountsInfoUpdate\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.RoutingNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RequestBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.RequestByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RequestBy\' in table \'SprSupplierAccountsInfoUpdate\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.RequestByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int SuperviseBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.SuperviseByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperviseBy\' in table \'SprSupplierAccountsInfoUpdate\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSupplierAccountsInfoUpdate.SuperviseByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime dteRequestBy {
                 get {
                     try {
@@ -8346,138 +8126,98 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strRequesterName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.strRequesterNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strRequesterName\' in table \'SprSupplierAccountsInfoUpdate\' " +
-                                "is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.strRequesterNameColumn] = value;
-                }
+            public bool IsRequesterNameNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.RequesterNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strRequesterDesignation {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.strRequesterDesignationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strRequesterDesignation\' in table \'SprSupplierAccountsInfoU" +
-                                "pdate\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.strRequesterDesignationColumn] = value;
-                }
+            public void SetRequesterNameNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.RequesterNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strSupplierName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.strSupplierNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strSupplierName\' in table \'SprSupplierAccountsInfoUpdate\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.strSupplierNameColumn] = value;
-                }
+            public bool IsRequesterDesignationNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.RequesterDesignationColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strSupplierAddress {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSupplierAccountsInfoUpdate.strSupplierAddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strSupplierAddress\' in table \'SprSupplierAccountsInfoUpdate" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.strSupplierAddressColumn] = value;
-                }
+            public void SetRequesterDesignationNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.RequesterDesignationColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intAccountNo {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.intAccountNoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intAccountNo\' in table \'SprSupplierAccountsInfoUpdate\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.intAccountNoColumn] = value;
-                }
+            public bool IsSupplierNameNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.SupplierNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intRoutingNo {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.intRoutingNoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intRoutingNo\' in table \'SprSupplierAccountsInfoUpdate\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.intRoutingNoColumn] = value;
-                }
+            public void SetSupplierNameNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.SupplierNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intRequestBy {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.intRequestByColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intRequestBy\' in table \'SprSupplierAccountsInfoUpdate\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.intRequestByColumn] = value;
-                }
+            public bool IsSupplierAddressNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.SupplierAddressColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSuperviseBy {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSupplierAccountsInfoUpdate.intSuperviseByColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intSuperviseBy\' in table \'SprSupplierAccountsInfoUpdate\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSupplierAccountsInfoUpdate.intSuperviseByColumn] = value;
-                }
+            public void SetSupplierAddressNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.SupplierAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAccountNoNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.AccountNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAccountNoNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.AccountNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRoutingNoNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.RoutingNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRoutingNoNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.RoutingNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRequestByNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.RequestByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRequestByNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.RequestByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSuperviseByNull() {
+                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.SuperviseByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSuperviseByNull() {
+                this[this.tableSprSupplierAccountsInfoUpdate.SuperviseByColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8514,102 +8254,6 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrFilePathNull() {
                 this[this.tableSprSupplierAccountsInfoUpdate.strFilePathColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrRequesterNameNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.strRequesterNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrRequesterNameNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.strRequesterNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrRequesterDesignationNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.strRequesterDesignationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrRequesterDesignationNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.strRequesterDesignationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrSupplierNameNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.strSupplierNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrSupplierNameNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.strSupplierNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrSupplierAddressNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.strSupplierAddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrSupplierAddressNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.strSupplierAddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintAccountNoNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.intAccountNoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintAccountNoNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.intAccountNoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintRoutingNoNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.intRoutingNoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintRoutingNoNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.intRoutingNoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintRequestByNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.intRequestByColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintRequestByNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.intRequestByColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintSuperviseByNull() {
-                return this.IsNull(this.tableSprSupplierAccountsInfoUpdate.intSuperviseByColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintSuperviseByNull() {
-                this[this.tableSprSupplierAccountsInfoUpdate.intSuperviseByColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9870,156 +9514,15 @@ namespace SCM_DAL {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class QRYEMPLOYEEPROFILEALLRow : global::System.Data.DataRow {
+        public partial class sprUpdateFactoryGoodReceiveInActiveByGrnIdRow : global::System.Data.DataRow {
             
-            private QRYEMPLOYEEPROFILEALLDataTable tableQRYEMPLOYEEPROFILEALL;
+            private sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable tablesprUpdateFactoryGoodReceiveInActiveByGrnId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal QRYEMPLOYEEPROFILEALLRow(global::System.Data.DataRowBuilder rb) : 
+            internal sprUpdateFactoryGoodReceiveInActiveByGrnIdRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableQRYEMPLOYEEPROFILEALL = ((QRYEMPLOYEEPROFILEALLDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strEmployeeName {
-                get {
-                    try {
-                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strEmployeeName\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strDesignation {
-                get {
-                    try {
-                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strDesignation\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSuperviserId {
-                get {
-                    try {
-                        return ((int)(this[this.tableQRYEMPLOYEEPROFILEALL.intSuperviserIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intSuperviserId\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableQRYEMPLOYEEPROFILEALL.intSuperviserIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrEmployeeNameNull() {
-                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrEmployeeNameNull() {
-                this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrDesignationNull() {
-                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrDesignationNull() {
-                this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintSuperviserIdNull() {
-                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.intSuperviserIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintSuperviserIdNull() {
-                this[this.tableQRYEMPLOYEEPROFILEALL.intSuperviserIdColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class tblSupplierMasterRow : global::System.Data.DataRow {
-            
-            private tblSupplierMasterDataTable tabletblSupplierMaster;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal tblSupplierMasterRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tabletblSupplierMaster = ((tblSupplierMasterDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strOrgAddress {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupplierMaster.strOrgAddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strOrgAddress\' in table \'tblSupplierMaster\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupplierMaster.strOrgAddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSuppMasterID {
-                get {
-                    return ((int)(this[this.tabletblSupplierMaster.intSuppMasterIDColumn]));
-                }
-                set {
-                    this[this.tabletblSupplierMaster.intSuppMasterIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrOrgAddressNull() {
-                return this.IsNull(this.tabletblSupplierMaster.strOrgAddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrOrgAddressNull() {
-                this[this.tabletblSupplierMaster.strOrgAddressColumn] = global::System.Convert.DBNull;
+                this.tablesprUpdateFactoryGoodReceiveInActiveByGrnId = ((sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable)(this.Table));
             }
         }
         
@@ -11090,56 +10593,22 @@ namespace SCM_DAL {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class QRYEMPLOYEEPROFILEALLRowChangeEvent : global::System.EventArgs {
+        public class sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent : global::System.EventArgs {
             
-            private QRYEMPLOYEEPROFILEALLRow eventRow;
+            private sprUpdateFactoryGoodReceiveInActiveByGrnIdRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QRYEMPLOYEEPROFILEALLRowChangeEvent(QRYEMPLOYEEPROFILEALLRow row, global::System.Data.DataRowAction action) {
+            public sprUpdateFactoryGoodReceiveInActiveByGrnIdRowChangeEvent(sprUpdateFactoryGoodReceiveInActiveByGrnIdRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QRYEMPLOYEEPROFILEALLRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class tblSupplierMasterRowChangeEvent : global::System.EventArgs {
-            
-            private tblSupplierMasterRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterRowChangeEvent(tblSupplierMasterRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSupplierMasterRow Row {
+            public sprUpdateFactoryGoodReceiveInActiveByGrnIdRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -13627,17 +13096,17 @@ WHERE        (emp.intEmployeeID = @intEnroll)";
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "SprSupplierAccountsInfoUpdate";
+            tableMapping.ColumnMappings.Add("RequesterName", "RequesterName");
+            tableMapping.ColumnMappings.Add("RequesterDesignation", "RequesterDesignation");
+            tableMapping.ColumnMappings.Add("SupplierName", "SupplierName");
+            tableMapping.ColumnMappings.Add("SupplierAddress", "SupplierAddress");
+            tableMapping.ColumnMappings.Add("AccountNo", "AccountNo");
+            tableMapping.ColumnMappings.Add("RoutingNo", "RoutingNo");
+            tableMapping.ColumnMappings.Add("RequestBy", "RequestBy");
+            tableMapping.ColumnMappings.Add("SuperviseBy", "SuperviseBy");
             tableMapping.ColumnMappings.Add("dteRequestBy", "dteRequestBy");
             tableMapping.ColumnMappings.Add("dteSuperviseBy", "dteSuperviseBy");
             tableMapping.ColumnMappings.Add("strFilePath", "strFilePath");
-            tableMapping.ColumnMappings.Add("strRequesterName", "strRequesterName");
-            tableMapping.ColumnMappings.Add("strRequesterDesignation", "strRequesterDesignation");
-            tableMapping.ColumnMappings.Add("strSupplierName", "strSupplierName");
-            tableMapping.ColumnMappings.Add("strSupplierAddress", "strSupplierAddress");
-            tableMapping.ColumnMappings.Add("intAccountNo", "intAccountNo");
-            tableMapping.ColumnMappings.Add("intRoutingNo", "intRoutingNo");
-            tableMapping.ColumnMappings.Add("intRequestBy", "intRequestBy");
-            tableMapping.ColumnMappings.Add("intSuperviseBy", "intSuperviseBy");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13660,7 +13129,6 @@ WHERE        (emp.intEmployeeID = @intEnroll)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RequesterName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RequesterDesignation", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SuppMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierAddress", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountNo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoutingNo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13675,7 +13143,7 @@ WHERE        (emp.intEmployeeID = @intEnroll)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.SprSupplierAccountsInfoUpdateDataTable InsertSupplierData(string RequesterName, string RequesterDesignation, string SupplierName, global::System.Nullable<int> SuppMasterID, string SupplierAddress, global::System.Nullable<int> AccountNo, global::System.Nullable<int> RoutingNo, global::System.Nullable<int> RequestBy, global::System.Nullable<int> SuperviseBy, global::System.Nullable<global::System.DateTime> dteRequestBy, global::System.Nullable<global::System.DateTime> dteSuperviseBy, object xml) {
+        public virtual InventoryTransferTDS.SprSupplierAccountsInfoUpdateDataTable InsertSupplierData(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress, global::System.Nullable<int> AccountNo, global::System.Nullable<int> RoutingNo, global::System.Nullable<int> RequestBy, global::System.Nullable<int> SuperviseBy, global::System.Nullable<global::System.DateTime> dteRequestBy, global::System.Nullable<global::System.DateTime> dteSuperviseBy, object xml) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((RequesterName == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -13695,59 +13163,53 @@ WHERE        (emp.intEmployeeID = @intEnroll)";
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = ((string)(SupplierName));
             }
-            if ((SuppMasterID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(SuppMasterID.Value));
-            }
-            else {
+            if ((SupplierAddress == null)) {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((SupplierAddress == null)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(SupplierAddress));
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(SupplierAddress));
             }
             if ((AccountNo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(AccountNo.Value));
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(AccountNo.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((RoutingNo.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(RoutingNo.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((RoutingNo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(RoutingNo.Value));
+            if ((RequestBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(RequestBy.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((RequestBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(RequestBy.Value));
+            if ((SuperviseBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(SuperviseBy.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((SuperviseBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(SuperviseBy.Value));
+            if ((dteRequestBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((System.DateTime)(dteRequestBy.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((dteRequestBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((System.DateTime)(dteRequestBy.Value));
+            if ((dteSuperviseBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((System.DateTime)(dteSuperviseBy.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((dteSuperviseBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((System.DateTime)(dteSuperviseBy.Value));
-            }
-            else {
+            if ((xml == null)) {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((xml == null)) {
-                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[12].Value = ((object)(xml));
+                this.Adapter.SelectCommand.Parameters[11].Value = ((object)(xml));
             }
             InventoryTransferTDS.SprSupplierAccountsInfoUpdateDataTable dataTable = new InventoryTransferTDS.SprSupplierAccountsInfoUpdateDataTable();
             this.Adapter.Fill(dataTable);
@@ -14481,7 +13943,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID) ORD
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprInventoryMRRGetItemInfo";
+            this._commandCollection[0].CommandText = "dbo.sprInventoryGRNGetItemInfo";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPO", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15083,13 +14545,14 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplierId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@challanNo", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@challanDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@driverName", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@driverContact", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@vechicleNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@meterialDescription", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WHId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipmentSl", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipmentSl", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intGNId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -15098,7 +14561,7 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.sprInsertFactoryGoodReceiveDataTable InsertFactoryGoodReceive(global::System.Nullable<int> poId, global::System.Nullable<int> supplierId, string challanNo, string driverName, string driverContact, string vechicleNo, string meterialDescription, global::System.Nullable<int> unitId, global::System.Nullable<int> WHId, global::System.Nullable<int> shipmentSl, global::System.Nullable<int> actionBy, ref global::System.Nullable<int> intGNId) {
+        public virtual InventoryTransferTDS.sprInsertFactoryGoodReceiveDataTable InsertFactoryGoodReceive(global::System.Nullable<int> poId, global::System.Nullable<int> supplierId, string challanNo, global::System.Nullable<global::System.DateTime> challanDate, string driverName, string driverContact, string vechicleNo, string meterialDescription, global::System.Nullable<int> unitId, global::System.Nullable<int> WHId, string shipmentSl, global::System.Nullable<int> actionBy, ref global::System.Nullable<int> intGNId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((poId.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(poId.Value));
@@ -15118,68 +14581,74 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = ((string)(challanNo));
             }
-            if ((driverName == null)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((challanDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(challanDate.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(driverName));
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((driverContact == null)) {
+            if ((driverName == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(driverContact));
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(driverName));
             }
-            if ((vechicleNo == null)) {
+            if ((driverContact == null)) {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(vechicleNo));
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(driverContact));
             }
-            if ((meterialDescription == null)) {
+            if ((vechicleNo == null)) {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(meterialDescription));
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(vechicleNo));
             }
-            if ((unitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(unitId.Value));
-            }
-            else {
+            if ((meterialDescription == null)) {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((WHId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(WHId.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(meterialDescription));
+            }
+            if ((unitId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(unitId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((shipmentSl.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(shipmentSl.Value));
+            if ((WHId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(WHId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((actionBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(actionBy.Value));
-            }
-            else {
+            if ((shipmentSl == null)) {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((intGNId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(intGNId.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(shipmentSl));
+            }
+            if ((actionBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(actionBy.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
+            if ((intGNId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((int)(intGNId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
             InventoryTransferTDS.sprInsertFactoryGoodReceiveDataTable dataTable = new InventoryTransferTDS.sprInsertFactoryGoodReceiveDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[12].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[12].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[13].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[13].Value.GetType() == typeof(global::System.DBNull)))) {
                 intGNId = new global::System.Nullable<int>();
             }
             else {
-                intGNId = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[12].Value)));
+                intGNId = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[13].Value)));
             }
             return dataTable;
         }
@@ -15323,8 +14792,11 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gnId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poQnt", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@receiveQnt", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poQnt", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@receiveQnt", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@message", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -15332,7 +14804,7 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable InsertFactoryGoodsReceiveDetail(global::System.Nullable<int> gnId, global::System.Nullable<int> itemId, global::System.Nullable<decimal> poQnt, global::System.Nullable<decimal> receiveQnt, ref string message) {
+        public virtual InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable InsertFactoryGoodsReceiveDetail(global::System.Nullable<int> gnId, global::System.Nullable<int> itemId, global::System.Nullable<int> poId, global::System.Nullable<decimal> poQnt, global::System.Nullable<decimal> receiveQnt, string remarks, ref global::System.Nullable<int> intId, ref string message) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((gnId.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(gnId.Value));
@@ -15346,32 +14818,57 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((poQnt.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((decimal)(poQnt.Value));
+            if ((poId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(poId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((receiveQnt.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(receiveQnt.Value));
+            if ((poQnt.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(poQnt.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((message == null)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            if ((receiveQnt.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((decimal)(receiveQnt.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(message));
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((remarks == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(remarks));
+            }
+            if ((intId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((message == null)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(message));
             }
             InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable dataTable = new InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[5].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[5].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
+                intId = new global::System.Nullable<int>();
+            }
+            else {
+                intId = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[7].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[8].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[8].Value.GetType() == typeof(global::System.DBNull)))) {
                 message = null;
             }
             else {
-                message = ((string)(this.Adapter.SelectCommand.Parameters[5].Value));
+                message = ((string)(this.Adapter.SelectCommand.Parameters[8].Value));
             }
             return dataTable;
         }
@@ -15386,7 +14883,7 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class QRYEMPLOYEEPROFILEALLTableAdapter : global::System.ComponentModel.Component {
+    public partial class sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -15400,7 +14897,7 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public QRYEMPLOYEEPROFILEALLTableAdapter() {
+        public sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -15495,197 +14992,6 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "QRYEMPLOYEEPROFILEALL";
-            tableMapping.ColumnMappings.Add("strEmployeeName", "strEmployeeName");
-            tableMapping.ColumnMappings.Add("strDesignation", "strDesignation");
-            tableMapping.ColumnMappings.Add("intSuperviserId", "intSuperviserId");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_HRConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select intSuperviserId,strEmployeeName,strDesignation from [ERP_HR].[dbo].QRYEMPL" +
-                "OYEEPROFILEALL where intEmployeeID=@intEmployeeID";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEmployeeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.QRYEMPLOYEEPROFILEALLDataTable GetEmpDetailsByEmpID(int intEmployeeID) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intEmployeeID));
-            InventoryTransferTDS.QRYEMPLOYEEPROFILEALLDataTable dataTable = new InventoryTransferTDS.QRYEMPLOYEEPROFILEALLDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblSupplierMasterTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public tblSupplierMasterTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tblSupplierMaster";
-            tableMapping.ColumnMappings.Add("strOrgAddress", "strOrgAddress");
-            tableMapping.ColumnMappings.Add("intSuppMasterID", "intSuppMasterID");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tblSupplierMaster] WHERE (((@IsNull_strOrgAddress = 1 AND [strOrgAdd" +
-                "ress] IS NULL) OR ([strOrgAddress] = @Original_strOrgAddress)) AND ([intSuppMast" +
-                "erID] = @Original_intSuppMasterID))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strOrgAddress", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strOrgAddress", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strOrgAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strOrgAddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intSuppMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [tblSupplierMaster] ([strOrgAddress]) VALUES (@strOrgAddress);\r\nSELEC" +
-                "T strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMasterID =" +
-                " SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strOrgAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strOrgAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tblSupplierMaster] SET [strOrgAddress] = @strOrgAddress WHERE (((@IsNull_strOrgAddress = 1 AND [strOrgAddress] IS NULL) OR ([strOrgAddress] = @Original_strOrgAddress)) AND ([intSuppMasterID] = @Original_intSuppMasterID));
-SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMasterID = @intSuppMasterID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strOrgAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strOrgAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strOrgAddress", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strOrgAddress", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strOrgAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strOrgAddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intSuppMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSuppMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15701,51 +15007,27 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaster" +
-                "ID = @intSuppMasterID)";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSuppMasterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = "dbo.sprUpdateFactoryGoodReceiveInActiveByGrnId";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@grnId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.tblSupplierMasterDataTable GetSupplierOrgAddress(int intSuppMasterID) {
+        public virtual InventoryTransferTDS.sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable UpdateFactoryGoodReceiveInActiveByGrnId(global::System.Nullable<int> grnId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intSuppMasterID));
-            InventoryTransferTDS.tblSupplierMasterDataTable dataTable = new InventoryTransferTDS.tblSupplierMasterDataTable();
+            if ((grnId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(grnId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            InventoryTransferTDS.sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable dataTable = new InventoryTransferTDS.sprUpdateFactoryGoodReceiveInActiveByGrnIdDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(InventoryTransferTDS.tblSupplierMasterDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(InventoryTransferTDS dataSet) {
-            return this.Adapter.Update(dataSet, "tblSupplierMaster");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -16122,25 +15404,25 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.SprFixedAuditDataTable GetFixedAuditData(object @xml, global::System.Nullable<int> @intType, string @strJobStationName) {
+        public virtual InventoryTransferTDS.SprFixedAuditDataTable GetFixedAuditData(object xml, global::System.Nullable<int> intType, string strJobStationName) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((@xml == null)) {
+            if ((xml == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(@xml));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(xml));
             }
-            if ((@intType.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(@intType.Value));
+            if ((intType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intType.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((@strJobStationName == null)) {
+            if ((strJobStationName == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(@strJobStationName));
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strJobStationName));
             }
             InventoryTransferTDS.SprFixedAuditDataTable dataTable = new InventoryTransferTDS.SprFixedAuditDataTable();
             this.Adapter.Fill(dataTable);
@@ -16165,8 +15447,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
         private TblUOMTableAdapter _tblUOMTableAdapter;
         
         private tblWearHouseTableAdapter _tblWearHouseTableAdapter1;
-        
-        private tblSupplierMasterTableAdapter _tblSupplierMasterTableAdapter;
         
         private tblEmployeeJobStationTableAdapter _tblEmployeeJobStationTableAdapter;
         
@@ -16232,20 +15512,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public tblSupplierMasterTableAdapter tblSupplierMasterTableAdapter {
-            get {
-                return this._tblSupplierMasterTableAdapter;
-            }
-            set {
-                this._tblSupplierMasterTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public tblEmployeeJobStationTableAdapter tblEmployeeJobStationTableAdapter {
             get {
                 return this._tblEmployeeJobStationTableAdapter;
@@ -16286,10 +15552,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                             && (this._tblWearHouseTableAdapter1.Connection != null))) {
                     return this._tblWearHouseTableAdapter1.Connection;
                 }
-                if (((this._tblSupplierMasterTableAdapter != null) 
-                            && (this._tblSupplierMasterTableAdapter.Connection != null))) {
-                    return this._tblSupplierMasterTableAdapter.Connection;
-                }
                 if (((this._tblEmployeeJobStationTableAdapter != null) 
                             && (this._tblEmployeeJobStationTableAdapter.Connection != null))) {
                     return this._tblEmployeeJobStationTableAdapter.Connection;
@@ -16316,9 +15578,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                 if ((this._tblWearHouseTableAdapter1 != null)) {
                     count = (count + 1);
                 }
-                if ((this._tblSupplierMasterTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._tblEmployeeJobStationTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -16333,30 +15592,12 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(InventoryTransferTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblSupplierMasterTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblSupplierMaster.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblSupplierMasterTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tblWearHouseTableAdapter1 != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tblWearHouse.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblWearHouseTableAdapter1.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tblEmployeeJobStationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblEmployeeJobStationTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16378,6 +15619,15 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._tblEmployeeJobStationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblEmployeeJobStationTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -16388,27 +15638,11 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(InventoryTransferTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblSupplierMasterTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblSupplierMaster.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblSupplierMasterTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tblWearHouseTableAdapter1 != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tblWearHouse.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblWearHouseTableAdapter1.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tblEmployeeJobStationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblEmployeeJobStationTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -16428,6 +15662,14 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tblEmployeeJobStationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblEmployeeJobStationTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -16438,6 +15680,14 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(InventoryTransferTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._tblEmployeeJobStationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblEmployeeJobStationTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tblWearHouseTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TblWearHouse.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -16454,27 +15704,11 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tblEmployeeJobStationTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblEmployeeJobStationTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tblWearHouseTableAdapter1 != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tblWearHouse.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tblWearHouseTableAdapter1.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tblSupplierMasterTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblSupplierMaster.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblSupplierMasterTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -16529,11 +15763,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
             }
             if (((this._tblWearHouseTableAdapter1 != null) 
                         && (this.MatchTableAdapterConnection(this._tblWearHouseTableAdapter1.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._tblSupplierMasterTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblSupplierMasterTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -16599,15 +15828,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                     if (this._tblWearHouseTableAdapter1.Adapter.AcceptChangesDuringUpdate) {
                         this._tblWearHouseTableAdapter1.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblWearHouseTableAdapter1.Adapter);
-                    }
-                }
-                if ((this._tblSupplierMasterTableAdapter != null)) {
-                    revertConnections.Add(this._tblSupplierMasterTableAdapter, this._tblSupplierMasterTableAdapter.Connection);
-                    this._tblSupplierMasterTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblSupplierMasterTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblSupplierMasterTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblSupplierMasterTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblSupplierMasterTableAdapter.Adapter);
                     }
                 }
                 if ((this._tblEmployeeJobStationTableAdapter != null)) {
@@ -16688,10 +15908,6 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
                 if ((this._tblWearHouseTableAdapter1 != null)) {
                     this._tblWearHouseTableAdapter1.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblWearHouseTableAdapter1]));
                     this._tblWearHouseTableAdapter1.Transaction = null;
-                }
-                if ((this._tblSupplierMasterTableAdapter != null)) {
-                    this._tblSupplierMasterTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSupplierMasterTableAdapter]));
-                    this._tblSupplierMasterTableAdapter.Transaction = null;
                 }
                 if ((this._tblEmployeeJobStationTableAdapter != null)) {
                     this._tblEmployeeJobStationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblEmployeeJobStationTableAdapter]));

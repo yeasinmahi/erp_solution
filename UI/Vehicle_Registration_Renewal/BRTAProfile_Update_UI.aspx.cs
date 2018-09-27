@@ -52,6 +52,7 @@ namespace UI.Vehicle_Registration_Renewal
                 TxtTaxTokenLateFine3_1.Text = dt.Rows[0]["monTaxTokenLatefinein3month10Percentage"].ToString();
                 TxtTaxTokenLateFine6_2.Text = dt.Rows[0]["monTaxTokenLatefinein6month20Percentage"].ToString();
                 TxtTaxTokenLate6_30.Text = dt.Rows[0]["monTaxTokenLatefinein6monthAvobe30Percentage"].ToString();
+                txtTAXTokenMiscellaneous.Text = dt.Rows[0]["monTaxTokenMiscellounes"].ToString();
                 TxtFitnessFee.Text = dt.Rows[0]["monFitnessfee"].ToString();
                 TxtFitnessLate.Text = dt.Rows[0]["monFitnessLateFine"].ToString();
                 TxtFitenessMisc.Text = dt.Rows[0]["monFitnessMiscellounes"].ToString();
@@ -81,6 +82,7 @@ namespace UI.Vehicle_Registration_Renewal
             decimal taxtokenLatefine3_1 = decimal.Parse(TxtTaxTokenLateFine3_1.Text.ToString());
             decimal taxtokenLatefine6_2 = decimal.Parse(TxtTaxTokenLateFine6_2.Text.ToString());
             decimal taxtokenLatefine6_3 = decimal.Parse(TxtTaxTokenLate6_30.Text.ToString());
+            decimal taxtokenMisscellounes = decimal.Parse(txtTAXTokenMiscellaneous.Text.ToString());
             decimal fitenssfee = decimal.Parse(TxtFitnessFee.Text.ToString());
             decimal fitnessLate = decimal.Parse(TxtFitnessLate.Text.ToString());
             decimal fitnessMisc = decimal.Parse(TxtFitenessMisc.Text.ToString());
@@ -94,7 +96,7 @@ namespace UI.Vehicle_Registration_Renewal
             decimal DRC = decimal.Parse(TxtDRC.Text.ToString());
             dt = new DataTable();
             objBRTA.UpdateBRTAProfile(refistrationfee, nameplate, ownership, addresschange, certificatecopy, duplicatecertifite, registrationMisc, taxtokenfee,
-            taxtokenLatefine3_1, taxtokenLatefine6_2, taxtokenLatefine6_3, fitenssfee, fitnessLate, fitnessMisc, AIT, insurancefee,
+            taxtokenLatefine3_1, taxtokenLatefine6_2, taxtokenLatefine6_3, taxtokenMisscellounes, fitenssfee, fitnessLate, fitnessMisc, AIT, insurancefee,
             routepermit, routelatefine, routepermitMisc, bodyvat, DRC, enroll, itemid);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Update BRTA Profile.');", true);

@@ -25,8 +25,28 @@ namespace UI.Inventory
                 {
                     foreach (DataRow row in dt.Rows)
                     {
+
                         string src = reportUrlPre + Uri.EscapeUriString(row["strFilePath"].ToString());
-                        myPanel.Controls.Add(new LiteralControl("<iframe class='frame' src='" + src + "'></iframe>"));
+                        string extension = System.IO.Path.GetExtension(src);
+
+                        if (extension.ToLower().Equals(".pdf"))
+                        {
+                            myPanel.Controls.Add(new LiteralControl("<iframe class='frame' src='" + src + "'></iframe>"));
+
+                        }
+                        else if (extension.ToLower().Equals(".jpg") || extension.ToLower().Equals(".jpeg")
+                                 || extension.ToLower().Equals(".png") || extension.ToLower().Equals(".gif"))
+                        {
+                            string lstrImgString = "<img src='" + src + "' width=\"500\"" + " hspace=\"5\" vspace=\"5\"></br>";
+                            myPanel.Controls.Add(new LiteralControl(lstrImgString));
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Attchment type is "+extension+". this type is not supported in our system to view.');", true);
+                        }
+                       
+
+                        
                     }
                     
                     //dt = atp.GetPathList(enroll, tp);
