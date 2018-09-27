@@ -176,13 +176,13 @@ namespace SCM_BLL
         //    return msg;
         //}
 
-        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
+        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName,int suppMasterID, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
         {
-            SprSupplierAccountsInfoUpdateTableAdapter adp = new SprSupplierAccountsInfoUpdateTableAdapter();
+            sprSupplierAccountsInfoUpdateTableAdapter adp = new sprSupplierAccountsInfoUpdateTableAdapter();
             string msg = "";
             try
             {
-                return adp.InsertSupplierData(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+                return adp.GetSupplierData(RequesterName, RequesterDesignation, SupplierName, suppMasterID, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
                 //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
             catch (Exception e) { return new DataTable(); }
@@ -258,14 +258,13 @@ namespace SCM_BLL
 
         //    return message;
         //}
-        public int? InsertFactoryGoodReceive(int poId,int supplierId,string challanNo,string driverName,string driverContact,string vechicleNo,string meterialDescription,int unitId,int WHId,int shipmentSl,int actionBy, ref int? intGNId)
+        public int? InsertFactoryGoodReceive(int poId,int supplierId,string challanNo, DateTime challanDate, string driverName,string driverContact,string vechicleNo,string meterialDescription,int unitId,int WHId,string shipmentSl,int actionBy, ref int? intGNId)
         {
             sprInsertFactoryGoodReceiveTableAdapter adp = new sprInsertFactoryGoodReceiveTableAdapter();
             
             try
             {
-                adp.InsertFactoryGoodReceive(poId,supplierId,challanNo,driverName,driverContact,vechicleNo,meterialDescription,unitId,WHId,shipmentSl,actionBy, ref intGNId);
-                //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
+                adp.InsertFactoryGoodReceive(poId,supplierId,challanNo,challanDate,driverName,driverContact,vechicleNo,meterialDescription,unitId,WHId,shipmentSl,actionBy, ref intGNId);
             }
             catch (Exception ex)
             {
@@ -274,21 +273,59 @@ namespace SCM_BLL
 
             return intGNId;
         }
-        public string InsertFactoryGoodsReceiveDetail(int gnId, int itemId, decimal poQnt, decimal receiveQnt, ref string message)
+        public int? InsertFactoryGoodsReceiveDetail(int gnId, int itemId, int poId, decimal poQnt, decimal receiveQnt, string remarks,ref int? intId, ref string message)
         {
             sprInsertFactoryGoodsReceiveDetailTableAdapter adp = new sprInsertFactoryGoodsReceiveDetailTableAdapter();
 
             try
             {
-                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poQnt, receiveQnt, ref message);
-                //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
+                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poId,poQnt, receiveQnt,remarks,ref intId,ref message);
             }
             catch (Exception ex)
             {
-                message = ex.Message;
+                intId = 0;
             }
 
-            return message;
+            return intId;
         }
+        public bool UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter(int gnId)
+        {
+            sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter adp = new sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter();
+
+            try
+            {
+                adp.UpdateFactoryGoodReceiveInActiveByGrnId(gnId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public DataTable GetEmpByEmpID(int intEmployeeID)
+        {
+            QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
+            return adp.GetEmpData(intEmployeeID);
+        }
+
+        public DataTable GetSupplierAddress(int supplierMasterID)
+        {
+            tblSupplierMasterTableAdapter adp = new tblSupplierMasterTableAdapter();
+            return adp.GetSupplierOrgAddress(supplierMasterID);
+        }
+
+        public DataTable GetAllJobStationList()
+        {
+            tblEmployeeJobStationTableAdapter adp = new tblEmployeeJobStationTableAdapter();
+            return adp.GetAllJobStation();
+        }
+
+        public DataTable FixedAssetData(string xml,int intType,string strJobStationName)
+        {
+            SprFixedAuditTableAdapter adp = new SprFixedAuditTableAdapter();
+            return adp.GetFixedAuditData(xml,intType,strJobStationName);
+        }
+
     }
 }
