@@ -116,19 +116,10 @@
                                 <asp:DropDownList ID="ddlWH" runat="server"  CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strWareHoseName" DataValueField="intWHID"> </asp:DropDownList> 
                                  <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWHData" TypeName="SCM_DAL.BillingTDSTableAdapters.TblWHTableAdapter"></asp:ObjectDataSource>
                              </td>
-                            <%--  <td style="text-align: right;">
-                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Search By : "></asp:Label></td>
-                             <td>
-                                <asp:DropDownList ID="ddlSearch" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="False">
-                                    <asp:ListItem Value="1">Category</asp:ListItem>
-                                    <asp:ListItem Value="2">Sub-Category</asp:ListItem>
-                                    <asp:ListItem Value="3">ItemID</asp:ListItem>
-                                    <asp:ListItem Value="4">Item Name</asp:ListItem>
-                                    <asp:ListItem Value="5">Purchase Type (Local/Foreign)</asp:ListItem>
-                                </asp:DropDownList> 
-                             </td>--%>
+                          
+                           
                              <td style="text-align: right;">
-                                 <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audited Date : "></asp:Label></td>
+                                 <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audit Date : "></asp:Label></td>
 
                              <td>
                                  <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>

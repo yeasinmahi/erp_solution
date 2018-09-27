@@ -76,6 +76,7 @@ namespace UI.SCM
                         CreateXml(intItemID, strItemName, intWHID, dteInsertDate, dteAuditedDate, monClosingQuantity, monAuditedQuantity, intAuditedBy, strRemarks);
                         TextBox sremarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         sremarks.Text="";
+                        auditqty.Text = "";
                         check.Checked = false;
 
                     }

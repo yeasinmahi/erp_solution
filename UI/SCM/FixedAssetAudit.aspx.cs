@@ -125,14 +125,7 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Inserted.');", true);
                 }
 
-                //try { File.Delete(filePathForXML); }
-
-                //catch (Exception ex)
-                //{
-                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
-                //}
-                //CheckBox CheckBox1 = (CheckBox)sender;
-                //CheckBox1.Checked = false;
+              
             }
         }
 
