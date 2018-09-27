@@ -137,14 +137,58 @@ namespace UI.SAD.Order
                 DateTime dtTo = Convert.ToDateTime(strTodate);
                 enrol1 = Session["enrol1"].ToString();
                 int enrol = int.Parse(enrol1);
+                ReportType = Session["REPORTTYPE"].ToString();
+                int rptype = int.Parse(ReportType);
+
+                
                 SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
-                dt = bll.getTADARptforSUpervisorAproveV2(dtfrom, dtTo, enrol);
-
-                if (dt.Rows.Count > 0)
+                if (rptype == 1)
                 {
+                    dt = bll.getTADARptforSUpervisorAproveV2(dtfrom, dtTo, enrol);
+                    if (dt.Rows.Count > 0)
+                    {
+                        grdvpreviousData.DataSource = null;
+                        grdvpreviousData.DataBind();
 
-                    grdvForApproveTADAByImmdediatesupervisor.DataSource = dt;
-                    grdvForApproveTADAByImmdediatesupervisor.DataBind();
+                        grdvhraprvdata.DataSource = null;
+                        grdvhraprvdata.DataBind();
+                        grdvForApproveTADAByImmdediatesupervisor.DataSource = dt;
+                        grdvForApproveTADAByImmdediatesupervisor.DataBind();
+                    }
+                }
+                if (rptype == 14 ||  rptype == 1036)
+                { 
+                    dt = bll.getTADARptforsupaprvalready(dtfrom, dtTo, enrol, rptype);
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        grdvForApproveTADAByImmdediatesupervisor.DataSource = null;
+                        grdvForApproveTADAByImmdediatesupervisor.DataBind();
+                        grdvhraprvdata.DataSource = null;
+                        grdvhraprvdata.DataBind();
+                        grdvpreviousData.DataSource = dt;
+                        grdvpreviousData.DataBind();
+                        btnSubmitSingleEmployee.Visible = false;
+
+                    }
+                }
+
+                if ( rptype == 1035)
+                {
+                    dt = bll.getTADARptforsupaprvalready(dtfrom, dtTo, enrol, rptype);
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        grdvForApproveTADAByImmdediatesupervisor.DataSource = null;
+                        grdvForApproveTADAByImmdediatesupervisor.DataBind();
+                        grdvpreviousData.DataSource = null;
+                        grdvpreviousData.DataBind();
+                        grdvhraprvdata.DataSource = dt;
+                        grdvhraprvdata.DataBind();
+                       
+                        btnSubmitSingleEmployee.Visible = false;
+
+                    }
                 }
 
             }

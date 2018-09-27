@@ -7,7 +7,7 @@ using SAD_DAL.Customer.Report;
 using SAD_DAL.Customer.Report.StatementTDSTableAdapters;
 using System.Data;
 using System.Collections;
-
+using SAD_DAL.Sales.SalesViewTDSTableAdapters;
 
 namespace SAD_BLL.Customer.Report
 {
@@ -2198,6 +2198,21 @@ namespace SAD_BLL.Customer.Report
             }
         }
 
+
+        public DataTable getTADARptforsupaprvalready(DateTime dtFromDate, DateTime dtTodate, int enrol,int rptid)
+        {
+            SprZSupervisorAprvNHRApproveTableAdapter bllRptRmtTADABikeCarDetaills = new SprZSupervisorAprvNHRApproveTableAdapter();
+            try
+            {
+                return bllRptRmtTADABikeCarDetaills.GetData(dtFromDate, dtTodate, enrol, rptid);
+            }
+
+            catch
+            {
+                return new DataTable();
+            }
+
+        }
 
     }
 }
