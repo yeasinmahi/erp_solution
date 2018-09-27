@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using Purchase_BLL.SupplyChain;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,22 +20,41 @@ namespace UI.SCM
     {
         string filePathForXMLDocUpload, xmlStringDocUpload, fileName, xml,strDocType;
         InventoryTransfer_BLL objBll = new InventoryTransfer_BLL();
+        CSM bankcheck = new CSM();
+        DataTable dt = new DataTable();
+        char[] delimeters = { '[',']' };
+        string[] arraykey;
+        int supplierMasterID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
             Panel1.Visible = false;
-        // Page.Form.Attributes.Add("enctype", "multipart/form-data");
-        filePathForXMLDocUpload = Server.MapPath("~/Inventory/Data/DocUpload_" + Session[SessionParams.USER_ID].ToString() + ".xml");
+      
+            filePathForXMLDocUpload = Server.MapPath("~/Inventory/Data/DocUpload_" + Session[SessionParams.USER_ID].ToString() + ".xml");
+
+            dt= objBll.GetEmpByEmpID(enroll);
+            txtRequesterName.Text = dt.Rows[0]["strEmployeeName"].ToString();
+            txtRequesterDesignation.Text= dt.Rows[0]["strDesignation"].ToString();
+            txtRequestBy.Text = Session[SessionParams.USER_ID].ToString();
+            txtSuperviseBy.Text = dt.Rows[0]["intSuperviserId"].ToString();
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string RequesterName, RequesterDesignation, SupplierName, SupplierAddress, msg;
+            string RequesterName, RequesterDesignation, SupplierName="", SupplierAddress, msg;
             int AccountNo, RequestBy, SuperviseBy, RoutingNo;
             DateTime dteRequestBy, dteSuperviseBy;
 
             RequesterName = txtRequesterName.Text;
             RequesterDesignation = txtRequesterDesignation.Text;
-            SupplierName = txtSupplier.Text;
+            arraykey = txtSupplier.Text.Split(delimeters);
+            if (arraykey.Length > 0)
+            {
+                SupplierName = arraykey[0].ToString();
+                supplierMasterID = Convert.ToInt32(arraykey[1].ToString());
+            }
+            
             SupplierAddress = txtSupplierAddress.Text;
             RoutingNo = Convert.ToInt32(txtRoutingNo.Text);
             AccountNo = Convert.ToInt32(txtAccountNo.Text);
@@ -61,8 +81,8 @@ namespace UI.SCM
 
                 }
             }
-            DataTable dt = new DataTable();
-            dt = objBll.InsertSupplierAccountsInfoList(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+           
+            dt = objBll.InsertSupplierAccountsInfoList(RequesterName, RequesterDesignation, SupplierName, supplierMasterID, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
             if (filePathForXMLDocUpload != null)
             {
                 File.Delete(filePathForXMLDocUpload);
@@ -71,7 +91,7 @@ namespace UI.SCM
             dgvDocUp.DataBind();
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             ClearControl();
-            Image1.ImageUrl = dt.Rows[0]["strFilePath"].ToString();
+            //Image1.ImageUrl = dt.Rows[0]["strFilePath"].ToString();
             
         }
 
@@ -87,6 +107,11 @@ namespace UI.SCM
             txtSuperviseBy.Text = "";
             txtRequestDate.Text = "";
             txtApproveDate.Text = "";
+            txtBank.Text = "";
+            txtBankID.Text = "";
+            txtBranch.Text = "";
+            txtDistrict.Text = "";
+            txtBranchID.Text = "";
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -215,6 +240,20 @@ namespace UI.SCM
         }
         #endregion=========end xml====================
 
+
+
+        protected void txtSupplier_TextChanged(object sender, EventArgs e)
+        {
+            arraykey = txtSupplier.Text.Split(delimeters);
+            if(arraykey.Length>0)
+            {
+                supplierMasterID =Convert.ToInt32(arraykey[1].ToString());
+                dt = objBll.GetSupplierAddress(supplierMasterID);
+                txtSupplierAddress.Text = dt.Rows[0]["strOrgAddress"].ToString();
+            }
+
+        }
+
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
            
@@ -248,6 +287,48 @@ namespace UI.SCM
             catch (Exception ex) { throw ex; }
         }
 
+        #region=======Radio Button Check========
+        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            ChechRoutingNo();
+        }
+
+        private void ChechRoutingNo()
+        {
+            try
+            {
+                DataTable dtbankcheck = new DataTable();
+                string Routingnumber = txtRoutingNo.Text;
+                // dtbankcheck = bankcheck.getbankcheck(Routingnumber);
+                dtbankcheck = bankcheck.getbankcheckNo(Routingnumber);
+                if (dtbankcheck.Rows.Count > 0)
+                {
+                    txtBank.Text = dtbankcheck.Rows[0]["strBankName"].ToString();
+                    txtBranch.Text = dtbankcheck.Rows[0]["strBankBranchName"].ToString();
+
+                    txtBankID.Text = dtbankcheck.Rows[0]["intBankID"].ToString();
+                    txtDistrict.Text = dtbankcheck.Rows[0]["intDistrictID"].ToString();
+                    txtBranchID.Text = dtbankcheck.Rows[0]["intBranchID"].ToString();
+                    RadioButton1.Checked = false;
+                }
+                else
+                {
+                    txtBank.Text = "";
+                    txtBranch.Text = "";
+                    txtBankID.Text = "";
+                    txtDistrict.Text = "";
+                    txtBranchID.Text = "";
+                    RadioButton1.Checked = false;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Routing No ??');", true); return;
+                }
+
+
+            }
+            catch { RadioButton1.Checked = false; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please click the check box');", true); }
+
+        }
+        #endregion====== end checking radio button===========
+
         //protected void FinalUpload()
         //{
         //    string accNo = txtAccountNo.Text;
@@ -263,18 +344,18 @@ namespace UI.SCM
         //            }
         //        }
         //    }
-         
+
         //}
+
 
         #region=======================Supplier Auto Search=========================
 
-        //[WebMethod]
-        //[ScriptMethod]
-        //public static string[] GetMasterSupplierSearch(string prefixText)
-        //{
-        //    return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(), HttpContext.Current.Session["unitId"].ToString());
-        //}
-
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetMasterSupplierSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchMasterSupplier(prefixText, "Local Purchase");
+        }
 
         #endregion====================Close===============================
 

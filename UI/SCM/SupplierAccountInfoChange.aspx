@@ -73,9 +73,20 @@
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label1" runat="server" Text="Requester Designation "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
             </tr>
             <tr>
-                <td><asp:TextBox ID="txtRequesterName" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtRequesterName" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
                 <td style="text-align:right; "><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
-                <td><asp:TextBox ID="txtRequesterDesignation" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtRequesterDesignation" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
+            </tr>
+            
+             <tr>
+                <td style="text-align:Left; width:300px;"><asp:Label ID="Label12" runat="server" Text="Requester ID "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
+                <td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>  
+                <td style="text-align:Left; width:300px;"><asp:Label ID="Label14" runat="server" Text="Supervisor ID "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
+            </tr>
+            <tr>
+                <td><asp:TextBox ID="txtRequestBy" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
+                <td style="text-align:right; "><asp:Label ID="Label15" runat="server" Text=""></asp:Label></td>
+                <td><asp:TextBox ID="txtSuperviseBy" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
             </tr>
              <tr>
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label4" runat="server" Text="Supplier Name "></asp:Label></td>
@@ -85,25 +96,16 @@
             <tr>
                 <%--<td><asp:TextBox ID="txtSupplierName" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="300px"></asp:TextBox></td>--%>
                 <td>
-                    <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="300px"></asp:TextBox>
-                               <%-- <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
+                    <%--<asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="300px"></asp:TextBox>--%>
+                             <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
                                     ServiceMethod="GetMasterSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                                </cc1:AutoCompleteExtender>--%>
+                                </cc1:AutoCompleteExtender></td>
                 </td>
                 <td style="text-align:right; "><asp:Label ID="Label7" runat="server" Text=""></asp:Label></td>
                 <td><asp:TextBox ID="txtSupplierAddress" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
-            </tr>
-             <tr>
-                <td style="text-align:Left; width:300px;"><asp:Label ID="Label12" runat="server" Text="Requester ID "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
-                <td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>  
-                <td style="text-align:Left; width:300px;"><asp:Label ID="Label14" runat="server" Text="Supervisor ID "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
-            </tr>
-            <tr>
-                <td><asp:TextBox ID="txtRequestBy" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
-                <td style="text-align:right; "><asp:Label ID="Label15" runat="server" Text=""></asp:Label></td>
-                <td><asp:TextBox ID="txtSuperviseBy" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
             </tr>
              <tr>
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label16" runat="server" Text="Request Date "></asp:Label><span style="color:red; font-size:14px; text-align:left">*</span></td>
@@ -128,7 +130,7 @@
             <tr>
                 <td><asp:TextBox ID="txtAccountNo" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
                 <td style="text-align:right; "><asp:Label ID="Label11" runat="server" Text=""></asp:Label></td>
-                <td><asp:TextBox ID="txtRoutingNo" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox>
+                <td><asp:TextBox ID="txtRoutingNo" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="200px"></asp:TextBox>
                     <asp:RadioButton ID="RadioButton1" runat="server" AutoPostBack="True" OnCheckedChanged="RadioButton1_CheckedChanged" style="font-weight: 700; color: #0000FF" Text="Check" />
                 </td>
             </tr>
@@ -138,9 +140,9 @@
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label24" runat="server" Text="Bank ID "></asp:Label></td>
             </tr>
             <tr>
-                <td><asp:TextBox ID="txtBank" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtBank" runat="server" AutoPostBack="false" BackColor="Lightgray" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
                 <td style="text-align:right; "><asp:Label ID="Label26" runat="server" Text=""></asp:Label></td>
-                <td><asp:TextBox ID="txtBankID" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtBankID" runat="server" AutoPostBack="false" BackColor="Lightgray" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
             </tr>
              <tr>
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label30" runat="server" Text="Branch "></asp:Label></td>
@@ -148,9 +150,9 @@
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label33" runat="server" Text="Branch ID "></asp:Label></td>
             </tr>
             <tr>
-                <td><asp:TextBox ID="txtBranch" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtBranch" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
                 <td style="text-align:right; "><asp:Label ID="Label34" runat="server" Text=""></asp:Label></td>
-                <td><asp:TextBox ID="txtBranchID" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtBranchID" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
             </tr>
              <tr>
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label35" runat="server" Text="District ID "></asp:Label></td>
@@ -158,7 +160,7 @@
                 <td style="text-align:Left; width:300px;"><asp:Label ID="Label37" runat="server" Text="Document Upload : "></asp:Label></td>
             </tr>
             <tr>
-                <td><asp:TextBox ID="txtDistrict" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtDistrict" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="false" Width="300px" BackColor="Lightgray"></asp:TextBox></td>
                 <td style="text-align:right; "><asp:Label ID="Label38" runat="server" Text=""></asp:Label></td>
                 <td><asp:FileUpload ID="txtDocUpload" runat="server" /> 
                  <asp:Button ID="btnUpload" runat="server" style="font-size:12px; background-color:deepskyblue; color:white;font-weight:bold;" Text="Add" OnClick="btnUpload_Click" />

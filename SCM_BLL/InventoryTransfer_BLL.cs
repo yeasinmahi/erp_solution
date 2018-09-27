@@ -176,13 +176,13 @@ namespace SCM_BLL
         //    return msg;
         //}
 
-        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
+        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName,int suppMasterID, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
         {
             SprSupplierAccountsInfoUpdateTableAdapter adp = new SprSupplierAccountsInfoUpdateTableAdapter();
             string msg = "";
             try
             {
-                return adp.InsertSupplierData(RequesterName, RequesterDesignation, SupplierName, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
+                return adp.InsertSupplierData(RequesterName, RequesterDesignation, SupplierName, suppMasterID, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
                 //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
             catch (Exception e) { return new DataTable(); }
@@ -290,5 +290,30 @@ namespace SCM_BLL
 
             return message;
         }
+
+        public DataTable GetEmpByEmpID(int intEmployeeID)
+        {
+            QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
+            return adp.GetEmpDetailsByEmpID(intEmployeeID);
+        }
+
+        public DataTable GetSupplierAddress(int supplierMasterID)
+        {
+            tblSupplierMasterTableAdapter adp = new tblSupplierMasterTableAdapter();
+            return adp.GetSupplierOrgAddress(supplierMasterID);
+        }
+
+        public DataTable GetAllJobStationList()
+        {
+            tblEmployeeJobStationTableAdapter adp = new tblEmployeeJobStationTableAdapter();
+            return adp.GetAllJobStation();
+        }
+
+        public DataTable FixedAssetData(string xml,int intType,string strJobStationName)
+        {
+            SprFixedAuditTableAdapter adp = new SprFixedAuditTableAdapter();
+            return adp.GetFixedAuditData(xml,intType,strJobStationName);
+        }
+
     }
 }
