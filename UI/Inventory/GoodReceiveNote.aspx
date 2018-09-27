@@ -45,7 +45,6 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
                         <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
                 <div style="height: 100px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
@@ -100,10 +99,10 @@
                                     <asp:TextBox ID="txtShipmentNo" CssClass="form-control" runat="server" placeholder="Shipment/Invoice No"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label4" runat="server" Text="Vechicle No"></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Text="Vehicle No"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
 
-                                    <asp:TextBox ID="txtVehicleNo" CssClass="form-control" runat="server" placeholder="Vechicle No"></asp:TextBox>
+                                    <asp:TextBox ID="txtVehicleNo" CssClass="form-control" runat="server" placeholder="Vehicle No"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6">
@@ -119,18 +118,16 @@
 
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:Label ID="Label7" runat="server" Text="Meterial Description"></asp:Label>
+                                    <asp:Label ID="Label7" runat="server" Text="Product Description"></asp:Label>
 
-                                    <asp:TextBox ID="txtMeterialDes" TextMode="MultiLine" CssClass="form-control" runat="server" placeholder="Write meterial description"></asp:TextBox>
+                                    <asp:TextBox ID="txtMeterialDes" TextMode="MultiLine" CssClass="form-control" runat="server" placeholder="Write product description"></asp:TextBox>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default" id="itemPanel" style="visibility: hidden">
-                        <div class="panel-heading">
-                            <asp:Label runat="server" Text="Items Received" Font-Bold="true" Font-Size="14px"></asp:Label>
-                        </div>
+                        
                         <div class="panel-body">
                             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -142,10 +139,10 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item Id">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtItem" runat="server" Text='<%# Bind("intItem") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtItem" runat="server"  Text='<%# Bind("intItem") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="iblItem" runat="server" Text='<%# Bind("intItem") %>'></asp:Label>
+                                            <asp:Label ID="iblItem" runat="server"  Text='<%# Bind("intItem") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item Name">
@@ -153,7 +150,7 @@
                                             <asp:TextBox ID="txtItemName" runat="server" Text='<%# Bind("strItem") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strItem") %>'></asp:Label>
+                                            <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItem") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Description">
@@ -161,7 +158,7 @@
                                             <asp:TextBox ID="txtDes" runat="server" Text='<%# Bind("strDes") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDsc" runat="server" Text='<%# Bind("strDes") %>'></asp:Label>
+                                            <asp:Label ID="lblDsc" runat="server" CssClass="pull-left" Text='<%# Bind("strDes") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="UoM">
@@ -201,7 +198,7 @@
                                             <asp:TextBox ID="receiveQuantity" runat="server" Width="100%" placeholder="Quantity"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remarks">
+                                    <asp:TemplateField HeaderText="Remarks" ItemStyle-Width="200px" >
                                         <ItemTemplate>
                                             <asp:TextBox ID="receiveRemarks" runat="server" Width="100%" placeholder="Write remarks here...."></asp:TextBox>
                                         </ItemTemplate>
