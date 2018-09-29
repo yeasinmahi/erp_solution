@@ -54,10 +54,10 @@
                 <asp:HiddenField runat="server" ID="hdnSupplerId" />
                 <asp:HiddenField runat="server" ID="hdnshipmentSn" />
                 <div class="container">
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Goods Receive Note" Font-Bold="true" Font-Size="16px"></asp:Label> 
-                            <asp:Label runat="server" ID=lblGrn Font-Size="16px" CssClass="pull-right"></asp:Label>
+                            <asp:Label runat="server" ID=lblGrn Font-Bold="true"  Font-Size="16px" CssClass="pull-right" ForeColor="blue"></asp:Label>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -83,10 +83,10 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label3" runat="server" Text="Challan No"></asp:Label>
+                                    <asp:Label ID="Label3" runat="server" Text="Challan No."></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
 
-                                    <asp:TextBox ID="txtChallanNo" CssClass="form-control" runat="server" placeholder="challan No"></asp:TextBox>
+                                    <asp:TextBox ID="txtChallanNo" CssClass="form-control" runat="server" placeholder="Challan No."></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6">
@@ -95,14 +95,14 @@
                                     <asp:TextBox ID="txtChallanDate" CssClass="form-control" runat="server" placeholder="dd/MM/yyyy"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label9" runat="server" Text="Shipment/Invoice No"></asp:Label>
-                                    <asp:TextBox ID="txtShipmentNo" CssClass="form-control" runat="server" placeholder="Shipment/Invoice No"></asp:TextBox>
+                                    <asp:Label ID="Label9" runat="server" Text="Shipment/Invoice No."></asp:Label>
+                                    <asp:TextBox ID="txtShipmentNo" CssClass="form-control" runat="server" placeholder="Shipment/Invoice No."></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label4" runat="server" Text="Vehicle No"></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Text="Vehicle No."></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
 
-                                    <asp:TextBox ID="txtVehicleNo" CssClass="form-control" runat="server" placeholder="Vehicle No"></asp:TextBox>
+                                    <asp:TextBox ID="txtVehicleNo" CssClass="form-control" runat="server" placeholder="Vehicle No."></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6">
@@ -112,9 +112,9 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label6" runat="server" Text="Driver Contact No"></asp:Label>
+                                    <asp:Label ID="Label6" runat="server" Text="Driver Contact No."></asp:Label>
 
-                                    <asp:TextBox ID="txtDriverContact" CssClass="form-control" runat="server" placeholder="Contact No"></asp:TextBox>
+                                    <asp:TextBox ID="txtDriverContact" CssClass="form-control" runat="server" placeholder="Contact No."></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-12">
@@ -132,12 +132,12 @@
                             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="SN">
+                                    <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item Id">
+                                    <asp:TemplateField HeaderText="Item ID">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtItem" runat="server"  Text='<%# Bind("intItem") %>'></asp:TextBox>
                                         </EditItemTemplate>
@@ -169,7 +169,7 @@
                                             <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Po Quantity">
+                                    <asp:TemplateField HeaderText="PO Quantity">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtPoQnt" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:TextBox>
                                         </EditItemTemplate>

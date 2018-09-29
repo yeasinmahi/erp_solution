@@ -89,7 +89,7 @@ namespace UI.Inventory
                             if (grnDetailsId != null && grnDetailsId == 0)
                             {
                                 _bll.UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter((int)gnid);
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+itemName+" exiding the quantity limit.');", true);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+itemId+" "+itemName+" exiding the quantity limit.');", true);
                                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                                 return;
                             }
