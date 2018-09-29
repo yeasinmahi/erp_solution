@@ -49,7 +49,7 @@ namespace HR_BLL.CreativeSupport
                     var rows = from tmp in tblCRItem[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strCreativeItemName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -62,7 +62,7 @@ namespace HR_BLL.CreativeSupport
                                    where tmp.strCreativeItemName.ToLower().Contains(prefix) || tmp.intCreativeItemID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
                                    orderby tmp.strCreativeItemName
                                    select tmp;
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
                         }
@@ -98,7 +98,7 @@ namespace HR_BLL.CreativeSupport
                     var rows = from tmp in tblEmpListForCS[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strEmployeeName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -111,7 +111,7 @@ namespace HR_BLL.CreativeSupport
                                    where tmp.strEmployeeName.ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix) || tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
                                    orderby tmp.strEmployeeName
                                    select tmp;
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
                         }
