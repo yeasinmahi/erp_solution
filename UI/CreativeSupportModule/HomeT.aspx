@@ -12,10 +12,7 @@
     <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../Content/JS/datepickr.min.js"></script>
     <script src="../Content/JS/JSSettlement.js"></script>   
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>    
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />    
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
@@ -93,15 +90,15 @@
                     <span style="font-size:35px"><asp:CheckBox ID="ckbAgree" runat="server" /></span>
                     <span style="font:bold; font-weight:900; padding-bottom:25px; font-size:22px;">I accept the terms & conditions in the agreement</span>
                 </td>
-                <td style="text-align:right; padding: 0px 0px 0px 0px; padding-top:18px"><asp:Button ID="btnGo" runat="server" class="myButton" style="" Text="GO >>>" ToolTip="Go To Customer Support" OnClick="btnGo_Click"/></td>                       
+                <td style="text-align:left; padding-top:18px"><asp:Button ID="btnGo" runat="server" class="myButton" style="" Text="GO >>>" ToolTip="Go To Customer Support" OnClick="btnGo_Click"/></td>                       
                 <%--<td style="color:blue; font-weight:900; padding-top:20px"><a id="btnGo" href="" style="cursor:pointer; text-align:right; font-size:20px; color:blue; " onclick="">GO>>></a></td>--%>
             </tr>
         
         </table>
      </div>
 
-    <div id="Footer" class="footer">
-        <img height="40px" width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
+    <div id="Footer" style="position: absolute; bottom: 0px;">
+        <img width="100%" src="img/20171103%20_%20CREATIVE%20SUPPORT%20UI%20DASHBOARD%20_%20FOOTER.png" /> 
     </div>
 
 

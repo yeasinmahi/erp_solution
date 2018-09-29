@@ -13,11 +13,8 @@
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../Content/JS/datepickr.min.js"></script>
-    <script src="../Content/JS/JSSettlement.js"></script>   
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/JSSettlement.js"></script> 
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />   
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
@@ -195,7 +192,7 @@
                 <td style="text-align: right; width:120px;"><asp:Label ID="Label11" runat="server" CssClass="lbl" Text="PO ID :"></asp:Label></td>
                 <td colspan="5" style="text-align:left;">
                 <asp:TextBox ID="txtPOID" runat="server" CssClass="txtBox1" Width="150px"></asp:TextBox>
-                <span style="text-align: right; padding-left:16px; "><span style="padding-top:200px;"><asp:Label ID="Label10" runat="server" CssClass="lbl" Text="Work Order/ Attachment:" Width="73px"></asp:Label>
+                <span style="text-align: right; padding-left:16px; "><asp:Label ID="Label10" runat="server" CssClass="lbl" Text="Work Order/ Attachment:" Width="73px"></asp:Label>
                 <asp:FileUpload ID="txtDocUpload" runat="server" AllowMultiple="true" Height="25px" Width="217px"/></span>
                 <span style="padding-left:22px"><asp:Button ID="btnDocUpload" runat="server" class="myButton" Text="Add" Height="30px" OnClientClick="FTPUpload()"/></span></span>
                 </td>          
