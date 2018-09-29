@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using HR_BLL.Global;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,6 +7,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -20,6 +23,9 @@ namespace UI.SCM
         int enroll, intWH;
         string filePathForXML, msg;
         DataTable dt = new DataTable();
+        char[] delimeters = { '[', ']' };
+        string[] arraykey;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/ITEM_LIST_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -27,7 +33,7 @@ namespace UI.SCM
             {
                 pnlUpperControl.DataBind();
             }
-
+           
             //dt = objBillApp.GetWHList();
             //ddlWH.DataSource = dt;
             //ddlWH.DataTextField = "strWareHoseName";
@@ -40,10 +46,28 @@ namespace UI.SCM
         {
             intWH = int.Parse(ddlWH.SelectedItem.Value);
             DateTime Fdate = DateTime.ParseExact("2017-07-01", "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime Tdate = DateTime.Now;           
-            dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, "");
-            GvAuditList.DataSource = dt;
-            GvAuditList.DataBind();
+            DateTime Tdate = DateTime.Now;
+            string itemName="";
+            int itemID;
+            arraykey = txtItem.Text.Split(delimeters);
+            if (arraykey.Length > 0)
+            {
+                itemName = arraykey[0].ToString();
+                itemID = Convert.ToInt32(arraykey[1].ToString());
+            }
+            dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, itemName);
+            if(dt.Rows.Count>0)
+            {
+                GvAuditList.DataSource = dt;
+                GvAuditList.DataBind();
+            }
+            else
+            {
+                GvAuditList.DataSource = "";
+                GvAuditList.DataBind();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found.');", true);
+            }
+           
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -129,8 +153,7 @@ namespace UI.SCM
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Inserted.');", true);
                 }
-                //CheckBox CheckBox1 = (CheckBox)sender;
-                //CheckBox1.Checked = false;
+                
                 try { File.Delete(filePathForXML); }              
                 catch (Exception ex)
                 {
@@ -139,6 +162,29 @@ namespace UI.SCM
 
             }
         }
+
+        #region===== auto search=====
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                hdnwh.Value = ddlWH.SelectedValue.ToString();
+                Session["WareID"] = hdnwh.Value;
+            }
+            catch { }
+        }
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetItemList(string prefixText,int count)
+        {
+            //Int32 WHID = Convert.ToInt32(HttpContext.Current.Session["WareID"].ToString());
+           
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+            return objAutoSearch_BLL.GetItemListFromQryItemList(prefixText);
+
+        }
+        #endregion=====end search======
 
         #region========checkbox check changed=============
         protected void chkRow_CheckedChanged(object sender, EventArgs e)
@@ -189,7 +235,10 @@ namespace UI.SCM
 
             }
         }
+
+       
         #endregion========checkbox check changed end=============
+
         #region==== create xml==========
         private void CreateXml(string intItemID, string strItemName, string intWHID, string dteInsertDate, string dteAuditedDate, string monClosingQuantity, string monAuditedQuantity, string intAuditedBy, string strRemarks)
         {

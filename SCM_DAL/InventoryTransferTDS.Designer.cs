@@ -16440,14 +16440,13 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@receiveQnt", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@message", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable InsertFactoryGoodsReceiveDetail(global::System.Nullable<int> gnId, global::System.Nullable<int> itemId, global::System.Nullable<int> poId, global::System.Nullable<decimal> poQnt, global::System.Nullable<decimal> receiveQnt, string remarks, ref global::System.Nullable<int> intId, ref string message) {
+        public virtual InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable InsertFactoryGoodsReceiveDetail(global::System.Nullable<int> gnId, global::System.Nullable<int> itemId, global::System.Nullable<int> poId, global::System.Nullable<decimal> poQnt, global::System.Nullable<decimal> receiveQnt, string remarks, ref global::System.Nullable<int> intId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((gnId.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(gnId.Value));
@@ -16491,12 +16490,6 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((message == null)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(message));
-            }
             InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable dataTable = new InventoryTransferTDS.sprInsertFactoryGoodsReceiveDetailDataTable();
             this.Adapter.Fill(dataTable);
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
@@ -16505,13 +16498,6 @@ Group By po.strPoFor, po.intSupplierID, s.strSupplierName, po.monFreight, po.mon
             }
             else {
                 intId = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[7].Value)));
-            }
-            if (((this.Adapter.SelectCommand.Parameters[8].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[8].Value.GetType() == typeof(global::System.DBNull)))) {
-                message = null;
-            }
-            else {
-                message = ((string)(this.Adapter.SelectCommand.Parameters[8].Value));
             }
             return dataTable;
         }

@@ -16,7 +16,6 @@ namespace UI.Inventory
         private int enroll = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            pnlUpperControl.DataBind();
             enroll =  Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
         }
 
@@ -86,11 +85,12 @@ namespace UI.Inventory
                             string remainingQnt = ((Label)row.FindControl("lblRemainingQnt")).Text;
                             string remarks = ((TextBox)row.FindControl("receiveRemarks")).Text;
                             string message = "";
-                            _bll.InsertFactoryGoodsReceiveDetail((int) gnid, itemId,poNumber ,poQnt, receiveQuantity, remarks,ref grnDetailsId,ref message);
+                            _bll.InsertFactoryGoodsReceiveDetail((int) gnid, itemId,poNumber ,poQnt, receiveQuantity, remarks,ref grnDetailsId);
                             if (grnDetailsId != null && grnDetailsId == 0)
                             {
                                 _bll.UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter((int)gnid);
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+itemName+" exiding the quantity limit.');", true);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+itemId+" "+itemName+" exiding the quantity limit.');", true);
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                                 return;
                             }
                             counter++;
@@ -98,12 +98,14 @@ namespace UI.Inventory
                         else
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('A problem occerred when inserting');", true);
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                             return;
                         }
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Specify quantity value properly');", true);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                         return;
                     }
                 }
@@ -112,12 +114,30 @@ namespace UI.Inventory
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Inserted. Your GRN no is "+ gnid + "');", true);
                 lblGrn.Text = @"Your previous GRN number is "+gnid+".";
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "hidePanel();", true);
+                ClearControl();
                 return;
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have to receive at least 1 item with challan.');", true);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
         }
 
-       
+        private void ClearControl()
+        {
+            txtPoNumber.Text = string.Empty;
+            hdnSupplerId.Value = string.Empty;
+            txtSupplierName.Text = string.Empty;
+            txtSupplierAddress.Text = string.Empty;
+            txtChallanNo.Text = string.Empty;
+            txtChallanDate.Text = string.Empty;
+            txtShipmentNo.Text = string.Empty;
+            txtVehicleNo.Text = string.Empty;
+            txtDriverName.Text = string.Empty;
+            txtDriverContact.Text = string.Empty;
+            txtMeterialDes.Text = string.Empty;
+
+            gridView.DataSource = null;
+            gridView.DataBind();
+        }
     }
 }
