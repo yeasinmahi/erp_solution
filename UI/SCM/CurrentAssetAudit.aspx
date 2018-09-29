@@ -5,19 +5,20 @@
 <html>
 <head runat="server">
     <title></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" /> 
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" /> 
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
+    <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/JSSettlement.js"></script>   
     <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     <script>
         function CheckValidation() { }
 
@@ -32,7 +33,7 @@
                     {
                         if (objRef.checked) {
 
-                            row.style.backgroundColor = "#5CADFF";
+                            row.style.backgroundColor = "#acf0f9";
                             inputList[i].checked = true;
                         }
                         else {                      
@@ -48,7 +49,7 @@
             var row = objRef.parentNode.parentNode;
             if (objRef.checked) {
 
-                row.style.backgroundColor = "#5CADFF";
+                row.style.backgroundColor = "#acf0f9";
             }
             else {
                 row.style.backgroundColor = "white";
@@ -106,30 +107,22 @@
                  <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Current Asset Audit" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
                  <div>
                    
-                     <table border="0"; style="width:Auto";>
-                         <tr class="tblrowodd">
+                     <table class="tbldecoration" style="width:auto; float:left;">
+                         <tr >
 
                              <td style="text-align: right;">
                                  <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="WH Name : "></asp:Label></td>
                              <td>
-                                <asp:DropDownList ID="ddlWH" runat="server" AutoPostBack="false" CssClass="ddList" Font-Bold="False"> </asp:DropDownList> 
+                                <asp:DropDownList ID="ddlWH" runat="server"  CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strWareHoseName" DataValueField="intWHID"> </asp:DropDownList> 
+                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWHData" TypeName="SCM_DAL.BillingTDSTableAdapters.TblWHTableAdapter"></asp:ObjectDataSource>
                              </td>
-                            <%--  <td style="text-align: right;">
-                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Search By : "></asp:Label></td>
-                             <td>
-                                <asp:DropDownList ID="ddlSearch" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="False">
-                                    <asp:ListItem Value="1">Category</asp:ListItem>
-                                    <asp:ListItem Value="2">Sub-Category</asp:ListItem>
-                                    <asp:ListItem Value="3">ItemID</asp:ListItem>
-                                    <asp:ListItem Value="4">Item Name</asp:ListItem>
-                                    <asp:ListItem Value="5">Purchase Type (Local/Foreign)</asp:ListItem>
-                                </asp:DropDownList> 
-                             </td>--%>
+                          
+                           
                              <td style="text-align: right;">
-                                 <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audited Date : "></asp:Label></td>
+                                 <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audit Date : "></asp:Label></td>
 
                              <td>
-                                 <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="150px"></asp:TextBox>
+                                 <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
                                  <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAuditDate"></cc1:CalendarExtender>
                              </td>
                              <%-- <td style="text-align: right;">
@@ -141,9 +134,9 @@
 
                              </td>--%>
                               <td>
-                                 <asp:Button ID="btnShow" runat="server" class="nextclick" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
+                                 <asp:Button ID="btnShow" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
                              <td>
-                            <asp:Button ID="btnInsert" runat="server" class="nextclick" Style="font-size: 12px; cursor: pointer;" Text="Insert" OnClick="btnInsert_Click" OnClientClick="check()"/>
+                            <asp:Button ID="btnInsert" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Submit" OnClick="btnInsert_Click" OnClientClick="check()"/>
                         </td>
                          </tr>
                        
@@ -176,48 +169,58 @@
                                 <ItemTemplate>
                                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("monOpenQty") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Open Value" SortExpression="monOpenValue">
                                
                                 <ItemTemplate>
                                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("monOpenValue") %>'></asp:Label>
                                 </ItemTemplate>
+                                
+                                <ItemStyle HorizontalAlign="Right" />
+                                
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Receive Quantity" SortExpression="monRcvQty">
                                
                                 <ItemTemplate>
                                     <asp:Label ID="Label6" runat="server" Text='<%# Bind("monRcvQty") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Receive Value" SortExpression="monRcvValue">
                                
                                 <ItemTemplate>
                                     <asp:Label ID="Label7" runat="server" Text='<%# Bind("monRcvValue") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Issue Quantity" SortExpression="monIssueQty">
                                
                                 <ItemTemplate>
                                     <asp:Label ID="Label8" runat="server" Text='<%# Bind("monIssueQty") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Issue Value" SortExpression="Column1">
                                
                                 <ItemTemplate>
                                     <asp:Label ID="Label9" runat="server" Text='<%# Bind("Column1") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                            
                              <asp:TemplateField HeaderText="Closing Quantity" SortExpression="Column2">                             
                                 <ItemTemplate>
                                     <asp:Label ID="lblclsQty" runat="server" Text='<%# Bind("Column2") %>'></asp:Label>
                                 </ItemTemplate>
+                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Close Value" SortExpression="monCloseValue">
                                
                                 <ItemTemplate>
                                     <asp:Label ID="Label11" runat="server" Text='<%# Bind("monCloseValue") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Location" SortExpression="strLocation">
                                
@@ -227,9 +230,10 @@
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Audited Quantity" SortExpression="AuditedQty">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtAuditedQty" runat="server" Width="50px" ></asp:TextBox>
+                                    <asp:TextBox ID="txtAuditedQty" runat="server" Width="55px" ></asp:TextBox>
                                 </ItemTemplate>                   
-                                 <HeaderStyle Width="40px" />
+                                 <HeaderStyle Width="50px" />
+                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Remarks" SortExpression="Remarks">
 
@@ -239,17 +243,12 @@
                             </asp:TemplateField>
                             <asp:TemplateField>
                             <HeaderTemplate>
-                                <asp:CheckBox ID="chkHeader" runat="server" onclick="checkAllRow(this);" />
+                                <asp:CheckBox ID="chkHeader" runat="server" onclick="checkAllRow(this);" AutoPostBack="true" OnCheckedChanged="chkHeader_CheckedChanged"/>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkRow" runat="server" onclick="CheckRow(this);" />
+                                <asp:CheckBox ID="chkRow" runat="server" AutoPostBack="true" OnCheckedChanged="chkRow_CheckedChanged" onclick="CheckRow(this);"/>
                             </ItemTemplate>
                         </asp:TemplateField>
-                            <%--<asp:TemplateField ShowHeader="False">
-                                <ItemTemplate>
-                                    <asp:Button ID="btn" runat="server" CommandName="insert" Text="Insert" ></asp:Button>
-                                </ItemTemplate>
-                            </asp:TemplateField>  --%>                           
                         </Columns>
                     </asp:GridView>
                              </td>

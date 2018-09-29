@@ -6,19 +6,21 @@
 <html>
 <head runat="server">
     <title></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" /> 
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" /> 
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
+    <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/JSSettlement.js"></script>   
     <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     <script>
         function CheckValidation() { }
 
@@ -33,7 +35,7 @@
                     {
                         if (objRef.checked) {
 
-                            row.style.backgroundColor = "#5CADFF";
+                            row.style.backgroundColor = "#acf0f9";
                             inputList[i].checked = true;
                         }
                         else {                      
@@ -49,7 +51,7 @@
             var row = objRef.parentNode.parentNode;
             if (objRef.checked) {
 
-                row.style.backgroundColor = "#5CADFF";
+                row.style.backgroundColor = "#acf0f9";
             }
             else {
                 row.style.backgroundColor = "white";
@@ -82,7 +84,10 @@
         else {
              confirm.value = "No";
             document.getElementById("hdnConfirm").value = "0";
-        }
+            }
+
+            //var chkRow = document.getElementById("chkRow");
+            //chkRow.checked = false;
         }
        
     </script>
@@ -104,33 +109,24 @@
                 </cc1:AlwaysVisibleControlExtender>
 
                 <%--=========================================Start My Code From Here===============================================--%>
-                 <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Current Asset Audit" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
+                 <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Fixed Asset Audit" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
                  <div>
                    
-                     <table border="0"; style="width:Auto";>
-                         <tr class="tblrowodd">
+                     <table class="tbldecoration" style="width:auto; float:left;">
+                         <tr class="">
 
                              <td style="text-align: right;">
-                                 <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="WH Name : "></asp:Label></td>
+                                 <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="Job Station : "></asp:Label></td>
                              <td>
-                                <asp:DropDownList ID="ddlWH" runat="server" AutoPostBack="false" CssClass="ddList" Font-Bold="False"> </asp:DropDownList> 
+                                <asp:DropDownList ID="ddlJobstation" runat="server" CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"> </asp:DropDownList> 
+                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllJobStation" TypeName="SCM_DAL.InventoryTransferTDSTableAdapters.tblEmployeeJobStationTableAdapter"></asp:ObjectDataSource>
                              </td>
-                            <%--  <td style="text-align: right;">
-                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Search By : "></asp:Label></td>
-                             <td>
-                                <asp:DropDownList ID="ddlSearch" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="False">
-                                    <asp:ListItem Value="1">Category</asp:ListItem>
-                                    <asp:ListItem Value="2">Sub-Category</asp:ListItem>
-                                    <asp:ListItem Value="3">ItemID</asp:ListItem>
-                                    <asp:ListItem Value="4">Item Name</asp:ListItem>
-                                    <asp:ListItem Value="5">Purchase Type (Local/Foreign)</asp:ListItem>
-                                </asp:DropDownList> 
-                             </td>--%>
+                           
                              <td style="text-align: right;">
-                                 <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audited Date : "></asp:Label></td>
+                                 <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audit Date : "></asp:Label></td>
 
                              <td>
-                                 <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="150px"></asp:TextBox>
+                                 <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
                                  <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAuditDate"></cc1:CalendarExtender>
                              </td>
                              <%-- <td style="text-align: right;">
@@ -142,9 +138,9 @@
 
                              </td>--%>
                               <td>
-                                 <asp:Button ID="btnShow" runat="server" class="nextclick" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
+                                 <asp:Button ID="btnShow" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
                              <td>
-                            <asp:Button ID="btnInsert" runat="server" class="nextclick" Style="font-size: 12px; cursor: pointer;" Text="Insert" OnClick="btnInsert_Click" OnClientClick="check()"/>
+                            <asp:Button ID="btnInsert" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Submit" OnClick="btnInsert_Click" OnClientClick="check()"/>
                         </td>
                          </tr>
                        
@@ -153,78 +149,85 @@
                      <table>
                          <tr>
                              <td>
-                                  <asp:GridView ID="GvAuditList" runat="server" DataKeyNames="intItem" AutoGenerateColumns="False">
+                                  <asp:GridView ID="GvAuditList" runat="server" AutoGenerateColumns="False">
                         <Columns>
                             <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-                            <asp:TemplateField HeaderText="Item ID" SortExpression="intItem">                               
+                            <asp:TemplateField HeaderText="Unit" SortExpression="strunit">                               
                                 <ItemTemplate>
-                                    <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItem") %>'></asp:Label>
+                                    <asp:Label ID="lblstrunit" runat="server" Text='<%# Bind("strunit") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Item Name" SortExpression="strItem">                             
+                            <asp:TemplateField HeaderText="Asset ID" SortExpression="strAssetID">                             
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrItem" runat="server" Text='<%# Bind("strItem") %>'></asp:Label>
+                                    <asp:Label ID="lblstrAssetID" runat="server" Text='<%# Bind("strAssetID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="UOM" SortExpression="strUoM">
+                            <asp:TemplateField HeaderText="Name Of Asset" SortExpression="strNameOfAsset">
                               
                                 <ItemTemplate>
-                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                    <asp:Label ID="lblstrNameOfAsset" runat="server" Text='<%# Bind("strNameOfAsset") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Open Quantity" SortExpression="monOpenQty">
+                            <asp:TemplateField HeaderText="Category Name" SortExpression="strCategoryName">
                               
                                 <ItemTemplate>
-                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("monOpenQty") %>'></asp:Label>
+                                    <asp:Label ID="lblstrCategoryName" runat="server" Text='<%# Bind("strCategoryName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Open Value" SortExpression="monOpenValue">
+                            <asp:TemplateField HeaderText="Asset Type Name" SortExpression="strAssetTypeName">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("monOpenValue") %>'></asp:Label>
+                                    <asp:Label ID="lblstrAssetTypeName" runat="server" Text='<%# Bind("strAssetTypeName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Receive Quantity" SortExpression="monRcvQty">
+                            <asp:TemplateField HeaderText="Asset Description" SortExpression="strDescriptionAsset">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("monRcvQty") %>'></asp:Label>
+                                    <asp:Label ID="lblstrDescriptionAsset" runat="server" Text='<%# Bind("strDescriptionAsset") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Receive Value" SortExpression="monRcvValue">
+                            <asp:TemplateField HeaderText="Country Origin" SortExpression="strCountryOrigin">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("monRcvValue") %>'></asp:Label>
+                                    <asp:Label ID="lblstrCountryOrigin" runat="server" Text='<%# Bind("strCountryOrigin") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Issue Quantity" SortExpression="monIssueQty">
+                            <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("monIssueQty") %>'></asp:Label>
+                                    <asp:Label ID="lblstrSupplierName" runat="server" Text='<%# Bind("strSupplierName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Issue Value" SortExpression="Column1">
+                            <asp:TemplateField HeaderText="Enroll" SortExpression="intEnroll">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label9" runat="server" Text='<%# Bind("Column1") %>'></asp:Label>
+                                    <asp:Label ID="lblintEnroll" runat="server" Text='<%# Bind("intEnroll") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                            
-                             <asp:TemplateField HeaderText="Closing Quantity" SortExpression="Column2">                             
+                             <asp:TemplateField HeaderText="Name" SortExpression="strName">                             
                                 <ItemTemplate>
-                                    <asp:Label ID="lblclsQty" runat="server" Text='<%# Bind("Column2") %>'></asp:Label>
+                                    <asp:Label ID="lblstrName" runat="server" Text='<%# Bind("strName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Close Value" SortExpression="monCloseValue">
+                            <asp:TemplateField HeaderText="Department" SortExpression="strDepatrment">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label11" runat="server" Text='<%# Bind("monCloseValue") %>'></asp:Label>
+                                    <asp:Label ID="lblstrDepatrment" runat="server" Text='<%# Bind("strDepatrment") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Location" SortExpression="strLocation">
+                            <asp:TemplateField HeaderText="Audit" SortExpression="strAudit">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label12" runat="server" Text='<%# Bind("strLocation") %>' Width="140px"></asp:Label>
+                                    <asp:Label ID="Label12" runat="server" Text='<%# Bind("strAudit") %>' Width="140px"></asp:Label>
                                 </ItemTemplate>
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Total Cost" SortExpression="TotalCost">
+                               
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTotalCost" runat="server" Text='<%# Bind("TotalCost") %>' Width="140px"></asp:Label>
+                                </ItemTemplate>
+                                  <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             
                              <asp:TemplateField HeaderText="Remarks" SortExpression="Remarks">

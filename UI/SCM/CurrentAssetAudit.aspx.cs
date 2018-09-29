@@ -15,7 +15,7 @@ namespace UI.SCM
 {
     public partial class CurrentAssetAudit : BasePage
     {
-        Location_BLL objbll = new Location_BLL();
+        Billing_BLL objBillApp = new Billing_BLL();
         InventoryTransfer_BLL objInventorybll = new InventoryTransfer_BLL();
         int enroll, intWH;
         string filePathForXML, msg;
@@ -27,13 +27,12 @@ namespace UI.SCM
             {
                 pnlUpperControl.DataBind();
             }
-           
-            dt = objInventorybll.GetWHList();
-            ddlWH.DataSource = dt;
-            ddlWH.DataTextField = "strWareHoseName";
-            ddlWH.DataValueField = "intWHID";
-            ddlWH.DataBind();
-           // intWH = int.Parse(ddlWH.SelectedValue);
+
+            //dt = objBillApp.GetWHList();
+            //ddlWH.DataSource = dt;
+            //ddlWH.DataTextField = "strWareHoseName";
+            //ddlWH.DataValueField = "intWHID";
+            //ddlWH.DataBind();
         }
 
 
@@ -55,8 +54,8 @@ namespace UI.SCM
             {
                 for (int index = 0; index < GvAuditList.Rows.Count; index++)
                 {
-
-                    if (((CheckBox)GvAuditList.Rows[index].FindControl("chkRow")).Checked == true)
+                    CheckBox check = (CheckBox)GvAuditList.Rows[index].FindControl("chkRow");
+                    if (check.Checked == true)
                     {
                         Label intitemid = GvAuditList.Rows[index].FindControl("lblItemId") as Label;
                         string intItemID = intitemid.Text;
@@ -67,18 +66,22 @@ namespace UI.SCM
                         string dteInsertDate = DateTime.Now.ToString("yyyy/MM/dd");
                         Label clsqty = GvAuditList.Rows[index].FindControl("lblclsQty") as Label;
                         string monClosingQuantity = clsqty.Text;
-                        //TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
-                        string monAuditedQuantity = clsqty.Text;
+                        TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
+                        auditqty.Text= clsqty.Text;
+
+                        string monAuditedQuantity = auditqty.Text;
                         string intAuditedBy = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                         TextBox remarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         string strRemarks = remarks.Text;
                         CreateXml(intItemID, strItemName, intWHID, dteInsertDate, dteAuditedDate, monClosingQuantity, monAuditedQuantity, intAuditedBy, strRemarks);
                         TextBox sremarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         sremarks.Text="";
-                        //(CheckBox)GvAuditList.Rows[index].FindControl("chkRow")).Checked == false;
+                        auditqty.Text = "";
+                        auditqty.Enabled = true;
+                        check.Checked = false;
 
                     }
-                    else if(((CheckBox)GvAuditList.Rows[index].FindControl("chkRow")).Checked == false)
+                    else if(check.Checked == false)
                     {
                         TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
                         string audity = auditqty.Text;
@@ -104,6 +107,7 @@ namespace UI.SCM
                             CreateXml(intItemID, strItemName, intWHID, dteInsertDate, dteAuditedDate, monClosingQuantity, audit, intAuditedBy, strRemarks);
                             remarks.Text = "";
                             auditqty.Text = "";
+                            auditqty.Enabled = true;
                         }
                     }
 
@@ -125,9 +129,9 @@ namespace UI.SCM
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Inserted.');", true);
                 }
-
-                try { File.Delete(filePathForXML); }
-
+                //CheckBox CheckBox1 = (CheckBox)sender;
+                //CheckBox1.Checked = false;
+                try { File.Delete(filePathForXML); }              
                 catch (Exception ex)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
@@ -136,6 +140,56 @@ namespace UI.SCM
             }
         }
 
+        #region========checkbox check changed=============
+        protected void chkRow_CheckedChanged(object sender, EventArgs e)
+        {
+
+            CheckBox CheckBox1 = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)CheckBox1.NamingContainer;
+            Label clsqty = (Label)row.FindControl("lblclsQty");
+            TextBox auditqty = (TextBox)row.FindControl("txtAuditedQty");
+            if (CheckBox1.Checked == true)
+            {
+                auditqty.Text = clsqty.Text;
+                auditqty.Enabled = false;
+            }
+            else
+            {
+                auditqty.Text = "";
+                auditqty.Enabled = true;
+            }
+        }
+
+        protected void chkHeader_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (GvAuditList.Rows.Count > 0)
+            {
+                for (int index = 0; index < GvAuditList.Rows.Count; index++)
+                {
+
+                    if (((CheckBox)GvAuditList.Rows[index].FindControl("chkRow")).Checked == true)
+                    {
+
+                        Label clsqty = GvAuditList.Rows[index].FindControl("lblclsQty") as Label;
+                        string monClosingQuantity = clsqty.Text;
+                        TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
+                        auditqty.Text = clsqty.Text;
+                        auditqty.Enabled = false;
+
+                    }
+                    else
+                    {
+                        TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
+                        auditqty.Text = "";
+                        auditqty.Enabled = true;
+                    }
+
+                }
+
+            }
+        }
+        #endregion========checkbox check changed end=============
         #region==== create xml==========
         private void CreateXml(string intItemID, string strItemName, string intWHID, string dteInsertDate, string dteAuditedDate, string monClosingQuantity, string monAuditedQuantity, string intAuditedBy, string strRemarks)
         {

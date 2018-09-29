@@ -31,6 +31,15 @@ namespace UI.SCM {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference2;
         
         /// <summary>
+        /// BundleReference1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference1;
+        
+        /// <summary>
         /// BundleReference3 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlWH;
+        
+        /// <summary>
+        /// ObjectDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
         
         /// <summary>
         /// Label13 control.
