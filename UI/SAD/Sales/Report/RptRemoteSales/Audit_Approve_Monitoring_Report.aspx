@@ -1,13 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Practice.aspx.cs" Inherits="UI.Other.Practice" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Audit_Approve_Monitoring_Report.aspx.cs" Inherits="UI.SAD.Sales.Report.RptRemoteSales.Audit_Approve_Monitoring_Report" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.: Employee Attendance Details :.</title>
+    <title>.: Audit Approve Monitoring :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -45,4 +43,3 @@
     </form>
 </body>
 </html>
-

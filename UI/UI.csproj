@@ -1211,6 +1211,7 @@
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
+    <Content Include="SAD\Sales\Report\RptRemoteSales\Audit_Approve_Monitoring_Report.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DeliveryCommission.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\DiscountAdustment.aspx" />
@@ -6113,6 +6114,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx.designer.cs">
       <DependentUpon>AreaBaseCustomerTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\Audit_Approve_Monitoring_Report.aspx.cs">
+      <DependentUpon>Audit_Approve_Monitoring_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\RptRemoteSales\Audit_Approve_Monitoring_Report.aspx.designer.cs">
+      <DependentUpon>Audit_Approve_Monitoring_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\CollectionCommissionWithJV.aspx.cs">
       <DependentUpon>CollectionCommissionWithJV.aspx</DependentUpon>

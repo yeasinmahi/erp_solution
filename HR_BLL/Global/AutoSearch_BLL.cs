@@ -19,7 +19,7 @@ namespace HR_BLL.Global
         private static InventoryTDS.SprItemSearchingbasedonclusterDataTable[] tableitemlists = null;
         private static InventoryTDS.EmpListDataTable[] tblEmpListForStroreReq = null;
         private static AutoSearch_TDS.TblEmployeeByJobstationDataTable[] tblempbyJob = null;
-
+        private static InventoryTDS.QryItemListDataTable[] qryItemLists = null;
 
         int e;
         private static AutoSearch_TDS.TblEmployeeSearchDataTable[] tblEmpListForGlobal = null;
@@ -685,6 +685,69 @@ namespace HR_BLL.Global
 
         }
 
+        //====================
+
+        public string[] GetItemListFromQryItemList(string prefix)
+        {
+            int intwh = 1;
+            //Inatialize(intwh);
+            qryItemLists = new InventoryTDS.QryItemListDataTable[Convert.ToInt32(intwh)];
+            QryItemListTableAdapter adpCOA = new QryItemListTableAdapter();
+            qryItemLists[e] = adpCOA.GetItemList();
+
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 2)
+
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in qryItemLists[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strItemName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in qryItemLists[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strItemName.ToLower().Contains(prefix) || tmp.intItemID.ToString().ToLower().Contains(prefix)   //strOfficeEmail 
+                                   orderby tmp.strItemName
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+                        }
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strItemName"] + " [" + tbl.Rows[i]["intItemID"] + "]";                    
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
 
 
 
