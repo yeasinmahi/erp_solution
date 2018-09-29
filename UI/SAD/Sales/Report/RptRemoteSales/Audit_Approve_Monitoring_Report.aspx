@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Practice.aspx.cs" Inherits="UI.Other.Practice" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Audit_Approve_Monitoring_Report.aspx.cs" Inherits="UI.SAD.Sales.Report.RptRemoteSales.Audit_Approve_Monitoring_Report" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -45,4 +43,3 @@
     </form>
 </body>
 </html>
-
