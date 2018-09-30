@@ -40,6 +40,8 @@ namespace UI.CreativeSupportModule
             filePathForXML = Server.MapPath("~/CreativeSupportModule/Data/Item_" + hdnEnroll.Value + ".xml");
             if (!IsPostBack)
             {
+               
+
                 try
                 {
                     File.Delete(filePathForXMLDocUpload); dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
@@ -51,11 +53,16 @@ namespace UI.CreativeSupportModule
                     {
                         txtName.Text = dt.Rows[0]["EmpInfo"].ToString();
                     }
-                    
-                    txtCRItem.Enabled = false;
-                    //txtQty.Enabled = false;
+                    ddlJobType.Visible = false;
+                    jobTypeTd.Visible = false;
+
+                    txtCRItem.Visible = false;
+                    itemTd.Visible = false;
+
+                    txtQty.Visible = false;
+                    quantityTd.Visible = false;
+
                     btnItemAdd.Visible = false;
-                    ddlJobType.Enabled = false;
                 }
                 catch { }
             }
@@ -171,8 +178,8 @@ namespace UI.CreativeSupportModule
                     //rdoLarge.Enabled = false;
                     //rdoModerate.Enabled = false;
                     //rdoMinor.Enabled = false;
-                    txtCRItem.Enabled = false;
-                    txtQty.Enabled = false;
+                    //txtCRItem.Enabled = false;
+                    //txtQty.Enabled = false;
 
                     dgvCrItem.DataSource = ""; dgvCrItem.DataBind();
                     dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
@@ -411,20 +418,56 @@ namespace UI.CreativeSupportModule
 
         protected void ddlJobDescription_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlJobDescription.SelectedItem.ToString() == "POSM")
+            if (ddlJobDescription.SelectedItem.Value == @"0")
             {
-                ddlJobType.SelectedValue = "0";
-                ddlJobType.Enabled = false;
-                txtCRItem.Enabled = true;
-                txtQty.Enabled = true;
+                ddlJobType.Visible = false;
+                jobTypeTd.Visible = false;
+
+                txtCRItem.Visible = false;
+                itemTd.Visible = false;
+
+                txtQty.Visible = false;
+                quantityTd.Visible = false;
+
+                poidTd.Visible = false;
+                WorkOrderTd.Visible = false;
+
+                btnItemAdd.Visible = false;
+            }
+            else if(ddlJobDescription.SelectedItem.Value == @"1")
+            {
+                //ddlJobType.SelectedValue = "0";
+                ddlJobType.Visible = false;
+                jobTypeTd.Visible = false;
+
+                txtCRItem.Visible = true;
+                itemTd.Visible = true;
+
+                txtQty.Visible = true;
+                quantityTd.Visible = true;
+
+                poidTd.Visible = false;
+                WorkOrderTd.Visible = false;
+
                 btnItemAdd.Visible = true;
             }
             else
             {
-                txtCRItem.Enabled = false;
-                txtQty.Enabled = false;
-                btnItemAdd.Visible = false;
-                ddlJobType.Enabled = true;
+                ddlJobType.Visible = true;
+                jobTypeTd.Visible = true;
+
+                txtCRItem.Visible = false;
+                itemTd.Visible = false;
+
+                txtQty.Visible = false;
+                quantityTd.Visible = false;
+
+                poidTd.Visible = true;
+                WorkOrderTd.Visible = true;
+
+                btnItemAdd.Visible = true;
+                
+
             }
             txtPoint.Text = "";
             txtCRItem.Text = "";
