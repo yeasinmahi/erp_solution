@@ -25,6 +25,7 @@
             height: 500px;
             width: 60px;
             -moz-border-colors: 25px;
+            -ms-border-radius: 25px;
             border-radius: 25px;
         }
 
@@ -80,6 +81,15 @@
         }
         function ViewCustomerView(Id) {
             window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
+        function getFocusOnTextbox() {
+            //var textbox = document.getElementById('txtQty');
+            //textbox.focus();
+            //textbox.value = textbox.value;
+            var val = $('#txtQty').val();
+            $('#txtQty').val('');
+            $('#txtQty').val(val);
+            $('#txtQty').focus();
         }
     </script>
 
@@ -194,7 +204,7 @@
                                 <span>:</span>
                             </td>
                             <td colspan="4" style="text-align: left; padding-top: 10px">
-                                <asp:TextBox ID="txtQty" CssClass="txtBox1" runat="server" Width="150px" AutoPostBack="false" onKeyUp="javascript:FTPUpload2();"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" CssClass="txtBox1" runat="server" Width="150px" AutoPostBack="false"  onblur="javascript:FTPUpload2();"></asp:TextBox>
                                 <span style="padding-left: 50px">
                                     <asp:Label ID="Label7" runat="server" Text="Point :" CssClass="lbl"></asp:Label>
                                     <asp:TextBox ID="txtPoint" runat="server" CssClass="txtBox1" Width="150px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></span>

@@ -33,6 +33,7 @@ namespace UI.CreativeSupportModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //txtQty. += new EventHandler(textBox1_LostFocus);
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnPoint.Value = "0";
@@ -503,7 +504,7 @@ namespace UI.CreativeSupportModule
                     txtPoint.Text = (decimal.Parse(hdnPoint.Value) * qtyq).ToString();
                 }
                 else { txtPoint.Text = "0"; }
-                
+
             }
             catch { }
         }
@@ -528,6 +529,7 @@ namespace UI.CreativeSupportModule
             else { txtPoint.Text = "0"; }
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "getFocusOnTextbox();", true);
             return;
         }
         
@@ -701,8 +703,8 @@ namespace UI.CreativeSupportModule
             //rdoLarge.Enabled = false;
             //rdoModerate.Enabled = false;
             //rdoMinor.Enabled = false;
-            txtCRItem.Enabled = false;
-            txtQty.Enabled = false;
+            //txtCRItem.Enabled = false;
+            //txtQty.Enabled = false;
 
             dgvCrItem.DataSource = ""; dgvCrItem.DataBind();
             dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
