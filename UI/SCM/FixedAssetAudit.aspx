@@ -121,7 +121,12 @@
                                 <asp:DropDownList ID="ddlJobstation" runat="server" CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"> </asp:DropDownList> 
                                  <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllJobStation" TypeName="SCM_DAL.InventoryTransferTDSTableAdapters.tblEmployeeJobStationTableAdapter"></asp:ObjectDataSource>
                              </td>
-                           
+                             <td style="text-align: right;">
+                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Enroll : "></asp:Label></td>
+
+                             <td>
+                                 <asp:TextBox ID="txtEnroll" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                             </td>
                              <td style="text-align: right;">
                                  <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audit Date : "></asp:Label></td>
 

@@ -36,9 +36,22 @@ namespace UI.SCM
             strJobStation = ddlJobstation.SelectedItem.Text;
             DateTime Fdate = DateTime.ParseExact("2017-07-01", "yyyy-MM-dd", CultureInfo.InvariantCulture);
             DateTime Tdate = DateTime.Now;
-            dt = objInventorybll.FixedAssetData("",2, strJobStation);
-            GvAuditList.DataSource = dt;
-            GvAuditList.DataBind();
+            int enroll = Convert.ToInt32(txtEnroll.Text);
+            dt = objInventorybll.FixedAssetData("",2, strJobStation,enroll);
+            if(dt.Rows.Count>0)
+            {
+                GvAuditList.DataSource = dt;
+                GvAuditList.DataBind();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                GvAuditList.DataSource = "";
+                GvAuditList.DataBind();
+            }
+            txtEnroll.Text = "";
+            txtAuditDate.Text = "";
+
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -93,7 +106,8 @@ namespace UI.SCM
                     XmlNode node = doc.SelectSingleNode("ItemList");
                     string xmlString = node.InnerXml;
                     xmlString = "<ItemList>" + xmlString + "</ItemList>";
-                    objInventorybll.FixedAssetData(xmlString,1,strJobstationID);
+                    enroll =Convert.ToInt32( txtEnroll.Text);
+                    objInventorybll.FixedAssetData(xmlString,1,strJobstationID,enroll);
                     try { File.Delete(filePathForXML); }
 
                     catch (Exception ex)

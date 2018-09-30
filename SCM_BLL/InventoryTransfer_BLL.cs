@@ -321,10 +321,10 @@ namespace SCM_BLL
             return adp.GetAllJobStation();
         }
 
-        public DataTable FixedAssetData(string xml,int intType,string strJobStationName)
+        public DataTable FixedAssetData(string xml,int intType,string strJobStationName,int enroll)
         {
             SprFixedAuditTableAdapter adp = new SprFixedAuditTableAdapter();
-            return adp.GetFixedAuditData(xml,intType,strJobStationName);
+            return adp.GetFixedAuditData(xml,intType,strJobStationName,enroll);
         }
 
     }
