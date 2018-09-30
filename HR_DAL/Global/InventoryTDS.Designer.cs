@@ -8657,6 +8657,8 @@ namespace HR_DAL.Global {
             
             private global::System.Data.DataColumn columnstrItemName;
             
+            private global::System.Data.DataColumn columnstrDescription;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryItemListDataTable() {
@@ -8708,6 +8710,14 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strDescriptionColumn {
+                get {
+                    return this.columnstrDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -8743,11 +8753,12 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QryItemListRow AddQryItemListRow(int intItemID, string strItemName) {
+            public QryItemListRow AddQryItemListRow(int intItemID, string strItemName, string strDescription) {
                 QryItemListRow rowQryItemListRow = ((QryItemListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intItemID,
-                        strItemName};
+                        strItemName,
+                        strDescription};
                 rowQryItemListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryItemListRow);
                 return rowQryItemListRow;
@@ -8779,6 +8790,7 @@ namespace HR_DAL.Global {
             internal void InitVars() {
                 this.columnintItemID = base.Columns["intItemID"];
                 this.columnstrItemName = base.Columns["strItemName"];
+                this.columnstrDescription = base.Columns["strDescription"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8788,12 +8800,15 @@ namespace HR_DAL.Global {
                 base.Columns.Add(this.columnintItemID);
                 this.columnstrItemName = new global::System.Data.DataColumn("strItemName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrItemName);
+                this.columnstrDescription = new global::System.Data.DataColumn("strDescription", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDescription);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintItemID}, true));
                 this.columnintItemID.AllowDBNull = false;
                 this.columnintItemID.Unique = true;
                 this.columnstrItemName.ReadOnly = true;
                 this.columnstrItemName.MaxLength = 250;
+                this.columnstrDescription.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12665,6 +12680,22 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strDescription {
+                get {
+                    try {
+                        return ((string)(this[this.tableQryItemList.strDescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDescription\' in table \'QryItemList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryItemList.strDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrItemNameNull() {
                 return this.IsNull(this.tableQryItemList.strItemNameColumn);
             }
@@ -12673,6 +12704,18 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrItemNameNull() {
                 this[this.tableQryItemList.strItemNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDescriptionNull() {
+                return this.IsNull(this.tableQryItemList.strDescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDescriptionNull() {
+                this[this.tableQryItemList.strDescriptionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -17916,6 +17959,7 @@ inner join erp_hr.dbo.QryEmployeeProfileAll pro2 on det.intApproveBy=pro2.intEmp
             tableMapping.DataSetTable = "QryItemList";
             tableMapping.ColumnMappings.Add("intItemID", "intItemID");
             tableMapping.ColumnMappings.Add("strItemName", "strItemName");
+            tableMapping.ColumnMappings.Add("strDescription", "strDescription");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -17923,7 +17967,7 @@ inner join erp_hr.dbo.QryEmployeeProfileAll pro2 on det.intApproveBy=pro2.intEmp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17932,7 +17976,7 @@ inner join erp_hr.dbo.QryEmployeeProfileAll pro2 on det.intApproveBy=pro2.intEmp
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select intItemID,strItemName FROM ERP_Inventory.dbo.qryItemList";
+            this._commandCollection[0].CommandText = "select intItemID,strItemName,strDescription from ERP_Inventory.dbo.tblItemList";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

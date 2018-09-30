@@ -685,7 +685,7 @@ namespace HR_BLL.Global
 
         }
 
-        //====================
+        //==================== for item search =============
 
         public string[] GetItemListFromQryItemList(string prefix)
         {
@@ -714,7 +714,7 @@ namespace HR_BLL.Global
                     try
                     {
                         var rows = from tmp in qryItemLists[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strItemName.ToLower().Contains(prefix) || tmp.intItemID.ToString().ToLower().Contains(prefix)   //strOfficeEmail 
+                                   where tmp.strItemName.ToLower().Contains(prefix) || tmp.intItemID.ToString().ToLower().Contains(prefix) || tmp.strDescription.ToString().ToLower().Contains(prefix)   //strOfficeEmail 
                                    orderby tmp.strItemName
                                    select tmp;
 
@@ -736,7 +736,7 @@ namespace HR_BLL.Global
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strItemName"] + " [" + tbl.Rows[i]["intItemID"] + "]";                    
+                    retStr[i] = tbl.Rows[i]["strItemName"] +" "+ tbl.Rows[i]["strDescription"] + " [" + tbl.Rows[i]["intItemID"] + "]";                    
                 }
 
                 return retStr;

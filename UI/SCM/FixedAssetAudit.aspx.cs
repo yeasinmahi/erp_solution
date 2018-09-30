@@ -56,17 +56,7 @@ namespace UI.SCM
                     {
                         Label Assetid = GvAuditList.Rows[index].FindControl("lblstrAssetID") as Label;
                         string strAssetID = Assetid.Text;
-                        
-                       
-
                         string dteInsertDate = DateTime.Now.ToString("yyyy/MM/dd");
-                        //Label clsqty = GvAuditList.Rows[index].FindControl("lblclsQty") as Label;
-                        //string monClosingQuantity = clsqty.Text;
-                        //TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
-                        //auditqty.Text = clsqty.Text;
-
-                        //string monAuditedQuantity = auditqty.Text;
-                        //string intAuditedBy = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                         TextBox remarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         string strRemarks = remarks.Text;
                         CreateXml(strAssetID, dteAuditedDate, intAuditBy, strRemarks);
@@ -77,8 +67,7 @@ namespace UI.SCM
                     }
                     else if (check.Checked == false)
                     {
-                        //TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
-                        //string audity = auditqty.Text;
+
                         TextBox remarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         string strRemarks = remarks.Text;
                         if (strRemarks != "")
@@ -86,31 +75,24 @@ namespace UI.SCM
                             Label Assetid = GvAuditList.Rows[index].FindControl("lblstrAssetID") as Label;
                             string strAssetID = Assetid.Text;
                             string dteInsertDate = DateTime.Now.ToString("yyyy/MM/dd");
-                            //Label clsqty = GvAuditList.Rows[index].FindControl("lblclsQty") as Label;
-                            //string monClosingQuantity = clsqty.Text;
-                            //TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
-                            //auditqty.Text = clsqty.Text;
-
-                            //string monAuditedQuantity = auditqty.Text;
-                            //string intAuditedBy = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-                           
                             CreateXml(strAssetID, dteAuditedDate, intAuditBy, strRemarks);
                             TextBox sremarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                             sremarks.Text = "";
+                            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Plz click the checkbox to submit the data.');", true);
                         }
+
 
                     }
 
                 }
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode node = doc.SelectSingleNode("ItemList");
-                string xmlString = node.InnerXml;
-                xmlString = "<ItemList>" + xmlString + "</ItemList>";
-
                 if (hdnConfirm.Value == "1")
                 {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXML);
+                    XmlNode node = doc.SelectSingleNode("ItemList");
+                    string xmlString = node.InnerXml;
+                    xmlString = "<ItemList>" + xmlString + "</ItemList>";
                     objInventorybll.FixedAssetData(xmlString,1,strJobstationID);
                     try { File.Delete(filePathForXML); }
 
