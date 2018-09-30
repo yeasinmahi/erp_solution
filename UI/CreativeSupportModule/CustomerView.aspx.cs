@@ -466,7 +466,7 @@ namespace UI.CreativeSupportModule
                 poidTd.Visible = true;
                 WorkOrderTd.Visible = true;
 
-                btnItemAdd.Visible = true;
+                btnItemAdd.Visible = false;
                 
 
             }
@@ -509,29 +509,29 @@ namespace UI.CreativeSupportModule
             catch { }
         }
 
-        protected void txtCRItem_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                char[] ch1 = { '[', ']' };
-                string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                intItemID = int.Parse(temp1[1].ToString());
-            }
-            catch { intItemID = 0; }
+        //protected void txtCRItem_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        char[] ch1 = { '[', ']' };
+        //        string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+        //        intItemID = int.Parse(temp1[1].ToString());
+        //    }
+        //    catch { intItemID = 0; }
 
-            dt = new DataTable();
-            dt = objcr.GetItemWisePoint(intItemID);
-            if (dt.Rows.Count > 0)
-            {
-                //txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
-                hdnPoint.Value = dt.Rows[0]["intPoint"].ToString();
-            }
-            else { txtPoint.Text = "0"; }
+        //    dt = new DataTable();
+        //    dt = objcr.GetItemWisePoint(intItemID);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        //txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
+        //        hdnPoint.Value = dt.Rows[0]["intPoint"].ToString();
+        //    }
+        //    else { txtPoint.Text = "0"; }
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "getFocusOnTextbox();", true);
-            return;
-        }
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "getFocusOnTextbox();", true);
+        //    return;
+        //}
         
         //protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
         //{
@@ -565,7 +565,7 @@ namespace UI.CreativeSupportModule
             try { intRowCount = int.Parse(dgvCrItem.Rows.Count.ToString()); }
             catch { intRowCount = 0; }
 
-            if(intRowCount == 3)
+            if(intRowCount >= 3)
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Alredy 3 Item Added.');", true);
                 txtPoint.Text = "";
@@ -573,18 +573,22 @@ namespace UI.CreativeSupportModule
                 txtCRItem.Text = "";
                 return;
             }
-
-            if (name == "" && name == null || itemid == "0")
+            if (ddlJobDescription.SelectedItem.Value=="1")//if its selected DESIGN & POSM
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Item Input');", true);
-                return;
+                if (string.IsNullOrEmpty(name) || itemid == "0")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Item Input');", true);
+                    return;
+                }
+
+                if (qty == "")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Input Qty.');", true);
+                    return;
+                }
             }
 
-            if (qty == "")
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Input Qty.');", true);
-                return;
-            }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "CalculatePoint", "FTPUpload2();", true);
 
             if (point != "0")
             {
@@ -626,8 +630,14 @@ namespace UI.CreativeSupportModule
             StringReader sr = new StringReader(xmlString);
             DataSet ds = new DataSet();
             ds.ReadXml(sr);
-            if (ds.Tables[0].Rows.Count > 0) { dgvCrItem.DataSource = ds; }
-            else { dgvCrItem.DataSource = ""; }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgvCrItem.DataSource = ds;
+            }
+            else
+            {
+                dgvCrItem.DataSource = "";
+            }
             dgvCrItem.DataBind();
         }
         private XmlNode CreateItemNode(XmlDocument doc, string name, string qty, string point, string itemid)
