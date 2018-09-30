@@ -66,7 +66,7 @@
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                 </div>
                                 <div class="col-md-4">
-                                    <asp:TextBox ID="txtPoNumber" TextMode="Number" CssClass="form-control col-md-8" runat="server" placeholder="PO number"></asp:TextBox>
+                                    <asp:TextBox ID="txtPoNumber" TextMode="Number" CssClass="form-control col-md-8" runat="server" placeholder="PO Number"></asp:TextBox>
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control col-md-4" Text="Show" OnClick="btnShow_Click" />
@@ -324,6 +324,12 @@
             );
         }); 
     </script>
+    <style>
+        #gridView tr
+        {
+            font-size: 10px;
+        }
+    </style>
 </body>
 </html>
 
