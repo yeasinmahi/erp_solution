@@ -74,7 +74,7 @@
         }
 
         function check() {
-             var confirm_value = document.createElement("input");
+        var confirm_value = document.createElement("input");
         confirm_value.type = "hidden";
         confirm_value.name = "Confirm_value";
         if (confirm("Do you want to proceed?")) {

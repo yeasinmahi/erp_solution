@@ -22,7 +22,7 @@
     <script>
         function CheckValidation() { }
 
-         function checkAllRow(objRef) {
+        function checkAllRow(objRef) {
                 var GridView = objRef.parentNode.parentNode.parentNode;
                 var inputList = GridView.getElementsByTagName("input");
                 for (var i = 0; i < inputList.length; i++)
@@ -33,7 +33,7 @@
                     {
                         if (objRef.checked) {
 
-                            row.style.backgroundColor = "#acf0f9";
+                            //row.style.backgroundColor = "#acf0f9";
                             inputList[i].checked = true;
                         }
                         else {                      
@@ -49,7 +49,7 @@
             var row = objRef.parentNode.parentNode;
             if (objRef.checked) {
 
-                row.style.backgroundColor = "#acf0f9";
+                //row.style.backgroundColor = "#acf0f9";
             }
             else {
                 row.style.backgroundColor = "white";
@@ -70,6 +70,7 @@
             }
             headerCheckBox.checked = checked;
         }
+
 
         function check() {
              var confirm_value = document.createElement("input");

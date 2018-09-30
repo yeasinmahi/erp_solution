@@ -33,12 +33,7 @@ namespace UI.SCM
             {
                 pnlUpperControl.DataBind();
             }
-           
-            //dt = objBillApp.GetWHList();
-            //ddlWH.DataSource = dt;
-            //ddlWH.DataTextField = "strWareHoseName";
-            //ddlWH.DataValueField = "intWHID";
-            //ddlWH.DataBind();
+
         }
 
 
