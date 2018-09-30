@@ -645,10 +645,10 @@ where req.intReqBy=@intEnroll and det.intItemID=@itmId and month(req.dteReqDate)
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QryItemListTableAdapter" GeneratorDataComponentClassName="QryItemListTableAdapter" Name="QryItemList" UserDataComponentName="QryItemListTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.qryItemList" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemList" GetMethodModifier="Public" GetMethodName="GetItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemList" UserSourceName="GetItemList">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString1 (Settings)" DbObjectName="ERP_Inventory.dbo.tblItemList" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemList" GetMethodModifier="Public" GetMethodName="GetItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetItemList" UserSourceName="GetItemList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select intItemID,strItemName FROM ERP_Inventory.dbo.qryItemList</CommandText>
+                    <CommandText>select intItemID,strItemName,strDescription from ERP_Inventory.dbo.tblItemList</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -657,6 +657,7 @@ where req.intReqBy=@intEnroll and det.intItemID=@itmId and month(req.dteReqDate)
             <Mappings>
               <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
               <Mapping SourceColumn="strItemName" DataSetColumn="strItemName" />
+              <Mapping SourceColumn="strDescription" DataSetColumn="strDescription" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1229,6 +1230,13 @@ where req.intReqBy=@intEnroll and det.intItemID=@itmId and month(req.dteReqDate)
             <xs:sequence>
               <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" />
               <xs:element name="strItemName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrItemName" msprop:Generator_ColumnPropNameInRow="strItemName" msprop:Generator_ColumnPropNameInTable="strItemNameColumn" msprop:Generator_UserColumnName="strItemName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" msprop:Generator_UserColumnName="strDescription" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />

@@ -45,17 +45,27 @@ namespace UI.SCM
         protected void btnShow_Click(object sender, EventArgs e)
         {
             intWH = int.Parse(ddlWH.SelectedItem.Value);
-            DateTime Fdate = DateTime.ParseExact("2017-07-01", "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime Tdate = DateTime.Now;
-            string itemName="";
-            int itemID;
-            arraykey = txtItem.Text.Split(delimeters);
-            if (arraykey.Length > 0)
+
+            DateTime Fdate = DateTime.ParseExact(txtFromDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime Tdate = DateTime.ParseExact(txtToDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string itemName=txtItem.Text;
+            string itemID=txtItemID.Text;
+            //arraykey = txtItem.Text.Split(delimeters);
+            //if (arraykey.Length > 0)
+            //{
+            //    itemName = arraykey[0].ToString();
+            //    itemID = Convert.ToInt32(arraykey[1].ToString());
+            //}
+            if(itemName!="")
             {
-                itemName = arraykey[0].ToString();
-                itemID = Convert.ToInt32(arraykey[1].ToString());
+                txtItemID.Text = "";
+                dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, itemName);
             }
-            dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, itemName);
+            else if(itemID !="")
+            {
+                txtItem.Text = "";
+                dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 3, itemID);
+            }
             if(dt.Rows.Count>0)
             {
                 GvAuditList.DataSource = dt;
@@ -164,26 +174,26 @@ namespace UI.SCM
         }
 
         #region===== auto search=====
-        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                hdnwh.Value = ddlWH.SelectedValue.ToString();
-                Session["WareID"] = hdnwh.Value;
-            }
-            catch { }
-        }
+        //protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        hdnwh.Value = ddlWH.SelectedValue.ToString();
+        //        Session["WareID"] = hdnwh.Value;
+        //    }
+        //    catch { }
+        //}
 
-        [WebMethod]
-        [ScriptMethod]
-        public static string[] GetItemList(string prefixText,int count)
-        {
-            //Int32 WHID = Convert.ToInt32(HttpContext.Current.Session["WareID"].ToString());
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static string[] GetItemList(string prefixText,int count)
+        //{
+        //    //Int32 WHID = Convert.ToInt32(HttpContext.Current.Session["WareID"].ToString());
            
-            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            return objAutoSearch_BLL.GetItemListFromQryItemList(prefixText);
+        //    AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+        //    return objAutoSearch_BLL.GetItemListFromQryItemList(prefixText);
 
-        }
+        //}
         #endregion=====end search======
 
         #region========checkbox check changed=============

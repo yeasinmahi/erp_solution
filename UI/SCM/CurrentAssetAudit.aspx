@@ -108,39 +108,51 @@
                  <div>
                    
                      <table class="tbldecoration" style="width:auto; float:left;">
-                         <tr >
+                         <tr>
+                             <td style="text-align: right;">
+                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
 
-                             <td style="text-align: right;">
-                                 <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="WH Name : "></asp:Label></td>
                              <td>
-                                <asp:DropDownList ID="ddlWH" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"  CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strWareHoseName" DataValueField="intWHID"> </asp:DropDownList> 
-                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWHData" TypeName="SCM_DAL.BillingTDSTableAdapters.TblWHTableAdapter"></asp:ObjectDataSource>
-                                 <asp:HiddenField ID="hdnwh" runat="server"/>
+                                 <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                              </td>
-                          
-                            <td style="text-align: right;"><asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>
-                             <td> <asp:TextBox ID="txtItem" placeholder="Search Item" AutoCompleteType="Search" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="250px"></asp:TextBox>
-                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
-                                ServiceMethod="GetItemList" MinimumPrefixLength="1" CompletionSetCount="1"
-                                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                                </cc1:AutoCompleteExtender>
+                               <td style="text-align: right;">
+                                 <asp:Label ID="Label14" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
+
+                             <td>
+                                 <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
+
                              </td>
-                             <td style="text-align: right;">
+                              <td style="text-align: right;">
                                  <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audit Date : "></asp:Label></td>
 
                              <td>
                                  <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
                                  <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAuditDate"></cc1:CalendarExtender>
                              </td>
-                             <%-- <td style="text-align: right;">
-                                 <asp:Label ID="Label14" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
+                         </tr>
+                         <tr >
 
+                             <td style="text-align: right;">
+                                 <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="WH Name : "></asp:Label></td>
                              <td>
-                                 <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="150px"></asp:TextBox>
-                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
-
-                             </td>--%>
+                                <asp:DropDownList ID="ddlWH" runat="server" width="150px" CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strWareHoseName" DataValueField="intWHID"> </asp:DropDownList> 
+                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWHData" TypeName="SCM_DAL.BillingTDSTableAdapters.TblWHTableAdapter"></asp:ObjectDataSource>
+                                 <asp:HiddenField ID="hdnwh" runat="server"/>
+                             </td>
+                          
+                            <td style="text-align: right;"><asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>
+                             <td> <asp:TextBox ID="txtItem" placeholder="Search Item" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                               <%-- <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
+                                ServiceMethod="GetItemList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>--%>
+                             </td>
+                            <td style="text-align: right;"><asp:Label ID="lblItemID" CssClass="lbl" runat="server" Text="Item ID : "></asp:Label></td>
+                            <td><asp:TextBox ID="txtItemID" placeholder="Search Item By ID" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                               </td>
                               <td>
                                  <asp:Button ID="btnShow" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
                              <td>
