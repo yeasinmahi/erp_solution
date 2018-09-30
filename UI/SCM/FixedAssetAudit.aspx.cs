@@ -80,10 +80,7 @@ namespace UI.SCM
                             sremarks.Text = "";
                             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Plz click the checkbox to submit the data.');", true);
                         }
-                        else if(strRemarks == "")
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Plz click the checkbox to submit the data.');", true);
-                        }
+
 
                     }
 
