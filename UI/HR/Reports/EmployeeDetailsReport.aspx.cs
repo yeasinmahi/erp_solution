@@ -82,11 +82,11 @@ namespace UI.HR.Reports
                     string xmlString = node.InnerXml;
                     xmlString = "<attendance>" + xmlString + "</attendance>";
 
-                    //dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, 5, xmlString);
+                    objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, 5, xmlString);
+                   
+                    //string msg = objEmployeeDetails.InsertXml(xmlString);
 
-                    string msg = objEmployeeDetails.InsertXml(xmlString);
-
-                   ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+msg+"');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Deleted Successfully');", true);
                     try { File.Delete(filePathForXML); }
 
                     catch (Exception ex)
