@@ -34,7 +34,7 @@ namespace HR_BLL.Reports
 
         public DataTable getEmployeeAttendance(DateTime date,int unitid,int jobstationid,int dept, int designation,int intPart,string xml)
         {
-            QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
+            SprReport_AttendanceTimeviewTableAdapter adp = new SprReport_AttendanceTimeviewTableAdapter();
             return adp.GetEmployeeAttendance(date,unitid,jobstationid,dept,designation,intPart,xml);
         }
 

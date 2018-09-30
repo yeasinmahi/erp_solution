@@ -232,35 +232,35 @@
                 <tr>
                     <td>
                 
-                <asp:GridView ID="GVEmpAttendance" runat="server" AutoGenerateColumns="false" DataKeyNames="intEmployeeID">
+                <asp:GridView ID="GVEmpAttendance" runat="server" AutoGenerateColumns="false" DataKeyNames="EmployeeID">
                     <Columns>
                         <asp:TemplateField HeaderText="SL">
                             <ItemTemplate>
                                 <%# Container.DataItemIndex + 1 %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="intEmployeeID" HeaderText="Employee ID" InsertVisible="False" ReadOnly="True" SortExpression="intEmployeeID">
+                        <asp:BoundField DataField="EmployeeID" HeaderText="Employee ID" InsertVisible="False" ReadOnly="True" SortExpression="EmployeeID">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="strEmployeeCode" HeaderText="Employee Code" SortExpression="strEmployeeCode">
+                        <asp:BoundField DataField="EmployeeCode" HeaderText="Employee Code" SortExpression="EmployeeCode">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="strEmployeeName" HeaderText="Employee Name" SortExpression="strEmployeeName">
+                        <asp:BoundField DataField="EmployeeName" HeaderText="Employee Name" SortExpression="EmployeeName">
                             <ItemStyle HorizontalAlign="left" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="strDesignation" HeaderText="Designation" SortExpression="strDesignation">
+                        <asp:BoundField DataField="Designation" HeaderText="Designation" SortExpression="Designation">
                             <ItemStyle HorizontalAlign="left" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="strDepatrment" HeaderText="Department" SortExpression="strDepatrment">
+                        <asp:BoundField DataField="Depatrment" HeaderText="Department" SortExpression="Depatrment">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:BoundField DataField="JoiningDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Joining Date" SortExpression="JoiningDate">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="AttendanceInTime" HeaderText="Attendance InTime" ReadOnly="True" SortExpression="AttendanceInTime">
+                        <asp:BoundField DataField="AI" HeaderText="Attendance InTime" ReadOnly="True" SortExpression="AI">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="AttendanceOutTime" HeaderText="Attendance OutTime" ReadOnly="True" SortExpression="AttendanceOutTime">
+                        <asp:BoundField DataField="AO" HeaderText="Attendance OutTime" ReadOnly="True" SortExpression="AO">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:TemplateField>
