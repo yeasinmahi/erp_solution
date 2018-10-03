@@ -118,7 +118,7 @@
                              <td style="text-align: right;">
                                  <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="Job Station : "></asp:Label></td>
                              <td>
-                                <asp:DropDownList ID="ddlJobstation" runat="server" CssClass="ddList1" Font-Bold="False" AutoPostBack="true" DataSourceID="ObjectDataSource1" OnDataBound="ddlJobstation_DataBound" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"> </asp:DropDownList> 
+                                <asp:DropDownList ID="ddlJobstation" runat="server" CssClass="ddList" Width="220px" Height="24px" Font-Bold="False" AutoPostBack="true" DataSourceID="ObjectDataSource1" OnDataBound="ddlJobstation_DataBound" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"> </asp:DropDownList> 
                                  <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllJobStation" TypeName="SCM_DAL.InventoryTransferTDSTableAdapters.tblEmployeeJobStationTableAdapter"></asp:ObjectDataSource>
                              </td>
                              <td style="text-align: right;">
@@ -230,7 +230,7 @@
                              <asp:TemplateField HeaderText="Total Cost" SortExpression="TotalCost">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTotalCost" runat="server" Text='<%# Bind("TotalCost") %>' Width="80px"></asp:Label>
+                                    <asp:Label ID="lblTotalCost" runat="server" Text='<%# Bind("TotalCost","{0:N2}") %>'  Width="80px"></asp:Label>
                                 </ItemTemplate>
                                   <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
