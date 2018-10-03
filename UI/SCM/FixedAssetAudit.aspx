@@ -118,11 +118,11 @@
                              <td style="text-align: right;">
                                  <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="Job Station : "></asp:Label></td>
                              <td>
-                                <asp:DropDownList ID="ddlJobstation" runat="server" CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"> </asp:DropDownList> 
+                                <asp:DropDownList ID="ddlJobstation" runat="server" CssClass="ddList1" Font-Bold="False" AutoPostBack="true" DataSourceID="ObjectDataSource1" OnDataBound="ddlJobstation_DataBound" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"> </asp:DropDownList> 
                                  <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllJobStation" TypeName="SCM_DAL.InventoryTransferTDSTableAdapters.tblEmployeeJobStationTableAdapter"></asp:ObjectDataSource>
                              </td>
                              <td style="text-align: right;">
-                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Enroll : "></asp:Label></td>
+                                 <asp:Label ID="lblEnroll" CssClass="lbl" runat="server" Text="Enroll : "></asp:Label></td>
 
                              <td>
                                  <asp:TextBox ID="txtEnroll" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
@@ -224,13 +224,13 @@
                             <asp:TemplateField HeaderText="Audit" SortExpression="strAudit">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label12" runat="server" Text='<%# Bind("strAudit") %>' Width="140px"></asp:Label>
+                                    <asp:Label ID="Label12" runat="server" Text='<%# Bind("strAudit") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Total Cost" SortExpression="TotalCost">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTotalCost" runat="server" Text='<%# Bind("TotalCost") %>' Width="140px"></asp:Label>
+                                    <asp:Label ID="lblTotalCost" runat="server" Text='<%# Bind("TotalCost") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                                   <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
