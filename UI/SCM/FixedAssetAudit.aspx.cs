@@ -36,9 +36,38 @@ namespace UI.SCM
             strJobStation = ddlJobstation.SelectedItem.Text;
             DateTime Fdate = DateTime.ParseExact("2017-07-01", "yyyy-MM-dd", CultureInfo.InvariantCulture);
             DateTime Tdate = DateTime.Now;
-            dt = objInventorybll.FixedAssetData("",2, strJobStation);
-            GvAuditList.DataSource = dt;
-            GvAuditList.DataBind();
+            
+            if(strJobStation != "" && strJobStation != "ALL")
+            {
+               
+                dt = objInventorybll.FixedAssetData("", 2, strJobStation, 0);
+            } 
+            else if(strJobStation =="ALL")
+            {
+                if(txtEnroll.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Insert Enroll');", true);
+                }
+                else if (txtEnroll.Text != "")
+                {
+                    int enroll = Convert.ToInt32(txtEnroll.Text);
+                    dt = objInventorybll.FixedAssetData("", 3, strJobStation, enroll);
+                }
+            }
+           
+            if(dt.Rows.Count>0)
+            {
+                GvAuditList.DataSource = dt;
+                GvAuditList.DataBind();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                GvAuditList.DataSource = "";
+                GvAuditList.DataBind();
+            }
+            
+
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -93,7 +122,8 @@ namespace UI.SCM
                     XmlNode node = doc.SelectSingleNode("ItemList");
                     string xmlString = node.InnerXml;
                     xmlString = "<ItemList>" + xmlString + "</ItemList>";
-                    objInventorybll.FixedAssetData(xmlString,1,strJobstationID);
+                    enroll =Convert.ToInt32( txtEnroll.Text);
+                    objInventorybll.FixedAssetData(xmlString,1,strJobstationID,enroll);
                     try { File.Delete(filePathForXML); }
 
                     catch (Exception ex)
@@ -109,7 +139,30 @@ namespace UI.SCM
 
               
             }
+            txtEnroll.Text = "";
+            txtAuditDate.Text = "";
         }
+
+        #region=====dropdown======
+        protected void ddlJobstation_DataBound(object sender, EventArgs e)
+        {
+            ddlJobstation.Items.Insert(0, new ListItem("ALL", "0"));
+        }
+
+        protected void ddlJobstation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlJobstation.SelectedItem.Text != "ALL")
+            {
+                lblEnroll.Visible = false;
+                txtEnroll.Visible = false;
+            }
+            else if (ddlJobstation.SelectedItem.Text == "ALL")
+            {
+                lblEnroll.Visible = true;
+                txtEnroll.Visible = true;
+            }
+        }
+        #endregion=====end dropdown ====
 
         #region========checkbox check changed=============
         protected void chkRow_CheckedChanged(object sender, EventArgs e)
@@ -160,7 +213,9 @@ namespace UI.SCM
 
             //}
         }
+
         #endregion========checkbox check changed end=============
+
         #region==== create xml==========
         private void CreateXml(string strAssetID, string dteAuditDate, string intAuditBy, string strRemarks)
         {
