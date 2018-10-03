@@ -52,7 +52,7 @@
         }
         function FTPUpload2() {
             document.getElementById("hdnconfirm").value = "4";
-            //__doPostBack();
+           __doPostBack();
         }
         function FTPUpload1() {
             document.getElementById("hdnconfirm").value = "0";
