@@ -94,7 +94,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 }
             }
 
-           else if (rptTypeid == 2)               //Price Compare report  
+           else if (rptTypeid == 2)               //Challan Top sheet
             {
                 DataTable dt = new DataTable();
                 try

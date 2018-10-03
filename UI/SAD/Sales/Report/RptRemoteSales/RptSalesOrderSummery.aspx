@@ -300,7 +300,8 @@
                 <asp:BoundField DataField="numPieces" HeaderText="D.O Qnt" SortExpression="numPieces" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                 <asp:BoundField DataField="rate" HeaderText="Rate" SortExpression="rate" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                 <asp:BoundField DataField="monTotalAmount" HeaderText="TotalAmount" SortExpression="monTotalAmount" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                
+                 <asp:BoundField DataField="strvheicle" HeaderText="Vheicle Name" SortExpression="strvheicle" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+               
                   </Columns>
                   <FooterStyle BackColor="#CCCCCC" />
                   <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
