@@ -154,6 +154,16 @@ namespace UI.SAD.Order
                         grdvhraprvdata.DataBind();
                         grdvForApproveTADAByImmdediatesupervisor.DataSource = dt;
                         grdvForApproveTADAByImmdediatesupervisor.DataBind();
+
+
+                        foreach (GridViewRow gr in grdvForApproveTADAByImmdediatesupervisor.Rows)
+                        {
+
+                            string attchstatus = grdvForApproveTADAByImmdediatesupervisor.Rows[gr.RowIndex].Cells[49].Text;
+                            if (attchstatus == "False") { grdvForApproveTADAByImmdediatesupervisor.Rows[gr.RowIndex].Cells[49].BackColor = System.Drawing.Color.Red; }
+                            else { grdvForApproveTADAByImmdediatesupervisor.Rows[gr.RowIndex].Cells[49].BackColor = System.Drawing.Color.Gray; }
+                        }
+
                     }
                 }
                 if (rptype == 14 ||  rptype == 1036)
@@ -1264,7 +1274,7 @@ namespace UI.SAD.Order
             //if (e.Row.RowType == DataControlRowType.DataRow)
             //{
 
-            //    bool CellValueattach = Convert.ToBoolean(e.Row.Cells[51].Text);
+            //    bool CellValueattach = Convert.ToBoolean(e.Row.Cells[47].Text);
 
 
 

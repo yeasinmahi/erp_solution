@@ -1191,6 +1191,8 @@
     <Content Include="SAD\Order\TADAInfoDelete.aspx" />
     <Content Include="SAD\Order\TADATopsheetForSingleEmployee.aspx" />
     <Content Include="SAD\Order\TransferDelvOrderInactive.aspx" />
+    <Content Include="SAD\Order\UploadedReceiveChallanDetaills.aspx" />
+    <Content Include="SAD\Order\UploadReceiveChallan.aspx" />
     <Content Include="SAD\Order\VehicleSelect.aspx" />
     <Content Include="SAD\Order\VehicleSelectCustomize.aspx" />
     <Content Include="SAD\Order\VehicleSelectView.aspx" />
@@ -5974,6 +5976,20 @@
     </Compile>
     <Compile Include="SAD\Order\TransferDelvOrderInactive.aspx.designer.cs">
       <DependentUpon>TransferDelvOrderInactive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\UploadedReceiveChallanDetaills.aspx.cs">
+      <DependentUpon>UploadedReceiveChallanDetaills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\UploadedReceiveChallanDetaills.aspx.designer.cs">
+      <DependentUpon>UploadedReceiveChallanDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\UploadReceiveChallan.aspx.cs">
+      <DependentUpon>UploadReceiveChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\UploadReceiveChallan.aspx.designer.cs">
+      <DependentUpon>UploadReceiveChallan.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\VehicleSelect.aspx.cs">
       <DependentUpon>VehicleSelect.aspx</DependentUpon>
