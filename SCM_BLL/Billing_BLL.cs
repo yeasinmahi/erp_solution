@@ -424,20 +424,7 @@ namespace SCM_BLL
             PurchaseTableAdapter adp = new PurchaseTableAdapter();
             return adp.GetPurchaseData(itemid);
         }
-
-
         
-
-
-
-
-
-
-
-
-
-
-
 
         #region===== Search COA Ledger List =============================================== 
         public string[] AutoSearchCOALedger(string strUnit, string prefix)
@@ -652,12 +639,6 @@ namespace SCM_BLL
         }
         #endregion=========================================================================
         
-
-
-
-
-
-
 
     }
 }

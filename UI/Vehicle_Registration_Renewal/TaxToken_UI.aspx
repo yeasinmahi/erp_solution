@@ -124,8 +124,11 @@
                                                                                                                
                     </tr>
             <tr>
-                            <td style="text-align:right;"></td><td></td>                                                                 
-       <td></td><td>
+                           
+                 <td> <asp:Label ID="lblnowusedunit" runat="server" Text="Used by   :"></asp:Label>
+                 <asp:Label ID="lbprsntus" runat="server" BackColor="#ffff66"></asp:Label> 
+                      </td>
+       <td>
                 <asp:Button ID="BtnTaxToken" runat="server" Text="Save" OnClick="BtnTaxToken_Click"  /></td>
  
                 

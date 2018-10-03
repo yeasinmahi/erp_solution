@@ -1,10 +1,7 @@
 ﻿using HR_BLL.CreativeSupport;
-using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Script.Services;
@@ -14,9 +11,6 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
 using Dairy_BLL;
-using SAD_BLL.Transport;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace UI.CreativeSupportModule
 {
@@ -33,6 +27,7 @@ namespace UI.CreativeSupportModule
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //txtQty. += new EventHandler(textBox1_LostFocus);
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnPoint.Value = "0";
@@ -40,6 +35,8 @@ namespace UI.CreativeSupportModule
             filePathForXML = Server.MapPath("~/CreativeSupportModule/Data/Item_" + hdnEnroll.Value + ".xml");
             if (!IsPostBack)
             {
+               
+
                 try
                 {
                     File.Delete(filePathForXMLDocUpload); dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
@@ -51,11 +48,16 @@ namespace UI.CreativeSupportModule
                     {
                         txtName.Text = dt.Rows[0]["EmpInfo"].ToString();
                     }
-                    
-                    txtCRItem.Enabled = false;
-                    //txtQty.Enabled = false;
+                    ddlJobType.Visible = false;
+                    jobTypeTd.Visible = false;
+
+                    txtCRItem.Visible = false;
+                    itemTd.Visible = false;
+
+                    txtQty.Visible = false;
+                    quantityTd.Visible = false;
+
                     btnItemAdd.Visible = false;
-                    ddlJobType.Enabled = false;
                 }
                 catch { }
             }
@@ -171,8 +173,8 @@ namespace UI.CreativeSupportModule
                     //rdoLarge.Enabled = false;
                     //rdoModerate.Enabled = false;
                     //rdoMinor.Enabled = false;
-                    txtCRItem.Enabled = false;
-                    txtQty.Enabled = false;
+                    //txtCRItem.Enabled = false;
+                    //txtQty.Enabled = false;
 
                     dgvCrItem.DataSource = ""; dgvCrItem.DataBind();
                     dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
@@ -411,20 +413,56 @@ namespace UI.CreativeSupportModule
 
         protected void ddlJobDescription_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlJobDescription.SelectedItem.ToString() == "POSM")
+            if (ddlJobDescription.SelectedItem.Value == @"0")
             {
-                ddlJobType.SelectedValue = "0";
-                ddlJobType.Enabled = false;
-                txtCRItem.Enabled = true;
-                txtQty.Enabled = true;
+                ddlJobType.Visible = false;
+                jobTypeTd.Visible = false;
+
+                txtCRItem.Visible = false;
+                itemTd.Visible = false;
+
+                txtQty.Visible = false;
+                quantityTd.Visible = false;
+
+                poidTd.Visible = false;
+                WorkOrderTd.Visible = false;
+
+                btnItemAdd.Visible = false;
+            }
+            else if(ddlJobDescription.SelectedItem.Value == @"1")
+            {
+                //ddlJobType.SelectedValue = "0";
+                ddlJobType.Visible = false;
+                jobTypeTd.Visible = false;
+
+                txtCRItem.Visible = true;
+                itemTd.Visible = true;
+
+                txtQty.Visible = true;
+                quantityTd.Visible = true;
+
+                poidTd.Visible = false;
+                WorkOrderTd.Visible = false;
+
                 btnItemAdd.Visible = true;
             }
             else
             {
-                txtCRItem.Enabled = false;
-                txtQty.Enabled = false;
+                ddlJobType.Visible = true;
+                jobTypeTd.Visible = true;
+
+                txtCRItem.Visible = false;
+                itemTd.Visible = false;
+
+                txtQty.Visible = false;
+                quantityTd.Visible = false;
+
+                poidTd.Visible = true;
+                WorkOrderTd.Visible = true;
+
                 btnItemAdd.Visible = false;
-                ddlJobType.Enabled = true;
+                
+
             }
             txtPoint.Text = "";
             txtCRItem.Text = "";
@@ -460,33 +498,34 @@ namespace UI.CreativeSupportModule
                     txtPoint.Text = (decimal.Parse(hdnPoint.Value) * qtyq).ToString();
                 }
                 else { txtPoint.Text = "0"; }
-                
+
             }
             catch { }
         }
 
-        protected void txtCRItem_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                char[] ch1 = { '[', ']' };
-                string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                intItemID = int.Parse(temp1[1].ToString());
-            }
-            catch { intItemID = 0; }
+        //protected void txtCRItem_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        char[] ch1 = { '[', ']' };
+        //        string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+        //        intItemID = int.Parse(temp1[1].ToString());
+        //    }
+        //    catch { intItemID = 0; }
 
-            dt = new DataTable();
-            dt = objcr.GetItemWisePoint(intItemID);
-            if (dt.Rows.Count > 0)
-            {
-                //txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
-                hdnPoint.Value = dt.Rows[0]["intPoint"].ToString();
-            }
-            else { txtPoint.Text = "0"; }
+        //    dt = new DataTable();
+        //    dt = objcr.GetItemWisePoint(intItemID);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        //txtPoint.Text = dt.Rows[0]["intPoint"].ToString();
+        //        hdnPoint.Value = dt.Rows[0]["intPoint"].ToString();
+        //    }
+        //    else { txtPoint.Text = "0"; }
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
-            return;
-        }
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CalculatePoint();", true);
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "getFocusOnTextbox();", true);
+        //    return;
+        //}
         
         //protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
         //{
@@ -520,7 +559,7 @@ namespace UI.CreativeSupportModule
             try { intRowCount = int.Parse(dgvCrItem.Rows.Count.ToString()); }
             catch { intRowCount = 0; }
 
-            if(intRowCount == 3)
+            if(intRowCount >= 3)
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Alredy 3 Item Added.');", true);
                 txtPoint.Text = "";
@@ -528,18 +567,22 @@ namespace UI.CreativeSupportModule
                 txtCRItem.Text = "";
                 return;
             }
-
-            if (name == "" && name == null || itemid == "0")
+            if (ddlJobDescription.SelectedItem.Value=="1")//if its selected DESIGN & POSM
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Item Input');", true);
-                return;
+                if (string.IsNullOrEmpty(name) || itemid == "0")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Item Input');", true);
+                    return;
+                }
+
+                if (qty == "")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Input Qty.');", true);
+                    return;
+                }
             }
 
-            if (qty == "")
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Input Qty.');", true);
-                return;
-            }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "CalculatePoint", "FTPUpload2();", true);
 
             if (point != "0")
             {
@@ -581,8 +624,14 @@ namespace UI.CreativeSupportModule
             StringReader sr = new StringReader(xmlString);
             DataSet ds = new DataSet();
             ds.ReadXml(sr);
-            if (ds.Tables[0].Rows.Count > 0) { dgvCrItem.DataSource = ds; }
-            else { dgvCrItem.DataSource = ""; }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgvCrItem.DataSource = ds;
+            }
+            else
+            {
+                dgvCrItem.DataSource = "";
+            }
             dgvCrItem.DataBind();
         }
         private XmlNode CreateItemNode(XmlDocument doc, string name, string qty, string point, string itemid)
@@ -658,8 +707,8 @@ namespace UI.CreativeSupportModule
             //rdoLarge.Enabled = false;
             //rdoModerate.Enabled = false;
             //rdoMinor.Enabled = false;
-            txtCRItem.Enabled = false;
-            txtQty.Enabled = false;
+            //txtCRItem.Enabled = false;
+            //txtQty.Enabled = false;
 
             dgvCrItem.DataSource = ""; dgvCrItem.DataBind();
             dgvDocUp.DataSource = ""; dgvDocUp.DataBind();

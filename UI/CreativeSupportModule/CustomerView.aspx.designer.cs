@@ -256,6 +256,15 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
+        /// jobTypeTd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell jobTypeTd;
+        
+        /// <summary>
         /// Label15 control.
         /// </summary>
         /// <remarks>
@@ -272,6 +281,15 @@ namespace UI.CreativeSupportModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlJobType;
+        
+        /// <summary>
+        /// itemTd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell itemTd;
         
         /// <summary>
         /// Label5 control.
@@ -299,6 +317,15 @@ namespace UI.CreativeSupportModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
+        
+        /// <summary>
+        /// quantityTd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell quantityTd;
         
         /// <summary>
         /// Label6 control.
@@ -346,15 +373,6 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Button btnItemAdd;
         
         /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
-        /// <summary>
         /// dgvCrItem control.
         /// </summary>
         /// <remarks>
@@ -373,6 +391,15 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
+        /// poidTd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl poidTd;
+        
+        /// <summary>
         /// txtPOID control.
         /// </summary>
         /// <remarks>
@@ -382,13 +409,22 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.TextBox txtPOID;
         
         /// <summary>
-        /// Label10 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// WorkOrderTd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WorkOrderTd;
         
         /// <summary>
         /// txtDocUpload control.
@@ -407,15 +443,6 @@ namespace UI.CreativeSupportModule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDocUpload;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
         /// dgvDocUp control.

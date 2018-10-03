@@ -48,6 +48,7 @@ namespace UI.Inventory
                 if (table.Rows.Count > 0)
                 {
                     lblUnitName.Text = unitName.ToUpper();
+                    //lblUnitName.Text = "United Dhaka Tobacco Company LTD.";
                     lblUnitAddr.Text = unitAddress;
                     lblDate.Text = CommonClass.GetShortDateAtLocalDateFormat(date);
                     lblTime.Text = CommonClass.GetTimeAtLocalDateFormat(date);

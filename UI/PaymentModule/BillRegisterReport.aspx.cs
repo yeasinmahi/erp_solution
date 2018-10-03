@@ -195,7 +195,7 @@ namespace UI.PaymentModule
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = dgvReport.Rows[rowIndex];
                 
-                billid = (row.FindControl("lblBillID") as Label).Text;
+                billid = (row.FindControl("lblBillID") as LinkButton).Text;
                 party = (row.FindControl("lblPartyName") as Label).Text;
 
                 if (e.CommandName == "View")

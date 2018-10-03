@@ -239,7 +239,7 @@
                         <ItemTemplate><asp:Label ID="lblValue" runat="server"    Text='<%# Bind("monValue") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px"/></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monVat" > 
+                        <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monVat" > 
                         <ItemTemplate><asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monVat" ) %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" /> </asp:TemplateField>  
 

@@ -56,7 +56,7 @@ namespace UI
             {
                 string[] donainpatrs = domainUser.Split('\\');
                 id = donainpatrs[1] + "@akij.net";
-                //id = "rabiul.afml@akij.net";
+                //id = "test.accl@akij.net";
 
                 string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
                 if (ip == string.Empty || ip == null)
@@ -72,6 +72,7 @@ namespace UI
                     if (User.Identity.IsAuthenticated && donainpatrs[0].ToUpper() == "AKIJ")
                     {
 
+
                         uss.DomainLoginUpdate(id.Trim(), Session.SessionID, "WEB", ip);
                     }
                     else
@@ -79,10 +80,10 @@ namespace UI
                         uss.DomainLoginFails(id.Trim(), ip, DateTime.Now);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     //DB Error
-                    retStr = domainUser + "r1";
+                    retStr = domainUser + " Error: "+ ex.Message;
                     Panel1.Visible = true;
                     Panel1.DataBind();
                     return;

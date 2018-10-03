@@ -51,11 +51,14 @@ namespace UI.HR.Reports
         {
             try {
                 string insertBy = Session[SessionParams.USER_ID].ToString();
-                DateTime date = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string AttendanceDate = date.ToString("dd/MM/yyyy");
+                DateTime date = DateTime.ParseExact(txtDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                string AttendanceDate = date.ToString("yyyy/MM/dd");
                 DateTime insertdate = DateTime.Now;
                 string insertDate = insertdate.ToString();
-
+                int intUnitId = int.Parse(ddlUnit.SelectedItem.Value);
+                int intJobstationId = int.Parse(ddlJobStation.SelectedItem.Value);
+                int intDepartmentId = int.Parse(ddlDepartment.SelectedItem.Value);
+                int intDesignationId = int.Parse(ddlDesignation.SelectedItem.Value);
                 if (GVEmpAttendance.Rows.Count > 0)
                 {
                     for (int index = 0; index < GVEmpAttendance.Rows.Count; index++)                                              
@@ -64,7 +67,11 @@ namespace UI.HR.Reports
                         if (((CheckBox)GVEmpAttendance.Rows[index].FindControl("chkRow")).Checked == true)
                         {                          
                             string EnrollId = GVEmpAttendance.Rows[index].Cells[1].Text;
-                            CreateXml(AttendanceDate,EnrollId, insertBy, insertDate);
+                            //DateTime attintime = DateTime.ParseExact(GVEmpAttendance.Rows[index].Cells[7].Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                            string attendanceIntime = GVEmpAttendance.Rows[index].Cells[7].Text;
+                            //DateTime attouttime = DateTime.ParseExact(GVEmpAttendance.Rows[index].Cells[7].Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                            string attendanceOutTime = GVEmpAttendance.Rows[index].Cells[8].Text;
+                            CreateXml(AttendanceDate,EnrollId, insertBy, insertDate, attendanceIntime, attendanceOutTime);
                         }
                    
                     }
@@ -75,18 +82,17 @@ namespace UI.HR.Reports
                     string xmlString = node.InnerXml;
                     xmlString = "<attendance>" + xmlString + "</attendance>";
 
-                    objEmployeeDetails.InsertXml(xmlString);
+                    objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, 5, xmlString);
+                   
+                    //string msg = objEmployeeDetails.InsertXml(xmlString);
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your Request is Successfully Submited...');", true);
-                    
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Deleted Successfully');", true);
                     try { File.Delete(filePathForXML); }
 
                     catch (Exception ex)
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
                     }
-
-
 
                 }
             }
@@ -96,14 +102,14 @@ namespace UI.HR.Reports
             }
         }
 
-        private void CreateXml(string attendanceDate, string enrollid,string insertBy,string insertDate)
+        private void CreateXml(string attendanceDate, string enrollid,string insertBy,string insertDate,string attendanceIntime,string attendanceOutTime)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("attendance");
-                XmlNode addItem = CreateItemNode(doc,attendanceDate, enrollid, insertBy, insertDate);
+                XmlNode addItem = CreateItemNode(doc,attendanceDate, enrollid, insertBy, insertDate, attendanceIntime, attendanceOutTime);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -111,14 +117,14 @@ namespace UI.HR.Reports
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("attendance");
-                XmlNode addItem = CreateItemNode(doc,attendanceDate, enrollid, insertBy, insertDate);
+                XmlNode addItem = CreateItemNode(doc,attendanceDate, enrollid, insertBy, insertDate, attendanceIntime, attendanceOutTime);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc,string attendanceDate, string enrollid,string insertBy,string insertDate)
+        private XmlNode CreateItemNode(XmlDocument doc,string attendanceDate, string enrollid,string insertBy,string insertDate,string attendanceIntime,string attendanceOutTime)
         {
 
             XmlNode node = doc.CreateElement("attendanceDetails");
@@ -134,10 +140,18 @@ namespace UI.HR.Reports
             XmlAttribute InsertDate = doc.CreateAttribute("insertDate");
             InsertDate.Value = insertDate;
 
-            node.Attributes.Append(AttendanceDate);
+            XmlAttribute AttendanceIntime = doc.CreateAttribute("attendanceIntime");
+            AttendanceIntime.Value = attendanceIntime;
+
+            XmlAttribute AttendanceOutTime = doc.CreateAttribute("attendanceOutTime");
+            AttendanceOutTime.Value = attendanceOutTime;
+
             node.Attributes.Append(Enrollid);
+            node.Attributes.Append(AttendanceDate);
             node.Attributes.Append(InsertBy);
             node.Attributes.Append(InsertDate);
+            node.Attributes.Append(AttendanceIntime);
+            node.Attributes.Append(AttendanceOutTime);
             return node;
         }
 
@@ -146,8 +160,7 @@ namespace UI.HR.Reports
             try {
 
                 intPart = 0;
-                DateTime date = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
+                DateTime date = DateTime.ParseExact(txtDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 int intUnitId = int.Parse(ddlUnit.SelectedItem.Value);
                 int intJobstationId = int.Parse(ddlJobStation.SelectedItem.Value);
                 int intDepartmentId = int.Parse(ddlDepartment.SelectedItem.Value);
@@ -156,7 +169,7 @@ namespace UI.HR.Reports
                 if (intDepartmentId == 0 && intDesignationId == 0)
                 {
                     intPart = 4;
-                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart);
+                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart,"");
                     if (dt.Rows.Count > 0)
                     {
                         GVEmpAttendance.Visible = true;
@@ -172,7 +185,7 @@ namespace UI.HR.Reports
                 else if (intDepartmentId == 0 && intDesignationId > 0)
                 {
                     intPart = 2;
-                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart);
+                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart,"");
                     if (dt.Rows.Count > 0)
                     {
                         GVEmpAttendance.Visible = true;
@@ -187,7 +200,7 @@ namespace UI.HR.Reports
                 else if (intDepartmentId > 0 && intDesignationId == 0)
                 {
                     intPart = 3;
-                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart);
+                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart,"");
                     if (dt.Rows.Count > 0)
                     {
                         GVEmpAttendance.Visible = true;
@@ -202,7 +215,7 @@ namespace UI.HR.Reports
                 else
                 {
                     intPart = 1;
-                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart);
+                    dt = objEmployeeDetails.getEmployeeAttendance(date, intUnitId, intJobstationId, intDepartmentId, intDesignationId, intPart,"");
                     if (dt.Rows.Count > 0)
                     {
                         GVEmpAttendance.Visible = true;

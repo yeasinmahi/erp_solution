@@ -1791,8 +1791,204 @@
              
          </tr>  
  </table>
- </div>
+          </div>
+         <div>
+            <table>
+                 <tr class="tblroweven"><td>
+              <asp:GridView ID="grdvpreviousData" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="25" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                  <AlternatingRowStyle BackColor="#CCCCCC" />
+                  <Columns>
+                    
+                      
+                      <asp:BoundField DataField="id" HeaderText="Sl" SortExpression="intid" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       <asp:BoundField DataField="dteFromdate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="From Date" SortExpression="dtFrom" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       
+                       <asp:BoundField DataField="dtIns" HeaderText="Insertion" DataFormatString="{0:dd/MM/yyyy}" SortExpression="dtIns" ItemStyle-HorizontalAlign="Center" >
 
+                      <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="strNam" HeaderText="Employee  Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       <asp:BoundField DataField="strDesg" HeaderText="Designation" SortExpression="strDesg" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                      <asp:BoundField DataField="decStartTimeT" HeaderText="StartTime" SortExpression="decStartTimeT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decEndHourT" HeaderText="EndHour" SortExpression="decEndHourT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decMovementDurationT" HeaderText="MovementDuration" SortExpression="decMovementDurationT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="strFromAddressT" HeaderText="FromAddress" SortExpression="strFromAddressT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="strMovementAreaT" HeaderText="MovementArea" SortExpression="strMovementAreaT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="strToAddressT" HeaderText="ToAddress" SortExpression="strToAddressT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                     
+                      <asp:BoundField DataField="strNightStayT" HeaderText="NightStay" SortExpression="strNightStayT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decStartMilageT" HeaderText="StartMilage" SortExpression="decStartMilageT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decEndMilageT" HeaderText="decEndMilageT" SortExpression="decEndMilageT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decConsumedKmT" HeaderText="ConsumedKm" SortExpression="decConsumedKmT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="strSupportingNoT" HeaderText="SupportingNo" SortExpression="strSupportingNoT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decQntPetrolT" HeaderText="QntPetrol" SortExpression="decQntPetrolT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                      <asp:BoundField DataField="decCostPetrolT" HeaderText="CostPetrol" SortExpression="decCostPetrolT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decQntOctenT" HeaderText="QntOcten" SortExpression="decQntOctenT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decCostOctenT" HeaderText="CostOcten" SortExpression="decCostOctenT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decQntCarbonNitGasT" HeaderText="QntCarbonNitGas" SortExpression="decQntCarbonNitGasT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decCostCarbonNitGasT" HeaderText="CostCarbonNitGas" SortExpression="decCostCarbonNitGasT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decLubricantQnt" HeaderText="LubricantQnt" SortExpression="LubricantQnt" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                        <asp:BoundField DataField="lubricantcost" HeaderText="lubricantcost" SortExpression="lubricantcost" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareBusAmountT" HeaderText="decFareBusAmountT" SortExpression="decFareBusAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decFareRickshawAmountT" HeaderText="RickshawAmountT" SortExpression="decFareRickshawAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareCNGAmountT" HeaderText="FareCNGAmountT" SortExpression="decFareCNGAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decFareTrainAmountT" HeaderText="FareTrainAmountT" SortExpression="decCostCarbonNitGasT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareBoatAmountT" HeaderText="FareBoatT" SortExpression="decFareBoatT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                        <asp:BoundField DataField="decFareAirPlaneT" HeaderText="FareAirPlaneT" SortExpression="decFareAirPlaneT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareOtherVheicleAmountT" HeaderText="FareOtherVheicle" SortExpression="decFareOtherVheicleAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decCostAmountMaintenaceT" HeaderText="decCostAmountMaintenaceT" SortExpression="decCostAmountMaintenaceT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFeryTollCostT" HeaderText="decFeryTollCostT" SortExpression="decFeryTollCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decDAAmountT" HeaderText="decDAAmountT" SortExpression="decDAAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decDriverDACostT" HeaderText="FareBoatT" SortExpression="decFareBoatT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                      <asp:BoundField DataField="decHotelBillAmountT" HeaderText="HotelBillAmountT" SortExpression="decHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decDriverHotelBillAmountT" HeaderText="DriverHotelBillAmountT" SortExpression="decDriverHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decPhotoCopyCostT" HeaderText="PhotoCopyCostT" SortExpression="decPhotoCopyCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decCourierCostT" HeaderText="CourierCostT" SortExpression="decCourierCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decOtherBillAmountT" HeaderText="OtherBillAmountT" SortExpression="decOtherBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decRowTotalT" HeaderText="RowTotalT" SortExpression="decRowTotalT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                        <asp:BoundField DataField="decHotelBillAmountT" HeaderText="HotelBillAmountT" SortExpression="decHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decDriverHotelBillAmountT" HeaderText="DriverHotelBillAmountT" SortExpression="decDriverHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decPhotoCopyCostT" HeaderText="PhotoCopyCostT" SortExpression="decPhotoCopyCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decCourierCostT" HeaderText="CourierCostT" SortExpression="decCourierCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decOtherBillAmountT" HeaderText="OtherBillAmountT" SortExpression="decOtherBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decRowTotalT" HeaderText="RowTotalT" SortExpression="decRowTotalT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                     
+                      <asp:BoundField DataField="decSupplierCNG" HeaderText="SupplierCNG" SortExpression="decSupplierCNG" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decSupplierGas" HeaderText="SupplierGas" SortExpression="decSupplierGas" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decPersonalMilage" HeaderText="PersonalMilage" SortExpression="decPersonalMilage" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="SupplierTotal" HeaderText="SupplierTotal" SortExpression="SupplierTotal" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decMlgRate" HeaderText="MlgRate" SortExpression="decMlgRate" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decPersonalTotalcost" HeaderText="PersonalTotalcost" SortExpression="decPersonalTotalcost" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                      <asp:BoundField DataField="PaymentType" HeaderText="PaymentType" SortExpression="PaymentType" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       
+                      <asp:BoundField DataField="strFuelStationaname" HeaderText="FuelStationaname" SortExpression="strFuelStationaname" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                      
+                      
+
+                  </Columns>
+                  <FooterStyle BackColor="#CCCCCC" />
+                  <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                  <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                  <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                  <SortedAscendingHeaderStyle BackColor="#808080" />
+                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                  <SortedDescendingHeaderStyle BackColor="#383838" />
+              </asp:GridView> </td>
+         </tr>    
+            </table>
+
+
+        </div>
+
+        <div>
+            <table>
+                 <tr class="tblroweven"><td>
+              <asp:GridView ID="grdvhraprvdata" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="25" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" GridLines="None" CellSpacing="1">
+                  <Columns>
+                    
+                      
+                      <asp:BoundField DataField="id" HeaderText="Sl" SortExpression="intid" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       <asp:BoundField DataField="dteFromdate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="From Date" SortExpression="dtFrom" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       
+                       <asp:BoundField DataField="dtIns" HeaderText="Insertion" DataFormatString="{0:dd/MM/yyyy}" SortExpression="dtIns" ItemStyle-HorizontalAlign="Center" >
+
+                      <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+
+                      <asp:BoundField DataField="strNam" HeaderText="Employee  Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                       <asp:BoundField DataField="strDesg" HeaderText="Designation" SortExpression="strDesg" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
+                      <asp:BoundField DataField="decStartTimeT" HeaderText="StartTime" SortExpression="decStartTimeT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decEndHourT" HeaderText="EndHour" SortExpression="decEndHourT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decMovementDurationT" HeaderText="MovementDuration" SortExpression="decMovementDurationT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="strFromAddressT" HeaderText="FromAddress" SortExpression="strFromAddressT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="strMovementAreaT" HeaderText="MovementArea" SortExpression="strMovementAreaT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="strToAddressT" HeaderText="ToAddress" SortExpression="strToAddressT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                     
+                      <asp:BoundField DataField="strNightStayT" HeaderText="NightStay" SortExpression="strNightStayT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decStartMilageT" HeaderText="StartMilage" SortExpression="decStartMilageT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decEndMilageT" HeaderText="decEndMilageT" SortExpression="decEndMilageT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decConsumedKmT" HeaderText="ConsumedKm" SortExpression="decConsumedKmT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="strSupportingNoT" HeaderText="SupportingNo" SortExpression="strSupportingNoT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decQntPetrolT" HeaderText="QntPetrol" SortExpression="decQntPetrolT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                      <asp:BoundField DataField="decCostPetrolT" HeaderText="CostPetrol" SortExpression="decCostPetrolT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decQntOctenT" HeaderText="QntOcten" SortExpression="decQntOctenT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decCostOctenT" HeaderText="CostOcten" SortExpression="decCostOctenT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decQntCarbonNitGasT" HeaderText="QntCarbonNitGas" SortExpression="decQntCarbonNitGasT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decCostCarbonNitGasT" HeaderText="CostCarbonNitGas" SortExpression="decCostCarbonNitGasT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decLubricantQnt" HeaderText="LubricantQnt" SortExpression="LubricantQnt" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                        <asp:BoundField DataField="lubricantcost" HeaderText="lubricantcost" SortExpression="lubricantcost" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareBusAmountT" HeaderText="decFareBusAmountT" SortExpression="decFareBusAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decFareRickshawAmountT" HeaderText="RickshawAmountT" SortExpression="decFareRickshawAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareCNGAmountT" HeaderText="FareCNGAmountT" SortExpression="decFareCNGAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decFareTrainAmountT" HeaderText="FareTrainAmountT" SortExpression="decCostCarbonNitGasT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareBoatAmountT" HeaderText="FareBoatT" SortExpression="decFareBoatT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                        <asp:BoundField DataField="decFareAirPlaneT" HeaderText="FareAirPlaneT" SortExpression="decFareAirPlaneT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFareOtherVheicleAmountT" HeaderText="FareOtherVheicle" SortExpression="decFareOtherVheicleAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decCostAmountMaintenaceT" HeaderText="decCostAmountMaintenaceT" SortExpression="decCostAmountMaintenaceT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decFeryTollCostT" HeaderText="decFeryTollCostT" SortExpression="decFeryTollCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decDAAmountT" HeaderText="decDAAmountT" SortExpression="decDAAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decDriverDACostT" HeaderText="FareBoatT" SortExpression="decFareBoatT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                      <asp:BoundField DataField="decHotelBillAmountT" HeaderText="HotelBillAmountT" SortExpression="decHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decDriverHotelBillAmountT" HeaderText="DriverHotelBillAmountT" SortExpression="decDriverHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decPhotoCopyCostT" HeaderText="PhotoCopyCostT" SortExpression="decPhotoCopyCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decCourierCostT" HeaderText="CourierCostT" SortExpression="decCourierCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decOtherBillAmountT" HeaderText="OtherBillAmountT" SortExpression="decOtherBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decRowTotalT" HeaderText="RowTotalT" SortExpression="decRowTotalT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+                        <asp:BoundField DataField="decHotelBillAmountT" HeaderText="HotelBillAmountT" SortExpression="decHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decDriverHotelBillAmountT" HeaderText="DriverHotelBillAmountT" SortExpression="decDriverHotelBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decPhotoCopyCostT" HeaderText="PhotoCopyCostT" SortExpression="decPhotoCopyCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decCourierCostT" HeaderText="CourierCostT" SortExpression="decCourierCostT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                       <asp:BoundField DataField="decOtherBillAmountT" HeaderText="OtherBillAmountT" SortExpression="decOtherBillAmountT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                       <asp:BoundField DataField="decRowTotalT" HeaderText="RowTotalT" SortExpression="decRowTotalT" ItemStyle-HorizontalAlign="Center" > <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                     
+                     
+                      
+
+                  </Columns>
+                  <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                  <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                  <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                  <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                  <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                  <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                  <SortedDescendingHeaderStyle BackColor="#33276A" />
+              </asp:GridView> </td>
+         </tr>    
+            </table>
+
+
+        </div>
 
     <%--=========================================End My Code From Here=================================================--%>
 <%--  </ContentTemplate>
