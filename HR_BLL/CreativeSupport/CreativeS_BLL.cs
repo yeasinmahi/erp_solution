@@ -16,14 +16,14 @@ namespace HR_BLL.CreativeSupport
         int e;
         private static ItemListForCreativeSDataTable[] tblCRItem = null;
         private static EmpListForCreativeSupportDataTable[] tblEmpListForCS = null;
-        
+
         public DataTable GetJobDescription()
         {
             JobDesctionListTableAdapter adp = new JobDesctionListTableAdapter();
             try
             { return adp.GetJobDescription(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
-        }             
+        }
         public DataTable GetLoginInfo(int intEnroll)
         {
             LoginUserInfoTableAdapter adp = new LoginUserInfoTableAdapter();
@@ -34,19 +34,20 @@ namespace HR_BLL.CreativeSupport
 
         public string[] AutoSearchItemCRList(string prefix)
         {
+            prefix = prefix.Trim().ToLower();
             string intUnitID = "1";
-            int unit = Int32.Parse(intUnitID.ToString());
 
             tblCRItem = new ItemListForCreativeSDataTable[Convert.ToInt32(intUnitID)];
             ItemListForCreativeSTableAdapter adpCOA = new ItemListForCreativeSTableAdapter();
             tblCRItem[e] = adpCOA.GetCreativeItemList();
 
             DataTable tbl = new DataTable();
-            if (prefix.Trim().Length >= 3)
+            if (prefix.Length >= 3)
             {
-                if (prefix == "" || prefix == "*")
+                try
                 {
-                    var rows = from tmp in tblCRItem[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblCRItem[e]  //[Convert.ToInt32(ht[WHID])]
+                               where tmp.strCreativeItemName.ToLower().Contains(prefix) || tmp.intCreativeItemID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
                                orderby tmp.strCreativeItemName
                                select tmp;
                     if (rows.Any())
@@ -54,21 +55,7 @@ namespace HR_BLL.CreativeSupport
                         tbl = rows.CopyToDataTable();
                     }
                 }
-                else
-                {
-                    try
-                    {
-                        var rows = from tmp in tblCRItem[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strCreativeItemName.ToLower().Contains(prefix) || tmp.intCreativeItemID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
-                                   orderby tmp.strCreativeItemName
-                                   select tmp;
-                        if (rows.Any())
-                        {
-                            tbl = rows.CopyToDataTable();
-                        }
-                    }
-                    catch { return null; }
-                }
+                catch { return null; }
             }
             if (tbl.Rows.Count > 0)
             {
@@ -220,7 +207,7 @@ namespace HR_BLL.CreativeSupport
             { return adp.GetAllDocumentView(intJobID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        
+
 
 
 

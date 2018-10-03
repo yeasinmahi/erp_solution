@@ -52,7 +52,7 @@
         }
         function FTPUpload2() {
             document.getElementById("hdnconfirm").value = "4";
-            __doPostBack();
+           __doPostBack();
         }
         function FTPUpload1() {
             document.getElementById("hdnconfirm").value = "0";
@@ -81,15 +81,6 @@
         }
         function ViewCustomerView(Id) {
             window.open('CustomerView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
-        }
-        function getFocusOnTextbox() {
-            //var textbox = document.getElementById('txtQty');
-            //textbox.focus();
-            //textbox.value = textbox.value;
-            var val = $('#txtQty').val();
-            $('#txtQty').val('');
-            $('#txtQty').val(val);
-            $('#txtQty').focus();
         }
     </script>
 
@@ -212,12 +203,12 @@
 
 
                             <td style="text-align: right; padding: 15px 17px 8px 10px">
-                                <asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click" /></td>
+                                <asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"  OnClientClick="return FTPUpload2();"/></td>
                         </tr>
                         <tr>
                             <%--<td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>--%>
                             <td colspan="6">
-                                <asp:GridView ID="dgvCrItem" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                                <asp:GridView ID="dgvCrItem" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" Width="100%"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true" RowStyle-Height="16px"
                                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
                                     FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="center" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvCrItem_RowDataBound" OnRowDeleting="dgvCrItem_RowDeleting">
@@ -232,7 +223,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("name") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" Width="265px" />
+                                            <ItemStyle HorizontalAlign="Left" />
                                             <FooterTemplate>
                                                 <asp:Label ID="lblT" runat="server" Text="Total" />
                                             </FooterTemplate>
@@ -242,7 +233,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblQty" runat="server" Text='<%# Bind("qty") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="center" Width="85px" />
+                                            <ItemStyle HorizontalAlign="center"/>
                                             <FooterTemplate>
                                                 <asp:Label ID="lblQtyTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalqty %>" />
                                             </FooterTemplate>
@@ -252,7 +243,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPoint" runat="server" Text='<%# Bind("point") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="center" Width="85px" />
+                                            <ItemStyle HorizontalAlign="center"/>
                                             <FooterTemplate>
                                                 <asp:Label ID="lblPointTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalpoint %>" />
                                             </FooterTemplate>
@@ -262,10 +253,12 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("itemid") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="center" Width="100px" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                        <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" />
+                                        <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red"  HeaderText="Action" ControlStyle-Font-Bold="true" >
+                                            <ItemStyle Width="20px"></ItemStyle>
+                                        </asp:CommandField>
 
                                     </Columns>
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -314,10 +307,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label12" runat="server" Text=""></asp:Label></td>
-                            <td colspan="5">
-                                <asp:GridView ID="dgvDocUp" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                            <td colspan="6">
+                                <asp:GridView ID="dgvDocUp" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" Width="100%"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvDocUp_RowDeleting">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
@@ -330,11 +321,12 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFileName" runat="server" Text='<%# Bind("strFileName") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" Width="440px" />
+                                            <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
-                                        <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" />
-
+                                        <asp:CommandField ShowDeleteButton="true" HeaderText="Action" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true">
+                                        <ItemStyle Width="20px"></ItemStyle>
+                                        </asp:CommandField>
                                     </Columns>
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
