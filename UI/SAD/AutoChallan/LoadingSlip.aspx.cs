@@ -126,7 +126,7 @@ namespace UI.SAD.AutoChallan
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Mlqctotal += int.Parse(((Label)e.Row.Cells[1].FindControl("lblMlqc")).Text);
+                /// Mlqctotal += int.Parse(((Label)e.Row.Cells[1].FindControl("lblMlqc")).Text);
 
                 if (((TextBox)e.Row.Cells[1].FindControl("lblnumqty")).Text == "")
                 {
