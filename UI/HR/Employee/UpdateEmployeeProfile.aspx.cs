@@ -7,12 +7,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.Services;
 using System.Web.UI.WebControls;
-
 using HR_BLL.Global;
 using HR_BLL.Employee;
 using UI.ClassFiles;
 using System.IO;
 using System.Net;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Employee
 {
@@ -23,11 +24,22 @@ namespace UI.HR.Employee
         Create date: <16-01-2013>
         Description: <Update Employee Profile>
         =============================================*/
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Employee/UpdateEmployeeProfile.aspx";
+        string stop = "stopping HR/Employee/UpdateEmployeeProfile.aspx";
 
         string alertMessage = ""; int intActive; int intHold; string photofile; string filePath; string documentfile;
         EmployeeRegistration bll = new EmployeeRegistration();
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/UpdateEmployeeProfile.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             filePath = Server.MapPath("~/HR/Employee/Upload/");
             try
             {
@@ -69,7 +81,16 @@ namespace UI.HR.Employee
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }        
 
         [WebMethod]
@@ -84,6 +105,13 @@ namespace UI.HR.Employee
         
         private void LoadFieldValue(string empCode)
         {
+            var fd = log.GetFlogDetail(start, location, "LoadFieldValue", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/UpdateEmployeeProfile.aspx LoadFieldValue", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (!String.IsNullOrEmpty(empCode))
@@ -170,11 +198,28 @@ namespace UI.HR.Employee
                     }
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "LoadFieldValue", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "LoadFieldValue", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void UpdateProfile()
         {
+            var fd = log.GetFlogDetail(start, location, "UpdateProfile", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/UpdateEmployeeProfile.aspx UpdateProfile", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 string empCode = hdfEmpCode.Value;
@@ -234,10 +279,26 @@ namespace UI.HR.Employee
 
             }
             catch (Exception ex)
-            { throw ex; }
+            {
+                var efd = log.GetFlogDetail(stop, location, "UpdateProfile", ex);
+                Flogger.WriteError(efd);
+                throw ex;
+            }
+
+            fd = log.GetFlogDetail(stop, location, "UpdateProfile", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void UploadPhotoDocumentToFTP()
         {
+            var fd = log.GetFlogDetail(start, location, "UploadPhotoDocumentToFTP", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/UpdateEmployeeProfile.aspx UploadPhotoDocumentToFTP", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 photofile = "EmployeePhoto_" + Session[SessionParams.USER_ID].ToString() + Path.GetExtension(photoUpload.FileName);
@@ -271,15 +332,35 @@ namespace UI.HR.Employee
                 File.Delete(filePath + documentfile);
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "UploadPhotoDocumentToFTP", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnCancel_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/UpdateEmployeeProfile.aspx btnCancel_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 ClearControls();
             }
             catch (Exception ex)
-            { throw ex; }
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnCancel_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnCancel_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ClearControls()

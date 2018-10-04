@@ -29,7 +29,6 @@ namespace UI.HR.KPI
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
             }
-
         }
 
         public string GetJSFunctionString(object intEmployeeID, object EmpStatus)
@@ -48,12 +47,10 @@ namespace UI.HR.KPI
                 string number1 = datas[0].ToString();
                 string number2 = datas[1].ToString();
                // string number3 = datas[2].ToString();
-
-
+               
                 Session["intEmployeeID"] = number1;
                 Session["EmpStatus"] = number2;
-               
-              
+                             
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "IssuePopUp('KPI_Examined_Issue.aspx');", true);
 
             }

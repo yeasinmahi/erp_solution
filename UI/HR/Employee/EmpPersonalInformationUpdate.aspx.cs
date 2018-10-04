@@ -11,11 +11,18 @@ using HR_BLL.Global;
 using HR_BLL.Employee;
 using System.Data;
 using System.Globalization;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Employee
 {
     public partial class EmpPersonalInformationUpdate : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Employee/EmpPersonalInformationUpdate.aspx";
+        string stop = "stopping HR/Employee/EmpPersonalInformationUpdate.aspx";
+
         EmployeeDetails bll = new EmployeeDetails();
         DataTable details = new DataTable();
         DataTable personalDetails = new DataTable();
@@ -45,6 +52,13 @@ namespace UI.HR.Employee
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "BtnUpdate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/EmpPersonalInformationUpdate.aspx BtnUpdate_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (hdnConfirm.Value == "1")
@@ -99,13 +113,28 @@ namespace UI.HR.Employee
                 
 
             }
-            catch { }
-            
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "BtnUpdate_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "BtnUpdate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
         protected void TxtEmployee_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "TxtEmployee_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/EmpPersonalInformationUpdate.aspx TxtEmployee_TextChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 ClearControl(); 
@@ -156,7 +185,11 @@ namespace UI.HR.Employee
 
             }
             catch { }
-               
+
+            fd = log.GetFlogDetail(stop, location, "TxtEmployee_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ClearControl()

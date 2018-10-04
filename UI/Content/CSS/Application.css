@@ -180,10 +180,7 @@ ddList1 {
     background-color: #2db2ff;
     color: white;
 }
-.myButtonNew:active {
-        /*position: relative;*/
-        /*top: 1px;*/
-    }
+
     .button, .signout, .headermenu {
         border: 0px solid #e8dcff;
         padding: 1px 2px 1px 2px;

@@ -11,6 +11,8 @@ using System.IO;
 using System.Net;
 using System.Data;
 using HR_BLL.Employee;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Employee
 {
@@ -21,11 +23,22 @@ namespace UI.HR.Employee
         Create date: <10-01-2013>
         Description: <New Employee Registration>
         =============================================*/
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Employee/NewEmployeeReg.aspx";
+        string stop = "stopping HR/Employee/NewEmployeeReg.aspx";
 
         string alertMessage = ""; string photofile; string filePath; string documentfile;
         EmployeeRegistration bll = new EmployeeRegistration();
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/NewEmployeeReg.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             filePath = Server.MapPath("~/HR/Employee/Upload/");
             if (!IsPostBack)
             {
@@ -45,6 +58,11 @@ namespace UI.HR.Employee
                 if (hdnField.Value != "0") { Submit(); }
                 else { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region --Dropdown list index change and Employee auto search--
@@ -83,6 +101,13 @@ namespace UI.HR.Employee
 
         public void Submit()
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Employee/NewEmployeeReg.aspx Submit", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 HR_BLL.Employee.EmployeeRegistration empRegistration = new HR_BLL.Employee.EmployeeRegistration();
@@ -146,8 +171,16 @@ namespace UI.HR.Employee
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + alertMessage + ", Sorry to register this employee !!!');", true);
                 }
             }
-            catch (Exception ex) { throw ex; }
-            
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void UploadPhotoDocumentToFTP()

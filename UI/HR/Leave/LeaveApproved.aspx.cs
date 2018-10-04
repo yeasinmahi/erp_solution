@@ -5,11 +5,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Leave
 {
     public partial class LeaveApproved : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Leave/LeaveApproved.aspx";
+        string stop = "stopping HR/Leave/LeaveApproved.aspx";
 
         string alertMessage = ""; int payStatus; string applicationStatus;
         protected void Page_Load(object sender, EventArgs e)
@@ -42,6 +48,13 @@ namespace UI.HR.Leave
 
         public void Submit()
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApproved.aspx Submit", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 HR_BLL.Leave.LeaveApplicationProcess appProcessed = new HR_BLL.Leave.LeaveApplicationProcess();
@@ -72,6 +85,10 @@ namespace UI.HR.Leave
             }
             catch (Exception ex) { throw ex; }
 
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }
