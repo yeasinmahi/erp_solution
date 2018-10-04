@@ -16,10 +16,19 @@ using System.Text.RegularExpressions;
 using HR_BLL.Global;
 using Dairy_BLL;
 using HR_BLL.Dispatch;
+using GLOBAL_BLL;
+using Flogging.Core;
+
+
 namespace UI.HR.Dispatch
 {
     public partial class rptDispatchForDispatchDept : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/rptDispatchForDispatchDept.aspx";
+        string stop = "stopping HR/Dispatch/rptDispatchForDispatchDept.aspx";
+
         DispatchGlobalBLL obj = new DispatchGlobalBLL();
         DataTable dt;
 
@@ -50,6 +59,13 @@ namespace UI.HR.Dispatch
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchForDispatchDept.aspx LoadGrid", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (rdoPending.Checked == true)
@@ -73,6 +89,11 @@ namespace UI.HR.Dispatch
                 dgvReport.DataBind();
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion =======================================================================
         
@@ -99,6 +120,13 @@ namespace UI.HR.Dispatch
 
         protected void btnAction_OnCommand(object sender, CommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchForDispatchDept.aspx btnAction_OnCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             char[] delimiterChars = { '^' };
             string value = (e.CommandArgument).ToString();
             string[] data = value.Split(delimiterChars);
@@ -197,7 +225,12 @@ namespace UI.HR.Dispatch
                     }
                     catch { }
                 }
-            }                
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         
        

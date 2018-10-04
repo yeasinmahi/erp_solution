@@ -7,11 +7,18 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using System.Data;
 using HR_BLL.Settlement;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Insurance
 {
     public partial class InsuranceReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Insurance/InsuranceReport.aspx";
+        string stop = "stopping HR/Insurance/InsuranceReport.aspx";
+
         GlobalClass obj = new GlobalClass();
         DataTable dt;
         string permis;
@@ -19,6 +26,13 @@ namespace UI.HR.Insurance
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceReport.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 try
@@ -40,13 +54,18 @@ namespace UI.HR.Insurance
                 { }
             }
 
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+            
         }
 
         
 
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
-            LoadGrid();
+            LoadGrid();            
         }
 
         protected void ddlJobStation_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,6 +82,13 @@ namespace UI.HR.Insurance
 
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceReport.aspx btnShowReport_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 permis = "";
@@ -86,7 +112,16 @@ namespace UI.HR.Insurance
                 dgvDependant.DataSource = dt;
                 dgvDependant.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnShowReport_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnExportToExcel_Click(object sender, EventArgs e)

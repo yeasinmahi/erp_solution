@@ -6,16 +6,30 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HR_BLL.HolidayCalendar;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.HolidayCalendar
 {
     public partial class HolidaySetupPopup : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/HolidayCalendar/HolidaySetupPopup.aspx";
+        string stop = "stopping HR/HolidayCalendar/HolidaySetupPopup.aspx";
+
         #region Decalre Object
         HolidaySetup objHolidayCalendar = new HolidaySetup();
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/HolidayCalendar/HolidaySetupPopup.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 hdnUserId.Value = /*"1056";*/ Session[SessionParams.USER_ID].ToString();
@@ -35,6 +49,11 @@ namespace UI.HR.HolidayCalendar
                 btnBackToSetupPage.Style.Add("cursor", "pointer");
 
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -93,6 +112,13 @@ namespace UI.HR.HolidayCalendar
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDelete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/HolidayCalendar/HolidaySetupPopup.aspx btnDelete_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   This function will use to delete Holiday data
             //Created    :   Md. Yeasir Arafat / May-10-2012
             //Modified   :   
@@ -114,6 +140,11 @@ namespace UI.HR.HolidayCalendar
                 }
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "btnDelete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void dgvHolliday_RowDataBound(object sender, GridViewRowEventArgs e)
         {

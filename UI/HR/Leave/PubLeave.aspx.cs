@@ -9,11 +9,18 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Leave
 {
     public partial class PubLeave : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Leave/PubLeave.aspx";
+        string stop = "stopping HR/Leave/PubLeave.aspx";
+
         string alertMessage;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -103,6 +110,13 @@ namespace UI.HR.Leave
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDelete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/PubLeave.aspx btnDelete_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -127,9 +141,21 @@ namespace UI.HR.Leave
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry to delete this application !!!');", true);
                 }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnDelete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/PubLeave.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -158,6 +184,11 @@ namespace UI.HR.Leave
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry to submit this application !!!');", true);
                 }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

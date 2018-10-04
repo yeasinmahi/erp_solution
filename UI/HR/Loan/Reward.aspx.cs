@@ -12,10 +12,18 @@ using System.Data;
 using HR_BLL.Loan;
 using HR_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 namespace UI.HR.Loan
 {
     public partial class Reward : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Loan/Reward.aspx";
+        string stop = "stopping HR/Loan/Reward.aspx";
+
         #region===== Variable & Object Declaration =====================================================
         HR_BLL.Loan.Loan objLoan = new HR_BLL.Loan.Loan();
         DataTable dt;
@@ -62,6 +70,13 @@ namespace UI.HR.Loan
         #region===== Text Box Change Event =============================================================
         protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtSearchEmp_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Loan/LoanStatusSummary.aspx txtSearchEmp_TextChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 try
@@ -95,12 +110,24 @@ namespace UI.HR.Loan
                 }
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "txtSearchEmp_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion======================================================================================
 
         #region ===== Submit Action =====================================================================
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Loan/LoanStatusSummary.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -133,8 +160,18 @@ namespace UI.HR.Loan
                     txtJobStatus.Text = "";
                     txtJobStation.Text = "";
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
+                    Flogger.WriteError(efd);
+                    throw ex;
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion=======================================================================================
 

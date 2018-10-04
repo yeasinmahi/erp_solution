@@ -9,11 +9,18 @@ using System.Data;
 using HR_BLL.Benifit;
 using HR_BLL.Reports;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Reports
 {
     public partial class UnitwiseBonusDetails_Report : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Reports/BonusDetailsUnitwise_Report.aspx";
+        string stop = "stopping HR/Reports/BonusDetailsUnitwise_Report.aspx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,6 +32,13 @@ namespace UI.HR.Reports
         }
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/BonusDetailsUnitwise_Report.aspx btnShowReport_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   This function will use to Show Unitwise Bonus report
             //Created    :   Md. Yeasir Arafat / July-30-2012
             //Modified   :   
@@ -61,6 +75,11 @@ namespace UI.HR.Reports
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

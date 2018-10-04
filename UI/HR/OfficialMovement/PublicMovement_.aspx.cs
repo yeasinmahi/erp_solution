@@ -12,11 +12,18 @@ using System.Data;
 using System.Text.RegularExpressions;
 using HR_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.OfficialMovement
 {
     public partial class PublicMovement : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/OfficialMovement/PublicMovement_.aspx";
+        string stop = "stopping HR/OfficialMovement/PublicMovement_.aspx";
+
         #region Declare variable
         static int intLoginUerId;
         static int intjobStationID;
@@ -102,6 +109,13 @@ namespace UI.HR.OfficialMovement
         }
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnEdit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/OfficialMovement/PublicMovement_.aspx btnEdit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   This function will use to update official movement application data
             //Created    :   Md. Yeasir Arafat / May-02-2012
             //Modified   :   
@@ -125,9 +139,22 @@ namespace UI.HR.OfficialMovement
                 }
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "btnEdit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnDelete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/OfficialMovement/PublicMovement_.aspx btnDelete_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   This function will use to delete official movement application data
             //Created    :   Md. Yeasir Arafat / May-02-2012
             //Modified   :   
@@ -159,6 +186,11 @@ namespace UI.HR.OfficialMovement
                 }
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "btnDelete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void dgvOfficialMovementApplication_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -302,6 +334,13 @@ namespace UI.HR.OfficialMovement
 
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/OfficialMovement/PublicMovement_.aspx btnShowReport_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!String.IsNullOrEmpty(txtSearchByName.Text))
             {
                 string strSearchKey = txtSearchByName.Text;
@@ -314,6 +353,11 @@ namespace UI.HR.OfficialMovement
             {
                 RefreshPage();
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }
