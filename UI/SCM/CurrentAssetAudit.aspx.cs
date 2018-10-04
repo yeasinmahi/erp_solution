@@ -51,27 +51,39 @@ namespace UI.SCM
             //    itemName = arraykey[0].ToString();
             //    itemID = Convert.ToInt32(arraykey[1].ToString());
             //}
-            if(itemName!="")
+            if(itemName != "" && itemID != "")
             {
-                txtItemID.Text = "";
-                dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, itemName);
-            }
-            else if(itemID !="")
-            {
-                txtItem.Text = "";
-                dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 3, itemID);
-            }
-            if(dt.Rows.Count>0)
-            {
-                GvAuditList.DataSource = dt;
-                GvAuditList.DataBind();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Plz Insert Item Name or Item ID.');", true);
             }
             else
             {
-                GvAuditList.DataSource = "";
-                GvAuditList.DataBind();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found.');", true);
+                if (itemName != "" && itemID == "")
+                {
+                    txtItemID.Text = "";
+                    dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, itemName);
+                }
+                else if (itemID != "" && itemName == "")
+                {
+                    txtItem.Text = "";
+                    dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 3, itemID);
+                }
+                else if (itemName == "" && itemID == "")
+                {
+                    dt = objInventorybll.GetAssetData(intWH, Fdate, Tdate, 4, "");
+                }
+                if (dt.Rows.Count > 0)
+                {
+                    GvAuditList.DataSource = dt;
+                    GvAuditList.DataBind();
+                }
+                else
+                {
+                    GvAuditList.DataSource = "";
+                    GvAuditList.DataBind();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found.');", true);
+                }
             }
+           
            
         }
 
@@ -241,7 +253,17 @@ namespace UI.SCM
             }
         }
 
-       
+        protected void txtItem_TextChanged(object sender, EventArgs e)
+        {
+            txtItemID.Text = "";
+        }
+
+        protected void txtItemID_TextChanged(object sender, EventArgs e)
+        {
+            txtItem.Text = "";
+        }
+
+
         #endregion========checkbox check changed end=============
 
         #region==== create xml==========

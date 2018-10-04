@@ -120,6 +120,8 @@ namespace SAD_DAL.Sales {
         
         private SprZSupervisorAprvNHRApproveDataTable tableSprZSupervisorAprvNHRApprove;
         
+        private SprApproveByImmediateSuperVisorDataTable tableSprApproveByImmediateSuperVisor;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -291,6 +293,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["SprZSupervisorAprvNHRApprove"] != null)) {
                     base.Tables.Add(new SprZSupervisorAprvNHRApproveDataTable(ds.Tables["SprZSupervisorAprvNHRApprove"]));
+                }
+                if ((ds.Tables["SprApproveByImmediateSuperVisor"] != null)) {
+                    base.Tables.Add(new SprApproveByImmediateSuperVisorDataTable(ds.Tables["SprApproveByImmediateSuperVisor"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -792,6 +797,16 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprApproveByImmediateSuperVisorDataTable SprApproveByImmediateSuperVisor {
+            get {
+                return this.tableSprApproveByImmediateSuperVisor;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -1000,6 +1015,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["SprZSupervisorAprvNHRApprove"] != null)) {
                     base.Tables.Add(new SprZSupervisorAprvNHRApproveDataTable(ds.Tables["SprZSupervisorAprvNHRApprove"]));
+                }
+                if ((ds.Tables["SprApproveByImmediateSuperVisor"] != null)) {
+                    base.Tables.Add(new SprApproveByImmediateSuperVisorDataTable(ds.Tables["SprApproveByImmediateSuperVisor"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -1322,6 +1340,12 @@ namespace SAD_DAL.Sales {
                     this.tableSprZSupervisorAprvNHRApprove.InitVars();
                 }
             }
+            this.tableSprApproveByImmediateSuperVisor = ((SprApproveByImmediateSuperVisorDataTable)(base.Tables["SprApproveByImmediateSuperVisor"]));
+            if ((initTable == true)) {
+                if ((this.tableSprApproveByImmediateSuperVisor != null)) {
+                    this.tableSprApproveByImmediateSuperVisor.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1428,6 +1452,8 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableTblChallanvsDetInfo);
             this.tableSprZSupervisorAprvNHRApprove = new SprZSupervisorAprvNHRApproveDataTable();
             base.Tables.Add(this.tableSprZSupervisorAprvNHRApprove);
+            this.tableSprApproveByImmediateSuperVisor = new SprApproveByImmediateSuperVisorDataTable();
+            base.Tables.Add(this.tableSprApproveByImmediateSuperVisor);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1720,6 +1746,12 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprApproveByImmediateSuperVisor() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1916,6 +1948,9 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprZSupervisorAprvNHRApproveRowChangeEventHandler(object sender, SprZSupervisorAprvNHRApproveRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprApproveByImmediateSuperVisorRowChangeEventHandler(object sender, SprApproveByImmediateSuperVisorRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -22400,6 +22435,416 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprApproveByImmediateSuperVisorDataTable : global::System.Data.TypedTableBase<SprApproveByImmediateSuperVisorRow> {
+            
+            private global::System.Data.DataColumn columnSi;
+            
+            private global::System.Data.DataColumn columnstrEmplName;
+            
+            private global::System.Data.DataColumn columnintEmployeeid;
+            
+            private global::System.Data.DataColumn columnstrSupervisor;
+            
+            private global::System.Data.DataColumn columnLMAudit;
+            
+            private global::System.Data.DataColumn columnCMApplicant;
+            
+            private global::System.Data.DataColumn columndecCMSupervisor;
+            
+            private global::System.Data.DataColumn columnstrJobstation;
+            
+            private global::System.Data.DataColumn columnstrunit;
+            
+            private global::System.Data.DataColumn columnintattachneed;
+            
+            private global::System.Data.DataColumn columnintuploadedattach;
+            
+            private global::System.Data.DataColumn columnuploadedinPercentage;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprApproveByImmediateSuperVisorDataTable() {
+                this.TableName = "SprApproveByImmediateSuperVisor";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprApproveByImmediateSuperVisorDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprApproveByImmediateSuperVisorDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SiColumn {
+                get {
+                    return this.columnSi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strEmplNameColumn {
+                get {
+                    return this.columnstrEmplName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intEmployeeidColumn {
+                get {
+                    return this.columnintEmployeeid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSupervisorColumn {
+                get {
+                    return this.columnstrSupervisor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LMAuditColumn {
+                get {
+                    return this.columnLMAudit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CMApplicantColumn {
+                get {
+                    return this.columnCMApplicant;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decCMSupervisorColumn {
+                get {
+                    return this.columndecCMSupervisor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strJobstationColumn {
+                get {
+                    return this.columnstrJobstation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strunitColumn {
+                get {
+                    return this.columnstrunit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intattachneedColumn {
+                get {
+                    return this.columnintattachneed;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intuploadedattachColumn {
+                get {
+                    return this.columnintuploadedattach;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn uploadedinPercentageColumn {
+                get {
+                    return this.columnuploadedinPercentage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprApproveByImmediateSuperVisorRow this[int index] {
+                get {
+                    return ((SprApproveByImmediateSuperVisorRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprApproveByImmediateSuperVisorRowChangeEventHandler SprApproveByImmediateSuperVisorRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprApproveByImmediateSuperVisorRowChangeEventHandler SprApproveByImmediateSuperVisorRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprApproveByImmediateSuperVisorRowChangeEventHandler SprApproveByImmediateSuperVisorRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprApproveByImmediateSuperVisorRowChangeEventHandler SprApproveByImmediateSuperVisorRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprApproveByImmediateSuperVisorRow(SprApproveByImmediateSuperVisorRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprApproveByImmediateSuperVisorRow AddSprApproveByImmediateSuperVisorRow(long Si, string strEmplName, int intEmployeeid, string strSupervisor, decimal LMAudit, decimal CMApplicant, decimal decCMSupervisor, string strJobstation, string strunit, double intattachneed, double intuploadedattach, double uploadedinPercentage) {
+                SprApproveByImmediateSuperVisorRow rowSprApproveByImmediateSuperVisorRow = ((SprApproveByImmediateSuperVisorRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Si,
+                        strEmplName,
+                        intEmployeeid,
+                        strSupervisor,
+                        LMAudit,
+                        CMApplicant,
+                        decCMSupervisor,
+                        strJobstation,
+                        strunit,
+                        intattachneed,
+                        intuploadedattach,
+                        uploadedinPercentage};
+                rowSprApproveByImmediateSuperVisorRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprApproveByImmediateSuperVisorRow);
+                return rowSprApproveByImmediateSuperVisorRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprApproveByImmediateSuperVisorDataTable cln = ((SprApproveByImmediateSuperVisorDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprApproveByImmediateSuperVisorDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnSi = base.Columns["Si"];
+                this.columnstrEmplName = base.Columns["strEmplName"];
+                this.columnintEmployeeid = base.Columns["intEmployeeid"];
+                this.columnstrSupervisor = base.Columns["strSupervisor"];
+                this.columnLMAudit = base.Columns["LMAudit"];
+                this.columnCMApplicant = base.Columns["CMApplicant"];
+                this.columndecCMSupervisor = base.Columns["decCMSupervisor"];
+                this.columnstrJobstation = base.Columns["strJobstation"];
+                this.columnstrunit = base.Columns["strunit"];
+                this.columnintattachneed = base.Columns["intattachneed"];
+                this.columnintuploadedattach = base.Columns["intuploadedattach"];
+                this.columnuploadedinPercentage = base.Columns["uploadedinPercentage"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnSi = new global::System.Data.DataColumn("Si", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSi);
+                this.columnstrEmplName = new global::System.Data.DataColumn("strEmplName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrEmplName);
+                this.columnintEmployeeid = new global::System.Data.DataColumn("intEmployeeid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintEmployeeid);
+                this.columnstrSupervisor = new global::System.Data.DataColumn("strSupervisor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSupervisor);
+                this.columnLMAudit = new global::System.Data.DataColumn("LMAudit", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLMAudit);
+                this.columnCMApplicant = new global::System.Data.DataColumn("CMApplicant", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCMApplicant);
+                this.columndecCMSupervisor = new global::System.Data.DataColumn("decCMSupervisor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecCMSupervisor);
+                this.columnstrJobstation = new global::System.Data.DataColumn("strJobstation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobstation);
+                this.columnstrunit = new global::System.Data.DataColumn("strunit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrunit);
+                this.columnintattachneed = new global::System.Data.DataColumn("intattachneed", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintattachneed);
+                this.columnintuploadedattach = new global::System.Data.DataColumn("intuploadedattach", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintuploadedattach);
+                this.columnuploadedinPercentage = new global::System.Data.DataColumn("uploadedinPercentage", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnuploadedinPercentage);
+                this.columnSi.ReadOnly = true;
+                this.columnstrEmplName.MaxLength = 500;
+                this.columnstrSupervisor.MaxLength = 500;
+                this.columnLMAudit.ReadOnly = true;
+                this.columnCMApplicant.ReadOnly = true;
+                this.columndecCMSupervisor.ReadOnly = true;
+                this.columnstrJobstation.MaxLength = 500;
+                this.columnstrunit.MaxLength = 500;
+                this.columnuploadedinPercentage.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprApproveByImmediateSuperVisorRow NewSprApproveByImmediateSuperVisorRow() {
+                return ((SprApproveByImmediateSuperVisorRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprApproveByImmediateSuperVisorRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprApproveByImmediateSuperVisorRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprApproveByImmediateSuperVisorRowChanged != null)) {
+                    this.SprApproveByImmediateSuperVisorRowChanged(this, new SprApproveByImmediateSuperVisorRowChangeEvent(((SprApproveByImmediateSuperVisorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprApproveByImmediateSuperVisorRowChanging != null)) {
+                    this.SprApproveByImmediateSuperVisorRowChanging(this, new SprApproveByImmediateSuperVisorRowChangeEvent(((SprApproveByImmediateSuperVisorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprApproveByImmediateSuperVisorRowDeleted != null)) {
+                    this.SprApproveByImmediateSuperVisorRowDeleted(this, new SprApproveByImmediateSuperVisorRowChangeEvent(((SprApproveByImmediateSuperVisorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprApproveByImmediateSuperVisorRowDeleting != null)) {
+                    this.SprApproveByImmediateSuperVisorRowDeleting(this, new SprApproveByImmediateSuperVisorRowChangeEvent(((SprApproveByImmediateSuperVisorRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprApproveByImmediateSuperVisorRow(SprApproveByImmediateSuperVisorRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesViewTDS ds = new SalesViewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprApproveByImmediateSuperVisorDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class SprSalesInfoRow : global::System.Data.DataRow {
@@ -39960,6 +40405,368 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprApproveByImmediateSuperVisorRow : global::System.Data.DataRow {
+            
+            private SprApproveByImmediateSuperVisorDataTable tableSprApproveByImmediateSuperVisor;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprApproveByImmediateSuperVisorRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprApproveByImmediateSuperVisor = ((SprApproveByImmediateSuperVisorDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long Si {
+                get {
+                    try {
+                        return ((long)(this[this.tableSprApproveByImmediateSuperVisor.SiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Si\' in table \'SprApproveByImmediateSuperVisor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.SiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strEmplName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprApproveByImmediateSuperVisor.strEmplNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strEmplName\' in table \'SprApproveByImmediateSuperVisor\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.strEmplNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intEmployeeid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprApproveByImmediateSuperVisor.intEmployeeidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intEmployeeid\' in table \'SprApproveByImmediateSuperVisor\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.intEmployeeidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSupervisor {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprApproveByImmediateSuperVisor.strSupervisorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSupervisor\' in table \'SprApproveByImmediateSuperVisor\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.strSupervisorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal LMAudit {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprApproveByImmediateSuperVisor.LMAuditColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LMAudit\' in table \'SprApproveByImmediateSuperVisor\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.LMAuditColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal CMApplicant {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprApproveByImmediateSuperVisor.CMApplicantColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CMApplicant\' in table \'SprApproveByImmediateSuperVisor\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.CMApplicantColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decCMSupervisor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprApproveByImmediateSuperVisor.decCMSupervisorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decCMSupervisor\' in table \'SprApproveByImmediateSuperVisor\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.decCMSupervisorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strJobstation {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprApproveByImmediateSuperVisor.strJobstationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobstation\' in table \'SprApproveByImmediateSuperVisor\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.strJobstationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strunit {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprApproveByImmediateSuperVisor.strunitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strunit\' in table \'SprApproveByImmediateSuperVisor\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.strunitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public double intattachneed {
+                get {
+                    try {
+                        return ((double)(this[this.tableSprApproveByImmediateSuperVisor.intattachneedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intattachneed\' in table \'SprApproveByImmediateSuperVisor\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.intattachneedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public double intuploadedattach {
+                get {
+                    try {
+                        return ((double)(this[this.tableSprApproveByImmediateSuperVisor.intuploadedattachColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intuploadedattach\' in table \'SprApproveByImmediateSuperViso" +
+                                "r\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.intuploadedattachColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public double uploadedinPercentage {
+                get {
+                    try {
+                        return ((double)(this[this.tableSprApproveByImmediateSuperVisor.uploadedinPercentageColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'uploadedinPercentage\' in table \'SprApproveByImmediateSuperV" +
+                                "isor\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprApproveByImmediateSuperVisor.uploadedinPercentageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSiNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.SiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSiNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.SiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrEmplNameNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.strEmplNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrEmplNameNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.strEmplNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintEmployeeidNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.intEmployeeidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintEmployeeidNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.intEmployeeidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrSupervisorNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.strSupervisorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrSupervisorNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.strSupervisorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLMAuditNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.LMAuditColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLMAuditNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.LMAuditColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCMApplicantNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.CMApplicantColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCMApplicantNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.CMApplicantColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecCMSupervisorNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.decCMSupervisorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecCMSupervisorNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.decCMSupervisorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrJobstationNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.strJobstationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrJobstationNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.strJobstationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrunitNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.strunitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrunitNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.strunitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintattachneedNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.intattachneedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintattachneedNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.intattachneedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintuploadedattachNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.intuploadedattachColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintuploadedattachNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.intuploadedattachColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsuploadedinPercentageNull() {
+                return this.IsNull(this.tableSprApproveByImmediateSuperVisor.uploadedinPercentageColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetuploadedinPercentageNull() {
+                this[this.tableSprApproveByImmediateSuperVisor.uploadedinPercentageColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -41577,6 +42384,40 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprZSupervisorAprvNHRApproveRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprApproveByImmediateSuperVisorRowChangeEvent : global::System.EventArgs {
+            
+            private SprApproveByImmediateSuperVisorRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprApproveByImmediateSuperVisorRowChangeEvent(SprApproveByImmediateSuperVisorRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprApproveByImmediateSuperVisorRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -51556,6 +52397,193 @@ left join erp_hr.dbo.tblUnitAddress adr on adr.intUnitID=u.intUnitID
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             SalesViewTDS.SprZSupervisorAprvNHRApproveDataTable dataTable = new SalesViewTDS.SprZSupervisorAprvNHRApproveDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprApproveByImmediateSuperVisorTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprApproveByImmediateSuperVisorTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprApproveByImmediateSuperVisor";
+            tableMapping.ColumnMappings.Add("Si", "Si");
+            tableMapping.ColumnMappings.Add("strEmplName", "strEmplName");
+            tableMapping.ColumnMappings.Add("intEmployeeid", "intEmployeeid");
+            tableMapping.ColumnMappings.Add("strSupervisor", "strSupervisor");
+            tableMapping.ColumnMappings.Add("LMAudit", "LMAudit");
+            tableMapping.ColumnMappings.Add("CMApplicant", "CMApplicant");
+            tableMapping.ColumnMappings.Add("decCMSupervisor", "decCMSupervisor");
+            tableMapping.ColumnMappings.Add("strJobstation", "strJobstation");
+            tableMapping.ColumnMappings.Add("strunit", "strunit");
+            tableMapping.ColumnMappings.Add("intattachneed", "intattachneed");
+            tableMapping.ColumnMappings.Add("intuploadedattach", "intuploadedattach");
+            tableMapping.ColumnMappings.Add("uploadedinPercentage", "uploadedinPercentage");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprApproveByImmediateSuperVisor";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dtFromdate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteTodate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSupervisorid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesViewTDS.SprApproveByImmediateSuperVisorDataTable GetData(global::System.Nullable<global::System.DateTime> dtFromdate, global::System.Nullable<global::System.DateTime> dteTodate, global::System.Nullable<int> intSupervisorid) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((dtFromdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(dtFromdate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((dteTodate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(dteTodate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((intSupervisorid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intSupervisorid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            SalesViewTDS.SprApproveByImmediateSuperVisorDataTable dataTable = new SalesViewTDS.SprApproveByImmediateSuperVisorDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

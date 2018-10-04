@@ -11,6 +11,7 @@ using System.Collections;
 using HR_BLL.Global;
 using HR_DAL.Global;
 using SAD_DAL.Sales.SalesOrderTDSTableAdapters;
+using SAD_DAL.Customer.Report.StatementTDSTableAdapters;
 
 namespace SAD_BLL.Sales
 {
@@ -759,7 +760,15 @@ namespace SAD_BLL.Sales
 
         }
 
-
+        public DataTable GetDataTADASupervisorApprovePending(DateTime FromDate, DateTime ToDate, int supervisorenrol)
+        {
+            try
+            {
+                SprApproveByImmediateSuperVisorTableAdapter taDelvOrderDet = new SprApproveByImmediateSuperVisorTableAdapter();
+                return taDelvOrderDet.GetData(FromDate, ToDate, supervisorenrol);
+            }
+            catch { return new DataTable(); }
+        }
 
     }
 }

@@ -138,13 +138,13 @@
                              <td style="text-align: right;">
                                  <asp:Label ID="lblWh" CssClass="lbl" runat="server" Text="WH Name : "></asp:Label></td>
                              <td>
-                                <asp:DropDownList ID="ddlWH" runat="server" width="150px" CssClass="ddList1" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strWareHoseName" DataValueField="intWHID"> </asp:DropDownList> 
+                                <asp:DropDownList ID="ddlWH" runat="server" CssClass="ddList" Width="220px" Height="24px" Font-Bold="False" DataSourceID="ObjectDataSource1" DataTextField="strWareHoseName" DataValueField="intWHID"> </asp:DropDownList> 
                                  <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWHData" TypeName="SCM_DAL.BillingTDSTableAdapters.TblWHTableAdapter"></asp:ObjectDataSource>
                                  <asp:HiddenField ID="hdnwh" runat="server"/>
                              </td>
                           
                             <td style="text-align: right;"><asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>
-                             <td> <asp:TextBox ID="txtItem" placeholder="Search Item" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                             <td> <asp:TextBox ID="txtItem" placeholder="Search Item" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px" OnTextChanged="txtItem_TextChanged"></asp:TextBox>
                                <%-- <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
                                 ServiceMethod="GetItemList" MinimumPrefixLength="1" CompletionSetCount="1"
                                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -152,7 +152,7 @@
                                 </cc1:AutoCompleteExtender>--%>
                              </td>
                             <td style="text-align: right;"><asp:Label ID="lblItemID" CssClass="lbl" runat="server" Text="Item ID : "></asp:Label></td>
-                            <td><asp:TextBox ID="txtItemID" placeholder="Search Item By ID" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                            <td><asp:TextBox ID="txtItemID" placeholder="Search Item By ID" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px" OnTextChanged="txtItemID_TextChanged"></asp:TextBox>
                                </td>
                               <td>
                                  <asp:Button ID="btnShow" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
@@ -188,14 +188,14 @@
                             <asp:TemplateField HeaderText="Open Quantity" SortExpression="monOpenQty">
                               
                                 <ItemTemplate>
-                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("monOpenQty") %>'></asp:Label>
+                                    <asp:Label ID="Label4" runat="server"  Text='<%# Bind("monOpenQty","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Open Value" SortExpression="monOpenValue">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("monOpenValue") %>'></asp:Label>
+                                    <asp:Label ID="Label5" runat="server"  Text='<%# Bind("monOpenValue","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 
                                 <ItemStyle HorizontalAlign="Right" />
@@ -204,42 +204,42 @@
                             <asp:TemplateField HeaderText="Receive Quantity" SortExpression="monRcvQty">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("monRcvQty") %>'></asp:Label>
+                                    <asp:Label ID="Label6" runat="server"  Text='<%# Bind("monRcvQty","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Receive Value" SortExpression="monRcvValue">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("monRcvValue") %>'></asp:Label>
+                                    <asp:Label ID="Label7" runat="server"  Text='<%# Bind("monRcvValue","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Issue Quantity" SortExpression="monIssueQty">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("monIssueQty") %>'></asp:Label>
+                                    <asp:Label ID="Label8" runat="server"  Text='<%# Bind("monIssueQty","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Issue Value" SortExpression="Column1">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label9" runat="server" Text='<%# Bind("Column1") %>'></asp:Label>
+                                    <asp:Label ID="Label9" runat="server"  Text='<%# Bind("Column1","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                            
                              <asp:TemplateField HeaderText="Closing Quantity" SortExpression="Column2">                             
                                 <ItemTemplate>
-                                    <asp:Label ID="lblclsQty" runat="server" Text='<%# Bind("Column2") %>'></asp:Label>
+                                    <asp:Label ID="lblclsQty" runat="server"  Text='<%# Bind("Column2","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                  <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Close Value" SortExpression="monCloseValue">
                                
                                 <ItemTemplate>
-                                    <asp:Label ID="Label11" runat="server" Text='<%# Bind("monCloseValue") %>'></asp:Label>
+                                    <asp:Label ID="Label11" runat="server"  Text='<%# Bind("monCloseValue","{0:N2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>

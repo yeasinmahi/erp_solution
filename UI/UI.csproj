@@ -286,6 +286,7 @@
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\analytics.js" />
+    <Content Include="Content\JS\bootstrap.min.js" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
     <Content Include="Content\JS\html2canvas.js" />
@@ -1192,6 +1193,8 @@
     <Content Include="SAD\Order\TADAInfoDelete.aspx" />
     <Content Include="SAD\Order\TADATopsheetForSingleEmployee.aspx" />
     <Content Include="SAD\Order\TransferDelvOrderInactive.aspx" />
+    <Content Include="SAD\Order\UploadedReceiveChallanDetaills.aspx" />
+    <Content Include="SAD\Order\UploadReceiveChallan.aspx" />
     <Content Include="SAD\Order\VehicleSelect.aspx" />
     <Content Include="SAD\Order\VehicleSelectCustomize.aspx" />
     <Content Include="SAD\Order\VehicleSelectView.aspx" />
@@ -1354,6 +1357,7 @@
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
     <Content Include="SCM\IndentRFQ.aspx" />
     <Content Include="SCM\PoGenerate.aspx" />
+    <Content Include="SCM\PoGenerateNew.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
     <Content Include="SCM\PoRegisterReport.aspx" />
@@ -5983,6 +5987,20 @@
     <Compile Include="SAD\Order\TransferDelvOrderInactive.aspx.designer.cs">
       <DependentUpon>TransferDelvOrderInactive.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Order\UploadedReceiveChallanDetaills.aspx.cs">
+      <DependentUpon>UploadedReceiveChallanDetaills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\UploadedReceiveChallanDetaills.aspx.designer.cs">
+      <DependentUpon>UploadedReceiveChallanDetaills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\UploadReceiveChallan.aspx.cs">
+      <DependentUpon>UploadReceiveChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\UploadReceiveChallan.aspx.designer.cs">
+      <DependentUpon>UploadReceiveChallan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\VehicleSelect.aspx.cs">
       <DependentUpon>VehicleSelect.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7102,6 +7120,13 @@
     </Compile>
     <Compile Include="SCM\PoGenerate.aspx.designer.cs">
       <DependentUpon>PoGenerate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PoGenerateNew.aspx.cs">
+      <DependentUpon>PoGenerateNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PoGenerateNew.aspx.designer.cs">
+      <DependentUpon>PoGenerateNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PONew.aspx.cs">
       <DependentUpon>PONew.aspx</DependentUpon>
