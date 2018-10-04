@@ -1,5 +1,6 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,7 @@ namespace UI.SAD.Order
         string filePathForXMLHRBIKECAR;
         string xmlStringHRBIKECAR = "";
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+        SalesView obj = new SalesView();
 
         SeriLog log = new SeriLog();
         string location = "SAD";
@@ -72,10 +74,10 @@ namespace UI.SAD.Order
                     DateTime dteToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
                     string hdnenrol = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                     int enr = int.Parse(hdnenrol);
-                    dt = bll.getTADAApplicantInfoForApproveBySuperVisorV2(dteFromDate, dteToDate, enr);
+                        //dt = bll.getTADAApplicantInfoForApproveBySuperVisorV2(dteFromDate, dteToDate, enr);
+                        dt = obj.GetDataTADASupervisorApprovePending(dteFromDate, dteToDate, enr);
 
-
-                }
+                    }
 
                 catch
                 {

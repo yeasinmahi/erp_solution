@@ -64,7 +64,7 @@ namespace SAD_BLL.Sales
             catch { return new DataTable(); }
         }
 
-  
+       
 
     }
 }
