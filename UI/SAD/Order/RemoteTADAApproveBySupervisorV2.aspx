@@ -36,16 +36,6 @@
 </script>
 
 
-    
-
-
-
-
-
-
-
-
-
 
 </head>
 <body>
@@ -101,7 +91,7 @@
          </tr>          
                    <tr class="tblrowodd">
                 <td>
-        
+                  
 
                     <asp:GridView ID="grdvForTADAApproveBYimmediateSupervisorV2" runat="server" AutoGenerateColumns="False" AllowPaging="false"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="grdvForTADAApproveBYimmediateSupervisorV2_PageIndexChanging" OnRowDataBound="grdvForTADAApproveBYimmediateSupervisorV2_RowDataBound">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -117,7 +107,9 @@
                    <asp:BoundField DataField="decCMSupervisor" HeaderText="CM Supervisor" SortExpression="decCMSupervisor" />
                    <asp:BoundField DataField="strJobstation" HeaderText="Job Station" SortExpression="strJobstation" />
                   <asp:BoundField DataField="strunit" HeaderText="Unit" SortExpression="strunit" />
-                  
+                  <asp:BoundField DataField="intattachneed" HeaderText="Need Attch." SortExpression="intattachneed" ItemStyle-Width="5%" ItemStyle-Wrap="true" />
+                  <asp:BoundField DataField="intuploadedattach" HeaderText="Uploaded" ItemStyle-Width="5%" ItemStyle-Wrap="true" SortExpression="intuploadedattach" />
+                  <asp:BoundField DataField="uploadedinPercentage" HeaderText="Percentage Uploaded" SortExpression="uploadedinPercentage"  ItemStyle-Width="5%" ItemStyle-Wrap="true" />
 
                          <asp:TemplateField HeaderText="Det.">
              <ItemTemplate>

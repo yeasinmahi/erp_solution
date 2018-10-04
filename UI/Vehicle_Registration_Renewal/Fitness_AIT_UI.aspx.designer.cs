@@ -355,6 +355,24 @@ namespace UI.Vehicle_Registration_Renewal {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender12;
         
         /// <summary>
+        /// lblnowusedunit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblnowusedunit;
+        
+        /// <summary>
+        /// lbprsntus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbprsntus;
+        
+        /// <summary>
         /// BtnFitness control.
         /// </summary>
         /// <remarks>

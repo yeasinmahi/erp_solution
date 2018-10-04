@@ -36,7 +36,7 @@
               $(this).val('');
           }
            var grandTotalqty = 0;
-        
+        //
 
           $("[id*=lblTotalqty]").each(function () {
               grandTotalqty = grandTotalqty + parseFloat($(this).html());

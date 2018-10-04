@@ -139,6 +139,15 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.HiddenField hdnAccno;
         
         /// <summary>
+        /// hdnuom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnuom;
+        
+        /// <summary>
         /// hdnysnFactory control.
         /// </summary>
         /// <remarks>
@@ -328,13 +337,13 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.TextBox txtSD;
         
         /// <summary>
-        /// txtVAT control.
+        /// txtNuse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVAT;
+        protected global::System.Web.UI.WebControls.TextBox txtNuse;
         
         /// <summary>
         /// txtNewVat control.

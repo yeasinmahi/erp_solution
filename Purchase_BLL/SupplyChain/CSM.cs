@@ -62,6 +62,11 @@ namespace Purchase_BLL.SupplyChain
             var temp = adp.GetDocDetails(intEmployeeID, intDocTypeId);
             return temp;
         }
+        public DataTable GetDocDetailsData(int intSuppMasterId)
+        {
+            tblSupplierDocListTableAdapter adp = new tblSupplierDocListTableAdapter();
+            return adp.GetDocListBySupplyId(intSuppMasterId);
+        }
 
         internal System.Data.DataTable getbankcheck(string Routingnumber)
         {

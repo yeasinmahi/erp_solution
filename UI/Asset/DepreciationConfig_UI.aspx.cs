@@ -11,6 +11,8 @@ using Purchase_BLL.Asset;
 using System.Xml;
 using UI.ClassFiles;
 using System.Drawing;
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -22,6 +24,10 @@ namespace UI.Asset
         string filePathForXMLDEP;
         int intType;
         string XmlStringDEP= "";
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\DepreciationConfig_UI";
+        string stop = "stopping Asset\\DepreciationConfig_UI";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXMLDEP = Server.MapPath("~/Asset/Data/depc_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -94,8 +100,15 @@ namespace UI.Asset
 
         protected void BtnSumbit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
 
-            string depPercentge;
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\DepreciationConfig_UI Submit", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string depPercentge;
             DateTime dtefrom = DateTime.Parse(TxtDteStart.Text.ToString());
             DateTime dteenddate = DateTime.Parse(TxtDteEnd.Text.ToString());
             int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -161,6 +174,17 @@ namespace UI.Asset
                 dt = depconfig.GlobalCOAView(intType, 0, dtefrom, dteenddate, unitid, 0);
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {

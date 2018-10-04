@@ -72,6 +72,7 @@ namespace UI
                     if (User.Identity.IsAuthenticated && donainpatrs[0].ToUpper() == "AKIJ")
                     {
 
+
                         uss.DomainLoginUpdate(id.Trim(), Session.SessionID, "WEB", ip);
                     }
                     else
@@ -79,10 +80,10 @@ namespace UI
                         uss.DomainLoginFails(id.Trim(), ip, DateTime.Now);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     //DB Error
-                    retStr = domainUser + "r1";
+                    retStr = domainUser + " Error: "+ ex.Message;
                     Panel1.Visible = true;
                     Panel1.DataBind();
                     return;

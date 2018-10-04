@@ -484,7 +484,7 @@ namespace UI.SCM
                                 // lblMrrDate.Text= dt.Rows[0][""].ToString();
                                 lblPoTotal.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
                                 lblProductCost.Text = dt.Rows[0]["monPOAmount"].ToString();
-                                lblTransportCost.Text = dt.Rows[0]["monOther"].ToString();
+                                lblTransportCost.Text = dt.Rows[0]["monTransport"].ToString();
                                 lblOtherCost.Text = dt.Rows[0]["monOther"].ToString();
                                 lblDiscount.Text = dt.Rows[0]["monDiscount"].ToString();
                                 lblCurrency.Text = "Currency: " + dt.Rows[0]["strCurrencyName"].ToString();

@@ -10,7 +10,8 @@ using UI.ClassFiles;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Text.RegularExpressions;
-
+using Flogging.Core;
+using GLOBAL_BLL;
 
 namespace UI.Asset
 {
@@ -24,6 +25,10 @@ namespace UI.Asset
         DataTable dgview = new DataTable();
 
         int intItem; int ysnprovide, intAssetAutoId, serviceId; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        SeriLog log = new SeriLog();
+        string location = "Asset";
+        string start = "starting Asset\\ServiceConfiguration";
+        string stop = "stopping Asset\\ServiceConfiguration";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -38,8 +43,15 @@ namespace UI.Asset
 
         private void showdata()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule ServiceConfiguration", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
+
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -81,9 +93,18 @@ namespace UI.Asset
                 dgvservice.DataBind();
                 dt.Clear();
             }
-            catch { }
-           
-        
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
             //intItem = 12;
             //if (intItem == 12)
             //{
@@ -99,7 +120,7 @@ namespace UI.Asset
             //if (intItem == 13)
             //{
             //    intItem = 13;
-                
+
             //    //Int32 Mnumber = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             //    servicec = objPMConfigure.ServiceDropdown(intItem, Mnumber, intenroll, intjobid, intdept);
             //    DdlService.DataSource = servicec;
@@ -107,7 +128,7 @@ namespace UI.Asset
             //    DdlService.DataValueField = "intID";
             //    DdlService.DataBind();
 
-               
+
             //}
 
             //intItem = 11;
@@ -313,6 +334,12 @@ namespace UI.Asset
         }
         protected void BtnIssue_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
             try
             {
                 if (hdnConfirm.Value == "1")
@@ -382,9 +409,18 @@ namespace UI.Asset
                 }
                 else { }
             }
-            catch { }
-          
-           
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+
         }
 
         protected void BtnAdd_Click(object sender, EventArgs e)
@@ -408,7 +444,15 @@ namespace UI.Asset
 
         protected void DdlCommonRepair_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int repairsID = int.Parse(DdlCommonRepair.SelectedValue.ToString());
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\PMSchedule Save", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                int repairsID = int.Parse(DdlCommonRepair.SelectedValue.ToString());
             
             dt = objPMConfigure.commonrepairsView(repairsID);
             if (dt.Rows.Count > 0)
@@ -416,6 +460,17 @@ namespace UI.Asset
                 hdnRepairsCost.Value = dt.Rows[0]["monServiceCharge"].ToString();
             }
             dt.Clear();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

@@ -35,8 +35,9 @@ namespace UI.HR.TourPlan
 
         private void Clearcontrols()
         {
-            txtProgramNo.Text = ""; txtAddress.Text = "";
-            txtparticipantnumber.Text = "";
+            //txtProgramNo.Text = ""; txtAddress.Text = "";
+            //txtparticipantnumber.Text = "";
+            txtfoodcost.Text = ""; txtMojoCost.Text = ""; txtOthercost.Text = ""; txtparticipantnumber.Text = ""; txtTotalCost.Text = "";
         }
 
         private void LoadXml()
@@ -129,8 +130,7 @@ namespace UI.HR.TourPlan
         {
             try
             {
-                if (hdnconfirm.Value == "1")
-                {
+              
 
                     bool proceed = false;
                     //progdate,programName,  programno,  adr,  participantcatgid,  participantcatgname,  participantnumber,  foodperh,  mojoperh, otherperh, totalcostperh
@@ -150,9 +150,9 @@ namespace UI.HR.TourPlan
                     string mojoper = txtMojoCost.Text.ToString();
                     string othcostper = txtOthercost.Text.ToString();
                     string totalper = txtTotalCost.Text.ToString();
-                    string regionid;
-                    try { regionid = drdlRegionName.SelectedValue.ToString(); }
-                    catch { regionid = "0"; }
+                    string terri;
+                    try { terri = drdlRegionName.SelectedValue.ToString(); }
+                    catch { terri = "0"; }
 
 
 
@@ -160,7 +160,7 @@ namespace UI.HR.TourPlan
                     if (cnt == 0)
                     {
                         CreateXml(prgdate, prgname, prgid, prgno, adrs, participantcatgid, partcatgname, particpnumber, foodper, mojoper, othcostper, totalper);
-                        //Clearcontrols();
+                        Clearcontrols();
                     }
                     else
                     {
@@ -170,17 +170,17 @@ namespace UI.HR.TourPlan
                             if (totalper != totp) { proceed = true; }
                             else
                             {
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select another District.');", true);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select another .');", true);
                                 break;
                             }
                         }
                         if (proceed == true)
                         {
                             CreateXml(prgdate, prgname, prgid, prgno, adrs, participantcatgid, partcatgname, particpnumber, foodper, mojoper, othcostper, totalper);
-                            //Clearcontrols();
+                            Clearcontrols();
                         }
                     }
-                }
+                
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
         }
@@ -203,6 +203,10 @@ namespace UI.HR.TourPlan
                 unitid = Convert.ToInt32(HiddenUnit.Value);
                 hdnstation.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.JOBSTATION_ID].ToString();
                 int jobstation = Convert.ToInt32(hdnstation.Value);
+                
+                try { territoryid = int.Parse(drdlRegionName.SelectedValue.ToString()); }
+                catch { territoryid = 0; }
+
                 XmlDocument doc = new XmlDocument();
 
                 try
@@ -257,5 +261,7 @@ namespace UI.HR.TourPlan
             }
             catch { }
         }
+
+        
     }
 }

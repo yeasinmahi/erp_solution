@@ -11,6 +11,7 @@ using System.Collections;
 using HR_BLL.Global;
 using HR_DAL.Global;
 using SAD_DAL.Sales.SalesOrderTDSTableAdapters;
+using SAD_DAL.Customer.Report.StatementTDSTableAdapters;
 
 namespace SAD_BLL.Sales
 {
@@ -724,16 +725,50 @@ namespace SAD_BLL.Sales
             catch { return new DataTable(); }
         }
 
-        //@intReportType int,@intUnitid int, @dteFromdate date, @dteTodate date,@Salesofficeid int,@intcustomerid int,@xml xml, @id int
-        public DataTable GetdataforBillSubmission (int reporttype ,int unitid,DateTime dtf,DateTime dtto, int sof,int custid, string xml,int id)
+
+        public DataTable GetdataforBillSubmission(int reporttype, int unitid, DateTime dtf, DateTime dtto, int sof, int custid, string xml, int id)
         {
             try
             {
                 SprBillCopySubmissiontoCustomerTableAdapter objacrd = new SprBillCopySubmissiontoCustomerTableAdapter();
-                return objacrd.GetDataBillCopySubmissiontoCustomer(reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id);
+                return objacrd.GetDataBillCopySubmissiontoCustomer(reporttype, unitid, dtf, dtto, sof, custid, xml, id);
             }
             catch { return new DataTable(); }
 
         }
+
+        public DataTable GetChallanDetInfo(string challan, int unitid)
+        {
+            try
+            {
+                TblChallanvsDetInfoTableAdapter objacrd = new TblChallanvsDetInfoTableAdapter();
+                return objacrd.GetDataChallanvsDetaills(challan, unitid);
+            }
+            catch { return new DataTable(); }
+
+        }
+
+
+        public DataTable GetReciveChallanDetInfo(string strConntent, decimal decSize, string url, int intEnrol, int intUnit, DateTime dteFromDate, int intAttchType, string strchallan, int intJobstationid, int intrtpttype, DateTime todate, int custid)
+        {
+            try
+            {
+                SprReceivedChallanUploadTableAdapter objacrd = new SprReceivedChallanUploadTableAdapter();
+                return objacrd.GetDataReceivedChallanUpload(strConntent, decSize, url, intEnrol, intUnit, dteFromDate, intAttchType, strchallan, intJobstationid, intrtpttype, todate, custid);
+            }
+            catch { return new DataTable(); }
+
+        }
+
+        public DataTable GetDataTADASupervisorApprovePending(DateTime FromDate, DateTime ToDate, int supervisorenrol)
+        {
+            try
+            {
+                SprApproveByImmediateSuperVisorTableAdapter taDelvOrderDet = new SprApproveByImmediateSuperVisorTableAdapter();
+                return taDelvOrderDet.GetData(FromDate, ToDate, supervisorenrol);
+            }
+            catch { return new DataTable(); }
+        }
+
     }
 }

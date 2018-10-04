@@ -112,7 +112,9 @@
                 <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="CertificateCopyNo."></asp:Label></td>                  
             <td style="text-align:left;"><asp:TextBox ID="TxCertificateCopyNot" runat="server" CssClass="txtBox" BorderColor="green" Width="190px"></asp:TextBox></td>                                                                                                              
    
- <td></td><td>
+ <td> <asp:Label ID="lblnowusedunit" runat="server" Text="Used by   :"></asp:Label>
+                 <asp:Label ID="lbprsntus" runat="server" BackColor="#ffff66"></asp:Label> 
+                      </td><td>
                 <asp:Button ID="BtnInsurance" runat="server" Text="Save" OnClick="BtnInsurance_Click" /></td>
             </tr>
             

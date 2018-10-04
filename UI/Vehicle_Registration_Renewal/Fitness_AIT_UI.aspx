@@ -130,7 +130,9 @@
             </tr>
             <tr>
        
-               <td></td><td></td>
+              <td> <asp:Label ID="lblnowusedunit" runat="server" Text="Used by   :"></asp:Label>
+                 <asp:Label ID="lbprsntus" runat="server" BackColor="#ffff66"></asp:Label> 
+                      </td>
             
             <td></td><td>
                 <asp:Button ID="BtnFitness" runat="server" Text="Save" OnClick="BtnFitness_Click" style="width: 42px" /></td>

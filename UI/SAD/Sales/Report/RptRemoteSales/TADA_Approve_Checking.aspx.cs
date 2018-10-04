@@ -8,15 +8,15 @@ using UI.ClassFiles;
 
 namespace UI.SAD.Sales.Report.RptRemoteSales
 {
-    public partial class DOBaseCustomerTransaction :BasePage
+    public partial class TADA_Approve_Checking : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                pnlUpperControl.DataBind();
+            { 
+               pnlUpperControl.DataBind(); 
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Ruhul/Binti/CustomerTransactionReport?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/TADA_Approve_Checking?rs:Embed=true');", true);
 
         }
     }

@@ -120,15 +120,7 @@ namespace UI.SAD.Order
                 "this.originalcolor=this.style.backgroundColor;" + " this.style.backgroundColor='#FDCB0A';");
 
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalcolor;");
-                //string CellValueApplicant = ((TextBox)grdvForAuditBillChecking.Rows[RowIndex].FindControl("txtbusM")).Text;
-
-                //Decimal CellValueApplicant = Convert.ToDecimal(e.Row.Cells[6].Text);
-                //Decimal CellValueHRDept = Convert.ToDecimal(e.Row.Cells[7].Text);
-                //if (CellValueHRDept > CellValueApplicant)
-                //{
-                //    e.Row.Cells[7].BackColor = System.Drawing.Color.Red;
-                //}
-                //else { e.Row.Cells[7].BackColor = System.Drawing.Color.Green; }
+               
 
             }
         }
