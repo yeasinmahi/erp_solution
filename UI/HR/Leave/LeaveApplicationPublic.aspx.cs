@@ -9,14 +9,28 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HR_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Leave
 {
     public partial class LeaveApplicationPublic : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Leave/LeaveApplicationPublic.aspx";
+        string stop = "stopping HR/Leave/LeaveApplicationPublic.aspx";
+
         string alertMessage;
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApplicationPublic.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -50,6 +64,11 @@ namespace UI.HR.Leave
                     }
                 }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         [WebMethod]
@@ -64,6 +83,13 @@ namespace UI.HR.Leave
 
         private void FillControls(string employeeCode)
         {
+            var fd = log.GetFlogDetail(start, location, "FillControls", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApplicationPublic.aspx FillControls", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             HR_BLL.Employee.EmployeeRegistration basicinfo = new HR_BLL.Employee.EmployeeRegistration();
             DataTable dtbl = basicinfo.GetEmployeeProfileByEmpCode(employeeCode);
             if (dtbl.Rows.Count > 0)
@@ -78,10 +104,22 @@ namespace UI.HR.Leave
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry !!! Employee not found.');", true); }
 
+            fd = log.GetFlogDetail(stop, location, "FillControls", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         private void Submit()
         {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApplicationPublic.aspx Submit", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 HR_BLL.Leave.LeaveApplicationProcess appProcessed = new HR_BLL.Leave.LeaveApplicationProcess();
@@ -111,10 +149,22 @@ namespace UI.HR.Leave
                 }
             }
             catch (Exception ex) { throw ex; }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public void UpdateApplication(string appID)
         {
+            var fd = log.GetFlogDetail(start, location, "UpdateApplication", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApplicationPublic.aspx UpdateApplication", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (appID != "")
             {
                 try
@@ -152,10 +202,22 @@ namespace UI.HR.Leave
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select a pending application.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "UpdateApplication", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public void DeleteApplication(string appID)
         {
+            var fd = log.GetFlogDetail(start, location, "DeleteApplication", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApplicationPublic.aspx DeleteApplication", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (appID != "")
             {
                 try
@@ -179,6 +241,11 @@ namespace UI.HR.Leave
                 catch (Exception ex) { throw ex; }
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select a pending application.');", true); }
+
+            fd = log.GetFlogDetail(stop, location, "DeleteApplication", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         public string GetJSFunctionString(object appID, object lvTypeID, object frmDate, object todate, object address, object reason, object status)
@@ -190,6 +257,13 @@ namespace UI.HR.Leave
 
         protected void btnAction_OnCommand(object sender, CommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Leave/LeaveApplicationPublic.aspx btnAction_OnCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName.Equals("PROCESS"))
             {
                 string value = (e.CommandArgument).ToString();
@@ -211,6 +285,11 @@ namespace UI.HR.Leave
 
                 }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

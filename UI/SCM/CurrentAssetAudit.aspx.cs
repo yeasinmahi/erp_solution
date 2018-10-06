@@ -255,7 +255,12 @@ namespace UI.SCM
 
         protected void txtItem_TextChanged(object sender, EventArgs e)
         {
-            
+            txtItemID.Text = "";
+        }
+
+        protected void txtItemID_TextChanged(object sender, EventArgs e)
+        {
+            txtItem.Text = "";
         }
 
 

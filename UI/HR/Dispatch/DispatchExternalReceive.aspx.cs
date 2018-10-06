@@ -16,11 +16,18 @@ using System.Text.RegularExpressions;
 using HR_BLL.Global;
 using Dairy_BLL;
 using HR_BLL.Dispatch;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Dispatch
 {
     public partial class DispatchExternalReceive : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/DispatchExternalReceive.aspx";
+        string stop = "stopping HR/Dispatch/DispatchExternalReceive.aspx";
+
         DispatchGlobalBLL obj = new DispatchGlobalBLL();
         DataTable dt;
         
@@ -35,6 +42,13 @@ namespace UI.HR.Dispatch
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DispatchExternalReceive.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (!IsPostBack)
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -56,10 +70,22 @@ namespace UI.HR.Dispatch
 
                 }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnCreate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DispatchExternalReceive.aspx btnCreate_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 intPart = 1;
@@ -119,11 +145,23 @@ namespace UI.HR.Dispatch
                 { File.Delete(filePathForXML); }
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnCreate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region ===== Selection Change =================================================================
         protected void txtSearchAssignedTo_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtSearchAssignedTo_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DispatchExternalReceive.aspx txtSearchAssignedTo_TextChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 char[] ch1 = { '[', ']' };
@@ -148,6 +186,11 @@ namespace UI.HR.Dispatch
                 txtDept.Text = "";
                 txtDesig.Text = "";
             }
+
+            fd = log.GetFlogDetail(stop, location, "txtSearchAssignedTo_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
         protected void ddlCertificateType_SelectedIndexChanged(object sender, EventArgs e)

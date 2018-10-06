@@ -12,11 +12,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using HR_BLL.Settlement;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Insurance
 {
     public partial class InsuranceDateRangeReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Insurance/InsuranceDateRangeReport.aspx";
+        string stop = "stopping HR/Insurance/InsuranceDateRangeReport.aspx";
+
         GlobalClass obj = new GlobalClass(); DataTable dt;
         InternalTransportBLL objunit = new InternalTransportBLL();
 
@@ -62,9 +69,21 @@ namespace UI.HR.Insurance
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceDateRangeReport.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             dgvDependant.DataSource = ""; dgvDependant.DataBind();
             System.Threading.Thread.Sleep(1500);
             LoadGrid();
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void rdoActive_CheckedChanged(object sender, EventArgs e)
         {

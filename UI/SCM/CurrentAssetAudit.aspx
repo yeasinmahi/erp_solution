@@ -152,7 +152,7 @@
                                 </cc1:AutoCompleteExtender>--%>
                              </td>
                             <td style="text-align: right;"><asp:Label ID="lblItemID" CssClass="lbl" runat="server" Text="Item ID : "></asp:Label></td>
-                            <td><asp:TextBox ID="txtItemID" placeholder="Search Item By ID" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                            <td><asp:TextBox ID="txtItemID" placeholder="Search Item By ID" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px" OnTextChanged="txtItemID_TextChanged"></asp:TextBox>
                                </td>
                               <td>
                                  <asp:Button ID="btnShow" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckValidation()" OnClick="btnShow_Click"/></td>
