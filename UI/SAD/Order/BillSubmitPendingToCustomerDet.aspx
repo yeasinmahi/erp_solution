@@ -20,6 +20,12 @@
         }   
     </script>
  
+    <style type="text/css">
+        .auto-style1 {
+            height: 23px;
+        }
+    </style>
+ 
 </head>
 
 
@@ -115,27 +121,29 @@
                 </tr>
                   <tr>
                     <td>
+                        <asp:Label ID="LBLCUST" runat="server" Text="Customer ID: "></asp:Label>
                         <asp:Label ID="lblcustomername" runat="server"></asp:Label>
                     </td>
                 </tr>
                   <tr>
                     <td>
+                        <asp:Label ID="lbladr" runat="server" Text="Address: "></asp:Label>
                         <asp:Label ID="lblcustmainadr" runat="server"></asp:Label>
                     </td>
                 </tr>
                   <tr>
                     <td>
-                        <asp:Label ID="lblDrsir" runat="server" Text="Dear Sir,"></asp:Label>
+                        <%--<asp:Label ID="lblDrsir" runat="server" Text="Dear Sir,"></asp:Label>--%>
                     </td>
                 </tr>
                   <tr>
                     <td>
-                        <asp:Label ID="lblpleased" runat="server" Text="We are pleased to issue a bill in favour of our supply as per purchase order"></asp:Label>
+                        <%--<asp:Label ID="lblpleased" runat="server" Text="We are pleased to issue a bill in favour of our supply as per purchase order"></asp:Label>--%>
                     </td>
                 </tr>
                   <tr>
                     <td>
-                        <asp:Label ID="lblPo" runat="server"></asp:Label>
+                        <%--<asp:Label ID="lblPo" runat="server"></asp:Label>--%>
                     </td>
                 </tr>
             </table>
@@ -156,32 +164,36 @@
                          </ItemTemplate></asp:TemplateField>
                    
                            
-                        <asp:BoundField DataField="strcustname" HeaderText="CustName" SortExpression="strCustName" ItemStyle-HorizontalAlign="Center" >
+                        <asp:BoundField DataField="dtepostingdate" HeaderText="Delivery Date" SortExpression="dtepostingdate" ItemStyle-HorizontalAlign="Center" dataformatstring="{0:dd/MM/yyyy}" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField> 
+                         <asp:BoundField DataField="challanadr" HeaderText="Project Location" SortExpression="strDONumber" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="strItmname" HeaderText="Item Name" SortExpression="strItmname" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                         <asp:BoundField DataField="strDONumber" HeaderText="D.O Number" SortExpression="strDONumber" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
 
-                        <asp:BoundField DataField="challanadr" HeaderText="Destination Address" SortExpression="strDONumber" ItemStyle-HorizontalAlign="Center" >
-                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                        </asp:BoundField>
+                       
 
                         <asp:BoundField DataField="strchalallanumber" HeaderText="Challan Number" SortExpression="strchalallanumber" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="strItmname" HeaderText="Item Name" SortExpression="strItmname" ItemStyle-HorizontalAlign="Center" >
+                        
+                        
+                        <asp:BoundField DataField="challanqntprimary" HeaderText="Primary Qnt(TON)" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                         
-                        <asp:BoundField DataField="challanqntprimary" HeaderText="PrimaryChallanQnt" SortExpression="challanqntprimary" ItemStyle-HorizontalAlign="Center" >
-                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="challanamoutnprim" HeaderText="ChallanAmountPrimary" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" >
-                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                        </asp:BoundField>
                        
                         <asp:BoundField DataField="billqnt" HeaderText="BillqntNet" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+
+                        <asp:BoundField DataField="rate" HeaderText="Unit Price (Tk/Ton)" SortExpression="rate" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                        
@@ -224,16 +236,30 @@
                     </td>
                      <td>
 
-                     
+                      &nbsp;
                     </td>
                      <td>
                         
-                          
+                           &nbsp;
                     </td>
                     <td>
 
                          &nbsp;
                     </td>
+                </tr>
+                <tr>
+                     <td class="auto-style1">
+
+                         &nbsp;
+                    </td>
+                     
+                </tr>
+                 <tr>
+                     <td class="auto-style1">
+
+                         &nbsp;
+                    </td>
+                     
                 </tr>
                 <tr>
                     <td>

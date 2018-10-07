@@ -59,7 +59,7 @@ namespace UI.SAD.Order
                     dgbCustomerprintcopy.FooterRow.Cells[9].Text = netamount.ToString();
                 }
                 lblcustomername.Text = dt.Rows[0][2].ToString();
-                lblcustmainadr.Text = dt.Rows[0][15].ToString();
+                lblcustmainadr.Text = dt.Rows[0][19].ToString();
                 int enrol= int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = bllh.getEmployeeDetails(enrol);
                 lblSubmittedby.Text = dt.Rows[0][0].ToString();
