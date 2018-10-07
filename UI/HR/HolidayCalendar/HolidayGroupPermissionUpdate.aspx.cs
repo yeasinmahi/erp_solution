@@ -5,12 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 
 namespace UI.HR.HolidayCalendar
 {
     public partial class HolidayGroupPermissionUpdate : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/HolidayCalendar/HolidayGroupPermissionUpdate.aspx";
+        string stop = "stopping HR/HolidayCalendar/HolidayGroupPermissionUpdate.aspx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Summary    :   THIS FUNCTION IS USED FOR SET PRIMARY ATTRIBUTE FOR THE CONTROLS AND LOAD INITIAL VALUES
@@ -18,6 +25,12 @@ namespace UI.HR.HolidayCalendar
             //Modified   :   
             //Parameters :   GET USER ID FROM SESSION 
 
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/HolidayCalendar/HolidayGroupPermissionUpdate.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
 
             if (!IsPostBack)
             {
@@ -48,6 +61,11 @@ namespace UI.HR.HolidayCalendar
                 btnBackToSetupPage.Attributes.Add("onmouseout", "this.style.textDecoration='none';this.style.color='black';");
                 btnBackToSetupPage.Style.Add("cursor", "pointer");
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #region Internal Cheking method
         protected void ddlHoliday_SelectedIndexChanged(object sender, EventArgs e)

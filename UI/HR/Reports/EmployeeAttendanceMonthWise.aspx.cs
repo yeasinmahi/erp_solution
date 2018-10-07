@@ -9,11 +9,18 @@ using System.Data;
 using Microsoft.Reporting.WebForms;
 using HR_DAL.Reports;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Reports
 {
     public partial class EmployeeAttendanceMonthWise : BasePage//System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Reports/EmployeeAttendanceMonthWise.aspx";
+        string stop = "stopping HR/Reports/EmployeeAttendanceMonthWise.aspx";
+
         ReportDataTDS.SprEmployeeMonthWiseAttendanceDataTable objDataTbl = null;
         EmployeeAttendanceReports objMonthwiseAttendanceReport = new EmployeeAttendanceReports();
         DataTable oDTReportData = new DataTable();
@@ -32,6 +39,13 @@ namespace UI.HR.Reports
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/EmployeeAttendanceMonthWise.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string path = HttpContext.Current.Server.MapPath("~/HR/Reports/ReportsTemplate/DatewiseAttendanceInfo.rdlc");
             oDTReportData = objMonthwiseAttendanceReport.GetEmployeeMonthWiseAttendance(intLoginUerId);
             if (oDTReportData.Rows.Count > 0)
@@ -63,6 +77,11 @@ namespace UI.HR.Reports
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

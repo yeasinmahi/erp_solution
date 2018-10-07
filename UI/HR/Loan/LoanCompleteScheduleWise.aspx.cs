@@ -14,11 +14,18 @@ using HR_BLL.Global;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Loan
 {
     public partial class LoanCompleteScheduleWise : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting /HR/Loan/LoanCompleteScheduleWise.aspx";
+        string stop = "stopping /HR/Loan/LoanCompleteScheduleWise.aspx";
+
         #region===== Variable & Object Declaration =====================================================
         HR_BLL.Loan.Loan objLoan = new HR_BLL.Loan.Loan();
         DataTable dt;
@@ -30,6 +37,13 @@ namespace UI.HR.Loan
         #region===== Page Load Event ===================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on /HR/Loan/LoanCompleteScheduleWise.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             filePathForXML = Server.MapPath("~/HR/Loan/Data/LoanSchedule_" + hdnEnroll.Value + ".xml");
 
@@ -40,12 +54,24 @@ namespace UI.HR.Loan
                 hdnApplicationID.Value = intEnroll.ToString();
                 LoadGrid();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion======================================================================================
         
         #region===== Grid View Load For Report =========================================================
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on /HR/Loan/LoanCompleteScheduleWise.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 dgvLoan.DataSource = "";
@@ -57,6 +83,11 @@ namespace UI.HR.Loan
                 dgvLoan.DataBind();
             }
             catch (Exception ex) { throw ex; }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected int totalloanamountn = 0;
         protected void dgvLoan_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -75,6 +106,13 @@ namespace UI.HR.Loan
         #region===== Loan Complete Event ===============================================================
         protected void btnComplete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnComplete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on /HR/Loan/LoanCompleteScheduleWise.aspx btnComplete_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 if(txtRemarks.Text == "") { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Remarks Input.');", true); return; }
@@ -127,6 +165,11 @@ namespace UI.HR.Loan
                 hdnconfirm.Value = "0";
                 hdnApplicationID.Value = "0";
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnComplete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void CreateVoucherXml(string scheduleid)
         {

@@ -67,6 +67,15 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lbldate;
         
         /// <summary>
+        /// LBLCUST control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBLCUST;
+        
+        /// <summary>
         /// lblcustomername control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lblcustomername;
         
         /// <summary>
+        /// lbladr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbladr;
+        
+        /// <summary>
         /// lblcustmainadr control.
         /// </summary>
         /// <remarks>
@@ -83,33 +101,6 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblcustmainadr;
-        
-        /// <summary>
-        /// lblDrsir control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDrsir;
-        
-        /// <summary>
-        /// lblpleased control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpleased;
-        
-        /// <summary>
-        /// lblPo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPo;
         
         /// <summary>
         /// dgbCustomerprintcopy control.

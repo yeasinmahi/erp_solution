@@ -15,11 +15,18 @@ using System.Xml;
 using System.IO;
 using System.Web.Script.Services;
 using Dairy_BLL;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Insurance
 {
     public partial class InsuranceInfoOfEmployee : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Insurance/InsuranceInfoOfEmployee.aspx";
+        string stop = "stopping HR/Insurance/InsuranceInfoOfEmployee.aspx";
+
         HRClass objhr = new HRClass();
         GlobalClass objG = new GlobalClass();
         SelfClass obj = new SelfClass();
@@ -39,6 +46,13 @@ namespace UI.HR.Insurance
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceInfoOfEmployee.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnrollUnit.Value = Session[SessionParams.USER_ID].ToString();
             filePathForXMLDTFareCash = Server.MapPath("~/HR/Settlement/Uploads/InsuranceInfo_" + hdnEnrollUnit.Value + ".xml");
 
@@ -60,6 +74,10 @@ namespace UI.HR.Insurance
 
             }
 
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         [WebMethod]
         [ScriptMethod]
@@ -72,6 +90,13 @@ namespace UI.HR.Insurance
 
         protected void txtEmployeeSearch_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtEmployeeSearch_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceInfoOfEmployee.aspx txtEmployeeSearch_TextChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 char[] ch1 = { '[', ']' };
@@ -162,7 +187,16 @@ namespace UI.HR.Insurance
 
                 ////}
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "txtEmployeeSearch_TextChanged", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "txtEmployeeSearch_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -443,6 +477,13 @@ namespace UI.HR.Insurance
       
         protected void btnUpdate_Click1(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnUpdate_Click1", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceInfoOfEmployee.aspx btnUpdate_Click1", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -535,11 +576,23 @@ namespace UI.HR.Insurance
                 drdlInsuranceType.SelectedItem.Selected = true;
                 drdlInsuranceType.SelectedIndex = 0;
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnUpdate_Click1", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         //** Gridview Down Trip Fare Cash Add End 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnCancel_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Insurance/InsuranceInfoOfEmployee.aspx btnCancel_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -580,8 +633,17 @@ namespace UI.HR.Insurance
                     dgvDependant.DataSource = ""; dgvDependant.DataBind();
                     txtEmployeeSearch.Text = "";
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "btnCancel_Click", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnCancel_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

@@ -16,11 +16,18 @@ using System.Text.RegularExpressions;
 using HR_BLL.Global;
 using Dairy_BLL;
 using HR_BLL.Dispatch;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Dispatch
 {
     public partial class rptDispatchReceiveByOwner : System.Web.UI.Page
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/rptDispatchReceiveByOwner.aspx";
+        string stop = "stopping HR/Dispatch/rptDispatchReceiveByOwner.aspx";
+
         DispatchGlobalBLL obj = new DispatchGlobalBLL();
         DataTable dt;
 
@@ -35,6 +42,13 @@ namespace UI.HR.Dispatch
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchReceiveByOwner.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnJobStationID.Value = Session[SessionParams.JOBSTATION_ID].ToString();
             
@@ -73,10 +87,22 @@ namespace UI.HR.Dispatch
                     btnApproveDT.Visible = true;
                 }
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void txtEnrollR_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtEnrollR_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchReceiveByOwner.aspx txtEnrollR_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "5")
             {
                 try
@@ -105,7 +131,12 @@ namespace UI.HR.Dispatch
                     hdnconfirm.Value = "0";
                 }
                 catch { }
-            }                  
+            }
+
+            fd = log.GetFlogDetail(stop, location, "txtEnrollR_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 
@@ -141,6 +172,13 @@ namespace UI.HR.Dispatch
         }
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchReceiveByOwner.aspx LoadGrid", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 if (rdoPending.Checked == true)
@@ -167,10 +205,22 @@ namespace UI.HR.Dispatch
                 dgvReport.DataBind();
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void txtChanged_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtChanged_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchReceiveByOwner.aspx txtChanged_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string strCard = txtEmployeeCardNo.Text;
             try
             {
@@ -199,12 +249,28 @@ namespace UI.HR.Dispatch
                     txtEmployeeCardNo.Text = "";
                 }
             }
-            catch { }
-        }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "txtChanged_Click", ex);
+                Flogger.WriteError(efd);
+            }
 
+            fd = log.GetFlogDetail(stop, location, "txtChanged_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
+        }
 
         protected void btnAction_OnCommand(object sender, CommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/rptDispatchReceiveByOwner.aspx btnAction_OnCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             char[] delimiterChars = { '^' };
             string value = (e.CommandArgument).ToString();
             string[] data = value.Split(delimiterChars);
@@ -296,7 +362,13 @@ namespace UI.HR.Dispatch
                     }
                     catch { }
                 }
-            }            
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnAction_OnCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
 

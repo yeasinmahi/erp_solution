@@ -8,11 +8,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Reports
 {
     public partial class EmployeeDeduction : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Reports/EmployeeDeduction.aspx";
+        string stop = "stopping HR/Reports/EmployeeDeduction.aspx";
+
         MobileFacilities bllobj = new MobileFacilities(); DataTable dt = new DataTable(); //string innerReportHtml = "";
         //string innerBodyHtml = ""; double pf = 0.00; double lwp = 0.00; double abs = 0.00; double lt = 0.00; 
         //double ln = 0.00; double tx = 0.00; double oth = 0.00;
@@ -31,6 +38,13 @@ namespace UI.HR.Reports
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/EmployeeDeduction.aspx btnShow_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 try
@@ -104,6 +118,11 @@ namespace UI.HR.Reports
                 }
                 catch { }
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }

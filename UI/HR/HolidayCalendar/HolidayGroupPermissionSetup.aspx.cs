@@ -11,18 +11,32 @@ using System.Text;
 using System.Xml.Linq;
 using HR_BLL.HolidayCalendar;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 
 namespace UI.HR.HolidayCalendar
 {
     public partial class HolidayGroupPermissionSetup : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/HolidayCalendar/HolidayGroupPermissionSetup.aspx";
+        string stop = "stopping HR/HolidayCalendar/HolidayGroupPermissionSetup.aspx";
+
         #region Declare Variable
         HolidayGroupPermission objHolidayGroupPermission;
         bool flag = false;//flag is uesed to define xml is empty or not and it's value will be changed due to create xml 
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/HolidayCalendar/HolidayGroupPermissionSetup.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   THIS FUNCTION IS USED FOR SET PRIMARY ATTRIBUTE FOR THE CONTROLS AND LOAD INITIAL VALUES
             //Created    :   MD. YEASIR ARAFAT / May-14-2012
             //Modified   :   
@@ -41,6 +55,11 @@ namespace UI.HR.HolidayCalendar
                 LinkButton1.Attributes.Add("onmouseout", "this.style.textDecoration='none';this.style.color='white';");
                 LinkButton1.Style.Add("cursor", "pointer");
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)

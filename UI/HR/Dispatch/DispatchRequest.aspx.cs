@@ -16,11 +16,18 @@ using System.Text.RegularExpressions;
 using HR_BLL.Global;
 using Dairy_BLL;
 using HR_BLL.Dispatch;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Dispatch
 {
     public partial class DispatchRequest : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/DispatchRequest.aspx";
+        string stop = "stopping HR/Dispatch/DispatchRequest.aspx";
+        
         DispatchGlobalBLL obj = new DispatchGlobalBLL();
         DataTable dt;
 
@@ -35,6 +42,13 @@ namespace UI.HR.Dispatch
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DispatchRequest.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
 
@@ -79,6 +93,11 @@ namespace UI.HR.Dispatch
 
                 LoadGrid();
             }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void LoadGrid()
@@ -292,6 +311,13 @@ namespace UI.HR.Dispatch
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnCreate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DispatchRequest.aspx btnCreate_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "1")
             {
                 intPart = 1;
@@ -360,6 +386,11 @@ namespace UI.HR.Dispatch
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 LoadGrid();
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnCreate_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

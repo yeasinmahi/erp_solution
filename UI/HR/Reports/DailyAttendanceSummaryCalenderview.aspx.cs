@@ -10,16 +10,30 @@ using System.Data;
 using Microsoft.Reporting.WebForms;
 using System.Globalization;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Reports
 {
     public partial class DailyAttendanceSummaryCalenderview : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Reports/DailyAttendanceSummaryCalenderview.aspx";
+        string stop = "stopping HR/Reports/DailyAttendanceSummaryCalenderview.aspx";
+
         EmployeeAttendanceReports objEmployeeAttendanceReports = new EmployeeAttendanceReports();
         EmployeeBasicInfo objEmployeeBasicInfo = new EmployeeBasicInfo();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/DailyAttendanceSummaryCalenderview.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   This function will use to get employeeID by userId and than load report
             //Created    :   Md. Yeasir Arafat / Apr-16-2012
             //Modified   :   
@@ -35,10 +49,22 @@ namespace UI.HR.Reports
             }
             /*Create a Drillthrough even handler for load report after clicking on >> button */
             ReportViewer1.Drillthrough += new DrillthroughEventHandler(DemoDrillthroughEventHandler);
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void ShowReportDetails(int intEmployeeID, int intMonthID, int intYearId)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/DailyAttendanceSummaryCalenderview.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             //Summary    :   This function will use to load report due to page load
             //Created    :   Md. Yeasir Arafat / Apr-16-2012
             //Modified   :   
@@ -100,6 +126,11 @@ namespace UI.HR.Reports
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         void DemoDrillthroughEventHandler(object sender, DrillthroughEventArgs e)
         {

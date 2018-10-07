@@ -12,11 +12,18 @@ using System.Data;
 using HR_BLL.Loan;
 using HR_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Loan
 {
     public partial class LoanStatusSummary : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Loan/LoanStatusSummary.aspx";
+        string stop = "stopping HR/Loan/LoanStatusSummary.aspx";
+
         #region===== Variable & Object Declaration =====================================================
         HR_BLL.Loan.Loan objLoan = new HR_BLL.Loan.Loan();
         DataTable dt;
@@ -54,6 +61,13 @@ namespace UI.HR.Loan
         #region===== Text Box Change Event =============================================================
         protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "txtSearchEmp_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Loan/LoanStatusSummary.aspx txtSearchEmp_TextChanged", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 try
@@ -89,12 +103,24 @@ namespace UI.HR.Loan
                 LoadGrid();
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "txtSearchEmp_TextChanged", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion======================================================================================
 
         #region===== Grid View Load For Report =========================================================
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Loan/LoanStatusSummary.aspx LoadGrid", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 try
@@ -114,6 +140,11 @@ namespace UI.HR.Loan
                 dgvLoan.DataBind();
             }
             catch (Exception ex) { throw ex; }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected int totalloanamountn = 0;
         protected int totalremainloanamountn = 0;
@@ -134,6 +165,13 @@ namespace UI.HR.Loan
         #region===== Loan Approve & Show Schedule Details ==============================================
         protected void dgvLoan_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "dgvLoan_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Loan/LoanStatusSummary.aspx dgvLoan_RowCommand", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (e.CommandName == "D")
             {
                 //Determine the RowIndex of the Row whose Button was clicked.
@@ -145,6 +183,11 @@ namespace UI.HR.Loan
                 hdnAppID.Value = (row.FindControl("lblApplicationID") as Label).Text;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewLoanDetailsPopup('" + hdnAppID.Value + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "dgvLoan_RowCommand", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         #endregion======================================================================================
 

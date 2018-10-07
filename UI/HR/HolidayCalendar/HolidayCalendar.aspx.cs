@@ -10,11 +10,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.HolidayCalendar
 {
     public partial class HolidayCalendar : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/HolidayCalendar/HolidayCalendar.aspx";
+        string stop = "stopping HR/HolidayCalendar/HolidayCalendar.aspx";
+
         string filePathForXML; DirectoryInfo dirInfo; 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +37,13 @@ namespace UI.HR.HolidayCalendar
         
         protected void Delete_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Delete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/HolidayCalendar/HolidayCalendar.aspx Delete_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 LoadGridwithXml();
@@ -43,7 +57,16 @@ namespace UI.HR.HolidayCalendar
                 { File.Delete(filePathForXML); }
                 LoadGridwithXml();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Delete_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Delete_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         private void LoadGridwithXml()
         {
@@ -151,6 +174,13 @@ namespace UI.HR.HolidayCalendar
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/HolidayCalendar/HolidayCalendar.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 XmlDocument doc = new XmlDocument();
@@ -168,7 +198,16 @@ namespace UI.HR.HolidayCalendar
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry to insertion.');", true); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

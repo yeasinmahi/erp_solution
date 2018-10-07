@@ -12,11 +12,19 @@ using System.Net;
 using System.Xml;
 using UI.ClassFiles;
 using HR_BLL.Dispatch;
+using GLOBAL_BLL;
+using Flogging.Core;
+
 
 namespace UI.HR.Dispatch
 {
     public partial class DocDispatch : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/DocDispatch.aspx";
+        string stop = "stopping HR/Dispatch/DocDispatch.aspx";
+
         DispatchBLL obj = new DispatchBLL(); DataTable dt = new DataTable();
 
         DateTime dteDate;
@@ -27,6 +35,13 @@ namespace UI.HR.Dispatch
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DocDispatch.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
 
             if (!IsPostBack)
@@ -60,10 +75,22 @@ namespace UI.HR.Dispatch
                 catch { }
             }
 
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DocDispatch.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 strDocType = ddlDocType.SelectedItem.Text.ToString(); intDocNameID = int.Parse(ddlDocName.SelectedValue.ToString());
@@ -101,8 +128,10 @@ namespace UI.HR.Dispatch
             }
             catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Failed....');", true); return; }
 
-
-
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
 
         }
 
@@ -145,6 +174,13 @@ namespace UI.HR.Dispatch
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSearch_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DocDispatch.aspx btnSearch_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 intDeliveryType = Int32.Parse(ddlDeliveryType.SelectedValue.ToString());
@@ -165,6 +201,12 @@ namespace UI.HR.Dispatch
                 
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "btnSearch_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+
         }
 
 
