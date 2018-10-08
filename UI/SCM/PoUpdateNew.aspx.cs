@@ -139,7 +139,25 @@ namespace UI.SCM
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Insert the PO NO not in Import');", true);
                         txtpoid.Text = "";
-                    }
+                        txtdtePo.Text = "";
+                        txtdtePo.BackColor = Color.White;
+                        txtCommosion.Text = "";
+                        txtWH.Text = "";
+                        txtWH.BackColor = Color.White;
+                        txtAit.Text = "";
+                        txtAit.BackColor = Color.White;
+                        txtSupplier.Text = "";
+                        lblSuppAddress.Text = "";
+                        txtGrossDiscount.Text = "";
+                        ddlCurrency.DataSource = "";
+                        ddlCurrency.DataBind();
+                        ddlDtePay.DataSource = "";
+                        ddlDtePay.DataBind();
+                        ddlCostCenter.DataSource = "";
+                        ddlCostCenter.DataBind();
+                        dgvIndentPrepare.DataSource = "";
+                        dgvIndentPrepare.DataBind();
+                }
                     else
                     { 
                         intWh = Convert.ToInt32(dt.Rows[0]["intWHID"].ToString());
