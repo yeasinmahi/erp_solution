@@ -10,11 +10,18 @@ using System.Globalization;
 using System.Data;
 using System.Xml;
 using System.IO;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Reports
 {
     public partial class EmployeeDetailsReport : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Reports/EmployeeDetailsReport.aspx";
+        string stop = "stopping HR/Reports/EmployeeDetailsReport.aspx";
+
         HR_BLL.Reports.EmployeeDetailsReport objEmployeeDetails = new HR_BLL.Reports.EmployeeDetailsReport();
         DataTable dt = new DataTable();
         int intPart;
@@ -49,6 +56,13 @@ namespace UI.HR.Reports
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/EmployeeDetailsReport.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try {
                 string insertBy = Session[SessionParams.USER_ID].ToString();
                 DateTime date = DateTime.ParseExact(txtDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
@@ -100,6 +114,11 @@ namespace UI.HR.Reports
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
             }
+
+            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateXml(string attendanceDate, string enrollid,string insertBy,string insertDate,string attendanceIntime,string attendanceOutTime)
@@ -157,6 +176,13 @@ namespace UI.HR.Reports
 
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/EmployeeDetailsReport.aspx btnShowReport_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try {
 
                 intPart = 0;
@@ -233,6 +259,10 @@ namespace UI.HR.Reports
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
             }
 
+            fd = log.GetFlogDetail(stop, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
 

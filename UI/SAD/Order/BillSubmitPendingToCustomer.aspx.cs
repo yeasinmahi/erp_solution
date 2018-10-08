@@ -7,6 +7,8 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -24,10 +26,11 @@ namespace UI.SAD.Order
         SalesView bll = new SalesView();
         DataTable dt = new DataTable();
         string xmlpath, email, strSearchKey, code, strCustname;
+
+
         #endregion
 
-     
-
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "customerreturnqnt.xml");
@@ -46,6 +49,17 @@ namespace UI.SAD.Order
                 catch { }
             }
         }
+
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static List<string> GetAutoserachingAssetName(string strSearchKey)
+        //{
+        //    RegistrationRenewals_BLL bll = new RegistrationRenewals_BLL();
+
+        //    List<string> result = new List<string>();
+        //    result = bll.AutoSearchAssetName(strSearchKey);
+        //    return result;
+        //}
 
         #region click event
         protected void btncustomertarget_Click(object sender, EventArgs e)
@@ -280,6 +294,9 @@ namespace UI.SAD.Order
         {
 
         }
+
+        
+      
         #endregion
 
     }

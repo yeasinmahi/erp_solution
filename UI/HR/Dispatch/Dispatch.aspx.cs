@@ -11,11 +11,18 @@ using System.Xml;
 using UI.ClassFiles;
 using HR_BLL.Dispatch;
 using SAD_BLL.Transport;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Dispatch
 {
     public partial class Dispatch : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/Dispatch.aspx";
+        string stop = "stopping HR/Dispatch/Dispatch.aspx";
+
         DispatchBLL objdp = new DispatchBLL(); InternalTransportBLL obj = new InternalTransportBLL();
         
         DateTime dteDate; int intUnit; int intJobStation; string strNameAndAddress; string strSubject; string strRemarks;
@@ -23,6 +30,13 @@ namespace UI.HR.Dispatch
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/Dispatch.aspx Page_Load", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
 
@@ -32,11 +46,23 @@ namespace UI.HR.Dispatch
                 catch { }
             }
             else if (hdnconfirm.Value == "3") { DispatchSubmit(); }
+
+            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #region ================== Dispatch Insert & Doc Upload =============================================
         protected void DispatchSubmit()
         {
+            var fd = log.GetFlogDetail(start, location, "DispatchSubmit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/Dispatch.aspx DispatchSubmit", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             if (hdnconfirm.Value == "3")
             {
                 try
@@ -77,8 +103,17 @@ namespace UI.HR.Dispatch
                     hdnconfirm.Value = "0";
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "DispatchSubmit", ex);
+                    Flogger.WriteError(efd);
+                }
             }
+
+            fd = log.GetFlogDetail(stop, location, "DispatchSubmit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         #endregion ==========================================================================================

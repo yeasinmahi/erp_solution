@@ -38,7 +38,9 @@ namespace UI.Asset
             try { File.Delete(filePathForXMlAssetParking); }
             catch { }
             if (!IsPostBack)
-            { 
+            {               
+
+            
             }
             else
             {
@@ -200,7 +202,7 @@ namespace UI.Asset
         protected void btnSave_Click(object sender, EventArgs e)
         { 
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
 
             var fd = log.GetFlogDetail(start, location, "Save", null);
             Flogger.WriteDiagnostic(fd);
@@ -227,9 +229,9 @@ namespace UI.Asset
 
                 suppliers = txtSuppliers.Text.ToString();
                 try { ponumber = int.Parse(txtPonumbers.Text.ToString()); } catch { ponumber = 0; }
-                try { dtePo = DateTime.Parse(dtePoDate.Text); } catch { dtePo = DateTime.Parse("1990-01-01".ToString()); }
-                try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty = DateTime.Parse("1990-01-01".ToString()); }
-                try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation = DateTime.Parse("1990-01-01".ToString()); }
+                try { dtePo = DateTime.Parse(dtePoDate.Text); } catch { dtePo =DateTime.Today;}
+                try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty = DateTime.Today.AddYears(1); }
+                try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation = DateTime.Today; }
 
                 string lcoation = txtAssetLocation.Text.ToString();
                 try { userenroll = int.Parse(txtEnrolment.Text); } catch { userenroll = 0; }
@@ -243,9 +245,9 @@ namespace UI.Asset
                 string assetname = txtAssetname.Text.ToString();
                 string description = txtDescription.Text.ToString();
                 string hscode = txtHsCode.Text;
-                try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate = DateTime.Parse("1990-01-01".ToString()); }
-                try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate = DateTime.Parse("1990-01-01".ToString()); }
-                try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate = DateTime.Parse("1990-01-01".ToString()); }
+                try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate = DateTime.Today; }
+                try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate = DateTime.Today; }
+                try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate = DateTime.Today; }
 
                 string countryorigin = txtCountryOrigin.Text.ToString();
                 string manufacturer = txtManufacturer.Text.ToString();
@@ -257,10 +259,10 @@ namespace UI.Asset
                 try { recommandlife = decimal.Parse(txtRecommandLife.Text); } catch { recommandlife = 0; }
                 try { depMethode = int.Parse(ddlMethodOfDep.SelectedValue); } catch { depMethode = 0; }
                 try { depRate = decimal.Parse(txtRateDep.Text); } catch { depRate = 0; }
-                try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1990-01-01".ToString()); }
+                try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Today; }
                 try { totalaccdep = decimal.Parse(txtAccDep.Text.ToString()); } catch { totalaccdep = 0; }
 
-                string intItemid =hdnItemID.Value; string intMrrId=hdnMrrID.Value;string intPoID = hdnPoID.Value;
+                string intItemid =hdnItemID.Value.ToString(); string intMrrId=hdnMrrID.Value.ToString();string intPoID = hdnPoID.Value.ToString();
 
                 CreateParkingXML(intItemid, intMrrId, intPoID, unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
                 , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,

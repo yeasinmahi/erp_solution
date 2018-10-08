@@ -12,11 +12,18 @@ using System.Data;
 using HR_BLL.Loan;
 using HR_BLL.Global;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Loan
 {
     public partial class LoanScheduleDetailsN : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Loan/LoanScheduleDetailsN.aspx";
+        string stop = "stopping HR/Loan/LoanScheduleDetailsN.aspx";
+
         #region===== Variable & Object Declaration =====================================================
         HR_BLL.Loan.Loan objLoan = new HR_BLL.Loan.Loan();
         DataTable dt;
@@ -36,6 +43,13 @@ namespace UI.HR.Loan
         #region===== Grid View Load For Report =========================================================
         private void LoadGrid()
         {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Loan/LoanScheduleDetailsN.aspx LoadGrid", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {             
                 dgvLoan.DataSource = "";
@@ -73,6 +87,11 @@ namespace UI.HR.Loan
                 }
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected int totalloanamountn = 0;
         protected void dgvLoan_RowDataBound(object sender, GridViewRowEventArgs e)

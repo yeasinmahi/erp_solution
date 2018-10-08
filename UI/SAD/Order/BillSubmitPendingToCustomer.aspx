@@ -48,7 +48,35 @@
              window.open('BillSubmitPendingToCustomerDet.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
                   }
 </script>
-    
+        <script type="text/javascript">
+    $(document).ready(function () {    
+    SearchText();
+});
+function Changed() {
+    document.getElementById('hdfSearchBoxTextChange').value = 'true';
+}
+function SearchText() {
+    $("#txtCus").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;",
+                url: "BillSubmitPendingToCustomer.aspx/GetAutoserachingAssetName",
+                data: "{'strSearchKey':'" + document.getElementById('txtCus').value + "'}",
+                dataType: "json",
+                success: function (data) {
+                    response(data.d);
+                },
+                error: function (result) {
+                    alert("Error");
+                }
+            });
+        }
+    });
+}
+
+
+    </script>
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -183,8 +211,17 @@
                                     </SelectParameters>
                                 </asp:ObjectDataSource>
                             </td>
-                  </td>
+                 
                   </tr>
+
+            <tr>
+                <td>
+                                Customer
+                            </td>
+                           <td> <asp:TextBox ID="txtCus" runat="server" BackColor="#ff6666" AutoPostBack="false" CssClass="txtBox"  Width="200px" ></asp:TextBox></td>
+
+
+            </tr>
         <tr><td style="text-align:right" colspan="2"><asp:Button ID="btncustomertarget" runat="server" Text="Show" CssClass="button" OnClick="btncustomertarget_Click"  /></td>
              
             <td> <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" OnClientClick="Confirm()" /></td>

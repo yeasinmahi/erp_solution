@@ -13,11 +13,17 @@ using System.Data;
 using HR_DAL.Reports;
 using HR_BLL.Employee;
 using UI.ClassFiles;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Reports
 {
     public partial class EmployeeAttendanceDateWise : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Reports/EmployeeAttendanceDateWise.aspx";
+        string stop = "stopping HR/Reports/EmployeeAttendanceDateWise.aspx";
 
         ReportDataTDS.SprEmployeeDateWiseAttendanceDataTable objDataTbl = null;
         static int intLoginUerId;
@@ -49,6 +55,13 @@ namespace UI.HR.Reports
         }
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Reports/EmployeeAttendanceDateWise.aspx btnShowReport_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             string empCode = txtEmpNameCode.Text;
             string[] spltData = empCode.Split(',');
             string empStrCode = spltData[1];
@@ -122,6 +135,10 @@ namespace UI.HR.Reports
             //ScriptManager.RegisterStartupScript(this, typeof(Page), "Focus", "window.open('ReportViewer.aspx?ReportName=DatewiseAttendanceInfo&ReportParameters=" + ReportParameters + "',null,'height=900, width=750,status= no, resizable= no, scrollbars=no, toolbar=no,location=no,menubar=no ');", true);
             #endregion
 
+            fd = log.GetFlogDetail(stop, location, "btnShowReport_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
     }

@@ -731,7 +731,7 @@ namespace SAD_BLL.Sales
             try
             {
                 SprBillCopySubmissiontoCustomerTableAdapter objacrd = new SprBillCopySubmissiontoCustomerTableAdapter();
-                return objacrd.GetDataBillCopySubmissiontoCustomer(reporttype, unitid, dtf, dtto, sof, custid, xml, id);
+                return objacrd.GetDatasBillCopySubmissiontoCustomer(reporttype, unitid, dtf, dtto, sof, custid, xml, id);
             }
             catch { return new DataTable(); }
 
@@ -770,5 +770,22 @@ namespace SAD_BLL.Sales
             catch { return new DataTable(); }
         }
 
+
+        //public List<string> AutoSearchAssetName(string strSearchKey)
+        //{
+        //    List<string> result = new List<string>();
+        //    SprAssetNameSearchingTableAdapter objSprAutoSearchAsset = new SprAssetNameSearchingTableAdapter();
+        //    DataTable oDT = new DataTable();
+        //    oDT = objSprAutoSearchAsset.GetDatasprAssetNameSearching(strSearchKey);
+        //    if (oDT.Rows.Count > 0)
+        //    {
+        //        for (int index = 0; index < oDT.Rows.Count; index++)
+        //        {
+        //            result.Add(oDT.Rows[index]["strNameOfAsset"].ToString());
+        //        }
+
+        //    }
+        //    return result;
+        //}
     }
 }

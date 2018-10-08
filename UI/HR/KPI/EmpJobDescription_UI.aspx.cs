@@ -11,11 +11,18 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
 using HR_BLL.KPI;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.KPI
 {
     public partial class EmpJobDescription_UI : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/KPI/EmpJobDescription_UI.aspx";
+        string stop = "stopping HR/KPI/EmpJobDescription_UI.aspx";
+
         KPI_BLL objJobD = new KPI_BLL();
         DataTable dt = new DataTable();
         string filePathForXMLRJDC;
@@ -74,6 +81,13 @@ namespace UI.HR.KPI
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/KPI/EmpJobDescription_UI.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
             try
             {
                 arrayKeyItem = TxtEnroll.Text.Split(delimiterChars);
@@ -89,12 +103,7 @@ namespace UI.HR.KPI
                
                 int monthrange = int.Parse(0.ToString());
                 int kpitype = int.Parse(0.ToString());
-
-              
-
-
-
-
+                
                 if (dgvEmpView.Rows.Count > 0)
                 {
 
@@ -105,8 +114,6 @@ namespace UI.HR.KPI
                         string weight = ((TextBox)dgvEmpView.Rows[index].FindControl("Txtweight")).Text.ToString();
 
                         CreateVoucherXml(empid,autoid, description, weight);
-
-
                     }
 
                     XmlDocument doc = new XmlDocument();
@@ -127,6 +134,11 @@ namespace UI.HR.KPI
 
             }
             catch { }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         private void CreateVoucherXml(string empid,string autoid, string description, string weight)

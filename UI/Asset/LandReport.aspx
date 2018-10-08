@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PoReport.aspx.cs" Inherits="UI.Inventory.PoReport" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LandReport.aspx.cs" Inherits="UI.Asset.LandReport" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.: PO Report :.</title>
+    <title>.: Land Report :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -44,4 +43,5 @@
     </form>
 </body>
 </html>
+
 

@@ -258,6 +258,7 @@
     <Content Include="Asset\Depreciation_UI.aspx" />
     <Content Include="Asset\FormAssetRegisterUI.aspx" />
     <Content Include="Asset\jquery-1.8.3.min.js" />
+    <Content Include="Asset\LandReport.aspx" />
     <Content Include="Asset\Maintenance.aspx" />
     <Content Include="Asset\MaintenanceReport.aspx" />
     <Content Include="Asset\MaintenancePendingRequest.aspx" />
@@ -365,6 +366,7 @@
     <Content Include="Inventory\DocHistory.aspx" />
     <Content Include="Inventory\FinishGoodsStock.aspx" />
     <Content Include="Inventory\GoodReceiveNote.aspx" />
+    <Content Include="Inventory\GoodReceiveNoteReport.aspx" />
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\PdfViewer.aspx" />
@@ -2359,6 +2361,13 @@
     <Compile Include="Asset\FormAssetRegisterUI.aspx.designer.cs">
       <DependentUpon>FormAssetRegisterUI.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\LandReport.aspx.cs">
+      <DependentUpon>LandReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\LandReport.aspx.designer.cs">
+      <DependentUpon>LandReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\Maintenance.aspx.cs">
       <DependentUpon>Maintenance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2911,6 +2920,13 @@
     </Compile>
     <Compile Include="Inventory\GoodReceiveNote.aspx.designer.cs">
       <DependentUpon>GoodReceiveNote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\GoodReceiveNoteReport.aspx.cs">
+      <DependentUpon>GoodReceiveNoteReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\GoodReceiveNoteReport.aspx.designer.cs">
+      <DependentUpon>GoodReceiveNoteReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>

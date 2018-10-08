@@ -11,16 +11,31 @@ using UI.ClassFiles;
 using System.Net;
 using System.Text;
 using HR_BLL.Dispatch;
+using GLOBAL_BLL;
+using Flogging.Core;
 
 namespace UI.HR.Dispatch
 {
     public partial class DispatchDocView : BasePage
     {
+        SeriLog log = new SeriLog();
+        string location = "HR";
+        string start = "starting HR/Dispatch/DispatchDocView.aspx";
+        string stop = "stopping HR/Dispatch/DispatchDocView.aspx";
+
         DispatchBLL objrpt = new DispatchBLL(); DataTable dt;
         string innerTableHtml = ""; int intID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var fd = log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on HR/Dispatch/DispatchDocView.aspx Show", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
 
@@ -61,6 +76,11 @@ namespace UI.HR.Dispatch
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no attachement against your query.');", true);}
             }
+
+            fd = log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
         protected void btnDocDownload_Click(object sender, EventArgs e)
         {
