@@ -103,7 +103,7 @@
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender></td>
-                </td>
+                
                 <td style="text-align:right; "><asp:Label ID="Label7" runat="server" Text=""></asp:Label></td>
                 <td><asp:TextBox ID="txtSupplierAddress" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="300px"></asp:TextBox></td>
             </tr>

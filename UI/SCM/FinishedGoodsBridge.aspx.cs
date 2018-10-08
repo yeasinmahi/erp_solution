@@ -135,7 +135,7 @@ namespace UI.SCM
             int intInvUoM = Convert.ToInt32(ddlInvUOM.SelectedItem.Value);
             objinventoryTransfer.InsertItemList(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, intEnroll, dteLastActionTime, strUoM);
             objinventoryTransfer.GetItemMasterList(strName,strDescription,strPartNo,strBrand,intClusterID,intComGroupID,intCategoryID,strUoM,intEnroll,intUnit,SADItemID,numConversion,intSadStandardUOM,intInvUoM);
-            Panel1.Visible = false;
+            Panel1.Visible = false;          
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Updated.');", true);
         }
 
@@ -203,6 +203,11 @@ namespace UI.SCM
             }
         }
 
+        protected void ddlFG_DataBound(object sender, EventArgs e)
+        {
+            ddlFG.Items.Insert(0, new ListItem("", ""));
+        }
+
         //protected void btnShow_Click(object sender, EventArgs e)
         //{
         //    //var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
@@ -245,8 +250,8 @@ namespace UI.SCM
 
 
         //}
-       
-       
+
+
 
 
 

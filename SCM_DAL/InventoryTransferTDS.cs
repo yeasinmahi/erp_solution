@@ -10,9 +10,12 @@
     }
 }
 
-namespace SCM_DAL.InventoryTransferTDSTableAdapters {
-    
-    
+namespace SCM_DAL.InventoryTransferTDSTableAdapters
+{
+    partial class TblItemTableAdapter
+    {
+    }
+
     public partial class tblEmployeeJobStationTableAdapter {
     }
 }

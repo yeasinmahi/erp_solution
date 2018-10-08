@@ -325,5 +325,67 @@ namespace SCM_BLL
             catch { return new DataTable(); }
 
         }
+
+        public DataTable PoInfo(int intpoid)
+        {
+            POInfoTableAdapter adp = new POInfoTableAdapter();
+            return adp.GetData(intpoid);
+        }
+
+        public string UpdatePO(decimal numQty, decimal monRate, decimal monVAT, decimal monAIT,int intItemID,int intPOID)
+        {
+           
+            string msg = "";
+            try
+            {
+                TblPurchaseOrderShipmentItemDetailTableAdapter adp = new TblPurchaseOrderShipmentItemDetailTableAdapter();
+                adp.UpdatePOData(numQty, monRate, monVAT, monAIT, intItemID, intPOID);
+                return msg = "Updated Successfully";
+            }
+            catch { }
+            return msg;
+        }
+
+        public DataTable GetWHName(int whid)
+        {
+           
+            try
+            {
+                tblWearHouseTableAdapter adp = new tblWearHouseTableAdapter();
+                return adp.GetWHData(whid);
+                
+            }
+            catch { return new DataTable(); }
+           
+        }
+
+        public string DeletePo(int intItemID, int intPOID)
+        {
+            
+            string msg = "";
+            try
+            {
+                TblIndentItemAndPOItemTableAdapter adp = new TblIndentItemAndPOItemTableAdapter();
+                adp.DeletePOData(intItemID, intPOID);
+                return msg = "Deleted Successfully";
+            }
+            catch { }
+            return msg;
+        }
+        
+        public string UpdatePOMain(int intShipmentNo,string strDesPort,bool ysnPartialShip, string strPay,int intDay,int intInstall, int intInsInter, int intWarrenty, string strOtherTerms,DateTime dteShipDate, int intPOID,int intType,decimal monFreight, decimal monPacking , decimal monDiscount, int intSupplierID,DateTime dtePODate, int intCurrencyID,int enroll)
+        {
+
+            string msg = "";
+            try
+            {
+                sprUpdatePOTableAdapter adp = new sprUpdatePOTableAdapter();
+                adp.UpdatePOMainData(intShipmentNo,strDesPort,ysnPartialShip,strPay,intDay,intInstall,intInsInter,intWarrenty,strOtherTerms,dteShipDate ,intPOID, intType, monFreight, monPacking , monDiscount,intSupplierID,dtePODate,intCurrencyID,enroll);
+                return msg = "Updated Successfully";
+            }
+            catch (Exception ex) { msg= ex.ToString(); }
+            return msg;
+        }
+
     }
 }
