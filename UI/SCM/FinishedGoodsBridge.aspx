@@ -65,7 +65,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="FG : "></asp:Label></td>
                             <td style="text-align: left;" colspan="3">
-                                <asp:DropDownList ID="ddlFG" CssClass="ddList" Width="400px" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlFG_SelectedIndexChanged"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlFG" CssClass="ddList" Width="400px" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlFG_SelectedIndexChanged" OnDataBound="ddlFG_DataBound"></asp:DropDownList></td>
                             <tr class="tblroweven">
                             <td style="text-align: right;">
                                 <asp:Label ID="lblSadUOM" runat="server" CssClass="lbl" Text="SadUOM : "></asp:Label></td>

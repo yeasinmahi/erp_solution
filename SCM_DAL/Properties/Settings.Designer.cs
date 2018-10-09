@@ -129,5 +129,16 @@ namespace SCM_DAL.Properties {
                 return ((string)(this["ERP_AssetConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=devesql;Initial Catalog=ERP_Inventory;User ID=devesqlrw;Password=sql@" +
+            "123")]
+        public string ERP_InventoryConnectionString1 {
+            get {
+                return ((string)(this["ERP_InventoryConnectionString1"]));
+            }
+        }
     }
 }
