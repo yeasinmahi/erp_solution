@@ -1353,6 +1353,7 @@
     <Content Include="SCM\MrrStatementDetalis.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
+    <Content Include="SCM\POCorrection.aspx" />
     <Content Include="SCM\PoDetalisView.aspx" />
     <Content Include="SCM\PoDocAttachment.aspx" />
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
@@ -7093,6 +7094,13 @@
     </Compile>
     <Compile Include="SCM\PoApproval.aspx.designer.cs">
       <DependentUpon>PoApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\POCorrection.aspx.cs">
+      <DependentUpon>POCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\POCorrection.aspx.designer.cs">
+      <DependentUpon>POCorrection.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoDetalisView.aspx.cs">
       <DependentUpon>PoDetalisView.aspx</DependentUpon>

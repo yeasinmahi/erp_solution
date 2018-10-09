@@ -387,5 +387,66 @@ namespace SCM_BLL
             return msg;
         }
 
+        public DataTable GetItemInfoByPO(int intPOID)
+        {
+            TblItemInfoTableAdapter adp = new TblItemInfoTableAdapter();
+            try
+            { return adp.GetItemInfoByPO(intPOID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+        public DataTable GetMRRNoByPO(int intPOID)
+        {
+            TblFactoryReceiveMRRTableAdapter adp = new TblFactoryReceiveMRRTableAdapter();
+            try
+            { return adp.GetMRRNoByPO(intPOID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetSupplierInfoByPO(int intPOID)
+        {
+            TblSupplierInfoTableAdapter adp = new TblSupplierInfoTableAdapter();
+            try
+            { return adp.GetSupplierInfoByPO(intPOID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetShipmentAndOtherInfoByPO(int intPOID)
+        {
+            TblShipmentTableAdapter adp = new TblShipmentTableAdapter();
+            try
+            { return adp.GetShipmentAndOtherInfoByPO(intPOID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetCurrency()
+        {
+            TblCurrencyConversionTableAdapter adp = new TblCurrencyConversionTableAdapter();
+            try
+            { return adp.GetCurrency(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+        public DataTable POCurrection(int intPart, int intPOID, DateTime dtePODate, int intCurrencyID, decimal monFreight, decimal monPacking, decimal monDiscount, int intShipment, string strDeliveryAddress, int ysnPartialShip,
+        string strPayTerm, int intCreditDays, int intInstallmentNo, int intInstallmentInterval, int intWarrantyMonth, string strOtherTerms, DateTime dteLastShipmentDate, int intUpdateBy)
+        {
+            sprPOTableAdapter adp = new sprPOTableAdapter();
+            try
+            {
+                 return adp.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
+                 strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return new DataTable();
+            }
+        }
+
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby)
+        {
+            string msg = "";
+            sprPOItemInfoChangeTableAdapter adp = new sprPOItemInfoChangeTableAdapter();
+            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, ref msg);
+            return msg;
+        }
+
     }
 }
