@@ -14,7 +14,20 @@
     <script src="../Content/JS/datepickr.min.js"></script>
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
 
+    <style type="text/css">
+        .my-float{
+            padding-top: 20px;
+            padding-right: 20px;
+        }
+        .full-screen {
+            width: 90%;
+            margin: 0;
+            top: 0;
+            left: 0;
+        }
+    </style>
     
 </head>
 <body>
@@ -46,7 +59,11 @@
                         <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 50px; width: 100% ">
+                    <a href="https://video.akij.net/watch/6rwsDUwNYKPD1ZK" target="_blank" class="pull-right" data-toggle="tooltip" data-placement="top" title="Tutorial">
+                        <i class="fa fa-question-circle fa-3x my-float"></i>
+                    </a>
+                </div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
 
@@ -117,12 +134,12 @@
                                     <asp:TextBox ID="txtDriverContact" CssClass="form-control" runat="server" placeholder="Contact No."></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-12">
+                                <%--<div class="col-md-12">
                                     <asp:Label ID="Label7" runat="server" Text="Product Description"></asp:Label>
 
                                     <asp:TextBox ID="txtMeterialDes" TextMode="MultiLine" CssClass="form-control" runat="server" placeholder="Write product description"></asp:TextBox>
 
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                     </div>
@@ -222,6 +239,31 @@
                         </div>
 
                     </div>
+                    
+                    <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Video</button>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="full-screen">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">How to input GRN</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <video width="100%" src="https://video.akij.net/upload/videos/2018/10/Ry8c4EwTTI7cbdubGF99_04_1d12cdea8de37393d3119d46780bb66d_video_720p_converted.mp4" controls>
+                                        <!-- The msg if browser doesn't have HTML5 video support -->
+                                    </video>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>--%>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>

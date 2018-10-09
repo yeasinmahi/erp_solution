@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
@@ -14,6 +14,9 @@
     <script src="../Content/JS/morris.min.js"></script>
 
     <script>
+        if (!$.browser.msie || $.browser.version > 7) {
+            this.attr("novalidate", "novalidate");
+        }
         function GetTimeSpan() {
             var defaultDate = "1/1/1970 ";
             var end = document.getElementById('txtend').value;
@@ -26,45 +29,11 @@
             $('#txtMovDuration').val(difference);
         }
     </script>
-    <script type="text/javascript">
-        function pageLoad(sender, args) {
-            $(document).ready(function () {
-                SearchText();
-                $('#txtstrt').timepicker();
-                $('#txtend').timepicker();
-                console.log("dom Ready");
-            });
-        }
-        function Changed() {
-            document.getElementById('hdfSearchBoxTextChange').value = 'true';
-        }
-        function SearchText() {
-            $("#txtFullName").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json;",
-                        url: "OvertimeEntry.aspx/GetAutoCompleteData",
-                        data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
-                        dataType: "json",
-                        success: function (data) {
-                            response(data.d);
-                        },
-                        error: function (result) {
-                            alert("Error");
-                        }
-                    });
-                }
-            });
-        }
-
-    </script>
-    
     
 </head>
 <body>
     <form id="frmpdv" runat="server">
-        <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" EnablePartialRendering="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
@@ -239,6 +208,48 @@
         </asp:UpdatePanel>
         
     </form>
+<script type="text/javascript">
+    var prm = Sys.WebForms.PageRequestManager.getInstance(); 
 
+    prm.add_endRequest(function() { 
+        SearchText();
+        $('#txtstrt').timepicker();
+        $('#txtend').timepicker();
+        console.log("dom Ready Page Request Manager");
+    }); 
+    function pageLoad(sender, args) {
+        $(document).ready(function () {
+            SearchText();
+            $('#txtstrt').timepicker();
+            $('#txtend').timepicker();
+            console.log("dom Ready page preload");
+        });
+    }
+    function Changed() {
+        document.getElementById('hdfSearchBoxTextChange').value = 'true';
+    }
+    function SearchText() {
+        $("#txtFullName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;",
+                    url: "OvertimeEntry.aspx/GetAutoCompleteData",
+                    data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
+                    dataType: "json",
+                    success: function (data) {
+                        response(data.d);
+                    },
+                    error: function (result) {
+                        alert("Error");
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+    
+    
 </body>
 </html>

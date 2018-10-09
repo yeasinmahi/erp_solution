@@ -16,6 +16,10 @@ namespace UI.Inventory
         private int enroll = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                pnlUpperControl.DataBind();
+            }
             enroll =  Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
         }
 
@@ -51,7 +55,8 @@ namespace UI.Inventory
             string vehicleNo = txtVehicleNo.Text;
             string driverName = txtDriverName.Text;
             string driverContact = txtDriverContact.Text;
-            string meterialDes = txtMeterialDes.Text;
+            //string meterialDes = txtMeterialDes.Text;
+            string meterialDes = "";
 
             int counter = 0;
             int? gnid = 0;
@@ -134,7 +139,7 @@ namespace UI.Inventory
             txtVehicleNo.Text = string.Empty;
             txtDriverName.Text = string.Empty;
             txtDriverContact.Text = string.Empty;
-            txtMeterialDes.Text = string.Empty;
+            //txtMeterialDes.Text = string.Empty;
 
             gridView.DataSource = null;
             gridView.DataBind();
