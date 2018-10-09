@@ -259,8 +259,10 @@ namespace SAD_BLL.Sales
 
         public SalesOrderTDS.SprSalesOrderDetaillsForTripAssignDataTable GetSalesOrderDetailsTrip(string SOid)
         {
-            SprSalesOrderDetaillsForTripAssignTableAdapter ta = new SprSalesOrderDetaillsForTripAssignTableAdapter();
-            return ta.GetDataSalesOrderDetaillsForTripAssign(long.Parse(SOid));
+            
+                SprSalesOrderDetaillsForTripAssignTableAdapter ta = new SprSalesOrderDetaillsForTripAssignTableAdapter();
+                return ta.GetDataSalesOrderDetaillsForTripAssign(long.Parse(SOid));
+            
         }
 
         public void GetTripidfromSalesOrderID(string SOId, ref string tripid, ref string challannumber)
@@ -335,8 +337,10 @@ namespace SAD_BLL.Sales
 
         public SalesOrderTDS.SprSalesOrderCustomerDOwithReturnDODataTable GetSalesOrderWithRetunDO(string id)
         {
-            SprSalesOrderCustomerDOwithReturnDOTableAdapter ta = new SprSalesOrderCustomerDOwithReturnDOTableAdapter();
-            return ta.GetDataById(long.Parse(id));
+            
+                SprSalesOrderCustomerDOwithReturnDOTableAdapter ta = new SprSalesOrderCustomerDOwithReturnDOTableAdapter();
+                return ta.GetDataById(long.Parse(id));
+            
         }
 
         public DataTable GetDamageItemInfo(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate, int unitid, string chalan)

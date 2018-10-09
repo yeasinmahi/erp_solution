@@ -20,7 +20,7 @@ namespace UI.SAD.Order
     {
 
         #region =========== Global Variable Declareation ==========
-        int unitid, teritoryid, areaid, regionid, shippoint, salesoffice, rpttypes, intsertby;
+        int unitid, teritoryid, areaid, regionid, shippoint, salesoffice, rpttypes, intsertby,customerid;
         decimal gtotaldoqnt, gtotaldoamount, gtotalchlqnt, gtotalchamount, gpendingqnt, gpendingamount;
         DateTime fromdate, todate;
         SalesView bll = new SalesView();
@@ -28,9 +28,17 @@ namespace UI.SAD.Order
         string xmlpath, email, strSearchKey, code, strCustname;
 
 
+
+
+
+
+
+
+
         #endregion
 
        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "customerreturnqnt.xml");
@@ -61,6 +69,13 @@ namespace UI.SAD.Order
         //    return result;
         //}
 
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetCustomerListunitbase(string prefixText, int count)
+        {
+            return CustomerInfoSt.GetUnitBaseCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
+        }
+
         #region click event
         protected void btncustomertarget_Click(object sender, EventArgs e)
         {
@@ -77,10 +92,19 @@ namespace UI.SAD.Order
                 salesoffice = int.Parse(ddlSo.SelectedValue.ToString());
                 rpttypes = int.Parse(drdlrpttype.SelectedValue.ToString());
                 intsertby = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                if (txtCus.Text == "") { customerid = 0; }
+                else {
+                    char[] ch = { '[', ']' };
+                    string[] tmp = txtCus.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                    hdncustomerid.Value = tmp[tmp.Length - 1];
+                    customerid = int.Parse(hdncustomerid.Value);
+                }
+                
+                
                 if (rpttypes == 1)
                 {
-                    //reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id
-                    dt = bll.GetdataforBillSubmission(rpttypes, unitid, fromdate, todate, salesoffice, 0, "", 0);
+                    
+                    dt = bll.GetdataforBillSubmission(rpttypes, unitid, fromdate, todate, salesoffice, customerid, "", 0);
                     if (dt.Rows.Count > 0)
                     {
                         grdvBillpendingtopsheet.DataSource = null;
@@ -95,7 +119,7 @@ namespace UI.SAD.Order
                 }
                 if (rpttypes == 3)
                 {
-                    //reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id
+                    
                     dt = bll.GetdataforBillSubmission(3, unitid, fromdate, todate, salesoffice, 0, "", 0);
                     if (dt.Rows.Count > 0)
                     {
@@ -112,7 +136,7 @@ namespace UI.SAD.Order
                 }
                 if (rpttypes == 4)
                 {
-                    //reporttype,  unitid,  dtf,  dtto,  sof,  custid,  xml,  id
+                   
                     dt = bll.GetdataforBillSubmission(4, unitid, fromdate, todate, salesoffice, 0, "", 0);
                     if (dt.Rows.Count > 0)
                     {
@@ -263,14 +287,11 @@ namespace UI.SAD.Order
 
         #endregion
         #region change event
-        protected void drdlUnitName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+    
      
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
         }
       
 
@@ -295,8 +316,22 @@ namespace UI.SAD.Order
 
         }
 
-        
+    
+
       
+        protected void drdlUnitName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_UNIT] = drdlUnitName.SelectedValue;
+        }
+
+        protected void drdlUnitName_DataBound(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_UNIT] = drdlUnitName.SelectedValue;
+        }
+        protected void ddlSo_DataBound(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+        }
         #endregion
 
     }

@@ -112,6 +112,15 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.HiddenField hdnconfirm;
         
         /// <summary>
+        /// hdncustomerid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdncustomerid;
+        
+        /// <summary>
         /// lblFromDate control.
         /// </summary>
         /// <remarks>
@@ -166,13 +175,13 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.DropDownList drdlUnitName;
         
         /// <summary>
-        /// odsUnitNameByEnrol control.
+        /// odsunitname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsUnitNameByEnrol;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsunitname;
         
         /// <summary>
         /// Label2 control.
@@ -308,6 +317,15 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCus;
+        
+        /// <summary>
+        /// AutoCompleteExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
         /// btncustomertarget control.

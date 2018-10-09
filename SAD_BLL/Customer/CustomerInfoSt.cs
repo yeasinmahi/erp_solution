@@ -22,6 +22,10 @@ namespace SAD_BLL.Customer
 
 
 
+        private static CustomerTDS.TblCustomerSearchingDataTable[] tablUnitbaseCust = null;
+        private static Hashtable htunit = new Hashtable();
+
+
         private static void Inatialize()
         {
             if (tableCusts == null)
@@ -33,6 +37,7 @@ namespace SAD_BLL.Customer
                 tableCusts = new CustomerTDS.TblCustomerDDLDataTable[tblUnit.Rows.Count];
                 TblCustomerDDLTableAdapter adpCOA = new TblCustomerDDLTableAdapter();
 
+                
 
                 for (int i = 0; i < tblUnit.Rows.Count; i++)
                 {
@@ -41,6 +46,7 @@ namespace SAD_BLL.Customer
                     {
                         ht.Add(tblUnit[i].intUnitID.ToString(), i);
                         tableCusts[i] = adpCOA.GetDataByUnit(tblUnit[i].intUnitID);
+                        
                     }
                 }
             }
@@ -247,6 +253,89 @@ namespace SAD_BLL.Customer
             }
         }
 
+        private static void Inatializeunitbase()
+        {
+            if (tablUnitbaseCust == null)
+            {
+                Unit unt = new Unit();
+                UnitTDS.TblUnitDataTable tblUnit = unt.GetUnits();
+                ht = new Hashtable();
+
+               
+
+                tablUnitbaseCust = new CustomerTDS.TblCustomerSearchingDataTable[tblUnit.Rows.Count];
+                TblCustomerSearchingTableAdapter objcust = new TblCustomerSearchingTableAdapter();
+
+                for (int i = 0; i < tblUnit.Rows.Count; i++)
+                {
+                    int untid = tblUnit[i].intUnitID;
+                    //if (untid == 1 || untid == 46)
+                    {
+                        ht.Add(tblUnit[i].intUnitID.ToString(), i);
+                       
+                        tablUnitbaseCust[i] = objcust.GetDataByUnit(tblUnit[i].intUnitID);
+                    }
+                }
+            }
+        }
+
+        public static string[] GetUnitBaseCustomerDataForAutoFill(string unitID, string prefix,string salesOffice)
+        {
+            Inatializeunitbase();
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+
+          if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tablUnitbaseCust[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])
+                           where tmp.intSalesOffId.ToString() == salesOffice
+                           orderby tmp.strName
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+                    var rows = from tmp in tablUnitbaseCust[Convert.ToInt32(ht[unitID])]
+                               where  tmp.strName.ToLower().Contains(prefix)
+                               // where tmp.intSalesOffId.ToString()==salesOffice
+                               //&& tmp.strName.ToLower().Contains(prefix)
+
+
+                               orderby tmp.strName
+                               select tmp;
+                     if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    //retStr[i] = tbl.Rows[i]["strName"] + " [" + tbl.Rows[i]["intCusID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strName"] + " [" + tbl.Rows[i]["intCusID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
 
