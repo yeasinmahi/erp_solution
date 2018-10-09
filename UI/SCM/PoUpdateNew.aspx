@@ -48,7 +48,7 @@
     
     <div class="divbody" style="padding-right:10px;">
         
-        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px; text-align:center; font-weight:bold; font-size:16px;">UPDATE PO <hr /></div>
+        <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px; text-align:center; font-weight:bold; font-size:16px;">&nbsp;PO UPDATE <hr /></div>
             <div class="container">
                  <%--<table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">--%>
                   <table  class="tbldecoration" style="width:auto; float:left;"> 
@@ -130,7 +130,7 @@
                        </tr>
                       <tr><td colspan="6" style="height:5px;"></td></tr>
                        <tr>
-                        <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" Font-Size="11px" CssClass="" Text="Po Date : "></asp:Label> </td> 
+                        <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" Font-Size="11px" CssClass="" Text="PO Date : "></asp:Label> </td> 
                         <td style="text-align:left;"><asp:TextBox ID="txtdtePo" Enabled="false" runat="server"  CssClass="txtBox1" Font-Bold="False"> 
                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdtePo"></cc1:CalendarExtender> 
                         </td>
@@ -139,24 +139,21 @@
                         <td  style="text-align:left;"><asp:TextBox ID="txtAit" Enabled="false" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox1" Font-Bold="False"> 
                         </asp:TextBox></td>
                             <td style="text-align:right;"><asp:Label ID="Label13" runat="server" CssClass="" Font-Size="11px" Text="Commision : "></asp:Label></td> 
-                            <td style="text-align:left;">
-                            <asp:TextBox ID="txtCommosion" runat="server"  onkeyup="GetCommision(this);"  CssClass="txtBox1"  AutoPostBack="false" Font-Bold="False">
-                            </asp:TextBox> </td> 
+                            <td style="text-align:left;"><asp:TextBox ID="txtCommosion" runat="server"  onkeyup="GetCommision(this);"  CssClass="txtBox1"  AutoPostBack="false" Font-Bold="False"></asp:TextBox> </td> 
                         
                       </tr>
-                      <tr>
-                          <td style="height:5px;" colspan="6"></td>
-                      </tr>
+                      <tr><td style="height:5px;" colspan="6"></td> </tr>
                       
                   </table>
                  <table>
                      <tr>
                           <td>
-                              <asp:GridView ID="dgvIndentPrepare" runat="server" OnRowDeleting="dgvIndentPrepare_RowDeleting" OnRowEditing="dgvIndentPrepare_RowEditing" ShowFooter="true" DataKeyNames="intItemID" OnRowCommand="dgvIndentPrepare_RowCommand" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
+                              <asp:GridView ID="dgvIndentPrepare" runat="server" OnRowDataBound="dgvIndentPrepare_RowDataBound" OnRowDeleting="dgvIndentPrepare_RowDeleting" OnRowEditing="dgvIndentPrepare_RowEditing" ShowFooter="True" DataKeyNames="intItemID" OnRowCommand="dgvIndentPrepare_RowCommand" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
                                   <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                     <asp:TemplateField HeaderText="SL No.">
-                                    <ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                    <ItemStyle HorizontalAlign="center" Width="60px" />
                                     </asp:TemplateField> 
 
                                     <asp:TemplateField HeaderText="Item Id" SortExpression="intItemID" >
@@ -172,47 +169,50 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUom" Visible="true">
-                                    <ItemTemplate> <asp:Label ID="lblUom" runat="server"   Text='<%# Bind("strUom") %>'></asp:Label> </ItemTemplate><ItemStyle HorizontalAlign="Right" />                                    
+                                    <ItemTemplate> <asp:Label ID="lblUom" runat="server"   Text='<%# Bind("strUom") %>' Width="90px"></asp:Label> </ItemTemplate><ItemStyle HorizontalAlign="Right" Width="90px" />                                    
                                     </asp:TemplateField>
                                     
-                                    <asp:TemplateField HeaderText="HSCode" ItemStyle-HorizontalAlign="right" SortExpression="strHsCode">
-                                    <ItemTemplate> <asp:Label ID="lblHsCode" runat="server"   Text='<%# Bind("strHsCode") %>'></asp:Label></ItemTemplate> <ItemStyle HorizontalAlign="Left"/>                                    
-                                    </asp:TemplateField> 
-                                      
                                     <asp:TemplateField HeaderText="Quantity" SortExpression="numQty">
-                                    <ItemTemplate><asp:TextBox ID="txtQty" runat="server"  CssClass="txtBox"  DataFormatString="{0:0.00}"  Text='<%# Bind("numQty") %>' Width="60px"></asp:TextBox>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" />
-                                    <FooterTemplate><asp:Label ID="lblGrandTotalQty" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate></asp:TemplateField>
+                                    <FooterTemplate><asp:Label ID="lblGrandTotalQty" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
+                                    <ItemTemplate><asp:TextBox ID="txtQty" runat="server"  CssClass="txtBox" Text='<%# Bind("numQty","{0:N2}") %>' Width="90px"></asp:TextBox>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="90px" />
+                                        </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="rate">
-                                    <ItemTemplate><asp:TextBox ID="txtRate" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("monRate") %>' Width="80px"></asp:TextBox>
+                                    <%--<FooterTemplate><asp:Label ID="lbldm" runat="server" DataFormatString="{0:0.00}" Text="" /></FooterTemplate>--%>
+                                    <ItemTemplate><asp:TextBox ID="txtRate" runat="server" CssClass="txtBox" Text='<%# Bind("monRate","{0:N2}") %>' Width="80px"></asp:TextBox>
                                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
-                                    <FooterTemplate><asp:Label ID="lbldm" runat="server" DataFormatString="{0:0.00}" Text="" /></FooterTemplate></asp:TemplateField>
+                                        </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="VAT" SortExpression="vat">
-                                    <ItemTemplate><asp:TextBox ID="txtVAT" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("monVAT") %>' Width="80px"></asp:TextBox>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
-                                    <FooterTemplate><asp:Label ID="lblGrandTotalVAT" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate></asp:TemplateField>
+                                    <%--<FooterTemplate><asp:Label ID="lblGrandTotalVAT" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>--%>
+                                    <ItemTemplate><asp:TextBox ID="txtVAT" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("monVAT","{0:N2}") %>' Width="60px"></asp:TextBox>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" />
+                                        </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="AIT" ItemStyle-HorizontalAlign="right" SortExpression="ait">
-                                    <ItemTemplate><asp:TextBox ID="txtAIT" runat="server" DataFormatString="{0:0.00}" CssClass="txtBox" Width="80px" Text='<%# Bind("monAIT") %>'></asp:TextBox>
-                                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
-                                    <FooterTemplate><asp:Label ID="lblGrandTotalAIT" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate></asp:TemplateField>
+                                    <%--<FooterTemplate><asp:Label ID="lblGrandTotalAIT" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>--%>
+                                    <ItemTemplate><asp:TextBox ID="txtAIT" runat="server" DataFormatString="{0:0.00}" CssClass="txtBox" Width="60px" Text='<%# Bind("monAIT","{0:N2}") %>'></asp:TextBox>
+                                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="60px" />
+                                        </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Total Value" ItemStyle-HorizontalAlign="right" SortExpression="monAmount">
-                                    <ItemTemplate><asp:Label ID="lblTotalVal" runat="server"   Text='<%# Bind("monAmount") %>'></asp:Label>
+                                    <FooterTemplate><asp:Label ID="lblGrandTotal" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
+                                    <ItemTemplate><asp:Label ID="lblTotalVal" runat="server"   Text='<%# Bind("monAmount","{0:N2}") %>'></asp:Label>
                                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
-                                    <FooterTemplate><asp:Label ID="lblGrandTotal" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate></asp:TemplateField>
+                                        </asp:TemplateField>
                                   
                                     <asp:TemplateField ShowHeader="false">
                                         <ItemTemplate>
                                             <asp:Button ID="LinkButton1" runat="server" CommandName="edit" Text="Update" ></asp:Button>
                                         </ItemTemplate>
+                                        <controlstyle font-bold="True" forecolor="#3399FF" BackColor="#F3F3F3" />
                                     </asp:TemplateField>
                                          <asp:TemplateField ShowHeader="false">
                                         <ItemTemplate>
                                             <asp:Button ID="LinkButton2" runat="server" CommandName="delete" Text="Delete" ></asp:Button>
                                         </ItemTemplate>
+                                             <controlstyle font-bold="True" forecolor="Red" BackColor="#F3F3F3" />
                                     </asp:TemplateField>
                                     </Columns>
                                   <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
