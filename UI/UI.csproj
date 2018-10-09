@@ -282,6 +282,8 @@
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
@@ -319,6 +321,7 @@
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Dispatch\DispatchExternalReceive.aspx" />
     <Content Include="HR\Dispatch\DispatchRequest.aspx" />
     <Content Include="HR\Dispatch\rptDispatchApproveReject.aspx" />
@@ -8325,6 +8328,11 @@
     <Content Include="packages.config" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="libman.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\pubiis8.pubxml" />
