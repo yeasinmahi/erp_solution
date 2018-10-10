@@ -282,6 +282,8 @@
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
@@ -319,6 +321,7 @@
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Dispatch\DispatchExternalReceive.aspx" />
     <Content Include="HR\Dispatch\DispatchRequest.aspx" />
     <Content Include="HR\Dispatch\rptDispatchApproveReject.aspx" />
@@ -1353,6 +1356,7 @@
     <Content Include="SCM\MrrStatementDetalis.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
+    <Content Include="SCM\POCorrection.aspx" />
     <Content Include="SCM\PoDetalisView.aspx" />
     <Content Include="SCM\PoDocAttachment.aspx" />
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
@@ -7094,6 +7098,13 @@
     <Compile Include="SCM\PoApproval.aspx.designer.cs">
       <DependentUpon>PoApproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\POCorrection.aspx.cs">
+      <DependentUpon>POCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\POCorrection.aspx.designer.cs">
+      <DependentUpon>POCorrection.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\PoDetalisView.aspx.cs">
       <DependentUpon>PoDetalisView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8317,6 +8328,11 @@
     <Content Include="packages.config" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="libman.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\pubiis8.pubxml" />
