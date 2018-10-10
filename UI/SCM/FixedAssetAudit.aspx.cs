@@ -54,6 +54,7 @@ namespace UI.SCM
                     dt = objInventorybll.FixedAssetData("", 3, strJobStation, enroll);
                 }
             }
+
            
             if(dt.Rows.Count>0)
             {
