@@ -54,11 +54,11 @@
                   <table  class="tbldecoration" style="width:auto; float:left;"> 
                       
                       <tr>
-                          <td><asp:Label ID="Label1" runat="server" CssClass="" Text="PO Number : " Font-Size="11px"></asp:Label></td>
+                          <td style="text-align:right;"><asp:Label ID="Label1" runat="server" Text="PO Number : " Font-Size="11px"></asp:Label></td>
                           <td><asp:TextBox ID="txtpoid" runat="server" AutoPostBack="true" CssClass="txtBox1" Font-Bold="False" Text="0"></asp:TextBox></td>
                           <td style="width:5px;"></td>
                           <td>
-                              <asp:Button ID="btnShow" runat="server" AutoPostBack="false" CssClass="btn btn-info" Font-Bold="true" Height="30" OnClick="btnShow_Click" Text="Show" />
+                              <asp:Button ID="btnShow" runat="server" AutoPostBack="false" CssClass="myButton" Font-Bold="true" OnClick="btnShow_Click" Text="Show" />
                           </td>
                           <td colspan="3"><asp:Label ID="lblSuppAddress" ForeColor="Red" Font-Size="Small" runat="server"></asp:Label></td>
                           
@@ -76,9 +76,9 @@
                           </td>
                           <td><asp:Label ID="Label3" runat="server" CssClass="" ></asp:Label></td>
                           <td style="text-align:right;">
-                              <asp:Label ID="Label6" runat="server" CssClass="" Text="Supplier : " Font-Size="11px"></asp:Label>
+                              <asp:Label ID="Label6" runat="server" Text="Supplier : " Font-Size="11px"></asp:Label>
                           </td>
-                        <td style="text-align:left;"><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search" CssClass="txtBox1" AutoPostBack="true" Width="300px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
+                        <td style="text-align:left;"><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search" CssClass="txtBox1" AutoPostBack="true" Width="250px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
                         <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
                         ServiceMethod="GetSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                         CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -89,7 +89,7 @@
                               </asp:DropDownList>
                           </td>--%>
                           <td style="width:5px;"></td>
-                          <td   style="text-align:left;"><asp:Button ID="btnUpdatePO" CssClass="btn btn-info" runat="server" Height="30" Font-Bold="true" Text="Update"  AutoPostBack="false" OnClick="btnUpdatePO_Click" />
+                          <td   style="text-align:left;"><asp:Button ID="btnUpdatePO" CssClass="myButton" runat="server" Font-Bold="true" Text="Update"  AutoPostBack="false" OnClick="btnUpdatePO_Click" />
                         
                         </td>
                       </tr>
@@ -123,7 +123,7 @@
                             <asp:DropDownList ID="ddlDtePay" Enabled="false" runat="server" AutoPostBack="false" CssClass="ddList" Height="24px" Font-Bold="False">
                             </asp:DropDownList></td>
                             <%--<td><asp:Label ID="Label30" runat="server" CssClass="" ></asp:Label></td>--%>
-                           <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Font-Size="11px" Text="Gross Discount : "></asp:Label></td>  
+                           <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Font-Size="11px" Text="Gross Discount : " Width="100px"></asp:Label></td>  
                               <td style="text-align:left;"><asp:TextBox ID="txtGrossDiscount" runat="server"  Text="0" AutoPostBack="false"  CssClass="txtBox1" Font-Bold="False"></asp:TextBox></td>
                               
                            
@@ -153,23 +153,28 @@
                                     <Columns>
                                     <asp:TemplateField HeaderText="SL No.">
                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
-                                    <ItemStyle HorizontalAlign="center" Width="60px" />
+                                        
+                                    <ItemStyle HorizontalAlign="center" Width="60px" />                                       
                                     </asp:TemplateField> 
 
                                     <asp:TemplateField HeaderText="Item Id" SortExpression="intItemID" >
-                                    <ItemTemplate> <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" />                                   
+                                    <ItemTemplate> <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
+                                       
+                                        <ItemStyle HorizontalAlign="Left" Width="45px" />                                   
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Item Name" SortExpression="strName"><ItemTemplate> 
-                                    <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="300px" />                                     
+                                    <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
+                                       
+                                        <ItemStyle HorizontalAlign="Left" Width="200px" />                                     
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Item Specification" ItemStyle-HorizontalAlign="right" SortExpression="strDesc">
-                                    <ItemTemplate> <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strSpecification") %>'></asp:Label> </ItemTemplate> <ItemStyle HorizontalAlign="Right" Width="150px" />                                    
+                                    <ItemTemplate> <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strSpecification") %>'></asp:Label> </ItemTemplate> <ItemStyle HorizontalAlign="Left" Width="250px" />                                    
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUom" Visible="true">
-                                    <ItemTemplate> <asp:Label ID="lblUom" runat="server"   Text='<%# Bind("strUom") %>' Width="90px"></asp:Label> </ItemTemplate><ItemStyle HorizontalAlign="Right" Width="90px" />                                    
+                                    <ItemTemplate> <asp:Label ID="lblUom" runat="server"   Text='<%# Bind("strUom") %>' Width="90px"></asp:Label> </ItemTemplate><ItemStyle HorizontalAlign="Center" Width="90px" />                                    
                                     </asp:TemplateField>
                                     
                                     <asp:TemplateField HeaderText="Quantity" SortExpression="numQty">
@@ -231,7 +236,7 @@
                           <td><asp:DropDownList ID="ddlPartialShip" AutoPostBack="false" CssClass="ddList" Height="24px" runat="server">
                            <asp:ListItem Text="No" Value="0"></asp:ListItem><asp:ListItem Text="Yes" Value="1"></asp:ListItem>
                            </asp:DropDownList></td> 
-                          <td style="text-align:right;"><asp:Label ID="lblNoOfShip" runat="server" Text="No of Shipment : " Font-Size="11px"/></td>
+                          <td style="text-align:right;"><asp:Label ID="lblNoOfShip" runat="server" Text="No of Shipment : " Font-Size="11px" Width="150px"/></td>
                           <td><asp:TextBox ID="txtNoOfShipment" runat="server" CssClass="txtBox1" Text="1" /></td> 
                           
                       </tr>
@@ -273,7 +278,7 @@
                           <td><asp:TextBox ID="txtWarrenty" CssClass="txtBox1" runat="server" Text="1"/></td> 
                           <td style="text-align:right;"><asp:Label ID="Label25" runat="server" Text="Others Trems : " Font-Size="11px" /></td>
                           <td><asp:TextBox ID="txtOthersTerms" runat="server"  Width="200px" Height="50px" Text="Na" CssClass="txtBox1" TextMode="MultiLine"/></td> 
-                          <td><asp:Button ID="btnUpdate" CssClass="btn btn-success" runat="server" Height="30" Font-Bold="true" Text="Update Other"   AutoPostBack="false" OnClick="btnUpdate_Click" /></td>
+                          <td><asp:Button ID="btnUpdate" CssClass="myButton" runat="server" Font-Bold="true" Text="Update Other"   AutoPostBack="false" OnClick="btnUpdate_Click" /></td>
                       </tr>
                  
               </table>

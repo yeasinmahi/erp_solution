@@ -16,3 +16,10 @@ namespace SCM_DAL
         }
     }
 }
+
+namespace SCM_DAL.PoGenerateTDSTableAdapters {
+    
+    
+    public partial class sprPOTableAdapter {
+    }
+}

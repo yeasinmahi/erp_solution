@@ -292,24 +292,6 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.TextBox txtDriverContact;
         
         /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
-        /// <summary>
-        /// txtMeterialDes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMeterialDes;
-        
-        /// <summary>
         /// gridView control.
         /// </summary>
         /// <remarks>
