@@ -22450,6 +22450,8 @@ namespace SAD_DAL.Sales {
             
             private global::System.Data.DataColumn columndtepostingdate;
             
+            private global::System.Data.DataColumn columnstringPONumber;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprBillCopySubmissiontoCustomerDataTable() {
@@ -22669,6 +22671,14 @@ namespace SAD_DAL.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn stringPONumberColumn {
+                get {
+                    return this.columnstringPONumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -22727,7 +22737,8 @@ namespace SAD_DAL.Sales {
                         string custadr, 
                         string challanadr, 
                         string podet, 
-                        System.DateTime dtepostingdate) {
+                        System.DateTime dtepostingdate, 
+                        string stringPONumber) {
                 SprBillCopySubmissiontoCustomerRow rowSprBillCopySubmissiontoCustomerRow = ((SprBillCopySubmissiontoCustomerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         insl,
@@ -22752,7 +22763,8 @@ namespace SAD_DAL.Sales {
                         custadr,
                         challanadr,
                         podet,
-                        dtepostingdate};
+                        dtepostingdate,
+                        stringPONumber};
                 rowSprBillCopySubmissiontoCustomerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprBillCopySubmissiontoCustomerRow);
                 return rowSprBillCopySubmissiontoCustomerRow;
@@ -22798,6 +22810,7 @@ namespace SAD_DAL.Sales {
                 this.columnchallanadr = base.Columns["challanadr"];
                 this.columnpodet = base.Columns["podet"];
                 this.columndtepostingdate = base.Columns["dtepostingdate"];
+                this.columnstringPONumber = base.Columns["stringPONumber"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22849,6 +22862,8 @@ namespace SAD_DAL.Sales {
                 base.Columns.Add(this.columnpodet);
                 this.columndtepostingdate = new global::System.Data.DataColumn("dtepostingdate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndtepostingdate);
+                this.columnstringPONumber = new global::System.Data.DataColumn("stringPONumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstringPONumber);
                 this.columnstrcustname.MaxLength = 500;
                 this.columnstrDONumber.MaxLength = 500;
                 this.columnstrchalallanumber.MaxLength = 500;
@@ -22857,6 +22872,7 @@ namespace SAD_DAL.Sales {
                 this.columncustadr.MaxLength = 500;
                 this.columnchallanadr.MaxLength = 500;
                 this.columnpodet.MaxLength = 500;
+                this.columnstringPONumber.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -40862,6 +40878,23 @@ namespace SAD_DAL.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string stringPONumber {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprBillCopySubmissiontoCustomer.stringPONumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'stringPONumber\' in table \'SprBillCopySubmissiontoCustomer\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprBillCopySubmissiontoCustomer.stringPONumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsinslNull() {
                 return this.IsNull(this.tableSprBillCopySubmissiontoCustomer.inslColumn);
             }
@@ -41134,6 +41167,18 @@ namespace SAD_DAL.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetdtepostingdateNull() {
                 this[this.tableSprBillCopySubmissiontoCustomer.dtepostingdateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstringPONumberNull() {
+                return this.IsNull(this.tableSprBillCopySubmissiontoCustomer.stringPONumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstringPONumberNull() {
+                this[this.tableSprBillCopySubmissiontoCustomer.stringPONumberColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -52879,6 +52924,7 @@ left join erp_hr.dbo.tblUnitAddress adr on adr.intUnitID=u.intUnitID
             tableMapping.ColumnMappings.Add("challanadr", "challanadr");
             tableMapping.ColumnMappings.Add("podet", "podet");
             tableMapping.ColumnMappings.Add("dtepostingdate", "dtepostingdate");
+            tableMapping.ColumnMappings.Add("stringPONumber", "stringPONumber");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

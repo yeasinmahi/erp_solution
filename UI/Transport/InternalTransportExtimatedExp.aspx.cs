@@ -767,7 +767,7 @@ namespace UI.Transport
                                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Route Cost Update.');", true); return;
                             }
                         }
-                        else if (intUnitID == 2)
+                        else if (intUnitID == 2 || intUnitID == 90)
                         {
                             //|| bnrtoll7ton == "" || bnrtoll7ton == "0" || bnrtoll5ton == "" || bnrtoll5ton == "0" || bnrtoll3ton == "" || bnrtoll3ton == "0" || bnrtoll1andhalfton == "" || bnrtoll1andhalfton == "0" || ft7ton == "" || ft7ton == "0" || ft5ton == "" || ft5ton == "0" || ft3ton == "" || ft3ton == "0" || ft1andhalfton == "" || ft1andhalfton == "0"
                             if (millage == "" || millage == "0" || tf7ton == "" || tf7ton == "0" || tf5ton == "" || tf5ton == "0" || tf3ton == "" || tf3ton == "0" || tf1andhalfton == "" || tf1andhalfton == "0")
@@ -802,12 +802,12 @@ namespace UI.Transport
                         }
                     }
                 }
-                
+
                 ///////////////////////////////////////////////////////////////////////////////
-                
+
                 //Final Insert
                 string message = obj.InsertOutEntry(intReffID, monBridgeToll, monFerryEXP, monLabourEXP, monPoliceEXP, intDriverEnroll, monFuelCash, monAdvance, intInsertBy, xml, TotalRouteExp);
-
+                
                 if (filePathForXML != null)
                 { File.Delete(filePathForXML); } dgvFuelCost.DataSource = ""; dgvFuelCost.DataBind();
 
