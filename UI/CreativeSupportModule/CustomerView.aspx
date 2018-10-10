@@ -203,7 +203,7 @@
 
 
                             <td style="text-align: right; padding: 15px 17px 8px 10px">
-                                <asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"  OnClientClick="return FTPUpload2();"/></td>
+                                <asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"  /></td>
                         </tr>
                         <tr>
                             <%--<td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>--%>
