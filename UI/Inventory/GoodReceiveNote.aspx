@@ -86,7 +86,7 @@
                                     <asp:TextBox ID="txtPoNumber" TextMode="Number" CssClass="form-control col-md-8" runat="server" placeholder="PO Number"></asp:TextBox>
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control col-md-4" Text="Show" OnClick="btnShow_Click" />
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
                             <div class="row" id ="infoPanel" style="visibility: hidden">
