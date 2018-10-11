@@ -29,7 +29,7 @@ function isDecimal(value) {
 
 
 function Viewdetails(id) {
-    window.open('RequisitionDetails.aspx?ID=' + id, '', "height=375, width=730, scrollbars=yes, left=250, top=200, resizable=no, title=Preview");
+    window.open('RequisitionDetails.aspx?ID=' + id, '', "height=375, width=830, scrollbars=yes, left=250, top=200, resizable=no, title=Preview");
     }
 
    function ViewPolicy(id, filepath)

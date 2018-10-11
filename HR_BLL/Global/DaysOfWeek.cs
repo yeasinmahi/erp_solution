@@ -182,5 +182,17 @@ namespace HR_BLL.Global
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetRequisitionDetailsBYReqID(int reqID)
+        {
+            RequisitionDetailsTableAdapter adp = new RequisitionDetailsTableAdapter();
+            return adp.GetRequisitionDetails(reqID);
+        }
+
+        public DataTable GetRequisitionRequesterAndApprover(int reqID)
+        {
+            RequisitionRequesterAndApproverTableAdapter adp = new RequisitionRequesterAndApproverTableAdapter();
+            return adp.GetRequesterAndApprover(reqID);
+        }
+
     }    
 }

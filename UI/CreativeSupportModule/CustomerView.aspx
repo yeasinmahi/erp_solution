@@ -116,7 +116,13 @@
                             <td style="text-align: right; padding-top: 10px;">
                                 <asp:Label ID="lblEName" runat="server" Text="Assign By :" CssClass="lbl"></asp:Label></td>
                             <td colspan="5" style="padding-top: 10px;">
-                                <asp:TextBox ID="txtName" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke" Width="547px"></asp:TextBox></td>
+                                <asp:TextBox ID="txtName" runat="server" CssClass="txtBox1" Enabled="true" BackColor="WhiteSmoke" Width="547px"></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender3" runat="server" TargetControlID="txtName"
+                                    ServiceMethod="GetEmpListForCreativeSupportList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: right; padding-top: 10px">
@@ -203,7 +209,7 @@
 
 
                             <td style="text-align: right; padding: 15px 17px 8px 10px">
-                                <asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"  OnClientClick="return FTPUpload2();"/></td>
+                                <asp:Button ID="btnItemAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnItemAdd_Click"  /></td>
                         </tr>
                         <tr>
                             <%--<td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>--%>
