@@ -84,6 +84,18 @@ namespace SAD_BLL.AEFPS
 
         }
 
+        public DataTable getmemoCount(int whid)
+        {
+            try
+            {
+                tblmemoCountTableAdapter getMemocount = new tblmemoCountTableAdapter();
+                return getMemocount.GetData(whid);
+
+
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getPricesPer(int part,int intWID, int intitemid, decimal salesQty)
         {
             try

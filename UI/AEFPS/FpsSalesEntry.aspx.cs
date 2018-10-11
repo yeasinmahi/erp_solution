@@ -44,11 +44,31 @@ namespace UI.AEFPS
                 ddlWH.DataSource = dt;
                 ddlWH.DataBind();
                 TextBox1.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                GetMemoCount();
             }
             else
             { }
 
         }
+
+        private void GetMemoCount()
+        {
+            try
+            {
+                dt = objAEFPS.getmemoCount(int.Parse(ddlWH.SelectedValue.ToString()));
+                if(dt.Rows.Count>0)
+                {
+                    lblMemoCounttxt.Text = dt.Rows[0]["counts"].ToString();
+                }
+                else
+                {
+                    lblMemoCounttxt.Text ="0".ToString();
+
+                }
+            }
+            catch { }
+        }
+
         protected void txtEmployee_TextChanged(object sender, EventArgs e)
         {
             getEmployeeResultTextBox();
@@ -261,7 +281,7 @@ namespace UI.AEFPS
             // ends
             tracker.Stop();
 
-
+            GetMemoCount();
         }
 
   
