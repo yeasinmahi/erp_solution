@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO.Compression;
+using Utility;
 
 namespace UI.CreativeSupportModule
 {
@@ -183,58 +184,25 @@ namespace UI.CreativeSupportModule
                         {
                             continue;
                         }
-                        serverFilePath = string.Format(@"{0}\{1}", serverFolderPath, "Attachment");
+                        serverFilePath = $@"{serverFolderPath}\{"Attachment"}";
 
                         //FTP Server URL.
-                        string ftp = "ftp://ftp.akij.net/";
-
-                        //FTP Folder name. Leave blank if you want to Download file from root folder.
-                        string ftpFolder = "CreativeSupportModuleDoc/";
-
+                        string ftp = "ftp://ftp.akij.net/CreativeSupportModuleDoc/";
+                        string ftpPath = ftp + strPath;
+                        if (!Directory.Exists(serverFolderPath))
+                        {
+                            Directory.CreateDirectory(serverFolderPath);
+                        }
+                        if (!Directory.Exists(serverFilePath))
+                        {
+                            //Directory.Delete(serverFilePath, true);
+                            Directory.CreateDirectory(serverFilePath);
+                        }
                         try
                         {
-                            //Create FTP Request.
-                            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + strPath);
-                            request.Method = WebRequestMethods.Ftp.DownloadFile;
-
-                            //Enter FTP Server credentials.
-                            request.Credentials = new NetworkCredential("erp", "erp123");
-                            request.UsePassive = true;
-                            request.UseBinary = true;
-                            request.EnableSsl = false;
-
-                            //Fetch the Response and read it into a MemoryStream object.
-                            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-                            using (MemoryStream stream = new MemoryStream())
-                            {
-                                response.GetResponseStream()?.CopyTo(stream);
-
-                                byte[] fileBytesTobeZipped = stream.ToArray();
-
-                                if (Directory.Exists(serverFolderPath) == false)
-                                {
-                                    Directory.CreateDirectory(serverFolderPath);
-                                }
-
-                                //if destination folder already exists then delete it
-
-                                if (!Directory.Exists(serverFilePath))
-                                {
-                                    //Directory.Delete(serverFilePath, true);
-                                    Directory.CreateDirectory(serverFilePath);
-                                }
-                                
-
-
-
-                                string filePath = string.Format(@"{0}\{1}",
-                                    serverFilePath,
-                                    strPath);//e-g report.xlsx , report.docx according to exported file
-
-                                File.WriteAllBytes(filePath, fileBytesTobeZipped);
-
-                            }
+                            byte[] bytes = Downloader.DownloadFromFtp(ftpPath);
+                            string filePath = $@"{serverFilePath}\{strPath}";
+                            File.WriteAllBytes(filePath, bytes);
                         }
                         catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse)?.StatusDescription); }
                     }
@@ -242,9 +210,9 @@ namespace UI.CreativeSupportModule
                     Response.AddHeader("content-disposition", "attachment;filename=" + "Attachment.zip");
                     Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                    Response.BinaryWrite(Utility.ZipHelper.PackageDocsAsZip(serverFilePath));
+                    Response.BinaryWrite(ZipHelper.CreateZip(serverFilePath));
                     Response.Flush();
-                    Utility.FileHelper.DeleteFolder(serverFilePath);
+                    FileHelper.DeleteFolder(serverFilePath);
                     Response.End();
 
                 }

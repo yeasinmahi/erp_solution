@@ -5,7 +5,7 @@ namespace Utility
 {
     public class ZipHelper
     {
-        public static byte[] PackageDocsAsZip(string fileName)
+        public static byte[] CreateZip(string fileName)
         {
             //if zip already exists then delete it
             
