@@ -324,6 +324,7 @@
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
     <Content Include="HR\Dispatch\DispatchExternalReceive.aspx" />
     <Content Include="HR\Dispatch\DispatchRequest.aspx" />
     <Content Include="HR\Dispatch\rptDispatchApproveReject.aspx" />
@@ -356,6 +357,7 @@
     <Content Include="HR\Loan\Reward.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
+    <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
@@ -2599,6 +2601,13 @@
     <Compile Include="Document Inventory\FileAndDocLocationCreate.aspx.designer.cs">
       <DependentUpon>FileAndDocLocationCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
+      <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.designer.cs">
+      <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Dispatch\DispatchExternalReceive.aspx.cs">
       <DependentUpon>DispatchExternalReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2822,6 +2831,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.designer.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.cs">
+      <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
+      <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
       <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>

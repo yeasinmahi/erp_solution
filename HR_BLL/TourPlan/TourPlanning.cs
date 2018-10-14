@@ -1009,5 +1009,13 @@ namespace HR_BLL.TourPlan
             try { return adp.GetDataBrandItemChallanRollbackDet(type, actionby, xml, id, unitid, challan); }
             catch { return new DataTable(); }
         }
+
+        public DataTable CreateNewItmForBrand(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate,int unitid)
+        {
+            SprBrandItemInfoDetTableAdapter adp = new SprBrandItemInfoDetTableAdapter();
+            try { return adp.GetDataBrandItemInfoDet(type, actionby, xml, id, fdate, tdate, unitid); }
+            catch { return new DataTable(); }
+        }
+
     }
 }
