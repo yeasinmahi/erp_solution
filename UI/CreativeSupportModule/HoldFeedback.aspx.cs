@@ -215,7 +215,7 @@ namespace UI.CreativeSupportModule
                         xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
                         xmlDoc = xmlStringDocUpload;
                     }
-                    catch { }
+                    catch { return; }
 
                     
                     if (dgvDocUp.Rows.Count > 0)
