@@ -195,7 +195,6 @@ namespace UI.CreativeSupportModule
                         }
                         if (!Directory.Exists(serverFilePath))
                         {
-                            //Directory.Delete(serverFilePath, true);
                             Directory.CreateDirectory(serverFilePath);
                         }
                         try
