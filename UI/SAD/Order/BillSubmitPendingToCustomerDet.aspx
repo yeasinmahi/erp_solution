@@ -173,6 +173,9 @@
                         <asp:BoundField DataField="strItmname" HeaderText="Item Name" SortExpression="strItmname" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
+                        <asp:BoundField DataField="stringPONumber" HeaderText="P.O Number" SortExpression="stringPONumber" ItemStyle-HorizontalAlign="Center" >
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
                         <asp:BoundField DataField="strDONumber" HeaderText="D.O Number" SortExpression="strDONumber" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>

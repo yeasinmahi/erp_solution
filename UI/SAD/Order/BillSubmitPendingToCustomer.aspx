@@ -48,7 +48,7 @@
              window.open('BillSubmitPendingToCustomerDet.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
                   }
 </script>
-        <script type="text/javascript">
+      <%--  <script type="text/javascript">
     $(document).ready(function () {    
     SearchText();
 });
@@ -76,7 +76,7 @@ function SearchText() {
 }
 
 
-    </script>
+    </script>--%>
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -92,6 +92,7 @@ function SearchText() {
     <div class="tabs_container"> Customer Return Qnt  :<asp:HiddenField ID="hdnenroll" runat="server"/>
         <asp:HiddenField ID="hdnstation" runat="server"/><asp:HiddenField ID="hdnsearch" runat="server"/>
         <asp:HiddenField ID="hdnemail" runat="server"/><asp:HiddenField ID="hdnconfirm" runat="server" />
+        <asp:HiddenField ID="hdncustomerid" runat="server" />
         <hr /></div>
         <table border="0"; style="width:Auto"; >    
        
@@ -108,15 +109,22 @@ function SearchText() {
             <tr class="tblrowodd">
                 <td style="text-align:right;"><asp:Label ID="lblUnit" CssClass="lbl" runat="server" Text="Unit Name:  "> </asp:Label>
                    
-
+                     <%--DataSourceID="odsUnit" DataTextField="strUnit" DataValueField="intUnitID"--%>
                          
-                         <td style="text-align:right;"><asp:DropDownList ID="drdlUnitName"  runat="server" CssClass="ddList" DataSourceID="odsUnitNameByEnrol" AutoPostBack="true" DataTextField="strUnit" DataValueField="intUnitID" OnSelectedIndexChanged="drdlUnitName_SelectedIndexChanged"></asp:DropDownList>
-            
-                 <asp:ObjectDataSource ID="odsUnitNameByEnrol" runat="server" SelectMethod="getUnitNamebyEnrol" TypeName="HR_BLL.TourPlan.TourPlanning">
-                     <SelectParameters>
-                         <asp:SessionParameter Name="Enrol" SessionField="sesUserID" Type="Int32" />
-                     </SelectParameters>
-                 </asp:ObjectDataSource>
+                         <td style="text-align:right;"> <asp:DropDownList ID="drdlUnitName" runat="server" AutoPostBack="True" 
+                                                OnDataBound="drdlUnitName_DataBound" 
+                                                onselectedindexchanged="drdlUnitName_SelectedIndexChanged" DataSourceID="odsunitname" DataTextField="strUnit" DataValueField="intUnitID">
+                                            </asp:DropDownList>
+                                           <asp:ObjectDataSource ID="odsunitname" runat="server" SelectMethod="GetUnits" TypeName="HR_BLL.Global.Unit">
+                                               <SelectParameters>
+                                                   <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" />
+                                               </SelectParameters>
+                             </asp:ObjectDataSource>
+                                           <%-- <asp:ObjectDataSource ID="odsUnit" runat="server" SelectMethod="GetUnits" TypeName="HR_BLL.Global.Unit">
+                                                <SelectParameters>
+                                                    <asp:SessionParameter DefaultValue="1" Name="userID" SessionField="sesUserID" Type="String" />
+                                                </SelectParameters>
+                                            </asp:ObjectDataSource>--%>
                             
             </td>
 
@@ -200,7 +208,7 @@ function SearchText() {
                       <td>
                                 <asp:DropDownList ID="ddlSo" runat="server" AutoPostBack="True" DataSourceID="ods2"
                                     DataTextField="strName" DataValueField="intSalesOffId" 
-                                    OnSelectedIndexChanged="ddlSo_SelectedIndexChanged">
+                                    OnSelectedIndexChanged="ddlSo_SelectedIndexChanged" OnDataBound="ddlSo_DataBound">
                                 </asp:DropDownList>
                                 <asp:ObjectDataSource ID="ods2" runat="server" SelectMethod="GetSalesOfficeWithAll" TypeName="SAD_BLL.Global.SalesOffice"
                                     OldValuesParameterFormatString="original_{0}">
@@ -218,7 +226,14 @@ function SearchText() {
                 <td>
                                 Customer
                             </td>
-                           <td> <asp:TextBox ID="txtCus" runat="server" BackColor="#ff6666" AutoPostBack="false" CssClass="txtBox"  Width="200px" ></asp:TextBox></td>
+                           <td colspan="3"> <asp:TextBox ID="txtCus" runat="server" BackColor="#fffff6" AutoPostBack="false" CssClass="txtBox"  Width="400px" ></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCus"
+                                            ServiceMethod="GetCustomerListunitbase" MinimumPrefixLength="1" CompletionSetCount="1"
+                                            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                        </cc1:AutoCompleteExtender>
+
+                           </td>
 
 
             </tr>

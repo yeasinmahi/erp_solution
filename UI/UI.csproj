@@ -362,6 +362,7 @@
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
     <Content Include="Inventory\BrandItemChallanRollback.aspx" />
+    <Content Include="Inventory\BrandItemOpen.aspx" />
     <Content Include="Inventory\BrandItemReport.aspx" />
     <Content Include="Inventory\BudgetManagementReport.aspx" />
     <Content Include="Inventory\DeliveryRequestAccess.aspx" />
@@ -2875,6 +2876,13 @@
     </Compile>
     <Compile Include="Inventory\BrandItemChallanRollback.aspx.designer.cs">
       <DependentUpon>BrandItemChallanRollback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\BrandItemOpen.aspx.cs">
+      <DependentUpon>BrandItemOpen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\BrandItemOpen.aspx.designer.cs">
+      <DependentUpon>BrandItemOpen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemReport.aspx.cs">
       <DependentUpon>BrandItemReport.aspx</DependentUpon>
