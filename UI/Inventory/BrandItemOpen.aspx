@@ -17,120 +17,28 @@
     <script src="../../../../Content/JS/JQUERY/MigrateJS.js"></script>
     <script src="../../../../Content/JS/JQUERY/GridviewScroll.min.js"></script>
     
-     <script type="text/javascript">
-         $(document).ready(function () {
-             GridviewScroll();
-         });
-         function GridviewScroll() {
-
-             $('#<%=dgv.ClientID%>').gridviewScroll({
-                 width: 800,
-                 height: 340,
-                 startHorizontal: 0,
-                 wheelstep: 10,
-                 barhovercolor: "#3399FF",
-                 barcolor: "#3399FF"
-             });
-         }
-    </script>
-
-    
-     <script type="text/javascript">
-         $(document).ready(function () {
-             SearchItemText();
-         });
-         function Changed() {
-             document.getElementById('hdfItemSearchBoxTextChange').value = 'true';
-         }
-         function SearchItemText() {
-             $("#txtItem").autocomplete({
-                 source: function (request, response) {
-                     $.ajax({
-                         type: "POST",
-                         contentType: "application/json;",
-                         url: "BrandItemAllotmentToSupplier.aspx/GetAutoCompleteBrandItemName",
-                         data: "{'prefix':'" + document.getElementById('txtItem').value + "'}",
-                         dataType: "json",
-                         success: function (data) {
-                             response(data.d);
-                         },
-                         error: function (result) {
-                             alert("Error");
-                         }
-                         
-                     });
-                 }
-             });
-         }
-
-         $(document).ready(function () {
-             SearchSupplierlistText();
-         });
-         function Changed() {
-             document.getElementById('hdfSupplierNameserachboxchange').value = 'true';
-         }
-         function SearchSupplierlistText() {
-             $("#txtSupplierName").autocomplete({
-                 source: function (request, response) {
-                     $.ajax({
-                         type: "POST",
-                         contentType: "application/json;",
-                         url: "BrandItemStockEntry.aspx/GetAutoCompleteSupplierName",
-                         data: "{'prefix':'" + document.getElementById('txtSupplierName').value + "'}",
-                         dataType: "json",
-                         success: function (data) {
-                             response(data.d);
-                         },
-                         error: function (result) {
-                             alert("Error");
-                         }
-                     });
-                 }
-             });
-         }
-
-  </script>
+   
     <script type="text/javascript">
         function ConfirmAll() {
             document.getElementById("hdnconfirm").value = "0";
          
-            var txtItemName = document.forms["frmpdv"]["txtItem"].value;
-            var supplierNAME = document.forms["frmpdv"]["txtSupplierName"].value;
+            var txtItemName = document.forms["frmpdv"]["txtItemName"].value;
+           
             if (txtItemName.length <= 0 || txtItemName == "") { alert("Please enter valid Product name ."); }
-            else if (supplierNAME.length <= 0 || supplierNAME == "") { alert("Please enter valid Supllier name ."); }
-            else { document.getElementById("hdnconfirm").value = "1"; }
+            
+            else { /*document.getElementById("hdnconfirm").value = "1";*/
+
+                
+              var confirm_value = document.createElement("INPUT");
+              confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+              if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+              else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+          
+            }
         }
        
   </script>
-    <script>
 
-        function Calculate() {
-
-
-
-
-            var i;
-        var grid = document.getElementById("<%= dgv.ClientID%>");
-        for ( i = 0; i < grid.rows.length - 1; i++) {
-            var quantity = $("input[id*=txtQuantity]")
-            var chk = $("input[id*=txtQuantity]")
-        var testvalue = quantity[i].value;
-        var tv = parseFloat(testvalue);
-        
-             //$('input[type="checkbox"]').attr("checked", "checked");
-        if (tv > 0) {
-           
-            $('input[type="checkbox"]').attr("checked", "checked");
-
-                }
-            }
-
-        }
-      
-
-              
-
-</script> 
 
      
 </head>
@@ -190,6 +98,8 @@
                           </asp:DropDownList>
                            <asp:HiddenField ID="hdnunit" runat="server" />
                            <asp:HiddenField ID="hdnAction" runat="server" />
+                           <asp:HiddenField ID="hdnProduct" runat="server" />
+
                       </td>
                   </tr>
                 
@@ -199,7 +109,7 @@
            <tr class='tblroweven'>
        
     <td style="text-align:right;" colspan="3"><asp:Button ID="btnAdd" runat="server" Text="ADD" Font-Bold="true"
-    OnClientClick = "Confirm()" OnClick="btnAdd_Click"></asp:Button></td>
+    OnClientClick = "ConfirmAll()" OnClick="btnAdd_Click"></asp:Button></td>
         <td  style="text-align:right;"><asp:Button ID="btnSubmit" BackColor="#ffffcc" runat="server" Text="Submit" Font-Bold="true" OnClick="btnSubmit_Click" /></td>
     </tr>
                  
@@ -224,7 +134,7 @@
     <ItemStyle HorizontalAlign="Left" Width="250px" /></asp:TemplateField>
 
     <asp:TemplateField HeaderText="UOM" SortExpression="uom">
-    <ItemTemplate><asp:Label ID="lblUOM" runat="server" Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
+    <ItemTemplate><asp:Label ID="lblUOM" runat="server" Text='<%# Bind("uomname") %>'></asp:Label></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" Width="75px" /></asp:TemplateField>
 
       
