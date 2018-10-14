@@ -13,8 +13,8 @@ function ConfirmAll() {
     document.getElementById("hdnconfirm").value = "0";
     var confirm_value = document.createElement("INPUT");
     confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-    if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
-    else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+    if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; return true;}
+    else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; return false;}
 }
 
 function PurchaseReturnConfirm() {
@@ -55,13 +55,12 @@ function ViewIndentDetails(indentid, point, pointname) {
     window.open('../Reports/MReportOnIndentDetails.aspx?INDNT=' + indentid + '&POINT=' + point + '&POINTNAME=' + pointname, 'sub', "height=350, width=550, scrollbars=yes, left=300, top=250, resizable=no, title=Preview");
 }
 
-function ConfirmRegistration()
-{
+function ConfirmRegistration() {
     document.getElementById("hdnconfirmregistration").value = "0";
     var fullname = document.forms["frmmanpowerregis"]["txtFullName"].value;
     var contactno = document.forms["frmmanpowerregis"]["txtContactNo"].value;
     var pointcode = document.forms["frmmanpowerregis"]["txtPointCode"].value;
-    var peradd = document.forms["frmmanpowerregis"]["txtPermanentAddress"].value;    
+    var peradd = document.forms["frmmanpowerregis"]["txtPermanentAddress"].value;
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1;
@@ -159,26 +158,24 @@ function ViewConfirm2(id) { document.getElementById('hdnDivision').style.visibil
 function ViewConfirmDispatch(id) { document.getElementById('hdnDivisionDispatch').style.visibility = 'visible'; }
 
 function ViewConfirm(id) {
-    document.getElementById('hdnDivision').style.visibility = 'visible';    
+    document.getElementById('hdnDivision').style.visibility = 'visible';
 }
 function ViewConfirmAgrement(id) {
     document.getElementById('hdnDivision').style.visibility = 'visible';
-    document.getElementById('btnGo').style.visibility = "Hidden";   
+    document.getElementById('btnGo').style.visibility = "Hidden";
 }
 function ViewQRCode(id) {
     document.getElementById('hdnDivision').style.visibility = 'visible';
 
 }
 function ClosehdnDivision(sts) {
-    if (sts == '1')
-    {
+    if (sts == '1') {
         $("#hdnDivision").fadeOut("slow");
         document.getElementById("hdnconfirm").value = "3";
         __doPostBack();
     }
-    else
-    {
-        alert(sts); $("#hdnDivision").fadeOut("slow");        
+    else {
+        alert(sts); $("#hdnDivision").fadeOut("slow");
     }
 }
 
@@ -209,14 +206,14 @@ function ACNoCheck() {
         return false;
     }
     else { return isNumber(event); return true; }
-        
- }
 
- function RoutingNoCheck() {
-     var textbox = document.forms["frmauditdeptrealize"]["txtRouting"].value;
-     if (textbox.trim().length >= 9) {
-         return false;
-     }
-     else { return isNumber(event); return true; }
+}
 
- }
+function RoutingNoCheck() {
+    var textbox = document.forms["frmauditdeptrealize"]["txtRouting"].value;
+    if (textbox.trim().length >= 9) {
+        return false;
+    }
+    else { return isNumber(event); return true; }
+
+}

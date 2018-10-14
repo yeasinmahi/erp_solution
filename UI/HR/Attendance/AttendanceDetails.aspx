@@ -6,9 +6,20 @@
 <head runat="server">
     <title>.: Employee Attendance Details :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
-    <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
-    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" /> 
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" /> 
+    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/JSSettlement.js"></script>   
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
     <script>
         $(document).ready(function () {
@@ -54,7 +65,14 @@
         {
             window.open('AttendanceDetailsView.aspx?ENROLL=' + enroll + '&ATTDATE=' + AttendanceDate + '&VTP=' + vwtype, '', "height=375, width=350, scrollbars=yes, left=250, top=200, resizable=no, title=Preview");
         }
-
+         function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 <body>
@@ -71,9 +89,12 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-    <div class="divs_content_container"><b>Employee Attendance Details View: </b><asp:HiddenField ID="hdnconfirm" runat="server" /> 
+     <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Employee Attendance Details" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
+    <asp:HiddenField ID="hdnconfirm" runat="server" /> 
     <asp:HiddenField ID="hdnempid" runat="server" /><hr />
-    <table border="0" style="width:Auto;";>
+                
+    
+    <%--<table border="0" style="width:Auto;";>
         <tr><td style="text-align:right;"><asp:Label ID="lblemployeesearch" CssClass="lbl" runat="server" Text="Search-Employee : "></asp:Label></td>
         <td>
         <asp:TextBox ID="txtEmployeeSearch" runat="server" CssClass="txtBox" AutoPostBack="true" onchange="javascript: Changed();"></asp:TextBox>
@@ -115,9 +136,38 @@
     <input id="btnViewPunch" type="button" class="nextclick" style="cursor:pointer; font-size:10px;" value="ViewPunch" onclick="<%# ViewPunchDetails(Eval("intEmployeeId"), Eval("AttendanceDate"), "daily") %>" />
     </ItemTemplate></asp:TemplateField>
     </Columns>
-    </asp:GridView>
+    </asp:GridView>--%>
 
-    
+   <div>
+                   
+        <table class="tbldecoration" style="width:auto; float:left;">
+        <tr>
+            <td style="text-align:right;"><asp:Label ID="lblemployeesearch" CssClass="lbl" runat="server" Text="Search-Employee : "></asp:Label></td>
+            <td>
+            <asp:TextBox ID="txtEmployeeSearch" runat="server" CssClass="txtBox1" AutoPostBack="true" onchange="javascript: Changed();" Width="250px"></asp:TextBox>
+            <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
+            </td>
+            <td style="text-align:right;"><asp:Label ID="lbldate" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
+             <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>                                                        
+             </td>
+             <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
+             <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                  <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>                                                        
+            </td>
+            <td> 
+                <asp:Button ID="btnSubmit" runat="server" class="myButton" Style="font-size: 12px; cursor: pointer;" Text="Show" OnClick="btnSubmit_Click" OnClientClick="Confirm()"/>
+            </td>
+        </tr>
+        <tr>                     
+        <td style="text-align:right" colspan="6">              
+       <%-- <asp:Button ID="btnSubmit" runat="server" class="myButton" Style="font-size: 11px; cursor: pointer;"  Text="Show" OnClick="btnSubmit_Click"  OnClientClick = "Confirm()"/>--%> 
+        <%--<asp:Button ID="btnMonthly" runat="server" class="nextclick" style="font-size:11px;" Text="Monthly Punch" OnClick="btnMonthly_Click"  OnClientClick = "Confirm()"/>--%> 
+        </td>                    
+       </tr>
+    </table>
+       </div>
+        <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:500px; border:0px solid red;"></iframe>
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>

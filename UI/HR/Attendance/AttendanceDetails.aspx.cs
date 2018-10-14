@@ -37,7 +37,7 @@ namespace UI.HR.Attendance
             {
                 if (!IsPostBack)
                 {
-                    pnlUpperControl.DataBind(); btnMonthly.Enabled = false;
+                    pnlUpperControl.DataBind(); //btnMonthly.Enabled = false;
                     txtEmployeeSearch.Attributes.Add("onkeyUp", "SearchText();");
                 }
                 else
@@ -79,71 +79,77 @@ namespace UI.HR.Attendance
             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()), strSearchKey);
             return result;
         }
-        public string ViewPunchDetails(object intEmployeeId, object AttendanceDate, object Vewtype)
-        { return "ViewPunchDetails('" + intEmployeeId.ToString() + "','" + AttendanceDate.ToString() + "','" + Vewtype.ToString() + "')"; }
+        //public string ViewPunchDetails(object intEmployeeId, object AttendanceDate, object Vewtype)
+        //{ return "ViewPunchDetails('" + intEmployeeId.ToString() + "','" + AttendanceDate.ToString() + "','" + Vewtype.ToString() + "')"; }
         
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "Loan Event", null);
-            Flogger.WriteDiagnostic(fd);
 
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
-            fd.Product, fd.Layer);
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Attendance_Report&type=0" + "&empCode=" + hdfEmpCode.Value + "&fdate=" + txtFromDate.Text + "&tdate=" + txtToDate.Text + "&rc:LinkTarget=_self";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
 
-            if (hdnconfirm.Value == "1")
-            {
-                try
-                {
-                    HR_BLL.Attendance.EmployeeAttendance punchdetails = new HR_BLL.Attendance.EmployeeAttendance();
-                    string empcode = hdfEmpCode.Value; int monthid = int.Parse(ddlMonth.SelectedValue.ToString());
-                    int yearid = DateTime.Now.Year;
-                    DataTable objDT = new DataTable();
-                    objDT = punchdetails.GetAttendanceDetails(hdfEmpCode.Value, null, monthid, yearid);
-                    if (objDT.Rows.Count > 0)
-                    {
-                        dgvattendancedetails.DataSource = objDT;
-                        dgvattendancedetails.DataBind();
-                        btnMonthly.Enabled = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
-                    Flogger.WriteError(efd);
-                }
-            }
+            #region====previous Code============
+            //var fd = log.GetFlogDetail(start, location, "Loan Event", null);
+            //Flogger.WriteDiagnostic(fd);
 
-            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
+            //// starting performance tracker
+            //var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
+            //fd.Product, fd.Layer);
+
+            //if (hdnconfirm.Value == "1")
+            //{
+            //    try
+            //    {
+            //        HR_BLL.Attendance.EmployeeAttendance punchdetails = new HR_BLL.Attendance.EmployeeAttendance();
+            //        string empcode = hdfEmpCode.Value; int monthid = int.Parse(ddlMonth.SelectedValue.ToString());
+            //        int yearid = DateTime.Now.Year;
+            //        DataTable objDT = new DataTable();
+            //        objDT = punchdetails.GetAttendanceDetails(hdfEmpCode.Value, null, monthid, yearid);
+            //        if (objDT.Rows.Count > 0)
+            //        {
+            //            dgvattendancedetails.DataSource = objDT;
+            //            dgvattendancedetails.DataBind();
+            //            btnMonthly.Enabled = true;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
+            //        Flogger.WriteError(efd);
+            //    }
+            #endregion=============end ========================
         }
 
-        protected void btnMonthly_Click(object sender, EventArgs e)
-        {
-            var fd = log.GetFlogDetail(start, location, "Loan Event", null);
-            Flogger.WriteDiagnostic(fd);
+        //fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
+        //    Flogger.WriteDiagnostic(fd);
+        //    // ends
+        //    tracker.Stop();
+        //}
 
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx btnMonthly_Click", "", fd.UserName, fd.Location,
-            fd.Product, fd.Layer);
+        //protected void btnMonthly_Click(object sender, EventArgs e)
+        //{
+        //    var fd = log.GetFlogDetail(start, location, "Loan Event", null);
+        //    Flogger.WriteDiagnostic(fd);
 
-            if (ddlMonth.SelectedValue.ToString().Length > 1)
-            {
-                strdate = (DateTime.Now.Year).ToString() + "-" + ddlMonth.SelectedValue.ToString() + "-" + "01";
-            }
-            else
-            {
-                strdate = (DateTime.Now.Year).ToString() + "-0" + ddlMonth.SelectedValue.ToString() + "-" + "01";
-            }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "h", "ViewPunchDetails('" + hdnempid.Value + "','" + strdate.ToString() + "','');", true);
+        //    // starting performance tracker
+        //    var tracker = new PerfTracker("Performance on HR/Attendance/AttendanceDetails.aspx btnMonthly_Click", "", fd.UserName, fd.Location,
+        //    fd.Product, fd.Layer);
 
-            fd = log.GetFlogDetail(stop, location, "btnMonthly_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
+        //    if (ddlMonth.SelectedValue.ToString().Length > 1)
+        //    {
+        //        strdate = (DateTime.Now.Year).ToString() + "-" + ddlMonth.SelectedValue.ToString() + "-" + "01";
+        //    }
+        //    else
+        //    {
+        //        strdate = (DateTime.Now.Year).ToString() + "-0" + ddlMonth.SelectedValue.ToString() + "-" + "01";
+        //    }
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "h", "ViewPunchDetails('" + hdnempid.Value + "','" + strdate.ToString() + "','');", true);
+
+        //    fd = log.GetFlogDetail(stop, location, "btnMonthly_Click", null);
+        //    Flogger.WriteDiagnostic(fd);
+        //    // ends
+        //    tracker.Stop();
+        //}
 
 
     }

@@ -130,6 +130,15 @@ namespace UI.CreativeSupportModule {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// AutoCompleteExtender3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender3;
+        
+        /// <summary>
         /// lblDate control.
         /// </summary>
         /// <remarks>
