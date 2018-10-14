@@ -8,15 +8,28 @@ namespace Utility
         public static byte[] PackageDocsAsZip(string fileName)
         {
             //if zip already exists then delete it
-            if (File.Exists(fileName + ".zip"))
-            {
-                File.Delete(fileName + ".zip");
-            }
+            
+            DeleteFile(fileName + ".zip");
 
             //now zip the source location
             ZipFile.CreateFromDirectory(fileName, fileName + ".zip", CompressionLevel.Optimal, true);
+            byte[] bytes = File.ReadAllBytes(fileName + ".zip");
+            DeleteFile(fileName + ".zip");
+            return bytes;
+        }
 
-            return File.ReadAllBytes(fileName + ".zip");
+        public static bool DeleteFile(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+            return true;
+        }
+        public static bool DeleteFolder(string path)
+        {
+            Directory.Delete(path, true);
+            return true;
         }
     }
 }
