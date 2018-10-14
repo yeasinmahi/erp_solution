@@ -1,34 +1,26 @@
 ﻿using HR_BLL.CreativeSupport;
-using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Script.Services;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
-using UI.ClassFiles;
-using Dairy_BLL;
-using SAD_BLL.Transport;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.IO.Compression;
 
 namespace UI.CreativeSupportModule
 {
-    public partial class CreativeSupportJobDetail : System.Web.UI.Page
+    public partial class CreativeSupportJobDetail : Page
     {
         CreativeS_BLL objcr = new CreativeS_BLL();
         DataTable dt;
-
+        private string serverFolderPath;
+        private string serverFilePath;
+        private string fileName;
         int intPart, intJobID;
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            serverFolderPath = Server.MapPath("~/CreativeSupportModule/Data");
             if (!IsPostBack)
             {
                 try
@@ -99,6 +91,19 @@ namespace UI.CreativeSupportModule
                         }
                     }
                     catch { }
+                    try
+                    {
+                        intPart = 4;
+                        dt = objcr.GetJobDetailsR(intPart, intJobID);
+                        if (dt.Rows.Count > 0)
+                        {
+
+                            gvStatusDetails.DataSource = dt;
+                            gvStatusDetails.DataBind();
+
+                        }
+                    }
+                    catch { }
                 }
                 catch { }
             }
@@ -119,6 +124,134 @@ namespace UI.CreativeSupportModule
             }
         }
 
+        protected void gvStatusDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+
+                if (e.CommandName == "Download")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvStatusDetails.Rows[rowIndex];
+                    string strPath = (row.FindControl("lblDocFileName") as Label).Text;
+                    if (string.IsNullOrWhiteSpace(strPath))
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('There are no file to download');", true);
+                        return;
+                    }
+                    fileName = strPath;
+
+                    //FTP Server URL.
+                    string ftp = "ftp://ftp.akij.net/";
+
+                    //FTP Folder name. Leave blank if you want to Download file from root folder.
+                    string ftpFolder = "CreativeSupportModuleDoc/";
+
+                    try
+                    {
+                        //Create FTP Request.
+                        FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + fileName);
+                        request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                        //Enter FTP Server credentials.
+                        request.Credentials = new NetworkCredential("erp", "erp123");
+                        request.UsePassive = true;
+                        request.UseBinary = true;
+                        request.EnableSsl = false;
+
+                        //Fetch the Response and read it into a MemoryStream object.
+                        FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            response.GetResponseStream()?.CopyTo(stream);
+                            Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+                            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                            Response.BinaryWrite(stream.ToArray());
+                            Response.End();
+                        }
+                    }
+                    catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse)?.StatusDescription); }
+                }
+                else if (e.CommandName == "DownloadAll")
+                {
+
+                    foreach (GridViewRow row in gvStatusDetails.Rows)
+                    {
+                        string strPath = (row.FindControl("lblDocFileName") as Label)?.Text;
+                        if (string.IsNullOrWhiteSpace(strPath))
+                        {
+                            continue;
+                        }
+                        serverFilePath = string.Format(@"{0}\{1}", serverFolderPath, "Attachment");
+
+                        //FTP Server URL.
+                        string ftp = "ftp://ftp.akij.net/";
+
+                        //FTP Folder name. Leave blank if you want to Download file from root folder.
+                        string ftpFolder = "CreativeSupportModuleDoc/";
+
+                        try
+                        {
+                            //Create FTP Request.
+                            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + strPath);
+                            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                            //Enter FTP Server credentials.
+                            request.Credentials = new NetworkCredential("erp", "erp123");
+                            request.UsePassive = true;
+                            request.UseBinary = true;
+                            request.EnableSsl = false;
+
+                            //Fetch the Response and read it into a MemoryStream object.
+                            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                            using (MemoryStream stream = new MemoryStream())
+                            {
+                                response.GetResponseStream()?.CopyTo(stream);
+
+                                byte[] fileBytesTobeZipped = stream.ToArray();
+
+                                if (Directory.Exists(serverFolderPath) == false)
+                                {
+                                    Directory.CreateDirectory(serverFolderPath);
+                                }
+
+                                //if destination folder already exists then delete it
+
+                                if (!Directory.Exists(serverFilePath))
+                                {
+                                    //Directory.Delete(serverFilePath, true);
+                                    Directory.CreateDirectory(serverFilePath);
+                                }
+                                
+
+
+
+                                string filePath = string.Format(@"{0}\{1}",
+                                    serverFilePath,
+                                    strPath);//e-g report.xlsx , report.docx according to exported file
+
+                                File.WriteAllBytes(filePath, fileBytesTobeZipped);
+
+                            }
+                        }
+                        catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse)?.StatusDescription); }
+                    }
+
+                    Response.AddHeader("content-disposition", "attachment;filename=" + "Attachment.zip");
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+                    Response.BinaryWrite(Utility.Zip.PackageDocsAsZip(serverFilePath));
+                    Response.Flush();
+                    Utility.Zip.DeleteFolder(serverFilePath);
+                    Response.End();
+
+                }
+            }
+            catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse)?.StatusDescription); }
+        }
+
         protected void dgvDocUp_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -127,10 +260,10 @@ namespace UI.CreativeSupportModule
                 GridViewRow row = dgvDocUp.Rows[rowIndex];
                 string strPath = (row.FindControl("lblFileName") as Label).Text;
                 if (e.CommandName == "View")
-                {                    
+                {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewDocument('" + strPath + "');", true);
                 }
-                else if(e.CommandName == "Download")
+                else if (e.CommandName == "Download")
                 {
                     string fileName = strPath;
 
