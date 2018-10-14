@@ -44,14 +44,16 @@ namespace UI.CreativeSupportModule
 
             if (e.CommandName == "View")
             {
-                intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
+                string text = (row.FindControl("lblJID") as Label)?.Text;
+                if (text != null)
+                    intJobID = int.Parse(text);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewJobDetails('" + intJobID.ToString() + "');", true);
             }
-            else if (e.CommandName == "Doc View")
-            {
-                intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewAllDocumentView('" + intJobID.ToString() + "');", true);
-            }
+            //else if (e.CommandName == "Doc View")
+            //{
+            //    intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
+            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewAllDocumentView('" + intJobID.ToString() + "');", true);
+            //}
         }
         protected void dgvDashboardReport_DataBound(object sender, EventArgs e)
         {

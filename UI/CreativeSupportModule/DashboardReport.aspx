@@ -162,13 +162,13 @@
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                                       <%-- <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnDocV" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Doc View"
                                                     Text="Document View" />
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                     </Columns>
                                     <FooterStyle Font-Size="11px" />
