@@ -16855,7 +16855,7 @@ WHERE mid.intPOID=@poid AND mid.intQcByID =@enroll GROUP BY mid.intItemID, mid.s
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19309,7 +19309,7 @@ where reqd.intReqID=@intReqID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_InventoryConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
