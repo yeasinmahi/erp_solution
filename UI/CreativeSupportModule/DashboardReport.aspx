@@ -149,7 +149,7 @@
                                             <ItemTemplate>
                                                 <asp:DropDownList ID="ddlJStatus" runat="server" CssClass="ddList" Width="90px" DataSourceID="odsJStatus" DataTextField="strCreativeSupportStatus" DataValueField="intStatusID" AutoPostBack="True" onchange="ConfirmAll()" OnSelectedIndexChanged="ddlJStatus_SelectedIndexChanged"></asp:DropDownList>
                                                 <asp:HiddenField ID="hdnStatusID" runat="server" Value='<%# Bind("intJobStatusID") %>' />
-                                                <asp:ObjectDataSource ID="odsJStatus" runat="server" SelectMethod="GetStatusList" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
+                                                <asp:ObjectDataSource ID="odsJStatus" runat="server" SelectMethod="GetStatusList" TypeName="HR_BLL.CreativeSupport.CreativeSBll"></asp:ObjectDataSource>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -162,13 +162,13 @@
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                       <%-- <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                                        <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnDocV" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Doc View"
-                                                    Text="Document View" />
+                                                <asp:Button ID="btnDelete" class="myButtonGrid btn-danger" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="JobDelete"
+                                                    Text="Delete" />
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <FooterStyle Font-Size="11px" />

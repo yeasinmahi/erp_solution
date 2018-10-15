@@ -16,7 +16,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class CustomerView : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         string filePathForXMLDocUpload, xmlStringDocUpload = "", xmlDoc, filePathForXML, xmlString = "", xmlItem;        
@@ -398,15 +398,15 @@ namespace UI.CreativeSupportModule
         [ScriptMethod]
         public static string[] AutoCreativeItem(string prefixText)
         {
-            CreativeS_BLL objAutoSearch_BLL = new CreativeS_BLL();
-            return objAutoSearch_BLL.AutoSearchItemCRList(prefixText);
+            CreativeSBll objAutoSearch_BLL = new CreativeSBll();
+            return objAutoSearch_BLL.AutoSearchItemCrList(prefixText);
         }
 
         [WebMethod]
         [ScriptMethod]
         public static string[] GetEmpListForCreativeSupportList(string prefixText)
         {
-            CreativeS_BLL objAutoSearch_BLL = new CreativeS_BLL();
+            CreativeSBll objAutoSearch_BLL = new CreativeSBll();
             return objAutoSearch_BLL.AutoEmpListForCreativeSupport(prefixText);
         }
 

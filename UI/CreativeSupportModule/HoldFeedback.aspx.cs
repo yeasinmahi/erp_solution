@@ -22,7 +22,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class HoldFeedback : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         int intPart, intJobID, intJobStatusID;

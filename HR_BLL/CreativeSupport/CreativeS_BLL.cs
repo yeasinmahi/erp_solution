@@ -10,12 +10,12 @@ using static HR_DAL.CreativeSupport.CreativeS_DAL;
 
 namespace HR_BLL.CreativeSupport
 {
-    public class CreativeS_BLL
+    public class CreativeSBll
     {
-        DataTable tbl;
-        int e;
-        private static ItemListForCreativeSDataTable[] tblCRItem = null;
-        private static EmpListForCreativeSupportDataTable[] tblEmpListForCS = null;
+        DataTable _tbl;
+        int _e;
+        private static ItemListForCreativeSDataTable[] _tblCrItem = null;
+        private static EmpListForCreativeSupportDataTable[] _tblEmpListForCs = null;
 
         public DataTable GetJobDescription()
         {
@@ -32,21 +32,21 @@ namespace HR_BLL.CreativeSupport
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        public string[] AutoSearchItemCRList(string prefix)
+        public string[] AutoSearchItemCrList(string prefix)
         {
             prefix = prefix.Trim().ToLower();
-            string intUnitID = "1";
+            string intUnitId = "1";
 
-            tblCRItem = new ItemListForCreativeSDataTable[Convert.ToInt32(intUnitID)];
-            ItemListForCreativeSTableAdapter adpCOA = new ItemListForCreativeSTableAdapter();
-            tblCRItem[e] = adpCOA.GetCreativeItemList();
+            _tblCrItem = new ItemListForCreativeSDataTable[Convert.ToInt32(intUnitId)];
+            ItemListForCreativeSTableAdapter adpCoa = new ItemListForCreativeSTableAdapter();
+            _tblCrItem[_e] = adpCoa.GetCreativeItemList();
 
             DataTable tbl = new DataTable();
             if (prefix.Length >= 3)
             {
                 try
                 {
-                    var rows = from tmp in tblCRItem[e]  //[Convert.ToInt32(ht[WHID])]
+                    var rows = from tmp in _tblCrItem[_e]  //[Convert.ToInt32(ht[WHID])]
                                where tmp.strCreativeItemName.ToLower().Contains(prefix) || tmp.intCreativeItemID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
                                orderby tmp.strCreativeItemName
                                select tmp;
@@ -70,19 +70,19 @@ namespace HR_BLL.CreativeSupport
         }
         public string[] AutoEmpListForCreativeSupport(string prefix)
         {
-            string intUnitID = "1";
-            int unit = Int32.Parse(intUnitID.ToString());
+            string intUnitId = "1";
+            int unit = Int32.Parse(intUnitId.ToString());
 
-            tblEmpListForCS = new EmpListForCreativeSupportDataTable[Convert.ToInt32(intUnitID)];
-            EmpListForCreativeSupportTableAdapter adpCOA = new EmpListForCreativeSupportTableAdapter();
-            tblEmpListForCS[e] = adpCOA.GetEmpListForCreativeSupport();
+            _tblEmpListForCs = new EmpListForCreativeSupportDataTable[Convert.ToInt32(intUnitId)];
+            EmpListForCreativeSupportTableAdapter adpCoa = new EmpListForCreativeSupportTableAdapter();
+            _tblEmpListForCs[_e] = adpCoa.GetEmpListForCreativeSupport();
 
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblEmpListForCS[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in _tblEmpListForCs[_e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strEmployeeName
                                select tmp;
                     if (rows.Any())
@@ -94,7 +94,7 @@ namespace HR_BLL.CreativeSupport
                 {
                     try
                     {
-                        var rows = from tmp in tblEmpListForCS[e]  //[Convert.ToInt32(ht[WHID])]
+                        var rows = from tmp in _tblEmpListForCs[_e]  //[Convert.ToInt32(ht[WHID])]
                                    where tmp.strEmployeeName.ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix) || tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
                                    orderby tmp.strEmployeeName
                                    select tmp;
@@ -118,22 +118,22 @@ namespace HR_BLL.CreativeSupport
             else { return null; }
         }
 
-        public string InsertAllBillApproval(int intAssignBy, DateTime dteRequiredDate, TimeSpan tmRequiredTime, int intAssignTo, int intJobDescriptionID, string strJobType, int intTotalPoint, string strRemarks, string xmlItem, string xmlDoc, int intPOID)
+        public string InsertAllBillApproval(int intAssignBy, DateTime dteRequiredDate, TimeSpan tmRequiredTime, int intAssignTo, int intJobDescriptionId, string strJobType, int intTotalPoint, string strRemarks, string xmlItem, string xmlDoc, int intPoid)
         {
             try
             {
                 string msg = "";
                 SprCreativeSupportEntryTableAdapter adp = new SprCreativeSupportEntryTableAdapter();
-                adp.InsertCreativeSupport(intAssignBy, dteRequiredDate, tmRequiredTime, intAssignTo, intJobDescriptionID, strJobType, intTotalPoint, strRemarks, xmlItem, xmlDoc, intPOID, ref msg);
+                adp.InsertCreativeSupport(intAssignBy, dteRequiredDate, tmRequiredTime, intAssignTo, intJobDescriptionId, strJobType, intTotalPoint, strRemarks, xmlItem, xmlDoc, intPoid, ref msg);
                 return msg;
             }
             catch (Exception ex) { return ex.ToString(); }
         }
-        public DataTable GetItemWisePoint(int intItemID)
+        public DataTable GetItemWisePoint(int intItemId)
         {
             GetPointTableAdapter adp = new GetPointTableAdapter();
             try
-            { return adp.GetItemWisePoint(intItemID); }
+            { return adp.GetItemWisePoint(intItemId); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetJobTypeWisePoint(string strJobType)
@@ -157,20 +157,20 @@ namespace HR_BLL.CreativeSupport
             { return adp.GetStatusList(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetJobDetailsR(int intPart, int intJobID)
+        public DataTable GetJobDetailsR(int intPart, int intJobId)
         {
             SprCreativeSupportReportForViewDetailsTableAdapter adp = new SprCreativeSupportReportForViewDetailsTableAdapter();
             try
-            { return adp.GetJobDetailsR(intPart, intJobID); }
+            { return adp.GetJobDetailsR(intPart, intJobId); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public string UpdateJobStatus(int intPart, int intJobID, int intJobStatusID, string strStatus, string strStatusRemarks, int intInsertBy, string xmlDoc)
+        public string UpdateJobStatus(int intPart, int intJobId, int intJobStatusId, string strStatus, string strStatusRemarks, int intInsertBy, string xmlDoc)
         {
             try
             {
                 string msg = "";
                 SprCreativeSupportStatusUpdateTableAdapter adp = new SprCreativeSupportStatusUpdateTableAdapter();
-                adp.UpdateJobStatus(intPart, intJobID, intJobStatusID, strStatus, strStatusRemarks, intInsertBy, xmlDoc, ref msg);
+                adp.UpdateJobStatus(intPart, intJobId, intJobStatusId, strStatus, strStatusRemarks, intInsertBy, xmlDoc, ref msg);
                 return msg;
             }
             catch (Exception ex) { return ex.ToString(); }
@@ -182,37 +182,45 @@ namespace HR_BLL.CreativeSupport
             { return adp.GetAllReport(intPart, intReceiver, dteFrom, dteTo); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public string ItemCreateAndPointSet(int intPart, string strItemName, int intPoint, int intID)
+        public string ItemCreateAndPointSet(int intPart, string strItemName, int intPoint, int intId)
         {
             try
             {
                 string msg = "";
                 SprItemCreateAndPointSetTableAdapter adp = new SprItemCreateAndPointSetTableAdapter();
-                adp.ItemCreateAndPointSet(intPart, strItemName, intPoint, intID, ref msg);
+                adp.ItemCreateAndPointSet(intPart, strItemName, intPoint, intId, ref msg);
                 return msg;
             }
             catch (Exception ex) { return ex.ToString(); }
         }
-        public DataTable GetCreativeItemListForDDL()
+        public DataTable GetCreativeItemListForDdl()
         {
             ItemListForCreativeSTableAdapter adp = new ItemListForCreativeSTableAdapter();
             try
             { return adp.GetCreativeItemList(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-        public DataTable GetAllDocumentView(int intJobID)
+        public DataTable GetAllDocumentView(int intJobId)
         {
             AllDocViewTableAdapter adp = new AllDocViewTableAdapter();
             try
-            { return adp.GetAllDocumentView(intJobID); }
+            { return adp.GetAllDocumentView(intJobId); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-
-
-
-
-
+        public bool DisableCreativeSupport(int intJobId)
+        {
+            DataTable1TableAdapter adp = new DataTable1TableAdapter();
+            try
+            {
+                 adp.DisableCreativeSupport(intJobId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
     }
 }

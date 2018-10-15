@@ -13,7 +13,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class CreativeSupportJobDetail : Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
         private string serverFolderPath;
         private string serverFilePath;

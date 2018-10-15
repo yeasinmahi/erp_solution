@@ -22,7 +22,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class ItemCreateAndPointSet : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         int intPart, intPoint, intID; string strItemName;
@@ -42,7 +42,7 @@ namespace UI.CreativeSupportModule
             try
             {
                 dt = new DataTable();
-                dt = objcr.GetCreativeItemListForDDL();
+                dt = objcr.GetCreativeItemListForDdl();
                 ddlItem.DataTextField = "strCreativeItemName";
                 ddlItem.DataValueField = "intCreativeItemID";
                 ddlItem.DataSource = dt;
