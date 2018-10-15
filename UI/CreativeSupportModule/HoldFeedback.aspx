@@ -25,11 +25,17 @@
 
         function FTPUpload1() {
             document.getElementById("hdnconfirm").value = "0";
-            var confirm_value = document.createElement("INPUT");
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "3"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
-            __doPostBack();
+            var confirmValue = document.createElement("INPUT");
+            confirmValue.type = "hidden";
+            confirmValue.name = "confirm_value";
+            if (confirm("Do you want to proceed?")) {
+                confirmValue.value = "Yes";
+                document.getElementById("hdnconfirm").value = "3";
+            } else {
+                confirmValue.value = "No";
+                document.getElementById("hdnconfirm").value = "0";
+            }
+            //__doPostBack();
         }
 
         function CloseWindow() {

@@ -162,7 +162,7 @@
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                                        <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnDelete" class="myButtonGrid btn-danger" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="JobDelete"
                                                     Text="Delete" />

@@ -206,20 +206,22 @@ namespace UI.CreativeSupportModule
                         return;
                     }
                     strStatusRemarks = txtRemarks.Text;
-                    try
-                    {
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(filePathForXMLDocUpload);
-                        XmlNode dSftTm = doc.SelectSingleNode("DocUpload");
-                        xmlStringDocUpload = dSftTm.InnerXml;
-                        xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
-                        xmlDoc = xmlStringDocUpload;
-                    }
-                    catch { return; }
+                    
 
                     
                     if (dgvDocUp.Rows.Count > 0)
                     {
+                        try
+                        {
+                            XmlDocument doc = new XmlDocument();
+                            doc.Load(filePathForXMLDocUpload);
+                            XmlNode dSftTm = doc.SelectSingleNode("DocUpload");
+                            xmlStringDocUpload = dSftTm.InnerXml;
+                            xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
+                            xmlDoc = xmlStringDocUpload;
+                        }
+                        catch { return; }
+
                         for (int index = 0; index < dgvDocUp.Rows.Count; index++)
                         {
                             fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();
