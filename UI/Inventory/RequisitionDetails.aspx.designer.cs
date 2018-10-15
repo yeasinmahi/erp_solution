@@ -85,13 +85,13 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lblDetalis;
         
         /// <summary>
-        /// lblInd control.
+        /// lblReqNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInd;
+        protected global::System.Web.UI.WebControls.Label lblReqNo;
         
         /// <summary>
         /// lblrequisition control.
@@ -103,13 +103,13 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lblrequisition;
         
         /// <summary>
-        /// Label6 control.
+        /// lblReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lblReqDate;
         
         /// <summary>
         /// lbldteRequest control.
@@ -121,13 +121,13 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lbldteRequest;
         
         /// <summary>
-        /// Label2 control.
+        /// lblAppDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblAppDate;
         
         /// <summary>
         /// lbldteApprove control.
@@ -148,6 +148,15 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.GridView dgvlist;
         
         /// <summary>
+        /// lblreq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblreq;
+        
+        /// <summary>
         /// lblReqBY control.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,15 @@ namespace UI.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReqBY;
+        
+        /// <summary>
+        /// lblApp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApp;
         
         /// <summary>
         /// lblApproveBy control.
