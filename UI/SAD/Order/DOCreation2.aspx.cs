@@ -513,7 +513,9 @@ namespace UI.SAD.Order
             string subsidyamnt; decimal tsubsidyamnt = 0; string damgeamnt; decimal tdamgeamnt = 0; string specialamnt; decimal tspecialamnt = 0;
             decimal tmonsuplv = 0; decimal tmoncusv = 0; decimal tmoncomp = 0;
 
-            double totalprdctprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value))); double distaka = 0.00;
+            //double totalprdctprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value)));
+            double totalprdctprice = double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value);
+            double distaka = 0.00;
             double discnttaka = Convert.ToDouble(discntamnt)* Convert.ToDouble(txtQun.Text);
 
             double calculteddiscount;
@@ -679,7 +681,7 @@ namespace UI.SAD.Order
             double ttmonsuplv = Convert.ToDouble(tmonsuplv);
             double ttmoncusv = Convert.ToDouble(tmoncusv);
             double ttcalculteddiscount = Convert.ToDouble(calculteddiscount);
-            actualprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value)));
+            actualprice =(double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value));
             actualprice = actualprice - (ttdamageamount + ttspecialamnt + ttsubsidyamnt + ttmoncusv + ttmonsuplv+ ttcalculteddiscount - ttmoncomp);
             deccompareprice = actualprice;
             string actotal = actualprice.ToString();
@@ -690,7 +692,7 @@ namespace UI.SAD.Order
             if (GridView1.Rows.Count == 0)
             {
 
-                actualprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value)));
+                actualprice = (double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value));
                 actualprice = actualprice - ttcalculteddiscount;
                 deccompareprice = actualprice;
             }
@@ -759,8 +761,8 @@ namespace UI.SAD.Order
                         if(promQnty1<=0)
 
                             {
-                            decimal tempprc = Math.Round((decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
-                                              (decimal.Parse(txtQun.Text) + promQnty)); //+ 1
+                            decimal tempprc =(decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
+                                              (decimal.Parse(txtQun.Text) + promQnty); //+ 1
                             hdnPrice.Value = tempprc.ToString("0.00");
                             promQnty = 0;
                         }

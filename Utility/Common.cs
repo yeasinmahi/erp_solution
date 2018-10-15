@@ -8,20 +8,7 @@ namespace Utility
 {
     public class Common
     {
-        public static bool CopyFile(string source, string destionation)
-        {
-            try
-            {
-                File.Copy(source, destionation, true);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-            
-        }
+       
         public static PropertyInfo[] GetProperties(object obj)
         {
             return obj.GetType().GetProperties();

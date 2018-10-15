@@ -18,10 +18,12 @@ namespace UI.Inventory
         int unitid, uomid, rpttypeid;
         TourPlanning bll = new TourPlanning();
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string secid = "0"; DataTable dtbl = new DataTable();
+        DataTable dtbl = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            xmlpath = Server.MapPath("~/Inventory/Data/REQBrandItm_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "brnadItmOpen.xml");
+
             if (!IsPostBack)
             {
 
@@ -36,10 +38,7 @@ namespace UI.Inventory
             }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
@@ -57,14 +56,15 @@ namespace UI.Inventory
                 bool proceed = false;
                 itemname = txtItemName.Text.ToString();
                 uomid = int.Parse(ddlUOM.SelectedValue.ToString());
-                unitid= int.Parse(ddlUnit.SelectedValue.ToString());
+                uomname = ddlUOM.SelectedItem.Text.ToString();
+                unitid = int.Parse(ddlUnit.SelectedValue.ToString());
                 rpttypeid= int.Parse(ddlUnit.SelectedValue.ToString());
                 int cnt = dgv.Rows.Count;
 
                 if (cnt == 0)
                 {
                     CreateXml(itemname, uomname);
-                    Clearcontrols();
+                    //Clearcontrols();
                 }
 
                 else
@@ -88,6 +88,41 @@ namespace UI.Inventory
                 }
 
             }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (dgv.Rows.Count > 0)
+            {
+                try
+                {
+                    XmlDocument doc = new XmlDocument(); XmlNode xmls;
+                    if (File.Exists(xmlpath))
+                    {
+                        doc.Load(xmlpath);
+                        unitid = int.Parse(ddlUnit.SelectedValue.ToString());
+                        xmls = doc.SelectSingleNode("BrnadItmOpen");
+                        xmlString = xmls.InnerXml;
+                        xmlString = "<BrnadItmOpen>" + xmlString + "</BrnadItmOpen>";
+
+                        dtbl = bll.CreateNewItmForBrand(0, int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), xmlString, 0, DateTime.Now, DateTime.Now, unitid);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dtbl.Rows[0]["Messages"].ToString() + "');", true);
+                        File.Delete(xmlpath); Clearcontrols(); dgv.DataSource = ""; dgv.DataBind();
+                        
+                    }
+                }
+                catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            }
+        }
+
+        protected void ddlUOM_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void CreateXml(string itemname,string uomname)
