@@ -32,18 +32,40 @@ namespace UI.Inventory
                     dgvlist.DataSource = "";
                     dgvlist.DataBind();
                 }
-                dtbl = bll.GetRequisitionDetailsBYReqID(Convert.ToInt32(reqid));
-                lblWH.Text= dtbl.Rows[0]["strWareHoseName"].ToString();
-                DateTime reqdate = Convert.ToDateTime( dtbl.Rows[0]["ReqDate"].ToString());
-                lbldteRequest.Text= reqdate.ToString("dd-MM-yyyy");
-                DateTime appDate = Convert.ToDateTime(dtbl.Rows[0]["ApproveDate"].ToString());
-                lbldteApprove.Text = appDate.ToString("dd-MM-yyyy");
-                lblrequisition.Text = reqid;
-                string unit = dtbl.Rows[0]["intUnitID"].ToString();
-                //imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
-                dtbl = bll.GetRequisitionRequesterAndApprover(Convert.ToInt32(reqid));
-                lblReqBY.Text= dtbl.Rows[0]["requester"].ToString();
-                lblApproveBy.Text= dtbl.Rows[0]["ApproveBy"].ToString();
+                //dtbl = bll.GetRequisitionDetailsBYReqID(Convert.ToInt32(reqid));
+                dtbl = bll.GetAllRequisitionDetails(Convert.ToInt32(reqid));
+                
+                if (dtbl.Rows.Count>0)
+                {
+                    lblWH.Text = dtbl.Rows[0]["strWareHoseName"].ToString();
+                    DateTime reqdate = Convert.ToDateTime(dtbl.Rows[0]["dteReqDate"].ToString());
+                    lbldteRequest.Text = reqdate.ToString("dd-MM-yyyy");
+                    lblrequisition.Text = reqid;
+                    lblReqBY.Text = dtbl.Rows[0]["Requester"].ToString();
+                    DateTime appDate = Convert.ToDateTime(dtbl.Rows[0]["dteApproveDate"].ToString());
+                    lbldteApprove.Text = appDate.ToString("dd-MM-yyyy");
+                    
+                    //string unit = dtbl.Rows[0]["intUnitID"].ToString();
+                    //imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
+                    //dtbl = bll.GetRequisitionRequesterAndApprover(Convert.ToInt32(reqid));
+                   
+                    lblApproveBy.Text = dtbl.Rows[0]["Approver"].ToString();
+                }
+                else
+                {
+                    lblWH.Text = "";
+                    lbldteRequest.Text = "";
+                    lbldteApprove.Text = "";
+                    lblrequisition.Text = "";
+                    lblReqBY.Text = "";
+                    lblApproveBy.Text = "";
+                    lblreq.Text = "";
+                    lblApp.Text = "";
+                    lblReqNo.Text = "";
+                    lblReqDate.Text = "";
+                    lblAppDate.Text = "";
+                }
+               
                
             }
         }

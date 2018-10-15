@@ -356,6 +356,7 @@
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
+    <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -2824,6 +2825,13 @@
     </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.designer.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.cs">
+      <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.designer.cs">
+      <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>

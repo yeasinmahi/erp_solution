@@ -194,5 +194,15 @@ namespace HR_BLL.Global
             return adp.GetRequesterAndApprover(reqID);
         }
 
+        public DataTable GetAllRequisitionDetails(int Reqid)
+        {
+            try
+            {
+                StoreRequisitionTableAdapter adp = new StoreRequisitionTableAdapter();
+                return adp.GetRquisition(Reqid);
+            }
+            catch { return new DataTable(); }
+        }
+
     }    
 }

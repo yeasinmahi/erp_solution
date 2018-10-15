@@ -42,9 +42,9 @@
          <table>
                      
                  <tr> 
-                     <td><asp:Label ID="lblInd" runat="server" Text="Requisition No:"></asp:Label><asp:Label ID="lblrequisition" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td>
-                     <td><asp:Label ID="Label6" runat="server" Text="Requested Date:"></asp:Label><asp:Label ID="lbldteRequest" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
-                     <td><asp:Label ID="Label2" runat="server" Text="Approved Date:"></asp:Label><asp:Label ID="lbldteApprove" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
+                     <td><asp:Label ID="lblReqNo" runat="server" Text="Requisition No:"></asp:Label><asp:Label ID="lblrequisition" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td>
+                     <td><asp:Label ID="lblReqDate" runat="server" Text="Requested Date:"></asp:Label><asp:Label ID="lbldteRequest" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
+                     <td><asp:Label ID="lblAppDate" runat="server" Text="Approved Date:"></asp:Label><asp:Label ID="lbldteApprove" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td> 
                    <%--<td><asp:Button ID="btnDownload" runat="server" Text="Excel"  OnClick="btnDownload_Click"/> </td>--%>
         
                  </tr> 
@@ -80,8 +80,8 @@
               <%--<tr><td><asp:Image ID="imgApp" runat="server"   /></td></tr>--%>
               <tr><td></td></tr>
               <tr><td></td></tr> 
-            <tr><td>Requested By:</td><td><asp:Label ID="lblReqBY" Font-Bold="true"  runat="server"></asp:Label></td> </tr> 
-            <tr> <td>Approved By: </td><td><asp:Label ID="lblApproveBy" runat="server" Font-Bold="true"></asp:Label>
+            <tr><td><asp:Label ID="lblreq" Font-Bold="true"  runat="server" Text="Requested By:"></asp:Label></td><td><asp:Label ID="lblReqBY" Font-Bold="true"  runat="server"></asp:Label></td> </tr> 
+            <tr> <td> <asp:Label ID="lblApp" Font-Bold="true"  runat="server" Text="Approved By:"></asp:Label></td><td><asp:Label ID="lblApproveBy" runat="server" Font-Bold="true"></asp:Label>
              </td></tr>
                                       
           
