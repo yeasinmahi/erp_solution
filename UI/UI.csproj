@@ -317,6 +317,7 @@
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
     <Content Include="CreativeSupportModule\ItemCreateAndPointSet.aspx" />
+    <Content Include="CreativeSupportModule\SupporterUser.aspx" />
     <Content Include="Dairy\MilkSupplierInfoUpdate.aspx" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
     <Content Include="Dairy\Milk_Audit_R_Details.aspx" />
@@ -2559,6 +2560,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.designer.cs">
       <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\SupporterUser.aspx.cs">
+      <DependentUpon>SupporterUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\SupporterUser.aspx.designer.cs">
+      <DependentUpon>SupporterUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dairy\MilkSupplierInfoUpdate.aspx.cs">
       <DependentUpon>MilkSupplierInfoUpdate.aspx</DependentUpon>

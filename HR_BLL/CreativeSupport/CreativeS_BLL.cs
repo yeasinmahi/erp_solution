@@ -219,5 +219,45 @@ namespace HR_BLL.CreativeSupport
             }
         }
 
+        public bool InsertSupportUser(int enroll, int insertBy)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                adp.InsertSupportUser(enroll,insertBy);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public DataTable GetSupportUsers()
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                return adp.GetSupportUsers();
+                
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public bool UpdateSupporterUser(int supporterUserId)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                adp.UpdateSupporterUser(supporterUserId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

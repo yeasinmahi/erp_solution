@@ -6,7 +6,6 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO.Compression;
 using Utility;
 
 namespace UI.CreativeSupportModule
