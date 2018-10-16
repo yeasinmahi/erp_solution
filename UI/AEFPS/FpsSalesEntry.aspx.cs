@@ -186,7 +186,7 @@ namespace UI.AEFPS
             var fd = log.GetFlogDetail(start, location, "Submit", null);
             Flogger.WriteDiagnostic(fd);
 
-            // starting performance tracker
+          
             var tracker = new PerfTracker("Performance on AEFPS\\FpsSalesEntry Submit AEFPS Challan", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
