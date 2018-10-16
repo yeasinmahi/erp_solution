@@ -1,22 +1,19 @@
 ﻿using HR_BLL.CreativeSupport;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.CreativeSupportModule
 {
-    public partial class DashboardReport : System.Web.UI.Page
+    public partial class DashboardReport : Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
-        DataTable dt;
+        readonly CreativeSBll _objcr = new CreativeSBll();
+        DataTable _dt;
 
-        int intJobID, intJobStatusID;
-        string strJobStatus, JobStatusID, strStatusRemarks, xmlDoc;
+        int _intJobId, _intJobStatusId;
+        string _strJobStatus, _jobStatusId, _strStatusRemarks, _xmlDoc;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,18 +21,14 @@ namespace UI.CreativeSupportModule
 
             if (!IsPostBack)
             {
-                try
-                {
-                    LoadGrid();
-                }
-                catch (Exception ex) { throw ex; }
+                LoadGrid();
             }
         }
 
         private void LoadGrid()
         {
-            dt = objcr.GetReportForDashboard();
-            dgvDashboardReport.DataSource = dt;
+            _dt = _objcr.GetReportForDashboard();
+            dgvDashboardReport.DataSource = _dt;
             dgvDashboardReport.DataBind();
         }
 
@@ -47,25 +40,49 @@ namespace UI.CreativeSupportModule
 
             if (e.CommandName == "View")
             {
-                intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewJobDetails('" + intJobID.ToString() + "');", true);
+                string text = (row.FindControl("lblJID") as Label)?.Text;
+                if (text != null)
+                    _intJobId = int.Parse(text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewJobDetails('" + _intJobId + "');", true);
             }
-            else if (e.CommandName == "Doc View")
+            else if (e.CommandName == "JobDelete")
             {
-                intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewAllDocumentView('" + intJobID.ToString() + "');", true);
+                if (hdnEnroll.Value== "43086" || hdnEnroll.Value == "369116")
+                {
+                    int jobId = 0;
+                    var text = (row.FindControl("lblJID") as Label)?.Text;
+                    if (text != null)
+                    {
+                        jobId = int.Parse(text);
+                    }
+                    if (_objcr.DisableCreativeSupport(jobId))
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('Successfully deleted your job')", true);
+                        LoadGrid();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('Can not delete')", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "alert('You have not permission to delete this item')", true);
+                }
+                
+                
             }
         }
         protected void dgvDashboardReport_DataBound(object sender, EventArgs e)
         {
             foreach (GridViewRow gvRow in dgvDashboardReport.Rows)
             {
-                DropDownList ddlJStatus = gvRow.FindControl("ddlJStatus") as DropDownList;
-                HiddenField hdnStatusID = gvRow.FindControl("hdnStatusID") as HiddenField;
-
-                if (ddlJStatus != null && hdnStatusID != null)
+                if (gvRow.FindControl("ddlJStatus") is DropDownList ddlJStatus && gvRow.FindControl("hdnStatusID") is HiddenField hdnStatusId)
                 { 
-                    ddlJStatus.SelectedValue = hdnStatusID.Value;
+                    ddlJStatus.SelectedValue = hdnStatusId.Value;
                 }
             }
         }
@@ -74,24 +91,24 @@ namespace UI.CreativeSupportModule
         {
             DropDownList ddlJStatus = (DropDownList)sender;
             GridViewRow row = (GridViewRow)ddlJStatus.NamingContainer;//get the row where dropdown change
-            Label lblJID = (Label)row.FindControl("lblJID");//get label of that row where dropdown change
+            Label lblJid = (Label)row.FindControl("lblJID");//get label of that row where dropdown change
             Label lblJobCode = (Label)row.FindControl("lblJobCode");//get label of that row where dropdown change
             
             DropDownList ddlJStat = (DropDownList)row.FindControl("ddlJStatus");
-            intJobStatusID = int.Parse(ddlJStat.SelectedValue.ToString());
-            JobStatusID = intJobStatusID.ToString();
-            strJobStatus = ddlJStat.SelectedItem.ToString();
-            intJobID = int.Parse(lblJID.Text);
+            _intJobStatusId = int.Parse(ddlJStat.SelectedValue);
+            _jobStatusId = _intJobStatusId.ToString();
+            _strJobStatus = ddlJStat.SelectedItem.ToString();
+            _intJobId = int.Parse(lblJid.Text);
             int intPart = 2;
-            strStatusRemarks = "";
-            xmlDoc = "";
+            _strStatusRemarks = "";
+            _xmlDoc = "";
             
-            if (intJobStatusID == 1)
+            if (_intJobStatusId == 1)
             {
                 if (hdnconfirm.Value == "1")
                 {
                     //Final In Insert
-                    string message = objcr.UpdateJobStatus(intPart, intJobID, intJobStatusID, strJobStatus, strStatusRemarks, int.Parse(hdnEnroll.Value), xmlDoc);
+                    string message = _objcr.UpdateJobStatus(intPart, _intJobId, _intJobStatusId, _strJobStatus, _strStatusRemarks, int.Parse(hdnEnroll.Value), _xmlDoc);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     hdnconfirm.Value = "0";
                     LoadGrid();
@@ -101,11 +118,11 @@ namespace UI.CreativeSupportModule
                     ddlJStat.SelectedValue = "0";
                 }
             }
-            else if (intJobStatusID == 3)
+            else if (_intJobStatusId == 3)
             {
                 if (hdnconfirm.Value == "1")
                 {
-                    string message = objcr.UpdateJobStatus(intPart, intJobID, intJobStatusID, strJobStatus, strStatusRemarks, int.Parse(hdnEnroll.Value), xmlDoc);
+                    string message = _objcr.UpdateJobStatus(intPart, _intJobId, _intJobStatusId, _strJobStatus, _strStatusRemarks, int.Parse(hdnEnroll.Value), _xmlDoc);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     hdnconfirm.Value = "0";
                     LoadGrid();
@@ -115,14 +132,14 @@ namespace UI.CreativeSupportModule
                     ddlJStat.SelectedValue = "0";
                 }
             }
-            else if (intJobStatusID == 2 || intJobStatusID == 4)
+            else if (_intJobStatusId == 2 || _intJobStatusId == 4)
             {
                 if (hdnconfirm.Value == "1")
                 {
-                    string JobCode = lblJobCode.Text;
-                    string JobStatus = strJobStatus;
+                    string jobCode = lblJobCode.Text;
+                    string jobStatus = _strJobStatus;
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + intJobID.ToString() + "','" + JobCode + "','" + JobStatus + "','" + JobStatusID + "');", true);                    
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewHoldAndFeedback('" + _intJobId + "','" + jobCode + "','" + jobStatus + "','" + _jobStatusId + "');", true);                    
                 }
                 else
                 {

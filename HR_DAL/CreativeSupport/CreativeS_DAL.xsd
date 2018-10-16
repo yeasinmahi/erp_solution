@@ -2,10 +2,11 @@
 <xs:schema id="CreativeS_DAL" targetNamespace="http://tempuri.org/CreativeS_DAL.xsd" xmlns:mstns="http://tempuri.org/CreativeS_DAL.xsd" xmlns="http://tempuri.org/CreativeS_DAL.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AG_GlobalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AG_GlobalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.AG_GlobalConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_GlobalConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GlobalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_GlobalConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="JobDesctionListTableAdapter" GeneratorDataComponentClassName="JobDesctionListTableAdapter" Name="JobDesctionList" UserDataComponentName="JobDesctionListTableAdapter">
@@ -73,7 +74,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemListForCreativeSTableAdapter" GeneratorDataComponentClassName="ItemListForCreativeSTableAdapter" Name="ItemListForCreativeS" UserDataComponentName="ItemListForCreativeSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.tblCreativeItemList" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCreativeItemList" GetMethodModifier="Public" GetMethodName="GetCreativeItemList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCreativeItemList" UserSourceName="GetCreativeItemList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intCreativeItemID, strCreativeItemName  FROM AG_Global.dbo.tblCreativeItemList Where ysnEnable = 1 Order by strCreativeItemName  asc</CommandText>
@@ -118,7 +119,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetPointTableAdapter" GeneratorDataComponentClassName="GetPointTableAdapter" Name="GetPoint" UserDataComponentName="GetPointTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemWisePoint" GetMethodModifier="Public" GetMethodName="GetItemWisePoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemWisePoint" UserSourceName="GetItemWisePoint">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.tblCreativeItemWisePoint" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetItemWisePoint" GetMethodModifier="Public" GetMethodName="GetItemWisePoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetItemWisePoint" UserSourceName="GetItemWisePoint">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intPoint FROM AG_Global.dbo.tblCreativeItemWisePoint Where intItemID = @intItemID and ysnEnable = 1</CommandText>
@@ -133,7 +134,7 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
               <Mapping SourceColumn="intPoint" DataSetColumn="intPoint" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetJobTypeWisePoint" GetMethodModifier="Public" GetMethodName="GetJobTypeWisePoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetJobTypeWisePoint" UserSourceName="GetJobTypeWisePoint">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.tblCreativeSupportJobTypeWisePoint" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetJobTypeWisePoint" GetMethodModifier="Public" GetMethodName="GetJobTypeWisePoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetJobTypeWisePoint" UserSourceName="GetJobTypeWisePoint">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intPoint FROM AG_Global.dbo.tblCreativeSupportJobTypeWisePoint Where strJobType = @strJobType and ysnEnable = 1</CommandText>
@@ -150,7 +151,9 @@ Where ysnActive = 1 and emp.intEmployeeID = @intEnroll</CommandText>
               <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportForDashboard" GetMethodModifier="Public" GetMethodName="GetReportForDashboard" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetReportForDashboard" UserSourceName="GetReportForDashboard">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>Select intJobID, strJobCode, REPLACE(CONVERT(VARCHAR(11), dteCreateDateTime, 106), ' ', '-') +' '+STUFF(RIGHT( CONVERT(VARCHAR,dteCreateDateTime,100 ) ,7), 6, 0, ' ') as ReqDate, 
+                    <CommandText>Select intJobID, strJobCode, 
+convert(varchar,dteRequiredDate, 106) as ReqDate, 
+REPLACE(REPLACE(CONVERT(varchar(15), CAST(dteCreateDateTime AS TIME), 100), 'P', ' P'), 'A', ' A') as ReqTime,
 convert(varchar,dteRequiredDate, 106) as dteRequiredDate, 
 REPLACE(REPLACE(CONVERT(varchar(15), CAST(tmRequiredTime AS TIME), 100), 'P', ' P'), 'A', ' A') as tmRequiredTime,
 emp.strEmployeeName, empt.strEmployeeName, emps.strEmployeeName, isnull(intJobStatusID, 0) as intJobStatusID
@@ -158,9 +161,8 @@ FROM AG_Global.dbo.tblCreativeSupport s
 Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
 Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
 Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
-Where intJobStatusID != 3 or intJobStatusID is NULL
-Order by intJobID asc
-</CommandText>
+Where s.ysnEnable = 1 and intJobStatusID != 3 or intJobStatusID is NULL
+Order by intJobID desc</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -176,12 +178,13 @@ Order by intJobID asc
               <Mapping SourceColumn="strEmployeeName1" DataSetColumn="strEmployeeName1" />
               <Mapping SourceColumn="strEmployeeName2" DataSetColumn="strEmployeeName2" />
               <Mapping SourceColumn="intJobStatusID" DataSetColumn="intJobStatusID" />
+              <Mapping SourceColumn="ReqTime" DataSetColumn="ReqTime" />
             </Mappings>
             <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StatusListTableAdapter" GeneratorDataComponentClassName="StatusListTableAdapter" Name="StatusList" UserDataComponentName="StatusListTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetStatusList" GetMethodModifier="Public" GetMethodName="GetStatusList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetStatusList" UserSourceName="GetStatusList">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.tblCreateSupportStatus" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetStatusList" GetMethodModifier="Public" GetMethodName="GetStatusList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetStatusList" UserSourceName="GetStatusList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intStatusID,strCreativeSupportStatus FROM AG_Global.dbo.tblCreateSupportStatus Where ysnEnable = 1</CommandText>
@@ -304,7 +307,7 @@ Order by intJobID asc
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AllDocViewTableAdapter" GeneratorDataComponentClassName="AllDocViewTableAdapter" Name="AllDocView" UserDataComponentName="AllDocViewTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllDocumentView" GetMethodModifier="Public" GetMethodName="GetAllDocumentView" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllDocumentView" UserSourceName="GetAllDocumentView">
+              <DbSource ConnectionRef="AG_GlobalConnectionString (Settings)" DbObjectName="AG_Global.dbo.tblCreativeSuportDocList" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllDocumentView" GetMethodModifier="Public" GetMethodName="GetAllDocumentView" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllDocumentView" UserSourceName="GetAllDocumentView">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocList Where ysnEnable = 1 and intJobID = @intJobID
@@ -320,6 +323,22 @@ SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocListForHoldAndFeedback
             <Mappings>
               <Mapping SourceColumn="strFilePath" DataSetColumn="strFilePath" />
             </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_GlobalConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="DisableCreativeSupport" GetMethodModifier="Public" GetMethodName="DisableCreativeSupport" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="DisableCreativeSupport" UserSourceName="DisableCreativeSupport">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>update AG_Global.dbo.tblCreativeSupport set ysnEnable=0 where intJobID = @jobId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="jobId" ColumnName="intJobID" DataSourceName="AG_Global.dbo.tblCreativeSupport" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@jobId" Precision="0" Scale="0" Size="4" SourceColumn="intJobID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
             <Sources />
           </TableAdapter>
         </Tables>
@@ -471,6 +490,13 @@ SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocListForHoldAndFeedback
                 </xs:simpleType>
               </xs:element>
               <xs:element name="intJobStatusID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintJobStatusID" msprop:Generator_ColumnPropNameInRow="intJobStatusID" msprop:Generator_ColumnPropNameInTable="intJobStatusIDColumn" msprop:Generator_UserColumnName="intJobStatusID" type="xs:int" minOccurs="0" />
+              <xs:element name="ReqTime" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnReqTime" msprop:Generator_ColumnPropNameInRow="ReqTime" msprop:Generator_ColumnPropNameInTable="ReqTimeColumn" msprop:Generator_UserColumnName="ReqTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -636,6 +662,10 @@ SELECT strFilePath FROM AG_Global.dbo.tblCreativeSuportDocListForHoldAndFeedback
                 </xs:simpleType>
               </xs:element>
             </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
           </xs:complexType>
         </xs:element>
       </xs:choice>

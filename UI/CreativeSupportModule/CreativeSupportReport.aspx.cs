@@ -22,7 +22,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class CreativeSupportReport : BasePage
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         int intPart, intReceiver;
@@ -69,7 +69,7 @@ namespace UI.CreativeSupportModule
         [ScriptMethod]
         public static string[] GetEmpListForCreativeSupportList(string prefixText)
         {
-            CreativeS_BLL objAutoSearch_BLL = new CreativeS_BLL();
+            CreativeSBll objAutoSearch_BLL = new CreativeSBll();
             return objAutoSearch_BLL.AutoEmpListForCreativeSupport(prefixText);
         }
 

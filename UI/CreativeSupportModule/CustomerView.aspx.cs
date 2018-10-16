@@ -16,7 +16,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class CustomerView : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         string filePathForXMLDocUpload, xmlStringDocUpload = "", xmlDoc, filePathForXML, xmlString = "", xmlItem;        
@@ -76,7 +76,10 @@ namespace UI.CreativeSupportModule
                 {
                     intAssignBy = int.Parse(hdnEnroll.Value);
                     try { dteRequiredDate = DateTime.Parse(txtReqDate.Text); }
-                    catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Required Date Select.');", true); }
+                    catch {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Required Date Select.');", true);
+                        return;
+                    }
                     try { intPOID = int.Parse(txtPOID.Text); } catch { intPOID = 0; }
                     //tmRequiredTime = TimeSpan.Parse(tmsReqTime.Hour.ToString() + ":" + tmsReqTime.Minute.ToString() + ":" + tmsReqTime.Second.ToString());
                     ////tmRequiredTime = TimeSpan.Parse(string.Format("{0}:{1}:{2} {3}", tmsReqTime.Hour, tmsReqTime.Minute, tmsReqTime.Second, tmsReqTime.AmPm));
@@ -395,15 +398,15 @@ namespace UI.CreativeSupportModule
         [ScriptMethod]
         public static string[] AutoCreativeItem(string prefixText)
         {
-            CreativeS_BLL objAutoSearch_BLL = new CreativeS_BLL();
-            return objAutoSearch_BLL.AutoSearchItemCRList(prefixText);
+            CreativeSBll objAutoSearch_BLL = new CreativeSBll();
+            return objAutoSearch_BLL.AutoSearchItemCrList(prefixText);
         }
 
         [WebMethod]
         [ScriptMethod]
         public static string[] GetEmpListForCreativeSupportList(string prefixText)
         {
-            CreativeS_BLL objAutoSearch_BLL = new CreativeS_BLL();
+            CreativeSBll objAutoSearch_BLL = new CreativeSBll();
             return objAutoSearch_BLL.AutoEmpListForCreativeSupport(prefixText);
         }
 

@@ -22,7 +22,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class DocViewForHoldAndFeedback : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
