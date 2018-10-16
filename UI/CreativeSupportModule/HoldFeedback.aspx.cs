@@ -86,7 +86,6 @@ namespace UI.CreativeSupportModule
                             intCount = intCount + 1;
                             fileName = intCount.ToString() + "_" + hdnEnroll.Value + "_" + fileName.Trim();
 
-                            string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
                             uploadedFile.SaveAs(Server.MapPath("~/CreativeSupportModule/Data/") + fileName.Trim());
 
                             //if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")

@@ -1,11 +1,8 @@
 ﻿using HR_DAL.CreativeSupport.CreativeS_DALTableAdapters;
 //using HR_DAL.CreativeS_TDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static HR_DAL.CreativeSupport.CreativeS_DAL;
 
 namespace HR_BLL.CreativeSupport

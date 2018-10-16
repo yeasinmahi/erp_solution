@@ -18,6 +18,7 @@ namespace UI.CreativeSupportModule
         {
             if (ckbAgree.Checked == true)
             {
+                ckbAgree.Checked = false;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewCustomerView('" + 0 + "');", true);
             }
         }
