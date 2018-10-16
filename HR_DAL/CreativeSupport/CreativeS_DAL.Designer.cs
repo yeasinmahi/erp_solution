@@ -7778,7 +7778,7 @@ FROM AG_Global.dbo.tblCreativeSupport s
 Left Join ERP_HR.dbo.tblEmployee emp On s.intAssignBy = emp.intEmployeeID
 Left Join ERP_HR.dbo.tblEmployee empt On s.intAssignTo = empt.intEmployeeID
 Left Join ERP_HR.dbo.tblEmployee emps On s.intStatusBy = emps.intEmployeeID
-Where s.ysnEnable = 1 and intJobStatusID != 3 or intJobStatusID is NULL
+Where s.ysnEnable = 1 and (intJobStatusID != 3 or intJobStatusID is NULL)
 Order by intJobID desc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
