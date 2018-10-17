@@ -7,6 +7,9 @@
     <title>Supporter Add/Remove</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
+
     <script src="../Content/JS/datepickr.min.js"></script>
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
@@ -193,6 +196,9 @@
         #gridView tr
         {
             font-size: 14px !important; 
+        }
+        .container{
+            padding-top:50px;
         }
     </style>
 </body>

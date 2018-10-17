@@ -219,25 +219,38 @@ namespace HR_BLL.CreativeSupport
             }
         }
 
-        public bool InsertSupportUser(int enroll, int insertBy)
+        public bool InsertSupportUser(int enroll, int insertBy, out string message)
         {
-            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
             try
             {
-                adp.InsertSupportUser(enroll,insertBy);
-                return true;
+                DataTable dt = adp.GetSupportUser(1,enroll,insertBy,0);
+                int supportUserId = 0;
+                int.TryParse(dt.Rows[0]["supportUserId"].ToString(), out supportUserId);
+                if (supportUserId > 0)
+                {
+                    message = "successfully Insert";
+                    return true;
+                }
+                else
+                {
+                    message = "This user already exist";
+                    return false;
+                }
+                
             }
             catch (Exception ex)
             {
+                message = "Something Error Occured";
                 return false;
             }
         }
         public DataTable GetSupportUsers()
         {
-            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
             try
             {
-                return adp.GetSupportUsers();
+                return adp.GetSupportUser(2,0,0,0);
                 
             }
             catch (Exception ex)
@@ -247,10 +260,10 @@ namespace HR_BLL.CreativeSupport
         }
         public bool UpdateSupporterUser(int supporterUserId)
         {
-            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
             try
             {
-                adp.UpdateSupporterUser(supporterUserId);
+                adp.GetSupportUser(3, 0, 0, supporterUserId);
                 return true;
             }
             catch (Exception ex)

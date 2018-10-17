@@ -37,13 +37,14 @@ namespace UI.CreativeSupportModule
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please insert an enroll');", true);
                 return;
             }
-            if (_bll.InsertSupportUser(enroll, _insertBy))
+            string message;
+            if (_bll.InsertSupportUser(enroll, _insertBy, out message))
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Insert support user successfully');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ message + "');", true);
                 LoadGrid();
                 return;
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Someting is error');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
         }
 
         private void LoadGrid()
