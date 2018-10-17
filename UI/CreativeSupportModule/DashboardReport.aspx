@@ -105,10 +105,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
                                             <HeaderTemplate>
-                                       
                                                 <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvDashboardReport')"></asp:TextBox>
-                               
-                                    
                                             </HeaderTemplate>
                                             <ItemStyle HorizontalAlign="center" Width="60px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>

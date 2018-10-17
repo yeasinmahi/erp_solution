@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BudgetOperationTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Budget_TDS.cs">
+      <DependentUpon>Budget_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Budget_TDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

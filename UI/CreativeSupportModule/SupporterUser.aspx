@@ -150,40 +150,6 @@
         } 
     </style>
     <script type="text/javascript">
-       
-        function showPanel() {
-            var txtPoNumber = document.getElementById("txtPoNumber").value;
-            if (txtPoNumber === null || txtPoNumber === "") {
-                alert("Po number can not be empty");
-                return false;
-            }
-            var infoPanel = document.getElementById("infoPanel");
-            var itemPanel = document.getElementById("itemPanel");
-            infoPanel.style.visibility = 'visible'; 
-            itemPanel.style.visibility = 'visible'; 
-
-            return true;
-        }
-        function hidePanel() {
-            var infoPanel = document.getElementById("infoPanel");
-            var itemPanel = document.getElementById("itemPanel");
-            infoPanel.style.visibility = 'hidden'; 
-            itemPanel.style.visibility = 'hidden'; 
-            
-        }
-        function Validate() {
-            var txtPoNumber = document.getElementById("txtPoNumber").value;
-            
-            if (txtPoNumber === null || txtPoNumber === "") {
-                alert("Po number can not be empty");
-                return false;
-            }
-            if (confirm("Are you want to process?"))
-            {
-                return true;
-            }
-            return false;
-        }
         function ConfirmRemove() {
             if (confirm("Are you want to remove?"))
             {
