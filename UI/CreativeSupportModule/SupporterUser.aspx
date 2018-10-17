@@ -7,9 +7,6 @@
     <title>Supporter Add/Remove</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <script src="../Content/JS/datepickr.min.js"></script>
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
@@ -65,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default" id="itemPanel" style="visibility: hidden">
+                    <div class="panel panel-default" id="itemPanel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Users" Font-Bold="true" Font-Size="16px"></asp:Label> 
                         </div>
@@ -73,25 +70,40 @@
                             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
+                                    
                                     <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
+                                            <asp:HiddenField runat="server" ID="supportUserId" Value='<%# Bind("supportUserId") %>'/>
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="User Name">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtItem" runat="server"  Text='<%# Bind("intItem") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtEmployeeName" runat="server"  Text='<%# Bind("strEmployeeName") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="iblItem" runat="server"  Text='<%# Bind("intItem") %>'></asp:Label>
+                                            <asp:Label ID="lblEmployeeName" runat="server"  CssClass="pull-left" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Enroll">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtItemName" runat="server" Text='<%# Bind("strItem") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtEnroll" runat="server" Text='<%# Bind("enroll") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItem") %>'></asp:Label>
+                                            <asp:Label ID="lblEnroll" runat="server" Text='<%# Bind("enroll") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Permission Date & Time">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtInsertDate" runat="server" Text='<%# Bind("insertDate") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblInsertDate" runat="server"  Text='<%# Bind("insertDate") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="50px">
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnRemove" runat="server" class="btn btn-danger form-control col-lg-12" Text="Remove" OnClientClick ="return ConfirmRemove()" OnClick="btnRemove_Click" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -169,11 +181,18 @@
             }
             return false;
         }
+        function ConfirmRemove() {
+            if (confirm("Are you want to remove?"))
+            {
+                return true;
+            }
+            return false;
+        }
     </script>
     <style>
         #gridView tr
         {
-            font-size: 10px;
+            font-size: 14px !important; 
         }
     </style>
 </body>

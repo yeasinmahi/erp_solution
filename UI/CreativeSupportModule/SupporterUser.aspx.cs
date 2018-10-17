@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using HR_BLL.CreativeSupport;
 using UI.ClassFiles;
 
@@ -47,8 +48,28 @@ namespace UI.CreativeSupportModule
 
         private void LoadGrid()
         {
-            //gridView.DataSource = _bll.GetSupportUsers();
-            //gridView.DataBind();
+            gridView.DataSource = _bll.GetSupportUsers();
+            gridView.DataBind();
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+
+            HiddenField hdnDataId = (HiddenField)row.FindControl("supportUserId");
+            int supportUserId = int.Parse(hdnDataId.Value);
+
+            if (_bll.UpdateSupporterUser(supportUserId))
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Removed');", true);
+                LoadGrid();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Someting is error');", true);
+
+            }
         }
     }
 }

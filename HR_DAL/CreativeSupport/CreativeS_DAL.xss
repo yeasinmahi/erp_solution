@@ -20,7 +20,7 @@
     <Shape ID="DesignTable:SprItemCreateAndPointSet" ZOrder="7" X="7" Y="363" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
     <Shape ID="DesignTable:AllDocView" ZOrder="4" X="278" Y="426" Height="96" Width="210" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
     <Shape ID="DesignTable:DataTable1" ZOrder="2" X="619" Y="411" Height="96" Width="210" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignTable:DataTable2" ZOrder="1" X="-10" Y="535" Height="135" Width="264" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:DataTable2" ZOrder="1" X="-10" Y="535" Height="54" Width="264" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="83" OldDataTableHeight="46" SplitterPosition="24" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

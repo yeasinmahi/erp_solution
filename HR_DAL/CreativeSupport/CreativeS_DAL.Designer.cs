@@ -9499,8 +9499,10 @@ Order by intJobID desc";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@insertBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "insertBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        supportUserId, enroll, insertBy, insertDate, ysnActive\r\nFROM       " +
-                "     AG_Global.dbo.tblCreativeSupporterUser\r\nWHERE        (ysnActive = 1)";
+            this._commandCollection[1].CommandText = "SELECT        u.supportUserId, e.strEmployeeName, u.enroll, u.insertBy, u.insertD" +
+                "ate, u.ysnActive\r\nFROM            AG_Global.dbo.tblCreativeSupporterUser u\r\njoin" +
+                " ERP_HR.dbo.tblEmployee e on u.enroll=e.intEmployeeID\r\nWHERE        (u.ysnActive" +
+                " = 1)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
