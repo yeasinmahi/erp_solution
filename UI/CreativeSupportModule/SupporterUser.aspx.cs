@@ -61,7 +61,7 @@ namespace UI.CreativeSupportModule
             HiddenField hdnDataId = (HiddenField)row.FindControl("supportUserId");
             int supportUserId = int.Parse(hdnDataId.Value);
 
-            if (_bll.UpdateSupporterUser(supportUserId))
+            if (_bll.RemoveSupporterUser(supportUserId))
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Removed');", true);
                 LoadGrid();

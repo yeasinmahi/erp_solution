@@ -258,7 +258,7 @@ namespace HR_BLL.CreativeSupport
                 return new DataTable();
             }
         }
-        public bool UpdateSupporterUser(int supporterUserId)
+        public bool RemoveSupporterUser(int supporterUserId)
         {
             sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
             try
