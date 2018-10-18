@@ -1,28 +1,19 @@
 ﻿using HR_BLL.CreativeSupport;
-using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Script.Services;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
-using Dairy_BLL;
-using SAD_BLL.Transport;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace UI.CreativeSupportModule
 {
     public partial class HoldFeedback : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         int intPart, intJobID, intJobStatusID;
@@ -86,7 +77,6 @@ namespace UI.CreativeSupportModule
                             intCount = intCount + 1;
                             fileName = intCount.ToString() + "_" + hdnEnroll.Value + "_" + fileName.Trim();
 
-                            string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
                             uploadedFile.SaveAs(Server.MapPath("~/CreativeSupportModule/Data/") + fileName.Trim());
 
                             //if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
@@ -206,20 +196,22 @@ namespace UI.CreativeSupportModule
                         return;
                     }
                     strStatusRemarks = txtRemarks.Text;
-                    try
-                    {
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(filePathForXMLDocUpload);
-                        XmlNode dSftTm = doc.SelectSingleNode("DocUpload");
-                        xmlStringDocUpload = dSftTm.InnerXml;
-                        xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
-                        xmlDoc = xmlStringDocUpload;
-                    }
-                    catch { return; }
+                    
 
                     
                     if (dgvDocUp.Rows.Count > 0)
                     {
+                        try
+                        {
+                            XmlDocument doc = new XmlDocument();
+                            doc.Load(filePathForXMLDocUpload);
+                            XmlNode dSftTm = doc.SelectSingleNode("DocUpload");
+                            xmlStringDocUpload = dSftTm.InnerXml;
+                            xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
+                            xmlDoc = xmlStringDocUpload;
+                        }
+                        catch { return; }
+
                         for (int index = 0; index < dgvDocUp.Rows.Count; index++)
                         {
                             fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();

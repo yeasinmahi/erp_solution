@@ -189,6 +189,13 @@
                         </asp:GridView>
                     </td>
                 </tr>
+                
+                <tr>
+                    <td style="text-align: right; padding-top: 10px">
+                        <asp:Label ID="Label9" runat="server" Text="Remarks :" CssClass="lbl"></asp:Label></td>
+                    <td colspan="5" style="padding-top: 10px">
+                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox1" TextMode="MultiLine" Width="547px" Height="50px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
+                </tr>
                 <tr>
                     <td style="text-align: right;">
                         <asp:Label ID="Label1" runat="server" Text=""></asp:Label></td>
@@ -254,13 +261,6 @@
                             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                         </asp:GridView>
                     </td>
-                </tr>
-
-                <tr>
-                    <td style="text-align: right; padding-top: 10px">
-                        <asp:Label ID="Label9" runat="server" Text="Remarks :" CssClass="lbl"></asp:Label></td>
-                    <td colspan="5" style="padding-top: 10px">
-                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox1" TextMode="MultiLine" Width="547px" Height="50px" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
                 </tr>
 
             </table>

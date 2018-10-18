@@ -6,18 +6,21 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO.Compression;
+using Utility;
 
 namespace UI.CreativeSupportModule
 {
     public partial class CreativeSupportJobDetail : Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
-
+        private string serverFolderPath;
+        private string serverFilePath;
+        private string fileName;
         int intPart, intJobID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            serverFolderPath = Server.MapPath("~/CreativeSupportModule/Data");
             if (!IsPostBack)
             {
                 try
@@ -125,7 +128,7 @@ namespace UI.CreativeSupportModule
         {
             try
             {
-                
+
                 if (e.CommandName == "Download")
                 {
                     int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -136,7 +139,7 @@ namespace UI.CreativeSupportModule
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('There are no file to download');", true);
                         return;
                     }
-                    string fileName = strPath;
+                    fileName = strPath;
 
                     //FTP Server URL.
                     string ftp = "ftp://ftp.akij.net/";
@@ -172,10 +175,6 @@ namespace UI.CreativeSupportModule
                 }
                 else if (e.CommandName == "DownloadAll")
                 {
-                    
-                    string parentSourceLoc2Zip = @"C:\\\\UploadedDocs";
-                    string fileName = "fileName.jpg";
-                    string sourceLoc2Zip = string.Format(@"{0}\{1}", parentSourceLoc2Zip, fileName);
 
                     foreach (GridViewRow row in gvStatusDetails.Rows)
                     {
@@ -184,66 +183,36 @@ namespace UI.CreativeSupportModule
                         {
                             continue;
                         }
-                        fileName = strPath;
-                        sourceLoc2Zip = string.Format(@"{0}\{1}", parentSourceLoc2Zip, fileName);
+                        serverFilePath = $@"{serverFolderPath}\{"Attachment"}";
 
                         //FTP Server URL.
-                        string ftp = "ftp://ftp.akij.net/";
-
-                        //FTP Folder name. Leave blank if you want to Download file from root folder.
-                        string ftpFolder = "CreativeSupportModuleDoc/";
-
+                        string ftp = "ftp://ftp.akij.net/CreativeSupportModuleDoc/";
+                        string ftpPath = ftp + strPath;
+                        if (!Directory.Exists(serverFolderPath))
+                        {
+                            Directory.CreateDirectory(serverFolderPath);
+                        }
+                        if (!Directory.Exists(serverFilePath))
+                        {
+                            Directory.CreateDirectory(serverFilePath);
+                        }
                         try
                         {
-                            //Create FTP Request.
-                            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + fileName);
-                            request.Method = WebRequestMethods.Ftp.DownloadFile;
-
-                            //Enter FTP Server credentials.
-                            request.Credentials = new NetworkCredential("erp", "erp123");
-                            request.UsePassive = true;
-                            request.UseBinary = true;
-                            request.EnableSsl = false;
-
-                            //Fetch the Response and read it into a MemoryStream object.
-                            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-                            using (MemoryStream stream = new MemoryStream())
-                            {
-                                response.GetResponseStream()?.CopyTo(stream);
-                                Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
-                                Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                                Response.BinaryWrite(stream.ToArray());
-                                string packageFileName = "test";
-                                byte[] fileBytesTobeZipped = stream.ToArray();
-                                
-                                if (Directory.Exists(parentSourceLoc2Zip) == false)
-                                {
-                                    Directory.CreateDirectory(parentSourceLoc2Zip);
-                                }
-
-                                //if destination folder already exists then delete it
-                                
-                                if (Directory.Exists(sourceLoc2Zip) == true)
-                                {
-                                    Directory.Delete(sourceLoc2Zip, true);
-                                }
-                                Directory.CreateDirectory(sourceLoc2Zip);
-
-
-
-                                string FilePath = string.Format(@"{0}\{1}",
-                                    sourceLoc2Zip,
-                                    "filename.extension");//e-g report.xlsx , report.docx according to exported file
-
-                                File.WriteAllBytes(FilePath, fileBytesTobeZipped);
-
-                            }
+                            byte[] bytes = Downloader.DownloadFromFtp(ftpPath);
+                            string filePath = $@"{serverFilePath}\{strPath}";
+                            File.WriteAllBytes(filePath, bytes);
                         }
                         catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse)?.StatusDescription); }
                     }
-                    Utility.Zip.PackageDocsAsZip(sourceLoc2Zip);
-                    
+
+                    Response.AddHeader("content-disposition", "attachment;filename=" + "Attachment.zip");
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+                    Response.BinaryWrite(ZipHelper.CreateZip(serverFilePath));
+                    Response.Flush();
+                    FileHelper.DeleteFolder(serverFilePath);
+                    Response.End();
+
                 }
             }
             catch (WebException ex) { throw new Exception((ex.Response as FtpWebResponse)?.StatusDescription); }

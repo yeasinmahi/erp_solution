@@ -1,28 +1,17 @@
 ﻿using HR_BLL.CreativeSupport;
-using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Script.Services;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
-using UI.ClassFiles;
-using Dairy_BLL;
-using SAD_BLL.Transport;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace UI.CreativeSupportModule
 {
     public partial class DocViewForHoldAndFeedback : System.Web.UI.Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
