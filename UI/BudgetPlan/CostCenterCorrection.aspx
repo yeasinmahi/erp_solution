@@ -13,7 +13,7 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/CSS/bootstrap-datepicker.min.css" rel="stylesheet" />
+ <%--  <link href="../Content/CSS/bootstrap-datepicker.min.css" rel="stylesheet" />--%>
     <link href="../Content/font-awesome.min.css" rel="stylesheet" />
 
 </head>
@@ -65,8 +65,12 @@
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:TextBox ID="txtFromDate" CssClass="form-control col-md-12" runat="server" placeholder="dd/MM/yyyy" AutoComplete="off"></asp:TextBox>
+                                         <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12" AutoPostBack="false"   Enabled="true" ></asp:TextBox>
+                                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
+
+                                        
                                     </div>
+                                      
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-12">
@@ -74,11 +78,16 @@
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:TextBox ID="txtToDate" CssClass="form-control col-md-12" runat="server" placeholder="dd/MM/yyyy" AutoComplete="off"></asp:TextBox>
+                                        <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12" AutoPostBack="false"   Enabled="true" ></asp:TextBox>
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
+
+                                         
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
+                                <br />
+                                <div class="col-md-12 py-3">
+                                    <div class="col-md-11"></div>
+                                    <div class="col-md-1">
                                         <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_OnClick" />
                                     </div>
                                 </div>
@@ -99,7 +108,7 @@
 
                                     <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
-                                            <asp:HiddenField runat="server" ID="intSubLedgerID" Value='<%# Bind("intSubLedgerID") %>' />
+                                            <asp:HiddenField runat="server" ID="hdnSubledgerId" Value='<%# Bind("intSubLedgerID") %>' />
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -183,7 +192,8 @@
 
     <script src="../Content/JS/jquery-3.3.1.js"></script>
     <script src="../Content/JS/bootstrap.min.js"></script>
-    <script src="../Content/JS/bootstrap-datepicker.min.js"></script>
+    <%--<script src="../Content/JS/bootstrap-datepicker.min.js"></script>--%>
+     <script src="../Content/JS/datepickr.min.js"></script>
 
     <style>
         table {
@@ -218,38 +228,8 @@
     </style>
     <script type="text/javascript">
 
-        function showPanel() {
-            var txtPoNumber = document.getElementById("txtPoNumber").value;
-            if (txtPoNumber === null || txtPoNumber === "") {
-                alert("Po number can not be empty");
-                return false;
-            }
-            var infoPanel = document.getElementById("infoPanel");
-            var itemPanel = document.getElementById("itemPanel");
-            infoPanel.style.visibility = 'visible';
-            itemPanel.style.visibility = 'visible';
-
-            return true;
-        }
-        function hidePanel() {
-            var infoPanel = document.getElementById("infoPanel");
-            var itemPanel = document.getElementById("itemPanel");
-            infoPanel.style.visibility = 'hidden';
-            itemPanel.style.visibility = 'hidden';
-
-        }
-        function Validate() {
-            var txtPoNumber = document.getElementById("txtPoNumber").value;
-
-            if (txtPoNumber === null || txtPoNumber === "") {
-                alert("Po number can not be empty");
-                return false;
-            }
-            if (confirm("Are you want to process?")) {
-                return true;
-            }
-            return false;
-        }
+        
+      
         function ConfirmUpdate() {
             if (confirm("Are you want to remove?")) {
                 return true;
@@ -257,38 +237,7 @@
             return false;
         }
 
-        $(document).ready(function () {
-            $("#txtFromDate").datepicker(
-                {
-                    format: 'dd/mm/yyyy',
-                    todayHighlight: true
-                }
-            );
-            $("#txtToDate").datepicker(
-                {
-                    format: 'dd/mm/yyyy',
-                    todayHighlight: true
-                }
-            );
-        });
-
-        //Re-bind for callbacks
-        var prm = Sys.WebForms.PageRequestManager.getInstance();
-
-        prm.add_endRequest(function () {
-            $("#txtFromDate").datepicker(
-                {
-                    format: 'dd/mm/yyyy',
-                    todayHighlight: true
-                }
-            );
-            $("#txtToDate").datepicker(
-                {
-                    format: 'dd/mm/yyyy',
-                    todayHighlight: true
-                }
-            );
-        });
+         
     </script>
 </body>
 </html>

@@ -47,6 +47,14 @@ namespace Budget_BLL.Budget
             catch { return new DataTable(); }
         }
 
+        public string UpdateLedgerCostcenter(int intUnitId, int intSubledgerId, int intCostCenterId, string costcenter)
+        {
+            string msg = "Update Sucessfull";
+            LedgerCostCenterUpdateTableAdapter adp = new LedgerCostCenterUpdateTableAdapter();
+            adp.UdateLedgerCoscenter(intCostCenterId, costcenter, intSubledgerId, intUnitId);
+            return msg;
+        }
+
         public string InsertBudgetEntry(int intUnitID, int intCOAID, int intYear, int intMonth, decimal monBAmount, decimal monTAmount, int intUserID, int intCCID) 
         {
             string msg = "";
@@ -100,7 +108,7 @@ namespace Budget_BLL.Budget
             try
             {
                 DataTable2TableAdapter adp = new DataTable2TableAdapter();
-                return adp.GetCostCenterData(unitid, fromDate,toDate);
+                return adp.GetCostCenterData(unitid, Convert.ToString(fromDate), Convert.ToString(toDate));
             }
             catch { return new DataTable(); }
         }
