@@ -29,6 +29,7 @@ namespace UI.CreativeSupportModule
         {
             //txtQty. += new EventHandler(textBox1_LostFocus);
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+            
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             hdnPoint.Value = "0";
             filePathForXMLDocUpload = Server.MapPath("~/CreativeSupportModule/Data/DocUpload_" + hdnEnroll.Value + ".xml");
@@ -75,6 +76,14 @@ namespace UI.CreativeSupportModule
                 try
                 {
                     intAssignBy = int.Parse(hdnEnroll.Value);
+                    try
+                    {
+                        char[] ch1 = { '[', ']' };
+                        string[] temp1 = txtName.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                        intAssignBy = int.Parse(temp1[3]);
+                    }
+                    catch {  }
+
                     try { dteRequiredDate = DateTime.Parse(txtReqDate.Text); }
                     catch {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Required Date Select.');", true);
@@ -90,16 +99,16 @@ namespace UI.CreativeSupportModule
                     {
                         char[] ch1 = { '[', ']' };
                         string[] temp1 = txtSearchAssignedTo.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                        intAssignTo = int.Parse(temp1[3].ToString());
+                        intAssignTo = int.Parse(temp1[3]);
                     }
                     catch { intAssignTo = 0; }
 
-                    intJobDescriptionID = int.Parse(ddlJobDescription.SelectedValue.ToString());
+                    intJobDescriptionID = int.Parse(ddlJobDescription.SelectedValue);
                     strJobType = ddlJobType.SelectedItem.ToString();
                     
                     if(intJobDescriptionID != 1)
                     {
-                        if(ddlJobType.SelectedValue.ToString() == "0")
+                        if(ddlJobType.SelectedValue == "0")
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Job Type Select.');", true);
                             return;
@@ -154,7 +163,7 @@ namespace UI.CreativeSupportModule
                     {
                         for (int index = 0; index < dgvDocUp.Rows.Count; index++)
                         {
-                            fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();
+                            fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text;
                             FileUploadFTP(Server.MapPath("~/CreativeSupportModule/Data/"), fileName, "ftp://ftp.akij.net/CreativeSupportModuleDoc/", "erp@akij.net", "erp123");                            
                         }
                     }
@@ -197,7 +206,7 @@ namespace UI.CreativeSupportModule
         {
             if (hdnconfirm.Value == "2")
             {
-                if (txtDocUpload.FileName.ToString() != "")
+                if (txtDocUpload.FileName != "")
                 {
                     int intCount = 0;
                     if (txtDocUpload.HasFiles)
@@ -212,9 +221,8 @@ namespace UI.CreativeSupportModule
                             
                             strFileName = fileName.Trim();
                             intCount = intCount + 1;
-                            fileName = intCount.ToString() + "_" + hdnEnroll.Value + "_" + fileName.Trim();
+                            fileName = intCount + "_" + hdnEnroll.Value + "_" + fileName.Trim();
                             
-                            string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
                             uploadedFile.SaveAs(Server.MapPath("~/CreativeSupportModule/Data/") + fileName.Trim());
 
                             //if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
@@ -480,7 +488,7 @@ namespace UI.CreativeSupportModule
                 {
                     char[] ch1 = { '[', ']' };
                     string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                    intItemID = int.Parse(temp1[1].ToString());
+                    intItemID = int.Parse(temp1[1]);
                 }
                 catch { intItemID = 0; }
 
@@ -551,8 +559,8 @@ namespace UI.CreativeSupportModule
             {
                 char[] ch1 = { '[', ']' };
                 string[] temp1 = txtCRItem.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                name = temp1[0].ToString();
-                itemid = temp1[1].ToString();
+                name = temp1[0];
+                itemid = temp1[1];
             }
             catch { itemid = "0"; }
             

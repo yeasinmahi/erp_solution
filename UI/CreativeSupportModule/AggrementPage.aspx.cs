@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.CreativeSupportModule
 {
@@ -18,6 +14,7 @@ namespace UI.CreativeSupportModule
         {
             if (ckbAgree.Checked == true)
             {
+                ckbAgree.Checked = false;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewCustomerView('" + 0 + "');", true);
             }
         }

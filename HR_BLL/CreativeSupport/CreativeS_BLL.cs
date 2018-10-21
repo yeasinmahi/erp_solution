@@ -1,11 +1,8 @@
 ﻿using HR_DAL.CreativeSupport.CreativeS_DALTableAdapters;
 //using HR_DAL.CreativeS_TDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static HR_DAL.CreativeSupport.CreativeS_DAL;
 
 namespace HR_BLL.CreativeSupport
@@ -214,6 +211,59 @@ namespace HR_BLL.CreativeSupport
             try
             {
                  adp.DisableCreativeSupport(intJobId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool InsertSupportUser(int enroll, int insertBy, out string message)
+        {
+            sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
+            try
+            {
+                DataTable dt = adp.GetSupportUser(1,enroll,insertBy,0);
+                int supportUserId = 0;
+                int.TryParse(dt.Rows[0]["supportUserId"].ToString(), out supportUserId);
+                if (supportUserId > 0)
+                {
+                    message = "successfully Insert";
+                    return true;
+                }
+                else
+                {
+                    message = "This user already exist";
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                message = "Something Error Occured";
+                return false;
+            }
+        }
+        public DataTable GetSupportUsers()
+        {
+            sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
+            try
+            {
+                return adp.GetSupportUser(2,0,0,0);
+                
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public bool RemoveSupporterUser(int supporterUserId)
+        {
+            sprSupporterUserInsertTableAdapter adp = new sprSupporterUserInsertTableAdapter();
+            try
+            {
+                adp.GetSupportUser(3, 0, 0, supporterUserId);
                 return true;
             }
             catch (Exception ex)
