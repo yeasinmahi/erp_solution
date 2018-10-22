@@ -17,6 +17,12 @@
          self.close();    
      }
     </script>
+    <style type="text/css">
+        .column
+        {
+            border: 1px solid #000;
+        }
+    </style>
 </head>
 <body>
     <form id="frmdtls" runat="server">
@@ -49,32 +55,32 @@
         
                  </tr> 
               </table>
-    <asp:GridView ID="dgvlist" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="800px" ShowFooter="true" BackColor="White" BorderColor="#999999"    
-             BorderWidth="1px" CellPadding="5"   GridLines="Vertical" FooterStyle-Font-Bold="true"   FooterStyle-HorizontalAlign="Right" ><AlternatingRowStyle BackColor="White" />
+    <asp:GridView ID="dgvlist" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="800px" ShowFooter="True" BackColor="White" BorderColor="#999999"    
+             BorderWidth="2px" CellPadding="3"   GridLines="Vertical" FooterStyle-Font-Bold="true"   FooterStyle-HorizontalAlign="Right" BorderStyle="Solid" ForeColor="Black" >
+        <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-        <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-        <asp:BoundField DataField="DDate" HeaderText="Due Date" ItemStyle-HorizontalAlign="Center" SortExpression="DDate" DataFormatString="{0:yyyy-MM-dd}">
+        <asp:TemplateField HeaderText="SL" ItemStyle-CssClass="column"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+        <asp:BoundField DataField="DDate" HeaderText="Due Date" ItemStyle-HorizontalAlign="Center" ItemStyle-CssClass="column" SortExpression="DDate" DataFormatString="{0:yyyy-MM-dd}">
         <ItemStyle HorizontalAlign="Left" Width="75px" /></asp:BoundField> 
-        <asp:BoundField DataField="Items" HeaderText="Particulers" ItemStyle-HorizontalAlign="Center" SortExpression="Items">
+        <asp:BoundField DataField="Items" HeaderText="Particulers" ItemStyle-HorizontalAlign="Center" SortExpression="Items" ItemStyle-CssClass="column">
         <ItemStyle HorizontalAlign="Left" Width="230px"/></asp:BoundField>
-        <asp:BoundField DataField="Department" HeaderText="Remarks" ItemStyle-HorizontalAlign="Center" SortExpression="Department">
+        <asp:BoundField DataField="Department" HeaderText="Remarks" ItemStyle-HorizontalAlign="Center" SortExpression="Department" ItemStyle-CssClass="column">
         <ItemStyle HorizontalAlign="Center" Width="200px"/></asp:BoundField>
-        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="Quantity" DataFormatString="{0:0.0000}">
+        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="Quantity" DataFormatString="{0:0.0000}" ItemStyle-CssClass="column">
         <ItemStyle HorizontalAlign="right" Width="65px"/></asp:BoundField>
-        <asp:BoundField DataField="IssQuantity" HeaderText="I.Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="IssQuantity" DataFormatString="{0:0.0000}">
+        <asp:BoundField DataField="IssQuantity" HeaderText="I.Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="IssQuantity" DataFormatString="{0:0.0000}" ItemStyle-CssClass="column">
         <ItemStyle HorizontalAlign="right" Width="65px"/></asp:BoundField>
-        <asp:BoundField DataField="Remarks" HeaderText="Status" ItemStyle-HorizontalAlign="Center" SortExpression="Remarks">
+        <asp:BoundField DataField="Remarks" HeaderText="Status" ItemStyle-HorizontalAlign="Center" SortExpression="Remarks" ItemStyle-CssClass="column">
         <ItemStyle HorizontalAlign="Center" Width="65px"/></asp:BoundField>
         </Columns>
-        <FooterStyle BackColor="#CCCC99" />
-        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-        <RowStyle BackColor="#F7F7DE" />
-        <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
-        <sortedascendingcellstyle backcolor="#FBFBF2" />
-        <sortedascendingheaderstyle backcolor="#848384" />
-        <sorteddescendingcellstyle backcolor="#EAEAD3" />
-        <sorteddescendingheaderstyle backcolor="#575357" />
+        <FooterStyle BackColor="#CCCCCC" />
+        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+        <sortedascendingcellstyle backcolor="#F1F1F1" />
+        <sortedascendingheaderstyle backcolor="#808080" />
+        <sorteddescendingcellstyle backcolor="#CAC9C9" />
+        <sorteddescendingheaderstyle backcolor="#383838" />
         </asp:GridView>
          <table>
               <%--<tr><td><asp:Image ID="imgApp" runat="server"   /></td></tr>--%>
