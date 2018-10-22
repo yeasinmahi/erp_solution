@@ -44,7 +44,7 @@ namespace UI.BudgetPlan
                 string msg = _bll.UpdateLedgerCostcenter(intUnitId, intSubledgerId, intCostCenterId, costcenter);
                
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                LoadGrid();
+             // LoadGrid();
             }
             catch { }
         }
