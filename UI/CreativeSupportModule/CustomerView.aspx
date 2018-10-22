@@ -162,7 +162,7 @@
                             </td>
                             <td style="text-align: left; padding-top: 10px">
                                 <asp:DropDownList ID="ddlJobDescription" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px" DataSourceID="odsJobDes" DataTextField="strJobDescription" DataValueField="intJobDesID" AutoPostBack="true" OnSelectedIndexChanged="ddlJobDescription_SelectedIndexChanged" TabIndex="4"></asp:DropDownList>
-                                <asp:ObjectDataSource ID="odsJobDes" runat="server" SelectMethod="GetJobDescription" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
+                                <asp:ObjectDataSource ID="odsJobDes" runat="server" SelectMethod="GetJobDescription" TypeName="HR_BLL.CreativeSupport.CreativeSBll"></asp:ObjectDataSource>
                             </td>
 
                             <td style="text-align: right;">

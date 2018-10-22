@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HoldFeedback.aspx.cs" Inherits="UI.CreativeSupportModule.HoldFeedback" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="MKB" %>
 <!DOCTYPE html>
 
 <html>
@@ -14,10 +12,7 @@
     <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../Content/JS/datepickr.min.js"></script>
     <script src="../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
@@ -30,11 +25,17 @@
 
         function FTPUpload1() {
             document.getElementById("hdnconfirm").value = "0";
-            var confirm_value = document.createElement("INPUT");
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "3"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
-            __doPostBack();
+            var confirmValue = document.createElement("INPUT");
+            confirmValue.type = "hidden";
+            confirmValue.name = "confirm_value";
+            if (confirm("Do you want to proceed?")) {
+                confirmValue.value = "Yes";
+                document.getElementById("hdnconfirm").value = "3";
+            } else {
+                confirmValue.value = "No";
+                document.getElementById("hdnconfirm").value = "0";
+            }
+            //__doPostBack();
         }
 
         function CloseWindow() {

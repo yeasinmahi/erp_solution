@@ -9,7 +9,7 @@ namespace UI.CreativeSupportModule
 {
     public partial class DashboardReport : Page
     {
-        readonly CreativeS_BLL _objcr = new CreativeS_BLL();
+        readonly CreativeSBll _objcr = new CreativeSBll();
         DataTable _dt;
 
         int _intJobId, _intJobStatusId;
@@ -45,11 +45,36 @@ namespace UI.CreativeSupportModule
                     _intJobId = int.Parse(text);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewJobDetails('" + _intJobId + "');", true);
             }
-            //else if (e.CommandName == "Doc View")
-            //{
-            //    intJobID = int.Parse((row.FindControl("lblJID") as Label).Text);
-            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewAllDocumentView('" + intJobID.ToString() + "');", true);
-            //}
+            else if (e.CommandName == "JobDelete")
+            {
+                if (hdnEnroll.Value== "43086" || hdnEnroll.Value == "369116")
+                {
+                    int jobId = 0;
+                    var text = (row.FindControl("lblJID") as Label)?.Text;
+                    if (text != null)
+                    {
+                        jobId = int.Parse(text);
+                    }
+                    if (_objcr.DisableCreativeSupport(jobId))
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('Successfully deleted your job')", true);
+                        LoadGrid();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('Can not delete')", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "alert('You have not permission to delete this item')", true);
+                }
+                
+                
+            }
         }
         protected void dgvDashboardReport_DataBound(object sender, EventArgs e)
         {

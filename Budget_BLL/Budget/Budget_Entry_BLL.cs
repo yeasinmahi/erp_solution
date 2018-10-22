@@ -47,6 +47,14 @@ namespace Budget_BLL.Budget
             catch { return new DataTable(); }
         }
 
+        public string UpdateLedgerCostcenter(int intUnitId, int intSubledgerId, int intCostCenterId, string costcenter)
+        {
+            string msg = "Update Sucessfull";
+            LedgerCostCenterUpdateTableAdapter adp = new LedgerCostCenterUpdateTableAdapter();
+            adp.UdateLedgerCoscenter(intCostCenterId, costcenter, intSubledgerId, intUnitId);
+            return msg;
+        }
+
         public string InsertBudgetEntry(int intUnitID, int intCOAID, int intYear, int intMonth, decimal monBAmount, decimal monTAmount, int intUserID, int intCCID) 
         {
             string msg = "";
@@ -74,7 +82,36 @@ namespace Budget_BLL.Budget
             catch { return new DataTable(); }
         }
 
-
+        public DataTable GetUnitforCostCenter(int unitid)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetUnit(unitid);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetCostCenter(int unitid, int enroll)
+        {
+            try
+            {
+                tblCostCenterTableAdapter adp = new tblCostCenterTableAdapter();
+                return adp.GetCostCenter(unitid, enroll);
+            }
+            catch(Exception exception)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetCostCenterData(int unitid, DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                DataTable2TableAdapter adp = new DataTable2TableAdapter();
+                return adp.GetCostCenterData(unitid, Convert.ToString(fromDate), Convert.ToString(toDate));
+            }
+            catch { return new DataTable(); }
+        }
         //@intUnitID int, @intCOAID int, @intYear int, @intMonth int, @monBAmount money, @monTAmount money, @intUserID int, @intCCID
 
 
