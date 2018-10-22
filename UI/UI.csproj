@@ -365,6 +365,7 @@
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
+    <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
@@ -2866,6 +2867,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
       <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
+      <DependentUpon>PaySlipReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\PaySlipReport.aspx.designer.cs">
+      <DependentUpon>PaySlipReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
       <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>
