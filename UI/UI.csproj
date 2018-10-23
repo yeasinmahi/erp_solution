@@ -278,6 +278,7 @@
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
+    <Content Include="BudgetPlan\BudgetVarianceReport.aspx" />
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
@@ -2503,6 +2504,13 @@
     </Compile>
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetVarianceReport.aspx.cs">
+      <DependentUpon>BudgetVarianceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetVarianceReport.aspx.designer.cs">
+      <DependentUpon>BudgetVarianceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="BudgetPlan\CostCenterCorrection.aspx.cs">
       <DependentUpon>CostCenterCorrection.aspx</DependentUpon>
