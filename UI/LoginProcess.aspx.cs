@@ -56,7 +56,7 @@ namespace UI
             {
                 string[] donainpatrs = domainUser.Split('\\');
                 id = donainpatrs[1] + "@akij.net";
-                //id = "safiqul1.afbl@akij.net";
+                //id = "masud.acl@akij.net";
 
                 string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
                 if (ip == string.Empty || ip == null)

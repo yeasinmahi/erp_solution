@@ -1,28 +1,16 @@
 ﻿using HR_BLL.CreativeSupport;
-using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using UI.ClassFiles;
-using Dairy_BLL;
-using SAD_BLL.Transport;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace UI.CreativeSupportModule
 {
     public partial class CreativeSupportReport : BasePage
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
 
         int intPart, intReceiver;
@@ -69,7 +57,7 @@ namespace UI.CreativeSupportModule
         [ScriptMethod]
         public static string[] GetEmpListForCreativeSupportList(string prefixText)
         {
-            CreativeS_BLL objAutoSearch_BLL = new CreativeS_BLL();
+            CreativeSBll objAutoSearch_BLL = new CreativeSBll();
             return objAutoSearch_BLL.AutoEmpListForCreativeSupport(prefixText);
         }
 

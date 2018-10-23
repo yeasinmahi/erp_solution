@@ -6,14 +6,13 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO.Compression;
 using Utility;
 
 namespace UI.CreativeSupportModule
 {
     public partial class CreativeSupportJobDetail : Page
     {
-        CreativeS_BLL objcr = new CreativeS_BLL();
+        CreativeSBll objcr = new CreativeSBll();
         DataTable dt;
         private string serverFolderPath;
         private string serverFilePath;

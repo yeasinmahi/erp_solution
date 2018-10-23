@@ -278,6 +278,8 @@
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
+    <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
+    <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
@@ -290,6 +292,7 @@
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\analytics.js" />
+    <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
@@ -297,6 +300,8 @@
     <Content Include="Content\JS\html2canvas.min.js" />
     <Content Include="Content\JS\html2pdf.js" />
     <Content Include="Content\JS\jquery-3.3.1.js" />
+    <Content Include="Content\CSS\jquery-ui.min.css" />
+    <Content Include="Content\JS\jquery-ui.min.js" />
     <Content Include="Content\JS\JQUERY\jquery.min.js" />
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
@@ -317,6 +322,7 @@
     <Content Include="CreativeSupportModule\img\Banner.png" />
     <Content Include="CreativeSupportModule\img\Home.JPG" />
     <Content Include="CreativeSupportModule\ItemCreateAndPointSet.aspx" />
+    <Content Include="CreativeSupportModule\SupporterUser.aspx" />
     <Content Include="Dairy\MilkSupplierInfoUpdate.aspx" />
     <Content Include="Dairy\Milk_Audit_Approve.aspx" />
     <Content Include="Dairy\Milk_Audit_R_Details.aspx" />
@@ -359,6 +365,7 @@
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
+    <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
@@ -2497,6 +2504,13 @@
     <Compile Include="BudgetPlan\BudgetStatusViewDetalis.aspx.designer.cs">
       <DependentUpon>BudgetStatusViewDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BudgetPlan\CostCenterCorrection.aspx.cs">
+      <DependentUpon>CostCenterCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\CostCenterCorrection.aspx.designer.cs">
+      <DependentUpon>CostCenterCorrection.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\AggrementPage.aspx.cs">
       <DependentUpon>AggrementPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2559,6 +2573,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\ItemCreateAndPointSet.aspx.designer.cs">
       <DependentUpon>ItemCreateAndPointSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreativeSupportModule\SupporterUser.aspx.cs">
+      <DependentUpon>SupporterUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreativeSupportModule\SupporterUser.aspx.designer.cs">
+      <DependentUpon>SupporterUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dairy\MilkSupplierInfoUpdate.aspx.cs">
       <DependentUpon>MilkSupplierInfoUpdate.aspx</DependentUpon>
@@ -2846,6 +2867,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
       <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
+      <DependentUpon>PaySlipReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\PaySlipReport.aspx.designer.cs">
+      <DependentUpon>PaySlipReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
       <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>

@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DashboardReport.aspx.cs" Inherits="UI.CreativeSupportModule.DashboardReport" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
@@ -13,14 +11,42 @@
     <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../Content/JS/datepickr.min.js"></script>
     <script src="../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%= dgvDashboardReport.ClientID %>').DataTable();
+        });
+    </script>
+    
+    <script type="text/javascript">
+        function Search_dgvservice(strKey, strGV) {
 
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById(strGV);
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+
+        }
+    </script>
     <script language="javascript">        
 
         function ViewJobDetails(Id) {
@@ -78,6 +104,9 @@
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_dgvservice(this, 'dgvDashboardReport')"></asp:TextBox>
+                                            </HeaderTemplate>
                                             <ItemStyle HorizontalAlign="center" Width="60px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
@@ -149,7 +178,7 @@
                                             <ItemTemplate>
                                                 <asp:DropDownList ID="ddlJStatus" runat="server" CssClass="ddList" Width="90px" DataSourceID="odsJStatus" DataTextField="strCreativeSupportStatus" DataValueField="intStatusID" AutoPostBack="True" onchange="ConfirmAll()" OnSelectedIndexChanged="ddlJStatus_SelectedIndexChanged"></asp:DropDownList>
                                                 <asp:HiddenField ID="hdnStatusID" runat="server" Value='<%# Bind("intJobStatusID") %>' />
-                                                <asp:ObjectDataSource ID="odsJStatus" runat="server" SelectMethod="GetStatusList" TypeName="HR_BLL.CreativeSupport.CreativeS_BLL"></asp:ObjectDataSource>
+                                                <asp:ObjectDataSource ID="odsJStatus" runat="server" SelectMethod="GetStatusList" TypeName="HR_BLL.CreativeSupport.CreativeSBll"></asp:ObjectDataSource>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -162,13 +191,13 @@
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                       <%-- <asp:TemplateField HeaderText="Document View" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                                        <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnDocV" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Doc View"
-                                                    Text="Document View" />
+                                                <asp:Button ID="btnDelete" class="myButtonGrid btn-danger" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="JobDelete"
+                                                    Text="Delete" />
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <FooterStyle Font-Size="11px" />

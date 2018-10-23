@@ -113,7 +113,9 @@
             <td style="text-align:right;"><asp:Label ID="lblInDate" runat="server" CssClass="lbl" Text="Wear House :"></asp:Label></td>                
             <td><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" runat="server" Width="195px"></asp:DropDownList></td>                                
             <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="TextBox1" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox></td>              
+            <td style="text-align:left;"><asp:TextBox ID="TextBox1" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox></td> 
+            <td style="text-align:right;"><asp:Label ID="lblMemoCount" runat="server" CssClass="lbl" Text="This Month No. Of Memo :"></asp:Label></td>
+             <td style="text-align:left;"><asp:Label ID="lblMemoCounttxt" runat="server" CssClass="lbl"></asp:Label></td>
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblemployeesearch" runat="server" CssClass="lbl" Text="Employee Search :"></asp:Label></td>                
