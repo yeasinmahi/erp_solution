@@ -112,6 +112,15 @@ namespace Budget_BLL.Budget
             }
             catch { return new DataTable(); }
         }
+        public DataTable UpdateCostCenterSelected(string xml)
+        {
+            try
+            {
+                SprCostCenterCorrectionUpdateTableAdapter adp = new SprCostCenterCorrectionUpdateTableAdapter();
+                return adp.UpdateCostCenterSelected(xml);
+            }
+            catch { return new DataTable(); }
+        }
         //@intUnitID int, @intCOAID int, @intYear int, @intMonth int, @monBAmount money, @monTAmount money, @intUserID int, @intCCID
 
 

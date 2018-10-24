@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CostCenterCorrection>
+  <items intSubledgerId="23251982" intCostCenterId="1328" costcenter="Sal_Feni Territory" intUnitId="2" />
+  <items intSubledgerId="23251979" intCostCenterId="1328" costcenter="Sal_Feni Territory" intUnitId="2" />
+</CostCenterCorrection>
