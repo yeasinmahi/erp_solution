@@ -17,8 +17,8 @@ namespace UI.BudgetPlan
         private Budget_Entry_BLL _bll = new Budget_Entry_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //_enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            _enroll = 32897;
+            _enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            //_enroll = 32897;
             _filePathForXml = Server.MapPath("~/BudgetPlan/Data/CostCenterCorrection_" + _enroll + ".xml");
             if (!IsPostBack)
             {
