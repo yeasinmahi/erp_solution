@@ -75,7 +75,7 @@ namespace UI.BudgetPlan
 
             XmlDocument document = new XmlDocument();
             document.Load(_filePathForXml);
-            DataTable dt = _bll.UpdateCostCenterSelected(document.InnerXml, out var msg);
+            _bll.UpdateCostCenterSelected(document.InnerXml, out var msg);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+msg+"');", true);
             XmlParser.DeleteFile(_filePathForXml);
         }
