@@ -9982,13 +9982,14 @@ group by cost.intCostCenterID,strCCName  order by strCCName asc
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xml", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@message", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Budget_TDS.SprCostCenterCorrectionUpdateDataTable UpdateCostCenterSelected(object xml) {
+        public virtual Budget_TDS.SprCostCenterCorrectionUpdateDataTable UpdateCostCenterSelected(object xml, ref string message) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((xml == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -9996,8 +9997,21 @@ group by cost.intCostCenterID,strCCName  order by strCCName asc
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((object)(xml));
             }
+            if ((message == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(message));
+            }
             Budget_TDS.SprCostCenterCorrectionUpdateDataTable dataTable = new Budget_TDS.SprCostCenterCorrectionUpdateDataTable();
             this.Adapter.Fill(dataTable);
+            if (((this.Adapter.SelectCommand.Parameters[2].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[2].Value.GetType() == typeof(global::System.DBNull)))) {
+                message = null;
+            }
+            else {
+                message = ((string)(this.Adapter.SelectCommand.Parameters[2].Value));
+            }
             return dataTable;
         }
     }

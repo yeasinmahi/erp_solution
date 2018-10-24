@@ -17,7 +17,7 @@
     <Shape ID="DesignTable:DataTable1" ZOrder="5" X="-14" Y="303" Height="115" Width="210" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:tblCostCenter" ZOrder="4" X="251" Y="322" Height="115" Width="224" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:LedgerCostCenterUpdate" ZOrder="3" X="558" Y="213" Height="97" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="46" SplitterPosition="46" />
-    <Shape ID="DesignTable:SprCostCenterCorrectionUpdate" ZOrder="2" X="539" Y="341" Height="75" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="24" OldDataTableHeight="102" SplitterPosition="24" />
+    <Shape ID="DesignTable:SprCostCenterCorrectionUpdate" ZOrder="2" X="539" Y="341" Height="153" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="102" SplitterPosition="102" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

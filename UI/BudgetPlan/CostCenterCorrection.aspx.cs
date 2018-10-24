@@ -3,6 +3,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 using Budget_BLL.Budget;
 using UI.ClassFiles;
 using Utility;
@@ -72,7 +73,10 @@ namespace UI.BudgetPlan
                 }
             }
 
-
+            XmlDocument document = new XmlDocument();
+            document.Load(_filePathForXml);
+            DataTable dt = _bll.UpdateCostCenterSelected(document.InnerXml, out var msg);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+msg+"');", true);
             XmlParser.DeleteFile(_filePathForXml);
         }
         private bool CreateXml(int intSubledgerId, int intCostCenterId, string costcenter, int intUnitId, out string message)
