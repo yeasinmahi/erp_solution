@@ -3498,13 +3498,6 @@ namespace Budget_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2Row FindByintSubLedgerID(int intSubLedgerID) {
-                return ((DataTable2Row)(this.Rows.Find(new object[] {
-                            intSubLedgerID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 DataTable2DataTable cln = ((DataTable2DataTable)(base.Clone()));
                 cln.InitVars();
@@ -3546,14 +3539,11 @@ namespace Budget_DAL {
                 base.Columns.Add(this.columnmonAmount);
                 this.columndteTransactionDate = new global::System.Data.DataColumn("dteTransactionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndteTransactionDate);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintSubLedgerID}, true));
                 this.columnintSubLedgerID.AutoIncrement = true;
                 this.columnintSubLedgerID.AutoIncrementSeed = -1;
                 this.columnintSubLedgerID.AutoIncrementStep = -1;
                 this.columnintSubLedgerID.AllowDBNull = false;
                 this.columnintSubLedgerID.ReadOnly = true;
-                this.columnintSubLedgerID.Unique = true;
                 this.columnstrCode.MaxLength = 100;
                 this.columnstrAccName.AllowDBNull = false;
                 this.columnstrAccName.MaxLength = 200;
@@ -4059,13 +4049,6 @@ namespace Budget_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblCostCenterRow FindByintCostCenterID(int intCostCenterID) {
-                return ((tblCostCenterRow)(this.Rows.Find(new object[] {
-                            intCostCenterID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 tblCostCenterDataTable cln = ((tblCostCenterDataTable)(base.Clone()));
                 cln.InitVars();
@@ -4092,14 +4075,11 @@ namespace Budget_DAL {
                 base.Columns.Add(this.columnintCostCenterID);
                 this.columnstrCCName = new global::System.Data.DataColumn("strCCName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrCCName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintCostCenterID}, true));
                 this.columnintCostCenterID.AutoIncrement = true;
                 this.columnintCostCenterID.AutoIncrementSeed = -1;
                 this.columnintCostCenterID.AutoIncrementStep = -1;
                 this.columnintCostCenterID.AllowDBNull = false;
                 this.columnintCostCenterID.ReadOnly = true;
-                this.columnintCostCenterID.Unique = true;
                 this.columnstrCCName.MaxLength = 250;
             }
             
@@ -9603,13 +9583,13 @@ where sub.intUnitID=@unit and SUBSTRING(strCode, 1, 1)='5' and isnull(strCostCen
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [ERP_Accounts].[dbo].[tblCostCenter] ([strCCName]) VALUES (@strCCName);
-SELECT cost.intCostCenterID, cost.strCCName FROM tblCostCenterAssignToEmployee AS asi INNER JOIN tblCostCenter AS cost ON asi.intCostCenterID = asi.intCostCenterID WHERE (asi.intCostCenterID = SCOPE_IDENTITY()) GROUP BY cost.intCostCenterID, cost.strCCName";
+SELECT cost.intCostCenterID, cost.strCCName FROM tblCostCenterAssignToEmployee AS asi INNER JOIN tblCostCenter AS cost ON asi.intCostCenterID = asi.intCostCenterID WHERE (asi.intCostCenterID = SCOPE_IDENTITY()) GROUP BY cost.intCostCenterID, cost.strCCName ORDER BY cost.strCCName";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCCName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_Accounts].[dbo].[tblCostCenter] SET [strCCName] = @strCCName WHERE (([intCostCenterID] = @Original_intCostCenterID) AND ((@IsNull_strCCName = 1 AND [strCCName] IS NULL) OR ([strCCName] = @Original_strCCName)));
-SELECT cost.intCostCenterID, cost.strCCName FROM tblCostCenterAssignToEmployee AS asi INNER JOIN tblCostCenter AS cost ON asi.intCostCenterID = asi.intCostCenterID WHERE (asi.intCostCenterID = @intCostCenterID) GROUP BY cost.intCostCenterID, cost.strCCName";
+SELECT cost.intCostCenterID, cost.strCCName FROM tblCostCenterAssignToEmployee AS asi INNER JOIN tblCostCenter AS cost ON asi.intCostCenterID = asi.intCostCenterID WHERE (asi.intCostCenterID = @intCostCenterID) GROUP BY cost.intCostCenterID, cost.strCCName ORDER BY cost.strCCName";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCCName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intCostCenterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -9632,8 +9612,8 @@ SELECT cost.intCostCenterID, cost.strCCName FROM tblCostCenterAssignToEmployee A
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"select cost.intCostCenterID,strCCName from ERP_Accounts.dbo.tblCostCenterAssignToEmployee asi inner join ERP_Accounts.dbo.tblCostCenter cost on asi.intCostCenterID=asi.intCostCenterID
-where cost.intUnitID=@unit and asi.intEmployeeID=@employee
-group by cost.intCostCenterID,strCCName
+where cost.intUnitID=@unit and asi.intEmployeeID=@employee  
+group by cost.intCostCenterID,strCCName  order by strCCName asc
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
