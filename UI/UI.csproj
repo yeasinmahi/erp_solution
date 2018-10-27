@@ -332,6 +332,7 @@
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
+    <Content Include="HR\Benifit\BenifitsEntry.aspx" />
     <Content Include="HR\Dispatch\DispatchExternalReceive.aspx" />
     <Content Include="HR\Dispatch\DispatchRequest.aspx" />
     <Content Include="HR\Dispatch\rptDispatchApproveReject.aspx" />
@@ -2637,6 +2638,13 @@
     </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.designer.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Benifit\BenifitsEntry.aspx.cs">
+      <DependentUpon>BenifitsEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Benifit\BenifitsEntry.aspx.designer.cs">
+      <DependentUpon>BenifitsEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Dispatch\DispatchExternalReceive.aspx.cs">
       <DependentUpon>DispatchExternalReceive.aspx</DependentUpon>
@@ -8459,6 +8467,7 @@
     <Folder Include="CreativeSupportModule\Data\" />
     <Folder Include="Dairy\Data\" />
     <Folder Include="Dairy\Uploads\" />
+    <Folder Include="HR\Benifit\Data\" />
     <Folder Include="HR\Dispatch\Data\" />
     <Folder Include="HR\DocumentTracking\Data\" />
     <Folder Include="HR\DocumentTracking\Uploads\" />
