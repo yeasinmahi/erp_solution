@@ -10,3 +10,10 @@ namespace Budget_DAL
     {
     }
 }
+
+namespace Budget_DAL.Budget_TDSTableAdapters {
+    
+    
+    public partial class SprCostCenterCorrectionUpdateTableAdapter {
+    }
+}

@@ -100,6 +100,7 @@
     <Compile Include="Attendance\EmployeesJobStation.cs" />
     <Compile Include="Attendance\UnprocessAttendance.cs" />
     <Compile Include="Benifit\Bonus_BLL.cs" />
+    <Compile Include="Benifit\EmpBenifit.cs" />
     <Compile Include="Benifit\PfBankAccountDetails_BLL.cs" />
     <Compile Include="Benifit\PfRelease_BLL.cs" />
     <Compile Include="Benifit\PF_Investment_BLL.cs" />

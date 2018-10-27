@@ -52,6 +52,12 @@ namespace HR_BLL.Global
 
             return col;
         }
+
+        public DataTable GetJobStationList()
+        {
+            TblEmployeeJobStationTableAdapter adp = new TblEmployeeJobStationTableAdapter();
+            return adp.GetJobStationList();
+        }
     
     }
 }
