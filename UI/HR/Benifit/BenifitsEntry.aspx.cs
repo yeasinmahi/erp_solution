@@ -100,14 +100,14 @@ namespace UI.HR.Benifit
 
                         msg = objBenifit.InsertBenifitInfo(xmlString);
 
-                        int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
-                        dt = objEmp.GetEmpInfoByJobStation(intjobid);
-                        if (dt.Rows.Count > 0)
-                        {
-                            //divItemInfo.Visible = true;
-                            dgvEmployeeInfo.DataSource = dt;
-                            dgvEmployeeInfo.DataBind();
-                        }
+                        //int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
+                        //dt = objEmp.GetEmpInfoByJobStation(intjobid);
+                        //if (dt.Rows.Count > 0)
+                        //{
+                        //    //divItemInfo.Visible = true;
+                        //    dgvEmployeeInfo.DataSource = dt;
+                        //    dgvEmployeeInfo.DataBind();
+                        //}
                         txtDate.Text = "";
                         txtAmount.Text = "";
                        // ddlJobStation.Text = "";
