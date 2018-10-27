@@ -39,7 +39,7 @@
             else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
             else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please Input Remarks'); }
             else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-            else if ( parseFloat(inQty)<parseFloat(quantity)){ document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Transfer In Quantity'); }
+            else if ( parseFloat(inQty)>parseFloat(quantity)){ document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Transfer In Quantity'); }
                 else {
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
@@ -54,8 +54,7 @@
     </script> 
 </head>
 <body>
-<form id="frmTransferOrder" runat="server">
-<asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+<form id="frmTransferOrder" runat="server"<asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">

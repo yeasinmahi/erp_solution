@@ -31,7 +31,6 @@ namespace UI.BudgetPlan
         {
             try
             {
-
                 _enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
 
