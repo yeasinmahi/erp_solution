@@ -122,7 +122,7 @@
             <td class=""><asp:DropDownList ID="ddlJobStation" CssClass="ddList" Height="24px" Font-Bold="False" ForeColor="Black" Font-Size="11px" runat="server"></asp:DropDownList> </td>
            
 
-            <td class="auto-style4" style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Search Employee : "></asp:Label></td>
+            <td class="auto-style4" style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Employee ID: "></asp:Label></td>
              <td class="tdheight"><asp:TextBox ID="txtEmp" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
             <td class="" style="text-align:right;"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Width="100px" OnClientClick = "" OnClick="btnShow_Click"/></td>
         </tr>
