@@ -9,9 +9,29 @@
 <head runat="server">
     <title>Single Employee Attendance MonthWise</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-      <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />  
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/JSSettlement.js"></script>   
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <link href="../Content/CSS/Application.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <script>
+         function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,7 +47,7 @@
 	<asp:ScriptReference name="Animation.Animations.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
 	<asp:ScriptReference name="ExtenderBase.BaseScripts.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
 	<asp:ScriptReference name="AlwaysVisibleControl.AlwaysVisibleControlBehavior.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-
+    
             </Scripts>
         </CompositeScript>
     </asp:ScriptManager>
@@ -62,10 +82,11 @@
             </ajaxToolkit:AlwaysVisibleControlExtender>
             <%--=========================================Start My Code From Here======================================================--%>
             <div id="div1" runat="server">
-                <rsweb:ReportViewer ID="MonthWiseAttendanceReportViewer" runat="server" Font-Names="Verdana"
+               <%-- <rsweb:ReportViewer ID="MonthWiseAttendanceReportViewer" runat="server" Font-Names="Verdana"
                     Font-Size="8pt" InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana"
                     WaitMessageFont-Size="14pt" Width="1000px" Height="750px">
-                </rsweb:ReportViewer>
+                </rsweb:ReportViewer>--%>
+                <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:500px; border:0px solid red;"></iframe>
             </div>
             <%--=========================================End My Code From Here========================================================--%>
         </ContentTemplate>
