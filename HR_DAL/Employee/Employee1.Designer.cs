@@ -5737,8 +5737,8 @@ Order by intEmployeeId";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "select intEmployeeID,strEmployeeName,intJobStationID from ERP_HR.dbo.QRYEMPLOYEEP" +
-                "ROFILEALL where intJobStationID=@intJobStationID and ysnActive=1 ";
+            this._commandCollection[1].CommandText = "\r\nselect intEmployeeID,strEmployeeName,intJobStationID from ERP_HR.dbo.QRYEMPLOYE" +
+                "EPROFILEALL where intJobStationID=@intJobStationID and ysnActive=1 ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intJobStationID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

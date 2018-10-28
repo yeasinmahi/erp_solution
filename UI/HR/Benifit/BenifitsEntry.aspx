@@ -77,6 +77,15 @@
         .auto-style1 {
             height: 41px;
         }
+        .auto-style2 {
+            height: 5px;
+        }
+        .auto-style3 {
+            width: 86px;
+        }
+        .auto-style4 {
+            width: 138px;
+        }
     </style>
     
 
@@ -107,13 +116,14 @@
         <tr class="tblheader"><td class="tdheader" colspan="5"> Employee Benifits Entry :</td></tr>        
 
         
-       <tr><td colspan="4" style="height:5px;"></td></tr>
+       <tr><td colspan="4" class="auto-style2"></td></tr>
         <tr> 
             <td class="" style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Job Station : "></asp:Label></td>
             <td class=""><asp:DropDownList ID="ddlJobStation" CssClass="ddList" Height="24px" Font-Bold="False" ForeColor="Black" Font-Size="11px" runat="server"></asp:DropDownList> </td>
            
 
-            <td class="CellWidth" style="text-align:right;"></td>
+            <td class="auto-style4" style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Search Employee : "></asp:Label></td>
+             <td class="tdheight"><asp:TextBox ID="txtEmp" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
             <td class="" style="text-align:right;"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Width="100px" OnClientClick = "" OnClick="btnShow_Click"/></td>
         </tr>
         <tr><td colspan="4" style="height:5px;"></td></tr>
@@ -124,7 +134,7 @@
                 <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
             </td>
            
-            <td style="text-align:right;" class="CellWidth"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Amount : "></asp:Label></td>
+            <td style="text-align:right;" class="auto-style4"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Amount : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
                         <td class="auto-style1" colspan="4"><asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Width="100px" OnClientClick="check()" OnClick="btnSubmit_Click"/></td>
 
