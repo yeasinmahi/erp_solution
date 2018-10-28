@@ -10,6 +10,8 @@
 <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
 <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <script>
+
+
         function Confirm() {
             document.getElementById("hdnconfirm").value = "0";
             var txtFromDte = document.forms["frmcurrentsregister"]["txtFromDte"].value;
