@@ -371,6 +371,7 @@
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
     <Content Include="IMPORT MANAGEMENT\HS Code.aspx" />
+    <Content Include="Import\ImportFileManagement.aspx" />
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
@@ -2910,6 +2911,13 @@
     </Compile>
     <Compile Include="IMPORT MANAGEMENT\HS Code.aspx.designer.cs">
       <DependentUpon>HS Code.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Import\ImportFileManagement.aspx.cs">
+      <DependentUpon>ImportFileManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Import\ImportFileManagement.aspx.designer.cs">
+      <DependentUpon>ImportFileManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\BrandItemChallanComplete.aspx.cs">
       <DependentUpon>BrandItemChallanComplete.aspx</DependentUpon>
