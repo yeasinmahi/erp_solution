@@ -51,7 +51,6 @@ namespace UI.HR.Reports
 
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
             int Active = int.Parse(1.ToString());
-
             return objAutoSearch_BLL.GetEmployeeByJobstationOperator(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), prefixText.ToLower());
 
         }
