@@ -46,7 +46,18 @@ namespace UI.HR.Benifit
             
             int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
             dt = objEmp.GetEmpInfoByJobStation(intjobid);
-            if(dt.Rows.Count>0)
+            
+            if(txtEmp.Text=="")
+            {
+                dt = objBenifit.InsertBenifitInfo(2, intjobid, 0, "");
+            }
+            else if(txtEmp.Text!="")
+            {
+                int empid = Convert.ToInt32(txtEmp.Text);
+                dt = objBenifit.InsertBenifitInfo(3, intjobid, empid, "");
+            }
+            
+            if (dt.Rows.Count>0)
             {
                 //divItemInfo.Visible = true;
                 dgvEmployeeInfo.DataSource = dt;
@@ -98,7 +109,7 @@ namespace UI.HR.Benifit
                         string xmlString = node.InnerXml;
                         xmlString = "<BenifitEntry>" + xmlString + "</BenifitEntry>";
 
-                        msg = objBenifit.InsertBenifitInfo(xmlString);
+                        dt = objBenifit.InsertBenifitInfo(1,0,0,xmlString);
 
                         //int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
                         //dt = objEmp.GetEmpInfoByJobStation(intjobid);
@@ -112,7 +123,7 @@ namespace UI.HR.Benifit
                         txtAmount.Text = "";
                        // ddlJobStation.Text = "";
                     
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Submitted Successfully');", true);
                         try {
                             File.Delete(filePathForXML);
                         }

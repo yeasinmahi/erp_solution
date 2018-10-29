@@ -10,18 +10,19 @@ namespace HR_BLL.Benifit
 {
     public class EmpBenifit
     {
-        public string InsertBenifitInfo(string xml)
+        public DataTable InsertBenifitInfo(int intpart, int intJobsation, int intEmpID,string xml)
         {
             string msg = "";
             try
             {
                 SprBenifit_EntryTableAdapter adp = new SprBenifit_EntryTableAdapter();
-                adp.InsertBenifitData(xml);
-                return msg = "Submitted Successfully";
+                return adp.InsertBenifitData(intpart,intJobsation,intEmpID,xml);
+                //return msg = "Submitted Successfully";
             }
             catch (Exception ex)
             {
-                return msg = ex.ToString();
+                //return msg = ex.ToString();
+                return new DataTable();
             }
                 
             
