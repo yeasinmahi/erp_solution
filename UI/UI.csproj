@@ -1229,6 +1229,7 @@
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
@@ -6198,6 +6199,12 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
+      <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.designer.cs">
+      <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
       <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
