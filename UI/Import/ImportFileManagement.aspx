@@ -30,7 +30,8 @@
                 </asp:Panel>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
-
+                
+                <div style="height: 50px; width: 100% "></div>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <asp:HiddenField runat="server" ID="hdLcId" />
                 <div class="container">

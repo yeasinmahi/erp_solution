@@ -235,6 +235,7 @@
     <Content Include="AEFPS\TransferOut.aspx" />
     <Content Include="AEFPS\TransferOutN.aspx" />
     <Content Include="AEFPS\TransferReport.aspx" />
+    <Content Include="AEFPS\VoucherRePrint.aspx" />
     <Content Include="Asset\AssertReport.aspx" />
     <Content Include="Asset\AssetAccountsConfigure.aspx" />
     <Content Include="Asset\AssetBarcodeGenearator.aspx" />
@@ -2212,6 +2213,13 @@
     </Compile>
     <Compile Include="AEFPS\TransferReport.aspx.designer.cs">
       <DependentUpon>TransferReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\VoucherRePrint.aspx.cs">
+      <DependentUpon>VoucherRePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\VoucherRePrint.aspx.designer.cs">
+      <DependentUpon>VoucherRePrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\AssertReport.aspx.cs">
       <DependentUpon>AssertReport.aspx</DependentUpon>
