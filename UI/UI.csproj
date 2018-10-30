@@ -1229,6 +1229,7 @@
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
@@ -1285,6 +1286,7 @@
     <Content Include="SAD\Sales\Return\CorpReturnFTYUpdate.aspx" />
     <Content Include="SAD\Sales\Return\CorpReturnFTYView.aspx" />
     <Content Include="SAD\Sales\Return\CorpSalesReturn.aspx" />
+    <Content Include="SAD\Sales\Return\CorpSalesReturnNew.aspx" />
     <Content Include="SAD\Sales\Return\ReturnSalesDOCreation.aspx" />
     <Content Include="SAD\Sales\Return\ReturnSalesDOView.aspx" />
     <Content Include="SAD\Sales\Return\rptCorporateSalesReturn.aspx" />
@@ -6198,6 +6200,12 @@
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
+      <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.designer.cs">
+      <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
       <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6589,6 +6597,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Return\CorpSalesReturn.aspx.designer.cs">
       <DependentUpon>CorpSalesReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Return\CorpSalesReturnNew.aspx.cs">
+      <DependentUpon>CorpSalesReturnNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Return\CorpSalesReturnNew.aspx.designer.cs">
+      <DependentUpon>CorpSalesReturnNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Return\ReturnSalesDOCreation.aspx.cs">
       <DependentUpon>ReturnSalesDOCreation.aspx</DependentUpon>

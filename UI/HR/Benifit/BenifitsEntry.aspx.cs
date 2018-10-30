@@ -45,16 +45,24 @@ namespace UI.HR.Benifit
         {
             
             int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
-            dt = objEmp.GetEmpInfoByJobStation(intjobid);
+            //dt = objEmp.GetEmpInfoByJobStation(intjobid);
             
-            if(txtEmp.Text=="")
+            if(string.IsNullOrWhiteSpace(txtEmp.Text))
             {
                 dt = objBenifit.InsertBenifitInfo(2, intjobid, 0, "");
             }
-            else if(txtEmp.Text!="")
+            else
             {
-                int empid = Convert.ToInt32(txtEmp.Text);
-                dt = objBenifit.InsertBenifitInfo(3, intjobid, empid, "");
+                int empid = 0;
+                if(int.TryParse(txtEmp.Text,out empid))
+                {
+                    dt = objBenifit.InsertBenifitInfo(3, intjobid, empid, "");
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Check your enroll properly.');", true);
+                }
+                
             }
             
             if (dt.Rows.Count>0)
