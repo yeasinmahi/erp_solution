@@ -8499,6 +8499,7 @@
     <Folder Include="HR\Settlement\Uploads\" />
     <Folder Include="HR\TourPlan\Data\" />
     <Folder Include="HR\TourPlan\Tour\" />
+    <Folder Include="Import\Data\" />
     <Folder Include="Inventory\Data\" />
     <Folder Include="Libray\bin\" />
     <Folder Include="Libray\SqlServerTypes\" />

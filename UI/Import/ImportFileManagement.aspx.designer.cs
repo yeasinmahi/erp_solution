@@ -94,22 +94,13 @@ namespace UI.Import {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnSupplerId control.
+        /// hdLcId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnSupplerId;
-        
-        /// <summary>
-        /// hdnshipmentSn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnshipmentSn;
+        protected global::System.Web.UI.WebControls.HiddenField hdLcId;
         
         /// <summary>
         /// Label5 control.
@@ -172,7 +163,7 @@ namespace UI.Import {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ddlUnitName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnitName;
         
         /// <summary>
         /// Label9 control.
@@ -184,13 +175,13 @@ namespace UI.Import {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// txtShipmentNo control.
+        /// ddlShipment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtShipmentNo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlShipment;
         
         /// <summary>
         /// Label1 control.
@@ -247,6 +238,15 @@ namespace UI.Import {
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
         
         /// <summary>
+        /// btnAddNewFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddNewFile;
+        
+        /// <summary>
         /// gridView control.
         /// </summary>
         /// <remarks>
@@ -254,14 +254,5 @@ namespace UI.Import {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridView;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

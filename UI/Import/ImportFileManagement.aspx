@@ -32,8 +32,7 @@
                 </cc1:AlwaysVisibleControlExtender>
 
                 <%--=========================================Start My Code From Here===============================================--%>
-                <asp:HiddenField runat="server" ID="hdnSupplerId" />
-                <asp:HiddenField runat="server" ID="hdnshipmentSn" />
+                <asp:HiddenField runat="server" ID="hdLcId" />
                 <div class="container">
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -54,15 +53,15 @@
                                         <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
-                            <div class="row" id="infoPanel" style="visibility: visible">
+                            <div class="row" id="infoPanel" style="visibility: hidden">
                                 <div class="col-md-6">
                                     <asp:Label ID="Label8" runat="server" Text="Unit Name"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:TextBox ID="ddlUnitName" CssClass="form-control" Enabled="False" runat="server" placeholder="Unit Name"></asp:TextBox>
+                                    <asp:DropDownList ID="ddlUnitName" CssClass="form-control" Enabled="False" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:Label ID="Label9" runat="server" Text="Shipment Number"></asp:Label>
-                                    <asp:TextBox ID="txtShipmentNo" CssClass="form-control" Enabled="False" runat="server" placeholder="Shipment No."></asp:TextBox>
+                                    <asp:DropDownList ID="ddlShipment" CssClass="form-control" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:Label ID="Label1" runat="server" Text="File Group"></asp:Label>
@@ -76,7 +75,10 @@
                                 <div class="col-md-6">
                                     <asp:Label ID="Label3" runat="server" Text="Upload"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:FileUpload ID="fileUpload" CssClass="form-control" runat="server" placeholder="File Upload"></asp:FileUpload>
+                                    <asp:FileUpload ID="fileUpload" CssClass="form-control" runat="server" ClientIDMode="Static" EnableViewState="true"></asp:FileUpload>
+                                </div>
+                                <div class="col-md-12">
+                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control" Text="New File" OnClick="btnAddNewFile_OnClick" />
                                 </div>
                             </div>
                         </div>
@@ -84,7 +86,7 @@
                     <div class="panel panel-default" id="itemPanel" style="visibility: hidden">
 
                         <div class="panel-body">
-                            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%">
+                            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" OnRowCommand="gridView_OnRowCommand">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -92,70 +94,42 @@
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item ID">
+                                    <asp:TemplateField HeaderText="File Id">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtItem" runat="server" Text='<%# Bind("intItem") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtFileId" runat="server" Text='<%# Bind("intFileID") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="iblItem" runat="server" Text='<%# Bind("intItem") %>'></asp:Label>
+                                            <asp:Label ID="iblFileId" runat="server" Text='<%# Bind("intFileID") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item Name">
+                                    <asp:TemplateField HeaderText="File Name">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtItemName" runat="server" Text='<%# Bind("strItem") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtFileName" runat="server" Text='<%# Bind("strFileName") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItem") %>'></asp:Label>
+                                            <asp:Label ID="lblFileName" runat="server" CssClass="pull-left" Text='<%# Bind("strFileName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Description">
+                                    <asp:TemplateField HeaderText="Remarks">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtDes" runat="server" Text='<%# Bind("strDes") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDsc" runat="server" CssClass="pull-left" Text='<%# Bind("strDes") %>'></asp:Label>
+                                            <asp:Label ID="lblRemarks" runat="server" CssClass="pull-left" Text='<%# Bind("strRemarks") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="UoM">
+                                    <asp:TemplateField HeaderText="File Path">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtUoM" runat="server" Text='<%# Bind("strUoM") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtFtpPath" runat="server" Text='<%# Bind("strFtpPath") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                            <asp:Label ID="lblFtpPath" runat="server" Text='<%# Bind("strFtpPath") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="PO Quantity">
-                                        <EditItemTemplate>
-                                            <asp:TextBox ID="txtPoQnt" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:TextBox>
-                                        </EditItemTemplate>
+                                    <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblPoQnt" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Previous Receive">
-                                        <EditItemTemplate>
-                                            <asp:TextBox ID="txtPreRcvQnt" runat="server" Text='<%# Bind("monPreRcvQty","{0:n2}") %>'></asp:TextBox>
-                                        </EditItemTemplate>
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblPreRcvQnt" runat="server" Text='<%# Bind("monPreRcvQty","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remaining Quantity">
-                                        <EditItemTemplate>
-                                            <asp:TextBox ID="txtRemainingQnt" runat="server" Text='<%# Convert.ToDecimal(Eval("numPOQty","{0:n2}")) - Convert.ToDecimal(Eval("monPreRcvQty","{0:n2}")) %>'></asp:TextBox>
-                                        </EditItemTemplate>
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRemainingQnt" runat="server" Text='<%# Convert.ToDecimal(Eval("numPOQty","{0:n2}")) - Convert.ToDecimal(Eval("monPreRcvQty","{0:n2}")) %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Challan Quantity" ItemStyle-Width="100px">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="receiveQuantity" runat="server" Width="100%" placeholder="Quantity"></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remarks" ItemStyle-Width="200px">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="receiveRemarks" runat="server" Width="100%" placeholder="Write remarks here...."></asp:TextBox>
+                                            <asp:Button ID="btnDownload" runat="server" class="btn btn-primary form-control" Text="Download" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="Download"/>
+                                            <%--<asp:Button ID="btnView" runat="server" class="btn btn-primary form-control" Text="View File" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="View"/>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -172,16 +146,13 @@
                             </asp:GridView>
 
                         </div>
-                        <div class="col-md-2 pull-right">
-                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary form-control" Text="Submit" Height="30px" OnClick="btnSubmit_Click" OnClientClick="return Validate()" />
-                        </div>
 
                     </div>
                     <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnShow" EventName="Click" />
-                <asp:AsyncPostBackTrigger ControlID="btnSubmit" EventName="Click" />
+                <asp:PostBackTrigger ControlID="btnAddNewFile" />
             </Triggers>
         </asp:UpdatePanel>
 
@@ -225,62 +196,10 @@
             itemPanel.style.visibility = 'hidden';
 
         }
-        function Validate() {
-            var txtPoNumber = document.getElementById("txtPoNumber").value;
-            var txtSupplierName = document.getElementById("txtSupplierName").value;
-            var txtSupplierAddress = document.getElementById("txtSupplierAddress").value;
-            var txtChallanNo = document.getElementById("txtChallanNo").value;
-            var txtChallanDate = document.getElementById("txtChallanDate").value;
-            var txtVehicleNo = document.getElementById("txtVehicleNo").value;
-
-            if (txtPoNumber === null || txtPoNumber === "") {
-                alert("Po number can not be empty");
-                return false;
-            }
-            else if (txtSupplierName === null || txtSupplierName === "") {
-                alert("Supplier Namer can not be empty");
-                return false;
-            }
-            else if (txtSupplierAddress === null || txtSupplierAddress === "") {
-                alert("Supplier Address can not be empty");
-                return false;
-            }
-            else if (txtChallanNo === null || txtChallanNo === "") {
-                alert("Challan number can not be empty");
-                return false;
-            }
-            else if (txtChallanDate === null || txtChallanDate === "") {
-                alert("Challan date can not be empty");
-                return false;
-            }
-            else if (txtVehicleNo === null || txtVehicleNo === "") {
-                alert("Vechicle number can not be empty");
-                return false;
-            }
-            if (confirm("Are you want to process?")) {
-                return true;
-            }
-            return false;
-        }
-
-        $(document).ready(function () {
-            $("#txtChallanDate").datepicker(
-                { dateFormat: 'dd/mm/yy' }
-            );
-        });
-
-        //Re-bind for callbacks
-        var prm = Sys.WebForms.PageRequestManager.getInstance();
-
-        prm.add_endRequest(function () {
-            $("#txtChallanDate").datepicker(
-                { dateFormat: 'dd/mm/yy' }
-            );
-        });
     </script>
     <style>
         #gridView tr {
-            font-size: 10px;
+            font-size: 14px;
         }
     </style>
 </body>

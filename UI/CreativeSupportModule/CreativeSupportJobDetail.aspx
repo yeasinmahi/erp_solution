@@ -12,10 +12,7 @@
     <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../Content/JS/datepickr.min.js"></script>
     <script src="../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
@@ -26,8 +23,6 @@
             window.open('DocView.aspx?ID=' + Id, 'sub', "height=650, width=970, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
     </script>
-
-
 </head>
 <body>
     <form id="frmBillRegistration" runat="server">
