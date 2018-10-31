@@ -103,6 +103,15 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// txtSV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSV;
+        
+        /// <summary>
         /// txtVoucherName control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace UI.AEFPS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVoucherName;
+        
+        /// <summary>
+        /// btnClearPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClearPrint;
         
         /// <summary>
         /// btnRePrint control.

@@ -102,5 +102,32 @@ namespace SAD_BLL.AEFPS
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+
+        public void RePrintVoucher(int intWhId, string sv)
+        {
+            try
+            {
+                tblSalesTableAdapter adp = new tblSalesTableAdapter();
+                adp.RePrintVoucher(intWhId,sv);
+
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+        }
+        public void ClearPrinter(int intWhId)
+        {
+            try
+            {
+                tblSales1TableAdapter adp = new tblSales1TableAdapter();
+                adp.ClearPrinter(intWhId);
+
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+        }
     }
 }
