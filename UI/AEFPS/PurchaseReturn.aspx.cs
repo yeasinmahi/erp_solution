@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using SAD_BLL.AEFPS;
 using UI.ClassFiles;
 
 namespace UI.AEFPS
 {
-    public partial class PurchaseReturn : System.Web.UI.Page
+    public partial class PurchaseReturn : Page
     {
         readonly Receive_BLL _bll = new Receive_BLL();
         int _intEnroll;
