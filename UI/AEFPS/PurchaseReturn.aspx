@@ -34,15 +34,15 @@
                 <div class="container">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Purchase Return" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="Purchase Return Entry" Font-Bold="true" Font-Size="16px"></asp:Label>
 
                         </div>
                         <div class="panel-body">
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label20" runat="server" Text="WareHouse Name"></asp:Label>
-                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    <asp:Label ID="Label20" runat="server" Text="Warehouse Name" ></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="False"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-6">
@@ -60,7 +60,7 @@
                                 <asp:TextBox ID="txtSupplierName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="eg: Md. Yeasin Arafat"></asp:TextBox>
                             </div>
                             <div class="col-md-6">
-                                <asp:Label ID="Label3" runat="server" Text="Total Purchase Return Amount"></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text="Total Return Amount"></asp:Label>
                                 <asp:TextBox ID="txtTotalPurchaseReturnAmount" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" placeholder="Total Purchase Return Amount"></asp:TextBox>
 
                             </div>
