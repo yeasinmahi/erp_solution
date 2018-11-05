@@ -56,11 +56,12 @@
      </ItemTemplate></asp:TemplateField>
     <asp:TemplateField HeaderText="Customer Name" SortExpression="strCustName"><ItemTemplate>
     <asp:Label ID="lblcust" runat="server" Text='<%# Bind("Customer") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left" Width="320px" Wrap="true"/></asp:TemplateField>
-    <asp:TemplateField HeaderText="RTV No" SortExpression="intchallan">
+    <ItemStyle HorizontalAlign="Left" Width="200px" Wrap="true"/></asp:TemplateField>
+        
+    <asp:TemplateField HeaderText="Return Description" SortExpression="intchallan">
     <ItemTemplate><asp:Label ID="lblchallan" runat="server" Text='<%# Bind("strChallanNo") %>'></asp:Label></ItemTemplate>
     <ItemStyle HorizontalAlign="Center" Width="65px" /></asp:TemplateField>
-     <asp:TemplateField HeaderText="Amount" SortExpression="decAmount">
+     <asp:TemplateField HeaderText="Return Cost" SortExpression="decAmount">
     <ItemTemplate><asp:Label ID="lblamount" runat="server" Text='<%# Bind("Total","{0:n}") %>'></asp:Label></ItemTemplate>
     <ItemStyle HorizontalAlign="Center" Width="85px" /></asp:TemplateField>
     <asp:TemplateField HeaderText="View"><ItemTemplate><asp:Button ID="btnView" runat="server" Text="View"   CommandArgument='<%#Eval("intCustId") + "," +Eval("strChallanNo")%>' OnClick="btnView_Click" />
