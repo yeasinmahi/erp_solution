@@ -267,7 +267,8 @@
 
             <td class="tdheight" style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Last Shipment Date : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtLastShipmentDate" runat="server" CssClass="txtBox1"></asp:TextBox>
-            <script type="text/javascript"> new datepickr('txtLastShipmentDate', { 'dateFormat': 'Y-m-d' });</script></td>
+                <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate"></cc1:CalendarExtender>
+            <%--<script type="text/javascript"> new datepickr('txtLastShipmentDate', { 'dateFormat': 'Y-m-d' });</script></td>--%>
         </tr> 
         <tr><td colspan="4" style="height:5px;"></td></tr>
         <tr>
