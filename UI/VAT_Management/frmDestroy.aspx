@@ -26,7 +26,9 @@
             var txtCreditqty = document.forms["frmPurchase"]["txtCreditqty"].value;
            
             if (txtCreditqty == null || txtCreditqty == "") {
+                document.getElementById("hdnconfirm").value = "0";
                 alert("Please Entry Qty !");
+
             }
 
           
@@ -130,8 +132,8 @@
             <td><asp:Label ID="lblSD" CssClass="lbl" runat="server"></asp:Label> </td>
             <td>   SD Chargeable Value</td>
             <td><asp:Label ID="lblWithouthvalue" CssClass="lbl" runat="server"></asp:Label></td>
-            <td></td>
-            <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnSave_Click" Text="Save" /></td>
+            <td>Challan Date :</td>
+            <td><asp:Label ID="lblChallandate" CssClass="lbl" runat="server"></asp:Label></td>
     </tr>
     <tr><td colspan="6"><hr /></td></tr> 
     <tr>
@@ -150,7 +152,9 @@
         <td> Remarks:</td>
         <td><asp:TextBox ID="txtRemarks" CssClass="txtBox" TextMode="MultiLine"  MaxLength="10" runat="server"></asp:TextBox></td>  
     </tr>
-    <tr><td><asp:Button ID="btnAdd" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnAdd_Click" Text="Add" /></td></tr>
+    <tr><td><asp:Button ID="btnAdd" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnAdd_Click" Text="Add" /></td>
+        <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfo()" class="myButton" OnClick="btnSave_Click" Text="Save" /></td>
+    </tr>
     </table>
     </td></tr>
     <tr><td>
@@ -161,7 +165,7 @@
      <tr><td>
         <asp:GridView ID="dgvVatProduct" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
         CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true" 
-        HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" OnRowDeleting="dgvPurchaseEntry_RowDeleting"
+        HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" OnRowDeleting="dgvVatProduct_RowDeleting"
         FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical"  
         >
         <AlternatingRowStyle BackColor="#CCCCCC" />    
@@ -186,11 +190,11 @@
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
        
-        <asp:TemplateField HeaderText="SD" SortExpression="sd">
-        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew","{0:0.0}") %>' Width="50px"></asp:Label>
+       
+        <asp:TemplateField HeaderText="Per use" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblUseper" runat="server" Text='<%# Bind("Usepar","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-      
         <asp:TemplateField HeaderText="Total Use" SortExpression="VAT">
         <ItemTemplate><asp:Label ID="lbltotaluse" runat="server" Text='<%# Bind("totaluse","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
@@ -199,10 +203,11 @@
         <ItemTemplate><asp:Label ID="lblChallanno" runat="server" Text='<%# Bind("Challanno") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Per use" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblUseper" runat="server" Text='<%# Bind("Usepar","{0:n0}") %>' Width="50px"></asp:Label>
+        <asp:TemplateField HeaderText="Challan Date" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblChallandate"  runat="server" Text='<%# Bind("dteCdate", "{0:d}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
+      
         <asp:TemplateField HeaderText="Purchase Qty" SortExpression="VAT">
         <ItemTemplate><asp:Label ID="lblpqty" runat="server" Text='<%# Bind("pqty","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
@@ -216,15 +221,21 @@
         </asp:TemplateField>
 
 
+         <asp:TemplateField HeaderText="SD" SortExpression="sd">
+        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew","{0:0.0}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+            
+        <asp:TemplateField HeaderText="Per Vat" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblpervat" runat="server" Text='<%# Bind("pervat","{0:n0}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+
          <asp:TemplateField HeaderText="Total Vat" SortExpression="rate">
         <ItemTemplate><asp:Label ID="lblTvat" runat="server"   Text='<%# Bind("totalvat","{0:n0}") %>' Width="120px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="120px" />
         <FooterTemplate><asp:Label ID="lblllblTvats" runat="server" DataFormatString="{0:n0}" Text="<%# totalvat %>" /></FooterTemplate>
         </asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Per Vat" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblpervat" runat="server" Text='<%# Bind("pervat","{0:n0}") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
 
         <asp:TemplateField HeaderText="Total Rebit" SortExpression="rate">
@@ -233,7 +244,9 @@
         <FooterTemplate><asp:Label ID="lbllblpervats" runat="server" DataFormatString="{0:n0}" Text="<%# totalrbit %>" /></FooterTemplate>
         </asp:TemplateField>
 
-       <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
+         <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" HeaderText="Action" ControlStyle-Font-Bold="true">
+        <ControlStyle Font-Bold="True" ForeColor="Red" ></ControlStyle>
+        </asp:CommandField>
 
 
         </Columns>
