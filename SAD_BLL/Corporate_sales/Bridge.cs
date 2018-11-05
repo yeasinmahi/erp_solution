@@ -611,10 +611,10 @@ namespace SAD_BLL.Corporate_sales
 
         public DataTable GetDataForAppv()
         {
-            ERP_SAD_sprERPCorpReturnAmountTableAdapter adp = new ERP_SAD_sprERPCorpReturnAmountTableAdapter();
+            sprERPCorpReturnAmountTableAdapter adp = new sprERPCorpReturnAmountTableAdapter();
             try
             {
-                return adp.GetERPCorpSalesReviewData();
+                return adp.GetCorpSalesReturnAmount();
             }
             catch { return new DataTable(); }
         }
@@ -791,7 +791,21 @@ namespace SAD_BLL.Corporate_sales
             }
         }
 
-
+        public string DeleteCorpSales(int pk)
+        {
+            string msg = "";
+            TblERPCorpReturnFirstTableAdapter adp = new TblERPCorpReturnFirstTableAdapter();
+            try
+            {
+                adp.DeleteCorpSalesReturn(pk);
+                return msg = "Deleted Successfully";
+            }
+            catch(Exception ex)
+            {
+                msg = ex.ToString();
+                return msg;
+            }
+        }
 
 
 
