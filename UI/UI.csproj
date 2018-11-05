@@ -217,6 +217,7 @@
     <Content Include="AEFPS\OrderSales.aspx" />
     <Content Include="AEFPS\print.aspx" />
     <Content Include="AEFPS\ProfitAndLossReport.aspx" />
+    <Content Include="AEFPS\PurchaseReturn.aspx" />
     <Content Include="AEFPS\ReceiveEntryAfs.aspx" />
     <Content Include="AEFPS\ReceiveReport.aspx" />
     <Content Include="AEFPS\ReceiveStockInput.aspx" />
@@ -235,6 +236,7 @@
     <Content Include="AEFPS\TransferOut.aspx" />
     <Content Include="AEFPS\TransferOutN.aspx" />
     <Content Include="AEFPS\TransferReport.aspx" />
+    <Content Include="AEFPS\VoucherRePrint.aspx" />
     <Content Include="Asset\AssertReport.aspx" />
     <Content Include="Asset\AssetAccountsConfigure.aspx" />
     <Content Include="Asset\AssetBarcodeGenearator.aspx" />
@@ -1229,6 +1231,7 @@
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
@@ -2086,6 +2089,13 @@
     <Compile Include="AEFPS\ProfitAndLossReport.aspx.designer.cs">
       <DependentUpon>ProfitAndLossReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\PurchaseReturn.aspx.cs">
+      <DependentUpon>PurchaseReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\PurchaseReturn.aspx.designer.cs">
+      <DependentUpon>PurchaseReturn.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\ReceiveEntryAfs.aspx.cs">
       <DependentUpon>ReceiveEntryAfs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2211,6 +2221,13 @@
     </Compile>
     <Compile Include="AEFPS\TransferReport.aspx.designer.cs">
       <DependentUpon>TransferReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\VoucherRePrint.aspx.cs">
+      <DependentUpon>VoucherRePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\VoucherRePrint.aspx.designer.cs">
+      <DependentUpon>VoucherRePrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\AssertReport.aspx.cs">
       <DependentUpon>AssertReport.aspx</DependentUpon>
@@ -6199,6 +6216,12 @@
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
+      <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.designer.cs">
+      <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
       <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8507,6 +8530,7 @@
     <Folder Include="HR\Settlement\Uploads\" />
     <Folder Include="HR\TourPlan\Data\" />
     <Folder Include="HR\TourPlan\Tour\" />
+    <Folder Include="Import\Data\" />
     <Folder Include="Inventory\Data\" />
     <Folder Include="Libray\bin\" />
     <Folder Include="Libray\SqlServerTypes\" />

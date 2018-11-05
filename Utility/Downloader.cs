@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 
 namespace Utility
@@ -27,6 +28,25 @@ namespace Utility
                 byte[] bytes = stream.ToArray();
                 return bytes;
             }
+
+        }
+
+        public static bool UploadToFtp(string ftpurl, string localUrl)
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.Credentials = new NetworkCredential("erp", "erp123");
+                    client.UploadFile(ftpurl, WebRequestMethods.Ftp.UploadFile, localUrl);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
 
         }
     }

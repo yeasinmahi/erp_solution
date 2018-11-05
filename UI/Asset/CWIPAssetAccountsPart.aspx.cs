@@ -2024,7 +2024,7 @@ namespace UI.Asset
                 //string= int.Parse(hdnReceive.Value);
                 try { File.Delete(filePathForXMlAssetParking); }
                 catch { }
-                dt = parking.CwipAssetView(2, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
+                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
 
@@ -2271,7 +2271,7 @@ namespace UI.Asset
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     DataTable pk = new DataTable();
-                    pk = parking.CwipAssetView(3, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intAutoID);
+                    pk = parking.CwipAssetView(18, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intAutoID);
                     if (pk.Rows.Count > 0)
                     { 
                         try { ddlUnit.SelectedValue = pk.Rows[0]["intUnit"].ToString(); }

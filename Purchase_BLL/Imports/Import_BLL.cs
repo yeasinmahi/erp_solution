@@ -15,13 +15,7 @@ namespace Purchase_BLL.Imports
             SprQuotationReceivedTableAdapter view = new SprQuotationReceivedTableAdapter();
            
             return view.SPViewGetData(number, type);
-
-         
-           
-            
         }
-
-       
 
         public DataTable ViewData2(int number, int type)
         {
@@ -53,6 +47,42 @@ namespace Purchase_BLL.Imports
         {
             TblQuotationTableAdapter update2 = new TblQuotationTableAdapter();
             update2.Update2(SuppID, RQID);
+        }
+
+        public DataTable GetFileFroup()
+        {
+            tblImportFileUploadTypeTableAdapter adp = new tblImportFileUploadTypeTableAdapter();
+            return adp.GetFileFroup();
+        }
+        public DataTable GetShipmentInfo(long LcId)
+        {
+            tblImportShipmentTableAdapter adp = new tblImportShipmentTableAdapter();
+            return adp.GetShipmentInfo(LcId);
+        }
+        public DataTable GetPurchaseOrderDetails(int poId)
+        {
+            tblPurchaseOrderMainTableAdapter adp = new tblPurchaseOrderMainTableAdapter();
+            return adp.GetPurchaseOrderDetails(poId);
+        }
+        public DataTable GetPoByLcNumber(string LcNumber)
+        {
+            tblImportLCTableAdapter adp = new tblImportLCTableAdapter();
+            return adp.GetPoByLcNumber(LcNumber);
+        }
+        public DataTable GetLcIdbyPoId(int poId)
+        {
+            tblImportLC1TableAdapter adp = new tblImportLC1TableAdapter();
+            return adp.GetLcIdbyPoId(poId);
+        }
+        public DataTable InsertImportFileUploadDetails(int intFileTypeID,string strFilePath, int intLcID,int intShipmentID,int intInsertBy,int intUnit,string strRemarks)
+        {
+            tblImportFileUploadDetailTableAdapter adp = new tblImportFileUploadDetailTableAdapter();
+            return adp.InsertImportFileUploadDetails(intFileTypeID,strFilePath,intLcID,intShipmentID,intInsertBy,intUnit,strRemarks);
+        }
+        public DataTable GetImportFileUploadDetail(int intFileGroup, int intLcID, int intShipment)
+        {
+            DataTable1TableAdapter adp = new DataTable1TableAdapter();
+            return adp.GetImportFileUploadDetail(intFileGroup,intLcID,intShipment);
         }
     }
 }
