@@ -34,6 +34,8 @@ namespace UI.VAT_Management
         char[] delimiterChars = { '[', ']' };bool ysnFactory;
         Mushok11 objMush = new Mushok11();
 
+       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/VAT_Management/Data/CreditNote_" + Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -67,48 +69,44 @@ namespace UI.VAT_Management
         {
             getChallaninfo();
         }
-        protected void dgvPurchaseEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void dgvVatProduct_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("ItemAdd");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<ItemAdd>" + xmlString + "</ItemAdd>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                dgvVatProduct.DataSource = ds;
-
+                LoadGridwithXml();
                 DataSet dsGrid = (DataSet)dgvVatProduct.DataSource;
                 dsGrid.Tables[0].Rows[dgvVatProduct.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvVatProduct.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                {
-                    File.Delete(filePathForXML); dgvVatProduct.DataSource = ""; dgvVatProduct.DataBind();
-                }
+                { File.Delete(filePathForXML); dgvVatProduct.DataSource = ""; dgvVatProduct.DataBind(); }
                 else { LoadGridwithXml(); }
+               
+               
+             
             }
+
             catch { }
         }
 
         protected void txtCreditqty_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.Parse(hdnperVat.Value) == 0)
+            if ((hdnperVat.Value != ""))
             {
-                txtNuse.Text = "0";
-            }
-            else 
+                if (decimal.Parse(hdnperVat.Value) == 0)
                 {
-                txtNuse.Text = (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(txtCreditqty.Text)).ToString();
+                    txtNuse.Text = "0";
                 }
-            if(lblVat.Text.ToString()=="0")
-            {
+                else
+                {
+                    txtNuse.Text = (decimal.Parse(lblMaterialUserStandard.Text) * decimal.Parse(txtCreditqty.Text)).ToString();
+                }
+                if (lblVat.Text.ToString() == "0")
+                {
 
+                }
+                txtNuse.Text = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(lblMaterialUserStandard.Text)).ToString();
             }
-            txtNuse.Text = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
         }
 
         private void getChallaninfo()
@@ -117,7 +115,9 @@ namespace UI.VAT_Management
             lblQty.Text= dt.Rows[0]["numQuantity"].ToString();
             lblVat.Text = dt.Rows[0]["monVAT"].ToString();
             lblSD.Text = dt.Rows[0]["monSD"].ToString();
-            hdndtechallandate.Value= dt.Rows[0]["dtechallandate"].ToString();
+            hdndtechallandate.Value= dt.Rows[0]["dteChallanDate"].ToString();
+            DateTime dtedate= DateTime.Parse(dt.Rows[0]["dteChallanDate"].ToString());
+            lblChallandate.Text = DateTime.Parse(dtedate.ToString("yyyy-MM-dd")).ToString();
             decimal vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
             if(vat>1)
             {
@@ -165,6 +165,7 @@ namespace UI.VAT_Management
         protected void ddlMaterialList_SelectedIndexChanged(object sender, EventArgs e)
         {
             getMatrialUserStandar();
+            getChallaninfo();
         }
 
         private void getMatrialUserStandar()
@@ -178,32 +179,35 @@ namespace UI.VAT_Management
             ddlChallanNo.DataValueField = "strChallanNo";
             ddlChallanNo.DataSource = dt;
             ddlChallanNo.DataBind();
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
 
-            intitemid =int.Parse(ddlMaterialList.SelectedValue.ToString());
-            MaterialName = (ddlMaterialList.SelectedItem.ToString());
-            strChallanNo = ddlChallanNo.SelectedValue.ToString();
-            Pname= ddlChallanNo.SelectedItem.ToString();
-            txtNewVat.Text= (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
-            string values = "0";
-            string qty = txtCreditqty.Text;
-            string pervat;
-            string sdnew = "0",sdv = "0";
-            if (txtSD.Text != "") { sdnew = txtSDCharableValue.Text.ToString(); }
-            if (txtSDCharableValue.Text != "") { sdv = txtSDCharableValue.Text.ToString(); }
-            string vatnew =(decimal.Parse(txtCreditqty.Text)*decimal.Parse(hdnperVat.Value)).ToString();
-            string rbit = (decimal.Parse(txtNewVat.Text) * decimal.Parse(hdnperVat.Value.ToString())).ToString();
-            decimal f = Math.Round(decimal.Parse(qty), 2);
-            CreateVoucherXml(intitemid.ToString(), MaterialName,qty, values,sdnew, Math.Round(decimal.Parse(txtNuse.Text.ToString()), 2).ToString(),ddlChallanNo.SelectedItem.ToString(), hdndtechallandate.Value.ToString(), lblMaterialUserStandard.Text.ToString(),lblQty.Text.ToString(), sdv.ToString(), Math.Round(decimal.Parse(hdnperVat.Value.ToString()), 2).ToString(), Math.Round(decimal.Parse(rbit.ToString()), 2).ToString(), hdnuom.Value.ToString(), Math.Round(decimal.Parse(vatnew.ToString()), 2).ToString());
-            txtCreditqty.Text = "";
-            txtSD.Text = "";
-            txtNuse.Text = "";
-            txtSDCharableValue.Text = "";
-            txtCreditqty.Text = "";
-
+            if (hdnconfirm.Value.ToString() != "0")
+            {
+                intitemid = int.Parse(ddlMaterialList.SelectedValue.ToString());
+                MaterialName = (ddlMaterialList.SelectedItem.ToString());
+                strChallanNo = ddlChallanNo.SelectedValue.ToString();
+                Pname = ddlChallanNo.SelectedItem.ToString();
+                txtNewVat.Text =Math.Round((decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)),2).ToString();
+                string values = "0";
+                string qty = txtCreditqty.Text;
+                string pervat;
+                string sdnew = "0", sdv = "0";
+                if (txtSD.Text != "") { sdnew = txtSDCharableValue.Text.ToString(); }
+                if (txtSDCharableValue.Text != "") { sdv = txtSDCharableValue.Text.ToString(); }
+                string vatnew = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
+                string rbit = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value.ToString())).ToString();
+                decimal f = Math.Round(decimal.Parse(qty), 2);
+                CreateVoucherXml(intitemid.ToString(), MaterialName, qty, values, sdnew, Math.Round(decimal.Parse(txtNuse.Text.ToString()), 2).ToString(), ddlChallanNo.SelectedItem.ToString(), lblChallandate.Text.ToString(), lblMaterialUserStandard.Text.ToString(), lblQty.Text.ToString(), sdv.ToString(), Math.Round(decimal.Parse(hdnperVat.Value.ToString()), 2).ToString(), Math.Round(decimal.Parse(rbit.ToString()), 2).ToString(), hdnuom.Value.ToString(), Math.Round(decimal.Parse(vatnew.ToString()), 2).ToString());
+                txtCreditqty.Text = "";
+                txtSD.Text = "";
+                txtNuse.Text = "";
+                txtSDCharableValue.Text = "";
+                txtCreditqty.Text = "";
+            }
 
 
         }
@@ -279,22 +283,7 @@ namespace UI.VAT_Management
             node.Attributes.Append(Totalvat);
             return node;
         }
-        protected void dgvBandrollReceive_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("ItemAdd");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<ItemAdd>" + xmlString + "</ItemAdd>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-               
-            }
-            catch { }
-        }
+       
         protected void ddlVatAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
@@ -368,35 +357,7 @@ namespace UI.VAT_Management
             dgvVatProduct.DataBind();
         }
            
-        protected void btnDelete(object sender, EventArgs e)
-        {
-            try
-            {
-                char[] delimiterChars = { '^' };
-                string temp1 = ((Button)sender).CommandArgument.ToString();
-                string temp = temp1.Replace("'", " ");
-                string[] searchKey = temp.Split(delimiterChars);
-                intid = int.Parse(searchKey[0].ToString());
-                dt = objMush.getTreasuryYear(intid);
-                intyear = int.Parse(dt.Rows[0]["intYear"].ToString());
-                intMonth = int.Parse(dt.Rows[0]["intMonth"].ToString());
-                dt = objMush.getTreasuryCount(int.Parse(hdnAccno.Value),intyear,intMonth);
-                if (int.Parse(dt.Rows[0]["intCount"].ToString()) == 0)
-                {
-                    objMush.gepPurchasedelete(int.Parse(hdnAccno.Value), intid, 3);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
-
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Mushak-19 for this purchase already created. Therefore, delete is not possible!');", true);
-                }
-
-
-
-            }
-            catch { }
-        }
+      
 
         #region ******* search **********
         [WebMethod]
