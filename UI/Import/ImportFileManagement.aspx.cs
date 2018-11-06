@@ -45,29 +45,29 @@ namespace UI.Import
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have to input PO number or LC number');", true);
                 return;
             }
-            if (!string.IsNullOrWhiteSpace(lcNumber))
-            {
-                dt = bll.GetPoByLcNumber(lcNumber);
-                if (dt.Rows.Count > 0)
-                {
-                    int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
-                    if (po == 0)
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Somthing error in PO conversion');", true);
-                        txtLcNumber.Text = String.Empty;
-                        return;
-                    }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                        "alert('We can not found this lc number in our system');", true);
-                    txtLcNumber.Text = String.Empty;
-                    return;
-                }
+            //if (!string.IsNullOrWhiteSpace(lcNumber))
+            //{
+            //    dt = bll.GetPoByLcNumber(lcNumber);
+            //    if (dt.Rows.Count > 0)
+            //    {
+            //        int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
+            //        if (po == 0)
+            //        {
+            //            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+            //                "alert('Somthing error in PO conversion');", true);
+            //            txtLcNumber.Text = String.Empty;
+            //            return;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+            //            "alert('We can not found this lc number in our system');", true);
+            //        txtLcNumber.Text = String.Empty;
+            //        return;
+            //    }
                 
-            }
+            //}
             if (!string.IsNullOrWhiteSpace(poNumber))
             {
                 int.TryParse(poNumber, out po);
@@ -78,12 +78,20 @@ namespace UI.Import
                 }
                 dt = bll.GetLcIdbyPoId(po);
                 int lcId;
-                if (int.TryParse(dt.Rows[0]["intLCID"].ToString(), out lcId))
+                if (dt.Rows.Count > 0)
                 {
-                    LoadShipmentSl(lcId);
-                    hdLcId.Value = lcId.ToString();
-                    LoadGridView();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
+                    if (int.TryParse(dt.Rows[0]["intLCID"].ToString(), out lcId))
+                    {
+                        txtLcNumber.Text = dt.Rows[0]["strLCNumber"].ToString();
+                        LoadShipmentSl(lcId);
+                        hdLcId.Value = lcId.ToString();
+                        LoadGridView();
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No data found aginest this PO number');", true);
                 }
             }
             

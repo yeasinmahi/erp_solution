@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <asp:Label ID="Label6" runat="server" Text="LC Number"></asp:Label>
-                                    <asp:TextBox ID="txtLcNumber" TextMode="Number" CssClass="form-control" runat="server" placeholder="LC Number"></asp:TextBox>
+                                    <asp:TextBox ID="txtLcNumber" CssClass="form-control" runat="server" placeholder="LC Number"></asp:TextBox>
                                 </div>
                                 <div class="col-md-12">
                                         <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
@@ -79,7 +79,7 @@
                                     <asp:FileUpload ID="fileUpload" CssClass="form-control" runat="server" ClientIDMode="Static" EnableViewState="true"></asp:FileUpload>
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control" Text="New File" OnClick="btnAddNewFile_OnClick" />
+                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control" Text="Submit" OnClick="btnAddNewFile_OnClick" />
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
                                             <asp:Button ID="btnDownload" runat="server" class="btn btn-primary form-control" Text="Download" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="Download"/>
-                                            <%--<asp:Button ID="btnView" runat="server" class="btn btn-primary form-control" Text="View File" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="View"/>--%>
+                                            <asp:Button ID="btnView" runat="server" class="btn btn-primary form-control" Text="View File" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="View"/>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
