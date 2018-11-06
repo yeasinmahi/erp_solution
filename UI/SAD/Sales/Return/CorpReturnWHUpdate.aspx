@@ -54,7 +54,7 @@
     <div class="leaveApplication_container"><b>Corporate Sales Return Review Edit: </b><asp:HiddenField ID="hdnconfirm" runat="server" /><hr />
     <table style="width:Auto";>
    <tr><td colspan="2"><asp:Label ID="Label1" runat="server" Text="Customer Name : "></asp:Label><asp:Label ID="lblCustomer" runat="server"></asp:Label></td></tr>
-    <tr><td><asp:Label ID="lblchallanno" runat="server" Text="Challan No: "></asp:Label><asp:Label ID="lblchalan" runat="server"></asp:Label></td>
+    <tr><td><asp:Label ID="lblchallanno" runat="server" Text="Return Description: "></asp:Label><asp:Label ID="lblchalan" runat="server"></asp:Label></td>
     <td></td>
     </tr>
     <tr><td>

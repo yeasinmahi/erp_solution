@@ -129,5 +129,27 @@ namespace SAD_BLL.AEFPS
                 // ignored
             }
         }
+
+        public DataTable GetSupplierList(int mrrNo)
+        {
+            TblSupplierTableAdapter adp = new TblSupplierTableAdapter();
+            try
+            {
+                return adp.GetSupplierDetails(mrrNo);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetPurchase(int intType,int mrrNo)
+        {
+            sprPurchaseReturnTableAdapter adp = new sprPurchaseReturnTableAdapter();
+            try
+            {
+                return adp.GetPurchaseReturnDetails(intType,mrrNo);
+            }
+            catch { return new DataTable(); }
+        }
+        
+
+
     }
 }
