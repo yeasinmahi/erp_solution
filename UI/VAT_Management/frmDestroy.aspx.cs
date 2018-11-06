@@ -199,10 +199,10 @@ namespace UI.VAT_Management
                 string pervat;
                 string sdnew = "0", sdv = "0";
                 if (txtSD.Text != "") { sdnew = txtSDCharableValue.Text.ToString(); }
-                if (lblWithouthvalue.Text != "") { sdv =Math.Round(decimal.Parse(lblWithouthvalue.Text.ToString()),0).ToString(); }
+                if (lblWithouthvalue.Text != "") { sdv =Math.Round(decimal.Parse(lblWithouthvalue.Text.ToString())).ToString(); }
 
-                string vatnew = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
-                string rbit = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value.ToString())).ToString();
+                string vatnew = Math.Round((decimal.Parse(txtNuse.Text.ToString()) * decimal.Parse(hdnperVat.Value.ToString())), 2).ToString();
+                string rbit = Math.Round((decimal.Parse(txtNuse.Text.ToString()) * decimal.Parse(hdnperVat.Value.ToString())), 2).ToString();
                 decimal f = Math.Round(decimal.Parse(qty), 2);
                 CreateVoucherXml(intitemid.ToString(), MaterialName, qty, values, sdnew, Math.Round(decimal.Parse(txtNuse.Text.ToString()), 2).ToString(), ddlChallanNo.SelectedItem.ToString(), lblChallandate.Text.ToString(), lblMaterialUserStandard.Text.ToString(), lblQty.Text.ToString(), sdv.ToString(), Math.Round(decimal.Parse(hdnperVat.Value.ToString()), 2).ToString(), Math.Round(decimal.Parse(rbit.ToString()), 2).ToString(), hdnuom.Value.ToString(), Math.Round(decimal.Parse(vatnew.ToString()), 2).ToString(),lblVat.Text);
                 txtCreditqty.Text = "";
