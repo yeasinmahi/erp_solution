@@ -51,8 +51,14 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            try { intPOID = int.Parse(txtPONo.Text); }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Number');", true); return; }
+            try
+            {
+                intPOID = int.Parse(txtPONo.Text);
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Number');", true); return;
+            }
 
             intPart = 3;
             dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
@@ -131,7 +137,9 @@ namespace UI.SCM
 
             dt = new DataTable();
             dt = obj.GetItemInfoByPO(intPOID);
-            File.Delete(filePathForXML); dgvItemInfoByPO.DataSource = ""; dgvItemInfoByPO.DataBind();
+            File.Delete(filePathForXML);
+            dgvItemInfoByPO.DataSource = "";
+            dgvItemInfoByPO.DataBind();
             if (dt.Rows.Count > 0)
             {
                 for (int index = 0; index < dt.Rows.Count; index++)
@@ -160,49 +168,121 @@ namespace UI.SCM
             {
                 try
                 {
-                    try { intPOID = int.Parse(txtPONo.Text); }
-                    catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Number');", true); return; }
+                    try
+                    {
+                        intPOID = int.Parse(txtPONo.Text);
+                    }
+                    catch
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Number');", true); return;
+                    }
 
-                    if (txtMrrNo.Text == "")
+                    if (string.IsNullOrEmpty(txtMrrNo.Text))
                     {
                         //'PO correction is not possible after issuing MRR' 
 
-                        try { dtePODate = DateTime.Parse(txtPODate.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Date Format.');", true); return; }
+                        try
+                        {
+                            dtePODate = DateTime.Parse(txtPODate.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Date Format.');", true); return;
+                        }
 
-                        try { intCurrencyID = int.Parse(ddlCurrency.SelectedValue.ToString()); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Currency.');", true); return; }
+                        try
+                        {
+                            intCurrencyID = int.Parse(ddlCurrency.SelectedValue.ToString());
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Currency.');", true); return;
+                        }
 
-                        try { monFreight = decimal.Parse(txtTransport.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Freight Amount.');", true); return; }
+                        try
+                        {
+                            monFreight = decimal.Parse(txtTransport.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Freight Amount.');", true); return;
+                        }
 
-                        try { monPacking = decimal.Parse(txtOthers.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Packing Amount.');", true); return; }
+                        try
+                        {
+                            monPacking = decimal.Parse(txtOthers.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Packing Amount.');", true); return;
+                        }
 
-                        try { monDiscount = decimal.Parse(txtGDiscount.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Discount Amount.');", true); return; }
+                        try
+                        {
+                            monDiscount = decimal.Parse(txtGDiscount.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Discount Amount.');", true); return;
+                        }
 
-                        try { intShipment = int.Parse(txtNoofShipment.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong No of Shipment.');", true); return; }
+                        try
+                        {
+                            intShipment = int.Parse(txtNoofShipment.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong No of Shipment.');", true); return;
+                        }
 
-                        try { intCreditDays = int.Parse(txtPaymentdaysAfterMRR.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Payment days after MRR (days)');", true); return; }
+                        try
+                        {
+                            intCreditDays = int.Parse(txtPaymentdaysAfterMRR.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Payment days after MRR (days)');", true); return;
+                        }
 
                         strDeliveryAddress = txtDestinationForDelivery.Text;
                         ysnPartialShip = int.Parse(ddlPartialShipment.SelectedValue.ToString());
                         strPayTerm = ddlPaymentTerms.SelectedItem.ToString();
 
-                        try { intInstallmentNo = int.Parse(txtNoOfInstallment.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong No of Installment (for installment Payment)');", true); return; }
+                        try
+                        {
+                            intInstallmentNo = int.Parse(txtNoOfInstallment.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong No of Installment (for installment Payment)');", true); return;
+                        }
 
-                        try { intInstallmentInterval = int.Parse(txtInstallmentIntervalDays.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Installment Interval (Days, for installment)');", true); return; }
+                        try
+                        {
+                            intInstallmentInterval = int.Parse(txtInstallmentIntervalDays.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Installment Interval (Days, for installment)');", true); return;
+                        }
 
-                        try { intWarrantyMonth = int.Parse(txtWarrentyAfterDelivery.Text); }
-                        catch { intWarrantyMonth = 0; } //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Warrenty after delivery (in months)');", true); return; }
+                        try
+                        {
+                            intWarrantyMonth = int.Parse(txtWarrentyAfterDelivery.Text);
+                        }
+                        catch
+                        {
+                            intWarrantyMonth = 0;
+                        } //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Warrenty after delivery (in months)');", true); return; }
 
-                        try { dteLastShipmentDate = DateTime.Parse(txtLastShipmentDate.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Last Shipment Date;", true); return; }
+                        try
+                        {
+                            dteLastShipmentDate = DateTime.Parse(txtLastShipmentDate.Text);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Last Shipment Date;", true); return;
+                        }
 
                         strOtherTerms = txtOtherTerms.Text;
                         intPart = 1;
