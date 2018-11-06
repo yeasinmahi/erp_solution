@@ -113,11 +113,12 @@ namespace UI.VAT_Management
         {
             dt = objCreditBll.getChallanProductqty(ddlChallanNo.SelectedItem.ToString(),int.Parse(ddlMaterialList.SelectedValue.ToString()));
             lblQty.Text= dt.Rows[0]["numQuantity"].ToString();
-            lblVat.Text = dt.Rows[0]["monVAT"].ToString();
+            lblVat.Text = dt.Rows[0]["monVAT"].ToString(); 
             lblSD.Text = dt.Rows[0]["monSD"].ToString();
             hdndtechallandate.Value= dt.Rows[0]["dteChallanDate"].ToString();
             DateTime dtedate= DateTime.Parse(dt.Rows[0]["dteChallanDate"].ToString());
             lblChallandate.Text = DateTime.Parse(dtedate.ToString("yyyy-MM-dd")).ToString();
+            lblWithouthvalue.Text= dt.Rows[0]["monAmountWithoutVATnSD"].ToString();
             decimal vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
             if(vat>1)
             {
@@ -198,6 +199,7 @@ namespace UI.VAT_Management
                 string sdnew = "0", sdv = "0";
                 if (txtSD.Text != "") { sdnew = txtSDCharableValue.Text.ToString(); }
                 if (txtSDCharableValue.Text != "") { sdv = txtSDCharableValue.Text.ToString(); }
+
                 string vatnew = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
                 string rbit = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value.ToString())).ToString();
                 decimal f = Math.Round(decimal.Parse(qty), 2);
