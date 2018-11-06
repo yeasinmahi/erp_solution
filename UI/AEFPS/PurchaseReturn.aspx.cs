@@ -19,7 +19,18 @@ namespace UI.AEFPS
 
         protected void btnShow_OnClick(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            string mrrNumber = txtMrrNumber.Text;
+            if (!string.IsNullOrWhiteSpace(mrrNumber))
+            {
+
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('MRR can not be blank');", true);
+            }
+            
         }
         private void LoadWh()
         {
