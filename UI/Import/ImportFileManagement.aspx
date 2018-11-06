@@ -69,7 +69,7 @@
                                     <asp:DropDownList ID="ddlFileGroup" CssClass="form-control" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label2" runat="server" Text="Note"></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text="Remarks"></asp:Label>
                                     <asp:TextBox ID="txtNote" runat="server" CssClass="form-control" placeholder="Note"></asp:TextBox>
 
                                 </div>

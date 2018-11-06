@@ -113,11 +113,12 @@ namespace UI.VAT_Management
         {
             dt = objCreditBll.getChallanProductqty(ddlChallanNo.SelectedItem.ToString(),int.Parse(ddlMaterialList.SelectedValue.ToString()));
             lblQty.Text= dt.Rows[0]["numQuantity"].ToString();
-            lblVat.Text = dt.Rows[0]["monVAT"].ToString();
+            lblVat.Text = dt.Rows[0]["monVAT"].ToString(); 
             lblSD.Text = dt.Rows[0]["monSD"].ToString();
             hdndtechallandate.Value= dt.Rows[0]["dteChallanDate"].ToString();
             DateTime dtedate= DateTime.Parse(dt.Rows[0]["dteChallanDate"].ToString());
             lblChallandate.Text = DateTime.Parse(dtedate.ToString("yyyy-MM-dd")).ToString();
+            lblWithouthvalue.Text= dt.Rows[0]["monAmountWithoutVATnSD"].ToString();
             decimal vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
             if(vat>1)
             {
@@ -144,7 +145,7 @@ namespace UI.VAT_Management
 
         }
         protected decimal totalrbit = 0;
-        protected decimal totalvalue = 0, totalvat = 0, totalsdv=0, totalIssuevalue = 0;
+        protected decimal totalvalue = 0, totalvat = 0, totalsdv=0, totalIssuevalue = 0, totalPurchasevat=0;
         protected void dgvSOItem_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             
@@ -152,11 +153,12 @@ namespace UI.VAT_Management
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    totalrbit += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblpervat")).Text);
+                    totalrbit += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblpervats")).Text);
                     totalvalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblValue")).Text);
                     totalIssuevalue += decimal.Parse(((Label)e.Row.Cells[6].FindControl("txtIssueValues")).Text);
                     totalvat += decimal.Parse(((Label)e.Row.Cells[6].FindControl("totalvat")).Text);
                     totalsdv += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblsdv")).Text);
+                    totalPurchasevat += decimal.Parse(((Label)e.Row.Cells[6].FindControl("lblPurchasevat")).Text);
                 }
             }
             catch { }
@@ -197,11 +199,12 @@ namespace UI.VAT_Management
                 string pervat;
                 string sdnew = "0", sdv = "0";
                 if (txtSD.Text != "") { sdnew = txtSDCharableValue.Text.ToString(); }
-                if (txtSDCharableValue.Text != "") { sdv = txtSDCharableValue.Text.ToString(); }
-                string vatnew = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
-                string rbit = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value.ToString())).ToString();
+                if (lblWithouthvalue.Text != "") { sdv =Math.Round(decimal.Parse(lblWithouthvalue.Text.ToString())).ToString(); }
+
+                string vatnew = Math.Round((decimal.Parse(txtNuse.Text.ToString()) * decimal.Parse(hdnperVat.Value.ToString())), 2).ToString();
+                string rbit = Math.Round((decimal.Parse(txtNuse.Text.ToString()) * decimal.Parse(hdnperVat.Value.ToString())), 2).ToString();
                 decimal f = Math.Round(decimal.Parse(qty), 2);
-                CreateVoucherXml(intitemid.ToString(), MaterialName, qty, values, sdnew, Math.Round(decimal.Parse(txtNuse.Text.ToString()), 2).ToString(), ddlChallanNo.SelectedItem.ToString(), lblChallandate.Text.ToString(), lblMaterialUserStandard.Text.ToString(), lblQty.Text.ToString(), sdv.ToString(), Math.Round(decimal.Parse(hdnperVat.Value.ToString()), 2).ToString(), Math.Round(decimal.Parse(rbit.ToString()), 2).ToString(), hdnuom.Value.ToString(), Math.Round(decimal.Parse(vatnew.ToString()), 2).ToString());
+                CreateVoucherXml(intitemid.ToString(), MaterialName, qty, values, sdnew, Math.Round(decimal.Parse(txtNuse.Text.ToString()), 2).ToString(), ddlChallanNo.SelectedItem.ToString(), lblChallandate.Text.ToString(), lblMaterialUserStandard.Text.ToString(), lblQty.Text.ToString(), sdv.ToString(), Math.Round(decimal.Parse(hdnperVat.Value.ToString()), 2).ToString(), Math.Round(decimal.Parse(rbit.ToString()), 2).ToString(), hdnuom.Value.ToString(), Math.Round(decimal.Parse(vatnew.ToString()), 2).ToString(),lblVat.Text);
                 txtCreditqty.Text = "";
                 txtSD.Text = "";
                 txtNuse.Text = "";
@@ -211,14 +214,14 @@ namespace UI.VAT_Management
 
 
         }
-        private void CreateVoucherXml(string mid, string MaterialName, string qty, string values, string sdnew, string totaluse,string challanno,string dteCdate,string usepar,string pqty,string sdv, string pervat,string rbit,string uom,string totalvat)
+        private void CreateVoucherXml(string mid, string MaterialName, string qty, string values, string sdnew, string totaluse,string challanno,string dteCdate,string usepar,string pqty,string sdv, string pervat,string rbit,string uom,string totalvat,string purchasevat)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("ItemAdd");
-                XmlNode addItem = CreateItemNode(doc, mid, MaterialName, qty, values, sdnew, totaluse, challanno, dteCdate, usepar, pqty,sdv, pervat, rbit,uom, totalvat);
+                XmlNode addItem = CreateItemNode(doc, mid, MaterialName, qty, values, sdnew, totaluse, challanno, dteCdate, usepar, pqty,sdv, pervat, rbit,uom, totalvat,purchasevat);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -226,7 +229,7 @@ namespace UI.VAT_Management
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("ItemAdd");
-                XmlNode addItem = CreateItemNode(doc, mid, MaterialName, qty, values, sdnew, totaluse, challanno, dteCdate, usepar, pqty,sdv, pervat, rbit,uom, totalvat);
+                XmlNode addItem = CreateItemNode(doc, mid, MaterialName, qty, values, sdnew, totaluse, challanno, dteCdate, usepar, pqty,sdv, pervat, rbit,uom, totalvat,purchasevat);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -247,7 +250,7 @@ namespace UI.VAT_Management
             else { dgvVatProduct.DataSource = ""; }
             dgvVatProduct.DataBind();
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string mid, string MaterialName, string qty, string values, string sdnew, string totaluse, string challanno,string dteCdate,string usepar, string pqty,string sdv, string pervat,string rbit,string uom,string totalvat)
+        private XmlNode CreateItemNode(XmlDocument doc, string mid, string MaterialName, string qty, string values, string sdnew, string totaluse, string challanno,string dteCdate,string usepar, string pqty,string sdv, string pervat,string rbit,string uom,string totalvat, string purchasevat)
         {
             XmlNode node = doc.CreateElement("ItemAdd");
 
@@ -265,7 +268,8 @@ namespace UI.VAT_Management
             XmlAttribute Sdv = doc.CreateAttribute("sdv"); Sdv.Value = sdv;
             XmlAttribute Rbit = doc.CreateAttribute("rbit"); Rbit.Value = rbit;
             XmlAttribute Uom = doc.CreateAttribute("uom"); Uom.Value = uom; 
-            XmlAttribute Totalvat = doc.CreateAttribute("totalvat"); Totalvat.Value = totalvat; 
+            XmlAttribute Totalvat = doc.CreateAttribute("totalvat"); Totalvat.Value = totalvat;
+            XmlAttribute Purchasevat = doc.CreateAttribute("purchasevat"); Purchasevat.Value = purchasevat;
             node.Attributes.Append(Mid);
             node.Attributes.Append(materialName);
             node.Attributes.Append(Qty);
@@ -281,6 +285,7 @@ namespace UI.VAT_Management
             node.Attributes.Append(Rbit);
             node.Attributes.Append(Uom);
             node.Attributes.Append(Totalvat);
+            node.Attributes.Append(Purchasevat);
             return node;
         }
        

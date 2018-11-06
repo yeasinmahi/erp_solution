@@ -217,7 +217,7 @@
         <asp:TemplateField HeaderText="SD Chargeable Value" SortExpression="rate">
         <ItemTemplate><asp:Label ID="lblsdv" runat="server"   Text='<%# Bind("sdv","{0:n0}") %>' Width="120px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="120px" />
-        <FooterTemplate><asp:Label ID="lblsdvss" runat="server" DataFormatString="{0:0.0}" Text="<%# totalsdv %>" /></FooterTemplate>
+        <FooterTemplate><asp:Label ID="lblsdvss" runat="server" DataFormatString="{0:0}" Text="<%# totalsdv %>" /></FooterTemplate>
         </asp:TemplateField>
 
 
@@ -225,10 +225,18 @@
         <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew","{0:0.0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-            
+        <asp:TemplateField HeaderText="Vat Amount" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblpurchasevat" runat="server" Text='<%# Bind("purchasevat","{0:n2}") %>' Width="120px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="120px" />
+        <FooterTemplate><asp:Label ID="lblllbpurchasevat" runat="server" DataFormatString="{0:0}" Text="<%# totalPurchasevat %>" /></FooterTemplate>
+        </asp:TemplateField>
+  
+
         <asp:TemplateField HeaderText="Per Vat" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblpervat" runat="server" Text='<%# Bind("pervat","{0:n0}") %>' Width="50px"></asp:Label>
-        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+        <ItemTemplate><asp:Label ID="lblpervat" runat="server" Text='<%# Bind("pervat","{0:n2}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" />
+        
+        </asp:TemplateField>
 
 
          <asp:TemplateField HeaderText="Total Vat" SortExpression="rate">
@@ -239,7 +247,7 @@
 
 
         <asp:TemplateField HeaderText="Total Rebit" SortExpression="rate">
-        <ItemTemplate><asp:Label ID="lblpervat" runat="server"   Text='<%# Bind("rbit","{0:n0}") %>' Width="80px"></asp:Label>
+        <ItemTemplate><asp:Label ID="lblpervats" runat="server"   Text='<%# Bind("rbit","{0:n0}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
         <FooterTemplate><asp:Label ID="lbllblpervats" runat="server" DataFormatString="{0:n0}" Text="<%# totalrbit %>" /></FooterTemplate>
         </asp:TemplateField>
