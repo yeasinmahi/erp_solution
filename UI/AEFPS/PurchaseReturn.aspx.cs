@@ -48,6 +48,11 @@ namespace UI.AEFPS
             ViewState["grid"] = dt;
             gridView.DataSource = dt;
             gridView.DataBind();
+
+            //GridViewRow row = (GridViewRow)gridView.NamingContainer;
+            //Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
+            //lblReturnAmount.Text = "0.00";
+
             if (dt.Rows.Count < 1)
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
@@ -81,24 +86,40 @@ namespace UI.AEFPS
             Label lblCostAmount = (Label)row.FindControl("lblCostAmount");
             decimal costAmount = Convert.ToDecimal(lblCostAmount.Text);
             decimal mrr = Convert.ToDecimal(lblMrrQty.Text);
-            decimal returnQty = Convert.ToDecimal(rtnQty.Text);
+           
             Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
-            if (mrr>=returnQty && costAmount>=returnQty)
+            if(!string.IsNullOrWhiteSpace(rtnQty.Text))
             {
-                int ReturnQuantity = Convert.ToInt32(mrr - returnQty);
-                decimal rate = Convert.ToDecimal(lblRate.Text);
-                decimal ReturnAmount = rate * ReturnQuantity;
-                
-                lblReturnAmount.Text = ReturnAmount.ToString();
-                
+                decimal returnQty = Convert.ToDecimal(rtnQty.Text);
+                if (mrr >= returnQty && costAmount >= returnQty)
+                {
+                    int ReturnQuantity = Convert.ToInt32(mrr - returnQty);
+                    decimal rate = Convert.ToDecimal(lblRate.Text);
+                    decimal ReturnAmount = rate * ReturnQuantity;
+
+                    lblReturnAmount.Text = ReturnAmount.ToString();
+
+                }
+                else
+                {
+
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Return quantity should be less than MRR quantity and closing stock');", true);
+                }
+
+               
             }
             else
             {
-                lblReturnAmount.Text = "0.00";
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Return quantity should be less than MRR quantity and closing stock');", true);
-            }
-            
 
+                lblReturnAmount.Text = "0.00";
+               
+            }
+            for (int index = 0; index < gridView.Rows.Count; index++)
+            {
+                totalAmount += Convert.ToDecimal((gridView.Rows[index].FindControl("lblReturnAmount") as Label).Text);
+            }
+
+            txtTotalPurchaseReturnAmount.Text = totalAmount.ToString();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
 
 
@@ -117,13 +138,26 @@ namespace UI.AEFPS
         protected void gridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             dt = (DataTable)ViewState["grid"];
-            dt.Rows[e.RowIndex].Delete();
             if (dt.Rows.Count > 0)
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                //dt.Rows[e.RowIndex].Delete();
+                dt.Rows.RemoveAt(e.RowIndex);
+                gridView.DataSource = dt;
+                gridView.DataBind();
+                ViewState["grid"] = dt;
+                if(dt.Rows.Count>0)
+                {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
+                }
+
+
             }
-            gridView.DataSource = dt;
-            gridView.DataBind();
+          
+
 
 
         }

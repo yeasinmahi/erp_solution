@@ -49,7 +49,7 @@
                                     <asp:Label ID="Label1" runat="server" Text="MRR Number"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
 
-                                    <asp:TextBox ID="txtMrrNumber" TextMode="Number" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Please Input MRR Number Here"></asp:TextBox>
+                                    <asp:TextBox ID="txtMrrNumber" TextMode="Number" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Please Input MRR Number Here"></asp:TextBox>
 
                                 </div>
                             </div>
@@ -115,17 +115,17 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cost Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblCostAmount" runat="server" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Closing Stock">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("closingStock") %>'></asp:Label>
+                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("closingStock","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">
@@ -135,7 +135,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Return Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-left" ></asp:Label>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("ReturnAmount") %>' ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                               
@@ -161,11 +161,11 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
-
-                    </div>
-                    <div class="col-md-2 pull-right">
+                        <div class="form-group pull-right">
                         <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary form-control" Text="Submit" Height="30px" OnClick="btnSubmit_OnClick" />
                     </div>
+                    </div>
+                    
 
                 </div>
 
