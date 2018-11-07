@@ -45,16 +45,13 @@ namespace UI.AEFPS
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('MRR can not be blank');", true);
             }
             dt = _bll.GetPurchase(2, Convert.ToInt32(mrrNumber));
-            if (dt.Rows.Count > 0)
+            ViewState["grid"] = dt;
+            gridView.DataSource = dt;
+            gridView.DataBind();
+            if (dt.Rows.Count < 1)
             {
-                gridView.DataSource = dt;
-                gridView.DataBind();
-            }
-            else
-            {
-                gridView.DataSource = "";
-                gridView.DataBind();
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Data Not Found');", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "dataNotFound", "alert('Data Not Found');", true);
             }
 
         }
@@ -85,18 +82,19 @@ namespace UI.AEFPS
             decimal costAmount = Convert.ToDecimal(lblCostAmount.Text);
             decimal mrr = Convert.ToDecimal(lblMrrQty.Text);
             decimal returnQty = Convert.ToDecimal(rtnQty.Text);
-            
-            if(mrr>=returnQty && costAmount>=returnQty)
+            Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
+            if (mrr>=returnQty && costAmount>=returnQty)
             {
                 int ReturnQuantity = Convert.ToInt32(mrr - returnQty);
                 decimal rate = Convert.ToDecimal(lblRate.Text);
                 decimal ReturnAmount = rate * ReturnQuantity;
-                Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
+                
                 lblReturnAmount.Text = ReturnAmount.ToString();
                 
             }
             else
             {
+                lblReturnAmount.Text = "0.00";
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Return quantity should be less than MRR quantity and closing stock');", true);
             }
             
@@ -118,6 +116,15 @@ namespace UI.AEFPS
 
         protected void gridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            dt = (DataTable)ViewState["grid"];
+            dt.Rows[e.RowIndex].Delete();
+            if (dt.Rows.Count > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            }
+            gridView.DataSource = dt;
+            gridView.DataBind();
+
 
         }
     }

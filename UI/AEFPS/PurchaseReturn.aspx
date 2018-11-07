@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default" id="itemPanel">
+                <div class="panel panel-default hidden" id="itemPanel">
 
                     <div class="panel-body">
                         <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" DataKeyNames="intItemID" OnRowDataBound="gridView_RowDataBound" OnRowDeleting="gridView_RowDeleting">
@@ -135,7 +135,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Return Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-left" >></asp:Label>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-left" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                               
