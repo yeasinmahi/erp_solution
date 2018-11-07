@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImportFileManagement.aspx.cs" Inherits="UI.Import.ImportFileManagement" %>
 
-<%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
 <html>
@@ -30,8 +30,8 @@
                 </asp:Panel>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
-                
-                <div style="height: 50px; width: 100% "></div>
+
+                <div style="height: 50px; width: 100%"></div>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <asp:HiddenField runat="server" ID="hdLcId" />
                 <div class="container">
@@ -51,7 +51,7 @@
                                     <asp:TextBox ID="txtLcNumber" CssClass="form-control" runat="server" placeholder="LC Number"></asp:TextBox>
                                 </div>
                                 <div class="col-md-12">
-                                        <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
                             <div class="row" id="infoPanel" style="visibility: hidden">
@@ -129,8 +129,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnDownload" runat="server" class="btn btn-primary form-control" Text="Download" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="Download"/>
-                                            <asp:Button ID="btnView" runat="server" class="btn btn-primary form-control" Text="View File" CommandArgument="<%# Container.DataItemIndex %>"  CommandName="View"/>
+                                            <asp:Button ID="btnDownload" runat="server" class="btn btn-primary form-control" Text="Download" CommandArgument="<%# Container.DataItemIndex %>" CommandName="Download" />
+                                            <asp:Button ID="btnView" runat="server" class="btn btn-primary form-control" Text="View File" CommandArgument="<%# Container.DataItemIndex %>" CommandName="View" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -153,11 +153,12 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnShow" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="gridView" />
                 <asp:PostBackTrigger ControlID="btnAddNewFile" />
             </Triggers>
         </asp:UpdatePanel>
 
-    </form>
+
 
     <style>
         table {
@@ -197,12 +198,31 @@
             itemPanel.style.visibility = 'hidden';
 
         }
+        function popup(url, title) {
+            var w = 900;
+            var h = 500;
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+            
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((height / 2) - (h / 2)) + dualScreenTop;
+            var newwindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+            //var newwindow = window.open(url, 'name', 'width=800,height=600,toolbar=0,menubar=0,location=0');
+            if (window.focus) {
+                newwindow.focus();
+            }
+        }
     </script>
     <style>
         #gridView tr {
             font-size: 14px;
         }
     </style>
+    </form>
 </body>
 </html>
 
