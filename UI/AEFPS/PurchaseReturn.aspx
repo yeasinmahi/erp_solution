@@ -75,7 +75,7 @@
                 <div class="panel panel-default" id="itemPanel">
 
                     <div class="panel-body">
-                        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%">
+                        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" DataKeyNames="intItemID" OnRowDataBound="gridView_RowDataBound" OnRowDeleting="gridView_RowDeleting">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
                                 <asp:TemplateField HeaderText="SL">
@@ -100,12 +100,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Challan No">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-left" Text=''></asp:Label>
+                                        <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-left" Text='<%# Bind("ChallanNo") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Store Location">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblLocation" runat="server" CssClass="pull-left" Text=''></asp:Label>
+                                        <asp:Label ID="lblLocation" runat="server" CssClass="pull-left" Text='<%# Bind("strLocationName") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="MRR Quantity">
@@ -125,17 +125,17 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Closing Stock">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text=''></asp:Label>
+                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("closingStock") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtReturnQty" runat="server" Width="100%" CssClass="form-control input-sm" placeholder="Write quantity here"></asp:TextBox>
+                                        <asp:TextBox ID="txtReturnQty" runat="server" Width="100%" CssClass="form-control input-sm" placeholder="Write quantity here" OnTextChanged="txtReturnQty_TextChanged" AutoPostBack="true"></asp:TextBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Return Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-left" Text=''></asp:Label>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-left" >></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                               
@@ -146,7 +146,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                     <ItemTemplate>
-                                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-sm"/>
+                                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-sm" CommandName="Delete"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

@@ -111,7 +111,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprPurchaseReturnTableAdapter" GeneratorDataComponentClassName="sprPurchaseReturnTableAdapter" Name="sprPurchaseReturn" UserDataComponentName="sprPurchaseReturnTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprPurchaseReturn" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPurchaseReturnDetails" GetMethodModifier="Public" GetMethodName="GetPurchaseReturnDetails" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPurchaseReturnDetails" UserSourceName="GetPurchaseReturnDetails">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprPurchaseReturn" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPurchaseReturnDetails" GetMethodModifier="Public" GetMethodName="GetPurchaseReturnDetails" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetPurchaseReturnDetails" UserSourceName="GetPurchaseReturnDetails">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprPurchaseReturn</CommandText>

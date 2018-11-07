@@ -2,6 +2,7 @@
 using System.Data;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using SAD_BLL.AEFPS;
 using UI.ClassFiles;
 
@@ -12,6 +13,7 @@ namespace UI.AEFPS
         readonly Receive_BLL _bll = new Receive_BLL();
         int _intEnroll;
         DataTable dt = new DataTable();
+        decimal totalAmount = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             _intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -70,6 +72,53 @@ namespace UI.AEFPS
            
            
            
+        }
+
+        protected void txtReturnQty_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            GridViewRow row = (GridViewRow)txt.NamingContainer;
+            Label lblMrrQty = (Label)row.FindControl("lblMrrQty");
+            Label lblRate = (Label)row.FindControl("lblRate");
+            TextBox rtnQty = (TextBox)row.FindControl("txtReturnQty"); 
+            Label lblCostAmount = (Label)row.FindControl("lblCostAmount");
+            decimal costAmount = Convert.ToDecimal(lblCostAmount.Text);
+            decimal mrr = Convert.ToDecimal(lblMrrQty.Text);
+            decimal returnQty = Convert.ToDecimal(rtnQty.Text);
+            
+            if(mrr>=returnQty && costAmount>=returnQty)
+            {
+                int ReturnQuantity = Convert.ToInt32(mrr - returnQty);
+                decimal rate = Convert.ToDecimal(lblRate.Text);
+                decimal ReturnAmount = rate * ReturnQuantity;
+                Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
+                lblReturnAmount.Text = ReturnAmount.ToString();
+                
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Return quantity should be less than MRR quantity and closing stock');", true);
+            }
+            
+
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+
+
+        }
+
+        protected void gridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    totalAmount += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "lblReturnAmount"));
+            //}
+            //txtTotalPurchaseReturnAmount.Text = totalAmount.ToString();
+
+        }
+
+        protected void gridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
         }
     }
 }
