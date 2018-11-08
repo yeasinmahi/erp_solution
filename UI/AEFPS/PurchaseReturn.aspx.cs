@@ -49,9 +49,6 @@ namespace UI.AEFPS
             gridView.DataSource = dt;
             gridView.DataBind();
 
-            //GridViewRow row = (GridViewRow)gridView.NamingContainer;
-            //Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
-            //lblReturnAmount.Text = "0.00";
 
             if (dt.Rows.Count < 1)
             {
@@ -125,15 +122,6 @@ namespace UI.AEFPS
 
         }
 
-        protected void gridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    totalAmount += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "lblReturnAmount"));
-            //}
-            //txtTotalPurchaseReturnAmount.Text = totalAmount.ToString();
-
-        }
 
         protected void gridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
