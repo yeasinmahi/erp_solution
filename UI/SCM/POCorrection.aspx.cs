@@ -175,13 +175,7 @@ namespace UI.SCM
                     ysnApprove = dt.Rows[0]["ysnApprove"].ToString();
                     intSingleApproveBy = dt.Rows[0]["ysnApprove"].ToString();
                     strPo = dt.Rows[0]["strPoFor"].ToString();
-                    // only this two enroll can update PO even though PO already approved.
-                    if ((enroll== 159459 && strPo == "Local") || (enroll==110681 && strPo == "Local") || (enroll == 1246 && strPo == "Fabrication")) 
-                    {
-                        update();
-                    }
-                    else
-                    {
+                   
                         //PO Correction cannot be possible after approve
                         if (string.IsNullOrEmpty(ysnApprove) || string.IsNullOrEmpty(intSingleApproveBy))
                         {
@@ -189,9 +183,18 @@ namespace UI.SCM
                         }
                         else if (!string.IsNullOrEmpty(ysnApprove) || !string.IsNullOrEmpty(intSingleApproveBy))
                         {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO cannot update.PO already approved');", true);
+                        // only this two enroll can update PO even though PO already approved.
+                            if ((enroll == 159459 && strPo == "Local") || (enroll == 110681 && strPo == "Local") || (enroll == 1246 && strPo == "Fabrication"))
+                            {
+                                update();
+
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO cannot update.PO already approved');", true);
+                            }
+
                         }
-                    }
                    
                 }
                 catch { }

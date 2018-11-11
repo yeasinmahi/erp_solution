@@ -204,6 +204,7 @@
     <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
+    <Content Include="AEFPS\DamageEntry.aspx" />
     <Content Include="AEFPS\fpsDueReport.aspx" />
     <Content Include="AEFPS\FpsRackItemIssue.aspx" />
     <Content Include="AEFPS\FpsSalesEntry.aspx" />
@@ -1999,6 +2000,13 @@
     </Compile>
     <Compile Include="AEFPS\CreditReport.aspx.designer.cs">
       <DependentUpon>CreditReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\DamageEntry.aspx.cs">
+      <DependentUpon>DamageEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\DamageEntry.aspx.designer.cs">
+      <DependentUpon>DamageEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\fpsDueReport.aspx.cs">
       <DependentUpon>fpsDueReport.aspx</DependentUpon>

@@ -48,7 +48,6 @@
                                 <div class="col-md-6">
                                     <asp:Label ID="Label1" runat="server" Text="Item Name"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-
                                     <asp:TextBox ID="txtItemName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
 
                                 </div>
