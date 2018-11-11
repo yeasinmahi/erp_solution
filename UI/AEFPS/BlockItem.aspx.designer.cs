@@ -121,12 +121,30 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// gridView control.
+        /// activeItemGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridView;
+        protected global::System.Web.UI.WebControls.GridView activeItemGridView;
+        
+        /// <summary>
+        /// btnInActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInActive;
+        
+        /// <summary>
+        /// InActiveItemGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView InActiveItemGridView;
     }
 }

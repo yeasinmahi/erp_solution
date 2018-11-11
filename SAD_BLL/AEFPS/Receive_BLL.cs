@@ -180,7 +180,49 @@ namespace SAD_BLL.AEFPS
             }
             catch { return new DataTable(); }
         }
-        
+        public DataTable GetActiveItemInfo(int itemId, int whId)
+        {
+            DataTable1TableAdapter adp = new DataTable1TableAdapter();
+            try
+            {
+                return adp.GetActiveItemInfo(itemId, whId);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetInActiveItemInfo(int whId)
+        {
+            DataTable3TableAdapter adp = new DataTable3TableAdapter();
+            try
+            {
+                return adp.GetInActiveItemInfo(whId);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable InactiveItem(string strRemarks ,int itemId, int whId)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                return adp.InactiveItem(strRemarks, itemId, whId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public DataTable ActiveItem(int itemId, int whId)
+        {
+            DataTable4TableAdapter adp = new DataTable4TableAdapter();
+            try
+            {
+                return adp.ActiveItem(itemId, whId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
 
     }

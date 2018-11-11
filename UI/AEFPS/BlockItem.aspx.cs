@@ -4,6 +4,7 @@ using System.Data;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using SAD_BLL.AEFPS;
 
 namespace UI.AEFPS
@@ -12,7 +13,7 @@ namespace UI.AEFPS
     {
         readonly Receive_BLL _bll = new Receive_BLL();
         int _intEnroll=369116;
-        DataTable dt = new DataTable();
+        DataTable _dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             //_intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -20,6 +21,7 @@ namespace UI.AEFPS
             {
                 pnlUpperControl.DataBind();
                 LoadWh();
+                LoadInActiveGridView();
             }
             
             
@@ -30,6 +32,11 @@ namespace UI.AEFPS
             string itemName = txtItemName.Text;
             if (!string.IsNullOrWhiteSpace(itemName))
             {
+                string itemNameFull = txtItemName.Text;
+                int itemId = Utility.Common.GetIdFromString(itemNameFull);
+                int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+                
+                LoadGrid(itemId,whId);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             }
             else
@@ -50,6 +57,94 @@ namespace UI.AEFPS
         public static List<string> GetItem(string prefix)
         {
             return Receive_BLL.GetItem(prefix);
+        }
+
+        protected void activeItemGridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            _dt = (DataTable)ViewState["grid"];
+            if (_dt.Rows.Count > 0)
+            {
+                _dt.Rows.RemoveAt(e.RowIndex);
+                activeItemGridView.DataSource = _dt;
+                activeItemGridView.DataBind();
+                ViewState["grid"] = _dt;
+                if (_dt.Rows.Count > 0)
+                {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
+                }
+            }
+        }
+        public void LoadGrid(int itemId,int whId)
+        {
+            _dt = _bll.GetActiveItemInfo(itemId, whId);
+            DataTable viewStateData = (DataTable) ViewState["grid"];
+            if (viewStateData !=null && viewStateData.Rows.Count>0)
+            {
+                foreach (DataRow dr in viewStateData.Rows)
+                {
+                    _dt.Rows.Add(dr.ItemArray);
+                }
+
+            }
+            activeItemGridView.DataSource = _dt;
+            activeItemGridView.DataBind();
+            ViewState["grid"] = _dt;
+
+        }
+
+        protected void btnInActive_OnClick(object sender, EventArgs e)
+        {
+            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            foreach (GridViewRow row in activeItemGridView.Rows)
+            {
+                string remarks = ((TextBox)row.FindControl("txtRemarks")).Text;
+                if (!string.IsNullOrWhiteSpace(remarks))
+                {
+                    int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemid")).Text);
+                    if (_bll.InactiveItem(remarks, itemId, whId) == null)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Can not In-Active "+itemId+" ItemId');", true);
+                        return;
+                    }
+                }
+                else
+                {
+                    
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
+                    return;
+                }
+            }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully In-Activated all items.');", true);
+            LoadInActiveGridView();
+        }
+
+        protected void InActiveItemGridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            int itemId = Convert.ToInt32(((Label) InActiveItemGridView.Rows[e.RowIndex].FindControl("lblItemid")).Text);
+            if (_bll.ActiveItem(itemId, whId)!=null)
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully Activated item "+itemId+"');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Somethings Error occured.');", true);
+            }
+
+            LoadInActiveGridView();
+        }
+
+        private void LoadInActiveGridView()
+        {
+            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            InActiveItemGridView.DataSource = _bll.GetInActiveItemInfo(whId);
+            InActiveItemGridView.DataBind();
         }
     }
 }
