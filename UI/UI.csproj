@@ -201,6 +201,7 @@
     <Content Include="Accounts\Voucher\JournalVoucher.aspx" />
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
+    <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
     <Content Include="AEFPS\fpsDueReport.aspx" />
@@ -1977,6 +1978,13 @@
     </Compile>
     <Compile Include="AEFPS\BarcodeItemBridge.aspx.designer.cs">
       <DependentUpon>BarcodeItemBridge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\BlockItem.aspx.cs">
+      <DependentUpon>BlockItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\BlockItem.aspx.designer.cs">
+      <DependentUpon>BlockItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\CreateLocation.aspx.cs">
       <DependentUpon>CreateLocation.aspx</DependentUpon>

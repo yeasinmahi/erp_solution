@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -8,7 +11,7 @@ namespace Utility
 {
     public class Common
     {
-       
+
         public static PropertyInfo[] GetProperties(object obj)
         {
             return obj.GetType().GetProperties();
@@ -37,7 +40,7 @@ namespace Utility
 
         public static string ConvertUpperCamelCaseToTitle(string value)
         {
-            var s= Regex.Replace(value, "([A-Z])", " $1").Trim();
+            var s = Regex.Replace(value, "([A-Z])", " $1").Trim();
             return ConvertToTitleCase(s);
         }
         public static string ConvertToTitleCase(string value)
@@ -46,40 +49,41 @@ namespace Utility
             return textInfo.ToTitleCase(value.ToLower());
         }
 
-        //public static bool CreateFile(string fileName)
-        //{
-        //    if (!File.Exists(path))
-        //    {
-        //        using (StreamWriter sw = File.CreateText(path))
-        //        {
-        //            foreach (var line in employeeList.Items)
-        //            {
-        //                sw.WriteLine(((Employee)line).FirstName);
-        //                sw.WriteLine(((Employee)line).LastName);
-        //                sw.WriteLine(((Employee)line).JobTitle);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        StreamWriter sw = File.AppendText(path);
+        public static List<string> CreateAutoSearch(DataTable dt, string prefix, string textField, int valueField)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                prefix = prefix.Trim().ToLower();
+                DataTable tbl = new DataTable();
+                try
+                {
+                    var rows = from row in dt.AsEnumerable()
+                               where row.Field<string>(textField).ToLower().Contains(prefix) ||
+                                     row.Field<int>(valueField).ToString().Contains(prefix)
+                               select row;
+                    if (rows.Any())
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return new List<string>();
+                }
 
-        //        foreach (var line in employeeList.Items)
-        //        {
-        //            sw.WriteLine(((Employee)line).FirstName);
-        //            sw.WriteLine(((Employee)line).LastName);
-        //            sw.WriteLine(((Employee)line).JobTitle);
-        //        }
-        //        sw.Close();
-        //    }
-        //}
+                if (tbl.Rows.Count > 0)
+                {
+                    List<string> retStr = new List<string>();
+                    for (int i = 0; i < tbl.Rows.Count; i++)
+                    {
+                        retStr.Add(tbl.Rows[i][textField] + " [" + tbl.Rows[i][valueField] + "]");
+                    }
 
-        //public static bool Write()
-        //{
-        //    using (StreamWriter writetext = new StreamWriter("write.txt"))
-        //    {
-        //        writetext.WriteLine("writing in text file");
-        //    }
-        //}
+                    return retStr;
+                }
+            }
+            return new List<string>();
+
+        }
     }
 }
