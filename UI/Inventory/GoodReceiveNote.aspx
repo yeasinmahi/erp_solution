@@ -275,21 +275,7 @@
 
     </form>
     
-    <style>
-        table {
-            max-width: 100%;
-            background-color: transparent;
-            text-align:center;
-        }
-        th {
-            text-align: center;
-        }
-
-        .table {
-            width: 100%;
-            margin-bottom: 20px;
-        } 
-    </style>
+    
     <script type="text/javascript">
        
         function showPanel() {
@@ -367,7 +353,20 @@
         }); 
     </script>
     <style>
-        #gridView tr
+        table {
+            max-width: 100%;
+            background-color: transparent;
+            text-align:center;
+        }
+        th {
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+        } 
+         #gridView tr
         {
             font-size: 10px;
         }

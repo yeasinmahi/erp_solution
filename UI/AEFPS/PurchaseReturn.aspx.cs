@@ -62,12 +62,7 @@ namespace UI.AEFPS
             gridView.DataSource = _dt;
             gridView.DataBind();
         }
-        protected void btnSubmit_OnClick(object sender, EventArgs e)
-        {
-           
-           
-           
-        }
+       
         protected void txtReturnQty_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -128,5 +123,15 @@ namespace UI.AEFPS
                 }
             }
         }
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+
+
     }
 }
