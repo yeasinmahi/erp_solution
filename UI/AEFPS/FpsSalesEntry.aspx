@@ -106,26 +106,34 @@
         <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" />
         <asp:HiddenField ID="hdnActualSales" runat="server" />
         <asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
-       <div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> SAELS ENTRY FORM</b><hr /></div>
+       <%--<div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> SALES ENTRY FORM</b><hr /></div>--%>
 
         <table  class="tbldecoration" style="width:auto; float:left;">
+         <tr>
+            <td style="text-align:center; font-weight:bold; background-color:cadetblue; font-size:18px; color:#000000;" colspan="4"><asp:Label ID="Label11" runat="server"><b> SALES ENTRY FORM</b><hr /></asp:Label></td>                
+            
+            <td style="text-align:center; font-weight:bold; background-color:cadetblue; font-size:18px; color:#000000;" colspan="2"><asp:Label ID="Label13" runat="server"><b> Voucher Re-Print</b><hr /></asp:Label></td>
+            
+        </tr>   
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblInDate" runat="server" CssClass="lbl" Text="Wear House :"></asp:Label></td>                
             <td><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" runat="server" Width="195px"></asp:DropDownList></td>                                
             <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="TextBox1" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox></td> 
-            <td style="text-align:right;"><asp:Label ID="lblMemoCount" runat="server" CssClass="lbl" Text="This Month No. Of Memo :"></asp:Label></td>
-             <td style="text-align:left;"><asp:Label ID="lblMemoCounttxt" runat="server" CssClass="lbl"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="lblVCNo" runat="server" CssClass="lbl" Text="Voucher No :"></asp:Label></td>
+            <td style="text-align:left;"><asp:TextBox ID="txtVCNo" ReadOnly="True" runat="server" CssClass="txtBox" ></asp:TextBox></td>
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblemployeesearch" runat="server" CssClass="lbl" Text="Employee Search :"></asp:Label></td>                
-            <td colspan="3"><asp:TextBox ID="txtEmployee" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="500px" OnTextChanged="txtEmployee_TextChanged"  ></asp:TextBox>
+            <td colspan="3"><asp:TextBox ID="txtEmployee" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="485px" OnTextChanged="txtEmployee_TextChanged"  ></asp:TextBox>
           <%--  <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtEmployee"
             ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender>--%>
-            <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" /></td>                                                          
+            <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" /></td> 
+            <td style="text-align:right;" colspan="2"><asp:Button ID="btnClearPrinter" runat="server" Text="Clear Printer" OnClick="btnClearPrinter_Click"/>
+            <asp:Button ID="btnReprint" runat="server" Text="Re-Print" OnClick="btnReprint_Click" OnClientClick="return Validate();"/></td>
         </tr>
         <tr><td colspan="6"><hr /></td></tr>             
         <tr><td colspan="6" style="font-weight:bold; background-color:cadetblue; font-size:18px; color:#000000;">Employee Info:<hr /></td></tr>
@@ -241,5 +249,17 @@
     </ContentTemplate>
     </asp:UpdatePanel>
     </form>
+    <script>
+        function Validate() {
+            var txtVoucherName = document.getElementById("txtVCNo").value;
+
+            if (txtVoucherName === null || txtVoucherName === "") {
+                alert("Voucher number can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
 </body>
 </html>

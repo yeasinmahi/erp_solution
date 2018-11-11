@@ -20,7 +20,7 @@ namespace UI.SCM
         DateTime dtePODate, dteLastShipmentDate;
         decimal monFreight, monPacking, monDiscount;
         
-        string filePathForXML; string xmlString = ""; string xml;
+        string filePathForXML; string xmlString = ""; string xml, strPo;
         string intemid; string itemname; string specification; string uom; string qty; string rate; string vat;
         string ait; string total; string ysnExisting; string message, potype,ysnApprove, intSingleApproveBy;
 
@@ -169,13 +169,14 @@ namespace UI.SCM
                 try
                 {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    //enroll = 1246;
                     intPOID = Convert.ToInt32(txtPONo.Text);
                     dt = obj.GetPoData(45, "", 0, intPOID, DateTime.Now, enroll);
                     ysnApprove = dt.Rows[0]["ysnApprove"].ToString();
                     intSingleApproveBy = dt.Rows[0]["ysnApprove"].ToString();
-
+                    strPo = dt.Rows[0]["strPoFor"].ToString();
                     // only this two enroll can update PO even though PO already approved.
-                    if (enroll==373605 || enroll==1039 ) 
+                    if ((enroll== 159459 && strPo == "Local") || (enroll==110681 && strPo == "Local") || (enroll == 1246 && strPo == "Fabrication")) 
                     {
                         update();
                     }
