@@ -85,5 +85,11 @@ namespace Utility
             return new List<string>();
 
         }
+        public static int GetIdFromString(string text)
+        {
+            string[] arr = text.Split(new[] { '[', ']' }, StringSplitOptions.None);
+            string id = arr[1];
+            return Convert.ToInt32(id);
+        }
     }
 }
