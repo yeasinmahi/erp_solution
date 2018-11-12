@@ -23,8 +23,6 @@ namespace UI.AEFPS
                 LoadWh();
                 LoadInActiveGridView();
             }
-            
-            
         }
 
         protected void btnAdd_OnClick(object sender, EventArgs e)
@@ -37,6 +35,7 @@ namespace UI.AEFPS
                 int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
                 
                 LoadGrid(itemId,whId);
+                txtItemName.Text = string.Empty;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             }
             else
@@ -81,6 +80,11 @@ namespace UI.AEFPS
         public void LoadGrid(int itemId,int whId)
         {
             _dt = _bll.GetActiveItemInfo(itemId, whId);
+            if (_dt.Rows.Count<1)
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Warning", "alert('This items is not in stock or already inactive.')", true);
+                return;
+            }
             DataTable viewStateData = (DataTable) ViewState["grid"];
             if (viewStateData !=null && viewStateData.Rows.Count>0)
             {
@@ -88,11 +92,11 @@ namespace UI.AEFPS
                 {
                     _dt.Rows.Add(dr.ItemArray);
                 }
-
             }
             activeItemGridView.DataSource = _dt;
             activeItemGridView.DataBind();
             ViewState["grid"] = _dt;
+
 
         }
 
@@ -120,8 +124,13 @@ namespace UI.AEFPS
                     return;
                 }
             }
+
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "ShowHideGridviewPanels();", true);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully In-Activated all items.');", true);
             LoadInActiveGridView();
+            ViewState["grid"] = null;
+            activeItemGridView.DataSource = null;
+            activeItemGridView.DataBind();
         }
 
         protected void InActiveItemGridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -136,7 +145,6 @@ namespace UI.AEFPS
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Somethings Error occured.');", true);
             }
-
             LoadInActiveGridView();
         }
 
