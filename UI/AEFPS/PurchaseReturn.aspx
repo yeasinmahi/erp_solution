@@ -12,7 +12,6 @@
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
 
-
 </head>
 <body>
     <form id="form1" runat="server">
@@ -49,7 +48,7 @@
                                     <asp:Label ID="Label1" runat="server" Text="MRR Number"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
 
-                                    <asp:TextBox ID="txtMrrNumber" TextMode="Number" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Please Input MRR Number Here"></asp:TextBox>
+                                    <asp:TextBox ID="txtMrrNumber" TextMode="Number" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Please Input MRR Number Here"></asp:TextBox>
 
                                 </div>
                             </div>
@@ -72,10 +71,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default" id="itemPanel" style="visibility: hidden">
+                <div class="panel panel-default hidden" id="itemPanel">
 
                     <div class="panel-body">
-                        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%">
+                        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" DataKeyNames="intItemID" OnRowDeleting="gridView_RowDeleting">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
                                 <asp:TemplateField HeaderText="SL">
@@ -84,69 +83,69 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item ID">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtItem" runat="server" Text='<%# Bind("intItem") %>'></asp:TextBox>
-                                    </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="iblItem" runat="server" Text='<%# Bind("intItem") %>'></asp:Label>
+                                        <asp:Label ID="iblItemid" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item Name">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtItemName" runat="server" Text='<%# Bind("strItem") %>'></asp:TextBox>
-                                    </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItem") %>'></asp:Label>
+                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("ItemName") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Description">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtDes" runat="server" Text='<%# Bind("strDes") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <asp:TemplateField HeaderText="UOM">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblDsc" runat="server" CssClass="pull-left" Text='<%# Bind("strDes") %>'></asp:Label>
+                                        <asp:Label ID="lblUom" runat="server" CssClass="pull-left" Text='<%# Bind("strUoM") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="UoM">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtUoM" runat="server" Text='<%# Bind("strUoM") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <asp:TemplateField HeaderText="Challan No">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                        <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-left" Text='<%# Bind("ChallanNo") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="PO Quantity">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtPoQnt" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <asp:TemplateField HeaderText="Store Location">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblPoQnt" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblLocation" runat="server" CssClass="pull-left" Text='<%# Bind("strLocationName") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Previous Receive">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtPreRcvQnt" runat="server" Text='<%# Bind("monPreRcvQty","{0:n2}") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <asp:TemplateField HeaderText="MRR Quantity">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblPreRcvQnt" runat="server" Text='<%# Bind("monPreRcvQty","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblMrrQty" runat="server" Text='<%# Bind("numReceiveQty") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Remaining Quantity">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtRemainingQnt" runat="server" Text='<%# Convert.ToDecimal(Eval("numPOQty","{0:n2}")) - Convert.ToDecimal(Eval("monPreRcvQty","{0:n2}")) %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRemainingQnt" runat="server" Text='<%# Convert.ToDecimal(Eval("numPOQty","{0:n2}")) - Convert.ToDecimal(Eval("monPreRcvQty","{0:n2}")) %>'></asp:Label>
+                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Challan Quantity" ItemStyle-Width="100px">
+                                <asp:TemplateField HeaderText="Cost Amount">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="receiveQuantity" runat="server" Width="100%" placeholder="Quantity"></asp:TextBox>
+                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Closing Stock">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("closingStock","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtReturnQty" runat="server" Width="100%" CssClass="form-control input-sm" placeholder="Write quantity here" OnTextChanged="txtReturnQty_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Return Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("ReturnAmount") %>' ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                              
                                 <asp:TemplateField HeaderText="Remarks" ItemStyle-Width="200px">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="receiveRemarks" runat="server" Width="100%" placeholder="Write remarks here...."></asp:TextBox>
+                                        <asp:TextBox ID="txtRemarks" runat="server" Width="100%" CssClass="form-control input-sm" placeholder="Write remarks here...."></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-sm" CommandName="Delete"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -161,11 +160,11 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
-
-                    </div>
-                    <div class="col-md-2 pull-right">
+                        <div class="form-group pull-right">
                         <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary form-control" Text="Submit" Height="30px" OnClick="btnSubmit_OnClick" />
                     </div>
+                    </div>
+                    
 
                 </div>
 
