@@ -34,7 +34,7 @@
                 <div class="container">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Item Active & Inactive" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="Item Inactive Form" Font-Bold="true" Font-Size="16px"></asp:Label>
 
                         </div>
                         <div class="panel-body">
@@ -141,7 +141,7 @@
                     </div>
                     <div class="panel panel-default" id="itemPanel">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Inactive Items" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="Item Active Form" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
                             <asp:GridView ID="InActiveItemGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%"
@@ -232,11 +232,11 @@
     </form>
     <script>
         function showPanel() {
-            var txtItemName = document.getElementById("txtItemName").value;
-            if (txtItemName === null || txtItemName === "") {
-                alert("Item Name can not be empty");
-                return false;
-            }
+            //var txtItemName = document.getElementById("txtItemName").value;
+            //if (txtItemName === null || txtItemName === "") {
+            //    alert("Item Name can not be empty");
+            //    return false;
+            //}
             var itemPanel = document.getElementById("btnInActive");
             itemPanel.classList.remove("hidden");
             return true;

@@ -127,11 +127,11 @@
 
                     <table class="tbldecoration" style="width: auto; float: left;">
                         <tr>
-                            <td style="text-align: left; font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;" colspan="4">
-                                <asp:Label ID="Label11" runat="server"><b> SALES ENTRY FORM</b><hr /></asp:Label></td>
+                            <td style="text-align: left; font-weight: bold; background-color: #385d5e; font-size: 18px; color: #ffffff;" colspan="4">
+                                <asp:Label ID="Label11" runat="server"><b> SALES ENTRY FORM</b></asp:Label></td>
 
-                            <td style="text-align: left; font-weight: bold; background-color: #7bced1; font-size: 18px; color: #000000;" colspan="2">
-                                <asp:Label ID="Label13" runat="server"><b>Re-Print & Clear Printer</b></asp:Label></td>
+                            <td style="text-align: left; font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;" colspan="2">
+                                <asp:Label ID="Label13" runat="server"><b>Re-Print & Clear Printer</b><hr /></asp:Label></td>
 
                         </tr>
                         <tr>
@@ -377,7 +377,8 @@
     </script>
     <style>
         .btnColore {
-            background-color: blue;
+            background-color: #337ab7;
+            font-family: "Helvetica";
             color: white;
         }
     </style>
