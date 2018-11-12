@@ -1233,6 +1233,7 @@
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
+    <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
@@ -6226,9 +6227,17 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
       <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.designer.cs">
       <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx.cs">
+      <DependentUpon>Masson_Program_Bill_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx.designer.cs">
+      <DependentUpon>Masson_Program_Bill_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
       <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
