@@ -12,7 +12,6 @@
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
 
-
 </head>
 <body>
     <form id="form1" runat="server">
@@ -75,7 +74,7 @@
                 <div class="panel panel-default hidden" id="itemPanel">
 
                     <div class="panel-body">
-                        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" DataKeyNames="intItemID" OnRowDataBound="gridView_RowDataBound" OnRowDeleting="gridView_RowDeleting">
+                        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" DataKeyNames="intItemID" OnRowDeleting="gridView_RowDeleting">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
                                 <asp:TemplateField HeaderText="SL">

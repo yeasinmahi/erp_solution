@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,72 +11,58 @@ namespace UI.AEFPS
 {
     public partial class PurchaseReturn : Page
     {
-        readonly Receive_BLL _bll = new Receive_BLL();
-        int _intEnroll;
-        DataTable dt = new DataTable();
-        decimal totalAmount = 0;
+        private readonly Receive_BLL _bll = new Receive_BLL();
+        private int _intEnroll;
+        private DataTable _dt = new DataTable();
+        private decimal _totalAmount;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                pnlUpperControl.DataBind();
+            }
+            
             _intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             LoadWh();
         }
 
         protected void btnShow_OnClick(object sender, EventArgs e)
         {
-            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
             string mrrNumber = txtMrrNumber.Text;
-            dt = _bll.GetPurchase(1,Convert.ToInt32(mrrNumber));
-            if(dt.Rows.Count>0)
-            {
-                txtSupplierName.Text = dt.Rows[0]["strSupplierName"].ToString();
-            }
-            else
-            {
-                txtSupplierName.Text = "";
-            }
-            
+            _dt = _bll.GetPurchase(1,Convert.ToInt32(mrrNumber));
+            txtSupplierName.Text = _dt.Rows.Count>0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
             if (!string.IsNullOrWhiteSpace(mrrNumber))
             {
-
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script","showPanel();", true);
             }
             else
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('MRR can not be blank');", true);
+                return;
             }
-            dt = _bll.GetPurchase(2, Convert.ToInt32(mrrNumber));
-            ViewState["grid"] = dt;
-            gridView.DataSource = dt;
-            gridView.DataBind();
-
-            //GridViewRow row = (GridViewRow)gridView.NamingContainer;
-            //Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
-            //lblReturnAmount.Text = "0.00";
-
-            if (dt.Rows.Count < 1)
+            _dt = _bll.GetPurchase(2, Convert.ToInt32(mrrNumber));
+            LoadGrid();
+            if (_dt.Rows.Count < 1)
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "dataNotFound", "alert('Data Not Found');", true);
             }
-
         }
         private void LoadWh()
         {
-
             ddlWh.DataSource = _bll.DataView(1, "", 0, 0, DateTime.Now, _intEnroll);
             ddlWh.DataTextField = "strName";
             ddlWh.DataValueField = "Id";
             ddlWh.DataBind();
         }
 
-        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        public void LoadGrid()
         {
-           
-           
-           
+            ViewState["grid"] = _dt;
+            gridView.DataSource = _dt;
+            gridView.DataBind();
         }
-
+       
         protected void txtReturnQty_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -93,59 +80,40 @@ namespace UI.AEFPS
                 decimal returnQty = Convert.ToDecimal(rtnQty.Text);
                 if (mrr >= returnQty && costAmount >= returnQty)
                 {
-                    int ReturnQuantity = Convert.ToInt32(mrr - returnQty);
+                    int returnQuantity = Convert.ToInt32(mrr - returnQty);
                     decimal rate = Convert.ToDecimal(lblRate.Text);
-                    decimal ReturnAmount = rate * ReturnQuantity;
-
-                    lblReturnAmount.Text = ReturnAmount.ToString();
-
+                    decimal returnAmount = rate * returnQuantity;
+                    lblReturnAmount.Text = returnAmount.ToString(CultureInfo.CurrentCulture);
                 }
                 else
                 {
-
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Return quantity should be less than MRR quantity and closing stock');", true);
                 }
-
-               
             }
             else
             {
-
-                lblReturnAmount.Text = "0.00";
-               
+                lblReturnAmount.Text = @"0.00";
             }
             for (int index = 0; index < gridView.Rows.Count; index++)
             {
-                totalAmount += Convert.ToDecimal((gridView.Rows[index].FindControl("lblReturnAmount") as Label).Text);
+                _totalAmount += Convert.ToDecimal((gridView.Rows[index].FindControl("lblReturnAmount") as Label)?.Text);
             }
 
-            txtTotalPurchaseReturnAmount.Text = totalAmount.ToString();
+            txtTotalPurchaseReturnAmount.Text = _totalAmount.ToString(CultureInfo.CurrentCulture);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
 
 
         }
-
-        protected void gridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    totalAmount += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "lblReturnAmount"));
-            //}
-            //txtTotalPurchaseReturnAmount.Text = totalAmount.ToString();
-
-        }
-
         protected void gridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            dt = (DataTable)ViewState["grid"];
-            if (dt.Rows.Count > 0)
+            _dt = (DataTable)ViewState["grid"];
+            if (_dt.Rows.Count > 0)
             {
-                //dt.Rows[e.RowIndex].Delete();
-                dt.Rows.RemoveAt(e.RowIndex);
-                gridView.DataSource = dt;
+                _dt.Rows.RemoveAt(e.RowIndex);
+                gridView.DataSource = _dt;
                 gridView.DataBind();
-                ViewState["grid"] = dt;
-                if(dt.Rows.Count>0)
+                ViewState["grid"] = _dt;
+                if(_dt.Rows.Count>0)
                 {
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                 }
@@ -153,13 +121,17 @@ namespace UI.AEFPS
                 {
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
                 }
-
-
             }
-          
+        }
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
 
 
 
         }
+
+
+
     }
 }

@@ -256,6 +256,24 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.HiddenField hdnCNGPerKMOutStation;
         
         /// <summary>
+        /// Label11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label11;
+        
+        /// <summary>
+        /// Label13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label13;
+        
+        /// <summary>
         /// lblInDate control.
         /// </summary>
         /// <remarks>
@@ -292,22 +310,22 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// lblMemoCount control.
+        /// lblVCNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemoCount;
+        protected global::System.Web.UI.WebControls.Label lblVCNo;
         
         /// <summary>
-        /// lblMemoCounttxt control.
+        /// txtVCNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemoCounttxt;
+        protected global::System.Web.UI.WebControls.TextBox txtVCNo;
         
         /// <summary>
         /// lblemployeesearch control.
@@ -344,6 +362,24 @@ namespace UI.AEFPS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdfSearchBoxTextChange;
+        
+        /// <summary>
+        /// btnClearPrinter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClearPrinter;
+        
+        /// <summary>
+        /// btnReprint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReprint;
         
         /// <summary>
         /// Label1 control.
