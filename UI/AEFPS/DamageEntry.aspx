@@ -100,32 +100,32 @@
                                             <asp:Label ID="lblRate" runat="server" Text='<%# Bind("Rate","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Cost Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblCostAmount" runat="server" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Sales Rate">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSalesRate" runat="server" Text='<%# Bind("salesPrice","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Sales Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSalesAmount" runat="server" Text='<%# Bind("salesAmount","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Damage Quantity">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtDamageQty" runat="server" CssClass="form-control input-xs" placeholder="Damage Quantity" OnTextChanged="txtDamageQty_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                            <asp:TextBox ID="txtDamageQty" runat="server" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" placeholder="Damage Quantity" OnTextChanged="txtDamageQty_TextChanged" AutoPostBack="true"></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" Width="60px" />
                                         
@@ -134,10 +134,10 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Damage Amount">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDamageAmount" runat="server"></asp:Label>
+                                            <asp:Label ID="lblDamageAmount" runat="server" DataFormatString="{0:0.00}"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>

@@ -100,9 +100,14 @@ namespace UI.AEFPS
             TextBox txt = (TextBox)sender;
             GridViewRow row = (GridViewRow)txt.NamingContainer;
             Label rate = (Label)row.FindControl("lblRate");
+            Label stocklQty = (Label)row.FindControl("lblStock");
             TextBox DamageQty = (TextBox)row.FindControl("txtDamageQty");
-            double Rate, Damage_qty,Damage_Amount;
-            Damage_Amount = Convert.ToDouble(rate.Text) * Convert.ToDouble(DamageQty.Text);
+            double Rate, Damage_qty=0,Damage_Amount=0,stock_qty=0;
+            if(Damage_qty<=stock_qty)
+            {
+                Damage_Amount = Convert.ToDouble(rate.Text) * Convert.ToDouble(DamageQty.Text);
+            }
+            
             Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
             dmgAmount.Text = Damage_Amount.ToString();
 
