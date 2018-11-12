@@ -5765,7 +5765,7 @@ namespace SAD_DAL.AEFPS.ReceiveTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"select distinct itm.intItemMasterID,(strName+' '+strDescription+' '+strPartNo) ItemName,itm.strUoM,rcv.numStockQty as ClosingStock
+            this._commandCollection[0].CommandText = @"select distinct itm.intItemMasterID,(strName+' '+ISNULL(strDescription,'')+' '+ISNULL(strPartNo,'')) ItemName,itm.strUoM,rcv.numStockQty as ClosingStock
 ,rcv.numMRRPrice as Rate,(rcv.numStockQty*rcv.numMRRPrice) costAmount,rcv.numSPrice as salesPrice,(rcv.numStockQty*rcv.numSPrice) salesAmount
 from ERP_Inventory.dbo.tblItemMasterList itm 
 inner join  ERP_FPS.dbo.tblReceive rcv on rcv.intItemID = itm.intItemMasterID
@@ -6118,7 +6118,7 @@ group by itm.intItemMasterID,itm.strUoM,rcv.numMRRPrice,rcv.numSPrice,strName,st
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"select distinct itm.intItemMasterID,(strName+' '+strDescription+' '+strPartNo) ItemName,itm.strUoM,rcv.numStockQty as ClosingStock
+            this._commandCollection[0].CommandText = @"select distinct itm.intItemMasterID,(strName+' '+ISNULL(strDescription,'')+' '+ISNULL(strPartNo,'')) ItemName,itm.strUoM,rcv.numStockQty as ClosingStock
 ,rcv.numMRRPrice as Rate,(rcv.numStockQty*rcv.numMRRPrice) costAmount,rcv.numSPrice as salesPrice,(rcv.numStockQty*rcv.numSPrice) salesAmount,rcv.strRemarks
 from ERP_Inventory.dbo.tblItemMasterList itm 
 inner join  ERP_FPS.dbo.tblReceive rcv on rcv.intItemID = itm.intItemMasterID

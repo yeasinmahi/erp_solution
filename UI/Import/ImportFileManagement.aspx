@@ -85,7 +85,9 @@
                         </div>
                     </div>
                     <div class="panel panel-default" id="itemPanel" style="visibility: hidden">
-
+                        <div class="panel-heading">
+                            <asp:Label runat="server" Text="Import File Details" Font-Bold="true" Font-Size="16px"></asp:Label>
+                        </div>
                         <div class="panel-body">
                             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" OnRowCommand="gridView_OnRowCommand">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
