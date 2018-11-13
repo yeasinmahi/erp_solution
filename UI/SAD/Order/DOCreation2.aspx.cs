@@ -501,11 +501,12 @@ namespace UI.SAD.Order
             string monsupplv = "";
             string moncustom = "";
             string moncompan = "";
+            bool ysndiscntallow = false;
             ItemPromotion ip = new ItemPromotion();
             SAD_BLL.Item.Item it = new SAD_BLL.Item.Item();
             it.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, rdoSalesType.SelectedValue, ref coaId, ref coaName);
             it.GetDeductionalamountinfobyItemId(ddlUnit.SelectedValue, hdnProduct.Value, ref discntamnt, ref mondamg, ref monspecial, ref monsubsidiary, ref monsupplv, ref moncustom, ref moncompan);
-
+            it.discountallowstatus(ddlUnit.SelectedValue, ddlSo.SelectedValue,ref ysndiscntallow);
             
             string monsuplv = "";
             string moncusv = "";
@@ -515,10 +516,14 @@ namespace UI.SAD.Order
 
             //double totalprdctprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value)));
             double totalprdctprice = double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value);
-            double distaka = 0.00;
-            double discnttaka = Convert.ToDouble(discntamnt)* Convert.ToDouble(txtQun.Text);
-
+            double discnttaka = 0.00;
             double calculteddiscount;
+
+            if (ysndiscntallow == true) { discnttaka = Convert.ToDouble(discntamnt) * Convert.ToDouble(txtQun.Text); }
+            else {  discnttaka = double.Parse("0.00"); }
+           
+
+         
 
 
             if (ddlUnit.SelectedValue == "90")
@@ -530,6 +535,9 @@ namespace UI.SAD.Order
 
                 else { calculteddiscount = double.Parse("0.00"); }
             }
+
+
+
             else { calculteddiscount = discnttaka; }
 
             if (mondamg == "" || mondamg.Length <= 0) { mondamg = "0"; }

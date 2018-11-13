@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <td>
-                           &nbsp; 
+                        <asp:Label ID="lblBillNo" runat="server" Text="Bill No:         "></asp:Label>
                     </td>
 
                 </tr>
@@ -156,7 +156,7 @@
                <tr>
                   
                    <td>
-                      <asp:GridView ID="dgbCustomerprintcopy" runat="server"  AllowPaging="true" PageSize="25" OnPageIndexChanging="dgbCustomerprintcopy_PageIndexChanging" OnRowDataBound="dgbCustomerprintcopy_RowDataBound" AutoGenerateColumns="false" CellPadding="5" ShowFooter="true">
+                      <asp:GridView ID="dgbCustomerprintcopy" runat="server"  AllowPaging="True" PageSize="25" OnPageIndexChanging="dgbCustomerprintcopy_PageIndexChanging" OnRowDataBound="dgbCustomerprintcopy_RowDataBound" AutoGenerateColumns="False" ShowFooter="True">
                           
                     <Columns>
                        <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %>
@@ -173,9 +173,9 @@
                         <asp:BoundField DataField="strItmname" HeaderText="Item Name" SortExpression="strItmname" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="stringPONumber" HeaderText="P.O Number" SortExpression="stringPONumber" ItemStyle-HorizontalAlign="Center" >
+                       <%-- <asp:BoundField DataField="stringPONumber" HeaderText="P.O Number" SortExpression="stringPONumber" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                        </asp:BoundField>
+                        </asp:BoundField>--%>
                         <asp:BoundField DataField="strDONumber" HeaderText="D.O Number" SortExpression="strDONumber" ItemStyle-HorizontalAlign="Center" >
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
@@ -208,14 +208,6 @@
 
 
                     </Columns>
-                     <FooterStyle BackColor="#CCCCCC" />
-                  <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                  <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                  <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                  <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                  <SortedAscendingHeaderStyle BackColor="#808080" />
-                  <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                  <SortedDescendingHeaderStyle BackColor="#383838" />
 
                     </asp:GridView>
 
@@ -231,7 +223,7 @@
             <table  style="width:1000px; text-align:left;">
                 <tr>
                     <td>
-                      <asp:Label ID="lblQuantity" runat="server" Text="Quantity in words : " ></asp:Label>
+                      <asp:Label ID="lblQuantity" runat="server" Text="In words : " ></asp:Label>
                          <asp:Label ID="lbldataQuantity" runat="server"></asp:Label>
                     </td>
                      <td>
@@ -268,6 +260,20 @@
                     <td>
                         <asp:Label ID="lbhalf" runat="server" Text="On behalf of Akij Cement Company Ltd."></asp:Label>
                     </td>
+                </tr>
+                <tr>
+                     <td class="auto-style1">
+
+                         &nbsp;
+                    </td>
+                     
+                </tr>
+                  <tr>
+                     <td class="auto-style1">
+
+                         &nbsp;
+                    </td>
+                     
                 </tr>
             </table>
         </div>
