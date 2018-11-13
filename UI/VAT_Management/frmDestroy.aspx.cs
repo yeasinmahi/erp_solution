@@ -108,7 +108,7 @@ namespace UI.VAT_Management
             {
 
             }
-            txtNuse.Text = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(hdnperVat.Value)).ToString();
+            txtNuse.Text = (decimal.Parse(txtCreditqty.Text) * decimal.Parse(lblMaterialUserStandard.Text)).ToString();
         }
 
         private void getChallaninfo()
@@ -243,7 +243,7 @@ namespace UI.VAT_Management
             else { dgvVatProduct.DataSource = ""; }
             dgvVatProduct.DataBind();
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string mid, string MaterialName, string qty, string values, string sdnew, string totaluse, string challanno,string dteCdate,string usepar, string pqty,string sdv, string pervat,string rbit,string uom,string totalvat)
+        private XmlNode CreateItemNode(XmlDocument doc, string mid, string MaterialName, string qty, string values, string sdnew, string totaluse, string challanno, string dteCdate, string usepar, string pqty, string sdv, string pervat, string rbit, string uom, string totalvat)
         {
             XmlNode node = doc.CreateElement("ItemAdd");
 

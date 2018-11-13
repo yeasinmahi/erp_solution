@@ -185,9 +185,11 @@
         <ItemTemplate><asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("qty","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
+        
+                  
        
-        <asp:TemplateField HeaderText="SD" SortExpression="sd">
-        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew","{0:0.0}") %>' Width="50px"></asp:Label>
+         <asp:TemplateField HeaderText="Per use" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblUseper" runat="server" Text='<%# Bind("Usepar","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
       
@@ -199,22 +201,28 @@
         <ItemTemplate><asp:Label ID="lblChallanno" runat="server" Text='<%# Bind("Challanno") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Per use" SortExpression="VAT">
-        <ItemTemplate><asp:Label ID="lblUseper" runat="server" Text='<%# Bind("Usepar","{0:n0}") %>' Width="50px"></asp:Label>
+         <asp:TemplateField HeaderText="Challan Date" SortExpression="VAT">
+        <ItemTemplate><asp:Label ID="lblChallandate" runat="server" Text='<%# Bind("dtechallandate") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
+       
         <asp:TemplateField HeaderText="Purchase Qty" SortExpression="VAT">
         <ItemTemplate><asp:Label ID="lblpqty" runat="server" Text='<%# Bind("pqty","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
        
       
-            
-        <asp:TemplateField HeaderText="SD Chargeable Value" SortExpression="rate">
+         <asp:TemplateField HeaderText="SD Chargeable Value" SortExpression="rate">
         <ItemTemplate><asp:Label ID="lblsdv" runat="server"   Text='<%# Bind("sdv","{0:n0}") %>' Width="120px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="120px" />
         <FooterTemplate><asp:Label ID="lblsdvss" runat="server" DataFormatString="{0:0.0}" Text="<%# totalsdv %>" /></FooterTemplate>
         </asp:TemplateField>
 
+       
+        <asp:TemplateField HeaderText="SD" SortExpression="sd">
+        <ItemTemplate><asp:Label ID="lblsd" runat="server" Text='<%# Bind("sdnew","{0:0.0}") %>' Width="50px"></asp:Label>
+        </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+  
 
          <asp:TemplateField HeaderText="Total Vat" SortExpression="rate">
         <ItemTemplate><asp:Label ID="lblTvat" runat="server"   Text='<%# Bind("totalvat","{0:n0}") %>' Width="120px"></asp:Label>
@@ -226,7 +234,7 @@
         <ItemTemplate><asp:Label ID="lblpervat" runat="server" Text='<%# Bind("pervat","{0:n0}") %>' Width="50px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
-
+       
         <asp:TemplateField HeaderText="Total Rebit" SortExpression="rate">
         <ItemTemplate><asp:Label ID="lblpervat" runat="server"   Text='<%# Bind("rbit","{0:n0}") %>' Width="80px"></asp:Label>
         </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
