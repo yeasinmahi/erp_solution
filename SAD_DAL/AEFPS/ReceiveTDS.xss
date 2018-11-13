@@ -16,7 +16,7 @@
     <Shape ID="DesignTable:DataTable2" ZOrder="4" X="479" Y="282" Height="96" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
     <Shape ID="DesignTable:DataTable3" ZOrder="3" X="199" Y="275" Height="248" Width="210" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="197" />
     <Shape ID="DesignTable:DataTable4" ZOrder="2" X="481" Y="396" Height="96" Width="218" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignTable:SprDamageItem" ZOrder="1" X="-1" Y="566" Height="96" Width="239" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:TblDamage" ZOrder="1" X="881" Y="183" Height="324" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

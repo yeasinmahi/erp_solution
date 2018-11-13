@@ -32,6 +32,7 @@
                 </cc1:AlwaysVisibleControlExtender>
                 <div style="height: 50px; width: 100%"></div>
                 <%--=========================================Start My Code From Here===============================================--%>
+                <asp:HiddenField ID="hdnconfirm" runat="server" />
                 <div class="container">
                     <div class="panel panel-info">
                         <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry" Font-Bold="true" Font-Size="16px"></asp:Label></div>
@@ -41,7 +42,7 @@
                                     <asp:Label ID="Label20" runat="server" Text="Warehouse Name" ></asp:Label>  <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" style="left: 0px; top: 1px"></asp:DropDownList>
                                 </div>
-                                <div class="col-md-6 hidden">
+                                <div class="col-md-6 hidden" id="mainPanel">
                                     <asp:Label ID="Label1" runat="server" Text="Total Damage Amount"></asp:Label>
                                     <asp:TextBox ID="txtTotalDamageAmount" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="False" style="left: 0px; top: 1px" ></asp:TextBox>
                                 </div>
@@ -49,15 +50,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6" style="padding-top:10px;">
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-md form-control pull-left" Text="Show" />
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-md form-control pull-left" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                     <div class="panel panel-default" id="itemPanel">
+                     <div class="panel panel-default hidden" id="itemPanel">
                           <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
-                        <div class="panel-body">
-                            <asp:GridView ID="gvDamageEntry" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemMasterID" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
+                        <div class="panel-body ">
+                            <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemMasterID" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
                                 <AlternatingRowStyle BackColor="#CCCCCC" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -125,7 +126,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Damage Quantity">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtDamageQty" runat="server"></asp:TextBox>
+                                            <asp:Label ID="txtDamageQty" runat="server" Text='<%# Bind("numDamageQuantity") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" Width="60px" />
                                         
@@ -134,14 +135,14 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Damage Amount">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDamageAmount" runat="server" DataFormatString="{0:0.00}"></asp:Label>
+                                            <asp:Label ID="lblDamageAmount" runat="server" Text='<%# Bind("monDamageAmount","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control input-xs" placeholder="Write remarks here...."></asp:TextBox>
+                                            <asp:Label ID="txtRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:Label>
                                         </ItemTemplate>
                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                         
@@ -149,8 +150,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve"></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject" CommandArgument='<%#Eval("intMrrId") + "," +Eval("intItemMasterID")+ "," +Eval("intWhId")%>' OnClientClick="ConfirmReject();" OnClick="btnReject_Click"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" CommandArgument='<%#Eval("intMrrId") + "," +Eval("intItemMasterID")+ "," +Eval("intWhId")%>' ></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center"/>
@@ -184,18 +185,22 @@
     </form>
    <script>
         function showPanel() {
-            var txtItemName = document.getElementById("txtItemName").value;
-            if (txtItemName === null || txtItemName === "") {
-                alert("Item Name can not be empty");
+            var txtTotalDamageAmount = document.getElementById("txtTotalDamageAmount").value;
+            if (txtTotalDamageAmount === null || txtTotalDamageAmount === "") {
+                alert("Total Damage Amount Cannot be blank");
                 return false;
             }
             var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.remove("hidden");
+            var mainPanel = document.getElementById("mainPanel");
+            mainPanel.classList.remove("hidden");
             return true;
         }
         function hidePanel() {
             var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.add("hidden");
+            var mainPanel = document.getElementById("mainPanel");
+            mainPanel.classList.add("hidden");
 
         }
         function Validate() {
@@ -231,7 +236,15 @@
         $(function () {
             autoCompleteItemName();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(autoCompleteItemName);
-        });
+       });
+
+        function ConfirmReject() {
+            document.getElementById("hdnconfirm").value = "0";
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+            if (confirm("Do you want to Reject?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+            else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+        }
     </script>
     <style>
         table {

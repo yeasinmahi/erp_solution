@@ -9,6 +9,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     
     <%--<link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
@@ -17,7 +18,7 @@
     <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
 
-   
+    
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
@@ -32,7 +33,6 @@
     <script src="../Content/JS/jquery-3.3.1.js"></script>
     <script src="../Content/JS/html2canvas.js"></script>
     <script src="../Content/JS/jsPDF.js"></script>
-    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     <%--    <script src="../Content/JS/jsPDF.min.js"></script>--%>
     <%--<script src="../Content/JS/html2pdf.js"></script>--%>
 

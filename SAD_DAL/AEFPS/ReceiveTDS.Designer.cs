@@ -44,7 +44,7 @@ namespace SAD_DAL.AEFPS {
         
         private DataTable4DataTable tableDataTable4;
         
-        private SprDamageItemDataTable tableSprDamageItem;
+        private TblDamageDataTable tableTblDamage;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -104,8 +104,8 @@ namespace SAD_DAL.AEFPS {
                 if ((ds.Tables["DataTable4"] != null)) {
                     base.Tables.Add(new DataTable4DataTable(ds.Tables["DataTable4"]));
                 }
-                if ((ds.Tables["SprDamageItem"] != null)) {
-                    base.Tables.Add(new SprDamageItemDataTable(ds.Tables["SprDamageItem"]));
+                if ((ds.Tables["TblDamage"] != null)) {
+                    base.Tables.Add(new TblDamageDataTable(ds.Tables["TblDamage"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -229,9 +229,9 @@ namespace SAD_DAL.AEFPS {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprDamageItemDataTable SprDamageItem {
+        public TblDamageDataTable TblDamage {
             get {
-                return this.tableSprDamageItem;
+                return this.tableTblDamage;
             }
         }
         
@@ -332,8 +332,8 @@ namespace SAD_DAL.AEFPS {
                 if ((ds.Tables["DataTable4"] != null)) {
                     base.Tables.Add(new DataTable4DataTable(ds.Tables["DataTable4"]));
                 }
-                if ((ds.Tables["SprDamageItem"] != null)) {
-                    base.Tables.Add(new SprDamageItemDataTable(ds.Tables["SprDamageItem"]));
+                if ((ds.Tables["TblDamage"] != null)) {
+                    base.Tables.Add(new TblDamageDataTable(ds.Tables["TblDamage"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -428,10 +428,10 @@ namespace SAD_DAL.AEFPS {
                     this.tableDataTable4.InitVars();
                 }
             }
-            this.tableSprDamageItem = ((SprDamageItemDataTable)(base.Tables["SprDamageItem"]));
+            this.tableTblDamage = ((TblDamageDataTable)(base.Tables["TblDamage"]));
             if ((initTable == true)) {
-                if ((this.tableSprDamageItem != null)) {
-                    this.tableSprDamageItem.InitVars();
+                if ((this.tableTblDamage != null)) {
+                    this.tableTblDamage.InitVars();
                 }
             }
         }
@@ -464,8 +464,8 @@ namespace SAD_DAL.AEFPS {
             base.Tables.Add(this.tableDataTable3);
             this.tableDataTable4 = new DataTable4DataTable();
             base.Tables.Add(this.tableDataTable4);
-            this.tableSprDamageItem = new SprDamageItemDataTable();
-            base.Tables.Add(this.tableSprDamageItem);
+            this.tableTblDamage = new TblDamageDataTable();
+            base.Tables.Add(this.tableTblDamage);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -530,7 +530,7 @@ namespace SAD_DAL.AEFPS {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprDamageItem() {
+        private bool ShouldSerializeTblDamage() {
             return false;
         }
         
@@ -620,7 +620,7 @@ namespace SAD_DAL.AEFPS {
         public delegate void DataTable4RowChangeEventHandler(object sender, DataTable4RowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprDamageItemRowChangeEventHandler(object sender, SprDamageItemRowChangeEvent e);
+        public delegate void TblDamageRowChangeEventHandler(object sender, TblDamageRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3386,12 +3386,38 @@ namespace SAD_DAL.AEFPS {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprDamageItemDataTable : global::System.Data.TypedTableBase<SprDamageItemRow> {
+        public partial class TblDamageDataTable : global::System.Data.TypedTableBase<TblDamageRow> {
+            
+            private global::System.Data.DataColumn columnintMrrId;
+            
+            private global::System.Data.DataColumn columnintWhId;
+            
+            private global::System.Data.DataColumn columnintItemMasterID;
+            
+            private global::System.Data.DataColumn columnItemName;
+            
+            private global::System.Data.DataColumn columnstrUoM;
+            
+            private global::System.Data.DataColumn columnClosingStock;
+            
+            private global::System.Data.DataColumn columnRate;
+            
+            private global::System.Data.DataColumn columncostAmount;
+            
+            private global::System.Data.DataColumn columnsalesPrice;
+            
+            private global::System.Data.DataColumn columnsalesAmount;
+            
+            private global::System.Data.DataColumn columnnumDamageQuantity;
+            
+            private global::System.Data.DataColumn columnmonDamageAmount;
+            
+            private global::System.Data.DataColumn columnstrRemarks;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDamageItemDataTable() {
-                this.TableName = "SprDamageItem";
+            public TblDamageDataTable() {
+                this.TableName = "TblDamage";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -3399,7 +3425,7 @@ namespace SAD_DAL.AEFPS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprDamageItemDataTable(global::System.Data.DataTable table) {
+            internal TblDamageDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -3416,9 +3442,113 @@ namespace SAD_DAL.AEFPS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprDamageItemDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TblDamageDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMrrIdColumn {
+                get {
+                    return this.columnintMrrId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intWhIdColumn {
+                get {
+                    return this.columnintWhId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intItemMasterIDColumn {
+                get {
+                    return this.columnintItemMasterID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ItemNameColumn {
+                get {
+                    return this.columnItemName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUoMColumn {
+                get {
+                    return this.columnstrUoM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ClosingStockColumn {
+                get {
+                    return this.columnClosingStock;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RateColumn {
+                get {
+                    return this.columnRate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn costAmountColumn {
+                get {
+                    return this.columncostAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn salesPriceColumn {
+                get {
+                    return this.columnsalesPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn salesAmountColumn {
+                get {
+                    return this.columnsalesAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numDamageQuantityColumn {
+                get {
+                    return this.columnnumDamageQuantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monDamageAmountColumn {
+                get {
+                    return this.columnmonDamageAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strRemarksColumn {
+                get {
+                    return this.columnstrRemarks;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3432,44 +3562,64 @@ namespace SAD_DAL.AEFPS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDamageItemRow this[int index] {
+            public TblDamageRow this[int index] {
                 get {
-                    return ((SprDamageItemRow)(this.Rows[index]));
+                    return ((TblDamageRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprDamageItemRowChangeEventHandler SprDamageItemRowChanging;
+            public event TblDamageRowChangeEventHandler TblDamageRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprDamageItemRowChangeEventHandler SprDamageItemRowChanged;
+            public event TblDamageRowChangeEventHandler TblDamageRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprDamageItemRowChangeEventHandler SprDamageItemRowDeleting;
+            public event TblDamageRowChangeEventHandler TblDamageRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprDamageItemRowChangeEventHandler SprDamageItemRowDeleted;
+            public event TblDamageRowChangeEventHandler TblDamageRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprDamageItemRow(SprDamageItemRow row) {
+            public void AddTblDamageRow(TblDamageRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDamageItemRow AddSprDamageItemRow() {
-                SprDamageItemRow rowSprDamageItemRow = ((SprDamageItemRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowSprDamageItemRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprDamageItemRow);
-                return rowSprDamageItemRow;
+            public TblDamageRow AddTblDamageRow(int intMrrId, int intWhId, string ItemName, string strUoM, decimal ClosingStock, decimal Rate, decimal costAmount, decimal salesPrice, decimal salesAmount, decimal numDamageQuantity, decimal monDamageAmount, string strRemarks) {
+                TblDamageRow rowTblDamageRow = ((TblDamageRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intMrrId,
+                        intWhId,
+                        null,
+                        ItemName,
+                        strUoM,
+                        ClosingStock,
+                        Rate,
+                        costAmount,
+                        salesPrice,
+                        salesAmount,
+                        numDamageQuantity,
+                        monDamageAmount,
+                        strRemarks};
+                rowTblDamageRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTblDamageRow);
+                return rowTblDamageRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TblDamageRow FindByintItemMasterID(int intItemMasterID) {
+                return ((TblDamageRow)(this.Rows.Find(new object[] {
+                            intItemMasterID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SprDamageItemDataTable cln = ((SprDamageItemDataTable)(base.Clone()));
+                TblDamageDataTable cln = ((TblDamageDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -3477,43 +3627,98 @@ namespace SAD_DAL.AEFPS {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SprDamageItemDataTable();
+                return new TblDamageDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnintMrrId = base.Columns["intMrrId"];
+                this.columnintWhId = base.Columns["intWhId"];
+                this.columnintItemMasterID = base.Columns["intItemMasterID"];
+                this.columnItemName = base.Columns["ItemName"];
+                this.columnstrUoM = base.Columns["strUoM"];
+                this.columnClosingStock = base.Columns["ClosingStock"];
+                this.columnRate = base.Columns["Rate"];
+                this.columncostAmount = base.Columns["costAmount"];
+                this.columnsalesPrice = base.Columns["salesPrice"];
+                this.columnsalesAmount = base.Columns["salesAmount"];
+                this.columnnumDamageQuantity = base.Columns["numDamageQuantity"];
+                this.columnmonDamageAmount = base.Columns["monDamageAmount"];
+                this.columnstrRemarks = base.Columns["strRemarks"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnintMrrId = new global::System.Data.DataColumn("intMrrId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMrrId);
+                this.columnintWhId = new global::System.Data.DataColumn("intWhId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintWhId);
+                this.columnintItemMasterID = new global::System.Data.DataColumn("intItemMasterID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintItemMasterID);
+                this.columnItemName = new global::System.Data.DataColumn("ItemName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnItemName);
+                this.columnstrUoM = new global::System.Data.DataColumn("strUoM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUoM);
+                this.columnClosingStock = new global::System.Data.DataColumn("ClosingStock", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClosingStock);
+                this.columnRate = new global::System.Data.DataColumn("Rate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRate);
+                this.columncostAmount = new global::System.Data.DataColumn("costAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncostAmount);
+                this.columnsalesPrice = new global::System.Data.DataColumn("salesPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsalesPrice);
+                this.columnsalesAmount = new global::System.Data.DataColumn("salesAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsalesAmount);
+                this.columnnumDamageQuantity = new global::System.Data.DataColumn("numDamageQuantity", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumDamageQuantity);
+                this.columnmonDamageAmount = new global::System.Data.DataColumn("monDamageAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonDamageAmount);
+                this.columnstrRemarks = new global::System.Data.DataColumn("strRemarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrRemarks);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintItemMasterID}, true));
+                this.columnintWhId.AllowDBNull = false;
+                this.columnintItemMasterID.AutoIncrement = true;
+                this.columnintItemMasterID.AutoIncrementSeed = -1;
+                this.columnintItemMasterID.AutoIncrementStep = -1;
+                this.columnintItemMasterID.AllowDBNull = false;
+                this.columnintItemMasterID.ReadOnly = true;
+                this.columnintItemMasterID.Unique = true;
+                this.columnItemName.ReadOnly = true;
+                this.columnItemName.MaxLength = 552;
+                this.columnstrUoM.MaxLength = 50;
+                this.columncostAmount.ReadOnly = true;
+                this.columnsalesAmount.ReadOnly = true;
+                this.columnnumDamageQuantity.AllowDBNull = false;
+                this.columnstrRemarks.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDamageItemRow NewSprDamageItemRow() {
-                return ((SprDamageItemRow)(this.NewRow()));
+            public TblDamageRow NewTblDamageRow() {
+                return ((TblDamageRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprDamageItemRow(builder);
+                return new TblDamageRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SprDamageItemRow);
+                return typeof(TblDamageRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SprDamageItemRowChanged != null)) {
-                    this.SprDamageItemRowChanged(this, new SprDamageItemRowChangeEvent(((SprDamageItemRow)(e.Row)), e.Action));
+                if ((this.TblDamageRowChanged != null)) {
+                    this.TblDamageRowChanged(this, new TblDamageRowChangeEvent(((TblDamageRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3521,8 +3726,8 @@ namespace SAD_DAL.AEFPS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SprDamageItemRowChanging != null)) {
-                    this.SprDamageItemRowChanging(this, new SprDamageItemRowChangeEvent(((SprDamageItemRow)(e.Row)), e.Action));
+                if ((this.TblDamageRowChanging != null)) {
+                    this.TblDamageRowChanging(this, new TblDamageRowChangeEvent(((TblDamageRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3530,8 +3735,8 @@ namespace SAD_DAL.AEFPS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SprDamageItemRowDeleted != null)) {
-                    this.SprDamageItemRowDeleted(this, new SprDamageItemRowChangeEvent(((SprDamageItemRow)(e.Row)), e.Action));
+                if ((this.TblDamageRowDeleted != null)) {
+                    this.TblDamageRowDeleted(this, new TblDamageRowChangeEvent(((TblDamageRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3539,14 +3744,14 @@ namespace SAD_DAL.AEFPS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SprDamageItemRowDeleting != null)) {
-                    this.SprDamageItemRowDeleting(this, new SprDamageItemRowChangeEvent(((SprDamageItemRow)(e.Row)), e.Action));
+                if ((this.TblDamageRowDeleting != null)) {
+                    this.TblDamageRowDeleting(this, new TblDamageRowChangeEvent(((TblDamageRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprDamageItemRow(SprDamageItemRow row) {
+            public void RemoveTblDamageRow(TblDamageRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -3573,7 +3778,7 @@ namespace SAD_DAL.AEFPS {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprDamageItemDataTable";
+                attribute2.FixedValue = "TblDamageDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4489,15 +4694,328 @@ namespace SAD_DAL.AEFPS {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SprDamageItemRow : global::System.Data.DataRow {
+        public partial class TblDamageRow : global::System.Data.DataRow {
             
-            private SprDamageItemDataTable tableSprDamageItem;
+            private TblDamageDataTable tableTblDamage;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprDamageItemRow(global::System.Data.DataRowBuilder rb) : 
+            internal TblDamageRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSprDamageItem = ((SprDamageItemDataTable)(this.Table));
+                this.tableTblDamage = ((TblDamageDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intMrrId {
+                get {
+                    try {
+                        return ((int)(this[this.tableTblDamage.intMrrIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intMrrId\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.intMrrIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intWhId {
+                get {
+                    return ((int)(this[this.tableTblDamage.intWhIdColumn]));
+                }
+                set {
+                    this[this.tableTblDamage.intWhIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intItemMasterID {
+                get {
+                    return ((int)(this[this.tableTblDamage.intItemMasterIDColumn]));
+                }
+                set {
+                    this[this.tableTblDamage.intItemMasterIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ItemName {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblDamage.ItemNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ItemName\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.ItemNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUoM {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblDamage.strUoMColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.strUoMColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ClosingStock {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDamage.ClosingStockColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ClosingStock\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.ClosingStockColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Rate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDamage.RateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rate\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.RateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal costAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDamage.costAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'costAmount\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.costAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal salesPrice {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDamage.salesPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'salesPrice\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.salesPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal salesAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDamage.salesAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'salesAmount\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.salesAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numDamageQuantity {
+                get {
+                    return ((decimal)(this[this.tableTblDamage.numDamageQuantityColumn]));
+                }
+                set {
+                    this[this.tableTblDamage.numDamageQuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monDamageAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableTblDamage.monDamageAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monDamageAmount\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.monDamageAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strRemarks {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblDamage.strRemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRemarks\' in table \'TblDamage\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblDamage.strRemarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintMrrIdNull() {
+                return this.IsNull(this.tableTblDamage.intMrrIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintMrrIdNull() {
+                this[this.tableTblDamage.intMrrIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsItemNameNull() {
+                return this.IsNull(this.tableTblDamage.ItemNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetItemNameNull() {
+                this[this.tableTblDamage.ItemNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUoMNull() {
+                return this.IsNull(this.tableTblDamage.strUoMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUoMNull() {
+                this[this.tableTblDamage.strUoMColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsClosingStockNull() {
+                return this.IsNull(this.tableTblDamage.ClosingStockColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetClosingStockNull() {
+                this[this.tableTblDamage.ClosingStockColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRateNull() {
+                return this.IsNull(this.tableTblDamage.RateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRateNull() {
+                this[this.tableTblDamage.RateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IscostAmountNull() {
+                return this.IsNull(this.tableTblDamage.costAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetcostAmountNull() {
+                this[this.tableTblDamage.costAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IssalesPriceNull() {
+                return this.IsNull(this.tableTblDamage.salesPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetsalesPriceNull() {
+                this[this.tableTblDamage.salesPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IssalesAmountNull() {
+                return this.IsNull(this.tableTblDamage.salesAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetsalesAmountNull() {
+                this[this.tableTblDamage.salesAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonDamageAmountNull() {
+                return this.IsNull(this.tableTblDamage.monDamageAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonDamageAmountNull() {
+                this[this.tableTblDamage.monDamageAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrRemarksNull() {
+                return this.IsNull(this.tableTblDamage.strRemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrRemarksNull() {
+                this[this.tableTblDamage.strRemarksColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4845,22 +5363,22 @@ namespace SAD_DAL.AEFPS {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprDamageItemRowChangeEvent : global::System.EventArgs {
+        public class TblDamageRowChangeEvent : global::System.EventArgs {
             
-            private SprDamageItemRow eventRow;
+            private TblDamageRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDamageItemRowChangeEvent(SprDamageItemRow row, global::System.Data.DataRowAction action) {
+            public TblDamageRowChangeEvent(TblDamageRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDamageItemRow Row {
+            public TblDamageRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -6637,7 +7155,7 @@ group by itm.intItemMasterID,itm.strUoM,rcv.numMRRPrice,rcv.numSPrice,strName,st
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprDamageItemTableAdapter : global::System.ComponentModel.Component {
+    public partial class TblDamageTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -6651,7 +7169,7 @@ group by itm.intItemMasterID,itm.strUoM,rcv.numMRRPrice,rcv.numSPrice,strName,st
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprDamageItemTableAdapter() {
+        public TblDamageTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -6746,6 +7264,23 @@ group by itm.intItemMasterID,itm.strUoM,rcv.numMRRPrice,rcv.numSPrice,strName,st
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TblDamage";
+            tableMapping.ColumnMappings.Add("intMrrId", "intMrrId");
+            tableMapping.ColumnMappings.Add("intWhId", "intWhId");
+            tableMapping.ColumnMappings.Add("intItemMasterID", "intItemMasterID");
+            tableMapping.ColumnMappings.Add("ItemName", "ItemName");
+            tableMapping.ColumnMappings.Add("strUoM", "strUoM");
+            tableMapping.ColumnMappings.Add("ClosingStock", "ClosingStock");
+            tableMapping.ColumnMappings.Add("Rate", "Rate");
+            tableMapping.ColumnMappings.Add("costAmount", "costAmount");
+            tableMapping.ColumnMappings.Add("salesPrice", "salesPrice");
+            tableMapping.ColumnMappings.Add("salesAmount", "salesAmount");
+            tableMapping.ColumnMappings.Add("numDamageQuantity", "numDamageQuantity");
+            tableMapping.ColumnMappings.Add("monDamageAmount", "monDamageAmount");
+            tableMapping.ColumnMappings.Add("strRemarks", "strRemarks");
+            this._adapter.TableMappings.Add(tableMapping);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6758,30 +7293,72 @@ group by itm.intItemMasterID,itm.strUoM,rcv.numMRRPrice,rcv.numSPrice,strName,st
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.SprDamageItem";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xml", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = @"SELECT DISTINCT 
+                         dmg.intMrrId, dmg.intWhId, itm.intItemMasterID, itm.strName + ' ' + ISNULL(itm.strDescription, '') + ' ' + ISNULL(itm.strPartNo, '') AS ItemName, itm.strUoM, rcv.numStockQty AS ClosingStock, rcv.numMRRPrice AS Rate, 
+                         rcv.numStockQty * rcv.numMRRPrice AS costAmount, rcv.numSPrice AS salesPrice, rcv.numStockQty * rcv.numSPrice AS salesAmount, dmg.numDamageQuantity, dmg.monDamageAmount, dmg.strRemarks
+FROM            ERP_Inventory.dbo.tblItemMasterList AS itm INNER JOIN
+                         tblReceive AS rcv ON rcv.intItemID = itm.intItemMasterID INNER JOIN
+                         tblDamageItem AS dmg ON rcv.intItemID = dmg.intItemId INNER JOIN
+                         tblDamageItem AS dmg1 ON rcv.intWHID = dmg1.intWhId
+WHERE        (rcv.numStockQty > 0) AND (rcv.ysnActive = 1) AND (dmg.strStatus = 'Pending') AND (dmg.intWhId = @intWhId)
+GROUP BY itm.intItemMasterID, itm.strUoM, rcv.numMRRPrice, rcv.numSPrice, itm.strName, itm.strDescription, itm.strPartNo, rcv.numStockQty, dmg.numDamageQuantity, dmg.monDamageAmount, dmg.strRemarks, dmg.intMrrId, 
+                         dmg.intWhId";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWhId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWhId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "Update ERP_FPS.dbo.tblDamageItem set strStatus = \'Rejected\' where intItemId = @in" +
+                "tItemId and intWhId = @intWhId and intMrrId = @intMrrId\r\n";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWhId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWhId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMrrId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMrrId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ReceiveTDS.SprDamageItemDataTable DamageItem(object xml) {
+        public virtual ReceiveTDS.TblDamageDataTable GetDamageItemData(int intWhId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((xml == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(xml));
-            }
-            ReceiveTDS.SprDamageItemDataTable dataTable = new ReceiveTDS.SprDamageItemDataTable();
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWhId));
+            ReceiveTDS.TblDamageDataTable dataTable = new ReceiveTDS.TblDamageDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateRejectedDamageItem(int intItemId, int intWhId, global::System.Nullable<int> intMrrId) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(intItemId));
+            command.Parameters[1].Value = ((int)(intWhId));
+            if ((intMrrId.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(intMrrId.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
