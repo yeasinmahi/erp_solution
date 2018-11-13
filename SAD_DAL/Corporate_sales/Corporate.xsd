@@ -1530,8 +1530,8 @@ order by cust.strname</CommandText>
               <DbSource ConnectionRef="ERP_ProductionConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCorpReturnWHUpdateData" GetMethodModifier="Public" GetMethodName="GetCorpReturnWHUpdateData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCorpReturnWHUpdateData" UserSourceName="GetCorpReturnWHUpdateData">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT distinct crf.intCustId,crf.strChallanNo,crf.dteWhRcvDate,crs.intProdId,crs.intFK
-	,cus.strname +' [ '+cast (crf.intCustId as varchar(50))+' ]' as Customer
+                    <CommandText>SELECT distinct crf.intCustId,crf.strChallanNo+'--'+convert(varchar, crf.dteWhRcvDate, 104)+'--'+ISNULL(cast(crs.strLocation as varchar(200)),'') as ChallanNo,crf.dteWhRcvDate,crs.intProdId,crs.intFK,crs.strReturnType,crs.strLocation,
+	cus.strname +' [ '+cast (crf.intCustId as varchar(50))+' ]' as Customer
     ,csp.strProductName+' [ '+cast (csp.intProductId as varchar(50))+' ]'+' [ '+csp.strShortCode+' ]' as Description
 	,crs.decReturnQty,crs.decWHReturnCountQty
   FROM ERP_Production.dbo.[tblERPCorpReturnFirst] crf
@@ -1616,7 +1616,7 @@ order by cust.strname</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ERP_SAD_sprERPCorpReturnAmountTableAdapter" GeneratorDataComponentClassName="ERP_SAD_sprERPCorpReturnAmountTableAdapter" Name="ERP_SAD_sprERPCorpReturnAmount" UserDataComponentName="ERP_SAD_sprERPCorpReturnAmountTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprERPCorpReturnAmount" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetERPCorpSalesReviewData" GetMethodModifier="Public" GetMethodName="GetERPCorpSalesReviewData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetERPCorpSalesReviewData" UserSourceName="GetERPCorpSalesReviewData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprERPCorpReturnAmount" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetERPCorpSalesReviewData" GetMethodModifier="Public" GetMethodName="GetERPCorpSalesReviewData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetERPCorpSalesReviewData" UserSourceName="GetERPCorpSalesReviewData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprERPCorpReturnAmount</CommandText>
@@ -1634,6 +1634,8 @@ order by cust.strname</CommandText>
               <Mapping SourceColumn="strChallanNo" DataSetColumn="strChallanNo" />
               <Mapping SourceColumn="Descrip" DataSetColumn="Descrip" />
               <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="intCustId" DataSetColumn="intCustId" />
+              <Mapping SourceColumn="ChallanNo" DataSetColumn="ChallanNo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1770,6 +1772,48 @@ order by cust.strname</CommandText>
               <Mapping SourceColumn="ftyrcvqty" DataSetColumn="ftyrcvqty" />
               <Mapping SourceColumn="ftyvariation" DataSetColumn="ftyvariation" />
             </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprERPCorpReturnAmountTableAdapter" GeneratorDataComponentClassName="sprERPCorpReturnAmountTableAdapter" Name="sprERPCorpReturnAmount" UserDataComponentName="sprERPCorpReturnAmountTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprERPCorpReturnAmountNew" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCorpSalesReturnAmount" GetMethodModifier="Public" GetMethodName="GetCorpSalesReturnAmount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCorpSalesReturnAmount" UserSourceName="GetCorpSalesReturnAmount">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprERPCorpReturnAmountNew</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pk" DataSetColumn="pk" />
+              <Mapping SourceColumn="Customer" DataSetColumn="Customer" />
+              <Mapping SourceColumn="intCustId" DataSetColumn="intCustId" />
+              <Mapping SourceColumn="strChallanNo" DataSetColumn="strChallanNo" />
+              <Mapping SourceColumn="Descrip" DataSetColumn="Descrip" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="ChallanNo" DataSetColumn="ChallanNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblERPCorpReturnFirstTableAdapter" GeneratorDataComponentClassName="TblERPCorpReturnFirstTableAdapter" Name="TblERPCorpReturnFirst" UserDataComponentName="TblERPCorpReturnFirstTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_ProductionConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="DeleteCorpSalesReturn" GetMethodModifier="Public" GetMethodName="DeleteCorpSalesReturn" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="DeleteCorpSalesReturn" UserSourceName="DeleteCorpSalesReturn">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Update [ERP_Production].[dbo].[tblERPCorpReturnFirst] set ysnActive=0 where RowId = @intFK ;
+Update ERP_Production.dbo.tblERPCorpReturnSecond set ysnActive=0 where intFK=@intFK
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="intFK" ColumnName="RowId" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intFK" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="RowId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
             <Sources />
           </TableAdapter>
         </Tables>
@@ -2234,6 +2278,14 @@ order by cust.strname</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Total" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intCustId" msprop:Generator_ColumnVarNameInTable="columnintCustId" msprop:Generator_ColumnPropNameInRow="intCustId" msprop:Generator_ColumnPropNameInTable="intCustIdColumn" msprop:Generator_UserColumnName="intCustId" type="xs:int" minOccurs="0" />
+              <xs:element name="ChallanNo" msprop:Generator_ColumnVarNameInTable="columnChallanNo" msprop:Generator_ColumnPropNameInRow="ChallanNo" msprop:Generator_ColumnPropNameInTable="ChallanNoColumn" msprop:Generator_UserColumnName="ChallanNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2310,6 +2362,47 @@ order by cust.strname</CommandText>
               <xs:element name="ftyrcvqty" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnftyrcvqty" msprop:Generator_ColumnPropNameInRow="ftyrcvqty" msprop:Generator_ColumnPropNameInTable="ftyrcvqtyColumn" msprop:Generator_UserColumnName="ftyrcvqty" type="xs:decimal" minOccurs="0" />
               <xs:element name="ftyvariation" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnftyvariation" msprop:Generator_ColumnPropNameInRow="ftyvariation" msprop:Generator_ColumnPropNameInTable="ftyvariationColumn" msprop:Generator_UserColumnName="ftyvariation" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprERPCorpReturnAmount" msprop:Generator_TableClassName="sprERPCorpReturnAmountDataTable" msprop:Generator_TableVarName="tablesprERPCorpReturnAmount" msprop:Generator_RowChangedName="sprERPCorpReturnAmountRowChanged" msprop:Generator_TablePropName="sprERPCorpReturnAmount" msprop:Generator_RowDeletingName="sprERPCorpReturnAmountRowDeleting" msprop:Generator_RowChangingName="sprERPCorpReturnAmountRowChanging" msprop:Generator_RowEvHandlerName="sprERPCorpReturnAmountRowChangeEventHandler" msprop:Generator_RowDeletedName="sprERPCorpReturnAmountRowDeleted" msprop:Generator_RowClassName="sprERPCorpReturnAmountRow" msprop:Generator_UserTableName="sprERPCorpReturnAmount" msprop:Generator_RowEvArgName="sprERPCorpReturnAmountRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk" msprop:Generator_ColumnVarNameInTable="columnpk" msprop:Generator_ColumnPropNameInRow="pk" msprop:Generator_ColumnPropNameInTable="pkColumn" msprop:Generator_UserColumnName="pk" type="xs:int" minOccurs="0" />
+              <xs:element name="Customer" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_UserColumnName="Customer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intCustId" msprop:Generator_ColumnVarNameInTable="columnintCustId" msprop:Generator_ColumnPropNameInRow="intCustId" msprop:Generator_ColumnPropNameInTable="intCustIdColumn" msprop:Generator_UserColumnName="intCustId" type="xs:int" minOccurs="0" />
+              <xs:element name="strChallanNo" msprop:Generator_ColumnVarNameInTable="columnstrChallanNo" msprop:Generator_ColumnPropNameInRow="strChallanNo" msprop:Generator_ColumnPropNameInTable="strChallanNoColumn" msprop:Generator_UserColumnName="strChallanNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descrip" msprop:Generator_ColumnVarNameInTable="columnDescrip" msprop:Generator_ColumnPropNameInRow="Descrip" msprop:Generator_ColumnPropNameInTable="DescripColumn" msprop:Generator_UserColumnName="Descrip" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Total" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ChallanNo" msprop:Generator_ColumnVarNameInTable="columnChallanNo" msprop:Generator_ColumnPropNameInRow="ChallanNo" msprop:Generator_ColumnPropNameInTable="ChallanNoColumn" msprop:Generator_UserColumnName="ChallanNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblERPCorpReturnFirst" msprop:Generator_TableClassName="TblERPCorpReturnFirstDataTable" msprop:Generator_TableVarName="tableTblERPCorpReturnFirst" msprop:Generator_RowChangedName="TblERPCorpReturnFirstRowChanged" msprop:Generator_TablePropName="TblERPCorpReturnFirst" msprop:Generator_RowDeletingName="TblERPCorpReturnFirstRowDeleting" msprop:Generator_RowChangingName="TblERPCorpReturnFirstRowChanging" msprop:Generator_RowEvHandlerName="TblERPCorpReturnFirstRowChangeEventHandler" msprop:Generator_RowDeletedName="TblERPCorpReturnFirstRowDeleted" msprop:Generator_RowClassName="TblERPCorpReturnFirstRow" msprop:Generator_UserTableName="TblERPCorpReturnFirst" msprop:Generator_RowEvArgName="TblERPCorpReturnFirstRowChangeEvent">
+          <xs:complexType>
           </xs:complexType>
         </xs:element>
       </xs:choice>

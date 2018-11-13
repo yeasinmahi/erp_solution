@@ -51,63 +51,66 @@ namespace UI
         private void LoginAuto()
         {
             string id = "";
-            string domainUser = Request.LogonUserIdentity.Name;
-            try
+            if (Request.LogonUserIdentity != null)
             {
-                string[] donainpatrs = domainUser.Split('\\');
-                id = donainpatrs[1] + "@akij.net";
-                //id = "helal.udtcl@akij.net";
-
-                string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-                if (ip == string.Empty || ip == null)
-                {
-                    ip = Request.ServerVariables["REMOTE_ADDR"];
-                }
-
+                string domainUser = Request.LogonUserIdentity.Name;
                 try
                 {
-                    UserSecurityService uss = new UserSecurityService();
+                    string[] donainpatrs = domainUser.Split('\\');
+                    id = donainpatrs[1] + "@akij.net";
+                   //id = "tarik.dti@akij.net";
 
+                    string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                    if (string.IsNullOrEmpty(ip))
+                    {
+                        ip = Request.ServerVariables["REMOTE_ADDR"];
+                    }
+
+                    try
+                    {
+                        UserSecurityService uss = new UserSecurityService();
+
+
+                        if (User.Identity.IsAuthenticated && donainpatrs[0].ToUpper() == "AKIJ")
+                        {
+
+
+                            uss.DomainLoginUpdate(id.Trim(), Session.SessionID, "WEB", ip);
+                        }
+                        else
+                        {
+                            uss.DomainLoginFails(id.Trim(), ip, DateTime.Now);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //DB Error
+                        retStr = domainUser + " Error: "+ ex.Message;
+                        Panel1.Visible = true;
+                        Panel1.DataBind();
+                        return;
+                    }
 
                     if (User.Identity.IsAuthenticated && donainpatrs[0].ToUpper() == "AKIJ")
                     {
 
+                        SetLogin(id);
 
-                        uss.DomainLoginUpdate(id.Trim(), Session.SessionID, "WEB", ip);
+
                     }
                     else
                     {
-                        uss.DomainLoginFails(id.Trim(), ip, DateTime.Now);
+                        retStr = "Your are not at AKIJ domain";
+                        Panel1.Visible = true;
+                        Panel1.DataBind();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    //DB Error
-                    retStr = domainUser + " Error: "+ ex.Message;
-                    Panel1.Visible = true;
-                    Panel1.DataBind();
-                    return;
-                }
-
-                if (User.Identity.IsAuthenticated && donainpatrs[0].ToUpper() == "AKIJ")
-                {
-
-                    SetLogin(id);
-
-
-                }
-                else
-                {
-                    retStr = "Your are not at AKIJ domain";
+                    retStr = domainUser + "r";
                     Panel1.Visible = true;
                     Panel1.DataBind();
                 }
-            }
-            catch (Exception e)
-            {
-                retStr = domainUser + "r";
-                Panel1.Visible = true;
-                Panel1.DataBind();
             }
         }
         private void LoginFromWeb(string userID, string password)
@@ -124,7 +127,7 @@ namespace UI
             if (provider.ValidateUser(userID, password))
             {
                 string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-                if (ip == string.Empty || ip == null)
+                if (string.IsNullOrEmpty(ip))
                 {
                     ip = Request.ServerVariables["REMOTE_ADDR"];
                 }

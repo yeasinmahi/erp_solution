@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <ItemAdd>
-  <ItemAdd mid="4500" MaterialName="Gas" qty="50" values="0" sdnew="0" totaluse="21.37" challanno="542" dteCdate="" usepar="1.000000" pqty="62275.2000" sdv="0" pervat="0.43" rbit="9.14" uom="Kg" totalvat="Kg" />
+  <ItemAdd mid="101" MaterialName="Activated Carbon" qty="100" values="0" sdnew="0" totaluse="0.09" challanno="1011441" dteCdate="8/21/2016 12:00:00 AM" usepar="0.000927" pqty="9000.0000" sdv="1294905" pervat="21.58" rbit="2.00" uom="Kg" totalvat="2.00" purchasevat="194235.7000" />
 </ItemAdd>

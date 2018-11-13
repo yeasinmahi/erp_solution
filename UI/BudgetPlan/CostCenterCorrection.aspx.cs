@@ -1,52 +1,96 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 using Budget_BLL.Budget;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.BudgetPlan
 {
-    public partial class CostCenterCorrection : System.Web.UI.Page
+    public partial class CostCenterCorrection : Page
     {
-        private int _enroll = 0;
+        private int _enroll;
+        private string _filePathForXml;
         private Budget_Entry_BLL _bll = new Budget_Entry_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             _enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-           
+            //_enroll = 32897;
+            _filePathForXml = Server.MapPath("~/BudgetPlan/Data/CostCenterCorrection_" + _enroll + ".xml");
             if (!IsPostBack)
             {
-                //pnlUpperControl.DataBind();
+                pnlUpperControl.DataBind();
                 LoadUnit(_enroll);
+                ddlUnit_OnSelectedIndexChanged(null, null);
             }
-            
-            
+
+
         }
 
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {
             try
             {
-
                 _enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
 
-                HiddenField hdnSubledgerId = row.FindControl("hdnSubledgerId") as HiddenField;
+                if (row.FindControl("hdnSubledgerId") is HiddenField hdnSubledgerId)
+                {
+                    int intSubledgerId = int.Parse(hdnSubledgerId.Value);
+                    int intCostCenterId = int.Parse(ddlCostCenter.SelectedValue);
+                    string costcenter = ddlCostCenter.SelectedItem.ToString();
+                    int intUnitId = int.Parse(ddlUnit.SelectedValue);
+                    string msg = _bll.UpdateLedgerCostcenter(intUnitId, intSubledgerId, intCostCenterId, costcenter);
 
-                int intSubledgerId = int.Parse(hdnSubledgerId.Value);
-                int intCostCenterId = int.Parse(ddlCostCenter.SelectedValue.ToString());
-                string costcenter = ddlCostCenter.SelectedItem.ToString();
-                int intUnitId = int.Parse(ddlUnit.SelectedValue.ToString());
-                string msg = _bll.UpdateLedgerCostcenter(intUnitId, intSubledgerId, intCostCenterId, costcenter);
-               
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                }
                 LoadGrid();
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
+        }
+        protected void btnUpdateAll_Click(object sender, EventArgs e)
+        {
+            int intCostCenterId = int.Parse(ddlCostCenter.SelectedValue);
+            string costcenter = ddlCostCenter.SelectedItem.ToString();
+            int intUnitId = int.Parse(ddlUnit.SelectedValue);
+            foreach (GridViewRow row in gridView.Rows)
+            {
+                bool checkedItem = ((CheckBox)row.FindControl("itemCheckbox")).Checked;
+                if (checkedItem)
+                {
+                    int intSubledgerId = int.Parse(((HiddenField)row.FindControl("hdnSubledgerId")).Value);
+                    if (!CreateXml(intSubledgerId, intCostCenterId, costcenter, intUnitId, out string message))
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
+                        break;
+                    }
+                }
+            }
+
+            XmlDocument document = new XmlDocument();
+            document.Load(_filePathForXml);
+            _bll.UpdateCostCenterSelected(document.InnerXml, out var msg);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+msg+"');", true);
+            XmlParser.DeleteFile(_filePathForXml);
+        }
+        private bool CreateXml(int intSubledgerId, int intCostCenterId, string costcenter, int intUnitId, out string message)
+        {
+            dynamic obj = new
+            {
+                intSubledgerId,
+                intCostCenterId,
+                costcenter,
+                intUnitId
+
+            };
+            return XmlParser.CreateXml("CostCenterCorrection", "items", obj, _filePathForXml, out message);
+
         }
 
         protected void btnShow_OnClick(object sender, EventArgs e)
@@ -54,7 +98,7 @@ namespace UI.BudgetPlan
             LoadGrid();
         }
 
-        
+
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -65,31 +109,28 @@ namespace UI.BudgetPlan
                 gridView.DataBind();
 
             }
-            catch { }
-            
-
-
+            catch
+            {
+                // ignored
+            }
         }
 
         private void LoadGrid()
         {
             try
             {
-                int unitId = 0;
-                int costCentreId = 0;
-                if (int.TryParse(ddlUnit.SelectedValue, out unitId))
+                if (int.TryParse(ddlUnit.SelectedValue, out int unitId))
                 {
-                    if (int.TryParse(ddlCostCenter.SelectedValue, out costCentreId))
+                    if (int.TryParse(ddlCostCenter.SelectedValue, out _))
                     {
                         string fromDateText = txtFromDate.Text;
                         string toDateText = txtToDate.Text;
-                        DateTime fromDate, toDate;
                         if (!string.IsNullOrWhiteSpace(fromDateText))
                         {
                             if (!string.IsNullOrWhiteSpace(toDateText))
                             {
-                                fromDate = DateTime.Parse(txtFromDate.Text);
-                                toDate = DateTime.Parse(txtToDate.Text);
+                                var fromDate = DateTime.Parse(txtFromDate.Text);
+                                var toDate = DateTime.Parse(txtToDate.Text);
                                 BindGrid(unitId, fromDate, toDate);
                             }
                             else
@@ -113,8 +154,10 @@ namespace UI.BudgetPlan
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select unit first');", true);
                 }
             }
-            catch { }
-           
+            catch
+            {
+                // ignored
+            }
         }
 
         private void BindGrid(int unitId, DateTime fromDate, DateTime toDate)
@@ -138,6 +181,7 @@ namespace UI.BudgetPlan
             ddlCostCenter.DataTextField = "strCCName";
             ddlCostCenter.DataBind();
         }
+
 
     }
 }

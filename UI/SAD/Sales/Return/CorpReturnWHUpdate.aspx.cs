@@ -13,7 +13,7 @@ namespace UI.SAD.Sales.Return
     public partial class CorpReturnWHUpdate : Page
     {
         DataTable dt = new DataTable(); Bridge obj = new Bridge();
-        int custid,  fk, productid; string challanno;
+        int custid,  fk, productid; string challanno, pk, total;
         decimal productqtysubmit;
         SeriLog log = new SeriLog();
         string location = "SAD";
@@ -33,9 +33,11 @@ namespace UI.SAD.Sales.Return
                 {
                     custid = int.Parse(HttpContext.Current.Session["CustId"].ToString());
                     challanno = (HttpContext.Current.Session["ChallanNo"].ToString());
+                   
                     dt = obj.GetDataForWHUpdate(custid, challanno);
+                    
                     lblCustomer.Text = dt.Rows[0]["Customer"].ToString();
-                    lblchalan.Text = dt.Rows[0]["strChallanNo"].ToString();
+                    lblchalan.Text = dt.Rows[0]["ChallanNo"].ToString();
                     dgv.DataSource = dt;
                     dgv.DataBind();
                 }
@@ -75,9 +77,16 @@ namespace UI.SAD.Sales.Return
                     decimal partyqtysubmit = Decimal.Parse(partyqty.ToString());
                     decimal whqtysubmit = Decimal.Parse(whqty.ToString());
                     obj.UpdateWHRcv(partyqtysubmit, whqtysubmit, productid, fk);
+
+                        custid = int.Parse(HttpContext.Current.Session["CustId"].ToString());
+                        challanno = (HttpContext.Current.Session["ChallanNo"].ToString());
+                        pk = (HttpContext.Current.Session["pk"].ToString());
+                        total = (HttpContext.Current.Session["total"].ToString());
+                        obj.InsertAppv(total, custid.ToString(), challanno, pk);
+                    }
+                   // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted');window.location.href='/SAD/Sales/Return/CorpReturnAccAdjust.aspx';", true); return;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Submitted');CloseWindow();", true); return;
                 }
-                   ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Success');CloseWindow();", true);
-            }
 
             else { }
             }

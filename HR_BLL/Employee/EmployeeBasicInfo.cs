@@ -239,5 +239,11 @@ namespace HR_BLL.Employee
             return adp.GetData(jobstationID, true);
         }
 
+        public DataTable GetEmpInfoByJobStation(int intJobStationID)
+        {
+            QryEmployeeProfileAllTableAdapter adp = new QryEmployeeProfileAllTableAdapter();
+            return adp.GetEmployeeListByJobStationID(intJobStationID);
+        }
+
     }
 }
