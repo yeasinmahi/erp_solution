@@ -165,7 +165,7 @@
                                 <SortedDescendingHeaderStyle BackColor="#383838" />
                             </asp:GridView>
                             <div class="form-group pull-right" style="padding-top:10px;">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-md"/>
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-sm" OnClick="btnSubmit_OnClick"/>
                             </div>
                         </div>
 

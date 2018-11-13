@@ -221,7 +221,18 @@ namespace SAD_BLL.AEFPS
             }
         }
 
-
+        public DataTable DamageItem(string xml)
+        {
+            SprDamageItemTableAdapter adp = new SprDamageItemTableAdapter();
+            try
+            {
+                return adp.DamageItem(xml);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
     }
 }
