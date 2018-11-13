@@ -201,8 +201,11 @@
     <Content Include="Accounts\Voucher\JournalVoucher.aspx" />
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
+    <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
+    <Content Include="AEFPS\DamageEntry.aspx" />
+    <Content Include="AEFPS\DamageEntryApproval.aspx" />
     <Content Include="AEFPS\fpsDueReport.aspx" />
     <Content Include="AEFPS\FpsRackItemIssue.aspx" />
     <Content Include="AEFPS\FpsSalesEntry.aspx" />
@@ -422,6 +425,7 @@
     <Content Include="MedialManagement\ReportEntryOthers.aspx" />
     <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
+    <Content Include="Other\ImageViewer.aspx" />
     <Content Include="Other\Practice.aspx" />
     <Content Include="PaymentModule\AllApprovedBillReport.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
@@ -1232,6 +1236,7 @@
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
+    <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
@@ -1977,6 +1982,13 @@
     <Compile Include="AEFPS\BarcodeItemBridge.aspx.designer.cs">
       <DependentUpon>BarcodeItemBridge.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\BlockItem.aspx.cs">
+      <DependentUpon>BlockItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\BlockItem.aspx.designer.cs">
+      <DependentUpon>BlockItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\CreateLocation.aspx.cs">
       <DependentUpon>CreateLocation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1990,6 +2002,20 @@
     </Compile>
     <Compile Include="AEFPS\CreditReport.aspx.designer.cs">
       <DependentUpon>CreditReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\DamageEntry.aspx.cs">
+      <DependentUpon>DamageEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\DamageEntry.aspx.designer.cs">
+      <DependentUpon>DamageEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\DamageEntryApproval.aspx.cs">
+      <DependentUpon>DamageEntryApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\DamageEntryApproval.aspx.designer.cs">
+      <DependentUpon>DamageEntryApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\fpsDueReport.aspx.cs">
       <DependentUpon>fpsDueReport.aspx</DependentUpon>
@@ -3138,6 +3164,13 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Other\ImageViewer.aspx.cs">
+      <DependentUpon>ImageViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Other\ImageViewer.aspx.designer.cs">
+      <DependentUpon>ImageViewer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Other\Practice.aspx.cs">
       <DependentUpon>Practice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6218,9 +6251,17 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
       <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.designer.cs">
       <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx.cs">
+      <DependentUpon>Masson_Program_Bill_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx.designer.cs">
+      <DependentUpon>Masson_Program_Bill_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
       <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -21,8 +20,8 @@ namespace UI.Import
         protected void Page_Load(object sender, EventArgs e)
         {
             pnlUpperControl.DataBind();
-            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
-            scriptManager?.RegisterPostBackControl(this.gridView);
+            //ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            //scriptManager?.RegisterPostBackControl(this.gridView);
 
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
             enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -38,36 +37,36 @@ namespace UI.Import
         protected void btnShow_Click(object sender, EventArgs e)
         {
             string poNumber = txtPoNumber.Text;
-            string lcNumber = txtLcNumber.Text;
+            //string lcNumber = txtLcNumber.Text;
             int po = 0;
-            if (string.IsNullOrWhiteSpace(poNumber) && string.IsNullOrWhiteSpace(lcNumber))
+            if (string.IsNullOrWhiteSpace(poNumber))
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have to input PO number or LC number');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have to input PO number');", true);
                 return;
             }
-            if (!string.IsNullOrWhiteSpace(lcNumber))
-            {
-                dt = bll.GetPoByLcNumber(lcNumber);
-                if (dt.Rows.Count > 0)
-                {
-                    int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
-                    if (po == 0)
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Somthing error in PO conversion');", true);
-                        txtLcNumber.Text = String.Empty;
-                        return;
-                    }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                        "alert('We can not found this lc number in our system');", true);
-                    txtLcNumber.Text = String.Empty;
-                    return;
-                }
+            //if (!string.IsNullOrWhiteSpace(lcNumber))
+            //{
+            //    dt = bll.GetPoByLcNumber(lcNumber);
+            //    if (dt.Rows.Count > 0)
+            //    {
+            //        int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
+            //        if (po == 0)
+            //        {
+            //            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+            //                "alert('Somthing error in PO conversion');", true);
+            //            txtLcNumber.Text = String.Empty;
+            //            return;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+            //            "alert('We can not found this lc number in our system');", true);
+            //        txtLcNumber.Text = String.Empty;
+            //        return;
+            //    }
                 
-            }
+            //}
             if (!string.IsNullOrWhiteSpace(poNumber))
             {
                 int.TryParse(poNumber, out po);
@@ -78,12 +77,20 @@ namespace UI.Import
                 }
                 dt = bll.GetLcIdbyPoId(po);
                 int lcId;
-                if (int.TryParse(dt.Rows[0]["intLCID"].ToString(), out lcId))
+                if (dt.Rows.Count > 0)
                 {
-                    LoadShipmentSl(lcId);
-                    hdLcId.Value = lcId.ToString();
-                    LoadGridView();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
+                    if (int.TryParse(dt.Rows[0]["intLCID"].ToString(), out lcId))
+                    {
+                        txtLcNumber.Text = dt.Rows[0]["strLCNumber"].ToString();
+                        LoadShipmentSl(lcId);
+                        hdLcId.Value = lcId.ToString();
+                        LoadGridView();
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No data found aginest this PO number');", true);
                 }
             }
             
@@ -103,12 +110,7 @@ namespace UI.Import
             ddlFileGroup.DataValueField = "intFileTypeID";
             ddlFileGroup.DataBind();
         }
-
-        protected void btnPreviousFile_OnClick(object sender, EventArgs e)
-        {
-            LoadGridView();
-        }
-
+        
         protected void btnAddNewFile_OnClick(object sender, EventArgs e)
         {
             if (fileUpload.HasFile)
@@ -117,7 +119,6 @@ namespace UI.Import
                 string localPath = Server.MapPath("~/Import/Data/") + filename;
                 try
                 {
-                    
                     fileUpload.SaveAs(localPath);
                     
                     string strFilePath = "Import_Doc/" + filename;
@@ -191,10 +192,6 @@ namespace UI.Import
             ddlUnitName.Items.Add(new ListItem(unitName,unitId.ToString()));
             ddlUnitName.DataBind();
         }
-        protected void btnView_OnClick(object sender, EventArgs e)
-        {
-            
-        }
 
         protected void gridView_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -204,7 +201,8 @@ namespace UI.Import
 
             if (e.CommandName == "View")
             {
-                //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewDocument('" + strPath + "');", true);
+                Session["ImageSrc"] = ftp + strPath;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "popup", "popup('../Other/ImageViewer.aspx','Image View');", true);
             }
             else if (e.CommandName == "Download")
             {
@@ -215,7 +213,7 @@ namespace UI.Import
                 Response.Flush();
                 Response.End();
             }
-
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
         }
     }
 }

@@ -53,8 +53,8 @@
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"><b>Corporate Sales Return Review Edit: </b><asp:HiddenField ID="hdnconfirm" runat="server" /><hr />
     <table style="width:Auto";>
-   <tr><td colspan="2"><asp:Label ID="Label1" runat="server" Text="Cuatomer Name : "></asp:Label><asp:Label ID="lblCustomer" runat="server"></asp:Label></td></tr>
-    <tr><td><asp:Label ID="lblchallanno" runat="server" Text="Challan No: "></asp:Label><asp:Label ID="lblchalan" runat="server"></asp:Label></td>
+   <tr><td colspan="2"><asp:Label ID="Label1" runat="server" Text="Customer Name : "></asp:Label><asp:Label ID="lblCustomer" runat="server"></asp:Label></td></tr>
+    <tr><td><asp:Label ID="lblchallanno" runat="server" Text="Return Description: "></asp:Label><asp:Label ID="lblchalan" runat="server"></asp:Label></td>
     <td></td>
     </tr>
     <tr><td>
@@ -75,10 +75,10 @@
          <asp:TemplateField HeaderText="Location/Point Name" SortExpression="strLocation"><ItemTemplate>
     <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("strLocation") %>'></asp:Label></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" /></asp:TemplateField>
-    <asp:TemplateField HeaderText="Customer Copy Quantity (Pcs)" SortExpression="decrcv">
+    <asp:TemplateField HeaderText="Customer Return Quantity (Pcs)" SortExpression="decrcv">
     <ItemTemplate><asp:Textbox ID="txtpartyrtn" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" runat="server" Text='<%# Bind("decReturnQty") %>'> </asp:Textbox></ItemTemplate>
     <ItemStyle HorizontalAlign="Center" Width="35px" /></asp:TemplateField>
-    <asp:TemplateField HeaderText="Warehouse Recieved Quantity" SortExpression="decrcv">
+    <asp:TemplateField HeaderText="Warehouse Recieved Quantity (Pcs)" SortExpression="decrcv">
     <ItemTemplate><asp:Textbox ID="txtwhcv" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" runat="server" Text='<%# Bind("decWHReturnCountQty") %>'> </asp:Textbox></ItemTemplate>
     <ItemStyle HorizontalAlign="Center" Width="35px" /></asp:TemplateField>
     </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White"/>

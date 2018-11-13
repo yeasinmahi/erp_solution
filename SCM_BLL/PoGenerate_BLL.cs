@@ -447,6 +447,18 @@ namespace SCM_BLL
             adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, ref msg);
             return msg;
         }
+        public DataTable GetApprovalAuthorityList(int enroll)
+        {
+            TblApprovalAuthorityTableAdapter adp = new TblApprovalAuthorityTableAdapter();
+            try
+            {
+                return adp.GetPOApprovalAuthority(enroll);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
 
     }
 }

@@ -25,6 +25,9 @@ namespace UI.AEFPS
         string msg,svno, strWHName, qrcode, uom, ItemName;
         SeriLog log = new SeriLog();
         DataTable dt, dtr;
+
+
+        readonly Receive_BLL _bll = new Receive_BLL();
         FPSSalesEntryBLL objAEFPS = new FPSSalesEntryBLL();
         DateTime dtedate;
 
@@ -56,16 +59,16 @@ namespace UI.AEFPS
         {
             try
             {
-                dt = objAEFPS.getmemoCount(int.Parse(ddlWH.SelectedValue.ToString()));
-                if(dt.Rows.Count>0)
-                {
-                    lblMemoCounttxt.Text = dt.Rows[0]["counts"].ToString();
-                }
-                else
-                {
-                    lblMemoCounttxt.Text ="0".ToString();
+                //dt = objAEFPS.getmemoCount(int.Parse(ddlWH.SelectedValue.ToString()));
+                //if(dt.Rows.Count>0)
+                //{
+                //    lblMemoCounttxt.Text = dt.Rows[0]["counts"].ToString();
+                //}
+                //else
+                //{
+                //    lblMemoCounttxt.Text ="0".ToString();
 
-                }
+                //}
             }
             catch { }
         }
@@ -514,5 +517,41 @@ namespace UI.AEFPS
             }
            
         }
+
+        protected void btnClearPrinter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int whId = Convert.ToInt32(ddlWH.SelectedItem.Value);
+                _bll.ClearPrinter(whId);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sucessfully Cleared');", true);
+            }
+            catch (Exception exception)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Cleaning Problem');", true);
+            }
+        }
+
+        protected void btnReprint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int whId = Convert.ToInt32(ddlWH.SelectedItem.Value);
+                string voucharNumber =  txtVCNo.Text;
+                _bll.RePrintVoucher(whId, voucharNumber);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your desired data is printing...');", true);
+            }
+            catch (Exception exception)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something is error');", true);
+            }
+        }
+
+
+
+
+
+
+
     }
 }
