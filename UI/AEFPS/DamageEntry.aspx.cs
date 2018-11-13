@@ -3,12 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using UI.ClassFiles;
 using Utility;
 
 namespace UI.AEFPS
@@ -39,6 +36,11 @@ namespace UI.AEFPS
         public void LoadGrid(int itemId, int whId)
         {
             dt = _bll.GetActiveItemInfo(itemId, whId);
+            if (dt.Rows.Count < 1)
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Warning", "alert('This items is not in stock')", true);
+                return;
+            }
             DataTable viewStateData = (DataTable)ViewState["grid"];
             if (viewStateData != null && viewStateData.Rows.Count > 0)
             {
@@ -133,19 +135,42 @@ namespace UI.AEFPS
                 string remarks = ((TextBox)row.FindControl("txtRemarks")).Text;
                 if (!string.IsNullOrWhiteSpace(remarks))
                 {
-
-                    int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
-                    string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
-                    double numDamageQuantity = Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
-                    double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
-                    double monDamageAmount = Convert.ToDouble(((Label)row.FindControl("lblDamageAmount")).Text);
-                    string xml = CreateXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,_intEnroll,out string message);
-                    if (_bll.DamageItem(xml) == null)
+                    string damageQuantitytxt = ((TextBox) row.FindControl("txtDamageQty")).Text;
+                    string damageAmounttxt = ((Label)row.FindControl("lblDamageAmount")).Text;
+                    if (!string.IsNullOrWhiteSpace(damageQuantitytxt) && !string.IsNullOrWhiteSpace(damageAmounttxt))
                     {
-                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Can not entry as damage " + itemId + " ItemId');", true);
+                        try
+                        {
+                            double numDamageQuantity = Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
+                            double monDamageAmount = Convert.ToDouble(((Label)row.FindControl("lblDamageAmount")).Text);
+
+                            double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
+                            int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
+                            string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
+
+                            string xml = CreateXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,
+                                _intEnroll, out string message);
+                            if (_bll.DamageItem(xml) == null)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup",
+                                    "alert('Can not entry as damage " + itemId + " ItemId');", true);
+                                return;
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Something Error Occured');", true);
+                            return;
+                        }
+                        
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Damage Quantity and amount can not be blank');", true);
                         return;
                     }
+                    
                 }
                 else
                 {
@@ -153,9 +178,7 @@ namespace UI.AEFPS
                     return;
                 }
             }
-
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "ShowHideGridviewPanels();", true);
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully In-Activated all items.');", true);
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully entry damage items.');", true);
             
             ViewState["grid"] = null;
             gvDamageEntry.DataSource = null;

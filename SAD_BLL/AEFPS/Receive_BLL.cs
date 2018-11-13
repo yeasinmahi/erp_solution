@@ -260,6 +260,18 @@ namespace SAD_BLL.AEFPS
                 return null;
             }
         }
+        public DataTable DamageApprovedReject(int type,string voucherCode)
+        {
+            sprDamageUpdateTableAdapter adp = new sprDamageUpdateTableAdapter();
+            try
+            {
+                return adp.DamageApprovedReject(type, voucherCode);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 }
