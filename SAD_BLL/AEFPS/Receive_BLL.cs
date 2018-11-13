@@ -253,9 +253,9 @@ namespace SAD_BLL.AEFPS
             SprDamageItemTableAdapter adp = new SprDamageItemTableAdapter();
             try
             {
-                return adp.DamageItem(xml);
+                return adp.DamageEntry(xml);
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }

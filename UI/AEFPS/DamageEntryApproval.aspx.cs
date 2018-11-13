@@ -70,20 +70,20 @@ namespace UI.AEFPS
         {
             if (hdnconfirm.Value == "1")
             {
-                try
-                {
-                    Button btn = (Button)sender;
-                    int MRRID, ItemID, WHID;
-                    string[] CommandArgument = btn.CommandArgument.Split(',');
-                    MRRID =Convert.ToInt32( CommandArgument[0]);
-                    ItemID = Convert.ToInt32(CommandArgument[1]);
-                    WHID = Convert.ToInt32(CommandArgument[2]);
+               // try
+                //{
+                //    Button btn = (Button)sender;
+                //    int MRRID, ItemID, WHID;
+                //    string[] CommandArgument = btn.CommandArgument.Split(',');
+                //    MRRID =Convert.ToInt32( CommandArgument[0]);
+                //    ItemID = Convert.ToInt32(CommandArgument[1]);
+                //    WHID = Convert.ToInt32(CommandArgument[2]);
 
-                    string msg = _bll.UpdateRejectedDamageItemList(ItemID, WHID, MRRID);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    LoadGrid();
-                }
-                catch { }
+                //    string msg = _bll.UpdateRejectedDamageItemList(ItemID, WHID, MRRID);
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                //    LoadGrid();
+                //}
+                //catch { }
             }
         }
     }

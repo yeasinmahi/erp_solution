@@ -133,17 +133,17 @@ namespace UI.AEFPS
                 string remarks = ((TextBox)row.FindControl("txtRemarks")).Text;
                 if (!string.IsNullOrWhiteSpace(remarks))
                 {
+
                     int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
-                    int intMrrId = 0;
                     string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
                     double numDamageQuantity = Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
                     double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
                     double monDamageAmount = Convert.ToDouble(((Label)row.FindControl("lblDamageAmount")).Text);
-                    string xml = CreateXml(itemId, intWhId, intMrrId, strRemarks, numDamageQuantity, monRate, monDamageAmount,_intEnroll,out string message);
-                    if (_bll.DamageItem(xml) != null)
+                    string xml = CreateXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,_intEnroll,out string message);
+                    if (_bll.DamageItem(xml) == null)
                     {
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Can not In-Active " + itemId + " ItemId');", true);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Can not entry as damage " + itemId + " ItemId');", true);
                         return;
                     }
                 }
@@ -161,13 +161,12 @@ namespace UI.AEFPS
             gvDamageEntry.DataSource = null;
             gvDamageEntry.DataBind();
         }
-        private string CreateXml(int intItemId, int intWhId, int intMrrId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
+        private string CreateXml(int intItemId, int intWhId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
         {
             dynamic obj = new
             {
                 intItemId,
                 intWhId,
-                intMrrId,
                 strRemarks,
                 numDamageQuantity,
                 monRate,

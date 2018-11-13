@@ -58,7 +58,7 @@
                      <div class="panel panel-default hidden" id="itemPanel">
                           <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body ">
-                            <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemMasterID" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
+                            <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemId" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
                                 <AlternatingRowStyle BackColor="#CCCCCC" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -68,9 +68,23 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Damage Entry Date">                                       
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblActionDate" runat="server" Text='<%# Bind("dteActionDate") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Damage Code">                                    
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblVoucherCode" runat="server" Text='<%# Bind("strVoucherCode") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item ID">                                       
                                         <ItemTemplate>
-                                            <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemMasterID") %>'></asp:Label>
+                                            <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemId") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
@@ -91,14 +105,14 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Closing Stock">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblStock" runat="server" Text='<%# Bind("ClosingStock") %>'></asp:Label>
+                                            <asp:Label ID="lblStock" runat="server" Text='<%# Bind("numStockQty") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRate" runat="server" Text='<%# Bind("Rate","{0:n2}") %>'></asp:Label>
+                                            <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -150,8 +164,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject" CommandArgument='<%#Eval("intMrrId") + "," +Eval("intItemMasterID")+ "," +Eval("intWhId")%>' OnClientClick="ConfirmReject();" OnClick="btnReject_Click"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" CommandArgument='<%#Eval("intMrrId") + "," +Eval("intItemMasterID")+ "," +Eval("intWhId")%>' ></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClientClick="ConfirmReject();" OnClick="btnReject_Click"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" ></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center"/>
