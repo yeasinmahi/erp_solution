@@ -76,6 +76,15 @@ namespace UI.AEFPS {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
+        /// hdnconfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnconfirm;
+        
+        /// <summary>
         /// Label20 control.
         /// </summary>
         /// <remarks>
@@ -121,12 +130,12 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// gvDamageEntry control.
+        /// gvDamageEntryApproval control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDamageEntry;
+        protected global::System.Web.UI.WebControls.GridView gvDamageEntryApproval;
     }
 }
