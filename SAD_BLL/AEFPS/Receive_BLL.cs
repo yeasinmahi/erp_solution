@@ -220,32 +220,17 @@ namespace SAD_BLL.AEFPS
                 return null;
             }
         }
-        public DataTable GetDamageItemList(int WHId)
+        public DataTable GetDamageItemList(int whId)
         {
             TblDamageTableAdapter adp = new TblDamageTableAdapter();
             try
             {
-                return adp.GetDamageItemData(WHId);
+                return adp.GetDamageItemData(whId);
             }
             catch
             {
                 return new DataTable();
             }
-        }
-        public string UpdateRejectedDamageItemList(int itemId,int WHId,int MrrId)
-        {
-            string msg = "";
-            TblDamageTableAdapter adp = new TblDamageTableAdapter();
-            try
-            {
-                 adp.UpdateRejectedDamageItem(itemId,WHId, MrrId);
-                return msg = "Rejected";
-            }
-            catch
-            {
-                
-            }
-            return msg;
         }
 
         public DataTable DamageItem(string xml)
@@ -256,6 +241,18 @@ namespace SAD_BLL.AEFPS
                 return adp.DamageEntry(xml);
             }
             catch(Exception ex)
+            {
+                return null;
+            }
+        }
+        public DataTable DamageApprovedReject(int type,string voucherCode)
+        {
+            sprDamageUpdateTableAdapter adp = new sprDamageUpdateTableAdapter();
+            try
+            {
+                return adp.DamageApprovedReject(type, voucherCode);
+            }
+            catch (Exception ex)
             {
                 return null;
             }

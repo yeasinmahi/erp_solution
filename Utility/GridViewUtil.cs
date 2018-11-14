@@ -8,9 +8,13 @@ namespace Utility
 {
     public class GridViewUtil
     {
-        public static GridViewRow GetCurrentGridViewRow(object sender)
+        public static GridViewRow GetCurrentGridViewRowOnButtonClick(object sender)
         {
             return (GridViewRow) ((Button) sender).NamingContainer;
+        }
+        public static GridViewRow GetCurrentGridViewRowOnTextboxChanged(object sender)
+        {
+            return (GridViewRow)((TextBox)sender).NamingContainer;
         }
         public static GridViewRow GetCurrentGridViewRow(GridView gridView, GridViewCommandEventArgs e)
         {
@@ -90,7 +94,7 @@ namespace Utility
         }
 
         //Overwrite the InstantiateIn() function of the ITemplate interface.
-        public void InstantiateIn(System.Web.UI.Control container)
+        public void InstantiateIn(Control container)
         {
             //Code to create the ItemTemplate and its field.
 

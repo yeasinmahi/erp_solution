@@ -11,123 +11,21 @@
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     
-    <%--<link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-
-    
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-
-    <script src="../Content/JS/BlueBird.min.js"></script>
-    <script src="../Content/JS/html2canvas.min.js"></script>
-    --%>
-   <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>--%>
-
     <script src="../Content/JS/jquery-3.3.1.js"></script>
     <script src="../Content/JS/html2canvas.js"></script>
     <script src="../Content/JS/jsPDF.js"></script>
-    <%--    <script src="../Content/JS/jsPDF.min.js"></script>--%>
-    <%--<script src="../Content/JS/html2pdf.js"></script>--%>
-
-    <%-- <script type="text/javascript">
-        
-        function pdf() { 
-        //document.getElementById("btnEmail").style.visibility = "hidden";
-        //document.getElementById("txtPoNumbers").style.visibility = "hidden";
-        //document.getElementById("btnPoShowByView").style.visibility = "hidden";
-        //document.getElementById("btnDownload").style.visibility = "hidden"; 
-        //document.getElementById("btnPDF").style.visibility = "hidden";
-
-        html2canvas(document.getElementById('dvTable'), { 
-        onrendered: function(canvas) {
-
-            var img = canvas.toDataURL('image/png',1.0)
-            var doc = new jsPDF('p', 'pt', 'A4');
-            // var doc = new jsPDF();
-            
-            //doc.addImage(img, "JPEG", 0, 0,100,100);
-            
-            
-        
-            doc.addImage(img, 'JPEG', 0, 0);
-            doc.save("PurchaseOrder.pdf")
-
-        
-            }
-
-            });
-            
-        }
-    </script>--%>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+   
     <script type="text/javascript">
-        function ConvertToImage(btnEmail) {
+        function ConvertToImage(btn) {
             document.getElementById("btnEmail").style.visibility = "hidden";
-            document.getElementById("txtPoNumbers").style.visibility = "hidden";
-            document.getElementById("btnPoShowByView").style.visibility = "hidden";
+            document.getElementById("btnprint").style.visibility = "hidden";
             document.getElementById("btnDownload").style.visibility = "hidden";
 
             html2canvas($("#dvTable")[0]).then(function (canvas) {
                 var base64 = canvas.toDataURL();
                 $("[id*=hfImageData]").val(base64);
-                __doPostBack(btnEmail.name, "");
+                __doPostBack(btn.name, "");
                 document.getElementById("btnEmail").style.visibility = "visible";
-                document.getElementById("txtPoNumbers").style.visibility = "visible";
-                document.getElementById("btnPoShowByView").style.visibility = "visible";
-                document.getElementById("btnDownload").style.visibility = "visible";
-            });
-            return false;
-        }
-        function DownloadPDF() {
-            document.getElementById("btnEmail").style.visibility = "hidden";
-            document.getElementById("btnprint").style.visibility = "hidden";
-            document.getElementById("btnDownload").style.visibility = "hidden";
-            document.getElementById("btnPDF").style.visibility = "hidden";
-            html2canvas($("#dvTable"),
-                {
-                    onrendered: function(canvas) {
-                        //var data1 = document.getElementById('dvTable').innerHTML;
-                        var doc = new jsPDF();
-                        
-                        console.log(canvas);
-
-                        doc.addHTML(document.getElementById("dvTable"),
-                            function() {
-                                doc.save('PurchaseOrder.pdf');
-                            });
-                        document.getElementById("btnEmail").style.visibility = "visible";
-                        document.getElementById("btnDownload").style.visibility = "visible";
-                        document.getElementById("btnprint").style.visibility = "visible";
-                        document.getElementById("btnPDF").style.visibility = "visible";
-                    }
-                });
-            return true;
-        }
-    </script>
-
-
-    <script type="text/javascript">
-        function ConvertToImageDownload(btnDownload) {
-            document.getElementById("btnEmail").style.visibility = "hidden";
-            document.getElementById("btnprint").style.visibility = "hidden";
-            //document.getElementById("txtPoNumbers").style.visibility = "hidden";
-            // document.getElementById("btnPoShowByView").style.visibility = "hidden";
-            document.getElementById("btnDownload").style.visibility = "hidden";
-
-            html2canvas($("#dvTable")[0]).then(function (canvas) {
-                var base64 = canvas.toDataURL();
-                $("[id*=hfImageData]").val(base64);
-                __doPostBack(btnDownload.name, "");
-                document.getElementById("btnEmail").style.visibility = "visible";
-                //   document.getElementById("txtPoNumbers").style.visibility = "visible";
-                //  document.getElementById("btnPoShowByView").style.visibility = "visible";
                 document.getElementById("btnDownload").style.visibility = "visible";
                 document.getElementById("btnprint").style.visibility = "visible";
             });
@@ -148,8 +46,8 @@
         function Print() {
             document.getElementById("btnEmail").style.visibility = "hidden";
             document.getElementById("btnDownload").style.visibility = "hidden";
-
-            document.getElementById("btnprint").style.display = "none"; window.print();
+            document.getElementById("btnprint").style.display = "none";
+            window.print();
             document.getElementById("btnEmail").style.visibility = "visible";
             document.getElementById("btnDownload").style.visibility = "visible";
 
@@ -165,11 +63,6 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
                 </asp:Panel>
-
-               <%-- <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-                </cc1:AlwaysVisibleControlExtender>--%>
-
-                <%--=========================================Start My Code From Here===============================================--%>
 
                 <div style="text-align: left">PO Approval  From<hr />
                 </div>
@@ -212,13 +105,10 @@
                             <td>
                                 <asp:TextBox ID="txtPoNumbers" runat="server" CssClass="txtBox" Visible="false" PlaceHolder="PO" Width="50px" /></td>
                             <td>
-                                <asp:Button ID="btnPoShowByView" Visible="false" CssClass="btnButton" runat="server" Text="Show" OnClick="btnPoShowByView_Click" /></td>
+                                <asp:Button ID="btnEmail" Text="E-mail" runat="server"  OnClick ="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
                             <td>
-                                <asp:Button ID="btnEmail" Text="E-mail" runat="server"  OnClick ="btnEmail_OnClick" /></td>
-                            <td>
-                                <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" OnClick="btnDownload_Click" OnClientClick="return ConvertToImageDownload(this)" /></td>
-                            <td>
-                                <asp:Button ID="btnPDF" Text="HD PDF" Visible="False" runat="server" OnClick="btnPDF_OnClick"  /></td>
+                                <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
+                            
 
                         </tr>
                     </table>
