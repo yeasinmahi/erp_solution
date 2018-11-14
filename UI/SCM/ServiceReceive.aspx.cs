@@ -82,12 +82,12 @@ namespace UI.SCM
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
+           
             var tracker = new PerfTracker(perform + " " + "btnSaveMrr_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                try { File.Delete(filePathForXML); } catch { }
+          
 
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
                 {
@@ -173,7 +173,7 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "btnSaveMrr_Click", null);
             Flogger.WriteDiagnostic(fd);
-            // ends
+           
             tracker.Stop();
           
         }
@@ -316,6 +316,7 @@ namespace UI.SCM
                 intWh = int.Parse(ddlWH.SelectedValue);
                 intPo = int.Parse(txtPoNo.Text.ToString());
                 hdnPO.Value = intPo.ToString();
+                enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 try { intShipment = int.Parse(ddlInvoice.SelectedValue);
                     hdnShipment.Value = intShipment.ToString();
                 }
@@ -333,13 +334,17 @@ namespace UI.SCM
                     }
                     else
                     {
-                        dt = obj.DataView(7, xmlString, intWh, intPo, DateTime.Now, enroll);
+                        dt = obj.DataView(21, xmlString, intWh, intPo, DateTime.Now, enroll);
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
                         lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
                         lblCurrency.Text = " Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
                         lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
                         monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                        ddlWH.SelectedValue= dt.Rows[0]["intWHID"].ToString();
+                        ddlWH.SelectedItem.Text= dt.Rows[0]["strWareHoseName"].ToString();
+                        ddlPoType.SelectedItem.Text= dt.Rows[0]["strPoFor"].ToString();
+
 
                         dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);
                         lblPoTotal.Text = "";
@@ -352,7 +357,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    dt = obj.DataView(4, xmlString, intWh, intPo, DateTime.Now, enroll);
+                    dt = obj.DataView(20, xmlString, intWh, intPo, DateTime.Now, enroll);
                     if (dt.Rows.Count > 0)
                     {
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
@@ -360,6 +365,7 @@ namespace UI.SCM
                         //lblMrrNo.Text = dt.Rows[0][""].ToString();
                         // lblMrrDate.Text= dt.Rows[0][""].ToString();
                         lblPoTotal.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
+                        txtVatAmount.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
                         lblProductCost.Text = dt.Rows[0]["monPOAmount"].ToString();
                         lblTransportCost.Text = dt.Rows[0]["monOther"].ToString();
                         lblOtherCost.Text = dt.Rows[0]["monOther"].ToString();
@@ -369,9 +375,16 @@ namespace UI.SCM
                         hdnConversion.Value = dt.Rows[0]["monBDTConversion"].ToString();
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
 
+                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
+                        ddlWH.SelectedItem.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                        ddlPoType.SelectedItem.Text = dt.Rows[0]["strPoFor"].ToString();
+
+
+
                     }
 
                 }
+                intWh = int.Parse(ddlWH.SelectedValue);
                 dt = obj.DataView(17, xmlString, intWh, intPo, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
@@ -391,7 +404,7 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-            // ends
+           
             tracker.Stop();
         }
 

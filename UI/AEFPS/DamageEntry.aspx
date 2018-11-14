@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Item Active/Inactive</title>
+    <title>Damage Entry</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
@@ -34,7 +34,7 @@
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="container">
                     <div class="panel panel-info">
-                        <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                        <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body">
                             <div class="row form-group">
                                 <div class="col-md-6">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="panel panel-default" id="itemPanel">
+                     <div class="panel panel-info hidden" id="itemPanel">
                           <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body">
                             <asp:GridView ID="gvDamageEntry" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemMasterID" Width="100%" OnRowDeleting="gvDamageEntry_RowDeleting" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
@@ -165,7 +165,7 @@
                                 <SortedDescendingHeaderStyle BackColor="#383838" />
                             </asp:GridView>
                             <div class="form-group pull-right" style="padding-top:10px;">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-md"/>
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-sm" OnClick="btnSubmit_OnClick"/>
                             </div>
                         </div>
 
@@ -183,11 +183,6 @@
     </form>
    <script>
         function showPanel() {
-            var txtItemName = document.getElementById("txtItemName").value;
-            if (txtItemName === null || txtItemName === "") {
-                alert("Item Name can not be empty");
-                return false;
-            }
             var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.remove("hidden");
             return true;

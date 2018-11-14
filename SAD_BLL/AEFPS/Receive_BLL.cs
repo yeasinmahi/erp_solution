@@ -220,35 +220,43 @@ namespace SAD_BLL.AEFPS
                 return null;
             }
         }
-        public DataTable GetDamageItemList(int WHId)
+        public DataTable GetDamageItemList(int whId)
         {
             TblDamageTableAdapter adp = new TblDamageTableAdapter();
             try
             {
-                return adp.GetDamageItemData(WHId);
+                return adp.GetDamageItemData(whId);
             }
             catch
             {
                 return new DataTable();
             }
         }
-        public string UpdateRejectedDamageItemList(int itemId,int WHId,int MrrId)
+
+        public DataTable DamageItem(string xml)
         {
-            string msg = "";
-            TblDamageTableAdapter adp = new TblDamageTableAdapter();
+            SprDamageItemTableAdapter adp = new SprDamageItemTableAdapter();
             try
             {
-                 adp.UpdateRejectedDamageItem(itemId,WHId, MrrId);
-                return msg = "Rejected";
+                return adp.DamageEntry(xml);
             }
-            catch
+            catch(Exception ex)
             {
-                
+                return null;
             }
-            return msg;
         }
-
-
+        public DataTable DamageApprovedReject(int type,string voucherCode)
+        {
+            sprDamageUpdateTableAdapter adp = new sprDamageUpdateTableAdapter();
+            try
+            {
+                return adp.DamageApprovedReject(type, voucherCode);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 }
