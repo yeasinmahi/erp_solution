@@ -133,7 +133,7 @@ namespace UI.AEFPS
                             int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
                             string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
 
-                            string xml = CreateXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,
+                            string xml = GetXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,
                                 _intEnroll, out string message);
                             if (_bll.DamageItem(xml) == null)
                             {
@@ -169,7 +169,7 @@ namespace UI.AEFPS
             gvDamageEntry.DataSource = null;
             gvDamageEntry.DataBind();
         }
-        private string CreateXml(int intItemId, int intWhId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
+        private string GetXml(int intItemId, int intWhId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
         {
             dynamic obj = new
             {
