@@ -84,20 +84,18 @@ namespace UI.AEFPS
         protected void gvDamageEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             _dt = (DataTable)ViewState["grid"];
+            if (_dt.Rows.Count <= 0) return;
+            _dt.Rows.RemoveAt(e.RowIndex);
+            gvDamageEntry.DataSource = _dt;
+            gvDamageEntry.DataBind();
+            ViewState["grid"] = _dt;
             if (_dt.Rows.Count > 0)
             {
-                _dt.Rows.RemoveAt(e.RowIndex);
-                gvDamageEntry.DataSource = _dt;
-                gvDamageEntry.DataBind();
-                ViewState["grid"] = _dt;
-                if (_dt.Rows.Count > 0)
-                {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
-                }
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
             }
         }
 
