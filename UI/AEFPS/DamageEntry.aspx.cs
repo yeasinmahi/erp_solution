@@ -102,25 +102,14 @@ namespace UI.AEFPS
         protected void txtDamageQty_TextChanged(object sender, EventArgs e)
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnTextboxChanged(sender);
-            double damageQty=0,damageAmount=0,stockQty=0;
+            double damageQty=0,damageAmount=0;
+            const double stockQty = 0;
             if(damageQty<=stockQty)
             {
                 damageAmount = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text) * Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
             }
             Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
             dmgAmount.Text = damageAmount.ToString(CultureInfo.InvariantCulture);
-
-            //if (ViewState["grid"] != null)
-            //{
-            //    dt = (DataTable)ViewState["grid"];
-            //    dt.Columns.Add(new DataColumn("DamageQuantity", typeof(string)));
-            //    dt.Columns.Add(new DataColumn("DamageAmount", typeof(string)));
-
-            //    dt.Rows[dt.Rows.Count]["DamageQuantity"] = Convert.ToDouble(DamageQty.Text);
-            //    dt.Rows[dt.Rows.Count]["DamageAmount"] = Damage_Amount;
-            //    ViewState["grid"] = dt;
-            //}
-            
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
