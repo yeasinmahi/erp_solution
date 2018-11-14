@@ -14,7 +14,7 @@
     <script src="../Content/JS/jquery-3.3.1.js"></script>
     <script src="../Content/JS/html2canvas.js"></script>
     <script src="../Content/JS/jsPDF.js"></script>
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
     <script type="text/javascript">
         function ConvertToImage(btn) {
             document.getElementById("btnEmail").style.visibility = "hidden";

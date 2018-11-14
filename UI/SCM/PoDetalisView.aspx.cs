@@ -209,6 +209,26 @@ namespace UI.SCM
             mEmail = (MailItem)mApp.CreateItem(OlItemType.olMailItem);
             string email = lblSupEmail.Text;
             mEmail.To = "";
+            
+            try
+            {
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                PoNo = int.Parse(Session["pono"].ToString());
+                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                byte[] bytes = Convert.FromBase64String(base64);
+                string filePath = Server.MapPath("PO.Jpeg");
+                MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
+                ms.Write(bytes, 0, bytes.Length);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
+                Utility.FileHelper.DeleteFile(filePath);
+
+            }
+            catch (Exception exception)
+            {
+                //can not attached file
+            }
             if (!String.IsNullOrWhiteSpace(email))
             {
                 email = email.Substring(6);
@@ -217,19 +237,8 @@ namespace UI.SCM
                     mEmail.To = email;
                 }
             }
-
-            string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-            byte[] bytes = Convert.FromBase64String(base64);
-            string filePath = Server.MapPath("PO.Jpeg");
-            MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
-            ms.Write(bytes, 0, bytes.Length);
-            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-            image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
             mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
             mEmail.Body = "Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + ". ";
-            mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-            Utility.FileHelper.DeleteFile(filePath);
             mEmail.Display();
         }
     }
