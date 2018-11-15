@@ -12,7 +12,7 @@ namespace UI.AEFPS
     public partial class PurchaseReturn : Page
     {
         private readonly Receive_BLL _bll = new Receive_BLL();
-        private int _intEnroll;
+        private int _intEnroll=0;
         private DataTable _dt = new DataTable();
         private decimal _totalAmount;
         protected void Page_Load(object sender, EventArgs e)
@@ -22,31 +22,42 @@ namespace UI.AEFPS
                 pnlUpperControl.DataBind();
             }
             
-            _intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            //_intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             LoadWh();
         }
 
         protected void btnShow_OnClick(object sender, EventArgs e)
         {
-            string mrrNumber = txtMrrNumber.Text;
-            _dt = _bll.GetPurchase(1,Convert.ToInt32(mrrNumber));
-            txtSupplierName.Text = _dt.Rows.Count>0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
-            if (!string.IsNullOrWhiteSpace(mrrNumber))
+            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            string mrrNumbertxt = txtMrrNumber.Text;
+            string message = String.Empty;
+            if (!string.IsNullOrWhiteSpace(mrrNumbertxt))
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script","showPanel();", true);
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('MRR can not be blank');", true);
+                if (int.TryParse(mrrNumbertxt, out var mrrNumber))
+                {
+                    _dt = _bll.GetPurchase(1, whId, mrrNumber,out message);
+                    txtSupplierName.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
+
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+
+                    _dt = _bll.GetPurchase(2, whId, mrrNumber, out message);
+                   
+                    if (_dt.Rows.Count <= 0)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "dataNotFound", "alert('Data Not Found');", true);
+                        return;
+                    }
+                    LoadGrid();
+                    return;
+                }
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Input only number as MRR number');", true);
                 return;
+
             }
-            _dt = _bll.GetPurchase(2, Convert.ToInt32(mrrNumber));
-            LoadGrid();
-            if (_dt.Rows.Count < 1)
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "dataNotFound", "alert('Data Not Found');", true);
-            }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('MRR can not be blank');", true);
+            return;
+            
         }
         private void LoadWh()
         {

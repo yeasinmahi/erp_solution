@@ -169,14 +169,19 @@ namespace SAD_BLL.AEFPS
         }
 
         
-        public DataTable GetPurchase(int intType,int mrrNo)
+        public DataTable GetPurchase(int intType, int intWhId, int intMrrid, out string message)
         {
             sprPurchaseReturnTableAdapter adp = new sprPurchaseReturnTableAdapter();
             try
             {
-                return adp.GetPurchaseReturnDetails(intType,mrrNo);
+                message = null;
+                return adp.GetPurchaseReturnDetails(intType,intWhId,intMrrid,ref message);
             }
-            catch { return new DataTable(); }
+            catch
+            {
+                message = "UnHandled Error";
+                return new DataTable();
+            }
         }
         public DataTable GetActiveItemInfo(int itemId, int whId)
         {
