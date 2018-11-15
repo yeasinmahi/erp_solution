@@ -54,7 +54,7 @@ namespace SCM_DAL {
         
         private sprPODataTable tablesprPO;
         
-        private sprPOItemInfoChangeDataTable tablesprPOItemInfoChange;
+        private sprPOItemInfoUpdateDataTable tablesprPOItemInfoUpdate;
         
         private TblFactoryReceiveMRRDataTable tableTblFactoryReceiveMRR;
         
@@ -67,6 +67,8 @@ namespace SCM_DAL {
         private TblSupplierInfoDataTable tableTblSupplierInfo;
         
         private TblApprovalAuthorityDataTable tableTblApprovalAuthority;
+        
+        private SprDeletePODataTable tableSprDeletePO;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -141,8 +143,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["sprPO"] != null)) {
                     base.Tables.Add(new sprPODataTable(ds.Tables["sprPO"]));
                 }
-                if ((ds.Tables["sprPOItemInfoChange"] != null)) {
-                    base.Tables.Add(new sprPOItemInfoChangeDataTable(ds.Tables["sprPOItemInfoChange"]));
+                if ((ds.Tables["sprPOItemInfoUpdate"] != null)) {
+                    base.Tables.Add(new sprPOItemInfoUpdateDataTable(ds.Tables["sprPOItemInfoUpdate"]));
                 }
                 if ((ds.Tables["TblFactoryReceiveMRR"] != null)) {
                     base.Tables.Add(new TblFactoryReceiveMRRDataTable(ds.Tables["TblFactoryReceiveMRR"]));
@@ -161,6 +163,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["TblApprovalAuthority"] != null)) {
                     base.Tables.Add(new TblApprovalAuthorityDataTable(ds.Tables["TblApprovalAuthority"]));
+                }
+                if ((ds.Tables["SprDeletePO"] != null)) {
+                    base.Tables.Add(new SprDeletePODataTable(ds.Tables["SprDeletePO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -334,9 +339,9 @@ namespace SCM_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public sprPOItemInfoChangeDataTable sprPOItemInfoChange {
+        public sprPOItemInfoUpdateDataTable sprPOItemInfoUpdate {
             get {
-                return this.tablesprPOItemInfoChange;
+                return this.tablesprPOItemInfoUpdate;
             }
         }
         
@@ -397,6 +402,16 @@ namespace SCM_DAL {
         public TblApprovalAuthorityDataTable TblApprovalAuthority {
             get {
                 return this.tableTblApprovalAuthority;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprDeletePODataTable SprDeletePO {
+            get {
+                return this.tableSprDeletePO;
             }
         }
         
@@ -512,8 +527,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["sprPO"] != null)) {
                     base.Tables.Add(new sprPODataTable(ds.Tables["sprPO"]));
                 }
-                if ((ds.Tables["sprPOItemInfoChange"] != null)) {
-                    base.Tables.Add(new sprPOItemInfoChangeDataTable(ds.Tables["sprPOItemInfoChange"]));
+                if ((ds.Tables["sprPOItemInfoUpdate"] != null)) {
+                    base.Tables.Add(new sprPOItemInfoUpdateDataTable(ds.Tables["sprPOItemInfoUpdate"]));
                 }
                 if ((ds.Tables["TblFactoryReceiveMRR"] != null)) {
                     base.Tables.Add(new TblFactoryReceiveMRRDataTable(ds.Tables["TblFactoryReceiveMRR"]));
@@ -532,6 +547,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["TblApprovalAuthority"] != null)) {
                     base.Tables.Add(new TblApprovalAuthorityDataTable(ds.Tables["TblApprovalAuthority"]));
+                }
+                if ((ds.Tables["SprDeletePO"] != null)) {
+                    base.Tables.Add(new SprDeletePODataTable(ds.Tables["SprDeletePO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -656,10 +674,10 @@ namespace SCM_DAL {
                     this.tablesprPO.InitVars();
                 }
             }
-            this.tablesprPOItemInfoChange = ((sprPOItemInfoChangeDataTable)(base.Tables["sprPOItemInfoChange"]));
+            this.tablesprPOItemInfoUpdate = ((sprPOItemInfoUpdateDataTable)(base.Tables["sprPOItemInfoUpdate"]));
             if ((initTable == true)) {
-                if ((this.tablesprPOItemInfoChange != null)) {
-                    this.tablesprPOItemInfoChange.InitVars();
+                if ((this.tablesprPOItemInfoUpdate != null)) {
+                    this.tablesprPOItemInfoUpdate.InitVars();
                 }
             }
             this.tableTblFactoryReceiveMRR = ((TblFactoryReceiveMRRDataTable)(base.Tables["TblFactoryReceiveMRR"]));
@@ -696,6 +714,12 @@ namespace SCM_DAL {
             if ((initTable == true)) {
                 if ((this.tableTblApprovalAuthority != null)) {
                     this.tableTblApprovalAuthority.InitVars();
+                }
+            }
+            this.tableSprDeletePO = ((SprDeletePODataTable)(base.Tables["SprDeletePO"]));
+            if ((initTable == true)) {
+                if ((this.tableSprDeletePO != null)) {
+                    this.tableSprDeletePO.InitVars();
                 }
             }
         }
@@ -738,8 +762,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tablesprUpdatePO);
             this.tablesprPO = new sprPODataTable();
             base.Tables.Add(this.tablesprPO);
-            this.tablesprPOItemInfoChange = new sprPOItemInfoChangeDataTable();
-            base.Tables.Add(this.tablesprPOItemInfoChange);
+            this.tablesprPOItemInfoUpdate = new sprPOItemInfoUpdateDataTable();
+            base.Tables.Add(this.tablesprPOItemInfoUpdate);
             this.tableTblFactoryReceiveMRR = new TblFactoryReceiveMRRDataTable();
             base.Tables.Add(this.tableTblFactoryReceiveMRR);
             this.tableTblCurrencyConversion = new TblCurrencyConversionDataTable();
@@ -752,6 +776,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tableTblSupplierInfo);
             this.tableTblApprovalAuthority = new TblApprovalAuthorityDataTable();
             base.Tables.Add(this.tableTblApprovalAuthority);
+            this.tableSprDeletePO = new SprDeletePODataTable();
+            base.Tables.Add(this.tableSprDeletePO);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -846,7 +872,7 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializesprPOItemInfoChange() {
+        private bool ShouldSerializesprPOItemInfoUpdate() {
             return false;
         }
         
@@ -883,6 +909,12 @@ namespace SCM_DAL {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeTblApprovalAuthority() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprDeletePO() {
             return false;
         }
         
@@ -987,7 +1019,7 @@ namespace SCM_DAL {
         public delegate void sprPORowChangeEventHandler(object sender, sprPORowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void sprPOItemInfoChangeRowChangeEventHandler(object sender, sprPOItemInfoChangeRowChangeEvent e);
+        public delegate void sprPOItemInfoUpdateRowChangeEventHandler(object sender, sprPOItemInfoUpdateRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblFactoryReceiveMRRRowChangeEventHandler(object sender, TblFactoryReceiveMRRRowChangeEvent e);
@@ -1006,6 +1038,9 @@ namespace SCM_DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblApprovalAuthorityRowChangeEventHandler(object sender, TblApprovalAuthorityRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprDeletePORowChangeEventHandler(object sender, SprDeletePORowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5511,12 +5546,12 @@ namespace SCM_DAL {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class sprPOItemInfoChangeDataTable : global::System.Data.TypedTableBase<sprPOItemInfoChangeRow> {
+        public partial class sprPOItemInfoUpdateDataTable : global::System.Data.TypedTableBase<sprPOItemInfoUpdateRow> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprPOItemInfoChangeDataTable() {
-                this.TableName = "sprPOItemInfoChange";
+            public sprPOItemInfoUpdateDataTable() {
+                this.TableName = "sprPOItemInfoUpdate";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -5524,7 +5559,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal sprPOItemInfoChangeDataTable(global::System.Data.DataTable table) {
+            internal sprPOItemInfoUpdateDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -5541,7 +5576,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected sprPOItemInfoChangeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sprPOItemInfoUpdateDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -5557,44 +5592,44 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprPOItemInfoChangeRow this[int index] {
+            public sprPOItemInfoUpdateRow this[int index] {
                 get {
-                    return ((sprPOItemInfoChangeRow)(this.Rows[index]));
+                    return ((sprPOItemInfoUpdateRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprPOItemInfoChangeRowChangeEventHandler sprPOItemInfoChangeRowChanging;
+            public event sprPOItemInfoUpdateRowChangeEventHandler sprPOItemInfoUpdateRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprPOItemInfoChangeRowChangeEventHandler sprPOItemInfoChangeRowChanged;
+            public event sprPOItemInfoUpdateRowChangeEventHandler sprPOItemInfoUpdateRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprPOItemInfoChangeRowChangeEventHandler sprPOItemInfoChangeRowDeleting;
+            public event sprPOItemInfoUpdateRowChangeEventHandler sprPOItemInfoUpdateRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprPOItemInfoChangeRowChangeEventHandler sprPOItemInfoChangeRowDeleted;
+            public event sprPOItemInfoUpdateRowChangeEventHandler sprPOItemInfoUpdateRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddsprPOItemInfoChangeRow(sprPOItemInfoChangeRow row) {
+            public void AddsprPOItemInfoUpdateRow(sprPOItemInfoUpdateRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprPOItemInfoChangeRow AddsprPOItemInfoChangeRow() {
-                sprPOItemInfoChangeRow rowsprPOItemInfoChangeRow = ((sprPOItemInfoChangeRow)(this.NewRow()));
+            public sprPOItemInfoUpdateRow AddsprPOItemInfoUpdateRow() {
+                sprPOItemInfoUpdateRow rowsprPOItemInfoUpdateRow = ((sprPOItemInfoUpdateRow)(this.NewRow()));
                 object[] columnValuesArray = new object[0];
-                rowsprPOItemInfoChangeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowsprPOItemInfoChangeRow);
-                return rowsprPOItemInfoChangeRow;
+                rowsprPOItemInfoUpdateRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprPOItemInfoUpdateRow);
+                return rowsprPOItemInfoUpdateRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                sprPOItemInfoChangeDataTable cln = ((sprPOItemInfoChangeDataTable)(base.Clone()));
+                sprPOItemInfoUpdateDataTable cln = ((sprPOItemInfoUpdateDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5602,7 +5637,7 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new sprPOItemInfoChangeDataTable();
+                return new sprPOItemInfoUpdateDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5617,28 +5652,28 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprPOItemInfoChangeRow NewsprPOItemInfoChangeRow() {
-                return ((sprPOItemInfoChangeRow)(this.NewRow()));
+            public sprPOItemInfoUpdateRow NewsprPOItemInfoUpdateRow() {
+                return ((sprPOItemInfoUpdateRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new sprPOItemInfoChangeRow(builder);
+                return new sprPOItemInfoUpdateRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(sprPOItemInfoChangeRow);
+                return typeof(sprPOItemInfoUpdateRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.sprPOItemInfoChangeRowChanged != null)) {
-                    this.sprPOItemInfoChangeRowChanged(this, new sprPOItemInfoChangeRowChangeEvent(((sprPOItemInfoChangeRow)(e.Row)), e.Action));
+                if ((this.sprPOItemInfoUpdateRowChanged != null)) {
+                    this.sprPOItemInfoUpdateRowChanged(this, new sprPOItemInfoUpdateRowChangeEvent(((sprPOItemInfoUpdateRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5646,8 +5681,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.sprPOItemInfoChangeRowChanging != null)) {
-                    this.sprPOItemInfoChangeRowChanging(this, new sprPOItemInfoChangeRowChangeEvent(((sprPOItemInfoChangeRow)(e.Row)), e.Action));
+                if ((this.sprPOItemInfoUpdateRowChanging != null)) {
+                    this.sprPOItemInfoUpdateRowChanging(this, new sprPOItemInfoUpdateRowChangeEvent(((sprPOItemInfoUpdateRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5655,8 +5690,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.sprPOItemInfoChangeRowDeleted != null)) {
-                    this.sprPOItemInfoChangeRowDeleted(this, new sprPOItemInfoChangeRowChangeEvent(((sprPOItemInfoChangeRow)(e.Row)), e.Action));
+                if ((this.sprPOItemInfoUpdateRowDeleted != null)) {
+                    this.sprPOItemInfoUpdateRowDeleted(this, new sprPOItemInfoUpdateRowChangeEvent(((sprPOItemInfoUpdateRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5664,14 +5699,14 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.sprPOItemInfoChangeRowDeleting != null)) {
-                    this.sprPOItemInfoChangeRowDeleting(this, new sprPOItemInfoChangeRowChangeEvent(((sprPOItemInfoChangeRow)(e.Row)), e.Action));
+                if ((this.sprPOItemInfoUpdateRowDeleting != null)) {
+                    this.sprPOItemInfoUpdateRowDeleting(this, new sprPOItemInfoUpdateRowChangeEvent(((sprPOItemInfoUpdateRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovesprPOItemInfoChangeRow(sprPOItemInfoChangeRow row) {
+            public void RemovesprPOItemInfoUpdateRow(sprPOItemInfoUpdateRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -5698,7 +5733,7 @@ namespace SCM_DAL {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "sprPOItemInfoChangeDataTable";
+                attribute2.FixedValue = "sprPOItemInfoUpdateDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7916,6 +7951,239 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprDeletePODataTable : global::System.Data.TypedTableBase<SprDeletePORow> {
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprDeletePODataTable() {
+                this.TableName = "SprDeletePO";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprDeletePODataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprDeletePODataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprDeletePORow this[int index] {
+                get {
+                    return ((SprDeletePORow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprDeletePORowChangeEventHandler SprDeletePORowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprDeletePORowChangeEventHandler SprDeletePORowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprDeletePORowChangeEventHandler SprDeletePORowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprDeletePORowChangeEventHandler SprDeletePORowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprDeletePORow(SprDeletePORow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprDeletePORow AddSprDeletePORow() {
+                SprDeletePORow rowSprDeletePORow = ((SprDeletePORow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowSprDeletePORow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprDeletePORow);
+                return rowSprDeletePORow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprDeletePODataTable cln = ((SprDeletePODataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprDeletePODataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprDeletePORow NewSprDeletePORow() {
+                return ((SprDeletePORow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprDeletePORow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprDeletePORow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprDeletePORowChanged != null)) {
+                    this.SprDeletePORowChanged(this, new SprDeletePORowChangeEvent(((SprDeletePORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprDeletePORowChanging != null)) {
+                    this.SprDeletePORowChanging(this, new SprDeletePORowChangeEvent(((SprDeletePORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprDeletePORowDeleted != null)) {
+                    this.SprDeletePORowDeleted(this, new SprDeletePORowChangeEvent(((SprDeletePORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprDeletePORowDeleting != null)) {
+                    this.SprDeletePORowDeleting(this, new SprDeletePORowChangeEvent(((SprDeletePORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprDeletePORow(SprDeletePORow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                PoGenerateTDS ds = new PoGenerateTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprDeletePODataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class SprPoGenerateRow : global::System.Data.DataRow {
@@ -9721,15 +9989,15 @@ namespace SCM_DAL {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class sprPOItemInfoChangeRow : global::System.Data.DataRow {
+        public partial class sprPOItemInfoUpdateRow : global::System.Data.DataRow {
             
-            private sprPOItemInfoChangeDataTable tablesprPOItemInfoChange;
+            private sprPOItemInfoUpdateDataTable tablesprPOItemInfoUpdate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal sprPOItemInfoChangeRow(global::System.Data.DataRowBuilder rb) : 
+            internal sprPOItemInfoUpdateRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablesprPOItemInfoChange = ((sprPOItemInfoChangeDataTable)(this.Table));
+                this.tablesprPOItemInfoUpdate = ((sprPOItemInfoUpdateDataTable)(this.Table));
             }
         }
         
@@ -10953,6 +11221,21 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprDeletePORow : global::System.Data.DataRow {
+            
+            private SprDeletePODataTable tableSprDeletePO;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprDeletePORow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprDeletePO = ((SprDeletePODataTable)(this.Table));
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -11466,22 +11749,22 @@ namespace SCM_DAL {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class sprPOItemInfoChangeRowChangeEvent : global::System.EventArgs {
+        public class sprPOItemInfoUpdateRowChangeEvent : global::System.EventArgs {
             
-            private sprPOItemInfoChangeRow eventRow;
+            private sprPOItemInfoUpdateRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprPOItemInfoChangeRowChangeEvent(sprPOItemInfoChangeRow row, global::System.Data.DataRowAction action) {
+            public sprPOItemInfoUpdateRowChangeEvent(sprPOItemInfoUpdateRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprPOItemInfoChangeRow Row {
+            public sprPOItemInfoUpdateRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11686,6 +11969,40 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblApprovalAuthorityRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprDeletePORowChangeEvent : global::System.EventArgs {
+            
+            private SprDeletePORow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprDeletePORowChangeEvent(SprDeletePORow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprDeletePORow Row {
                 get {
                     return this.eventRow;
                 }
@@ -14862,7 +15179,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class sprPOItemInfoChangeTableAdapter : global::System.ComponentModel.Component {
+    public partial class sprPOItemInfoUpdateTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -14876,7 +15193,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public sprPOItemInfoChangeTableAdapter() {
+        public sprPOItemInfoUpdateTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -14986,7 +15303,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprPOItemInfoChange";
+            this._commandCollection[0].CommandText = "dbo.sprPOItemInfoUpdate";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPOID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -14997,6 +15314,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monVAT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intupdateby", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAIT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strmsgvcd", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -15004,7 +15322,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PoGenerateTDS.sprPOItemInfoChangeDataTable UpdateItemInfoByPO(global::System.Nullable<int> intPOID, global::System.Nullable<decimal> numPOQty, global::System.Nullable<int> intItemID, string strSpecification, global::System.Nullable<decimal> monRate, global::System.Nullable<decimal> monVAT, global::System.Nullable<decimal> monAmount, global::System.Nullable<int> intupdateby, ref string strmsgvcd) {
+        public virtual PoGenerateTDS.sprPOItemInfoUpdateDataTable UpdateItemInfoByPO(global::System.Nullable<int> intPOID, global::System.Nullable<decimal> numPOQty, global::System.Nullable<int> intItemID, string strSpecification, global::System.Nullable<decimal> monRate, global::System.Nullable<decimal> monVAT, global::System.Nullable<decimal> monAmount, global::System.Nullable<int> intupdateby, global::System.Nullable<decimal> monAIT, ref string strmsgvcd) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intPOID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intPOID.Value));
@@ -15054,20 +15372,26 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((strmsgvcd == null)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((monAIT.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((decimal)(monAIT.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(strmsgvcd));
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            PoGenerateTDS.sprPOItemInfoChangeDataTable dataTable = new PoGenerateTDS.sprPOItemInfoChangeDataTable();
+            if ((strmsgvcd == null)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strmsgvcd));
+            }
+            PoGenerateTDS.sprPOItemInfoUpdateDataTable dataTable = new PoGenerateTDS.sprPOItemInfoUpdateDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[9].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[9].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[10].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[10].Value.GetType() == typeof(global::System.DBNull)))) {
                 strmsgvcd = null;
             }
             else {
-                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[9].Value));
+                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[10].Value));
             }
             return dataTable;
         }
@@ -16093,22 +16417,30 @@ Where intPOID = @intPOID";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT\r\n      [intEnrollment]\r\n      ,[strPOType]\r\n      \r\n  FROM [ERP_Inventory]" +
-                ".[dbo].[tblApprovalAuthority] where [ysnActive] =1 and intEnrollment=@enroll";
+                ".[dbo].[tblApprovalAuthority] where [ysnActive] =1 and intEnrollment=@enroll and" +
+                " strPOType = @strPOType";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEnrollment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPOType", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strPOType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PoGenerateTDS.TblApprovalAuthorityDataTable GetPOApprovalAuthority(global::System.Nullable<int> enroll) {
+        public virtual PoGenerateTDS.TblApprovalAuthorityDataTable GetPOApprovalAuthority(global::System.Nullable<int> enroll, string strPOType) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((enroll.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(enroll.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((strPOType == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strPOType));
             }
             PoGenerateTDS.TblApprovalAuthorityDataTable dataTable = new PoGenerateTDS.TblApprovalAuthorityDataTable();
             this.Adapter.Fill(dataTable);
@@ -16142,6 +16474,191 @@ Where intPOID = @intPOID";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprDeletePOTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprDeletePOTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.SprDeletePO";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@POID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strmsg", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual PoGenerateTDS.SprDeletePODataTable DeletePO(global::System.Nullable<int> itemID, global::System.Nullable<int> POID, global::System.Nullable<int> enroll, ref string strmsg) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((itemID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(itemID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((POID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(POID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((enroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(enroll.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((strmsg == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strmsg));
+            }
+            PoGenerateTDS.SprDeletePODataTable dataTable = new PoGenerateTDS.SprDeletePODataTable();
+            this.Adapter.Fill(dataTable);
+            if (((this.Adapter.SelectCommand.Parameters[4].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[4].Value.GetType() == typeof(global::System.DBNull)))) {
+                strmsg = null;
+            }
+            else {
+                strmsg = ((string)(this.Adapter.SelectCommand.Parameters[4].Value));
+            }
+            return dataTable;
         }
     }
     
@@ -16408,6 +16925,15 @@ Where intPOID = @intPOID";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._tblApprovalAuthorityTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TblApprovalAuthority.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblApprovalAuthorityTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._tblWearHouseTableAdapter1 != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tblWearHouse.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -16462,15 +16988,6 @@ Where intPOID = @intPOID";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tblApprovalAuthorityTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TblApprovalAuthority.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblApprovalAuthorityTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -16486,6 +17003,14 @@ Where intPOID = @intPOID";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblFactoryReceiveMRRTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tblApprovalAuthorityTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TblApprovalAuthority.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblApprovalAuthorityTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -16537,14 +17062,6 @@ Where intPOID = @intPOID";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tblApprovalAuthorityTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TblApprovalAuthority.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblApprovalAuthorityTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -16555,14 +17072,6 @@ Where intPOID = @intPOID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(PoGenerateTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tblApprovalAuthorityTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TblApprovalAuthority.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblApprovalAuthorityTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tblIServiceListTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TblIServiceList.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -16608,6 +17117,14 @@ Where intPOID = @intPOID";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tblWearHouseTableAdapter1.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tblApprovalAuthorityTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TblApprovalAuthority.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblApprovalAuthorityTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

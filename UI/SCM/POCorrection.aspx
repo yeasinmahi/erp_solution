@@ -37,18 +37,18 @@
             ////$("[id*=txtQty]").val("0");
         });
 
-        $("[id*=txtQty]").live("change", function () {
+        $("[id*=txtQty]").on("change", function () {
             if (isNaN(parseFloat($(this).val()))) {
                 $(this).val('0');
             } else { parseFloat($(this).val($(this).val()).toString()).toFixed(2); }
         });
         //*** txtQty Selection Change Start ****************************************************************************
-        $("[id*=txtQty]").live("keyup", function () {
+        $("[id*=txtQty]").on("keyup", function () {
             if (!jQuery.trim($(this).val()) == '') {
 
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
-                    $("[id*=lblTotalVal]", row).html((((parseFloat($("[id*=txtRate]", row).val()) + parseFloat($("[id*=txtVAT]", row).val()) + parseFloat($("[id*=lblAIT]", row).html()))) * ($(this).val())).toFixed(2));
+                    $("[id*=lblTotalVal]", row).html((((parseFloat($("[id*=txtRate]", row).val()) + parseFloat($("[id*=txtVAT]", row).val()) + parseFloat($("[id*=txtAIT]", row).html()))) * ($(this).val())).toFixed(2));
                 }
             } else {
                 $(this).val('');
@@ -68,7 +68,7 @@
             });
             $("[id*=lblGrandTotal]").html(parseFloat(grandTotal.toString()).toFixed(2));
 
-            $("[id*=lblAIT]").each(function () {
+            $("[id*=txtAIT]").each(function () {
                 grandTotalait = grandTotalait + parseFloat($(this).html());
             });
             $("[id*=lblGrandTotalAIT]").html(grandTotalait.toString());
@@ -89,18 +89,18 @@
             ////$("[id*=txtRate]").val("0");
         });
 
-        $("[id*=txtRate]").live("change", function () {
+        $("[id*=txtRate]").on("change", function () {
             if (isNaN(parseFloat($(this).val()))) {
                 $(this).val('0');
             } else { parseFloat($(this).val($(this).val()).toString()).toFixed(2); }
         });
 
-        $("[id*=txtRate]").live("keyup", function () {
+        $("[id*=txtRate]").on("keyup", function () {
             if (!jQuery.trim($(this).val()) == '') {
 
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
-                    $("[id*=lblTotalVal]", row).html((parseFloat($("[id*=txtQty]", row).val()) * (parseFloat($(this).val()) + parseFloat($("[id*=txtVAT]", row).val()) + parseFloat($("[id*=lblAIT]", row).html()))).toFixed(2));
+                    $("[id*=lblTotalVal]", row).html((parseFloat($("[id*=txtQty]", row).val()) * (parseFloat($(this).val()) + parseFloat($("[id*=txtVAT]", row).val()) + parseFloat($("[id*=txtAIT]", row).html()))).toFixed(2));
                 }
             } else {
                 $(this).val('');
@@ -116,7 +116,7 @@
             });
             $("[id*=lblGrandTotal]").html(parseFloat(grandTotal.toString()).toFixed(2));
 
-            $("[id*=lblAIT]").each(function () {
+            $("[id*=txtAIT]").each(function () {
                 grandTotalait = grandTotalait + parseFloat($(this).html());
             });
             $("[id*=lblGrandTotalAIT]").html(grandTotalait.toString());
@@ -138,18 +138,18 @@
             ////$("[id*=txtVAT]").val("0");
         });
 
-        $("[id*=txtVAT]").live("change", function () {
+        $("[id*=txtVAT]").on("change", function () {
             if (isNaN(parseFloat($(this).val()))) {
                 $(this).val('0');
             } else { parseFloat($(this).val($(this).val()).toString()).toFixed(2); }
         });
 
-        $("[id*=txtVAT]").live("keyup", function () {
+        $("[id*=txtVAT]").on("keyup", function () {
             if (!jQuery.trim($(this).val()) == '') {
 
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
-                    $("[id*=lblTotalVal]", row).html((parseFloat($("[id*=txtQty]", row).val()) * (parseFloat($(this).val()) + parseFloat($("[id*=txtRate]", row).val()) + parseFloat($("[id*=lblAIT]", row).html()))).toFixed(2));
+                    $("[id*=lblTotalVal]", row).html((parseFloat($("[id*=txtQty]", row).val()) * (parseFloat($(this).val()) + parseFloat($("[id*=txtRate]", row).val()) + parseFloat($("[id*=txtAIT]", row).html()))).toFixed(2));
                 }
             } else {
                 $(this).val('');
@@ -165,7 +165,7 @@
             });
             $("[id*=lblGrandTotal]").html(parseFloat(grandTotal.toString()).toFixed(2));
 
-            $("[id*=lblAIT]").each(function () {
+            $("[id*=txtAIT]").each(function () {
                 grandTotalait = grandTotalait + parseFloat($(this).html());
             });
             $("[id*=lblGrandTotalAIT]").html(grandTotalait.toString());
@@ -185,7 +185,13 @@
 </script>
 
     <script>
-
+     function Confirm() {
+        document.getElementById("hdnconfirm").value = "0";        
+        var confirm_value = document.createElement("INPUT");
+        confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+        if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+        else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+    }
     function doSomething(){
     document.getElementById('id_confrmdiv').style.display="block"; //this is the replace of this line
 
@@ -237,7 +243,7 @@
             <td class="tdheight"><asp:TextBox ID="txtWH" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>                                
         </tr>
         <tr>
-            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" Width="120px" OnClientClick = "ConfirmAll()" OnClick="btnDeletePO_Click"/></td>
+            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" Width="120px" OnClientClick = "Confirm()" OnClick="btnDeletePO_Click"/></td>
             <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Width="120px" OnClick="btnShow_Click"/></td>            
         </tr>
         <tr ><td style="padding: 15px 0px 0px 5px;" colspan="4"> </td></tr>
@@ -294,7 +300,7 @@
             <td class="tdheight" style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Gross Discount : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtGDiscount" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
 
-            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="No of Installment (for installment Payment) : "></asp:Label></td>
+            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="No of Installment : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtNoOfInstallment" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
         </tr>
         <tr><td colspan="4" style="height:5px;"></td></tr>
@@ -302,7 +308,7 @@
             <td class="tdheight" style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Others Amount : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtOthers" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
 
-            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Installment Interval (Days, for installment) : "></asp:Label></td>
+            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Installment Interval : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtInstallmentIntervalDays" runat="server" CssClass="txtBox1" ></asp:TextBox></td>
         </tr>
         <tr><td colspan="4" style="height:5px;"></td></tr>
@@ -317,31 +323,31 @@
         <tr><td colspan="4" style="height:5px;"></td></tr>
         <tr> 
             <td class="tdheight" style="text-align:right;"><asp:Label ID="Label18" CssClass="lbl" runat="server" Text="Other Terms : "></asp:Label></td>
-            <td class="tdheight"><asp:TextBox ID="txtOtherTerms" runat="server" CssClass="txtBox1" Height="50px" TextMode="MultiLine"></asp:TextBox></td> 
+            <td class="tdheight"><asp:TextBox ID="txtOtherTerms" runat="server" CssClass="txtBox1" Height="100px" TextMode="MultiLine"></asp:TextBox></td> 
              
             <td class="tdheight" style="text-align:right;"><asp:Label ID="Label17" CssClass="lbl" runat="server" Text="Warrenty after delivery (in months) : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtWarrentyAfterDelivery" runat="server" CssClass="txtBox1" ></asp:TextBox></td>                                         
         </tr> 
         <tr>
-            <td colspan="4" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnUpdatePO" runat="server" class="myButton" Text="Update" Width="120px" OnClientClick = "ConfirmAll()" OnClick="btnUpdatePO_Click"/></td>        
+            <td colspan="4" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnUpdatePO" runat="server" class="myButton" Text="Update" Width="120px" OnClientClick = "Confirm()" OnClick="btnUpdatePO_Click"/></td>        
         </tr>
         <tr ><td style="padding: 15px 0px 0px 5px;" colspan="4"> </td></tr>
                 
     </table>
     </div>
 
-    <div id="divItemInfo" runat="server" class="leaveApplication_container">     
+    <div id="divItemInfo" runat="server" class="leaveApplication_container hidden">     
         <table  class="tbldecoration" style="width:auto; float:left;">
             <%--<tr><td colspan="4" style="font-weight:bold; font-size:11px; color:#3369ff;">Item Description:<hr /></td></tr>--%>
             <%--<tr><td> <hr /> </td></tr>--%>
             <tr>
                 <td>
-                    <asp:GridView ID="dgvItemInfoByPO" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
-                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true" 
-                    FooterStyle-BackColor="#808080" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvItemInfoByPO_RowDataBound" OnRowDeleting="dgvItemInfoByPO_RowDeleting" OnRowCommand="dgvItemInfoByPO_RowCommand">
+                    <asp:GridView ID="dgvItemInfoByPO" runat="server" AutoGenerateColumns="False" PageSize="8"
+                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="True" 
+                    FooterStyle-BackColor="#808080" FooterStyle-ForeColor="White" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" OnRowDataBound="dgvItemInfoByPO_RowDataBound"  OnRowCommand="dgvItemInfoByPO_RowCommand">
                     <AlternatingRowStyle BackColor="#CCCCCC" />
                     <Columns>
-                    <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                    <asp:TemplateField HeaderText="SL"><ItemStyle HorizontalAlign="center" Width="20px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
                                     
                     <asp:TemplateField HeaderText="Item ID" SortExpression="intemid" Visible="true">
                     <ItemTemplate><asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intemid") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
@@ -352,8 +358,8 @@
                     <FooterTemplate><asp:Label ID="lblT" runat="server" Text="Total" /></FooterTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Item Specification" SortExpression="specification">
-                    <ItemTemplate><asp:TextBox ID="txtSpecification" runat="server" CssClass="txtBox" Text='<%# Bind("specification") %>' TextMode="MultiLine" Width="300px"></asp:TextBox>
-                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="300px" />
+                    <ItemTemplate><asp:TextBox ID="txtSpecification" runat="server" CssClass="txtBox" Text='<%# Bind("specification") %>' TextMode="MultiLine" Width="250px"></asp:TextBox>
+                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px" />
                     <FooterTemplate><asp:Label ID="lblBlank" runat="server" Text=""></asp:Label></FooterTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="UOM" SortExpression="uom">
@@ -367,18 +373,20 @@
                     <FooterTemplate><asp:Label ID="lblGrandTotalQty" runat="server" DataFormatString="{0:0.00}" Text="<%# totalqty %>" /></FooterTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="rate">
-                    <ItemTemplate><asp:TextBox ID="txtRate" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("rate") %>' Width="45px"></asp:TextBox>
-                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="40px" />
+                    <ItemTemplate><asp:TextBox ID="txtRate" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("rate") %>' Width="80px"></asp:TextBox>
+                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
                     <FooterTemplate><asp:Label ID="lbldm" runat="server" DataFormatString="{0:0.00}" Text="" /></FooterTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="VAT" SortExpression="vat">
-                    <ItemTemplate><asp:TextBox ID="txtVAT" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("vat") %>' Width="45px"></asp:TextBox>
-                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="45px" />
+                    <ItemTemplate><asp:TextBox ID="txtVAT" runat="server" CssClass="txtBox" DataFormatString="{0:0.00}" Text='<%# Bind("vat") %>' Width="50px"></asp:TextBox>
+                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="50px" />
                     <FooterTemplate><asp:Label ID="lblGrandTotalVAT" runat="server" DataFormatString="{0:0.00}" Text="<%# totalvat %>" /></FooterTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="AIT" ItemStyle-HorizontalAlign="right" SortExpression="ait">
-                    <ItemTemplate><asp:Label ID="lblAIT" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("ait"))) %>'></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="40px" />
+                    <ItemTemplate><asp:TextBox ID="txtAIT" runat="server" DataFormatString="{0:0.00}" Width="50px" CssClass="txtBox" Text='<%# Bind("ait") %>'></asp:TextBox> <%--Text='<%# (decimal.Parse(""+Eval("ait"))) %>'--%>
+                    </ItemTemplate>
+                        <HeaderStyle Width="40px" />
+                        <ItemStyle HorizontalAlign="right" Width="50px" />
                     <FooterTemplate><asp:Label ID="lblGrandTotalAIT" runat="server" DataFormatString="{0:0.00}" Text="<%# totalait %>" /></FooterTemplate></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Total Value" ItemStyle-HorizontalAlign="right" SortExpression="total">
@@ -390,22 +398,14 @@
                     <ItemTemplate><asp:Label ID="lblExisting" runat="server" Text='<%# Bind("ysnExisting") %>'></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Update" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                    <ItemTemplate><asp:Button ID="btnApprove" class="myButtonGrid" OnClientClick = "ConfirmAll()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Y"  
-                    Text="Update"/></ItemTemplate><ItemStyle HorizontalAlign="center"/></asp:TemplateField>
-                        
-                    <%--<asp:CommandField DeleteText="Update" HeaderText="Update" ShowDeleteButton="True" ControlStyle-Width="40px" ControlStyle-Font-Bold="true" ControlStyle-ForeColor="Blue"/>--%>
-
-                    <%--<asp:TemplateField HeaderText="Indent No" SortExpression="indentno" Visible="true">
-                    <ItemTemplate><asp:Label ID="lblIndentNo" runat="server" Text='<%# Bind("indentno") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="PO Qty" SortExpression="poqty" Visible="true">
-                    <ItemTemplate><asp:Label ID="lblPOQty" runat="server" Text='<%# Bind("poqty") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="HS Code" SortExpression="hscode" Visible="true">
-                    <ItemTemplate><asp:Label ID="lblHSCode" runat="server" Text='<%# Bind("hscode") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>--%>
-
+                    <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" SortExpression="">
+                    <ItemTemplate><asp:Button ID="btnApprove" class="myButtonGrid" OnClientClick = "Confirm()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Y" Text="Update"/>
+                        <asp:Button ID="btnDelete" class="myButtonGrid" OnClientClick = "Confirm()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Delete" Text="Delete"/>
+                    </ItemTemplate>
+                        <ItemStyle HorizontalAlign="center"/>
+                    </asp:TemplateField>
                     </Columns>
+                        <FooterStyle BackColor="Gray" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     </asp:GridView></td>
@@ -417,5 +417,12 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
+    <script>
+         function showPanel() {
+            var itemPanel = document.getElementById("divItemInfo");
+            itemPanel.classList.remove("hidden");
+            return true;
+        }
+    </script>
 </body>
 </html>
