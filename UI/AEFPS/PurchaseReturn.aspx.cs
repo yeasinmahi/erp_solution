@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Globalization;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAD_BLL.AEFPS;
-using UI.ClassFiles;
 
 namespace UI.AEFPS
 {
@@ -31,11 +29,11 @@ namespace UI.AEFPS
             //int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
             int whId = 575; //------------------------------------------------------------------------------For test perpose
             string mrrNumbertxt = txtMrrNumber.Text;
-            string message = String.Empty;
             if (!string.IsNullOrWhiteSpace(mrrNumbertxt))
             {
                 if (int.TryParse(mrrNumbertxt, out var mrrNumber))
                 {
+                    string message;
                     _dt = _bll.GetPurchase(1, string.Empty,whId, mrrNumber,out message);
                     txtSupplierName.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
 
