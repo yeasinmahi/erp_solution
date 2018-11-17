@@ -12,7 +12,7 @@ namespace UI.AEFPS
     public partial class PurchaseReturn : Page
     {
         private readonly Receive_BLL _bll = new Receive_BLL();
-        private int _intEnroll=0;
+        private int _intEnroll=369116; //------------------------------------------------------------------------------For test perpose
         private DataTable _dt = new DataTable();
         private decimal _totalAmount;
         protected void Page_Load(object sender, EventArgs e)
@@ -28,7 +28,8 @@ namespace UI.AEFPS
 
         protected void btnShow_OnClick(object sender, EventArgs e)
         {
-            int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            //int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            int whId = 575; //------------------------------------------------------------------------------For test perpose
             string mrrNumbertxt = txtMrrNumber.Text;
             string message = String.Empty;
             if (!string.IsNullOrWhiteSpace(mrrNumbertxt))
@@ -44,8 +45,9 @@ namespace UI.AEFPS
                    
                     if (_dt.Rows.Count <= 0)
                     {
+
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
-                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "dataNotFound", "alert('Data Not Found');", true);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "dataNotFound", "alert('"+message+"');", true);
                         return;
                     }
                     LoadGrid();
@@ -81,19 +83,18 @@ namespace UI.AEFPS
             Label lblMrrQty = (Label)row.FindControl("lblMrrQty");
             Label lblRate = (Label)row.FindControl("lblRate");
             TextBox rtnQty = (TextBox)row.FindControl("txtReturnQty"); 
-            Label lblCostAmount = (Label)row.FindControl("lblCostAmount");
-            decimal costAmount = Convert.ToDecimal(lblCostAmount.Text);
-            decimal mrr = Convert.ToDecimal(lblMrrQty.Text);
+            Label lblStockAmount = (Label)row.FindControl("lblStock");
+            decimal stockAmount = Convert.ToDecimal(lblStockAmount.Text);
+            decimal mrrQuantity = Convert.ToDecimal(lblMrrQty.Text);
            
             Label lblReturnAmount = (Label)row.FindControl("lblReturnAmount");
             if(!string.IsNullOrWhiteSpace(rtnQty.Text))
             {
                 decimal returnQty = Convert.ToDecimal(rtnQty.Text);
-                if (mrr >= returnQty && costAmount >= returnQty)
+                if (mrrQuantity >= returnQty && stockAmount >= returnQty)
                 {
-                    int returnQuantity = Convert.ToInt32(mrr - returnQty);
                     decimal rate = Convert.ToDecimal(lblRate.Text);
-                    decimal returnAmount = rate * returnQuantity;
+                    decimal returnAmount = rate * returnQty;
                     lblReturnAmount.Text = returnAmount.ToString(CultureInfo.CurrentCulture);
                 }
                 else
