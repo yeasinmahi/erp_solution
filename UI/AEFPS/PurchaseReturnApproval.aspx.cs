@@ -37,13 +37,24 @@ namespace UI.AEFPS
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-
+            LoadGrid();
         }
 
         private void LoadGrid()
         {
             intWHID = Convert.ToInt32(ddlWh.SelectedItem.Value);
-           // _dt = _bll.DataView(3, "", intWHID, 0, DateTime.Now, _intEnroll);
+            _dt=_bll.GetPurchase(3, string.Empty, intWHID, 0, out message);
+            if(_dt.Rows.Count>0)
+            {
+                gvDamageEntryApproval.DataSource = _dt;
+                gvDamageEntryApproval.DataBind();
+            }
+            else
+            {
+                gvDamageEntryApproval.DataSource = null;
+                gvDamageEntryApproval.DataBind();
+            }
+           
         }
     }
 }

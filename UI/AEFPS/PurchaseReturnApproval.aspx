@@ -70,14 +70,14 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Purchase Return Date">                                       
                                         <ItemTemplate>
-                                            <asp:Label ID="lblReturnDate" runat="server" Text='<%# Convert.ToDateTime( Eval("dteActionDate")).ToShortDateString() %>'>' </asp:Label>
+                                            <asp:Label ID="lblReturnDate" runat="server" Text='<%# Convert.ToDateTime( Eval("dteReturnDate")).ToShortDateString() %>'>' </asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="90px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Purchase Return No.">                                    
                                         <ItemTemplate>
-                                            <asp:Label ID="lblReturnNo" runat="server" Text='<%# Bind("strVoucherCode") %>'></asp:Label>
+                                            <asp:Label ID="lblReturnNo" runat="server" Text='<%# Bind("strReturnCode") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
@@ -89,7 +89,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("ItemName") %>'></asp:Label>
+                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItemMasterName") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="UOM">
@@ -104,37 +104,37 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Store Location">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblLocation" runat="server" CssClass="pull-left" Text='<%# Bind("strLocationName") %>'></asp:Label>
+                                        <asp:Label ID="lblLocation" runat="server" CssClass="pull-left" Text='<%# Bind("storeLocation") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="MRR Quantity">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblMrrQty" runat="server" Text='<%# Bind("numReceiveQty") %>'></asp:Label>
+                                        <asp:Label ID="lblMrrQty" runat="server" Text='<%# Bind("mrrQty") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("Rate","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cost Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Closing Stock">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("closingStock","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("numStockQty","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnQty" runat="server" CssClass="pull-center" Text='<%# Bind("ReturnQuantity","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblReturnQty" runat="server" CssClass="pull-center" Text='<%# Bind("monReturnQuantity","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Return Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("ReturnAmount") %>' ></asp:Label>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monReturnAmount") %>' ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                               
@@ -145,8 +145,8 @@
                                 </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClick="btnReject_Click"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClick="btnApprove_OnClick"></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve"></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="120px"/>
