@@ -169,13 +169,13 @@ namespace SAD_BLL.AEFPS
         }
 
         
-        public DataTable GetPurchase(int intType, int intWhId, int intMrrid, out string message)
+        public DataTable GetPurchase(int intType, string xml, int intWhId, int intMrrid, out string message)
         {
             sprPurchaseReturnTableAdapter adp = new sprPurchaseReturnTableAdapter();
             try
             {
                 message = null;
-                return adp.GetPurchaseReturnDetails(intType,intWhId,intMrrid,ref message);
+                return adp.GetPurchaseReturnDetails(intType, xml,intWhId, intMrrid,ref message);
             }
             catch
             {

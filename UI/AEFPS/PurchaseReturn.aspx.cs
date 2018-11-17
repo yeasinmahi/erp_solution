@@ -36,12 +36,12 @@ namespace UI.AEFPS
             {
                 if (int.TryParse(mrrNumbertxt, out var mrrNumber))
                 {
-                    _dt = _bll.GetPurchase(1, whId, mrrNumber,out message);
+                    _dt = _bll.GetPurchase(1, string.Empty,whId, mrrNumber,out message);
                     txtSupplierName.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
 
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
 
-                    _dt = _bll.GetPurchase(2, whId, mrrNumber, out message);
+                    _dt = _bll.GetPurchase(2, string.Empty, whId, mrrNumber, out message);
                    
                     if (_dt.Rows.Count <= 0)
                     {
