@@ -221,6 +221,7 @@
     <Content Include="AEFPS\print.aspx" />
     <Content Include="AEFPS\ProfitAndLossReport.aspx" />
     <Content Include="AEFPS\PurchaseReturn.aspx" />
+    <Content Include="AEFPS\PurchaseReturnApproval.aspx" />
     <Content Include="AEFPS\ReceiveEntryAfs.aspx" />
     <Content Include="AEFPS\ReceiveReport.aspx" />
     <Content Include="AEFPS\ReceiveStockInput.aspx" />
@@ -2122,6 +2123,13 @@
     </Compile>
     <Compile Include="AEFPS\PurchaseReturn.aspx.designer.cs">
       <DependentUpon>PurchaseReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\PurchaseReturnApproval.aspx.cs">
+      <DependentUpon>PurchaseReturnApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\PurchaseReturnApproval.aspx.designer.cs">
+      <DependentUpon>PurchaseReturnApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\ReceiveEntryAfs.aspx.cs">
       <DependentUpon>ReceiveEntryAfs.aspx</DependentUpon>
