@@ -126,8 +126,8 @@ namespace UI.AEFPS
                     {
                         try
                         {
-                            double numDamageQuantity = Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
-                            double monDamageAmount = Convert.ToDouble(((Label)row.FindControl("lblDamageAmount")).Text);
+                            double numDamageQuantity = Convert.ToDouble(damageQuantitytxt);
+                            double monDamageAmount = Convert.ToDouble(damageAmounttxt);
 
                             double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
                             int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
