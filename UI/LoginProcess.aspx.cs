@@ -119,6 +119,7 @@ namespace UI
             {
                 userID = userID + "@akij.net";
             }
+
             // Check the domain
 
             MembershipProvider provider = Membership.Providers["MyADMembershipProvider"];
