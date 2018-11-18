@@ -115,6 +115,13 @@ namespace SAD_BLL.Item
             moncompanyvhc = discompany.ToString();
         }
 
+        public void discountallowstatus(string unitid ,string salesofficeid,ref bool ysndiscstatus)
+        {
+            bool? ysndis = null;
+            SprDiscountApplicableStatusTableAdapter ta = new SprDiscountApplicableStatusTableAdapter();
+            ta.GetDataDiscountApplicableStatus(int.Parse(unitid), int.Parse(salesofficeid), ref  ysndis);
+            ysndiscstatus =Convert.ToBoolean (ysndis.ToString());
+        }
 
     }
 }

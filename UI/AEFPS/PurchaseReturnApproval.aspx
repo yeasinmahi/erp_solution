@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DamageEntryApproval.aspx.cs" Inherits="UI.AEFPS.DamageEntryApproval" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PurchaseReturnApproval.aspx.cs" Inherits="UI.AEFPS.PurchaseReturnApproval" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -35,16 +35,16 @@
                 <asp:HiddenField ID="hdnconfirm" runat="server" />
                 <div class="container">
                     <div class="panel panel-info">
-                        <div class="panel-heading"> <asp:Label runat="server" Text="Damage Approval Form" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                        <div class="panel-heading"> <asp:Label runat="server" Text="Purchase Return Approval Form" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body">
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <asp:Label ID="Label20" runat="server" Text="Warehouse Name" ></asp:Label>  <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:Label ID="Label20" runat="server" Text="Warehouse Name" ></asp:Label>
                                     <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" style="left: 0px; top: 1px"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-6 hidden" id="mainPanel">
                                     <asp:Label ID="Label1" runat="server" Text="Total Damage Amount"></asp:Label>
-                                    <asp:TextBox ID="txtTotalDamageAmount" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="False" style="left: 0px; top: 1px" ></asp:TextBox>
+                                    <asp:TextBox ID="txtTotalPurchaseReturnAmount" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="False" style="left: 0px; top: 1px" ></asp:TextBox>
                                 </div>
                                 
                             </div>
@@ -55,8 +55,8 @@
                             </div>
                         </div>
                     </div>
-                     <div class="panel panel-info hidden" id="itemPanel">
-                          <div class="panel-heading"> <asp:Label runat="server" Text="Damage Approval Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                     <div class="panel panel-info" id="itemPanel">
+                          <div class="panel-heading"> <asp:Label runat="server" Text="Purchase Return Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body ">
                             <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemId" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
                                 <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -68,102 +68,85 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Entry Date">                                       
+                                    <asp:TemplateField HeaderText="Purchase Return Date">                                       
                                         <ItemTemplate>
-                                            <asp:Label ID="lblActionDate" runat="server" Text='<%# Convert.ToDateTime( Eval("dteActionDate")).ToShortDateString() %>'>' </asp:Label>
+                                            <asp:Label ID="lblReturnDate" runat="server" Text='<%# Convert.ToDateTime( Eval("dteReturnDate")).ToShortDateString() %>'>' </asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="90px" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Code">                                    
+                                    <asp:TemplateField HeaderText="Purchase Return No.">                                    
                                         <ItemTemplate>
-                                            <asp:Label ID="lblVoucherCode" runat="server" Text='<%# Bind("strVoucherCode") %>'></asp:Label>
+                                            <asp:Label ID="lblReturnNo" runat="server" Text='<%# Bind("strReturnCode") %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item ID">                                       
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemId") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item Name">                                    
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("ItemName") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="UoM">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Closing Stock">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblStock" runat="server" Text='<%# Bind("numStockQty") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Rate">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Cost Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblCostAmount" runat="server" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Sales Rate">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblSalesRate" runat="server" Text='<%# Bind("salesPrice","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Sales Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblSalesAmount" runat="server" Text='<%# Bind("salesAmount","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Damage Quantity">
-                                        <ItemTemplate>
-                                            <asp:Label ID="txtDamageQty" runat="server" Text='<%# Bind("numDamageQuantity") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
-                                        
-                                        <ItemStyle HorizontalAlign="Center" Width="60px" />
-                                        
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Damage Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblDamageAmount" runat="server" Text='<%# Bind("monDamageAmount","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remarks">
-                                        <ItemTemplate>
-                                            <asp:Label ID="txtRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:Label>
-                                        </ItemTemplate>
-                                       <HeaderStyle HorizontalAlign="Center" Width="100px" />
-                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
-                                    </asp:TemplateField>
+                                   <asp:TemplateField HeaderText="Item ID">
+                                    <ItemTemplate>
+                                        <asp:Label ID="iblItemid" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Item Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItemMasterName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="UOM">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblUom" runat="server" CssClass="pull-left" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Challan No">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-left" Text='<%# Bind("ChallanNo") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Store Location">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblLocation" runat="server" CssClass="pull-left" Text='<%# Bind("storeLocation") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="MRR Quantity">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblMrrQty" runat="server" Text='<%# Bind("mrrQty") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Rate">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("Rate","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Cost Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Closing Stock">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("numStockQty","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblReturnQty" runat="server" CssClass="pull-center" Text='<%# Bind("monReturnQuantity","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Return Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monReturnAmount") %>' ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                              
+                                <asp:TemplateField HeaderText="Remarks" ItemStyle-Width="200px">
+                                    <ItemTemplate>
+                                        <asp:label ID="lblRemarks" runat="server" CssClass="pull-left" Text='<%# Bind("strRemarks") %>'></asp:label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClick="btnReject_Click"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClick="btnApprove_OnClick"></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve"></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="120px"/>
@@ -274,4 +257,3 @@
     </style>
 </body>
 </html>
-

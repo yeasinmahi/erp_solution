@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web;
@@ -118,14 +119,14 @@ namespace UI.AEFPS
                 }
                 else
                 {
-                    
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                    //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "show", "showPanel();", true);
+                    //btnInActive.Visible = true;
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
                     return;
                 }
             }
 
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "ShowHideGridviewPanels();", true);
+            //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "ShowHideGridviewPanels();", true);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully In-Activated all items.');", true);
             LoadInActiveGridView();
             ViewState["grid"] = null;
@@ -153,6 +154,13 @@ namespace UI.AEFPS
             int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
             InActiveItemGridView.DataSource = _bll.GetInActiveItemInfo(whId);
             InActiveItemGridView.DataBind();
+        }
+
+        protected void btnActive_Click(object sender, EventArgs e)
+        {
+            activeItemGridView.DataSource = null;
+            activeItemGridView.DataBind();
+            ViewState["grid"] = null;
         }
     }
 }

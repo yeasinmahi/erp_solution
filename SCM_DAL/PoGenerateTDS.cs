@@ -17,9 +17,12 @@ namespace SCM_DAL
     }
 }
 
-namespace SCM_DAL.PoGenerateTDSTableAdapters {
-    
-    
+namespace SCM_DAL.PoGenerateTDSTableAdapters
+{
+    partial class SprDeletePOTableAdapter
+    {
+    }
+
     public partial class sprPOTableAdapter {
     }
 }

@@ -440,24 +440,39 @@ namespace SCM_BLL
             }
         }
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby)
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,decimal monAIT)
         {
             string msg = "";
-            sprPOItemInfoChangeTableAdapter adp = new sprPOItemInfoChangeTableAdapter();
-            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, ref msg);
+            sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
+            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT,ref msg);
             return msg;
         }
-        public DataTable GetApprovalAuthorityList(int enroll)
+        public DataTable GetApprovalAuthorityList(int enroll, string POType)
         {
             TblApprovalAuthorityTableAdapter adp = new TblApprovalAuthorityTableAdapter();
             try
             {
-                return adp.GetPOApprovalAuthority(enroll);
+                return adp.GetPOApprovalAuthority(enroll, POType);
             }
             catch
             {
                 return new DataTable();
             }
+        }
+
+        public string Delete_PO_Data(int intItemID,int POID,int Enroll)
+        {
+            string msg = "";
+            SprDeletePOTableAdapter adp = new SprDeletePOTableAdapter();
+            try
+            {
+                adp.DeletePO(intItemID,POID,Enroll,ref msg);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToString();
+            }
+            return msg;
         }
 
     }

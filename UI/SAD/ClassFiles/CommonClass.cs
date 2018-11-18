@@ -243,6 +243,14 @@ namespace UI.ClassFiles
             return string.Format("{0:F2}", number);
             //return "";
         }
+
+        public static string GetFormettingNumberfourdigit(decimal number)
+        {
+            return string.Format("{0:N4}", number);
+            //return "";
+        }
+
+
         public static string GetHoldStock(object current, object physical)
         {
 

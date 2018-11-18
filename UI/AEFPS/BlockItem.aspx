@@ -42,7 +42,7 @@
                                 <div class="col-md-6">
                                     <asp:Label ID="Label20" runat="server" Text="Warehouse Name"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="False"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-6">
@@ -59,7 +59,7 @@
                             </div>
                             <div style="height: 20px"></div>
                             <div>
-                                <asp:GridView ID="activeItemGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%"
+                                <asp:GridView ID="activeItemGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
                                     DataKeyNames="intItemMasterID" OnRowDeleting="activeItemGridView_OnRowDeleting">
                                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                     <Columns>
@@ -85,15 +85,18 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Closing Stock">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-right" Text='<%# Bind("ClosingStock") %>'></asp:Label>
+                                                <asp:Label ID="lblChallanNo" runat="server" Text='<%# Bind("ClosingStock") %>'></asp:Label>
                                             </ItemTemplate>
+                                            
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblLocation" runat="server" CssClass="pull-right" Text='<%# Bind("Rate","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="CostAmount">
+                                        <asp:TemplateField HeaderText="Cost Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMrrQty" runat="server" CssClass="pull-right" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
@@ -113,11 +116,13 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtRemarks" runat="server" Width="100%" CssClass="form-control input-sm" placeholder="Write remarks here...."></asp:TextBox>
                                             </ItemTemplate>
+                                            <ItemStyle Width="200px" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-xs" CommandName="Delete" />
                                             </ItemTemplate>
+                                            <ItemStyle Width="80px" />
                                         </asp:TemplateField>
                                     </Columns>
                                     <EditRowStyle BackColor="#999999" />
@@ -132,19 +137,19 @@
                                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                 </asp:GridView>
                                 <div class="row">
-                                    <div class="col-md-12 btn-toolbar">
+                                    <div class="col-md-12 btn-toolbar" style="padding-top:15px;">
                                         <asp:Button ID="btnInActive" runat="server" Text="Inactive" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClick="btnInActive_OnClick" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default" id="itemPanel">
+                    <div class="panel panel-info" id="itemPanel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Item Active Form" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="InActiveItemGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%"
+                            <asp:GridView ID="InActiveItemGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
                                 DataKeyNames="intItemMasterID" OnRowDeleting="InActiveItemGridView_OnRowDeleting">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
@@ -198,16 +203,18 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblRemarks" runat="server" CssClass="pull-left" Text='<%# Bind("strRemarks") %>'>></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle Width="200px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" />
+                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClick="btnActive_Click" />
                                         </ItemTemplate>
+                                        <ItemStyle Width="80px" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle"/>
                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
                                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -256,7 +263,7 @@
             return true;
         }
 
-        function ShowHideGridviewPanels() {
+       <%-- function ShowHideGridviewPanels() {
             var rowsCount = <%=InActiveItemGridView.Rows.Count %>;
             var itemPanel = document.getElementById("itemPanel");
             if (rowsCount != null && rowsCount > 0) {
@@ -264,7 +271,7 @@
             } else {
                 itemPanel.classList.add("hidden");
             }
-        }
+        }--%>
         function autoCompleteItemName() {
             $("#txtItemName").autocomplete({
                 source: function (request, response) {
@@ -289,9 +296,9 @@
         $(function () {
             
             autoCompleteItemName();
-            ShowHideGridviewPanels();
+            //ShowHideGridviewPanels();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(autoCompleteItemName);
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
+            //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
     </script>
 <style>
