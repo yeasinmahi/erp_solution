@@ -559,8 +559,7 @@ namespace UI.AEFPS
                 
                 txtEmployee.Text = "";
                 int Count = 0;
-                long intCard = Convert.ToInt64(txtPunchCode.Text);
-                string strCardNo = intCard.ToString();
+                string strCardNo = txtPunchCode.Text;
                 dt = objAEFPS.GetEmpID(strCardNo);
                 if (dt.Rows.Count > 0)
                 {
@@ -592,7 +591,7 @@ namespace UI.AEFPS
                             {
                                 txtCreditStatus.Text = "Not Elizable";
                             }
-
+                            return;
 
                         }
                         else
@@ -613,12 +612,6 @@ namespace UI.AEFPS
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ডটি রেজিস্টার করা হয়নি। অনুগ্রহ করে এইচআর এন্ড এডমিন ডিপার্টমেন্টে যোগাযোগ করুন।');", true);
                 }
 
-                
-            }
-            catch
-            {
-
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Correct Card NO.');", true);
                 txtEnroll.Text = "";
                 txtEmpname.Text = "";
                 txtDeg.Text = "";
@@ -628,6 +621,20 @@ namespace UI.AEFPS
                 txtCreditStatus.Text = "";
                 txtCredittotalamount.Text = "";
                 txtPunchCode.Text = "";
+            }
+            catch(Exception ex)
+            {
+                txtEnroll.Text = "";
+                txtEmpname.Text = "";
+                txtDeg.Text = "";
+                txtDept.Text = "";
+                hdnSalary.Value = "";
+                txtCard.Text = "";
+                txtCreditStatus.Text = "";
+                txtCredittotalamount.Text = "";
+                txtPunchCode.Text = "";
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ex.Message+"');", true);
+                return;
             }
             
         }

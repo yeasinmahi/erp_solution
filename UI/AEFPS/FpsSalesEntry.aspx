@@ -373,6 +373,9 @@
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="txtPunchCode" EventName="TextChanged" />
+        </Triggers>
         </asp:UpdatePanel>
     </form>
     <script>
