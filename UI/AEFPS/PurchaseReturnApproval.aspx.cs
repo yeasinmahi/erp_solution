@@ -56,5 +56,33 @@ namespace UI.AEFPS
             }
            
         }
+
+        protected void btnApprove_OnClick(object sender, EventArgs e)
+        {           
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            string voucherCode = ((Label)row.FindControl("lblReturnNo")).Text;
+            if (_bll.ApproveRejectPurchaseReturn(1, voucherCode) == null)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something Error in approved');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your selected item is successfully approved');", true);
+        }
+
+        protected void btnReject_OnClick(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            string voucherCode = ((Label)row.FindControl("lblReturnNo")).Text;
+
+            if (_bll.ApproveRejectPurchaseReturn(2, voucherCode) == null)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something Error in rejection');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your selected item is successfully rejected');", true);
+
+        }
     }
 }

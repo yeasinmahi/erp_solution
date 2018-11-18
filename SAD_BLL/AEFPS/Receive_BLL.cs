@@ -262,6 +262,19 @@ namespace SAD_BLL.AEFPS
                 return null;
             }
         }
+        public DataTable ApproveRejectPurchaseReturn(int type, string voucherCode)
+        {
+            sprPurchaseReturnApproveRejectTableAdapter adp = new sprPurchaseReturnApproveRejectTableAdapter();
+            try
+            {
+                return adp.ApproveRejectPurchaseReturn(type, voucherCode);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        
 
     }
 }
