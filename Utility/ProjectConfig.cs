@@ -2,18 +2,18 @@
 {
     public class ProjectConfig
     {
-        private static ProjectConfig instance;
+        private static ProjectConfig _instance;
         private ProjectConfig() { }
 
         public static ProjectConfig Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new ProjectConfig();
+                    _instance = new ProjectConfig();
                 }
-                return instance;
+                return _instance;
             }
         }
 
