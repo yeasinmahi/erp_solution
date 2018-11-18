@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Globalization;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAD_BLL.AEFPS;
-using UI.ClassFiles;
+using Utility;
 
 namespace UI.AEFPS
 {
@@ -31,11 +30,11 @@ namespace UI.AEFPS
             //int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
             int whId = 575; //------------------------------------------------------------------------------For test perpose
             string mrrNumbertxt = txtMrrNumber.Text;
-            string message = String.Empty;
             if (!string.IsNullOrWhiteSpace(mrrNumbertxt))
             {
                 if (int.TryParse(mrrNumbertxt, out var mrrNumber))
                 {
+                    string message;
                     _dt = _bll.GetPurchase(1, string.Empty,whId, mrrNumber,out message);
                     txtSupplierName.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
 
@@ -139,11 +138,80 @@ namespace UI.AEFPS
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
 
+            int intWhId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            int intMrrId = Convert.ToInt32(txtMrrNumber.Text);
+            foreach (GridViewRow row in gridView.Rows)
+            {
+                string remarks = ((TextBox)row.FindControl("txtRemarks")).Text;
+                if (!string.IsNullOrWhiteSpace(remarks))
+                {
+                    string returnQuantityTxt = ((TextBox)row.FindControl("txtReturnQty")).Text;
+                    string returnAmountTxt = ((Label)row.FindControl("lblReturnAmount")).Text;
+                    if (!string.IsNullOrWhiteSpace(returnQuantityTxt) && !string.IsNullOrWhiteSpace(returnAmountTxt))
+                    {
+                        try
+                        {
+                            double monReturnQuantity = Convert.ToDouble(returnQuantityTxt);
+                            double monReturnAmount = Convert.ToDouble(returnAmountTxt);
 
+                            double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
+                            int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemId")).Text);
+                            string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
+
+                            string xml = GetXml(intMrrId, itemId, intWhId, monRate, monReturnQuantity, monReturnAmount, strRemarks, _intEnroll, out string message);
+                            if (_bll.GetPurchase(4,xml,intWhId,intMrrId,out message) == null)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Can not entry as purchase return " + itemId + " ItemId');", true);
+                                return;
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('"+exception.Message+"');", true);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Purchase Return Quantity and amount can not be blank');", true);
+                        return;
+                    }
+
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
+                    return;
+                }
+            }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully entry purchase return items.');", true);
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully entry purchase return items.');", true);
+
+            ViewState["grid"] = null;
+            gridView.DataSource = null;
+            gridView.DataBind();
 
         }
 
+        private string GetXml(int intMrrId, int intItemId, int intWhId, double numRate, double monReturnQuantity, double monReturnAmount, string strRemarks, int intActionBy, out string message)
+        {
+            dynamic obj = new
+            {
+                intMrrId,
+                intItemId,
+                intWhId,
+                numRate,
+                monReturnQuantity,
+                monReturnAmount,
+                strRemarks,
+                intActionBy
 
+            };
+            return XmlParser.GetXml("PurchaseReturn", "items", obj, out message);
+
+        }
 
     }
 }

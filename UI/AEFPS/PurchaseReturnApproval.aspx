@@ -56,7 +56,7 @@
                         </div>
                     </div>
                      <div class="panel panel-info" id="itemPanel">
-                          <div class="panel-heading"> <asp:Label runat="server" Text="Purchase Return Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                          <div class="panel-heading"> <asp:Label runat="server" Text="Purchase Return Approval Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body ">
                             <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemId" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
                                 <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -94,12 +94,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="UOM">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblUom" runat="server" CssClass="pull-left" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                        <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Challan No">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-left" Text='<%# Bind("ChallanNo") %>'></asp:Label>
+                                        <asp:Label ID="lblChallanNo" runat="server" Text='<%# Bind("ChallanNo") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Store Location">
@@ -129,16 +129,16 @@
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnQty" runat="server" CssClass="pull-center" Text='<%# Bind("monReturnQuantity","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblReturnQty" runat="server" Text='<%# Bind("monReturnQuantity","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Return Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monReturnAmount") %>' ></asp:Label>
+                                        <asp:Label ID="lblReturnAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monReturnAmount","{0:n2}") %>' ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                               
-                                <asp:TemplateField HeaderText="Remarks" ItemStyle-Width="200px">
+                                <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:label ID="lblRemarks" runat="server" CssClass="pull-left" Text='<%# Bind("strRemarks") %>'></asp:label>
                                     </ItemTemplate>
@@ -149,7 +149,7 @@
                                              <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve"></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" Width="120px"/>
+                                        <ItemStyle HorizontalAlign="Center" Width="200px"/>
                                     </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle BackColor="#CCCCCC" />
