@@ -400,5 +400,44 @@ namespace SAD_BLL.AEFPS
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable GetEmpID(string cardNo)
+        {
+            EmpCardNoTableAdapter adp = new EmpCardNoTableAdapter();
+            try
+            {
+                return adp.GetEmpIDByCardNo(cardNo);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetEmpSortName(string cardNo)
+        {
+            EmpSortNameTableAdapter adp = new EmpSortNameTableAdapter();
+            try
+            {
+                return adp.GetSortNameByCardNo(cardNo);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetEmpInfo(string sortname)
+        {
+            QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
+            try
+            {
+                return adp.GetEmpInfoBySortName(sortname);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+
+
     }
 }

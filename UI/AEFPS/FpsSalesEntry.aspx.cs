@@ -33,6 +33,9 @@ namespace UI.AEFPS
 
 
         string location = "AEFPS";
+
+        
+
         string start = "starting AEFPS\\FpsSalesEntry";
         string stop = "stopping AEFPS\\FpsSalesEntry";
         protected void Page_Load(object sender, EventArgs e)
@@ -49,10 +52,11 @@ namespace UI.AEFPS
                 ddlWH.DataBind();
                 TextBox1.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 GetMemoCount();
+                
             }
             else
             { }
-
+            
         }
 
         private void GetMemoCount()
@@ -258,7 +262,7 @@ namespace UI.AEFPS
                                 txtEnroll.Text = "";
                                 txtCashReceiveAmount.Text = "";
                                 txtEmployee.Text = "";
-                                txtEmname.Text = "";
+                                txtEmpname.Text = "";
                                 txtReturn.Text = "";
                                 txtDeg.Text = "";
                                 txtDept.Text = "";
@@ -298,7 +302,7 @@ namespace UI.AEFPS
             dt = objAEFPS.getEmpinfo(empid);
             if (dt.Rows.Count > 0)
             {
-                txtEmname.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                txtEmpname.Text = dt.Rows[0]["strEmployeeName"].ToString();
                 txtEnroll.Text = dt.Rows[0]["intEmployeeID"].ToString();
                 txtCard.Text = dt.Rows[0]["strEmployeeCode"].ToString();
                 txtDeg.Text = dt.Rows[0]["strdesignation"].ToString();
@@ -328,6 +332,7 @@ namespace UI.AEFPS
         {
             try
             {
+                txtPunchCode.Text = "";
                 dt = objAEFPS.getEmpCheck(ddlWH.SelectedValue, txtEmployee.Text);
                 if (int.Parse(dt.Rows[0]["counts"].ToString()) == 1)
                 {
@@ -335,7 +340,7 @@ namespace UI.AEFPS
                     dt = objAEFPS.getEmpinfo(empid);
                     if (dt.Rows.Count > 0)
                     {
-                        txtEmname.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                        txtEmpname.Text = dt.Rows[0]["strEmployeeName"].ToString();
                         txtEnroll.Text = dt.Rows[0]["intEmployeeID"].ToString();
                         txtCard.Text = dt.Rows[0]["strEmployeeCode"].ToString();
                         txtDeg.Text = dt.Rows[0]["strdesignation"].ToString();
@@ -546,8 +551,87 @@ namespace UI.AEFPS
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something is error');", true);
             }
         }
+        protected void txtPunchCode_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                
+                txtEmployee.Text = "";
+                int Count = 0;
+                long intCard = Convert.ToInt64(txtPunchCode.Text);
+                string strCardNo = intCard.ToString();
+                dt = objAEFPS.GetEmpID(strCardNo);
+                if (dt.Rows.Count > 0)
+                {
+                    Count = int.Parse(dt.Rows[0]["intEmployeeID"].ToString());
+                    if (Count > 0)
+                    {
+                        dt = objAEFPS.GetEmpSortName(strCardNo);
+                        int intCheckval = int.Parse(dt.Rows[0]["intVal"].ToString());
+
+                        if (intCheckval == 1)
+                        {
+                            dt = objAEFPS.GetEmpInfo(strCardNo);
+
+                            txtEnroll.Text = dt.Rows[0]["intEmployeeID"].ToString();
+                            txtEmpname.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                            txtDeg.Text = dt.Rows[0]["strDesignation"].ToString();
+                            txtDept.Text = dt.Rows[0]["strDepatrment"].ToString();
+                            hdnSalary.Value = dt.Rows[0]["monSalary"].ToString();
+                            txtCard.Text = dt.Rows[0]["strEmployeeCode"].ToString();
+                            dt = objAEFPS.getCreditAmountPurches(dt.Rows[0]["intEmployeeID"].ToString());
+
+                            txtCredittotalamount.Text = dt.Rows[0]["CashReceiveamount"].ToString();
+                            AvailableBalance = decimal.Parse(hdnSalary.Value) - decimal.Parse(dt.Rows[0]["CashReceiveamount"].ToString());
+                            if (AvailableBalance > 0)
+                            {
+                                txtCreditStatus.Text = "Elizable";
+                            }
+                            else
+                            {
+                                txtCreditStatus.Text = "Not Elizable";
+                            }
 
 
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ড নাম্বারটি আপডেট নয়।');", true);
+
+                        }
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ডটি রেজিস্টার করা হয়নি। অনুগ্রহ করে এইচআর এন্ড এডমিন ডিপার্টমেন্টে যোগাযোগ করুন।');", true);
+
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ডটি রেজিস্টার করা হয়নি। অনুগ্রহ করে এইচআর এন্ড এডমিন ডিপার্টমেন্টে যোগাযোগ করুন।');", true);
+                }
+
+                
+            }
+            catch
+            {
+
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Correct Card NO.');", true);
+                txtEnroll.Text = "";
+                txtEmpname.Text = "";
+                txtDeg.Text = "";
+                txtDept.Text = "";
+                hdnSalary.Value = "";
+                txtCard.Text = "";
+                txtCreditStatus.Text = "";
+                txtCredittotalamount.Text = "";
+                txtPunchCode.Text = "";
+            }
+            
+        }
+       
 
 
 
