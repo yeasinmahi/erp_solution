@@ -112,7 +112,7 @@
 
                         </tr>
                     </table>
-                    <table style="border-color: black; width: 700px; border-radius: 10px; border: 1px solid blue;">
+                    <table style="border-color: black; width: 700px; -ms-border-radius: 10px; border-radius: 10px; border: 1px solid blue;">
                         <tr>
                             <td style="text-align:left; width:10px">Supplier</td>
                             <td style="text-align:left">Ship TO</td>

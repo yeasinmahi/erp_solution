@@ -84,7 +84,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item ID">
                                     <ItemTemplate>
-                                        <asp:Label ID="iblItemid" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
+                                        <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item Name">
