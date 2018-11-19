@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 
 namespace Utility
@@ -8,17 +7,9 @@ namespace Utility
     {
         public static void CreateText(object obj, string fileFullPath, out string message)
         {
-            StreamWriter sw;
-            if (System.IO.File.Exists(fileFullPath))
-            {
-                sw = File.AppendText(fileFullPath);
-            }
-            else
-            {
-                sw = Common.GetStreamWriter(fileFullPath);
-            }
+            var sw = File.Exists(fileFullPath) ? File.AppendText(fileFullPath) : Common.GetStreamWriter(fileFullPath);
             CreateTextFromObject(obj, sw).Close();
-            message = String.Empty;
+            message = string.Empty;
         }
 
         private static StreamWriter CreateTextFromObject(object obj, StreamWriter sw)

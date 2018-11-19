@@ -21,11 +21,7 @@ namespace Utility
 
         public static StreamWriter GetStreamWriter(string path)
         {
-            if (!File.Exists(path))
-            {
-                return File.CreateText(path);
-            }
-            return null;
+            return !File.Exists(path) ? File.CreateText(path) : null;
         }
         public enum ModulaFileName
         {

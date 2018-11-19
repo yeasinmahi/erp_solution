@@ -155,7 +155,7 @@ namespace UI.AEFPS
                             double monReturnAmount = Convert.ToDouble(returnAmountTxt);
 
                             double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
-                            int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
+                            int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemId")).Text);
                             string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
 
                             string xml = GetXml(intMrrId, itemId, intWhId, monRate, monReturnQuantity, monReturnAmount, strRemarks, _intEnroll, out string message);
