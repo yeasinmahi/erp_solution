@@ -67,6 +67,8 @@ namespace UI.AEFPS
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something Error in approved');", true);
                 return;
             }
+            LoadGrid();
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your selected item is successfully approved');", true);
         }
 
@@ -81,6 +83,8 @@ namespace UI.AEFPS
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something Error in rejection');", true);
                 return;
             }
+            LoadGrid();
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Your selected item is successfully rejected');", true);
 
         }
