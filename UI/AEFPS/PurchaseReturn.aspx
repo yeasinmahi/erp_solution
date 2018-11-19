@@ -34,7 +34,6 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Purchase Return Entry" Font-Bold="true" Font-Size="16px"></asp:Label>
-
                         </div>
                         <div class="panel-body">
                             <div class="row form-group">
