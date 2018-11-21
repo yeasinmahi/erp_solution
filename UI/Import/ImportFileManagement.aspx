@@ -89,7 +89,7 @@
                             <asp:Label runat="server" Text="Import File Details" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" OnRowCommand="gridView_OnRowCommand">
+                            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" OnRowCommand="gridView_OnRowCommand" OnRowDataBound="gridView_OnRowDataBound">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -155,7 +155,6 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnShow" EventName="Click" />
-                <asp:AsyncPostBackTrigger ControlID="gridView" />
                 <asp:PostBackTrigger ControlID="btnAddNewFile" />
             </Triggers>
         </asp:UpdatePanel>

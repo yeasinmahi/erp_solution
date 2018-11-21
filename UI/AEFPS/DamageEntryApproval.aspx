@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Item Active/Inactive</title>
+    <title>Damage Approval</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
@@ -35,7 +35,7 @@
                 <asp:HiddenField ID="hdnconfirm" runat="server" />
                 <div class="container">
                     <div class="panel panel-info">
-                        <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                        <div class="panel-heading"> <asp:Label runat="server" Text="Damage Approval Form" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body">
                             <div class="row form-group">
                                 <div class="col-md-6">
@@ -55,8 +55,8 @@
                             </div>
                         </div>
                     </div>
-                     <div class="panel panel-default hidden" id="itemPanel">
-                          <div class="panel-heading"> <asp:Label runat="server" Text="Damage Entry Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                     <div class="panel panel-info hidden" id="itemPanel">
+                          <div class="panel-heading"> <asp:Label runat="server" Text="Damage Approval Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body ">
                             <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemId" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
                                 <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -68,14 +68,14 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Damage Entry Date">                                       
+                                    <asp:TemplateField HeaderText="Entry Date">                                       
                                         <ItemTemplate>
-                                            <asp:Label ID="lblActionDate" runat="server" Text='<%# Bind("dteActionDate") %>'></asp:Label>
+                                            <asp:Label ID="lblActionDate" runat="server" Text='<%# Convert.ToDateTime( Eval("dteActionDate")).ToShortDateString() %>'>' </asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" Width="90px" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Damage Code">                                    
+                                    <asp:TemplateField HeaderText="Code">                                    
                                         <ItemTemplate>
                                             <asp:Label ID="lblVoucherCode" runat="server" Text='<%# Bind("strVoucherCode") %>'></asp:Label>
                                         </ItemTemplate>
@@ -151,7 +151,6 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblDamageAmount" runat="server" Text='<%# Bind("monDamageAmount","{0:n2}") %>'></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
@@ -159,16 +158,15 @@
                                             <asp:Label ID="txtRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:Label>
                                         </ItemTemplate>
                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
-                                        
                                         <ItemStyle HorizontalAlign="Center" Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClientClick="ConfirmReject();" OnClick="btnReject_Click"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" ></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClick="btnReject_Click"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClick="btnApprove_OnClick"></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Center"/>
+                                        <ItemStyle HorizontalAlign="Center" Width="120px"/>
                                     </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle BackColor="#CCCCCC" />
@@ -199,11 +197,6 @@
     </form>
    <script>
         function showPanel() {
-            var txtTotalDamageAmount = document.getElementById("txtTotalDamageAmount").value;
-            if (txtTotalDamageAmount === null || txtTotalDamageAmount === "") {
-                alert("Total Damage Amount Cannot be blank");
-                return false;
-            }
             var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.remove("hidden");
             var mainPanel = document.getElementById("mainPanel");

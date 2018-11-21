@@ -4,6 +4,8 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -19,11 +21,7 @@ namespace Utility
 
         public static StreamWriter GetStreamWriter(string path)
         {
-            if (!File.Exists(path))
-            {
-                return File.CreateText(path);
-            }
-            return null;
+            return !File.Exists(path) ? File.CreateText(path) : null;
         }
         public enum ModulaFileName
         {
@@ -90,6 +88,33 @@ namespace Utility
             string[] arr = text.Split(new[] { '[', ']' }, StringSplitOptions.None);
             string id = arr[1];
             return Convert.ToInt32(id);
+        }
+        public static string GetMacAddress()
+        {
+            string macAddresses = "";
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    macAddresses += nic.GetPhysicalAddress().ToString();
+                    break;
+                }
+            }
+            return macAddresses;
+        }
+        public static string GetIpAddress()
+        {
+            string ipAddress = null;
+            var hostname = Environment.MachineName;
+            var host = Dns.GetHostEntry(hostname);
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    ipAddress = Convert.ToString(ip);
+                }
+            }
+            return ipAddress;
         }
     }
 }

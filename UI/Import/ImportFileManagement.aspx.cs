@@ -32,6 +32,8 @@ namespace UI.Import
                 LoadFileGroup();
                 LoadUnit();
             }
+            //ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            //scriptManager.RegisterPostBackControl(this.gridView);
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -197,8 +199,9 @@ namespace UI.Import
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRow(gridView,e);
             string strPath = (row.FindControl("lblFtpPath") as Label)?.Text;
-            string fName = Path.GetFileName(strPath);
-
+            string fileName = Path.GetFileName(strPath);
+            //ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            //scriptManager.RegisterPostBackControl(this.gridView);
             if (e.CommandName == "View")
             {
                 Session["ImageSrc"] = ftp + strPath;
@@ -207,13 +210,33 @@ namespace UI.Import
             else if (e.CommandName == "Download")
             {
                 byte[] bytes = Downloader.DownloadFromFtp(ftp + strPath);
-                Response.AddHeader("content-disposition", "attachment;filename=" + fName);
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + fileName);
                 Response.BinaryWrite(bytes);
                 Response.Flush();
                 Response.End();
+
+                //Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+                //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                //Response.BinaryWrite(bytes);
+                //Response.Flush();
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
+        }
+
+        protected void gridView_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnDownload = e.Row.FindControl("btnDownload") as Button;
+                Button btnView = e.Row.FindControl("btnView") as Button;
+                ScriptManager.GetCurrent(this)?.RegisterPostBackControl(btnDownload);
+                ScriptManager.GetCurrent(this)?.RegisterAsyncPostBackControl(btnView);
+            }
+                
         }
     }
 }

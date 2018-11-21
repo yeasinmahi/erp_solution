@@ -364,6 +364,24 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.HiddenField hdfSearchBoxTextChange;
         
         /// <summary>
+        /// lblPunchCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPunchCode;
+        
+        /// <summary>
+        /// txtPunchCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPunchCode;
+        
+        /// <summary>
         /// btnClearPrinter control.
         /// </summary>
         /// <remarks>
@@ -391,13 +409,13 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtEmname control.
+        /// txtEmpname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmname;
+        protected global::System.Web.UI.WebControls.TextBox txtEmpname;
         
         /// <summary>
         /// lblAdditionalMillage control.
