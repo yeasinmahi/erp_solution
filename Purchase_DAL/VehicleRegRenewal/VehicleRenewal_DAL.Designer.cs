@@ -3002,8 +3002,6 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             private global::System.Data.DataColumn columnstrVehicleType;
             
-            private global::System.Data.DataColumn columnstrTon;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblVehicleRenewalCofigureViewDataTable() {
@@ -3135,14 +3133,6 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strTonColumn {
-                get {
-                    return this.columnstrTon;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3178,7 +3168,7 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblVehicleRenewalCofigureViewRow AddTblVehicleRenewalCofigureViewRow(decimal monTotalTaka, System.DateTime dteRenewalDate, int intServiceID, int intServiceTempID, System.DateTime dteExpireDate, System.DateTime dteNextSubmitDate, System.DateTime dteInsertDate, string strUnit, bool YsnActive, int intInsertBy, string StrName, string strVehicleType, string strTon) {
+            public TblVehicleRenewalCofigureViewRow AddTblVehicleRenewalCofigureViewRow(decimal monTotalTaka, System.DateTime dteRenewalDate, int intServiceID, int intServiceTempID, System.DateTime dteExpireDate, System.DateTime dteNextSubmitDate, System.DateTime dteInsertDate, string strUnit, bool YsnActive, int intInsertBy, string StrName, string strVehicleType) {
                 TblVehicleRenewalCofigureViewRow rowTblVehicleRenewalCofigureViewRow = ((TblVehicleRenewalCofigureViewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         monTotalTaka,
@@ -3192,8 +3182,7 @@ namespace Purchase_DAL.VehicleRegRenewal {
                         YsnActive,
                         intInsertBy,
                         StrName,
-                        strVehicleType,
-                        strTon};
+                        strVehicleType};
                 rowTblVehicleRenewalCofigureViewRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblVehicleRenewalCofigureViewRow);
                 return rowTblVehicleRenewalCofigureViewRow;
@@ -3228,7 +3217,6 @@ namespace Purchase_DAL.VehicleRegRenewal {
                 this.columnintInsertBy = base.Columns["intInsertBy"];
                 this.columnStrName = base.Columns["StrName"];
                 this.columnstrVehicleType = base.Columns["strVehicleType"];
-                this.columnstrTon = base.Columns["strTon"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3258,13 +3246,10 @@ namespace Purchase_DAL.VehicleRegRenewal {
                 base.Columns.Add(this.columnStrName);
                 this.columnstrVehicleType = new global::System.Data.DataColumn("strVehicleType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrVehicleType);
-                this.columnstrTon = new global::System.Data.DataColumn("strTon", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrTon);
                 this.columnstrUnit.MaxLength = 150;
                 this.columnStrName.ReadOnly = true;
                 this.columnStrName.MaxLength = 402;
                 this.columnstrVehicleType.MaxLength = 250;
-                this.columnstrTon.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15360,23 +15345,6 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strTon {
-                get {
-                    try {
-                        return ((string)(this[this.tableTblVehicleRenewalCofigureView.strTonColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strTon\' in table \'TblVehicleRenewalCofigureView\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableTblVehicleRenewalCofigureView.strTonColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonTotalTakaNull() {
                 return this.IsNull(this.tableTblVehicleRenewalCofigureView.monTotalTakaColumn);
             }
@@ -15517,18 +15485,6 @@ namespace Purchase_DAL.VehicleRegRenewal {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrVehicleTypeNull() {
                 this[this.tableTblVehicleRenewalCofigureView.strVehicleTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrTonNull() {
-                return this.IsNull(this.tableTblVehicleRenewalCofigureView.strTonColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrTonNull() {
-                this[this.tableTblVehicleRenewalCofigureView.strTonColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -27580,7 +27536,6 @@ WHERE        (intID = @itemid)";
             tableMapping.ColumnMappings.Add("intInsertBy", "intInsertBy");
             tableMapping.ColumnMappings.Add("StrName", "StrName");
             tableMapping.ColumnMappings.Add("strVehicleType", "strVehicleType");
-            tableMapping.ColumnMappings.Add("strTon", "strTon");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -27600,13 +27555,11 @@ WHERE        (intID = @itemid)";
             this._commandCollection[0].CommandText = @"SELECT        dbo.tblFixedAssetRegister.strNameOfAsset + '[' + dbo.tblVehicleRenewalCofigure.strAssetID + ']' AS StrName, dbo.tblVehicleRenewalCofigure.monTotalTaka, dbo.tblVehicleRenewalCofigure.dteRenewalDate, 
                          dbo.tblVehicleRenewalCofigure.intServiceID, dbo.tblVehicleRenewalCofigure.intServiceTempID, dbo.tblVehicleRenewalCofigure.dteExpireDate, dbo.tblVehicleRenewalCofigure.dteNextSubmitDate, 
                          dbo.tblVehicleRenewalCofigure.dteInsertDate, dbo.tblVehicleRenewalCofigure.strUnit, dbo.tblVehicleRenewalCofigure.YsnActive, dbo.tblVehicleRenewalCofigure.intInsertBy, 
-                         dbo.tblAGVehicleProfile.strVehicleType, dbo.tblAGVehicleProfile.strTon
+                         brt.strItem as strVehicleType
 FROM            dbo.tblVehicleRenewalCofigure INNER JOIN
-                         dbo.tblFixedAssetRegister ON dbo.tblVehicleRenewalCofigure.strAssetID = dbo.tblFixedAssetRegister.strAssetID INNER JOIN
-                         dbo.tblAGVehicleProfile ON dbo.tblVehicleRenewalCofigure.strAssetID = dbo.tblAGVehicleProfile.strAssetID
-WHERE        (dbo.tblVehicleRenewalCofigure.AutoID = @IDs)
-
-						";
+                         dbo.tblFixedAssetRegister ON dbo.tblVehicleRenewalCofigure.strAssetID = dbo.tblFixedAssetRegister.strAssetID 
+						left JOIN dbo.tblBRTAProfile brt on dbo.tblFixedAssetRegister.intBRTAVehcielType=brt.intID                        
+WHERE        (dbo.tblVehicleRenewalCofigure.AutoID = @IDs)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDs", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "AutoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
