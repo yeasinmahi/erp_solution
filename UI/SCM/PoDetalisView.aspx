@@ -14,7 +14,7 @@
     <script src="../Content/JS/jquery-3.3.1.js"></script>
     <script src="../Content/JS/html2canvas.js"></script>
     <script src="../Content/JS/jsPDF.js"></script>
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
     <script type="text/javascript">
         function ConvertToImage(btn) {
             document.getElementById("btnEmail").style.visibility = "hidden";
@@ -112,7 +112,7 @@
 
                         </tr>
                     </table>
-                    <table style="border-color: black; width: 700px; border-radius: 10px; border: 1px solid blue;">
+                    <table style="border-color: black; width: 700px; -ms-border-radius: 10px; border-radius: 10px; border: 1px solid blue;">
                         <tr>
                             <td style="text-align:left; width:10px">Supplier</td>
                             <td style="text-align:left">Ship TO</td>

@@ -34,7 +34,6 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Purchase Return Entry" Font-Bold="true" Font-Size="16px"></asp:Label>
-
                         </div>
                         <div class="panel-body">
                             <div class="row form-group">
@@ -84,12 +83,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item ID">
                                     <ItemTemplate>
-                                        <asp:Label ID="iblItemid" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
+                                        <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("ItemName") %>'></asp:Label>
+                                        <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("strItemMasterName") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="UOM">
@@ -114,17 +113,17 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("numMRRPrice","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cost Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Closing Stock">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("closingStock","{0:n2}") %>'></asp:Label>
+                                        <asp:Label ID="lblStock" runat="server" CssClass="pull-left" Text='<%# Bind("numStockQty","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Return Quantity" ItemStyle-Width="100px">

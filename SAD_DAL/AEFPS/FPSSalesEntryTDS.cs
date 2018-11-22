@@ -10,9 +10,12 @@
     }
 }
 
-namespace SAD_DAL.AEFPS.FPSSalesEntryTDSTableAdapters {
-    
-    
+namespace SAD_DAL.AEFPS.FPSSalesEntryTDSTableAdapters
+{
+    partial class EmpCardNoTableAdapter
+    {
+    }
+
     public partial class sprSalesEntryTableAdapter {
     }
 }

@@ -84,45 +84,32 @@ namespace UI.AEFPS
         protected void gvDamageEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             _dt = (DataTable)ViewState["grid"];
+            if (_dt.Rows.Count <= 0) return;
+            _dt.Rows.RemoveAt(e.RowIndex);
+            gvDamageEntry.DataSource = _dt;
+            gvDamageEntry.DataBind();
+            ViewState["grid"] = _dt;
             if (_dt.Rows.Count > 0)
             {
-                _dt.Rows.RemoveAt(e.RowIndex);
-                gvDamageEntry.DataSource = _dt;
-                gvDamageEntry.DataBind();
-                ViewState["grid"] = _dt;
-                if (_dt.Rows.Count > 0)
-                {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
-                }
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
             }
         }
 
         protected void txtDamageQty_TextChanged(object sender, EventArgs e)
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnTextboxChanged(sender);
-            double damageQty=0,damageAmount=0,stockQty=0;
+            double damageQty=0,damageAmount=0;
+            const double stockQty = 0;
             if(damageQty<=stockQty)
             {
                 damageAmount = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text) * Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
             }
             Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
             dmgAmount.Text = damageAmount.ToString(CultureInfo.InvariantCulture);
-
-            //if (ViewState["grid"] != null)
-            //{
-            //    dt = (DataTable)ViewState["grid"];
-            //    dt.Columns.Add(new DataColumn("DamageQuantity", typeof(string)));
-            //    dt.Columns.Add(new DataColumn("DamageAmount", typeof(string)));
-
-            //    dt.Rows[dt.Rows.Count]["DamageQuantity"] = Convert.ToDouble(DamageQty.Text);
-            //    dt.Rows[dt.Rows.Count]["DamageAmount"] = Damage_Amount;
-            //    ViewState["grid"] = dt;
-            //}
-            
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -139,14 +126,14 @@ namespace UI.AEFPS
                     {
                         try
                         {
-                            double numDamageQuantity = Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
-                            double monDamageAmount = Convert.ToDouble(((Label)row.FindControl("lblDamageAmount")).Text);
+                            double numDamageQuantity = Convert.ToDouble(damageQuantitytxt);
+                            double monDamageAmount = Convert.ToDouble(damageAmounttxt);
 
                             double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
                             int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
                             string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
 
-                            string xml = CreateXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,
+                            string xml = GetXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,
                                 _intEnroll, out string message);
                             if (_bll.DamageItem(xml) == null)
                             {
@@ -182,7 +169,7 @@ namespace UI.AEFPS
             gvDamageEntry.DataSource = null;
             gvDamageEntry.DataBind();
         }
-        private string CreateXml(int intItemId, int intWhId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
+        private string GetXml(int intItemId, int intWhId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
         {
             dynamic obj = new
             {
