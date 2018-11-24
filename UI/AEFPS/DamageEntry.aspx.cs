@@ -110,6 +110,8 @@ namespace UI.AEFPS
             }
             Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
             dmgAmount.Text = damageAmount.ToString(CultureInfo.InvariantCulture);
+
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
