@@ -162,8 +162,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClick="btnReject_Click"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClick="btnApprove_OnClick"></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject" OnClientClick="return confirm('Are you sure you want to reject this item?');"  OnClick="btnReject_Click"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClientClick="return confirm('Are you sure you want to approve this item?');" OnClick="btnApprove_OnClick"></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="120px"/>

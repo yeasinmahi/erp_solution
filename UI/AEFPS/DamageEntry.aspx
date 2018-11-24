@@ -167,7 +167,7 @@
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                             <div class="form-group pull-right" style="padding-top:10px;">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-sm" OnClick="btnSubmit_OnClick"/>
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-sm" OnClientClick="return confirm('Are you sure you want to add items as damage?');" OnClick="btnSubmit_OnClick"/>
                             </div>
                         </div>
 

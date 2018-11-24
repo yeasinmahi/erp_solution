@@ -136,7 +136,7 @@
                                 </asp:GridView>
                                 <div class="row">
                                     <div class="col-md-12 btn-toolbar" style="padding-top:15px;">
-                                        <asp:Button ID="btnInActive" runat="server" Text="Inactive" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClick="btnInActive_OnClick" />
+                                        <asp:Button ID="btnInActive" runat="server" Text="Inactive" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClientClick="return confirm('Are you sure you want to Inactive items?');" OnClick="btnInActive_OnClick" />
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClick="btnActive_Click" />
+                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to active this item?');"  OnClick="btnActive_Click" />
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
                                     </asp:TemplateField>
