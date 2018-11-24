@@ -233,9 +233,7 @@
                 <asp:PostBackTrigger ControlID="btnInActive" />
             </Triggers>
         </asp:UpdatePanel>
-
-    </form>
-    <script>
+        <script>
         function showPanel() {
             //var txtItemName = document.getElementById("txtItemName").value;
             //if (txtItemName === null || txtItemName === "") {
@@ -299,6 +297,8 @@
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
     </script>
+    </form>
+    
 <style>
     table {
         max-width: 100%;

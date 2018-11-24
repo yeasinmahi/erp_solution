@@ -103,8 +103,6 @@ namespace UI.AEFPS
 
         protected void btnInActive_OnClick(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "javascript:if(confirm('Are you sure you want to delete?') == false) return false;", true);
-
             int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
             foreach (GridViewRow row in activeItemGridView.Rows)
             {
@@ -121,9 +119,9 @@ namespace UI.AEFPS
                 }
                 else
                 {
-                    //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "show", "showPanel();", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "Script", "showPanel();", true);
                     //btnInActive.Visible = true;
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "alert", "alert('Remarks can not be blank');", true);
                     return;
                 }
             }

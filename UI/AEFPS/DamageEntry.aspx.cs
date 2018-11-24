@@ -101,8 +101,14 @@ namespace UI.AEFPS
 
         protected void txtDamageQty_TextChanged(object sender, EventArgs e)
         {
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnTextboxChanged(sender);
-            double damageQty = Convert.ToDouble(((TextBox) row.FindControl("txtDamageQty")).Text);
+            double.TryParse((((TextBox) row.FindControl("txtDamageQty")).Text),out double damageQty);
+            if (damageQty.Equals(0))
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not blank or 0')", true);
+                return;
+            }
             double stockQty = Convert.ToDouble(((Label)row.FindControl("lblStock")).Text);
             if (damageQty <= stockQty)
             {
@@ -117,8 +123,7 @@ namespace UI.AEFPS
                 ((Label)row.FindControl("lblDamageAmount")).Text = string.Empty;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not be greater than stock quantity')", true);
             }
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-
+            
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -154,6 +159,7 @@ namespace UI.AEFPS
                         }
                         catch (Exception exception)
                         {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Something Error Occured');", true);
                             return;
                         }
@@ -161,6 +167,7 @@ namespace UI.AEFPS
                     }
                     else
                     {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Damage Quantity and amount can not be blank');", true);
                         return;
                     }
@@ -168,6 +175,7 @@ namespace UI.AEFPS
                 }
                 else
                 {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
                     return;
                 }
