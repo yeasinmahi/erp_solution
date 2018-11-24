@@ -102,16 +102,23 @@ namespace UI.AEFPS
         protected void txtDamageQty_TextChanged(object sender, EventArgs e)
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnTextboxChanged(sender);
-            double damageQty=0,damageAmount=0;
-            const double stockQty = 0;
-            if(damageQty<=stockQty)
+            double damageQty = Convert.ToDouble(((TextBox) row.FindControl("txtDamageQty")).Text);
+            double stockQty = Convert.ToDouble(((Label)row.FindControl("lblStock")).Text);
+            if (damageQty <= stockQty)
             {
-                damageAmount = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text) * Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
+                double damageAmount =Convert.ToDouble(((Label) row.FindControl("lblRate")).Text) *
+                                     damageQty;
+                ((Label)row.FindControl("lblDamageAmount")).Text = damageAmount.ToString(CultureInfo.InvariantCulture);
+                
             }
-            Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
-            dmgAmount.Text = damageAmount.ToString(CultureInfo.InvariantCulture);
-
+            else
+            {
+                ((TextBox)row.FindControl("txtDamageQty")).Text = string.Empty;
+                ((Label)row.FindControl("lblDamageAmount")).Text = string.Empty;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not be greater than stock quantity')", true);
+            }
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)

@@ -62,7 +62,7 @@ namespace UI.AEFPS
                 gvDamageEntryApproval.DataSource = "";
                 gvDamageEntryApproval.DataBind();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "hidePanel();", true);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "alert", "alert('Data Not Found.');", true);
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "alert", "alert('Data Not Found.');", true);
             }
         }
         
