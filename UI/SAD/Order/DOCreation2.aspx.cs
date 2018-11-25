@@ -866,7 +866,11 @@ namespace UI.SAD.Order
             //AddUpdateDelivaryOrder
           
             string codeadd = "DO No:";
+            
+            if (txtslot.Text=="") { txtslot.Text = "1"; }
+            
             int sloatno=int.Parse(txtslot.Text);
+           
             for (int i = 0; i < sloatno; i++)
             {
                 

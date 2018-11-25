@@ -42,14 +42,12 @@
                                 <div class="col-md-6">
                                     <asp:Label ID="Label20" runat="server" Text="Warehouse Name"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
-
+                                    <asp:DropDownList ID="ddlWh" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="False"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:Label ID="Label1" runat="server" Text="Item Name"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtItemName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -138,7 +136,7 @@
                                 </asp:GridView>
                                 <div class="row">
                                     <div class="col-md-12 btn-toolbar" style="padding-top:15px;">
-                                        <asp:Button ID="btnInActive" runat="server" Text="Inactive" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClick="btnInActive_OnClick" />
+                                        <asp:Button ID="btnInActive" runat="server" Text="Inactive" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClientClick="return confirm('Are you sure you want to Inactive items?');" OnClick="btnInActive_OnClick" />
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +205,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClick="btnActive_Click" />
+                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to active this item?');"  OnClick="btnActive_Click" />
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
                                     </asp:TemplateField>
@@ -235,9 +233,7 @@
                 <asp:PostBackTrigger ControlID="btnInActive" />
             </Triggers>
         </asp:UpdatePanel>
-
-    </form>
-    <script>
+        <script>
         function showPanel() {
             //var txtItemName = document.getElementById("txtItemName").value;
             //if (txtItemName === null || txtItemName === "") {
@@ -301,6 +297,8 @@
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
     </script>
+    </form>
+    
 <style>
     table {
         max-width: 100%;
