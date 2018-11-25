@@ -369,6 +369,7 @@
     <Content Include="HR\Loan\LoanStatusSummary.aspx" />
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
+    <Content Include="HR\Overtime\OvertimeEntryNew.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
@@ -1230,6 +1231,7 @@
     <Content Include="SAD\Sales\Data\PrintSVforAccounts.aspx" />
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
+    <Content Include="SAD\Sales\Farmer_Setup.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
@@ -2910,6 +2912,13 @@
     </Compile>
     <Compile Include="HR\Loan\Reward.aspx.designer.cs">
       <DependentUpon>Reward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Overtime\OvertimeEntryNew.aspx.cs">
+      <DependentUpon>OvertimeEntryNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Overtime\OvertimeEntryNew.aspx.designer.cs">
+      <DependentUpon>OvertimeEntryNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
@@ -6215,6 +6224,13 @@
     </Compile>
     <Compile Include="SAD\Sales\DOEntry2.aspx.designer.cs">
       <DependentUpon>DOEntry2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Farmer_Setup.aspx.cs">
+      <DependentUpon>Farmer_Setup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Farmer_Setup.aspx.designer.cs">
+      <DependentUpon>Farmer_Setup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>

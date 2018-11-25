@@ -119,9 +119,9 @@ namespace UI.AEFPS
                 }
                 else
                 {
-                    //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "show", "showPanel();", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "Script", "showPanel();", true);
                     //btnInActive.Visible = true;
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "alert", "alert('Remarks can not be blank');", true);
                     return;
                 }
             }
