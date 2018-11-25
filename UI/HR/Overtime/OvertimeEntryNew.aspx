@@ -10,8 +10,8 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
 
-    <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -34,111 +34,90 @@
                 <div class="container">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Overtime Entry" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
 
                         </div>
                         <div class="panel-body">
-                            <div class="row form-group">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label20" runat="server" Text="Unit : "></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlUnit" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUnit" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label2" runat="server" Text="Job Station : "></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label1" runat="server" Text="Employee Name : "></asp:Label>
+                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                    <asp:TextBox ID="txtEmployeeName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label3" runat="server" Text="Enroll : "></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:TextBox ID="txtEnroll" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label4" runat="server" Text="Designation : "></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:TextBox ID="txtDesignation" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Designation"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label5" runat="server" Text="Code : "></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:TextBox ID="txtCode" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Code"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label6" runat="server" Text="Date : "></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete= "off" placeholder="Date"></asp:TextBox>
+
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label8" runat="server" Text="Movement Hour :"></asp:Label>
+                                    <asp:TextBox ID="txtMove" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label9" runat="server" Text="Start Time : "></asp:Label>
+                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                    <asp:TextBox ID="txtStrtTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete= "off" onchange="GetTimeSpan()" runat="server" placeholder="Start Time"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label7" runat="server" Text="End Time : "></asp:Label>
+                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                    <asp:TextBox ID="txtEndTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete= "off" onchange="GetTimeSpan()" runat="server" placeholder="End Time"></asp:TextBox>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label10" runat="server" Text="Purpose : "></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:DropDownList ID="ddlPurpose" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label11" runat="server" Text="Remarks : "></asp:Label>
+                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <asp:TextBox ID="txtRemarks" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
 
                                 </div>
                             </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label1" runat="server" Text="Employee Name : "></asp:Label>
-                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtEmployeeName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Type  Name" AutoCompleteType="Search" Font-Bold="true" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label3" runat="server" Text="Enroll : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                         </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label4" runat="server" Text="Designation : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:TextBox ID="txtdsg" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label5" runat="server" Text="Code : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:TextBox ID="txtcode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                           </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label6" runat="server" Text="Date : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:TextBox ID="txtdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                               
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label8" runat="server" Text="Movement Hour :"></asp:Label>
-                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtmove" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-
-                         </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label9" runat="server" Text="Start Time : "></asp:Label>
-                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtstrttime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                                 <div class="col-md-6">
-                                    <asp:Label ID="Label7" runat="server" Text="End Time : "></asp:Label>
-                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtendtime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                         </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label10" runat="server" Text="Purpose : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlpurpose" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label11" runat="server" Text="Remarks : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:TextBox ID="txtremarks" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="input Item name or Item Id"></asp:TextBox>
-
-                                </div>
-                        </div>
 
                             <div class="row">
                                 <div class="col-md-12 btn-toolbar">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />
                                 </div>
                             </div>
-
-                            
-                            
-                            
                         </div>
                     </div>
 
@@ -147,8 +126,8 @@
                             <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="OvertimeGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
-                                DataKeyNames="intItemMasterID" OnRowDeleting="InActiveItemGridView_OnRowDeleting">
+                            <asp:GridView ID="OvertimeEntryGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                                DataKeyNames="intItemMasterID" OnRowDeleting="OvertimeEntryGridView_OnRowDeleting" GridLines="Both">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -205,14 +184,14 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClick="btnActive_Click" />
+                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClick="btnActive_OnClick" />
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle"/>
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
                                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -223,19 +202,17 @@
                             </asp:GridView>
                         </div>
                         <div class="row">
-                                    <div class="col-md-12 btn-toolbar" style="padding-top:15px;">
-                                        <asp:Button ID="btnInActive" runat="server" Text="Submit" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClick="btnInActive_OnClick" />
-                                    </div>
-
-
+                            <div class="col-md-12 btn-toolbar" style="padding-top: 15px;">
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClick="btnSubmit_OnClick" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
-                <asp:PostBackTrigger ControlID="btnInActive" />
+                <asp:PostBackTrigger ControlID="btnSubmit" />
             </Triggers>
         </asp:UpdatePanel>
 
@@ -265,16 +242,7 @@
             }
             return true;
         }
-
-       <%-- function ShowHideGridviewPanels() {
-            var rowsCount = <%=InActiveItemGridView.Rows.Count %>;
-            var itemPanel = document.getElementById("itemPanel");
-            if (rowsCount != null && rowsCount > 0) {
-                itemPanel.classList.remove("hidden");
-            } else {
-                itemPanel.classList.add("hidden");
-            }
-        }--%>
+        
         function autoCompleteItemName() {
             $("#txtItemName").autocomplete({
                 source: function (request, response) {
@@ -297,31 +265,53 @@
             });
         }
         $(function () {
-            
+
             autoCompleteItemName();
+            $('#txtDate').datepicker();
+            $('#txtStrtTime').datetimepicker({
+                dateFormat: '',
+                timeFormat: 'HH:mm:ss',
+                showSecond:false,
+                showMillisec:false,
+                showMicrosec:false,
+                showTimezone:false
+            });
+            $('#txtEndTime').timepicker();
             //ShowHideGridviewPanels();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(autoCompleteItemName);
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
+        function GetTimeSpan() {
+            var defaultDate = "1/1/1970 ";
+            var end = document.getElementById('txtEndTime').value;
+            var start = document.getElementById('txtStrtTime').value;
+            console.log("start " + start);
+            console.log("End " + end);
+            var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
+            console.log("Diff " + difference);
+            document.getElementById("txtMove").innerText = difference;
+            $('#txtMove').val(difference);
+        }
     </script>
-<style>
-    table {
-        max-width: 100%;
-        background-color: transparent;
-        text-align:center;
-    }
-    th {
-        text-align: center;
-    }
+    <style>
+        table {
+            max-width: 100%;
+            background-color: transparent;
+            text-align: center;
+        }
 
-    .table {
-        width: 100%;
-        margin-bottom: 20px;
-    } 
-    tr
-    {
-        font-size: 14px;
-    }
-</style>
+        th {
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        tr {
+            font-size: 14px;
+        }
+    </style>
 </body>
 </html>
