@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
+    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
 
     <link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
@@ -79,7 +80,6 @@
                                     <asp:Label ID="Label6" runat="server" Text="Date : "></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete= "off" placeholder="Date"></asp:TextBox>
-
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
@@ -244,7 +244,7 @@
         }
         
         function autoCompleteItemName() {
-            $("#txtItemName").autocomplete({
+            $("#txtEmployeeName").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         type: "POST",
@@ -266,21 +266,23 @@
         }
         $(function () {
 
-            autoCompleteItemName();
-            $('#txtDate').datepicker();
-            $('#txtStrtTime').datetimepicker({
-                dateFormat: '',
-                timeFormat: 'HH:mm:ss',
-                showSecond:false,
-                showMillisec:false,
-                showMicrosec:false,
-                showTimezone:false
-            });
-            $('#txtEndTime').timepicker();
+            Init();
             //ShowHideGridviewPanels();
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(autoCompleteItemName);
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
+
+        function Init() {
+            //autoCompleteItemName();
+            SearchText();
+            $('#txtDate').datepicker();
+            $('#txtStrtTime').timepicker({
+                timeFormat: 'HH:mm'
+            });
+            $('#txtEndTime').timepicker({
+                timeFormat: 'HH:mm'
+            });
+        }
         function GetTimeSpan() {
             var defaultDate = "1/1/1970 ";
             var end = document.getElementById('txtEndTime').value;
@@ -291,6 +293,44 @@
             console.log("Diff " + difference);
             document.getElementById("txtMove").innerText = difference;
             $('#txtMove').val(difference);
+        }
+        var prm = Sys.WebForms.PageRequestManager.getInstance(); 
+
+        prm.add_endRequest(function() { 
+            SearchText();
+            $('#txtStrtTime').timepicker();
+            $('#txtEndTime').timepicker();
+            console.log("dom Ready Page Request Manager");
+        }); 
+        function pageLoad(sender, args) {
+            $(document).ready(function () {
+                SearchText();
+                $('#txtStrtTime').timepicker();
+                $('#txtEndTime').timepicker();
+                console.log("dom Ready page preload");
+            });
+        }
+        function Changed() {
+            document.getElementById('hdfSearchBoxTextChange').value = 'true';
+        }
+        function SearchText() {
+            $("#txtEmployeeName").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;",
+                        url: "OvertimeEntry.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            alert("Error");
+                        }
+                    });
+                }
+            });
         }
     </script>
     <style>
