@@ -157,13 +157,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// txtdsg control.
+        /// txtDesignation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdsg;
+        protected global::System.Web.UI.WebControls.TextBox txtDesignation;
         
         /// <summary>
         /// Label5 control.
@@ -175,13 +175,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// txtcode control.
+        /// txtCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcode;
+        protected global::System.Web.UI.WebControls.TextBox txtCode;
         
         /// <summary>
         /// Label6 control.
@@ -193,13 +193,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// txtdate control.
+        /// txtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdate;
+        protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
         /// Label8 control.
@@ -211,13 +211,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// txtmove control.
+        /// txtMove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtmove;
+        protected global::System.Web.UI.WebControls.TextBox txtMove;
         
         /// <summary>
         /// Label9 control.
@@ -229,13 +229,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// txtstrttime control.
+        /// txtStrtTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtstrttime;
+        protected global::System.Web.UI.WebControls.TextBox txtStrtTime;
         
         /// <summary>
         /// Label7 control.
@@ -247,13 +247,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// txtendtime control.
+        /// txtEndTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtendtime;
+        protected global::System.Web.UI.WebControls.TextBox txtEndTime;
         
         /// <summary>
         /// Label10 control.
@@ -265,13 +265,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// ddlpurpose control.
+        /// ddlPurpose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpurpose;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPurpose;
         
         /// <summary>
         /// Label11 control.
@@ -283,13 +283,13 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// txtremarks control.
+        /// txtRemarks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtremarks;
+        protected global::System.Web.UI.WebControls.TextBox txtRemarks;
         
         /// <summary>
         /// btnAdd control.
@@ -301,21 +301,21 @@ namespace UI.HR.Overtime {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// OvertimeGridView control.
+        /// OvertimeEntryGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView OvertimeGridView;
+        protected global::System.Web.UI.WebControls.GridView OvertimeEntryGridView;
         
         /// <summary>
-        /// btnInActive control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInActive;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }
