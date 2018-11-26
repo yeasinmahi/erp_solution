@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -83,12 +84,29 @@ namespace UI.HR.Overtime
 
         protected void OvertimeEntryGridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            if (Session["obj"] != null)
+            {
+                List<object> objects = (List<object>) Session["obj"];
+                objects.RemoveAt(e.RowIndex);
+                if (objects.Count > 0)
+                {
+                    string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
+                    LoadGridwithXml(xmlString, OvertimeEntryGridView);
+                }
+                else
+                {
+                    GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                }
+            }
+            else
+            {
+                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+            }
         }
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -177,6 +195,7 @@ namespace UI.HR.Overtime
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
             }
         }
+        
 
         
     }

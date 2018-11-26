@@ -92,6 +92,20 @@ namespace Utility
 
         }
 
+        public static bool UnLoadGridView(GridView gridView)
+        {
+            try
+            {
+                gridView.DataSource = null;
+                gridView.DataBind();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+        }
     }
     public class CreateItemTemplate : ITemplate
     {
