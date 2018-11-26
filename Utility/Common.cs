@@ -116,5 +116,13 @@ namespace Utility
             }
             return ipAddress;
         }
+
+        public static string GetIp()
+        {
+            string host = Dns.GetHostName();
+            IPHostEntry ip = Dns.GetHostEntry(host);
+            string ipaddress = (ip.AddressList[1].ToString());
+            return ipaddress;
+        }
     }
 }

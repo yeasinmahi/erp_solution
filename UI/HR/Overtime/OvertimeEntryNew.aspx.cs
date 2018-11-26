@@ -111,7 +111,38 @@ namespace UI.HR.Overtime
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            int unitId = Convert.ToInt32(ddlUnit.SelectedItem.Value);
+            int jobStationId = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
 
+            List<object> objects = new List<object>();
+            List<object> objectsNew = new List<object>();
+            if (Session["obj"] != null)
+            {
+                objects = (List<object>)Session["obj"];
+            }
+            foreach (object o in objects)
+            {
+                dynamic obj = new
+                {
+                    empEnroll = o.GetType().GetProperty("empEnroll")?.GetValue(o,null),
+                    unitId,
+                    jobStationId,
+                    date = o.GetType().GetProperty("date")?.GetValue(o, null),
+                    startTime = o.GetType().GetProperty("startTime")?.GetValue(o, null),
+                    endTime = o.GetType().GetProperty("endTime")?.GetValue(o, null),
+                    diffTime = o.GetType().GetProperty("diffTime")?.GetValue(o, null),
+                    hour = 0,
+                    reason = o.GetType().GetProperty("reason")?.GetValue(o, null),
+                    remarks = o.GetType().GetProperty("remarks")?.GetValue(o, null),
+
+                };
+                objectsNew.Add(obj);
+            }
+
+            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
+            string ipaddress = Common.GetIp();
+            message = _bll.OvertimeEntryNew(xmlString, enroll, ipaddress);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
         }
 
         private void LoadPurpose()

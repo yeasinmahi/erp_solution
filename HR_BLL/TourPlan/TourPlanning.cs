@@ -275,11 +275,28 @@ namespace HR_BLL.TourPlan
             catch (Exception ex) { return ex.ToString(); }
 
         }
+        public string OvertimeEntryNew(string xmlString, int intInsertBy, string ipaddress)
+        {
+            string msg = "";
+            try
+            {
+                SprEmplOverTimeTableAdapter bllTadaInsertByBikeAndCarUser = new SprEmplOverTimeTableAdapter();
+                bllTadaInsertByBikeAndCarUser.InsertOverTine(xmlString, intInsertBy, ipaddress, ref msg);
+                return msg;
+
+            }
+
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
 
 
 
 
-       
+
 
         public DataTable getRptOverTime(int intReportType ,int intActionby ,string xml,int intid,DateTime fromdate,DateTime TODATE,int jsid,int unitid )
         {
