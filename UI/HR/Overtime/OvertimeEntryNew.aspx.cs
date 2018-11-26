@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
@@ -79,7 +77,17 @@ namespace UI.HR.Overtime
             {
                 objects = (List<object>) Session["obj"];
             }
+            foreach (GridViewRow row in OvertimeEntryGridView.Rows)
+            {
+                if (((Label)row.FindControl("lblEmpEnroll")).Text.Contains(empEnroll) && ((Label)row.FindControl("lblDate")).Text.Contains(date))
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Can not add same enroll "+empEnroll+" and date "+date+" dublicate');", true);
+                    return;
+                }
+                //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
+            }
             objects.Add(obj);
+            
             Session["obj"] = objects;
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
 
