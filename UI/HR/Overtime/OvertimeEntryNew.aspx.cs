@@ -124,16 +124,16 @@ namespace UI.HR.Overtime
             {
                 dynamic obj = new
                 {
-                    empEnroll = o.GetType().GetProperty("empEnroll")?.GetValue(o,null),
+                    empEnroll = Common.GetPropertyValue(o, "empEnroll"),
                     unitId,
                     jobStationId,
-                    date = o.GetType().GetProperty("date")?.GetValue(o, null),
-                    startTime = o.GetType().GetProperty("startTime")?.GetValue(o, null),
-                    endTime = o.GetType().GetProperty("endTime")?.GetValue(o, null),
-                    diffTime = o.GetType().GetProperty("diffTime")?.GetValue(o, null),
+                    date = Common.GetPropertyValue(o, "date"),
+                    startTime = Common.GetPropertyValue(o, "startTime"),
+                    endTime = Common.GetPropertyValue(o, "endTime"),
+                    diffTime = Common.GetPropertyValue(o, "diffTime"),
                     hour = 0,
-                    reason = o.GetType().GetProperty("reason")?.GetValue(o, null),
-                    remarks = o.GetType().GetProperty("remarks")?.GetValue(o, null),
+                    reason = Common.GetPropertyValue(o, "reason"),
+                    remarks = Common.GetPropertyValue(o, "remarks")
 
                 };
                 objectsNew.Add(obj);
