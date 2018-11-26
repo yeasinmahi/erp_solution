@@ -157,6 +157,10 @@ namespace UI.HR.Overtime
             string ipaddress = Common.GetIp();
             message = _bll.OvertimeEntryNew(xmlString, enroll, ipaddress);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+            if (message.Contains("Sucessfully"))
+            {
+                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+            }
         }
 
         private void LoadPurpose()
