@@ -370,6 +370,7 @@
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryNew.aspx" />
+    <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
@@ -2919,6 +2920,13 @@
     </Compile>
     <Compile Include="HR\Overtime\OvertimeEntryNew.aspx.designer.cs">
       <DependentUpon>OvertimeEntryNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Overtime\OvertimeEntryReport.aspx.cs">
+      <DependentUpon>OvertimeEntryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Overtime\OvertimeEntryReport.aspx.designer.cs">
+      <DependentUpon>OvertimeEntryReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
