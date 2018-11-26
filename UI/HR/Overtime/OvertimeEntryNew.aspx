@@ -87,7 +87,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label8" runat="server" Text="Movement Hour"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtMove" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
+                                    <asp:TextBox ID="txtMove" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">

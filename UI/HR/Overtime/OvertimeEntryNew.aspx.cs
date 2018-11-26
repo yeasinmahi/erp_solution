@@ -67,7 +67,15 @@ namespace UI.HR.Overtime
                 remarks
 
             };
-            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
+            List<object> objects = new List<object>();
+            if (Session["obj"] != null)
+            {
+                objects = (List<object>) Session["obj"];
+            }
+            objects.Add(obj);
+            Session["obj"] = objects;
+            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
+
             LoadGridwithXml(xmlString,OvertimeEntryGridView);
 
 
