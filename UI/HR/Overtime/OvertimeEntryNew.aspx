@@ -162,6 +162,11 @@
                                             <asp:Label ID="lblDiffTime" runat="server" Text='<%# Bind("diffTime") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Countable Hour">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblHour" runat="server" Text='<%# Bind("hour") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Reson">
                                         <ItemTemplate>
                                             <asp:Label ID="lblReson" runat="server"  Text='<%# Bind("reason") %>'></asp:Label>

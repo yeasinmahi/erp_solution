@@ -57,6 +57,11 @@ namespace UI.HR.Overtime
             string diffTime = txtMove.Text;
             string reason = ddlPurpose.SelectedItem.Text;
             string remarks = txtRemarks.Text;
+            if (!TimeSpan.TryParse(diffTime, out var time))
+            {
+                // handle validation error
+            }
+            double hour = time.TotalSeconds / 3600;
             dynamic obj = new
             {
                 empEnroll,
@@ -64,6 +69,7 @@ namespace UI.HR.Overtime
                 startTime,
                 endTime,
                 diffTime,
+                hour,
                 reason,
                 remarks
 
@@ -131,7 +137,7 @@ namespace UI.HR.Overtime
                     startTime = Common.GetPropertyValue(o, "startTime"),
                     endTime = Common.GetPropertyValue(o, "endTime"),
                     diffTime = Common.GetPropertyValue(o, "diffTime"),
-                    hour = 0,
+                    hour = Common.GetPropertyValue(o, "hour"),
                     reason = Common.GetPropertyValue(o, "reason"),
                     remarks = Common.GetPropertyValue(o, "remarks")
 
