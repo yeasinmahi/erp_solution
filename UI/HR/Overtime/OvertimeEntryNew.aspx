@@ -33,6 +33,8 @@
                 <div style="height: 50px; width: 100%"></div>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="container">
+                    <asp:HiddenField runat="server" ID="hdnSearch"/>
+                    <asp:HiddenField runat="server" ID="hdnEmployeeName"/>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
@@ -55,7 +57,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label1" runat="server" Text="Employee Name : "></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtEmployeeName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
+                                    <asp:TextBox ID="txtEmployeeName" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -78,12 +80,13 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label6" runat="server" Text="Date : "></asp:Label>
-                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete= "off" placeholder="Date"></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label8" runat="server" Text="Movement Hour :"></asp:Label>
+                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtMove" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
 
                                 </div>
@@ -234,35 +237,33 @@
 
         }
         function Validate() {
-            var txtItemName = document.getElementById("txtItemName").value;
+            var txtEnroll = document.getElementById("txtEnroll").value;
+            var txtDate = document.getElementById("txtDate").value;
+            var txtMove = document.getElementById("txtMove").value;
+            var txtStarTime = document.getElementById("txtStrtTime").value;
+            var txtEndTime = document.getElementById("txtEndTime").value;
 
-            if (txtItemName === null || txtItemName === "") {
-                alert("Item Name can not be empty");
+            if (txtEnroll === null || txtEnroll === "") {
+                alert("Enter Employee properly");
+                return false;
+            }
+            if (txtDate === null || txtDate === "") {
+                alert("Date can not be blank");
+                return false;
+            }
+            if (txtMove === null || txtMove === "") {
+                alert("Movement hour can not be blank");
+                return false;
+            }
+            if (txtStarTime === null || txtStarTime === "") {
+                alert("Start time can not be blank");
+                return false;
+            }
+            if (txtEndTime === null || txtEndTime === "") {
+                alert("End time can not be blank");
                 return false;
             }
             return true;
-        }
-        
-        function autoCompleteItemName() {
-            $("#txtEmployeeName").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json;",
-                        url: "BlockItem.aspx/GetItem",
-                        data: "{'prefix':'" + document.getElementById('txtItemName').value + "'}",
-                        dataType: "json",
-                        success: function (data) {
-                            response(data.d);
-                        },
-                        error: function (result) {
-                            alert("Error");
-                        }
-
-                    });
-                },
-                minLength: 3
-            });
         }
         $(function () {
 
@@ -294,41 +295,51 @@
             document.getElementById("txtMove").innerText = difference;
             $('#txtMove').val(difference);
         }
-        var prm = Sys.WebForms.PageRequestManager.getInstance(); 
+        //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
 
-        prm.add_endRequest(function() { 
-            SearchText();
-            $('#txtStrtTime').timepicker();
-            $('#txtEndTime').timepicker();
-            console.log("dom Ready Page Request Manager");
-        }); 
-        function pageLoad(sender, args) {
-            $(document).ready(function () {
-                SearchText();
-                $('#txtStrtTime').timepicker();
-                $('#txtEndTime').timepicker();
-                console.log("dom Ready page preload");
-            });
-        }
-        function Changed() {
-            document.getElementById('hdfSearchBoxTextChange').value = 'true';
-        }
+        //prm.add_endRequest(function() { 
+        //    SearchText();
+        //    $('#txtStrtTime').timepicker();
+        //    $('#txtEndTime').timepicker();
+        //    console.log("dom Ready Page Request Manager");
+        //}); 
+        //function pageLoad(sender, args) {
+        //    $(document).ready(function () {
+        //        SearchText();
+        //        $('#txtStrtTime').timepicker();
+        //        $('#txtEndTime').timepicker();
+        //        console.log("dom Ready page preload");
+        //    });
+        //}
+        //function Changed() {
+        //    document.getElementById('hdfSearchBoxTextChange').value = 'true';
+        //}
         function SearchText() {
             $("#txtEmployeeName").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         type: "POST",
                         contentType: "application/json;",
-                        url: "OvertimeEntry.aspx/GetAutoCompleteData",
-                        data: "{'strSearchKey':'" + document.getElementById('txtFullName').value + "'}",
+                        url: "OvertimeEntryNew.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
                         dataType: "json",
                         success: function (data) {
                             response(data.d);
                         },
                         error: function (result) {
-                            alert("Error");
+                            console.log(result.responseText);
                         }
                     });
+                },
+                minLength: 3,
+                select: function (event, ui) {
+                    console.log(ui.item.value);
+                    var hdnSearchId = document.getElementById("<%=hdnSearch.ClientID%>");
+                    hdnSearchId.value = 1;
+                    <%--var txtEmployeeName= document.getElementById("<%=txtEmployeeName.ClientID %>");  
+                    txtEmployeeName.value = ui.item.val;--%>
+                    document.getElementById('<%=txtEmployeeName.ClientID %>').value = ui.item.value;
+                    __doPostBack('',ui.item.value);
                 }
             });
         }
