@@ -43,84 +43,83 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label20" runat="server" Text="Unit : "></asp:Label>
+                                    <asp:Label ID="Label20" runat="server" Text="Unit"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:DropDownList ID="ddlUnit" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label2" runat="server" Text="Job Station : "></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text="Job Station"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label1" runat="server" Text="Employee Name : "></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" Text="Employee Name"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtEmployeeName" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label3" runat="server" Text="Enroll : "></asp:Label>
+                                    <asp:Label ID="Label3" runat="server" Text="Enroll"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:TextBox ID="txtEnroll" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label4" runat="server" Text="Designation : "></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Text="Designation"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:TextBox ID="txtDesignation" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Designation"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label5" runat="server" Text="Code : "></asp:Label>
+                                    <asp:Label ID="Label5" runat="server" Text="Code"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:TextBox ID="txtCode" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Code"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label6" runat="server" Text="Date : "></asp:Label>
+                                    <asp:Label ID="Label6" runat="server" Text="Date"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete= "off" placeholder="Date"></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label8" runat="server" Text="Movement Hour :"></asp:Label>
+                                    <asp:Label ID="Label8" runat="server" Text="Movement Hour"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtMove" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label9" runat="server" Text="Start Time : "></asp:Label>
+                                    <asp:Label ID="Label9" runat="server" Text="Start Time"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtStrtTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete= "off" onchange="GetTimeSpan()" runat="server" placeholder="Start Time"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label7" runat="server" Text="End Time : "></asp:Label>
+                                    <asp:Label ID="Label7" runat="server" Text="End Time"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtEndTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete= "off" onchange="GetTimeSpan()" runat="server" placeholder="End Time"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label10" runat="server" Text="Purpose : "></asp:Label>
+                                    <asp:Label ID="Label10" runat="server" Text="Purpose"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:DropDownList ID="ddlPurpose" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label11" runat="server" Text="Remarks : "></asp:Label>
+                                    <asp:Label ID="Label11" runat="server" Text="Remarks"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:TextBox ID="txtRemarks" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
 
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12 btn-toolbar">
+                                <div class="col-md-12" style="padding-top:10px">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />
                                 </div>
                             </div>
+
+                                
                         </div>
                     </div>
 
@@ -130,7 +129,7 @@
                         </div>
                         <div class="panel-body">
                             <asp:GridView ID="OvertimeEntryGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
-                                DataKeyNames="intItemMasterID" OnRowDeleting="OvertimeEntryGridView_OnRowDeleting" GridLines="Both">
+                                DataKeyNames="empEnroll" OnRowDeleting="OvertimeEntryGridView_OnRowDeleting" GridLines="Both">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -138,56 +137,45 @@
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item ID">
+                                    <asp:TemplateField HeaderText="Enroll">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblItemid" runat="server" Text='<%# Bind("intItemMasterID") %>'></asp:Label>
+                                            <asp:Label ID="lblEmpEnroll" runat="server" Text='<%# Bind("empEnroll") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item Name">
+                                    <asp:TemplateField HeaderText="Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblItemName" runat="server" CssClass="pull-left" Text='<%# Bind("ItemName") %>'></asp:Label>
+                                            <asp:Label ID="lblDate" runat="server"  Text='<%# Bind("date") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="UOM">
+                                    <asp:TemplateField HeaderText="Start Time">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                            <asp:Label ID="lblStartTime" runat="server" Text='<%# Bind("startTime") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Closing Stock">
+                                    <asp:TemplateField HeaderText="End Time">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblChallanNo" runat="server" CssClass="pull-right" Text='<%# Bind("ClosingStock") %>'></asp:Label>
+                                            <asp:Label ID="lblEndTime" runat="server" Text='<%# Bind("endTime") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Rate">
+                                    <asp:TemplateField HeaderText="Differance Time">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblLocation" runat="server" CssClass="pull-right" Text='<%# Bind("Rate","{0:n2}") %>'></asp:Label>
+                                            <asp:Label ID="lblDiffTime" runat="server" Text='<%# Bind("diffTime") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="CostAmount">
+                                    <asp:TemplateField HeaderText="Reson">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblMrrQty" runat="server" CssClass="pull-right" Text='<%# Bind("costAmount","{0:n2}") %>'></asp:Label>
+                                            <asp:Label ID="lblReson" runat="server"  Text='<%# Bind("reason") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Sales Rate">
+                                    <asp:TemplateField HeaderText="Remarks" >
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRate" runat="server" CssClass="pull-right" Text='<%# Bind("salesPrice","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Sales Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblCostAmount" runat="server" CssClass="pull-right" Text='<%# Bind("salesAmount","{0:n2}") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Remarks" ItemStyle-Width="200px">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRemarks" runat="server" CssClass="pull-left" Text='<%# Bind("strRemarks") %>'>></asp:Label>
+                                            <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("remarks") %>'>></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle Width="200px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnActive" runat="server" Text="Active" CssClass="btn btn-primary btn-xs" CommandName="Delete" OnClick="btnActive_OnClick" />
+                                            <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-xs" CommandName="Delete" OnClick="btnDelete_OnClick" />
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
                                     </asp:TemplateField>
@@ -203,12 +191,11 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 btn-toolbar" style="padding-top: 15px;">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary form-control btn-sm pull-right hidden" OnClick="btnSubmit_OnClick" />
+                            <div class="col-md-12" style="padding-top: 15px;">
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary form-control pull-right" OnClick="btnSubmit_OnClick" />
                             </div>
                         </div>
+                            
                     </div>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>

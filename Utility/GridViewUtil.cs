@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -63,6 +64,32 @@ namespace Utility
             gridView.DataSource = dataTable;
             gridView.DataBind();
             return gridView;
+        }
+        public static bool LoadGridwithXml(string xmlString, GridView gridView, out string message)
+        {
+            try
+            {
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gridView.DataSource = ds;
+                }
+                else
+                {
+                    gridView.DataSource = "";
+                }
+                gridView.DataBind();
+                message = "Successfully Load GridView";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
+
         }
 
     }

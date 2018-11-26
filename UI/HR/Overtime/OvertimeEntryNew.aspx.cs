@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
@@ -10,6 +11,7 @@ using HR_BLL.Employee;
 using HR_BLL.Global;
 using HR_BLL.TourPlan;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.HR.Overtime
 {
@@ -20,7 +22,7 @@ namespace UI.HR.Overtime
         protected void Page_Load(object sender, EventArgs e)
         {
             //enroll = Int32.Parse(Session[SessionParams.USER_ID].ToString());
-            
+
             if (!IsPostBack)
             {
                 LoadPurpose();
@@ -28,7 +30,7 @@ namespace UI.HR.Overtime
                 LoadJobStationDropDown(GetUnitId());
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
-            if (hdnSearch.Value=="1")
+            if (hdnSearch.Value == "1")
             {
                 LoadEmployeeInfo();
             }
@@ -47,22 +49,43 @@ namespace UI.HR.Overtime
 
         protected void btnAdd_OnClick(object sender, EventArgs e)
         {
-            
+            string empEnroll = txtEnroll.Text;
+            string date = txtDate.Text;
+            string startTime = txtStrtTime.Text;
+            string endTime = txtEndTime.Text;
+            string diffTime = txtMove.Text;
+            string reason = ddlPurpose.SelectedItem.Text;
+            string remarks = txtRemarks.Text;
+            dynamic obj = new
+            {
+                empEnroll,
+                date,
+                startTime,
+                endTime,
+                diffTime,
+                reason,
+                remarks
+
+            };
+            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
+            LoadGridwithXml(xmlString,OvertimeEntryGridView);
+
+
         }
 
         protected void OvertimeEntryGridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            
+
         }
 
-        protected void btnActive_OnClick(object sender, EventArgs e)
+        protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void LoadPurpose()
@@ -135,9 +158,18 @@ namespace UI.HR.Overtime
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('"+ex.Message+"')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + ex.Message + "')", true);
             }
-            
+
         }
+        private void LoadGridwithXml(string xmlString, GridView gridView)
+        {
+            if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
+            }
+        }
+
+        
     }
 }
