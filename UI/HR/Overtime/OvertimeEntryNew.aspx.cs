@@ -251,7 +251,17 @@ namespace UI.HR.Overtime
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
             string id = GridViewEmployeeDetails.DataKeys[row.RowIndex]?.Value.ToString();
-            int empEnroll = Convert.ToInt32(((Label) row.FindControl("lblEmpEnroll")).Text);
+            txtEnroll.Text = ((Label) row.FindControl("lblEmpEnroll")).Text;
+            string employeeName =((Label) row.FindControl("lblEmployeeName")).Text;
+            string designation =((Label) row.FindControl("lblDesignation")).Text;
+            txtDate.Text = ((Label) row.FindControl("lblDate")).Text;
+            txtStrtTime.Text = ((Label) row.FindControl("lblStartTime")).Text;
+            txtEndTime.Text = ((Label) row.FindControl("lblEndTime")).Text;
+            string hour =((Label) row.FindControl("lblHour")).Text;
+            ddlPurpose.SelectedItem.Text = ((Label) row.FindControl("lblReson")).Text;
+            txtRemarks.Text = ((Label) row.FindControl("lblRemarks")).Text;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 
         }
 

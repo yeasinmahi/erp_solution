@@ -7,13 +7,17 @@
 <head runat="server">
     <title>Overtime Entry</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+    <%--<asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>--%>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
 
     <link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
 
+    <script src="../../Content/JS/jquery-3.3.1.js"></script>
+    <script src="../../Content/JS/jquery-ui.min.js"></script>
+    <script src="../../Content/JS/bootstrap.min.js"></script>
+    <script src="../../Content/JS/jquery.timepicker.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -291,7 +295,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary btn-xs" CommandName="Edit" OnClick="btnUpdate_OnClick" />
+                                            <asp:Button ID="btnUpdate" runat="server" Text="Update" data-toggle="modal" data-target="#myModal" CssClass="btn btn-primary btn-xs"  OnClick="btnUpdate_OnClick"/>
+                                            
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
                                     </asp:TemplateField>
@@ -311,12 +316,30 @@
                             
                     </div>
                 </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+      
+                    </div>
+                </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
                 <asp:PostBackTrigger ControlID="btnSubmit" />
-                <asp:PostBackTrigger ControlID="GridViewEmployeeDetails"/>
             </Triggers>
         </asp:UpdatePanel>
 
@@ -395,6 +418,9 @@
             console.log("Diff " + difference);
             document.getElementById("txtMove").innerText = difference;
             $('#txtMove').val(difference);
+        }
+        function openModal() {
+            $('#myModal').modal('show');
         }
         //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
 
