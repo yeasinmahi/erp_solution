@@ -295,7 +295,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnUpdate" runat="server" Text="Update" data-toggle="modal" data-target="#myModal" CssClass="btn btn-primary btn-xs"  OnClick="btnUpdate_OnClick"/>
+                                            <asp:Button ID="btnUpdate" runat="server" Text="Update"  CssClass="btn btn-primary btn-xs"  OnClick="btnUpdate_OnClick"/>
                                             
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
