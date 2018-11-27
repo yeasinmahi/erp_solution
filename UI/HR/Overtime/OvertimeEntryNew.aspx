@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OvertimeEntryNew.aspx.cs" Inherits="UI.HR.Overtime.OvertimeEntryNew" %>
+﻿<%@ Page EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeBehind="OvertimeEntryNew.aspx.cs" Inherits="UI.HR.Overtime.OvertimeEntryNew" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -202,12 +202,121 @@
                         </div>
                             
                     </div>
+                    
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <asp:Label runat="server" Text="Overtime Details Report" Font-Bold="true" Font-Size="16px"></asp:Label>
+                        </div>
+                        <div class="panel-body">
+                            <asp:GridView ID="GridViewEmployeeDetails" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                                DataKeyNames="intID" GridLines="Both">
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="SL">
+                                        <ItemTemplate>
+                                            <%# Container.DataItemIndex + 1 %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Enroll">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblEmpEnroll" runat="server" Text='<%# Bind("intEmpID") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Employee Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblEmployeeName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Designation">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblDesignation" runat="server" Text='<%# Bind("strDesignation") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblDate" runat="server"  Text='<%# Eval("dteDate","{0:dd-MMM-yyyy}") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Start Time">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblStartTime" runat="server" Text='<%# Eval("dteStartTime") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="End Time">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblEndTime" runat="server" Text='<%# Bind("dteEndTime") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Countable Hour">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblHour" runat="server" Text='<%# Bind("monHour") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Gross Salary">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblGross" runat="server" Text='<%# Eval("monSalary","{0:n2}") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Basic Salary">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblBasic" runat="server" Text='<%# Bind("monBasic","{0:n2}") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Hourly Rate">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblHourRate" runat="server" Text='<%# Bind("monHourAmount","{0:n2}") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monDayTotalAmount","{0:n2}") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Reson">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblReson" runat="server"  Text='<%# Bind("strPurpose") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Remarks" >
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strRemarks") %>'>></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle/>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Insert By" >
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblInsertBy" runat="server" Text='<%# Bind("intInsertBy") %>'>></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle/>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary btn-xs" CommandName="Edit" OnClick="btnUpdate_OnClick" />
+                                        </ItemTemplate>
+                                        <ItemStyle Width="80px" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                            </asp:GridView>
+                        </div>
+                            
+                    </div>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
                 <asp:PostBackTrigger ControlID="btnSubmit" />
+                <asp:PostBackTrigger ControlID="GridViewEmployeeDetails"/>
             </Triggers>
         </asp:UpdatePanel>
 
@@ -219,12 +328,12 @@
             //    alert("Item Name can not be empty");
             //    return false;
             //}
-            var itemPanel = document.getElementById("btnInActive");
+            var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.remove("hidden");
             return true;
         }
         function hidePanel() {
-            var itemPanel = document.getElementById("btnInActive");
+            var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.add("hidden");
 
         }

@@ -24,6 +24,7 @@ namespace UI.HR.Overtime
 
             if (!IsPostBack)
             {
+                pnlUpperControl.DataBind();
                 LoadPurpose();
                 LoadUnitDropDown(enroll);
                 LoadJobStationDropDown(GetUnitId());
@@ -227,7 +228,7 @@ namespace UI.HR.Overtime
                         txtCode.Text = empCode;
                         txtDesignation.Text = objDt.Rows[0]["strDesignation"].ToString();
                         txtEnroll.Text = objDt.Rows[0]["intEmployeeID"].ToString();
-
+                        LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text), "2018-10-1", "2018-12-30");
                     }
                 }
             }
@@ -244,8 +245,20 @@ namespace UI.HR.Overtime
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
             }
         }
-        
 
-        
+
+        protected void btnUpdate_OnClick(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            string id = GridViewEmployeeDetails.DataKeys[row.RowIndex]?.Value.ToString();
+            int empEnroll = Convert.ToInt32(((Label) row.FindControl("lblEmpEnroll")).Text);
+
+        }
+
+        private void LoadOverTimeDetailsGridView(int empId,string fromDate, string toDate)
+        {
+            GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate, toDate);
+            GridViewEmployeeDetails.DataBind();
+        }
     }
 }

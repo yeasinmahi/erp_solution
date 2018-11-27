@@ -280,8 +280,8 @@ namespace HR_BLL.TourPlan
             string msg = "";
             try
             {
-                SprEmplOverTimeTableAdapter bllTadaInsertByBikeAndCarUser = new SprEmplOverTimeTableAdapter();
-                bllTadaInsertByBikeAndCarUser.InsertOverTine(xmlString, intInsertBy, ipaddress, ref msg);
+                SprEmplOverTimeTableAdapter adp = new SprEmplOverTimeTableAdapter();
+                adp.InsertOverTine(xmlString, intInsertBy, ipaddress, ref msg);
                 return msg;
 
             }
@@ -290,7 +290,19 @@ namespace HR_BLL.TourPlan
             {
                 return ex.Message;
             }
+        }
+        public DataTable GetEmployeeOvertimeDetails(int intEmpId, string dteStartDate, string dteEndDate)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetEmployeeOvertimeDetails(intEmpId,dteStartDate, dteEndDate);
+            }
 
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
         }
 
 
