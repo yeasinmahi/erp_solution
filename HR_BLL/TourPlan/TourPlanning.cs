@@ -275,11 +275,40 @@ namespace HR_BLL.TourPlan
             catch (Exception ex) { return ex.ToString(); }
 
         }
+        public string OvertimeEntryNew(string xmlString, int intInsertBy, string ipaddress)
+        {
+            string msg = "";
+            try
+            {
+                SprEmplOverTimeTableAdapter adp = new SprEmplOverTimeTableAdapter();
+                adp.InsertOverTine(xmlString, intInsertBy, ipaddress, ref msg);
+                return msg;
+
+            }
+
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public DataTable GetEmployeeOvertimeDetails(int intEmpId, string dteStartDate, string dteEndDate)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetEmployeeOvertimeDetails(intEmpId,dteStartDate, dteEndDate);
+            }
+
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
 
 
 
-       
+
 
         public DataTable getRptOverTime(int intReportType ,int intActionby ,string xml,int intid,DateTime fromdate,DateTime TODATE,int jsid,int unitid )
         {

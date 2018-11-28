@@ -19,6 +19,11 @@ namespace Utility
             return obj.GetType().GetProperties();
         }
 
+        public static object GetPropertyValue(object obj, string name)
+        {
+            return obj.GetType().GetProperty(name)?.GetValue(obj, null);
+        }
+
         public static StreamWriter GetStreamWriter(string path)
         {
             return !File.Exists(path) ? File.CreateText(path) : null;
@@ -115,6 +120,14 @@ namespace Utility
                 }
             }
             return ipAddress;
+        }
+
+        public static string GetIp()
+        {
+            string host = Dns.GetHostName();
+            IPHostEntry ip = Dns.GetHostEntry(host);
+            string ipaddress = (ip.AddressList[1].ToString());
+            return ipaddress;
         }
     }
 }
