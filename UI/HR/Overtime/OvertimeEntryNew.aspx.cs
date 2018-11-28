@@ -139,6 +139,7 @@ namespace UI.HR.Overtime
             {
                 dynamic obj = new
                 {
+                    overtimeId=0,
                     empEnroll = Common.GetPropertyValue(o, "empEnroll"),
                     unitId,
                     jobStationId,
@@ -156,11 +157,13 @@ namespace UI.HR.Overtime
 
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
             string ipaddress = Common.GetIp();
-            message = _bll.OvertimeEntryNew(xmlString, enroll, ipaddress);
+            message = _bll.OvertimeEntryNew(1,xmlString, enroll, ipaddress);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             if (message.Contains("Sucessfully"))
             {
                 GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                Session["obj"] = null;
+
             }
         }
 
@@ -271,6 +274,7 @@ namespace UI.HR.Overtime
             LoadPurposeUpdate();
             ddlPurpose.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "Init", "Init();", true);
 
         }
 
@@ -286,13 +290,19 @@ namespace UI.HR.Overtime
             string date = txtDateUpdate.Text;
             string startTime = txtStrtTimeUpdate.Text;
             string endTime = txtEndTimeUpdate.Text;
-            string diffTime = txtMoveUpdate.Text;
-            string reason = ddlPurposeUpdate.SelectedItem.Text;
-            string remarks = txtRemarksUpdate.Text;
-            if (!TimeSpan.TryParse(diffTime, out var time))
+            
+            if (!TimeSpan.TryParse(startTime, out var startTimeSpan))
             {
                 // handle validation error
             }
+            if (!TimeSpan.TryParse(endTime, out var endTimeSpan))
+            {
+                // handle validation error
+            }
+            var time = endTimeSpan - startTimeSpan;
+            string reason = ddlPurposeUpdate.SelectedItem.Text;
+            string remarks = txtRemarksUpdate.Text;
+            
             double hour = DateTimeConverter.ConvertTimeSpanToSecond(time);
             dynamic obj = new
             {
@@ -300,12 +310,15 @@ namespace UI.HR.Overtime
                 date,
                 startTime,
                 endTime,
-                diffTime,
+                time,
                 hour,
                 reason,
                 remarks
 
             };
+            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
+            message = _bll.OvertimeEntryNew(2, xmlString, enroll, "");
+            ScriptManager.RegisterStartupScript(this, GetType(), "Init", "Init();", true);
             //ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
             //UpdatePanel0.DataBind();
         }

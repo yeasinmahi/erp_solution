@@ -275,13 +275,13 @@ namespace HR_BLL.TourPlan
             catch (Exception ex) { return ex.ToString(); }
 
         }
-        public string OvertimeEntryNew(string xmlString, int intInsertBy, string ipaddress)
+        public string OvertimeEntryNew(int type, string xmlString, int intInsertBy, string ipaddress)
         {
             string msg = "";
             try
             {
                 SprEmplOverTimeTableAdapter adp = new SprEmplOverTimeTableAdapter();
-                adp.InsertOverTine(xmlString, intInsertBy, ipaddress, ref msg);
+                adp.InsertOverTine(type, xmlString, intInsertBy, ipaddress, ref msg);
                 return msg;
 
             }

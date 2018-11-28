@@ -494,12 +494,32 @@
                 $('#txtEndTime').timepicker({
                     timeFormat: 'HH:mm'
                 });
-                $('#txtDateUpdate').datepicker();
+                $('#txtDateUpdate').datepicker({
+                    container: '#myModal',
+                    beforeShow: function (input, inst) {
+                        var rect = input.getBoundingClientRect();
+                        setTimeout(function () {
+                            inst.dpDiv.css({ top: rect.top+35, left: rect.left + 0 });
+                        }, 0);
+                    }
+                });
                 $('#txtStrtTimeUpdate').timepicker({
-                    timeFormat: 'HH:mm'
+                    timeFormat: 'HH:mm',
+                    beforeShow: function (input, inst) {
+                        var rect = input.getBoundingClientRect();
+                        setTimeout(function () {
+                            inst.dpDiv.css({ top: rect.top+35, left: rect.left + 0 });
+                        }, 0);
+                    }
                 });
                 $('#txtEndTimeUpdate').timepicker({
-                    timeFormat: 'HH:mm'
+                    timeFormat: 'HH:mm',
+                    beforeShow: function (input, inst) {
+                        var rect = input.getBoundingClientRect();
+                        setTimeout(function () {
+                            inst.dpDiv.css({ top: rect.top+35, left: rect.left + 0 });
+                        }, 0);
+                    }
                 });
             }
             function GetTimeSpan() {
@@ -518,15 +538,13 @@
                 var end = document.getElementById('txtEndTimeUpdate').value;
                 var start = document.getElementById('txtStrtTimeUpdate').value;
                 var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
-                document.getElementById("txtMoveUpdate").innerText = difference;
+                document.getElementById("<%=txtMoveUpdate.ClientID%>").innerText = difference;
                 $('#txtMoveUpdate').val(difference);
             }
             function openModal() {
-                $(".modal-backdrop").remove();
                 $('#myModal').modal('show');
             }
             function closeModal() {
-                $(".modal-backdrop").remove();
                 $('#myModal').modal('hide');
             }
             //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
@@ -598,6 +616,9 @@
 
         tr {
             font-size: 14px;
+        }
+        .datepicker {
+            transform: translate(0, 3.1em);
         }
     </style>
 </body>
