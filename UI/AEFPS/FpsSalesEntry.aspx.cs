@@ -387,6 +387,11 @@ namespace UI.AEFPS
                 txtStock.Text = dt.Rows[0]["invStock"].ToString();
                 hdnstockQty.Value = dt.Rows[0]["invStock"].ToString();
             }
+            else
+            {
+                txtStock.Text = "0";
+                hdnstockQty.Value = "0";
+            }
 
 
         }

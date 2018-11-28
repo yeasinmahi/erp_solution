@@ -180,6 +180,7 @@ namespace UI.AEFPS
                     return;
                 }
             }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "hidePanel();", true);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully entry damage items.');", true);
             
             ViewState["grid"] = null;
