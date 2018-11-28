@@ -159,12 +159,12 @@ namespace UI.HR.Overtime
             string ipaddress = Common.GetIp();
             message = _bll.OvertimeEntryNew(1,xmlString, enroll, ipaddress);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+            GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
             if (message.Contains("Sucessfully"))
             {
-                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
                 Session["obj"] = null;
-
             }
+            
         }
 
         private void LoadPurpose()
@@ -298,18 +298,18 @@ namespace UI.HR.Overtime
             {
                 // handle validation error
             }
-            var time = endTimeSpan - startTimeSpan;
+            var diffTime = endTimeSpan - startTimeSpan;
             string reason = ddlPurposeUpdate.SelectedItem.Text;
             string remarks = txtRemarksUpdate.Text;
             
-            double hour = DateTimeConverter.ConvertTimeSpanToSecond(time);
+            double hour = DateTimeConverter.ConvertTimeSpanToSecond(diffTime);
             dynamic obj = new
             {
                 overtimeId,
                 date,
                 startTime,
                 endTime,
-                time,
+                diffTime,
                 hour,
                 reason,
                 remarks
@@ -317,7 +317,11 @@ namespace UI.HR.Overtime
             };
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
             message = _bll.OvertimeEntryNew(2, xmlString, enroll, "");
-            ScriptManager.RegisterStartupScript(this, GetType(), "Init", "Init();", true);
+            if (!message.Contains("Sucessfully"))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+            }
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
             //ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
             //UpdatePanel0.DataBind();
         }
