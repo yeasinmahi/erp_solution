@@ -274,7 +274,6 @@ namespace UI.HR.Overtime
             LoadPurposeUpdate();
             ddlPurpose.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
-            ScriptManager.RegisterStartupScript(this, GetType(), "Init", "Init();", true);
 
         }
 
