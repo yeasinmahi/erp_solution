@@ -50,7 +50,7 @@
                                     <asp:Label ID="Label6" runat="server" Text="LC Number"></asp:Label>
                                     <asp:TextBox ID="txtLcNumber" CssClass="form-control" runat="server" placeholder="LC Number"></asp:TextBox>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="padding-top: 10px;">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
@@ -78,8 +78,9 @@
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:FileUpload ID="fileUpload" CssClass="form-control" runat="server" ClientIDMode="Static" EnableViewState="true"></asp:FileUpload>
                                 </div>
-                                <div class="col-md-12">
-                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control" Text="Submit" OnClick="btnAddNewFile_OnClick" />
+                                
+                                <div class="col-md-12" style="padding-top: 15px;">
+                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control"  Text="Submit" OnClick="btnAddNewFile_OnClick" />
                                 </div>
                             </div>
                         </div>

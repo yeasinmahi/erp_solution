@@ -499,7 +499,10 @@ namespace UI.Inventory
                 { File.Delete(filePathForXML); grdvOvertimeEntry.DataSource = ""; grdvOvertimeEntry.DataBind(); }
                 else { LoadGridwithXml(); }
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         protected void rdbOTType_SelectedIndexChanged(object sender, EventArgs e)

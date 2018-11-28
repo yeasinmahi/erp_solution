@@ -207,7 +207,7 @@ namespace UI.Asset
                     dgvVehicleRegister.Visible = false;
                     dgvJobcard.Visible = false;
                     DgvlandDevlopment.Visible = false;
-                    intItem = 22;
+                    intItem = 64;
                     dt = new DataTable();
                     dt = objPMConfigure.RepairservicerequestShow(intItem, Mnumber, intenroll, intjobid, intdept);
                     dgvCorrectiveService.DataSource = dt;
