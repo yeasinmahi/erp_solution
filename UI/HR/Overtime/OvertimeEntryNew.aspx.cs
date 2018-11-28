@@ -238,7 +238,8 @@ namespace UI.HR.Overtime
                         txtCode.Text = empCode;
                         txtDesignation.Text = objDt.Rows[0]["strDesignation"].ToString();
                         txtEnroll.Text = objDt.Rows[0]["intEmployeeID"].ToString();
-                        LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text), "2018-10-1", "2018-12-30");
+                        
+                        LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                     }
                 }
             }
@@ -277,15 +278,19 @@ namespace UI.HR.Overtime
 
         }
 
-        private void LoadOverTimeDetailsGridView(int empId,string fromDate, string toDate)
+        private void LoadOverTimeDetailsGridView(int empId)
         {
-            GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate, toDate);
+            DateTime today = DateTime.Now;
+            DateTime fromDate = new DateTime(today.Year,today.AddMonths(-1).Month,1);
+            DateTime toDate = new DateTime(today.Year,today.Month,today.AddMonths(1).AddDays(-1).Day);
+            GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
         }
 
         protected void btnUpdateFinal_OnClick(object sender, EventArgs e)
         {
             string overtimeId = txtOvertimeId.Text;
+            
             string date = txtDateUpdate.Text;
             string startTime = txtStrtTimeUpdate.Text;
             string endTime = txtEndTimeUpdate.Text;
@@ -321,6 +326,8 @@ namespace UI.HR.Overtime
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
             }
+            int empId = Convert.ToInt32(txtEnrollUpdate.Text);
+            LoadOverTimeDetailsGridView(empId);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
             //ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
             //UpdatePanel0.DataBind();
