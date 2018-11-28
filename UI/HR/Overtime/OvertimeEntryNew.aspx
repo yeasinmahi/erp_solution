@@ -37,8 +37,8 @@
                 <div style="height: 50px; width: 100%"></div>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="container">
-                    <asp:HiddenField runat="server" ID="hdnSearch"/>
-                    <asp:HiddenField runat="server" ID="hdnEmployeeName"/>
+                    <asp:HiddenField runat="server" ID="hdnSearch" />
+                    <asp:HiddenField runat="server" ID="hdnEmployeeName" />
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
@@ -85,7 +85,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label6" runat="server" Text="Date"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete= "off" placeholder="Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date"></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
@@ -97,13 +97,13 @@
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label9" runat="server" Text="Start Time"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtStrtTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete= "off" onchange="GetTimeSpan()" runat="server" placeholder="Start Time"></asp:TextBox>
+                                    <asp:TextBox ID="txtStrtTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpan()" runat="server" placeholder="Start Time"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label7" runat="server" Text="End Time"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:TextBox ID="txtEndTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete= "off" onchange="GetTimeSpan()" runat="server" placeholder="End Time"></asp:TextBox>
+                                    <asp:TextBox ID="txtEndTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpan()" runat="server" placeholder="End Time"></asp:TextBox>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -118,12 +118,12 @@
                                     <asp:TextBox ID="txtRemarks" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-12" style="padding-top:10px">
+                                <div class="col-md-12" style="padding-top: 10px">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />
                                 </div>
                             </div>
 
-                                
+
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDate" runat="server"  Text='<%# Bind("date") %>'></asp:Label>
+                                            <asp:Label ID="lblDate" runat="server" Text='<%# Bind("date") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Start Time">
@@ -173,10 +173,10 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Reson">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblReson" runat="server"  Text='<%# Bind("reason") %>'></asp:Label>
+                                            <asp:Label ID="lblReson" runat="server" Text='<%# Bind("reason") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remarks" >
+                                    <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
                                             <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("remarks") %>'>></asp:Label>
                                         </ItemTemplate>
@@ -204,9 +204,9 @@
                                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary form-control pull-right" OnClick="btnSubmit_OnClick" />
                             </div>
                         </div>
-                            
+
                     </div>
-                    
+
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Details Report" Font-Bold="true" Font-Size="16px"></asp:Label>
@@ -238,7 +238,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDate" runat="server"  Text='<%# Eval("dteDate","{0:dd-MMM-yyyy}") %>'></asp:Label>
+                                            <asp:Label ID="lblDate" runat="server" Text='<%# Eval("dteDate","{0:MM/dd/yyyy}") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Start Time">
@@ -278,25 +278,25 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Reson">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblReson" runat="server"  Text='<%# Bind("strPurpose") %>'></asp:Label>
+                                            <asp:Label ID="lblReson" runat="server" Text='<%# Bind("strPurpose") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remarks" >
+                                    <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
                                             <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strRemarks") %>'>></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle/>
+                                        <ItemStyle />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Insert By" >
+                                    <asp:TemplateField HeaderText="Insert By">
                                         <ItemTemplate>
                                             <asp:Label ID="lblInsertBy" runat="server" Text='<%# Bind("intInsertBy") %>'>></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle/>
+                                        <ItemStyle />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnUpdate" runat="server" Text="Update"  CssClass="btn btn-primary btn-xs"  OnClick="btnUpdate_OnClick"/>
-                                            
+                                            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary btn-xs" OnClick="btnUpdate_OnClick" />
+
                                         </ItemTemplate>
                                         <ItemStyle Width="80px" />
                                     </asp:TemplateField>
@@ -313,26 +313,90 @@
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </div>
-                            
+
                     </div>
                 </div>
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">
-    
+
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
+                                <h4 class="modal-title">Employee Overtime Update</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Some text in the modal.</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label22" runat="server" Text="overtime Id"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtOvertimeId" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Overtime Id"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label14" runat="server" Text="Employee Name"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtEmployeeNameUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label12" runat="server" Text="Enroll"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtEnrollUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label13" runat="server" Text="Designation"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtDesignationUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Designation"></asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label15" runat="server" Text="Date"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtDateUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date"></asp:TextBox>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label16" runat="server" Text="Movement Hour"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtMoveUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label17" runat="server" Text="Start Time"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtStrtTimeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpanUpdate()" runat="server" placeholder="Start Time"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label18" runat="server" Text="End Time"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtEndTimeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpanUpdate()" runat="server" placeholder="End Time"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label19" runat="server" Text="Purpose"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlPurposeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label21" runat="server" Text="Remarks"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtRemarksUpdate" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <div class="col-md-12">
+                                    <asp:Button ID="btnUpdateFinal" runat="server" class="btn btn-primary form-control pull-right" Text="Update" OnClientClick="return ValidateUpdate();" OnClick="btnUpdateFinal_OnClick" />
+                                </div>
                             </div>
                         </div>
-      
+
                     </div>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
@@ -340,137 +404,182 @@
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
                 <asp:PostBackTrigger ControlID="btnSubmit" />
+                <asp:PostBackTrigger ControlID="btnUpdateFinal" />
             </Triggers>
         </asp:UpdatePanel>
-
-    </form>
-    <script>
-        function showPanel() {
-            //var txtItemName = document.getElementById("txtItemName").value;
-            //if (txtItemName === null || txtItemName === "") {
-            //    alert("Item Name can not be empty");
-            //    return false;
-            //}
-            var itemPanel = document.getElementById("itemPanel");
-            itemPanel.classList.remove("hidden");
-            return true;
-        }
-        function hidePanel() {
-            var itemPanel = document.getElementById("itemPanel");
-            itemPanel.classList.add("hidden");
-
-        }
-        function Validate() {
-            var txtEnroll = document.getElementById("txtEnroll").value;
-            var txtDate = document.getElementById("txtDate").value;
-            var txtMove = document.getElementById("txtMove").value;
-            var txtStarTime = document.getElementById("txtStrtTime").value;
-            var txtEndTime = document.getElementById("txtEndTime").value;
-
-            if (txtEnroll === null || txtEnroll === "") {
-                alert("Enter Employee properly");
-                return false;
+        <script type="text/javascript">
+            function showPanel() {
+                //var txtItemName = document.getElementById("txtItemName").value;
+                //if (txtItemName === null || txtItemName === "") {
+                //    alert("Item Name can not be empty");
+                //    return false;
+                //}
+                var itemPanel = document.getElementById("itemPanel");
+                itemPanel.classList.remove("hidden");
+                return true;
             }
-            if (txtDate === null || txtDate === "") {
-                alert("Date can not be blank");
-                return false;
-            }
-            if (txtMove === null || txtMove === "") {
-                alert("Movement hour can not be blank");
-                return false;
-            }
-            if (txtStarTime === null || txtStarTime === "") {
-                alert("Start time can not be blank");
-                return false;
-            }
-            if (txtEndTime === null || txtEndTime === "") {
-                alert("End time can not be blank");
-                return false;
-            }
-            return true;
-        }
-        $(function () {
+            function hidePanel() {
+                var itemPanel = document.getElementById("itemPanel");
+                itemPanel.classList.add("hidden");
 
-            Init();
-            //ShowHideGridviewPanels();
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
-            //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
-        });
+            }
+            function Validate() {
+                var txtEnroll = document.getElementById("txtEnroll").value;
+                var txtDate = document.getElementById("txtDate").value;
+                var txtMove = document.getElementById("txtMove").value;
+                var txtStarTime = document.getElementById("txtStrtTime").value;
+                var txtEndTime = document.getElementById("txtEndTime").value;
 
-        function Init() {
-            //autoCompleteItemName();
-            SearchText();
-            $('#txtDate').datepicker();
-            $('#txtStrtTime').timepicker({
-                timeFormat: 'HH:mm'
-            });
-            $('#txtEndTime').timepicker({
-                timeFormat: 'HH:mm'
-            });
-        }
-        function GetTimeSpan() {
-            var defaultDate = "1/1/1970 ";
-            var end = document.getElementById('txtEndTime').value;
-            var start = document.getElementById('txtStrtTime').value;
-            console.log("start " + start);
-            console.log("End " + end);
-            var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
-            console.log("Diff " + difference);
-            document.getElementById("txtMove").innerText = difference;
-            $('#txtMove').val(difference);
-        }
-        function openModal() {
-            $('#myModal').modal('show');
-        }
-        //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
-
-        //prm.add_endRequest(function() { 
-        //    SearchText();
-        //    $('#txtStrtTime').timepicker();
-        //    $('#txtEndTime').timepicker();
-        //    console.log("dom Ready Page Request Manager");
-        //}); 
-        //function pageLoad(sender, args) {
-        //    $(document).ready(function () {
-        //        SearchText();
-        //        $('#txtStrtTime').timepicker();
-        //        $('#txtEndTime').timepicker();
-        //        console.log("dom Ready page preload");
-        //    });
-        //}
-        //function Changed() {
-        //    document.getElementById('hdfSearchBoxTextChange').value = 'true';
-        //}
-        function SearchText() {
-            $("#txtEmployeeName").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json;",
-                        url: "OvertimeEntryNew.aspx/GetAutoCompleteData",
-                        data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
-                        dataType: "json",
-                        success: function (data) {
-                            response(data.d);
-                        },
-                        error: function (result) {
-                            console.log(result.responseText);
-                        }
-                    });
-                },
-                minLength: 3,
-                select: function (event, ui) {
-                    console.log(ui.item.value);
-                    var hdnSearchId = document.getElementById("<%=hdnSearch.ClientID%>");
-                    hdnSearchId.value = 1;
-                    <%--var txtEmployeeName= document.getElementById("<%=txtEmployeeName.ClientID %>");  
-                    txtEmployeeName.value = ui.item.val;--%>
-                    document.getElementById('<%=txtEmployeeName.ClientID %>').value = ui.item.value;
-                    __doPostBack('',ui.item.value);
+                if (txtEnroll === null || txtEnroll === "") {
+                    alert("Enter Employee properly");
+                    return false;
                 }
+                if (txtDate === null || txtDate === "") {
+                    alert("Date can not be blank");
+                    return false;
+                }
+                if (txtMove === null || txtMove === "") {
+                    alert("Movement hour can not be blank");
+                    return false;
+                }
+                if (txtStarTime === null || txtStarTime === "") {
+                    alert("Start time can not be blank");
+                    return false;
+                }
+                if (txtEndTime === null || txtEndTime === "") {
+                    alert("End time can not be blank");
+                    return false;
+                }
+                return true;
+            }
+            function ValidateUpdate() {
+                var txtDate = document.getElementById("txtDateUpdate").value;
+                var txtMove = document.getElementById("txtMoveUpdate").value;
+                var txtStarTime = document.getElementById("txtStrtTimeUpdate").value;
+                var txtEndTime = document.getElementById("txtEndTimeUpdate").value;
+
+                if (txtDate === null || txtDate === "") {
+                    alert("Date can not be blank");
+                    return false;
+                }
+                if (txtMove === null || txtMove === "") {
+                    alert("Movement hour can not be blank");
+                    return false;
+                }
+                if (txtStarTime === null || txtStarTime === "") {
+                    alert("Start time can not be blank");
+                    return false;
+                }
+                if (txtEndTime === null || txtEndTime === "") {
+                    alert("End time can not be blank");
+                    return false;
+                }
+                return true;
+            }
+            $(function () {
+
+                Init();
+                //ShowHideGridviewPanels();
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
+                //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
             });
-        }
-    </script>
+
+            function Init() {
+                //autoCompleteItemName();
+                SearchText();
+                $('#txtDate').datepicker();
+                $('#txtStrtTime').timepicker({
+                    timeFormat: 'HH:mm'
+                });
+                $('#txtEndTime').timepicker({
+                    timeFormat: 'HH:mm'
+                });
+                $('#txtDateUpdate').datepicker();
+                $('#txtStrtTimeUpdate').timepicker({
+                    timeFormat: 'HH:mm'
+                });
+                $('#txtEndTimeUpdate').timepicker({
+                    timeFormat: 'HH:mm'
+                });
+            }
+            function GetTimeSpan() {
+                var defaultDate = "1/1/1970 ";
+                var end = document.getElementById('txtEndTime').value;
+                var start = document.getElementById('txtStrtTime').value;
+                console.log("start " + start);
+                console.log("End " + end);
+                var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
+                console.log("Diff " + difference);
+                document.getElementById("txtMove").innerText = difference;
+                $('#txtMove').val(difference);
+            }
+            function GetTimeSpanUpdate() {
+                var defaultDate = "1/1/1970 ";
+                var end = document.getElementById('txtEndTimeUpdate').value;
+                var start = document.getElementById('txtStrtTimeUpdate').value;
+                var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
+                document.getElementById("txtMoveUpdate").innerText = difference;
+                $('#txtMoveUpdate').val(difference);
+            }
+            function openModal() {
+                $(".modal-backdrop").remove();
+                $('#myModal').modal('show');
+            }
+            function closeModal() {
+                $(".modal-backdrop").remove();
+                $('#myModal').modal('hide');
+            }
+            //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
+
+            //prm.add_endRequest(function() { 
+            //    SearchText();
+            //    $('#txtStrtTime').timepicker();
+            //    $('#txtEndTime').timepicker();
+            //    console.log("dom Ready Page Request Manager");
+            //}); 
+            //function pageLoad(sender, args) {
+            //    $(document).ready(function () {
+            //        SearchText();
+            //        $('#txtStrtTime').timepicker();
+            //        $('#txtEndTime').timepicker();
+            //        console.log("dom Ready page preload");
+            //    });
+            //}
+            //function Changed() {
+            //    document.getElementById('hdfSearchBoxTextChange').value = 'true';
+            //}
+            function SearchText() {
+                $("#txtEmployeeName").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json;",
+                            url: "OvertimeEntryNew.aspx/GetAutoCompleteData",
+                            data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                console.log(result.responseText);
+                            }
+                        });
+                    },
+                    minLength: 3,
+                    select: function (event, ui) {
+                        console.log(ui.item.value);
+                        var hdnSearchId = document.getElementById("<%=hdnSearch.ClientID%>");
+                        hdnSearchId.value = 1;
+                                            <%--var txtEmployeeName= document.getElementById("<%=txtEmployeeName.ClientID %>");  
+                    txtEmployeeName.value = ui.item.val;--%>
+                        document.getElementById('<%=txtEmployeeName.ClientID %>').value = ui.item.value;
+                        __doPostBack('', ui.item.value);
+                    }
+                });
+            }
+        </script>
+    </form>
+
     <style>
         table {
             max-width: 100%;
