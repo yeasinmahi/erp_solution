@@ -1,16 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AssertReport.aspx.cs" Inherits="UI.Asset.AssertReport" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
- <!DOCTYPE html> 
-<html> 
-<head runat="server"> 
-    <title></title> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<!DOCTYPE html>
+<html>
+<head runat="server"><title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" /> 
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
     <script src="../../Content/JS/datepickr.min.js"></script> 
     <script src="../../Content/JS/JSSettlement.js"></script> 
@@ -18,85 +16,27 @@
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
-
-   
-    <%--<script type="text/javascript">
-        function Search_Gridview(strKey, strGV) {
-           
-            var strData = strKey.value.toLowerCase().split(" ");
-            var tblData = document.getElementById(strGV);
-            var rowData;
-             for (var i = 1; i < tblData.rows.length; i++) {
-                    rowData = tblData.rows[i].innerHTML;
-                    var styleDisplay = 'none';
-                    for (var j = 0; j < strData.length; j++) {
-                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                            styleDisplay = '';
-                        else {
-                            styleDisplay = 'none';
-                            break;
-                        }
-                    }
-                    tblData.rows[i].style.display = styleDisplay;
-                }
-            
-        }
-  
-        function Search_dgvAssetregister(strKey, strGV) {
-           
-            var strData = strKey.value.toLowerCase().split(" ");
-            var tblData = document.getElementById(strGV);
-            var rowData;
-            for (var i = 1; i < tblData.rows.length; i++) {
-                rowData = tblData.rows[i].innerHTML;
-                var styleDisplay = 'none';
-                for (var j = 0; j < strData.length; j++) {
-                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                        styleDisplay = '';
-                    else {
-                        styleDisplay = 'none';
-                        break;
-                    }
-                }
-                tblData.rows[i].style.display = styleDisplay;
-            }
-            
-        }
-    </script>--%>
-       
-     
-   
-    <%-- <script>
-         function ReportDetalis(url) {
-             newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=600,top=150,left=350, close=no');
-             if (window.focus) { newwindow.focus() }
-         }
-         </script> --%>
-   
- 
-
- 
+    <link href="../Content/CSS/GridView.css" rel="stylesheet" /> 
   </head>
-<body>
-    <form id="frmselfresign" runat="server"> 
-    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager> 
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server"> 
-    <ContentTemplate> 
-    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%"> 
-    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;"> 
-    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%"> 
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div> 
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel> 
-    <div style="height: 100px;"></div> 
-    <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"> 
+
+ <body> 
+    <form id="frmTransferOrders" runat="server"><asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+    <ContentTemplate>
+    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
+    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
+    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
+    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
+    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
+    <div style="height: 100px;"></div>
+    <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-<div class="leaveApplication_container">   
+  <div class="leaveApplication_container">   
   <div class="tabs_container" align="left">Maintenance Service Report </div> 
  
- 
-  <table style="width:700px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #996633;" class="tblrowodd">
+ <div>
+<table style="width:700px; outline-color:blue;table-layout:auto;vertical-align: top; " class="tblrowodd">
     <tr class="tblrowodd">
       <td style="text-align:right;">
         <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Asset/Job Number:">
@@ -120,7 +60,7 @@
       </td>
       <td style="text-align:left;">
         <asp:DropDownList ID="DdlJostation" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="DdlJostation_SelectedIndexChanged">
-        </asp:DropDownList>
+       </asp:DropDownList></td>
       <td style="text-align:right;">
         <asp:Label ID="LblDept" runat="server" font-size="small" CssClass="lbl" Text="Department:">
         </asp:Label>
@@ -128,6 +68,7 @@
       <td style="text-align:left;">
         <asp:DropDownList ID="DdlDept" runat="server" CssClass="ddList" Font-Bold="False" AutoPostBack="True">
         </asp:DropDownList>
+      </td>
     </tr>
     <tr>
       <td style="text-align:right;">
@@ -157,24 +98,15 @@
       </td>
       <td style="text-align:left;">
         <asp:DropDownList ID="DdlType" runat="server" CssClass="ddList" Font-Bold="False">
-          <asp:listitem>PM Service
-          </asp:listitem>
-          <asp:listitem>Corrective Service
-          </asp:listitem>
-          <asp:listitem>User Request Service
-          </asp:listitem>
-          <asp:listitem>Maintenance
-          </asp:listitem>
-          <asp:listitem>Workorder
-          </asp:listitem>
-          <asp:listitem>Asset Register
-          </asp:listitem>
-          <asp:listitem>Vehicle Register
-          </asp:listitem>
-          <asp:listitem>Land
-          </asp:listitem>
-          <asp:listitem>Land Devlopment
-          </asp:listitem>
+          <asp:listitem>PM Service</asp:listitem>
+          <asp:listitem>Corrective Service</asp:listitem>
+          <asp:listitem>User Request Service</asp:listitem>
+          <asp:listitem>Maintenance</asp:listitem>
+          <asp:listitem>Workorder</asp:listitem>
+          <asp:listitem>Asset Register</asp:listitem>
+          <asp:listitem>Vehicle Register</asp:listitem>
+          <asp:listitem>Land</asp:listitem>
+          <asp:listitem>Land Devlopment</asp:listitem>
         </asp:DropDownList>
       <td style="text-align:right;">
         <asp:Label ID="Label2" runat="server" CssClass="lbl" font-size="small" Text="Type:">
@@ -182,20 +114,20 @@
       </td>
       <td style="text-align:left;">
         <asp:DropDownList ID="DdlAssetClas" runat="server" CssClass="ddList" Font-Bold="False">
-        </asp:DropDownList>
-    </tr>
-    <tr>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-         <asp:Button ID="btnShow" runat="server" AutoPostBack="false" Text="Show" OnClick="btnShow_Click" />
-      </td>
-    </tr>
+        </asp:DropDownList></td>
+    </tr> 
   </table>
+<table>
+        <tr  style="text-align:right;">
+        <td>
+        <asp:Button ID="btnShow" runat="server" AutoPostBack="true" Text="Show" OnClick="btnShow_Click" />
+        </td>
+        <td>
+        <asp:Button ID="btnTest"  runat="server"  Text="Show"  OnClick="btnShow_Click"/>
+        </td>
+        </tr>
+    </table>
+<table>
   <tr>
     <td>
       <asp:GridView ID="dgview" runat="server" AutoGenerateColumns="False">
@@ -263,6 +195,7 @@
             <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="YesnServiceType" />
             <asp:BoundField DataField="strPriroty" HeaderText="Priority" SortExpression="strPriroty" />
             <asp:BoundField DataField="dteFixed/Repair" HeaderText="Date" SortExpression="dteFixed/Repair" />
+            <asp:BoundField DataField="StatusView" HeaderText="Status" SortExpression="StatusView" />
             </Columns>
           </asp:GridView>
         </td>
@@ -423,7 +356,7 @@
             </Columns>
           <HeaderStyle BackColor="#3AC0F2" ForeColor="White" />
           </asp:GridView>
-        </td>
+     </td>
   </tr>
 </table>
 <table>
@@ -484,7 +417,7 @@
             <asp:BoundField DataField="monTotalLandAccusitionCost" HeaderText="TotalLandAccusitionCost" SortExpression="monTotalLandAccusitionCost" />
             </Columns>
           </asp:GridView>
-        </td>
+     </td>
   </tr>
 </table>
 <table>
@@ -532,9 +465,11 @@
         </td>
   </tr>
 </table>
+
+ </div>
 <%--=========================================End My Code From Here=================================================--%>
-  </ContentTemplate>
-</asp:UpdatePanel>
-</form>
+    </ContentTemplate>
+    </asp:UpdatePanel>
+    </form>
 </body>
-</html>     
+</html>
