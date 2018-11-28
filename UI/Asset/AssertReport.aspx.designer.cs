@@ -40,13 +40,13 @@ namespace UI.Asset {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
-        /// frmselfresign control.
+        /// frmTransferOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmselfresign;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmTransferOrders;
         
         /// <summary>
         /// ScriptManager0 control.
@@ -254,6 +254,15 @@ namespace UI.Asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnShow;
+        
+        /// <summary>
+        /// btnTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTest;
         
         /// <summary>
         /// dgview control.

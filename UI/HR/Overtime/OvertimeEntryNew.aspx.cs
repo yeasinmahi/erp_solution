@@ -60,7 +60,7 @@ namespace UI.HR.Overtime
             {
                 // handle validation error
             }
-            double hour = time.TotalSeconds / 3600;
+            double hour = DateTimeConverter.ConvertTimeSpanToSecond(time);
             dynamic obj = new
             {
                 empEnroll,
@@ -171,6 +171,13 @@ namespace UI.HR.Overtime
             ddlPurpose.DataTextField = "strPurpouse";
             ddlPurpose.DataBind();
         }
+        private void LoadPurposeUpdate()
+        {
+            ddlPurposeUpdate.DataSource = _bll.getOvertimePurpouse();
+            ddlPurposeUpdate.DataValueField = "intID";
+            ddlPurposeUpdate.DataTextField = "strPurpouse";
+            ddlPurposeUpdate.DataBind();
+        }
         public void LoadJobStationDropDown(int unitId)
         {
             ddlJobStation.DataSource = _bll.GetJobStation(unitId);
@@ -250,18 +257,20 @@ namespace UI.HR.Overtime
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            string id = GridViewEmployeeDetails.DataKeys[row.RowIndex]?.Value.ToString();
-            txtEnroll.Text = ((Label) row.FindControl("lblEmpEnroll")).Text;
-            string employeeName =((Label) row.FindControl("lblEmployeeName")).Text;
-            string designation =((Label) row.FindControl("lblDesignation")).Text;
-            txtDate.Text = ((Label) row.FindControl("lblDate")).Text;
-            txtStrtTime.Text = ((Label) row.FindControl("lblStartTime")).Text;
-            txtEndTime.Text = ((Label) row.FindControl("lblEndTime")).Text;
+            txtOvertimeId.Text = GridViewEmployeeDetails.DataKeys[row.RowIndex]?.Value.ToString();
+            txtEnrollUpdate.Text = ((Label) row.FindControl("lblEmpEnroll")).Text;
+            txtEmployeeNameUpdate.Text =((Label) row.FindControl("lblEmployeeName")).Text;
+            txtDesignationUpdate.Text = ((Label) row.FindControl("lblDesignation")).Text;
+            txtDateUpdate.Text = ((Label) row.FindControl("lblDate")).Text;
+            txtStrtTimeUpdate.Text = ((Label) row.FindControl("lblStartTime")).Text;
+            txtEndTimeUpdate.Text = ((Label) row.FindControl("lblEndTime")).Text;
             string hour =((Label) row.FindControl("lblHour")).Text;
-            ddlPurpose.SelectedItem.Text = ((Label) row.FindControl("lblReson")).Text;
-            txtRemarks.Text = ((Label) row.FindControl("lblRemarks")).Text;
+            txtMoveUpdate.Text = DateTimeConverter.ConvertSecondToTimespan(Convert.ToDouble(hour) * 3600).ToString("g");
+            txtRemarksUpdate.Text = ((Label) row.FindControl("lblRemarks")).Text;
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            LoadPurposeUpdate();
+            ddlPurpose.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
+            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
 
         }
 
@@ -269,6 +278,36 @@ namespace UI.HR.Overtime
         {
             GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate, toDate);
             GridViewEmployeeDetails.DataBind();
+        }
+
+        protected void btnUpdateFinal_OnClick(object sender, EventArgs e)
+        {
+            string overtimeId = txtOvertimeId.Text;
+            string date = txtDateUpdate.Text;
+            string startTime = txtStrtTimeUpdate.Text;
+            string endTime = txtEndTimeUpdate.Text;
+            string diffTime = txtMoveUpdate.Text;
+            string reason = ddlPurposeUpdate.SelectedItem.Text;
+            string remarks = txtRemarksUpdate.Text;
+            if (!TimeSpan.TryParse(diffTime, out var time))
+            {
+                // handle validation error
+            }
+            double hour = DateTimeConverter.ConvertTimeSpanToSecond(time);
+            dynamic obj = new
+            {
+                overtimeId,
+                date,
+                startTime,
+                endTime,
+                diffTime,
+                hour,
+                reason,
+                remarks
+
+            };
+            //ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+            //UpdatePanel0.DataBind();
         }
     }
 }
