@@ -17,10 +17,10 @@ namespace UI.HR.Overtime
     public partial class OvertimeEntryNew : Page
     {
         private readonly TourPlanning _bll = new TourPlanning();
-        private int enroll = 369116;
+        private int enroll = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //enroll = Int32.Parse(Session[SessionParams.USER_ID].ToString());
+            enroll = Int32.Parse(Session[SessionParams.USER_ID].ToString());
 
             if (!IsPostBack)
             {
@@ -82,7 +82,8 @@ namespace UI.HR.Overtime
             {
                 if (((Label)row.FindControl("lblEmpEnroll")).Text.Contains(empEnroll) && ((Label)row.FindControl("lblDate")).Text.Contains(date))
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Can not add same enroll "+empEnroll+" and date "+date+" dublicate');", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "ShowNotification('Can not add same enroll " + empEnroll + " and date " + date + " dublicate','OverTime','error')", true);
                     return;
                 }
                 //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
@@ -158,11 +159,18 @@ namespace UI.HR.Overtime
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
             string ipaddress = Common.GetIp();
             message = _bll.OvertimeEntryNew(1,xmlString, enroll, ipaddress);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
             if (message.Contains("Sucessfully"))
             {
                 Session["obj"] = null;
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('" + message + "','OverTime','success')", true);
+                LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('" + message + "','OverTime','error')", true);
             }
             
         }
@@ -245,7 +253,7 @@ namespace UI.HR.Overtime
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + ex.Message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + ex.Message + "','OverTime','error')", true);
             }
 
         }
@@ -253,7 +261,7 @@ namespace UI.HR.Overtime
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','error')", true);
             }
         }
 
@@ -325,12 +333,12 @@ namespace UI.HR.Overtime
             if (!message.Contains("Sucessfully"))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','error')", true);
+                return;
             }
             int empId = Convert.ToInt32(txtEnrollUpdate.Text);
             LoadOverTimeDetailsGridView(empId);
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
-            //ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
-            //UpdatePanel0.DataBind();
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','success')", true);
         }
     }
 }
