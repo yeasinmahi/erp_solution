@@ -161,10 +161,11 @@ namespace UI.HR.Overtime
                 string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
                 string ipaddress = Common.GetIp();
                 message = _bll.OvertimeEntryNew(1, xmlString, _enroll, ipaddress);
-                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                
                 if (message.Contains("Sucessfully"))
                 {
                     Session["obj"] = null;
+                    GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                         "ShowNotification('" + message + "','OverTime','success')", true);
                     LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
