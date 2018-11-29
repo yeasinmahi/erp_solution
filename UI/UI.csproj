@@ -299,7 +299,6 @@
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
-    <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
@@ -1413,6 +1412,7 @@
     <Content Include="SCM\PoReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
+    <Content Include="SCM\ProcurementStatus.aspx" />
     <Content Include="SCM\ProductReport.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
@@ -7456,6 +7456,13 @@
     </Compile>
     <Compile Include="SCM\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ProcurementStatus.aspx.cs">
+      <DependentUpon>ProcurementStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ProcurementStatus.aspx.designer.cs">
+      <DependentUpon>ProcurementStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ProductReport.aspx.cs">
       <DependentUpon>ProductReport.aspx</DependentUpon>
