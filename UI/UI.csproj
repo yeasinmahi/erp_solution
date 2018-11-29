@@ -293,6 +293,7 @@
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\img\15.png" />
@@ -314,10 +315,13 @@
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="Content\JS\StaticFunction.js" />
     <Content Include="Content\JS\jsPDF.js" />
     <Content Include="Content\JS\jsPDF.min.js" />
     <Content Include="Content\JS\morris.min.js" />
     <Content Include="Content\JS\raphael.min.js" />
+    <Content Include="Content\JS\toastr.min.js" />
+    <Content Include="Content\JS\ui-toastr.min.js" />
     <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
@@ -1408,7 +1412,6 @@
     <Content Include="SCM\PoReport.aspx" />
     <Content Include="SCM\PoWithoutIndent.aspx" />
     <Content Include="SCM\Print.aspx" />
-    <Content Include="SCM\ProcurementStatus.aspx" />
     <Content Include="SCM\ProductReport.aspx" />
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
@@ -7452,13 +7455,6 @@
     </Compile>
     <Compile Include="SCM\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SCM\ProcurementStatus.aspx.cs">
-      <DependentUpon>ProcurementStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SCM\ProcurementStatus.aspx.designer.cs">
-      <DependentUpon>ProcurementStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ProductReport.aspx.cs">
       <DependentUpon>ProductReport.aspx</DependentUpon>

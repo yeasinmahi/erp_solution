@@ -17,16 +17,17 @@ namespace UI.HR.Overtime
     public partial class OvertimeEntryNew : Page
     {
         private readonly TourPlanning _bll = new TourPlanning();
-        private int enroll = 369116;
+        private int _enroll = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //enroll = Int32.Parse(Session[SessionParams.USER_ID].ToString());
+            _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
+                Session["obj"] = null;
                 LoadPurpose();
-                LoadUnitDropDown(enroll);
+                LoadUnitDropDown(_enroll);
                 LoadJobStationDropDown(GetUnitId());
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
@@ -82,7 +83,8 @@ namespace UI.HR.Overtime
             {
                 if (((Label)row.FindControl("lblEmpEnroll")).Text.Contains(empEnroll) && ((Label)row.FindControl("lblDate")).Text.Contains(date))
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Can not add same enroll "+empEnroll+" and date "+date+" dublicate');", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "ShowNotification('Can not add same enroll " + empEnroll + " and date " + date + " dublicate','OverTime','error')", true);
                     return;
                 }
                 //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
@@ -139,6 +141,7 @@ namespace UI.HR.Overtime
             {
                 dynamic obj = new
                 {
+                    overtimeId=0,
                     empEnroll = Common.GetPropertyValue(o, "empEnroll"),
                     unitId,
                     jobStationId,
@@ -153,15 +156,33 @@ namespace UI.HR.Overtime
                 };
                 objectsNew.Add(obj);
             }
-
-            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
-            string ipaddress = Common.GetIp();
-            message = _bll.OvertimeEntryNew(xmlString, enroll, ipaddress);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-            if (message.Contains("Sucessfully"))
+            if (objectsNew.Count > 0)
             {
-                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
+                string ipaddress = Common.GetIp();
+                message = _bll.OvertimeEntryNew(1, xmlString, _enroll, ipaddress);
+                
+                if (message.Contains("Sucessfully"))
+                {
+                    Session["obj"] = null;
+                    GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "ShowNotification('" + message + "','OverTime','success')", true);
+                    LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "ShowNotification('" + message + "','OverTime','error')", true);
+                }
             }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('No Data Found to Insert','OverTime','warning')", true);
+            }
+            
+            
         }
 
         private void LoadPurpose()
@@ -235,13 +256,14 @@ namespace UI.HR.Overtime
                         txtCode.Text = empCode;
                         txtDesignation.Text = objDt.Rows[0]["strDesignation"].ToString();
                         txtEnroll.Text = objDt.Rows[0]["intEmployeeID"].ToString();
-                        LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text), "2018-10-1", "2018-12-30");
+                        
+                        LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                     }
                 }
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + ex.Message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + ex.Message + "','OverTime','error')", true);
             }
 
         }
@@ -249,7 +271,7 @@ namespace UI.HR.Overtime
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('" + message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','error')", true);
             }
         }
 
@@ -269,31 +291,42 @@ namespace UI.HR.Overtime
             txtRemarksUpdate.Text = ((Label) row.FindControl("lblRemarks")).Text;
 
             LoadPurposeUpdate();
-            ddlPurpose.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
+            //ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
+            ddlPurposeUpdate.SelectedIndex = ddlPurposeUpdate.Items.IndexOf(ddlPurposeUpdate.Items.FindByText(((Label)row.FindControl("lblReson")).Text));
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
 
         }
 
-        private void LoadOverTimeDetailsGridView(int empId,string fromDate, string toDate)
+        private void LoadOverTimeDetailsGridView(int empId)
         {
-            GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate, toDate);
+            DateTime today = DateTime.Now;
+            DateTime fromDate = new DateTime(today.Year,today.AddMonths(-1).Month,1);
+            DateTime toDate = new DateTime(today.Year,today.Month, fromDate.AddMonths(2).AddDays(-1).Day);
+            GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
         }
 
         protected void btnUpdateFinal_OnClick(object sender, EventArgs e)
         {
             string overtimeId = txtOvertimeId.Text;
+            
             string date = txtDateUpdate.Text;
             string startTime = txtStrtTimeUpdate.Text;
             string endTime = txtEndTimeUpdate.Text;
-            string diffTime = txtMoveUpdate.Text;
-            string reason = ddlPurposeUpdate.SelectedItem.Text;
-            string remarks = txtRemarksUpdate.Text;
-            if (!TimeSpan.TryParse(diffTime, out var time))
+            
+            if (!TimeSpan.TryParse(startTime, out var startTimeSpan))
             {
                 // handle validation error
             }
-            double hour = DateTimeConverter.ConvertTimeSpanToSecond(time);
+            if (!TimeSpan.TryParse(endTime, out var endTimeSpan))
+            {
+                // handle validation error
+            }
+            var diffTime = endTimeSpan - startTimeSpan;
+            string reason = ddlPurposeUpdate.SelectedItem.Text;
+            string remarks = txtRemarksUpdate.Text;
+            
+            double hour = DateTimeConverter.ConvertTimeSpanToSecond(diffTime);
             dynamic obj = new
             {
                 overtimeId,
@@ -306,8 +339,17 @@ namespace UI.HR.Overtime
                 remarks
 
             };
-            //ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
-            //UpdatePanel0.DataBind();
+            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
+            message = _bll.OvertimeEntryNew(2, xmlString, _enroll, "");
+            if (!message.Contains("Sucessfully"))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','error')", true);
+                return;
+            }
+            int empId = Convert.ToInt32(txtEnrollUpdate.Text);
+            LoadOverTimeDetailsGridView(empId);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','success')", true);
         }
     }
 }

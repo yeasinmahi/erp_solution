@@ -13,11 +13,16 @@
 
     <link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../Content/CSS/toastr.min.css" rel="stylesheet" />
 
     <script src="../../Content/JS/jquery-3.3.1.js"></script>
     <script src="../../Content/JS/jquery-ui.min.js"></script>
     <script src="../../Content/JS/bootstrap.min.js"></script>
     <script src="../../Content/JS/jquery.timepicker.js"></script>
+
+    <script src="../../Content/JS/toastr.min.js"></script>
+    <script src="../../Content/JS/ui-toastr.min.js"></script>
+    <script src="../../Content/JS/StaticFunction.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -431,23 +436,23 @@
                 var txtEndTime = document.getElementById("txtEndTime").value;
 
                 if (txtEnroll === null || txtEnroll === "") {
-                    alert("Enter Employee properly");
+                    ShowNotification('Enter Employee properly', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtDate === null || txtDate === "") {
-                    alert("Date can not be blank");
+                    ShowNotification('Date can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtMove === null || txtMove === "") {
-                    alert("Movement hour can not be blank");
+                    ShowNotification('Movement hour can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtStarTime === null || txtStarTime === "") {
-                    alert("Start time can not be blank");
+                    ShowNotification('Start time can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtEndTime === null || txtEndTime === "") {
-                    alert("End time can not be blank");
+                    ShowNotification('End time can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 return true;
@@ -459,25 +464,25 @@
                 var txtEndTime = document.getElementById("txtEndTimeUpdate").value;
 
                 if (txtDate === null || txtDate === "") {
-                    alert("Date can not be blank");
+                    ShowNotification('Date can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtMove === null || txtMove === "") {
-                    alert("Movement hour can not be blank");
+                    ShowNotification('Movement hour can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtStarTime === null || txtStarTime === "") {
-                    alert("Start time can not be blank");
+                    ShowNotification('Start time can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 if (txtEndTime === null || txtEndTime === "") {
-                    alert("End time can not be blank");
+                    ShowNotification('End time can not be blank', 'OverTime', 'warning');
                     return false;
                 }
                 return true;
             }
             $(function () {
-
+                
                 Init();
                 //ShowHideGridviewPanels();
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
@@ -486,6 +491,7 @@
 
             function Init() {
                 //autoCompleteItemName();
+                
                 SearchText();
                 $('#txtDate').datepicker();
                 $('#txtStrtTime').timepicker({
@@ -494,12 +500,32 @@
                 $('#txtEndTime').timepicker({
                     timeFormat: 'HH:mm'
                 });
-                $('#txtDateUpdate').datepicker();
+                $('#txtDateUpdate').datepicker({
+                    container: '#myModal',
+                    beforeShow: function (input, inst) {
+                        var rect = input.getBoundingClientRect();
+                        setTimeout(function () {
+                            inst.dpDiv.css({ top: rect.top+35, left: rect.left + 0 });
+                        }, 0);
+                    }
+                });
                 $('#txtStrtTimeUpdate').timepicker({
-                    timeFormat: 'HH:mm'
+                    timeFormat: 'HH:mm',
+                    beforeShow: function (input, inst) {
+                        var rect = input.getBoundingClientRect();
+                        setTimeout(function () {
+                            inst.dpDiv.css({ top: rect.top+35, left: rect.left + 0 });
+                        }, 0);
+                    }
                 });
                 $('#txtEndTimeUpdate').timepicker({
-                    timeFormat: 'HH:mm'
+                    timeFormat: 'HH:mm',
+                    beforeShow: function (input, inst) {
+                        var rect = input.getBoundingClientRect();
+                        setTimeout(function () {
+                            inst.dpDiv.css({ top: rect.top+35, left: rect.left + 0 });
+                        }, 0);
+                    }
                 });
             }
             function GetTimeSpan() {
@@ -518,15 +544,13 @@
                 var end = document.getElementById('txtEndTimeUpdate').value;
                 var start = document.getElementById('txtStrtTimeUpdate').value;
                 var difference = new Date(new Date(defaultDate + end) - new Date(defaultDate + start)).toUTCString().split(" ")[4];
-                document.getElementById("txtMoveUpdate").innerText = difference;
+                document.getElementById("<%=txtMoveUpdate.ClientID%>").innerText = difference;
                 $('#txtMoveUpdate').val(difference);
             }
             function openModal() {
-                $(".modal-backdrop").remove();
                 $('#myModal').modal('show');
             }
             function closeModal() {
-                $(".modal-backdrop").remove();
                 $('#myModal').modal('hide');
             }
             //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
@@ -598,6 +622,9 @@
 
         tr {
             font-size: 14px;
+        }
+        .datepicker {
+            transform: translate(0, 3.1em);
         }
     </style>
 </body>

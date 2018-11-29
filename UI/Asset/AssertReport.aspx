@@ -116,17 +116,18 @@
         <asp:DropDownList ID="DdlAssetClas" runat="server" CssClass="ddList" Font-Bold="False">
         </asp:DropDownList></td>
     </tr> 
-  </table>
-<table>
-        <tr  style="text-align:right;">
-        <td>
+       <tr> 
+       <td style="text-align:right;">
+        <asp:Label ID="Label3" runat="server" CssClass="lbl" font-size="small" >
+        </asp:Label>
+      </td>
+        <td style="text-align:right;" colspan="5"  >
         <asp:Button ID="btnShow" runat="server" AutoPostBack="true" Text="Show" OnClick="btnShow_Click" />
-        </td>
-        <td>
-        <asp:Button ID="btnTest"  runat="server"  Text="Show"  OnClick="btnShow_Click"/>
-        </td>
+        </td> 
         </tr>
-    </table>
+
+  </table>
+ 
 <table>
   <tr>
     <td>
