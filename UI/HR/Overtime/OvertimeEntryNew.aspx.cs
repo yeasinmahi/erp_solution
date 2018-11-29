@@ -17,17 +17,17 @@ namespace UI.HR.Overtime
     public partial class OvertimeEntryNew : Page
     {
         private readonly TourPlanning _bll = new TourPlanning();
-        private int enroll = 0;
+        private int _enroll = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            enroll = Int32.Parse(Session[SessionParams.USER_ID].ToString());
+            _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
                 Session["obj"] = null;
                 LoadPurpose();
-                LoadUnitDropDown(enroll);
+                LoadUnitDropDown(_enroll);
                 LoadJobStationDropDown(GetUnitId());
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
@@ -159,7 +159,7 @@ namespace UI.HR.Overtime
 
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
             string ipaddress = Common.GetIp();
-            message = _bll.OvertimeEntryNew(1,xmlString, enroll, ipaddress);
+            message = _bll.OvertimeEntryNew(1,xmlString, _enroll, ipaddress);
             GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
             if (message.Contains("Sucessfully"))
             {
@@ -282,7 +282,7 @@ namespace UI.HR.Overtime
             txtRemarksUpdate.Text = ((Label) row.FindControl("lblRemarks")).Text;
 
             LoadPurposeUpdate();
-            ddlPurpose.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
+            ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
 
         }
@@ -330,7 +330,7 @@ namespace UI.HR.Overtime
 
             };
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
-            message = _bll.OvertimeEntryNew(2, xmlString, enroll, "");
+            message = _bll.OvertimeEntryNew(2, xmlString, _enroll, "");
             if (!message.Contains("Sucessfully"))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
