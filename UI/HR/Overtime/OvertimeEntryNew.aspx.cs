@@ -318,7 +318,12 @@ namespace UI.HR.Overtime
             {
                 // handle validation error
             }
-            var diffTime = endTimeSpan - startTimeSpan;
+            DateTime defaultDate = new DateTime(2018,01,01);
+            TimeSpan diffTime = endTimeSpan - startTimeSpan;
+            if (endTimeSpan < startTimeSpan)
+            {
+                diffTime = defaultDate.AddDays(1).Add(endTimeSpan) - defaultDate.Add(startTimeSpan);
+            }
             string reason = ddlPurposeUpdate.SelectedItem.Text;
             string remarks = txtRemarksUpdate.Text;
             
