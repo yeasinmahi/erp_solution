@@ -156,23 +156,31 @@ namespace UI.HR.Overtime
                 };
                 objectsNew.Add(obj);
             }
-
-            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
-            string ipaddress = Common.GetIp();
-            message = _bll.OvertimeEntryNew(1,xmlString, _enroll, ipaddress);
-            GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
-            if (message.Contains("Sucessfully"))
+            if (objectsNew.Count > 0)
             {
-                Session["obj"] = null;
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('" + message + "','OverTime','success')", true);
-                LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
+                string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
+                string ipaddress = Common.GetIp();
+                message = _bll.OvertimeEntryNew(1, xmlString, _enroll, ipaddress);
+                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                if (message.Contains("Sucessfully"))
+                {
+                    Session["obj"] = null;
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "ShowNotification('" + message + "','OverTime','success')", true);
+                    LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "ShowNotification('" + message + "','OverTime','error')", true);
+                }
             }
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('" + message + "','OverTime','error')", true);
+                    "ShowNotification('No Data Found to Insert','OverTime','warning')", true);
             }
+            
             
         }
 
@@ -282,7 +290,8 @@ namespace UI.HR.Overtime
             txtRemarksUpdate.Text = ((Label) row.FindControl("lblRemarks")).Text;
 
             LoadPurposeUpdate();
-            ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
+            //ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
+            ddlPurposeUpdate.SelectedIndex = ddlPurposeUpdate.Items.IndexOf(ddlPurposeUpdate.Items.FindByText(((Label)row.FindControl("lblReson")).Text));
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
 
         }
@@ -291,7 +300,7 @@ namespace UI.HR.Overtime
         {
             DateTime today = DateTime.Now;
             DateTime fromDate = new DateTime(today.Year,today.AddMonths(-1).Month,1);
-            DateTime toDate = new DateTime(today.Year,today.Month,today.AddMonths(1).AddDays(-1).Day);
+            DateTime toDate = new DateTime(today.Year,today.Month, fromDate.AddMonths(2).AddDays(-1).Day);
             GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
         }
