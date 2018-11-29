@@ -25,6 +25,7 @@ namespace UI.HR.Overtime
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
+                Session["obj"] = null;
                 LoadPurpose();
                 LoadUnitDropDown(enroll);
                 LoadJobStationDropDown(GetUnitId());
