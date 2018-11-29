@@ -290,7 +290,6 @@
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
-    <Content Include="Content\CSS\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
@@ -299,7 +298,6 @@
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
-    <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
