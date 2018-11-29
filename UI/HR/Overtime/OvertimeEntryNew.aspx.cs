@@ -17,7 +17,7 @@ namespace UI.HR.Overtime
     public partial class OvertimeEntryNew : Page
     {
         private readonly TourPlanning _bll = new TourPlanning();
-        private int _enroll = 0;
+        private int _enroll;
         protected void Page_Load(object sender, EventArgs e)
         {
             _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -237,10 +237,6 @@ namespace UI.HR.Overtime
                     LoadFieldValue(searchKey[1]);
                 }
 
-            }
-            else
-            {
-                //ClearControls();
             }
         }
         private void LoadFieldValue(string empCode)
