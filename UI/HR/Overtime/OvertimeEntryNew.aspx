@@ -7,22 +7,22 @@
 <head runat="server">
     <title>Overtime Entry</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <%--<asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>--%>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-
-    <link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+    
+    
+    <%--<link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
-    <link href="../../Content/CSS/toastr.min.css" rel="stylesheet" />
+    <link href="../../Content/CSS/toastr.min.css" rel="stylesheet" />--%>
 
-    <script src="../../Content/JS/jquery-3.3.1.js"></script>
+    <%--<script src="../../Content/JS/jquery-3.3.1.js"></script>
     <script src="../../Content/JS/jquery-ui.min.js"></script>
     <script src="../../Content/JS/bootstrap.min.js"></script>
     <script src="../../Content/JS/jquery.timepicker.js"></script>
 
     <script src="../../Content/JS/toastr.min.js"></script>
     <script src="../../Content/JS/ui-toastr.min.js"></script>
-    <script src="../../Content/JS/StaticFunction.js"></script>
+    <script src="../../Content/JS/StaticFunction.js"></script>--%>
 </head>
 <body>
     <form id="form1" runat="server">
