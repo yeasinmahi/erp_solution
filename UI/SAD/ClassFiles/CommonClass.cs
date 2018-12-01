@@ -1,18 +1,12 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using System.Globalization;
 
+#pragma warning disable 1587
 /// <summary>
 /// Developped By Akramul Haider
 /// Common classes used to all
 /// </summary>
+#pragma warning restore 1587
 namespace UI.ClassFiles
 {
     public static class CommonClass
@@ -33,7 +27,7 @@ namespace UI.ClassFiles
         {
             try
             {
-                return String.Format("{0:dd/MM/yyyy hh:mm tt}", dte);
+                return string.Format("{0:dd/MM/yyyy hh:mm tt}", dte);
             }
             catch
             {
@@ -44,7 +38,7 @@ namespace UI.ClassFiles
         {
             try
             {
-                return String.Format("{0:dd/MM/yyyy hh:mm tt}", dte);
+                return string.Format("{0:dd/MM/yyyy hh:mm tt}", dte);
             }
             catch
             {
@@ -55,7 +49,7 @@ namespace UI.ClassFiles
         {
             try
             {
-                return String.Format("{0:hh:mm tt}", dte);
+                return string.Format("{0:hh:mm tt}", dte);
             }
             catch
             {

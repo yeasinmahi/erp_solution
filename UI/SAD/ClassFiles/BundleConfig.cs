@@ -42,7 +42,7 @@ namespace UI.ClassFiles
                                                                                 "~/Content/JS/datepickr.min.js",
                                                                                 "~/Content/JS/jquery.timepicker.js"
                                                                             ));
-            bundles.Add(new ScriptBundle("~/Content/updatedJs").Include(
+            bundles.Add(new ScriptBundle("~/Content/Bundle/updatedJs").Include(
                 "~/Content/JS/jquery-3.3.1.js",
                 "~/Content/JS/jquery-ui.min.js",
                 "~/Content/JS/bootstrap.min.js",
@@ -71,7 +71,7 @@ namespace UI.ClassFiles
                                                                                  "~/Content/CSS/Banner.css",
                                                                                  "~/Content/CSS/StyleSheet.css"
                                                                                ));
-            bundles.Add(new StyleBundle("~/Content/updatedCss").Include(
+            bundles.Add(new StyleBundle("~/Content/Bundle/updatedCss").Include(
                 // defaultCSS
                 "~/Content/CSS/Banner.css",
                 "~/Content/CSS/StyleSheet.css",
