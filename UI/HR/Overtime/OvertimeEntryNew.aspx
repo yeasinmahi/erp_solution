@@ -7,8 +7,8 @@
 <head runat="server">
     <title>Overtime Entry</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/updatedJs") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/updatedCss" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
     
     
     <%--<link href="../../Content/CSS/bootstrap.min.css" rel="stylesheet" />
