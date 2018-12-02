@@ -63,16 +63,16 @@ namespace UI.AEFPS
         {
             try
             {
-                //dt = objAEFPS.getmemoCount(int.Parse(ddlWH.SelectedValue.ToString()));
-                //if(dt.Rows.Count>0)
-                //{
-                //    lblMemoCounttxt.Text = dt.Rows[0]["counts"].ToString();
-                //}
-                //else
-                //{
-                //    lblMemoCounttxt.Text ="0".ToString();
+                dt = objAEFPS.getmemoCount(int.Parse(ddlWH.SelectedValue.ToString()));
+                if (dt.Rows.Count > 0)
+                {
+                    lblMemoCounttxt.Text = dt.Rows[0]["counts"].ToString();
+                }
+                else
+                {
+                    lblMemoCounttxt.Text = "0".ToString();
 
-                //}
+                }
             }
             catch { }
         }
