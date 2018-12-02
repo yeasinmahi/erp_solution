@@ -44,6 +44,7 @@ namespace UI.HR.Reports
 
                 ReportViewer1.LocalReport.SetParameters(parameters);
 
+
                 ReportDataSource reportDataSource = new ReportDataSource();
                 reportDataSource.Name = "odsEmpProfile";
                 reportDataSource.Value = oDTReportData;
