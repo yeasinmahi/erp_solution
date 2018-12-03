@@ -293,12 +293,12 @@
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\img\15.png" />
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
-    <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
@@ -314,10 +314,13 @@
     <Content Include="Content\JS\JQUERY\JqueryImageHover.min.js" />
     <Content Include="Content\JS\JQUERY\Promotionjs.js" />
     <Content Include="Content\JS\JQUERY\ScrollableGridPlugin_ASP.NetAJAX_2.0.js" />
+    <Content Include="Content\JS\StaticFunction.js" />
     <Content Include="Content\JS\jsPDF.js" />
     <Content Include="Content\JS\jsPDF.min.js" />
     <Content Include="Content\JS\morris.min.js" />
     <Content Include="Content\JS\raphael.min.js" />
+    <Content Include="Content\JS\toastr.min.js" />
+    <Content Include="Content\JS\ui-toastr.min.js" />
     <Content Include="CreativeSupportModule\AggrementPage.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportJobDetail.aspx" />
     <Content Include="CreativeSupportModule\CreativeSupportReport.aspx" />
@@ -337,6 +340,7 @@
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
     <Content Include="HR\Benifit\BenifitsEntry.aspx" />
@@ -370,6 +374,7 @@
     <Content Include="HR\Loan\LoanStatusSummary.aspx" />
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
+    <Content Include="HR\Overtime\OvertimeEntryIndividual.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryNew.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
@@ -1234,12 +1239,16 @@
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
+    <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
+    <Content Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx" />
+    <Content Include="SAD\Sales\Report\Itemwise_OC_Report.aspx" />
     <Content Include="SAD\Sales\Report\Item_Category_vs_Sales.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
@@ -1247,6 +1256,8 @@
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
+    <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
+    <Content Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\Audit_Approve_Monitoring_Report.aspx" />
@@ -1286,6 +1297,7 @@
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
+    <Content Include="SAD\Sales\Report\Territory_VS_Month.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportPointBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
@@ -2915,6 +2927,13 @@
     </Compile>
     <Compile Include="HR\Loan\Reward.aspx.designer.cs">
       <DependentUpon>Reward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Overtime\OvertimeEntryIndividual.aspx.cs">
+      <DependentUpon>OvertimeEntryIndividual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Overtime\OvertimeEntryIndividual.aspx.designer.cs">
+      <DependentUpon>OvertimeEntryIndividual.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Overtime\OvertimeEntryNew.aspx.cs">
       <DependentUpon>OvertimeEntryNew.aspx</DependentUpon>
@@ -6242,6 +6261,13 @@
     <Compile Include="SAD\Sales\Farmer_Setup.aspx.designer.cs">
       <DependentUpon>Farmer_Setup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.cs">
+      <DependentUpon>Area_vs_Item.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.designer.cs">
+      <DependentUpon>Area_vs_Item.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6283,6 +6309,27 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx.cs">
+      <DependentUpon>Itemwise_Deptwise_DO_vs_OC_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx.designer.cs">
+      <DependentUpon>Itemwise_Deptwise_DO_vs_OC_Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx.cs">
+      <DependentUpon>Itemwise_DO_vs_OC_vs_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx.designer.cs">
+      <DependentUpon>Itemwise_DO_vs_OC_vs_Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Itemwise_OC_Report.aspx.cs">
+      <DependentUpon>Itemwise_OC_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Itemwise_OC_Report.aspx.designer.cs">
+      <DependentUpon>Itemwise_OC_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_Category_vs_Sales.aspx.cs">
       <DependentUpon>Item_Category_vs_Sales.aspx</DependentUpon>
@@ -6332,6 +6379,20 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\PrintAccountsSV.aspx.designer.cs">
       <DependentUpon>PrintAccountsSV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx.cs">
+      <DependentUpon>Area_vs_Month_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx.designer.cs">
+      <DependentUpon>Area_vs_Month_Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx.cs">
+      <DependentUpon>Region_Area_item_wise_sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx.designer.cs">
+      <DependentUpon>Region_Area_item_wise_sales.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx.cs">
       <DependentUpon>AllRetaillersDeliveryATAGlance.aspx</DependentUpon>
@@ -6605,6 +6666,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx.designer.cs">
       <DependentUpon>ShippingPointBaseCollectionAndDelv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Territory_VS_Month.aspx.cs">
+      <DependentUpon>Territory_VS_Month.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Territory_VS_Month.aspx.designer.cs">
+      <DependentUpon>Territory_VS_Month.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesAndTransferReportPointBase.aspx.cs">
       <DependentUpon>UDTCLSalesAndTransferReportPointBase.aspx</DependentUpon>

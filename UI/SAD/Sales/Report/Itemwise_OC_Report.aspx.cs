@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
-namespace UI.SCM
+namespace UI.SAD.Sales.Report
 {
-    public partial class ProcurementStatus : BasePage
+    public partial class Itemwise_OC_Report : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,8 +16,7 @@ namespace UI.SCM
             { 
                 pnlUpperControl.DataBind(); 
             }
-
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/SCM/Procurement_Status?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Sales%20And%20Distribution/Itemwise_OC_Report?rs:Embed=true');", true);
 
         }
     }

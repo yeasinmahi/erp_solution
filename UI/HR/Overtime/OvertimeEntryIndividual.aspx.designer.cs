@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.HR.Reports {
+namespace UI.HR.Overtime {
     
     
-    public partial class EmployeeProfile {
+    public partial class OvertimeEntryIndividual {
         
         /// <summary>
         /// PlaceHolder0 control.

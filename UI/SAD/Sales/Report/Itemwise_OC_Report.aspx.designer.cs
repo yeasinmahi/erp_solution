@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.HR.Reports {
+namespace UI.SAD.Sales.Report {
     
     
-    public partial class EmployeeProfile {
+    public partial class Itemwise_OC_Report {
         
         /// <summary>
         /// PlaceHolder0 control.
