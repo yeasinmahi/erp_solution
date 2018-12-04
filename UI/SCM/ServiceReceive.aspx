@@ -54,24 +54,7 @@
                 $(this).val('');
             } 
 
-        }); 
-
-
-        //function PoViewCheck() { 
-              
-        //    var e = document.getElementById("ddlWH");
-        //    var wh = e.options[e.selectedIndex].value; 
-        //     var pt = document.getElementById("ddlPoType");
-        //    var poType = pt.options[e.selectedIndex].value;
-            
-
-        //    if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select WH'); }
-        //    else if ($.trim(poType) == 0 || $.trim(poType) == "" || $.trim(poType) == null || $.trim(poType) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type'); }
-                 
-        //    else {
-        //        document.getElementById("hdnConfirm").value = "1";  
-        //    } 
-        //}
+        });  
     </script> 
     <script type="text/javascript">
         function mrrCheck() { 
@@ -213,7 +196,7 @@
                <table>
                         <tr> 
                         <td> 
-                        <asp:GridView ID="dgvMrr" runat="server" AutoGenerateColumns="False"  Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  OnRowDataBound="Mrr_RowDataBound" 
+                        <asp:GridView ID="dgvMrr" runat="server" AutoGenerateColumns="False"  Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"   
                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" > 
                         <AlternatingRowStyle BackColor="#CCCCCC" /> 
                         <Columns> 
@@ -273,48 +256,8 @@
 
                         <asp:TemplateField HeaderText="MRR Value" ItemStyle-HorizontalAlign="right" > 
                         <ItemTemplate><asp:Label ID="lblMrrValue" Width="80px"  runat="server"  ></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Batch no" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:TextBox ID="txtBatchNo" CssClass="txtBox"  Width="50px" runat="server"  ></asp:TextBox></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
-                       
-                        <asp:TemplateField HeaderText="Expire Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtExpireDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server"   TargetControlID="txtExpireDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
-                         
-                        <asp:TemplateField HeaderText="Manufacturing Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtManufacturingDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender5" runat="server"   Format="yyyy-MM-dd" TargetControlID="txtManufacturingDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
+                        <ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>  
                         
-                        <asp:TemplateField HeaderText="Previous Location ID" Visible="false" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:HiddenField ID="hdnPreviLocationId"     runat="server"  value='<%# Bind("intLocationId") %>' ></asp:HiddenField></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Previous Location" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:Label ID="lblPLocation"   Width="50px" runat="server"  Text='<%# Bind("strLocationName") %>' ></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right"  > 
-                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
-                            <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
-                                <SelectParameters>
-                                    <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />
-                                    <asp:Parameter DefaultValue="" Name="xmlData" Type="Object" />
-                                    <asp:ControlParameter ControlID="ddlWH" Name="intWh" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:Parameter DefaultValue="0" Name="intPOId" Type="Int32" />
-                                    <asp:Parameter DefaultValue="2018-01-01" Name="dteDate" Type="DateTime" />
-                                    <asp:Parameter DefaultValue="0" Name="intEnroll" Type="Int32" />
-                                    <asp:Parameter DefaultValue="" Direction="InputOutput" Name="msg" Type="String" />
-                                </SelectParameters>
-                            </asp:ObjectDataSource>
-                            <asp:SqlDataSource ID="SqlDataSourceLocation" runat="server"></asp:SqlDataSource>
-                            </ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right"   > 
                         <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px"  ></asp:TextBox></ItemTemplate> 
