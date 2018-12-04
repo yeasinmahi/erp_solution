@@ -203,43 +203,71 @@ namespace UI.SCM
         
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
-            Application mApp = new Application();
-            //Document pdfDoc = CreatePdf();
-            MailItem mEmail = null;
-            mEmail = (MailItem)mApp.CreateItem(OlItemType.olMailItem);
-            string email = lblSupEmail.Text;
-            mEmail.To = "";
-            
-            try
-            {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                PoNo = int.Parse(Session["pono"].ToString());
-                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-                byte[] bytes = Convert.FromBase64String(base64);
-                string filePath = Server.MapPath("PO.Jpeg");
-                MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
-                ms.Write(bytes, 0, bytes.Length);
-                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-                image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-                Utility.FileHelper.DeleteFile(filePath);
+            //Application mApp = new Application();
+            //MailItem mEmail = (MailItem)mApp.CreateItem(OlItemType.olMailItem);
+            //string email = lblSupEmail.Text;
+            //mEmail.To = "";
 
-            }
-            catch (Exception exception)
-            {
-                //can not attached file
-            }
-            if (!String.IsNullOrWhiteSpace(email))
+            //try
+            //{
+            //    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            //    PoNo = int.Parse(Session["pono"].ToString());
+            //    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+            //    byte[] bytes = Convert.FromBase64String(base64);
+            //    string filePath = Server.MapPath("PO.Jpeg");
+            //    MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
+            //    ms.Write(bytes, 0, bytes.Length);
+            //    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+            //    image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //    mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
+            //    Utility.FileHelper.DeleteFile(filePath);
+
+            //}
+            //catch (Exception exception)
+            //{
+            //    //can not attached file
+            //}
+            //if (!String.IsNullOrWhiteSpace(email))
+            //{
+            //    email = email.Substring(6);
+            //    if (!String.IsNullOrWhiteSpace(email))
+            //    {
+            //        mEmail.To = email;
+            //    }
+            //}
+            //mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
+            //mEmail.Body = "Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + ". ";
+            //mEmail.Display();
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "mail()", true);
+            LoadModalMail();
+        }
+
+        private void LoadModalMail()
+        {
+            string email = lblSupEmail.Text;
+            if (!string.IsNullOrWhiteSpace(email))
             {
                 email = email.Substring(6);
-                if (!String.IsNullOrWhiteSpace(email))
+                if (!string.IsNullOrWhiteSpace(email))
                 {
-                    mEmail.To = email;
+                    txtReceipentEmail.Text = email;
+                    txtReceipentEmail.Enabled = false;
                 }
             }
-            mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
-            mEmail.Body = "Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + ". ";
-            mEmail.Display();
+            txtSubject.Text = @"Purchase Order: " + lblpoNo.Text;
+            txtBody.Text = @"Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + @". ";
+
+            string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+            byte[] bytes = Convert.FromBase64String(base64);
+            string filePath = Server.MapPath("PO.Jpeg");
+            MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
+            ms.Write(bytes, 0, bytes.Length);
+            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+            image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
+            //Utility.FileHelper.DeleteFile(filePath);
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
         }
     }
 }

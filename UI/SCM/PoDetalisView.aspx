@@ -10,10 +10,15 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     
+
     <script src="../Content/JS/jquery-3.3.1.js"></script>
+    <script src="../Content/JS/bootstrap.min.js"></script>
+
     <script src="../Content/JS/html2canvas.js"></script>
     <script src="../Content/JS/jsPDF.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
     <script type="text/javascript">
         function ConvertToImage(btn) {
@@ -52,6 +57,7 @@
             document.getElementById("btnDownload").style.visibility = "visible";
 
         }
+        
     </script>
 
 </head>
@@ -105,7 +111,7 @@
                             <td>
                                 <asp:TextBox ID="txtPoNumbers" runat="server" CssClass="txtBox" Visible="false" PlaceHolder="PO" Width="50px" /></td>
                             <td>
-                                <asp:Button ID="btnEmail" Text="E-mail" runat="server"  OnClick ="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
+                                <asp:Button ID="btnEmail" Text="E-mail" runat="server" OnClick ="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
                             <td>
                                 <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
                             
@@ -308,10 +314,71 @@
                         </tr>
                     </table>
                 </div>
-
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <h5>New message</h5>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <p>To: </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10">
+                                        <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <p>Subject: </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10">
+                                        <asp:TextBox runat="server" ID="txtSubject" type="text" Width="100%" name="search" placeholder="Enter subject" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <p>Message: </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10">
+                                        <asp:TextBox runat="server" ID="txtBody" TextMode="MultiLine"  Width="100%" class="form-control" placeholder="Enter Body here ..." rows="10"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary pull-left" id="btn_file">
+                                <span class="fa fa-paperclip fa-2x"></span>
+                                <input type="file" id="file" style="display: none;" />
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <script type="text/javascript">
+            function openModal() {
+                $('#myModal').modal('show');
+            }
+            function closeModal() {
+                $('#myModal').modal('hide');
+            }
+        </script>
     </form>
 </body>
 </html>

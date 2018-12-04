@@ -253,7 +253,7 @@ namespace UI.HR.Overtime
                         txtDesignation.Text = objDt.Rows[0]["strDesignation"].ToString();
                         txtEnroll.Text = objDt.Rows[0]["intEmployeeID"].ToString();
                         
-                        LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
+                        //LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                     }
                 }
             }
