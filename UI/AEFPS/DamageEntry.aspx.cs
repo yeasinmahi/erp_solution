@@ -101,15 +101,29 @@ namespace UI.AEFPS
 
         protected void txtDamageQty_TextChanged(object sender, EventArgs e)
         {
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnTextboxChanged(sender);
-            double damageQty=0,damageAmount=0;
-            const double stockQty = 0;
-            if(damageQty<=stockQty)
+            double.TryParse((((TextBox) row.FindControl("txtDamageQty")).Text),out double damageQty);
+            if (damageQty.Equals(0))
             {
-                damageAmount = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text) * Convert.ToDouble(((TextBox)row.FindControl("txtDamageQty")).Text);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not blank or 0')", true);
+                return;
             }
-            Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
-            dmgAmount.Text = damageAmount.ToString(CultureInfo.InvariantCulture);
+            double stockQty = Convert.ToDouble(((Label)row.FindControl("lblStock")).Text);
+            if (damageQty <= stockQty)
+            {
+                double damageAmount =Convert.ToDouble(((Label) row.FindControl("lblRate")).Text) *
+                                     damageQty;
+                ((Label)row.FindControl("lblDamageAmount")).Text = damageAmount.ToString(CultureInfo.InvariantCulture);
+                
+            }
+            else
+            {
+                ((TextBox)row.FindControl("txtDamageQty")).Text = string.Empty;
+                ((Label)row.FindControl("lblDamageAmount")).Text = string.Empty;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not be greater than stock quantity')", true);
+            }
+            
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -145,6 +159,7 @@ namespace UI.AEFPS
                         }
                         catch (Exception exception)
                         {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Something Error Occured');", true);
                             return;
                         }
@@ -152,6 +167,7 @@ namespace UI.AEFPS
                     }
                     else
                     {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Damage Quantity and amount can not be blank');", true);
                         return;
                     }
@@ -159,10 +175,12 @@ namespace UI.AEFPS
                 }
                 else
                 {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
                     return;
                 }
             }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "hidePanel();", true);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully entry damage items.');", true);
             
             ViewState["grid"] = null;

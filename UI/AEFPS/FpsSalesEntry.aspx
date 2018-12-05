@@ -168,10 +168,11 @@
                                 <asp:TextBox ID="txtPunchCode" runat="server" AutoPostBack="true" CssClass="txtBox" Enabled="true" Width="190px" OnTextChanged="txtPunchCode_TextChanged"></asp:TextBox>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Button ID="btnClearPrinter" runat="server" Text="Clear Printer" CssClass="btnColore" OnClick="btnClearPrinter_Click" />
-
+                                <asp:Label ID="lblMemoCount" runat="server" CssClass="lbl" Text="No. Of Benificiary :"></asp:Label>
+                                <asp:Label ID="lblMemoCounttxt" runat="server" CssClass="lbl"></asp:Label>
                             </td>
                             <td style="text-align: right;">
+                                <asp:Button ID="btnClearPrinter" runat="server" Text="Clear Printer" CssClass="btnColore" OnClick="btnClearPrinter_Click" />
                                 <asp:Button ID="btnReprint" runat="server" Text="Re-Print" OnClick="btnReprint_Click" OnClientClick="return Validate();" />
                             </td>
                         </tr>

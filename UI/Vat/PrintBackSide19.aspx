@@ -12,6 +12,7 @@
             dv.style.display = "none";
             window.print();
             self.close();
+
         }
         function breakeveryheader() {
             var thestyle = "always";

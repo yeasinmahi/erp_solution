@@ -58,8 +58,8 @@
                      <div class="panel panel-info hidden" id="itemPanel">
                           <div class="panel-heading"> <asp:Label runat="server" Text="Damage Approval Details" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body ">
-                            <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="10" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="intItemId" Width="100%"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" >
-                                <AlternatingRowStyle BackColor="#CCCCCC" />
+                            <asp:GridView ID="gvDamageEntryApproval" runat="server" CellPadding="4" ForeColor="#333333" GridLines="Both" AutoGenerateColumns="False" DataKeyNames="intItemId" Width="100%" >
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
@@ -162,21 +162,23 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject"  OnClick="btnReject_Click"></asp:Button>
-                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClick="btnApprove_OnClick"></asp:Button>
+                                            <asp:Button ID="btnReject" runat="server" CssClass="btn btn-danger btn-xs" Text="Reject" CommandName="Reject" OnClientClick="return confirm('Are you sure you want to reject this item?');"  OnClick="btnReject_Click"></asp:Button>
+                                             <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success btn-xs" Text="Approve" CommandName="Approve" OnClientClick="return confirm('Are you sure you want to approve this item?');" OnClick="btnApprove_OnClick"></asp:Button>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="120px"/>
                                     </asp:TemplateField>
                                 </Columns>
-                                <FooterStyle BackColor="#CCCCCC" />
-                                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#808080" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#383838" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                            <%-- <div class="form-group pull-right" style="padding-top:10px;">
                                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-md"/>

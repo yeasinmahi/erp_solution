@@ -15021,10 +15021,10 @@ SELECT Id, strQRCode, intProductID, strProductName, numQty, monPrice, monAmount 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT  isnull(sum([numQty]),0) invStock FROM [ERP_FPS].[dbo].[tblInventory] wher" +
-                "e intItemId=@intemid and intWHID = @intWHID";
+            this._commandCollection[0].CommandText = "select isnull(sum(numStockQty),0) invStock from [ERP_FPS].[dbo].tblReceive where " +
+                "intItemID = @intemid and intWHID = @intWHID and ysnActive = 1\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intemid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intemid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
