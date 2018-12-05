@@ -13,7 +13,7 @@
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
     <script src="../../Content/JS/datepickr.min.js"></script> 
     <script src="../../Content/JS/JSSettlement.js"></script> 
-    <link href="jquery-ui.css" rel="stylesheet" /> 
+    <link href="jquery-ui.css" rel="stylesheet" />  
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
     <script src="jquery.min.js"></script> 
     <script src="jquery-ui.min.js"></script> 
