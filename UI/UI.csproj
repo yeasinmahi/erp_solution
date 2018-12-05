@@ -8741,6 +8741,10 @@
       <Project>{0ac1b655-b9e7-4ef5-a0f4-6bb849ce6793}</Project>
       <Name>Budget_BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmailService\EmailService.csproj">
+      <Project>{019e8b20-0e8c-47ab-886d-4e98bee882e8}</Project>
+      <Name>EmailService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flogging.Core\Flogging.Core.csproj">
       <Project>{ebe464da-6c54-4f40-a82c-debcebe09ed1}</Project>
       <Name>Flogging.Core</Name>

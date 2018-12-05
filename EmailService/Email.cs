@@ -20,14 +20,20 @@ namespace EmailService
                 SmtpClient smtpClient = GetSmtpClient(fromAddress.Address, fromPassword,Provider.Akij);
                 if (smtpClient != null)
                 {
+                    
                     using (var message = new MailMessage(fromAddress, toAddress)
                     {
                         Subject = subject,
                         Body = body,
-                        IsBodyHtml = true
+                        IsBodyHtml = true,
                     })
 
                     {
+                        foreach (string filePath in emailOptions.Attachment)
+                        {
+                            Attachment attachment = new Attachment(filePath);
+                            message.Attachments.Add(attachment);
+                        }
                         ServicePointManager.ServerCertificateValidationCallback =
                             (s, certificate, chain, sslPolicyErrors) => true;
                         smtpClient.Send(message);
@@ -76,6 +82,7 @@ namespace EmailService
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
+                
                 Credentials = new NetworkCredential(email, password)
             };
         }
@@ -93,12 +100,13 @@ namespace EmailService
         {
             return new SmtpClient
             {
-                Host = "ex.akij.net",
+                Host = "ex5.akij.net",
                 Port = 587,
-                EnableSsl = true,
+                EnableSsl = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(email, password)
+                UseDefaultCredentials = true,
+                
+                Credentials = new NetworkCredential(email,password)
             };
         }
         public enum Provider
@@ -108,11 +116,20 @@ namespace EmailService
             HotMail,
             Akij
         }
-        public static void Send(EmailOptions emailOptions)
+        public static bool Send(EmailOptions emailOptions)
         {
-            AsyncMethodCaller caller = new AsyncMethodCaller(SendMailInSeperateThread);
-            AsyncCallback callbackHandler = new AsyncCallback(AsyncCallback);
-            caller.BeginInvoke(emailOptions, callbackHandler, null);
+            try
+            {
+                AsyncMethodCaller caller = new AsyncMethodCaller(SendMailInSeperateThread);
+                AsyncCallback callbackHandler = new AsyncCallback(AsyncCallback);
+                caller.BeginInvoke(emailOptions, callbackHandler, emailOptions);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
         private delegate void AsyncMethodCaller(EmailOptions emailOptions);
         private static void SendMailInSeperateThread(EmailOptions emailOptions)
@@ -123,8 +140,14 @@ namespace EmailService
         {
             try
             {
+
                 AsyncResult result = (AsyncResult)ar;
+                EmailOptions option = (EmailOptions) ar.AsyncState;
                 AsyncMethodCaller caller = (AsyncMethodCaller)result.AsyncDelegate;
+                foreach (string filePath in option.Attachment)
+                {
+                    Utility.FileHelper.DeleteFile(filePath);
+                }
                 caller.EndInvoke(ar);
             }
             catch (Exception e)

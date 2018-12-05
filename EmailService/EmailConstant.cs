@@ -2,8 +2,8 @@
 {
     public static class EmailConstant
     {
-        public static string EmailFromAddress = "arafat.corp@akij.net";
+        public static string EmailFromAddress = "erpreply@akij.net";
         public static string EmailFromDisplayName = "Akij Provider";
-        public static string EmailFromAddressPassword = "Aa@12345";
+        public static string EmailFromAddressPassword = "rep@123";
     }
 }

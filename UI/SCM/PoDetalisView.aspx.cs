@@ -1,14 +1,16 @@
-﻿using Flogging.Core;
+﻿using EmailService;
+using Flogging.Core;
 using GLOBAL_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
-using Microsoft.Office.Interop.Outlook;
 using Exception = System.Exception;
 
 namespace UI.SCM
@@ -27,15 +29,12 @@ namespace UI.SCM
         {
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
             scriptManager?.RegisterPostBackControl(btnDownload);
+            _filePath = Server.MapPath("PO.Jpeg");
             if (!IsPostBack)
             {
                 PoNo = int.Parse(Session["pono"].ToString());
 
                 PoViewDataBind(PoNo);
-            }
-            else
-            {
-
             }
         }
 
@@ -251,6 +250,7 @@ namespace UI.SCM
                 if (!string.IsNullOrWhiteSpace(email))
                 {
                     txtReceipentEmail.Text = email;
+                    //txtReceipentEmail.Text = @"arafat.corp@akij.net";
                     txtReceipentEmail.Enabled = false;
                 }
             }
@@ -259,15 +259,43 @@ namespace UI.SCM
 
             string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
             byte[] bytes = Convert.FromBase64String(base64);
-            string filePath = Server.MapPath("PO.Jpeg");
+            
             MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
             ms.Write(bytes, 0, bytes.Length);
             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-            image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            imgAttachment.ImageUrl = "~/SCM/PO.Jpeg";
             //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
             //Utility.FileHelper.DeleteFile(filePath);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
+        }
+
+        private string _filePath;
+        protected void btnSent_OnClick(object sender, EventArgs e)
+        {
+            EmailOptions options = new EmailOptions
+            {
+                ToAddress = txtReceipentEmail.Text,
+                Subject = txtSubject.Text,
+                ToAddressDisplayName = "Purchase Order",
+                Body = Regex.Replace(txtBody.Text, @"\r\n?|\n", "<br>"),
+                Attachment = new List<string>()
+            };
+            if (!string.IsNullOrWhiteSpace(_filePath))
+            {
+                options.Attachment.Add(_filePath);
+            }
+            if (Email.Send(options))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('Email Sent Successfully','Purchase Order','success')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('Email Sent Failed','Purchase Order','error')", true);
+            }
         }
     }
 }
