@@ -123,7 +123,7 @@
                                     <asp:TextBox ID="txtRemarks" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-12" style="padding-top: 10px">
+                                <div class="col-md-12 col-sm-12" style="padding-top: 10px">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />
                                 </div>
                             </div>
