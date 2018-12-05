@@ -251,7 +251,7 @@ namespace UI.SCM
                 {
                     txtReceipentEmail.Text = email;
                     //txtReceipentEmail.Text = @"arafat.corp@akij.net";
-                    txtReceipentEmail.Enabled = false;
+                    //txtReceipentEmail.Enabled = false;
                 }
             }
             txtSubject.Text = @"Purchase Order: " + lblpoNo.Text;
@@ -276,12 +276,40 @@ namespace UI.SCM
         {
             EmailOptions options = new EmailOptions
             {
-                ToAddress = txtReceipentEmail.Text,
+                ToAddress = new List<string>(),
                 Subject = txtSubject.Text,
                 ToAddressDisplayName = "Purchase Order",
                 Body = Regex.Replace(txtBody.Text, @"\r\n?|\n", "<br>"),
                 Attachment = new List<string>()
             };
+            string receipentEmail = txtReceipentEmail.Text;
+            if (!string.IsNullOrWhiteSpace(receipentEmail))
+            {
+                char[] delimiters = { ',', ';', ' ' };
+                string[] receipentEmails = receipentEmail.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string email in receipentEmails)
+                {
+                    if (Email.IsValidEmail(email))
+                    {
+                        options.ToAddress.Add(email);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                            "ShowNotification('Please input valid email \""+email+"\" ','Purchase Order','error')", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
+                        return;
+                    }
+                    
+                }
+                
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('There Should be atleast 1 email address','Purchase Order','warning')", true);
+                return;
+            }
             if (!string.IsNullOrWhiteSpace(_filePath))
             {
                 options.Attachment.Add(_filePath);

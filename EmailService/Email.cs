@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Runtime.Remoting.Messaging;
@@ -12,7 +13,12 @@ namespace EmailService
             try
             {
                 MailAddress fromAddress = new MailAddress(EmailConstant.EmailFromAddress, EmailConstant.EmailFromDisplayName);
-                MailAddress toAddress = new MailAddress(emailOptions.ToAddress, emailOptions.ToAddressDisplayName);
+               
+                List<MailAddress> toAddresses = new List<MailAddress>();
+                foreach (string toAddress in emailOptions.ToAddress)
+                {
+                    toAddresses.Add(new MailAddress(toAddress, emailOptions.ToAddressDisplayName));
+                }
                 string fromPassword = EmailConstant.EmailFromAddressPassword;
                 string subject = emailOptions.Subject;
                 string body = emailOptions.Body;
@@ -20,24 +26,26 @@ namespace EmailService
                 SmtpClient smtpClient = GetSmtpClient(fromAddress.Address, fromPassword,Provider.Akij);
                 if (smtpClient != null)
                 {
-                    
-                    using (var message = new MailMessage(fromAddress, toAddress)
+                    foreach (MailAddress toAddress in toAddresses)
                     {
-                        Subject = subject,
-                        Body = body,
-                        IsBodyHtml = true,
-                    })
-
-                    {
-                        foreach (string filePath in emailOptions.Attachment)
+                        using (var message = new MailMessage(fromAddress, toAddress)
                         {
-                            Attachment attachment = new Attachment(filePath);
-                            message.Attachments.Add(attachment);
+                            Subject = subject,
+                            Body = body,
+                            IsBodyHtml = true,
+                        })
+                        {
+                            foreach (string filePath in emailOptions.Attachment)
+                            {
+                                Attachment attachment = new Attachment(filePath);
+                                message.Attachments.Add(attachment);
+                            }
+                            ServicePointManager.ServerCertificateValidationCallback =
+                                (s, certificate, chain, sslPolicyErrors) => true;
+                            smtpClient.Send(message);
                         }
-                        ServicePointManager.ServerCertificateValidationCallback =
-                            (s, certificate, chain, sslPolicyErrors) => true;
-                        smtpClient.Send(message);
                     }
+                    
                 }
                 else
                 {
@@ -153,6 +161,18 @@ namespace EmailService
             catch (Exception e)
             {
                 //Todo: 
+            }
+        }
+        public static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
