@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HR_DAL.Global;
+﻿using HR_DAL.Global;
 using HR_DAL.Global.UnitTDSTableAdapters;
 using System.Web.UI.WebControls;
 using HR_DAL.Reports.ReportDataTDSTableAdapters;
