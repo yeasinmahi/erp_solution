@@ -30,6 +30,7 @@ namespace UI.Vat
                 DataTable ds = new DataTable();
                 PartyBill vat = new PartyBill();
                 ds = vat.GetCurrentRegister(int.Parse(ddlVatAcc.SelectedValue.ToString()), frmdte, todte, type);
+               
                 //if (ds.Rows.Count > 0)
                 {
                     dgvcurrentregister.DataSource = ds;
