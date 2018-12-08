@@ -111,19 +111,19 @@
                                             <asp:Label ID="lblDate" runat="server" Text='<%# Bind("date") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Shift Id">
+                                    <asp:TemplateField HeaderText="Shift">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblShiftId" runat="server" Text='<%# Bind("shiftId") %>'></asp:Label>
+                                            <asp:Label ID="lblShift" runat="server" Text='<%# Bind("shift") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Jobstation Id">
+                                    <asp:TemplateField HeaderText="Jobstation">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblJobstationId" runat="server" Text='<%# Bind("jobstationId") %>'></asp:Label>
+                                            <asp:Label ID="lblJobstation" runat="server" Text='<%# Bind("jobstation") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Sequence Id">
+                                    <asp:TemplateField HeaderText="Sequence">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblSequenceId" runat="server" Text='<%# Bind("sequenceId") %>'></asp:Label>
+                                            <asp:Label ID="lblSequence" runat="server" Text='<%# Bind("sequence") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
