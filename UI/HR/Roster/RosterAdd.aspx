@@ -41,17 +41,45 @@
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label2" runat="server" Text="Job Station"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <asp:Label ID="Label1" runat="server" Text="Team"></asp:Label>
-                                    <asp:DropDownList ID="ddlTeam" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlTeam_OnSelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label3" runat="server" Text="Sequence"></asp:Label>
-                                    <asp:DropDownList ID="ddlSequenceId" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlSequenceId_OnSelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlSequence" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlSequenceId_OnSelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label1" runat="server" Text="Team"></asp:Label>
+                                    <asp:DropDownList ID="ddlTeam" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlTeam_OnSelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label4" runat="server" Text="Shift"></asp:Label>
+                                    <asp:DropDownList ID="ddlShift" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlShift_OnSelectedIndexChanged"></asp:DropDownList>
                                 </div>
 
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label5" runat="server" Text="Shift Start"></asp:Label>
+                                    <asp:TextBox ID="txtShiftStart" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label6" runat="server" Text="Shift End"></asp:Label>
+                                    <asp:TextBox ID="txtShiftEnd" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label7" runat="server" Text="Punch Last Time"></asp:Label>
+                                    <asp:TextBox ID="txtPunchLastTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label8" runat="server" Text="Duty Time"></asp:Label>
+                                    <asp:TextBox ID="txtDutyTime" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label9" runat="server" Text="Roster Duty Date"></asp:Label>
+                                    <asp:TextBox ID="txtDutyDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoComplete="off"  runat="server" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label11" runat="server" Text="Employee Enroll"></asp:Label>
+                                    <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ></asp:TextBox>
+                                </div>
                                 <div class="col-md-12" style="padding-top: 10px">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />
                                 </div>
@@ -61,7 +89,7 @@
 
                     <div class="panel panel-info" id="itemPanel">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="Roster Shift Details" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
                             <asp:GridView ID="GridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
@@ -83,36 +111,20 @@
                                             <asp:Label ID="lblDate" runat="server" Text='<%# Bind("date") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Start Time">
+                                    <asp:TemplateField HeaderText="Shift">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblStartTime" runat="server" Text='<%# Bind("startTime") %>'></asp:Label>
+                                            <asp:Label ID="lblShift" runat="server" Text='<%# Bind("shift") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="End Time">
+                                    <asp:TemplateField HeaderText="Jobstation">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblEndTime" runat="server" Text='<%# Bind("endTime") %>'></asp:Label>
+                                            <asp:Label ID="lblJobstation" runat="server" Text='<%# Bind("jobstation") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Differance Time">
+                                    <asp:TemplateField HeaderText="Sequence">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDiffTime" runat="server" Text='<%# Bind("diffTime") %>'></asp:Label>
+                                            <asp:Label ID="lblSequence" runat="server" Text='<%# Bind("sequence") %>'></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Countable Hour">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblHour" runat="server" Text='<%# Bind("hour") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Reson">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblReson" runat="server" Text='<%# Bind("reason") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Remarks">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("remarks") %>'>></asp:Label>
-                                        </ItemTemplate>
-                                        <ItemStyle Width="200px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
@@ -159,29 +171,19 @@
             }
             function Validate() {
                 var txtEnroll = document.getElementById("txtEnroll").value;
-                var txtDate = document.getElementById("txtDate").value;
-                var txtMove = document.getElementById("txtMove").value;
-                var txtStarTime = document.getElementById("txtStrtTime").value;
-                var txtEndTime = document.getElementById("txtEndTime").value;
-
+                var txtDate = document.getElementById("txtDutyDate").value;
+                var ddlShift = document.getElementById("ddlShift");
+                var strUser = ddlShift.options[ddlShift.selectedIndex].value;
                 if (txtEnroll === null || txtEnroll === "") {
-                    ShowNotification('Enter Employee properly', 'OverTime', 'warning');
+                    ShowNotification('Enter Employee Enroll', 'Roster', 'warning');
                     return false;
                 }
                 if (txtDate === null || txtDate === "") {
-                    ShowNotification('Date can not be blank', 'OverTime', 'warning');
+                    ShowNotification('Date can not be blank', 'Roster', 'warning');
                     return false;
                 }
-                if (txtMove === null || txtMove === "") {
-                    ShowNotification('Movement hour can not be blank', 'OverTime', 'warning');
-                    return false;
-                }
-                if (txtStarTime === null || txtStarTime === "") {
-                    ShowNotification('Start time can not be blank', 'OverTime', 'warning');
-                    return false;
-                }
-                if (txtEndTime === null || txtEndTime === "") {
-                    ShowNotification('End time can not be blank', 'OverTime', 'warning');
+                if (strUser === null || strUser === "") {
+                    ShowNotification('Shift can not be blank', 'Roster', 'warning');
                     return false;
                 }
                 return true;
@@ -194,7 +196,7 @@
             });
 
             function Init() {
-                $('#txtDate').datepicker();
+                $('#txtDutyDate').datepicker();
             }
         </script>
     </form>

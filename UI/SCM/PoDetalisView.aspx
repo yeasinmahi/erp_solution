@@ -21,8 +21,7 @@
     <script src="../Content/JS/toastr.min.js"></script>
     <script src="../Content/JS/ui-toastr.min.js"></script>
     <script src="../Content/JS/StaticFunction.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+    <script src="../Content/JS/BlueBird.min.js"></script>
     <script type="text/javascript">
         function ConvertToImage(btn) {
             document.getElementById("btnEmail").style.visibility = "hidden";

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace Utility
 {
@@ -128,6 +129,40 @@ namespace Utility
             IPHostEntry ip = Dns.GetHostEntry(host);
             string ipaddress = (ip.AddressList[1].ToString());
             return ipaddress;
+        }
+
+        public static int GetDdlSelectedValue(DropDownList ddl)
+        {
+            if (ddl?.SelectedItem != null)
+            {
+                return Convert.ToInt32(ddl.SelectedItem.Value);
+            }
+            return 0;
+        }
+        public static string GetDdlSelectedText(DropDownList ddl)
+        {
+            if (ddl?.SelectedItem != null)
+            {
+                return ddl.SelectedItem.Text;
+            }
+            return String.Empty;
+        }
+        public static bool BindDropDown(DropDownList ddl,DataTable dt,string value, string text)
+        {
+            if (dt.Rows.Count <= 0) return false;
+            try
+            {
+                ddl.DataSource = dt;
+                ddl.DataValueField = value;
+                ddl.DataTextField = text;
+                ddl.DataBind();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
     }
 }
