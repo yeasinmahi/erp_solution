@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HR_BLL.Roster;
 using HR_BLL.TourPlan;
+using UI.ClassFiles;
 using Utility;
 
 namespace UI.HR.Roster
@@ -13,10 +14,10 @@ namespace UI.HR.Roster
     {
         private readonly TourPlanning _tourPlanning = new TourPlanning();
         private readonly RosterBll _bll = new RosterBll();
-        private int _enroll=369116;
+        private int _enroll;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //_enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
             if (!IsPostBack)
             {
