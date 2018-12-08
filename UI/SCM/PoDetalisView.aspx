@@ -375,6 +375,22 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-2 col-sm-2">
+                                            <p>CC: </p>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10">
+                                            <asp:TextBox runat="server" ID="txtCc" Width="100%" type="text" name="search" placeholder="Enter CC e-mail" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <p>BCC: </p>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10">
+                                            <asp:TextBox runat="server" ID="txtBcc" Width="100%" type="text" name="search" placeholder="Enter BCC e-mail" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 col-sm-2">
                                             <p>Subject: </p>
                                         </div>
                                         <div class="col-md-10 col-sm-10">

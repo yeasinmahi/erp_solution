@@ -25,11 +25,13 @@ namespace UI.SCM
         string start = "starting SCM\\PoDetalisView";
         string stop = "stopping SCM\\PoDetalisView";
         string perform = "Performance on SCM\\PoDetalisView";
+        private string _filePath;
+        private bool hasAttachment = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
             scriptManager?.RegisterPostBackControl(btnDownload);
-            _filePath = Server.MapPath("PO.Jpeg");
+            _filePath = Server.MapPath("~/SCM/Data/PO.Jpeg");
             if (!IsPostBack)
             {
                 PoNo = int.Parse(Session["pono"].ToString());
@@ -257,62 +259,59 @@ namespace UI.SCM
             txtSubject.Text = @"Purchase Order: " + lblpoNo.Text;
             txtBody.Text = @"Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + @". ";
 
-            string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-            byte[] bytes = Convert.FromBase64String(base64);
+            try
+            {
+                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                byte[] bytes = Convert.FromBase64String(base64);
+                MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
+                ms.Write(bytes, 0, bytes.Length);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                imgAttachment.ImageUrl = "~/SCM/Data/PO.Jpeg";
+                hasAttachment = true;
+            }
+            catch (Exception ex)
+            {
+                hasAttachment = false;
+            }
             
-            MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
-            ms.Write(bytes, 0, bytes.Length);
-            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-            image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-            imgAttachment.ImageUrl = "~/SCM/PO.Jpeg";
             //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
             //Utility.FileHelper.DeleteFile(filePath);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
         }
 
-        private string _filePath;
+        
         protected void btnSent_OnClick(object sender, EventArgs e)
         {
             EmailOptions options = new EmailOptions
             {
                 ToAddress = new List<string>(),
+                CcAddress = new List<string>(),
+                BccAddress = new List<string>(),
                 Subject = txtSubject.Text,
                 ToAddressDisplayName = "Purchase Order",
                 Body = Regex.Replace(txtBody.Text, @"\r\n?|\n", "<br>"),
                 Attachment = new List<string>()
             };
-            string receipentEmail = txtReceipentEmail.Text;
-            if (!string.IsNullOrWhiteSpace(receipentEmail))
-            {
-                char[] delimiters = { ',', ';', ' ' };
-                string[] receipentEmails = receipentEmail.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string email in receipentEmails)
-                {
-                    if (Email.IsValidEmail(email))
-                    {
-                        options.ToAddress.Add(email);
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                            "ShowNotification('Please input valid email \""+email+"\" ','Purchase Order','error')", true);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
-                        return;
-                    }
-                    
-                }
-                
-            }
-            else
+            options.ToAddress = Email.GetMaiListFromString(txtReceipentEmail.Text, out string message);
+            if (options.ToAddress == null)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('There Should be atleast 1 email address','Purchase Order','warning')", true);
+                    "ShowNotification('"+message+"','Purchase Order','error')", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
                 return;
             }
+            options.CcAddress = Email.GetMaiListFromString(txtCc.Text, out message) ?? new List<string>();
+            options.BccAddress = Email.GetMaiListFromString(txtBcc.Text, out message) ?? new List<string>();
+
             if (!string.IsNullOrWhiteSpace(_filePath))
             {
-                options.Attachment.Add(_filePath);
+                if (hasAttachment)
+                {
+                    options.Attachment.Add(_filePath);
+                }
+                
             }
             if (Email.Send(options))
             {
