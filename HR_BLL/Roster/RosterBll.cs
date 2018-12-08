@@ -30,6 +30,18 @@ namespace HR_BLL.Roster
                 return new DataTable();
             }
         }
+        public DataTable GetShiftByShiftId(int shiftId)
+        {
+            try
+            {
+                tblEmployeeTeamShift1TableAdapter adp = new tblEmployeeTeamShift1TableAdapter();
+                return adp.GetShiftByShiftId(shiftId);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+        }
         public DataTable GetSequence()
         {
             try
@@ -41,6 +53,14 @@ namespace HR_BLL.Roster
             {
                 return new DataTable();
             }
+        }
+
+        public string RosterEntry(int type, string xmlString, int insertBy)
+        {
+            string message=string.Empty;
+            sprRosterAddManualTableAdapter adp = new sprRosterAddManualTableAdapter();
+            adp.RosterInsert(type,xmlString, insertBy,ref message);
+            return message;
         }
     }
 }
