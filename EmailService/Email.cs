@@ -8,7 +8,7 @@ namespace EmailService
 {
     public class Email
     {
-        private static void SendEmail(EmailOptions emailOptions)
+        public static bool SendEmail(EmailOptions emailOptions)
         {
             try
             {
@@ -47,27 +47,22 @@ namespace EmailService
                     ServicePointManager.ServerCertificateValidationCallback =
                         (s, certificate, chain, sslPolicyErrors) => true;
                     smtpClient.Send(message);
-                    foreach (string filePath in emailOptions.Attachment)
-                    {
-                        Utility.FileHelper.DeleteFile(filePath);
-
-                    }
-
+                    smtpClient.Dispose();
+                    message.Dispose();
+                    return true;
                 }
                 else
                 {
-                    //todo
+                    emailOptions.Exception = new Exception("SMTP problem");
+                    return false;
                 }
 
             }
             catch (Exception e)
             {
 
-                if (e.InnerException != null)
-                {
-                }
-
-                //todo
+                emailOptions.Exception = e;
+                return false;
             }
         }
         private static SmtpClient GetSmtpClient(string email, string password, Provider provider)
@@ -131,12 +126,11 @@ namespace EmailService
             HotMail,
             Akij
         }
-        public static bool Send(EmailOptions emailOptions)
+        public static bool SendAsync(EmailOptions emailOptions, AsyncCallback callbackHandler)
         {
             try
             {
                 AsyncMethodCaller caller = new AsyncMethodCaller(SendMailInSeperateThread);
-                AsyncCallback callbackHandler = new AsyncCallback(AsyncCallback);
                 caller.BeginInvoke(emailOptions, callbackHandler, emailOptions);
                 return true;
             }
@@ -146,7 +140,8 @@ namespace EmailService
             }
 
         }
-        private delegate void AsyncMethodCaller(EmailOptions emailOptions);
+
+        public delegate void AsyncMethodCaller(EmailOptions emailOptions);
         private static void SendMailInSeperateThread(EmailOptions emailOptions)
         {
             SendEmail(emailOptions);
@@ -159,11 +154,11 @@ namespace EmailService
                 AsyncResult result = (AsyncResult)ar;
                 EmailOptions option = (EmailOptions)ar.AsyncState;
                 AsyncMethodCaller caller = (AsyncMethodCaller)result.AsyncDelegate;
+                caller.EndInvoke(ar);
                 foreach (string filePath in option.Attachment)
                 {
                     Utility.FileHelper.DeleteFile(filePath);
-                }
-                caller.EndInvoke(ar);
+                };
             }
             catch (Exception e)
             {
