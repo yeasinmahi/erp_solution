@@ -14,8 +14,8 @@
     <Shape ID="DesignTable:TblFixedAssetCOA" ZOrder="7" X="681" Y="100" Height="75" Width="251" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="83" SplitterPosition="24" />
     <Shape ID="DesignTable:TblAcountsChartOfACC" ZOrder="6" X="957" Y="24" Height="75" Width="210" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="83" SplitterPosition="24" />
     <Shape ID="DesignTable:QRYEMPLOYEEPROFILEALL" ZOrder="4" X="395" Y="148" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
-    <Shape ID="DesignTable:AgFuelLog" ZOrder="1" X="708" Y="193" Height="134" Width="216" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:TblVehicle" ZOrder="2" X="1007" Y="130" Height="115" Width="210" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:AgFuelLog" ZOrder="1" X="708" Y="193" Height="134" Width="206" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:TblVehicle" ZOrder="2" X="1007" Y="130" Height="115" Width="205" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
