@@ -26,7 +26,6 @@ namespace UI.SCM
         string stop = "stopping SCM\\PoDetalisView";
         string perform = "Performance on SCM\\PoDetalisView";
         private string _filePath;
-        private bool hasAttachment = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
@@ -263,16 +262,19 @@ namespace UI.SCM
             {
                 string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
                 byte[] bytes = Convert.FromBase64String(base64);
-                MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
-                ms.Write(bytes, 0, bytes.Length);
-                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-                image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                imgAttachment.ImageUrl = "~/SCM/Data/PO.Jpeg";
-                hasAttachment = true;
+                using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))
+                {
+                    ms.Write(bytes, 0, bytes.Length);
+                    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                    image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    imgAttachment.ImageUrl = "~/SCM/Data/PO.Jpeg";
+                }
+                
+                
+                
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                hasAttachment = false;
             }
             
             //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
@@ -307,7 +309,7 @@ namespace UI.SCM
 
             if (!string.IsNullOrWhiteSpace(_filePath))
             {
-                if (hasAttachment)
+                if (Utility.FileHelper.IsExist(_filePath))
                 {
                     options.Attachment.Add(_filePath);
                 }

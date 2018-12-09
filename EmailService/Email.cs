@@ -42,11 +42,16 @@ namespace EmailService
                     {
                         Attachment attachment = new Attachment(filePath);
                         message.Attachments.Add(attachment);
+                        
                     }
                     ServicePointManager.ServerCertificateValidationCallback =
                         (s, certificate, chain, sslPolicyErrors) => true;
                     smtpClient.Send(message);
+                    foreach (string filePath in emailOptions.Attachment)
+                    {
+                        Utility.FileHelper.DeleteFile(filePath);
 
+                    }
 
                 }
                 else
