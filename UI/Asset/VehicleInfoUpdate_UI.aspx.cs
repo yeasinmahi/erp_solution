@@ -97,6 +97,10 @@ namespace UI.Asset
             {
                 if (!String.IsNullOrEmpty(TxtAssetID.Text))
                 {
+                    char[] ch1 = { '[', ']' };
+                    string[] temp1 = TxtAssetID.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                    int intAssetId = int.Parse(temp1[2].ToString());
+
                     string strSearchKey = TxtAssetID.Text;
                     string[] searchKey = Regex.Split(strSearchKey, ";");
                     hdfEmpCode.Value = searchKey[1];

@@ -611,9 +611,13 @@ namespace Purchase_BLL.Asset
 
         public string[] GetAssetVehicle(int type, string prefix)
         {
-            tableCusts2 = new SearchTDS.TblVehicleAutoSearchAssetRegisterDataTable[Convert.ToInt32(type)];
-            TblVehicleAutoSearchAssetRegisterTableAdapter adpCOA = new TblVehicleAutoSearchAssetRegisterTableAdapter();
-            tableCusts2[e] = adpCOA.VehicleAutoSearchGetData(Convert.ToInt32(type));
+            if (tableCusts2 == null)
+            {
+                tableCusts2 = new SearchTDS.TblVehicleAutoSearchAssetRegisterDataTable[Convert.ToInt32(type)];
+                TblVehicleAutoSearchAssetRegisterTableAdapter adpCOA = new TblVehicleAutoSearchAssetRegisterTableAdapter();
+                tableCusts2[e] = adpCOA.VehicleAutoSearchGetData(Convert.ToInt32(type));
+
+            }
 
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
@@ -659,7 +663,7 @@ namespace Purchase_BLL.Asset
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + ";" + tbl.Rows[i]["strAssetID"];
+                    retStr[i] = tbl.Rows[i]["strNameOfAsset"]+"[" + tbl.Rows[i]["intId"] + "]" +"[" + tbl.Rows[i]["strAssetID"]+"]";
 
                     //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
                 }

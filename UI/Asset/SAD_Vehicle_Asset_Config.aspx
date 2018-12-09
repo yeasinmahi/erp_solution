@@ -24,12 +24,10 @@
    <script type="text/javascript">
 
         function funConfirmAll() {
-             var asset = document.getElementById("TxtAsset").value;
-             var problem = document.getElementById("TxtProblem").value;
-      
+             var asset = document.getElementById("txtAssetId").value;
+             
             if ($.trim(asset).length < 3 ||$.trim(asset) == 0 || $.trim(asset) == "" || $.trim(asset) == null || $.trim(asset) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please input Asset ID'); }
-            else  if ($.trim(problem).length < 3||$.trim(problem) == 0 || $.trim(problem) == "" || $.trim(problem) == null || $.trim(problem) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please describe problem'); }
-
+             
             else {
                  var confirm_value = document.createElement("INPUT"); 
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
@@ -92,25 +90,26 @@
       <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
     <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnstation" runat="server" />       
-          <asp:HiddenField ID="HdnServiceCost" runat="server" />   <asp:HiddenField ID="hdnRepairsCost" runat="server" />   
+    <asp:HiddenField ID="HdnServiceCost" runat="server" />   <asp:HiddenField ID="hdnRepairsCost" runat="server" />   
             
-    <div class="tabs_container" align="left" >Maintenance Service Configuration </div>
+    <div class="tabs_container" align="left" >SAD Vehicle Asset Configuration </div>
    
        <table style="width:500px; outline-color:blue;table-layout:auto;vertical-align: top; "class="tblrowodd" >
         <tr>
         <td style="text-align:right;"><asp:Label ID="LblContryOrigin" CssClass="lbl" runat="server" Text="Type : "></asp:Label></td>
-        <td><asp:DropDownList ID="ddlType" runat="server"  CssClass="ddList" AutoPostBack="True">
-            <asp:ListItem Value="1">Staf Vehicle</asp:ListItem>
+        <td><asp:DropDownList ID="ddlType" runat="server"  CssClass="ddList" AutoPostBack="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
+            
+            <asp:ListItem Value="1">Staff Vehicle</asp:ListItem>
             <asp:ListItem Value="2">Internal Vehicle</asp:ListItem>
             </asp:DropDownList> </td>
 
         </tr>
            
            <tr>                  
-            <td style="text-align:right;" > <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Vehicle Number:"></asp:Label></td>
-            <td style="text-align:left;"> <asp:TextBox ID="TxtAsset" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged"  ></asp:TextBox>
-            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="TxtAsset"
-            ServiceMethod="GetStufVehilcle" MinimumPrefixLength="1" CompletionSetCount="1"
+            <td style="text-align:right;" > <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Vehicle Number : "></asp:Label></td>
+            <td style="text-align:left;"> <asp:TextBox ID="txtVehicle" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true"    ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtVehicle"
+            ServiceMethod="GetVehilcle" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender>
@@ -118,17 +117,20 @@
                  
             </tr>
              <tr>                  
-            <td style="text-align:right;" > <asp:Label ID="Label1" runat="server" CssClass="lbl" font-size="small" Text="Asset Number:"></asp:Label></td>
-            <td style="text-align:left;"> <asp:TextBox ID="TextBox1" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged"  ></asp:TextBox>
-            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="TxtAsset"
-            ServiceMethod="GetWearHouseRequesision" MinimumPrefixLength="1" CompletionSetCount="1"
+            <td style="text-align:right;" > <asp:Label ID="Label1" runat="server" CssClass="lbl" font-size="small" Text="Asset Number : "></asp:Label></td>
+            <td style="text-align:left;"> <asp:TextBox ID="txtAssetId" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true"></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtAssetId"
+            ServiceMethod="GetAssetSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender>
            </td>
                  
             </tr>
-          
+           <tr>
+               
+               <td style="text-align:right"><asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click"   /></td>
+           </tr>
            </Table>
          
         

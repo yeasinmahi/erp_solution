@@ -62,5 +62,32 @@ namespace Purchase_BLL.Asset
             catch { return new DataTable(); }
            
         }
+
+        public string UpdateFuelLogVehicle(string vehicleId,int AssetAutoId)
+        {
+
+            string rtnMessage = "Update SucessFull";
+            try
+            {
+                TblFuelLogVehiecleTableAdapter ad = new TblFuelLogVehiecleTableAdapter();
+                ad.UpDateFuelLogVehicleData(AssetAutoId, vehicleId);
+            }
+            catch { rtnMessage = "0"; }
+            return rtnMessage;
+
+        }
+        public string UpdateSadVehicle(string vehicleId, int AssetAutoId)
+        {
+
+            string rtnMessage = "Update SucessFull";
+            try
+            {
+                TblVehicleUpdateTableAdapter ad = new TblVehicleUpdateTableAdapter();
+                ad.UpDateSadVehicle(AssetAutoId, vehicleId);
+            }
+            catch { rtnMessage = "0"; }
+            return rtnMessage;
+
+        }
     }
 }

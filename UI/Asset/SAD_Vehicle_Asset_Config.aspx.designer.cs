@@ -193,13 +193,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Label LblAsset;
         
         /// <summary>
-        /// TxtAsset control.
+        /// txtVehicle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtAsset;
+        protected global::System.Web.UI.WebControls.TextBox txtVehicle;
         
         /// <summary>
         /// AutoCompleteExtender2 control.
@@ -220,13 +220,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtAssetId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtAssetId;
         
         /// <summary>
         /// AutoCompleteExtender1 control.
@@ -236,5 +236,14 @@ namespace UI.Asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }
