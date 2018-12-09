@@ -371,7 +371,7 @@
                                             <p>To: </p>
                                         </div>
                                         <div class="col-md-10 col-sm-10">
-                                            <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" Enabled="False" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-group row">
