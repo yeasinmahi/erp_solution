@@ -16,7 +16,7 @@ namespace UI.SAD.Sales.Report
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'http://report.akij.net/reports/report/Sales%20And%20Distribution/Masson_Program_Bill_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Sales%20And%20Distribution/Masson_Program_Bill_Report?rs:Embed=true');", true);
         }
     }
 }
