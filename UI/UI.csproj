@@ -268,6 +268,7 @@
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
+    <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
     <Content Include="Asset\ServiceConfigurePopUp.aspx" />
     <Content Include="Asset\VehicleInfoUpdate_UI.aspx" />
@@ -2504,6 +2505,13 @@
     </Compile>
     <Compile Include="Asset\PMScheduleServicePopUp.aspx.designer.cs">
       <DependentUpon>PMScheduleServicePopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.cs">
+      <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.designer.cs">
+      <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\ServiceConfiguration.aspx.cs">
       <DependentUpon>ServiceConfiguration.aspx</DependentUpon>
