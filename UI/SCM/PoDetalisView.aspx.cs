@@ -309,7 +309,8 @@ namespace UI.SCM
             }
             options.CcAddress = Email.GetMaiListFromString(txtCc.Text, out message) ?? new List<string>();
             options.BccAddress = Email.GetMaiListFromString(txtBcc.Text, out message) ?? new List<string>();
-
+            string  userEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
+            options.BccAddress.Add(userEmail);
             if (!string.IsNullOrWhiteSpace(_filePath))
             {
                 if (Utility.FileHelper.IsExist(_filePath))
