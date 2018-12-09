@@ -13746,16 +13746,23 @@ and strOfficeEmail is not null and strOfficeEmail!='' and intGroupID not in (2,5
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT  [intVehicleID],[strVehicleNo],[strDriverName] \r\n FROM [AG_FuelLog].[dbo]." +
-                "[tblAGVehicleInfoFuelLog] where  intAssetID is null";
+                "[tblAGVehicleInfoFuelLog] where  intAssetID is null and ysnActive=@active";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SearchTDS.AgFuelLogDataTable GetFuelLogData() {
+        public virtual SearchTDS.AgFuelLogDataTable GetFuelLogData(global::System.Nullable<bool> active) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((active.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((bool)(active.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             SearchTDS.AgFuelLogDataTable dataTable = new SearchTDS.AgFuelLogDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -13902,16 +13909,18 @@ and strOfficeEmail is not null and strOfficeEmail!='' and intGroupID not in (2,5
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT   [intID],[strRegNo]FROM [ERP_Logistic].[dbo].[tblVehicle] where ysnOwn=1 " +
-                "and ysnEnable=1 and intAssetID is null";
+                "and  intAssetID is null and ysnEnable=@active";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SearchTDS.TblVehicleDataTable GetSadVehicleData() {
+        public virtual SearchTDS.TblVehicleDataTable GetSadVehicleData(bool active) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((bool)(active));
             SearchTDS.TblVehicleDataTable dataTable = new SearchTDS.TblVehicleDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

@@ -21,7 +21,11 @@ namespace Purchase_BLL.Asset
         private static SearchTDS.TblFixedAssetCOADataTable[] tblFixedAssetCoa= null;
         private static SearchTDS.TblAcountsChartOfACCDataTable[] tblAccountsChartOfAcc = null;
         private static SearchTDS.QRYEMPLOYEEPROFILEALLDataTable[] tableEmpList = null;
-     
+
+        private static SearchTDS.AgFuelLogDataTable[] tableStufVehicleList = null;
+
+        private static SearchTDS.TblVehicleDataTable[] tableInternalVehiclepList = null;
+
         private static Hashtable ht = new Hashtable();
         int e;
         public List<string> AutoSearchEmployee(string strSearchKeyemp,int intjobid)
@@ -670,8 +674,6 @@ namespace Purchase_BLL.Asset
                 return null;
             }
         }
-
-
         public string[] GetAssetItemByUnit(string unit, string prefix)
         {
 
@@ -740,6 +742,134 @@ namespace Purchase_BLL.Asset
         }
 
 
+        public string[] GetStufVehicleList(int Active, string prefix)
+        { 
+            if (tableStufVehicleList == null)
+            {
+                tableStufVehicleList = new SearchTDS.AgFuelLogDataTable[Convert.ToInt32(Active)];
+                AgFuelLogTableAdapter adpCOA = new AgFuelLogTableAdapter();
+                tableStufVehicleList[e] = adpCOA.GetFuelLogData(Convert.ToBoolean(Active));
+            }
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableStufVehicleList[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strVehicleNo
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableStufVehicleList[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strVehicleNo.ToLower().Contains(prefix)
+                                   orderby tmp.intVehicleID
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+
+
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strVehicleNo"].ToString();
+
+                    //   retStr[i] = tbl.Rows[i]["strNameOfAsset"]+","+ tbl.Rows[i]["intAssetType"] + ";" + tbl.Rows[i]["strAssetID"] ;
+
+                }
+
+                return retStr;
+
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+        public string[] GetInternalVehicleList(int Active, string prefix)
+        {
+            if (tableInternalVehiclepList == null)
+            {
+                tableInternalVehiclepList = new SearchTDS.TblVehicleDataTable[Convert.ToInt32(Active)];
+                TblVehicleTableAdapter adpCOA = new TblVehicleTableAdapter();
+                tableInternalVehiclepList[e] = adpCOA.GetSadVehicleData(Convert.ToBoolean(Active));
+            }
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableInternalVehiclepList[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strRegNo
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableInternalVehiclepList[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strRegNo.ToLower().Contains(prefix)
+                                   orderby tmp.intID
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        } 
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strRegNo"].ToString(); 
+                }
+
+                return retStr;
+
+            }
+
+            else
+            {
+                return null;
+            }
+        }
 
 
 
