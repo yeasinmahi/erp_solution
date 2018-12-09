@@ -139,6 +139,14 @@ namespace Utility
             }
             return 0;
         }
+        public static string GetDdlSelectedText(DropDownList ddl)
+        {
+            if (ddl?.SelectedItem != null)
+            {
+                return ddl.SelectedItem.Text;
+            }
+            return String.Empty;
+        }
         public static bool BindDropDown(DropDownList ddl,DataTable dt,string value, string text)
         {
             if (dt.Rows.Count <= 0) return false;

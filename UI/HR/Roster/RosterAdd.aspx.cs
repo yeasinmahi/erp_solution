@@ -128,8 +128,11 @@ namespace UI.HR.Roster
             string empEnroll = txtEnroll.Text;
             string date = txtDutyDate.Text;
             int shiftId = Common.GetDdlSelectedValue(ddlShift);
+            string shift = Common.GetDdlSelectedText(ddlShift);
             int jobstationId = Common.GetDdlSelectedValue(ddlJobStation);
+            string jobstation = Common.GetDdlSelectedText(ddlJobStation);
             int sequenceId = Common.GetDdlSelectedValue(ddlSequence);
+            string sequence = Common.GetDdlSelectedText(ddlSequence);
             if (jobstationId < 1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
@@ -147,8 +150,11 @@ namespace UI.HR.Roster
                 empEnroll,
                 date,
                 shiftId,
+                shift,
                 jobstationId,
-                sequenceId
+                jobstation,
+                sequenceId,
+                sequence
             };
             List<object> objects = new List<object>();
             if (Session["obj"] != null)

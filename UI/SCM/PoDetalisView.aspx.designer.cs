@@ -436,6 +436,24 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtReceipentEmail;
         
         /// <summary>
+        /// txtCc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCc;
+        
+        /// <summary>
+        /// txtBcc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBcc;
+        
+        /// <summary>
         /// txtSubject control.
         /// </summary>
         /// <remarks>

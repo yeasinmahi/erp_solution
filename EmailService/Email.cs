@@ -13,45 +13,47 @@ namespace EmailService
             try
             {
                 MailAddress fromAddress = new MailAddress(EmailConstant.EmailFromAddress, EmailConstant.EmailFromDisplayName);
-               
-                List<MailAddress> toAddresses = new List<MailAddress>();
-                foreach (string toAddress in emailOptions.ToAddress)
-                {
-                    toAddresses.Add(new MailAddress(toAddress, emailOptions.ToAddressDisplayName));
-                }
                 string fromPassword = EmailConstant.EmailFromAddressPassword;
-                string subject = emailOptions.Subject;
-                string body = emailOptions.Body;
 
-                SmtpClient smtpClient = GetSmtpClient(fromAddress.Address, fromPassword,Provider.Akij);
+                SmtpClient smtpClient = GetSmtpClient(fromAddress.Address, fromPassword, Provider.Akij);
                 if (smtpClient != null)
                 {
-                    foreach (MailAddress toAddress in toAddresses)
+
+                    var message = new MailMessage
                     {
-                        using (var message = new MailMessage(fromAddress, toAddress)
-                        {
-                            Subject = subject,
-                            Body = body,
-                            IsBodyHtml = true,
-                        })
-                        {
-                            foreach (string filePath in emailOptions.Attachment)
-                            {
-                                Attachment attachment = new Attachment(filePath);
-                                message.Attachments.Add(attachment);
-                            }
-                            ServicePointManager.ServerCertificateValidationCallback =
-                                (s, certificate, chain, sslPolicyErrors) => true;
-                            smtpClient.Send(message);
-                        }
+                        From = fromAddress,
+                        Subject = emailOptions.Subject,
+                        Body = emailOptions.Body,
+                        IsBodyHtml = true
+                    };
+                    foreach (string address in emailOptions.ToAddress)
+                    {
+                        message.To.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
                     }
-                    
+                    foreach (string address in emailOptions.CcAddress)
+                    {
+                        message.CC.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
+                    }
+                    foreach (string address in emailOptions.BccAddress)
+                    {
+                        message.Bcc.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
+                    }
+                    foreach (string filePath in emailOptions.Attachment)
+                    {
+                        Attachment attachment = new Attachment(filePath);
+                        message.Attachments.Add(attachment);
+                    }
+                    ServicePointManager.ServerCertificateValidationCallback =
+                        (s, certificate, chain, sslPolicyErrors) => true;
+                    smtpClient.Send(message);
+
+
                 }
                 else
                 {
                     //todo
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -78,7 +80,7 @@ namespace EmailService
                 default:
                     return null;
             }
-            
+
         }
 
         private static SmtpClient GetSmtpForGmail(string email, string password)
@@ -90,7 +92,7 @@ namespace EmailService
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                
+
                 Credentials = new NetworkCredential(email, password)
             };
         }
@@ -113,8 +115,8 @@ namespace EmailService
                 EnableSsl = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = true,
-                
-                Credentials = new NetworkCredential(email,password)
+
+                Credentials = new NetworkCredential(email, password)
             };
         }
         public enum Provider
@@ -137,7 +139,7 @@ namespace EmailService
             {
                 return false;
             }
-            
+
         }
         private delegate void AsyncMethodCaller(EmailOptions emailOptions);
         private static void SendMailInSeperateThread(EmailOptions emailOptions)
@@ -150,7 +152,7 @@ namespace EmailService
             {
 
                 AsyncResult result = (AsyncResult)ar;
-                EmailOptions option = (EmailOptions) ar.AsyncState;
+                EmailOptions option = (EmailOptions)ar.AsyncState;
                 AsyncMethodCaller caller = (AsyncMethodCaller)result.AsyncDelegate;
                 foreach (string filePath in option.Attachment)
                 {
@@ -174,6 +176,37 @@ namespace EmailService
             {
                 return false;
             }
+        }
+
+        public static List<string> GetMaiListFromString(string address,out string message)
+        {
+            List<string> mailList = new List<string>();
+            if (!string.IsNullOrWhiteSpace(address))
+            {
+                char[] delimiters = { ',', ';', ' ' };
+                string[] addresss = address.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string email in addresss)
+                {
+                    if (IsValidEmail(email))
+                    {
+                        mailList.Add(email);
+                    }
+                    else
+                    {
+                        message = "Please input valid email \"" + email + "\" '";
+                        return null;
+                    }
+
+                }
+
+            }
+            else
+            {
+                message = "There Should be atleast 1 email address";
+                return null;
+            }
+            message = "added successfully";
+            return mailList;
         }
     }
 }
