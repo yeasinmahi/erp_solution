@@ -274,6 +274,7 @@
     <Content Include="Asset\VehicleInfoUpdate_UI.aspx" />
     <Content Include="Asset\Vehicle_Bill_Detalis_PopUp.aspx" />
     <Content Include="Asset\Vehicle_Maintenance_Bill.aspx" />
+    <Content Include="Asset\Vehicle_maintenance_repport.aspx" />
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
@@ -2547,6 +2548,13 @@
     </Compile>
     <Compile Include="Asset\Vehicle_Maintenance_Bill.aspx.designer.cs">
       <DependentUpon>Vehicle_Maintenance_Bill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Vehicle_maintenance_repport.aspx.cs">
+      <DependentUpon>Vehicle_maintenance_repport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Vehicle_maintenance_repport.aspx.designer.cs">
+      <DependentUpon>Vehicle_maintenance_repport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\WorkOrderPartsPopUp.aspx.cs">
       <DependentUpon>WorkOrderPartsPopUp.aspx</DependentUpon>
