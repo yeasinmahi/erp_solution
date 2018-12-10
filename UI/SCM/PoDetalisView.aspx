@@ -6,9 +6,9 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <%--<asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />--%>
+    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/CSS/toastr.min.css" rel="stylesheet" />
@@ -75,6 +75,7 @@
                 <div style="text-align: left">
                     PO Approval  From<hr />
                 </div>
+                <asp:Label runat="server" ID="lblNotification"></asp:Label>
                 <asp:HiddenField ID="hfImageData" runat="server" />
 
                 <div id="dvTable" runat="server" style="width: 850px; background-color: white; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
@@ -370,7 +371,7 @@
                                             <p>To: </p>
                                         </div>
                                         <div class="col-md-10 col-sm-10">
-                                            <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" Enabled="False" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-group row">

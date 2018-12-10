@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using UI.ClassFiles;
+using UI.HR.Dispatch;
 using Exception = System.Exception;
 
 namespace UI.SCM
@@ -306,7 +309,8 @@ namespace UI.SCM
             }
             options.CcAddress = Email.GetMaiListFromString(txtCc.Text, out message) ?? new List<string>();
             options.BccAddress = Email.GetMaiListFromString(txtBcc.Text, out message) ?? new List<string>();
-
+            string  userEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
+            options.BccAddress.Add(userEmail);
             if (!string.IsNullOrWhiteSpace(_filePath))
             {
                 if (Utility.FileHelper.IsExist(_filePath))
@@ -315,7 +319,7 @@ namespace UI.SCM
                 }
                 
             }
-            if (Email.Send(options))
+            if (Email.SendEmail(options))
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                     "ShowNotification('Email Sent Successfully','Purchase Order','success')", true);
@@ -323,8 +327,21 @@ namespace UI.SCM
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('Email Sent Failed','Purchase Order','error')", true);
+                    "ShowNotification('" + options.Exception?.Message + "','Purchase Order','error')", true);
             }
+            try
+            {
+                foreach (string filePath in options.Attachment)
+                {
+                    Utility.FileHelper.DeleteFile(filePath);
+                }
+            }
+            catch (Exception exception)
+            {
+                
+            }
+            
+
         }
     }
 }
