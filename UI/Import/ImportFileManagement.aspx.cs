@@ -269,6 +269,7 @@ namespace UI.Import
                 //Response.BinaryWrite(bytes);
                 //Response.Flush();
             }
+            LoadGridView();
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
         }
 
