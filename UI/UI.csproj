@@ -433,6 +433,7 @@
     <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
     <Content Include="Other\ImageViewer.aspx" />
+    <Content Include="Other\PdfViewer.aspx" />
     <Content Include="Other\Practice.aspx" />
     <Content Include="PaymentModule\AllApprovedBillReport.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
@@ -3244,6 +3245,13 @@
     </Compile>
     <Compile Include="Other\ImageViewer.aspx.designer.cs">
       <DependentUpon>ImageViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Other\PdfViewer.aspx.cs">
+      <DependentUpon>PdfViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Other\PdfViewer.aspx.designer.cs">
+      <DependentUpon>PdfViewer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Other\Practice.aspx.cs">
       <DependentUpon>Practice.aspx</DependentUpon>

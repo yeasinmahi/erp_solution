@@ -38,43 +38,49 @@ namespace UI.Import
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            GridViewUtil.UnLoadGridView(gridView);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "hidePanel", "hidePanel()", true);
             string poNumber = txtPoNumber.Text;
-            //string lcNumber = txtLcNumber.Text;
+            string lcNumber = txtLcNumber.Text;
             int po = 0;
-            if (string.IsNullOrWhiteSpace(poNumber))
+            if (string.IsNullOrWhiteSpace(poNumber) && string.IsNullOrWhiteSpace(lcNumber))
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You have to input PO number');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "ShowNotification('You have to input PO or LC number','Import File Management','warning')", true);
                 return;
             }
-            //if (!string.IsNullOrWhiteSpace(lcNumber))
-            //{
-            //    dt = bll.GetPoByLcNumber(lcNumber);
-            //    if (dt.Rows.Count > 0)
-            //    {
-            //        int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
-            //        if (po == 0)
-            //        {
-            //            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-            //                "alert('Somthing error in PO conversion');", true);
-            //            txtLcNumber.Text = String.Empty;
-            //            return;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-            //            "alert('We can not found this lc number in our system');", true);
-            //        txtLcNumber.Text = String.Empty;
-            //        return;
-            //    }
-                
-            //}
+            if (!string.IsNullOrWhiteSpace(lcNumber))
+            {
+                dt = bll.GetPoByLcNumber(lcNumber);
+                if (dt.Rows.Count > 0)
+                {
+                    int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
+                    if (po == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "ShowNotification('Somthing error in PO conversion','Import File Management','error')", true);
+                        txtLcNumber.Text = String.Empty;
+                        return;
+                    }
+                    txtPoNumber.Text = po.ToString();
+                    poNumber = po.ToString();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "ShowNotification('We can not found this lc number in our system','Import File Management','error')", true);
+                    txtLcNumber.Text = String.Empty;
+                    return;
+                }
+
+            }
             if (!string.IsNullOrWhiteSpace(poNumber))
             {
                 int.TryParse(poNumber, out po);
                 if (po == 0)
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('input po number properly');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", 
+                    "ShowNotification('Input po number properly','Import File Management','warning')", true);
                     return;
                 }
                 dt = bll.GetLcIdbyPoId(po);
@@ -88,11 +94,13 @@ namespace UI.Import
                         hdLcId.Value = lcId.ToString();
                         LoadGridView();
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
+                        return;
                     }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No data found aginest this PO number');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "ShowNotification('No data found aginest this PO number','Import File Management','warning')", true);
                 }
             }
             
@@ -100,10 +108,21 @@ namespace UI.Import
 
         private void LoadShipmentSl(long LcId)
         {
-            ddlShipment.DataSource = bll.GetShipmentInfo(LcId);
-            ddlShipment.DataTextField= "intShipmentSL";
-            ddlShipment.DataValueField = "intShipmentID";
-            ddlShipment.DataBind();
+            int fileGroupId = Convert.ToInt32(ddlFileGroup.SelectedItem.Value);
+            if (fileGroupId == 1)
+            {
+                ddlShipment.DataSource = null;
+                ddlShipment.DataBind();
+            }
+            else
+            {
+                ddlShipment.DataSource = bll.GetShipmentInfo(LcId);
+                ddlShipment.DataTextField = "intShipmentSL";
+                ddlShipment.DataValueField = "intShipmentID";
+                ddlShipment.DataBind();
+            }
+
+            
         }
         private void LoadFileGroup()
         {
@@ -131,31 +150,34 @@ namespace UI.Import
                         if (InsertData(strFilePath))
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                                "alert('Sucessfully Uploaded.');", true);
+                            "ShowNotification('Sucessfully Uploaded.','Import File Management','success')", true);
                             LoadGridView();
                         }
                         else
                         {
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                                "alert('Insert into database problem.');", true);
+                            "ShowNotification('Insert into database problem.','Import File Management','error')", true);
                         }
                        
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Upload problem..');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "ShowNotification('Upload problem...','Import File Management','error')", true);
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ex.Message+"');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "ShowNotification('" + ex.Message + "','Import File Management','error')", true);
                 }
                 FileHelper.DeleteFile(localPath);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select a file.');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                "ShowNotification('Please select a file.','Import File Management','warning')", true);
                 //return;
             }
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPanel", "showPanel()", true);
@@ -165,7 +187,11 @@ namespace UI.Import
         private bool InsertData(string strFilePath)
         {
             int fileTypeId = Convert.ToInt32(ddlFileGroup.SelectedItem.Value);
-            int intShipmentID = Convert.ToInt32(ddlShipment.SelectedItem.Value);
+            int intShipmentID = 0;
+            if (fileTypeId != 1)
+            {
+                intShipmentID = Convert.ToInt32(ddlShipment.SelectedItem.Value);
+            }
             int intLcID = Convert.ToInt32(hdLcId.Value);
             int intInsertBy = enroll;
             int intUnit = Convert.ToInt32(ddlUnitName.SelectedItem.Value);
@@ -182,9 +208,17 @@ namespace UI.Import
         private void LoadGridView()
         {
             int fileGroupId = Convert.ToInt32(ddlFileGroup.SelectedItem.Value);
-            int shipmentId = Convert.ToInt32(ddlShipment.SelectedItem.Value);
             int lcId = Convert.ToInt32(hdLcId.Value);
-            dt = bll.GetImportFileUploadDetail(fileGroupId, lcId, shipmentId);
+            if (fileGroupId == 1)
+            {
+                dt = bll.GetImportFileUploadDetail(fileGroupId, lcId);
+            }
+            else
+            {
+                int shipmentId = Convert.ToInt32(ddlShipment.SelectedItem.Value);
+                dt = bll.GetImportFileUploadDetail(fileGroupId, lcId, shipmentId);
+            }
+            
             gridView.DataSource = dt;
             gridView.DataBind();
         }
@@ -204,8 +238,19 @@ namespace UI.Import
             //scriptManager.RegisterPostBackControl(this.gridView);
             if (e.CommandName == "View")
             {
-                Session["ImageSrc"] = ftp + strPath;
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "popup", "popup('../Other/ImageViewer.aspx','Image View');", true);
+                string ext = Path.GetExtension(strPath);
+                if (ext != null && ext.ToLower().Contains("pdf"))
+                {
+                    Session["src"] = ftp + strPath;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "popup",
+                        "popup('../Other/PdfViewer.aspx','PDF View');", true);
+                }
+                else
+                {
+                    Session["src"] = ftp + strPath;
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "popup",
+                        "popup('../Other/ImageViewer.aspx','Image View');", true);
+                }
             }
             else if (e.CommandName == "Download")
             {
@@ -237,6 +282,11 @@ namespace UI.Import
                 ScriptManager.GetCurrent(this)?.RegisterAsyncPostBackControl(btnView);
             }
                 
+        }
+
+        protected void ddlFileGroup_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnShow_Click(null, null);
         }
     }
 }

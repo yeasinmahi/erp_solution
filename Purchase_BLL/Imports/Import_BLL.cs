@@ -79,10 +79,15 @@ namespace Purchase_BLL.Imports
             tblImportFileUploadDetailTableAdapter adp = new tblImportFileUploadDetailTableAdapter();
             return adp.InsertImportFileUploadDetails(intFileTypeID,strFilePath,intLcID,intShipmentID,intInsertBy,intUnit,strRemarks);
         }
-        public DataTable GetImportFileUploadDetail(int intFileGroup, int intLcID, int intShipment)
+        public DataTable GetImportFileUploadDetail(int intFileGroup, int intLcID)
         {
             DataTable1TableAdapter adp = new DataTable1TableAdapter();
-            return adp.GetImportFileUploadDetail(intFileGroup,intLcID,intShipment);
+            return adp.GetImportFileUploadDetail(intFileGroup,intLcID);
+        }
+        public DataTable GetImportFileUploadDetail(int intFileGroup, int intLcID, int shipmentId)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            return adp.GetImportFileUploadDetails(intFileGroup, intLcID, shipmentId);
         }
     }
 }
