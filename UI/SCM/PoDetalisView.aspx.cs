@@ -272,12 +272,10 @@ namespace UI.SCM
                     image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
                     imgAttachment.ImageUrl = "~/SCM/Data/PO.Jpeg";
                 }
-                
-                
-                
             }
             catch (Exception e)
             {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('"+e.Message+"')", true);
             }
             
             //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
@@ -336,9 +334,9 @@ namespace UI.SCM
                     Utility.FileHelper.DeleteFile(filePath);
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + ex.Message + "')", true);
             }
             
 
