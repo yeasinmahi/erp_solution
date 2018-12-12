@@ -33,7 +33,7 @@ namespace UI.SCM
         {
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
             scriptManager?.RegisterPostBackControl(btnDownload);
-            _filePath = Server.MapPath("~/SCM/Data/PO.Jpeg");
+            _filePath = Server.MapPath("~/SCM/Data/PO.Bmp");
             if (!IsPostBack)
             {
                 PoNo = int.Parse(Session["pono"].ToString());
@@ -217,7 +217,7 @@ namespace UI.SCM
             //    PoNo = int.Parse(Session["pono"].ToString());
             //    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
             //    byte[] bytes = Convert.FromBase64String(base64);
-            //    string filePath = Server.MapPath("PO.Jpeg");
+            //    string filePath = Server.MapPath("PO.Bmp");
             //    MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
             //    ms.Write(bytes, 0, bytes.Length);
             //    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
@@ -269,8 +269,8 @@ namespace UI.SCM
                 {
                     ms.Write(bytes, 0, bytes.Length);
                     System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-                    image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    imgAttachment.ImageUrl = "~/SCM/Data/PO.Jpeg";
+                    image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                    imgAttachment.ImageUrl = "~/SCM/Data/PO.Bmp";
                 }
             }
             catch (Exception e)
