@@ -1239,6 +1239,7 @@
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
+    <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
@@ -6302,6 +6303,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.designer.cs">
       <DependentUpon>Area_vs_Item.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx.cs">
+      <DependentUpon>Audit_Report_For_DO_and_Challan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx.designer.cs">
+      <DependentUpon>Audit_Report_For_DO_and_Challan.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
