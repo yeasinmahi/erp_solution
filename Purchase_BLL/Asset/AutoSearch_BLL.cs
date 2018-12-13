@@ -599,10 +599,7 @@ namespace Purchase_BLL.Asset
                  }
 
                 return retStr;
-
             }
-
-
             else
             {
                 return null;
