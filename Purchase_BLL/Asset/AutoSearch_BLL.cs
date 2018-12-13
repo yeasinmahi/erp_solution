@@ -925,7 +925,7 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strJobStationName"] + "[" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]"+ "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
+                    retStr[i] = tbl.Rows[i]["strJobStationName"] + ",Unit Name[" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]"+ "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
                     
                 }
 
