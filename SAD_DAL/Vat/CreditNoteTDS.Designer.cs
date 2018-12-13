@@ -6319,17 +6319,18 @@ FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i
     
   FROM [ERP_VAT].[dbo].[tblConfigItemBOM] cfb inner join  [ERP_VAT].[dbo].[tblConfigMaterialVAT] mi on cfb.intVATMaterialID=mi.intMaterialID WHERE  intVATMaterialID=@mid
   AND intBOMID IN (Select top(1)  intBOMID from ERP_VAT.dbo.tblVATItemDeclaredPrice decpric where decpric.intVATItemID=@vid 
-	AND Cast(getdate() as date)>= decpric.dteValidFromDate AND intMusokTypeID=1 Order by decpric.dteValidFromDate desc, intBOMID desc)";
+	AND Cast(getdate() as date)>= decpric.dteValidFromDate AND intMusokTypeID=@typeid Order by decpric.dteValidFromDate desc, intBOMID desc)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVATMaterialID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@vid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@typeid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CreditNoteTDS.tblConfigItemBOMUseDataTable GetMatrialUse(global::System.Nullable<int> mid, global::System.Nullable<int> vid) {
+        public virtual CreditNoteTDS.tblConfigItemBOMUseDataTable GetMatrialUse(global::System.Nullable<int> mid, global::System.Nullable<int> vid, global::System.Nullable<int> typeid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((mid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(mid.Value));
@@ -6342,6 +6343,12 @@ FROM ERP_VAT.dbo.tblVATSales s Join ERP_VAT.dbo.tblItemVat i on s.intProductID=i
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((typeid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(typeid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             CreditNoteTDS.tblConfigItemBOMUseDataTable dataTable = new CreditNoteTDS.tblConfigItemBOMUseDataTable();
             this.Adapter.Fill(dataTable);
