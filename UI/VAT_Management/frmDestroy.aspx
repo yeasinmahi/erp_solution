@@ -111,7 +111,7 @@
      <table  class="tbldecoration" style="width:auto; float:left;">  
      <tr>
          <td>Mushok Type :</td>
-         <td> <asp:DropDownList ID="ddlMushoktype" CssClass="ddllist" runat="server"  >
+         <td> <asp:DropDownList ID="ddlMushoktype" CssClass="ddllist" runat="server" AutoPostBack="True"  >
              <asp:ListItem Value="1">Musok 1</asp:ListItem>
              <asp:ListItem Value="2">Musok 1(Ka)</asp:ListItem>
              <asp:ListItem Value="4">Musok 1(Ga)</asp:ListItem>
