@@ -43,6 +43,12 @@ namespace UI.Asset
                 ddlUnit.DataBind();
             }
             catch { }
+            bindGrid();
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+
+        }
+        private void bindGrid()
+        {
             int jobcard = Convert.ToInt32(txtJobCard.Text);
             dt = new DataTable();
             dt = objasset.GetServiceData(jobcard);
@@ -56,10 +62,7 @@ namespace UI.Asset
                 gvServiceCostUpdate.DataSource = null;
                 gvServiceCostUpdate.DataBind();
             }
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-
         }
-       
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             GridViewRow gvr = (GridViewRow)(((Button)sender).NamingContainer);
@@ -68,8 +71,11 @@ namespace UI.Asset
             int intID = int.Parse((row.FindControl("lblID") as Label).Text);
             decimal amount = Convert.ToDecimal((row.FindControl("txtAmount") as TextBox).Text);
             string msg=  objasset.UpdateMoney(amount,intID);
+            bindGrid();
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-            //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+
+            
 
         }
 
@@ -79,8 +85,9 @@ namespace UI.Asset
             int jobCard = Convert.ToInt32(txtJobCard.Text);
             objasset.UpdateFixedAssetRegisterUnit(unit, jobCard);
             string msg = objasset.UpdateAssetMaintenanceUnitByJobCard(unit, jobCard);
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-            //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            
         }
     }
 }
