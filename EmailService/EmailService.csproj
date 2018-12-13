@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attchment.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="EmailConstant.cs" />
     <Compile Include="EmailOptions.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Runtime.Remoting.Messaging;
@@ -38,9 +39,9 @@ namespace EmailService
                     {
                         message.Bcc.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
                     }
-                    foreach (string filePath in emailOptions.Attachment)
+                    foreach (EmailAttachment emailAttachment in emailOptions.Attachments)
                     {
-                        Attachment attachment = new Attachment(filePath);
+                        Attachment attachment = new Attachment(new MemoryStream(emailAttachment.Bytes), emailAttachment.FileName);
                         message.Attachments.Add(attachment);
                         
                     }
@@ -53,7 +54,7 @@ namespace EmailService
                 }
                 else
                 {
-                    emailOptions.Exception = new Exception("SMTP problem");
+                    emailOptions.Exceptions = new Exception("SMTP problem");
                     return false;
                 }
 
@@ -61,7 +62,7 @@ namespace EmailService
             catch (Exception e)
             {
 
-                emailOptions.Exception = e;
+                emailOptions.Exceptions = e;
                 return false;
             }
         }
@@ -155,10 +156,6 @@ namespace EmailService
                 EmailOptions option = (EmailOptions)ar.AsyncState;
                 AsyncMethodCaller caller = (AsyncMethodCaller)result.AsyncDelegate;
                 caller.EndInvoke(ar);
-                foreach (string filePath in option.Attachment)
-                {
-                    Utility.FileHelper.DeleteFile(filePath);
-                };
             }
             catch (Exception e)
             {
