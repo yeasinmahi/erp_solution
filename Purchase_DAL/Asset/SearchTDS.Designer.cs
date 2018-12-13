@@ -15780,7 +15780,8 @@ and strOfficeEmail is not null and strOfficeEmail!='' and intGroupID not in (2,5
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "select strUnit,unt.intUnitId,strJobStationName,intEmployeeJobStationId from erp_h" +
                 "r.dbo.tblEmployeeJobStation job inner join ERP_HR.dbo.tblUnit unt on job.intUnit" +
-                "ID=unt.intUnitID where job.ysnActive=@active\r\n";
+                "ID=unt.intUnitID where ysnPFUnit=0\r\nand unt.ysnEnable=1and  job.ysnActive=@activ" +
+                "e\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
