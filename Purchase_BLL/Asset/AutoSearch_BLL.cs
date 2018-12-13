@@ -25,7 +25,7 @@ namespace Purchase_BLL.Asset
         private static SearchTDS.AgFuelLogDataTable[] tableStufVehicleList = null;
 
         private static SearchTDS.TblVehicleDataTable[] tableInternalVehiclepList = null;
-
+        private static SearchTDS.AllJobstationDataTable[] tblAllJobstation = null;
         private static Hashtable ht = new Hashtable();
         int e;
         public List<string> AutoSearchEmployee(string strSearchKeyemp,int intjobid)
@@ -599,10 +599,7 @@ namespace Purchase_BLL.Asset
                  }
 
                 return retStr;
-
             }
-
-
             else
             {
                 return null;
@@ -876,7 +873,68 @@ namespace Purchase_BLL.Asset
         }
 
 
+        public string[] GetAllJobstationList(int Active, string prefix)
+        {
+            if (tblAllJobstation == null)
+            {
+                tblAllJobstation = new SearchTDS.AllJobstationDataTable[Convert.ToInt32(Active)];
+                AllJobstationTableAdapter adpCOA = new AllJobstationTableAdapter();
+                tblAllJobstation[e] = adpCOA.GetAllJobstationData(Convert.ToBoolean(Active));
+            }
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tblAllJobstation[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strJobStationName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tblAllJobstation[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strJobStationName.ToLower().Contains(prefix)
+                                   orderby tmp.intEmployeeJobStationId
+                                   select tmp;
 
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strJobStationName"] + ",Unit Name[" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]"+ "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
+                    
+                }
+
+                return retStr;
+
+            }
+
+            else
+            {
+                return null;
+            }
+        }
 
     }
 }
