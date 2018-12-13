@@ -108,7 +108,15 @@
     <table>
      <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
      <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Desteroy Note Create" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td>
-     <table  class="tbldecoration" style="width:auto; float:left;">                              
+     <table  class="tbldecoration" style="width:auto; float:left;">  
+     <tr>
+         <td>Mushok Type :</td>
+         <td> <asp:DropDownList ID="ddlMushoktype" CssClass="ddllist" runat="server"  >
+             <asp:ListItem Value="1">Musok 1</asp:ListItem>
+             <asp:ListItem Value="2">Musok 1(Ka)</asp:ListItem>
+             <asp:ListItem Value="4">Musok 1(Ga)</asp:ListItem>
+             </asp:DropDownList></td>
+     </tr>
      <tr><td>Product Name</td>
         <td><asp:TextBox ID="txtVatItemList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" OnTextChanged="txtVatItemList_TextChanged" ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtVatItemList"

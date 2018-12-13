@@ -266,6 +266,7 @@
     <Content Include="Asset\MaintenanceReport.aspx" />
     <Content Include="Asset\MaintenancePendingRequest.aspx" />
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
+    <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
@@ -1395,6 +1396,7 @@
     <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
+    <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
@@ -2494,6 +2496,13 @@
     </Compile>
     <Compile Include="Asset\MaintenanceWorkOrderPopUp.aspx.designer.cs">
       <DependentUpon>MaintenanceWorkOrderPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Service_Cost_Update.aspx.cs">
+      <DependentUpon>Maintenance_Service_Cost_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Service_Cost_Update.aspx.designer.cs">
+      <DependentUpon>Maintenance_Service_Cost_Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\PMSchedule.aspx.cs">
       <DependentUpon>PMSchedule.aspx</DependentUpon>
@@ -7381,6 +7390,13 @@
     </Compile>
     <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
       <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Item_Wise_PO_Issued.aspx.cs">
+      <DependentUpon>Item_Wise_PO_Issued.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Item_Wise_PO_Issued.aspx.designer.cs">
+      <DependentUpon>Item_Wise_PO_Issued.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MaterialApprovalStatus.aspx.cs">
       <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
