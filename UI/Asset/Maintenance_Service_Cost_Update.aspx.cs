@@ -102,22 +102,21 @@ namespace UI.Asset
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanelJoB();", true);
                 int jobCard = Convert.ToInt32(txtJobCard.Text);
                 msg = objasset.UpdateAssetMaintenanceUnitByJobCard(unit, jobStation, jobCard);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             }
             else if(type =="Bill")
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanelAsset();", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "hidePanel();", true);
                 arrayKey = txtAssetSearch.Text.Split(deli);
                 if (arrayKey.Length > 0)
                 {
                     AssetCode = Convert.ToString(arrayKey[3].ToString());
                 }
                 msg = objasset.UpdateFixedAssetRegisterUnit(unit, AssetCode);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             }
-            
-            
-           
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             
         }
 
@@ -155,7 +154,11 @@ namespace UI.Asset
             else if (type == "Bill")
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanelAsset();", true);
-
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hideScript", "hidePanel();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hideScript", "hidePanel();", true);
             }
         }
     }
