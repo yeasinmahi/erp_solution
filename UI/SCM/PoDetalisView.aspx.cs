@@ -164,7 +164,7 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
-        
+
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnDownload_Click", null);
@@ -186,7 +186,7 @@ namespace UI.SCM
                 Response.ContentType = "image/jpeg";
                 Response.AddHeader("Content-Disposition", "attachment; filename=PO.jpg");
                 Response.Buffer = true;
-                
+
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.BinaryWrite(bytes);
 
@@ -203,7 +203,7 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
-        
+
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
             //Application mApp = new Application();
@@ -275,16 +275,37 @@ namespace UI.SCM
             }
             catch (Exception e)
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('"+e.Message+"')", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + e.Message + "')", true);
             }
-            
+
             //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
             //Utility.FileHelper.DeleteFile(filePath);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
         }
 
-        
+        public byte[] GetBytes()
+        {
+            try
+            {
+                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                byte[] bytes = Convert.FromBase64String(base64);
+                return bytes;
+                //using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))
+                //{
+                //    ms.Write(bytes, 0, bytes.Length);
+                //    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                //    image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                //    imgAttachment.ImageUrl = "~/SCM/Data/PO.Bmp";
+                //}
+            }
+            catch (Exception e)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + e.Message + "')", true);
+                return new byte[0];
+            }
+        }
+
         protected void btnSent_OnClick(object sender, EventArgs e)
         {
             EmailOptions options = new EmailOptions
@@ -295,27 +316,26 @@ namespace UI.SCM
                 Subject = txtSubject.Text,
                 ToAddressDisplayName = "Purchase Order",
                 Body = Regex.Replace(txtBody.Text, @"\r\n?|\n", "<br>"),
-                Attachment = new List<string>()
+                Attachments = new List<EmailAttachment>()
             };
             options.ToAddress = Email.GetMaiListFromString(txtReceipentEmail.Text, out string message);
             if (options.ToAddress == null)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('"+message+"','Purchase Order','error')", true);
+                    "ShowNotification('" + message + "','Purchase Order','error')", true);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
                 return;
             }
             options.CcAddress = Email.GetMaiListFromString(txtCc.Text, out message) ?? new List<string>();
             options.BccAddress = Email.GetMaiListFromString(txtBcc.Text, out message) ?? new List<string>();
-            string  userEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
+            string userEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
             options.BccAddress.Add(userEmail);
             if (!string.IsNullOrWhiteSpace(_filePath))
             {
-                if (Utility.FileHelper.IsExist(_filePath))
-                {
-                    options.Attachment.Add(_filePath);
-                }
-                
+                EmailAttachment attachment = new EmailAttachment();
+                attachment.Bytes = GetBytes();
+                attachment.FileName = Path.GetFileName(_filePath);
+                options.Attachments.Add(attachment);
             }
             if (Email.SendEmail(options))
             {
@@ -325,20 +345,20 @@ namespace UI.SCM
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('" + options.Exception?.Message + "','Purchase Order','error')", true);
+                    "ShowNotification('" + options.Exceptions?.Message + "','Purchase Order','error')", true);
             }
-            try
-            {
-                foreach (string filePath in options.Attachment)
-                {
-                    Utility.FileHelper.DeleteFile(filePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + ex.Message + "')", true);
-            }
-            
+            //try
+            //{
+            //    foreach (string filePath in options.Attachment)
+            //    {
+            //        Utility.FileHelper.DeleteFile(filePath);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + ex.Message + "')", true);
+            //}
+
 
         }
     }

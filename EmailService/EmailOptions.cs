@@ -12,7 +12,7 @@ namespace EmailService
         public string ToAddressDisplayName { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public List<string> Attachment { get; set; }
-        public Exception Exception { get; set; }
+        public List<EmailAttachment> Attachments { get; set; }
+        public Exception Exceptions { get; set; }
     }
 }

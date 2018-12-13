@@ -51,5 +51,6 @@ namespace UI.Vat
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowReport('" + ddlVatAcc.SelectedValue.ToString() + "','" + txtFromDte.Text + "','" + txtDteTo.Text + "','" + ddlType.SelectedValue.ToString() + "');", true);
             }
         }
+
     }
 }

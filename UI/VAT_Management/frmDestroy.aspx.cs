@@ -307,7 +307,7 @@ namespace UI.VAT_Management
             ItemName = (arrayKeyItem[0].ToString());
             intitemid = Int32.Parse(arrayKeyItem[1].ToString());
             hdnitemid.Value = arrayKeyItem[1].ToString();
-            dt = objCreditBll.getMatrialList(intitemid,1,DateTime.Now);
+            dt = objCreditBll.getMatrialList(intitemid,int.Parse(ddlMushoktype.SelectedValue.ToString()), DateTime.Now);
             ddlMaterialList.DataTextField = "strMaterialName";
             ddlMaterialList.DataValueField = "intvatMaterialID";
             ddlMaterialList.DataSource = dt;
