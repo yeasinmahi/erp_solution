@@ -101,7 +101,7 @@ namespace UI.Asset
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanelJoB();", true);
                 int jobCard = Convert.ToInt32(txtJobCard.Text);
-                //msg = objasset.UpdateAssetMaintenanceUnitByJobCard(unit, jobStation, jobCard);
+                msg = objasset.UpdateAssetMaintenanceUnitByJobCard(unit, jobStation, jobCard);
             }
             else if(type =="Bill")
             {
@@ -111,7 +111,7 @@ namespace UI.Asset
                 {
                     AssetCode = Convert.ToString(arrayKey[3].ToString());
                 }
-                //msg = objasset.UpdateFixedAssetRegisterUnit(unit, AssetCode);
+                msg = objasset.UpdateFixedAssetRegisterUnit(unit, AssetCode);
             }
             
             
