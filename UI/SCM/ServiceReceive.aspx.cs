@@ -358,10 +358,15 @@ namespace UI.SCM
 
                     }
 
+                    else
+                    {
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('');", true);
+                    }
                 }
                 intWh = int.Parse(ddlWH.SelectedValue);
                 dt = obj.DataView(17, xmlString, intWh, intPo, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                if(dt.Rows.Count>0 && lblSuppliyer.Text.Length>2)
                 {
                     dgvMrr.DataSource = dt;
                     dgvMrr.DataBind();
