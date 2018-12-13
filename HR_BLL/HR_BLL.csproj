@@ -178,6 +178,7 @@
     <Compile Include="Reports\EmpSalaryStatement.cs" />
     <Compile Include="Reports\OverTimeReport.cs" />
     <Compile Include="Reports\SalaryReportInfo.cs" />
+    <Compile Include="Roster\RosterBll.cs" />
     <Compile Include="Salary\SalaryInfo.cs" />
     <Compile Include="Settlement\GlobalClass.cs" />
     <Compile Include="Settlement\HRClass.cs" />

@@ -538,6 +538,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalaryReports_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Roster\RosterTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RosterTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Salary\SalaryInfoTDS1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1467,6 +1472,17 @@
     </None>
     <None Include="Reports\SalaryReports_TDS.xss">
       <DependentUpon>SalaryReports_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Roster\RosterTDS.xsc">
+      <DependentUpon>RosterTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Roster\RosterTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RosterTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Roster\RosterTDS.xss">
+      <DependentUpon>RosterTDS.xsd</DependentUpon>
     </None>
     <None Include="Salary\SalaryInfoTDS.xsc">
       <DependentUpon>SalaryInfoTDS.xsd</DependentUpon>

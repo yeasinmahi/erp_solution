@@ -30,6 +30,7 @@ namespace UI.Vat
                 DataTable ds = new DataTable();
                 PartyBill vat = new PartyBill();
                 ds = vat.GetCurrentRegister(int.Parse(ddlVatAcc.SelectedValue.ToString()), frmdte, todte, type);
+               
                 //if (ds.Rows.Count > 0)
                 {
                     dgvcurrentregister.DataSource = ds;
@@ -50,5 +51,6 @@ namespace UI.Vat
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowReport('" + ddlVatAcc.SelectedValue.ToString() + "','" + txtFromDte.Text + "','" + txtDteTo.Text + "','" + ddlType.SelectedValue.ToString() + "');", true);
             }
         }
+
     }
 }

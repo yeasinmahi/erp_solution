@@ -167,13 +167,13 @@ namespace UI.HR.Overtime
                     Session["obj"] = null;
                     GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                        "ShowNotification('" + message + "','OverTime','success')", true);
+                        "ShowNotification(\"" + message + "\",'OverTime','success')", true);
                     LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                 }
                 else
                 {
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                        "ShowNotification('" + message + "','OverTime','error')", true);
+                        "ShowNotification(\"" + message + "\",'OverTime','error')", true);
                 }
             }
             else
@@ -259,7 +259,7 @@ namespace UI.HR.Overtime
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + ex.Message + "','OverTime','error')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + ex.Message + "\",'OverTime','error')", true);
             }
 
         }
@@ -267,7 +267,7 @@ namespace UI.HR.Overtime
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','error')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
             }
         }
 
@@ -345,12 +345,12 @@ namespace UI.HR.Overtime
             if (!message.Contains("Sucessfully"))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','error')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
                 return;
             }
             int empId = Convert.ToInt32(txtEnrollUpdate.Text);
             LoadOverTimeDetailsGridView(empId);
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification('" + message + "','OverTime','success')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','success')", true);
         }
     }
 }

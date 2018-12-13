@@ -13,6 +13,10 @@ namespace Utility
             }
             return true;
         }
+        public static bool IsExist(string fileName)
+        {
+            return File.Exists(fileName);
+        }
         public static bool DeleteFolder(string path)
         {
             Directory.Delete(path, true);

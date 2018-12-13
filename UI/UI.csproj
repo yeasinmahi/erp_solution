@@ -74,15 +74,9 @@
       <HintPath>..\..\TFSBackup\2018-5-10-1\TFS2018ERP\UI\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>bin\Microsoft.Office.Interop.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Libray\Microsoft.Office.Interop.Outlook.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
@@ -253,6 +247,7 @@
     <Content Include="Asset\AssetManualRegistration.aspx" />
     <Content Include="Asset\AssetParkingRegistration.aspx" />
     <Content Include="Asset\AssetProfile_UI.aspx" />
+    <Content Include="Asset\AssetRegisterReport.aspx" />
     <Content Include="Asset\AssetRegisterUpdate.aspx" />
     <Content Include="Asset\AssetReportDetalis_UI.aspx" />
     <Content Include="Asset\AssetTransaction.aspx" />
@@ -271,13 +266,16 @@
     <Content Include="Asset\MaintenanceReport.aspx" />
     <Content Include="Asset\MaintenancePendingRequest.aspx" />
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
+    <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
+    <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
     <Content Include="Asset\ServiceConfigurePopUp.aspx" />
     <Content Include="Asset\VehicleInfoUpdate_UI.aspx" />
     <Content Include="Asset\Vehicle_Bill_Detalis_PopUp.aspx" />
     <Content Include="Asset\Vehicle_Maintenance_Bill.aspx" />
+    <Content Include="Asset\Vehicle_maintenance_repport.aspx" />
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
@@ -300,6 +298,7 @@
     <Content Include="Content\images\img\533.png" />
     <Content Include="Content\images\img\90.png" />
     <Content Include="Content\JS\analytics.js" />
+    <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
@@ -382,6 +381,7 @@
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
+    <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
@@ -411,7 +411,6 @@
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
-    <Content Include="Libray\Microsoft.Office.Interop.Outlook.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.Common.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.DataVisualization.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.Design.dll" />
@@ -435,6 +434,7 @@
     <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
     <Content Include="Other\ImageViewer.aspx" />
+    <Content Include="Other\PdfViewer.aspx" />
     <Content Include="Other\Practice.aspx" />
     <Content Include="PaymentModule\AllApprovedBillReport.aspx" />
     <Content Include="PaymentModule\ApproveSingle.aspx" />
@@ -1240,6 +1240,7 @@
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
+    <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
@@ -1395,6 +1396,7 @@
     <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
+    <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
@@ -2366,6 +2368,13 @@
     <Compile Include="Asset\AssetProfile_UI.aspx.designer.cs">
       <DependentUpon>AssetProfile_UI.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\AssetRegisterReport.aspx.cs">
+      <DependentUpon>AssetRegisterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\AssetRegisterReport.aspx.designer.cs">
+      <DependentUpon>AssetRegisterReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\AssetRegisterUpdate.aspx.cs">
       <DependentUpon>AssetRegisterUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2488,6 +2497,13 @@
     <Compile Include="Asset\MaintenanceWorkOrderPopUp.aspx.designer.cs">
       <DependentUpon>MaintenanceWorkOrderPopUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\Maintenance_Service_Cost_Update.aspx.cs">
+      <DependentUpon>Maintenance_Service_Cost_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Service_Cost_Update.aspx.designer.cs">
+      <DependentUpon>Maintenance_Service_Cost_Update.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\PMSchedule.aspx.cs">
       <DependentUpon>PMSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2501,6 +2517,13 @@
     </Compile>
     <Compile Include="Asset\PMScheduleServicePopUp.aspx.designer.cs">
       <DependentUpon>PMScheduleServicePopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.cs">
+      <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.designer.cs">
+      <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\ServiceConfiguration.aspx.cs">
       <DependentUpon>ServiceConfiguration.aspx</DependentUpon>
@@ -2536,6 +2559,13 @@
     </Compile>
     <Compile Include="Asset\Vehicle_Maintenance_Bill.aspx.designer.cs">
       <DependentUpon>Vehicle_Maintenance_Bill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Vehicle_maintenance_repport.aspx.cs">
+      <DependentUpon>Vehicle_maintenance_repport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Vehicle_maintenance_repport.aspx.designer.cs">
+      <DependentUpon>Vehicle_maintenance_repport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\WorkOrderPartsPopUp.aspx.cs">
       <DependentUpon>WorkOrderPartsPopUp.aspx</DependentUpon>
@@ -2985,6 +3015,13 @@
     <Compile Include="HR\Reports\PaySlipReport.aspx.designer.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Roster\RosterAdd.aspx.cs">
+      <DependentUpon>RosterAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Roster\RosterAdd.aspx.designer.cs">
+      <DependentUpon>RosterAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
       <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3218,6 +3255,13 @@
     </Compile>
     <Compile Include="Other\ImageViewer.aspx.designer.cs">
       <DependentUpon>ImageViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Other\PdfViewer.aspx.cs">
+      <DependentUpon>PdfViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Other\PdfViewer.aspx.designer.cs">
+      <DependentUpon>PdfViewer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Other\Practice.aspx.cs">
       <DependentUpon>Practice.aspx</DependentUpon>
@@ -6269,6 +6313,13 @@
     <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.designer.cs">
       <DependentUpon>Area_vs_Item.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx.cs">
+      <DependentUpon>Audit_Report_For_DO_and_Challan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx.designer.cs">
+      <DependentUpon>Audit_Report_For_DO_and_Challan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7339,6 +7390,13 @@
     </Compile>
     <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
       <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Item_Wise_PO_Issued.aspx.cs">
+      <DependentUpon>Item_Wise_PO_Issued.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Item_Wise_PO_Issued.aspx.designer.cs">
+      <DependentUpon>Item_Wise_PO_Issued.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MaterialApprovalStatus.aspx.cs">
       <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
@@ -8740,6 +8798,10 @@
       <Project>{0ac1b655-b9e7-4ef5-a0f4-6bb849ce6793}</Project>
       <Name>Budget_BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmailService\EmailService.csproj">
+      <Project>{019e8b20-0e8c-47ab-886d-4e98bee882e8}</Project>
+      <Name>EmailService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flogging.Core\Flogging.Core.csproj">
       <Project>{ebe464da-6c54-4f40-a82c-debcebe09ed1}</Project>
       <Name>Flogging.Core</Name>
@@ -8860,6 +8922,15 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
