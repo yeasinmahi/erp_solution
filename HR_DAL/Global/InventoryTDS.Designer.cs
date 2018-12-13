@@ -3695,6 +3695,12 @@ namespace HR_DAL.Global {
             
             private global::System.Data.DataColumn columnUom;
             
+            private global::System.Data.DataColumn columndriverName;
+            
+            private global::System.Data.DataColumn columncontact;
+            
+            private global::System.Data.DataColumn columnvehicle;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprGatepassInformationDataTable() {
@@ -3826,6 +3832,30 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn driverNameColumn {
+                get {
+                    return this.columndriverName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn contactColumn {
+                get {
+                    return this.columncontact;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn vehicleColumn {
+                get {
+                    return this.columnvehicle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3861,7 +3891,7 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGatepassInformationRow AddSprGatepassInformationRow(int RId, string Code, string FAddress, string TAddress, string Status_, string Print_, System.DateTime CDate, string Description_, string Remarks, int Quantity, string Messages, string Uom) {
+            public SprGatepassInformationRow AddSprGatepassInformationRow(int RId, string Code, string FAddress, string TAddress, string Status_, string Print_, System.DateTime CDate, string Description_, string Remarks, int Quantity, string Messages, string Uom, string driverName, string contact, string vehicle) {
                 SprGatepassInformationRow rowSprGatepassInformationRow = ((SprGatepassInformationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RId,
@@ -3875,7 +3905,10 @@ namespace HR_DAL.Global {
                         Remarks,
                         Quantity,
                         Messages,
-                        Uom};
+                        Uom,
+                        driverName,
+                        contact,
+                        vehicle};
                 rowSprGatepassInformationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprGatepassInformationRow);
                 return rowSprGatepassInformationRow;
@@ -3910,6 +3943,9 @@ namespace HR_DAL.Global {
                 this.columnQuantity = base.Columns["Quantity"];
                 this.columnMessages = base.Columns["Messages"];
                 this.columnUom = base.Columns["Uom"];
+                this.columndriverName = base.Columns["driverName"];
+                this.columncontact = base.Columns["contact"];
+                this.columnvehicle = base.Columns["vehicle"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3939,6 +3975,12 @@ namespace HR_DAL.Global {
                 base.Columns.Add(this.columnMessages);
                 this.columnUom = new global::System.Data.DataColumn("Uom", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUom);
+                this.columndriverName = new global::System.Data.DataColumn("driverName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndriverName);
+                this.columncontact = new global::System.Data.DataColumn("contact", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncontact);
+                this.columnvehicle = new global::System.Data.DataColumn("vehicle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnvehicle);
                 this.columnCode.MaxLength = 15;
                 this.columnFAddress.MaxLength = 250;
                 this.columnTAddress.MaxLength = 900;
@@ -3948,6 +3990,9 @@ namespace HR_DAL.Global {
                 this.columnRemarks.MaxLength = 550;
                 this.columnMessages.MaxLength = 900;
                 this.columnUom.MaxLength = 250;
+                this.columndriverName.MaxLength = 50;
+                this.columncontact.MaxLength = 50;
+                this.columnvehicle.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10844,6 +10889,54 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string driverName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprGatepassInformation.driverNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'driverName\' in table \'SprGatepassInformation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprGatepassInformation.driverNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string contact {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprGatepassInformation.contactColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'contact\' in table \'SprGatepassInformation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprGatepassInformation.contactColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string vehicle {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprGatepassInformation.vehicleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'vehicle\' in table \'SprGatepassInformation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprGatepassInformation.vehicleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsRIdNull() {
                 return this.IsNull(this.tableSprGatepassInformation.RIdColumn);
             }
@@ -10984,6 +11077,42 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetUomNull() {
                 this[this.tableSprGatepassInformation.UomColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdriverNameNull() {
+                return this.IsNull(this.tableSprGatepassInformation.driverNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdriverNameNull() {
+                this[this.tableSprGatepassInformation.driverNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IscontactNull() {
+                return this.IsNull(this.tableSprGatepassInformation.contactColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetcontactNull() {
+                this[this.tableSprGatepassInformation.contactColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsvehicleNull() {
+                return this.IsNull(this.tableSprGatepassInformation.vehicleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetvehicleNull() {
+                this[this.tableSprGatepassInformation.vehicleColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16798,6 +16927,9 @@ WHERE mid.intPOID=@poid AND mid.intQcByID =@enroll GROUP BY mid.intItemID, mid.s
             tableMapping.ColumnMappings.Add("Quantity", "Quantity");
             tableMapping.ColumnMappings.Add("Messages", "Messages");
             tableMapping.ColumnMappings.Add("Uom", "Uom");
+            tableMapping.ColumnMappings.Add("driverName", "driverName");
+            tableMapping.ColumnMappings.Add("contact", "contact");
+            tableMapping.ColumnMappings.Add("vehicle", "vehicle");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
