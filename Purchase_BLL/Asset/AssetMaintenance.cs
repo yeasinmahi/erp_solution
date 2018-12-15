@@ -930,24 +930,24 @@ namespace Purchase_BLL.Asset
             }
             catch(Exception ex) { return msg = ex.Message.ToString(); }
         }
-        public string UpdateFixedAssetRegisterUnit(int unit,int jobcard)
+        public string UpdateFixedAssetRegisterUnit(int unit,string assetCode)
         {
             string msg = "";
             try
             {
                 TblFixedAssetRegisterTableAdapter adp = new TblFixedAssetRegisterTableAdapter();
-                adp.UpdateFixedAssetRegUnit(unit,jobcard);
+                adp.UpdateFixedAssetRegUnit(unit, assetCode);
                 return msg = "Unit Updated Successfully";
             }
             catch (Exception ex) { return msg = ex.Message.ToString(); }
         }
-        public string UpdateAssetMaintenanceUnitByJobCard(int unit, int jobcard)
+        public string UpdateAssetMaintenanceUnitByJobCard(int unit,int jobstation, int jobcard)
         {
             string msg = "";
             try
             {
                 TblAssetMaintenanceTableAdapter adp = new TblAssetMaintenanceTableAdapter();
-                adp.UpdateAssetUnitByJobCard(unit, jobcard);
+                adp.UpdateAssetUnitByJobCard(unit,jobstation, jobcard);
                 return msg = "Unit Updated Successfully";
             }
             catch (Exception ex) { return msg = ex.Message.ToString(); }

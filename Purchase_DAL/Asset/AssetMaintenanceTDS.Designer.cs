@@ -28516,10 +28516,11 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "update erp_asset.dbo.tblAssetMaintenance set intBillUnit=@unit where intMaintenan" +
-                "ceNo=@jobCard";
+            this._commandCollection[0].CommandText = "UPDATE       tblAssetMaintenance\r\nSET                intBillUnit = @unit, intBill" +
+                "Jobstation = @jobstation\r\nWHERE        (intMaintenanceNo = @jobCard)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBillUnit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobstation", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBillJobstation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobCard", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMaintenanceNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -28527,7 +28528,7 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblAssetMaintenanceDataTable UpdateAssetUnitByJobCard(global::System.Nullable<int> unit, int jobCard) {
+        public virtual AssetMaintenanceTDS.TblAssetMaintenanceDataTable UpdateAssetUnitByJobCard(global::System.Nullable<int> unit, global::System.Nullable<int> jobstation, int jobCard) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((unit.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unit.Value));
@@ -28535,7 +28536,13 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(jobCard));
+            if ((jobstation.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(jobstation.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(jobCard));
             AssetMaintenanceTDS.TblAssetMaintenanceDataTable dataTable = new AssetMaintenanceTDS.TblAssetMaintenanceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
