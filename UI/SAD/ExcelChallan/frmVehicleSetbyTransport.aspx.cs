@@ -217,8 +217,9 @@ namespace UI.SAD.ExcelChallan
 
                 for (int index = 0; index < dgvExcelOrder.Rows.Count; index++)
                 {
-                    if (((CheckBox)dgvExcelOrder.Rows[index].Cells[0].Controls[0]).Checked)
+                    if (((CheckBox)dgvExcelOrder.Rows[index].Cells[1].Controls[0]).Checked)
                     {
+
                          Custid =int.Parse(((Label)dgvExcelOrder.Rows[index].FindControl("lblCustid")).Text.ToString());
                          objExcel.Insertvehicle(Custid, intshipid, vid, vno, empid, VSupplierName); 
                     }
@@ -226,6 +227,7 @@ namespace UI.SAD.ExcelChallan
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
                 dgvExcelOrder.DataBind();
             }
+
 
             }
             catch (Exception ex)

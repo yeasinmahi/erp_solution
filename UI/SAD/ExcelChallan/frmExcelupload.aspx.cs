@@ -15,6 +15,9 @@ using SAD_BLL;
 using SAD_BLL.AutoChallan;
 using Flogging.Core;
 using GLOBAL_BLL;
+using System.Web.Services;
+using System.Web.Script.Services;
+using SAD_BLL.Item;
 
 namespace UI.SAD.ExcelChallan
 {
@@ -23,10 +26,10 @@ namespace UI.SAD.ExcelChallan
         DataTable dt; int Custid;
         ExcelDataBLL objExcel = new ExcelDataBLL();
         SeriLog log = new SeriLog();
-        string location = "SAD";
+        string location = "SAD", msg;
         string start = "starting SAD\\ExcelChallan\\frmExcelupload";
         string stop = "stopping SAD\\ExcelChallan\\frmExcelupload";
-
+        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -46,6 +49,14 @@ namespace UI.SAD.ExcelChallan
                 ddlOfficeName.DataBind();
                 dt.Clear();
             }
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] CustomerSearch(string prefixText, int count = 0)
+        {
+            ItemPromotion objPromotion = new ItemPromotion();
+            return objPromotion.GetCstomer(prefixText);
+
         }
         protected void btnDataView_Click(object sender, EventArgs e)
         {
@@ -97,11 +108,7 @@ namespace UI.SAD.ExcelChallan
                 fd.Product, fd.Layer);
             try
             {
-                dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
-            dgvSlip.DataSource = dt;
-            dgvSlip.DataBind();
-            dgvSlip.Visible = true;
-            dgvExcelOrder.Visible = false;
+                getOrderView();
             }
             catch (Exception ex)
             {
@@ -113,6 +120,15 @@ namespace UI.SAD.ExcelChallan
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        private void getOrderView()
+        {
+            dt = objExcel.getLoadingSlipView(int.Parse(ddlshippoint.SelectedValue));
+            dgvSlip.DataSource = dt;
+            dgvSlip.DataBind();
+            dgvSlip.Visible = true;
+            dgvExcelOrder.Visible = false;
         }
 
         protected void dgvExcelOrder_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -217,6 +233,98 @@ namespace UI.SAD.ExcelChallan
 
             objExcel.getOrderdelete();
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
+        }
+
+       
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelupload  Order Upload ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+              
+                char[] delimiterChars = { '^' };
+                string temp1 = ((Button)sender).CommandArgument.ToString();
+                string temp = temp1.Replace("'", " ");
+                string[] searchKey = temp.Split(delimiterChars);
+                Custid = int.Parse(searchKey[0].ToString());
+               
+
+                foreach (GridViewRow gridviewrow in dgvExcelOrder.Rows)
+                {
+                    if (Convert.ToString(((TextBox)gridviewrow.FindControl("txtAllQuantity"))) != "")
+                    {
+                        msg = ((TextBox)gridviewrow.FindControl("txtAllQuantity")).Text;
+                       
+                    }
+                }
+                if ((Custid > 0) && (msg != ""))
+                {
+                    objExcel.getOrderUpload(Custid, msg, int.Parse(ddlshippoint.SelectedValue), int.Parse(ddlOfficeName.SelectedValue), int.Parse(Session[SessionParams.USER_ID].ToString()));
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
+
+                    LoadingSlip();
+                }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
+        protected void btnuploadSingle_Click(object sender, EventArgs e)
+        {
+            var fd = log.GetFlogDetail(start, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on  SAD\\ExcelChallan\\frmExcelupload  Order Upload ", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+
+                char[] delimiterCharss = { '[', ']' };
+                if (txtCustomer.Text != "")
+                {
+
+                    arrayKeyItem = txtCustomer.Text.Split(delimiterCharss);
+                    Custid = int.Parse(arrayKeyItem[1].ToString());
+                }
+                else { Custid = int.Parse("0"); }
+              
+
+                msg = txtPQty.Text;
+                if ((Custid > 0) && (msg != ""))
+                {
+                    objExcel.getOrderUpload(Custid, msg, int.Parse(ddlshippoint.SelectedValue), int.Parse(ddlOfficeName.SelectedValue), int.Parse(Session[SessionParams.USER_ID].ToString()));
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
+                    txtCustomer.Text = "";
+                    txtPQty.Text = "";
+                    getReport();
+                }
+                  //  LoadingSlip();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Submit", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }
