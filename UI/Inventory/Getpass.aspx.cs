@@ -55,7 +55,9 @@ namespace UI.Inventory
                 if (hdnconfirm.Value == "1")
                 {
                     string dt = DateTime.Parse(txtDate.Text).ToString("yyyy-MM-dd");
-                    string fadd = txtFromAddress.Text; string tadd = ""; string taddid = "";
+                    string fadd = txtFromAddress.Text;
+                    string tadd = "";
+                    string taddid = "";
                    
                     if (chkOther.Checked == false)
                     {
@@ -81,10 +83,19 @@ namespace UI.Inventory
                     string contactNumber = txtContact.Text;
                     string vehicleNumber = txtVehicle.Text;
                     string isrtn = "0";
-                    if (chkRtn.Checked == true) { isrtn = "1"; }
+                    if (chkRtn.Checked)
+                    {
+                        isrtn = "1";
+                    }
                     CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber);
-                    txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); txtItem.Text = ""; txtQuantity.Text = "0.0000"; 
-                    txtRemarks.Text = ""; txtUom.Text = "";
+                    txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    txtItem.Text = string.Empty;
+                    txtDriverName.Text = string.Empty;
+                    txtContact.Text = string.Empty;
+                    txtVehicle.Text = string.Empty;
+                    txtQuantity.Text = @"0.0000"; 
+                    txtRemarks.Text = string.Empty;
+                    txtUom.Text = string.Empty;
                 }
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
