@@ -3691,8 +3691,6 @@ namespace HR_DAL.Global {
             
             private global::System.Data.DataColumn columnQuantity;
             
-            private global::System.Data.DataColumn columnMessages;
-            
             private global::System.Data.DataColumn columnUom;
             
             private global::System.Data.DataColumn columndriverName;
@@ -3700,6 +3698,8 @@ namespace HR_DAL.Global {
             private global::System.Data.DataColumn columncontact;
             
             private global::System.Data.DataColumn columnvehicle;
+            
+            private global::System.Data.DataColumn columnMessages;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3816,14 +3816,6 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn MessagesColumn {
-                get {
-                    return this.columnMessages;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn UomColumn {
                 get {
                     return this.columnUom;
@@ -3851,6 +3843,14 @@ namespace HR_DAL.Global {
             public global::System.Data.DataColumn vehicleColumn {
                 get {
                     return this.columnvehicle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MessagesColumn {
+                get {
+                    return this.columnMessages;
                 }
             }
             
@@ -3891,7 +3891,7 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprGatepassInformationRow AddSprGatepassInformationRow(int RId, string Code, string FAddress, string TAddress, string Status_, string Print_, System.DateTime CDate, string Description_, string Remarks, int Quantity, string Messages, string Uom, string driverName, string contact, string vehicle) {
+            public SprGatepassInformationRow AddSprGatepassInformationRow(int RId, string Code, string FAddress, string TAddress, string Status_, string Print_, System.DateTime CDate, string Description_, string Remarks, decimal Quantity, string Uom, string driverName, string contact, string vehicle, string Messages) {
                 SprGatepassInformationRow rowSprGatepassInformationRow = ((SprGatepassInformationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RId,
@@ -3904,11 +3904,11 @@ namespace HR_DAL.Global {
                         Description_,
                         Remarks,
                         Quantity,
-                        Messages,
                         Uom,
                         driverName,
                         contact,
-                        vehicle};
+                        vehicle,
+                        Messages};
                 rowSprGatepassInformationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprGatepassInformationRow);
                 return rowSprGatepassInformationRow;
@@ -3941,11 +3941,11 @@ namespace HR_DAL.Global {
                 this.columnDescription_ = base.Columns["Description_"];
                 this.columnRemarks = base.Columns["Remarks"];
                 this.columnQuantity = base.Columns["Quantity"];
-                this.columnMessages = base.Columns["Messages"];
                 this.columnUom = base.Columns["Uom"];
                 this.columndriverName = base.Columns["driverName"];
                 this.columncontact = base.Columns["contact"];
                 this.columnvehicle = base.Columns["vehicle"];
+                this.columnMessages = base.Columns["Messages"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3969,10 +3969,8 @@ namespace HR_DAL.Global {
                 base.Columns.Add(this.columnDescription_);
                 this.columnRemarks = new global::System.Data.DataColumn("Remarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemarks);
-                this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuantity);
-                this.columnMessages = new global::System.Data.DataColumn("Messages", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMessages);
                 this.columnUom = new global::System.Data.DataColumn("Uom", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUom);
                 this.columndriverName = new global::System.Data.DataColumn("driverName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3981,6 +3979,8 @@ namespace HR_DAL.Global {
                 base.Columns.Add(this.columncontact);
                 this.columnvehicle = new global::System.Data.DataColumn("vehicle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvehicle);
+                this.columnMessages = new global::System.Data.DataColumn("Messages", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMessages);
                 this.columnCode.MaxLength = 15;
                 this.columnFAddress.MaxLength = 250;
                 this.columnTAddress.MaxLength = 900;
@@ -3988,11 +3988,11 @@ namespace HR_DAL.Global {
                 this.columnPrint_.MaxLength = 500;
                 this.columnDescription_.MaxLength = 550;
                 this.columnRemarks.MaxLength = 550;
-                this.columnMessages.MaxLength = 900;
                 this.columnUom.MaxLength = 250;
                 this.columndriverName.MaxLength = 50;
                 this.columncontact.MaxLength = 50;
                 this.columnvehicle.MaxLength = 50;
+                this.columnMessages.MaxLength = 900;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10841,10 +10841,10 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Quantity {
+            public decimal Quantity {
                 get {
                     try {
-                        return ((int)(this[this.tableSprGatepassInformation.QuantityColumn]));
+                        return ((decimal)(this[this.tableSprGatepassInformation.QuantityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Quantity\' in table \'SprGatepassInformation\' is DBNull.", e);
@@ -10852,22 +10852,6 @@ namespace HR_DAL.Global {
                 }
                 set {
                     this[this.tableSprGatepassInformation.QuantityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Messages {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprGatepassInformation.MessagesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Messages\' in table \'SprGatepassInformation\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprGatepassInformation.MessagesColumn] = value;
                 }
             }
             
@@ -10932,6 +10916,22 @@ namespace HR_DAL.Global {
                 }
                 set {
                     this[this.tableSprGatepassInformation.vehicleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Messages {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprGatepassInformation.MessagesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Messages\' in table \'SprGatepassInformation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprGatepassInformation.MessagesColumn] = value;
                 }
             }
             
@@ -11057,18 +11057,6 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsMessagesNull() {
-                return this.IsNull(this.tableSprGatepassInformation.MessagesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetMessagesNull() {
-                this[this.tableSprGatepassInformation.MessagesColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsUomNull() {
                 return this.IsNull(this.tableSprGatepassInformation.UomColumn);
             }
@@ -11113,6 +11101,18 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetvehicleNull() {
                 this[this.tableSprGatepassInformation.vehicleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsMessagesNull() {
+                return this.IsNull(this.tableSprGatepassInformation.MessagesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetMessagesNull() {
+                this[this.tableSprGatepassInformation.MessagesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16925,11 +16925,11 @@ WHERE mid.intPOID=@poid AND mid.intQcByID =@enroll GROUP BY mid.intItemID, mid.s
             tableMapping.ColumnMappings.Add("Description_", "Description_");
             tableMapping.ColumnMappings.Add("Remarks", "Remarks");
             tableMapping.ColumnMappings.Add("Quantity", "Quantity");
-            tableMapping.ColumnMappings.Add("Messages", "Messages");
             tableMapping.ColumnMappings.Add("Uom", "Uom");
             tableMapping.ColumnMappings.Add("driverName", "driverName");
             tableMapping.ColumnMappings.Add("contact", "contact");
             tableMapping.ColumnMappings.Add("vehicle", "vehicle");
+            tableMapping.ColumnMappings.Add("Messages", "Messages");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -16957,8 +16957,7 @@ WHERE mid.intPOID=@poid AND mid.intQcByID =@enroll GROUP BY mid.intItemID, mid.s
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@to", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"Select intRID as RId, cast(dteEntry as date) as CDate, strCode as Code, case when isnull(intApprovedBy, 0)=0 then 'Pending' else 'Approved' end as Status_, 
-	  case when isnull(ysnPrint, 0)=0 then 'Print' else 'Printed' end as Print_ From ERP_Global.dbo.tblGatepass where intEntryBy = @actionby Order by intRID desc";
+            this._commandCollection[1].CommandText = @"SELECT intRID AS RId, CAST(dteEntry AS date) AS CDate, strCode AS Code, CASE WHEN isnull(intApprovedBy , 0) = 0 THEN 'Pending' ELSE 'Approved' END AS Status_, CASE WHEN isnull(ysnPrint , 0) = 0 THEN 'Print' ELSE 'Printed' END AS Print_ FROM tblGatepass WHERE (intEntryBy = @actionby) ORDER BY RId DESC";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionby", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEntryBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

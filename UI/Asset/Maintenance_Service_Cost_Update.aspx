@@ -42,35 +42,55 @@
                                     <asp:Label ID="Label20" runat="server" Text="Job Station Name"></asp:Label>
                                     <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
                                 </div>
-
                                 <div class="col-md-6">
+                                    <asp:Label ID="Label3" runat="server" Text="Type"></asp:Label>
+                                    <asp:DropDownList ID="ddlType" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" AutoPostBack="true">
+                                         <asp:ListItem Text="--Select Type--"></asp:ListItem>
+                                        <asp:ListItem Text="Job"></asp:ListItem>
+                                        <asp:ListItem Text="Bill"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                              
+                            </div>
+                            <div class="row">
+                                 <div class="col-md-6 hidden" id="jobCard">
                                     <asp:Label ID="Label1" runat="server" Text="Job Card No"></asp:Label>
-                                    <asp:TextBox ID="txtJobCard" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Input Job Card No"></asp:TextBox>
+                                    <asp:TextBox ID="txtJobCard" CssClass="form-control col-md-12 col-sm-12 col-xs-12" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" runat="server" placeholder="Insert Job Card No"></asp:TextBox>
+                                </div>
+                                <div class="col-md-6 hidden" id="JobSearch">
+                                    <asp:Label ID="Label4" runat="server" Text="Job Search"></asp:Label>
+                                    <asp:TextBox ID="txtJobSearch" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Search Job"></asp:TextBox>
+                                    <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtJobSearch"
+                                     ServiceMethod="AutoSearchJobStation" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>
+
+                                </div>
+                                <div class="col-md-6 hidden" id="AssetSearch">
+                                    <asp:Label ID="Label5" runat="server" Text="Asset Search"></asp:Label>
+                                    <asp:TextBox ID="txtAssetSearch" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Search Asset"></asp:TextBox>
+                                     <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAssetSearch"
+                                     ServiceMethod="AutoSearchAssetVehicle" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12 btn-toolbar">
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-md form-control pull-right" Text="Show" OnClientClick="return Validate();" OnClick="btnShow_Click" />
+                            <div class="row" style="padding-top:10px;">                              
+                                <div class="col-md-12 btn-toolbar hidden" id="btnshow">
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-md-6 form-control pull-right" Text="Show Service Cost" OnClientClick="return Validate();" OnClick="btnShow_Click" />
+                                </div>
+                                 <div class="col-md-12 btn-toolbar hidden" id="btnupdate">
+                                    <asp:Button ID="btnUnitUpdate" runat="server" CssClass="btn btn-primary btn-md-6 form-control pull-right" Text="Update" OnClick="btnUnitUpdate_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-info hidden" id="itemPanel">
+                    <div class="panel panel-info" id="itemPanel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Service Task" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body">
-                            <div class="form-group" style="padding-bottom:40px">
-
-                                <div class="col-md-6">
-                                    <asp:Label ID="Label2" runat="server" CssClass="col-md-3 col-sm-3 col-xs-3" Text="Billing Unit"></asp:Label>
-                                    <asp:DropDownList ID="ddlUnit" CssClass="form-control col-md-9 col-sm-9 col-xs-9" runat="server" Enabled="True"></asp:DropDownList>
-                                </div>
-                                <div class="col-md-6 btn-toolbar">
-                                    <asp:Button ID="btnUnitUpdate" runat="server" CssClass="btn btn-primary btn-md form-control pull-left" Text="Update" OnClick="btnUnitUpdate_Click" />
-                                </div>
-                            </div>
-                            
                             <asp:GridView ID="gvServiceCostUpdate" runat="server" CellPadding="4" ForeColor="#333333" GridLines="Both" AutoGenerateColumns="False" DataKeyNames="intID" Width="100%">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
@@ -145,6 +165,48 @@
             var itemPanel = document.getElementById("itemPanel");
             itemPanel.classList.remove("hidden");
             return true;
+
+           
+        }
+        function showPanelJoB() {
+            var jobCardid = document.getElementById("jobCard");
+            jobCard.classList.remove("hidden");
+
+            var assetSearch = document.getElementById("AssetSearch");
+            assetSearch.classList.add("hidden");
+
+            var JobSearch = document.getElementById("JobSearch");
+            JobSearch.classList.remove("hidden");
+
+            var show = document.getElementById("btnshow");
+            show.classList.remove("hidden");
+            show.classList.remove("col-md-12");
+            show.classList.add("col-md-6");
+
+            var update = document.getElementById("btnupdate");
+            update.classList.remove("hidden");
+            update.classList.remove("col-md-12");
+            update.classList.add("col-md-6");
+            return true;
+           
+        }
+        function showPanelAsset() {
+            var jobCardid = document.getElementById("jobCard");
+            jobCard.classList.add("hidden");
+
+            var assetSearch = document.getElementById("AssetSearch");
+            assetSearch.classList.remove("hidden");
+
+            var JobSearch = document.getElementById("JobSearch");
+            JobSearch.classList.remove("hidden");
+
+            var show = document.getElementById("btnshow");
+            show.classList.add("hidden");
+
+            var update = document.getElementById("btnupdate");
+            update.classList.remove("hidden");
+            return true;
+           
         }
         function hidePanel() {
             var itemPanel = document.getElementById("itemPanel");
