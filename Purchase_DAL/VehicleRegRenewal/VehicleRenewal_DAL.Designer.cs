@@ -2168,6 +2168,8 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             private global::System.Data.DataColumn columnstrUnit1;
             
+            private global::System.Data.DataColumn columnmonTaxTokenMiscellounes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public UnitandAssetNameDataTable() {
@@ -2411,6 +2413,14 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monTaxTokenMiscellounesColumn {
+                get {
+                    return this.columnmonTaxTokenMiscellounes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2472,7 +2482,8 @@ namespace Purchase_DAL.VehicleRegRenewal {
                         decimal monDRC, 
                         string strItem, 
                         string strVehicleRegisteredTo, 
-                        string strUnit1) {
+                        string strUnit1, 
+                        decimal monTaxTokenMiscellounes) {
                 UnitandAssetNameRow rowUnitandAssetNameRow = ((UnitandAssetNameRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strNameOfAsset,
@@ -2500,7 +2511,8 @@ namespace Purchase_DAL.VehicleRegRenewal {
                         monDRC,
                         strItem,
                         strVehicleRegisteredTo,
-                        strUnit1};
+                        strUnit1,
+                        monTaxTokenMiscellounes};
                 rowUnitandAssetNameRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUnitandAssetNameRow);
                 return rowUnitandAssetNameRow;
@@ -2549,6 +2561,7 @@ namespace Purchase_DAL.VehicleRegRenewal {
                 this.columnstrItem = base.Columns["strItem"];
                 this.columnstrVehicleRegisteredTo = base.Columns["strVehicleRegisteredTo"];
                 this.columnstrUnit1 = base.Columns["strUnit1"];
+                this.columnmonTaxTokenMiscellounes = base.Columns["monTaxTokenMiscellounes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2606,6 +2619,8 @@ namespace Purchase_DAL.VehicleRegRenewal {
                 base.Columns.Add(this.columnstrVehicleRegisteredTo);
                 this.columnstrUnit1 = new global::System.Data.DataColumn("strUnit1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrUnit1);
+                this.columnmonTaxTokenMiscellounes = new global::System.Data.DataColumn("monTaxTokenMiscellounes", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonTaxTokenMiscellounes);
                 this.columnstrNameOfAsset.MaxLength = 250;
                 this.columnstrUnit.MaxLength = 50;
                 this.columnstrItem.MaxLength = 350;
@@ -14811,6 +14826,23 @@ namespace Purchase_DAL.VehicleRegRenewal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monTaxTokenMiscellounes {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUnitandAssetName.monTaxTokenMiscellounesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monTaxTokenMiscellounes\' in table \'UnitandAssetName\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUnitandAssetName.monTaxTokenMiscellounesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrNameOfAssetNull() {
                 return this.IsNull(this.tableUnitandAssetName.strNameOfAssetColumn);
             }
@@ -15107,6 +15139,18 @@ namespace Purchase_DAL.VehicleRegRenewal {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrVehicleRegisteredToNull() {
                 this[this.tableUnitandAssetName.strVehicleRegisteredToColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonTaxTokenMiscellounesNull() {
+                return this.IsNull(this.tableUnitandAssetName.monTaxTokenMiscellounesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonTaxTokenMiscellounesNull() {
+                this[this.tableUnitandAssetName.monTaxTokenMiscellounesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -26997,6 +27041,7 @@ namespace Purchase_DAL.VehicleRegRenewal.VehicleRenewal_DALTableAdapters {
             tableMapping.ColumnMappings.Add("strItem", "strItem");
             tableMapping.ColumnMappings.Add("strVehicleRegisteredTo", "strVehicleRegisteredTo");
             tableMapping.ColumnMappings.Add("strUnit1", "strUnit1");
+            tableMapping.ColumnMappings.Add("monTaxTokenMiscellounes", "monTaxTokenMiscellounes");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -27027,15 +27072,16 @@ namespace Purchase_DAL.VehicleRegRenewal.VehicleRenewal_DALTableAdapters {
                 "ee, dbo.tblBRTAProfile.monRouteLateFine, dbo.tblBRTAProfile.monRootPermiteMisce," +
                 " dbo.tblBRTAProfile.monBodyVatFee, dbo.tblBRTAProfile.monDRC, \r\n                " +
                 "         dbo.tblBRTAProfile.strItem, dbo.tblFixedAssetRegister.strVehicleRegiste" +
-                "redTo , ERP_HR.dbo.tblUnit.strUnit,unt1.strUnit\r\nFROM            dbo.tblBRTAProf" +
-                "ile RIGHT OUTER JOIN\r\n                         dbo.tblFixedAssetRegister ON dbo." +
-                "tblBRTAProfile.intID = dbo.tblFixedAssetRegister.intBRTAVehcielType LEFT OUTER J" +
-                "OIN\r\n                         ERP_HR.dbo.tblUnit ON dbo.tblFixedAssetRegister.in" +
-                "tUNIT = ERP_HR.dbo.tblUnit.intUnitID\r\n\t\t\t\t\t\t join erp_hr.dbo.tblEmployeeJobStati" +
-                "on  on tblFixedAssetRegister.intInUseJobStation=tblEmployeeJobStation.intEmploye" +
-                "eJobStationId\r\n  join erp_hr.dbo.tblUnit as unt1 on unt1.intUnitID=tblEmployeeJo" +
-                "bStation.intUnitID\r\n\r\n\r\nWHERE        (dbo.tblFixedAssetRegister.strAssetID = @as" +
-                "setid) AND (dbo.tblFixedAssetRegister.YsnActive = 1)\r\n\r\n\r\n";
+                "redTo , ERP_HR.dbo.tblUnit.strUnit,unt1.strUnit, dbo.tblBRTAProfile.monTaxTokenM" +
+                "iscellounes\r\nFROM            dbo.tblBRTAProfile RIGHT OUTER JOIN\r\n              " +
+                "           dbo.tblFixedAssetRegister ON dbo.tblBRTAProfile.intID = dbo.tblFixedA" +
+                "ssetRegister.intBRTAVehcielType LEFT OUTER JOIN\r\n                         ERP_HR" +
+                ".dbo.tblUnit ON dbo.tblFixedAssetRegister.intUNIT = ERP_HR.dbo.tblUnit.intUnitID" +
+                "\r\n\t\t\t\t\t\t join erp_hr.dbo.tblEmployeeJobStation  on tblFixedAssetRegister.intInUs" +
+                "eJobStation=tblEmployeeJobStation.intEmployeeJobStationId\r\n  join erp_hr.dbo.tbl" +
+                "Unit as unt1 on unt1.intUnitID=tblEmployeeJobStation.intUnitID\r\n\r\n\r\nWHERE       " +
+                " (dbo.tblFixedAssetRegister.strAssetID = @assetid) AND (dbo.tblFixedAssetRegiste" +
+                "r.YsnActive = 1)\r\n\r\n\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetid", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

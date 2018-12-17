@@ -106,7 +106,7 @@
             <td style="text-align:left;"><asp:TextBox ID="TxtLateFine" runat="server" CssClass="txtBox"  BorderColor="green" Width="190px"></asp:TextBox></td>                                                                                                              
          
                   <td style="text-align:right;"><asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Miscellcuneces" ></asp:Label></td>                  
-            <td style="text-align:left;"><asp:TextBox ID="TxtMiscellcuneces" runat="server" ReadOnly="true" CssClass="txtBox"  BorderColor="Green" Width="190px"></asp:TextBox></td>                                                                                                              
+            <td style="text-align:left;"><asp:TextBox ID="TxtMiscellcuneces" runat="server"  CssClass="txtBox"  BorderColor="Green" Width="190px"></asp:TextBox></td>                                                                                                              
         
                 
                 
