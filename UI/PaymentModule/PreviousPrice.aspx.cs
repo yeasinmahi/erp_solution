@@ -71,6 +71,7 @@ namespace UI.PaymentModule
                     dt = objBillApp.GetPriceListByItemID(intItemID);
                     if (dt.Rows.Count > 0)
                     {
+                       // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Hello');", true);
                         dgvPriceList.DataSource = dt;
                         dgvPriceList.DataBind();
                     }
