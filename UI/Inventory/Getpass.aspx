@@ -194,33 +194,33 @@
                                         <asp:TemplateField HeaderText="Quantity" SortExpression="quantity">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblquantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" Width="55px" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Uom" SortExpression="uom">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUom" runat="server" Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" Width="35px" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Driver Name" SortExpression="uom">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDriverName" runat="server" Text='<%# Bind("driverName") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" Width="35px" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Contact Number" SortExpression="contactNumber">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblContact" runat="server" Text='<%# Bind("contactNumber") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" Width="35px" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Vehicle Number" SortExpression="vehicleNumber">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblVehicle" runat="server" Text='<%# Bind("vehicleNumber") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" Width="35px" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Remarks" SortExpression="remarks">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblremarks" runat="server" Text='<%# Bind("remarks") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" Width="200px" />
+                                            <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
                                         <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
