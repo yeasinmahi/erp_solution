@@ -164,7 +164,20 @@ namespace UI.SCM
             // ends
             tracker.Stop();
 
-        } 
+        }
+
+        protected void lblPreviousAvg_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                Label ItemID = row.FindControl("lblItemId") as Label;
+                int ItemId = int.Parse(ItemID.Text);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewItemDetailsPopup('" + ItemId + "');", true);
+            }
+            catch { }
+        }
 
         #region=============Indent Sumery Tab-1 ==============================
         protected void Tab1_Click(object sender, EventArgs e)
