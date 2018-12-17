@@ -306,6 +306,16 @@ namespace SAD_BLL.AutoChallan
             catch { }
         }
 
+        public void getOrderUpload(int custid, string msg, int Shipid, int officeid, int enroll)
+        {
+            try
+            {
+                sprExcelChallanUploadSingleTableAdapter adp = new sprExcelChallanUploadSingleTableAdapter();
+                adp.GetExcelCopy(custid, msg, Shipid, officeid, enroll);
+            }
+            catch { }
+        }
+
         public void getUpdateSlipnobyCustomer(string slip, int custid)
         {
             try

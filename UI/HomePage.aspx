@@ -4,6 +4,7 @@
 <html  >
 <head id="Head1" runat="server">
     <title>Welcome to Akij Group</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <asp:PlaceHolder ID="PlaceHolder1" runat="server">     
           <%: Scripts.Render("~/Content/Bundle/frmJS") %>
            <%: Scripts.Render("~/Content/Bundle/menuJS") %>

@@ -55,7 +55,9 @@ namespace UI.Inventory
                 if (hdnconfirm.Value == "1")
                 {
                     string dt = DateTime.Parse(txtDate.Text).ToString("yyyy-MM-dd");
-                    string fadd = txtFromAddress.Text; string tadd = ""; string taddid = "";
+                    string fadd = txtFromAddress.Text;
+                    string tadd = "";
+                    string taddid = "";
                    
                     if (chkOther.Checked == false)
                     {
@@ -77,23 +79,35 @@ namespace UI.Inventory
                     string quantity = txtQuantity.Text;
                     string uom = txtUom.Text;
                     string remarks = txtRemarks.Text;
+                    string driverName = txtDriverName.Text;
+                    string contactNumber = txtContact.Text;
+                    string vehicleNumber = txtVehicle.Text;
                     string isrtn = "0";
-                    if (chkRtn.Checked == true) { isrtn = "1"; }
-                    CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn);
-                    txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); txtItem.Text = ""; txtQuantity.Text = "0.0000"; 
-                    txtRemarks.Text = ""; txtUom.Text = "";
+                    if (chkRtn.Checked)
+                    {
+                        isrtn = "1";
+                    }
+                    CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber);
+                    txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    txtItem.Text = string.Empty;
+                    txtDriverName.Text = string.Empty;
+                    txtContact.Text = string.Empty;
+                    txtVehicle.Text = string.Empty;
+                    txtQuantity.Text = @"0.0000"; 
+                    txtRemarks.Text = string.Empty;
+                    txtUom.Text = string.Empty;
                 }
             }
             catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
         }
-        private void CreateXml(string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn)
+        private void CreateXml(string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(xmlpath))
+            if (File.Exists(xmlpath))
             {
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("Getpass");
-                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn);
+                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -101,13 +115,13 @@ namespace UI.Inventory
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("Getpass");
-                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn);
+                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName,contactNumber,vehicleNumber);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(xmlpath); Xml();
         }
-        private XmlNode CreateNode(XmlDocument doc, string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn)
+        private XmlNode CreateNode(XmlDocument doc, string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber)
         {
             XmlNode node = doc.CreateElement("gpdtls");
             XmlAttribute Dt = doc.CreateAttribute("dt");
@@ -128,16 +142,25 @@ namespace UI.Inventory
             Remarks.Value = remarks;
             XmlAttribute Returnable = doc.CreateAttribute("isrtn");
             Returnable.Value = isrtn;
+            XmlAttribute DriverName = doc.CreateAttribute("driverName");
+            DriverName.Value = driverName;
+            XmlAttribute ContactNumber = doc.CreateAttribute("contactNumber");
+            ContactNumber.Value = contactNumber;
+            XmlAttribute VehicleNumber = doc.CreateAttribute("vehicleNumber");
+            VehicleNumber.Value = vehicleNumber;
 
-            node.Attributes.Append(Dt);
-            node.Attributes.Append(Fadd);
-            node.Attributes.Append(Tadd);
-            node.Attributes.Append(Taddid);
-            node.Attributes.Append(Item);
-            node.Attributes.Append(Quantity);
-            node.Attributes.Append(Uom);
-            node.Attributes.Append(Remarks);
-            node.Attributes.Append(Returnable);
+            node.Attributes?.Append(Dt);
+            node.Attributes?.Append(Fadd);
+            node.Attributes?.Append(Tadd);
+            node.Attributes?.Append(Taddid);
+            node.Attributes?.Append(Item);
+            node.Attributes?.Append(Quantity);
+            node.Attributes?.Append(Uom);
+            node.Attributes?.Append(Remarks);
+            node.Attributes?.Append(Returnable);
+            node.Attributes?.Append(DriverName);
+            node.Attributes?.Append(ContactNumber);
+            node.Attributes?.Append(VehicleNumber);
             return node;
         }
         private void Xml()
@@ -148,7 +171,17 @@ namespace UI.Inventory
             xmlString = "<Getpass>" + xmlString + "</Getpass>";
             StringReader sr = new StringReader(xmlString);
             DataSet ds = new DataSet(); ds.ReadXml(sr);
-            if (ds.Tables[0].Rows.Count > 0) { dgv.DataSource = ds; btnSubmit.Visible = true; } else { dgv.DataSource = ""; btnSubmit.Visible = false; } dgv.DataBind();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgv.DataSource = ds;
+                btnSubmit.Visible = true;
+            }
+            else
+            {
+                dgv.DataSource = "";
+                btnSubmit.Visible = false;
+            }
+            dgv.DataBind();
         }
         protected void dgv_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -181,8 +214,15 @@ namespace UI.Inventory
             try
             {
                 dtbl = bll.GetGetpassListByUser(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()));
-                if (dtbl.Rows.Count > 0) { dgvlist.DataSource = dtbl; dgvlist.DataBind(); }
-                else { dgvlist.DataSource = ""; dgvlist.DataBind(); }
+                if (dtbl.Rows.Count > 0)
+                {
+                    dgvlist.DataSource = dtbl;
+                    dgvlist.DataBind();
+                }
+                else
+                {
+                    dgvlist.DataSource = ""; dgvlist.DataBind();
+                }
                
                
             }
@@ -197,20 +237,35 @@ namespace UI.Inventory
             {
                 try
                 {
-                    XmlDocument doc = new XmlDocument(); XmlNode xmls; string msg = "";
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode xmls;
+                    string msg = "";
                     if (File.Exists(xmlpath))
                     {
                         doc.Load(xmlpath);
                         xmls = doc.SelectSingleNode("Getpass");
                         xmlString = xmls.InnerXml;
                         xmlString = "<Getpass>" + xmlString + "</Getpass>";
-                        dtbl = bll.CreateGetpass(0, int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), xmlString, 0, DateTime.Now, DateTime.Now);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dtbl.Rows[0]["Messages"].ToString() + "');", true);
-                        File.Delete(xmlpath); dgv.DataSource = ""; btnSubmit.Visible = false; txtAddress.Text = ""; txtToOther.Text = "";
-                        chkOther.Checked = false; txtToOther.Visible = false; dgv.DataBind(); Loadgrid();
+                        dtbl = bll.CreateGetpass(0,
+                            int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), xmlString, 0,
+                            DateTime.Now, DateTime.Now);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + dtbl.Rows[0]["Messages"].ToString() + "');", true);
+                        File.Delete(xmlpath);
+                        dgv.DataSource = "";
+                        btnSubmit.Visible = false;
+                        txtAddress.Text = "";
+                        txtToOther.Text = "";
+                        chkOther.Checked = false;
+                        txtToOther.Visible = false;
+                        dgv.DataBind();
+                        Loadgrid();
                     }
                 }
-                catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
+                }
             }
         }
 

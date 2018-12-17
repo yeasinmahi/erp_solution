@@ -171,16 +171,27 @@ namespace UI.VAT_Management
         }
 
         private void getMatrialUserStandar()
-        {
-            dt = objCreditBll.getuseStandard( int.Parse(ddlMaterialList.SelectedValue), int.Parse(hdnitemid.Value));
-            lblMaterialUserStandard.Text = dt.Rows[0]["numQty"].ToString();
-            hdnuom.Value = dt.Rows[0]["struom"].ToString();
-            dt = objCreditBll.getPurChallanList(int.Parse(ddlMaterialList.SelectedValue), int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(Session["VatAccid"].ToString()));
+        { 
+            dt = objCreditBll.getuseStandard( int.Parse(ddlMaterialList.SelectedValue), int.Parse(hdnitemid.Value),int.Parse(ddlMushoktype.SelectedValue.ToString()));
 
-            ddlChallanNo.DataTextField = "strChallanNo";
-            ddlChallanNo.DataValueField = "strChallanNo";
-            ddlChallanNo.DataSource = dt;
-            ddlChallanNo.DataBind();
+            if (dt.Rows.Count > 0)
+            {
+                lblMaterialUserStandard.Text = dt.Rows[0]["numQty"].ToString();
+
+                hdnuom.Value = dt.Rows[0]["struom"].ToString();
+            }
+            else
+            {
+                lblMaterialUserStandard.Text = "";
+            }
+                dt = objCreditBll.getPurChallanList(int.Parse(ddlMaterialList.SelectedValue), int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(Session["VatAccid"].ToString()));
+           
+                ddlChallanNo.DataTextField = "strChallanNo";
+                ddlChallanNo.DataValueField = "strChallanNo";
+                ddlChallanNo.DataSource = dt;
+                ddlChallanNo.DataBind();
+
+            dt.Clear();
 
         }
 
@@ -307,7 +318,7 @@ namespace UI.VAT_Management
             ItemName = (arrayKeyItem[0].ToString());
             intitemid = Int32.Parse(arrayKeyItem[1].ToString());
             hdnitemid.Value = arrayKeyItem[1].ToString();
-            dt = objCreditBll.getMatrialList(intitemid,1,DateTime.Now);
+            dt = objCreditBll.getMatrialList(intitemid,int.Parse(ddlMushoktype.SelectedValue.ToString()), DateTime.Now);
             ddlMaterialList.DataTextField = "strMaterialName";
             ddlMaterialList.DataValueField = "intvatMaterialID";
             ddlMaterialList.DataSource = dt;

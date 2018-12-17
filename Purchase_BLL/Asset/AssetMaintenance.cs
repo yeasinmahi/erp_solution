@@ -899,5 +899,59 @@ namespace Purchase_BLL.Asset
             return result;
         }
 
+        public DataTable JobStation()
+        {
+            try
+            {
+                TblEmployeeJobStationTableAdapter adp = new TblEmployeeJobStationTableAdapter();
+                return adp.GetJobStationData();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetServiceData(int jobcard)
+        {
+            try
+            {
+                tblMaintenanceTaskTableAdapter adp = new tblMaintenanceTaskTableAdapter();
+                return adp.GetDataByJobCard(jobcard);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public string UpdateMoney(decimal amount,int serviceID)
+        {
+            string msg = "";
+            try
+            {
+                TblMaintenanceTaskTableAdapter adp = new TblMaintenanceTaskTableAdapter();
+                adp.UpdateMoneyByJobCard(amount,serviceID);
+                return msg = "Amount Updated Successfully";
+            }
+            catch(Exception ex) { return msg = ex.Message.ToString(); }
+        }
+        public string UpdateFixedAssetRegisterUnit(int unit,string assetCode)
+        {
+            string msg = "";
+            try
+            {
+                TblFixedAssetRegisterTableAdapter adp = new TblFixedAssetRegisterTableAdapter();
+                adp.UpdateFixedAssetRegUnit(unit, assetCode);
+                return msg = "Unit Updated Successfully";
+            }
+            catch (Exception ex) { return msg = ex.Message.ToString(); }
+        }
+        public string UpdateAssetMaintenanceUnitByJobCard(int unit,int jobstation, int jobcard)
+        {
+            string msg = "";
+            try
+            {
+                TblAssetMaintenanceTableAdapter adp = new TblAssetMaintenanceTableAdapter();
+                adp.UpdateAssetUnitByJobCard(unit,jobstation, jobcard);
+                return msg = "Unit Updated Successfully";
+            }
+            catch (Exception ex) { return msg = ex.Message.ToString(); }
+        }
+
     }
     }
