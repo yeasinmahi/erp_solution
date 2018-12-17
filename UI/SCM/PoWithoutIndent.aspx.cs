@@ -347,6 +347,14 @@ namespace UI.SCM
             try
             {
                 intWh = int.Parse(ddlWHPrepare.SelectedValue);
+
+                dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
+                ddlCurrency.DataSource = dt;
+                ddlCurrency.DataTextField = "strName";
+                ddlCurrency.DataValueField = "Id";
+                ddlCurrency.DataBind();
+                try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
+
                 dt = objPo.GetUnitID(intWh);
                if( dt.Rows.Count>0)
                 {
@@ -357,8 +365,8 @@ namespace UI.SCM
 
                 
 
-                dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name                 
-                try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
+               // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name                 
+              
                 
             }
             catch { }
