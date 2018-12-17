@@ -93,7 +93,7 @@ namespace UI.Inventory
                     txtDriverName.Text = string.Empty;
                     txtContact.Text = string.Empty;
                     txtVehicle.Text = string.Empty;
-                    txtQuantity.Text = @"0.0000"; 
+                    txtQuantity.Text = @"0.00"; 
                     txtRemarks.Text = string.Empty;
                     txtUom.Text = string.Empty;
                 }

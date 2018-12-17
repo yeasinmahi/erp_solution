@@ -158,7 +158,7 @@
                                 <span style="color: red; font-size: 14px; text-align: left">*</span>
                             </td>
                             <td colspan="2">
-                                <asp:TextBox ID="txtQuantity" runat="server" CssClass="txtBox" Width="100px" Text="0.0000"></asp:TextBox>
+                                <asp:TextBox ID="txtQuantity" runat="server" CssClass="txtBox" Width="100px" Text="0.00"></asp:TextBox>
                                 <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="UoM : "></asp:Label>
                                 <span style="color: red; font-size: 14px; text-align: left">*</span>
                                 <asp:TextBox ID="txtUom" runat="server" CssClass="txtBox" Width="50px"></asp:TextBox>
@@ -193,7 +193,7 @@
 
                                         <asp:TemplateField HeaderText="Quantity" SortExpression="quantity">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblquantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblquantity" runat="server" Text='<%# Eval("quantity","{0:n}") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center"/>
                                         </asp:TemplateField>
 
@@ -207,12 +207,12 @@
                                                 <asp:Label ID="lblDriverName" runat="server" Text='<%# Bind("driverName") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Contact Number" SortExpression="contactNumber">
+                                        <asp:TemplateField HeaderText="Contact" SortExpression="contactNumber">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblContact" runat="server" Text='<%# Bind("contactNumber") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center"/>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Vehicle Number" SortExpression="vehicleNumber">
+                                        <asp:TemplateField HeaderText="Vehicle NO." SortExpression="vehicleNumber">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblVehicle" runat="server" Text='<%# Bind("vehicleNumber") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />

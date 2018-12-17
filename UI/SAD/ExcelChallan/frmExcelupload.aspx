@@ -80,7 +80,7 @@
             <asp:Button ID="btnCancel" Font-Bold="true" runat="server" Text="All Upload Cancel" OnClick="btnCancel_Click" />
             </td>
             <td>Customer Name</td>
-            <td><asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  ></asp:TextBox>
+            <td><asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox"  AutoPostBack="true"  ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtCustomer"
             ServiceMethod="CustomerSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"

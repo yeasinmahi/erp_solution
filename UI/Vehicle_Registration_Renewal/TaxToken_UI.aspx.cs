@@ -37,6 +37,8 @@ namespace UI.Vehicle_Registration_Renewal
                     catch { };
                     try { TxtLateFine.Text = dt.Rows[0]["monTaxTokenLatefinein3month10Percentage"].ToString(); }
                     catch { };
+                    try { TxtMiscellcuneces.Text = dt.Rows[0]["monTaxTokenMiscellounes"].ToString(); }
+                    catch { };
                     lbprsntus.Text = dt.Rows[0]["strUnit1"].ToString();
 
 
