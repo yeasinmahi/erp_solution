@@ -300,11 +300,15 @@ namespace UI.SCM
 
                 if(dt.Rows.Count>0)
                 {
-
+                    totalAmount = dt.AsEnumerable().Sum(row => row.Field<decimal>("monAmo"));
+                    if(totalAmount.ToString()==null)
+                    {
+                        totalAmount = 0;
+                    }
+                    dgvChallan.FooterRow.Cells[2].Text = "Total Amount";
+                    dgvChallan.FooterRow.Cells[3].Text = totalAmount.ToString("N2");
                 }
-                totalAmount = dt.AsEnumerable().Sum(row => row.Field<decimal>("monAmo"));
-                dgvChallan.FooterRow.Cells[2].Text = "Total Amount";
-                dgvChallan.FooterRow.Cells[3].Text = totalAmount.ToString("N2");
+                
 
 
             }
