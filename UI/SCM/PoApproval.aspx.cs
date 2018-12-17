@@ -108,7 +108,16 @@ namespace UI.SCM
                 arrayKey = txtPoUser.Text.Split(delimiterChars);
                 string item = ""; string itemid = "";
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
+                {
+
+                    try
+                    {
+                        item = arrayKey[0].ToString();
+                        enroll = int.Parse(arrayKey[1].ToString());
+                    }
+                    catch { }
+
+                }
 
               //  enroll = int.Parse(ddlPoUser.SelectedValue);
                 int intwh = int.Parse(ddlWH.SelectedValue);
