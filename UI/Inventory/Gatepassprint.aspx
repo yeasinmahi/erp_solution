@@ -102,12 +102,12 @@
         <table style="font: bold 9px verdana; width: 500px;"  align="center" border="0">
             <tr>
                 <td style="width: 90px">
-                    <span>Driver Name</span>
+                    <span>Driver/Receiver Name</span>
                 </td>
                 <td style="width: 10px">
                     <span>:</span>
                 </td>
-                <td>
+                <td colspan="4">
                     <asp:Label ID="lblDriverName" runat="server"></asp:Label>
                 </td>
             </tr>
@@ -118,29 +118,37 @@
                 <td style="width: 10px">
                     <span>:</span>
                 </td>
-                <td>
+                <td  style="width: 150px">
                     <asp:Label ID="lblContact" runat="server"></asp:Label>
                 </td>
-            </tr>
-            <tr>
                 <td style="width: 90px">
                     <span>Vehicle Number</span>
                 </td>
                 <td style="width: 10px">
                     <span>:</span>
                 </td>
-                <td>
+                <td  style="width: 150px">
                     <asp:Label ID="lblVehicleNumber" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
+                
+            </tr>
+            <tr>
+                <td>
+                    <br/>
+                </td>
+                
+            </tr>
+            <tr>
+                
                 <td style="width: 90px">
                     <span>Issued By</span>
                 </td>
                 <td style="width: 10px">
                     <span>:</span>
                 </td>
-                <td>
+                <td colspan="4">
                     <asp:Label ID="issby" runat="server"></asp:Label>
                 </td>
             </tr>
@@ -151,7 +159,7 @@
                 <td style="width: 10px">
                     <span>:</span>
                 </td>
-                <td>
+                <td colspan="4">
                     <asp:Label ID="appby" runat="server"></asp:Label>
                 </td>
             </tr>
