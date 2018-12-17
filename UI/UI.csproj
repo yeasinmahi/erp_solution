@@ -294,9 +294,23 @@
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\img\105.png" />
+    <Content Include="Content\images\img\13.png" />
     <Content Include="Content\images\img\15.png" />
+    <Content Include="Content\images\img\20.png" />
+    <Content Include="Content\images\img\45.png" />
+    <Content Include="Content\images\img\46.png" />
     <Content Include="Content\images\img\533.png" />
+    <Content Include="Content\images\img\59.png" />
+    <Content Include="Content\images\img\77.png" />
     <Content Include="Content\images\img\90.png" />
+    <Content Include="Content\images\img\91.png" />
+    <Content Include="Content\images\img\92.png" />
+    <Content Include="Content\images\img\96.png" />
+    <Content Include="Content\images\img\acrl2.png" />
+    <Content Include="Content\images\img\NotApproved.png" />
+    <Content Include="Content\images\img\NotApproved1.png" />
+    <Content Include="Content\images\img\R008.png" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
@@ -1242,6 +1256,7 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
@@ -6326,6 +6341,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx.cs">
+      <DependentUpon>Distributor_Wise_DO_Quantity_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx.designer.cs">
+      <DependentUpon>Distributor_Wise_DO_Quantity_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\DO2Print.aspx.cs">
       <DependentUpon>DO2Print.aspx</DependentUpon>
