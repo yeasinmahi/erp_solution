@@ -1,13 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Practice.aspx.cs" Inherits="UI.Other.Practice" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Transit_Based_Inventory.aspx.cs" Inherits="UI.SAD.Sales.Report.Transit_Based_Inventory" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.:  :.</title>
+    <title>.: Transit Based Inventory :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
@@ -46,4 +44,3 @@
     </form>
 </body>
 </html>
-
