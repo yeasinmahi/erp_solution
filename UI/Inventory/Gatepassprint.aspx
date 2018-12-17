@@ -61,7 +61,7 @@
                             <asp:BoundField DataField="Description_" HeaderText="Description" ItemStyle-HorizontalAlign="Center" SortExpression="Description_">
                                 <ItemStyle HorizontalAlign="Left" Width="225px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="Quantity" DataFormatString="{0:0.0000}">
+                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="Quantity" DataFormatString="{0:0.00}">
                                 <ItemStyle HorizontalAlign="Center" Width="70px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Uom" HeaderText="Uom" ItemStyle-HorizontalAlign="Center" SortExpression="Uom">
