@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -293,16 +294,28 @@ namespace UI.SCM
                 //}
 
                 dt = objBillReg.GetChallanByPOID(intPOID);
+                ViewState["table"] = dt;
                 dgvChallan.DataSource = dt;
                 dgvChallan.DataBind();
 
-             
+                if(dt.Rows.Count>0)
+                {
+
+                }
+                totalAmount = dt.AsEnumerable().Sum(row => row.Field<decimal>("monAmo"));
+                dgvChallan.FooterRow.Cells[2].Text = "Total Amount";
+                dgvChallan.FooterRow.Cells[3].Text = totalAmount.ToString("N2");
+
+
             }
             catch { }
 
         }
 
         #endregion =====================================================================================
+
+        decimal totalAmount = 0;
+       
 
         protected void dgvLoan_RowCommand(object sender, GridViewCommandEventArgs e)
         {
