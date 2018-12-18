@@ -269,6 +269,8 @@
     <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
+    <Content Include="Asset\Report\JobCardInfo.aspx" />
+    <Content Include="Asset\Report\MonthlyMaintenanceCost.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
     <Content Include="Asset\ServiceConfigurePopUp.aspx" />
@@ -2534,6 +2536,20 @@
     </Compile>
     <Compile Include="Asset\PMScheduleServicePopUp.aspx.designer.cs">
       <DependentUpon>PMScheduleServicePopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\JobCardInfo.aspx.cs">
+      <DependentUpon>JobCardInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\JobCardInfo.aspx.designer.cs">
+      <DependentUpon>JobCardInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\MonthlyMaintenanceCost.aspx.cs">
+      <DependentUpon>MonthlyMaintenanceCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\MonthlyMaintenanceCost.aspx.designer.cs">
+      <DependentUpon>MonthlyMaintenanceCost.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.cs">
       <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
