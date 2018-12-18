@@ -15,10 +15,10 @@
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>  
     <script type="text/javascript">
-       function ViewItemDetailsPopup(Id) {
-             window.open('../PaymentModule/PreviousPrice.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+       
+         function ViewPriceListPopup(Id) {
+            window.open('../PaymentModule/PreviousPrice.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
-
         $("[id*=TxtNewPO]").live("change", function () {
             if (!jQuery.trim($(this).val()) == '') {
                 if (!isNaN(parseFloat($(this).val()))) {

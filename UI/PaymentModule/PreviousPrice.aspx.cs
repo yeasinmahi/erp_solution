@@ -48,11 +48,12 @@ namespace UI.PaymentModule
             var tracker = new PerfTracker("Performance on PaymentModule/PreviousPrice.aspx Page_Load", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
 
-            if (!IsPostBack)
-            {
-                try
+            //if (!IsPostBack)
+            //{
+               try
                 {
-                    hdnBillID.Value = Session["billid"].ToString();
+                try { hdnBillID.Value = Session["billid"].ToString(); }
+                catch { hdnBillID.Value = ""; }
                     intItemID = int.Parse(Request.QueryString["Id"]);
                     lblitemid.Text = Request.QueryString["Id"];
                     //hdnItemID.Value = intItemID.ToString();
@@ -92,7 +93,7 @@ namespace UI.PaymentModule
                     var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
                     Flogger.WriteError(efd);
                 }
-            }
+            //}
 
             fd = log.GetFlogDetail(stop, location, "Page_Load", null);
             Flogger.WriteDiagnostic(fd);
