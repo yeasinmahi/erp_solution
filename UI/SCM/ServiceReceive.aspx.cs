@@ -79,7 +79,8 @@ namespace UI.SCM
 
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
                 {
-                    intWh = int.Parse(ddlWH.SelectedValue.ToString());
+                    intWh = int.Parse(hdnWHId.Value.ToString());
+                   
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     try { intPOID = int.Parse(hdnPO.Value); } catch { }
                     try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
@@ -108,7 +109,7 @@ namespace UI.SCM
                         string ysnQc = ((Label)dgvMrr.Rows[index].FindControl("lblYsnQc")).Text.ToString();
                         string numQcQty = ((Label)dgvMrr.Rows[index].FindControl("lblQcPassedQty")).Text.ToString();
                      
-                        if (decimal.Parse(numRcvQty) > 0 && monRate > 0)
+                        if (decimal.Parse(numRcvQty) > 0 && monRate > 0 && intWh>0)
                         {
                             //if (ysnQc.ToString() == "0")
                             //{
@@ -350,12 +351,18 @@ namespace UI.SCM
                         hdnConversion.Value = dt.Rows[0]["monBDTConversion"].ToString();
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
 
-                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
-                        ddlWH.SelectedItem.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                       
                         ddlPoType.SelectedItem.Text = dt.Rows[0]["strPoFor"].ToString();
 
+                        hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
+                        hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
 
+                        List<ListItem> items = new List<ListItem>();
+                        items.Add(new ListItem(hdnWHName.Value.ToString(), hdnWHId.Value.ToString()));
+                        ddlWH.Items.AddRange(items.ToArray());
 
+                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
+                        ddlWH.SelectedItem.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     }
 
                     else
