@@ -170,11 +170,10 @@ namespace UI.SCM
         {
             try
             {
-
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                Label ItemID = row.FindControl("lblItemId") as Label;
-                string ItemId = ItemID.Text;
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewItemDetailsPopup('" + ItemId + "');", true);
+                string ItemId = (row.FindControl("lblItemId") as Label).Text;
+                Session["itemname"] = (row.FindControl("lblItemName") as Label).Text;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPriceListPopup('" + ItemId + "');", true);
             }
             catch { }
         }
