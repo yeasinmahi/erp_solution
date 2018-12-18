@@ -338,6 +338,7 @@ namespace UI.SCM
                     {
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
                         lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
+
                         //lblMrrNo.Text = dt.Rows[0][""].ToString();
                         // lblMrrDate.Text= dt.Rows[0][""].ToString();
                         lblPoTotal.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
