@@ -234,7 +234,14 @@ namespace SCM_BLL
             try
             { return adp.GetPreviousAdvance(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
-        }        
+        }
+        public DataTable GetAuditApproveAmountLabel1(int intBillID)
+        {
+            GetPreAdvTableAdapter adp = new GetPreAdvTableAdapter();
+            try
+            { return adp.GetAuditApproveAmountLabel1(intBillID); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
         public DataTable GetUserInfoForAudit(int intEnroll)
         {
             GetUserInfoForAuditApprovalTableAdapter adp = new GetUserInfoForAuditApprovalTableAdapter();
