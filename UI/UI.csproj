@@ -397,6 +397,7 @@
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
+    <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -1146,6 +1147,7 @@
     <Content Include="SAD\Customer\CustomerInfoEdit.aspx" />
     <Content Include="SAD\Customer\CustomerInfoFactory.aspx" />
     <Content Include="SAD\Customer\DistributionPoint.aspx" />
+    <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
@@ -3047,6 +3049,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
       <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.cs">
+      <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
+      <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>
@@ -5574,6 +5583,13 @@
     </Compile>
     <Compile Include="SAD\Customer\DistributionPoint.aspx.designer.cs">
       <DependentUpon>DistributionPoint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.cs">
+      <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.designer.cs">
+      <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\Report\CreditBalance.aspx.cs">
       <DependentUpon>CreditBalance.aspx</DependentUpon>

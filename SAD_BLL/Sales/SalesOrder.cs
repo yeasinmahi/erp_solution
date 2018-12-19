@@ -403,5 +403,16 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable getdataDOAmount(string donumber)
+        {
+            try
+            {
+                SprDelvOrderAmountCalculationTableAdapter bll = new SprDelvOrderAmountCalculationTableAdapter();
+                return bll.GetDataDelvOrderAmountCalculation(donumber);
+            }
+            catch { return new DataTable(); }
+        }
+
     }
 }
