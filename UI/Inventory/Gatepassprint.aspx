@@ -46,9 +46,11 @@
                 <td colspan="2">
                     <asp:Label ID="lbltadd" runat="server"></asp:Label></td>
             </tr>
-
+           
             <tr>
+                
                 <td colspan="3" style="font: normal 10px verdana;">
+                    <br />
                     <asp:GridView ID="dgv" runat="server" AutoGenerateColumns="False" Font-Size="12px" BackColor="White" BorderColor="#999999"
                         BorderStyle="Solid" BorderWidth="1px" CellPadding="1" ForeColor="Black" GridLines="Both">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -59,13 +61,13 @@
                             <asp:BoundField DataField="Description_" HeaderText="Description" ItemStyle-HorizontalAlign="Center" SortExpression="Description_">
                                 <ItemStyle HorizontalAlign="Left" Width="225px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="Quantity" DataFormatString="{0:0.0000}">
+                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="Quantity" DataFormatString="{0:0.00}">
                                 <ItemStyle HorizontalAlign="Center" Width="70px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Uom" HeaderText="Uom" ItemStyle-HorizontalAlign="Center" SortExpression="Uom">
                                 <ItemStyle HorizontalAlign="Center" Width="70px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="driverName" HeaderText="Driver Name" ItemStyle-HorizontalAlign="Center" SortExpression="Uom">
+                            <%--<asp:BoundField DataField="driverName" HeaderText="Driver Name" ItemStyle-HorizontalAlign="Center" SortExpression="Uom">
                                 <ItemStyle HorizontalAlign="Center" Width="70px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="contact" HeaderText="contact" ItemStyle-HorizontalAlign="Center" SortExpression="Uom">
@@ -73,7 +75,7 @@
                             </asp:BoundField>
                             <asp:BoundField DataField="vehicle" HeaderText="Vehicle number" ItemStyle-HorizontalAlign="Center" SortExpression="Uom">
                                 <ItemStyle HorizontalAlign="Center" Width="70px" />
-                            </asp:BoundField>
+                            </asp:BoundField>--%>
                             <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-HorizontalAlign="Center" SortExpression="Remarks">
                                 <ItemStyle HorizontalAlign="Left" Width="200px" />
                             </asp:BoundField>
@@ -83,14 +85,83 @@
                     </asp:GridView>
                 </td>
             </tr>
-
+<%--
             <tr style="font: bold 9px verdana;">
                 <td style="text-align: left; width: 100px;" colspan="3">
                     <br />
                     <br />
                     <asp:Label ID="issby" runat="server"></asp:Label><br />
                     <br />
-                    <asp:Label ID="appby" runat="server"></asp:Label></td>
+                    <asp:Label ID="appby" runat="server"></asp:Label>
+                </td>
+                
+            </tr>--%>
+            
+        </table>
+        <br/>
+        <table style="font: bold 9px verdana; width: 500px;"  align="center" border="0">
+            <tr>
+                <td style="width: 90px">
+                    <span>Driver/Receiver Name</span>
+                </td>
+                <td style="width: 10px">
+                    <span>:</span>
+                </td>
+                <td colspan="4">
+                    <asp:Label ID="lblDriverName" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 90px">
+                    <span>Contact</span>
+                </td>
+                <td style="width: 10px">
+                    <span>:</span>
+                </td>
+                <td  style="width: 150px">
+                    <asp:Label ID="lblContact" runat="server"></asp:Label>
+                </td>
+                <td style="width: 90px">
+                    <span>Vehicle Number</span>
+                </td>
+                <td style="width: 10px">
+                    <span>:</span>
+                </td>
+                <td  style="width: 150px">
+                    <asp:Label ID="lblVehicleNumber" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+            <tr>
+                <td>
+                    <br/>
+                </td>
+                
+            </tr>
+            <tr>
+                
+                <td style="width: 90px">
+                    <span>Issued By</span>
+                </td>
+                <td style="width: 10px">
+                    <span>:</span>
+                </td>
+                <td colspan="4">
+                    <asp:Label ID="issby" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 90px">
+                    <span>Approved By</span>
+                </td>
+                <td style="width: 10px">
+                    <span>:</span>
+                </td>
+                <td colspan="4">
+                    <asp:Label ID="appby" runat="server"></asp:Label>
+                </td>
             </tr>
         </table>
 

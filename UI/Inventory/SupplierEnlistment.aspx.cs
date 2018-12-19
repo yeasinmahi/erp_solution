@@ -326,10 +326,11 @@ namespace UI.Inventory
                     strRoutingNo = txtRouting.Text;
                     strACNO = txtACNo.Text;
                     int acclenth = strACNO.Length;
-                    strReprContactNo = txtPhone.Text.ToString();
+                    strReprContactNo = txtContactNo.Text.ToString();
+                    
                     if (strReprContactNo.Length != 11)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Contact No Must be 11 dight ??');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Contact No Must be 11 digit ??');", true);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
                     }
 

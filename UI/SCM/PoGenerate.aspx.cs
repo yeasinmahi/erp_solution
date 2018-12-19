@@ -164,7 +164,19 @@ namespace UI.SCM
             // ends
             tracker.Stop();
 
-        } 
+        }
+
+        protected void lblPreviousPrice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                string ItemId = (row.FindControl("lblItemId") as Label).Text;
+                Session["itemname"] = (row.FindControl("lblItemName") as Label).Text;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPriceListPopup('" + ItemId + "');", true);
+            }
+            catch { }
+        }
 
         #region=============Indent Sumery Tab-1 ==============================
         protected void Tab1_Click(object sender, EventArgs e)

@@ -29,8 +29,11 @@ namespace UI.Inventory
                     lblfadd.Text = dtbl.Rows[0]["FAddress"].ToString();//lblpoint.Text;
                     lbltadd.Text = dtbl.Rows[0]["TAddress"].ToString();
                     dgv.DataSource = dtbl; dgv.DataBind();
-                    issby.Text ="Issued By : "+ dtbl.Rows[0]["Status_"].ToString();
-                    appby.Text = "Approved By : " + dtbl.Rows[0]["Print_"].ToString();
+                    lblDriverName.Text = dtbl.Rows[0]["driverName"].ToString();
+                    lblContact.Text = dtbl.Rows[0]["contact"].ToString();
+                    lblVehicleNumber.Text = dtbl.Rows[0]["vehicle"].ToString();
+                    issby.Text =dtbl.Rows[0]["Status_"].ToString();
+                    appby.Text =dtbl.Rows[0]["Print_"].ToString();
                 } 
             }
         }
