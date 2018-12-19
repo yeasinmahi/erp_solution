@@ -369,7 +369,7 @@ namespace UI.SCM
                     else
                     {
 
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please approve PO');", true);
                     }
                 }
                 intWh = int.Parse(hdnWHId.Value.ToString());
