@@ -166,15 +166,14 @@ namespace UI.SCM
 
         }
 
-        protected void lblPreviousAvg_Click(object sender, EventArgs e)
+        protected void lblPreviousPrice_Click(object sender, EventArgs e)
         {
             try
             {
-
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                Label ItemID = row.FindControl("lblItemId") as Label;
-                int ItemId = int.Parse(ItemID.Text);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewItemDetailsPopup('" + ItemId + "');", true);
+                string ItemId = (row.FindControl("lblItemId") as Label).Text;
+                Session["itemname"] = (row.FindControl("lblItemName") as Label).Text;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPriceListPopup('" + ItemId + "');", true);
             }
             catch { }
         }

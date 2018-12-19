@@ -132,10 +132,10 @@
                         </tr>
                         <tr>
                             <td colspan="18">
-                                <asp:GridView ID="dgvChallan" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                                <asp:GridView ID="dgvChallan" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" ShowFooter="true"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
                                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvLoan_RowCommand">
+                                    ForeColor="Black" GridLines="Vertical" OnRowCommand="dgvLoan_RowCommand"  >
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
@@ -161,10 +161,14 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monAmo") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblTotalAmount" runat="server" CssClass="align"></asp:Label>
+                                            </FooterTemplate>
                                             <ItemStyle HorizontalAlign="right" Width="80px" />
                                         </asp:TemplateField>
 
                                     </Columns>
+                                    <FooterStyle BackColor="#999999" Font-Bold="True" Font-Size="11px" ForeColor="White" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                 </asp:GridView>

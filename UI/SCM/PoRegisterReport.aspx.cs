@@ -48,17 +48,17 @@ namespace UI.SCM
                 if (txtIndent.Text != "")
                 {
                     intNewType = 1;
-                    intID = Convert.ToInt32(txtIndent.Text);
+                    intID = Convert.ToInt32(txtIndent.Text.ToString());
                 }
                 else if (txtPO.Text != "")
                 {
                     intNewType = 2;
-                    intID = int.Parse(txtPO.Text);
+                    intID = int.Parse(txtPO.Text.ToString());
                 }
                 else if (txtMrr.Text != "")
                 {
                     intNewType = 3;
-                    intID = int.Parse(txtMrr.Text);
+                    intID = int.Parse(txtMrr.Text.ToString());
                 }
                 dt = objPo.PoRegisterDataList(DateTime.Now, DateTime.Now, dept, 0, intNewType, intID, 1);
                 dgvStatement.DataSource = dt;

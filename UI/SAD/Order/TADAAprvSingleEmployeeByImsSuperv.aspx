@@ -7,11 +7,16 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+     
+     
+    <script src="../../Content/JS/gridviewscroll.min.js"></script>
+
  <script src="../../../../Content/JS/datepickr.min.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script>
 
     <script>
         function Registration(url) {
-            window.open('AttachmentCheckingBySupervisor.aspx?ID=' + 'sub', "scrollbars=yes,toolbar=0,height=250,width=500,top=5,left=20, resizable=yes, title=Preview");
+            window.open('AttachmentCheckingBySupervisor.aspx?ID=' + 'sub', "scrollbars=yes,toolbar=0,height=250,width=500,top=5,left=10, resizable=yes, title=Preview");
             return false;
         }
         function Confirm() {
@@ -1263,6 +1268,69 @@
         });
     </script>
 
+       <script type="text/javascript">
+       
+        function gridviewScroll() {
+            $('#<%=grdvForApproveTADAByImmdediatesupervisor.ClientID%>').gridviewScroll({
+                 width:1300,
+                 height: 450,
+                 
+                 freezesize: 4
+             });
+        } 
+        function PostBack() {
+             
+            __doPostBack();
+        }
+    </script>
+
+    <style type="text/css">
+    .GridviewScrollHeader TH, .GridviewScrollHeader TD 
+    { 
+    padding: 5px; 
+    font-weight: bold; 
+    white-space: nowrap; 
+    border-right: 1px solid #AAAAAA; 
+    border-bottom: 1px solid #AAAAAA; 
+    background-color: #EFEFEF; 
+    text-align: left; 
+    vertical-align: bottom; 
+    } 
+    .GridviewScrollItem TD 
+    { 
+    padding: 5px; 
+    white-space: nowrap; 
+    border-right: 1px solid #AAAAAA; 
+    border-bottom: 1px solid #AAAAAA; 
+    background-color: #FFFFFF; 
+    } 
+    .GridviewScrollPager  
+    { 
+    border-top: 1px solid #AAAAAA; 
+    background-color: #FFFFFF; 
+    } 
+    .GridviewScrollPager TD 
+    { 
+    padding-top: 3px; 
+    font-size: 14px; 
+    padding-left: 5px; 
+    padding-right: 5px; 
+    } 
+    .GridviewScrollPager A 
+    { 
+    color: #666666; 
+    }
+    .GridviewScrollPager SPAN
+
+    {
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    }
+    </style>  
+
 </head>
 <body>
     <form id="frmpdv" runat="server">
@@ -1334,13 +1402,12 @@
             <tr class="tblrowOdd" >
              <td>
                  <asp:GridView ID="grdvForApproveTADAByImmdediatesupervisor" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="3000" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" HeaderStyle-Wrap="true" OnRowDataBound="grdvForApproveTADAByImmdediatesupervisor_RowDataBound" ShowFooter="true" OnSelectedIndexChanged="grdvForApproveTADAByImmdediatesupervisor_SelectedIndexChanged">
+                   
                      <Columns>
-                       
-  <asp:BoundField DataField="Id" HeaderText="Sl" SortExpression="intid" ItemStyle-HorizontalAlign="Center" >
-                       <ItemStyle HorizontalAlign="Center" />
-                      </asp:BoundField>
+                       <asp:TemplateField HeaderText="SL No." Visible="false"><ItemStyle HorizontalAlign="center" Width="15px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>          
 
-  <asp:TemplateField HeaderText="From Date" SortExpression="dteFromDate">
+
+                    <asp:TemplateField HeaderText="From Date" SortExpression="dteFromDate">
                     <ItemTemplate>
                      <asp:HiddenField   ID="hdBillDate"   runat="server" Value='<%# Bind("dteFromdate", "{0:0.0}") %>'></asp:HiddenField>
                     <asp:TextBox ID="dteFromdateNoBikeDet"   CssClass="txtBox" runat="server" Width="75px" TextMode="Date"  Text='<%# Bind("dteFromdate") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
@@ -1406,7 +1473,7 @@
 
 
 
- <asp:TemplateField HeaderText="To      Address" SortExpression="strToAdr">
+ <asp:TemplateField HeaderText="To Address" SortExpression="strToAdr">
                     <ItemTemplate>
                      <asp:HiddenField  ID="hdToAdr" runat="server"  Value='<%# Bind("strToAddressT", "{0:0.0}") %>'></asp:HiddenField>
                     <asp:TextBox ID="txtstrToAddressT" CssClass="txtBox" runat="server" Width="100px" TextMode="SingleLine" Text='<%# Bind("strToAddressT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
@@ -1771,10 +1838,7 @@
                          <asp:BoundField DataField="intApplicantEnrol" HeaderText="Enrol" SortExpression="intApplicantEnrol" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
                 <asp:BoundField DataField="intApplicantUnit" HeaderText="unit" SortExpression="intApplicantUnit" ItemStyle-HorizontalAlign="Center" >
-                    <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
-                        
-                        
-
+                    <ItemStyle HorizontalAlign="Center" /> </asp:BoundField> 
                      </Columns>
                      <FooterStyle BackColor="#CCCCCC" />
                      <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

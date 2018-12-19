@@ -269,6 +269,8 @@
     <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
+    <Content Include="Asset\Report\JobCardInfo.aspx" />
+    <Content Include="Asset\Report\MonthlyMaintenanceCost.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
     <Content Include="Asset\ServiceConfigurePopUp.aspx" />
@@ -394,6 +396,7 @@
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
+    <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -1143,6 +1146,7 @@
     <Content Include="SAD\Customer\CustomerInfoEdit.aspx" />
     <Content Include="SAD\Customer\CustomerInfoFactory.aspx" />
     <Content Include="SAD\Customer\DistributionPoint.aspx" />
+    <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
@@ -1315,6 +1319,7 @@
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\Territory_VS_Month.aspx" />
+    <Content Include="SAD\Sales\Report\Transit_Based_Inventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportPointBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
@@ -2533,6 +2538,20 @@
     <Compile Include="Asset\PMScheduleServicePopUp.aspx.designer.cs">
       <DependentUpon>PMScheduleServicePopUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\Report\JobCardInfo.aspx.cs">
+      <DependentUpon>JobCardInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\JobCardInfo.aspx.designer.cs">
+      <DependentUpon>JobCardInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\MonthlyMaintenanceCost.aspx.cs">
+      <DependentUpon>MonthlyMaintenanceCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\MonthlyMaintenanceCost.aspx.designer.cs">
+      <DependentUpon>MonthlyMaintenanceCost.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.cs">
       <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3022,6 +3041,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
       <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.cs">
+      <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
+      <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>
@@ -5550,6 +5576,13 @@
     <Compile Include="SAD\Customer\DistributionPoint.aspx.designer.cs">
       <DependentUpon>DistributionPoint.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.cs">
+      <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.designer.cs">
+      <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Customer\Report\CreditBalance.aspx.cs">
       <DependentUpon>CreditBalance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6754,6 +6787,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Territory_VS_Month.aspx.designer.cs">
       <DependentUpon>Territory_VS_Month.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Transit_Based_Inventory.aspx.cs">
+      <DependentUpon>Transit_Based_Inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Transit_Based_Inventory.aspx.designer.cs">
+      <DependentUpon>Transit_Based_Inventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesAndTransferReportPointBase.aspx.cs">
       <DependentUpon>UDTCLSalesAndTransferReportPointBase.aspx</DependentUpon>

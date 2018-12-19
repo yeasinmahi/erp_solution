@@ -1,13 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Practice.aspx.cs" Inherits="UI.Other.Practice" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MonthlyMaintenanceCost.aspx.cs" Inherits="UI.Asset.Report.MonthlyMaintenanceCost" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.:  :.</title>
+    <title>.: Vehicle Maintenance Report :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
@@ -38,7 +36,7 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2" runat="server">
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
-        <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
+        <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:600px; border:0px solid red;"></iframe>
         <%--sandbox="allow-same-origin allow-scripts allow-popups allow-forms"--%>
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
@@ -46,4 +44,3 @@
     </form>
 </body>
 </html>
-
