@@ -267,6 +267,7 @@
     <Content Include="Asset\MaintenancePendingRequest.aspx" />
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
     <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
+    <Content Include="Asset\Maintenance_Unit_wise_summary_report.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
@@ -2522,6 +2523,13 @@
     </Compile>
     <Compile Include="Asset\Maintenance_Service_Cost_Update.aspx.designer.cs">
       <DependentUpon>Maintenance_Service_Cost_Update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Unit_wise_summary_report.aspx.cs">
+      <DependentUpon>Maintenance_Unit_wise_summary_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Unit_wise_summary_report.aspx.designer.cs">
+      <DependentUpon>Maintenance_Unit_wise_summary_report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\PMSchedule.aspx.cs">
       <DependentUpon>PMSchedule.aspx</DependentUpon>
