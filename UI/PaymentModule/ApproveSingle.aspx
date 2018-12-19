@@ -37,6 +37,7 @@
     <%--=========================================Start My Code From Here===============================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnPOID" runat="server" />
     <asp:HiddenField ID="hdnBillID" runat="server" /><asp:HiddenField ID="hdnEntryType" runat="server" /><asp:HiddenField ID="hdnLevel" runat="server" />   
+        <asp:HiddenField ID="hdnApproveAmountLabel1" runat="server" />
     
     <div class="divbody" style="padding-right:10px;">
         <%--<div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> AUDIT APPROVE FORM<hr /></div>--%>

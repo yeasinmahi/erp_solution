@@ -271,6 +271,7 @@
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
+    <Content Include="Asset\Report\MaintenaceUnitwaiseSummary.aspx" />
     <Content Include="Asset\Report\MonthlyMaintenanceCost.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
@@ -1147,6 +1148,7 @@
     <Content Include="SAD\Customer\CustomerInfoEdit.aspx" />
     <Content Include="SAD\Customer\CustomerInfoFactory.aspx" />
     <Content Include="SAD\Customer\DistributionPoint.aspx" />
+    <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
@@ -2551,6 +2553,13 @@
     </Compile>
     <Compile Include="Asset\Report\JobCardInfo.aspx.designer.cs">
       <DependentUpon>JobCardInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\MaintenaceUnitwaiseSummary.aspx.cs">
+      <DependentUpon>MaintenaceUnitwaiseSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\MaintenaceUnitwaiseSummary.aspx.designer.cs">
+      <DependentUpon>MaintenaceUnitwaiseSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\MonthlyMaintenanceCost.aspx.cs">
       <DependentUpon>MonthlyMaintenanceCost.aspx</DependentUpon>
@@ -5582,6 +5591,13 @@
     </Compile>
     <Compile Include="SAD\Customer\DistributionPoint.aspx.designer.cs">
       <DependentUpon>DistributionPoint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.cs">
+      <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.designer.cs">
+      <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\Report\CreditBalance.aspx.cs">
       <DependentUpon>CreditBalance.aspx</DependentUpon>

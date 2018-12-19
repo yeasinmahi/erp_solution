@@ -138,19 +138,28 @@ namespace UI.PaymentModule
                 }
                 else if (hdnLevel.Value == "2")
                 {
-                    if(monApproveAmount == 0)
+                    ////if(monApproveAmount == 0)
+                    ////{
+                    //////    if (lblNetPay.Text == "0")
+                    //////    {
+                    //////        decimal Amount = (monBillAmount - monPreAdv);
+                    //////        txtAmount.Text = Amount.ToString();
+                    //////    }
+                    //////    else { txtAmount.Text = lblNetPay.Text; }
+
+                    ////    txtAmount.Text = lblNetPay.Text;
+                    ////}
+                    ////else
+                    ////{
+                    ////    txtAmount.Text = monApproveAmount.ToString();
+                    ////}
+                    dt = new DataTable();
+                    dt = objBillApp.GetAuditApproveAmountLabel1(intBillID);
+                    if (dt.Rows.Count > 0)
                     {
-                        if (lblNetPay.Text == "0")
-                        {
-                            decimal Amount = (monBillAmount - monPreAdv);
-                            txtAmount.Text = Amount.ToString();
-                        }
-                        else { txtAmount.Text = lblNetPay.Text; }
-                    }
-                    else
-                    {
-                        txtAmount.Text = monApproveAmount.ToString();
-                    }
+                        txtAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString())).ToString();
+                        hdnApproveAmountLabel1.Value = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString())).ToString();
+                    }                   
                 }
                 lblArrovedLevel.Text = monApproveAmount.ToString();                
             }
@@ -180,6 +189,15 @@ namespace UI.PaymentModule
                     strRemarks = txtRemarks.Text;
                     monNewAmount = decimal.Parse(txtAmount.Text);
 
+                    if (intLevel == 2)
+                    {
+                        if (decimal.Parse(hdnApproveAmountLabel1.Value) < monNewAmount)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Amount can not bigger than approveed amount');", true); return;
+                            
+                        }
+                    }
+                    
                     dt = new DataTable();
                     dt = objBillApp.InsertSingleApproveAudit(intUser, int.Parse(hdnBillID.Value), intLevel, intAction, strRemarks, monNewAmount);
                     if (dt.Rows.Count > 0)
