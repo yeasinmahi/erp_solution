@@ -267,21 +267,7 @@
                         <ItemTemplate><asp:Label ID="lblMrrValue"   Width="50px" runat="server"  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Batch no" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:TextBox ID="txtBatchNo" CssClass="txtBox"  Width="50px" runat="server"  ></asp:TextBox></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
-                       
-                        <asp:TemplateField HeaderText="Expire Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtExpireDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server"   TargetControlID="txtExpireDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
-                         
-                        <asp:TemplateField HeaderText="Manufacturing Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtManufacturingDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender5" runat="server"   Format="yyyy-MM-dd" TargetControlID="txtManufacturingDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
+                        
                         
                         <asp:TemplateField HeaderText="Previous Location ID" Visible="false" ItemStyle-HorizontalAlign="right" > 
                         <ItemTemplate><asp:HiddenField ID="hdnPreviLocationId"     runat="server"  value='<%# Bind("intLocationId") %>' ></asp:HiddenField></ItemTemplate> 
@@ -292,7 +278,7 @@
                         <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right" SortExpression="strLocationName" > 
-                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" Width="60px"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
+                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" Width="200px"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
                             <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />
@@ -308,6 +294,21 @@
                             </ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField> 
 
+                            <asp:TemplateField HeaderText="Batch no" ItemStyle-HorizontalAlign="right" > 
+                        <ItemTemplate><asp:TextBox ID="txtBatchNo" CssClass="txtBox"  Width="50px" runat="server"  ></asp:TextBox></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
+                       
+                        <asp:TemplateField HeaderText="Expire Date" ItemStyle-HorizontalAlign="right"  >
+                        <ItemTemplate><asp:TextBox ID="txtExpireDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
+                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server"   TargetControlID="txtExpireDate">
+                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
+                        </asp:TemplateField>
+                         
+                        <asp:TemplateField HeaderText="Manufacturing Date" ItemStyle-HorizontalAlign="right"  >
+                        <ItemTemplate><asp:TextBox ID="txtManufacturingDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
+                        <cc1:CalendarExtender ID="CalendarExtender5" runat="server"   Format="yyyy-MM-dd" TargetControlID="txtManufacturingDate">
+                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right"   > 
                         <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px" DataFormatString="{0:0.00}"  ></asp:TextBox></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Wrap="true" />  </asp:TemplateField> 
