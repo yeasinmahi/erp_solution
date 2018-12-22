@@ -420,6 +420,7 @@
     <Content Include="Inventory\FinishGoodsStock.aspx" />
     <Content Include="Inventory\GoodReceiveNote.aspx" />
     <Content Include="Inventory\GoodReceiveNoteReport.aspx" />
+    <Content Include="Inventory\Inventory_Statement_Report.aspx" />
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\PdfViewer.aspx" />
@@ -3212,6 +3213,13 @@
     </Compile>
     <Compile Include="Inventory\GoodReceiveNoteReport.aspx.designer.cs">
       <DependentUpon>GoodReceiveNoteReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\Inventory_Statement_Report.aspx.cs">
+      <DependentUpon>Inventory_Statement_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\Inventory_Statement_Report.aspx.designer.cs">
+      <DependentUpon>Inventory_Statement_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
