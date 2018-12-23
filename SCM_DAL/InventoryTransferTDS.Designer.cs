@@ -14361,7 +14361,8 @@ UNION
 SELECT        u.strUnit, emp.intUnitID
 FROM            tblEmployee AS emp INNER JOIN
                          tblUnit AS u ON emp.intUnitID = u.intUnitID
-WHERE        (emp.intEmployeeID = @intEnroll)";
+WHERE        (emp.intEmployeeID = @intEnroll)
+union select 'Select' as strUnit,0 as intUnitId order by intUnitId asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
