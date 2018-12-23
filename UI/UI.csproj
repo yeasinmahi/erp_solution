@@ -202,6 +202,7 @@
     <Content Include="AEFPS\DamageEntryApproval.aspx" />
     <Content Include="AEFPS\fpsDueReport.aspx" />
     <Content Include="AEFPS\FpsRackItemIssue.aspx" />
+    <Content Include="AEFPS\FpsSalesEntryDIT.aspx" />
     <Content Include="AEFPS\FpsSalesEntry.aspx" />
     <Content Include="AEFPS\FPSSalesEntryNew.aspx" />
     <Content Include="AEFPS\FpsSalesReturn.aspx" />
@@ -2076,6 +2077,13 @@
     </Compile>
     <Compile Include="AEFPS\FpsRackItemIssue.aspx.designer.cs">
       <DependentUpon>FpsRackItemIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\FpsSalesEntryDIT.aspx.cs">
+      <DependentUpon>FpsSalesEntryDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\FpsSalesEntryDIT.aspx.designer.cs">
+      <DependentUpon>FpsSalesEntryDIT.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\FpsSalesEntry.aspx.cs">
       <DependentUpon>FpsSalesEntry.aspx</DependentUpon>

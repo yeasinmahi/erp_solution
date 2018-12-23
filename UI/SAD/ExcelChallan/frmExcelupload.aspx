@@ -130,7 +130,7 @@
             
             <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity"><ItemTemplate>
          
-            <asp:TextBox ID="txtAllQuantity" CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("allqty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
+            <asp:TextBox ID="txtAllQuantity" CssClass="txtBox" runat="server" Width="75px"  Text='<%# Bind("allqty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="75px" /></asp:TemplateField>
 
              <asp:TemplateField HeaderText="Upload"><ItemTemplate> 
