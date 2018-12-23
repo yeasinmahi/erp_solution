@@ -353,6 +353,10 @@ namespace UI.Asset
                    //     
                     //Response.Redirect("Maintenance.aspx", true);
                   }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up  Asign To');", true);
+                }
             }
             catch (Exception ex)
             {
