@@ -483,15 +483,12 @@
                                     </asp:TemplateField>
                                        
                                     <asp:TemplateField HeaderText="Description" ItemStyle-HorizontalAlign="right" SortExpression="strUom">
-                                    <ItemTemplate> <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strUom") %>'></asp:Label> </ItemTemplate> <ItemStyle HorizontalAlign="Right" Width="150px" />                                    
+                                    <ItemTemplate> <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strDesc") %>'></asp:Label> </ItemTemplate> <ItemStyle HorizontalAlign="Right" Width="150px" />                                    
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strDesc" Visible="true">
-                                    <ItemTemplate> <asp:Label ID="lblUom" runat="server"   Text='<%# Bind("strDesc") %>'></asp:Label> </ItemTemplate><ItemStyle HorizontalAlign="Right" />                                    
-                                    </asp:TemplateField>
-                                     
-                                   
-                                    
+                                    <ItemTemplate> <asp:Label ID="lblUom" runat="server"   Text='<%# Bind("strUom") %>'></asp:Label> </ItemTemplate><ItemStyle HorizontalAlign="Right" />                                    
+                                    </asp:TemplateField> 
                                       
                                     <asp:TemplateField HeaderText="Quantity" SortExpression="poQty">
                                     <ItemTemplate><asp:Label ID="lblQty" runat="server"    DataFormatString="{0:0.00}"  Text='<%# Bind("poQty") %>' Width="60px"></asp:Label>

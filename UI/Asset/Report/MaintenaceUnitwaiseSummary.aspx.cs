@@ -15,7 +15,7 @@ namespace UI.Asset.Report
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', ' https://report.akij.net/reports/report/Asset_Module/Estimation_Report_Job_Card_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Asset_Module/Maintenance_Unit_wise_summary_report?rs:Embed=true');", true);
 
         }
     }
