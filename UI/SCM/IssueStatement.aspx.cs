@@ -65,8 +65,18 @@ namespace UI.SCM
                 if(txtIssueNo.Text.Length >2) { strIssue = txtIssueNo.Text.ToString(); } else { strIssue = "0".ToString();}
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " strIssue=" + '"' + strIssue + '"' + " intIssue=" + '"' + intIssue + '"' + "/></voucher>".ToString();
                 dt = objIssue.GetViewData(8, xmlData, intwh, 0, DateTime.Now, enroll);
-                dgvStatement.DataSource = dt;
-                dgvStatement.DataBind();
+                if(dt.Rows.Count>0)
+                {
+                    dgvStatement.DataSource = dt;
+                    dgvStatement.DataBind();
+                }
+                else
+                {
+                    dgvStatement.DataSource = null;
+                    dgvStatement.DataBind();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+                }
+                
 
             }
             catch (Exception ex)

@@ -135,7 +135,7 @@
 
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="auto-style1">
                                 <asp:Label ID="lblInDate" runat="server" CssClass="lbl" Text="Wear House :"></asp:Label></td>
                             <td>
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" runat="server" Width="195px"></asp:DropDownList></td>
@@ -149,10 +149,10 @@
                                 <asp:TextBox ID="txtVCNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblemployeesearch" runat="server" CssClass="lbl" Text="Employee Search :"></asp:Label></td>
+                            <td style="text-align: right;" class="auto-style1">
+                                <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="No. Of Benificiary :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtEmployee" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="190px" OnTextChanged="txtEmployee_TextChanged"></asp:TextBox>
+                                <asp:Label ID="lblMemoCounttxt" runat="server" CssClass="lbl"></asp:Label>
                                 <%--  <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtEmployee"
             ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -163,16 +163,13 @@
                             </td>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="lblPunchCode" runat="server" CssClass="lbl" Text="Punch Code :"></asp:Label></td>
+                                &nbsp;</td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtPunchCode" runat="server" AutoPostBack="true" CssClass="txtBox" Enabled="true" Width="190px" OnTextChanged="txtPunchCode_TextChanged"></asp:TextBox>
-                            </td>
+                                <asp:Button ID="btnClearPrinter" runat="server" Text="Clear Printer" CssClass="btnColore" OnClick="btnClearPrinter_Click" /></td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblMemoCount" runat="server" CssClass="lbl" Text="No. Of Benificiary :"></asp:Label>
-                                <asp:Label ID="lblMemoCounttxt" runat="server" CssClass="lbl"></asp:Label>
-                            </td>
+                                &nbsp;</td>
                             <td style="text-align: right;">
-                                <asp:Button ID="btnClearPrinter" runat="server" Text="Clear Printer" CssClass="btnColore" OnClick="btnClearPrinter_Click" />
+                                
                                 <asp:Button ID="btnReprint" runat="server" Text="Re-Print" OnClick="btnReprint_Click" OnClientClick="return Validate();" />
                             </td>
                         </tr>
@@ -182,37 +179,25 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;">Employee Info:<hr />
+                            <td colspan="6" style="font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;">Customer Info:<hr />
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Employee Name :"></asp:Label></td>
+                            <td style="text-align: right;" class="auto-style1">
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Mobile No :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtEmpname" runat="server" CssClass="txtBox" ReadOnly="True" onkeypress="return onlyNumbers();" MaxLength="10"></asp:TextBox></td>
+                                <asp:TextBox ID="txtMobileno" runat="server" CssClass="txtBox" ReadOnly="True" onkeypress="return onlyNumbers();" MaxLength="10"></asp:TextBox></td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblAdditionalMillage" runat="server" CssClass="lbl" Text="Enroll No :"></asp:Label></td>
+                               Discount :</td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtEnroll" ReadOnly="True" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>
+                                <asp:DropDownList ID="ddlDiscountList" CssClass="ddList" Font-Bold="False" runat="server" Width="195px" AutoPostBack="True" OnSelectedIndexChanged="ddlpaymenttype_SelectedIndexChanged">
+                                </asp:DropDownList></td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblTotalMillage" runat="server" CssClass="lbl" Text="Card No :"></asp:Label></td>
+                                &nbsp;</td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtCard" ReadOnly="True" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>
+                                &nbsp;</td>
                         </tr>
-                        <tr>
-                            <td style="text-align: right;">
-                                <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Designation :"></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:TextBox ID="txtDeg" ReadOnly="True" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblAdditionalFare" runat="server" CssClass="lbl" Text="Department :"></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:TextBox ID="txtDept" ReadOnly="True" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>
-                            <td style="text-align: right;">
-                                <asp:Label ID="lblTotalTripFare" runat="server" CssClass="lbl" Text="Total Credit Amount :"></asp:Label></td>
-                            <td style="text-align: left;">
-                                <asp:TextBox ID="txtCredittotalamount" Enabled="false" ForeColor="#cc3300" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>
-                        </tr>
+                        
                         <tr>
                             <td colspan="6">
                                 <hr />
@@ -223,7 +208,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="auto-style1">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="QR Code Scan :"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtQRcode" AutoPostBack="true" runat="server" CssClass="txtBox" MaxLength="30" OnTextChanged="txtQRcode_TextChanged"></asp:TextBox></td>
@@ -238,7 +223,7 @@
                                 </td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="auto-style1">
                                 <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Sales Type :"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlpaymenttype" CssClass="ddList" Font-Bold="False" runat="server" Width="195px" AutoPostBack="True" OnSelectedIndexChanged="ddlpaymenttype_SelectedIndexChanged">
@@ -255,7 +240,7 @@
                                 <asp:TextBox ID="txtReturn" Enabled="false" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">
+                            <td style="text-align: right;" class="auto-style1">
                                 <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Item Name :"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtItemname" runat="server" CssClass="txtBox" MaxLength="10" AutoPostBack="true" OnTextChanged="txtItemname_TextChanged"></asp:TextBox>
@@ -398,6 +383,9 @@
             background-color: #337ab7;
             font-family: "Helvetica";
             color: white;
+        }
+        .auto-style1 {
+            width: 80px;
         }
     </style>
 </body>
