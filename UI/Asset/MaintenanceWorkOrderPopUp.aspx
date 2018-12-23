@@ -211,27 +211,39 @@
              </tr>
              </table>
          <table>
-             <tr>
- <td class="auto-style1" style="text-align:right;">
-                         <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Present Mileage:"></asp:Label>
-                     </td>
-                     <td class="auto-style1" style="text-align:left;">
-                         <asp:TextBox ID="TxtPresentMilege" runat="server" CssClass="txtBox" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:TextBox>
-                     </td>
-                  <td class="auto-style1" style="text-align:right;">
-                         <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Next Mileage:"></asp:Label>
-                     </td>
-                     <td class="auto-style1" style="text-align:left;">
-                         <asp:TextBox ID="TxtNextMilege" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
+            <tr>
+            <td class="auto-style1" style="text-align:right;">
+            <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Present Mileage:"></asp:Label>
+            </td>
+            <td class="auto-style1" style="text-align:left;">
+            <asp:TextBox ID="TxtPresentMilege" runat="server" CssClass="txtBox" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:TextBox>
+            </td>
+            <td class="auto-style1" style="text-align:right;">
+            <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Next Mileage:"></asp:Label>
+            </td>
+            <td class="auto-style1" style="text-align:left;">
+            <asp:TextBox ID="TxtNextMilege" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
                      
-                  </td><td><asp:Label ID="lbHevvy" runat="server" CssClass="lbl" Text="Maintenance Type:"></asp:Label></td>
-                            <td> <asp:DropDownList ID="DdlHevvyVehicle"    runat="server" ForeColor="Green" CssClass="ddList" Font-Bold="False"  Width="110px">
-                                 <asp:ListItem Value="0">Light Vehicle</asp:ListItem>
-                                 <asp:ListItem Value="1">Heavy Vehicle</asp:ListItem>
-                                 
-                                
-                             </asp:DropDownList></td>
-               
+            </td><td><asp:Label ID="lbHevvy" runat="server" CssClass="lbl" Text="Maintenance Type:"></asp:Label></td>
+            <td> <asp:DropDownList ID="DdlHevvyVehicle"    runat="server" ForeColor="Green" CssClass="ddList" Font-Bold="False"  Width="110px">
+            <asp:ListItem Value="0">Light Vehicle</asp:ListItem>
+            <asp:ListItem Value="1">Heavy Vehicle</asp:ListItem> 
+            </asp:DropDownList></td> 
+            </tr>
+
+             <tr>
+                  <td class="auto-style1" style="text-align:right;">
+            <asp:Label ID="lblDriver" runat="server" CssClass="lbl" Text="Driver Name:"></asp:Label>
+            </td>
+            <td class="auto-style1" style="text-align:left;">
+            <asp:Label ID="lblDriverName" runat="server" CssClass="txtBox" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:Label>
+            </td>
+            <td class="auto-style1" style="text-align:right;">
+            <asp:Label ID="lblContact" runat="server" CssClass="lbl" Text="Contact No:"></asp:Label>
+            </td>
+            <td class="auto-style1" style="text-align:left;">
+            <asp:Label ID="lblContactNo" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:Label>
+            </td>
              </tr>
            </table> 
           <div class="tabs_container" >Maitenance Task Services </div>
