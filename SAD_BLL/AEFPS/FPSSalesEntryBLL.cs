@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SAD_DAL.AEFPS.FPSSalesEntryTDSTableAdapters;
+using SAD_DAL.AEFPS.DITFPSTableAdapters;
 using SAD_DAL.AEFPS;
 using System.Data;
 
@@ -82,6 +83,17 @@ namespace SAD_BLL.AEFPS
             }
 
 
+        }
+
+        public DataTable getDiscountList(int whid)
+        {
+            
+            try
+            {
+                tblDiscountListTableAdapter getMemocount = new tblDiscountListTableAdapter();
+                return getMemocount.GetDiscountList(whid);
+            }
+            catch { return new DataTable(); }
         }
 
         public DataTable getmemoCount(int whid)
@@ -265,6 +277,15 @@ namespace SAD_BLL.AEFPS
             {
                 tblSalesDetailsTemTableAdapter getIsertget = new tblSalesDetailsTemTableAdapter();
                  getIsertget.GetInsertSalesEntryAEFPS(qrcode, intitemid, itemName, qty, price, Amount, intEntryid);
+            }
+            catch { }
+        }
+        public void getinsertDIT(string qrcode, int intitemid, string itemName, decimal qty, decimal price, decimal Amount, int intEntryid,decimal monDiscount,decimal monTdiscount)
+        {
+            try
+            {
+                tblSalesDetailsTemDITTableAdapter getIsertget = new tblSalesDetailsTemDITTableAdapter();
+                getIsertget.GetDITSalesTemInsert(qrcode, intitemid, itemName, qty, price, Amount, intEntryid,monDiscount, monTdiscount);
             }
             catch { }
         }

@@ -52,11 +52,22 @@ namespace UI.AEFPS
                 ddlWH.DataBind();
                 TextBox1.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 GetMemoCount();
+                GetDiscount();
                 
             }
             else
             { }
             
+        }
+
+        private void GetDiscount()
+        {
+            dt = objAEFPS.getDiscountList(int.Parse(ddlWH.SelectedValue.ToString()));
+            ddlDiscountList.DataTextField = "strDiscountPar";
+            ddlDiscountList.DataValueField = "monDiscount";
+            ddlDiscountList.DataSource = dt;
+            ddlDiscountList.DataBind();
+
         }
 
         private void GetMemoCount()
@@ -77,10 +88,7 @@ namespace UI.AEFPS
             catch { }
         }
 
-        protected void txtEmployee_TextChanged(object sender, EventArgs e)
-        {
-            getEmployeeResultTextBox();
-        }
+       
         protected void txtItemname_TextChanged(object sender, EventArgs e)
         {
             getItemResult();
@@ -114,7 +122,7 @@ namespace UI.AEFPS
                     qty = decimal.Parse(txtQty.Text);
                     ItemName = txtItemname.Text;
                     intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    objAEFPS.getinsert(qrcode, intitemid, ItemName, qty, price, qty * price, intInsertby);
+                    objAEFPS.getinsertDIT(qrcode, intitemid, ItemName, qty, price, qty * price, intInsertby, decimal.Parse(ddlDiscountList.SelectedValue.ToString()), decimal.Parse(ddlDiscountList.SelectedValue.ToString())*(qty*price));
                     dtDetails = objAEFPS.getReport(intInsertby);
                     if (dtDetails.Rows.Count > 0)
                     {
@@ -159,9 +167,12 @@ namespace UI.AEFPS
                     txtReturn.Text = ((ReceiveAmt - SalesAmount)*-1).ToString();
                 }
                 else { txtReturn.Text = (("0").ToString()); }
+                txtCardNo.Enabled = false;
 
             }
-            else { txtReturn.Text = ("0".ToString()); txtCashReceiveAmount.Text = ("0".ToString()); }
+            else { txtReturn.Text = ("0".ToString()); txtCashReceiveAmount.Text = ("0".ToString());
+                txtCardNo.Enabled = true;
+            }
         }
 
         DataTable dtDetails;
@@ -200,7 +211,7 @@ namespace UI.AEFPS
             try
             {
 
-                if ((txtEmployee.Text != "") || (txtEnroll.Text != "") || (txtEnroll.Text != "") || (txtReturn.Text != ""))
+                if ((txtMobileno.Text != "") || (txtReturn.Text != ""))
                 {
                     if ((txtCashReceiveAmount.Text == "") && (ddlpaymenttype.SelectedValue == "1"))
                     {
@@ -219,7 +230,7 @@ namespace UI.AEFPS
                             {
 
                                 dtedate = DateTime.Parse(DateTime.Now.ToString());
-                                empid = int.Parse(txtEnroll.Text.ToString());
+                                empid = int.Parse(0.ToString());
                                 intWID = int.Parse(ddlWH.SelectedValue.ToString());
                                 intpaymenttype = int.Parse(ddlpaymenttype.SelectedValue.ToString());
                                 if (txtCashReceiveAmount.Text != "")
@@ -241,33 +252,23 @@ namespace UI.AEFPS
                                 #region ===== Start Print =====================================================                
 
                                 strWHName = ddlWH.SelectedItem.ToString();
-                                string strSearchKey = txtEmployee.Text;
-                                string[] searchKey = Regex.Split(strSearchKey, ",");
-                                string strCustomerName = searchKey[0];
-                                string strDate = DateTime.Now.ToString("yyyy-MM-dd");
-                                string strPayType = ddlpaymenttype.SelectedItem.ToString();
-
-                                txtDeg.Text = "";
-
-
-                                txtEnroll.Text = "";
+                              
+                              
+                              
+                              
                                 txtCashReceiveAmount.Text = "";
 
 
 
                                 #endregion =====================================================================                
 
-
                                 lblsalesAmount.Text = "";
-                                txtEnroll.Text = "";
+                               
                                 txtCashReceiveAmount.Text = "";
-                                txtEmployee.Text = "";
-                                txtEmpname.Text = "";
+                              
+                             
                                 txtReturn.Text = "";
-                                txtDeg.Text = "";
-                                txtDept.Text = "";
-
-                                txtCard.Text = "";
+                               
                                 //txtCreditStatus.Text = "";
 
                             }
@@ -295,77 +296,11 @@ namespace UI.AEFPS
   
         private void getEmployeeResult()
         {
-            char[] delimiterCharss = { '[', ']' };
-            arrayKeyItem = txtEmployee.Text.Split(delimiterCharss);
-            decimal total = Int32.Parse(0.ToString());
-            empid = Int32.Parse(arrayKeyItem[1].ToString());
-            dt = objAEFPS.getEmpinfo(empid);
-            if (dt.Rows.Count > 0)
-            {
-                txtEmpname.Text = dt.Rows[0]["strEmployeeName"].ToString();
-                txtEnroll.Text = dt.Rows[0]["intEmployeeID"].ToString();
-                txtCard.Text = dt.Rows[0]["strEmployeeCode"].ToString();
-                txtDeg.Text = dt.Rows[0]["strdesignation"].ToString();
-                txtDept.Text = dt.Rows[0]["strDepatrment"].ToString();
-                hdnSalary.Value = dt.Rows[0]["monSalary"].ToString();
-                dt = objAEFPS.getCreditAmountPurches(dt.Rows[0]["intEmployeeID"].ToString());
-                if (dt.Rows.Count > 0)
-                {
-                    txtCredittotalamount.Text = dt.Rows[0]["CashReceiveamount"].ToString();
-                    AvailableBalance = decimal.Parse(hdnSalary.Value) - decimal.Parse(dt.Rows[0]["CashReceiveamount"].ToString());
-                    if (AvailableBalance > 0)
-                    {
-                      //  txtCreditStatus.Text = "Elizable";
-                    }
-                    else
-                    {
-                       // txtCreditStatus.Text = "Not Elizable";
-                    }
-                }
-                else { txtCredittotalamount.Text = ""; }
-
-            }
+           
 
         }
 
-        private void getEmployeeResultTextBox()
-        {
-            try
-            {
-                txtPunchCode.Text = "";
-                dt = objAEFPS.getEmpCheck(ddlWH.SelectedValue, txtEmployee.Text);
-                if (int.Parse(dt.Rows[0]["counts"].ToString()) == 1)
-                {
-                    empid = Int32.Parse(txtEmployee.Text.ToString());
-                    dt = objAEFPS.getEmpinfo(empid);
-                    if (dt.Rows.Count > 0)
-                    {
-                        txtEmpname.Text = dt.Rows[0]["strEmployeeName"].ToString();
-                        txtEnroll.Text = dt.Rows[0]["intEmployeeID"].ToString();
-                        txtCard.Text = dt.Rows[0]["strEmployeeCode"].ToString();
-                        txtDeg.Text = dt.Rows[0]["strdesignation"].ToString();
-                        txtDept.Text = dt.Rows[0]["strDepatrment"].ToString();
-                        hdnSalary.Value = dt.Rows[0]["monSalary"].ToString();
-                        dt = objAEFPS.getCreditAmountPurches(dt.Rows[0]["intEmployeeID"].ToString());
-                        
-                            txtCredittotalamount.Text = dt.Rows[0]["CashReceiveamount"].ToString();
-                            AvailableBalance = decimal.Parse(hdnSalary.Value) - decimal.Parse(dt.Rows[0]["CashReceiveamount"].ToString());
-                            if (AvailableBalance > 0)
-                            {
-                              //  txtCreditStatus.Text = "Elizable";
-                            }
-                            else
-                            {
-                               // txtCreditStatus.Text = "Not Elizable";
-                            }
-                       
-
-                    }
-                }
-                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Employee No Permission !');", true); }
-            }
-            catch { }
-        }
+      
         private void getItemResult()
         {
             char[] delimiterCharss = { '[', ']' };
@@ -555,93 +490,6 @@ namespace UI.AEFPS
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Something is error');", true);
             }
-        }
-        protected void txtPunchCode_TextChanged(object sender, EventArgs e)
-        {
-
-            try
-            {
-                
-                txtEmployee.Text = "";
-                int Count = 0;
-                string strCardNo = txtPunchCode.Text;
-                dt = objAEFPS.GetEmpID(strCardNo);
-                if (dt.Rows.Count > 0)
-                {
-                    Count = int.Parse(dt.Rows[0]["intEmployeeID"].ToString());
-                    if (Count > 0)
-                    {
-                        dt = objAEFPS.GetEmpSortName(strCardNo);
-                        int intCheckval = int.Parse(dt.Rows[0]["intVal"].ToString());
-
-                        if (intCheckval == 1)
-                        {
-                            dt = objAEFPS.GetEmpInfo(strCardNo);
-
-                            txtEnroll.Text = dt.Rows[0]["intEmployeeID"].ToString();
-                            txtEmpname.Text = dt.Rows[0]["strEmployeeName"].ToString();
-                            txtDeg.Text = dt.Rows[0]["strDesignation"].ToString();
-                            txtDept.Text = dt.Rows[0]["strDepatrment"].ToString();
-                            hdnSalary.Value = dt.Rows[0]["monSalary"].ToString();
-                            txtCard.Text = dt.Rows[0]["strEmployeeCode"].ToString();
-                            dt = objAEFPS.getCreditAmountPurches(dt.Rows[0]["intEmployeeID"].ToString());
-
-                            txtCredittotalamount.Text = dt.Rows[0]["CashReceiveamount"].ToString();
-                            AvailableBalance = decimal.Parse(hdnSalary.Value) - decimal.Parse(dt.Rows[0]["CashReceiveamount"].ToString());
-                            if (AvailableBalance > 0)
-                            {
-                                //txtCreditStatus.Text = "Elizable";
-                            }
-                            else
-                            {
-                               // txtCreditStatus.Text = "Not Elizable";
-                            }
-                            return;
-
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ড নাম্বারটি আপডেট নয়।');", true);
-
-                        }
-
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ডটি রেজিস্টার করা হয়নি। অনুগ্রহ করে এইচআর এন্ড এডমিন ডিপার্টমেন্টে যোগাযোগ করুন।');", true);
-
-                    }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('আপনার কার্ডটি রেজিস্টার করা হয়নি। অনুগ্রহ করে এইচআর এন্ড এডমিন ডিপার্টমেন্টে যোগাযোগ করুন।');", true);
-                }
-
-                txtEnroll.Text = "";
-                txtEmpname.Text = "";
-                txtDeg.Text = "";
-                txtDept.Text = "";
-                hdnSalary.Value = "";
-                txtCard.Text = "";
-                //txtCreditStatus.Text = "";
-                txtCredittotalamount.Text = "";
-                txtPunchCode.Text = "";
-            }
-            catch(Exception ex)
-            {
-                txtEnroll.Text = "";
-                txtEmpname.Text = "";
-                txtDeg.Text = "";
-                txtDept.Text = "";
-                hdnSalary.Value = "";
-                txtCard.Text = "";
-                //txtCreditStatus.Text = "";
-                txtCredittotalamount.Text = "";
-                txtPunchCode.Text = "";
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ex.Message+"');", true);
-                return;
-            }
-            
         }
        
 

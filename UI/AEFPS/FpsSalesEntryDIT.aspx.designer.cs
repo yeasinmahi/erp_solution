@@ -328,22 +328,22 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.TextBox txtVCNo;
         
         /// <summary>
-        /// lblemployeesearch control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblemployeesearch;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtEmployee control.
+        /// lblMemoCounttxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployee;
+        protected global::System.Web.UI.WebControls.Label lblMemoCounttxt;
         
         /// <summary>
         /// hdfEmpCode control.
@@ -362,42 +362,6 @@ namespace UI.AEFPS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdfSearchBoxTextChange;
-        
-        /// <summary>
-        /// lblPunchCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPunchCode;
-        
-        /// <summary>
-        /// txtPunchCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPunchCode;
-        
-        /// <summary>
-        /// lblMemoCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemoCount;
-        
-        /// <summary>
-        /// lblMemoCounttxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemoCounttxt;
         
         /// <summary>
         /// btnClearPrinter control.
@@ -427,103 +391,22 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtEmpname control.
+        /// txtMobileno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmpname;
+        protected global::System.Web.UI.WebControls.TextBox txtMobileno;
         
         /// <summary>
-        /// lblAdditionalMillage control.
+        /// ddlDiscountList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdditionalMillage;
-        
-        /// <summary>
-        /// txtEnroll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEnroll;
-        
-        /// <summary>
-        /// lblTotalMillage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalMillage;
-        
-        /// <summary>
-        /// txtCard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCard;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// txtDeg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeg;
-        
-        /// <summary>
-        /// lblAdditionalFare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdditionalFare;
-        
-        /// <summary>
-        /// txtDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDept;
-        
-        /// <summary>
-        /// lblTotalTripFare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalTripFare;
-        
-        /// <summary>
-        /// txtCredittotalamount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCredittotalamount;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiscountList;
         
         /// <summary>
         /// Label3 control.
