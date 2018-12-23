@@ -17,7 +17,7 @@ namespace UI.Asset.Report
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Asset_Module/Monthly_maintenance_cost_report?rs:Embed=true');", true);
 
-
+             
         }
     }
 }
