@@ -31,6 +31,17 @@
         function DocViewdetails(MrrId) {
             window.open('MrrDocAttachmentPopUp.aspx?MrrId=' + MrrId, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
         }
+
+        function validation() {
+            //alert('check');
+            //debugger;
+            //var objDDl = document.getElementById('ddlDept').value;
+            //if(objDDl.options[objDDl.selectedIndex].value == "Select")
+            //{
+            //alert("Please Select Department");
+            //return false;
+            //}
+        }
     </script>
   
      
@@ -65,7 +76,7 @@
         <td style="text-align:left;"  ><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>                                                                                      
            
         <td   style="text-align:right;"><asp:Label ID="Label2"   runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
-        <td style="text-align:left;"><asp:DropDownList ID="ddlDept"  Enabled="false"  CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     >
+        <td style="text-align:left;"><asp:DropDownList ID="ddlDept"  Enabled="true"  CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     >
          <asp:ListItem>Local</asp:ListItem>
           <asp:ListItem>Fabrication</asp:ListItem>
           <asp:ListItem>Import</asp:ListItem>
@@ -87,7 +98,7 @@
         <tr>
         <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="MRR No: "></asp:Label></td>     
         <td><asp:TextBox ID="txtMrrNo" runat="server" CssClass="txtBox" ></asp:TextBox></td>
-        <td style="text-align:left"> </td><td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click"/> </td>
+        <td style="text-align:left"> </td><td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click" OnClientClick="return validation();"/> </td>
         </tr> 
         </table>
         <table>

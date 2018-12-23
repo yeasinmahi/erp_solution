@@ -327,5 +327,21 @@ namespace SCM_BLL
             return adp.GetFixedAuditData(xml,intType,strJobStationName,enroll);
         }
 
+        public DataTable InventorySearch(int intType,int intWHID,int ItemId)
+        {
+            sprInventorySearchNewTableAdapter adp = new sprInventorySearchNewTableAdapter();
+            return adp.GetInventorySearchItem(intType,intWHID,ItemId);
+        }
+        public DataTable GetWH(int intEnroll)
+        {
+            TblWHTableAdapter adp = new TblWHTableAdapter();
+            return adp.GetWHByEnroll(intEnroll);
+        }
+
+        public DataTable getInventoryStatement(int wh,DateTime FromDate, DateTime ToDate,int SearchBy,string strID)
+        {
+            sprInventoryStatementReportTableAdapter adp = new sprInventoryStatementReportTableAdapter();
+            return adp.GetData(wh,FromDate,ToDate,SearchBy,strID);
+        }
     }
 }

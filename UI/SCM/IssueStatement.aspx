@@ -117,15 +117,18 @@
             <ItemTemplate><asp:Label ID="lblIssueDate" runat="server" Width="60px"  Text='<%# Bind("dteIssueDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
+
+             <asp:TemplateField HeaderText="Product ID" ItemStyle-HorizontalAlign="right" SortExpression="intItemID" >
+            <ItemTemplate><asp:Label ID="lblITemID" runat="server"   Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>
+
             <asp:TemplateField HeaderText="Product" ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
             <ItemTemplate><asp:Label ID="lblITem" runat="server"   Text='<%# Bind("strItem","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strUseFor" >
-            <ItemTemplate><asp:Label ID="lblDept" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strUseFor") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
            
-            <asp:TemplateField HeaderText="UOM" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="strUom" >
+           
+            <asp:TemplateField HeaderText="UOM" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strUom" >
             <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("strUom") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             
@@ -133,7 +136,9 @@
             <ItemTemplate><asp:Label ID="lblIssQty" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
 
-           
+            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strUseFor" >
+            <ItemTemplate><asp:Label ID="lblDept" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strUseFor") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
