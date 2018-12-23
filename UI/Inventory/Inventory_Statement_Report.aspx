@@ -36,9 +36,71 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2" runat="server">
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
+        
+       <div class="container">
+                       <asp:HiddenField ID="hdnEnroll" runat="server" />
+                       <table>
+                            <tr class="tblheader"><td class="tdheader" colspan="9"> Employee Attendance with Overtime Status :</td></tr>        
+                            <tr class="tblheader"><td style=" height:2px; background-color:#c1bdbd;" colspan="9"> </td></tr>
+                            <tr><td colspan="9" style="height:5px;"></td></tr>
+                           <tr>
+                               
+                               <td><asp:Label ID="Label1" runat="server" Text="From Date" ></asp:Label></td><td></td>
+                               <td><asp:Label ID="Label2" runat="server" Text="To Date" ></asp:Label></td><td></td>
+                               <td><asp:Label ID="Label3" runat="server" Text="Ware House" ></asp:Label></td><td></td>
+                               <td><asp:Label ID="Label4" runat="server" Text="Search By" ></asp:Label></td><td></td>
+                           </tr>
+                           <tr>
+                              
+                               <td>
+                                   <asp:TextBox ID="txtFromDate" runat="server" ></asp:TextBox>
+                                   <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
 
-        <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
-        <%--sandbox="allow-same-origin allow-scripts allow-popups allow-forms"--%>
+                               </td><td></td>
+                               <td>
+                                   <asp:TextBox ID="txtToDate" runat="server" ></asp:TextBox>
+                                   <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
+                               </td><td></td>
+                               <td>
+                                   <asp:DropDownList ID="ddlWH" runat="server"></asp:DropDownList>
+                               </td><td></td>
+                               <td>
+                                   <asp:DropDownList ID="ddlSearchBy" runat="server" OnSelectedIndexChanged="ddlSearchBy_SelectedIndexChanged" AutoPostBack="true">
+                                       <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                       <asp:ListItem Text="Category" Value="1"></asp:ListItem>
+                                       <asp:ListItem Text="Sub-Category" Value="2"></asp:ListItem>
+                                       <asp:ListItem Text="Item ID" Value="3"></asp:ListItem>
+                                       <asp:ListItem Text="Item Name" Value="4"></asp:ListItem>
+                                       <asp:ListItem Text="Purchase Type (Local/Foreign)" Value="5"></asp:ListItem>
+                                       <asp:ListItem Text="Major Category" Value="6"></asp:ListItem>
+                                       <asp:ListItem Text="Cluster" Value="7"></asp:ListItem>
+                                       <asp:ListItem Text="Commodity" Value="8"></asp:ListItem>
+                                       <asp:ListItem Text="Store Location" Value="9"></asp:ListItem>
+                                       <asp:ListItem Text="Plant" Value="10"></asp:ListItem>
+                                   </asp:DropDownList>
+                               </td
+                             
+    
+                           </tr>
+                          <tr>
+                               
+                               <td colspan="3"><asp:Label ID="Label5" runat="server" Text="Sub Category" ></asp:Label></td><td></td>
+                               <td><asp:Label ID="Label6" runat="server" Text="Item ID" ></asp:Label></td><td></td>
+                           </tr>
+                           <tr>
+                               <td colspan="3"><asp:DropDownList ID="ddlSubCategory" runat="server" Width="290"></asp:DropDownList></td><td></td>
+                               <td><asp:TextBox ID="txtItemID" runat="server"></asp:TextBox></td><td></td>
+                                 <td>
+                                   <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"/>
+                               </td>
+                           </tr>
+                       </table>
+                                        
+                             
+                    <div>
+                         <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
+                    </div>
+                    </div>
     <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>
