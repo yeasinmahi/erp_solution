@@ -337,11 +337,6 @@ namespace SCM_BLL
             TblWHTableAdapter adp = new TblWHTableAdapter();
             return adp.GetWHByEnroll(intEnroll);
         }
-
-        public DataTable getInventoryStatement(int wh,DateTime FromDate, DateTime ToDate,int SearchBy,string strID)
-        {
-            sprInventoryStatementReportTableAdapter adp = new sprInventoryStatementReportTableAdapter();
-            return adp.GetData(wh,FromDate,ToDate,SearchBy,strID);
-        }
+        
     }
 }
