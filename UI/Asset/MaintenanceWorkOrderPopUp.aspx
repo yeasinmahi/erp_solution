@@ -238,6 +238,7 @@
             <td class="auto-style1" style="text-align:left;">
             <asp:Label ID="lblDriverName" runat="server"  CssClass="lbl" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:Label>
             </td>
+
             <td class="auto-style1" style="text-align:right;">
             <asp:Label ID="lblContact" runat="server" CssClass="lbl" Text="Contact No:"></asp:Label>
             </td>
