@@ -932,6 +932,21 @@ namespace HR_BLL.TourPlan
 
             }
         }
+        public DataTable GetJobStationByPermission(int unitId,int enroll)
+        {
+            try
+            {
+                sprGetJobStationTableAdapter adp = new sprGetJobStationTableAdapter();
+                return adp.GetJobStationByPermission(unitId,enroll);
+
+            }
+
+            catch
+            {
+                return new DataTable();
+
+            }
+        }
 
         public DataTable GetBrandItemSTockstatusHorizontallay(DateTime from, DateTime to, string line, string unit, string type)
         {
