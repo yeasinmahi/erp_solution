@@ -312,7 +312,7 @@
                               
                              <asp:TemplateField HeaderText="Description">
                                  <ItemTemplate>
-                                     <asp:TextBox ID="txtServiceDesc" Width="250px"  Text='<%# Bind("monServiceCost","{0:n2}") %>' runat="server"    />
+                                     <asp:TextBox ID="txtServiceDesc" Width="250px"  Text='<%# Bind("strDescription") %>' runat="server"    />
                                  </ItemTemplate>
                              </asp:TemplateField>
                              <asp:TemplateField HeaderText="Update">
