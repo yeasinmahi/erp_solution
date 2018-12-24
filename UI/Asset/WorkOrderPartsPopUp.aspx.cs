@@ -76,6 +76,7 @@ namespace UI.Asset
                     wt = objWorkorderParts.SubServiceView(Mnumber);
                     dgvSubService.DataSource = wt;
                     dgvSubService.DataBind();
+
                     try
                     {
                         decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
