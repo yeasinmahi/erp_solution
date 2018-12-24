@@ -43,6 +43,22 @@ namespace UI.Asset
             {
                 if (!IsPostBack)
                 {
+                    //btnSubService.Visible = false;
+                    //txtServiceCost.Visible = false;
+                    //lblSubServiceCost.Visible = false;
+                    //txtService.Visible = false;
+                    //lblSubService.Visible = false;
+                    //dgvSubService.Visible = false;
+
+
+                    //btnSubService.Visible = true;
+                    //txtServiceCost.Visible = true;
+                    //lblSubServiceCost.Visible = true;
+                    //txtService.Visible = true;
+                    //lblSubService.Visible = true;
+                    //dgvSubService.Visible = true;
+
+
                     hdnField.Value = "0";
                     TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextVendor();");
                     SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();");
@@ -624,7 +640,10 @@ namespace UI.Asset
 
         protected void BtnClose_Click(object sender, EventArgs e)
         {
+           
+
             Response.Redirect("MaintenanceWorkOrderPopUp.aspx", true);
+
         }
 
         protected void Perform_CheckedChanged(object sender, EventArgs e)
@@ -648,8 +667,56 @@ namespace UI.Asset
             }
         }
 
-        
-       
-            
+        protected void btnSubService_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string service = txtService.Text.ToString();
+                decimal cost = decimal.Parse(txtServiceCost.Text.ToString());
+                int Reffno = int.Parse(Session["intID"].ToString());
+                if (txtService.Text.Length>1 && cost>0)
+                {
+                    wt = objWorkorderParts.CheckSubServiceView(Reffno, service);
+                    if (wt.Rows.Count > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Service Name Already Added');", true);
+                    }
+                    else
+                    {
+                        objWorkorderParts.SubServiceCost(Reffno, service, cost);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+
+                        wt = objWorkorderParts.SubServiceView(Reffno);
+                        dgvSubService.DataSource = wt;
+                        dgvSubService.DataBind();
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Service Name and  Service Cost greater than 0');", true);
+                }
+               
+                
+
+            }
+            catch { }
         }
+
+        protected void dgvSubService_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                int intId = int.Parse(((Label)dgvSubService.Rows[e.RowIndex].FindControl("lblServiceId")).Text.ToString());
+                int Reffno = int.Parse(Session["intID"].ToString());
+                objWorkorderParts.dgvServiceDelete(intId);
+
+                wt = objWorkorderParts.SubServiceView(Reffno);
+                dgvSubService.DataSource = wt;
+                dgvSubService.DataBind();
+
+            }
+            catch { }
+           
+        }
+    }
     }
