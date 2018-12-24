@@ -1928,13 +1928,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public qryItemList1Row FindByintItemID(int intItemID) {
-                return ((qryItemList1Row)(this.Rows.Find(new object[] {
-                            intItemID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 qryItemList1DataTable cln = ((qryItemList1DataTable)(base.Clone()));
                 cln.InitVars();
@@ -1964,12 +1957,9 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintItemID);
                 this.columnstrItem = new global::System.Data.DataColumn("strItem", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrItem);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintItemID}, true));
                 this.columnstrUoM.ReadOnly = true;
                 this.columnstrUoM.MaxLength = 752;
                 this.columnintItemID.AllowDBNull = false;
-                this.columnintItemID.Unique = true;
                 this.columnstrItem.ReadOnly = true;
                 this.columnstrItem.MaxLength = 752;
             }
@@ -3101,16 +3091,14 @@ namespace SCM_DAL.BomTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = " SELECT strItem , strUoM  , intItemID FROM ERP_Inventory.dbo.qryItemList WHERE in" +
-                "tMasterCategory IN (44,45) AND intUnitID=@unit   AND ysnActive=1   ORDER BY strI" +
-                "tem";
+            this._commandCollection[0].CommandText = "SELECT strItem,strUoM,intItemID FROM ERP_Inventory.dbo.qryItemList WHERE (intCate" +
+                "goryID IN (3,4,6) OR intMasterCategory IN (6,26,44,45) OR intMasterComGroup IN (" +
+                "6,12,36)) AND intUnitID=@unit AND ysnActive=1 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = " SELECT strItem , strUoM, intItemID FROM ERP_Inventory.dbo.qryItemList WHERE (int" +
-                "CategoryID IN (3,4,6) OR intMasterCategory IN (6,26,44,45) OR intMasterComGroup " +
-                "IN (6,12,36)) AND intUnitID=@unit AND ysnActive=1";
+            this._commandCollection[1].CommandText = @"SELECT intItemID, strItem, strUoM FROM qryItemList WHERE (intCategoryID IN (3, 4, 6)) AND (intUnitID = @unit) AND (ysnActive = 1) OR (intUnitID = @unit) AND (ysnActive = 1) AND (intMasterCategory IN (6, 26, 44, 45)) OR (intUnitID = @unit) AND (ysnActive = 1) AND (intMasterComGroup IN (6, 12, 36))";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
