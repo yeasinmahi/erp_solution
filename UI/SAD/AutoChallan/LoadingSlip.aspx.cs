@@ -36,7 +36,7 @@ namespace UI.SAD.AutoChallan
         challanandPending Report = new challanandPending();
         autoChallReportsBLL BLL = new autoChallReportsBLL();
         string filePathForXML, Slipno; int enroll;
-
+        Decimal balance, ccredit;
         protected void Page_Load(object sender, EventArgs e)
         {
             enroll = int.Parse(Session[SessionParams.USER_ID].ToString());           
@@ -66,8 +66,9 @@ namespace UI.SAD.AutoChallan
 
                 DataTable dtCustBalance = new DataTable();
                 dtCustBalance = Report.getCustBalance(Custid);
-                decimal MonBalance = decimal.Parse(dtCustBalance.Rows[0]["Balance"].ToString());
-                decimal monCredite = decimal.Parse(dtCustBalance.Rows[0]["monCreditLimit"].ToString());
+                Report.getBalance(Custid, enroll, 2, ref balance, ref ccredit);
+                decimal MonBalance = balance; //decimal.Parse(dtCustBalance.Rows[0]["Balance"].ToString());
+                decimal monCredite = ccredit;// decimal.Parse(dtCustBalance.Rows[0]["monCreditLimit"].ToString());
                 string CustAddress = Convert.ToString(dtCustBalance.Rows[0]["strAddress"].ToString());
                 int intSalesOffId = int.Parse(dtCustBalance.Rows[0]["intSalesOffId"].ToString());
                 int CustType = int.Parse(dtCustBalance.Rows[0]["intCusType"].ToString());
@@ -158,7 +159,7 @@ namespace UI.SAD.AutoChallan
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-
+            File.Delete(filePathForXML);
 
             Int32 intVehicleId;
             Int32 custid; int ShipPointid;
