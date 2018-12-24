@@ -73,6 +73,19 @@ namespace UI.Asset
                     Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
+                    wt = objWorkorderParts.SubServiceView(Mnumber);
+                    dgvSubService.DataSource = wt;
+                    dgvSubService.DataBind();
+                    try
+                    {
+                        decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                        dgvSubService.FooterRow.Cells[1].Text = "Total".ToString();
+                        dgvSubService.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Right;
+                        dgvSubService.FooterRow.Cells[2].Text = total1.ToString("N2");
+                    }
+                    catch { }
+
+
                     if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
                     {
                         hdntp.Value = "1";
@@ -689,6 +702,14 @@ namespace UI.Asset
                         wt = objWorkorderParts.SubServiceView(Reffno);
                         dgvSubService.DataSource = wt;
                         dgvSubService.DataBind();
+                        try
+                        {
+                            decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                            dgvSubService.FooterRow.Cells[1].Text = "Total".ToString();
+                            dgvSubService.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Right;
+                            dgvSubService.FooterRow.Cells[2].Text = total1.ToString("N2");
+                        }
+                        catch { }
                     }
                 }
                 else
@@ -713,6 +734,14 @@ namespace UI.Asset
                 wt = objWorkorderParts.SubServiceView(Reffno);
                 dgvSubService.DataSource = wt;
                 dgvSubService.DataBind();
+                try
+                {
+                    decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                    dgvSubService.FooterRow.Cells[1].Text = "Total".ToString();
+                    dgvSubService.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Right;
+                    dgvSubService.FooterRow.Cells[2].Text = total1.ToString("N2");
+                }
+                catch { }
 
             }
             catch { }
