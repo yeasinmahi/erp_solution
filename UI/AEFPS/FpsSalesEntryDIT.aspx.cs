@@ -44,7 +44,7 @@ namespace UI.AEFPS
             {
                 pnlUpperControl.DataBind();
                 intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                objAEFPS.getTemtableDelete(intInsertby);
+                objAEFPS.getTemtableDeletedit(intInsertby);
                 dt = objAEFPS.getWH(intInsertby);
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataValueField = "Id";
@@ -53,7 +53,8 @@ namespace UI.AEFPS
                 TextBox1.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 GetMemoCount();
                 GetDiscount();
-                
+                txtCardNo.Enabled = false;
+
             }
             else
             { }
@@ -156,141 +157,143 @@ namespace UI.AEFPS
                 SalesAmount = decimal.Parse("0");
             }
             else { SalesAmount = decimal.Parse(txtCashReceiveAmount.Text); }
-            if(hdnSaleAmount.Value=="")
+            if(hdnNetpayable.Value=="")
             { ReceiveAmt = 0; }
-            else { ReceiveAmt = decimal.Parse(hdnSaleAmount.Value); }
+            else { ReceiveAmt = decimal.Parse(hdnNetpayable.Value); }
            
-            if (int.Parse(ddlpaymenttype.SelectedValue) == 1)
-            {
+           
                 if ((ReceiveAmt - SalesAmount) < 0)
                 {
                     txtReturn.Text = ((ReceiveAmt - SalesAmount)*-1).ToString();
                 }
                 else { txtReturn.Text = (("0").ToString()); }
-                txtCardNo.Enabled = false;
 
-            }
-            else { txtReturn.Text = ("0".ToString()); txtCashReceiveAmount.Text = ("0".ToString());
+            if(int.Parse(ddlpaymenttype.SelectedValue)==1)
+            { txtCardNo.Enabled = false; }
+            else
+            {
                 txtCardNo.Enabled = true;
             }
+               
+
+           
         }
 
         DataTable dtDetails;
         protected void txtCashReceiveAmount_TextChanged(object sender, EventArgs e)
         {
             SalesAmount =decimal.Parse(txtCashReceiveAmount.Text);
-            if (hdnSaleAmount.Value !="")
+            if (hdnNetpayable.Value !="")
             {
-                ReceiveAmt = decimal.Parse(hdnSaleAmount.Value);
-                if (int.Parse(ddlpaymenttype.SelectedValue) == 1)
-                {
-                    if (int.Parse(ddlpaymenttype.SelectedValue) == 1)
-                    {
+                ReceiveAmt = decimal.Parse(hdnNetpayable.Value);
+                
+                   
                         if ((ReceiveAmt - SalesAmount) < 0)
                         {
                             txtReturn.Text = ((ReceiveAmt - SalesAmount) * -1).ToString();
                         }
                         else { txtReturn.Text = (("0").ToString()); }
 
-                    }
-                    else { txtReturn.Text = ("0".ToString()); }
-                }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Cash !');", true); }
+                   
+               
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
-            var fd = log.GetFlogDetail(start, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-
-          
-            var tracker = new PerfTracker("Performance on AEFPS\\FpsSalesEntry Submit AEFPS Challan", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
+            if (hdnconfirm.Value == "1")
             {
+                var fd = log.GetFlogDetail(start, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
 
-                if ((txtMobileno.Text != "") || (txtReturn.Text != ""))
+
+                var tracker = new PerfTracker("Performance on AEFPS\\FpsSalesEntry Submit AEFPS Challan", "", fd.UserName, fd.Location,
+                    fd.Product, fd.Layer);
+                try
                 {
-                    if ((txtCashReceiveAmount.Text == "") && (ddlpaymenttype.SelectedValue == "1"))
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Receive Amount !');", true);
-                    }
-                    else
-                    {
-                        if (decimal.Parse(txtCashReceiveAmount.Text) < decimal.Parse(hdnActualSales.Value) && (ddlpaymenttype.SelectedValue == "1"))
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Receive Amount Wrong !');", true);
-                        }
 
+                    if ((txtMobileno.Text != "") || (txtReturn.Text != ""))
+                    {
+                        if ((txtCashReceiveAmount.Text == "") && (ddlpaymenttype.SelectedValue == "1"))
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Receive Amount !');", true);
+                        }
                         else
                         {
-                            if (dgvRptTemp.Rows.Count > 0)
+                            if (decimal.Parse(txtCashReceiveAmount.Text) < decimal.Parse(hdnActualSales.Value) && (ddlpaymenttype.SelectedValue == "1"))
                             {
-
-                                dtedate = DateTime.Parse(DateTime.Now.ToString());
-                                empid = int.Parse(0.ToString());
-                                intWID = int.Parse(ddlWH.SelectedValue.ToString());
-                                intpaymenttype = int.Parse(ddlpaymenttype.SelectedValue.ToString());
-                                if (txtCashReceiveAmount.Text != "")
-                                {
-                                    monCashReceive = decimal.Parse(txtCashReceiveAmount.Text.ToString());
-                                }
-                                else { monCashReceive = decimal.Parse("0"); }
-                                monCashReturn = decimal.Parse("0");
-                                intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                                msg = objAEFPS.getSalesEntry(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby);
-                                dgvRptTemp.DataBind();
-                                char[] delimiterCharss = { ':', ']' };
-                                arrayKeyItem = msg.Split(delimiterCharss);
-
-                                svno = (arrayKeyItem[1].ToString());
-                                HttpContext.Current.Session["empid"] = empid.ToString();
-                                lblchallanno.Text = "Challan No-" + svno.ToString();
-
-                                #region ===== Start Print =====================================================                
-
-                                strWHName = ddlWH.SelectedItem.ToString();
-                              
-                              
-                              
-                              
-                                txtCashReceiveAmount.Text = "";
-
-
-
-                                #endregion =====================================================================                
-
-                                lblsalesAmount.Text = "";
-                               
-                                txtCashReceiveAmount.Text = "";
-                              
-                             
-                                txtReturn.Text = "";
-                               
-                                //txtCreditStatus.Text = "";
-
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Receive Amount Wrong !');", true);
                             }
-                            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Available Sales Information !');", true); }
+
+                            else
+                            {
+                                if (dgvRptTemp.Rows.Count > 0)
+                                {
+
+                                    dtedate = DateTime.Parse(DateTime.Now.ToString());
+                                    empid = int.Parse(0.ToString());
+                                    intWID = int.Parse(ddlWH.SelectedValue.ToString());
+                                    intpaymenttype = int.Parse(ddlpaymenttype.SelectedValue.ToString());
+                                    if (txtCashReceiveAmount.Text != "")
+                                    {
+                                        monCashReceive = decimal.Parse(txtCashReceiveAmount.Text.ToString());
+                                    }
+                                    else { monCashReceive = decimal.Parse("0"); }
+                                    monCashReturn = decimal.Parse(txtReturn.Text);
+                                    intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
+                                    msg = objAEFPS.getSalesEntryDit(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby, txtMobileno.Text, decimal.Parse(hdnNetpayable.Value), Decimal.Parse(hdnDiscount.Value),txtCardNo.Text);
+                                    dgvRptTemp.DataBind();
+                                    char[] delimiterCharss = { ':', ']' };
+                                    arrayKeyItem = msg.Split(delimiterCharss);
+
+                                    svno = (arrayKeyItem[1].ToString());
+                                    HttpContext.Current.Session["empid"] = empid.ToString();
+                                    lblchallanno.Text = "Challan No-" + svno.ToString();
+
+                                    #region ===== Start Print =====================================================                
+
+                                    strWHName = ddlWH.SelectedItem.ToString();
+
+
+
+                                    txtCardNo.Text = "";
+                                    txtCashReceiveAmount.Text = "";
+
+
+
+                                    #endregion =====================================================================                
+
+                                    lblsalesAmount.Text = "";
+
+                                    txtCashReceiveAmount.Text = "";
+
+
+                                    txtReturn.Text = "";
+
+                                    //txtCreditStatus.Text = "";
+
+                                }
+                                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Available Sales Information !');", true); }
+                            }
                         }
                     }
+                    else
+                    { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Employee Inforation!');", true); }
                 }
-                else
-                { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Employee Inforation!');", true); }
-            }
-            catch (Exception ex)
-            {
-                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
-                Flogger.WriteError(efd);
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "Submit", ex);
+                    Flogger.WriteError(efd);
+                }
+
+                fd = log.GetFlogDetail(stop, location, "Submit", null);
+                Flogger.WriteDiagnostic(fd);
+                // ends
+                tracker.Stop();
+
+                GetMemoCount();
             }
 
-            fd = log.GetFlogDetail(stop, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-
-            GetMemoCount();
         }
 
   
@@ -344,10 +347,11 @@ namespace UI.AEFPS
         public static string[] ItemnameSearch(string prefixText, int count = 0)
         {
             FPSSalesEntryBLL objFPSSaleEntry = new FPSSalesEntryBLL();
-            return objFPSSaleEntry.GetItemSearch(prefixText);
+            return objFPSSaleEntry.GetItemSearchDITF(prefixText);
 
         }
-        protected double TotalnumQty = 0, TotalAmount = 0;
+
+        protected double TotalnumQty = 0, TotalAmount = 0, TotalmonTotalDiscount = 0;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -360,6 +364,14 @@ namespace UI.AEFPS
                 else
                 {
                     TotalnumQty += double.Parse(((Label)e.Row.Cells[1].FindControl("lblnumQty")).Text);
+               }
+                if (((Label)e.Row.Cells[2].FindControl("lblTtDiscount")).Text == "")
+                {
+                    TotalmonTotalDiscount += 0;
+                }
+                else
+                {
+                    TotalmonTotalDiscount += double.Parse(((Label)e.Row.Cells[2].FindControl("lblTtDiscount")).Text);
                 }
                 if (((Label)e.Row.Cells[2].FindControl("lblmonAmount")).Text == "")
                 {
@@ -370,16 +382,21 @@ namespace UI.AEFPS
                     TotalAmount += double.Parse(((Label)e.Row.Cells[2].FindControl("lblmonAmount")).Text);
                 }
                 hdnSaleAmount.Value = TotalAmount.ToString();
-                hdnActualSales.Value= TotalAmount.ToString();
+               
                 lblsalesAmount.Text = "Sales Amount :"+ TotalAmount.ToString();
+                lblDiscount.Text = "Discount Amount :" + TotalmonTotalDiscount.ToString();
+                hdnDiscount.Value = TotalmonTotalDiscount.ToString();
+                lblNetPayable.Text= "Net Payable :" + (TotalAmount- TotalmonTotalDiscount).ToString();
+                hdnNetpayable.Value = (TotalAmount - TotalmonTotalDiscount).ToString();
+                hdnActualSales.Value = (TotalAmount - TotalmonTotalDiscount).ToString();
                 if (txtCashReceiveAmount.Text != "")
                 {
                     SalesAmount = decimal.Parse(txtCashReceiveAmount.Text);
                 }
                 else { SalesAmount = decimal.Parse("0"); }
-                if ((hdnSaleAmount.Value != "") || (hdnSaleAmount.Value != null))
+                if ((hdnNetpayable.Value != "") || (hdnNetpayable.Value != null))
                 {
-                    ReceiveAmt = decimal.Parse(hdnSaleAmount.Value);
+                    ReceiveAmt = decimal.Parse(hdnNetpayable.Value);
                 }
                 else { ReceiveAmt = decimal.Parse("0"); }
                 if (int.Parse(ddlpaymenttype.SelectedValue) == 1)
@@ -447,7 +464,7 @@ namespace UI.AEFPS
             intEntryid = int.Parse(Session[SessionParams.USER_ID].ToString());
 
 
-            objAEFPS.InsertUpdateAndReport(id);
+            objAEFPS.InsertUpdateAndReportDITF(id);
             dt = objAEFPS.getReport(intEntryid);
             if (dt.Rows.Count > 0)
             {
@@ -459,6 +476,8 @@ namespace UI.AEFPS
             {
                 dgvRptTemp.DataBind();
                 lblsalesAmount.Text = "Sales Amount :" + "0".ToString();
+                lblDiscount.Text = "Discount Amount :" + "0".ToString();
+                lblNetPayable.Text = "Net Payable :" +"0".ToString();
             }
            
         }
