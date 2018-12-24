@@ -76,6 +76,7 @@ namespace UI.Asset
                     wt = objWorkorderParts.SubServiceView(Mnumber);
                     dgvSubService.DataSource = wt;
                     dgvSubService.DataBind();
+
                     try
                     {
                         decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
@@ -683,7 +684,7 @@ namespace UI.Asset
         protected void btnSubService_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 string service = txtService.Text.ToString();
                 decimal cost = decimal.Parse(txtServiceCost.Text.ToString());
                 int Reffno = int.Parse(Session["intID"].ToString());
