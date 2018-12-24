@@ -238,7 +238,43 @@
                      </td>
                      
              </tr>
-             </table>      
+             </table>
+          <div class="tabs_container" >Sub Service Cost</div>  
+          <table border="1px" width="900"   class="tblrowodd" >
+            <tr>                
+            <td   style="text-align:right;"><asp:Label ID="lblSubService" runat="server" CssClass="lbl" Text="Service Name:"></asp:Label> </td>
+            <td  style="text-align:left;"> <asp:TextBox ID="txtService" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>  
+            <td  style="text-align:right;"> <asp:Label ID="lblSubServiceCost" runat="server" CssClass="lbl" Text="Service Cost:"></asp:Label></td>
+            <td  style="text-align:left;"> <asp:TextBox ID="txtServiceCost" runat="server" Text="0.00" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
+            </tr>        
+             <tr>
+      
+        <td></td><td></td><td></td>
+      <td style="text-align:right;"><asp:Button ID="btnSubService" runat="server" Text="Add" OnClick="btnSubService_Click" /> </td>    
+           </tr>
+             <tr>
+                 
+                    <td colspan="3"> <asp:GridView ID="dgvSubService" runat="server" AutoGenerateColumns="False" ShowFooter="true" OnRowDeleting="dgvSubService_RowDeleting">
+                        <Columns>
+                            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField> 
+                             
+                            <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
+                            <asp:BoundField DataField="monService" HeaderText="Amount" SortExpression="monService" />
+                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
+                            <asp:TemplateField HeaderText="ID" Visible="False">
+                        <ItemTemplate>
+                        <asp:Label ID="lblServiceId" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
+                        </ItemTemplate>
+                        </asp:TemplateField>
+                        </Columns>
+                       </asp:GridView> </td>
+
+                       
+             </tr>
+             </table>
+
+
+
        <div class="tabs_container" >Labor Cost</div>
          <td><asp:RadioButton ID="RadioEmployee" Text="Employee"  GroupName="Perform" AutoPostBack="true" runat="server" OnCheckedChanged="Perform_CheckedChanged"  /></td>
          <td><asp:RadioButton ID="RadioVendor" Text="Vendor"  GroupName="Perform" runat="server"  AutoPostBack="true" OnCheckedChanged="Perform_CheckedChanged" /></td>

@@ -126,16 +126,27 @@ namespace UI.PaymentModule
                 {
                     monApproveAmount = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString()));
                 }
-                
-                if(hdnLevel.Value == "1")
+
+                //if(hdnLevel.Value == "1")
+                //{
+                //    if(lblNetPay.Text == "0")
+                //    {
+                //        decimal Amount = (monBillAmount - monPreAdv);
+                //        txtAmount.Text = Amount.ToString();
+                //    }                   
+                //    else { txtAmount.Text = lblNetPay.Text;}
+                //}
+
+                //Modify by monir 2018-12-19
+                if (hdnLevel.Value == "1")
                 {
-                    if(lblNetPay.Text == "0")
-                    {
-                        decimal Amount = (monBillAmount - monPreAdv);
-                        txtAmount.Text = Amount.ToString();
-                    }                   
-                    else { txtAmount.Text = lblNetPay.Text;}
+                   
+                     txtAmount.Text = lblNetPay.Text; 
                 }
+
+
+
+
                 else if (hdnLevel.Value == "2")
                 {
                     ////if(monApproveAmount == 0)

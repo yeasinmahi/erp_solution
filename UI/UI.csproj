@@ -202,6 +202,7 @@
     <Content Include="AEFPS\DamageEntryApproval.aspx" />
     <Content Include="AEFPS\fpsDueReport.aspx" />
     <Content Include="AEFPS\FpsRackItemIssue.aspx" />
+    <Content Include="AEFPS\FpsSalesEntryDIT.aspx" />
     <Content Include="AEFPS\FpsSalesEntry.aspx" />
     <Content Include="AEFPS\FPSSalesEntryNew.aspx" />
     <Content Include="AEFPS\FpsSalesReturn.aspx" />
@@ -267,6 +268,8 @@
     <Content Include="Asset\MaintenancePendingRequest.aspx" />
     <Content Include="Asset\MaintenanceWorkOrderPopUp.aspx" />
     <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
+    <Content Include="Asset\Maintenance_Unit_wise_summary_report.aspx" />
+    <Content Include="Asset\Monthly_Maintenance_Cost.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
@@ -418,6 +421,7 @@
     <Content Include="Inventory\FinishGoodsStock.aspx" />
     <Content Include="Inventory\GoodReceiveNote.aspx" />
     <Content Include="Inventory\GoodReceiveNoteReport.aspx" />
+    <Content Include="Inventory\Inventory_Statement_Report.aspx" />
     <Content Include="Inventory\ItemManager.aspx" />
     <Content Include="Inventory\OverTimeIndivisualReprts.aspx" />
     <Content Include="Inventory\PdfViewer.aspx" />
@@ -2074,6 +2078,13 @@
     <Compile Include="AEFPS\FpsRackItemIssue.aspx.designer.cs">
       <DependentUpon>FpsRackItemIssue.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\FpsSalesEntryDIT.aspx.cs">
+      <DependentUpon>FpsSalesEntryDIT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\FpsSalesEntryDIT.aspx.designer.cs">
+      <DependentUpon>FpsSalesEntryDIT.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\FpsSalesEntry.aspx.cs">
       <DependentUpon>FpsSalesEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2524,6 +2535,20 @@
     </Compile>
     <Compile Include="Asset\Maintenance_Service_Cost_Update.aspx.designer.cs">
       <DependentUpon>Maintenance_Service_Cost_Update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Unit_wise_summary_report.aspx.cs">
+      <DependentUpon>Maintenance_Unit_wise_summary_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Maintenance_Unit_wise_summary_report.aspx.designer.cs">
+      <DependentUpon>Maintenance_Unit_wise_summary_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Monthly_Maintenance_Cost.aspx.cs">
+      <DependentUpon>Monthly_Maintenance_Cost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Monthly_Maintenance_Cost.aspx.designer.cs">
+      <DependentUpon>Monthly_Maintenance_Cost.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\PMSchedule.aspx.cs">
       <DependentUpon>PMSchedule.aspx</DependentUpon>
@@ -3196,6 +3221,13 @@
     </Compile>
     <Compile Include="Inventory\GoodReceiveNoteReport.aspx.designer.cs">
       <DependentUpon>GoodReceiveNoteReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\Inventory_Statement_Report.aspx.cs">
+      <DependentUpon>Inventory_Statement_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\Inventory_Statement_Report.aspx.designer.cs">
+      <DependentUpon>Inventory_Statement_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>

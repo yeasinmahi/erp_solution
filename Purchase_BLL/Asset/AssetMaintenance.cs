@@ -550,6 +550,31 @@ namespace Purchase_BLL.Asset
             WOToolsIn.WOToolsEquipmentInsert(Reffno, ToolsID, description, hour, intenroll, intjobid, intdept);
         }
 
+        public DataTable CheckSubServiceView(int reffno, string service)
+        {
+            
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            return ap.CheckDuplicateServiceData(reffno, service);
+        }
+
+        public DataTable SubServiceView(int reffno)
+        {
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            return ap.GetSubServiceData(reffno);
+        }
+
+        public void SubServiceCost(int reffno, string service, decimal cost)
+        {
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            ap.InsetSubServiceCostData(reffno, service, cost);
+        }
+
+        public void dgvServiceDelete(int intId)
+        {
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            ap.DeleteSubServiceData(intId);
+        }
+
         public void ServiceChargeUpdate(int serviceId, decimal serviceCost,string serviceDesc)
         {
             try

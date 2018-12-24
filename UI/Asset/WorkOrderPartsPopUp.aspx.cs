@@ -43,6 +43,22 @@ namespace UI.Asset
             {
                 if (!IsPostBack)
                 {
+                    //btnSubService.Visible = false;
+                    //txtServiceCost.Visible = false;
+                    //lblSubServiceCost.Visible = false;
+                    //txtService.Visible = false;
+                    //lblSubService.Visible = false;
+                    //dgvSubService.Visible = false;
+
+
+                    //btnSubService.Visible = true;
+                    //txtServiceCost.Visible = true;
+                    //lblSubServiceCost.Visible = true;
+                    //txtService.Visible = true;
+                    //lblSubService.Visible = true;
+                    //dgvSubService.Visible = true;
+
+
                     hdnField.Value = "0";
                     TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextVendor();");
                     SearchToolsBox.Attributes.Add("onkeyUp", "SearchTextTools();");
@@ -56,6 +72,20 @@ namespace UI.Asset
                     Int32 intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+
+                    wt = objWorkorderParts.SubServiceView(Mnumber);
+                    dgvSubService.DataSource = wt;
+                    dgvSubService.DataBind();
+
+                    try
+                    {
+                        decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                        dgvSubService.FooterRow.Cells[1].Text = "Total".ToString();
+                        dgvSubService.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Right;
+                        dgvSubService.FooterRow.Cells[2].Text = total1.ToString("N2");
+                    }
+                    catch { }
+
 
                     if (intjobid == 1 || intjobid == 3 || intjobid == 4 || intjobid == 5 || intjobid == 6 || intjobid == 7 || intjobid == 8 || intjobid == 9 || intjobid == 10 || intjobid == 11 || intjobid == 12 || intjobid == 13 || intjobid == 14 || intjobid == 15 || intjobid == 16 || intjobid == 17 || intjobid == 18 || intjobid == 19 || intjobid == 22 || intjobid == 88 || intjobid == 90 || intjobid == 93 || intjobid == 94 || intjobid == 95 || intjobid == 125 || intjobid == 131 || intjobid == 460 || intjobid == 1254 || intjobid == 1257 || intjobid == 1258 || intjobid == 1259 || intjobid == 1260 || intjobid == 1261)
                     {
@@ -624,7 +654,10 @@ namespace UI.Asset
 
         protected void BtnClose_Click(object sender, EventArgs e)
         {
+           
+
             Response.Redirect("MaintenanceWorkOrderPopUp.aspx", true);
+
         }
 
         protected void Perform_CheckedChanged(object sender, EventArgs e)
@@ -648,8 +681,72 @@ namespace UI.Asset
             }
         }
 
-        
-       
-            
+        protected void btnSubService_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                string service = txtService.Text.ToString();
+                decimal cost = decimal.Parse(txtServiceCost.Text.ToString());
+                int Reffno = int.Parse(Session["intID"].ToString());
+                if (txtService.Text.Length>1 && cost>0)
+                {
+                    wt = objWorkorderParts.CheckSubServiceView(Reffno, service);
+                    if (wt.Rows.Count > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Service Name Already Added');", true);
+                    }
+                    else
+                    {
+                        objWorkorderParts.SubServiceCost(Reffno, service, cost);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+
+                        wt = objWorkorderParts.SubServiceView(Reffno);
+                        dgvSubService.DataSource = wt;
+                        dgvSubService.DataBind();
+                        try
+                        {
+                            decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                            dgvSubService.FooterRow.Cells[1].Text = "Total".ToString();
+                            dgvSubService.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Right;
+                            dgvSubService.FooterRow.Cells[2].Text = total1.ToString("N2");
+                        }
+                        catch { }
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-up Service Name and  Service Cost greater than 0');", true);
+                }
+               
+                
+
+            }
+            catch { }
         }
+
+        protected void dgvSubService_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                int intId = int.Parse(((Label)dgvSubService.Rows[e.RowIndex].FindControl("lblServiceId")).Text.ToString());
+                int Reffno = int.Parse(Session["intID"].ToString());
+                objWorkorderParts.dgvServiceDelete(intId);
+
+                wt = objWorkorderParts.SubServiceView(Reffno);
+                dgvSubService.DataSource = wt;
+                dgvSubService.DataBind();
+                try
+                {
+                    decimal total1 = wt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                    dgvSubService.FooterRow.Cells[1].Text = "Total".ToString();
+                    dgvSubService.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Right;
+                    dgvSubService.FooterRow.Cells[2].Text = total1.ToString("N2");
+                }
+                catch { }
+
+            }
+            catch { }
+           
+        }
+    }
     }
