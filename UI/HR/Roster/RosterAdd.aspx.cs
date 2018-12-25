@@ -36,9 +36,9 @@ namespace UI.HR.Roster
             DataTable dt = _tourPlanning.GetUnitName(enrol);
             Common.BindDropDown(ddlUnit, dt, "intUnitID", "strUnit");
         }
-        public void LoadJobStationDropDown(int unitId)
+        public void LoadJobStationDropDown(int unitId,int enroll)
         {
-            DataTable dt = _tourPlanning.GetJobStation(unitId);
+            DataTable dt = _tourPlanning.GetJobStationByPermission(unitId,enroll);
             Common.BindDropDown(ddlJobStation, dt, "intEmployeeJobStationId", "strJobStationName");
         }
         public void LoadTeamDropDown(int jobStationId)
@@ -188,7 +188,7 @@ namespace UI.HR.Roster
         }
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadJobStationDropDown(Common.GetDdlSelectedValue(ddlUnit));
+            LoadJobStationDropDown(Common.GetDdlSelectedValue(ddlUnit), _enroll);
             ddlJobStation_OnSelectedIndexChanged(null, null);
            
         }

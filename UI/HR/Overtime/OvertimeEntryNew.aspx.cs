@@ -28,7 +28,7 @@ namespace UI.HR.Overtime
                 Session["obj"] = null;
                 LoadPurpose();
                 LoadUnitDropDown(_enroll);
-                LoadJobStationDropDown(GetUnitId());
+                LoadJobStationDropDown(GetUnitId(), _enroll);
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
             if (hdnSearch.Value == "1")
@@ -39,7 +39,7 @@ namespace UI.HR.Overtime
 
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadJobStationDropDown(GetUnitId());
+            LoadJobStationDropDown(GetUnitId(), _enroll);
             ddlJobStation_OnSelectedIndexChanged(ddlJobStation, null);
         }
 
@@ -199,9 +199,9 @@ namespace UI.HR.Overtime
             ddlPurposeUpdate.DataTextField = "strPurpouse";
             ddlPurposeUpdate.DataBind();
         }
-        public void LoadJobStationDropDown(int unitId)
+        public void LoadJobStationDropDown(int unitId,int enroll)
         {
-            ddlJobStation.DataSource = _bll.GetJobStation(unitId);
+            ddlJobStation.DataSource = _bll.GetJobStationByPermission(unitId, _enroll);
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
@@ -221,9 +221,18 @@ namespace UI.HR.Overtime
         [WebMethod]
         public static List<string> GetAutoCompleteData(string strSearchKey)
         {
+            int jobStationId = 0;
+            try
+            {
+                jobStationId = int.Parse(HttpContext.Current.Session["jobStationId"].ToString());
+            }
+            catch (Exception e)
+            {
+                
+            }
             AutoSearch_BLL objAutoSearchBll = new AutoSearch_BLL();
             var result = objAutoSearchBll.AutoSearchEmployeesData(//1399, 12, strSearchKey);
-                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
+                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), jobStationId, strSearchKey);
             return result;
         }
         public void LoadEmployeeInfo()
