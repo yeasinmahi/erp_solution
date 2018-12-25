@@ -279,6 +279,8 @@
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
     <Content Include="Asset\ServiceConfigurePopUp.aspx" />
+    <Content Include="Asset\Vehicle Maintenance Bill Unit.aspx" />
+    <Content Include="Asset\Vehicle Renewal  Bill Unit.aspx" />
     <Content Include="Asset\VehicleInfoUpdate_UI.aspx" />
     <Content Include="Asset\Vehicle_Bill_Detalis_PopUp.aspx" />
     <Content Include="Asset\Vehicle_Maintenance_Bill.aspx" />
@@ -2613,6 +2615,20 @@
     </Compile>
     <Compile Include="Asset\ServiceConfigurePopUp.aspx.designer.cs">
       <DependentUpon>ServiceConfigurePopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Vehicle Maintenance Bill Unit.aspx.cs">
+      <DependentUpon>Vehicle Maintenance Bill Unit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Vehicle Maintenance Bill Unit.aspx.designer.cs">
+      <DependentUpon>Vehicle Maintenance Bill Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Vehicle Renewal  Bill Unit.aspx.cs">
+      <DependentUpon>Vehicle Renewal  Bill Unit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Vehicle Renewal  Bill Unit.aspx.designer.cs">
+      <DependentUpon>Vehicle Renewal  Bill Unit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\VehicleInfoUpdate_UI.aspx.cs">
       <DependentUpon>VehicleInfoUpdate_UI.aspx</DependentUpon>
