@@ -229,13 +229,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.TextBox txtChangeQty;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnCalculate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
+        protected global::System.Web.UI.WebControls.Button btnCalculate;
         
         /// <summary>
         /// btnSaves control.

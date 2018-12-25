@@ -29,8 +29,7 @@ namespace UI.SCM.BOM
             {
                 try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
                 catch { }
-                txtBomItem.Visible = false;
-                ListDatas.Visible = false;
+                
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)

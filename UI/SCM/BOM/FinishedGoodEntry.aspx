@@ -193,7 +193,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="SR Detail" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
+                                        <asp:TemplateField HeaderText="SR Detail"   ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSRDetail" runat="server" Width="70px" Text="SR Detail"></asp:Button>
                                             </ItemTemplate>
