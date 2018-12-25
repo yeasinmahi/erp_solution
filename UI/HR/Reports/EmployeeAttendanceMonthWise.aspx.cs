@@ -11,6 +11,7 @@ using HR_DAL.Reports;
 using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
+using System.Globalization;
 
 namespace UI.HR.Reports
 {
@@ -20,7 +21,7 @@ namespace UI.HR.Reports
         string location = "HR";
         string start = "starting HR/Reports/EmployeeAttendanceMonthWise.aspx";
         string stop = "stopping HR/Reports/EmployeeAttendanceMonthWise.aspx";
-
+        string empcode;
         ReportDataTDS.SprEmployeeMonthWiseAttendanceDataTable objDataTbl = null;
         EmployeeAttendanceReports objMonthwiseAttendanceReport = new EmployeeAttendanceReports();
         DataTable oDTReportData = new DataTable();
@@ -35,6 +36,7 @@ namespace UI.HR.Reports
             objDataTbl = objMonthwiseAttendanceReport.GetEmployeeMonthWiseAttendance(intLoginUerId);
             txtEmployee.Text = objDataTbl[0].strEmployeeName.ToString().ToUpper();
             txtJobStation.Text = objDataTbl[0].strJobStationName.ToString().ToUpper();
+            empcode=objDataTbl[0].strEmployeeCode.ToString().ToUpper();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -46,37 +48,16 @@ namespace UI.HR.Reports
             var tracker = new PerfTracker("Performance on HR/Reports/EmployeeAttendanceMonthWise.aspx btnShow_Click", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
 
-            string path = HttpContext.Current.Server.MapPath("~/HR/Reports/ReportsTemplate/DatewiseAttendanceInfo.rdlc");
-            oDTReportData = objMonthwiseAttendanceReport.GetEmployeeMonthWiseAttendance(intLoginUerId);
-            if (oDTReportData.Rows.Count > 0)
-            {
-                MonthWiseAttendanceReportViewer.Reset(); //important
-                MonthWiseAttendanceReportViewer.ProcessingMode = ProcessingMode.Local;
-                LocalReport objReport = MonthWiseAttendanceReportViewer.LocalReport;
-                objReport.ReportPath = path;
-                string dateVal = DateTime.Now.Date.ToString("dd-MMMM-yyyy");
-                // Add Parameter 
-                List<ReportParameter> parameters = new List<ReportParameter>();
-                parameters.Add(new ReportParameter("UnitName", objDataTbl[0].strJobStationName.ToString().ToUpper()));
-                parameters.Add(new ReportParameter("UnitAddress", objDataTbl[0].strStationAddress.ToString().ToUpper()));
-                parameters.Add(new ReportParameter("Title", "Single Employee Attendance Summary"));
-                parameters.Add(new ReportParameter("Date", dateVal));
+            
 
-                MonthWiseAttendanceReportViewer.LocalReport.SetParameters(parameters);
-                MonthWiseAttendanceReportViewer.ShowParameterPrompts = false;
-                MonthWiseAttendanceReportViewer.ShowPromptAreaButton = false;
-                MonthWiseAttendanceReportViewer.LocalReport.Refresh();
+            DateTime PresentDate =  DateTime.Today;
+            string pdate = PresentDate.ToString("yyyy-MM-dd");
+            DateTime firstDayOfMonth = new DateTime(PresentDate.Year, PresentDate.Month, 1);
+            string fdate = firstDayOfMonth.ToString("yyyy-MM-dd");
+           
 
-                ReportDataSource reportDataSource = new ReportDataSource();
-                reportDataSource.Name = "dsDailyEmployyAttendance";
-                reportDataSource.Value = oDTReportData;
-                objReport.DataSources.Add(reportDataSource);
-
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-            }
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Attendance_Report&type=0" + "&empCode=" + empcode + "&fdate=" + fdate + "&tdate=" + pdate + "&rc:LinkTarget=_self";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
 
             fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
             Flogger.WriteDiagnostic(fd);

@@ -19,10 +19,22 @@
 
     }
 
-    function CloseWindow() {
-        window.close();
-    }
+
+
     </script>
+
+    <script> function CloseWindow() {
+     window.close();      
+ } </script>
+
+<script type="text/javascript">
+    function RefreshParent() {
+        if (window.opener != null && !window.opener.closed) {
+            window.opener.location.reload();
+        }
+    }
+    window.onbeforeunload = RefreshParent;
+</script>
    
 </head>
 <body>
@@ -39,14 +51,14 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>--%>
 <%--=========================================Start My Code From Here===============================================--%>
-    <div class="leaveApplication_container"><b>Corporate Sales Return Warehouse Recieve: </b><asp:HiddenField ID="hdnconfirm" runat="server" /><hr />
+    <div class="leaveApplication_container"><b>Corporate Sales Return Review Edit: </b><asp:HiddenField ID="hdnconfirm" runat="server" /><hr />
     <table style="width:Auto";>
-   <tr><td colspan="2"><asp:Label ID="lblCustomer" runat="server"></asp:Label></td></tr>
-    <tr><td><asp:Label ID="lblchallanno" runat="server" Text="Challan No: "></asp:Label><asp:Label ID="lblchalan" runat="server"></asp:Label></td>
+   <tr><td colspan="2"><asp:Label ID="Label1" runat="server" Text="Customer Name : "></asp:Label><asp:Label ID="lblCustomer" runat="server"></asp:Label></td></tr>
+    <tr><td><asp:Label ID="lblchallanno" runat="server" Text="Return Description: "></asp:Label><asp:Label ID="lblchalan" runat="server"></asp:Label></td>
     <td></td>
     </tr>
     <tr><td>
-    <asp:GridView ID="dgv" runat="server" AutoGenerateColumns="False" Font-Size="9px" BackColor="White" 
+    <asp:GridView ID="dgv" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" 
     BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="1" ForeColor="Black" GridLines="Vertical" >
     <AlternatingRowStyle BackColor="#CCCCCC"/>
     <Columns>   
@@ -54,13 +66,19 @@
         <asp:HiddenField id="hdfk" Value='<%# Bind("intFK")%>' runat="server" />
         <asp:HiddenField id="hdprodid" Value='<%# Bind("intProdId")%>' runat="server" />
       </ItemTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Product Details" SortExpression="strProd"><ItemTemplate>
+    <asp:TemplateField HeaderText="Return Type" SortExpression="strReturnType"><ItemTemplate>
+    <asp:Label ID="lblreportType" runat="server" Text='<%# Bind("strReturnType") %>'></asp:Label></ItemTemplate>
+    <ItemStyle HorizontalAlign="Left" Width="100px"/></asp:TemplateField>
+    <asp:TemplateField HeaderText="Product Details" SortExpression="Description"><ItemTemplate>
     <asp:Label ID="lblprod" runat="server" Text='<%# Bind("Description") %>'></asp:Label></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" Width="300px"/></asp:TemplateField>
-    <asp:TemplateField HeaderText="Party Return" SortExpression="decrcv">
+         <asp:TemplateField HeaderText="Location/Point Name" SortExpression="strLocation"><ItemTemplate>
+    <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("strLocation") %>'></asp:Label></ItemTemplate>
+    <ItemStyle HorizontalAlign="Left" /></asp:TemplateField>
+    <asp:TemplateField HeaderText="Customer Return Quantity (Pcs)" SortExpression="decrcv">
     <ItemTemplate><asp:Textbox ID="txtpartyrtn" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" runat="server" Text='<%# Bind("decReturnQty") %>'> </asp:Textbox></ItemTemplate>
     <ItemStyle HorizontalAlign="Center" Width="35px" /></asp:TemplateField>
-    <asp:TemplateField HeaderText="Recieved Quantity" SortExpression="decrcv">
+    <asp:TemplateField HeaderText="Warehouse Recieved Quantity (Pcs)" SortExpression="decrcv">
     <ItemTemplate><asp:Textbox ID="txtwhcv" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" runat="server" Text='<%# Bind("decWHReturnCountQty") %>'> </asp:Textbox></ItemTemplate>
     <ItemStyle HorizontalAlign="Center" Width="35px" /></asp:TemplateField>
     </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White"/>

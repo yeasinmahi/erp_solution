@@ -23,7 +23,7 @@
 
         $("[id*=txtReceiveQty]").live("keyup", function () {
             if (!jQuery.trim($(this).val()) == '') {
-
+                debugger;
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
                     var poqty = parseFloat($("[id*=lblPoQty]", row).html());

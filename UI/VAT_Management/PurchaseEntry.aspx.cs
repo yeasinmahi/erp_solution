@@ -241,6 +241,7 @@ namespace UI.VAT_Management
             node.Attributes.Append(Total);
             node.Attributes.Append(Exempted);
             return node;
+
         }
         protected void dgvPurchaseEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

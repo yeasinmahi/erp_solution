@@ -301,13 +301,13 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label lblWithouthvalue;
         
         /// <summary>
-        /// btnSave control.
+        /// lblChallandate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Label lblChallandate;
         
         /// <summary>
         /// txtCreditqty control.
@@ -371,6 +371,15 @@ namespace UI.VAT_Management {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAdd;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
         /// dgvVatProduct control.

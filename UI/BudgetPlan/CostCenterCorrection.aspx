@@ -13,7 +13,7 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
- <%--  <link href="../Content/CSS/bootstrap-datepicker.min.css" rel="stylesheet" />--%>
+    <%--  <link href="../Content/CSS/bootstrap-datepicker.min.css" rel="stylesheet" />--%>
     <link href="../Content/font-awesome.min.css" rel="stylesheet" />
 
 </head>
@@ -46,7 +46,7 @@
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:DropDownList runat="server" ID="ddlUnit" CssClass="form-control col-md-12" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged"/>
+                                        <asp:DropDownList runat="server" ID="ddlUnit" CssClass="form-control col-md-12" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged" />
                                         <%--<asp:TextBox ID="txtEnroll" TextMode="Number" CssClass="form-control col-md-12" runat="server" placeholder="Enroll"></asp:TextBox>--%>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:DropDownList runat="server" ID="ddlCostCenter" CssClass="form-control col-md-12"/>
+                                        <asp:DropDownList runat="server" ID="ddlCostCenter" CssClass="form-control col-md-12" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -65,12 +65,13 @@
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     </div>
                                     <div class="col-md-12">
-                                         <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12" AutoPostBack="false"   Enabled="true" ></asp:TextBox>
-                                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
+                                        <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12" AutoPostBack="false" Enabled="true" autocomplete="off"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
+                                        </td>
 
                                         
                                     </div>
-                                      
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-12">
@@ -78,8 +79,9 @@
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12" AutoPostBack="false"   Enabled="true" ></asp:TextBox>
-                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
+                                        <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12" AutoPostBack="false" Enabled="true" autocomplete="off"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
+                                        </td>
 
                                          
                                     </div>
@@ -105,7 +107,15 @@
                             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
-
+                                    <asp:TemplateField HeaderText="Check">
+                                        <HeaderTemplate>
+                                            <%--<asp:CheckBox ID="checkAll" runat="server" OnCheckedChanged="checkAll_CheckedChanged"></asp:CheckBox>--%>
+                                            <input id="checkboxAll" type="checkbox" onclick="CheckAll(this)" runat="server" />
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="itemCheckbox" runat="server"></asp:CheckBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
                                             <asp:HiddenField runat="server" ID="hdnSubledgerId" Value='<%# Bind("intSubLedgerID") %>' />
@@ -161,6 +171,9 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="50px">
+                                        <HeaderTemplate>
+                                            <asp:Button ID="btnUpdateAll" runat="server" class="btn btn-primary form-control col-md-12" Text="Update Selected" OnClientClick="return ConfirmUpdate()" OnClick="btnUpdateAll_Click" />
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary form-control col-md-12" Text="Update" OnClientClick="return ConfirmUpdate()" OnClick="btnUpdate_OnClick" />
                                         </ItemTemplate>
@@ -193,7 +206,7 @@
     <script src="../Content/JS/jquery-3.3.1.js"></script>
     <script src="../Content/JS/bootstrap.min.js"></script>
     <%--<script src="../Content/JS/bootstrap-datepicker.min.js"></script>--%>
-     <script src="../Content/JS/datepickr.min.js"></script>
+    <script src="../Content/JS/datepickr.min.js"></script>
 
     <style>
         table {
@@ -228,16 +241,21 @@
     </style>
     <script type="text/javascript">
 
-        
-      
+
+        function CheckAll(oCheckbox) {
+            var gridView = document.getElementById("<%=gridView.ClientID %>");
+            for (i = 1; i < gridView.rows.length; i++) {
+                gridView.rows[i].cells[0].getElementsByTagName("INPUT")[0].checked = oCheckbox.checked;
+            }
+        }
         function ConfirmUpdate() {
-            if (confirm("Are you want to remove?")) {
+            if (confirm("Are you want to update?")) {
                 return true;
             }
             return false;
         }
 
-         
+
     </script>
 </body>
 </html>

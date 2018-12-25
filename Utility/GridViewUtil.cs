@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -7,6 +8,15 @@ namespace Utility
 {
     public class GridViewUtil
     {
+        public static GridViewRow GetCurrentGridViewRow(object sender)
+        {
+            return (GridViewRow) ((Button) sender).NamingContainer;
+        }
+        public static GridViewRow GetCurrentGridViewRow(GridView gridView, GridViewCommandEventArgs e)
+        {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            return gridView.Rows[rowIndex];
+        }
         public static BoundField CreateBoundField(string headerText, string value)
         {
             BoundField field = new BoundField

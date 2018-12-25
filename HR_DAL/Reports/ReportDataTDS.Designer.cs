@@ -3358,6 +3358,8 @@ namespace HR_DAL.Reports {
             
             private global::System.Data.DataColumn columnstrStationAddress;
             
+            private global::System.Data.DataColumn columnstrEmployeeCode;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprEmployeeMonthWiseAttendanceDataTable() {
@@ -3457,6 +3459,14 @@ namespace HR_DAL.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strEmployeeCodeColumn {
+                get {
+                    return this.columnstrEmployeeCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3492,7 +3502,7 @@ namespace HR_DAL.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprEmployeeMonthWiseAttendanceRow AddSprEmployeeMonthWiseAttendanceRow(int intEmployeeID, string strEmployeeName, string strUnit, string strJobStationName, string AttendanceDate, string AttendanceTime, string strRemark, string strStationAddress) {
+            public SprEmployeeMonthWiseAttendanceRow AddSprEmployeeMonthWiseAttendanceRow(int intEmployeeID, string strEmployeeName, string strUnit, string strJobStationName, string AttendanceDate, string AttendanceTime, string strRemark, string strStationAddress, string strEmployeeCode) {
                 SprEmployeeMonthWiseAttendanceRow rowSprEmployeeMonthWiseAttendanceRow = ((SprEmployeeMonthWiseAttendanceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intEmployeeID,
@@ -3502,7 +3512,8 @@ namespace HR_DAL.Reports {
                         AttendanceDate,
                         AttendanceTime,
                         strRemark,
-                        strStationAddress};
+                        strStationAddress,
+                        strEmployeeCode};
                 rowSprEmployeeMonthWiseAttendanceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprEmployeeMonthWiseAttendanceRow);
                 return rowSprEmployeeMonthWiseAttendanceRow;
@@ -3533,6 +3544,7 @@ namespace HR_DAL.Reports {
                 this.columnAttendanceTime = base.Columns["AttendanceTime"];
                 this.columnstrRemark = base.Columns["strRemark"];
                 this.columnstrStationAddress = base.Columns["strStationAddress"];
+                this.columnstrEmployeeCode = base.Columns["strEmployeeCode"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3554,6 +3566,8 @@ namespace HR_DAL.Reports {
                 base.Columns.Add(this.columnstrRemark);
                 this.columnstrStationAddress = new global::System.Data.DataColumn("strStationAddress", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrStationAddress);
+                this.columnstrEmployeeCode = new global::System.Data.DataColumn("strEmployeeCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrEmployeeCode);
                 this.columnstrEmployeeName.MaxLength = 1000;
                 this.columnstrUnit.AllowDBNull = false;
                 this.columnstrUnit.MaxLength = 50;
@@ -3564,6 +3578,7 @@ namespace HR_DAL.Reports {
                 this.columnAttendanceTime.MaxLength = 30;
                 this.columnstrRemark.MaxLength = 100;
                 this.columnstrStationAddress.MaxLength = 2147483647;
+                this.columnstrEmployeeCode.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8120,6 +8135,23 @@ namespace HR_DAL.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strEmployeeCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprEmployeeMonthWiseAttendance.strEmployeeCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strEmployeeCode\' in table \'SprEmployeeMonthWiseAttendance\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprEmployeeMonthWiseAttendance.strEmployeeCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintEmployeeIDNull() {
                 return this.IsNull(this.tableSprEmployeeMonthWiseAttendance.intEmployeeIDColumn);
             }
@@ -8200,6 +8232,18 @@ namespace HR_DAL.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrStationAddressNull() {
                 this[this.tableSprEmployeeMonthWiseAttendance.strStationAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrEmployeeCodeNull() {
+                return this.IsNull(this.tableSprEmployeeMonthWiseAttendance.strEmployeeCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrEmployeeCodeNull() {
+                this[this.tableSprEmployeeMonthWiseAttendance.strEmployeeCodeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11719,6 +11763,7 @@ namespace HR_DAL.Reports.ReportDataTDSTableAdapters {
             tableMapping.ColumnMappings.Add("AttendanceTime", "AttendanceTime");
             tableMapping.ColumnMappings.Add("strRemark", "strRemark");
             tableMapping.ColumnMappings.Add("strStationAddress", "strStationAddress");
+            tableMapping.ColumnMappings.Add("strEmployeeCode", "strEmployeeCode");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

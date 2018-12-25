@@ -3,6 +3,7 @@ using Budget_DAL.Budget_TDSTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -108,9 +109,23 @@ namespace Budget_BLL.Budget
             try
             {
                 DataTable2TableAdapter adp = new DataTable2TableAdapter();
-                return adp.GetCostCenterData(unitid, Convert.ToString(fromDate), Convert.ToString(toDate));
+                return adp.GetCostCenterData(unitid, Convert.ToString(fromDate, CultureInfo.InvariantCulture), Convert.ToString(toDate, CultureInfo.InvariantCulture));
             }
             catch { return new DataTable(); }
+        }
+        public DataTable UpdateCostCenterSelected(string xml, out string message)
+        {
+            try
+            {
+                SprCostCenterCorrectionUpdateTableAdapter adp = new SprCostCenterCorrectionUpdateTableAdapter();
+                message = null;
+                return adp.UpdateCostCenterSelected(xml, ref message);
+            }
+            catch
+            {
+                message = null;
+                return new DataTable();
+            }
         }
         //@intUnitID int, @intCOAID int, @intYear int, @intMonth int, @monBAmount money, @monTAmount money, @intUserID int, @intCCID
 

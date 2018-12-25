@@ -137,6 +137,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bonus_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Benifit\EmpBenifitEntry.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpBenifitEntry.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Benifit\PfBankAccountDetails_TDS1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,6 +232,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentTrackingTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Employee.cs">
+      <DependentUpon>Employee.xsd</DependentUpon>
     </Compile>
     <Compile Include="Employee\Employee1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -692,6 +700,17 @@
     </None>
     <None Include="Benifit\Bonus_TDS.xss">
       <DependentUpon>Bonus_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Benifit\EmpBenifitEntry.xsc">
+      <DependentUpon>EmpBenifitEntry.xsd</DependentUpon>
+    </None>
+    <None Include="Benifit\EmpBenifitEntry.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpBenifitEntry.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Benifit\EmpBenifitEntry.xss">
+      <DependentUpon>EmpBenifitEntry.xsd</DependentUpon>
     </None>
     <None Include="Benifit\PfBankAccountDetails_TDS.xsc">
       <DependentUpon>PfBankAccountDetails_TDS.xsd</DependentUpon>

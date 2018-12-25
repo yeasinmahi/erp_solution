@@ -109,6 +109,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FPSSalesReturnAndTransfer.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\ReceiveTDS.cs">
+      <DependentUpon>ReceiveTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\ReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

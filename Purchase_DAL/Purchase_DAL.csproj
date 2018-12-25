@@ -269,6 +269,9 @@
       <DependentUpon>TransportDue.xsd</DependentUpon>
     </Compile>
     <Compile Include="Commercial\ValidationTDS.Designer.cs" />
+    <Compile Include="Importss\Import_DAL_TDS.cs">
+      <DependentUpon>Import_DAL_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Importss\Import_DAL_TDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
