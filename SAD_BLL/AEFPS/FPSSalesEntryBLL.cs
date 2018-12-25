@@ -12,11 +12,11 @@ namespace SAD_BLL.AEFPS
 {
     public class FPSSalesEntryBLL
     {
-        
-        int e;
+        private int e;
         private static FPSSalesEntryTDS.tblEmployeeDataTable[] tableemp = null;
         private static FPSSalesEntryTDS.tblShopItemListSearchDataTable[] tableempItem = null;
         private static FPSSalesEntryTDS.tblShopItemList2DataTable[] tableempItemDITF = null;
+
         public string[] GetEmployeeSearch(string prefix)
         {
             int intwh = Int32.Parse("1".ToString());
@@ -30,7 +30,7 @@ namespace SAD_BLL.AEFPS
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableemp[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableemp[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strEmployeeName
                                select tmp;
                     if (rows.Count() > 0)
@@ -43,52 +43,39 @@ namespace SAD_BLL.AEFPS
                     try
                     {
                         var rows = from tmp in tableemp[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strEmployeeName.ToLower().Contains(prefix) || Convert.ToString(tmp.intEmployeeID)==(prefix)
+                                   where tmp.strEmployeeName.ToLower().Contains(prefix) || Convert.ToString(tmp.intEmployeeID) == (prefix)
                                    orderby tmp.strEmployeeName
                                    select tmp;
 
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
-
-
                     }
-
                     catch
                     {
                         return null;
                     }
                 }
-
             }
             if (tbl.Rows.Count > 0)
             {
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-
                     retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
-
-                 }
+                }
 
                 return retStr;
-
             }
-
-
             else
             {
                 return null;
             }
-
-
         }
 
         public DataTable getDiscountList(int whid)
         {
-            
             try
             {
                 tblDiscountListTableAdapter getMemocount = new tblDiscountListTableAdapter();
@@ -103,20 +90,16 @@ namespace SAD_BLL.AEFPS
             {
                 tblmemoCountTableAdapter getMemocount = new tblmemoCountTableAdapter();
                 return getMemocount.GetData(whid);
-
-
             }
             catch { return new DataTable(); }
         }
 
-        public DataTable getPricesPer(int part,int intWID, int intitemid, decimal salesQty)
+        public DataTable getPricesPer(int part, int intWID, int intitemid, decimal salesQty)
         {
             try
             {
                 sprFPSProductPriceTableAdapter getShopPrice = new sprFPSProductPriceTableAdapter();
-                return getShopPrice.Getprice(part,intWID, intitemid, salesQty);
-
-
+                return getShopPrice.Getprice(part, intWID, intitemid, salesQty);
             }
             catch { return new DataTable(); }
         }
@@ -130,6 +113,7 @@ namespace SAD_BLL.AEFPS
             }
             catch { return new DataTable(); }
         }
+
         public DataTable getShopLedgerDITF(DateTime dtefdate, DateTime dtetdate, int intWID, int partid)
         {
             try
@@ -140,15 +124,12 @@ namespace SAD_BLL.AEFPS
             catch { return new DataTable(); }
         }
 
-
         public DataTable getCashbook(DateTime dtefdate, DateTime dtetdate, int intWID, int part)
         {
             try
             {
                 sprCashBookTableAdapter getCashbook = new sprCashBookTableAdapter();
                 return getCashbook.GetCashbook(dtefdate, dtetdate, intWID, part);
-
-
             }
             catch { return new DataTable(); }
         }
@@ -160,19 +141,18 @@ namespace SAD_BLL.AEFPS
             {
                 sprCreditVoucherEntryTableAdapter getCashEntry = new sprCreditVoucherEntryTableAdapter();
                 getCashEntry.GetEmpCreditVoucerh(empid, dtefdate, purpose, narration, amount, intWID, intInsertby);
-                 msg = "Successfully";
-
+                msg = "Successfully";
             }
-            catch (Exception){ msg = e.ToString(); }
+            catch (Exception) { msg = e.ToString(); }
             return msg;
         }
 
-        public void GetVoucherEntry( DateTime dtefdate, string purpose, string narration, decimal amount, int intInsertby, int intWID)
+        public void GetVoucherEntry(DateTime dtefdate, string purpose, string narration, decimal amount, int intInsertby, int intWID)
         {
             try
             {
                 sprVoucherEntryTableAdapter getInsertV = new sprVoucherEntryTableAdapter();
-                getInsertV.GetVoucherEntry(dtefdate,  purpose, narration, amount, intWID, intInsertby);
+                getInsertV.GetVoucherEntry(dtefdate, purpose, narration, amount, intWID, intInsertby);
             }
             catch { }
         }
@@ -203,18 +183,19 @@ namespace SAD_BLL.AEFPS
             try
             {
                 sprSalesEntryTableAdapter SalesEntry = new sprSalesEntryTableAdapter();
-                 SalesEntry.GetSalesEntry(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby,ref msg);            
+                SalesEntry.GetSalesEntry(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby, ref msg);
             }
-            catch(Exception e) { msg = e.ToString(); }
+            catch (Exception e) { msg = e.ToString(); }
             return msg;
         }
-        public string getSalesEntryDit(DateTime dtedate, int empid, int intWID, int intpaymenttype, decimal monCashReceive, decimal monCashReturn, int intInsertby,string mobileno,Decimal netpayable,decimal TotalDiscount,string cardno)
+
+        public string getSalesEntryDit(DateTime dtedate, int empid, int intWID, int intpaymenttype, decimal monCashReceive, decimal monCashReturn, int intInsertby, string mobileno, Decimal netpayable, decimal TotalDiscount, string cardno)
         {
             string msg = "";
             try
             {
                 sprSalesEntryDITTableAdapter SalesEntry = new sprSalesEntryDITTableAdapter();
-                SalesEntry.GetData(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby,mobileno,netpayable,TotalDiscount, cardno, ref msg);
+                SalesEntry.GetData(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby, mobileno, netpayable, TotalDiscount, cardno, ref msg);
             }
             catch (Exception e) { msg = e.ToString(); }
             return msg;
@@ -229,6 +210,7 @@ namespace SAD_BLL.AEFPS
             }
             catch { }
         }
+
         public void getTemtableDeletedit(int intInsertby)
         {
             try
@@ -238,6 +220,7 @@ namespace SAD_BLL.AEFPS
             }
             catch { }
         }
+
         public DataTable getQRCodeinf(string qrcode)
         {
             try
@@ -282,9 +265,8 @@ namespace SAD_BLL.AEFPS
         {
             try
             {
-                tblSalesDetailsTemditReportTableAdapter getTemEntryrpt = new tblSalesDetailsTemditReportTableAdapter();
-                return getTemEntryrpt.GetSalesDetailsTemp(intEntryid);
-                
+                tblSalesDetailsTem1TableAdapter getTemEntryrpt = new tblSalesDetailsTem1TableAdapter();
+                return getTemEntryrpt.GetTempDeatils(intEntryid);
             }
             catch { return new DataTable(); }
         }
@@ -299,21 +281,22 @@ namespace SAD_BLL.AEFPS
             catch { return new DataTable(); }
         }
 
-        public void getinsert(string qrcode, int intitemid, string itemName, decimal qty, decimal price, decimal Amount,int intEntryid)
+        public void getinsert(string qrcode, int intitemid, string itemName, decimal qty, decimal price, decimal Amount, int intEntryid)
         {
             try
             {
                 tblSalesDetailsTemTableAdapter getIsertget = new tblSalesDetailsTemTableAdapter();
-                 getIsertget.GetInsertSalesEntryAEFPS(qrcode, intitemid, itemName, qty, price, Amount, intEntryid);
+                getIsertget.GetInsertSalesEntryAEFPS(qrcode, intitemid, itemName, qty, price, Amount, intEntryid);
             }
             catch { }
         }
-        public void getinsertDIT(string qrcode, int intitemid, string itemName, decimal qty, decimal price, decimal Amount, int intEntryid,decimal monDiscount,decimal monTdiscount)
+
+        public void getinsertDIT(string qrcode, int intitemid, string itemName, decimal qty, decimal price, decimal Amount, int intEntryid, decimal monDiscount, decimal monTdiscount)
         {
             try
             {
                 tblSalesDetailsTemDITTableAdapter getIsertget = new tblSalesDetailsTemDITTableAdapter();
-                getIsertget.GetDITSalesTemInsert(qrcode, intitemid, itemName, qty, price, Amount, intEntryid,monDiscount, monTdiscount);
+                getIsertget.GetDITSalesTemInsert(qrcode, intitemid, itemName, qty, price, Amount, intEntryid, monDiscount, monTdiscount);
             }
             catch { }
         }
@@ -327,6 +310,7 @@ namespace SAD_BLL.AEFPS
             }
             catch { }
         }
+
         public void InsertUpdateAndReportDITF(int id)
         {
             try
@@ -336,6 +320,7 @@ namespace SAD_BLL.AEFPS
             }
             catch { }
         }
+
         public DataTable getInventoryStock(int intitemid, int intWHID)
         {
             try
@@ -346,7 +331,7 @@ namespace SAD_BLL.AEFPS
             catch { return new DataTable(); }
         }
 
-        public DataTable getPrices(string qrcode,decimal SalesQty)
+        public DataTable getPrices(string qrcode, decimal SalesQty)
         {
             try
             {
@@ -358,7 +343,6 @@ namespace SAD_BLL.AEFPS
 
         public DataTable getQRCodeforitem(string qrcode)
         {
-            
             try
             {
                 tblShopItemListTableAdapter getQRItemList = new tblShopItemListTableAdapter();
@@ -369,7 +353,6 @@ namespace SAD_BLL.AEFPS
 
         public string[] GetItemSearch(string prefix)
         {
-
             int intwh = Int32.Parse("1".ToString());
             //Inatialize(intwh);
             tableempItem = new FPSSalesEntryTDS.tblShopItemListSearchDataTable[intwh];
@@ -382,7 +365,7 @@ namespace SAD_BLL.AEFPS
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableempItem[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableempItem[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strName
                                select tmp;
                     if (rows.Count() > 0)
@@ -402,45 +385,34 @@ namespace SAD_BLL.AEFPS
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
-
-
                     }
-
                     catch
                     {
                         return null;
                     }
                 }
-
             }
             if (tbl.Rows.Count > 0)
             {
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-
                     retStr[i] = tbl.Rows[i]["strName"] + "[" + tbl.Rows[i]["intMasterId"] + "]";
 
                     //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
                 }
 
                 return retStr;
-
             }
-
-
             else
             {
                 return null;
             }
-
         }
 
         public string[] GetItemSearchDITF(string prefix)
         {
-
             int intwh = Int32.Parse("1".ToString());
             //Inatialize(intwh);
             tableempItemDITF = new FPSSalesEntryTDS.tblShopItemList2DataTable[intwh];
@@ -453,7 +425,7 @@ namespace SAD_BLL.AEFPS
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableempItemDITF[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableempItemDITF[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strName
                                select tmp;
                     if (rows.Count() > 0)
@@ -473,41 +445,32 @@ namespace SAD_BLL.AEFPS
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
-
-
                     }
-
                     catch
                     {
                         return null;
                     }
                 }
-
             }
             if (tbl.Rows.Count > 0)
             {
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-
                     retStr[i] = tbl.Rows[i]["strName"] + "[" + tbl.Rows[i]["intMasterId"] + "]";
 
                     //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
                 }
 
                 return retStr;
-
             }
-
-
             else
             {
                 return null;
             }
-
         }
+
         public string[] GetItemSearchs(string prefixText)
         {
             throw new NotImplementedException();
@@ -518,7 +481,7 @@ namespace SAD_BLL.AEFPS
             try
             {
                 sprEmpCheckTableAdapter adp = new sprEmpCheckTableAdapter();
-                return adp.GetEmployeeCheck(int.Parse(whid),int.Parse(Enroll));
+                return adp.GetEmployeeCheck(int.Parse(whid), int.Parse(Enroll));
             }
             catch { return new DataTable(); }
         }
@@ -545,6 +508,7 @@ namespace SAD_BLL.AEFPS
                 return new DataTable();
             }
         }
+
         public DataTable GetEmpSortName(string cardNo)
         {
             EmpSortNameTableAdapter adp = new EmpSortNameTableAdapter();
@@ -557,6 +521,7 @@ namespace SAD_BLL.AEFPS
                 return new DataTable();
             }
         }
+
         public DataTable GetEmpInfo(string sortname)
         {
             QRYEMPLOYEEPROFILEALLTableAdapter adp = new QRYEMPLOYEEPROFILEALLTableAdapter();
@@ -569,7 +534,5 @@ namespace SAD_BLL.AEFPS
                 return new DataTable();
             }
         }
-
-
     }
 }
