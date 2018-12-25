@@ -7,8 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HR_BLL.TourPlan
 {
@@ -22,13 +20,10 @@ namespace HR_BLL.TourPlan
                 tblEmployeeInfoForTourTableAdapter bll = new tblEmployeeInfoForTourTableAdapter();
                 return bll.dtEmployeeInfo(enrol);
             }
-
             catch
             {
                 return new DataTable();
             }
-
-
         }
 
         public string TourplaninfoInsertByApplicant(string xmlString, int Enrol, int unit, int jobstation)
@@ -49,15 +44,11 @@ namespace HR_BLL.TourPlan
             {
                 SprRptTourPlansTableAdapter bll = new SprRptTourPlansTableAdapter();
                 return bll.tasprRptTourPlans(dtFromDate, dtTodate, unit, enrol);
-
             }
-
             catch
             {
                 return new DataTable();
-
             }
-
         }
 
         public DataTable getRptForAccountsTADAWithRoutingNumber(DateTime dtFromDate, DateTime dtTodate, int unit, int ReporTypeid, int Areaid)
@@ -66,15 +57,11 @@ namespace HR_BLL.TourPlan
             {
                 SprTADAWihtAccountNumberTableAdapter bll = new SprTADAWihtAccountNumberTableAdapter();
                 return bll.tasprTADAWihtAccountNumber(dtFromDate, dtTodate, unit, ReporTypeid, Areaid);
-
             }
-
             catch
             {
                 return new DataTable();
-
             }
-
         }
 
         public DataTable getRegionName(int intUnitID, string strOfficeEmail)
@@ -84,13 +71,10 @@ namespace HR_BLL.TourPlan
                 SprRegionForGloblOSTableAdapter bll = new SprRegionForGloblOSTableAdapter();
                 return bll.tasprRegionForGloblOS(intUnitID, strOfficeEmail);
             }
-
             catch
             {
                 return new DataTable();
-
             }
-
         }
 
         public DataTable getTourAreaName(int RegionId, int intUnitID)
@@ -100,13 +84,10 @@ namespace HR_BLL.TourPlan
                 SprAreaForGlobalOSTableAdapter bll = new SprAreaForGlobalOSTableAdapter();
                 return bll.tasprAreaForGlobalOS(RegionId, intUnitID);
             }
-
             catch
             {
                 return new DataTable();
-
             }
-
         }
 
         public DataTable getTourTerritoryName(int Areaid, int Unitid)
@@ -116,7 +97,6 @@ namespace HR_BLL.TourPlan
                 SprTourTerritoryGloblOSTableAdapter bll = new SprTourTerritoryGloblOSTableAdapter();
                 return bll.tasprTourTerritoryGloblOS(Areaid, Unitid);
             }
-
             catch
             {
                 return new DataTable();
@@ -129,7 +109,6 @@ namespace HR_BLL.TourPlan
             {
                 TblTourHotelNameTableAdapter bll = new TblTourHotelNameTableAdapter();
                 return bll.taTourHotelList(Unitid);
-
             }
             catch
             {
@@ -143,7 +122,6 @@ namespace HR_BLL.TourPlan
             {
                 TblTourDistrictNameTableAdapter bll = new TblTourDistrictNameTableAdapter();
                 return bll.taTourDistrictName();
-
             }
             catch { return new DataTable(); }
         }
@@ -174,17 +152,12 @@ namespace HR_BLL.TourPlan
             catch (Exception ex) { return ex.ToString(); }
         }
 
-
-
-     
-
-
         public List<string> getBrandItemNameforReqs(int unitid, string perf)
         {
             List<string> result = new List<string>();
             //TblBrandItemTableAdapter bllitem = new TblBrandItemTableAdapter();
             TblBrandItemTableAdapter bllitem = new TblBrandItemTableAdapter();
-            
+
             DataTable oDT = new DataTable();
             oDT = bllitem.taGetBrandItemUnitBasis(unitid, perf);
             if (oDT.Rows.Count > 0)
@@ -193,11 +166,9 @@ namespace HR_BLL.TourPlan
                 {
                     result.Add(oDT.Rows[index]["strItemName"].ToString());
                 }
-
             }
             return result;
-
-  }
+        }
 
         public List<string> getBrandItemNameWithstockstatus(int whid, string perf)
         {
@@ -213,13 +184,11 @@ namespace HR_BLL.TourPlan
                 {
                     result.Add(oDT.Rows[index]["strItemName"].ToString());
                 }
-
             }
             return result;
-
         }
 
-        public List<string> getDepotName(int unitid,string pref)
+        public List<string> getDepotName(int unitid, string pref)
         {
             List<string> result = new List<string>();
             SprACLDepotSearchingTableAdapter bll = new SprACLDepotSearchingTableAdapter();
@@ -227,14 +196,13 @@ namespace HR_BLL.TourPlan
             dt = bll.GetDataACLDepotSearching(unitid, pref);
             if (dt.Rows.Count > 0)
             {
-                for(int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     result.Add(dt.Rows[i]["strname"].ToString());
                 }
             }
             return result;
         }
-
 
         public DataTable CreateStoreRequisitionForBrandItem(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate)
         {
@@ -250,8 +218,6 @@ namespace HR_BLL.TourPlan
             dt = bllitemstock.taGetBrandItemUnitBasis(int.Parse(intunitid), perf);
             return bllitemstock.taGetBrandItemUnitBasis(int.Parse(intunitid), perf);
         }
-
-
 
         public DataTable getOvertimePurpouse()
         {
@@ -269,12 +235,10 @@ namespace HR_BLL.TourPlan
                 SprEmplOverTimeTableAdapter bllTadaInsertByBikeAndCarUser = new SprEmplOverTimeTableAdapter();
                 bllTadaInsertByBikeAndCarUser.tasprEmplOverTime(xmlString, dteFromDate, Enrol, ipaddress, ref msg);
                 return msg;
-
             }
-
             catch (Exception ex) { return ex.ToString(); }
-
         }
+
         public string OvertimeEntryNew(int type, string xmlString, int intInsertBy, string ipaddress)
         {
             string msg = "";
@@ -283,48 +247,41 @@ namespace HR_BLL.TourPlan
                 SprEmplOverTimeTableAdapter adp = new SprEmplOverTimeTableAdapter();
                 adp.InsertOverTine(type, xmlString, intInsertBy, ipaddress, ref msg);
                 return msg;
-
             }
-
             catch (Exception ex)
             {
                 return ex.Message;
             }
         }
+
         public DataTable GetEmployeeOvertimeDetails(int intEmpId, string dteStartDate, string dteEndDate)
         {
             try
             {
                 DataTable1TableAdapter adp = new DataTable1TableAdapter();
-                return adp.GetEmployeeOvertimeDetails(intEmpId,dteStartDate, dteEndDate);
+                return adp.GetEmployeeOvertimeDetails(intEmpId, dteStartDate, dteEndDate);
             }
-
             catch (Exception ex)
             {
                 return new DataTable();
             }
         }
 
-
-
-
-
-
-        public DataTable getRptOverTime(int intReportType ,int intActionby ,string xml,int intid,DateTime fromdate,DateTime TODATE,int jsid,int unitid )
+        public DataTable getRptOverTime(int intReportType, int intActionby, string xml, int intid, DateTime fromdate, DateTime TODATE, int jsid, int unitid)
         {
-       
             SprEmplOverTimeForReportsTableAdapter bllOvertimeRpt = new SprEmplOverTimeForReportsTableAdapter();
             DataTable dt = new DataTable();
             dt = bllOvertimeRpt.tasprEmplOverTimeForReports(intReportType, intActionby, xml, intid, fromdate, TODATE, jsid, unitid);
-            return bllOvertimeRpt.tasprEmplOverTimeForReports(intReportType, intActionby, xml, intid, fromdate, TODATE,jsid, unitid);
+            return bllOvertimeRpt.tasprEmplOverTimeForReports(intReportType, intActionby, xml, intid, fromdate, TODATE, jsid, unitid);
         }
 
         public DataTable getUnitNamebyEnrol(int Enrol)
         {
-            try { 
-            SprUnitListForSeparationTableAdapter bll = new SprUnitListForSeparationTableAdapter();
-            return bll.tasprUnitListForSeparation(Enrol);
-                }
+            try
+            {
+                SprUnitListForSeparationTableAdapter bll = new SprUnitListForSeparationTableAdapter();
+                return bll.tasprUnitListForSeparation(Enrol);
+            }
             catch
             {
                 return new DataTable();
@@ -344,22 +301,17 @@ namespace HR_BLL.TourPlan
             }
         }
 
-
         public string overtimeUpdation(string xmlString, DateTime dteFromDate, int Enrol)
-         {
+        {
             string msg = "";
             try
             {
                 SprEmplOverTimeUpdateInformationTableAdapter bllTadaInsertByBikeAndCarUser = new SprEmplOverTimeUpdateInformationTableAdapter();
                 bllTadaInsertByBikeAndCarUser.tasprEmplOverTimeUpdateInformation(xmlString, dteFromDate, Enrol, ref msg);
                 return msg;
-
             }
-
             catch (Exception ex) { return ex.ToString(); }
-
         }
-
 
         public List<string> getBrandItemSupplierList(int unitid, string perf)
         {
@@ -373,18 +325,16 @@ namespace HR_BLL.TourPlan
                 {
                     result.Add(oDT.Rows[index]["strSupplierName"].ToString());
                 }
-
             }
             return result;
         }
 
         public DataTable CreateBrandItmRecvChallanbyWH(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate, int unitid)
         {
-        SprBrandItemReciveByWHTableAdapter adp =new SprBrandItemReciveByWHTableAdapter();
-        try { return adp.tasprBrandItemReciveByWH(type, actionby, xml, id, fdate, tdate, unitid); }
-        catch { return new DataTable(); }
+            SprBrandItemReciveByWHTableAdapter adp = new SprBrandItemReciveByWHTableAdapter();
+            try { return adp.tasprBrandItemReciveByWH(type, actionby, xml, id, fdate, tdate, unitid); }
+            catch { return new DataTable(); }
         }
-
 
         public DataTable GetBrandItemWarehouseList(int enroll, int type)
         {
@@ -396,7 +346,7 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public DataTable GetBrandItemWHBaseStockTopSheet(int whid,int intUnitID )
+        public DataTable GetBrandItemWHBaseStockTopSheet(int whid, int intUnitID)
         {
             try
             {
@@ -405,17 +355,16 @@ namespace HR_BLL.TourPlan
             }
             catch { return new DataTable(); }
         }
- 
-        public DataTable GetBrandItemREPORT(int type, int action,int unit,int wh,DateTime dtfrom,DateTime dtto)
+
+        public DataTable GetBrandItemREPORT(int type, int action, int unit, int wh, DateTime dtfrom, DateTime dtto)
         {
             try
             {
                 SprBrandItemRequistionReportsTableAdapter ta = new SprBrandItemRequistionReportsTableAdapter();
-                return ta.tasprBrandItemRequistionReports(type,action,unit,wh,dtfrom,dtto);
+                return ta.tasprBrandItemRequistionReports(type, action, unit, wh, dtfrom, dtto);
             }
             catch { return new DataTable(); }
         }
-
 
         public DataTable GetAclDirectPointList(int Unitid)
         {
@@ -437,7 +386,7 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public DataTable GetTADASupervisroApproveMonitoring(DateTime dtform,DateTime dtTo,int emplid,int unitid,int reporttypeid)
+        public DataTable GetTADASupervisroApproveMonitoring(DateTime dtform, DateTime dtTo, int emplid, int unitid, int reporttypeid)
         {
             try
             {
@@ -457,20 +406,20 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public DataTable GetdataforConferenceRoom(int type,int hallid )
+        public DataTable GetdataforConferenceRoom(int type, int hallid)
         {
             SprConferenceRoomTableAdapter adp = new SprConferenceRoomTableAdapter();
             try { return adp.GetDataConferenceRoom(type, hallid); }
             catch { return new DataTable(); }
         }
+
         public string SubmitConferenceroomshedulinfo(int hallid, int unitid, int deptid, int totalparticipants, DateTime fromdate, TimeSpan tmstart, TimeSpan tmend, int actionBy)
         {
-            
             string rtnMessage = "0";
             try
             {
                 SprConferenceRoomSheduleInfoTableAdapter ta = new SprConferenceRoomSheduleInfoTableAdapter();
-                ta.GetDataConferenceRoomSheduleInfo(hallid,  unitid,  deptid,  totalparticipants,  fromdate,  tmstart,  tmend,  actionBy, ref rtnMessage);
+                ta.GetDataConferenceRoomSheduleInfo(hallid, unitid, deptid, totalparticipants, fromdate, tmstart, tmend, actionBy, ref rtnMessage);
             }
             catch { return rtnMessage; }
             return rtnMessage;
@@ -487,6 +436,7 @@ namespace HR_BLL.TourPlan
             catch { rtnMessage = "0"; }
             return rtnMessage;
         }
+
         public DataTable ConferenceRoomBookingStatus(DateTime dtdate, int hallid)
         {
             SprConferenceRoomBookingStatusTableAdapter adp = new SprConferenceRoomBookingStatusTableAdapter();
@@ -500,18 +450,21 @@ namespace HR_BLL.TourPlan
             try { return adp.GetDataConferenceRoomBookinginfovsHallid(hallid); }
             catch { return new DataTable(); }
         }
+
         public DataTable GetdataforConferenceRoomLoadlist()
         {
             TblConferenceRoomListTableAdapter adp = new TblConferenceRoomListTableAdapter();
             try { return adp.GetDataConferenceforloadlist(); }
             catch { return new DataTable(); }
         }
-        public DataTable ConferenceRoomBookingMonthvsHallid(int hallid,DateTime dtedate)
+
+        public DataTable ConferenceRoomBookingMonthvsHallid(int hallid, DateTime dtedate)
         {
             SprConferenceRoomBookingMonthvsHallidTableAdapter adp = new SprConferenceRoomBookingMonthvsHallidTableAdapter();
             try { return adp.GetDataConferenceRoomBookingMonthvsHallid(hallid, dtedate); }
             catch { return new DataTable(); }
         }
+
         public DataTable GetRemoteSalesMktReportType()
         {
             try
@@ -522,10 +475,10 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public DataTable GetSalesforacast( DateTime dtefromdate,DateTime dtetodate,string emailadress)
+        public DataTable GetSalesforacast(DateTime dtefromdate, DateTime dtetodate, string emailadress)
         {
             SprACCLForeCastAreaWiseTableAdapter adp = new SprACCLForeCastAreaWiseTableAdapter();
-            try { return adp.GetDatasprACCLForeCastAreaWise(dtefromdate,  dtetodate,  emailadress); }
+            try { return adp.GetDatasprACCLForeCastAreaWise(dtefromdate, dtetodate, emailadress); }
             catch { return new DataTable(); }
         }
 
@@ -537,8 +490,6 @@ namespace HR_BLL.TourPlan
 
             return new DataTable();
         }
-
-
 
         private static TourPlanningTDS.TblBrandItemFDataTable[] tableProducts = null;
         private static TourPlanningTDS.TblRawMaterialtemListDataTable[] tableProductsRawMaterial = null;
@@ -597,18 +548,15 @@ namespace HR_BLL.TourPlan
             }
         }
 
-
-
         public static string[] GetProductDataForAutoFill(string unitID, string prefix)
         {
             Inatialize();
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
 
-
             if (prefix == "" || prefix == "*")
             {
-                var rows = from tmp in tableProducts[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])                           
+                var rows = from tmp in tableProducts[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])
                            orderby tmp.strItemName
                            select tmp;
                 if (rows.Count() > 0)
@@ -657,10 +605,9 @@ namespace HR_BLL.TourPlan
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
 
-
             if (prefix == "" || prefix == "*")
             {
-                var rows = from tmp in tableProductsRawMaterial[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])                           
+                var rows = from tmp in tableProductsRawMaterial[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])
                            orderby tmp.strItemName
                            select tmp;
                 if (rows.Count() > 0)
@@ -703,26 +650,20 @@ namespace HR_BLL.TourPlan
             }
         }
 
-
-
-
-
         public TourPlanningTDS.SprGetUOMRelationforBrandItemDataTable GetUOMRelationBrand(string productId)
         {
-            if (productId == null ) return null;
+            if (productId == null) return null;
             SprGetUOMRelationforBrandItemTableAdapter ta = new SprGetUOMRelationforBrandItemTableAdapter();
 
             return ta.GetData(long.Parse(productId));
         }
 
-     public TourPlanningTDS.SprGetUOMRelationforInventoryItemDataTable GetUOMRelationforInventoryitem(string productid)
+        public TourPlanningTDS.SprGetUOMRelationforInventoryItemDataTable GetUOMRelationforInventoryitem(string productid)
         {
             if (productid == null) return null;
             SprGetUOMRelationforInventoryItemTableAdapter ta = new SprGetUOMRelationforInventoryItemTableAdapter();
             return ta.GetDataUOMForInventoryitem(int.Parse(productid));
         }
-
-
 
         public TourPlanningTDS.TblBrandItemChallanDetDataTable GetBrandChallanDetails(string id)
         {
@@ -736,8 +677,6 @@ namespace HR_BLL.TourPlan
             return ta.GetDataByID(int.Parse(id));
         }
 
-
-
         public TourPlanningTDS.QryBrandItemChallanCustomerDataTable GetBrandItemEntry(string id)
         {
             QryBrandItemChallanCustomerTableAdapter ta = new QryBrandItemChallanCustomerTableAdapter();
@@ -749,8 +688,6 @@ namespace HR_BLL.TourPlan
         //    QryRawMaterialChallanDetTableAdapter ta = new QryRawMaterialChallanDetTableAdapter();
         //    return ta.GetDataById(int.Parse(id));
         //}
-
-
 
         public void AddbranditemchallanInformation(string xmlStr, string userId, string unitId
         , DateTime date, string challanNo
@@ -765,24 +702,23 @@ namespace HR_BLL.TourPlan
             int? distributionPointId_ = null, vehicleTypeId_ = null;
             try { id = long.Parse(entryId); }
             catch { }
-          
+
             try { vehicleId_ = int.Parse(vehicleId); }
             catch { }
-          
+
             try { vehicleTypeId_ = int.Parse(vehicleTypeId); }
             catch { }
 
             //SprSalesEntryTableAdapter ta = new SprSalesEntryTableAdapter();
             SprRAWMaterialEntryTableAdapter ta = new SprRAWMaterialEntryTableAdapter();
-            ta.GetDataRawMaterialEntry(xmlStr,  int.Parse(userId), int.Parse(unitId), date, challanNo
+            ta.GetDataRawMaterialEntry(xmlStr, int.Parse(userId), int.Parse(unitId), date, challanNo
                , int.Parse(customerId), int.Parse(customerType)
                 , narration, address
-                ,  isLogistic, isLogisticByCompany, vehicleId_, vehicleRegNo
-                ,  vehicleTypeId_, other, driver, driverContact, int.Parse(salesOffice), int.Parse(shippingPoint), ref code,ref id);
+                , isLogistic, isLogisticByCompany, vehicleId_, vehicleRegNo
+                , vehicleTypeId_, other, driver, driverContact, int.Parse(salesOffice), int.Parse(shippingPoint), ref code, ref id);
 
             entryId = id.ToString();
         }
-        
 
         public TourPlanningTDS.SprBrandItemChallanEnterdInfoDataTable GetBrandItemInformationForChallan(string unitID, string shippointid, string salesofficeid, string customertype, string code, DateTime fromDate, DateTime toDate, string rdbselection)
         {
@@ -805,7 +741,6 @@ namespace HR_BLL.TourPlan
 
             bool? isCompleted = null, isEnable = null;
 
-   
             //if (type == "act") { isCompleted = false; isEnable = true; }
             //else if (type == "inc") { isCompleted = null; isEnable = false; }
             //else if (type == "com") { isCompleted = true; isEnable = true; }
@@ -813,7 +748,6 @@ namespace HR_BLL.TourPlan
             if (rdbselection == "act") { isCompleted = false; isEnable = true; }
             else if (rdbselection == "inc") { isCompleted = false; isEnable = false; }
             else if (rdbselection == "com") { isCompleted = true; isEnable = true; }
-         
 
             if (isEnable.Value && !isCompleted.Value)
             {
@@ -831,7 +765,6 @@ namespace HR_BLL.TourPlan
             return adp.GetData(int.Parse(unitID), int.Parse(shippointid), int.Parse(salesofficeid), int.Parse(customertype), code, fromDate, toDate, isEnable, isCompleted);
         }
 
-
         public void ChallanCancel(string id, string userId)
         {
             SprBrandItemChallanEnterdInfoTableAdapter adp = new SprBrandItemChallanEnterdInfoTableAdapter();
@@ -844,12 +777,11 @@ namespace HR_BLL.TourPlan
             adp.ChallanComplete(int.Parse(userId), int.Parse(id));
         }
 
-
         public TourPlanningTDS.SprBrandItemChallaninformationforPrintDataTable GetData(string id, string userId, string separator, ref DateTime date, ref string unitName
             , ref string unitAddress, ref string userName, ref string challanNo, ref string customerName
             , ref string customerPhone, ref string delevaryAddress, ref string otherInfo
             , ref string vehicle, ref string propitor
-            , ref string driver, ref string driverPh,  ref string logistic)
+            , ref string driver, ref string driverPh, ref string logistic)
         {
             SprBrandItemChallaninformationforPrintTableAdapter ta = new SprBrandItemChallaninformationforPrintTableAdapter();
             DateTime? dt = null;
@@ -859,11 +791,9 @@ namespace HR_BLL.TourPlan
                 , ref unitAddress, ref userName, ref challanNo, ref customerName, ref customerPhone, ref delevaryAddress, ref otherInfo
                 , ref vehicle, ref propitor, ref driver, ref driverPh, ref logistic);
             date = dt.Value;
-           
 
             return table;
         }
-
 
         public bool GetPriceVisibilityRawMaterials(int itemid)
         {
@@ -908,43 +838,36 @@ namespace HR_BLL.TourPlan
             {
                 sprGetUnitTableAdapter adp = new sprGetUnitTableAdapter();
                 return adp.GetUnitName(userId);
-
             }
-
             catch
             {
                 return new DataTable();
-
             }
         }
+
         public DataTable GetJobStation(int unitId)
         {
             try
             {
                 sprGetJobStationTableAdapter adp = new sprGetJobStationTableAdapter();
                 return adp.GetJobStation(unitId);
-
             }
-
             catch
             {
                 return new DataTable();
-
             }
         }
-        public DataTable GetJobStationByPermission(int unitId,int enroll)
+
+        public DataTable GetJobStationByPermission(int unitId, int enroll)
         {
             try
             {
                 sprGetJobStationTableAdapter adp = new sprGetJobStationTableAdapter();
-                return adp.GetJobStationByPermission(unitId,enroll);
-
+                return adp.GetJobStationByPermission(unitId, enroll);
             }
-
             catch
             {
                 return new DataTable();
-
             }
         }
 
@@ -977,6 +900,7 @@ namespace HR_BLL.TourPlan
             }
             catch { return new DataTable(); }
         }
+
         public DataTable GetBrandItemReceiveStatusVertically(DateTime from, DateTime to, int line, int unit, int type)
         {
             try
@@ -987,12 +911,12 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public DataTable GetBrandItemChallanStatusVertically(DateTime from, DateTime to,  int unit,int custmid,int itmid , int type)
+        public DataTable GetBrandItemChallanStatusVertically(DateTime from, DateTime to, int unit, int custmid, int itmid, int type)
         {
             try
             {
                 SprBrandItemChallanVerticallyTableAdapter ta = new SprBrandItemChallanVerticallyTableAdapter();
-                return ta.GetDataBrandItemChallanVertically(from,  to,  unit,  custmid,  itmid,  type);
+                return ta.GetDataBrandItemChallanVertically(from, to, unit, custmid, itmid, type);
             }
             catch { return new DataTable(); }
         }
@@ -1002,7 +926,7 @@ namespace HR_BLL.TourPlan
             try
             {
                 SprBranItemInventorySystemTableAdapter ta = new SprBranItemInventorySystemTableAdapter();
-                return ta.GetDataBranItemInventorySystem(from, to, whid,unit, itmid, type);
+                return ta.GetDataBranItemInventorySystem(from, to, whid, unit, itmid, type);
             }
             catch { return new DataTable(); }
         }
@@ -1031,7 +955,6 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-
         public DataTable CreateProgramCostBillinfo(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate, int unitid, int territoriid)
         {
             SprProgramBillInfoDetaillsTableAdapter adp = new SprProgramBillInfoDetaillsTableAdapter();
@@ -1039,11 +962,11 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public bool BrandChallanRollback(string code, string pkid, string userID, string unitId,  string remark)
+        public bool BrandChallanRollback(string code, string pkid, string userID, string unitId, string remark)
         {
             bool? b = false;
             SprBrandItemChallanRollbackTableAdapter ta = new SprBrandItemChallanRollbackTableAdapter();
-            ta.GetDataBrandItemChallanRollback(code, int.Parse(pkid), int.Parse(userID), int.Parse(unitId),  remark, ref b);
+            ta.GetDataBrandItemChallanRollback(code, int.Parse(pkid), int.Parse(userID), int.Parse(unitId), remark, ref b);
             return b.Value;
         }
 
@@ -1054,12 +977,11 @@ namespace HR_BLL.TourPlan
             catch { return new DataTable(); }
         }
 
-        public DataTable CreateNewItmForBrand(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate,int unitid)
+        public DataTable CreateNewItmForBrand(int type, int actionby, string xml, int id, DateTime fdate, DateTime tdate, int unitid)
         {
             SprBrandItemInfoDetTableAdapter adp = new SprBrandItemInfoDetTableAdapter();
             try { return adp.GetDataBrandItemInfoDet(type, actionby, xml, id, fdate, tdate, unitid); }
             catch { return new DataTable(); }
         }
-
     }
 }
