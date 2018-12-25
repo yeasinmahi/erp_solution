@@ -7253,6 +7253,13 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ApproveTypeRow FindByintID(int intID) {
+                return ((ApproveTypeRow)(this.Rows.Find(new object[] {
+                            intID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ApproveTypeDataTable cln = ((ApproveTypeDataTable)(base.Clone()));
                 cln.InitVars();
@@ -7279,12 +7286,15 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrApproveType);
                 this.columnintID = new global::System.Data.DataColumn("intID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintID}, true));
                 this.columnstrApproveType.MaxLength = 50;
                 this.columnintID.AutoIncrement = true;
                 this.columnintID.AutoIncrementSeed = -1;
                 this.columnintID.AutoIncrementStep = -1;
                 this.columnintID.AllowDBNull = false;
                 this.columnintID.ReadOnly = true;
+                this.columnintID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23701,7 +23711,7 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT at.strApproveType,cast(dteApproveTime as Date) as dteApproveTime,e.strEmployeeName,strRemarks,monApproveAmount 
@@ -23709,6 +23719,13 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
 	JOIN ERP_Payment.dbo.tblAppoveType at ON ad.intApproveType=at.intID where intBillID=@intBillID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intBillID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT top 1 isnull(monApproveAmount,0) as monApproveAmount FROM ERP_Payment.dbo." +
+                "tblBillAuditDetail where intBillID=@intBillID and intApproveType= 2 and intAudit" +
+                "Level = 1\r\nOrder by dteApproveTime desc";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intBillID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23717,6 +23734,23 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual BillingTDS.GetPreAdvDataTable GetPreviousAdvance(global::System.Nullable<int> intBillID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intBillID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intBillID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            BillingTDS.GetPreAdvDataTable dataTable = new BillingTDS.GetPreAdvDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual BillingTDS.GetPreAdvDataTable GetAuditApproveAmountLabel1(global::System.Nullable<int> intBillID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((intBillID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intBillID.Value));
             }
@@ -24053,7 +24087,7 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT strApproveType, intID FROM ERP_Payment.dbo.tblAppoveType";
+            this._commandCollection[0].CommandText = "SELECT strApproveType, intID FROM ERP_Payment.dbo.tblAppoveType order by intID\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

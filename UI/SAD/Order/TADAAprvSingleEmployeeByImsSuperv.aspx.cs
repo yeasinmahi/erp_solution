@@ -200,7 +200,7 @@ namespace UI.SAD.Order
 
                     }
                 }
-
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "gridviewScroll();", true);
             }
             catch (Exception ex)
             {

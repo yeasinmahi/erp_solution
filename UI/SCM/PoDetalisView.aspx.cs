@@ -1,21 +1,19 @@
-﻿using Flogging.Core;
+﻿using EmailService;
+using Flogging.Core;
 using GLOBAL_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Runtime.Remoting.Messaging;
+using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using iTextSharp.text.html.simpleparser;
+using System.Windows.Forms;
 using UI.ClassFiles;
-using iTextSharp.text.pdf;
-using iTextSharp.text;
-using iTextSharp.tool.xml;
-using Microsoft.Office.Interop.Outlook;
-using Document = iTextSharp.text.Document;
+using UI.HR.Dispatch;
 using Exception = System.Exception;
 
 namespace UI.SCM
@@ -30,19 +28,17 @@ namespace UI.SCM
         string start = "starting SCM\\PoDetalisView";
         string stop = "stopping SCM\\PoDetalisView";
         string perform = "Performance on SCM\\PoDetalisView";
+        private string _filePath;
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
             scriptManager?.RegisterPostBackControl(btnDownload);
+            _filePath = Server.MapPath("~/SCM/Data/PO.Bmp");
             if (!IsPostBack)
             {
                 PoNo = int.Parse(Session["pono"].ToString());
 
                 PoViewDataBind(PoNo);
-            }
-            else
-            {
-
             }
         }
 
@@ -169,82 +165,6 @@ namespace UI.SCM
             tracker.Stop();
         }
 
-        protected void ExportToImage(object sender, EventArgs e)
-        {
-            try
-            {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                if (lblSupEmail.Text.Length > 6)
-                {
-                    PoNo = int.Parse(Session["pono"].ToString());
-
-                    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-                    byte[] bytes = Convert.FromBase64String(base64);
-                    //Response.Clear();
-                    //Response.ContentType = "image/jpeg";
-                    // Response.AddHeader("Content-Disposition", "attachment; filename=PO.png");
-                    // Response.Buffer = true;
-                    string filename = "d.jpeg".ToString();
-                    //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
-                    //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
-                    //    string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString();
-                    //  string msg = DataTableLoad.POApproval(20, stringXml, PoNo, enroll);
-                    //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ msg + "');", true);
-
-                    //using (MailMessage mm = new MailMessage("erpreply@akij.net", "bappisarker9@gmail.com"))
-                    //{
-                    //    mm.Subject = "Bappi";
-                    //    mm.Body = "Bappi";
-                    //    mm.Attachments.Add(new Attachment(filePath + "a.jpeg"));
-                    //    string d = filePath + "a.jpeg";
-                    //    LinkedResource LinkedImage = new LinkedResource(d);
-                    //    LinkedImage.ContentId = "MyPic";
-                    //    //Added the patch for Thunderbird as suggested by Jorge
-                    //    LinkedImage.ContentType = new ContentType(MediaTypeNames.Image.Jpeg);
-
-                    //    AlternateView htmlView = AlternateView.CreateAlternateViewFromString("You should see image next to this line. <img src=cid:MyPic>", null, "text/html");
-                    //    htmlView.LinkedResources.Add(LinkedImage);
-                    //    mm.AlternateViews.Add(htmlView);
-
-                    //    mm.IsBodyHtml = true;
-                    //    SmtpClient smtp = new SmtpClient();
-                    //    smtp.Host = "ex.akij.net";
-                    //    smtp.EnableSsl = true;
-                    //    NetworkCredential NetworkCred = new NetworkCredential("erpreply@akij.net", "rep@123");
-                    //    // smtp.UseDefaultCredentials = true;
-                    //    smtp.Credentials = NetworkCred;
-
-                    //    //smtp.Credentials = CredentialCache.DefaultNetworkCredentials;
-                    //    smtp.Port = 25;
-                    //    smtp.Send(mm);
-                    //}
-
-                    //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    //Response.BinaryWrite(bytes);
-
-                    //Response.End();
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Email Address not found');", true);
-                }
-
-            }
-            catch { }
-
-
-
-        }
-
-        protected void btnPoShowByView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PoViewDataBind(int.Parse(txtPoNumbers.Text.ToString()));
-            }
-            catch { }
-        }
-
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnDownload_Click", null);
@@ -266,41 +186,7 @@ namespace UI.SCM
                 Response.ContentType = "image/jpeg";
                 Response.AddHeader("Content-Disposition", "attachment; filename=PO.jpg");
                 Response.Buffer = true;
-                //  string filename = "d.jpeg".ToString();
-                //  string path = @"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg";
-                //  File.WriteAllBytes(@"\\ENHANCESQL2\FileAttached\" + enroll.ToString() + PoNo.ToString() + ".jpeg", bytes);
-                // string stringXml = "<voucher><voucherentry filePath=" + '"' + path + '"' + "/></voucher>".ToString(); 
-                //try
-                //{
-                //    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
-                //    byte[] imagebytes = Convert.FromBase64String(base64);
-                //    //string dd = "data:image/jpeg;base64," + Convert.ToBase64String(imagebytes); 
-                //    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagebytes); 
 
-                //    using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
-                //    {
-
-                //        Document document = new Document(PageSize.A3, 0f, 0f, 0f, 0f);
-                //        PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
-
-                //        image.SetDpi(1920, 1920);
-                //        document.Open();
-
-                //        document.Add(image);
-                //        document.Close();
-                //        byte[] bytes = memoryStream.ToArray();
-                //        memoryStream.Close();
-
-                //        Response.Clear();
-                //        Response.AddHeader("Content-Disposition", "attachment; filename=" + PoNo.ToString()+ ".pdf");
-                //        Response.ContentType = "application/pdf";
-                //        Response.Buffer = true;
-                //        Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                //        Response.BinaryWrite(bytes);
-                //        Response.End();
-                //    }
-                //}
-                //catch { }
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.BinaryWrite(bytes);
 
@@ -318,99 +204,162 @@ namespace UI.SCM
             tracker.Stop();
         }
 
-        private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
-        {
-            FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
-            requestFTPUploader.Credentials = new NetworkCredential(user, pass);
-            requestFTPUploader.Method = WebRequestMethods.Ftp.UploadFile;
-
-            //UploadFile;
-            FileInfo fileInfo = new FileInfo(localPath + fileName);
-            FileStream fileStream = fileInfo.OpenRead();
-
-            int bufferLength = 2048;
-            byte[] buffer = new byte[bufferLength];
-
-            Stream uploadStream = requestFTPUploader.GetRequestStream();
-            int contentLength = fileStream.Read(buffer, 0, bufferLength);
-
-            while (contentLength != 0)
-            {
-                uploadStream.Write(buffer, 0, contentLength);
-                contentLength = fileStream.Read(buffer, 0, bufferLength);
-            }
-
-            uploadStream.Close();
-            fileStream.Close();
-
-            requestFTPUploader = null;
-
-
-        }
-        [WebMethod]
-        public static Byte[] DownloadPdf()
-        {
-            string html = "i am yeasin ";
-            Byte[] res = null;
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                var pdf = TheArtOfDev.HtmlRenderer.PdfSharp.PdfGenerator.GeneratePdf(html, PdfSharp.PageSize.A4);
-                pdf.Save(ms);
-                res = ms.ToArray();
-            }
-            //return File(pdf, "application/pdf");
-            File.WriteAllBytes("F:/hello.pdf", res);
-            return res;
-
-        }
-
-        protected void btnPDF_OnClick(object sender, EventArgs e)
-        {
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=PurchaseVouchar.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Document pdfDoc = CreatePdf();
-            
-            Response.Write(pdfDoc);
-            Response.Flush();
-            Response.End();
-        }
-
-        private Document CreatePdf()
-        {
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            Page.RenderControl(hw);
-            StringReader sr = new StringReader(sw.ToString());
-            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
-            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-            pdfDoc.Open();
-            htmlparser.Parse(sr);
-            pdfDoc.Close();
-            return pdfDoc;
-        }
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
-            Application mApp = new Application();
-            //Document pdfDoc = CreatePdf();
-            MailItem mEmail = null;
-            mEmail = (MailItem)mApp.CreateItem(OlItemType.olMailItem);
+            //Application mApp = new Application();
+            //MailItem mEmail = (MailItem)mApp.CreateItem(OlItemType.olMailItem);
+            //string email = lblSupEmail.Text;
+            //mEmail.To = "";
+
+            //try
+            //{
+            //    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            //    PoNo = int.Parse(Session["pono"].ToString());
+            //    string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+            //    byte[] bytes = Convert.FromBase64String(base64);
+            //    string filePath = Server.MapPath("PO.Bmp");
+            //    MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length);
+            //    ms.Write(bytes, 0, bytes.Length);
+            //    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+            //    image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //    mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
+            //    Utility.FileHelper.DeleteFile(filePath);
+
+            //}
+            //catch (Exception exception)
+            //{
+            //    //can not attached file
+            //}
+            //if (!String.IsNullOrWhiteSpace(email))
+            //{
+            //    email = email.Substring(6);
+            //    if (!String.IsNullOrWhiteSpace(email))
+            //    {
+            //        mEmail.To = email;
+            //    }
+            //}
+            //mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
+            //mEmail.Body = "Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + ". ";
+            //mEmail.Display();
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "mail()", true);
+            LoadModalMail();
+        }
+
+        private void LoadModalMail()
+        {
             string email = lblSupEmail.Text;
-            mEmail.To = "";
-            if (!String.IsNullOrWhiteSpace(email))
+            if (!string.IsNullOrWhiteSpace(email))
             {
                 email = email.Substring(6);
-                if (!String.IsNullOrWhiteSpace(email))
+                if (!string.IsNullOrWhiteSpace(email))
                 {
-                    mEmail.To = email;
+                    txtReceipentEmail.Text = email;
+                    //txtReceipentEmail.Text = @"arafat.corp@akij.net";
+                    //txtReceipentEmail.Enabled = false;
                 }
             }
-            mEmail.Subject = "Purchase Order: " + lblpoNo.Text;
-            mEmail.Body = "Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + ". ";
-            //mEmail.Attachments.Add("F:/hello.pdf", OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-            mEmail.Display();
+            txtSubject.Text = @"Purchase Order: " + lblpoNo.Text;
+            txtBody.Text = @"Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + @". ";
+
+            try
+            {
+                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                byte[] bytes = Convert.FromBase64String(base64);
+                using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))
+                {
+                    ms.Write(bytes, 0, bytes.Length);
+                    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                    image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                    imgAttachment.ImageUrl = "~/SCM/Data/PO.Bmp";
+                }
+            }
+            catch (Exception e)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + e.Message + "')", true);
+            }
+
+            //mEmail.Attachments.Add(filePath, OlAttachmentType.olByValue, Type.Missing, Type.Missing);
+            //Utility.FileHelper.DeleteFile(filePath);
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
+        }
+
+        public byte[] GetBytes()
+        {
+            try
+            {
+                string base64 = Request.Form[hfImageData.UniqueID].Split(',')[1];
+                byte[] bytes = Convert.FromBase64String(base64);
+                return bytes;
+                //using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))
+                //{
+                //    ms.Write(bytes, 0, bytes.Length);
+                //    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                //    image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                //    imgAttachment.ImageUrl = "~/SCM/Data/PO.Bmp";
+                //}
+            }
+            catch (Exception e)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + e.Message + "')", true);
+                return new byte[0];
+            }
+        }
+
+        protected void btnSent_OnClick(object sender, EventArgs e)
+        {
+            EmailOptions options = new EmailOptions
+            {
+                ToAddress = new List<string>(),
+                CcAddress = new List<string>(),
+                BccAddress = new List<string>(),
+                Subject = txtSubject.Text,
+                ToAddressDisplayName = "Purchase Order",
+                Body = Regex.Replace(txtBody.Text, @"\r\n?|\n", "<br>"),
+                Attachments = new List<EmailAttachment>()
+            };
+            options.ToAddress = Email.GetMaiListFromString(txtReceipentEmail.Text, out string message);
+            if (options.ToAddress == null)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('" + message + "','Purchase Order','error')", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "mail", "openModal()", true);
+                return;
+            }
+            options.CcAddress = Email.GetMaiListFromString(txtCc.Text, out message) ?? new List<string>();
+            options.BccAddress = Email.GetMaiListFromString(txtBcc.Text, out message) ?? new List<string>();
+            string userEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
+            options.BccAddress.Add(userEmail);
+            if (!string.IsNullOrWhiteSpace(_filePath))
+            {
+                EmailAttachment attachment = new EmailAttachment();
+                attachment.Bytes = GetBytes();
+                attachment.FileName = Path.GetFileName(_filePath);
+                options.Attachments.Add(attachment);
+            }
+            if (Email.SendEmail(options))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('Email Sent Successfully','Purchase Order','success')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "ShowNotification('" + options.Exceptions?.Message + "','Purchase Order','error')", true);
+            }
+            //try
+            //{
+            //    foreach (string filePath in options.Attachment)
+            //    {
+            //        Utility.FileHelper.DeleteFile(filePath);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + ex.Message + "')", true);
+            //}
+
+
         }
     }
 }

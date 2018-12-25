@@ -124,7 +124,9 @@
         </Columns>
         <HeaderStyle BorderStyle="Solid" BorderColor="Black" BorderWidth="1px" Font-Bold="True"/><PagerStyle BackColor="#999999" ForeColor="Black" BorderStyle="Solid" BorderWidth="1px" BorderColor="Black" HorizontalAlign="Center" />
         </asp:GridView></td></tr>
-        <tr><td style="text-align:right;" colspan="4"><asp:Button ID="btnApp" runat="server" class="nextclick" style="cursor:pointer; font-size:11px;" Text="Approved" OnClientClick="Confirm()" OnClick="btnApp_Click"/><br /></td>
+        <tr><td style="text-align:right;" colspan="4">
+            <asp:Button ID="btnReject" runat="server" class="nextclick" style="cursor:pointer; font-size:11px;" Text="Reject" OnClientClick="Confirm()" OnClick="btnReject_Click"/>
+            <asp:Button ID="btnApp" runat="server" class="nextclick" style="cursor:pointer; font-size:11px;" Text="Approved" OnClientClick="Confirm()" OnClick="btnApp_Click"/><br /></td>
         <tr><td style="text-align:left;" colspan="3"><br /><asp:Label ID="issby" runat="server"></asp:Label></td>
         <td style="text-align:right;"><a onclick="Closediv(1);" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 15px verdana;">X</a></td></tr>
         </table>

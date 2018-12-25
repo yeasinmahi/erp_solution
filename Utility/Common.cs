@@ -4,8 +4,11 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace Utility
 {
@@ -17,13 +20,14 @@ namespace Utility
             return obj.GetType().GetProperties();
         }
 
+        public static object GetPropertyValue(object obj, string name)
+        {
+            return obj.GetType().GetProperty(name)?.GetValue(obj, null);
+        }
+
         public static StreamWriter GetStreamWriter(string path)
         {
-            if (!File.Exists(path))
-            {
-                return File.CreateText(path);
-            }
-            return null;
+            return !File.Exists(path) ? File.CreateText(path) : null;
         }
         public enum ModulaFileName
         {
@@ -90,6 +94,75 @@ namespace Utility
             string[] arr = text.Split(new[] { '[', ']' }, StringSplitOptions.None);
             string id = arr[1];
             return Convert.ToInt32(id);
+        }
+        public static string GetMacAddress()
+        {
+            string macAddresses = "";
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    macAddresses += nic.GetPhysicalAddress().ToString();
+                    break;
+                }
+            }
+            return macAddresses;
+        }
+        public static string GetIpAddress()
+        {
+            string ipAddress = null;
+            var hostname = Environment.MachineName;
+            var host = Dns.GetHostEntry(hostname);
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    ipAddress = Convert.ToString(ip);
+                }
+            }
+            return ipAddress;
+        }
+
+        public static string GetIp()
+        {
+            string host = Dns.GetHostName();
+            IPHostEntry ip = Dns.GetHostEntry(host);
+            string ipaddress = (ip.AddressList[1].ToString());
+            return ipaddress;
+        }
+
+        public static int GetDdlSelectedValue(DropDownList ddl)
+        {
+            if (ddl?.SelectedItem != null)
+            {
+                return Convert.ToInt32(ddl.SelectedItem.Value);
+            }
+            return 0;
+        }
+        public static string GetDdlSelectedText(DropDownList ddl)
+        {
+            if (ddl?.SelectedItem != null)
+            {
+                return ddl.SelectedItem.Text;
+            }
+            return String.Empty;
+        }
+        public static bool BindDropDown(DropDownList ddl,DataTable dt,string value, string text)
+        {
+            if (dt.Rows.Count <= 0) return false;
+            try
+            {
+                ddl.DataSource = dt;
+                ddl.DataValueField = value;
+                ddl.DataTextField = text;
+                ddl.DataBind();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
     }
 }

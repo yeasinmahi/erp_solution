@@ -164,7 +164,19 @@ namespace UI.SCM
             // ends
             tracker.Stop();
 
-        } 
+        }
+
+        protected void lblPreviousPrice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                string ItemId = (row.FindControl("lblItemId") as Label).Text;
+                Session["itemname"] = (row.FindControl("lblItemName") as Label).Text;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPriceListPopup('" + ItemId + "');", true);
+            }
+            catch { }
+        }
 
         #region=============Indent Sumery Tab-1 ==============================
         protected void Tab1_Click(object sender, EventArgs e)
@@ -217,6 +229,11 @@ namespace UI.SCM
                 int indentId = int.Parse(txtIndentNo.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 dt = objPo.GetPoData(2, xmlData, intWh, indentId, dteFrom, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
+                    hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
+                }
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
                 dt.Clear();
@@ -597,6 +614,9 @@ namespace UI.SCM
                             CreateXmlPrepare(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
                            } 
                     }
+                    ddlWHPrepare.DataSource = "";
+                    ddlWHPrepare.DataBind();
+
                     List<ListItem> items = new List<ListItem>();
                     items.Add(new ListItem(hdnWHName.Value.ToString(), hdnWHId.Value.ToString()));
                     ddlWHPrepare.Items.AddRange(items.ToArray());

@@ -74,11 +74,22 @@
             <asp:Button ID="btnViewSlip" Font-Bold="true" runat="server" Text="Loading Slip" OnClick="btnLoadingSlip_Click" />           
             </td>
          </tr>    
-        <tr><td colspan="5">Upload
+        <tr><td>Upload
             <a href="#" onclick="ShowPopUp('frmAutoChallan.aspx?')">           
             <img alt="" src="../../Content/images/icons/Add.ico" style="border: 0px;" title="Add Customer" /></a>
             <asp:Button ID="btnCancel" Font-Bold="true" runat="server" Text="All Upload Cancel" OnClick="btnCancel_Click" />
             </td>
+            <td>Customer Name</td>
+            <td><asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox"  AutoPostBack="true"  ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtCustomer"
+            ServiceMethod="CustomerSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender></td>
+            <td>
+              Product Qty:<asp:TextBox ID="txtPQty" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  ></asp:TextBox>
+            </td>
+            <td style="text-align:left"><asp:Button ID="btnuploadSingle" Font-Bold="true" runat="server" Text="Upload" OnClick="btnuploadSingle_Click" /></td>
          </tr>                       
         <tr><td colspan="5"><hr />
             <asp:GridView ID="dgvExcelOrder" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small" OnRowDataBound="dgvExcelOrder_RowDataBound" ShowFooter="True">
@@ -116,7 +127,15 @@
             <asp:TemplateField HeaderText="Delete"><ItemTemplate> 
             <asp:Button ID="btndelete" ForeColor="Red" runat="server" Text="Delete" CommandName="complete"  OnClick="btnDelete" Font-Bold="true" BackColor="#00ccff"  CommandArgument='<%# Eval("intCustid")%>' />
             </ItemTemplate> </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity"><ItemTemplate>
+         
+            <asp:TextBox ID="txtAllQuantity" CssClass="txtBox" runat="server" Width="75px"  Text='<%# Bind("allqty","{0:n0}") %>' AutoPostBack="false"    ></asp:TextBox></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" Width="75px" /></asp:TemplateField>
 
+             <asp:TemplateField HeaderText="Upload"><ItemTemplate> 
+            <asp:Button ID="btnUpload" ForeColor="Blue" runat="server" Text="Upload" CommandName="complete"  OnClick="btnUpload_Click" Font-Bold="true" BackColor="#00ccff"  CommandArgument='<%# Eval("intCustid")+ "^" +Eval("allqty")  %>' />
+            </ItemTemplate> </asp:TemplateField>
             </Columns>
             <FooterStyle BackColor="#F3CCC2" BorderStyle="None" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

@@ -37,6 +37,8 @@ namespace UI.Vehicle_Registration_Renewal
                     catch { };
                     try { TxtLateFine.Text = dt.Rows[0]["monTaxTokenLatefinein3month10Percentage"].ToString(); }
                     catch { };
+                    try { TxtMiscellcuneces.Text = dt.Rows[0]["monTaxTokenMiscellounes"].ToString(); }
+                    catch { };
                     lbprsntus.Text = dt.Rows[0]["strUnit1"].ToString();
 
 
@@ -57,7 +59,7 @@ namespace UI.Vehicle_Registration_Renewal
             return objAutoSearch_BLL.AutoSearchVehicleNo(prefixText);
         }
 
-       
+
 
 
         protected void BtnTaxToken_Click(object sender, EventArgs e)
@@ -65,42 +67,42 @@ namespace UI.Vehicle_Registration_Renewal
 
 
             string assetid = Session["strasset"].ToString();
-               Int32 expDay = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                DateTime dtereg = DateTime.Parse(TxtDteRenewal.Text.ToString());
-                decimal registrationTaka = decimal.Parse(TxtToken.Text.ToString());
-                string strtype = TxtVehicleType.Text.ToString();
-                Int32 intType = Int32.Parse(0.ToString());
-                decimal nameplate = decimal.Parse(TxtLateFine.Text.ToString());
-                decimal drc = decimal.Parse(0.ToString());
-                decimal ownership = decimal.Parse(0.ToString());
-                decimal addresschange = decimal.Parse(0.ToString());
-                decimal bodyvat = decimal.Parse(0.ToString());
-                decimal certificate = decimal.Parse(0.ToString());
-                decimal duplicatedcopy = decimal.Parse(0.ToString());
-                decimal miscellounes = decimal.Parse(0.ToString());
-                DateTime expairdate = DateTime.Parse(TxtDteExpDate.Text);
-                DateTime nextExpairdate = DateTime.Parse(TxtNextExpDte.Text);
-                string certificatedNo = "01".ToString();
-                string unit = TxtUnit.Text.ToString();
-                
-                intItem = 2;
-               dt=objRenewal.InsertVehicleTaxTokenInsert(intItem, assetid, strtype, intType, unit, dtereg, expairdate, nextExpairdate, expDay, registrationTaka, nameplate, drc,
-                    ownership, addresschange, bodyvat, certificate, certificatedNo, duplicatedcopy, miscellounes);
+            Int32 expDay = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            DateTime dtereg = DateTime.Parse(TxtDteRenewal.Text.ToString());
+            decimal registrationTaka = decimal.Parse(TxtToken.Text.ToString());
+            string strtype = TxtVehicleType.Text.ToString();
+            Int32 intType = Int32.Parse(0.ToString());
+            decimal nameplate = decimal.Parse(TxtLateFine.Text.ToString());
+            decimal drc = decimal.Parse(0.ToString());
+            decimal ownership = decimal.Parse(0.ToString());
+            decimal addresschange = decimal.Parse(0.ToString());
+            decimal bodyvat = decimal.Parse(0.ToString());
+            decimal certificate = decimal.Parse(0.ToString());
+            decimal duplicatedcopy = decimal.Parse(0.ToString());
+            decimal miscellounes = decimal.Parse(TxtMiscellcuneces.Text.ToString());
+            DateTime expairdate = DateTime.Parse(TxtDteExpDate.Text);
+            DateTime nextExpairdate = DateTime.Parse(TxtNextExpDte.Text);
+            string certificatedNo = "01".ToString();
+            string unit = TxtUnit.Text.ToString();
+
+            intItem = 2;
+            dt = objRenewal.InsertVehicleTaxTokenInsert(intItem, assetid, strtype, intType, unit, dtereg, expairdate, nextExpairdate, expDay, registrationTaka, nameplate, drc,
+                 ownership, addresschange, bodyvat, certificate, certificatedNo, duplicatedcopy, miscellounes);
             if (dt.Rows.Count > 0)
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
-              
+
             }
 
             else
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('already exists');", true);
-              
+
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
         }
 
-        
+
 
     }
 }

@@ -97,9 +97,13 @@ namespace UI.Asset
             {
                 if (!String.IsNullOrEmpty(TxtAssetID.Text))
                 {
-                    string strSearchKey = TxtAssetID.Text;
-                    string[] searchKey = Regex.Split(strSearchKey, ";");
-                    hdfEmpCode.Value = searchKey[1];
+                    char[] ch1 = { '[', ']' };
+                    string[] temp1 = TxtAssetID.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                    int intAssetId = int.Parse(temp1[2].ToString());
+
+                   // string strSearchKey = TxtAssetID.Text;
+                   // string[] searchKey = Regex.Split(strSearchKey, ";");
+                    hdfEmpCode.Value = temp1[2].ToString();
 
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -158,9 +162,10 @@ namespace UI.Asset
                 int userenroll;
                 if (!String.IsNullOrEmpty(TxtAssetID.Text))
                 {
-                    string strSearchKey = TxtAssetID.Text;
-                    string[] searchKey = Regex.Split(strSearchKey, ";");
-                    hdfEmpCode.Value = searchKey[1];
+                    char[] ch1 = { '[', ']' };
+                    string[] temp1 = TxtAssetID.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                     
+                    hdfEmpCode.Value = temp1[2].ToString(); 
                     string asetcode = hdfEmpCode.Value.ToString();
                     int billjobnid = int.Parse(DdlJobstation.SelectedValue.ToString());
 

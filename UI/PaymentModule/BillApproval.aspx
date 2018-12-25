@@ -173,7 +173,7 @@
 
                     <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right" SortExpression="strApproveType" > 
                     <ItemTemplate><asp:DropDownList ID="ddlActionStatus" runat="server" CssClass="ddList" Width="72px" DataSourceID="odsApproveType" DataTextField="strApproveType" DataValueField="intID"></asp:DropDownList>
-                    <asp:ObjectDataSource ID="odsApproveType" runat="server" SelectMethod="GetApproveType" TypeName="SCM_BLL.Billing_BLL"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="odsApproveType" runat="server" SelectMethod="GetApproveType" TypeName="SCM_BLL.Billing_BLL" ></asp:ObjectDataSource>
                     </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Action Date" SortExpression="dteApproveDate">

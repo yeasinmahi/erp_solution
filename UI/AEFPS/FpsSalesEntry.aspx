@@ -122,6 +122,8 @@
                     <asp:HiddenField ID="hdnQty" runat="server" />
                     <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" />
                     <asp:HiddenField ID="hdnActualSales" runat="server" />
+                    <asp:HiddenField ID="hdnDiscount" runat="server" />
+                     <asp:HiddenField ID="hdnNetPayable" runat="server" />
                     <asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
                     <%--<div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> SALES ENTRY FORM</b><hr /></div>--%>
 
@@ -151,8 +153,8 @@
                         <tr>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblemployeesearch" runat="server" CssClass="lbl" Text="Employee Search :"></asp:Label></td>
-                            <td colspan="3">
-                                <asp:TextBox ID="txtEmployee" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="479px" OnTextChanged="txtEmployee_TextChanged"></asp:TextBox>
+                            <td style="text-align: left;">
+                                <asp:TextBox ID="txtEmployee" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="190px" OnTextChanged="txtEmployee_TextChanged"></asp:TextBox>
                                 <%--  <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtEmployee"
             ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -161,11 +163,18 @@
                                 <asp:HiddenField ID="hdfEmpCode" runat="server" />
                                 <asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
                             </td>
+
+                            <td style="text-align: right;">
+                                <asp:Label ID="lblPunchCode" runat="server" CssClass="lbl" Text="Punch Code :"></asp:Label></td>
+                            <td style="text-align: left;">
+                                <asp:TextBox ID="txtPunchCode" runat="server" AutoPostBack="true" CssClass="txtBox" Enabled="true" Width="190px" OnTextChanged="txtPunchCode_TextChanged"></asp:TextBox>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="lblMemoCount" runat="server" CssClass="lbl" Text="No. Of Benificiary :"></asp:Label>
+                                <asp:Label ID="lblMemoCounttxt" runat="server" CssClass="lbl"></asp:Label>
+                            </td>
                             <td style="text-align: right;">
                                 <asp:Button ID="btnClearPrinter" runat="server" Text="Clear Printer" CssClass="btnColore" OnClick="btnClearPrinter_Click" />
-                                
-                            </td>
-                            <td style="text-align: right;" >
                                 <asp:Button ID="btnReprint" runat="server" Text="Re-Print" OnClick="btnReprint_Click" OnClientClick="return Validate();" />
                             </td>
                         </tr>
@@ -182,7 +191,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Employee Name :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtEmname" runat="server" CssClass="txtBox" ReadOnly="True" onkeypress="return onlyNumbers();" MaxLength="10"></asp:TextBox></td>
+                                <asp:TextBox ID="txtEmpname" runat="server" CssClass="txtBox" ReadOnly="True" onkeypress="return onlyNumbers();" MaxLength="10"></asp:TextBox></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblAdditionalMillage" runat="server" CssClass="lbl" Text="Enroll No :"></asp:Label></td>
                             <td style="text-align: left;">
@@ -308,33 +317,40 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="55px" />
                                             <FooterTemplate>
-                                                <asp:Label ID="lblTintProductID" runat="server" Text="Total" /></FooterTemplate>
+                                                <asp:Label ID="lblTintProductID" runat="server" Text="Total" />
+                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Product Name" Visible="true" ItemStyle-HorizontalAlign="center" SortExpression="intMRRNo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblstrProductNames" runat="server" Width="150px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strProductName")) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblstrProductNames" runat="server" Width="150px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strProductName")) %>'></asp:Label>
+                                            </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Qty" ItemStyle-HorizontalAlign="right" SortExpression="MRRQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnumQty" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numQty"))) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblnumQty" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numQty"))) %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="right" Width="40px" />
                                             <FooterTemplate>
-                                                <asp:Label ID="lbldm" runat="server" DataFormatString="{0:0.00}" Text='<%# TotalnumQty %>' /></FooterTemplate>
+                                                <asp:Label ID="lbldm" runat="server" DataFormatString="{0:0.00}" Text='<%# TotalnumQty %>' />
+                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Price" Visible="true" ItemStyle-HorizontalAlign="center" SortExpression="intMRRNo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblmonPrices" runat="server" Width="70px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("monPrice")) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblmonPrices" runat="server" Width="70px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("monPrice")) %>'></asp:Label>
+                                            </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblmonAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monAmount"))) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblmonAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monAmount"))) %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="right" Width="40px" />
                                             <FooterTemplate>
-                                                <asp:Label ID="lbldmmonAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# TotalAmount %>' /></FooterTemplate>
+                                                <asp:Label ID="lbldmmonAmount" runat="server" DataFormatString="{0:0.00}" Text='<%# TotalAmount %>' />
+                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Delete">
@@ -356,11 +372,13 @@
                         <tr style="background-color: lightgray">
                             <td colspan="6"></td>
                         </tr>
-                        </tr>            
                     </table>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="txtPunchCode" EventName="TextChanged" />
+        </Triggers>
         </asp:UpdatePanel>
     </form>
     <script>

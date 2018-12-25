@@ -57,8 +57,8 @@ namespace UI
                 try
                 {
                     string[] donainpatrs = domainUser.Split('\\');
-                    id = donainpatrs[1] + "@akij.net";
-                   //id = "tarik.dti@akij.net";
+                   id = donainpatrs[1] + "@akij.net";
+                   //id = "test.accl@akij.net";
 
                     string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
                     if (string.IsNullOrEmpty(ip))
@@ -119,6 +119,7 @@ namespace UI
             {
                 userID = userID + "@akij.net";
             }
+
             // Check the domain
 
             MembershipProvider provider = Membership.Providers["MyADMembershipProvider"];

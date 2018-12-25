@@ -2,25 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
+using System.Globalization;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.AEFPS
 {
-    public partial class DamageEntry : System.Web.UI.Page
+    public partial class DamageEntry : Page
     {
-        readonly Receive_BLL _bll = new Receive_BLL();
+        private readonly Receive_BLL _bll = new Receive_BLL();
 
-        int _intEnroll=373605; //------------=========------------------ VULE GELE HOBENA---------------==========------------//
+        private int _intEnroll;
 
-        DataTable dt = new DataTable();
+        private DataTable _dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //_intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            _intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -36,19 +37,24 @@ namespace UI.AEFPS
         }
         public void LoadGrid(int itemId, int whId)
         {
-            dt = _bll.GetActiveItemInfo(itemId, whId);
+            _dt = _bll.GetActiveItemInfo(itemId, whId);
+            if (_dt.Rows.Count < 1)
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Warning", "alert('This items is not in stock')", true);
+                return;
+            }
             DataTable viewStateData = (DataTable)ViewState["grid"];
             if (viewStateData != null && viewStateData.Rows.Count > 0)
             {
                 foreach (DataRow dr in viewStateData.Rows)
                 {
-                    dt.Rows.Add(dr.ItemArray);
+                    _dt.Rows.Add(dr.ItemArray);
                 }
 
             }
-            gvDamageEntry.DataSource = dt;
+            gvDamageEntry.DataSource = _dt;
             gvDamageEntry.DataBind();
-            ViewState["grid"] = dt;
+            ViewState["grid"] = _dt;
 
         }
         [WebMethod]
@@ -62,7 +68,7 @@ namespace UI.AEFPS
             if (!string.IsNullOrWhiteSpace(itemName))
             {
                 string itemNameFull = txtItemName.Text;
-                int itemId = Utility.Common.GetIdFromString(itemNameFull);
+                int itemId = Common.GetIdFromString(itemNameFull);
                 int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
 
                 LoadGrid(itemId, whId);
@@ -77,39 +83,124 @@ namespace UI.AEFPS
 
         protected void gvDamageEntry_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            dt = (DataTable)ViewState["grid"];
-            if (dt.Rows.Count > 0)
+            _dt = (DataTable)ViewState["grid"];
+            if (_dt.Rows.Count <= 0) return;
+            _dt.Rows.RemoveAt(e.RowIndex);
+            gvDamageEntry.DataSource = _dt;
+            gvDamageEntry.DataBind();
+            ViewState["grid"] = _dt;
+            if (_dt.Rows.Count > 0)
             {
-                dt.Rows.RemoveAt(e.RowIndex);
-                gvDamageEntry.DataSource = dt;
-                gvDamageEntry.DataBind();
-                ViewState["grid"] = dt;
-                if (dt.Rows.Count > 0)
-                {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
-                }
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "hidePanel", "hidePanel();", true);
             }
         }
 
         protected void txtDamageQty_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            GridViewRow row = (GridViewRow)txt.NamingContainer;
-            Label rate = (Label)row.FindControl("lblRate");
-            Label stocklQty = (Label)row.FindControl("lblStock");
-            TextBox DamageQty = (TextBox)row.FindControl("txtDamageQty");
-            double Rate, Damage_qty=0,Damage_Amount=0,stock_qty=0;
-            if(Damage_qty<=stock_qty)
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnTextboxChanged(sender);
+            double.TryParse((((TextBox) row.FindControl("txtDamageQty")).Text),out double damageQty);
+            if (damageQty.Equals(0))
             {
-                Damage_Amount = Convert.ToDouble(rate.Text) * Convert.ToDouble(DamageQty.Text);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not blank or 0')", true);
+                return;
+            }
+            double stockQty = Convert.ToDouble(((Label)row.FindControl("lblStock")).Text);
+            if (damageQty <= stockQty)
+            {
+                double damageAmount =Convert.ToDouble(((Label) row.FindControl("lblRate")).Text) *
+                                     damageQty;
+                ((Label)row.FindControl("lblDamageAmount")).Text = damageAmount.ToString(CultureInfo.InvariantCulture);
+                
+            }
+            else
+            {
+                ((TextBox)row.FindControl("txtDamageQty")).Text = string.Empty;
+                ((Label)row.FindControl("lblDamageAmount")).Text = string.Empty;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Aleart", "alert('Damage Quantity can not be greater than stock quantity')", true);
             }
             
-            Label dmgAmount = (Label)row.FindControl("lblDamageAmount");
-            dmgAmount.Text = Damage_Amount.ToString();
+        }
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            int intWhId = Convert.ToInt32(ddlWh.SelectedItem.Value);
+            foreach (GridViewRow row in gvDamageEntry.Rows)
+            {
+                string remarks = ((TextBox)row.FindControl("txtRemarks")).Text;
+                if (!string.IsNullOrWhiteSpace(remarks))
+                {
+                    string damageQuantitytxt = ((TextBox) row.FindControl("txtDamageQty")).Text;
+                    string damageAmounttxt = ((Label)row.FindControl("lblDamageAmount")).Text;
+                    if (!string.IsNullOrWhiteSpace(damageQuantitytxt) && !string.IsNullOrWhiteSpace(damageAmounttxt))
+                    {
+                        try
+                        {
+                            double numDamageQuantity = Convert.ToDouble(damageQuantitytxt);
+                            double monDamageAmount = Convert.ToDouble(damageAmounttxt);
+
+                            double monRate = Convert.ToDouble(((Label)row.FindControl("lblRate")).Text);
+                            int itemId = Convert.ToInt32(((Label)row.FindControl("lblItemID")).Text);
+                            string strRemarks = ((TextBox)row.FindControl("txtRemarks")).Text;
+
+                            string xml = GetXml(itemId, intWhId, strRemarks, numDamageQuantity, monRate, monDamageAmount,
+                                _intEnroll, out string message);
+                            if (_bll.DamageItem(xml) == null)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup",
+                                    "alert('Can not entry as damage " + itemId + " ItemId');", true);
+                                return;
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Something Error Occured');", true);
+                            return;
+                        }
+                        
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Damage Quantity and amount can not be blank');", true);
+                        return;
+                    }
+                    
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
+                    return;
+                }
+            }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "hidePanel();", true);
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully entry damage items.');", true);
+            
+            ViewState["grid"] = null;
+            gvDamageEntry.DataSource = null;
+            gvDamageEntry.DataBind();
+        }
+        private string GetXml(int intItemId, int intWhId, string strRemarks,double numDamageQuantity,double monRate,double monDamageAmount, int intActionBy,out string message)
+        {
+            dynamic obj = new
+            {
+                intItemId,
+                intWhId,
+                strRemarks,
+                numDamageQuantity,
+                monRate,
+                monDamageAmount,
+                intActionBy
+
+            };
+            return XmlParser.GetXml("DamageEntry", "items", obj, out message);
 
         }
     }

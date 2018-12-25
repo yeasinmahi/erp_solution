@@ -91,6 +91,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AEFPS\DITFPS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DITFPS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\FPReport.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -470,6 +475,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AEFPS\DITFPS.xsc">
+      <DependentUpon>DITFPS.xsd</DependentUpon>
+    </None>
+    <None Include="AEFPS\DITFPS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DITFPS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AEFPS\DITFPS.xss">
+      <DependentUpon>DITFPS.xsd</DependentUpon>
+    </None>
     <None Include="AEFPS\FPReport.xsc">
       <DependentUpon>FPReport.xsd</DependentUpon>
     </None>

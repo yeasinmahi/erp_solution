@@ -1,20 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImportFileManagement.aspx.cs" Inherits="UI.Import.ImportFileManagement" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <!DOCTYPE html>
 <html>
 <head runat="server">
     <title>Import File Manager</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <script src="../Content/JS/datepickr.min.js"></script>
-
-    <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -41,45 +33,46 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6 col-sm-6">
                                     <asp:Label ID="Label5" runat="server" Text="PO Number"></asp:Label>
-                                    <asp:TextBox ID="txtPoNumber" TextMode="Number" CssClass="form-control" runat="server" placeholder="PO Number"></asp:TextBox>
+                                    <asp:TextBox ID="txtPoNumber" TextMode="Number" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="PO Number"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label6" runat="server" Text="LC Number"></asp:Label>
-                                    <asp:TextBox ID="txtLcNumber" CssClass="form-control" runat="server" placeholder="LC Number"></asp:TextBox>
+                                    <asp:TextBox ID="txtLcNumber" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="LC Number"></asp:TextBox>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12 col-sm-12" style="padding-top: 10px;">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
                             <div class="row" id="infoPanel" style="visibility: hidden">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label8" runat="server" Text="Unit Name"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlUnitName" CssClass="form-control" Enabled="False" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUnitName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="False" runat="server"></asp:DropDownList>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label9" runat="server" Text="Shipment Number"></asp:Label>
-                                    <asp:DropDownList ID="ddlShipment" CssClass="form-control" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlShipment" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label1" runat="server" Text="File Group"></asp:Label>
-                                    <asp:DropDownList ID="ddlFileGroup" CssClass="form-control" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlFileGroup" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFileGroup_OnSelectedIndexChanged"></asp:DropDownList>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label2" runat="server" Text="Remarks"></asp:Label>
-                                    <asp:TextBox ID="txtNote" runat="server" CssClass="form-control" placeholder="Note"></asp:TextBox>
+                                    <asp:TextBox ID="txtNote" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Remarks"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label3" runat="server" Text="Upload"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                    <asp:FileUpload ID="fileUpload" CssClass="form-control" runat="server" ClientIDMode="Static" EnableViewState="true"></asp:FileUpload>
+                                    <asp:FileUpload ID="fileUpload" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ClientIDMode="Static" EnableViewState="true"></asp:FileUpload>
                                 </div>
-                                <div class="col-md-12">
-                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control" Text="Submit" OnClick="btnAddNewFile_OnClick" />
+                                
+                                <div class="col-md-12 col-sm-12" style="padding-top: 15px;">
+                                    <asp:Button ID="btnAddNewFile" runat="server" class="btn btn-primary form-control"  Text="Submit" OnClick="btnAddNewFile_OnClick" />
                                 </div>
                             </div>
                         </div>
@@ -89,7 +82,7 @@
                             <asp:Label runat="server" Text="Import File Details" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" OnRowCommand="gridView_OnRowCommand">
+                            <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="100%" OnRowCommand="gridView_OnRowCommand" OnRowDataBound="gridView_OnRowDataBound">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -105,12 +98,12 @@
                                             <asp:Label ID="iblFileId" runat="server" Text='<%# Bind("intFileID") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="File Name">
+                                    <asp:TemplateField HeaderText="File Group Name">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtFileName" runat="server" Text='<%# Bind("strFileName") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblFileName" runat="server" CssClass="pull-left" Text='<%# Bind("strFileName") %>'></asp:Label>
+                                            <asp:Label ID="lblFileName" runat="server" Text='<%# Bind("strFileName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
@@ -118,7 +111,7 @@
                                             <asp:TextBox ID="txtRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRemarks" runat="server" CssClass="pull-left" Text='<%# Bind("strRemarks") %>'></asp:Label>
+                                            <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="File Path">
@@ -129,11 +122,12 @@
                                             <asp:Label ID="lblFtpPath" runat="server" Text='<%# Bind("strFtpPath") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Action">
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="200px">
                                         <ItemTemplate>
                                             <asp:Button ID="btnDownload" runat="server" class="btn btn-primary form-control" Text="Download" CommandArgument="<%# Container.DataItemIndex %>" CommandName="Download" />
                                             <asp:Button ID="btnView" runat="server" class="btn btn-primary form-control" Text="View File" CommandArgument="<%# Container.DataItemIndex %>" CommandName="View" />
                                         </ItemTemplate>
+                                        <ItemStyle Width="200px" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
@@ -155,7 +149,6 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnShow" EventName="Click" />
-                <asp:AsyncPostBackTrigger ControlID="gridView" />
                 <asp:PostBackTrigger ControlID="btnAddNewFile" />
             </Triggers>
         </asp:UpdatePanel>
@@ -171,12 +164,18 @@
 
         th {
             text-align: center;
+            font-size: 14px;
         }
 
         .table {
             width: 100%;
             margin-bottom: 20px;
         }
+
+        tr {
+            font-size: 14px;
+        }
+
     </style>
     <script type="text/javascript">
 
@@ -219,11 +218,7 @@
             }
         }
     </script>
-    <style>
-        #gridView tr {
-            font-size: 14px;
-        }
-    </style>
+   
     </form>
 </body>
 </html>

@@ -51,13 +51,13 @@ namespace SAD_BLL.Vat
             catch { return new DataTable(); }
         }
 
-        public DataTable getuseStandard(int intitemid, int Matrilal)
+        public DataTable getuseStandard(int intitemid, int Matrilal,int mtypeid)
         {
             
             try
             {
                 tblConfigItemBOMUseTableAdapter adp = new tblConfigItemBOMUseTableAdapter();
-                return adp.GetMatrialUse(intitemid, Matrilal);
+                return adp.GetMatrialUse(intitemid, Matrilal, mtypeid);
             }
             catch { return new DataTable(); }
         }

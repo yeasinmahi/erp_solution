@@ -65,45 +65,34 @@ namespace UI.SCM
             }
             catch { }
         }
-        protected void Mrr_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            GridViewRow gvRow = (GridViewRow)e.Row;
-            HiddenField hfLocationID = (HiddenField)gvRow.FindControl("hdnPreviLocationId");
-            if (hfLocationID != null)
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    DropDownList ddlLocation = (DropDownList)gvRow.FindControl("ddlStoreLocation");
-                    ddlLocation.SelectedValue = hfLocationID.Value;
-                }
-            }
-        }
+       
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
+           
             var tracker = new PerfTracker(perform + " " + "btnSaveMrr_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                try { File.Delete(filePathForXML); } catch { }
+          
 
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
                 {
-                    intWh = int.Parse(ddlWH.SelectedValue.ToString());
+                    intWh = int.Parse(hdnWHId.Value.ToString());
+                   
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     try { intPOID = int.Parse(hdnPO.Value); } catch { }
                     try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
                     try { intShipment = int.Parse(hdnShipment.Value); } catch { }
                     try { dteChallan = DateTime.Parse(txtdteChallan.Text.ToString()); } catch { }
-                    try { monVatAmount = decimal.Parse(txtVatAmount.Text); } catch { }
+                    try { monVatAmount = decimal.Parse(txtVatAmount.Text.ToString()); } catch { monVatAmount = 0; }
                     try { challanNo = txtChallan.Text.ToString(); } catch { }
                     try { strVatChallan = txtVatChallan.Text.ToString(); } catch { }
                     try { monProductCost = decimal.Parse(lblProductCost.Text.ToString()); } catch { }
-                    try { monOther = decimal.Parse(lblOtherCost.Text.ToString()); } catch { }
-                    try { monDiscount = decimal.Parse(lblDiscount.Text.ToString()); } catch { }
-                    try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { }
+                    try { monOther = decimal.Parse(lblOtherCost.Text.ToString()); } catch { monOther = 0; }
+                    try { monDiscount = decimal.Parse(lblDiscount.Text.ToString()); } catch { monDiscount = 0; }
+                    try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { monBDTConversion = 0; }
                     poIssueBy = lblPoIssueBy.Text.ToString();
 
                     for (int index = 0; index < dgvMrr.Rows.Count; index++)
@@ -115,15 +104,12 @@ namespace UI.SCM
                         try { monRate = decimal.Parse(((Label)dgvMrr.Rows[index].FindControl("lblRate")).Text.ToString()); } catch { monRate = 0; }
                         string numRcvValue = (decimal.Parse(numPOQty.ToString()) * monRate).ToString();//((Label)dgvMrr.Rows[index].FindControl("lblMrrValue")).Text.ToString();
                         string numRcvVatValue = ((Label)dgvMrr.Rows[index].FindControl("lblVat")).Text.ToString();
-                        string location = ((DropDownList)dgvMrr.Rows[index].FindControl("ddlStoreLocation")).SelectedValue.ToString();
+                      
                         string remarks = ((TextBox)dgvMrr.Rows[index].FindControl("txtRemarks")).Text.ToString();
                         string ysnQc = ((Label)dgvMrr.Rows[index].FindControl("lblYsnQc")).Text.ToString();
                         string numQcQty = ((Label)dgvMrr.Rows[index].FindControl("lblQcPassedQty")).Text.ToString();
-                        string batchNo = ((TextBox)dgvMrr.Rows[index].FindControl("txtBatchNo")).Text.ToString();
-                        try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text.ToString())); expireDate = dteExp.ToString(); } catch { expireDate = null; }
-                        try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text.ToString())); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
-
-                        if (decimal.Parse(numRcvQty) > 0 && int.Parse(location) > 0 && monRate > 0)
+                     
+                        if (decimal.Parse(numRcvQty) > 0 && monRate > 0 && intWh>0)
                         {
                             //if (ysnQc.ToString() == "0")
                             //{
@@ -144,7 +130,7 @@ namespace UI.SCM
                             //    }
                             //}
 
-                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOther.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate, manufactureDate);
+                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOther.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, remarks, monRate.ToString(), poIssueBy);
                         }
 
 
@@ -156,7 +142,7 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<mrr>" + xmlString + "</mrr>";
                     try { File.Delete(filePathForXML); } catch { }
-                    string msg = obj.MrrReceive(11, xmlString, intWh, intPOID, DateTime.Now, enroll);
+                    string msg = obj.MrrReceive(22, xmlString, intWh, intPOID, DateTime.Now, enroll);
 
                     string[] searchKey = Regex.Split(msg, ":");
                     lblMrrNo.Text = searchKey[1].ToString();
@@ -173,19 +159,19 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "btnSaveMrr_Click", null);
             Flogger.WriteDiagnostic(fd);
-            // ends
+           
             tracker.Stop();
           
         }
 
-        private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate)
+        private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string remarks, string monRate, string poIssueBy)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue,  remarks, monRate, poIssueBy);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -193,7 +179,7 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue,  remarks, monRate, poIssueBy);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -201,7 +187,7 @@ namespace UI.SCM
 
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate)
+        private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string remarks, string monRate, string poIssueBy)
         {
             XmlNode node = doc.CreateElement("mrrEntry");
 
@@ -242,8 +228,7 @@ namespace UI.SCM
             NumRcvValue.Value = numRcvValue;
             XmlAttribute NumRcvVatValue = doc.CreateAttribute("numRcvVatValue");
             NumRcvVatValue.Value = numRcvVatValue;
-            XmlAttribute Location = doc.CreateAttribute("location");
-            Location.Value = location;
+            
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
 
@@ -252,13 +237,8 @@ namespace UI.SCM
             XmlAttribute PoIssueBy = doc.CreateAttribute("poIssueBy");
             PoIssueBy.Value = poIssueBy;
 
-            XmlAttribute BatchNo = doc.CreateAttribute("batchNo");
-            BatchNo.Value = batchNo;
-
-            XmlAttribute ExpireDate = doc.CreateAttribute("expireDate");
-            ExpireDate.Value = expireDate;
-            XmlAttribute ManufactureDate = doc.CreateAttribute("manufactureDate");
-            ManufactureDate.Value = manufactureDate;
+            
+ 
 
 
 
@@ -282,15 +262,11 @@ namespace UI.SCM
             node.Attributes.Append(NumRcvValue);
 
             node.Attributes.Append(NumRcvVatValue);
-            node.Attributes.Append(Location);
+            
             node.Attributes.Append(Remarks);
 
             node.Attributes.Append(MonRate);
-            node.Attributes.Append(PoIssueBy);
-
-            node.Attributes.Append(BatchNo);
-            node.Attributes.Append(ExpireDate);
-            node.Attributes.Append(ManufactureDate);
+            node.Attributes.Append(PoIssueBy);             
 
 
             return node;
@@ -316,6 +292,7 @@ namespace UI.SCM
                 intWh = int.Parse(ddlWH.SelectedValue);
                 intPo = int.Parse(txtPoNo.Text.ToString());
                 hdnPO.Value = intPo.ToString();
+                enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 try { intShipment = int.Parse(ddlInvoice.SelectedValue);
                     hdnShipment.Value = intShipment.ToString();
                 }
@@ -333,13 +310,17 @@ namespace UI.SCM
                     }
                     else
                     {
-                        dt = obj.DataView(7, xmlString, intWh, intPo, DateTime.Now, enroll);
+                        dt = obj.DataView(21, xmlString, intWh, intPo, DateTime.Now, enroll);
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
                         lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
                         lblCurrency.Text = " Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
                         lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
                         monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                        ddlWH.SelectedValue= dt.Rows[0]["intWHID"].ToString();
+                        ddlWH.SelectedItem.Text= dt.Rows[0]["strWareHoseName"].ToString();
+                        ddlPoType.SelectedItem.Text= dt.Rows[0]["strPoFor"].ToString();
+
 
                         dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);
                         lblPoTotal.Text = "";
@@ -352,14 +333,16 @@ namespace UI.SCM
                 }
                 else
                 {
-                    dt = obj.DataView(4, xmlString, intWh, intPo, DateTime.Now, enroll);
+                    dt = obj.DataView(20, xmlString, intWh, intPo, DateTime.Now, enroll);
                     if (dt.Rows.Count > 0)
                     {
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
                         lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
+
                         //lblMrrNo.Text = dt.Rows[0][""].ToString();
                         // lblMrrDate.Text= dt.Rows[0][""].ToString();
                         lblPoTotal.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
+                        txtVatAmount.Text = dt.Rows[0]["monPOTotalVAT"].ToString();
                         lblProductCost.Text = dt.Rows[0]["monPOAmount"].ToString();
                         lblTransportCost.Text = dt.Rows[0]["monOther"].ToString();
                         lblOtherCost.Text = dt.Rows[0]["monOther"].ToString();
@@ -369,11 +352,29 @@ namespace UI.SCM
                         hdnConversion.Value = dt.Rows[0]["monBDTConversion"].ToString();
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
 
+                       
+                        ddlPoType.SelectedItem.Text = dt.Rows[0]["strPoFor"].ToString();
+
+                        hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
+                        hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
+
+                        List<ListItem> items = new List<ListItem>();
+                        items.Add(new ListItem(hdnWHName.Value.ToString(), hdnWHId.Value.ToString()));
+                        ddlWH.Items.AddRange(items.ToArray());
+
+                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
+                        ddlWH.SelectedItem.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     }
 
+                    else
+                    {
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please approve PO');", true);
+                    }
                 }
+                intWh = int.Parse(hdnWHId.Value.ToString());
                 dt = obj.DataView(17, xmlString, intWh, intPo, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                if(dt.Rows.Count>0 && lblSuppliyer.Text.Length>2)
                 {
                     dgvMrr.DataSource = dt;
                     dgvMrr.DataBind();
@@ -391,7 +392,7 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-            // ends
+           
             tracker.Stop();
         }
 

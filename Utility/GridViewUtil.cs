@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -8,9 +9,13 @@ namespace Utility
 {
     public class GridViewUtil
     {
-        public static GridViewRow GetCurrentGridViewRow(object sender)
+        public static GridViewRow GetCurrentGridViewRowOnButtonClick(object sender)
         {
             return (GridViewRow) ((Button) sender).NamingContainer;
+        }
+        public static GridViewRow GetCurrentGridViewRowOnTextboxChanged(object sender)
+        {
+            return (GridViewRow)((TextBox)sender).NamingContainer;
         }
         public static GridViewRow GetCurrentGridViewRow(GridView gridView, GridViewCommandEventArgs e)
         {
@@ -60,7 +65,47 @@ namespace Utility
             gridView.DataBind();
             return gridView;
         }
+        public static bool LoadGridwithXml(string xmlString, GridView gridView, out string message)
+        {
+            try
+            {
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gridView.DataSource = ds;
+                }
+                else
+                {
+                    gridView.DataSource = "";
+                }
+                gridView.DataBind();
+                message = "Successfully Load GridView";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
 
+        }
+
+        public static bool UnLoadGridView(GridView gridView)
+        {
+            try
+            {
+                gridView.DataSource = null;
+                gridView.DataBind();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+        }
     }
     public class CreateItemTemplate : ITemplate
     {
@@ -90,7 +135,7 @@ namespace Utility
         }
 
         //Overwrite the InstantiateIn() function of the ITemplate interface.
-        public void InstantiateIn(System.Web.UI.Control container)
+        public void InstantiateIn(Control container)
         {
             //Code to create the ItemTemplate and its field.
 

@@ -455,8 +455,8 @@ namespace UI.SAD.Customer.Report
 
                     sb.Append("<td>" + table[i].strProductFullName + "</td>");
                     sb.Append("<td>" + table[i].strUOMShow + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numQuantity) + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numWeight) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
                     sb.Append("</tr>");
 
                     if ((table[i].IsnumPromotionNull() ? 0 : table[i].numPromotion) > 0)

@@ -68,10 +68,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy, int Mnumber)
+        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo, int Mnumber)
         {
             TblUpdateAssetMaintenanceTableAdapter insertdate = new TblUpdateAssetMaintenanceTableAdapter();
-            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy, Mnumber);
+            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo, Mnumber);
         }
 
 
@@ -550,6 +550,31 @@ namespace Purchase_BLL.Asset
             WOToolsIn.WOToolsEquipmentInsert(Reffno, ToolsID, description, hour, intenroll, intjobid, intdept);
         }
 
+        public DataTable CheckSubServiceView(int reffno, string service)
+        {
+            
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            return ap.CheckDuplicateServiceData(reffno, service);
+        }
+
+        public DataTable SubServiceView(int reffno)
+        {
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            return ap.GetSubServiceData(reffno);
+        }
+
+        public void SubServiceCost(int reffno, string service, decimal cost)
+        {
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            ap.InsetSubServiceCostData(reffno, service, cost);
+        }
+
+        public void dgvServiceDelete(int intId)
+        {
+            TblMaintenanceSubServiceTaskTableAdapter ap = new TblMaintenanceSubServiceTaskTableAdapter();
+            ap.DeleteSubServiceData(intId);
+        }
+
         public void ServiceChargeUpdate(int serviceId, decimal serviceCost,string serviceDesc)
         {
             try
@@ -897,6 +922,60 @@ namespace Purchase_BLL.Asset
 
             }
             return result;
+        }
+
+        public DataTable JobStation()
+        {
+            try
+            {
+                TblEmployeeJobStationTableAdapter adp = new TblEmployeeJobStationTableAdapter();
+                return adp.GetJobStationData();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetServiceData(int jobcard)
+        {
+            try
+            {
+                tblMaintenanceTaskTableAdapter adp = new tblMaintenanceTaskTableAdapter();
+                return adp.GetDataByJobCard(jobcard);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public string UpdateMoney(decimal amount,int serviceID)
+        {
+            string msg = "";
+            try
+            {
+                TblMaintenanceTaskTableAdapter adp = new TblMaintenanceTaskTableAdapter();
+                adp.UpdateMoneyByJobCard(amount,serviceID);
+                return msg = "Amount Updated Successfully";
+            }
+            catch(Exception ex) { return msg = ex.Message.ToString(); }
+        }
+        public string UpdateFixedAssetRegisterUnit(int unit,string assetCode)
+        {
+            string msg = "";
+            try
+            {
+                TblFixedAssetRegisterTableAdapter adp = new TblFixedAssetRegisterTableAdapter();
+                adp.UpdateFixedAssetRegUnit(unit, assetCode);
+                return msg = "Unit Updated Successfully";
+            }
+            catch (Exception ex) { return msg = ex.Message.ToString(); }
+        }
+        public string UpdateAssetMaintenanceUnitByJobCard(int unit,int jobstation, int jobcard)
+        {
+            string msg = "";
+            try
+            {
+                TblAssetMaintenanceTableAdapter adp = new TblAssetMaintenanceTableAdapter();
+                adp.UpdateAssetUnitByJobCard(unit,jobstation, jobcard);
+                return msg = "Unit Updated Successfully";
+            }
+            catch (Exception ex) { return msg = ex.Message.ToString(); }
         }
 
     }

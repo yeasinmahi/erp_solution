@@ -1,13 +1,4 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-
 using UserSecurity;
 
 /// <summary>
@@ -22,7 +13,7 @@ namespace UI.ClassFiles
         {
             base.OnPreInit(e);
             UserActivityCheck();
-            Page.Title = "Welcome to Akij Group";
+            Page.Title = @"Welcome to Akij Group";
         }
         public BasePage()
         {
@@ -35,23 +26,12 @@ namespace UI.ClassFiles
         {
             string retStr = "";
             UserSecurityService us = new UserSecurityService();
-            //try
-            //{
-            //    retStr = Session["Test"].ToString();       
-            //}
-            //catch
-            //{
-            //    retStr = "0";
-            //}
             try
             {
                 if (!us.UpdateUserActivity(Session[SessionParams.EMAIL].ToString(), Session.SessionID))
                 {
                     retStr = "~/SessionExpired.aspx";
                 }
-
-
-
             }
             catch
             {

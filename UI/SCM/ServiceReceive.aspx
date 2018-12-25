@@ -5,13 +5,19 @@
 <html>
 <head runat="server">
     <title></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
+     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
+    <script src="../../Content/JS/datepickr.min.js"></script> 
     <script src="../../Content/JS/JSSettlement.js"></script> 
+    <link href="jquery-ui.css" rel="stylesheet" />  
+     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
+    <script src="jquery.min.js"></script> 
+    <script src="jquery-ui.min.js"></script> 
+    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     
 
     <script type="text/javascript"> 
@@ -48,24 +54,28 @@
                 $(this).val('');
             } 
 
-        });
-         
-        function MrrGenerateCheck() { 
-            var e = document.getElementById("ddlPo");
-            var Po = e.options[e.selectedIndex].value; 
+        });  
+    </script> 
+    <script type="text/javascript">
+        function mrrCheck() { 
+            var Po =  document.getElementById("txtPoNo").value;
             var challan = document.getElementById("txtChallan").value;
             var challanDate = document.getElementById("txtdteChallan").value;
-            var vatChallan = document.getElementById("txtVatChallan").value;
+             
             var vatAmount = document.getElementById("txtVatAmount").value;
+             
+            if ($.trim(Po) == 0 || $.trim(Po) == "" || $.trim(Po) == null || $.trim(Po) == undefined) {  document.getElementById("hdnConfirm").value = "0"; alert('Please select Po');  }
 
-            if ($.trim(Po) == 0 || $.trim(Po) == "" || $.trim(Po) == null || $.trim(Po) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Po'); }
             else if ($.trim(challan) == 0 || $.trim(challan) == "" || $.trim(challan) == null || $.trim(challan) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set Challan No'); }
+
             else if ($.trim(challanDate) == 0 || $.trim(challanDate) == "" || $.trim(challanDate) == null || $.trim(challanDate) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Challan Date'); }
-           // else if ($.trim(vatChallan) == 0 || $.trim(vatChallan) == "" || $.trim(vatChallan) == null || $.trim(vatChallan) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set vatChallan number'); }
+            
             else if ($.trim(vatAmount) == "" || $.trim(vatAmount) == null || $.trim(vatAmount) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set Vat Amount'); }
              
             else if ($.trim(challanDate).length < 3 || $.trim(challanDate) == "" || $.trim(challanDate) == null || $.trim(challanDate) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set  Challan  Date'); }
+
             else {
+                      
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
@@ -73,24 +83,7 @@
                  
             } 
         }
-
-
-        function PoViewCheck() { 
-              
-            var e = document.getElementById("ddlWH");
-            var wh = e.options[e.selectedIndex].value; 
-             var pt = document.getElementById("ddlPoType");
-            var poType = pt.options[e.selectedIndex].value;
-            
-
-            if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select WH'); }
-            else if ($.trim(poType) == 0 || $.trim(poType) == "" || $.trim(poType) == null || $.trim(poType) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type'); }
-                 
-            else {
-                document.getElementById("hdnConfirm").value = "1";  
-            } 
-        }
-    </script> 
+    </script>
 
      <style type="text/css">
     .Initial
@@ -174,10 +167,11 @@
                         <td>Vat Amount</td>
                         <td><asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>
                        
-                         <td style="text-align:right"  colspan="4"  ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save SRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
-
-                       
+                         <td style="text-align:right"  colspan="4"  ><asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" />
+                             <asp:Button ID="btnSaveMrr" Text="Save SRR" Font-Bold="true" runat="server"  OnClientClick="mrrCheck();"   OnClick="btnSaveMrr_Click" /></td>
+                             
                         </tr>
+                    
                         <tr> 
                         <td colspan="4"><asp:Label ID="lblSuppliyer" runat="server"  ></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false" runat="server"  ></asp:Label><asp:Label ID="lblCurrency" runat="server"></asp:Label>
                         <asp:Label ID="lblConversion" runat="server"> </asp:Label><asp:Label ID="lblPoIssueBy" Visible="false" runat="server"></asp:Label></td>
@@ -202,7 +196,7 @@
                <table>
                         <tr> 
                         <td> 
-                        <asp:GridView ID="dgvMrr" runat="server" AutoGenerateColumns="False"  Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  OnRowDataBound="Mrr_RowDataBound" 
+                        <asp:GridView ID="dgvMrr" runat="server" AutoGenerateColumns="False"  Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"   
                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" > 
                         <AlternatingRowStyle BackColor="#CCCCCC" /> 
                         <Columns> 
@@ -225,27 +219,27 @@
                         <ItemStyle HorizontalAlign="Right" Width="50px"/></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="PO Qty" ItemStyle-HorizontalAlign="right" SortExpression="numPoQty" > 
-                        <ItemTemplate><asp:Label ID="lblPoQty" runat="server"   Text='<%# Bind("numPoQty","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblPoQty" runat="server"   Text='<%# Bind("numPoQty") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monRate" > 
-                        <ItemTemplate><asp:Label ID="lblRate"  Width="50px" runat="server"  Text='<%# Bind("monRate","{0:n2}") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField>  
+                        <ItemTemplate><asp:Label ID="lblRate"  Width="80px" runat="server"  Text='<%# Bind("monRate") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Right" Width="80px" /></asp:TemplateField>  
                             
-                        <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue" > 
-                        <ItemTemplate><asp:Label ID="lblValue" runat="server"    Text='<%# Bind("monValue","{0:n2}") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px"/></asp:TemplateField> 
+                        <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="left" SortExpression="monValue" > 
+                        <ItemTemplate><asp:Label ID="lblValue" runat="server"    Width="100px" Text='<%# Bind("monValue") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="right" Width="100px"/></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monVat" > 
-                        <ItemTemplate><asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}"  Text='<%# Bind("monVat" ) %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblVat" runat="server"  Text='<%# Bind("monVat" ) %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" /> </asp:TemplateField>  
 
                         <asp:TemplateField HeaderText="QC Passed" ItemStyle-HorizontalAlign="right" SortExpression="numQcQty" > 
-                        <ItemTemplate><asp:Label ID="lblQcPassedQty" runat="server"    Text='<%# Bind("numQcQty","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblQcPassedQty" runat="server"    Text='<%# Bind("numQcQty") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" />  </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Previous Receive" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreRecvQty" > 
-                        <ItemTemplate><asp:Label ID="lblPreviousReceive" runat="server"   Text='<%# Bind("monPreRecvQty","{0:n2}" ) %>'  ></asp:Label></ItemTemplate> 
+                        <ItemTemplate><asp:Label ID="lblPreviousReceive" runat="server"   Text='<%# Bind("monPreRecvQty") %>'  ></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px" /></asp:TemplateField> 
 
                          <asp:TemplateField HeaderText="YsnQC" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="ysnNeedQc" > 
@@ -261,49 +255,9 @@
                         <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="MRR Value" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:Label ID="lblMrrValue"   Width="50px" runat="server"  ></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Batch no" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:TextBox ID="txtBatchNo" CssClass="txtBox"  Width="50px" runat="server"  ></asp:TextBox></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="50px" /></asp:TemplateField> 
-                       
-                        <asp:TemplateField HeaderText="Expire Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtExpireDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server"   TargetControlID="txtExpireDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
-                         
-                        <asp:TemplateField HeaderText="Manufacturing Date" ItemStyle-HorizontalAlign="right"  >
-                        <ItemTemplate><asp:TextBox ID="txtManufacturingDate" runat="server" Width="80px"    CssClass="txtBox"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender5" runat="server"   Format="yyyy-MM-dd" TargetControlID="txtManufacturingDate">
-                        </cc1:CalendarExtender> </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="30px" />
-                        </asp:TemplateField>
+                        <ItemTemplate><asp:Label ID="lblMrrValue" Width="80px"  runat="server"  ></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="right" Width="80px" /></asp:TemplateField>  
                         
-                        <asp:TemplateField HeaderText="Previous Location ID" Visible="false" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:HiddenField ID="hdnPreviLocationId"     runat="server"  value='<%# Bind("intLocationId") %>' ></asp:HiddenField></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Previous Location" ItemStyle-HorizontalAlign="right" > 
-                        <ItemTemplate><asp:Label ID="lblPLocation"   Width="50px" runat="server"  Text='<%# Bind("strLocationName") %>' ></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right"  > 
-                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server"   Font-Size="Small"   DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
-                            <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
-                                <SelectParameters>
-                                    <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />
-                                    <asp:Parameter DefaultValue="" Name="xmlData" Type="Object" />
-                                    <asp:ControlParameter ControlID="ddlWH" Name="intWh" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:Parameter DefaultValue="0" Name="intPOId" Type="Int32" />
-                                    <asp:Parameter DefaultValue="2018-01-01" Name="dteDate" Type="DateTime" />
-                                    <asp:Parameter DefaultValue="0" Name="intEnroll" Type="Int32" />
-                                    <asp:Parameter DefaultValue="" Direction="InputOutput" Name="msg" Type="String" />
-                                </SelectParameters>
-                            </asp:ObjectDataSource>
-                            <asp:SqlDataSource ID="SqlDataSourceLocation" runat="server"></asp:SqlDataSource>
-                            </ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right"   > 
                         <ItemTemplate><asp:TextBox ID="txtRemarks" runat="server" Width="50px"  ></asp:TextBox></ItemTemplate> 

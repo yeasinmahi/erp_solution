@@ -8,14 +8,14 @@ namespace UI.Other
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ImageSrc"] != null)
+            if (Session["src"] != null)
             {
-                var src = Session["ImageSrc"].ToString();
+                var src = Session["src"].ToString();
                 LoadImage(src);
             }
             else
             {
-                Response.Write("<script>alert('If you want to see image you have to put image url toSession[ImageSrc]');</script>");
+                Response.Write("<script>alert('If you want to see image you have to put image url toSession[src]');</script>");
                 //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('If you want to see image you have to put image url toSession['ImageSrc'] ');", true);
             }
             

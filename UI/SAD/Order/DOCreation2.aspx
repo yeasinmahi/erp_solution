@@ -142,13 +142,13 @@
                     flag = false;
                 }
             }
-            if (document.getElementById("txtslot") != null && flag) {
-                if (document.getElementById("txtslot").value == '') {
-                    alert('Please select Slot Number');
-                    NotExec(args);
-                    flag = false;
-                }
-            }
+            //if (document.getElementById("txtslot") != null && flag) {
+            //    if (document.getElementById("txtslot").value == '') {
+            //        alert('Please select Slot Number');
+            //        NotExec(args);
+            //        flag = false;
+            //    }
+            //}
 
             return flag;
         }

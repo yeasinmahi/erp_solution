@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web;
@@ -6,17 +7,18 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAD_BLL.AEFPS;
+using UI.ClassFiles;
 
 namespace UI.AEFPS
 {
     public partial class BlockItem : System.Web.UI.Page
     {
         readonly Receive_BLL _bll = new Receive_BLL();
-        int _intEnroll=369116;
+        int _intEnroll=0;
         DataTable _dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //_intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            _intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -118,14 +120,14 @@ namespace UI.AEFPS
                 }
                 else
                 {
-                    
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Remarks can not be blank');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "Script", "showPanel();", true);
+                    //btnInActive.Visible = true;
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "alert", "alert('Remarks can not be blank');", true);
                     return;
                 }
             }
 
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "ShowHideGridviewPanels();", true);
+            //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "ShowHideGridviewPanels();", true);
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Startup", "alert('Successfully In-Activated all items.');", true);
             LoadInActiveGridView();
             ViewState["grid"] = null;
@@ -153,6 +155,13 @@ namespace UI.AEFPS
             int whId = Convert.ToInt32(ddlWh.SelectedItem.Value);
             InActiveItemGridView.DataSource = _bll.GetInActiveItemInfo(whId);
             InActiveItemGridView.DataBind();
+        }
+
+        protected void btnActive_Click(object sender, EventArgs e)
+        {
+            activeItemGridView.DataSource = null;
+            activeItemGridView.DataBind();
+            ViewState["grid"] = null;
         }
     }
 }

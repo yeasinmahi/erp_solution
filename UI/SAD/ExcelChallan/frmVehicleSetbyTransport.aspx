@@ -83,7 +83,7 @@
           </tr> 
         <tr><td>Supplier Name</td>
             <td><asp:TextBox ID="txtSuppliername" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>
-            <td colspan="3"><asp:Button ID="btnSaves" runat="server" Text="Save" OnClick="btnSave_Click" /> &nbsp &nbsp <asp:Button ID="btnFinalshow" runat="server" Text="Trip Report" OnClick="btnFinalRpt_Click" /> </td>
+            <td colspan="3"><asp:Button ID="btnSaves"  runat="server" Text="Save" OnClick="btnSave_Click" /> &nbsp &nbsp <asp:Button ID="btnFinalshow" runat="server" Text="Trip Report" OnClick="btnFinalRpt_Click" /> </td>
         </tr>                        
         <tr><td colspan="5"><hr />
             <asp:GridView ID="dgvExcelOrder" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small" OnRowDataBound="dgvExcelOrder_RowDataBound" ShowFooter="True">

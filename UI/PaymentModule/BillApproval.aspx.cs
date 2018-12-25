@@ -81,7 +81,9 @@ namespace UI.PaymentModule
                     ddlUnit.DataTextField = "strUnit";
                     ddlUnit.DataValueField = "intUnitID";
                     ddlUnit.DataSource = dt;
-                    ddlUnit.DataBind();                    
+                    ddlUnit.DataBind(); 
+
+                    ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
                 }
             }
             catch (Exception ex)

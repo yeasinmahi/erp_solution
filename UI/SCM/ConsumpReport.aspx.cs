@@ -61,9 +61,9 @@ namespace UI.SCM
                 ddlFilter.DataValueField = "Id";
                 ddlFilter.DataTextField = "strName";
                 ddlFilter.DataBind();
-                 
 
-                dt = objIssue.GetViewData(10, "", 0, 0, DateTime.Now, enroll);
+                intwh = int.Parse(ddlWh.SelectedValue.ToString());
+                dt = objIssue.GetViewData(10, "", intwh, 0, DateTime.Now, enroll);
                // ddlSection.Items.Insert(0, new ListItem("Select", ""));
                 ddlSection.DataSource = dt;
                 ddlSection.DataValueField = "Id";

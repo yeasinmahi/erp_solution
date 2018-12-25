@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Xml;
@@ -7,17 +7,17 @@ namespace Utility
 {
     public class XmlParser
     {
-        public static string filePathForXML = "";
+        public static string FilePathForXml = "";
 
-        public static bool CreateXml(string rootName, string itemName, object obj, string filePathForXML, out string message)
+        public static bool CreateXml(string rootName, string itemName, object obj, string filePathForXml, out string message)
         {
             XmlDocument doc = new XmlDocument();
             XmlNode rootNode;
             try
             {
-                if (System.IO.File.Exists(filePathForXML))
+                if (File.Exists(filePathForXml))
                 {
-                    doc.Load(filePathForXML);
+                    doc.Load(filePathForXml);
                     rootNode = doc.SelectSingleNode(rootName);
 
                 }
@@ -37,7 +37,7 @@ namespace Utility
             try
             {
                 XmlNode addItem = CreateItemNodes(itemName,doc, obj);
-                rootNode.AppendChild(addItem);
+                rootNode?.AppendChild(addItem);
             }
             catch
             {
@@ -46,7 +46,7 @@ namespace Utility
             }
             try
             {
-                doc.AppendChild(rootNode);
+                if (rootNode != null) doc.AppendChild(rootNode);
             }
             catch
             {
@@ -55,7 +55,7 @@ namespace Utility
             }
             try
             {
-                doc.Save(filePathForXML);
+                doc.Save(filePathForXml);
                 message = "Xml Create Successful";
                 return true;
             }
@@ -65,15 +65,157 @@ namespace Utility
                 return false;
             }
         }
-
-        public static bool CreateXml(string rootName, object obj, string filePathForXML, out string message)
+        public static string GetXml(string rootName, string itemName, object obj,out string message)
         {
-            return CreateXml(rootName, null, obj, filePathForXML, out message);
+            XmlDocument doc = new XmlDocument();
+            XmlNode rootNode;
+            try
+            {
+                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+                doc.AppendChild(xmldeclerationNode);
+                rootNode = doc.CreateElement(rootName);
+            }
+            catch
+            {
+                message = "File Path Related Problem";
+                return string.Empty;
+            }
+
+            try
+            {
+                XmlNode addItem = CreateItemNodes(itemName, doc, obj);
+                rootNode.AppendChild(addItem);
+            }
+            catch
+            {
+                message = "Something Error while Fatching Object";
+                return string.Empty;
+            }
+            try
+            {
+                doc.AppendChild(rootNode);
+                message = "Successfully Created xml";
+                return doc.InnerXml;
+            }
+            catch
+            {
+                message = "Xml format Error";
+                return string.Empty;
+            }
+        }
+        public static bool CreateXml(string rootName, string itemName, List<object> objs, string filePathForXml, out string message)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlNode rootNode;
+            try
+            {
+                if (File.Exists(filePathForXml))
+                {
+                    doc.Load(filePathForXml);
+                    rootNode = doc.SelectSingleNode(rootName);
+
+                }
+                else
+                {
+                    XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+                    doc.AppendChild(xmldeclerationNode);
+                    rootNode = doc.CreateElement(rootName);
+                }
+            }
+            catch
+            {
+                message = "File Path Related Problem";
+                return false;
+            }
+
+            try
+            {
+                foreach (object obj in objs)
+                {
+                    XmlNode addItem = CreateItemNodes(itemName, doc, obj);
+                    rootNode?.AppendChild(addItem);
+                }
+            }
+            catch
+            {
+                message = "Something Error while Fatching Object";
+                return false;
+            }
+            try
+            {
+                if (rootNode != null) doc.AppendChild(rootNode);
+            }
+            catch
+            {
+                message = "Xml format Error";
+                return false;
+            }
+            try
+            {
+                doc.Save(filePathForXml);
+                message = "Xml Create Successful";
+                return true;
+            }
+            catch
+            {
+                message = "Xml Saving Problem";
+                return false;
+            }
+        }
+        public static string GetXml(string rootName, string itemName, List<object> objs, out string message)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlNode rootNode;
+            try
+            {
+                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+                doc.AppendChild(xmldeclerationNode);
+                rootNode = doc.CreateElement(rootName);
+            }
+            catch
+            {
+                message = "File Path Related Problem";
+                return string.Empty;
+            }
+
+            try
+            {
+                foreach (object obj in objs)
+                {
+                    XmlNode addItem = CreateItemNodes(itemName, doc, obj);
+                    rootNode.AppendChild(addItem);
+                }
+            }
+            catch
+            {
+                message = "Something Error while Fatching Object";
+                return string.Empty;
+            }
+            try
+            {
+                doc.AppendChild(rootNode);
+                message = "Successfully Created xml";
+                return doc.InnerXml;
+            }
+            catch
+            {
+                message = "Xml format Error";
+                return string.Empty;
+            }
+        }
+
+        public static bool CreateXml(string rootName, object obj, string filePathForXml, out string message)
+        {
+            return CreateXml(rootName, null, obj, filePathForXml, out message);
+        }
+        public static string GetXml(string rootName, object obj, out string message)
+        {
+            return GetXml(rootName, null, obj, out message);
         }
 
         private static XmlNode CreateItemNodes(string itemName,XmlDocument doc, object obj)
         {
-            XmlNode node = doc.CreateElement(String.IsNullOrWhiteSpace(itemName) ? "voucharEntry" : itemName);
+            XmlNode node = doc.CreateElement(string.IsNullOrWhiteSpace(itemName) ? "voucharEntry" : itemName);
             PropertyInfo[] propertyInfos = Common.GetProperties(obj);
            
             foreach (PropertyInfo p in propertyInfos)
@@ -88,7 +230,7 @@ namespace Utility
         public static string ConvertXmlToString(XmlDocument doc)
         {
             XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
-            string xmlString = dSftTm.InnerXml;
+            string xmlString = dSftTm?.InnerXml;
             xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
             return xmlString;
         }

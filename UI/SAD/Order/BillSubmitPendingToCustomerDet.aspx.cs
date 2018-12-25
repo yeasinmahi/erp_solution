@@ -52,14 +52,14 @@ namespace UI.SAD.Order
                     string netqnt = dt.AsEnumerable().Sum(row => row.Field<decimal>("billqnt")).ToString();
                     string netamount = dt.AsEnumerable().Sum(row => row.Field<decimal>("billamount")).ToString();
                     dgbCustomerprintcopy.FooterRow.Cells[4].Text = "Total";
-                    dgbCustomerprintcopy.FooterRow.Cells[7].Text = prchqnt.ToString();
+                    dgbCustomerprintcopy.FooterRow.Cells[6].Text = prchqnt.ToString();
                     //dgbCustomerprintcopy.FooterRow.Cells[7].Text = prchamount.ToString();
                     //dgbCustomerprintcopy.FooterRow.Cells[8].Text = rtnqnt.ToString();
-                    dgbCustomerprintcopy.FooterRow.Cells[8].Text = netqnt.ToString();
-                    dgbCustomerprintcopy.FooterRow.Cells[10].Text = netamount.ToString();
+                    dgbCustomerprintcopy.FooterRow.Cells[7].Text = netqnt.ToString();
+                    dgbCustomerprintcopy.FooterRow.Cells[9].Text = netamount.ToString();
                 }
                 lblcustomername.Text = dt.Rows[0][2].ToString();
-                lblcustmainadr.Text = dt.Rows[0][19].ToString();
+                lblcustmainadr.Text = dt.Rows[0][18].ToString();
                 int enrol= int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = bllh.getEmployeeDetails(enrol);
                 lblSubmittedby.Text = dt.Rows[0][0].ToString();

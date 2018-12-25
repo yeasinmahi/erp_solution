@@ -48,7 +48,7 @@ namespace UI.SCM
                 ddlUnit.DataTextField = "strUnit";
                 ddlUnit.DataValueField = "intUnitId";
                 ddlUnit.DataBind();
-            }
+            } 
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "DefauldtPageLoad", ex);

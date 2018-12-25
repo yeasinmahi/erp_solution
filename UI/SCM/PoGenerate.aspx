@@ -16,7 +16,9 @@
     <script src="../../Content/JS/JSSettlement.js"></script>  
     <script type="text/javascript">
        
-
+         function ViewPriceListPopup(Id) {
+            window.open('../PaymentModule/PreviousPrice.aspx?ID=' + Id, 'sub', "height=600, width=1050, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        }
         $("[id*=TxtNewPO]").live("change", function () {
             if (!jQuery.trim($(this).val()) == '') {
                 if (!isNaN(parseFloat($(this).val()))) {
@@ -564,7 +566,7 @@
                      
                       <td style="text-align:right;"><asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item: "></asp:Label></td>
                      <td><asp:DropDownList ID="ddlItem" CssClass="ddList"  runat="server"></asp:DropDownList></td>
-                     <td><asp:Button ID="btnAddItem" runat="server" Text="Add" OnClick="btnAddItem_Click" /><asp:Button ID="btnPrepare" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" /></td>
+                     <td><asp:Button ID="btnAddItem" runat="server" Text="Add" OnClick="btnAddItem_Click" Height="26px" /><asp:Button ID="btnPrepare" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" /></td>
                      </tr> 
                   
                     </table>
@@ -651,10 +653,17 @@
                             <ItemStyle HorizontalAlign="Right" />
                         </asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Previous Avg" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monPreviousRate" > 
-                        <ItemTemplate><asp:Label ID="lblPreviousAvg" runat="server"  Text='<%# Bind("monPreviousRate","{0:n2}") %>'></asp:Label></ItemTemplate> 
+                        <asp:TemplateField HeaderText="Previous Price" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreviousRate" > 
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" ID="lblPreviousPrice" Text='<%# Bind("monPreviousRate","{0:n2}") %>' OnClick="lblPreviousPrice_Click"></asp:LinkButton>
+                        </ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Right" Width="50px"  /> </asp:TemplateField>
+                        
+                        <asp:TemplateField HeaderText="Previous avg" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monPreviousRate" > 
+                        <ItemTemplate><asp:Label ID="lblPreviousAvg" runat="server"  Text='<%# Bind("monPreviousRate","{0:n2}") %>'></asp:Label>
+                        </ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" Width="50px"  /> </asp:TemplateField> 
-
+                        
                         <asp:TemplateField HeaderText="Ask Q" Visible="false" ItemStyle-HorizontalAlign="right"  > 
                         <ItemTemplate><asp:Label ID="lblAskQ" runat="server" Text='0'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
