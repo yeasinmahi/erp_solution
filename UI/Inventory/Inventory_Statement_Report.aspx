@@ -79,7 +79,8 @@
                                 <div class="col-md-3">
                                     <asp:Label ID="Label4" runat="server" Text="Search By" ></asp:Label>
                                 <asp:DropDownList ID="ddlSearchBy" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlSearchBy_SelectedIndexChanged" AutoPostBack="true">
-                                       <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                       <%--<asp:ListItem Text="--Select--" Value="0"></asp:ListItem--%>
+                                       <asp:ListItem Text="ALL" Value="11"></asp:ListItem>
                                        <asp:ListItem Text="Category" Value="1"></asp:ListItem>
                                        <asp:ListItem Text="Sub-Category" Value="2"></asp:ListItem>
                                        <asp:ListItem Text="Item ID" Value="3"></asp:ListItem>
@@ -146,6 +147,9 @@
              else if (search == 4) {
                  //subcategory.classList.remove("hidden");
                  itemname.classList.remove("hidden");
+             }
+             else if(search==11){
+                 subcategory.classList.add("hidden");
              }
              else {
                  subcategory.classList.remove("hidden");
