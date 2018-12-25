@@ -7,11 +7,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,7 +18,7 @@ using UI.ClassFiles;
 
 namespace UI.Transport.TripvsCost
 {
-    public partial class PumpFoodingBill : System.Web.UI.Page
+    public partial class PumpFoodingBill : Page
     {
         char[] delimiterChars = { '[', ']' }; string[] arrayKey; string serial;
 
@@ -29,12 +27,13 @@ namespace UI.Transport.TripvsCost
         string filePathForXML;
         string xmlString = "";
         int intCOAid; int RowIndex;
-        protected decimal grandtotal = 0; protected decimal Grndothercost = 0;
-        ///
-        int enr;
+        protected decimal grandtotal = 0;
+        protected decimal Grndothercost = 0;
+        private int _enroll;
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SAD/Order/Data/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "overtimeEntry.xml");
+            _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            filePathForXML = Server.MapPath("~/SAD/Order/Data/" + _enroll + "_" + "overtimeEntry.xml");
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -43,10 +42,10 @@ namespace UI.Transport.TripvsCost
 
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
                 hdnAction.Value = "0";
-
+                
                 //SetUnitName(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
-                LoadUnitDropDown(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
-                LoadJobStationDropDown(GetUnitID(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
+                LoadUnitDropDown(_enroll);
+                LoadJobStationDropDown(GetUnitID(_enroll),_enroll);
 
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
@@ -525,9 +524,9 @@ namespace UI.Transport.TripvsCost
         {
             return Int32.Parse(bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
         }
-        public void LoadJobStationDropDown(int unitId)
+        public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            ddlJobStation.DataSource = bll.GetJobStation(unitId);
+            ddlJobStation.DataSource = bll.GetJobStationByPermission(unitId, enroll);
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
@@ -547,14 +546,14 @@ namespace UI.Transport.TripvsCost
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);
-            LoadJobStationDropDown(unitId);
+            int unitId = Convert.ToInt32((sender as DropDownList)?.SelectedValue);
+            LoadJobStationDropDown(unitId, _enroll);
             ddlJobStation_SelectedIndexChanged(ddlJobStation, null);
         }
 
         protected void ddlJobStation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["jobStationId"] = (sender as DropDownList).SelectedValue;
+            Session["jobStationId"] = (sender as DropDownList)?.SelectedValue;
         }
         //
         protected void txttrip_TextChanged(object sender, EventArgs e)

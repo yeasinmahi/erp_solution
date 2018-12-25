@@ -15,7 +15,7 @@ namespace UI.Inventory
     {
         readonly char[] _delimiterChars = { '[', ']' };
         string[] _arrayKey;
-
+        private int _enroll;
         private DataTable _dt = new DataTable();
         readonly TourPlanning _bll = new TourPlanning();
 
@@ -23,7 +23,8 @@ namespace UI.Inventory
         {
             pnlUpperControl.DataBind();
             SetJobStationId();
-            hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
+            _enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            hdnAreamanagerEnrol.Value = _enroll.ToString();
             hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
 
             txtFullName.Attributes.Add("onkeyUp", "SearchText();");
@@ -31,7 +32,7 @@ namespace UI.Inventory
             if (!IsPostBack)
             {
                 LoadUnitDropDown(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
-                LoadJobStationDropDown(GetUnitId(Int32.Parse(Session[SessionParams.USER_ID].ToString())));
+                LoadJobStationDropDown(GetUnitId(Int32.Parse(Session[SessionParams.USER_ID].ToString())), _enroll);
             }
             
         }
@@ -156,9 +157,9 @@ namespace UI.Inventory
         {
             return Int32.Parse(_bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
         }
-        public void LoadJobStationDropDown(int unitId)
+        public void LoadJobStationDropDown(int unitId,int enroll)
         {
-            ddlJobStation.DataSource = _bll.GetJobStation(unitId);
+            ddlJobStation.DataSource = _bll.GetJobStationByPermission(unitId,enroll);
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
@@ -193,7 +194,7 @@ namespace UI.Inventory
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             int unitId = Convert.ToInt32((sender as DropDownList).SelectedValue);
-            LoadJobStationDropDown(unitId);
+            LoadJobStationDropDown(unitId, _enroll);
             ddlJobStation_OnSelectedIndexChanged(ddlJobStation, null);
         }
     }
